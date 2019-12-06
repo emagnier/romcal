@@ -1,4 +1,22 @@
 export default {
+  "cycles": {
+    "sunday": {
+      "yearA": "Year A",
+      "yearB": "Year B",
+      "yearC": "Year C"
+    },
+    "ferias": {
+      "year1": "Year I",
+      "year2": "Year II"
+    },
+    "psalterWeeks": {
+      "week1": "Week I",
+      "week2": "Week II",
+      "week3": "Week III",
+      "week4": "Week IV",
+      "easter": "Easter"
+    }
+  },
   "advent": {
     "season": "Advent",
     "feria": "{{day}} of the {{week}} week of Advent",

@@ -187,17 +187,24 @@ describe('Testing calendar generation functions', function() {
         });
       });
 
-      it('Should group dates by their respective liturgical cycles', function() {
+      it('Should group dates by their respective liturgical Sunday cycles', function() {
         _.keys( Calendar.calendarFor({
             year: 2015,
-            query: { group: 'cycles' }
-          })).should.be.eql(['Year B', 'Year C']);
+            query: { group: 'sundayCycles' }
+          })).should.be.eql(['YEAR_B', 'YEAR_C']);
 
         _.keys(Calendar.queryFor(
           Calendar.calendarFor({ year: 2015 }),
-          { group: 'cycles' }
-        )).should.be.eql(['Year B', 'Year C']);
+          { group: 'sundayCycles' }
+        )).should.be.eql(['YEAR_B', 'YEAR_C']);
 
+      });
+
+      it('Should group dates by their respective liturgical ferial day cycles', function() {
+        _.keys(Calendar.queryFor(
+          Calendar.calendarFor({ year: 2015 }),
+          { group: 'feriaCycles' }
+        )).should.be.eql(['YEAR_1', 'YEAR_2']);
       });
 
       it('Should group dates by their celebration types', function() {
@@ -323,4 +330,27 @@ describe('Testing calendar generation functions', function() {
       });
     });
   });
+
+  describe('Testing celebration metadata', function() {
+
+    describe('When requesting dates in a the same liturgical year', function() {
+      var dates = Calendar.calendarFor({
+          year: 2020,
+          type: 'liturgical'
+        }, true ),
+        start = _.head( dates ),
+        end = _.last( dates );
+
+      it('Should have the right cycle defined on celebrations in all its liturgical year', function() {
+        start.data.meta.sundayCycle.key.should.be.eql( 'YEAR_B' );
+        start.data.meta.sundayCycle.key.should.be.eql( end.data.meta.sundayCycle.key );
+      });
+
+      it('Should have the right ferial cycle defined on celebrations in all its liturgical year', function() {
+        start.data.meta.feriaCycle.key.should.be.eql( 'YEAR_1' );
+        start.data.meta.feriaCycle.key.should.be.eql( end.data.meta.feriaCycle.key );
+      });
+    });
+
+  })
 });

@@ -1,4 +1,22 @@
 export default {
+  "cycles": {
+    "sunday": {
+      "yearA": "Année A",
+      "yearB": "Année B",
+      "yearC": "Année C"
+    },
+    "ferias": {
+      "year1": "Année impaire",
+      "year2": "Année paire"
+    },
+    "psalterWeeks": {
+      "week1": "Semaine I",
+      "week2": "Semaine II",
+      "week3": "Semaine III",
+      "week4": "Semaine IV",
+      "easter": "Temps Pascal"
+    }
+  },
   "advent": {
     "season": "Temps de l'Avent",
     "feria": "{{day}} de la {{week}} semaine de l'Avent",

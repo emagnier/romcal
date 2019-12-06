@@ -187,8 +187,8 @@ const advent = y => {
 
     // Psalter week
     v.data.meta.psalterWeek = {
-      key: psalterWeek,
-      value: PsalterWeeks[ psalterWeek ]
+      key: PsalterWeeks[ psalterWeek ],
+      value: Utils.localize({ key: 'cycles.psalterWeeks.' + _.camelCase(PsalterWeeks[ psalterWeek ]) })
     };
 
     // Set default season color if there is no color already set
@@ -304,8 +304,8 @@ const christmastide = (y, christmastideEnds, epiphanyOnJan6 = false, christmasti
     }
 
     v.data.meta.psalterWeek = {
-      key: psalterWeek,
-      value: PsalterWeeks[ psalterWeek ]
+      key: PsalterWeeks[ psalterWeek ],
+      value: Utils.localize({ key: 'cycles.psalterWeeks.' + _.camelCase(PsalterWeeks[ psalterWeek ]) })
     };
 
     // Set default season color if there is no color already set
@@ -382,8 +382,8 @@ const earlyOrdinaryTime = (y, christmastideEnds, epiphanyOnJan6 = false) => {
     }
 
     v.data.meta.psalterWeek = {
-      key: psalterWeek,
-      value: PsalterWeeks[ psalterWeek ]
+      key: PsalterWeeks[ psalterWeek ],
+      value: Utils.localize({ key: 'cycles.psalterWeeks.' + _.camelCase(PsalterWeeks[ psalterWeek ]) })
     };
 
     // Set default season color if there is no color alreayd set
@@ -467,8 +467,8 @@ const laterOrdinaryTime = y => {
     }
 
     v.data.meta.psalterWeek = {
-      key: psalterWeek,
-      value: PsalterWeeks[ psalterWeek ]
+      key: PsalterWeeks[ psalterWeek ],
+      value: Utils.localize({ key: 'cycles.psalterWeeks.' + _.camelCase(PsalterWeeks[ psalterWeek ]) })
     };
 
     // Set default season color if there is no color already set
@@ -571,8 +571,8 @@ const lent = y => {
     }
 
     v.data.meta.psalterWeek = {
-      key: psalterWeek,
-      value: PsalterWeeks[ psalterWeek ]
+      key: PsalterWeeks[ psalterWeek ],
+      value: Utils.localize({ key: 'cycles.psalterWeeks.' + _.camelCase(PsalterWeeks[ psalterWeek ]) })
     };
 
     // Set default season color if there is no color already set
@@ -687,8 +687,8 @@ const eastertide = y => {
 
     if ( _.lt( k, 8 ) ) {
       v.data.meta.psalterWeek = {
-        key: 5,
-        value: PsalterWeeks[ 5 ]
+        key: PsalterWeeks[ 'easter' ],
+        value: Utils.localize({ key: 'cycles.psalterWeeks.' + PsalterWeeks[ 'easter' ] })
       };
     }
     else {
@@ -699,8 +699,8 @@ const eastertide = y => {
         }
       }
       v.data.meta.psalterWeek = {
-        key: psalterWeek,
-        value: PsalterWeeks[ psalterWeek ]
+        key: PsalterWeeks[ psalterWeek ],
+        value: Utils.localize({ key: 'cycles.psalterWeeks.' + _.camelCase(PsalterWeeks[ psalterWeek ]) })
       };
     }
 

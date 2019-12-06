@@ -1,10 +1,11 @@
 const LiturgicalSeasons = {
-  "ADVENT": "Advent",
-  "CHRISTMASTIDE": "Christmastide",
-  "EARLY_ORDINARY_TIME": "Early Ordinary Time",
-  "LATER_ORDINARY_TIME": "Later Ordinary Time",
-  "LENT": "Lent",
-  "HOLY_WEEK": "Holy Week",
-  "EASTER": "Easter"
+  "ADVENT": "ADVENT",
+  "CHRISTMASTIDE": "CHRISTMASTIDE",
+  "EARLY_ORDINARY_TIME": "EARLY_ORDINARY_TIME",
+  "LATER_ORDINARY_TIME": "LATER_ORDINARY_TIME",
+  "LENT": "LENT",
+  "HOLY_WEEK": "HOLY_WEEK",
+  "EASTER": "EASTER"
 };
+
 export default LiturgicalSeasons;

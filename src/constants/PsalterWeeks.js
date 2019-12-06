@@ -1,8 +1,9 @@
 const PsalterWeeks = {
-  "1": "Week I",
-  "2": "Week II",
-  "3": "Week III",
-  "4": "Week IV",
-  "5": "Easter"
+  "1": "WEEK_1",
+  "2": "WEEK_2",
+  "3": "WEEK_3",
+  "4": "WEEK_4",
+  "easter": "EASTER"
 };
+
 export default PsalterWeeks;

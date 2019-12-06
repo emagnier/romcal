@@ -13,7 +13,8 @@ import {
   LiturgicalColors,
   PsalterWeeks,
   Types,
-  Cycles
+  SundayCycles,
+  FeriaCycles
 } from '../constants';
 
 // Get an array of country names
@@ -413,11 +414,19 @@ const _applyDates = ( options, dates ) => {
 // year
 // dates
 const _liturgicalCycleMetadata = (year, dates) => {
-
-  // Formula to calculate lectionary cycle (Year A, B, C)
   let firstSundayOfAdvent = Dates.firstSundayOfAdvent(year);
-  let thisCycle = ( year - 1963 ) % 3;
-  let nextCycle = ( _.eq( thisCycle,  2 ) ? 0 : thisCycle + 1 );
+
+  // Formula to calculate lectionary cycle for Sunday (Year A, B, C)
+  let ids = ['A', 'B', 'C'];
+  let thisSundayCycle = ( year - 1963 ) % 3;
+  let thisSundayProp = SundayCycles[ ids[thisSundayCycle] ];
+  let nextSundayCycle = ( _.eq( thisSundayCycle,  2 ) ? 0 : thisSundayCycle + 1 );
+  let nextSundayProp = SundayCycles[ ids[nextSundayCycle] ];
+
+  // Formula to calculate lectionary cycle for ferial days (Year I, II)
+  let isEven = year % 2 === 0;
+  let thisFeriaProp = FeriaCycles[ isEven ? 2 : 1 ];
+  let nextFeriaProp = FeriaCycles[ isEven ? 1 : 2 ];
 
   _.map( dates, v => {
 
@@ -428,15 +437,23 @@ const _liturgicalCycleMetadata = (year, dates) => {
     // it is the next liturgical cycle
     //=====================================================================
     if ( v.moment.isSame( firstSundayOfAdvent ) || v.moment.isAfter( firstSundayOfAdvent ) ) {
-      v.data.meta.cycle = {
-        key: nextCycle,
-        value: Cycles[ nextCycle ]
+      v.data.meta.sundayCycle = {
+        key: nextSundayProp,
+        value: Utils.localize({key: 'cycles.sunday.' + _.camelCase(nextSundayProp)})
       };
+      v.data.meta.feriaCycle = {
+        key: nextFeriaProp,
+        value: Utils.localize({key: 'cycles.ferias.' + _.camelCase(nextFeriaProp)})
+      }
     }
     else {
-      v.data.meta.cycle = {
-        key: thisCycle,
-        value: Cycles[ thisCycle ]
+      v.data.meta.sundayCycle = {
+        key: thisSundayProp,
+        value: Utils.localize({key: 'cycles.sunday.' + _.camelCase(thisSundayProp)})
+      };
+      v.data.meta.feriaCycle = {
+        key: thisFeriaProp,
+        value: Utils.localize({key: 'cycles.ferias.' + _.camelCase(thisFeriaProp)})
       };
     }
 
@@ -618,8 +635,11 @@ const queryFor = (dates = [], query = {}, skipIsoConversion = false ) => {
           dates = _.groupBy(dates, d => d.moment.month());
           dates = _.map(dates, v => _.groupBy( v, d => d.data.calendar.week ));
           break;
-        case 'cycles':
-          dates = _.groupBy(dates, d => d.data.meta.cycle.value );
+        case 'sundayCycles':
+          dates = _.groupBy(dates, d => d.data.meta.sundayCycle.key );
+          break;
+        case 'feriaCycles':
+          dates = _.groupBy(dates, d => d.data.meta.feriaCycle.key );
           break;
         case 'types':
           dates = _.groupBy(dates, d => d.type );

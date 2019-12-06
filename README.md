@@ -305,26 +305,33 @@ var LiturgicalSeasons = require('romcal').LiturgicalSeasons;
 ```
 
 ## Liturgical Cycles <a name="cycles"></a>
-A liturgical year consists of a cycles (either A, B, C) that determines which portions of scripture are to be read. romcal automatically calculates the correct cycle for the given liturgical year and includes it in the meta information of each liturgical date for that year.
+A liturgical year consists of Sunday cycles (either A, B, C) and ferial days cycles (either I, II) that determines which portions of scripture are to be read. romcal automatically calculates the correct cycle for the given liturgical year and includes it in the meta information of each liturgical date for that year.
 
-romcal defines cycles in `src/constants/Cycles.js` which are:
+romcal defines cycles which are:
++ for `src/constants/SundayCycles.js`
+    + `Year A` denoted by the key `YEAR_A`
+    + `Year B` denoted by the key `YEAR_B`
+    + `Year C` denoted by the key `YEAR_C`
++ for `src/constants/FeriaCycles.js`
+    + `Year I` denoted by the key `YEAR_1`
+    + `Year II` denoted by the key `YEAR_2`
 
-+ `Year A` denoted by the key `0`
-+ `Year B` denoted by the key `1`
-+ `Year C` denoted by the key `2`
-
-Cycle information can be read via the `dates[idx].data.meta.cycle` property in each date element in the array that `calendarFor` returns.
+In each date element in the array that `calendarFor` returns, cycle informations can be read via these 2 properties:
++ `dates[idx].data.meta.sundayCycle`
++ `dates[idx].data.meta.feriaCycle`
 
 The cycles object can be imported into consumer apps via:
 
 *ES6*
 ```
-import { Cycles } from 'romcal';
+import { SundayCycles } from 'romcal';
+import { FeriaCycles } from 'romcal';
 ```
 
 *CommonJS*
 ```
-var Cycles = require('romcal').Cycles;
+var SundayCycles = require('romcal').SundayCycles;
+var FeriaCycles = require('romcal').FeriaCycles;
 ```
 
 ## Liturgical Colors <a name="colors"></a>
@@ -359,11 +366,11 @@ With the exception of the Easter Octave, each week in the liturgical year is ass
 
 romcal defines the Psalter Weeks used in the liturgical year in `src/constants/PsalterWeeks.js` which are:
 
-+ `Week I`
-+ `Week II`
-+ `Week III`
-+ `Week IV`
-+ `Easter` (seperate set of readings only used during the Octave of Easter)
++ `Week I` denoted by the key `WEEK_1`
++ `Week II` denoted by the key `WEEK_2`
++ `Week III` denoted by the key `WEEK_3`
++ `Week IV` denoted by the key `WEEK_4`
++ `Easter` denoted by the key `EASTER` (seperate set of readings only used during the Octave of Easter)
 
 Psalter weeks can be read via the `dates[idx].data.meta.psalterWeek` property in each date element in the array that `calendarFor` returns.
 
@@ -517,7 +524,7 @@ import { Calendar } from 'romcal';
 
 Calendar.calendarFor({
     query: {
-        group: 'days|months|daysByMonth|weeksByMonth|cycles|types|liturgicalSeasons|liturgicalColors|psalterWeeks'
+        group: 'days|months|daysByMonth|weeksByMonth|cycles|ferialCycles|types|liturgicalSeasons|liturgicalColors|psalterWeeks'
     }
 });
 

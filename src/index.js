@@ -36,7 +36,7 @@ import {
 } from './lib';
 
 import {
-  Cycles,
+  SundayCycles,
   LiturgicalColors,
   PsalterWeeks,
   LiturgicalSeasons,
@@ -69,7 +69,7 @@ export {
 
 // Export all constants
 export {
-  Cycles,
+  SundayCycles,
   LiturgicalColors,
   PsalterWeeks,
   LiturgicalSeasons,
