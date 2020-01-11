@@ -382,7 +382,7 @@ let dates = (year, christmastideEnds, epiphanyOnJan6 = false, corpusChristiOnThu
     // Memorials
     {
       "key": "immaculateHeartOfMary",
-      "type": Types.FEAST,
+      "type": Types.MEMORIAL,
       "moment": Dates.immaculateHeartOfMary( year ),
       "data": {
         "prioritized": true,
