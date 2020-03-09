@@ -12,7 +12,7 @@ class Types extends Array {
     for (let key of this) {
       Object.defineProperty(this, key, {
         value: key,
-        writable: false
+        writable: false,
       });
     }
   }
@@ -22,60 +22,59 @@ class Types extends Array {
 // Order is important:
 // Higher rank first, lower rank at the end.
 const TYPES = new Types(
-
   /**
    * @name Types#SOLEMNITY
    * @type string
    */
-  "SOLEMNITY",
+  'SOLEMNITY',
 
   /**
    * @name Types#SUNDAY
    * @type string
    */
-  "SUNDAY",
+  'SUNDAY',
 
   /**
    * @name Types#TRIDUUM
    * @type string
    */
-  "TRIDUUM",
+  'TRIDUUM',
 
   /**
    * @name Types#HOLY_WEEK
    * @type string
    */
-  "HOLY_WEEK",
+  'HOLY_WEEK',
 
   /**
    * @name Types#FEAST
    * @type string
    */
-  "FEAST",
+  'FEAST',
 
   /**
    * @name Types#MEMORIAL
    * @type string
    */
-  "MEMORIAL",
+  'MEMORIAL',
 
   /**
    * @name Types#OPT_MEMORIAL
    * @type string
    */
-  "OPT_MEMORIAL",
+  'OPT_MEMORIAL',
 
   /**
    * @name Types#COMMEMORATION
    * @type string
    */
-  "COMMEMORATION",
+  'COMMEMORATION',
 
   /**
    * @name Types#FERIA
    * @type string
    */
-  "FERIA"
+  'FERIA',
 );
 
 export default TYPES;

@@ -1,8 +1,8 @@
 // @flow
 
-import Moment from "moment";
-import {Cycles, LiturgicalSeasons, Types} from "../constants";
-import * as Dates from "./Dates";
+import Moment from 'moment';
+import { Cycles, LiturgicalSeasons, Types } from '../constants';
+import * as Dates from './Dates';
 
 export opaque type ISOString: string = string;
 
@@ -38,10 +38,13 @@ export default class DateItem {
     // The original default item is added to the current item as the `base` property
     if (baseItem && this._id !== baseItem._id) {
       this.base = baseItem;
-      this.data = {...{
+      this.data = {
+        ...{
           season: baseItem.data.season,
-          calendar: baseItem.data.calendar
-        }, ...this.data};
+          calendar: baseItem.data.calendar,
+        },
+        ...this.data,
+      };
       this.data.meta.psalterWeek = this.data.meta.psalterWeek || baseItem.data.meta.psalterWeek;
     }
 
@@ -55,22 +58,16 @@ export default class DateItem {
   _adjustTypeInSeasons() {
     // Special type management in the season of LENT
     if (this.base && this.base.data.season.key === LiturgicalSeasons.LENT) {
-
       // MEMORIAL or OPT_MEMORIAL that fall on a FERIA
       // in the SEASON OF LENT are reduced to a COMMEMORATION
-      if (
-        (this.type === Types.MEMORIAL || this.type === Types.OPT_MEMORIAL) &&
-        this.base.type === Types.FERIA
-      ) {
-        this.type = Types.COMMEMORATION
+      if ((this.type === Types.MEMORIAL || this.type === Types.OPT_MEMORIAL) && this.base.type === Types.FERIA) {
+        this.type = Types.COMMEMORATION;
       }
 
       // A FEAST occurring in the season of LENT is reduced
       // to a COMMEMORATION
-      if (
-        this.type === Types.FEAST
-      ) {
-        this.type = Types.COMMEMORATION
+      if (this.type === Types.FEAST) {
+        this.type = Types.COMMEMORATION;
       }
     }
   }
@@ -91,12 +88,12 @@ export default class DateItem {
     if (this.moment.isSameOrAfter(firstSundayOfAdvent)) {
       this.data.meta.cycle = {
         key: nextCycle,
-        value: Cycles[nextCycle]
+        value: Cycles[nextCycle],
       };
     } else {
       this.data.meta.cycle = {
         key: thisCycle,
-        value: Cycles[thisCycle]
+        value: Cycles[thisCycle],
       };
     }
   }

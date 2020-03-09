@@ -1,34 +1,27 @@
+import moment from 'moment';
 
-import moment from "moment";
-
-import { Utils } from "../lib";
-import { Titles, Types, LiturgicalColors } from "../constants";
+import { Utils } from '../lib';
+import { Titles, Types, LiturgicalColors } from '../constants';
 
 const defaultConfig = {};
 
 let dates = year => {
-
   let _dates = [
     {
-      "key": "vietnameseMartyrs",
-      "type": Types.FEAST,
-      "moment": moment.utc({ year: year, month: 10, day: 13 }),
-      "data": {
-        "meta": {
-          "liturgicalColor": LiturgicalColors.RED,
-          "titles": [
-            Titles.MARTYR
-          ]
-        }
-      }
-    }
+      key: 'vietnameseMartyrs',
+      type: Types.FEAST,
+      moment: moment.utc({ year: year, month: 10, day: 13 }),
+      data: {
+        meta: {
+          liturgicalColor: LiturgicalColors.RED,
+          titles: [Titles.MARTYR],
+        },
+      },
+    },
   ];
 
   // Get localized celebration names
   return Utils.localizeDates(_dates);
 };
 
-export {
-  defaultConfig,
-  dates
-};
+export { defaultConfig, dates };
