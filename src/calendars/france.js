@@ -15,13 +15,21 @@ let dates = year => {
       key: 'saintGenevieveVirgin',
       type: Types.OPT_MEMORIAL,
       moment: moment.utc({ year: year, month: 0, day: 3 }),
-      data: {},
+      data: {
+        meta: {
+          liturgicalColor: LiturgicalColors.WHITE,
+        },
+      },
     },
     {
       key: 'saintRemigiusBishop',
       type: Types.OPT_MEMORIAL,
       moment: moment.utc({ year: year, month: 0, day: 15 }),
-      data: {},
+      data: {
+        meta: {
+          liturgicalColor: LiturgicalColors.WHITE,
+        },
+      },
     },
     {
       key: 'saintsCyrilMonkAndMethodiusBishop',
@@ -38,7 +46,21 @@ let dates = year => {
       key: 'saintBernadetteSoubirousVirgin',
       type: Types.OPT_MEMORIAL,
       moment: moment.utc({ year: year, month: 1, day: 18 }),
-      data: {},
+      data: {
+        meta: {
+          liturgicalColor: LiturgicalColors.WHITE,
+        },
+      },
+    },
+    {
+      key: 'saintLouiseDeMarillacReligious',
+      type: Types.OPT_MEMORIAL,
+      moment: moment.utc({ year: year, month: 2, day: 15 }),
+      data: {
+        meta: {
+          liturgicalColor: LiturgicalColors.WHITE,
+        },
+      },
     },
     {
       key: 'saintCatherineOfSienaVirginAndDoctorOfTheChurch',
@@ -55,7 +77,11 @@ let dates = year => {
       key: 'saintIvoPriest',
       type: Types.OPT_MEMORIAL,
       moment: moment.utc({ year: year, month: 4, day: 19 }),
-      data: {},
+      data: {
+        meta: {
+          liturgicalColor: LiturgicalColors.WHITE,
+        },
+      },
     },
     {
       key: 'saintJoanOfArcVirginSecondaryPatronessOfFrance',
@@ -71,13 +97,22 @@ let dates = year => {
       key: 'saintPothinusBishopSaintBlAndinaVirginAndTheirCompanionsMartyrs',
       type: Types.OPT_MEMORIAL,
       moment: moment.utc({ year: year, month: 5, day: 2 }),
-      data: {},
+      data: {
+        meta: {
+          liturgicalColor: LiturgicalColors.RED,
+          titles: [Titles.MARTYR],
+        },
+      },
     },
     {
       key: 'saintClotilde',
       type: Types.OPT_MEMORIAL,
       moment: moment.utc({ year: year, month: 5, day: 4 }),
-      data: {},
+      data: {
+        meta: {
+          liturgicalColor: LiturgicalColors.WHITE,
+        },
+      },
     },
     {
       key: 'saintBenedictOfNursiaAbbot',
@@ -116,9 +151,24 @@ let dates = year => {
       key: 'saintCaesariusOfArlesBishop',
       type: Types.OPT_MEMORIAL,
       moment: moment.utc({ year: year, month: 7, day: 26 }),
-      data: {},
+      data: {
+        meta: {
+          liturgicalColor: LiturgicalColors.WHITE,
+        },
+      },
     },
     {
+      key: 'ourLadyOfLaSalette',
+      type: Types.OPT_MEMORIAL,
+      moment: moment.utc({ year: year, month: 8, day: 19 }),
+      data: {
+        meta: {
+          liturgicalColor: LiturgicalColors.WHITE,
+        },
+      },
+    },
+    {
+      // Save as General + SecondaryPatronessOfFrance
       key: 'saintThereseOfTheChildJesusVirginSecondaryPatronessOfFrance',
       type: Types.MEMORIAL,
       moment: moment.utc({ year: year, month: 9, day: 1 }),

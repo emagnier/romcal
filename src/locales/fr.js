@@ -45,7 +45,7 @@ export default {
     baptismOfTheLord: 'Baptême du Seigneur',
     birthOfJohnTheBaptist: 'Nativité de Saint Jean le Baptiste',
     christmas: 'Nativité du Seigneur',
-    christTheKing: "Christ, Roi de l'Univers",
+    christTheKing: 'Christ, Roi de l’Univers',
     corpusChristi: 'Saint-Sacrement',
     divineMercySunday: 'Dimanche de la Divine Miséricorde',
     easter: 'Dimanche de Pâques',
@@ -74,18 +74,27 @@ export default {
       'Bienheureux André Grasset, Prêtre, Canadien martyr de la Révolution française (✝ 1792)',
     blessedCatherineOfSaintAugustineVirgin:
       'Bienheureuse Catherine de Saint-Augustin, Religieuse hospitalière de la Miséricorde (✝ 1668)',
+    blessedDanielBrottierPriest: 'Bx. Daniel Brottier, prêtre, apôtre des Orphelins d’Auteuil (✝ 1936 à Paris)',
     blessedDinaBelangerVirgin:
       'Bienheureuse Dina Bélanger, Religieuse de la congrégation des Sœurs de Jésus-Marie (✝ 1929)',
     blessedEmilieTavernierGamelinReligious:
       'Bienheureuse Émilie Tavernier-Gamelin, Religieuse, Fondatrice des Sœurs de la Providence de Montréal (✝ 1851)',
     blessedFredericJanssoonePriest: 'Bienheureux Frédéric Janssoone, Prêtre franciscain (✝ 1916)',
+    blessedFredericOzanam:
+      'Bx. Frédéric Ozonaman, professeur, fondateur de la Société de Saint-Vincent-de-Paul (✝ 1853 à Marseille)',
+    blessedInnocentVPope:
+      'Bx. Innocent V, enseignant à l’Université de Paris, pape (✝ 1276, mort cinq mois après son élection)',
     blessedLouisZephirinMoreauBishop: 'Bienheureux Louis Zéphyrin Moreau, Évêque (✝ 1901)',
     blessedMarieAnneBlondinVirgin:
       'Bienheureuse Marie-Anne Blondin, Religieuse, Fondatrice des Sœurs de Sainte-Anne (✝ 1890)',
+    blessedMarieDeLaProvidence:
+      'Bse Marie de la Providence (Eugénie Smet), vierge, fondatrice de la congrégration des Auxilliatrices (✝ 1871 à Paris)',
     blessedMarieLeonieParadisVirgin:
       'Bienheureuse Marie-Léonie Paradis, Religieuse, Fondatrice de la Congrégation des Petites Sœurs de la Sainte Famille (✝ 1912)',
     blessedMarieRoseDurocherVirgin:
       'Bienheureuse Marie-Rose Durocher, Religieuse, Fondatrice des Sœurs des Saints Noms de Jésus et de Marie (✝ 1849)',
+    blessedMartyrsOfParis: 'Bienheureux martyrs de Paris (✝ du 2 au 6 septembre 1792)',
+    blessedNicholasBarre: 'Bx. Nicolas Barré, prêtre, fondateur des sœurs de l’Enfant-Jésus (✝ 1686 à Paris)',
     blessedsNykytaBudkaAndVasylVelychkowskyBishopsAndMartyrs:
       'Bienheureux Nicétas Budka (✝ 1949) et Vasyl Velychkowsky (✝ 1973), Évêques et Martyrs',
     chairOfSaintPeterApostle: 'Chaire de Saint Pierre, Apôtre',
@@ -93,18 +102,25 @@ export default {
     dedicationOfTheBasilicaOfSaintMaryMajor: 'Dédicace de la basilique Sainte-Marie Majeure',
     dedicationOfTheBasilicasOfSaintsPeterAndPaulApostles:
       'Dédicace des basiliques de Saint Pierre et Saint Paul, Apôtres, à Rome',
+    dedicationOfTheCathedralOfParis: 'Dédicace de la cathédrale de Paris',
     dedicationOfTheLateranBasilica: 'Dédicace de la Basilique du Latran',
     firstMartyrsOfTheChurchOfRome: 'Premiers Saints martyrs de la Sainte Église romaine (✝ 64)',
     guardianAngels: 'Saints Anges gardiens',
-    holyInnocentsMartyrs: 'Saints Innocents, Martyrs (1er s.)',
+    holyInnocentsMartyrs: 'Saints Innocents, Martyrs (1er siècle)',
     holyNameOfTheBlessedVirginMary: 'Le Saint Nom de Marie',
+    holyMaryRefugeOfSinner:
+      'Ste Marie, refuge des pécheurs, invoquée sur ce vocable depuis 1836 en la basilique Notre-Dame des Victoires',
+    martyrsOfCompiegne:
+      'Bses Carmélites de Compiègne : Mère Thérèse et ses 15 compagnes, martyres (guillotinées en 1794)',
     ourLadyMediatrix: 'Notre-Dame, Médiatrice',
     ourLadyOfFatima: 'Notre-Dame de Fatima',
     ourLadyOfGoodCounsel: 'Notre-Dame du Bon Conseil',
     ourLadyOfGuadalupe: 'Notre-Dame de Guadalupe',
+    ourLadyOfLaSalette: 'Notre-Dame de la Salette (1846)',
     ourLadyOfLourdes: 'Notre-Dame de Lourdes',
     ourLadyOfMountCarmel: 'Notre-Dame du Mont-Carmel',
     ourLadyOfSorrows: 'Notre-Dame des Douleurs',
+    ourLadyOfTheMiraculousMedal: 'Notre-Dame de la Médaille miraculeuse',
     ourLadyOfTheRosary: 'Notre-Dame du Rosaire',
     popeSaintJohnPaulII: 'Saint Jean Paul II, Pape (✝ 2005)',
     popeSaintJohnXXIII: 'Saint Jean XXIII, Pape (✝ 1963)',
@@ -123,7 +139,7 @@ export default {
     saintAndrewDungLacAndCompanionsMartyrs:
       'Saint André Dung Lac, Prêtre, et ses compagnons, Martyrs (✝ entre 1745 et 1862)',
     saintAndrewKimTaegonPriestAndPaulChongHasangAndCompanionsMartyrs:
-      'Saint André Kim Taegon, Prêtre, et Paul Chong Ha-sang et ses compagnons, Martyrs en Corée (19ème s.)',
+      'Saint André Kim Taegon, Prêtre, et Paul Chong Ha-sang et ses compagnons, Martyrs en Corée (19ème siècle)',
     saintAndrewTheApostle: 'Saint André, Apôtre',
     saintAngelaMericiVirgin:
       'Sainte Angèle Mérici, Religieuse, Fondatrice de la Compagnie de Sainte Ursule de Brescia (✝ 1540)',
@@ -135,7 +151,7 @@ export default {
     saintAnthonyOfEgyptAbbot: 'Saint Antoine le Grand, Ermite en Egypte (✝ 356)',
     saintAnthonyOfPaduaPriestAndDoctor: 'Saint Antoine, Prêtre et Docteur de l’Église (✝ 1231)',
     saintAnthonyZaccariaPriest: 'Saint Antoine-Marie Zaccaria, Prêtre (✝ 1539)',
-    saintApollinaris: 'Saint Apollinaire, Évêque (2ème s.)',
+    saintApollinaris: 'Saint Apollinaire, Évêque (2ème siècle)',
     saintAthanasiusBishopAndDoctor: 'Saint Athanase, Évêque, Docteur et Père de l’Église (✝ 373)',
     saintAugustineOfCanterburyBishop: 'Saint Augustin, Évêque de Cantorbéry en Angleterre (✝ 604)',
     saintAugustineOfHippoBishopAndDoctorOfTheChurch: 'Saint Augustin, Evêque d’Hippone, Docteur de l’Église (✝ 430)',
@@ -144,8 +160,8 @@ export default {
     saintBedeTheVenerablePriestAndDoctorSaintGregoryViiPopeSaintMaryMagdaleneDePazziVirgin:
       'Saint Bède le Vénérable, Prêtre et docteur de l’Église (✝ 735), ou Saint Grégoire VII, Pape (✝ 1085), ou Sainte Marie-Madeleine de Pazzi, Vierge de l’Ordre du Carmel (✝ 1607)',
     saintBenedictOfNursiaAbbot:
-      'Saint Benoît de Nursie, Patriarche des moines d’Occident, Fondateur de l’ordre des Bénédictins, Patron de l’Europe (✝ v. 547)',
-    saintBernadetteSoubirousVirgin: 'Sainte Bernadette Soubirous, Vierge (✝ 1879)',
+      'S. Benoît, de Nursie, patriarche des moines d’Occident, fondateur de l’ordre des Bénédictins (✝ 547 au Mont-Cassin), co-patron de l’Europe',
+    saintBernadetteSoubirousVirgin: 'Ste Bernadette Soubirous, vierge à Lourdes (✝ 1879 à Nevers)',
     saintBernardineOfSienaPriest: 'Saint Bernardin de Sienne, Prêtre (✝ 1444)',
     saintBernardOfClairvauxAbbotAndDoctorOfTheChurch: 'Saint Bernard de Clairvaux, Abbé, Docteur de l’Église (✝ 1153)',
     saintBlaseBishopAndMartyrSaintAnsgarBishop:
@@ -153,19 +169,21 @@ export default {
     saintBonaventureBishopAndDoctor: 'Saint Bonaventure, Évêque d’Albano et Docteur de l’Église (✝ 1274)',
     saintBonifaceBishopAndMartyr: 'Saint Boniface, Évêque et Martyr (✝ 754)',
     saintBridgetOfSwedenReligious:
-      'Sainte Brigitte de Suède, Veuve puis Religieuse, Fondatrice de l’ordre du Saint-Sauveur, Copatronne de l’Europe (✝ 1373)',
+      'Ste Brigitte de Suède, mère de famille puis religieuse, fondatrice de l’ordre du Saint-Sauveur (✝ 1373 à Rome), co-patronne de l’Europe',
     saintBrotherMutienMarieReligious: 'Saint Mutien Marie Wiaux, Frère des Ecoles Chrétiennes (✝ 1917)',
     saintBrunoPriest: 'Saint Bruno, Prêtre, Fondateur des Chartreux (✝ 1101)',
-    saintCaesariusOfArlesBishop: 'Saint Césaire d’Arles, Évêque, Père de l’Eglise (✝ 542)',
+    saintCaesariusOfArlesBishop: 'S. Césaire d’Arles, évêque, père de l’Église (✝ 542)',
     saintCallistusIPopeAndMartyr: 'Saint Calixte Ier, Pape et Martyr (✝ 222)',
     saintCamillusDeLellisPriest: 'Saint Camille de Lellis, Prêtre (✝ 1614)',
     saintCamillusDeLellisPriestOrSaintHenryBishopAndMartyr:
       'Saint Camille de Lellis, Prêtre, ou Saint Henri, Évêque et Martyr',
     saintCasimir: 'Saint Casimir (✝ 1484)',
-    saintCatherineOfAlexandriaVirginAndMartyr: 'Sainte Catherine d’Alexandrie, Vierge et Martyre (4ème s.)',
+    saintCatherineLaboureReligious: 'Ste Catherine Labouré, Fille de la charité (✝ 1876)',
+    saintCatherineOfAlexandriaVirginAndMartyr: 'Sainte Catherine d’Alexandrie, Vierge et Martyre (4ème siècle)',
     saintCatherineOfSienaVirginAndDoctorOfTheChurch:
-      'Sainte Catherine de Sienne, Vierge et Docteur de l’Eglise, Patronne de l’Europe (✝ 1380)',
+      'Ste Catherine de Sienne, vierge, tertiaire dominicaine, docteur de l’Église (✝ 1380 à Rome), co-patronne de l’Europe',
     saintCeciliaVirginAndMartyr: 'Sainte Cécile, Vierge et Martyre à Rome (✝ 230)',
+    saintCeranOfParisBishop: 'S. Céran, évêque de Paris au 7e siècle',
     saintCharbelMakhloufPriestAndHermit: 'Saint Charbel Makhlouf, Moine Prêtre Maronite (✝ 1898)',
     saintCharlesBorromeoBishop: 'Saint Charles Borromée, Archevêque de Milan (✝ 1584)',
     saintChristopherMagallanesAndCompanionsMartyrs:
@@ -173,14 +191,13 @@ export default {
     saintClareVirgin: 'Sainte Claire, Vierge',
     saintClementIPopeAndMartyrSaintColumbanReligious:
       'Saint Clément Ier, Pape et Martyr (✝ 97), ou Saint Colomban, Religieux (✝ 615)',
-    saintClotilde: 'Sainte Clotilde, Reine des Francs (✝ 545)',
+    saintClotilde: 'Ste Clotilde, épouse de Clovis, reine des Francs (✝ 545 à Tours)',
     saintCyrilOfAlexandriaBishopAndDoctor: 'Saint Cyrille, Évêque d’Alexandrie et Docteur de l’Église (✝ 444)',
     saintCyrilOfJerusalemBishopAndDoctor:
       'Saint Cyrille de Jérusalem, Évêque de Jérusalem, Docteur de l’Église (✝ 387)',
     saintDamasusIPope: 'Saint Damase Ier, Pape (✝ 384)',
     saintDamienDeVeusterPriest: 'Saint Père Damien, Prêtre et Missionnaire Picpus (✝ 1889)',
-    saintDenisAndCompanionsMartyrsSaintJohnLeonardiPriest:
-      'Saint Denis, Évêque, et ses compagnons, martyrs à Paris (3ème s.), ou Saint Jean Léonardi, Prêtre (✝ 1609))',
+    saintDenisAndCompanionsMartyrs: 'S. Denis, 1er évêque de Paris (Lutèce), et ses compagnons, martyrs (3e siècle)',
     saintDominicPriest: 'Saint Dominique de Guzman, Prêtre, Fondateur de l’Ordre des Frères prêcheurs (✝ 1221)',
     saintElizabethOfHungary: 'Sainte Élisabeth de Hongrie (✝ 1231)',
     saintElizabethOfPortugal: 'Sainte Elisabeth du Portugal, Reine (✝ 1336)',
@@ -196,9 +213,10 @@ export default {
     saintFrancisOfPaolaHermit: 'Saint François de Paule, Ermite, Fondateur de l’ordre des Minimes (✝ 1507)',
     saintFrancisXavierPriest: 'Saint François-Xavier, Prêtre, Jésuite Missionnaire (✝ 1552)',
     saintFrancoisDeLavalBishop: 'Saint François de Laval, Premier évêque de Québec (✝ 1708)',
-    saintGenevieveVirgin: 'Sainte Geneviève, Vierge à Paris (✝ 500)',
+    saintGenevieveVirgin: 'Ste Geneviève, vierge (✝ v. 500 à Paris)',
     saintGeorgeMartyrSaintAdalbertBishopAndMartyr:
       'Saint Georges, Martyr (✝ 303) ou Saint Adalbert, Évêque de Prague et Martyr (✝ 997)',
+    saintGermainOfParisBishop: 'S. Germain, 20e évêque de Paris (✝ 576)',
     saintGertrudeOfNivellesVirgin: 'Sainte Gertrude de Nivelles, Abbesse (✝ 659)',
     saintGregoryTheGreatPopeAndDoctor: 'Saint Grégoire le Grand, Pape et Docteur de l’Église (✝ 604)',
     saintHedwigReligiousOrSaintMargaretMaryAlacoqueVirgin:
@@ -212,9 +230,10 @@ export default {
       'Saint Ignace d’Antioche, Évêque et Martyr, Père et Docteur de l’Eglise (✝ 115)',
     saintIgnatiusOfLoyolaPriest: 'Saint Ignace de Loyola, Prêtre, Fondateur de la Compagnie de Jésus (✝ 1556)',
     saintIrenaeusBishopAndMartyr: 'Saint Irénée, Évêque et Martyr (✝ v. 201)',
+    saintIsabelleOfFranceVirgin: 'Bse Isabelle de France, sœur de saint Louis, vierge (✝ 1270)',
     saintIsidoreOfSevilleBishopAndDoctorOfTheChurch:
       'Saint Isidore de Séville, Docteur de l’Eglise, Évêque et Confesseur (✝ 636)',
-    saintIvoPriest: 'Saint Yves Hélory, Prêtre et Juge en Bretagne (✝ 1303)',
+    saintIvoPriest: 'S. Yves, juge puis prêtre (✝ 1303 à Tréguier en Bretagne)',
     saintJamesApostle: 'Saint Jacques le Majeur, Apôtre (✝ 44)',
     saintJaneFrancesDeChantalReligious: 'Sainte Jeanne-Françoise de Chantal, Religieuse (✝ 1641)',
     saintJanuariusBishopAndMartyr: 'Saint Janvier, Évêque de Bénévent et Martyr (✝ 305)',
@@ -223,7 +242,7 @@ export default {
       'Saint Jérôme Émilien, Fondateur (✝ 1537), ou Sainte Joséphine Bakhita, Vierge et Religieuse (✝ 1947)',
     saintJeromePriestAndDoctor: 'Saint Jérôme, Père et Docteur de l’Église (✝ 420)',
     saintJoanOfArcVirginSecondaryPatronessOfFrance:
-      'Sainte Jeanne d’Arc, Vierge, Patronne Secondaires de la France (✝ 1431)',
+      'Ste Jeanne d’Arc, vierge (✝ 1431 à Rouen), co-patronne secondaire de la France',
     saintJohnBaptistDeLaSallePriest:
       'Saint Jean-Baptiste de La Salle, Prêtre et Fondateur des Frères des Ecoles Chrétiennes (✝ 1719)',
     saintJohnBerchmansReligious: 'Saint Jean Berchmans, Jésuite Belge (✝ 1621)',
@@ -233,6 +252,7 @@ export default {
     saintJohnDamascenePriestAndDoctor: 'Saint Jean Damascène, Prêtre et Docteur de l’Église (✝ 749)',
     saintJohnEudesPriest: 'Saint Jean Eudes, Prêtre (✝ 1680)',
     saintJohnIPopeAndMartyr: 'Saint Jean Ier, Pape et Martyr (✝ 526)',
+    saintJohnLeonardiPriest: 'S. Jean Léonardi, Prêtre (✝ 1609)',
     saintJohnOfCapistranoPriest: 'Saint Jean de Capistran, Prêtre de l’Ordre des Mineurs (✝ 1456)',
     saintJohnOfGodReligious: 'Saint Jean de Dieu, Religieux, Fondateur des Frères de la Charité (✝ 1550)',
     saintJohnOfKantyPriest: 'Saint Jean de Kenty, Prêtre (✝ 1473)',
@@ -241,7 +261,7 @@ export default {
     saintJosaphatBishopAndMartyr: 'Saint Josaphat Kuntsevych, Évêque Basilien et Martyr (✝ 1623)',
     saintJosephSpouseOfTheBlessedVirginMaryPrincipalPatronOfCanada:
       'Saint Joseph, Époux de la Bienheureuse Vierge Marie, Principal Patron du Canada',
-    saintJosephTheWorker: 'Saint Joseph, Artisan (1er s.)',
+    saintJosephTheWorker: 'Saint Joseph, Artisan (1er siècle)',
     saintJuanDiegoCuauhtlatoatzin: 'Saint Juan Diego Cuauhtlatoatzin (✝ 1548)',
     saintJulianaOfLiegeVirgin: 'Sainte Julienne de Cornillon, Religieuse Augustine (✝ 1258)',
     saintJulieBilliartVirgin:
@@ -249,13 +269,18 @@ export default {
     saintJustinMartyr: 'Saint Justin, Martyr (✝ 165)',
     saintKateriTekakwithaVirgin: 'Sainte Kateri Tekakwitha, Vierge Amérindienne (✝ 1680)',
     saintLambertBishopAndMartyr: 'Saint Lambert, Évêque et Martyr (✝ 705)',
+    saintLandryOfParisBishop: 'S. Landry, évêque de Paris au 7e siècle',
     saintLawrenceOfBrindisiPriestAndDoctor: 'Saint Laurent de Brindisi, Prêtre et Docteur de l’Église (✝ 1619)',
     saintLawrenceOfRomeDeaconAndMartyr: 'Saint Laurent de Rome, Diacre et Martyr (✝ 258)',
     saintLeoTheGreatPopeAndDoctor: 'Saint Léon le Grand, Pape et Docteur de l’Église',
+    saintLouiseDeMarillacReligious:
+      'Ste Louise de Marillac, veuve puis religieuse, fondatrice avec S. Vincent de Paul des Filles de la Charité (✝ 1660 à Paris)',
+    saintLouisKingOfFrance: 'S. Louis (Louis IX), roi de France (✝ 1270 à Tunis)',
     saintLouisSaintJosephOfCalasanzPriest:
       'Saint Louis, Roi de France (✝ 1270), ou Saint Joseph de Calasanz, Prêtre (✝ 1648)',
     saintLucyOfSyracuseVirginAndMartyr: 'Sainte Lucie de Syracuse, Vierge et Martyre en Sicile (✝ v. 305)',
     saintLukeTheEvangelist: 'Saint Luc, Évangéliste',
+    saintMarcelOfParisBishop: 'S. Marcel, évèque de Paris (✝ vers 430)',
     saintMargaretOfScotlandSaintGertrudeTheGreatVirgin:
       'Sainte Marguerite d’Ecosse (✝ 1093), ou Sainte Gertrude, Vierge Moniale (✝ 1301)',
     saintMargueriteBourgeoysVirgin:
@@ -264,12 +289,13 @@ export default {
       'Sainte Marguerite d’Youville, Religieuse, Fondatrice des Sœurs de la Charité de Montréal (✝ 1771)',
     saintMariaGorettiVirginAndMartyr: 'Sainte Maria Goretti, Vierge et Martyre (✝ 1902)',
     saintMarieOfTheIncarnationReligious: 'Sainte Marie de l’Incarnation, Ursuline au Canada (✝ 1672)',
+    saintMarieEugenieDeJesusReligious: 'Ste Marie-Eugénie Milleret, fondatrice des Sœurs de l’Assomption (✝ 1898 à Paris)',
     saintMarkTheEvangelist: 'Saint Marc, Évangéliste',
-    saintMartha: 'Sainte Marthe, Disciple du Christ (1er s.)',
+    saintMartha: 'Sainte Marthe, Disciple du Christ (1er siècle)',
     saintMartinDePorresReligious: 'Saint Martin de Porrès, Religieux Dominicain à Lima (✝ 1639)',
     saintMartinIPopeAndMartyr: 'Saint Martin Ier, Pape et Martyr (✝ 656)',
     saintMartinOfToursBishop: 'Saint Martin de Tours, Evêque (✝ 397)',
-    saintMaryMagdalene: 'Sainte Marie-Madeleine, Disciple du Christ (1er s.)',
+    saintMaryMagdalene: 'Sainte Marie-Madeleine, Disciple du Christ (1er siècle)',
     saintMatthewApostleAndEvangelist: 'Saint Matthieu, Apôtre et Évangéliste',
     saintMatthiasTheApostle: 'Saint Matthias, Apôtre',
     saintMaximilianMaryKolbePriestAndMartyr: 'Saint Maximilien-Marie Kolbe, Prêtre et Martyr (✝ 1941)',
@@ -292,24 +318,24 @@ export default {
     saintPiusXPope: 'Saint Pie X, Pape (✝ 1914)',
     saintPolycarpBishopAndMartyr: 'Saint Polycarpe, Évêque et Martyre (✝ 167)',
     saintPothinusBishopSaintBlAndinaVirginAndTheirCompanionsMartyrs:
-      'Saint Pothin, Évêque, Sainte Blandine, Vierge, et leurs 46 compagnons, Martyrs à Lyon (✝ 177)',
+      'S. Pothin, évêque de Lyon, Ste Blandine, vierge, et leurs compagnons, martyrs (✝ 177)',
     saintRaymondOfPenyafortPriest: 'Saint Raymond de Peñafort, Prêtre (✝ 1275)',
-    saintRemigiusBishop: 'Saint Remi, Evêque de Reims (✝ 530)',
+    saintRemigiusBishop: 'S. Remi, évêque de Reims (✝ v. 530)',
     saintRitaOfCascia: 'Sainte Rita da Cascia, Veuve puis Religieuse (✝ 1456)',
     saintRobertBellarmineBishopAndDoctor: 'Saint Robert Bellarmin, Jésuite, Évêque et Docteur de l’Eglise (✝ 1621)',
     saintRomualdAbbot: 'Saint Romuald, Anachorète et Père des moines Camaldules (✝ 1027)',
     saintRoseOfLima: 'Sainte Rose de Lima, Vierge (✝ 1617)',
-    saintsAndrewZorardAndBenedictHermits: 'Saints André Svorad († 1009) et Benoît Stojislav († 1012), Ermites',
+    saintsAndrewZorardAndBenedictHermits: 'Saints André Svorad (✝ 1009) et Benoît Stojislav (✝ 1012), Ermites',
     saintsAugustineZhaoRongPriestAndCompanionsMartyrs:
       'Saints Augustin Zhao Rong et ses compagnons, Martyrs en Chine (entre 1648 et 1930)',
     saintsBasilTheGreatAndGregoryNazianzenBishopsAndDoctors:
       'Saints Basile le Grand (✝ 379) et Grégoire de Naziance (✝ 390), Évêques et Docteurs de l’Église',
     saintsCharlesLwangaAndCompanionsMartyrs: 'Saints Charles Lwanga et ses douze compagnons, Martyrs (✝ 618)',
     saintScholasticaVirgin: 'Sainte Scolastique, Moniale, Sœur de Saint Benoît (✝ 543)',
-    saintsCorneliusPopeAndCyprianBishopMartyrs: 'Saints Martyrs Corneille, Pape, et Cyprien, Évêque (3ème s.)',
-    saintsCosmasAndDamianMartyrs: 'Saints Côme et Damien, Martyrs (3ème s.)',
+    saintsCorneliusPopeAndCyprianBishopMartyrs: 'Saints Martyrs Corneille, Pape, et Cyprien, Évêque (3ème siècle)',
+    saintsCosmasAndDamianMartyrs: 'Saints Côme et Damien, Martyrs (3ème siècle)',
     saintsCyrilMonkAndMethodiusBishop:
-      'Saints Cyrille, Moine, et Méthode, Évêque, Apôtres des Slaves au 9ème siècle, Copatrons de l’Europe',
+      'S. Cyrille, moine (✝ 869 à Rome), et son frère S. Méthode, évêque de Moravie (✝ 885), apôtres des Slaves au 9ème siècle, co-patrons de l’Europe',
     saintsFabianPopeAndSebastianMartyrs: 'Saint Fabien, Pape et Martyr (✝ 250), et Saint Sébastien, Martyr (✝ v. 284)',
     saintSixtusIiPopeAndCompanionsMartyrsSaintCajetanPriest:
       'Saint Sixte II, Pape, et ses Diacres, Martyrs (✝ 258), ou Saint Gaétan de Thienne, Prêtre (✝ 1547)',
@@ -317,7 +343,7 @@ export default {
       'Saints Jean de Brébeuf, Isaac Jogues, Prêtres Jésuites, et leurs compagnons, Martyrs (17ème siècle), ou Saint Paul de la Croix, Prêtre (✝ 1776)',
     saintsJoachimAndAnne: 'Saints Anne et Joachim, Mère et Père de la Vierge Marie (1er siècle)',
     saintsJohnDeBrebeufIsaacJoguesPriestsAndCompanionsMartyrsSecondaryPatronsOfCanada:
-      'Saints Jean de Brébeuf, Isaac Jogues, Prêtres Jésuites, et leurs compagnons, Martyrs, Seconds Patrons du Canada (17ème siècle)',
+      'S. Jean de Brébeuf, S. Isaac Jogues, prêtres jésuites, et leurs compagnons, martyrs (✝ de 1642 à 1649), patrons secondaires du Canada',
     saintsMarcellinusAndPeterMartyrs: 'Saints Martyrs Marcellin, Prêtre, et Pierre, Exorciste (✝ 304)',
     saintsMichaelGabrielAndRaphaelArchangels: 'Saints Michel, Gabriel and Raphaël, Archanges',
     saintsNereusAndAchilleusMartyrsSaintPancrasMartyr:
@@ -329,16 +355,18 @@ export default {
     saintStanislausBishopAndMartyr: 'Saint Stanislas, Evêque de Cracovie, Martyr (✝ 1079)',
     saintStephenOfHungary: 'Saint Etienne, Roi de Hongrie (✝ 1038)',
     saintStephenTheFirstMartyr: 'Saint Étienne, Diacre et Premier Martyr (✝ 35)',
-    saintsTimothyAndTitusBishops: 'Saints Timothée et Tite, Évêques, Disciples et compagnons de Saint Paul (1er s.)',
+    saintsTimothyAndTitusBishops:
+      'Saints Timothée et Tite, Évêques, Disciples et compagnons de Saint Paul (1er siècle)',
     saintSylvesterIPope: 'Saint Sylvestre Ier, Pape (✝ 335)',
     saintTeresaBenedictaOfTheCrossEdithSteinVirginAndMartyr:
-      'Sainte Thérèse-Bénédicte de la Croix (Edith Stein), Carmélite, Martyr en Pologne, Copatronne de l’Europe (✝ 1942)',
+      'Ste Thérèse-Bénédicte de la Croix (Édith Stein), carmélite, martyre (✝ 1942 à Auschwitz), co-patronne de l’Europe',
+    saintTeresaOfCalcuttaReligious: 'Ste Mère Teresa (✝ 1997 à Calcutta en Inde)',
     saintTeresaOfJesusVirginAndDoctorOfTheChurch:
       'Sainte Thérèse de Jésus (d’Avila), Vierge et Docteur de l’Église (✝ 1582)',
     saintThereseOfTheChildJesusVirginAndDoctor:
       'Sainte Thérèse de l’Enfant-Jésus, Vierge et Docteur de l’Église (✝ 1897)',
     saintThereseOfTheChildJesusVirginSecondaryPatronessOfFrance:
-      'Sainte Thérèse de l’Enfant-Jésus, Docteur de l’Église, Seconde Patronne de la France (✝ 1897)',
+      'Ste Thérèse de l’Enfant Jésus, vierge, carmélite, docteur de l’Église (✝ 1897 à Lisieux), patronne des missions, co-patronne secondaire de la France',
     saintThomasAquinasPriestAndDoctor: 'Saint Thomas d’Aquin, Frère prêcheur, Docteur de l’Eglise (✝ 1274)',
     saintThomasBecketBishopAndMartyr: 'Saint Thomas Becket, Évêque et Martyr (✝ 1170)',
     saintThomasTheApostle: 'Saint Thomas, Apôtre',

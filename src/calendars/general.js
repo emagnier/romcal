@@ -1295,8 +1295,15 @@ let dates = year => {
         },
       },
     },
+    // Todo: split saintDenisAndCompanionsMartyrsSaintJohnLeonardiPriest everywhere
     {
-      key: 'saintDenisAndCompanionsMartyrsSaintJohnLeonardiPriest',
+      key: 'saintDenisAndCompanionsMartyrs',
+      type: Types.OPT_MEMORIAL,
+      moment: moment.utc({ year: year, month: 9, day: 9 }),
+      data: {},
+    },
+    {
+      key: 'saintJohnLeonardiPriest',
       type: Types.OPT_MEMORIAL,
       moment: moment.utc({ year: year, month: 9, day: 9 }),
       data: {},

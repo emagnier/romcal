@@ -14,6 +14,7 @@ import * as denmark from './denmark';
 import * as england from './england';
 import * as finland from './finland';
 import * as france from './france';
+import * as paris from './paris';
 import * as general from './general';
 import * as germany from './germany';
 import * as greece from './greece';
@@ -65,6 +66,7 @@ export {
   england,
   finland,
   france,
+  paris,
   general,
   germany,
   greece,
