@@ -79,7 +79,21 @@ export default class Config {
    */
   static getConfig(country: ?string): CalendarsDef<{}[]> {
     if (!country) return {};
-    return CalendarsDef[country].defaultConfig || {};
+    let inheritedOptions = [];
+
+    const getCalendarInheritance = (calendarName: string) => {
+      inheritedOptions.unshift(CalendarsDef[calendarName].defaultConfig || {});
+      let inheritFrom = CalendarsDef[calendarName].inheritFrom;
+      if (
+        inheritFrom &&
+        inheritFrom !== calendarName &&
+        Object.prototype.hasOwnProperty.call(CalendarsDef, inheritFrom)
+      ) {
+        getCalendarInheritance(inheritFrom);
+      }
+    };
+    getCalendarInheritance(country);
+    return Object.assign({}, ...inheritedOptions);
   }
 
   /**

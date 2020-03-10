@@ -48,15 +48,28 @@ class Calendar {
     const years = c.type === 'liturgical' ? [c.year, c.year + 1] : [c.year];
 
     // Define all calendars
-    let weekdayDates = [];
-    let celebrationsDates = [];
+    let temporalDates = [];
+    let mainCelebrationDates = [];
     let generalDates = [];
-    let nationalDates = [];
+    let particularCalendars = [];
 
-    // Get a collection of date items from all liturgical seasons of the given year
+    const getCalendarInheritance = (calendarName: string) => {
+      particularCalendars.unshift({ name: calendarName, dates: [] });
+      let inheritFrom = CalendarsDef[calendarName].inheritFrom;
+      if (
+        inheritFrom &&
+        inheritFrom !== calendarName &&
+        Object.prototype.hasOwnProperty.call(CalendarsDef, inheritFrom)
+      ) {
+        getCalendarInheritance(inheritFrom);
+      }
+    };
+
+    getCalendarInheritance(c.country);
+
+    // Temporal: Get a collection of date items from all liturgical seasons of the given year
     years.forEach(year => {
-      weekdayDates = [
-        ...weekdayDates,
+      temporalDates = [
         ...Seasons.christmastide(
           year - 1,
           c.christmastideEnds,
@@ -76,26 +89,28 @@ class Calendar {
         ),
       ];
 
-      // Get the celebration dates based on the given year and options
-      celebrationsDates = [
-        ...celebrationsDates,
-        ...Celebrations.dates(
-          year,
-          c.christmastideEnds,
-          c.epiphanyOnJan6,
-          c.corpusChristiOnThursday,
-          c.ascensionOnSunday,
-        ),
-      ];
+      // Sanctoral: Get the main celebration dates computed by romcal, based on the given year and options
+      mainCelebrationDates = Celebrations.dates(
+        year,
+        c.christmastideEnds,
+        c.epiphanyOnJan6,
+        c.corpusChristiOnThursday,
+        c.ascensionOnSunday,
+      );
 
-      // Get the general calendar based on the given year
-      generalDates = [...generalDates, ...Calendar._fetchRegionCalendar('general').dates(year)];
+      // Sanctoral: Get the roman general calendar based on the given year
+      generalDates = Calendar._fetchRegionCalendar('general').dates(year);
 
-      // Get the relevant national calendar object based on the given year and country
-      nationalDates = [...nationalDates, ...Calendar._fetchRegionCalendar(c.country).dates(year)];
+      // Get the relevant particular calendar objects based on the given year and country
+      particularCalendars = particularCalendars.map(calendar => {
+        return {
+          ...calendar,
+          dates: calendar.dates.concat(Calendar._fetchRegionCalendar(calendar.name).dates(year)),
+        };
+      });
     });
 
-    let sources = [weekdayDates, celebrationsDates, generalDates, nationalDates];
+    let sources = [temporalDates, mainCelebrationDates, generalDates].concat(particularCalendars.map(c => c.dates));
 
     // Remove all date items not in the given date range
     sources = Calendar._filterItemRange(this.startDate, this.endDate, ...sources);

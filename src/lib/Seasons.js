@@ -72,6 +72,7 @@ const _epiphany = (y, epiphanyOnJan6 = false) => {
           liturgicalColor: '',
           titles: [],
         },
+        fromCalendar: 'temporal',
       },
     });
   });
@@ -103,6 +104,7 @@ const _holyWeek = y => {
           liturgicalColor: LiturgicalColors.PURPLE,
           titles: [],
         },
+        fromCalendar: 'temporal',
       },
     });
   });
@@ -138,6 +140,7 @@ const advent = y => {
             _.eq(Math.floor(i / 7), 2) && _.eq(value.day(), 0) ? LiturgicalColors.ROSE : LiturgicalColors.PURPLE,
           titles: [],
         },
+        fromCalendar: 'temporal',
       },
     });
   });
@@ -227,6 +230,7 @@ const christmastide = (
             key: 'christmastide.season',
           }),
         },
+        fromCalendar: 'temporal',
       },
     });
   });
@@ -248,6 +252,7 @@ const christmastide = (
             key: 'christmastide.season',
           }),
         },
+        fromCalendar: 'temporal',
       },
     });
   });
@@ -332,6 +337,7 @@ const earlyOrdinaryTime = (y, christmastideEnds, epiphanyOnJan6 = false) => {
             key: 'ordinaryTime.season',
           }),
         },
+        fromCalendar: 'temporal',
       },
     });
   });
@@ -414,6 +420,7 @@ const laterOrdinaryTime = y => {
             key: 'ordinaryTime.season',
           }),
         },
+        fromCalendar: 'temporal',
       },
     });
   });
@@ -494,6 +501,7 @@ const lent = y => {
             key: 'lent.season',
           }),
         },
+        fromCalendar: 'temporal',
       },
     });
   });
@@ -518,6 +526,7 @@ const lent = y => {
           // The proper color of the the Fourth Sunday of Lent is rose. Purple may also be used on these Sundays.
           liturgicalColor: _.eq(i, 3) ? LiturgicalColors.ROSE : LiturgicalColors.PURPLE,
         },
+        fromCalendar: 'temporal',
       },
     });
   });
@@ -615,6 +624,7 @@ const eastertide = y => {
             key: 'eastertide.season',
           }),
         },
+        fromCalendar: 'temporal',
       },
     });
   });
@@ -637,6 +647,7 @@ const eastertide = y => {
             key: 'eastertide.season',
           }),
         },
+        fromCalendar: 'temporal',
       },
     });
   });
