@@ -57,12 +57,25 @@ let dates = year => {
         },
       },
     },
+    // Todo split everywhere saintsFabianPopeAndSebastianMartyrs
     {
-      key: 'saintsFabianPopeAndSebastianMartyrs',
+      key: 'saintsFabianPope',
       type: Types.OPT_MEMORIAL,
       moment: moment.utc({ year: year, month: 0, day: 20 }),
       data: {
         meta: {
+          liturgicalColor: LiturgicalColors.RED,
+          titles: [Titles.MARTYR],
+        },
+      },
+    },
+    {
+      key: 'saintSebastianMartyrs',
+      type: Types.OPT_MEMORIAL,
+      moment: moment.utc({ year: year, month: 0, day: 20 }),
+      data: {
+        meta: {
+          liturgicalColor: LiturgicalColors.RED,
           titles: [Titles.MARTYR],
         },
       },
@@ -84,6 +97,7 @@ let dates = year => {
       moment: moment.utc({ year: year, month: 0, day: 22 }),
       data: {
         meta: {
+          liturgicalColor: LiturgicalColors.RED,
           titles: [Titles.MARTYR],
         },
       },
@@ -149,8 +163,20 @@ let dates = year => {
         },
       },
     },
+    // Todo split saintBlaseBishopAndMartyrSaintAnsgarBishop everywhere
     {
-      key: 'saintBlaseBishopAndMartyrSaintAnsgarBishop',
+      key: 'saintBlaseBishopAndMartyr',
+      type: Types.OPT_MEMORIAL,
+      moment: moment.utc({ year: year, month: 1, day: 3 }),
+      data: {
+        meta: {
+          liturgicalColor: LiturgicalColors.RED,
+          titles: [Titles.MARTYR],
+        },
+      },
+    },
+    {
+      key: 'saintAnsgarBishop',
       type: Types.OPT_MEMORIAL,
       moment: moment.utc({ year: year, month: 1, day: 3 }),
       data: {},
@@ -177,8 +203,15 @@ let dates = year => {
         },
       },
     },
+    // Todo: split saintJeromeEmilianiSaintJosephineBakhitaVirgin everywhere
     {
-      key: 'saintJeromeEmilianiSaintJosephineBakhitaVirgin',
+      key: 'saintJeromeEmilianiPriest',
+      type: Types.OPT_MEMORIAL,
+      moment: moment.utc({ year: year, month: 1, day: 8 }),
+      data: {},
+    },
+    {
+      key: 'saintJosephineBakhitaVirgin',
       type: Types.OPT_MEMORIAL,
       moment: moment.utc({ year: year, month: 1, day: 8 }),
       data: {},
@@ -362,8 +395,20 @@ let dates = year => {
         },
       },
     },
+    // Todo: split saintGeorgeMartyrSaintAdalbertBishopAndMartyr everywhere
     {
-      key: 'saintGeorgeMartyrSaintAdalbertBishopAndMartyr',
+      key: 'saintGeorgeMartyr',
+      type: Types.OPT_MEMORIAL,
+      moment: moment.utc({ year: year, month: 3, day: 23 }),
+      data: {
+        meta: {
+          liturgicalColor: LiturgicalColors.RED,
+          titles: [Titles.MARTYR],
+        },
+      },
+    },
+    {
+      key: 'saintAdalbertBishopAndMartyr',
       type: Types.OPT_MEMORIAL,
       moment: moment.utc({ year: year, month: 3, day: 23 }),
       data: {
@@ -390,15 +435,33 @@ let dates = year => {
       moment: moment.utc({ year: year, month: 3, day: 25 }),
       data: {
         meta: {
-          liturgicalColor: LiturgicalColors.WHITE,
+          liturgicalColor: LiturgicalColors.RED,
+          titles: [Titles.MARTYR],
+        },
+      },
+    },
+    // Todo: split saintPeterChanelPriestAndMartyrSaintLouisGrignonDeMontfortPriest separately
+    {
+      key: 'saintPeterChanelPriestAndMartyr',
+      type: Types.OPT_MEMORIAL,
+      moment: moment.utc({ year: year, month: 3, day: 28 }),
+      data: {
+        meta: {
+          liturgicalColor: LiturgicalColors.RED,
+          titles: [Titles.MARTYR],
         },
       },
     },
     {
-      key: 'saintPeterChanelPriestAndMartyrSaintLouisGrignonDeMontfortPriest',
+      key: 'saintPeterChanelPriestAndMartyr',
       type: Types.OPT_MEMORIAL,
       moment: moment.utc({ year: year, month: 3, day: 28 }),
-      data: {},
+      data: {
+        meta: {
+          liturgicalColor: LiturgicalColors.RED,
+          titles: [Titles.MARTYR],
+        },
+      },
     },
     {
       key: 'saintCatherineOfSienaVirginAndDoctorOfTheChurch',
@@ -440,16 +503,29 @@ let dates = year => {
       moment: moment.utc({ year: year, month: 4, day: 3 }),
       data: {
         meta: {
-          liturgicalColor: LiturgicalColors.WHITE,
+          liturgicalColor: LiturgicalColors.RED,
         },
       },
     },
+    // Todo saintsNereusAndAchilleusMartyrsSaintPancrasMartyr everywhere
     {
-      key: 'saintsNereusAndAchilleusMartyrsSaintPancrasMartyr',
+      key: 'saintsNereusAndAchilleusMartyrs',
       type: Types.OPT_MEMORIAL,
       moment: moment.utc({ year: year, month: 4, day: 12 }),
       data: {
         meta: {
+          liturgicalColor: LiturgicalColors.RED,
+          titles: [Titles.MARTYR],
+        },
+      },
+    },
+    {
+      key: 'saintPancrasMartyr',
+      type: Types.OPT_MEMORIAL,
+      moment: moment.utc({ year: year, month: 4, day: 12 }),
+      data: {
+        meta: {
+          liturgicalColor: LiturgicalColors.RED,
           titles: [Titles.MARTYR],
         },
       },
@@ -466,7 +542,7 @@ let dates = year => {
       moment: moment.utc({ year: year, month: 4, day: 14 }),
       data: {
         meta: {
-          liturgicalColor: LiturgicalColors.WHITE,
+          liturgicalColor: LiturgicalColors.RED,
         },
       },
     },
@@ -476,6 +552,7 @@ let dates = year => {
       moment: moment.utc({ year: year, month: 4, day: 18 }),
       data: {
         meta: {
+          liturgicalColor: LiturgicalColors.RED,
           titles: [Titles.MARTYR],
         },
       },
@@ -492,6 +569,7 @@ let dates = year => {
       moment: moment.utc({ year: year, month: 4, day: 21 }),
       data: {
         meta: {
+          liturgicalColor: LiturgicalColors.RED,
           titles: [Titles.MARTYR],
         },
       },
@@ -502,8 +580,21 @@ let dates = year => {
       moment: moment.utc({ year: year, month: 4, day: 22 }),
       data: {},
     },
+    // Todo: saintBedeTheVenerablePriestAndDoctorSaintGregoryViiPopeSaintMaryMagdaleneDePazziVirgin
     {
-      key: 'saintBedeTheVenerablePriestAndDoctorSaintGregoryViiPopeSaintMaryMagdaleneDePazziVirgin',
+      key: 'saintBedeTheVenerablePriestAndDoctor',
+      type: Types.OPT_MEMORIAL,
+      moment: moment.utc({ year: year, month: 4, day: 25 }),
+      data: {},
+    },
+    {
+      key: 'saintGregoryViiPope',
+      type: Types.OPT_MEMORIAL,
+      moment: moment.utc({ year: year, month: 4, day: 25 }),
+      data: {},
+    },
+    {
+      key: 'saintMaryMagdaleneDePazziVirgin',
       type: Types.OPT_MEMORIAL,
       moment: moment.utc({ year: year, month: 4, day: 25 }),
       data: {},
@@ -522,6 +613,13 @@ let dates = year => {
       key: 'saintAugustineOfCanterburyBishop',
       type: Types.OPT_MEMORIAL,
       moment: moment.utc({ year: year, month: 4, day: 27 }),
+      data: {},
+    },
+    // Todo missing popeSaintPaulVI, add it everywhere (in all locales)
+    {
+      key: 'popeSaintPaulVI',
+      type: Types.OPT_MEMORIAL,
+      moment: moment.utc({ year: year, month: 4, day: 29 }),
       data: {},
     },
     {
@@ -551,6 +649,7 @@ let dates = year => {
       moment: moment.utc({ year: year, month: 5, day: 2 }),
       data: {
         meta: {
+          liturgicalColor: LiturgicalColors.RED,
           titles: [Titles.MARTYR],
         },
       },
@@ -603,7 +702,7 @@ let dates = year => {
       moment: moment.utc({ year: year, month: 5, day: 11 }),
       data: {
         meta: {
-          liturgicalColor: LiturgicalColors.WHITE,
+          liturgicalColor: LiturgicalColors.RED,
         },
       },
     },
@@ -634,11 +733,23 @@ let dates = year => {
         },
       },
     },
+    // Todo: split saintPaulinusOfNolaBishopSaintsJohnFisherBishopAndThomasMoreMartyrs everywhere
     {
-      key: 'saintPaulinusOfNolaBishopSaintsJohnFisherBishopAndThomasMoreMartyrs',
+      key: 'saintPaulinusOfNolaBishop',
       type: Types.OPT_MEMORIAL,
       moment: moment.utc({ year: year, month: 5, day: 22 }),
       data: {},
+    },
+    {
+      key: 'saintsJohnFisherBishopAndThomasMoreMartyrs',
+      type: Types.OPT_MEMORIAL,
+      moment: moment.utc({ year: year, month: 5, day: 22 }),
+      data: {
+        meta: {
+          liturgicalColor: LiturgicalColors.RED,
+          titles: [Titles.MARTYR],
+        },
+      },
     },
     {
       key: 'saintCyrilOfAlexandriaBishopAndDoctor',
@@ -665,7 +776,12 @@ let dates = year => {
       key: 'firstMartyrsOfTheChurchOfRome',
       type: Types.OPT_MEMORIAL,
       moment: moment.utc({ year: year, month: 5, day: 30 }),
-      data: {},
+      data: {
+        meta: {
+          liturgicalColor: LiturgicalColors.RED,
+          titles: [Titles.MARTYR],
+        },
+      },
     },
     {
       key: 'saintThomasTheApostle',
@@ -673,7 +789,7 @@ let dates = year => {
       moment: moment.utc({ year: year, month: 6, day: 3 }),
       data: {
         meta: {
-          liturgicalColor: LiturgicalColors.WHITE,
+          liturgicalColor: LiturgicalColors.RED,
         },
       },
     },
@@ -706,6 +822,7 @@ let dates = year => {
       moment: moment.utc({ year: year, month: 6, day: 9 }),
       data: {
         meta: {
+          liturgicalColor: LiturgicalColors.RED,
           titles: [Titles.MARTYR],
         },
       },
@@ -727,6 +844,7 @@ let dates = year => {
       moment: moment.utc({ year: year, month: 6, day: 13 }),
       data: {
         meta: {
+          liturgicalColor: LiturgicalColors.RED,
           titles: [Titles.MARTYR],
         },
       },
@@ -758,7 +876,12 @@ let dates = year => {
       key: 'saintApollinaris',
       type: Types.OPT_MEMORIAL,
       moment: moment.utc({ year: year, month: 6, day: 20 }),
-      data: {},
+      data: {
+        meta: {
+          liturgicalColor: LiturgicalColors.RED,
+          titles: [Titles.MARTYR],
+        },
+      },
     },
     {
       key: 'saintLawrenceOfBrindisiPriestAndDoctor',
@@ -818,7 +941,7 @@ let dates = year => {
       moment: moment.utc({ year: year, month: 6, day: 25 }),
       data: {
         meta: {
-          liturgicalColor: LiturgicalColors.WHITE,
+          liturgicalColor: LiturgicalColors.RED,
         },
       },
     },
@@ -873,8 +996,15 @@ let dates = year => {
         },
       },
     },
+    // Todo: split saintEusebiusOfVercelliBishopSaintPeterJulianEymardPriest everywhere
     {
-      key: 'saintEusebiusOfVercelliBishopSaintPeterJulianEymardPriest',
+      key: 'saintEusebiusOfVercelliBishop',
+      type: Types.OPT_MEMORIAL,
+      moment: moment.utc({ year: year, month: 7, day: 2 }),
+      data: {},
+    },
+    {
+      key: 'saintPeterJulianEymardPriest',
       type: Types.OPT_MEMORIAL,
       moment: moment.utc({ year: year, month: 7, day: 2 }),
       data: {},
@@ -895,8 +1025,20 @@ let dates = year => {
       moment: moment.utc({ year: year, month: 7, day: 5 }),
       data: {},
     },
+    // Todo: Split saintSixtusIiPopeAndCompanionsMartyrsSaintCajetanPriest everywhere
     {
-      key: 'saintSixtusIiPopeAndCompanionsMartyrsSaintCajetanPriest',
+      key: 'saintSixtusIiPopeAndCompanionsMartyrs',
+      type: Types.OPT_MEMORIAL,
+      moment: moment.utc({ year: year, month: 7, day: 7 }),
+      data: {
+        meta: {
+          liturgicalColor: LiturgicalColors.RED,
+          titles: [Titles.MARTYR],
+        },
+      },
+    },
+    {
+      key: 'saintCajetanPriest',
       type: Types.OPT_MEMORIAL,
       moment: moment.utc({ year: year, month: 7, day: 7 }),
       data: {},
@@ -955,6 +1097,7 @@ let dates = year => {
       moment: moment.utc({ year: year, month: 7, day: 13 }),
       data: {
         meta: {
+          liturgicalColor: LiturgicalColors.RED,
           titles: [Titles.MARTYR],
         },
       },
@@ -1029,8 +1172,19 @@ let dates = year => {
         },
       },
     },
+    // Todo: split saintLouisSaintJosephOfCalasanzPriest everywhere
     {
-      key: 'saintLouisSaintJosephOfCalasanzPriest',
+      key: 'saintLouisKingOfFrance',
+      type: Types.OPT_MEMORIAL,
+      moment: moment.utc({ year: year, month: 7, day: 25 }),
+      data: {
+        meta: {
+          liturgicalColor: LiturgicalColors.WHITE,
+        },
+      },
+    },
+    {
+      key: 'saintJosephOfCalasanzPriest',
       type: Types.OPT_MEMORIAL,
       moment: moment.utc({ year: year, month: 7, day: 25 }),
       data: {},
@@ -1162,6 +1316,7 @@ let dates = year => {
       moment: moment.utc({ year: year, month: 8, day: 19 }),
       data: {
         meta: {
+          liturgicalColor: LiturgicalColors.RED,
           titles: [Titles.MARTYR],
         },
       },
@@ -1183,7 +1338,7 @@ let dates = year => {
       moment: moment.utc({ year: year, month: 8, day: 21 }),
       data: {
         meta: {
-          liturgicalColor: LiturgicalColors.WHITE,
+          liturgicalColor: LiturgicalColors.RED,
         },
       },
     },
@@ -1203,6 +1358,7 @@ let dates = year => {
       moment: moment.utc({ year: year, month: 8, day: 26 }),
       data: {
         meta: {
+          liturgicalColor: LiturgicalColors.RED,
           titles: [Titles.MARTYR],
         },
       },
@@ -1217,12 +1373,25 @@ let dates = year => {
         },
       },
     },
+    // Todo split saintWenceslausMartyrSaintsLawrenceRuizAndCompanionsMartyrs everywhere
     {
-      key: 'saintWenceslausMartyrSaintsLawrenceRuizAndCompanionsMartyrs',
+      key: 'saintWenceslausMartyr',
       type: Types.OPT_MEMORIAL,
       moment: moment.utc({ year: year, month: 8, day: 28 }),
       data: {
         meta: {
+          liturgicalColor: LiturgicalColors.RED,
+          titles: [Titles.MARTYR],
+        },
+      },
+    },
+    {
+      key: 'saintLawrenceRuizAndCompanionsMartyrs',
+      type: Types.OPT_MEMORIAL,
+      moment: moment.utc({ year: year, month: 8, day: 28 }),
+      data: {
+        meta: {
+          liturgicalColor: LiturgicalColors.RED,
           titles: [Titles.MARTYR],
         },
       },
@@ -1300,7 +1469,12 @@ let dates = year => {
       key: 'saintDenisAndCompanionsMartyrs',
       type: Types.OPT_MEMORIAL,
       moment: moment.utc({ year: year, month: 9, day: 9 }),
-      data: {},
+      data: {
+        meta: {
+          liturgicalColor: LiturgicalColors.RED,
+          titles: [Titles.MARTYR],
+        },
+      },
     },
     {
       key: 'saintJohnLeonardiPriest',
@@ -1315,19 +1489,13 @@ let dates = year => {
       moment: moment.utc({ year: year, month: 9, day: 11 }),
       data: {},
     },
-    // http://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20140529_decreto-calendario-generale-gxxiii-gpii_en.html
-    {
-      key: 'popeSaintJohnPaulII',
-      type: Types.OPT_MEMORIAL,
-      moment: moment.utc({ year: year, month: 9, day: 22 }),
-      data: {},
-    },
     {
       key: 'saintCallistusIPopeAndMartyr',
       type: Types.OPT_MEMORIAL,
       moment: moment.utc({ year: year, month: 9, day: 14 }),
       data: {
         meta: {
+          liturgicalColor: LiturgicalColors.RED,
           titles: [Titles.MARTYR],
         },
       },
@@ -1343,8 +1511,15 @@ let dates = year => {
         },
       },
     },
+    // Todo: split saintHedwigReligiousSaintMargaretMaryAlacoqueVirgin everywhere
     {
-      key: 'saintHedwigReligiousSaintMargaretMaryAlacoqueVirgin',
+      key: 'saintHedwigReligious',
+      type: Types.OPT_MEMORIAL,
+      moment: moment.utc({ year: year, month: 9, day: 16 }),
+      data: {},
+    },
+    {
+      key: 'saintMargaretMaryAlacoqueVirgin',
       type: Types.OPT_MEMORIAL,
       moment: moment.utc({ year: year, month: 9, day: 16 }),
       data: {},
@@ -1366,14 +1541,33 @@ let dates = year => {
       moment: moment.utc({ year: year, month: 9, day: 18 }),
       data: {
         meta: {
-          liturgicalColor: LiturgicalColors.WHITE,
+          liturgicalColor: LiturgicalColors.RED,
+        },
+      },
+    },
+    // Todo: split saintsJeanDeBrebeufAndIsaacJoguesPriestsAndCompanionsMartyrsSaintPaulOfTheCrossPriest everywhere
+    {
+      key: 'saintsJeanDeBrebeufAndIsaacJoguesPriestsAndCompanionsMartyrs',
+      type: Types.OPT_MEMORIAL,
+      moment: moment.utc({ year: year, month: 9, day: 19 }),
+      data: {
+        meta: {
+          liturgicalColor: LiturgicalColors.RED,
+          titles: [Titles.MARTYR],
         },
       },
     },
     {
-      key: 'saintsJeanDeBrebeufAndIsaacJoguesPriestsAndCompanionsMartyrsSaintPaulOfTheCrossPriest',
+      key: 'saintPaulOfTheCrossPriest',
       type: Types.OPT_MEMORIAL,
       moment: moment.utc({ year: year, month: 9, day: 19 }),
+      data: {},
+    },
+    // http://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20140529_decreto-calendario-generale-gxxiii-gpii_en.html
+    {
+      key: 'popeSaintJohnPaulII',
+      type: Types.OPT_MEMORIAL,
+      moment: moment.utc({ year: year, month: 9, day: 22 }),
       data: {},
     },
     {
@@ -1394,7 +1588,7 @@ let dates = year => {
       moment: moment.utc({ year: year, month: 9, day: 28 }),
       data: {
         meta: {
-          liturgicalColor: LiturgicalColors.WHITE,
+          liturgicalColor: LiturgicalColors.RED,
         },
       },
     },
@@ -1404,7 +1598,7 @@ let dates = year => {
       moment: moment.utc({ year: year, month: 10, day: 2 }),
       data: {
         meta: {
-          liturgicalColor: LiturgicalColors.WHITE,
+          liturgicalColor: LiturgicalColors.PURPLE,
         },
       },
     },
@@ -1478,8 +1672,15 @@ let dates = year => {
         },
       },
     },
+    // Todo: split saintMargaretOfScotlandSaintGertrudeTheGreatVirgin everywhere
     {
-      key: 'saintMargaretOfScotlandSaintGertrudeTheGreatVirgin',
+      key: 'saintMargaretOfScotland',
+      type: Types.OPT_MEMORIAL,
+      moment: moment.utc({ year: year, month: 10, day: 16 }),
+      data: {},
+    },
+    {
+      key: 'saintGertrudeTheGreatVirgin',
       type: Types.OPT_MEMORIAL,
       moment: moment.utc({ year: year, month: 10, day: 16 }),
       data: {},
@@ -1521,8 +1722,20 @@ let dates = year => {
         },
       },
     },
+    // Todo: split saintClementIPopeAndMartyrSaintColumbanReligious everywhere
     {
-      key: 'saintClementIPopeAndMartyrSaintColumbanReligious',
+      key: 'saintClementIPopeAndMartyr',
+      type: Types.OPT_MEMORIAL,
+      moment: moment.utc({ year: year, month: 10, day: 23 }),
+      data: {
+        meta: {
+          liturgicalColor: LiturgicalColors.RED,
+          titles: [Titles.MARTYR],
+        },
+      },
+    },
+    {
+      key: 'saintColumbanReligious',
       type: Types.OPT_MEMORIAL,
       moment: moment.utc({ year: year, month: 10, day: 23 }),
       data: {},
@@ -1544,6 +1757,7 @@ let dates = year => {
       moment: moment.utc({ year: year, month: 10, day: 25 }),
       data: {
         meta: {
+          liturgicalColor: LiturgicalColors.RED,
           titles: [Titles.MARTYR],
         },
       },
@@ -1554,7 +1768,7 @@ let dates = year => {
       moment: moment.utc({ year: year, month: 10, day: 30 }),
       data: {
         meta: {
-          liturgicalColor: LiturgicalColors.WHITE,
+          liturgicalColor: LiturgicalColors.RED,
         },
       },
     },
