@@ -2,7 +2,6 @@
 
 import _ from 'lodash';
 import Moment from 'moment';
-import * as CalendarsDef from '../calendars';
 import { Types } from '../constants';
 import Config from './Config';
 import DateItem from './DateItem';
@@ -43,7 +42,7 @@ class Calendar {
   /**
    * Fetch calendars and date items that occur during a specific year (civil or liturgical).
    */
-  fetch(): Calendar {
+  fetch = (): Calendar => {
     const c = this.config;
     const years = c.type === 'liturgical' ? [c.year, c.year + 1] : [c.year];
 
@@ -54,12 +53,13 @@ class Calendar {
     let particularCalendars = [];
 
     const getCalendarInheritance = (calendarName: string) => {
-      particularCalendars.unshift({ name: calendarName, dates: [] });
-      let inheritFrom = CalendarsDef[calendarName].inheritFrom;
+      const clonedCalendarName: string = calendarName || 'general';
+      particularCalendars.unshift({ name: clonedCalendarName, dates: [] });
+      let inheritFrom = this.config.calendarsDef[clonedCalendarName].inheritFrom;
       if (
         inheritFrom &&
-        inheritFrom !== calendarName &&
-        Object.prototype.hasOwnProperty.call(CalendarsDef, inheritFrom)
+        inheritFrom !== clonedCalendarName &&
+        Object.prototype.hasOwnProperty.call(this.config.calendarsDef, inheritFrom)
       ) {
         getCalendarInheritance(inheritFrom);
       }
@@ -99,13 +99,13 @@ class Calendar {
       );
 
       // Sanctoral: Get the roman general calendar based on the given year
-      generalDates = Calendar._fetchRegionCalendar('general').dates(year);
+      generalDates = this._fetchRegionCalendar('general').dates(year);
 
       // Get the relevant particular calendar objects based on the given year and country
       particularCalendars = particularCalendars.map(calendar => {
         return {
           ...calendar,
-          dates: calendar.dates.concat(Calendar._fetchRegionCalendar(calendar.name).dates(year)),
+          dates: calendar.dates.concat(this._fetchRegionCalendar(calendar.name).dates(year)),
         };
       });
     });
@@ -302,12 +302,12 @@ class Calendar {
   /**
    * Get the appropriate calendar definition object, based on the given region name
    */
-  static _fetchRegionCalendar(regionName: string): { dates: number => {}[] } {
-    const key: string = Object.prototype.hasOwnProperty.call(CalendarsDef, _.camelCase(regionName))
+  _fetchRegionCalendar(regionName: string): { dates: number => {}[] } {
+    const key: string = Object.prototype.hasOwnProperty.call(this.config.calendarsDef, _.camelCase(regionName))
       ? _.camelCase(regionName)
       : '';
     if (!key) return { dates: () => [] };
-    return CalendarsDef[key];
+    return this.config.calendarsDef[key];
   }
 }
 
@@ -329,6 +329,24 @@ const calendarFor = (customConfig: any = {}) => {
   if (Number.isInteger(customConfig)) {
     customConfig = { year: customConfig };
   }
+
+
+  // Temp
+  const fmjCal = require('../calendars/etienne-fmj');
+  const saintGervaisCal = require('../calendars/etienne-saint-gervais');
+  customConfig = Object.assign(customConfig, {
+    importCalendars: {
+      fmj: fmjCal,
+      saintGervais: saintGervaisCal,
+    },
+    extendCalendars: {
+      france: {
+        inheritFrom: 'fmj'
+      }
+    },
+    extendLocales: {}
+  });
+
 
   // Sanitize incoming config into a complete configuration set
   const config = new Config(customConfig);

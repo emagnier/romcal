@@ -439,5 +439,15 @@ export default {
     theBeheadingOfSaintJohnTheBaptistMartyr: 'Martyre de S. Jean-Baptiste',
     theMostHolyNameOfJesus: 'Le Saint Nom de Jésus',
     visitationOfTheBlessedVirginMary: 'Visitation de la Vierge Marie',
+
+    // Custom locales
+    saintElie: 'S. Élie, prophète (IXe siècle av. J.-C.)',
+    saintAbraham: 'S. Abraham, patriarche',
+    theSaintPenitentThief: 'Le Saint Bon Laron',
+    blessedCharlesDeJesus: 'Bx. Charles de Foucauld, prêtre',
+    saintJacob: 'S. Jacob, patriarche',
+    saintDavidKing: 'S. David, roi d‘Israël et de Juda (v. le début du Xe siècle av. J.-C.)',
+    saintGervaisAndSaintProtaisMartyrs: 'S. Gervais et S. Protais, martyrs à Milan au 3e siècle',
+    dedicationOfTheChurchOfSaintGervais: 'Dédicace de l‘Église Saint-Gervais',
   },
 };

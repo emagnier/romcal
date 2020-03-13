@@ -23,23 +23,48 @@ export default class Config {
     group: string,
     title: string,
   };
+  calendarsDef: {};
+  importCalendars: {};
+  extendCalendars: {};
+  importLocales: {};
+  extendLocales: {};
 
   constructor(customConfig: Object) {
     customConfig = _.isPlainObject(customConfig) ? customConfig : {};
+    this.calendarsDef = CalendarsDef;
+    if (_.isPlainObject(customConfig.importCalendars)) this.importCalendars = customConfig.importCalendars;
+    if (_.isPlainObject(customConfig.extendCalendars)) this.extendCalendars = customConfig.extendCalendars;
+    if (_.isPlainObject(customConfig.importLocales)) this.importLocales = customConfig.importLocales;
+    if (_.isPlainObject(customConfig.extendLocales)) this.extendLocales = customConfig.extendLocales;
+
+    // Import or overwrite specified calendars
+    if (this.importCalendars) {
+      Object.keys(this.importCalendars).forEach((key: string) => {
+        this.calendarsDef[key] = this.importCalendars[key];
+      });
+    }
+
+    // Extend specified calendars
+    if (this.extendCalendars) {
+      Object.keys(this.extendCalendars).forEach((key: string) => {
+        if (!_.isPlainObject(this.calendarsDef)) this.calendarsDef[key] = {};
+        this.calendarsDef[key] = Object.assign(this.calendarsDef[key], this.extendCalendars[key]);
+      });
+    }
 
     // If a country is specified, check if it exists in the romcal codebase
     customConfig.country = typeof customConfig.country === 'string' ? customConfig.country : '';
     if (
       customConfig.country.toLowerCase() !== 'general' &&
-      Object.prototype.hasOwnProperty.call(CalendarsDef, _.camelCase(customConfig.country))
+      Object.prototype.hasOwnProperty.call(this.calendarsDef, _.camelCase(customConfig.country))
     ) {
       this.country = _.camelCase(customConfig.country);
     }
 
     // Load default config for general and selected country,
     // and combine them with the specified custom config
-    const generalConfig = Config.getConfig('general');
-    const countryConfig = Config.getConfig(this.country);
+    const generalConfig = this.getConfig('general');
+    const countryConfig = this.getConfig(this.country);
     const c = {
       ...generalConfig,
       ...countryConfig,
@@ -77,17 +102,17 @@ export default class Config {
   /**
    * Get the configuration from the calendar file if defined
    */
-  static getConfig(country: ?string): CalendarsDef<{}[]> {
+  getConfig(country: ?string): CalendarsDef<{}[]> {
     if (!country) return {};
     let inheritedOptions = [];
 
     const getCalendarInheritance = (calendarName: string) => {
-      inheritedOptions.unshift(CalendarsDef[calendarName].defaultConfig || {});
-      let inheritFrom = CalendarsDef[calendarName].inheritFrom;
+      inheritedOptions.unshift(this.calendarsDef[calendarName].defaultConfig || {});
+      let inheritFrom = this.calendarsDef[calendarName].inheritFrom;
       if (
         inheritFrom &&
         inheritFrom !== calendarName &&
-        Object.prototype.hasOwnProperty.call(CalendarsDef, inheritFrom)
+        Object.prototype.hasOwnProperty.call(this.calendarsDef, inheritFrom)
       ) {
         getCalendarInheritance(inheritFrom);
       }
