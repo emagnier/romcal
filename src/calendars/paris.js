@@ -40,9 +40,19 @@ let dates = year => {
       },
     },
     {
-      key: 'blessedMarieDeLaProvidence',
+      key: 'blessedMarieDeLaProvidenceVirgin',
       type: Types.OPT_MEMORIAL,
       moment: moment.utc({ year: year, month: 1, day: 7 }),
+      data: {
+        meta: {
+          liturgicalColor: LiturgicalColors.WHITE,
+        },
+      },
+    },
+    {
+      key: 'blessedRosalieRenduVirgin',
+      type: Types.OPT_MEMORIAL,
+      moment: moment.utc({ year: year, month: 1, day: 9 }),
       data: {
         meta: {
           liturgicalColor: LiturgicalColors.WHITE,
@@ -80,6 +90,26 @@ let dates = year => {
       },
     },
     {
+      key: 'blessedMarieDeLIncarnationReligious',
+      type: Types.OPT_MEMORIAL,
+      moment: moment.utc({ year: year, month: 3, day: 18 }),
+      data: {
+        meta: {
+          liturgicalColor: LiturgicalColors.WHITE,
+        },
+      },
+    },
+    {
+      key: 'saintMadeleineSophieBarat',
+      type: Types.OPT_MEMORIAL,
+      moment: moment.utc({ year: year, month: 4, day: 24 }),
+      data: {
+        meta: {
+          liturgicalColor: LiturgicalColors.WHITE,
+        },
+      },
+    },
+    {
       key: 'saintGermainOfParisBishop',
       type: Types.MEMORIAL,
       moment: moment.utc({ year: year, month: 4, day: 28 }),
@@ -101,9 +131,9 @@ let dates = year => {
       },
     },
     {
-      key: 'saintLandryOfParisBishop',
+      key: 'blessedMarieThereseDeSoubiranVirgin',
       type: Types.OPT_MEMORIAL,
-      moment: moment.utc({ year: year, month: 5, day: 10 }),
+      moment: moment.utc({ year: year, month: 5, day: 7 }),
       data: {
         meta: {
           liturgicalColor: LiturgicalColors.WHITE,
@@ -141,7 +171,7 @@ let dates = year => {
       },
     },
     {
-      key: 'martyrsOfCompiegne',
+      key: 'blessedCarmeliteOfCompiegneVirginsAndMartyrs',
       type: Types.OPT_MEMORIAL,
       moment: moment.utc({ year: year, month: 6, day: 17 }),
       meta: {
@@ -159,6 +189,19 @@ let dates = year => {
         },
       },
     },
+    // Moved day + 1 from general
+    {
+      key: 'saintJosephOfCalasanzPriest',
+      type: Types.OPT_MEMORIAL,
+      moment: moment.utc({ year: year, month: 7, day: 26 }),
+      data: {},
+    },
+    {
+      key: 'saintMerryAndSaintDroctoveeAbbots',
+      type: Types.OPT_MEMORIAL,
+      moment: moment.utc({ year: year, month: 7, day: 30 }),
+      data: {},
+    },
     {
       key: 'blessedMartyrsOfParis',
       type: Types.MEMORIAL,
@@ -169,6 +212,7 @@ let dates = year => {
       },
     },
     {
+      // Note: Saint Theresa of Calcutta isn't in the missal of Paris, but recommended in the annual liturgical ordo
       key: 'saintTeresaOfCalcuttaReligious',
       type: Types.OPT_MEMORIAL,
       moment: moment.utc({ year: year, month: 8, day: 5 }),
@@ -192,6 +236,17 @@ let dates = year => {
       key: 'saintCeranOfParisBishop',
       type: Types.OPT_MEMORIAL,
       moment: moment.utc({ year: year, month: 8, day: 26 }),
+      data: {
+        meta: {
+          liturgicalColor: LiturgicalColors.WHITE,
+        },
+      },
+    },
+    {
+      // Same as General, but Feast
+      key: 'saintVincentDePaulPriest',
+      type: Types.FEAST,
+      moment: moment.utc({ year: year, month: 8, day: 27 }),
       data: {
         meta: {
           liturgicalColor: LiturgicalColors.WHITE,
@@ -229,6 +284,16 @@ let dates = year => {
       },
     },
     {
+      key: 'allTheSaintsOfTheDioceseOfParis',
+      type: Types.MEMORIAL,
+      moment: moment.utc({ year: year, month: 10, day: 8 }),
+      data: {
+        meta: {
+          liturgicalColor: LiturgicalColors.WHITE,
+        },
+      },
+    },
+    {
       key: 'ourLadyOfTheMiraculousMedal',
       type: Types.OPT_MEMORIAL,
       moment: moment.utc({ year: year, month: 10, day: 27 }),
@@ -242,6 +307,16 @@ let dates = year => {
       key: 'saintCatherineLaboureReligious',
       type: Types.OPT_MEMORIAL,
       moment: moment.utc({ year: year, month: 10, day: 28 }),
+      data: {
+        meta: {
+          liturgicalColor: LiturgicalColors.WHITE,
+        },
+      },
+    },
+    {
+      key: 'blessedCharlesDeFoucauld',
+      type: Types.OPT_MEMORIAL,
+      moment: moment.utc({ year: year, month: 11, day: 1 }),
       data: {
         meta: {
           liturgicalColor: LiturgicalColors.WHITE,

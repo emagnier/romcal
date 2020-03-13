@@ -69,6 +69,7 @@ export default {
   },
   sanctoral: {
     allSouls: 'Commémoration de tous les fidèles défunts',
+    allTheSaintsOfTheDioceseOfParis: 'Tous les Saints du diocèse de Paris',
     birthOfTheBlessedVirginMary: 'Nativité de la Vierge Marie',
     blessedAndreGrassetPriestAndMartyr:
       'Bx. André Grasset, Prêtre, Canadien martyr de la Révolution française (✝ 1792)',
@@ -85,14 +86,17 @@ export default {
       'Bx. Innocent V, enseignant à l’Université de Paris, pape (✝ 1276, mort cinq mois après son élection)',
     blessedLouisZephirinMoreauBishop: 'Bx. Louis Zéphyrin Moreau, Évêque (✝ 1901)',
     blessedMarieAnneBlondinVirgin: 'Bse Marie-Anne Blondin, Religieuse, Fondatrice des Sœurs de Sainte-Anne (✝ 1890)',
-    blessedMarieDeLaProvidence:
+    blessedMarieDeLaProvidenceVirgin:
       'Bse Marie de la Providence (Eugénie Smet), vierge, fondatrice de la congrégration des Auxilliatrices (✝ 1871 à Paris)',
     blessedMarieLeonieParadisVirgin:
       'Bse Marie-Léonie Paradis, Religieuse, Fondatrice de la Congrégation des Petites Sœurs de la Sainte Famille (✝ 1912)',
+    blessedMarieDeLIncarnationReligious: 'Bse Marie de l‘Incarnation, carmélite à Pontoise (✝ 1618)',
     blessedMarieRoseDurocherVirgin:
       'Bse Marie-Rose Durocher, Religieuse, Fondatrice des Sœurs des Saints Noms de Jésus et de Marie (✝ 1849)',
+    blessedMarieThereseDeSoubiranVirgin: 'Bse Marie-Thérèse de Soubiran, vierge (✝ 1889)',
     blessedMartyrsOfParis: 'Bx. martyrs de Paris (✝ du 2 au 6 septembre 1792)',
     blessedNicholasBarre: 'Bx. Nicolas Barré, prêtre, fondateur des sœurs de l’Enfant-Jésus (✝ 1686 à Paris)',
+    blessedRosalieRenduVirgin: 'Bse Rosalie Rendu, vierge (✝ 1856)',
     blessedsNykytaBudkaAndVasylVelychkowskyBishopsAndMartyrs:
       'Bx. Nicétas Budka (✝ 1949) et Vasyl Velychkowsky (✝ 1973), Évêques et Martyrs',
     chairOfSaintPeterApostle: 'Chaire de Saint Pierre, apôtre',
@@ -108,7 +112,7 @@ export default {
     holyNameOfTheBlessedVirginMary: 'Le Saint Nom de Marie',
     holyMaryRefugeOfSinner:
       'Ste Marie, refuge des pécheurs, invoquée sur ce vocable depuis 1836 en la basilique Notre-Dame des Victoires',
-    martyrsOfCompiegne:
+    blessedCarmeliteOfCompiegneVirginsAndMartyrs:
       'Bses Carmélites de Compiègne : Mère Thérèse et ses 15 compagnes, martyres (guillotinées en 1794)',
     maryMotherOfTheChurch: 'Vierge Marie, Mère de l’Église',
     ourLadyMediatrix: 'Notre-Dame, Médiatrice',
@@ -314,6 +318,7 @@ export default {
       'Saint Louis, Roi de France (✝ 1270), ou Saint Joseph de Calasanz, Prêtre (✝ 1648)',
     saintLucyOfSyracuseVirginAndMartyr: 'Ste Lucie, vierge et martyre (✝ 304 à Syracuse en Sicile)',
     saintLukeTheEvangelist: 'S. Luc, évangéliste',
+    saintMadeleineSophieBaratVirgin: 'Ste Madeleine Sophie Barat, vierge (✝ 1865)',
     saintMarcelOfParisBishop: 'S. Marcel, évèque de Paris (✝ vers 430)',
     saintMargaretMaryAlacoqueVirgin: 'Ste Marguerite-Marie Alacoque, vierge, visitandine (✝ 1690 à Paray-le-Monial)',
     saintMargaretOfScotlandSaintGertrudeTheGreatVirgin:
@@ -337,6 +342,7 @@ export default {
     saintMatthewApostleAndEvangelist: 'S. Matthieu, apôtre et évangéliste',
     saintMatthiasTheApostle: 'S. Matthias, apôtre',
     saintMaximilianMaryKolbePriestAndMartyr: 'S. Maximilien Kolbe, prêtre franciscain, martyr (✝ 1941 à Auschwitz)',
+    saintMerryAndSaintDroctoveeAbbots: 'S. Merry (✝ v. fin VIIe siècle) et S. Droctovée (✝ 558), abbés',
     saintMonica: 'Ste Monique, mère de S. Augustin (✝ 387 à Ostie)',
     saintNicholasBishop: 'S. Nicolas, évêque de Myre (✝ v. 350)',
     saintNorbertBishop: 'S. Norbert, évêque de Magdebourg, fondateur des Prémontrés (✝ 1134)',
@@ -444,7 +450,7 @@ export default {
     saintElie: 'S. Élie, prophète (IXe siècle av. J.-C.)',
     saintAbraham: 'S. Abraham, patriarche',
     theSaintPenitentThief: 'Le Saint Bon Laron',
-    blessedCharlesDeJesus: 'Bx. Charles de Foucauld, prêtre',
+    blessedCharlesDeFoucauld: 'Bx. Charles de Foucauld, prêtre',
     saintJacob: 'S. Jacob, patriarche',
     saintDavidKing: 'S. David, roi d‘Israël et de Juda (v. le début du Xe siècle av. J.-C.)',
     saintGervaisAndSaintProtaisMartyrs: 'S. Gervais et S. Protais, martyrs à Milan au 3e siècle',
