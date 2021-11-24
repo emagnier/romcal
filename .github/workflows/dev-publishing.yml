@@ -28,5 +28,6 @@ jobs:
           rc-wording:
           default: prerelease
           preid: dev
+          tag-prefix:  'v'
           commit-message: 'ci: bumps version to {{version}}'
 
