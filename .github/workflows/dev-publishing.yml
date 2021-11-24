@@ -26,7 +26,6 @@ jobs:
           minor-wording: 'MinorBump'
           patch-wording: 'PatchBump'
           rc-wording:
-          skip-tag: true
           default: prerelease
           preid: dev
           commit-message: 'ci: bumps version to {{version}}'
