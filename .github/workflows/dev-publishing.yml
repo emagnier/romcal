@@ -1,0 +1,40 @@
+name: Dev Publishing
+
+#on:
+#  push:
+#    branches:
+#      - dev-ga-xp
+
+on:
+  push:
+    branches:
+      - dev-ga-xp
+
+
+jobs:
+  publish_dev:
+    runs-on: ubuntu-latest
+
+    env:
+      CI: true
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN || github.event.token }}
+
+    steps:
+      - name: git-checkout
+        uses: actions/checkout@v2
+        with:
+          ref: dev-ga-xp
+          token: ${{ github.token }}
+
+      - name: Automated Version Bump
+        uses: phips28/gh-action-bump-version@master
+        with:
+          major-wording: 'MajorBump'
+          minor-wording: 'MinorBump'
+          patch-wording: 'PatchBump'
+          rc-wording:
+          skip-tag: true
+          default: prerelease
+          preid: alpha
+          commit-message: 'ci: bumps version to {{version}}'
+
