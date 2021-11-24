@@ -12,6 +12,8 @@ jobs:
     env:
       CI: true
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_USER: emagnier
+      GITHUB_EMAIL: etienne.magnier@gmail.com
 
     steps:
       - name: git-checkout
