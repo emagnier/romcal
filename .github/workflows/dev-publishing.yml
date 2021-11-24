@@ -1,0 +1,46 @@
+name: Dev Publishing
+
+on:
+  push:
+    branches:
+      - dev-ga-xp
+
+jobs:
+  dev_publishing:
+    runs-on: ubuntu-latest
+
+    env:
+      CI: true
+      GITHUB_USER: romcalproject
+      GITHUB_EMAIL: romcalproject@gmail.com
+
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: dev-ga-xp
+
+      - name: Automated Version Bump
+        uses: phips28/gh-action-bump-version@master
+        with:
+          major-wording: 'MajorBump'
+          minor-wording: 'MinorBump'
+          patch-wording: 'PatchBump'
+          rc-wording:
+          default: prerelease
+          preid: dev
+          tag-prefix:  'v'
+          commit-message: 'ci: bumps version to {{version}}'
+
+      - id: publish
+        name: NPM Publish
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          tag: dev
+          access: public
+          dry-run: true
+
+      - if: steps.publish.outputs.type != 'none'
+        run: |
+          echo "Version changed: ${{ steps.publish.outputs.old-version }} => ${{ steps.publish.outputs.version }}"

@@ -1,0 +1,48 @@
+name: Romcal CI
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch name:'
+        required: true
+        default: 'dev'
+      version:
+        description: 'New Romcal NPM version:'
+        required: true
+      tag:
+        description: 'NPM tag (alpha | beta | release):'
+        required: true
+        default: 'alpha'
+
+jobs:
+  publish_main_lib:
+    runs-on: ubuntu-latest
+
+    env:
+      CI: true
+
+#    steps:
+#      - run: |
+#          echo "Branch: ${{ github.event.inputs.branch }}"
+#          echo "Version: ${{ github.event.inputs.version }}"
+#
+#      - name: git-checkout
+#        uses: actions/checkout@v2
+##        with:
+##          ref: ${{ github.event.inputs.branch }}
+##          token: ${{ github.token || github.event.token }}
+#      - name: Configure Node.js and NPM
+#        uses: volta-cli/action@v1
+##      - run: npm ci --no-audit
+##      - run: npx browserslist@latest --update-db
+##      - run: npm run build
+##      - run: npm run test:without-coverage
+#
+#      - name: Check package version
+#        uses: technote-space/package-version-check-action@v1
+#        with:
+#          COMMIT_DISABLED: 0
+#          COMMIT_MESSAGE: 'chore: update package version'
+#          NEXT_VERSION: ${{ github.event.inputs.version }}
+#          GITHUB_TOKEN: ${{ github.token || github.event.token }}

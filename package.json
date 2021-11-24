@@ -15,6 +15,7 @@
     "build": "node -r ts-node/register scripts/build.ts",
     "doc": "node -r ts-node/register scripts/bundle-doc.ts",
     "test": "jest --coverage",
+    "test:without-coverage": "jest",
     "test:watch": "jest --watch"
   },
   "repository": {
@@ -57,6 +58,7 @@
     "i18next": "^20.4.0"
   },
   "devDependencies": {
+    "@jsdevtools/npm-publish": "^1.4.3",
     "@types/cli-progress": "^3.9.2",
     "@types/glob": "^7.1.4",
     "@types/humanize-duration": "^3.25.1",
