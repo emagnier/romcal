@@ -19,7 +19,7 @@ jobs:
         with:
           ref: dev-ga-xp
 
-      - name: emagnier
+      - name: Automated Version Bump
         uses: phips28/gh-action-bump-version@master
         with:
           major-wording: 'MajorBump'
