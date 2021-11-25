@@ -26,6 +26,9 @@ jobs:
       - name: Install npm depencancies
         run: npm ci --no-audit
 
+      - name: Update browsers list (caniuse)
+        run: npx browserslist@latest --update-db
+
       - name: Automated version bump
         uses: phips28/gh-action-bump-version@master
         with:
@@ -38,11 +41,11 @@ jobs:
           tag-prefix:  'v'
           commit-message: 'ci: bumps version to {{version}}'
 
-      - name: Build romcal project
+      - name: Build romcal project (romcal + all calendar bundles)
         run: npm run build
 
       - name: Run tests
         run: npm run test:without-coverage
 
-      - name: NPM Publish a new dev version
-        run: node script/publish.js
+      - name: Npm publish a new dev version (romcal + all calendar bundles)
+        run: node scripts/publish.js
