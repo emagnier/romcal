@@ -15,12 +15,18 @@ jobs:
       GITHUB_EMAIL: romcalproject@gmail.com
 
     steps:
-      - name: Git Checkout
+      - name: Git checkout dev branch
         uses: actions/checkout@v2
         with:
           ref: dev-ga-xp
 
-      - name: Automated Version Bump
+      - name: Install node.js and npm
+        uses: volta-cli/action@v1
+
+      - name: Install npm depencancies
+        run: npm ci --no-audit
+
+      - name: Automated version bump
         uses: phips28/gh-action-bump-version@master
         with:
           major-wording: 'MajorBump'
@@ -32,15 +38,11 @@ jobs:
           tag-prefix:  'v'
           commit-message: 'ci: bumps version to {{version}}'
 
-      - id: publish
-        name: NPM Publish
-        uses: JS-DevTools/npm-publish@v1
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
-          tag: dev
-          access: public
-          dry-run: true
+      - name: Build romcal project
+        run: npm run build
 
-      - if: steps.publish.outputs.type != 'none'
-        run: |
-          echo "Version changed: ${{ steps.publish.outputs.old-version }} => ${{ steps.publish.outputs.version }}"
+      - name: Run tests
+        run: npm run test:without-coverage
+
+      - name: NPM Publish a new dev version
+        run: node script/publish.js

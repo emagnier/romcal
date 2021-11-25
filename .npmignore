@@ -26,6 +26,9 @@ tsconfig.*
 dist/bundles/
 tmp/
 
+# Act (running Locally GitHub Actions)
+*.event
+
 # VS Code
 .vscode
 !.vscode/tasks.js
