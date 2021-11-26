@@ -3,7 +3,7 @@ name: Dev branch publishing
 on:
   push:
     branches:
-      - dev
+      - dev-ga-xp
 
 jobs:
   dev_branch_publishing:
@@ -11,7 +11,7 @@ jobs:
 
     environment: npm-publish
 
-    if: github.repository == 'romcal/romcal'
+#    if: github.repository == 'romcal/romcal'
 
     env:
       CI: true
@@ -22,7 +22,7 @@ jobs:
       - name: Git checkout dev branch
         uses: actions/checkout@v2
         with:
-          ref: dev
+          ref: dev-ga-xp
 
       - name: Install node.js and npm
         uses: volta-cli/action@v1
