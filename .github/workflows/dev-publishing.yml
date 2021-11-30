@@ -27,6 +27,19 @@ jobs:
       - name: Install node.js and npm
         uses: volta-cli/action@v1
 
+      - name: Automated version bump
+        uses: emagnier/gh-action-bump-version@master
+        with:
+          major-wording: 'MajorBump'
+          minor-wording: 'MinorBump'
+          patch-wording: 'PatchBump'
+          rc-wording:
+          default: prerelease
+          preid: dev
+          tag-prefix:  'v'
+          skipt-commit: true
+          commit-message: 'ci: bump version to {{version}}'
+
       - name: Install npm dependencies
         run: npm ci --no-audit
 
@@ -39,17 +52,6 @@ jobs:
       - name: Run tests
         run: npm run test:without-coverage
 
-      - name: Automated version bump
-        uses: phips28/gh-action-bump-version@master
-        with:
-          major-wording: 'MajorBump'
-          minor-wording: 'MinorBump'
-          patch-wording: 'PatchBump'
-          rc-wording:
-          default: prerelease
-          preid: dev
-          tag-prefix:  'v'
-          commit-message: 'ci: bump version to {{version}}'
 
 #      - name: Npm publish a new 'dev' version (romcal + all calendar bundles)
 #        env:
