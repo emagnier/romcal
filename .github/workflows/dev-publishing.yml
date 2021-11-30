@@ -37,7 +37,7 @@ jobs:
           default: prerelease
           preid: dev
           tag-prefix:  'v'
-          skipt-commit: true
+          skip-commit: true
           commit-message: 'ci: bump version to {{version}}'
 
       - name: Install npm dependencies
