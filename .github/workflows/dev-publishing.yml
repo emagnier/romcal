@@ -28,7 +28,7 @@ jobs:
         uses: volta-cli/action@v1
 
       - name: Automated version bump
-        uses: emagnier/gh-action-bump-version@master
+        uses: emagnier/gh-action-bump-version@skip-commit
         with:
           major-wording: 'MajorBump'
           minor-wording: 'MinorBump'
