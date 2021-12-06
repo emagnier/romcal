@@ -57,10 +57,12 @@ jobs:
         uses: culshaw/read-package-node-version-actions@v1
         id: package
 
-      - uses: EndBug/add-and-commit@v7
+      - name: Commit and tag the updated version
+        uses: EndBug/add-and-commit@v7
         with:
-          message: 'ci: bump version to ${{ steps.package.outputs.version }}"'
+          message: 'ci: bump version to ${{ steps.package.outputs.version }}'
           tag: 'v${{ steps.package.outputs.version }}'
+          default_author: '${{ GITHUB_USER }} <${{ GITHUB_EMAIL }}>'
 
 #      - name: Npm publish a new 'dev' version (romcal + all calendar bundles)
 #        env:
