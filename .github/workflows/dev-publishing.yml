@@ -28,7 +28,7 @@ jobs:
         uses: volta-cli/action@v1
 
       - name: Automated version bump
-        uses: emagnier/gh-action-bump-version@skip-commit
+        uses:  phips28/gh-action-bump-version@master
         with:
           major-wording: 'MajorBump'
           minor-wording: 'MinorBump'
@@ -36,9 +36,10 @@ jobs:
           rc-wording:
           default: prerelease
           preid: dev
-          tag-prefix:  'v'
-#          skip-commit: true
-          commit-message: 'ci: bump version to {{version}}'
+          skip-commit: 'true'
+          skip-tag:  'true'
+#          tag-prefix:  'v'
+#          commit-message: 'ci: bump version to {{version}}'
 
       - name: Install npm dependencies
         run: npm ci --no-audit
@@ -52,6 +53,14 @@ jobs:
       - name: Run tests
         run: npm run test:without-coverage
 
+      - name: Read package.json
+        uses: culshaw/read-package-node-version-actions@v1
+        id: package
+
+      - uses: EndBug/add-and-commit@v7
+        with:
+          message: 'ci: bump version to ${{ steps.package.outputs.version }}"'
+          tag: 'v${{ steps.package.outputs.version }}'
 
 #      - name: Npm publish a new 'dev' version (romcal + all calendar bundles)
 #        env:
