@@ -130,7 +130,7 @@ export class Martyrology {
       name: 'Most Holy Trinity',
     },
 
-    '205_blessed_martyrs_of_japan': {
+    the_205_blessed_martyrs_of_japan: {
       canonizationLevel: CanonizationLevels.Blessed,
       name: '205 Blessed Martyrs of Japan',
       count: 205,

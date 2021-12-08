@@ -127,7 +127,7 @@ export const locale: Locale = {
     thursday_of_the_lord_s_supper: '$(names:holy_thursday)',
     transfiguration: 'Premenenie Pána',
     trinity_sunday: 'Najsvätejšej Trojice',
-    '205_blessed_martyrs_of_japan': 'Blahoslavených 205 japonských mučeníkov',
+    the_205_blessed_martyrs_of_japan: 'Blahoslavených 205 japonských mučeníkov',
     adalbert_of_prague_bishop: 'Svätého Vojtecha, biskupa a mučeníka',
     adalbert_of_prague_bishop_patron_of_poland: 'Svätého Vojtecha, biskupa, mučeníka a patróna Poľska',
     adolph_kolping_priest: 'Blahoslaveného Adolfa Kolpinga, kňaza',

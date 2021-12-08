@@ -233,7 +233,7 @@ export const locale: Locale = {
     thursday_of_the_lord_s_supper: '$(names:holy_thursday), in Cena Domini',
     transfiguration: 'In Transfiguratione Domini',
     trinity_sunday: 'Ss.mæ Trinitatis',
-    '205_blessed_martyrs_of_japan': 'B. Martyres Iaponici CCV',
+    the_205_blessed_martyrs_of_japan: 'B. Martyres Iaponici CCV',
     adalbert_of_prague_bishop: 'S. Adalberti, episcopi et martyris',
     adalbert_of_prague_bishop_patron_of_poland: 'S. Adalberti, episcopi, martyris et patroni Poloniæ',
     adolph_kolping_priest: 'B. Adolphi Kolping, presbyteri',

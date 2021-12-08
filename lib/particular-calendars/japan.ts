@@ -19,7 +19,7 @@ export class Japan extends CalendarDef {
       martyrology: ['peter_kibe_priest', 'companions_martyrs'],
     },
 
-    '205_blessed_martyrs_of_japan': {
+    the_205_blessed_martyrs_of_japan: {
       precedence: Precedences.ProperMemorial_11b,
       dateDef: { month: 9, date: 10 },
     },
