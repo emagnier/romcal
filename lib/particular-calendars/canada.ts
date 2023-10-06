@@ -30,7 +30,7 @@ export class Canada extends CalendarDef {
     },
 
     kateri_tekakwitha_virgin: {
-      precedence: Precedences.OptionalMemorial_12,
+      precedence: Precedences.ProperMemorial_11b,
       dateDef: { month: 4, date: 17 },
     },
 
@@ -140,17 +140,11 @@ export class Canada extends CalendarDef {
     },
 
     hedwig_of_silesia_religious: {
-      precedence: Precedences.OptionalMemorial_12,
       dateDef: { month: 10, date: 20 },
     },
 
     margaret_mary_alacoque_virgin: {
-      precedence: Precedences.OptionalMemorial_12,
       dateDef: { month: 10, date: 20 },
-    },
-
-    dedication_of_consecrated_churches_on_october_25: {
-      dateDef: { month: 10, date: 22 },
     },
 
     dedication_of_consecrated_churches_on_last_sunday_of_october: {
