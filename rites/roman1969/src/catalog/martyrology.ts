@@ -4653,5 +4653,13 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       name: 'Zygmunt Gorazdowski',
       titles: [Title.Priest],
     },
+
+    // FMJ
+    silouan_the_athonite_monk: {
+      canonizationLevel: CanonizationLevels.Saint,
+      name: 'Silouan the Athonite',
+      titles: [Title.Monk],
+      dateOfDeath: 1938,
+    },
   },
 };

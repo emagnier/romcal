@@ -18,10 +18,13 @@ import { Denmark } from './denmark';
 import { England } from './england';
 import { Europe } from './europe';
 import { Finland } from './finland';
+import { Fmj } from './fmj';
 import { France } from './france';
 import { France_Coutances } from './france.coutances';
+import { France_MontSaintMichel } from './france.coutances.mont-saint-michel';
 import { France_Lyon } from './france.lyon';
 import { France_Paris } from './france.paris';
+import { France_SaintGervais } from './france.paris.saint-gervais';
 import { France_SaintDenis } from './france.saint-denis';
 import { France_Strasbourg } from './france.strasbourg';
 import { Germany } from './germany';
@@ -81,10 +84,13 @@ export const particularCalendars: Record<string, typeof CalendarDef> = {
   England,
   Europe,
   Finland,
+  Fmj,
   France,
   France_Coutances,
   France_Lyon,
+  France_MontSaintMichel,
   France_Paris,
+  France_SaintGervais,
   France_SaintDenis,
   France_Strasbourg,
   Germany,

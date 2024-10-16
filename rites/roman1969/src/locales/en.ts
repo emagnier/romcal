@@ -1061,5 +1061,12 @@ export const locale: Locale = {
     zepherin_namuncura: 'Blessed Zepherin Namuncurá',
     zoltan_lajos_meszlenyi_bishop: 'Blessed Zoltán Lajos Meszlényi, Bishop and Martyr',
     zygmunt_gorazdowski_priest: 'Saint Zygmunt Gorazdowski, Priest',
+
+    // FMJ
+    silouan_the_athonite_monk: 'Le saint staretz Silouane (✝ 1938 au Mont Athos)',
+    the_penitent_thief: 'Le saint Bon Larron',
+    david_king: 'St David, roi et prophète, 1000 ans environ avant J. C.',
+    gervais_and_protais_martyrs: 'St Gervais et St Protais, martyrs à Milan au 2e siècle',
+    dedication_of_the_church_of_saint_gervais: 'Dédicace de l’Église Saint-Gervais – Saint-Protais',
   },
 };

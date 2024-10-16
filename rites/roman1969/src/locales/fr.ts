@@ -647,5 +647,12 @@ export const locale: Locale = {
       'Saint Venceslas, martyr et patron de la nation tchèque († 929)',
     wendelin_of_trier_hermit: 'Saint Wendelin, ermite',
     william_firmatus_abbot: 'Saint Guillaume Firmat, abbé († 1103)', // src: mr_fr_1982_ed2_coutances
+
+    // FMJ
+    silouan_the_athonite_monk: 'Le saint staretz Silouane (✝ 1938 au Mont Athos)',
+    the_penitent_thief: 'Le saint Bon Larron',
+    david_king: 'St David, roi et prophète, 1000 ans environ avant J. C.',
+    gervais_and_protais_martyrs: 'St Gervais et St Protais, martyrs à Milan au 2e siècle',
+    dedication_of_the_church_of_saint_gervais: 'Dédicace de l’Église Saint-Gervais – Saint-Protais',
   },
 };
