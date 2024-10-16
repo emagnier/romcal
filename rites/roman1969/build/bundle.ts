@@ -64,8 +64,8 @@ export class RomcalBuilder {
   getOutputFilename(): string {
     const calendarDefs = this.#config.calendarsDef;
     const currentCalendarName: string = calendarDefs[calendarDefs.length - 1].calendarName
-      .replace('__', '.')
-      .replace('_', '-');
+      .replace(/__/g, '.')
+      .replace(/_/g, '-');
     return `${currentCalendarName}.${this.#config.localeId}.ts`;
   }
 
@@ -233,7 +233,7 @@ export const RomcalBundler = (): void => {
 
     // Define package name, variable name and package dist.
     const pkgName = calendar.name
-      .replace(/([^_]+)([A-Z])/g, '$1-$2')
+      .replace(/([^_])([A-Z][a-z])/g, '$1-$2')
       .replace(/_/g, '.')
       .toLowerCase();
     const dir = resolve(__dirname, '../tmp/bundles/', pkgName);
