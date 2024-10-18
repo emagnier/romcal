@@ -1,3 +1,4 @@
+import { CommonDefinition } from '../constants/commons';
 import { CanonizationLevel, Sex } from '../constants/martyrology-metadata';
 
 import { RomcalTitles } from './liturgical-day';
@@ -85,6 +86,14 @@ export type MartyrologyDef = {
    * It could be set as 'many' if the number is not defined.
    */
   count?: SaintCount;
+
+  /**
+   * The **Common** refers to a set of prayers, readings, and chants used for celebrating saints or
+   * feasts that belong to a specific category, such as martyrs, virgins, pastors, or the Blessed
+   * Virgin Mary.
+   * These prayers are used when no specific texts (Proper) are assigned for a particular feast day.
+   */
+  commons?: CommonDefinition | CommonDefinition[];
 };
 
 export type SaintCount = number | 'many';

@@ -1,6 +1,7 @@
 import { StringMap } from 'i18next';
 
 import { Color } from '../constants/colors';
+import { CommonDefinition } from '../constants/commons';
 import { ProperCycle } from '../constants/cycles';
 import { PatronTitle, Title } from '../constants/martyrology-metadata';
 import { MonthIndex } from '../constants/months';
@@ -518,6 +519,11 @@ export type LiturgicalDayInput = Partial<
    * Redefine the titles of each Saints linked to this date definition, from the martyrology catalog.
    */
   titles?: TitlesDef;
+
+  /**
+   * Redefine the commons linked to this liturgical day definition.
+   */
+  commons?: CommonDefinition | CommonDefinition[];
 };
 
 export type LiturgicalDayBundleInput = XOR<LiturgicalDayInput, LiturgicalDayProperOfTimeInput> &

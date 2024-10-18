@@ -1,3 +1,4 @@
+import { CommonDefinition as Common } from '../constants/commons';
 import { CanonizationLevels, Title } from '../constants/martyrology-metadata';
 import { MartyrologyCatalog } from '../types/martyrology';
 
@@ -34,6 +35,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Adalbert',
       titles: [Title.Bishop, Title.Martyr],
+      commons: [Common.Martyrs, Common.Bishops],
       dateOfDeath: 997,
     },
     adelaide_of_burgundy_empress: {
@@ -80,6 +82,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Agatha',
       titles: [Title.Virgin, Title.Martyr],
+      commons: [Common.VirginMartyrs, Common.Virgins],
       dateOfDeath: 251,
     },
     agnes_cao_guiying_martyr: {
@@ -96,6 +99,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Agnes',
       titles: [Title.Virgin, Title.Martyr],
+      commons: [Common.VirginMartyrs, Common.Virgins],
       dateOfDeath: 304,
       dateOfDeathIsApproximative: true,
     },
@@ -133,6 +137,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Albert the Great',
       titles: [Title.Bishop, Title.DoctorOfTheChurch],
+      commons: [Common.Bishops, Common.DoctorsOfTheChurch],
       dateOfDeath: 1280,
     },
     albertina_berkenbrock_virgin: {
@@ -232,6 +237,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Alphonsus Mary Liguori',
       titles: [Title.Bishop, Title.DoctorOfTheChurch],
+      commons: [Common.Bishops, Common.DoctorsOfTheChurch],
     },
     alphonsus_rodriguez_priest: {
       canonizationLevel: CanonizationLevels.Saint,
@@ -330,6 +336,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Angela Merici',
       titles: [Title.Virgin],
+      commons: [Common.Virgins, Common.Educators],
       dateOfDeath: 1540,
     },
     angela_salawa_virgin: {
@@ -369,12 +376,14 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Anselm',
       titles: [Title.Bishop, Title.DoctorOfTheChurch],
+      commons: [Common.Bishops, Common.DoctorsOfTheChurch],
       dateOfDeath: 1109,
     },
     ansgar_of_hamburg_bishop: {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Ansgar',
       titles: [Title.Bishop],
+      commons: [Common.Missionaries, Common.Bishops],
       dateOfDeath: 865,
     },
     anthony_fantosati_bishop: {
@@ -392,6 +401,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Anthony Mary Claret',
       titles: [Title.Bishop],
+      commons: [Common.Missionaries, Common.Bishops],
       dateOfBirth: '1807-12-23',
       dateOfDeath: '1870-10-24',
     },
@@ -405,6 +415,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Anthony of Padua',
       titles: [Title.Priest, Title.DoctorOfTheChurch],
+      commons: [Common.Pastors, Common.DoctorsOfTheChurch, Common.Religious],
       dateOfDeath: 1231,
     },
     anthony_of_saint_anne_galvao_priest: {
@@ -421,6 +432,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Anthony Zaccaria',
       titles: [Title.Priest],
+      commons: [Common.Pastors, Common.Educators, Common.Religious],
       dateOfDeath: 1539,
     },
     // src: mr_fr_2014_ed2_lyon
@@ -435,6 +447,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Apollinaris',
       titles: [Title.Bishop, Title.Martyr],
+      commons: [Common.Martyrs, Common.Bishops],
       dateOfDeath: 81,
     },
     arbogast_of_strasbourg_bishop: {
@@ -525,6 +538,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Augustine of Canterbury',
       titles: [Title.Bishop],
+      commons: [Common.Missionaries, Common.Bishops],
       dateOfDeath: 604,
     },
     augustine_of_hippo_bishop: {
@@ -609,6 +623,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Bede the Venerable',
       titles: [Title.Priest, Title.DoctorOfTheChurch],
+      commons: [Common.DoctorsOfTheChurch, Common.Monks],
       dateOfDeath: 735,
     },
     benedict_of_aniane_abbot: {
@@ -656,6 +671,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Bernardine of Siena',
       titles: [Title.Priest],
+      commons: [Common.Missionaries, Common.Religious],
       dateOfDeath: 1444,
     },
     beuno_of_wales_abbot: {
@@ -667,6 +683,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Blaise',
       titles: [Title.Bishop, Title.Martyr],
+      commons: [Common.Martyrs, Common.Bishops],
       dateOfDeath: 316,
     },
     blandina_of_lyon_virgin: {
@@ -696,6 +713,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Bonaventure',
       titles: [Title.Bishop, Title.DoctorOfTheChurch],
+      commons: [Common.Bishops, Common.DoctorsOfTheChurch],
       dateOfBirth: 1221,
       dateOfDeath: 1274,
     },
@@ -703,6 +721,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Boniface',
       titles: [Title.Bishop, Title.Martyr],
+      commons: [Common.Martyrs, Common.Missionaries],
       dateOfDeath: 754,
     },
     boris_of_kiev_martyr: {
@@ -719,6 +738,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Bridget',
       titles: [Title.Religious],
+      commons: [Common.HolyWomen, Common.Religious],
       dateOfDeath: 1373,
     },
     brigid_of_kildare_virgin: {
@@ -741,6 +761,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Bruno',
       titles: [Title.Priest],
+      commons: [Common.Monks, Common.Pastors],
       dateOfDeath: 1101,
     },
     bruno_of_querfurt_bishop: {
@@ -758,6 +779,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Cajetan',
       titles: [Title.Priest],
+      commons: [Common.Pastors, Common.Religious],
       dateOfDeath: 1547,
     },
     callistus_caravario_priest: {
@@ -769,12 +791,14 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Callistus I',
       titles: [Title.Pope, Title.Martyr],
+      commons: [Common.Martyrs, Common.PopesOrBishops],
       dateOfDeath: 222,
     },
     camillus_de_lellis_priest: {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Camillus de Lellis',
       titles: [Title.Priest],
+      commons: Common.MercyWorkers,
       dateOfDeath: 1614,
     },
     canice_of_kilkenny_abbot: {
@@ -811,12 +835,14 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
     casimir_of_poland: {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Casimir',
+      commons: [Common.Saints],
       dateOfDeath: 1484,
     },
     catherine_of_alexandria_virgin: {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Catherine of Alexandria',
       titles: [Title.Virgin, Title.Martyr],
+      commons: [Common.VirginMartyrs, Common.Virgins],
       dateOfDeath: 305,
       dateOfDeathIsApproximative: true,
     },
@@ -841,6 +867,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Cecilia',
       titles: [Title.Virgin, Title.Martyr],
+      commons: [Common.VirginMartyrs, Common.Virgins],
       dateOfDeath: 230,
     },
     cedd_of_lastingham_bishop: {
@@ -878,6 +905,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Charles Borromeo',
       titles: [Title.Bishop],
+      commons: Common.Bishops,
       dateOfDeath: 1584,
     },
     charles_i_of_austria: {
@@ -933,6 +961,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Clare',
       titles: [Title.Virgin],
+      commons: [Common.Virgins, Common.Nuns],
     },
     // src: mr_fr_2014_ed2_lyon
     marie_of_saint_ignatius_claudine_thevenet_religious: {
@@ -945,6 +974,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Clement I',
       titles: [Title.Pope, Title.Martyr],
+      commons: [Common.Martyrs, Common.PopesOrBishops],
       dateOfDeath: 97,
     },
     clement_mary_hofbauer_priest: {
@@ -993,6 +1023,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Columban',
       titles: [Title.Abbot],
+      commons: [Common.Missionaries, Common.Abbots],
     },
     comgall_of_bangor_abbot: {
       canonizationLevel: CanonizationLevels.Saint,
@@ -1066,18 +1097,21 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Cyril of Alexandria',
       titles: [Title.Bishop, Title.DoctorOfTheChurch],
+      commons: [Common.Bishops, Common.DoctorsOfTheChurch],
       dateOfDeath: 444,
     },
     cyril_of_jerusalem_bishop: {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Cyril of Jerusalem',
       titles: [Title.Bishop, Title.DoctorOfTheChurch],
+      commons: [Common.Bishops, Common.DoctorsOfTheChurch],
       dateOfDeath: 387,
     },
     damasus_i_pope: {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Damasus I',
       titles: [Title.Pope],
+      commons: Common.PopesOrBishops,
       dateOfDeath: 384,
     },
     damian_of_cilicia_martyr: {
@@ -1133,6 +1167,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
     },
     dedication_of_the_basilica_of_saint_mary_major: {
       name: 'Dedication of the Basilica of Saint Mary Major',
+      commons: Common.BlessedVirginMary,
     },
     dedication_of_the_basilicas_of_saints_peter_and_paul_apostles: {
       name: 'Dedication of the Basilicas of Saints Peter and Paul',
@@ -1257,12 +1292,14 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Elizabeth of Hungary',
       titles: [Title.Religious],
+      commons: Common.MercyWorkers,
       dateOfDeath: 1231,
     },
     elizabeth_of_portugal: {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Elizabeth of Portugal',
       titles: [Title.Queen],
+      commons: Common.MercyWorkers,
       dateOfDeath: 1336,
     },
     emeric_of_hungary: {
@@ -1295,6 +1332,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Ephrem',
       titles: [Title.Deacon, Title.DoctorOfTheChurch],
+      commons: Common.DoctorsOfTheChurch,
       dateOfDeath: 373,
     },
     epiphany_of_the_lord: {
@@ -1373,6 +1411,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Eusebius of Vercelli',
       titles: [Title.Bishop],
+      commons: Common.Bishops,
       dateOfDeath: 371,
     },
     exaltation_of_the_holy_cross: {
@@ -1392,6 +1431,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Fabian',
       titles: [Title.Pope, Title.Martyr],
+      commons: [Common.Martyrs, Common.PopesOrBishops],
       dateOfDeath: 250,
     },
     fachanan_of_kilfenora_bishop: {
@@ -1408,6 +1448,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Faustina Kowalska',
       titles: [Title.Virgin],
+      commons: [Common.Virgins, Common.Nuns],
       dateOfDeath: 1938,
     },
     felicity_of_carthage_martyr: {
@@ -1429,6 +1470,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Fidelis of Sigmaringen',
       titles: [Title.Priest, Title.Martyr],
+      commons: [Common.Martyrs, Common.Pastors],
       dateOfDeath: 1622,
     },
     finbarr_of_cork_bishop: {
@@ -1452,6 +1494,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
     first_martyrs_of_the_holy_roman_church: {
       name: 'First Martyrs of the Holy Roman Church',
       titles: [Title.Martyr],
+      commons: Common.Martyrs,
       hideTitles: true,
       count: 'many',
       dateOfDeath: 64,
@@ -1500,6 +1543,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Frances of Rome',
       titles: [Title.Religious],
+      commons: [Common.HolyWomen, Common.Religious],
       dateOfDeath: 1440,
     },
     frances_xavier_cabrini_virgin: {
@@ -1516,6 +1560,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Francis de Sales',
       titles: [Title.Bishop, Title.DoctorOfTheChurch],
+      commons: [Common.Bishops, Common.DoctorsOfTheChurch],
       dateOfDeath: 1622,
     },
     francis_diaz_del_rincon_priest: {
@@ -1542,6 +1587,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Francis of Paola',
       titles: [Title.Hermit],
+      commons: Common.Religious,
       dateOfDeath: 1507,
     },
     francis_solanus_priest: {
@@ -1677,6 +1723,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'George',
       titles: [Title.Martyr],
+      commons: Common.Martyrs,
       dateOfDeath: 303,
     },
     george_preca_priest: {
@@ -1727,6 +1774,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Gertrude',
       titles: [Title.Virgin],
+      commons: [Common.Virgins, Common.Nuns],
       dateOfDeath: 1301,
     },
     gisela_of_hungary: {
@@ -1783,11 +1831,13 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Gregory of Narek',
       titles: [Title.Abbot, Title.DoctorOfTheChurch],
+      commons: [Common.DoctorsOfTheChurch, Common.Abbots],
     },
     gregory_vii_pope: {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Gregory VII',
       titles: [Title.Pope],
+      commons: Common.PopesOrBishops,
       dateOfDeath: 1085,
     },
     // src: mr_fr_2014_ed2_lyon
@@ -1832,6 +1882,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Hedwig',
       titles: [Title.Religious],
+      commons: [Common.Religious, Common.HolyWomen],
       dateOfDeath: 1243,
     },
     helena_of_constantinople: {
@@ -1860,6 +1911,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
     },
     henry_ii_emperor: {
       canonizationLevel: CanonizationLevels.Saint,
+      commons: Common.Saints,
       name: 'Henry',
       dateOfDeath: 1024,
     },
@@ -1888,6 +1940,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Hilary',
       titles: [Title.Bishop, Title.DoctorOfTheChurch],
+      commons: [Common.Bishops, Common.DoctorsOfTheChurch],
       dateOfDeath: 367,
     },
     hilda_of_whitby_abbess: {
@@ -1899,6 +1952,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Hildegard of Bingen',
       titles: [Title.Abbess, Title.DoctorOfTheChurch],
+      commons: [Common.Virgins, Common.Nuns],
     },
     hippolytus_of_rome_priest: {
       canonizationLevel: CanonizationLevels.Saint,
@@ -2049,6 +2103,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Isidore',
       titles: [Title.Bishop, Title.DoctorOfTheChurch],
+      commons: [Common.Bishops, Common.DoctorsOfTheChurch],
       dateOfDeath: 636,
     },
     isidore_the_farmer: {
@@ -2113,12 +2168,14 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Jane Frances de Chantal',
       titles: [Title.Religious],
+      commons: Common.Religious,
       dateOfDeath: 1641,
     },
     januarius_i_of_benevento_bishop: {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Januarius',
       titles: [Title.Bishop, Title.Martyr],
+      commons: [Common.Martyrs, Common.Bishops],
       dateOfDeath: 305,
     },
     jarlath_of_tuam_bishop: {
@@ -2148,6 +2205,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
     jerome_emiliani: {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Jerome Emiliani',
+      commons: Common.Educators,
       dateOfDeath: 1537,
     },
     jerome_of_stridon_priest: {
@@ -2194,6 +2252,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'John Baptist de la Salle',
       titles: [Title.Priest],
+      commons: [Common.Pastors, Common.Educators],
       dateOfDeath: 1719,
     },
     john_berchmans_religious: {
@@ -2211,6 +2270,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'John Bosco',
       titles: [Title.Priest],
+      commons: [Common.Pastors, Common.Educators],
       dateOfDeath: 1888,
     },
     john_brenner_priest: {
@@ -2233,6 +2293,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'John Damascene',
       titles: [Title.Priest, Title.DoctorOfTheChurch],
+      commons: [Common.Pastors, Common.DoctorsOfTheChurch],
       dateOfDeath: 749,
     },
     // src:
@@ -2264,6 +2325,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'John Eudes',
       titles: [Title.Priest],
+      commons: [Common.Pastors, Common.Religious],
       dateOfBirth: '1601-11-14',
       dateOfDeath: '1680-08-19',
     },
@@ -2295,6 +2357,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'John I',
       titles: [Title.Pope, Title.Martyr],
+      commons: [Common.Martyrs, Common.PopesOrBishops],
       dateOfDeath: 526,
     },
     john_jones_priest: {
@@ -2306,6 +2369,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'John Leonardi',
       titles: [Title.Priest],
+      commons: [Common.Missionaries, Common.MercyWorkers],
       dateOfDeath: 1609,
     },
     john_lloyd_priest: {
@@ -2328,6 +2392,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'John Vianney',
       titles: [Title.Priest],
+      commons: Common.Pastors,
       dateOfBirth: 1786,
       dateOfDeath: 1859,
     },
@@ -2345,11 +2410,13 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'John of Ávila',
       titles: [Title.Priest, Title.DoctorOfTheChurch],
+      commons: [Common.Pastors, Common.DoctorsOfTheChurch],
     },
     john_of_capistrano_priest: {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'John of Capistrano',
       titles: [Title.Priest],
+      commons: [Common.Missionaries, Common.Religious],
       dateOfDeath: 1456,
     },
     john_of_dukla_priest: {
@@ -2361,12 +2428,14 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'John of God',
       titles: [Title.Religious],
+      commons: [Common.Religious, Common.MercyWorkers],
       dateOfDeath: 1550,
     },
     john_of_kanty_priest: {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'John of Kanty',
       titles: [Title.Priest],
+      commons: [Common.Pastors, Common.MercyWorkers],
       dateOfDeath: 1473,
     },
     john_of_the_cross_priest: {
@@ -2389,6 +2458,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'John Paul II',
       titles: [Title.Pope],
+      commons: Common.PopesOrBishops,
       dateOfDeath: 2005,
     },
     john_roberts_priest: {
@@ -2410,6 +2480,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'John XXIII',
       titles: [Title.Pope],
+      commons: Common.PopesOrBishops,
       dateOfDeath: 1963,
     },
     josaphat_kuntsevych_bishop: {
@@ -2447,6 +2518,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Joseph of Calasanz',
       titles: [Title.Priest],
+      commons: [Common.Educators, Common.Pastors],
       dateOfDeath: 1648,
     },
     joseph_sebastian_pelczar_bishop: {
@@ -2482,11 +2554,13 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Josephine Bakhita',
       titles: [Title.Virgin],
+      commons: Common.Virgins,
       dateOfDeath: 1947,
     },
     juan_diego_cuauhtlatoatzin: {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Juan Diego Cuauhtlatoatzin',
+      commons: Common.Saints,
       dateOfDeath: 1548,
     },
     jude_apostle: {
@@ -2638,6 +2712,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Lawrence of Brindisi',
       titles: [Title.Priest, Title.DoctorOfTheChurch],
+      commons: [Common.Pastors, Common.DoctorsOfTheChurch, Common.Religious],
       dateOfDeath: 1619,
     },
     lawrence_of_rome_deacon: {
@@ -2749,6 +2824,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Louis Grignion de Montfort',
       titles: [Title.Priest],
+      commons: Common.Pastors,
       dateOfBirth: '1673-01-31',
       dateOfDeath: '1716-4-28',
     },
@@ -2756,6 +2832,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Louis',
       titles: [Title.King],
+      commons: Common.Saints,
       dateOfDeath: 1270,
     },
     louis_zephirin_moreau_bishop: {
@@ -2779,6 +2856,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Lucy',
       titles: [Title.Virgin, Title.Martyr],
+      commons: [Common.VirginMartyrs, Common.Virgins],
       dateOfDeath: 305,
       dateOfDeathIsApproximative: true,
     },
@@ -2921,6 +2999,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Margaret Mary Alacoque',
       titles: [Title.Virgin],
+      commons: [Common.Virgins],
       dateOfDeath: 1690,
     },
     margaret_of_antioch_virgin: {
@@ -2936,6 +3015,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
     margaret_of_scotland: {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Margaret of Scotland',
+      commons: Common.MercyWorkers,
       dateOfDeath: 1093,
     },
     margaret_ward_virgin_martyr: {
@@ -2959,6 +3039,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Maria Goretti',
       titles: [Title.Virgin, Title.Martyr],
+      commons: [Common.VirginMartyrs, Common.Virgins],
       dateOfDeath: 1902,
     },
     maria_guadalupe_garcia_zavala_virgin: {
@@ -3053,12 +3134,14 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Martin de Porres',
       titles: [Title.Religious],
+      commons: [Common.Religious],
       dateOfDeath: 1639,
     },
     martin_i_pope: {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Martin I',
       titles: [Title.Pope, Title.Martyr],
+      commons: [Common.Martyrs, Common.PopesOrBishops],
       dateOfDeath: 656,
     },
     martin_of_braga_bishop: {
@@ -3122,6 +3205,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Mary Magdalene de’ Pazzi',
       titles: [Title.Virgin],
+      commons: [Common.Virgins, Common.Religious],
       dateOfDeath: 1607,
     },
     mary_mother_of_god: {
@@ -3315,6 +3399,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
     },
     monica_of_hippo: {
       canonizationLevel: CanonizationLevels.Saint,
+      commons: Common.HolyWomen,
       name: 'Monica',
       dateOfDeath: 387,
     },
@@ -3397,6 +3482,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Nicholas',
       titles: [Title.Bishop],
+      commons: Common.Bishops,
       dateOfDeath: 350,
       dateOfDeathIsApproximative: true,
     },
@@ -3426,6 +3512,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Norbert',
       titles: [Title.Bishop],
+      commons: [Common.Bishops, Common.Religious],
       dateOfDeath: 1134,
     },
     nuno_of_saint_mary_pereira_religious: {
@@ -3521,6 +3608,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
     },
     our_lady_of_fatima: {
       name: 'Our Lady of Fatima',
+      commons: Common.BlessedVirginMary,
     },
     // src: mr_fr_2014_ed2_lyon
     our_lady_of_fourviere: {
@@ -3531,6 +3619,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
     },
     our_lady_of_guadalupe: {
       name: 'Our Lady of Guadalupe',
+      commons: Common.BlessedVirginMary,
     },
     our_lady_of_hungary: {
       name: 'Our Lady of Hungary',
@@ -3549,9 +3638,11 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
     },
     our_lady_of_loreto: {
       name: 'Our Lady of Loreto',
+      commons: Common.BlessedVirginMary,
     },
     our_lady_of_lourdes: {
       name: 'Our Lady of Lourdes',
+      commons: Common.BlessedVirginMary,
     },
     our_lady_of_lujan: {
       name: 'Our Lady of Luján',
@@ -3567,6 +3658,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
     },
     our_lady_of_mount_carmel: {
       name: 'Our Lady of Mount Carmel',
+      commons: Common.BlessedVirginMary,
     },
     our_lady_of_perpetual_help: {
       name: 'Our Lady of Perpetual Help',
@@ -3632,6 +3724,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Pancras',
       titles: [Title.Martyr],
+      commons: Common.Martyrs,
       dateOfDeath: 304,
       dateOfDeathIsApproximative: true,
     },
@@ -3665,6 +3758,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Patrick',
       titles: [Title.Bishop],
+      commons: [Common.Missionaries, Common.Bishops],
       dateOfDeath: 461,
     },
     paul_apostle: {
@@ -3711,6 +3805,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Paul VI',
       titles: [Title.Pope],
+      commons: [Common.PopesOrBishops],
     },
     paulina_of_the_agonizing_heart_of_jesus_visintainer_virgin: {
       canonizationLevel: CanonizationLevels.Saint,
@@ -3721,6 +3816,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Paulinus of Nola',
       titles: [Title.Bishop],
+      commons: Common.Bishops,
       dateOfDeath: 431,
     },
     paulinus_of_trier_bishop: {
@@ -3782,30 +3878,35 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Peter Canisius',
       titles: [Title.Priest, Title.DoctorOfTheChurch],
+      commons: [Common.Pastors, Common.DoctorsOfTheChurch],
       dateOfDeath: '1597-12-21',
     },
     peter_chanel_priest: {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Peter Chanel',
       titles: [Title.Priest, Title.Martyr],
+      commons: [Common.Martyrs, Common.Missionaries],
       dateOfDeath: 1841,
     },
     peter_chrysologus_bishop: {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Peter Chrysologus',
       titles: [Title.Bishop, Title.DoctorOfTheChurch],
+      commons: [Common.Bishops, Common.DoctorsOfTheChurch],
       dateOfDeath: 451,
     },
     peter_claver_priest: {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Peter Claver',
       titles: [Title.Priest],
+      commons: [Common.Pastors, Common.MercyWorkers],
       dateOfDeath: 1654,
     },
     peter_damian_bishop: {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Peter Damian',
       titles: [Title.Bishop, Title.DoctorOfTheChurch],
+      commons: [Common.DoctorsOfTheChurch, Common.Bishops],
       dateOfDeath: 1072,
     },
     peter_de_zuniga_priest: {
@@ -3818,6 +3919,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Peter Julian Eymard',
       titles: [Title.Priest],
+      commons: [Common.Religious, Common.Pastors],
       dateOfBirth: 1811,
       dateOfDeath: 1868,
     },
@@ -3888,6 +3990,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Pius of Pietrelcina',
       titles: [Title.Priest],
+      commons: [Common.Pastors, Common.Religious],
       dateOfDeath: 1968,
     },
     pius_ix_pope: {
@@ -3899,12 +4002,14 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Pius V',
       titles: [Title.Pope],
+      commons: Common.PopesOrBishops,
       dateOfDeath: 1572,
     },
     pius_x_pope: {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Pius X',
       titles: [Title.Pope],
+      commons: [Common.PopesOrBishops],
       dateOfDeath: 1914,
     },
     // src:
@@ -3922,6 +4027,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Polycarp',
       titles: [Title.Bishop, Title.Martyr],
+      commons: [Common.Martyrs, Common.Bishops],
       dateOfDeath: 167,
     },
     pontian_i_pope: {
@@ -3999,6 +4105,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Raymond of Penyafort',
       titles: [Title.Priest],
+      commons: Common.Pastors,
       dateOfDeath: 1275,
     },
     remigius_of_reims_bishop: {
@@ -4029,12 +4136,14 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Rita of Cascia',
       titles: [Title.Religious],
+      commons: Common.Religious,
       dateOfDeath: 1456,
     },
     robert_bellarmine_bishop: {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Robert Bellarmine',
       titles: [Title.Bishop, Title.DoctorOfTheChurch],
+      commons: [Common.Bishops, Common.DoctorsOfTheChurch],
       dateOfDeath: 1621,
     },
     roch_gonzalez_priest: {
@@ -4050,6 +4159,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Romuald',
       titles: [Title.Abbot],
+      commons: Common.Abbots,
       dateOfDeath: 1027,
     },
     rosalie_jeanne_marie_rendu_virgin: {
@@ -4062,6 +4172,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Rose of Lima',
       titles: [Title.Virgin],
+      commons: Common.Virgins,
       dateOfDeath: 1617,
     },
     rose_philippine_duchesne_virgin: {
@@ -4108,6 +4219,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Scholastica',
       titles: [Title.Virgin],
+      commons: [Common.Virgins, Common.Nuns],
       dateOfDeath: 543,
     },
     // src: https://maryourhelp.org/saints/saint-paternus-bishop-of-avranches.html
@@ -4127,6 +4239,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Sebastian',
       titles: [Title.Martyr],
+      commons: Common.Martyrs,
       dateOfDeath: 284,
       dateOfDeathIsApproximative: true,
     },
@@ -4148,6 +4261,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
     },
     seven_holy_founders_of_the_servite_order: {
       name: 'Seven Holy Founders of the Servite Order',
+      commons: Common.Religious,
       count: 7,
       dateOfDeath: 1310,
     },
@@ -4175,6 +4289,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Sharbel Makhlūf',
       titles: [Title.Priest],
+      commons: [Common.Pastors, Common.Monks],
       dateOfDeath: 1898,
     },
     shipwreck_of_saint_paul_apostle: {
@@ -4231,12 +4346,14 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Stanislaus',
       titles: [Title.Bishop, Title.Martyr],
+      commons: [Common.Martyrs, Common.Bishops],
       dateOfDeath: 1079,
     },
     stephen_i_of_hungary: {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Stephen of Hungary',
       titles: [Title.King],
+      commons: Common.Saints,
       dateOfDeath: 1038,
     },
     stephen_pongracz_priest: {
@@ -4267,6 +4384,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Sylvester I',
       titles: [Title.Pope],
+      commons: [Common.PopesOrBishops],
       dateOfDeath: 335,
     },
     szilard_bogdanffy_bishop: {
@@ -4283,6 +4401,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Teresa Benedicta of the Cross Stein',
       titles: [Title.Virgin, Title.Martyr],
+      commons: [Common.Martyrs, Common.Virgins],
       dateOfDeath: 1942,
     },
     teresa_of_calcutta_religious: {
@@ -4354,6 +4473,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Thomas Aquinas',
       titles: [Title.Priest, Title.DoctorOfTheChurch],
+      commons: [Common.DoctorsOfTheChurch, Common.Pastors],
       dateOfDeath: 1274,
     },
     // src:
@@ -4364,6 +4484,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Thomas Becket',
       titles: [Title.Bishop, Title.Martyr],
+      commons: [Common.Martyrs, Common.Bishops],
       dateOfBirth: {
         or: ['1118-12-21', '1120-12-21'],
       },
@@ -4440,6 +4561,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Turibius of Mogrovejo',
       titles: [Title.Bishop],
+      commons: Common.Bishops,
       dateOfDeath: 1606,
     },
     ulrich_of_augsburg_bishop: {
@@ -4497,6 +4619,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Vincent Ferrer',
       titles: [Title.Priest],
+      commons: Common.Missionaries,
       dateOfDeath: 1419,
     },
     vincent_kadlubek_bishop: {
@@ -4513,6 +4636,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Vincent',
       titles: [Title.Deacon, Title.Martyr],
+      commons: Common.Martyrs,
       dateOfDeath: 304,
     },
     vincent_pallotti_priest: {
@@ -4566,6 +4690,7 @@ export const Martyrology: { catalog: MartyrologyCatalog } = {
       canonizationLevel: CanonizationLevels.Saint,
       name: 'Wenceslaus',
       titles: [Title.Martyr],
+      commons: Common.Martyrs,
       dateOfDeath: 929,
     },
     wendelin_of_trier_hermit: {

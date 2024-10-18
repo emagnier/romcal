@@ -1,4 +1,5 @@
 import { Colors } from '../constants/colors';
+import { CommonDefinition as Common } from '../constants/commons';
 import { ProperCycles } from '../constants/cycles';
 import { Precedences } from '../constants/precedences';
 import { CalendarDef } from '../models/calendar-def';
@@ -127,6 +128,7 @@ export class GeneralRoman extends CalendarDef {
       precedence: Precedences.GeneralMemorial_10,
       dateDef: { month: 2, date: 6 },
       martyrology: ['paul_miki_martyr', 'companions_martyrs'],
+      commons: Common.Martyrs,
       colors: Colors.Red,
     },
 
@@ -353,6 +355,7 @@ export class GeneralRoman extends CalendarDef {
       precedence: Precedences.OptionalMemorial_12,
       dateDef: { month: 5, date: 12 },
       martyrology: ['nereus_of_terracina_martyr', 'achilleus_of_terracina_martyr'],
+      commons: Common.Martyrs,
       colors: Colors.Red,
     },
 
@@ -388,6 +391,7 @@ export class GeneralRoman extends CalendarDef {
       precedence: Precedences.OptionalMemorial_12,
       dateDef: { month: 5, date: 21 },
       martyrology: ['christopher_magallanes_priest', { id: 'companions_martyrs', count: 24 }],
+      commons: Common.Martyrs,
       colors: Colors.Red,
     },
 
@@ -459,6 +463,7 @@ export class GeneralRoman extends CalendarDef {
       precedence: Precedences.OptionalMemorial_12,
       dateDef: { month: 6, date: 2 },
       martyrology: ['marcellinus_of_rome_martyr', 'peter_the_exorcist_martyr'],
+      commons: Common.Martyrs,
       colors: Colors.Red,
     },
 
@@ -515,6 +520,7 @@ export class GeneralRoman extends CalendarDef {
       precedence: Precedences.OptionalMemorial_12,
       dateDef: { month: 6, date: 22 },
       martyrology: ['john_fisher_bishop', 'thomas_more_martyr'],
+      commons: Common.Martyrs,
       colors: Colors.Red,
     },
 
@@ -579,6 +585,7 @@ export class GeneralRoman extends CalendarDef {
       precedence: Precedences.OptionalMemorial_12,
       dateDef: { month: 7, date: 9 },
       martyrology: ['augustine_zhao_rong_priest', 'companions_martyrs'],
+      commons: Common.Martyrs,
       colors: Colors.Red,
     },
 
@@ -697,6 +704,7 @@ export class GeneralRoman extends CalendarDef {
       precedence: Precedences.OptionalMemorial_12,
       dateDef: { month: 8, date: 7 },
       martyrology: ['sixtus_ii_pope', 'companions_martyrs'],
+      commons: Common.Martyrs,
       colors: Colors.Red,
     },
 
@@ -736,6 +744,7 @@ export class GeneralRoman extends CalendarDef {
       precedence: Precedences.OptionalMemorial_12,
       dateDef: { month: 8, date: 13 },
       martyrology: ['pontian_i_pope', 'hippolytus_of_rome_priest'],
+      commons: [Common.Martyrs, Common.Pastors],
       colors: Colors.Red,
     },
 
@@ -858,6 +867,7 @@ export class GeneralRoman extends CalendarDef {
       precedence: Precedences.GeneralMemorial_10,
       dateDef: { month: 9, date: 16 },
       martyrology: ['cornelius_i_pope', 'cyprian_of_carthage_bishop'],
+      commons: [Common.Martyrs, Common.Pastors],
       colors: Colors.Red,
     },
 
@@ -899,6 +909,7 @@ export class GeneralRoman extends CalendarDef {
       precedence: Precedences.OptionalMemorial_12,
       dateDef: { month: 9, date: 26 },
       martyrology: ['cosmas_of_cilicia_martyr', 'damian_of_cilicia_martyr'],
+      commons: Common.Martyrs,
       colors: Colors.Red,
     },
 
@@ -917,6 +928,7 @@ export class GeneralRoman extends CalendarDef {
       precedence: Precedences.OptionalMemorial_12,
       dateDef: { month: 9, date: 28 },
       martyrology: ['lawrence_ruiz_martyr', 'companions_martyrs'],
+      commons: Common.Martyrs,
       colors: Colors.Red,
     },
 
@@ -965,6 +977,7 @@ export class GeneralRoman extends CalendarDef {
       precedence: Precedences.OptionalMemorial_12,
       dateDef: { month: 10, date: 9 },
       martyrology: ['denis_of_paris_bishop', 'companions_martyrs'],
+      commons: Common.Martyrs,
       colors: Colors.Red,
     },
 
@@ -976,11 +989,6 @@ export class GeneralRoman extends CalendarDef {
     john_xxiii_pope: {
       precedence: Precedences.OptionalMemorial_12,
       dateDef: { month: 10, date: 11 },
-    },
-
-    john_paul_ii_pope: {
-      precedence: Precedences.OptionalMemorial_12,
-      dateDef: { month: 10, date: 22 },
     },
 
     callistus_i_pope: {
@@ -1020,12 +1028,18 @@ export class GeneralRoman extends CalendarDef {
       precedence: Precedences.OptionalMemorial_12,
       dateDef: { month: 10, date: 19 },
       martyrology: ['john_de_brebeuf_priest', 'isaac_jogues_priest', 'companions_martyrs'],
+      commons: Common.MissionaryMartyrs,
       colors: Colors.Red,
     },
 
     paul_of_the_cross_priest: {
       precedence: Precedences.OptionalMemorial_12,
       dateDef: { month: 10, date: 19 },
+    },
+
+    john_paul_ii_pope: {
+      precedence: Precedences.OptionalMemorial_12,
+      dateDef: { month: 10, date: 22 },
     },
 
     john_of_capistrano_priest: {
