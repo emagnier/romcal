@@ -1,0 +1,21 @@
+{
+  "locale": "la",
+  "letter": "z",
+  "items": {
+    "zdenka_cecilia_schelingova_virgin": {
+      "fullname": "B. Sidoniæ Cæciliæ Scheling, virginis et martyris"
+    },
+    "zdislava_of_lemberk": {
+      "fullname": "S. Zdislavæ"
+    },
+    "zepherin_namuncura": {
+      "fullname": "B. Zephyrini Namuncurá"
+    },
+    "zoltan_lajos_meszlenyi_bishop": {
+      "fullname": "B. Zoltán Lajos Meszlényi, episcopi et martyris"
+    },
+    "zygmunt_gorazdowski_priest": {
+      "fullname": "S. Sigismundi Gorazdowski, presbyteri"
+    }
+  }
+}

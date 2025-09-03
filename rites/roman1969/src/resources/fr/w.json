@@ -1,0 +1,19 @@
+{
+  "locale": "fr",
+  "letter": "w",
+  "items": {
+    "wenceslaus_i_of_bohemia_martyr": {
+      "fullname": "Saint Venceslas, martyr († 929)"
+    },
+    "wenceslaus_i_of_bohemia_martyr_patron_of_the_czech_nation": {
+      "fullname": "Saint Venceslas, martyr et patron de la nation tchèque († 929)"
+    },
+    "wendelin_of_trier_hermit": {
+      "fullname": "Saint Wendelin, ermite"
+    },
+    "william_firmatus_abbot": {
+      "fullname": "Saint Guillaume Firmat, abbé († 1103)",
+      "sources": ["mr_fr_1982_ed2_coutances"]
+    }
+  }
+}

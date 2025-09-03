@@ -1,0 +1,20 @@
+{
+  "locale": "fr",
+  "letter": "u",
+  "items": {
+    "ulrich_of_augsburg_bishop": {
+      "fullname": "Saint Ulrich, évêque († 973)"
+    },
+    "urban_i_pope": {
+      "fullname": "Saint Urbain Ier, pape († IIIème s.)"
+    },
+    "urban_ii_pope": {
+      "fullname": "Bienheureux Urbain II, pape († 1099)",
+      "sources": ["mr_fr_1974_ed1_region_apostolique_du_midi"]
+    },
+    "urban_v_pope": {
+      "fullname": "Bienheureux Urbain V, pape († 1370)",
+      "sources": ["mr_fr_1974_ed1_region_apostolique_du_midi"]
+    }
+  }
+}

@@ -1,0 +1,276 @@
+{
+  "locale": "en",
+  "letter": "s",
+  "items": {
+    "saints_of_lindisfarne": {
+      "canonizationLevel": "SAINT",
+      "name": "The Saints of Lindisfarne",
+      "count": "many"
+    },
+    "salomea_of_poland_religious": {
+      "fullname": "Blessed Salomea of Poland, Religious",
+      "canonizationLevel": "BLESSED",
+      "name": "Salomea of Poland",
+      "titles": ["RELIGIOUS"]
+    },
+    "sancha_of_portugal_and_mafalda_of_portugal_virgins": {
+      "fullname": "Blessed Sancha and Mafalda, Virgins"
+    },
+    "sancha_of_portugal_virgin": {
+      "canonizationLevel": "BLESSED",
+      "name": "Sancha",
+      "titles": ["VIRGIN"]
+    },
+    "sara_salkahazi_virgin": {
+      "fullname": "Blessed Sára Salkaházi, Virgin and Martyr",
+      "canonizationLevel": "BLESSED",
+      "name": "Sára Salkaházi",
+      "titles": ["VIRGIN", "MARTYR"]
+    },
+    "saturnin_of_toulouse_bishop": {
+      "fullname": "Saint Saturnin of Toulouse, Bishop and Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Saturnin",
+      "titles": ["BISHOP", "MARTYR"],
+      "dateOfBirth": {
+        "century": 3,
+        "sources": [
+          "mr_fr_1974_ed1_region_apostolique_du_midi",
+          "https://en.wikipedia.org/wiki/Saturnin"
+        ]
+      },
+      "dateOfDeath": 257,
+      "dateOfDeathIsApproximative": true,
+      "sources": [
+        "mr_fr_1974_ed1_region_apostolique_du_midi",
+        "https://en.wikipedia.org/wiki/Saturnin"
+      ]
+    },
+    "scholastica_of_nursia_virgin": {
+      "fullname": "Saint Scholastica, Virgin",
+      "canonizationLevel": "SAINT",
+      "name": "Scholastica",
+      "titles": ["VIRGIN"],
+      "dateOfDeath": 543
+    },
+    "scubilion_abbot": {
+      "canonizationLevel": "SAINT",
+      "name": "Scubilion",
+      "titles": ["ABBOT"],
+      "dateOfDeath": 565,
+      "dateOfDeathIsApproximative": true,
+      "sources": [
+        "https://maryourhelp.org/saints/saint-paternus-bishop-of-avranches.html"
+      ]
+    },
+    "sebastian_de_aparicio_religious": {
+      "fullname": "Blessed Sebastian de Aparicio, Religious",
+      "canonizationLevel": "BLESSED",
+      "name": "Sebastian de Aparicio",
+      "titles": ["RELIGIOUS"]
+    },
+    "sebastian_of_milan_martyr": {
+      "fullname": "Saint Sebastian, Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Sebastian",
+      "titles": ["MARTYR"],
+      "dateOfDeath": 284,
+      "dateOfDeathIsApproximative": true
+    },
+    "senan_of_inis_cathaigh_bishop": {
+      "fullname": "Saint Senan, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Senan",
+      "titles": ["BISHOP"]
+    },
+    "senerius_of_normandy_bishop": {
+      "fullname": "Saint Senerius, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Senerius",
+      "titles": ["BISHOP"],
+      "dateOfDeath": 574,
+      "dateOfDeathIsApproximative": true,
+      "sources": [
+        "mr_fr_1982_ed2_coutances",
+        "https://www.diocese50.fr/les-paroisses-et-les-doyennes/notre-dame-coutances/les-saints-du-diocese/saint-senier-eveque-davranches",
+        "https://fr.wikipedia.org/wiki/Liste_des_%C3%A9v%C3%AAques_d%27Avranches"
+      ]
+    },
+    "seven_holy_founders_of_the_servite_order": {
+      "fullname": "The Seven Holy Founders of the Servite Order",
+      "name": "Seven Holy Founders of the Servite Order",
+      "count": 7,
+      "dateOfDeath": 1310
+    },
+    "seven_martyred_nuns_from_the_franciscan_missionaries_of_mary": {
+      "fullname": "Seven Martyred Nuns from the Franciscan Missionaries of Mary",
+      "count": 7
+    },
+    "severinus_of_noricum_monk": {
+      "fullname": "Saint Severinus of Noricum, Monk",
+      "canonizationLevel": "SAINT",
+      "name": "Severinus of Noricum",
+      "titles": ["MONK"]
+    },
+    "severus_of_avranches_bishop": {
+      "fullname": "Saint Severus of Avranches, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Severus",
+      "titles": ["BISHOP"],
+      "dateOfDeath": 578,
+      "dateOfDeathIsApproximative": true,
+      "sources": [
+        "mr_fr_1982_ed2_coutances",
+        "https://www.diocese50.fr/les-paroisses-et-les-doyennes/notre-dame-coutances/les-saints-du-diocese/saint-sever-eveque-davranches",
+        "https://en.wikipedia.org/wiki/Severus_of_Avranches"
+      ]
+    },
+    "sharbel_makhluf_priest": {
+      "fullname": "Saint Sharbel Makhlūf, Priest",
+      "canonizationLevel": "SAINT",
+      "name": "Sharbel Makhlūf",
+      "titles": ["PRIEST"],
+      "dateOfDeath": 1898
+    },
+    "shipwreck_of_saint_paul_apostle": {
+      "fullname": "Shipwreck of Saint Paul, Apostle",
+      "name": "Shipwreck of Saint Paul",
+      "titles": ["APOSTLE"]
+    },
+    "sigismund_of_burgundy_martyr": {
+      "fullname": "Saint Sigismund, Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Sigismund",
+      "titles": ["MARTYR"]
+    },
+    "sigmund_felix_felinski_bishop": {
+      "fullname": "Saint Sigmund Felix Feliński, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Sigmund Felix Feliński",
+      "titles": ["BISHOP"]
+    },
+    "simon_and_jude_apostles": {
+      "fullname": "Saints Simon and Jude, Apostles"
+    },
+    "simon_apostle": {
+      "canonizationLevel": "SAINT",
+      "name": "Simon",
+      "titles": ["APOSTLE"]
+    },
+    "simon_of_lipnica_priest": {
+      "fullname": "Saint Simon of Lipnica, Priest",
+      "canonizationLevel": "SAINT",
+      "name": "Simon of Lipnica",
+      "titles": ["PRIEST"]
+    },
+    "six_welsh_martyrs": {
+      "name": "Six Welsh Martyrs",
+      "hideTitles": true,
+      "count": 6
+    },
+    "six_welsh_martyrs_and_companions": {
+      "fullname": "Six Welsh Martyrs and Companions"
+    },
+    "sixtus_ii_pope": {
+      "canonizationLevel": "SAINT",
+      "name": "Sixtus II",
+      "titles": ["POPE", "MARTYR"],
+      "dateOfDeath": 258
+    },
+    "sixtus_ii_pope_and_companions_martyrs": {
+      "fullname": "Saint Sixtus II, Pope, and Companions, Martyrs"
+    },
+    "spyridon_of_trimythous_bishop": {
+      "fullname": "Saint Spyridon, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Spyridon",
+      "titles": ["BISHOP"]
+    },
+    "stanislaus_kazimierczyk_priest": {
+      "fullname": "Saint Stanislaus Kazimierczyk, Priest",
+      "canonizationLevel": "SAINT",
+      "name": "Stanislaus Kazimierczyk",
+      "titles": ["PRIEST"]
+    },
+    "stanislaus_kostka_religious": {
+      "fullname": "Saint Stanislaus Kostka, Religious",
+      "canonizationLevel": "SAINT",
+      "name": "Stanislaus Kostka",
+      "titles": ["RELIGIOUS"]
+    },
+    "stanislaus_of_szczepanow_bishop": {
+      "fullname": "Saint Stanislaus, Bishop and Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Stanislaus",
+      "titles": ["BISHOP", "MARTYR"],
+      "dateOfDeath": 1079
+    },
+    "stanislaus_of_szczepanow_bishop_patron_of_poland": {
+      "fullname": "Saint Stanislaus, Bishop and Martyr, Patron of Poland"
+    },
+    "stephen_i_of_hungary": {
+      "fullname": "Saint Stephen of Hungary",
+      "canonizationLevel": "SAINT",
+      "name": "Stephen of Hungary",
+      "titles": ["KING"],
+      "dateOfDeath": 1038
+    },
+    "stephen_pongracz_priest": {
+      "canonizationLevel": "SAINT",
+      "name": "Stephen Pongrácz",
+      "titles": ["PRIEST", "MARTYR"]
+    },
+    "stephen_the_first_martyr": {
+      "fullname": "Saint Stephen, the First Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Stephen",
+      "titles": ["THE_FIRST_MARTYR"],
+      "dateOfDeath": 35,
+      "sources": ["https://en.wikipedia.org/wiki/Stephen_of_Toulouse"]
+    },
+    "stephen_the_first_martyr_and_principal_patron_of_the_archdiocese_of_toulouse": {
+      "fullname": "Saint Stephen, the First Martyr, Principal Patron of the Archdiocese of Toulouse"
+    },
+    "sunday_of_the_word_of_god": {
+      "fullname": "Third Sunday in Ordinary Time, or Sunday of the Word of God",
+      "name": "Sunday of the Word of God"
+    },
+    "sunniva_of_norway_virgin": {
+      "fullname": "Saint Sunniva, Virgin and Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Sunniva",
+      "titles": ["VIRGIN", "MARTYR"]
+    },
+    "swithun_of_winchester_bishop": {
+      "fullname": "Saint Swithun, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Swithun",
+      "titles": ["BISHOP"]
+    },
+    "sylvester_i_pope": {
+      "fullname": "Saint Sylvester I, Pope",
+      "canonizationLevel": "SAINT",
+      "name": "Sylvester I",
+      "titles": ["POPE"],
+      "dateOfDeath": 335
+    },
+    "sylvius_of_toulouse_bishop": {
+      "fullname": "Saint Sylvius of Toulouse, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Sylvius",
+      "titles": ["BISHOP"],
+      "dateOfDeath": 400,
+      "dateOfDeathIsApproximative": true,
+      "sources": [
+        "mr_fr_1974_ed1_region_apostolique_du_midi",
+        "https://en.wikipedia.org/wiki/Sylvius_of_Toulouse"
+      ]
+    },
+    "szilard_bogdanffy_bishop": {
+      "fullname": "Blessed Szilárd Bogdánffy, Bishop and Martyr",
+      "canonizationLevel": "BLESSED",
+      "name": "Szilárd Bogdánffy",
+      "titles": ["BISHOP", "MARTYR"]
+    }
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "locale": "it",
+  "metadata": {
+    "seasons": {
+      "advent": {
+        "season": "Tempo du Avvento",
+        "weekday": "$t(weekdays:{{dow}}, capitalize) della {{week, romanize}} settimana di Avvento",
+        "sunday": "{{week, romanize}} domenica di Avvento",
+        "privileged_weekday": "{{day}} $t(months:11)"
+      },
+      "christmas_time": {
+        "season": "Tempo di Natale",
+        "day": "$t(weekdays:{{dow}}, capitalize) di Natale",
+        "octave": "{{count}}º giorno fra l’Ottava di Natale",
+        "second_sunday_after_christmas": "II domenica dopo Natale",
+        "before_epiphany": "{{day}} $t(months:0)",
+        "after_epiphany": "$t(weekdays:{{dow}}, capitalize) dopo l’Epifania"
+      },
+      "ordinary_time": {
+        "season": "Tempo Ordinario",
+        "weekday": "$t(weekdays:{{dow}}, capitalize) della {{week, romanize}} settimana del Tempo Ordinario",
+        "sunday": "{{week, romanize}} domenica del Tempo Ordinario"
+      },
+      "lent": {
+        "season": "Tempo di Quaresima",
+        "weekday": "$t(weekdays:{{dow}}, capitalize) della {{week, romanize}} settimana di Quaresima",
+        "sunday": "{{week, romanize}} domenica di Quaresima",
+        "day_after_ash_wed": "$t(weekdays:{{dow}}, capitalize) dopo le Ceneri",
+        "holy_week_day": "$t(weekdays:{{dow}}, capitalize) della Settimana Santa"
+      },
+      "paschal_triduum": {
+        "season": "Triduo Pasquale"
+      },
+      "easter_time": {
+        "season": "Tempo di Pasqua",
+        "weekday": "$t(weekdays:{{dow}}, capitalize) della {{week, romanize}} settimana di Pasqua",
+        "sunday": "{{week, romanize}} domenica di Pasqua",
+        "octave": "$t(weekdays:{{dow}}, capitalize) fra l’Ottava di Pasqua"
+      }
+    },
+    "periods": {
+      "epiphany": "Epifania",
+      "holy_week": "Settimana Santa"
+    },
+    "ranks": {
+      "solemnity": "solennità",
+      "sunday": "domenica",
+      "feast": "festa",
+      "memorial": "memoria",
+      "optional_memorial": "memoria facoltativa",
+      "weekday": "feria"
+    },
+    "cycles": {
+      "proper_of_time": "Proprio del Tempo",
+      "proper_of_saints": "Proprio dei Santi",
+      "sunday_year_a": "Anno A",
+      "sunday_year_b": "Anno B",
+      "sunday_year_c": "Anno C",
+      "weekday_year_1": "Anno dispari",
+      "weekday_year_2": "Anno pari",
+      "psalter_week_1": "I Settimana del Salterio",
+      "psalter_week_2": "II Settimana del Salterio",
+      "psalter_week_3": "III Settimana del Salterio",
+      "psalter_week_4": "IV Settimana del Salterio"
+    },
+    "weekdays": {
+      "0": "domenica",
+      "1": "lunedì",
+      "2": "martedì",
+      "3": "mercoledì",
+      "4": "giovedì",
+      "5": "venerdì",
+      "6": "sabato"
+    },
+    "months": {
+      "0": "gennaio",
+      "1": "febbraio",
+      "2": "marzo",
+      "3": "aprile",
+      "4": "maggio",
+      "5": "giugno",
+      "6": "luglio",
+      "7": "agosto",
+      "8": "settembre",
+      "9": "ottobre",
+      "10": "novembre",
+      "11": "dicembre"
+    },
+    "colors": {
+      "black": "nero",
+      "gold": "oro",
+      "green": "verde",
+      "purple": "viola",
+      "red": "rosso",
+      "rose": "rosa",
+      "white": "bianca"
+    },
+    "ordinals": {
+      "1": "primo",
+      "2": "secondo",
+      "3": "terzo",
+      "4": "quarto",
+      "5": "quinto",
+      "6": "sesto",
+      "7": "settimo",
+      "8": "ottavo",
+      "9": "nono",
+      "10": "decimo",
+      "11": "undicesimo",
+      "12": "dodicesimo",
+      "13": "tredicesimo",
+      "14": "quattordicesimo",
+      "15": "quindicesimo",
+      "16": "sedicesimo",
+      "17": "diciassettesimo",
+      "18": "diciottesimo",
+      "19": "diciannoveesimo",
+      "20": "ventesimo",
+      "21": "ventunesimo",
+      "22": "ventiduesimo",
+      "23": "ventitreesimo",
+      "24": "ventiquattresimo",
+      "25": "venticinquesimo",
+      "26": "ventiseiesimo",
+      "27": "ventisettesimo",
+      "28": "ventottesimo",
+      "29": "ventinovesimo",
+      "30": "trentesimo",
+      "31": "trentuno",
+      "32": "trentaduesimo",
+      "33": "trentatreesimo",
+      "34": "trentaquattresimo",
+      "1_feminine": "prima",
+      "2_feminine": "seconda",
+      "3_feminine": "terza",
+      "4_feminine": "quarta",
+      "5_feminine": "quinta",
+      "6_feminine": "sesta",
+      "7_feminine": "settima",
+      "8_feminine": "ottava",
+      "9_feminine": "nona",
+      "10_feminine": "decima",
+      "11_feminine": "undicesima",
+      "12_feminine": "dodicesima",
+      "13_feminine": "tredicesima",
+      "14_feminine": "quattordicesima",
+      "15_feminine": "quindicesima",
+      "16_feminine": "sedicesima",
+      "17_feminine": "diciassettesima",
+      "18_feminine": "diciottesima",
+      "19_feminine": "diciannoveesima",
+      "20_feminine": "ventesima",
+      "21_feminine": "ventunesima",
+      "22_feminine": "ventiduesima",
+      "23_feminine": "ventitreesima",
+      "24_feminine": "ventiquattresima",
+      "25_feminine": "venticinquesima",
+      "26_feminine": "ventiseiesima",
+      "27_feminine": "ventisettesima",
+      "28_feminine": "ventottesima",
+      "29_feminine": "ventinovesima",
+      "30_feminine": "trentesima",
+      "31_feminine": "trentuna",
+      "32_feminine": "trentaduesima",
+      "33_feminine": "trentatreesima",
+      "34_feminine": "trentaquattresima"
+    }
+  }
+}

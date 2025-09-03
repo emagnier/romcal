@@ -1,0 +1,45 @@
+{
+  "locale": "it",
+  "letter": "t",
+  "items": {
+    "teresa_benedicta_of_the_cross_stein_virgin": {
+      "fullname": "Santa Teresa Benedetta della Croce, vergine e martire"
+    },
+    "teresa_benedicta_of_the_cross_stein_virgin_copatroness_of_europe": {
+      "fullname": "Santa Teresa Benedetta della Croce, vergine, martire e patrona secondaria d’Europa"
+    },
+    "teresa_of_jesus_of_avila_virgin": {
+      "fullname": "Santa Teresa di Gesù d’Avila, vergine e dottore della Chiesa"
+    },
+    "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin": {
+      "fullname": "Santa Teresa di Gesu’ Bambino, vergine e dottore della Chiesa"
+    },
+    "thomas_apostle": {
+      "fullname": "San Tommaso, apostolo"
+    },
+    "thomas_aquinas_priest": {
+      "fullname": "San Tommaso d’Aquino, sacerdote e dottore della Chiesa"
+    },
+    "thomas_becket_bishop": {
+      "fullname": "San Tommaso Becket, vescovo e martire"
+    },
+    "thomas_jean_georges_rehm_priest": {
+      "fullname": "Beato Tommaso Jean-Georges Rehm, sacerdote e martire"
+    },
+    "thursday_of_the_lords_supper": {
+      "fullname": "Giovedì Santo / Cena del Signore"
+    },
+    "timothy_of_ephesus_and_titus_of_crete_bishops": {
+      "fullname": "Santi Timoteo e Tito, vescovi"
+    },
+    "transfiguration_of_the_lord": {
+      "fullname": "Trasfigurazione del Signore"
+    },
+    "translation_of_the_relics_of_odile_of_alsace_abbess": {
+      "fullname": "Traslazione delle reliquie di santa Odìlia"
+    },
+    "turibius_of_mogrovejo_bishop": {
+      "fullname": "San Turibio de Mogrovejo, vescovo"
+    }
+  }
+}

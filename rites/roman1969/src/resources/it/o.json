@@ -1,0 +1,49 @@
+{
+  "locale": "it",
+  "letter": "o",
+  "items": {
+    "odile_of_alsace_abbess": {
+      "fullname": "Santa Odìlia, badessa"
+    },
+    "odile_of_alsace_abbess_patroness_of_alsace": {
+      "fullname": "Santa Odìlia, badessa, Patrona dell’Alsazia"
+    },
+    "our_lady_of_fatima": {
+      "fullname": "Beata Vergine Maria di Fatima"
+    },
+    "our_lady_of_guadalupe": {
+      "fullname": "Beata Vergine Maria di Guadalupe"
+    },
+    "our_lady_of_guadalupe_patroness_of_the_americas": {
+      "fullname": "Beata Vergine Maria di Guadalupe, Patrona delle Americhe"
+    },
+    "our_lady_of_loreto": {
+      "fullname": "Beata Vergine Maria di Loreto",
+      "sources": ["mr_it_2020_ed3"]
+    },
+    "our_lady_of_lourdes": {
+      "fullname": "Beata Vergine Maria di Lourdes"
+    },
+    "our_lady_of_mount_carmel": {
+      "fullname": "Beata Vergine Maria del Carmelo"
+    },
+    "our_lady_of_sorrows": {
+      "fullname": "Beata Vergine Maria Addolorata"
+    },
+    "our_lady_of_sorrows_patroness_of_slovakia": {
+      "fullname": "Beata Vergine Maria Addolorata, patrona della Slovacchia"
+    },
+    "our_lady_of_the_miraculous_medal": {
+      "fullname": "Beata Vergine Maria della Medaglia Miracolosa"
+    },
+    "our_lady_of_the_rosary": {
+      "fullname": "Beata Vergine Maria del Rosario"
+    },
+    "our_lady_refuge_of_sinners": {
+      "fullname": "Beata Vergine Maria, rifugio dei peccatori"
+    },
+    "our_lord_jesus_christ_king_of_the_universe": {
+      "fullname": "Cristo Re dell’universo"
+    }
+  }
+}

@@ -18,6 +18,7 @@
     "doc": "tsx build/bundle-doc.ts",
     "docs:check-links": "node build/docs/check-broken-links.mjs ../../docs",
     "docs:sort-glossary": "node build/docs/sort-glossary.mjs",
+    "generate:resources-index": "tsx build/generate-resources-index.ts",
     "prepare": "husky",
     "prettier": "prettier -c .",
     "prettier:fix": "prettier -w .",
@@ -29,6 +30,7 @@
   "dependencies": {
     "@internal/easter": "file:../../packages/easter",
     "i18next": "^25.4.0",
+    "prettier": "^3.6.2",
     "ts-deepmerge": "^7.0.3"
   },
   "devDependencies": {

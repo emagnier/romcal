@@ -1,0 +1,458 @@
+{
+  "locale": "en",
+  "letter": "p",
+  "items": {
+    "palm_sunday_of_the_passion_of_the_lord": {
+      "fullname": "Palm Sunday of the Passion of the Lord"
+    },
+    "pancras_of_rome_martyr": {
+      "fullname": "Saint Pancras, Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Pancras",
+      "titles": ["MARTYR"],
+      "dateOfDeath": 304,
+      "dateOfDeathIsApproximative": true
+    },
+    "pantaleon_of_nicomedia_martyr": {
+      "fullname": "Saint Pantaleon of Nicomedia, Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Pantaleon of Nicomedia",
+      "titles": ["MARTYR"]
+    },
+    "paschal_baylon_religious": {
+      "fullname": "Saint Paschal Baylón, Religious",
+      "canonizationLevel": "SAINT",
+      "name": "Paschal Baylón",
+      "titles": ["RELIGIOUS"]
+    },
+    "passion_of_saint_john_the_baptist": {
+      "fullname": "The Passion of Saint John the Baptist",
+      "name": "Passion of Saint John the Baptist"
+    },
+    "paternus_of_avranches_bishop": {
+      "canonizationLevel": "SAINT",
+      "name": "Paternus",
+      "titles": ["BISHOP"],
+      "dateOfBirth": 480,
+      "dateOfBirthIsApproximative": true,
+      "dateOfDeath": 565,
+      "dateOfDeathIsApproximative": true,
+      "sources": [
+        "mr_fr_1982_ed2_coutances",
+        "https://www.diocese50.fr/les-paroisses-et-les-doyennes/notre-dame-coutances/les-saints-du-diocese/saint-pair-eveque-davranches-et-saint-scubillion-abbe",
+        "https://fr.wikipedia.org/wiki/Paterne_d%27Avranches"
+      ]
+    },
+    "paternus_of_avranches_bishop_and_scubilion_abbot": {
+      "fullname": "Saint Paternus, Bishop, and Scubilion, Abbot"
+    },
+    "patrick_of_ireland_bishop": {
+      "fullname": "Saint Patrick, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Patrick",
+      "titles": ["BISHOP"],
+      "dateOfDeath": 461
+    },
+    "patrick_of_ireland_bishop_patron_of_ireland": {
+      "fullname": "Saint Patrick, Bishop, Patron of Ireland"
+    },
+    "paul_apostle": {
+      "canonizationLevel": "SAINT",
+      "name": "Paul",
+      "titles": ["APOSTLE"]
+    },
+    "paul_chen_changpin_and_companions_martyrs": {
+      "fullname": "Saint Paul Chen Changpin and Companions, Martyrs"
+    },
+    "paul_chen_changpin_martyr": {
+      "canonizationLevel": "SAINT",
+      "name": "Paul Chen Changpin",
+      "titles": ["MARTYR"]
+    },
+    "paul_chong_ha_sang_martyr": {
+      "canonizationLevel": "SAINT",
+      "name": "Paul Chŏng Ha-sang",
+      "titles": ["MARTYR"],
+      "dateOfDeath": {
+        "between": [1745, 1862]
+      }
+    },
+    "paul_liu_hanzuo_priest": {
+      "fullname": "Saint Paul Liu Hanzuo, Priest and Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Paul Liu Hanzuo",
+      "titles": ["PRIEST", "MARTYR"]
+    },
+    "paul_miki_and_companions_martyrs": {
+      "fullname": "Saint Paul Miki and Companions, Martyrs"
+    },
+    "paul_miki_martyr": {
+      "canonizationLevel": "SAINT",
+      "name": "Paul Miki",
+      "titles": ["MARTYR"],
+      "dateOfDeath": 1597
+    },
+    "paul_of_narbonne_bishop": {
+      "fullname": "Saint Paul of Narbonne, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Paul of Narbonne",
+      "titles": ["BISHOP"],
+      "dateOfDeath": {
+        "century": 3,
+        "sources": [
+          "mr_fr_1974_ed1_region_apostolique_du_midi",
+          "https://en.wikipedia.org/wiki/Paul_of_Narbonne"
+        ]
+      },
+      "sources": [
+        "mr_fr_1974_ed1_region_apostolique_du_midi",
+        "https://en.wikipedia.org/wiki/Paul_of_Narbonne"
+      ]
+    },
+    "paul_of_the_cross_priest": {
+      "fullname": "Saint Paul of the Cross, Priest",
+      "canonizationLevel": "SAINT",
+      "name": "Paul of the Cross",
+      "titles": ["PRIEST"],
+      "dateOfDeath": 1776
+    },
+    "paul_of_thebes_hermit": {
+      "fullname": "Blessed Paul of Thebes, Hermit",
+      "canonizationLevel": "BLESSED",
+      "name": "Paul of Thebes",
+      "titles": ["HERMIT"]
+    },
+    "paul_vi_pope": {
+      "fullname": "Saint Paul VI, Pope",
+      "canonizationLevel": "SAINT",
+      "name": "Paul VI",
+      "titles": ["POPE"]
+    },
+    "paulina_of_the_agonizing_heart_of_jesus_visintainer_virgin": {
+      "fullname": "Saint Paulina of the Agonizing Heart of Jesus Visintainer, Virgin",
+      "canonizationLevel": "SAINT",
+      "name": "Paulina of the Agonizing Heart of Jesus Visintainer",
+      "titles": ["VIRGIN"]
+    },
+    "paulinus_of_nola_bishop": {
+      "fullname": "Saint Paulinus of Nola, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Paulinus of Nola",
+      "titles": ["BISHOP"],
+      "dateOfDeath": 431
+    },
+    "paulinus_of_trier_bishop": {
+      "fullname": "Saint Paulinus of Trier, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Paulinus of Trier",
+      "titles": ["BISHOP"]
+    },
+    "paulinus_of_york_bishop": {
+      "fullname": "Saint Paulinus of York, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Paulinus of York",
+      "titles": ["BISHOP"]
+    },
+    "pavel_peter_gojdic_bishop": {
+      "fullname": "Blessed Pavel Peter Gojdič, Bishop and Martyr",
+      "canonizationLevel": "BLESSED",
+      "name": "Pavel Peter Gojdič",
+      "titles": ["BISHOP", "MARTYR"]
+    },
+    "pedro_calungsod_martyr": {
+      "fullname": "Saint Pedro Calungsod, Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Pedro Calungsod",
+      "titles": ["MARTYR"]
+    },
+    "pelagius_of_cordoba_martyr": {
+      "fullname": "Saint Pelagius of Córdoba, Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Pelagius of Córdoba",
+      "titles": ["MARTYR"]
+    },
+    "pentecost_sunday": {
+      "fullname": "Pentecost Sunday"
+    },
+    "perpetua_of_carthage_and_felicity_of_carthage_martyrs": {
+      "fullname": "Saints Perpetua and Felicity, Martyrs"
+    },
+    "perpetua_of_carthage_martyr": {
+      "canonizationLevel": "SAINT",
+      "name": "Perpetua",
+      "titles": ["MARTYR"],
+      "dateOfDeath": 203
+    },
+    "peter_adrian_toulorge_priest": {
+      "fullname": "Blessed Pierre-Adrien Toulorge, Priest and Martyr",
+      "canonizationLevel": "BLESSED",
+      "dateOfBeatification": "2012-04-29",
+      "name": "Pierre-Adrien Toulorge",
+      "titles": ["PRIEST", "MARTYR"],
+      "dateOfBirth": "1757-05-04",
+      "dateOfDeath": "1793-10-13",
+      "sources": [
+        "https://www.diocese50.fr/les-paroisses-et-les-doyennes/notre-dame-coutances/les-saints-du-diocese/bienheureux-pierre-adrien-toulorge-martyr",
+        "https://en.wikipedia.org/wiki/Pierre-Adrien_Toulorge"
+      ]
+    },
+    "peter_and_paul_apostles": {
+      "fullname": "Saints Peter and Paul, Apostles"
+    },
+    "peter_apostle": {
+      "canonizationLevel": "SAINT",
+      "name": "Peter",
+      "titles": ["APOSTLE"]
+    },
+    "peter_baptist_blasquez_martyr": {
+      "canonizationLevel": "SAINT",
+      "name": "Peter Baptist Blásquez",
+      "titles": ["MARTYR"]
+    },
+    "peter_baptist_blasquez_paul_miki_and_companions_martyrs": {
+      "fullname": "Saints Peter Baptist Blásquez, Paul Miki and Companions, Martyrs"
+    },
+    "peter_canisius_priest": {
+      "fullname": "Saint Peter Canisius, Priest and Doctor of the Church",
+      "canonizationLevel": "SAINT",
+      "name": "Peter Canisius",
+      "titles": ["PRIEST", "DOCTOR_OF_THE_CHURCH"],
+      "dateOfDeath": "1597-12-21"
+    },
+    "peter_chanel_priest": {
+      "fullname": "Saint Peter Chanel, Priest and Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Peter Chanel",
+      "titles": ["PRIEST", "MARTYR"],
+      "dateOfDeath": 1841
+    },
+    "peter_chanel_priest_patron_of_oceania": {
+      "fullname": "Saint Peter Chanel, Proto-martyr of Oceania, Patron of Oceania"
+    },
+    "peter_chrysologus_bishop": {
+      "fullname": "Saint Peter Chrysologus, Bishop and Doctor of the Church",
+      "canonizationLevel": "SAINT",
+      "name": "Peter Chrysologus",
+      "titles": ["BISHOP", "DOCTOR_OF_THE_CHURCH"],
+      "dateOfDeath": 451
+    },
+    "peter_claver_priest": {
+      "fullname": "Saint Peter Claver, Priest",
+      "canonizationLevel": "SAINT",
+      "name": "Peter Claver",
+      "titles": ["PRIEST"],
+      "dateOfDeath": 1654
+    },
+    "peter_damian_bishop": {
+      "fullname": "Saint Peter Damian, Bishop and Doctor of the Church",
+      "canonizationLevel": "SAINT",
+      "name": "Peter Damian",
+      "titles": ["BISHOP", "DOCTOR_OF_THE_CHURCH"],
+      "dateOfDeath": 1072
+    },
+    "peter_de_zuniga_and_louis_flores_priests": {
+      "fullname": "Blesseds Peter de Zúñiga and Louis Flores, Priests and Martyrs"
+    },
+    "peter_de_zuniga_priest": {
+      "canonizationLevel": "BLESSED",
+      "name": "Peter de Zúñiga",
+      "titles": ["PRIEST", "MARTYR"]
+    },
+    "peter_julian_eymard_priest": {
+      "fullname": "Saint Peter Julian Eymard, Priest",
+      "canonizationLevel": "SAINT",
+      "name": "Peter Julian Eymard",
+      "titles": ["PRIEST"],
+      "dateOfBirth": "1811-02-04",
+      "dateOfDeath": "1868-08-01",
+      "sources": [
+        "mr_fr_2021_ed3",
+        "mr_fr_2022_ed3_angers",
+        "mr_fr_2014_ed2_lyon",
+        "https://en.wikipedia.org/wiki/Peter_Julian_Eymard"
+      ]
+    },
+    "peter_kibe_priest": {
+      "canonizationLevel": "BLESSED",
+      "name": "Peter Kibe",
+      "titles": ["PRIEST", "MARTYR"]
+    },
+    "peter_kibe_priest_and_companions_martyrs": {
+      "fullname": "Blessed Peter Kibe, Priest, and Companions, Martyrs"
+    },
+    "peter_liu_wenyuan_martyr": {
+      "fullname": "Saint Peter Liu Wenyuan, Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Peter Liu Wenyuan",
+      "titles": ["MARTYR"]
+    },
+    "peter_nolasco_religious": {
+      "fullname": "Saint Peter Nolasco, Religious",
+      "canonizationLevel": "SAINT",
+      "name": "Peter Nolasco",
+      "titles": ["RELIGIOUS"],
+      "dateOfBirth": 1189,
+      "dateOfDeath": "1256-05-06",
+      "dateOfCanonization": "1628-09-30",
+      "sources": [
+        "mr_fr_1974_ed1_region_apostolique_du_midi",
+        "https://en.wikipedia.org/wiki/Peter_Nolasco"
+      ]
+    },
+    "peter_of_alcantara_priest": {
+      "fullname": "Saint Peter of Alcántara, Priest",
+      "canonizationLevel": "SAINT",
+      "name": "Peter of Alcántara",
+      "titles": ["PRIEST"]
+    },
+    "peter_sanz_bishop": {
+      "fullname": "Saint Peter Sanz, Bishop and Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Peter Sanz",
+      "titles": ["BISHOP", "MARTYR"]
+    },
+    "peter_the_exorcist_martyr": {
+      "canonizationLevel": "SAINT",
+      "name": "Peter",
+      "titles": ["MARTYR"],
+      "dateOfDeath": 304
+    },
+    "peter_to_rot_martyr": {
+      "fullname": "Blessed Peter To Rot, Martyr",
+      "canonizationLevel": "BLESSED",
+      "name": "Peter To Rot",
+      "titles": ["MARTYR"]
+    },
+    "peter_wu_guosheng_martyr": {
+      "fullname": "Saint Peter Wu Guosheng, Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Peter Wu Guosheng",
+      "titles": ["MARTYR"]
+    },
+    "philip_and_james_apostles": {
+      "fullname": "Saints Philip and James, Apostles"
+    },
+    "philip_apostle": {
+      "canonizationLevel": "SAINT",
+      "name": "Philip",
+      "titles": ["APOSTLE"]
+    },
+    "philip_evans_and_john_lloyd_priests": {
+      "fullname": "Saints Philip Evans and John Lloyd, Priests and Martyrs"
+    },
+    "philip_evans_priest": {
+      "canonizationLevel": "SAINT",
+      "name": "Philip Evans",
+      "titles": ["PRIEST", "MARTYR"]
+    },
+    "philip_neri_priest": {
+      "fullname": "Saint Philip Neri, Priest",
+      "canonizationLevel": "SAINT",
+      "name": "Philip Neri",
+      "titles": ["PRIEST"],
+      "dateOfDeath": 1595
+    },
+    "philip_of_jesus_de_las_casas_martyr": {
+      "fullname": "Saint Philip of Jesus de las Casas, Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Philip of Jesus de las Casas",
+      "titles": ["MARTYR"]
+    },
+    "philip_of_jesus_de_las_casas_paul_miki_and_companions_martyrs": {
+      "fullname": "Saints Philip of Jesus de las Casas, Paul Miki and Companions, Martyrs"
+    },
+    "pirmin_of_hornbach_abbot": {
+      "fullname": "Saint Pirmin, Abbot",
+      "canonizationLevel": "SAINT",
+      "name": "Pirmin",
+      "titles": ["ABBOT"],
+      "dateOfDeath": "753-11-3"
+    },
+    "pius_francesco_forgione_priest": {
+      "fullname": "Saint Pius of Pietrelcina, Priest",
+      "canonizationLevel": "SAINT",
+      "name": "Pius of Pietrelcina",
+      "titles": ["PRIEST"],
+      "dateOfDeath": 1968
+    },
+    "pius_ix_pope": {
+      "fullname": "Blessed Pius IX, Pope",
+      "canonizationLevel": "BLESSED",
+      "name": "Pius IX",
+      "titles": ["POPE"]
+    },
+    "pius_v_pope": {
+      "fullname": "Saint Pius V, Pope",
+      "canonizationLevel": "SAINT",
+      "name": "Pius V",
+      "titles": ["POPE"],
+      "dateOfDeath": 1572
+    },
+    "pius_x_pope": {
+      "fullname": "Saint Pius X, Pope",
+      "canonizationLevel": "SAINT",
+      "name": "Pius X",
+      "titles": ["POPE"],
+      "dateOfDeath": 1914
+    },
+    "placide_eulalie_victoire_jacqueline_viel_virgin": {
+      "fullname": "Blessed Placide Viel, Virgin",
+      "canonizationLevel": "BLESSED",
+      "name": "Placide Viel",
+      "titles": ["VIRGIN"],
+      "dateOfBirth": "1815-09-26",
+      "dateOfDeath": "1877-03-04",
+      "sources": [
+        "mr_fr_1982_ed2_coutances",
+        "https://www.diocese50.fr/les-paroisses-et-les-doyennes/notre-dame-coutances/les-saints-du-diocese/bienheureuse-placide-viel-vierge",
+        "https://en.wikipedia.org/wiki/Placide_Viel"
+      ]
+    },
+    "polycarp_of_smyrna_bishop": {
+      "fullname": "Saint Polycarp, Bishop and Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Polycarp",
+      "titles": ["BISHOP", "MARTYR"],
+      "dateOfDeath": 167
+    },
+    "pontian_i_pope": {
+      "canonizationLevel": "SAINT",
+      "name": "Pontian",
+      "titles": ["POPE", "MARTYR"],
+      "dateOfDeath": 235
+    },
+    "pontian_i_pope_and_hippolytus_of_rome_priest": {
+      "fullname": "Saints Pontian, Pope, and Hippolytus, Priest, Martyrs"
+    },
+    "pothinus_of_lyon_bishop": {
+      "canonizationLevel": "SAINT",
+      "name": "Pothinus",
+      "titles": ["BISHOP", "MARTYR"],
+      "dateOfDeath": 177
+    },
+    "pothinus_of_lyon_bishop_blandina_of_lyon_virgin_and_companions_martyrs": {
+      "fullname": "Saints Pothinus, Bishop, Blandina, Virgin, and Companions, Martyrs"
+    },
+    "pothinus_of_lyon_bishop_patron_the_city_of_lyon_blandina_of_lyon_virgin_and_companions_martyrs": {
+      "fullname": "Saints Pothinus, Bishop, Patron of the City of Lyon, Blandina, Virgin, and Companions, Martyrs"
+    },
+    "presentation_of_the_blessed_virgin_mary": {
+      "fullname": "The Presentation of the Blessed Virgin Mary"
+    },
+    "presentation_of_the_lord": {
+      "fullname": "The Presentation of the Lord"
+    },
+    "procopius_of_sazava_abbot": {
+      "fullname": "Saint Procopius of Sázava, Abbot",
+      "canonizationLevel": "SAINT",
+      "name": "Procopius of Sázava",
+      "titles": ["ABBOT"]
+    },
+    "publius_of_malta_bishop": {
+      "fullname": "Saint Publius, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Publius",
+      "titles": ["BISHOP"]
+    }
+  }
+}

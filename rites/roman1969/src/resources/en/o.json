@@ -1,0 +1,241 @@
+{
+  "locale": "en",
+  "letter": "o",
+  "items": {
+    "odile_of_alsace_abbess": {
+      "fullname": "Saint Odile, Abbess",
+      "canonizationLevel": "SAINT",
+      "name": "Odile of Alsace",
+      "titles": ["ABBESS"],
+      "dateOfDeath": 720,
+      "dateOfDeathIsApproximative": true
+    },
+    "odile_of_alsace_abbess_patroness_of_alsace": {
+      "fullname": "Saint Odile, Abbess, Patroness of Alsace"
+    },
+    "odoric_of_pordenone_priest": {
+      "fullname": "Blessed Odoric of Pordenone, Priest",
+      "canonizationLevel": "BLESSED",
+      "name": "Odoric of Pordenone",
+      "titles": ["PRIEST"]
+    },
+    "olaf_ii_of_norway_martyr": {
+      "fullname": "Saint Olaf II, Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Olaf II",
+      "titles": ["MARTYR"]
+    },
+    "oleksiy_zarytskyi_priest": {
+      "fullname": "Blessed Oleksiy Zarytskyi, Priest and Martyr",
+      "canonizationLevel": "BLESSED",
+      "name": "Oleksiy Zarytskyi",
+      "titles": ["PRIEST", "MARTYR"]
+    },
+    "olga_of_kiev": {
+      "fullname": "Saint Olga",
+      "canonizationLevel": "SAINT",
+      "name": "Olga"
+    },
+    "oliver_plunket_bishop": {
+      "fullname": "Saint Oliver Plunket, Bishop and Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Oliver Plunket",
+      "titles": ["BISHOP", "MARTYR"]
+    },
+    "ortaire_of_landelles_abbot": {
+      "fullname": "Saint Ortaire, Abbot",
+      "canonizationLevel": "SAINT",
+      "name": "Ortaire",
+      "titles": ["ABBOT"],
+      "dateOfBirth": 482,
+      "dateOfBirthIsApproximative": true,
+      "dateOfDeath": "580-04-15",
+      "sources": [
+        "mr_fr_1982_ed2_coutances",
+        "https://www.diocese50.fr/les-paroisses-et-les-doyennes/notre-dame-coutances/les-saints-du-diocese/saint-ortaire-abbe",
+        "https://fr.wikipedia.org/wiki/Ortaire_de_Landelles"
+      ]
+    },
+    "otteran_of_iona_monk": {
+      "fullname": "Saint Otteran, Monk",
+      "canonizationLevel": "SAINT",
+      "name": "Otteran",
+      "titles": ["MONK"]
+    },
+    "otto_of_bamberg_bishop": {
+      "fullname": "Saint Otto of Bamberg, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Otto of Bamberg",
+      "titles": ["BISHOP"]
+    },
+    "our_lady_help_of_christians": {
+      "fullname": "Our Lady, Help of Christians"
+    },
+    "our_lady_mediatrix_of_all_grace": {
+      "fullname": "Our Lady, Mediatrix of All Grace"
+    },
+    "our_lady_mother_of_christian_unity": {
+      "fullname": "Our Lady, Mother of Christian Unity"
+    },
+    "our_lady_mother_of_divine_providence": {
+      "name": "Our Lady, Mother of Divine Providence"
+    },
+    "our_lady_mother_of_divine_providence_patroness_of_puerto_rico": {
+      "fullname": "Our Lady, Mother of Divine Providence, Patroness of Puerto Rico"
+    },
+    "our_lady_of_angels": {
+      "name": "Our Lady of Angels"
+    },
+    "our_lady_of_angels_patroness_of_costa_rica": {
+      "fullname": "Our Lady of Angels, Patroness of Costa Rica",
+      "sources": [
+        "https://gcatholic.org/calendar/2024/CR-en.htm + @TobiTenno direct translation of the Spanish title"
+      ]
+    },
+    "our_lady_of_aparecida": {
+      "name": "Our Lady of Aparecida"
+    },
+    "our_lady_of_aparecida_patroness_of_brazil": {
+      "fullname": "Our Lady of Aparecida, Patroness of Brazil"
+    },
+    "our_lady_of_bethlehem": {
+      "fullname": "Our Lady of Bethlehem"
+    },
+    "our_lady_of_china": {
+      "fullname": "Our Lady of China"
+    },
+    "our_lady_of_czestochowa": {
+      "fullname": "Our Lady of Częstochowa"
+    },
+    "our_lady_of_fatima": {
+      "fullname": "Our Lady of Fatima"
+    },
+    "our_lady_of_fourviere": {
+      "fullname": "Our Lady of Fourvière",
+      "sources": ["mr_fr_2014_ed2_lyon"]
+    },
+    "our_lady_of_good_counsel": {
+      "fullname": "Our Lady of Good Counsel"
+    },
+    "our_lady_of_guadalupe": {
+      "fullname": "Our Lady of Guadalupe"
+    },
+    "our_lady_of_guadalupe_patroness_of_the_americas": {
+      "fullname": "Our Lady of Guadalupe, Patroness of the Americas"
+    },
+    "our_lady_of_guadalupe_patroness_of_the_philippines": {
+      "fullname": "Our Lady of Guadalupe, Patroness of the Philippines"
+    },
+    "our_lady_of_hungary": {
+      "name": "Our Lady of Hungary"
+    },
+    "our_lady_of_hungary_patroness_of_hungary": {
+      "fullname": "Our Lady of Hungary, Patroness of Hungary"
+    },
+    "our_lady_of_itati": {
+      "fullname": "Our Lady of Itatí"
+    },
+    "our_lady_of_knock": {
+      "fullname": "Our Lady of Knock"
+    },
+    "our_lady_of_la_salette": {
+      "fullname": "Our Lady of La Salette",
+      "sources": ["https://en.wikipedia.org/wiki/Our_Lady_of_La_Salette"]
+    },
+    "our_lady_of_lanka": {
+      "fullname": "Our Lady of Lanka"
+    },
+    "our_lady_of_lebanon": {
+      "fullname": "Our Lady of Lebanon"
+    },
+    "our_lady_of_loreto": {
+      "fullname": "Our Lady of Loreto"
+    },
+    "our_lady_of_lourdes": {
+      "fullname": "Our Lady of Lourdes"
+    },
+    "our_lady_of_lujan": {
+      "name": "Our Lady of Luján"
+    },
+    "our_lady_of_lujan_patroness_of_argentina": {
+      "fullname": "Our Lady of Luján, Patroness of Argentina"
+    },
+    "our_lady_of_madhu": {
+      "fullname": "Our Lady of Madhu"
+    },
+    "our_lady_of_marija_bistrica": {
+      "fullname": "Our Lady of Marija Bistrica"
+    },
+    "our_lady_of_mercy": {
+      "fullname": "Our Lady of Mercy"
+    },
+    "our_lady_of_mount_carmel": {
+      "fullname": "Our Lady of Mount Carmel"
+    },
+    "our_lady_of_mount_carmel_mother_and_queen_of_chile": {
+      "fullname": "Our Lady of Mount Carmel, Mother and Queen of Chile"
+    },
+    "our_lady_of_perpetual_help": {
+      "fullname": "Our Lady of Perpetual Help"
+    },
+    "our_lady_of_pontmain": {
+      "fullname": "Our Lady of Pontmain",
+      "sources": [
+        "mr_fr_1982_ed2_coutances",
+        "https://www.diocese50.fr/les-paroisses-et-les-doyennes/notre-dame-coutances/les-saints-du-diocese/notre-dame-de-pontmain/",
+        "https://en.wikipedia.org/wiki/Our_Lady_of_Pontmain"
+      ]
+    },
+    "our_lady_of_sorrows": {
+      "fullname": "Our Lady of Sorrows"
+    },
+    "our_lady_of_sorrows_patroness_of_slovakia": {
+      "fullname": "Our Lady of Sorrows, Patroness of Slovakia"
+    },
+    "our_lady_of_the_discovery_of_the_hidden_christians": {
+      "fullname": "Our Lady of the Discovery of the Hidden Christians"
+    },
+    "our_lady_of_the_gate_of_dawn": {
+      "fullname": "Our Lady of the Gate of Dawn"
+    },
+    "our_lady_of_the_miraculous_medal": {
+      "fullname": "Our Lady of the Miraculous Medal"
+    },
+    "our_lady_of_the_pillar": {
+      "fullname": "Our Lady of the Pillar"
+    },
+    "our_lady_of_the_rosary": {
+      "fullname": "Our Lady of the Rosary"
+    },
+    "our_lady_of_the_valley": {
+      "fullname": "Our Lady of the Valley"
+    },
+    "our_lady_of_vladimir": {
+      "fullname": "Our Lady of Vladimir"
+    },
+    "our_lady_of_walsingham": {
+      "fullname": "Our Lady of Walsingham"
+    },
+    "our_lady_queen_of_peace": {
+      "fullname": "Our Lady of Peace"
+    },
+    "our_lady_queen_of_poland": {
+      "fullname": "Our Lady, Queen of Poland",
+      "name": "Our Lady",
+      "titles": ["QUEEN_OF_POLAND"]
+    },
+    "our_lady_refuge_of_sinners": {
+      "fullname": "Our Lady, Refuge of Sinners"
+    },
+    "our_lord_jesus_christ_king_of_the_universe": {
+      "fullname": "Our Lord Jesus Christ, King of the Universe",
+      "titles": []
+    },
+    "our_lord_jesus_christ_the_eternal_high_priest": {
+      "fullname": "Our Lord Jesus Christ, the Eternal High Priest"
+    },
+    "our_lord_of_miracles": {
+      "fullname": "Our Lord of Miracles"
+    }
+  }
+}

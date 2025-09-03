@@ -1,0 +1,93 @@
+{
+  "locale": "es",
+  "letter": "b",
+  "items": {
+    "baptism_of_the_lord": {
+      "fullname": "Bautismo del Señor"
+    },
+    "barbara_of_heliopolis_virgin": {
+      "fullname": "Santa Bárbara, virgen y mártir"
+    },
+    "barnabas_apostle": {
+      "fullname": "San Bernabé, apóstol"
+    },
+    "bartholomew_apostle": {
+      "fullname": "San Bartolomé, apóstol"
+    },
+    "bartholomew_dias_laurel_religious": {
+      "fullname": "Beato Bartolomé Laurel, religioso y mártir"
+    },
+    "basil_the_great_and_gregory_nazianzen_bishops": {
+      "fullname": "San Basilio Magno y San Gregorio Nacianceno, obispos y doctores de la Iglesia"
+    },
+    "beatrice_da_silva_meneses_virgin": {
+      "fullname": "Santa Beatriz da Silva, virgen"
+    },
+    "bede_the_venerable_priest": {
+      "fullname": "San Beda el Venerable, presbítero y doctor de la Iglesia"
+    },
+    "benedict_of_aniane_abbot": {
+      "fullname": "San Benito de Aniano, Abad"
+    },
+    "benedict_of_jesus_valdivielso_saez_religious": {
+      "fullname": "San Héctor Valdivielso Sáez, mártir"
+    },
+    "benedict_of_nursia_abbot": {
+      "fullname": "San Benito, abad",
+      "sources": [
+        "https://liturgiapapal.org/attachments/article/1093/PROPIO%20DE%20LOS%20SANTOS.pdf#page=9"
+      ]
+    },
+    "benedict_of_nursia_abbot_patron_of_europe": {
+      "fullname": "San Benito, abad, patrono de Europa",
+      "sources": [
+        "based on: https://liturgiapapal.org/attachments/article/1093/PROPIO%20DE%20LOS%20SANTOS.pdf#page=9"
+      ]
+    },
+    "bernard_of_clairvaux_abbot": {
+      "fullname": "San Bernardo, abad y doctor de la Iglesia",
+      "sources": [
+        "https://liturgiapapal.org/attachments/article/1093/PROPIO%20DE%20LOS%20SANTOS.pdf#page=10"
+      ]
+    },
+    "bernardine_of_siena_priest": {
+      "fullname": "San Bernardino de Siena, presbítero"
+    },
+    "beuno_of_wales_abbot": {
+      "fullname": "San Beuno, Abad"
+    },
+    "blaise_of_sebaste_bishop": {
+      "fullname": "San Blás, obispo y mártir"
+    },
+    "blessed_martyrs_of_paris": {
+      "fullname": "Beatos mártires de París en la Revolución Francesa"
+    },
+    "bonaventure_of_bagnoregio_bishop": {
+      "fullname": "San Buenaventura, obispo y doctor de la Iglesia"
+    },
+    "boniface_of_mainz_bishop": {
+      "fullname": "San Bonifacio, obispo y mártir"
+    },
+    "bridget_of_sweden_religious": {
+      "fullname": "Santa Brígida, religiosa",
+      "sources": [
+        "https://liturgiapapal.org/attachments/article/1093/PROPIO%20DE%20LOS%20SANTOS.pdf#page=9"
+      ]
+    },
+    "bridget_of_sweden_religious_copatroness_of_europe": {
+      "fullname": "Santa Brígida, religiosa, patrona de Europa",
+      "sources": [
+        "based on: https://liturgiapapal.org/attachments/article/1093/PROPIO%20DE%20LOS%20SANTOS.pdf#page=9"
+      ]
+    },
+    "brigid_of_kildare_virgin": {
+      "fullname": "Santa Brígida de Kildare, Abadesa"
+    },
+    "brigid_of_kildare_virgin_copatroness_of_ireland": {
+      "fullname": "Santa Brígida de Kildare, virgen y Patrona Secundaria de Irlanda"
+    },
+    "bruno_of_cologne_priest": {
+      "fullname": "San Bruno, presbítero"
+    }
+  }
+}

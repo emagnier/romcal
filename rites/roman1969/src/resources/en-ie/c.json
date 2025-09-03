@@ -1,0 +1,12 @@
+{
+  "locale": "en-ie",
+  "letter": "c",
+  "items": {
+    "columban_of_luxeuil_abbot": {
+      "fullname": "Saint Columban, Abbot and Missionary",
+      "_todo": [
+        "TODO: This property should be removed after one can add titles within celebration definions."
+      ]
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "locale": "fr",
+  "letter": "v",
+  "items": {
+    "valerius_of_trier_bishop": {
+      "fullname": "Saint Valère, évêque († IVème s.)"
+    },
+    "viator_of_lyon": {
+      "fullname": "Saint Viateur († v. 389)",
+      "sources": ["mr_fr_2014_ed2_lyon"]
+    },
+    "vincent_de_paul_priest": {
+      "fullname": "Saint Vincent de Paul, prêtre, fondateur de la congrégation de la Mission et des Filles de la Charité († 1660)"
+    },
+    "vincent_ferrer_priest": {
+      "fullname": "Saint Vincent Ferrier, prêtre de l’Ordre des Prêcheurs († 1419)"
+    },
+    "vincent_of_saragossa_deacon": {
+      "fullname": "Saint Vincent, diacre et martyr († 304)"
+    },
+    "visitation_of_mary": {
+      "fullname": "Visitation de la vierge Marie"
+    },
+    "vitalis_of_savigny_abbot": {
+      "fullname": "Saint Vital, abbé de Savigny († 1122)",
+      "sources": ["mr_fr_1982_ed2_coutances"]
+    }
+  }
+}

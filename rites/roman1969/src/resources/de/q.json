@@ -1,0 +1,12 @@
+{
+  "locale": "de",
+  "letter": "q",
+  "items": {
+    "queenship_of_the_blessed_virgin_mary": {
+      "fullname": "Maria Königin"
+    },
+    "quirinus_of_sescia_bishop": {
+      "fullname": "Hl. Quirinus von Siscia, Bischof und Märtyrer"
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "locale": "en",
+  "letter": "k",
+  "items": {
+    "kateri_tekakwitha_virgin": {
+      "fullname": "Saint Kateri Tekakwitha, Virgin",
+      "canonizationLevel": "SAINT",
+      "name": "Kateri Tekakwitha",
+      "titles": ["VIRGIN"],
+      "dateOfDeath": 1680
+    },
+    "katharine_drexel_virgin": {
+      "fullname": "Saint Katharine Drexel, Virgin",
+      "canonizationLevel": "SAINT",
+      "name": "Katharine Drexel",
+      "titles": ["VIRGIN"]
+    },
+    "kentigern_of_scotland_bishop": {
+      "fullname": "Saint Kentigern, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Kentigern",
+      "titles": ["BISHOP"]
+    },
+    "kevin_of_glendalough_abbot": {
+      "fullname": "Saint Kevin, Abbot",
+      "canonizationLevel": "SAINT",
+      "name": "Kevin",
+      "titles": ["ABBOT"]
+    },
+    "kieran_of_saigir_bishop": {
+      "fullname": "Saint Kieran, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Kieran",
+      "titles": ["BISHOP"]
+    },
+    "kilian_of_wurzburg_bishop": {
+      "fullname": "Saint Kilian, Bishop and Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Kilian",
+      "titles": ["BISHOP", "MARTYR"]
+    },
+    "kilian_of_wurzburg_bishop_and_companions_martyrs": {
+      "fullname": "Saint Kilian, Bishop, and Companions, Martyrs"
+    },
+    "kinga_of_poland_virgin": {
+      "fullname": "Saint Kinga, Virgin",
+      "canonizationLevel": "SAINT",
+      "name": "Kinga",
+      "titles": ["VIRGIN"]
+    },
+    "kuriakose_elias_of_the_holy_family_chavara_priest": {
+      "fullname": "Saint Kuriakose Elias of the Holy Family Chavara, priest",
+      "canonizationLevel": "SAINT",
+      "name": "Kuriakose Elias of the Holy Family Chavara",
+      "titles": ["PRIEST"]
+    }
+  }
+}

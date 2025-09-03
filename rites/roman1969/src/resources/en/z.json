@@ -1,0 +1,34 @@
+{
+  "locale": "en",
+  "letter": "z",
+  "items": {
+    "zdenka_cecilia_schelingova_virgin": {
+      "fullname": "Blessed Zdenka Cecilia Schelingová, Virgin and Martyr",
+      "canonizationLevel": "BLESSED",
+      "name": "Zdenka Cecilia Schelingová",
+      "titles": ["VIRGIN", "MARTYR"]
+    },
+    "zdislava_of_lemberk": {
+      "fullname": "Saint Zdislava",
+      "canonizationLevel": "SAINT",
+      "name": "Zdislava"
+    },
+    "zepherin_namuncura": {
+      "fullname": "Blessed Zepherin Namuncurá",
+      "canonizationLevel": "BLESSED",
+      "name": "Zepherin Namuncurá"
+    },
+    "zoltan_lajos_meszlenyi_bishop": {
+      "fullname": "Blessed Zoltán Lajos Meszlényi, Bishop and Martyr",
+      "canonizationLevel": "BLESSED",
+      "name": "Zoltán Lajos Meszlényi",
+      "titles": ["BISHOP", "MARTYR"]
+    },
+    "zygmunt_gorazdowski_priest": {
+      "fullname": "Saint Zygmunt Gorazdowski, Priest",
+      "canonizationLevel": "SAINT",
+      "name": "Zygmunt Gorazdowski",
+      "titles": ["PRIEST"]
+    }
+  }
+}

@@ -1,0 +1,423 @@
+{
+  "locale": "en",
+  "letter": "c",
+  "items": {
+    "caesarius_of_arles_bishop": {
+      "fullname": "Saint Caesarius of Arles, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Caesarius of Arles",
+      "titles": ["BISHOP"],
+      "dateOfDeath": 542
+    },
+    "cajetan_of_thiene_priest": {
+      "fullname": "Saint Cajetan, Priest",
+      "canonizationLevel": "SAINT",
+      "name": "Cajetan",
+      "titles": ["PRIEST"],
+      "dateOfDeath": 1547
+    },
+    "callistus_caravario_priest": {
+      "canonizationLevel": "SAINT",
+      "name": "Callistus Caravario",
+      "titles": ["PRIEST", "MARTYR"]
+    },
+    "callistus_i_pope": {
+      "fullname": "Saint Callistus I, Pope and Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Callistus I",
+      "titles": ["POPE", "MARTYR"],
+      "dateOfDeath": 222
+    },
+    "camillus_de_lellis_priest": {
+      "fullname": "Saint Camillus de Lellis, Priest",
+      "canonizationLevel": "SAINT",
+      "name": "Camillus de Lellis",
+      "titles": ["PRIEST"],
+      "dateOfDeath": 1614
+    },
+    "canada_day": {
+      "fullname": "Canada Day"
+    },
+    "canice_of_kilkenny_abbot": {
+      "fullname": "Saint Canice, Abbot",
+      "canonizationLevel": "SAINT",
+      "name": "Canice",
+      "titles": ["ABBOT"]
+    },
+    "canute_iv_of_denmark_eric_ix_of_sweden_and_olaf_ii_of_norway_martyrs": {
+      "fullname": "Saints Canute, Eric and Olaf, Martyrs"
+    },
+    "canute_iv_of_denmark_martyr": {
+      "fullname": "Saint Canute, Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Canute",
+      "titles": ["MARTYR"]
+    },
+    "carlos_manuel_rodriguez_santiago": {
+      "fullname": "Blessed Carlos Manuel Rodríguez Santiago",
+      "canonizationLevel": "BLESSED",
+      "name": "Carlos Manuel Rodríguez Santiago"
+    },
+    "carmelites_of_compiegne_virgins_and_martyrs": {
+      "fullname": "Blessed Carmelites of Compiègne, Virgins and Martyrs",
+      "canonizationLevel": "BLESSED",
+      "name": "Carmelites of Compiègne",
+      "titles": ["VIRGIN", "MARTYR"],
+      "count": 16,
+      "dateOfDeath": "21-7-1794"
+    },
+    "caroline_kozka_virgin": {
+      "fullname": "Blessed Caroline Kózka, Virgin and Martyr",
+      "canonizationLevel": "BLESSED",
+      "name": "Caroline Kózka",
+      "titles": ["VIRGIN", "MARTYR"]
+    },
+    "carthage_of_lismore_bishop": {
+      "fullname": "Saint Carthage, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Carthage",
+      "titles": ["BISHOP"]
+    },
+    "casimir_of_poland": {
+      "fullname": "Saint Casimir",
+      "canonizationLevel": "SAINT",
+      "name": "Casimir",
+      "dateOfDeath": 1484
+    },
+    "catherine_of_alexandria_virgin": {
+      "fullname": "Saint Catherine of Alexandria, Virgin and Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Catherine of Alexandria",
+      "titles": ["VIRGIN", "MARTYR"],
+      "dateOfDeath": 305,
+      "dateOfDeathIsApproximative": true
+    },
+    "catherine_of_siena_virgin": {
+      "fullname": "Saint Catherine of Siena, Virgin and Doctor of the Church",
+      "canonizationLevel": "SAINT",
+      "name": "Catherine of Siena",
+      "titles": ["VIRGIN", "DOCTOR_OF_THE_CHURCH"],
+      "dateOfDeath": 1380
+    },
+    "catherine_of_siena_virgin_copatroness_of_europe": {
+      "fullname": "Saint Catherine of Siena, Virgin and Doctor of the Church, Copatroness of Europe"
+    },
+    "catherine_of_siena_virgin_copatroness_of_italy_and_europe": {
+      "fullname": "Saint Catherine of Siena, Virgin and Doctor of the Church, Copatroness of Italy and Europe"
+    },
+    "catherine_zoe_laboure_virgin": {
+      "fullname": "Saint Catherine Labouré, Virgin",
+      "canonizationLevel": "SAINT",
+      "name": "Catherine Labouré",
+      "titles": ["VIRGIN"],
+      "dateOfDeath": 1876
+    },
+    "ceallach_of_armagh_bishop": {
+      "fullname": "Saint Ceallach, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Ceallach",
+      "titles": ["BISHOP"]
+    },
+    "cecilia_of_rome_virgin": {
+      "fullname": "Saint Cecilia, Virgin and Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Cecilia",
+      "titles": ["VIRGIN", "MARTYR"],
+      "dateOfDeath": 230
+    },
+    "cedd_of_lastingham_bishop": {
+      "canonizationLevel": "SAINT",
+      "name": "Cedd",
+      "titles": ["BISHOP"]
+    },
+    "ceferino_gimenez_malla_martyr": {
+      "fullname": "Blessed Ceferino Giménez Malla, Martyr",
+      "canonizationLevel": "BLESSED",
+      "name": "Ceferino Giménez Malla",
+      "titles": ["MARTYR"]
+    },
+    "ceraunus_of_paris_bishop": {
+      "fullname": "Saint Ceraunus of Paris, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Céran of Paris",
+      "titles": ["BISHOP"],
+      "dateOfDeath": {
+        "century": 7
+      }
+    },
+    "ceslaus_of_poland_and_hyacinth_of_poland_priests": {
+      "fullname": "Blessed Ceslaus and Saint Hyacinth, Priests"
+    },
+    "ceslaus_of_poland_priest": {
+      "fullname": "Blessed Ceslaus, Priest",
+      "canonizationLevel": "BLESSED",
+      "name": "Ceslaus",
+      "titles": ["PRIEST"]
+    },
+    "chad_of_mercia_and_cedd_of_lastingham_bishops": {
+      "fullname": "Saints Chad and Cedd, Bishops"
+    },
+    "chad_of_mercia_bishop": {
+      "canonizationLevel": "SAINT",
+      "name": "Chad",
+      "titles": ["BISHOP"]
+    },
+    "chair_of_saint_peter_the_apostle": {
+      "fullname": "The Chair of Saint Peter the Apostle",
+      "name": "Chair of Saint Peter the Apostle"
+    },
+    "charles_borromeo_bishop": {
+      "fullname": "Saint Charles Borromeo, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Charles Borromeo",
+      "titles": ["BISHOP"],
+      "dateOfDeath": 1584
+    },
+    "charles_i_of_austria": {
+      "fullname": "Blessed Charles of Austria",
+      "canonizationLevel": "BLESSED",
+      "name": "Charles of Austria"
+    },
+    "charles_lwanga_and_companions_martyrs": {
+      "fullname": "Saints Charles Lwanga and Companions, Martyrs"
+    },
+    "charles_lwanga_martyr": {
+      "canonizationLevel": "SAINT",
+      "name": "Charles Lwanga",
+      "dateOfDeath": 618
+    },
+    "charles_of_jesus_de_foucauld": {
+      "fullname": "Saint Charles de Foucauld, Priest",
+      "canonizationLevel": "SAINT",
+      "name": "Charles de Foucauld",
+      "titles": ["PRIEST"],
+      "dateOfDeath": "1916-12-1"
+    },
+    "charles_spinola_and_jerome_de_angelis_priests": {
+      "fullname": "Blesseds Charles Spinola and Jerome de Angelis, Priests and Martyrs"
+    },
+    "charles_spinola_priest": {
+      "fullname": "Blessed Charles Spinola, Priest and Martyr",
+      "canonizationLevel": "BLESSED",
+      "name": "Charles Spinola",
+      "titles": ["PRIEST", "MARTYR"]
+    },
+    "christopher_magallanes_priest": {
+      "canonizationLevel": "SAINT",
+      "name": "Christopher Magallanes",
+      "titles": ["PRIEST", "MARTYR"],
+      "dateOfDeath": 1927
+    },
+    "christopher_magallanes_priest_and_companions_martyrs": {
+      "fullname": "Saint Christopher Magallanes, Priest, and Companions, Martyrs"
+    },
+    "christopher_of_palestine_martyr": {
+      "fullname": "Saint Christopher, Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Christopher",
+      "titles": ["MARTYR"]
+    },
+    "ciaran_of_clonmacnoise_abbot": {
+      "fullname": "Saint Ciaran, Abbot",
+      "canonizationLevel": "SAINT",
+      "name": "Ciaran",
+      "titles": ["ABBOT"]
+    },
+    "clair_of_normandy_priest": {
+      "fullname": "Saint Clair of Normandy, Priest and Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Clair",
+      "titles": ["PRIEST", "MARTYR"],
+      "dateOfBirth": 845,
+      "dateOfBirthIsApproximative": true,
+      "dateOfDeath": 884,
+      "dateOfDeathIsApproximative": true,
+      "sources": [
+        "mr_fr_1982_ed2_coutances",
+        "https://www.diocese50.fr/les-paroisses-et-les-doyennes/notre-dame-coutances/les-saints-du-diocese/saint-clair-pretre-et-martyr",
+        "https://fr.wikipedia.org/wiki/Clair_de_Normandie"
+      ]
+    },
+    "clare_of_assisi_virgin": {
+      "fullname": "Saint Clare, Virgin",
+      "canonizationLevel": "SAINT",
+      "name": "Clare",
+      "titles": ["VIRGIN"]
+    },
+    "clement_i_pope": {
+      "fullname": "Saint Clement I, Pope and Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Clement I",
+      "titles": ["POPE", "MARTYR"],
+      "dateOfDeath": 97
+    },
+    "clement_mary_hofbauer_priest": {
+      "fullname": "Saint Clement Mary Hofbauer, Priest",
+      "canonizationLevel": "SAINT",
+      "name": "Clement Mary Hofbauer",
+      "titles": ["PRIEST"]
+    },
+    "clement_of_ohrid_and_gorazd_of_moravia_bishops_and_companions": {
+      "fullname": "Saints Clement of Ohrid and Gorazd, Bishops, and Companions"
+    },
+    "clement_of_ohrid_bishop": {
+      "canonizationLevel": "SAINT",
+      "name": "Clement of Ohrid",
+      "titles": ["BISHOP"]
+    },
+    "clotilde_of_burgundy": {
+      "fullname": "Saint Clotilde",
+      "canonizationLevel": "SAINT",
+      "name": "Clotilde",
+      "titles": ["QUEEN"],
+      "dateOfDeath": 545
+    },
+    "colman_of_cloyne_bishop": {
+      "fullname": "Saint Colman of Cloyne, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Colman of Cloyne",
+      "titles": ["BISHOP"]
+    },
+    "colman_of_dromore_bishop": {
+      "fullname": "Saint Colman of Dromore, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Colman of Dromore",
+      "titles": ["BISHOP"]
+    },
+    "colman_of_kilmacduagh_bishop": {
+      "fullname": "Saint Colman of Kilmacduagh, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Colman of Kilmacduagh",
+      "titles": ["BISHOP"]
+    },
+    "columba_marmion_priest": {
+      "fullname": "Blessed Columba Marmion, Priest",
+      "canonizationLevel": "BLESSED",
+      "name": "Columba Marmion",
+      "titles": ["PRIEST"]
+    },
+    "columba_of_iona_abbot": {
+      "fullname": "Saint Columba, Abbot",
+      "canonizationLevel": "SAINT",
+      "name": "Columba",
+      "titles": ["ABBOT"],
+      "dateOfDeath": 615
+    },
+    "columba_of_iona_abbot_copatron_of_ireland": {
+      "fullname": "Saint Columba, Abbot and Missionary, Copatron of Ireland"
+    },
+    "columban_of_luxeuil_abbot": {
+      "fullname": "Saint Columban, Abbot",
+      "canonizationLevel": "SAINT",
+      "name": "Columban",
+      "titles": ["ABBOT"]
+    },
+    "comgall_of_bangor_abbot": {
+      "fullname": "Saint Comgall, Abbot",
+      "canonizationLevel": "SAINT",
+      "name": "Comgall",
+      "titles": ["ABBOT"]
+    },
+    "commemoration_of_all_the_faithful_departed": {
+      "fullname": "The Commemoration of All the Faithful Departed (All Soul’s Day)",
+      "name": "The Commemoration of All the Faithful Departed"
+    },
+    "companions_martyrs": {
+      "name": "Companions",
+      "titles": ["MARTYR"],
+      "count": "many"
+    },
+    "conleth_of_kildare_bishop": {
+      "fullname": "Saint Conleth, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Conleth",
+      "titles": ["BISHOP"]
+    },
+    "conrad_of_constance_and_gebhard_of_constance_bishops": {
+      "fullname": "Saints Conrad and Gebhard of Constance, Bishops"
+    },
+    "conrad_of_constance_bishop": {
+      "canonizationLevel": "SAINT",
+      "name": "Conrad of Constance",
+      "titles": ["BISHOP"]
+    },
+    "conrad_of_parzham_religious": {
+      "fullname": "Saint Conrad of Parzham, Religious",
+      "canonizationLevel": "SAINT",
+      "name": "Conrad of Parzham",
+      "titles": ["RELIGIOUS"]
+    },
+    "conversion_of_saint_paul_the_apostle": {
+      "fullname": "The Conversion of Saint Paul the Apostle",
+      "name": "Conversion of Saint Paul the Apostle"
+    },
+    "corbinian_of_freising_bishop": {
+      "fullname": "Saint Corbinian, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Corbinian",
+      "titles": ["BISHOP"]
+    },
+    "cornelius_i_pope": {
+      "canonizationLevel": "SAINT",
+      "name": "Cornelius",
+      "titles": ["POPE", "MARTYR"],
+      "dateOfDeath": "253-06"
+    },
+    "cornelius_i_pope_and_cyprian_of_carthage_bishop_martyrs": {
+      "fullname": "Saints Cornelius, Pope, and Cyprian, Bishop, Martyrs"
+    },
+    "cosmas_of_cilicia_and_damian_of_cilicia_martyrs": {
+      "fullname": "Saints Cosmas and Damian, Martyrs"
+    },
+    "cosmas_of_cilicia_martyr": {
+      "canonizationLevel": "SAINT",
+      "name": "Cosmas",
+      "titles": ["MARTYR"]
+    },
+    "cunigunde_of_luxembourg": {
+      "canonizationLevel": "SAINT",
+      "name": "Cunigunde"
+    },
+    "cuthbert_of_lindisfarne_bishop": {
+      "fullname": "Saint Cuthbert, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Cuthbert",
+      "titles": ["BISHOP"]
+    },
+    "cyprian_of_carthage_bishop": {
+      "canonizationLevel": "SAINT",
+      "name": "Cornelius",
+      "titles": ["BISHOP", "MARTYR"],
+      "dateOfDeath": "258-09-14"
+    },
+    "cyril_constantine_the_philosopher_monk": {
+      "canonizationLevel": "SAINT",
+      "name": "Cyril",
+      "titles": ["MONK"],
+      "dateOfDeath": "869-02-14"
+    },
+    "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop": {
+      "fullname": "Saints Cyril, Monk, and Methodius, Bishop"
+    },
+    "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop_copatrons_of_europe": {
+      "fullname": "Saints Cyril, Monk, and Methodius, Bishop, Copatrons of Europe"
+    },
+    "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop_slavic_missionaries_copatrons_of_europe": {
+      "fullname": "Saints Cyril, Monk, and Methodius, Bishop, Slavic Missionaries, Copatrons of Europe"
+    },
+    "cyril_of_alexandria_bishop": {
+      "fullname": "Saint Cyril of Alexandria, Bishop and Doctor of the Church",
+      "canonizationLevel": "SAINT",
+      "name": "Cyril of Alexandria",
+      "titles": ["BISHOP", "DOCTOR_OF_THE_CHURCH"],
+      "dateOfDeath": 444
+    },
+    "cyril_of_jerusalem_bishop": {
+      "fullname": "Saint Cyril of Jerusalem, Bishop and Doctor of the Church",
+      "canonizationLevel": "SAINT",
+      "name": "Cyril of Jerusalem",
+      "titles": ["BISHOP", "DOCTOR_OF_THE_CHURCH"],
+      "dateOfDeath": 387
+    }
+  }
+}

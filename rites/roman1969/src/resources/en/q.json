@@ -1,0 +1,15 @@
+{
+  "locale": "en",
+  "letter": "q",
+  "items": {
+    "queenship_of_the_blessed_virgin_mary": {
+      "fullname": "The Queenship of the Blessed Virgin Mary"
+    },
+    "quirinus_of_sescia_bishop": {
+      "fullname": "Saint Quirinus of Sescia, Bishop and Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Quirinus of Sescia",
+      "titles": ["BISHOP", "MARTYR"]
+    }
+  }
+}

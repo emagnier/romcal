@@ -1,0 +1,171 @@
+{
+  "locale": "de",
+  "letter": "o",
+  "items": {
+    "odile_of_alsace_abbess": {
+      "fullname": "Hl. Odilia, Äbtissin"
+    },
+    "odile_of_alsace_abbess_patroness_of_alsace": {
+      "fullname": "Hl. Odilia, Äbtissin, Schutzpatronin des Elsass"
+    },
+    "odoric_of_pordenone_priest": {
+      "fullname": "Sel. Odorich von Pordenone, Priester"
+    },
+    "olaf_ii_of_norway_martyr": {
+      "fullname": "Hl. Olaf II., Märtyrer"
+    },
+    "oleksiy_zarytskyi_priest": {
+      "fullname": "Sel. Oleksiy Zarytskyi, Priester und Märtyrer"
+    },
+    "olga_of_kiev": {
+      "fullname": "Hl. Olga"
+    },
+    "oliver_plunket_bishop": {
+      "fullname": "Hl. Oliver Plunket, Bischof und Märtyrer"
+    },
+    "otteran_of_iona_monk": {
+      "fullname": "Hl. Otteran, Mönch"
+    },
+    "otto_of_bamberg_bishop": {
+      "fullname": "Hl. Otto von Bamberg, Bischof"
+    },
+    "our_lady_help_of_christians": {
+      "fullname": "Maria, Hilfe der Christen"
+    },
+    "our_lady_mediatrix_of_all_grace": {
+      "fullname": "Maria, Mittlerin aller Gnaden"
+    },
+    "our_lady_mother_of_christian_unity": {
+      "fullname": "Maria, Mutter der christlichen Einheit"
+    },
+    "our_lady_mother_of_divine_providence_patroness_of_puerto_rico": {
+      "fullname": "Maria, Mutter der göttlichen Vorsehung, Schutzpatronin von Puerto Rico"
+    },
+    "our_lady_of_angels_patroness_of_costa_rica": {
+      "fullname": "Unsere Liebe Frau von den Engeln, Schutzpatronin von Costa Rica"
+    },
+    "our_lady_of_aparecida_patroness_of_brazil": {
+      "fullname": "Unsere Liebe Frau von Aparecida, Schutzpatronin Brasiliens"
+    },
+    "our_lady_of_bethlehem": {
+      "fullname": "Unsere Liebe Frau von Bethlehem"
+    },
+    "our_lady_of_china": {
+      "fullname": "Unsere Liebe Frau von China"
+    },
+    "our_lady_of_czestochowa": {
+      "fullname": "Unsere Liebe Frau von Tschenstochau"
+    },
+    "our_lady_of_fatima": {
+      "fullname": "Unsere Liebe Frau von Fatima"
+    },
+    "our_lady_of_fourviere": {
+      "fullname": "Unsere Liebe Frau von Fourvière"
+    },
+    "our_lady_of_good_counsel": {
+      "fullname": "Unsere Liebe Frau vom guten Rat"
+    },
+    "our_lady_of_guadalupe": {
+      "fullname": "Unsere Liebe Frau von Guadalupe"
+    },
+    "our_lady_of_guadalupe_patroness_of_the_americas": {
+      "fullname": "Unsere Liebe Frau von Guadalupe, Schutzpatronin Amerikas"
+    },
+    "our_lady_of_guadalupe_patroness_of_the_philippines": {
+      "fullname": "Unsere Liebe Frau von Guadalupe, Schutzpatronin der Philippinen"
+    },
+    "our_lady_of_hungary_patroness_of_hungary": {
+      "fullname": "Unsere Liebe Frau von Ungarn, Schutzpatronin Ungarns"
+    },
+    "our_lady_of_itati": {
+      "fullname": "Unsere Liebe Frau von Itatí"
+    },
+    "our_lady_of_knock": {
+      "fullname": "Unsere Liebe Frau von Knock"
+    },
+    "our_lady_of_la_salette": {
+      "fullname": "Unsere Liebe Frau von La Salette"
+    },
+    "our_lady_of_lanka": {
+      "fullname": "Unsere Liebe Frau von Lanka"
+    },
+    "our_lady_of_lebanon": {
+      "fullname": "Unsere Liebe Frau vom Libanon"
+    },
+    "our_lady_of_loreto": {
+      "fullname": "Unsere Liebe Frau von Loreto"
+    },
+    "our_lady_of_lourdes": {
+      "fullname": "Unsere Liebe Frau von Lourdes"
+    },
+    "our_lady_of_lujan_patroness_of_argentina": {
+      "fullname": "Unsere Liebe Frau von Luján, Schutzpatronin Argentiniens"
+    },
+    "our_lady_of_madhu": {
+      "fullname": "Unsere Liebe Frau von Madhu"
+    },
+    "our_lady_of_marija_bistrica": {
+      "fullname": "Unsere Liebe Frau von Marija Bistrica"
+    },
+    "our_lady_of_mercy": {
+      "fullname": "Unsere Liebe Frau der Barmherzigkeit"
+    },
+    "our_lady_of_mount_carmel": {
+      "fullname": "Unsere Liebe Frau vom Berge Karmel"
+    },
+    "our_lady_of_mount_carmel_mother_and_queen_of_chile": {
+      "fullname": "Unsere Liebe Frau vom Berge Karmel, Mutter und Königin von Chile"
+    },
+    "our_lady_of_perpetual_help": {
+      "fullname": "Unsere Liebe Frau von der immerwährenden Hilfe"
+    },
+    "our_lady_of_sorrows": {
+      "fullname": "Unsere Liebe Frau von den Schmerzen"
+    },
+    "our_lady_of_sorrows_patroness_of_slovakia": {
+      "fullname": "Unsere Liebe Frau von den Schmerzen, Schutzpatronin der Slowakei"
+    },
+    "our_lady_of_the_discovery_of_the_hidden_christians": {
+      "fullname": "Unsere Liebe Frau von der Entdeckung der verborgenen Christen"
+    },
+    "our_lady_of_the_gate_of_dawn": {
+      "fullname": "Unsere Liebe Frau vom Tor der Morgenröte"
+    },
+    "our_lady_of_the_miraculous_medal": {
+      "fullname": "Unsere Liebe Frau von der Wundertätigen Medaille"
+    },
+    "our_lady_of_the_pillar": {
+      "fullname": "Unsere Liebe Frau von der Säule"
+    },
+    "our_lady_of_the_rosary": {
+      "fullname": "Unsere Liebe Frau vom Rosenkranz"
+    },
+    "our_lady_of_the_valley": {
+      "fullname": "Unsere Liebe Frau vom Tal"
+    },
+    "our_lady_of_vladimir": {
+      "fullname": "Unsere Liebe Frau von Wladimir"
+    },
+    "our_lady_of_walsingham": {
+      "fullname": "Unsere Liebe Frau von Walsingham"
+    },
+    "our_lady_queen_of_peace": {
+      "fullname": "Unsere Liebe Frau, Königin des Friedens"
+    },
+    "our_lady_queen_of_poland": {
+      "fullname": "Unsere Liebe Frau, Königin von Polen"
+    },
+    "our_lady_refuge_of_sinners": {
+      "fullname": "Unsere Liebe Frau, Zuflucht der Sünder"
+    },
+    "our_lord_jesus_christ_king_of_the_universe": {
+      "fullname": "Christkönigssonntag"
+    },
+    "our_lord_jesus_christ_the_eternal_high_priest": {
+      "fullname": "Unser Herr Jesus Christus, der ewige Hohepriester"
+    },
+    "our_lord_of_miracles": {
+      "fullname": "Unser Herr der Wunder"
+    }
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "locale": "de",
+  "letter": "i",
+  "items": {
+    "ignatius_de_azevedo_priest_and_companions_martyrs": {
+      "fullname": "Sel. Ignatius von Azevedo, Priester, und Gefährten, Märtyrer"
+    },
+    "ignatius_falzon": {
+      "fullname": "Sel. Ignatius Falzon"
+    },
+    "ignatius_of_antioch_bishop": {
+      "fullname": "Hl. Ignatius von Antiochien, Bischof und Märtyrer"
+    },
+    "ignatius_of_loyola_priest": {
+      "fullname": "Hl. Ignatius von Loyola, Priester"
+    },
+    "ildephonsus_of_toledo_bishop": {
+      "fullname": "Hl. Ildephonsus von Toledo, Bischof"
+    },
+    "illtud_the_knight_abbot": {
+      "fullname": "Hl. Illtud, Abt"
+    },
+    "immaculate_conception_of_the_blessed_virgin_mary": {
+      "fullname": "Hochfest der ohne Erbsünde empfangenen Jungfrau und Gottesmutter Maria"
+    },
+    "immaculate_conception_of_the_blessed_virgin_mary_patroness_of_the_philippines": {
+      "fullname": "Die Unbefleckte Empfängnis der seligen Jungfrau Maria, Schutzpatronin der Philippinen"
+    },
+    "immaculate_conception_of_the_blessed_virgin_mary_patroness_of_the_usa": {
+      "fullname": "Die Unbefleckte Empfängnis der seligen Jungfrau Maria, Schutzpatronin der USA"
+    },
+    "immaculate_heart_of_mary": {
+      "fullname": "Das Unbefleckte Herz Mariä"
+    },
+    "innocent_v_pope": {
+      "fullname": "Sel. Innozenz V., Papst"
+    },
+    "innocent_xi_pope": {
+      "fullname": "Sel. Innozenz XI., Papst"
+    },
+    "irenaeus_of_lyon_bishop": {
+      "fullname": "Hl. Irenäus, Bischof, Märtyrer und Kirchenlehrer"
+    },
+    "irenaeus_of_lyon_bishop_patron_of_the_archdiocese_of_lyon_and_companions_martyrs": {
+      "fullname": "Hl. Irenäus, Bischof und Kirchenlehrer, Schutzpatron der Erzdiözese Lyon, und Gefährten, Märtyrer"
+    },
+    "irene_of_macedonia": {
+      "fullname": "Hl. Irene"
+    },
+    "irish_martyrs": {
+      "fullname": "Irische Märtyrer"
+    },
+    "isabelle_of_france_virgin": {
+      "fullname": "Sel. Isabelle von Frankreich, Jungfrau"
+    },
+    "isidore_of_seville_bishop": {
+      "fullname": "Hl. Isidor, Bischof und Kirchenlehrer"
+    },
+    "isidore_the_farmer": {
+      "fullname": "Hl. Isidor der Bauer"
+    },
+    "istvan_sandor_religious": {
+      "fullname": "Sel. István Sándor, Ordensmann und Märtyrer"
+    },
+    "ita_of_killeedy_virgin": {
+      "fullname": "Hl. Ita, Jungfrau"
+    },
+    "ivan_merz": {
+      "fullname": "Sel. Ivan Merz"
+    },
+    "ivo_of_kermartin_priest": {
+      "fullname": "Hl. Ivo, Priester"
+    }
+  }
+}

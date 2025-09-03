@@ -1,0 +1,52 @@
+{
+  "locale": "fr",
+  "letter": "g",
+  "items": {
+    "gall_of_switzerland_abbot": {
+      "fullname": "Saint Gall, abbé et missionnaire († 641 ou 646)"
+    },
+    "gaud_of_evreux_bishop": {
+      "fullname": "Saint Gaud, évêque († v. 491)",
+      "sources": ["mr_fr_1982_ed2_coutances"]
+    },
+    "genevieve_of_paris_virgin": {
+      "fullname": "Sainte Geneviève, vierge († 500)"
+    },
+    "george_of_lydda_martyr": {
+      "fullname": "Saint Georges, martyr († 303)"
+    },
+    "george_of_lydda_martyr_patron_of_england": {
+      "fullname": "Saint Georges, martyr et patron de l’Angleterre († 303)"
+    },
+    "germain_of_paris_bishop": {
+      "fullname": "Saint Germain, évêque de Paris († 576)"
+    },
+    "germaine_cousin_virgin": {
+      "fullname": "Sainte Germaine Cousin, vierge († 1601)",
+      "sources": ["mr_fr_1974_ed1_region_apostolique_du_midi"]
+    },
+    "germanus_of_normandy_bishop": {
+      "fullname": "Saint Germain de la Mer, évêque et martyr († 480)",
+      "sources": ["mr_fr_1982_ed2_coutances"]
+    },
+    "gertrude_of_nivelles_abbess": {
+      "fullname": "Sainte Gertrude de Nivelles, abbesse († 659)"
+    },
+    "gertrude_the_great_virgin": {
+      "fullname": "Sainte Gertrude, vierge moniale († 1301)"
+    },
+    "gregory_i_the_great_pope": {
+      "fullname": "Saint Grégoire le Grand, pape et docteur de l’Église († 604)"
+    },
+    "gregory_of_narek_abbot": {
+      "fullname": "Saint Grégoire de Narek, abbé et docteur de l’Église"
+    },
+    "gregory_vii_pope": {
+      "fullname": "Saint Grégoire VII, pape († 1085)"
+    },
+    "gregory_x_pope": {
+      "fullname": "Bienheureux Grégoire X, pape († 1276)",
+      "sources": ["mr_fr_2014_ed2_lyon"]
+    }
+  }
+}

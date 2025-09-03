@@ -1,0 +1,33 @@
+{
+  "locale": "ta",
+  "letter": "k",
+  "items": {
+    "kateri_tekakwitha_virgin": {
+      "fullname": "புனித காதேரி தெகவிதா - கன்னி"
+    },
+    "katharine_drexel_virgin": {
+      "fullname": "புனித கத்தெரின் ட்ரெக்செல் - கன்னி"
+    },
+    "kentigern_of_scotland_bishop": {
+      "fullname": "புனித கெண்டிகெர்ன் - ஆயர்"
+    },
+    "kevin_of_glendalough_abbot": {
+      "fullname": "புனித கெவின் - மடாதிபதி"
+    },
+    "kieran_of_saigir_bishop": {
+      "fullname": "புனித கீரன் - ஆயர்"
+    },
+    "kilian_of_wurzburg_bishop": {
+      "fullname": "புனித கிலியன் - ஆயர், மறைசாட்சி"
+    },
+    "kilian_of_wurzburg_bishop_and_companions_martyrs": {
+      "fullname": "புனித கிலியன் - ஆயர், தோழர்கள், மறைசாட்சி"
+    },
+    "kinga_of_poland_virgin": {
+      "fullname": "புனித கிங்கா - கன்னி"
+    },
+    "kuriakose_elias_of_the_holy_family_chavara_priest": {
+      "fullname": "திருக்குடும்பத்தின் புனித குரியாகோஸ் எலியாஸ் சாவாரா - அருட்பணியாளர்"
+    }
+  }
+}

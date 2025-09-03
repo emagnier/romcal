@@ -1,0 +1,135 @@
+{
+  "locale": "de",
+  "metadata": {
+    "seasons": {
+      "advent": {
+        "season": "Advent",
+        "weekday": "$t(weekdays:{{dow}}, capitalize) der $t(ordinals:{{week}}) Adventswoche",
+        "sunday": "$t(ordinals:{{week}}, capitalize) Advent",
+        "privileged_weekday": "$t(months:11, capitalize) {{day}}"
+      },
+      "christmas_time": {
+        "season": "Weihnachten",
+        "day": "$t(weekdays:{{dow}}, capitalize) of Christmas Time",
+        "octave": "$t(ordinals:{{count}}, capitalize) Tag der Weihnachtsoktav",
+        "second_sunday_after_christmas": "2. Sonntag nach Weihnachten",
+        "before_epiphany": "$t(months:0, capitalize) {{day}}",
+        "after_epiphany": "$t(weekdays:{{dow}}, capitalize) nach Erscheinung des Herrn"
+      },
+      "ordinary_time": {
+        "season": "Zeit im Jahreskreis",
+        "weekday": "$t(weekdays:{{dow}}, capitalize) der $t(ordinals:{{week}}) Woche im Jahreskreis",
+        "sunday": "$t(ordinals:{{week}}, capitalize) Sonntag im Jahreskreis"
+      },
+      "lent": {
+        "season": "Fastenzeit",
+        "weekday": "$t(weekdays:{{dow}}, capitalize) der $t(ordinals:{{week}}) Fastenwoche",
+        "sunday": "$t(ordinals:{{week}}, capitalize) Fastensonntag",
+        "day_after_ash_wed": "$t(weekdays:{{dow}}, capitalize) nach Aschermittwoch",
+        "holy_week_day": "$t(weekdays:{{dow}}, capitalize) der Karwoche"
+      },
+      "paschal_triduum": {
+        "season": "Drei Österlichen Tage"
+      },
+      "easter_time": {
+        "season": "Osterzeit",
+        "weekday": "$t(weekdays:{{dow}}, capitalize) der $t(ordinals:{{week}}) Osterwoche",
+        "sunday": "$t(ordinals:{{week}}, capitalize) Sonntag der Osterzeit",
+        "octave": "$t(weekdays:{{dow}}, capitalize) der Osteroktav"
+      }
+    },
+    "periods": {
+      "epiphany": "Epiphanie",
+      "holy_week": "Karwoche"
+    },
+    "ranks": {
+      "solemnity": "Hochfest",
+      "sunday": "Sonntag",
+      "feast": "Fest",
+      "memorial": "Gebotener Gedenktag",
+      "optional_memorial": "Nichtgebotener Gedenktag",
+      "weekday": "Wochentag"
+    },
+    "cycles": {
+      "proper_of_time": "Proper of Time",
+      "proper_of_saints": "Proper of Saints",
+      "sunday_year_a": "Lesejahr A",
+      "sunday_year_b": "Lesejahr B",
+      "sunday_year_c": "Lesejahr C",
+      "weekday_year_1": "Zyklus I",
+      "weekday_year_2": "Zyklus II",
+      "psalter_week_1": "I. Woche",
+      "psalter_week_2": "II. Woche",
+      "psalter_week_3": "III. Woche",
+      "psalter_week_4": "IV. Woche"
+    },
+    "weekdays": {
+      "0": "Sonntag",
+      "1": "Montag",
+      "2": "Dienstag",
+      "3": "Mittwoch",
+      "4": "Donnerstag",
+      "5": "Freitag",
+      "6": "Samstag"
+    },
+    "months": {
+      "0": "Januar",
+      "1": "Februar",
+      "2": "März",
+      "3": "April",
+      "4": "Mai",
+      "5": "Juni",
+      "6": "Juli",
+      "7": "August",
+      "8": "September",
+      "9": "Oktober",
+      "10": "November",
+      "11": "Dezember"
+    },
+    "colors": {
+      "black": "schwarz",
+      "gold": "gold",
+      "green": "grün",
+      "purple": "violett",
+      "red": "rot",
+      "rose": "rosa",
+      "white": "weiß"
+    },
+    "ordinals": {
+      "1": "1.",
+      "2": "2.",
+      "3": "3.",
+      "4": "4.",
+      "5": "5.",
+      "6": "6.",
+      "7": "7.",
+      "8": "8.",
+      "9": "9.",
+      "10": "10.",
+      "11": "11.",
+      "12": "12.",
+      "13": "13.",
+      "14": "14.",
+      "15": "15.",
+      "16": "16.",
+      "17": "17.",
+      "18": "18.",
+      "19": "19.",
+      "20": "20.",
+      "21": "21.",
+      "22": "22.",
+      "23": "23.",
+      "24": "24.",
+      "25": "25.",
+      "26": "26.",
+      "27": "27.",
+      "28": "28.",
+      "29": "29.",
+      "30": "30",
+      "31": "31.",
+      "32": "32.",
+      "33": "33.",
+      "34": "34."
+    }
+  }
+}

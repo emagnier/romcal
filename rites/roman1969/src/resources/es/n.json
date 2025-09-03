@@ -1,0 +1,27 @@
+{
+  "locale": "es",
+  "letter": "n",
+  "items": {
+    "nativity_of_john_the_baptist": {
+      "fullname": "Nacimiento de Juan Bautista"
+    },
+    "nativity_of_the_blessed_virgin_mary": {
+      "fullname": "Nacimiento de la Santísima Virgen María"
+    },
+    "nativity_of_the_lord": {
+      "fullname": "Navidad"
+    },
+    "nereus_of_terracina_and_achilleus_of_terracina_martyrs": {
+      "fullname": "Santos Nereo y Aquileo, mártires"
+    },
+    "nicholas_barre_priest": {
+      "fullname": "Beato Nicolás Barré, presbítero"
+    },
+    "nicholas_of_myra_bishop": {
+      "fullname": "San Nicolás, obispo"
+    },
+    "norbert_of_xanten_bishop": {
+      "fullname": "San Norberto, obispo"
+    }
+  }
+}

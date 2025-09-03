@@ -1,0 +1,15 @@
+{
+  "locale": "la",
+  "letter": "u",
+  "items": {
+    "ulrich_of_augsburg_bishop": {
+      "fullname": "S. Udalrici Augustensis, episcopi"
+    },
+    "urban_i_pope": {
+      "fullname": "S. Urbani I, papæ"
+    },
+    "ursula_of_cologne_and_companions_virgins": {
+      "fullname": "Ss. Ursulæ Coloniensis et sociorum, virginum et martyrum"
+    }
+  }
+}

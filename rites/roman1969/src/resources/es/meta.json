@@ -1,0 +1,157 @@
+{
+  "locale": "es",
+  "metadata": {
+    "seasons": {
+      "advent": {
+        "season": "Adviento",
+        "weekday": "$t(weekdays:{{dow}}, capitalize) de la {{week}}ª semana de Adviento",
+        "sunday": "{{week}}º domingo de Adviento",
+        "privileged_weekday": "{{day}} de $t(months:11)"
+      },
+      "christmas_time": {
+        "season": "Navidad",
+        "day": "$t(weekdays:{{dow}}, capitalize) de Navidad",
+        "octave": "{{count}}º día de la Octava de Navidad",
+        "second_sunday_after_christmas": "2º domingo de Navidad",
+        "before_epiphany": "{{day}} de $t(months:0)",
+        "after_epiphany": "$t(weekdays:{{dow}}, capitalize) después de la Epifanía"
+      },
+      "ordinary_time": {
+        "season": "Tiempo Ordinario",
+        "weekday": "$t(weekdays:{{dow}}, capitalize) de la {{week}}ª semana del Tiempo Ordinario",
+        "sunday": "{{week}}º domingo del Tiempo Ordinario"
+      },
+      "lent": {
+        "season": "Cuaresma",
+        "weekday": "$t(weekdays:{{dow}}, capitalize) de la {{week}}ª semana de Cuaresma",
+        "sunday": "{{week}}º domingo de Cuaresma",
+        "day_after_ash_wed": "$t(weekdays:{{dow}}, capitalize) después de Miércoles de Ceniza",
+        "holy_week_day": "$t(weekdays:{{dow}}, capitalize) de Semana Santa"
+      },
+      "paschal_triduum": {
+        "season": "Triduo Pascual"
+      },
+      "easter_time": {
+        "season": "Pascua",
+        "weekday": "$t(weekdays:{{dow}}, capitalize) de la {{week}}ª semana de Pascua",
+        "sunday": "{{week}}º domingo de Pascua",
+        "octave": "$t(weekdays:{{dow}}, capitalize) día de la Octava de Pascua"
+      }
+    },
+    "periods": {
+      "epiphany": "Epifanía",
+      "holy_week": "Semana Santa"
+    },
+    "ranks": {
+      "solemnity": "solemnidades",
+      "sunday": "Domingo",
+      "feast": "fiesta",
+      "memorial": "memoria",
+      "optional_memorial": "memoria opcional",
+      "weekday": "ferial"
+    },
+    "cycles": {},
+    "weekdays": {
+      "0": "domingo",
+      "1": "lunes",
+      "2": "martes",
+      "3": "miércoles",
+      "4": "jueves",
+      "5": "viernes",
+      "6": "sábado"
+    },
+    "months": {
+      "0": "enero",
+      "1": "febrero",
+      "2": "marzo",
+      "3": "abril",
+      "4": "mayo",
+      "5": "junio",
+      "6": "julio",
+      "7": "agosto",
+      "8": "septiembre",
+      "9": "octubre",
+      "10": "noviembre",
+      "11": "diciembre"
+    },
+    "colors": {
+      "black": "negro",
+      "gold": "dorado",
+      "green": "verde",
+      "purple": "morado",
+      "red": "rojo",
+      "rose": "rosa",
+      "white": "blanco"
+    },
+    "ordinals": {
+      "1": "primero",
+      "2": "segundo",
+      "3": "tercer",
+      "4": "cuarto",
+      "5": "quinto",
+      "6": "sexto",
+      "7": "séptimo",
+      "8": "octavo",
+      "9": "noveno",
+      "10": "décimo",
+      "11": "undécimo",
+      "12": "duodécimo",
+      "13": "decimotercer",
+      "14": "decimocuarto",
+      "15": "decimoquinto",
+      "16": "decimosexto",
+      "17": "decimoséptimo",
+      "18": "decimoctavo",
+      "19": "decimonoveno",
+      "20": "vigésimo",
+      "21": "vigésimo primero",
+      "22": "vigésimo segundo",
+      "23": "vigésimo tercer",
+      "24": "vigésimo cuarto",
+      "25": "vigésimo quinto",
+      "26": "vigésimo sexto",
+      "27": "vigésimo séptimo",
+      "28": "vigésimo octavo",
+      "29": "vigésimo noveno",
+      "30": "trigésimo",
+      "31": "trigésimo primero",
+      "32": "trigésimo segundo",
+      "33": "trigésimo tercer",
+      "34": "trigésima cuarto",
+      "1_feminine": "primera",
+      "2_feminine": "segunda",
+      "3_feminine": "tercera",
+      "4_feminine": "cuarta",
+      "5_feminine": "quinta",
+      "6_feminine": "sexta",
+      "7_feminine": "séptima",
+      "8_feminine": "octava",
+      "9_feminine": "novena",
+      "10_feminine": "décima",
+      "11_feminine": "undécima",
+      "12_feminine": "duodécima",
+      "13_feminine": "decimotercera",
+      "14_feminine": "decimocuarta",
+      "15_feminine": "decimoquinta",
+      "16_feminine": "decimosexta",
+      "17_feminine": "decimoséptima",
+      "18_feminine": "decimoctava",
+      "19_feminine": "decimonovena",
+      "20_feminine": "vigésima",
+      "21_feminine": "vigésima primera",
+      "22_feminine": "vigésima segunda",
+      "23_feminine": "vigésima tercera",
+      "24_feminine": "vigésima cuarta",
+      "25_feminine": "vigésima quinta",
+      "26_feminine": "vigésima sexta",
+      "27_feminine": "vigésima séptima",
+      "28_feminine": "vigésima octava",
+      "29_feminine": "vigésima novena",
+      "30_feminine": "trigésima",
+      "31_feminine": "trigésima primera",
+      "32_feminine": "trigésima segunda",
+      "33_feminine": "trigésima tercera",
+      "34_feminine": "trigésima cuarta"
+    }
+  }
+}

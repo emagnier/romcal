@@ -1,0 +1,114 @@
+{
+  "locale": "it",
+  "letter": "m",
+  "items": {
+    "madeleine_sophie_barat_virgin": {
+      "fullname": "Santa Maddalena Sofia Barat, vergine"
+    },
+    "marcellinus_of_rome_and_peter_the_exorcist_martyrs": {
+      "fullname": "Santi Marcellino e Pietro, martiri"
+    },
+    "marcellus_of_paris_bishop": {
+      "fullname": "San Marcello di Parigi, vescovo"
+    },
+    "margaret_mary_alacoque_virgin": {
+      "fullname": "Santa Margherita Maria Alacoque, vergine"
+    },
+    "margaret_of_scotland": {
+      "fullname": "Santa Margherita di Scozia"
+    },
+    "maria_goretti_virgin": {
+      "fullname": "Santa Maria Goretti, vergine e martire"
+    },
+    "marie_eugenie_of_jesus_milleret_de_brou_virgin": {
+      "fullname": "Santa Maria Eugenia di Gesù Milleret de Brou, vergine e fondatrice"
+    },
+    "mark_evangelist": {
+      "fullname": "San Marco, evangelista"
+    },
+    "martha_of_bethany_mary_of_bethany_and_lazarus_of_bethany": {
+      "fullname": "Santa Marta, Maria e Lazzaro"
+    },
+    "martin_de_porres_religious": {
+      "fullname": "San Martino di Porres, religioso"
+    },
+    "martin_i_pope": {
+      "fullname": "San Martino I, papa e martire"
+    },
+    "martin_of_tours_bishop": {
+      "fullname": "San Martino di Tours, vescovo"
+    },
+    "mary_magdalene": {
+      "fullname": "Santa Maria Maddalena"
+    },
+    "mary_magdalene_de_pazzi_virgin": {
+      "fullname": "Santa Maria Maddalena de’ Pazzi, vergine"
+    },
+    "mary_mother_of_god": {
+      "fullname": "Maria santissima Madre di Dio"
+    },
+    "mary_mother_of_the_church": {
+      "fullname": "Beata Vergine Maria Madre della Chiesa"
+    },
+    "mary_of_the_incarnation_barbara_acarie_religious": {
+      "fullname": "Beata Maria dell’Incarnazione Barbara Acarie, religiosa"
+    },
+    "mary_of_the_incarnation_marie_guyart_religious": {
+      "fullname": "Santa Maria dell’Incarnazione Maria Guyart, religiosa"
+    },
+    "mary_of_the_providence_eugenie_smet_virgin": {
+      "fullname": "Beata Maria della Provvidenza Eugènia Smet, vergine"
+    },
+    "mary_of_the_sacred_heart_sophie_therese_de_soubiran_la_louviere_virgin": {
+      "fullname": "Beata Maria Teresa de Soubiran La Louvière, vergine"
+    },
+    "maternus_of_cologne_bishop": {
+      "fullname": "San Materno, vescovo"
+    },
+    "maternus_of_cologne_valerius_of_trier_and_eucharius_of_trier_bishops": {
+      "fullname": "Santi Materno, Valerio e Eucario, vescovi"
+    },
+    "matthew_apostle": {
+      "fullname": "San Matteo, apostolo ed evangelista"
+    },
+    "matthias_apostle": {
+      "fullname": "San Mattia, apostolo"
+    },
+    "maximilian_mary_raymund_kolbe_priest": {
+      "fullname": "San Massimiliano Maria Kolbe, sacerdote e martire"
+    },
+    "mederic_of_autun_and_droctoveus_of_autun_abbots": {
+      "fullname": "Santi Mederico e Drottoveo, abati"
+    },
+    "michael_gabriel_and_raphael_archangels": {
+      "fullname": "Santi Arcangeli Michele, Gabriele e Raffaele"
+    },
+    "modestus_andlauer_and_andrew_bauer_martyrs": {
+      "fullname": "San Modesto Andlauer e Andrea Bauer, martiri"
+    },
+    "modestus_andlauer_martyr": {
+      "fullname": "San Modesto Andlauer, martire"
+    },
+    "monica_of_hippo": {
+      "fullname": "Santa Monica"
+    },
+    "morand_of_cluny_monk": {
+      "fullname": "San Morando, monaco"
+    },
+    "most_holy_body_and_blood_of_christ": {
+      "fullname": "Santissimo Corpo e Sangue di Cristo"
+    },
+    "most_holy_name_of_jesus": {
+      "fullname": "Santissimo Nome di Gesú"
+    },
+    "most_holy_name_of_mary": {
+      "fullname": "Santissimo Nome di Maria"
+    },
+    "most_holy_trinity": {
+      "fullname": "Santissima Trinitá"
+    },
+    "most_sacred_heart_of_jesus": {
+      "fullname": "Sacratissimo Cuore di Gesù"
+    }
+  }
+}

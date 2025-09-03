@@ -1,0 +1,33 @@
+{
+  "locale": "la",
+  "letter": "k",
+  "items": {
+    "kateri_tekakwitha_virgin": {
+      "fullname": "S. Catharinæ Tekakwitha, virginis"
+    },
+    "katharine_drexel_virgin": {
+      "fullname": "S. Catharinæ Mariæ Drexel, virginis"
+    },
+    "kentigern_of_scotland_bishop": {
+      "fullname": "S. Kentigerni, episcopi"
+    },
+    "kevin_of_glendalough_abbot": {
+      "fullname": "S. Cœmgeni, abbatis"
+    },
+    "kieran_of_saigir_bishop": {
+      "fullname": "S. Kyarani, episcopi"
+    },
+    "kilian_of_wurzburg_bishop": {
+      "fullname": "S. Kiliani, episcopi et martyris"
+    },
+    "kilian_of_wurzburg_bishop_and_companions_martyrs": {
+      "fullname": "Ss. Kiliani, episcopi, et sociorum, martyrum"
+    },
+    "kinga_of_poland_virgin": {
+      "fullname": "S. Cunegundæ, virginis"
+    },
+    "kuriakose_elias_of_the_holy_family_chavara_priest": {
+      "fullname": "S. Kuriakose Eliæ Chavara a Sacra Familia Chavara, presbyteri"
+    }
+  }
+}
