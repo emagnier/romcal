@@ -1,4 +1,5 @@
 {
+  "$schema": "../../../types/calendar-def.json",
   "id": "france__angers",
   "metadata": {
     "jurisdiction": "ECCLESIASTICAL",
@@ -8,7 +9,7 @@
     "Europe",
     "France"
   ],
-  "inputs": {
+  "dayDefinitions": {
     "maurus_of_glanfeuil_abbot": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {

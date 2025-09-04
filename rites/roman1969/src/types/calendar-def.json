@@ -1,0 +1,150 @@
+{
+  "$id": "CalendarType",
+  "$ref": "#/definitions/CalendarDef",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "CalendarDef": {
+      "additionalProperties": false,
+      "description": "Core interface defining a calendar definition.\n\nA calendar definition contains all the necessary information to create a liturgical calendar, including its metadata, parent relationships, and liturgical day definitions.\n\nThis interface is used to define the structure of JSON calendar files in the project.",
+      "properties": {
+        "$schema": {
+          "description": "The JSON schema for the calendar definition",
+          "type": "string"
+        },
+        "dayDefinitions": {
+          "$ref": "#/definitions/DayDefinitions",
+          "description": "Collection of liturgical day definitions specific to this calendar. These definitions will be merged with those from parent calendars. Each key is a liturgical day ID, and each value contains the day's configuration."
+        },
+        "id": {
+          "$ref": "#/definitions/CalendarId",
+          "description": "Unique identifier for this calendar definition. Follows the naming convention: `snake_case` with double underscores for hierarchy."
+        },
+        "metadata": {
+          "$ref": "#/definitions/CalendarMetadata",
+          "description": "Metadata describing the type and jurisdiction of this calendar"
+        },
+        "parentCalendarIds": {
+          "description": "Optional array of parent calendar IDs that this calendar inherits from. If not provided, this calendar is considered a root calendar (e.g., GENERAL_ROMAN).",
+          "items": {
+            "$ref": "#/definitions/CalendarId"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "$schema",
+        "id",
+        "metadata",
+        "dayDefinitions"
+      ],
+      "type": "object"
+    },
+    "CalendarId": {
+      "description": "Unique identifier for calendar definitions and liturgical day definitions.\n\nCalendar IDs follow the naming convention: `snake_case` with double underscores (`__`) to separate hierarchy levels. Examples:\n- `france` (country)\n- `france__strasbourg` (diocese)\n- `france__strasbourg__city` (city within diocese)\n- `asia__russia` (country with region prefix)",
+      "examples": [
+        "france__strasbourg",
+        "europe__russia"
+      ],
+      "type": "string"
+    },
+    "CalendarJurisdiction": {
+      "description": "Enumeration of calendar jurisdictions that define the authority governing the calendar.\n\nThis determines whether the calendar is governed by Church authority or civil authority.",
+      "enum": [
+        "ECCLESIASTICAL",
+        "CIVIL"
+      ],
+      "type": "string"
+    },
+    "CalendarMetadata": {
+      "additionalProperties": false,
+      "description": "Metadata describing the basic properties of a calendar definition.\n\nThis information helps categorize and understand the scope of a calendar, and is used in the JSON calendar definitions to specify the entity type.",
+      "properties": {
+        "jurisdiction": {
+          "$ref": "#/definitions/CalendarJurisdiction",
+          "description": "The jurisdiction that governs this calendar"
+        },
+        "type": {
+          "$ref": "#/definitions/CalendarType",
+          "description": "The type of calendar, indicating its scope and hierarchy level"
+        }
+      },
+      "required": [
+        "type",
+        "jurisdiction"
+      ],
+      "type": "object"
+    },
+    "CalendarType": {
+      "description": "Enumeration of calendar types that define the scope and hierarchy of a calendar.\n\nThe calendar system follows a hierarchical structure: Region → Country → Diocese → City/Parish\n\nThese types are used to categorize calendars from the most general (GENERAL_ROMAN) to the most specific (LOCAL_COMMUNITY).",
+      "enum": [
+        "GENERAL_ROMAN",
+        "COUNTRY",
+        "REGION",
+        "DIOCESE",
+        "CITY",
+        "PARISH",
+        "GENERAL_COMMUNITY",
+        "REGIONAL_COMMUNITY",
+        "LOCAL_COMMUNITY",
+        "OTHER"
+      ],
+      "type": "string"
+    },
+    "DayDefinition": {
+      "additionalProperties": false,
+      "description": "A liturgical day definition.",
+      "properties": {
+        "precedence": {
+          "$ref": "#/definitions/Precedence"
+        }
+      },
+      "required": [
+        "precedence"
+      ],
+      "type": "object"
+    },
+    "DayDefinitions": {
+      "additionalProperties": {
+        "$ref": "#/definitions/DayDefinition"
+      },
+      "description": "Collection of liturgical day definitions specific to this calendar.",
+      "propertyNames": {
+        "description": "Unique identifier for a liturgical day definition."
+      },
+      "type": "object"
+    },
+    "Precedence": {
+      "description": "List of the precedence of the Liturgical Days (UNLY #59) Order is important: higher precedence type first, lower precedence type at the end.",
+      "enum": [
+        "TRIDUUM_1",
+        "PROPER_OF_TIME_SOLEMNITY_2",
+        "PRIVILEGED_SUNDAY_2",
+        "ASH_WEDNESDAY_2",
+        "WEEKDAY_OF_HOLY_WEEK_2",
+        "WEEKDAY_OF_EASTER_OCTAVE_2",
+        "GENERAL_SOLEMNITY_3",
+        "COMMEMORATION_OF_ALL_THE_FAITHFUL_DEPARTED_3",
+        "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A",
+        "PROPER_SOLEMNITY__DEDICATION_OF_THE_OWN_CHURCH_4B",
+        "PROPER_SOLEMNITY__TITLE_OF_THE_OWN_CHURCH_4C",
+        "PROPER_SOLEMNITY__TITLE_OR_FOUNDER_OR_PRIMARY_PATRON_OF_A_RELIGIOUS_ORG_4D",
+        "GENERAL_LORD_FEAST_5",
+        "UNPRIVILEGED_SUNDAY_6",
+        "GENERAL_FEAST_7",
+        "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_DIOCESE_8A",
+        "PROPER_FEAST__DEDICATION_OF_THE_CATHEDRAL_CHURCH_8B",
+        "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C",
+        "PROPER_SOLEMNITY__TITLE_OR_FOUNDER_OR_PRIMARY_PATRON_OF_A_RELIGIOUS_ORG_8D",
+        "PROPER_FEAST__TO_AN_INDIVIDUAL_CHURCH_8E",
+        "PROPER_FEAST_8F",
+        "PRIVILEGED_WEEKDAY_9",
+        "GENERAL_MEMORIAL_10",
+        "PROPER_MEMORIAL__SECOND_PATRON_11A",
+        "PROPER_MEMORIAL_11B",
+        "WEEKDAY_13",
+        "OPTIONAL_MEMORIAL_12"
+      ],
+      "type": "string"
+    }
+  }
+}
