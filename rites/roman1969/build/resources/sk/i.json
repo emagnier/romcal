@@ -1,0 +1,72 @@
+{
+  "locale": "sk",
+  "letter": "i",
+  "items": {
+    "ignatius_de_azevedo_priest_and_companions_martyrs": {
+      "fullname": "Blahoslaveného Ignáca de Azevedo, kňaza a spoločníkov, mučeníkov"
+    },
+    "ignatius_falzon": {
+      "fullname": "Blahoslaveného Ignáca Falzona"
+    },
+    "ignatius_of_antioch_bishop": {
+      "fullname": "Svätého Ignáca Antiochijského, biskupa a mučeníka"
+    },
+    "ignatius_of_loyola_priest": {
+      "fullname": "Svätého Ignáca z Loyoly, kňaza"
+    },
+    "ildephonsus_of_toledo_bishop": {
+      "fullname": "Svätého Ildefonza z Toleda, biskupa"
+    },
+    "illtud_the_knight_abbot": {
+      "fullname": "Svätého Illtuda, opáta"
+    },
+    "immaculate_conception_of_the_blessed_virgin_mary": {
+      "fullname": "Nepoškvrnené počatie preblahoslavenej Panny Márie"
+    },
+    "immaculate_conception_of_the_blessed_virgin_mary_patroness_of_the_philippines": {
+      "fullname": "Nepoškvrneného počatia preblahoslavenej Panny Márie, patrónky Filipín"
+    },
+    "immaculate_conception_of_the_blessed_virgin_mary_patroness_of_the_usa": {
+      "fullname": "Nepoškvrnené počatie preblahoslavenej Panny Márie, patrónky USA"
+    },
+    "immaculate_heart_of_mary": {
+      "fullname": "Nepoškvrneného Srdca preblahoslavenej Panny Márie"
+    },
+    "innocent_v_pope": {
+      "fullname": "Blahoslaveného Inocenta V., pápeže"
+    },
+    "innocent_xi_pope": {
+      "fullname": "Blahoslaveného Inocenta XI., pápeža"
+    },
+    "irenaeus_of_lyon_bishop": {
+      "fullname": "Svätého Ireneja, biskupa, mučeníka a učiteľa Cirkvi"
+    },
+    "irene_of_macedonia": {
+      "fullname": "Svätej Ireny"
+    },
+    "irish_martyrs": {
+      "fullname": "Blahoslavených írskych mučeníkov"
+    },
+    "isabelle_of_france_virgin": {
+      "fullname": "Blahoslavenej Izabely Francúzskej, panny"
+    },
+    "isidore_of_seville_bishop": {
+      "fullname": "Svätého Izidora, biskupa a učiteľa Cirkvi"
+    },
+    "isidore_the_farmer": {
+      "fullname": "Svätého Izidora z Madridu, roľníka"
+    },
+    "istvan_sandor_religious": {
+      "fullname": "Blahoslaveného Štefana Šándora, rehoľníka a mučeníka"
+    },
+    "ita_of_killeedy_virgin": {
+      "fullname": "Svätej Ity, panny"
+    },
+    "ivan_merz": {
+      "fullname": "Blahoslaveného Ivana Merza"
+    },
+    "ivo_of_kermartin_priest": {
+      "fullname": "Svätého Iva z Kermartinu, kňaza"
+    }
+  }
+}

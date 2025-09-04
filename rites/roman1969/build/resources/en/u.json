@@ -1,0 +1,56 @@
+{
+  "locale": "en",
+  "letter": "u",
+  "items": {
+    "ulrich_of_augsburg_bishop": {
+      "fullname": "Saint Ulrich of Augsburg, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Ulrich of Augsburg",
+      "titles": ["BISHOP"],
+      "dateOfDeath": "973-7-4"
+    },
+    "urban_i_pope": {
+      "fullname": "Saint Urban I, Pope",
+      "canonizationLevel": "SAINT",
+      "name": "Urban I",
+      "titles": ["POPE", "MARTYR"],
+      "dateOfDeath": {
+        "century": 3
+      }
+    },
+    "urban_ii_pope": {
+      "fullname": "Blessed Urban II, Pope",
+      "canonizationLevel": "BLESSED",
+      "name": "Urban II",
+      "titles": ["POPE"],
+      "dateOfBirth": 1035,
+      "dateOfBirthIsApproximative": true,
+      "dateOfDeath": "1099-07-29",
+      "sources": [
+        "mr_fr_1974_ed1_region_apostolique_du_midi",
+        "https://en.wikipedia.org/wiki/Pope_Urban_II"
+      ]
+    },
+    "urban_v_pope": {
+      "fullname": "Blessed Urban V, Pope",
+      "canonizationLevel": "BLESSED",
+      "name": "Urban V",
+      "titles": ["POPE"],
+      "dateOfBirth": 1310,
+      "dateOfDeath": "1370-12-19",
+      "dateOfBeatification": "1870-05-10",
+      "sources": [
+        "mr_fr_1974_ed1_region_apostolique_du_midi",
+        "https://en.wikipedia.org/wiki/Pope_Urban_V"
+      ]
+    },
+    "ursula_of_cologne_and_companions_virgins": {
+      "fullname": "Saint Ursula and Companions, Virgins and Martyrs"
+    },
+    "ursula_of_cologne_virgin": {
+      "canonizationLevel": "SAINT",
+      "name": "Ursula",
+      "titles": ["VIRGIN", "MARTYR"]
+    }
+  }
+}

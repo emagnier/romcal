@@ -1,0 +1,33 @@
+{
+  "locale": "pt-br",
+  "letter": "h",
+  "items": {
+    "hedwig_of_silesia_religious": {
+      "fullname": "Santa Edviges, religiosa"
+    },
+    "henry_ii_emperor": {
+      "fullname": "Santo Henrique"
+    },
+    "hilary_of_poitiers_bishop": {
+      "fullname": " Santo Hilário, bispo e doutor da Igreja"
+    },
+    "hildegard_of_bingen_abbess": {
+      "fullname": "Santa Hildegarda de Bingen, virgem e doutora da Igreja"
+    },
+    "holy_family_of_jesus_mary_and_joseph": {
+      "fullname": "Sagrada Família"
+    },
+    "holy_guardian_angels": {
+      "fullname": "Santos Anjos da Guarda"
+    },
+    "holy_innocents_martyrs": {
+      "fullname": "Santos Inocentes, mártires"
+    },
+    "holy_saturday": {
+      "fullname": "Sábado Santo"
+    },
+    "holy_thursday": {
+      "fullname": "Quinta-feira Santa"
+    }
+  }
+}

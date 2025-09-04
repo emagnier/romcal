@@ -1,0 +1,60 @@
+{
+  "id": "europe",
+  "metadata": {
+    "jurisdiction": "CIVIL",
+    "type": "REGION"
+  },
+  "parentCalendarIds": [],
+  "inputs": {
+    "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop": {
+      "customLocaleId": "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop_copatrons_of_europe",
+      "precedence": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C",
+      "titles": {
+        "append": [
+          "COPATRON_OF_EUROPE"
+        ]
+      },
+      "commonsDef": "None"
+    },
+    "catherine_of_siena_virgin": {
+      "customLocaleId": "catherine_of_siena_virgin_copatroness_of_europe",
+      "precedence": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C",
+      "titles": {
+        "append": [
+          "COPATRONESS_OF_EUROPE"
+        ]
+      },
+      "commonsDef": "None"
+    },
+    "benedict_of_nursia_abbot": {
+      "customLocaleId": "benedict_of_nursia_abbot_patron_of_europe",
+      "precedence": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C",
+      "titles": {
+        "append": [
+          "PATRON_OF_EUROPE"
+        ]
+      },
+      "commonsDef": "None"
+    },
+    "bridget_of_sweden_religious": {
+      "customLocaleId": "bridget_of_sweden_religious_copatroness_of_europe",
+      "precedence": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C",
+      "titles": {
+        "append": [
+          "COPATRONESS_OF_EUROPE"
+        ]
+      },
+      "commonsDef": "None"
+    },
+    "teresa_benedicta_of_the_cross_stein_virgin": {
+      "customLocaleId": "teresa_benedicta_of_the_cross_stein_virgin_copatroness_of_europe",
+      "precedence": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C",
+      "titles": {
+        "append": [
+          "COPATRONESS_OF_EUROPE"
+        ]
+      },
+      "commonsDef": "None"
+    }
+  }
+}

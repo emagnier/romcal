@@ -1,0 +1,69 @@
+{
+  "locale": "cs",
+  "letter": "r",
+  "items": {
+    "rabanus_maurus_bishop": {
+      "fullname": "Sv. Rabana Maura, biskupa"
+    },
+    "radim_of_gniezno_bishop": {
+      "fullname": "Sv. Radima, biskupa"
+    },
+    "rafqa_pietra_choboq_ar_rayes_virgin": {
+      "fullname": "Sv. Rebeky Petry Choboq Ar-Rayès, panny"
+    },
+    "raphael_chylinski_priest": {
+      "fullname": "Bl. Rafaela Chylińského, kněze"
+    },
+    "raphael_guizar_y_valencia_bishop": {
+      "fullname": "Sv. Rafaela Guízar, biskupa"
+    },
+    "raphael_of_saint_joseph_kalinowski_priest": {
+      "fullname": "Sv. Rafaela od sv. Josefa Kalinowského, kněze"
+    },
+    "raymond_of_penyafort_priest": {
+      "fullname": "Sv. Rajmunda z Peñafortu, kněze"
+    },
+    "remigius_of_reims_bishop": {
+      "fullname": "Sv. Remigia, biskupa"
+    },
+    "richard_gwyn_martyr": {
+      "fullname": "Sv. Richarda Gwyna, mučedníka"
+    },
+    "richard_of_chichester_bishop": {
+      "fullname": "Sv. Richarda z Chichesteru, biskupa"
+    },
+    "richardis_of_swabia_empress": {
+      "fullname": "Sv. Richardy, císařovny"
+    },
+    "rita_of_cascia_religious": {
+      "fullname": "Sv. Rity z Cascie, řeholnice"
+    },
+    "robert_bellarmine_bishop": {
+      "fullname": "Sv. Roberta Bellarmina, biskupa a učitele církve"
+    },
+    "roch_gonzalez_alphonsus_rodriguez_and_john_del_castillo_priests": {
+      "fullname": "Sv. Rocha Gonzáleze, Alfonsa Rodrígueze a Jana del Castillo, kněží a mučedníků"
+    },
+    "roch_of_montpellier": {
+      "fullname": "Sv. Rocha"
+    },
+    "romuald_of_ravenna_abbot": {
+      "fullname": "Sv. Romualda, opata"
+    },
+    "rosalie_jeanne_marie_rendu_virgin": {
+      "fullname": "Bl. Rosalie Rendu, panny"
+    },
+    "rose_of_lima_virgin": {
+      "fullname": "Sv. Růženy z Limy, panny"
+    },
+    "rose_of_lima_virgin_copatroness_of_the_philippines": {
+      "fullname": "Sv. Růženy z Limy, panny a spolupatronky Filipín"
+    },
+    "rose_philippine_duchesne_virgin": {
+      "fullname": "Sv. Růženy Filipíny Duchesne, panny"
+    },
+    "rupert_of_salzburg_and_virgilius_of_salzburg_bishops": {
+      "fullname": "Sv. Ruperta a Virgila ze Salzburgu, biskupů"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "id": "costa_rica",
+  "metadata": {
+    "jurisdiction": "CIVIL",
+    "type": "COUNTRY"
+  },
+  "parentCalendarIds": [
+    "Americas"
+  ],
+  "inputs": {
+    "our_lord_jesus_christ_the_eternal_high_priest": {
+      "precedence": "PROPER_FEAST_8F",
+      "dateDef": {
+        "dateFn": "pentecostSunday",
+        "addDay": 4
+      },
+      "properCycle": "PROPER_OF_TIME"
+    },
+    "our_lady_of_angels": {
+      "precedence": "GENERAL_SOLEMNITY_3",
+      "dateDef": {
+        "month": 8,
+        "date": 2
+      },
+      "titles": {
+        "append": [
+          "PATRONESS_OF_COSTA_RICA"
+        ]
+      },
+      "customLocaleId": "our_lady_of_angels_patroness_of_costa_rica"
+    }
+  }
+}

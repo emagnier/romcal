@@ -1,0 +1,31 @@
+{
+  "id": "sri_lanka",
+  "metadata": {
+    "jurisdiction": "CIVIL",
+    "type": "COUNTRY"
+  },
+  "parentCalendarIds": [],
+  "inputs": {
+    "joseph_vaz_priest": {
+      "precedence": "OPTIONAL_MEMORIAL_12",
+      "dateDef": {
+        "month": 1,
+        "date": 16
+      }
+    },
+    "our_lady_of_lanka": {
+      "precedence": "PROPER_FEAST_8F",
+      "dateDef": {
+        "month": 2,
+        "date": 4
+      }
+    },
+    "our_lady_of_madhu": {
+      "precedence": "PROPER_FEAST_8F",
+      "dateDef": {
+        "month": 7,
+        "date": 2
+      }
+    }
+  }
+}

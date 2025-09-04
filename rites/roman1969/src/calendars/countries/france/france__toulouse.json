@@ -1,0 +1,148 @@
+{
+  "id": "france__toulouse",
+  "metadata": {
+    "jurisdiction": "ECCLESIASTICAL",
+    "type": "ARCHDIOCESE"
+  },
+  "parentCalendarIds": [
+    "Europe",
+    "France"
+  ],
+  "inputs": {
+    "thomas_aquinas_priest": {
+      "precedence": "PROPER_FEAST_8F"
+    },
+    "peter_nolasco_religious": {
+      "precedence": "PROPER_MEMORIAL_11B",
+      "dateDef": {
+        "month": 1,
+        "date": 30
+      }
+    },
+    "erembert_of_toulouse_bishop": {
+      "precedence": "OPTIONAL_MEMORIAL_12",
+      "dateDef": {
+        "month": 5,
+        "date": 15
+      }
+    },
+    "hilarius_of_toulouse_bishop_and_sylvius_of_toulouse_bishops": {
+      "precedence": "PROPER_MEMORIAL_11B",
+      "dateDef": {
+        "month": 5,
+        "date": 20
+      },
+      "martyrology": [
+        "hilarius_of_toulouse_bishop",
+        "sylvius_of_toulouse_bishop"
+      ]
+    },
+    "raymond_costeran_and_companions_martyrs": {
+      "precedence": "OPTIONAL_MEMORIAL_12",
+      "dateDef": {
+        "month": 5,
+        "date": 29
+      },
+      "martyrology": [
+        "raymond_costeran_martyr",
+        "companions_martyrs"
+      ]
+    },
+    "aventin_of_larboust_martyr": {
+      "precedence": "OPTIONAL_MEMORIAL_12",
+      "dateDef": {
+        "month": 6,
+        "date": 13
+      }
+    },
+    "germaine_cousin_virgin": {
+      "precedence": "PROPER_FEAST_8F",
+      "dateDef": {
+        "month": 6,
+        "date": 15
+      }
+    },
+    "john_francis_regis_priest": {
+      "precedence": "PROPER_MEMORIAL_11B",
+      "dateDef": {
+        "month": 6,
+        "date": 16
+      },
+      "titles": [
+        "PRIEST"
+      ]
+    },
+    "raymond_gayrard_religious": {
+      "precedence": "PROPER_MEMORIAL_11B",
+      "dateDef": {
+        "month": 7,
+        "date": 4
+      }
+    },
+    "urban_ii_pope": {
+      "precedence": "OPTIONAL_MEMORIAL_12",
+      "dateDef": {
+        "month": 7,
+        "date": 28
+      }
+    },
+    "louis_of_toulouse_bishop": {
+      "precedence": "OPTIONAL_MEMORIAL_12",
+      "dateDef": {
+        "month": 8,
+        "date": 19
+      }
+    },
+    "dedication_of_the_cathedral_of_saint_stephen_of_toulouse_france": {
+      "precedence": "PROPER_FEAST__DEDICATION_OF_THE_CATHEDRAL_CHURCH_8B",
+      "dateDef": {
+        "month": 8,
+        "date": 30
+      }
+    },
+    "exuperius_of_toulouse_bishop": {
+      "precedence": "PROPER_MEMORIAL_11B",
+      "dateDef": {
+        "month": 9,
+        "date": 28
+      }
+    },
+    "bertrand_of_comminges_bishop": {
+      "precedence": "PROPER_FEAST_8F",
+      "dateDef": {
+        "month": 10,
+        "date": 16
+      }
+    },
+    "urban_v_pope": {
+      "precedence": "OPTIONAL_MEMORIAL_12",
+      "dateDef": {
+        "month": 11,
+        "date": 7
+      }
+    },
+    "saturnin_of_toulouse_bishop": {
+      "precedence": "PROPER_FEAST_8F",
+      "dateDef": {
+        "month": 11,
+        "date": 29
+      }
+    },
+    "paul_of_narbonne_bishop": {
+      "precedence": "PROPER_MEMORIAL_11B",
+      "dateDef": {
+        "month": 12,
+        "date": 11
+      }
+    },
+    "stephen_the_first_martyr": {
+      "customLocaleId": "stephen_the_first_martyr_and_principal_patron_of_the_archdiocese_of_toulouse",
+      "precedence": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_DIOCESE_8A",
+      "titles": {
+        "append": [
+          "PRINCIPAL_PATRON_OF_THE_DIOCESE"
+        ]
+      }
+    }
+  }
+}

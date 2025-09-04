@@ -1,0 +1,168 @@
+{
+  "locale": "fr",
+  "letter": "m",
+  "items": {
+    "madeleine_sophie_barat_virgin": {
+      "fullname": "Sainte Madeleine Sophie Barat, vierge († 1865)"
+    },
+    "maglorius_of_dol_monk": {
+      "fullname": "Saint Magloire, moine († V-VIème s.)"
+    },
+    "marcellin_champagnat_priest": {
+      "fullname": "Saint Marcellin Champagnat, prêtre († 1840)"
+    },
+    "marcellinus_of_rome_and_peter_the_exorcist_martyrs": {
+      "fullname": "Saints Marcellin et Pierre, martyrs († 304)"
+    },
+    "marcellus_of_paris_bishop": {
+      "fullname": "Saint Marcel, évêque de Paris († vers 430)"
+    },
+    "marculf_of_normandy_abbot": {
+      "fullname": "Saint Marcouf, abbé († v. 558)"
+    },
+    "margaret_mary_alacoque_virgin": {
+      "fullname": "Sainte Marguerite-Marie Alacoque, Visitandine à Paray-le-Monial († 1690)"
+    },
+    "margaret_of_scotland": {
+      "fullname": "Sainte Marguerite d’Ecosse († 1093)"
+    },
+    "marguerite_bourgeoys_virgin": {
+      "fullname": "Sainte Marguerite Bourgeoys, religieuse, fondatrice de la congrégation des Sœurs de Notre-Dame († 1700)"
+    },
+    "marguerite_dyouville_religious": {
+      "fullname": "Sainte Marguerite d’Youville, religieuse, fondatrice des Sœurs de la Charité de Montréal († 1771)"
+    },
+    "maria_goretti_virgin": {
+      "fullname": "Sainte Maria Goretti, vierge et martyre († 1902)"
+    },
+    "marie_anne_blondin_virgin": {
+      "fullname": "Bienheureuse Marie-Anne Blondin, religieuse, fondatrice des Sœurs de Sainte-Anne († 1890)"
+    },
+    "marie_eugenie_of_jesus_milleret_de_brou_virgin": {
+      "fullname": "Sainte Marie-Eugénie Milleret, vierge, fondatrice des Sœurs de l’Assomption († 1898 à Paris)"
+    },
+    "marie_leonie_paradis_virgin": {
+      "fullname": "Bienheureuse Marie-Léonie Paradis, religieuse, fondatrice de la Congrégation des Petites Sœurs de la Sainte Famille († 1912)"
+    },
+    "marie_madeleine_julie_francoise_catherine_postel_virgin": {
+      "fullname": "Sainte Marie Madeleine Postel, vierge († 1846)"
+    },
+    "marie_of_saint_ignatius_claudine_thevenet_religious": {
+      "fullname": "Sainte Claudine Thévenet, religieuse († 1837)"
+    },
+    "marie_rose_durocher_virgin": {
+      "fullname": "Bienheureuse Marie-Rose Durocher, religieuse, fondatrice des Sœurs des Saints Noms de Jésus et de Marie († 1849)"
+    },
+    "mark_evangelist": {
+      "fullname": "Saint Marc, évangéliste"
+    },
+    "martha_of_bethany_mary_of_bethany_and_lazarus_of_bethany": {
+      "fullname": "Saints Marthe, Marie et Lazare, disciples du Christ († Ier s.)"
+    },
+    "marthe_aimee_adele_le_bouteiller_virgin": {
+      "fullname": "Bienheureuse Marthe Le Bouteiller, vierge († 1883)"
+    },
+    "martin_de_porres_religious": {
+      "fullname": "Saint Martin de Porrès, religieux Dominicain à Lima († 1639)"
+    },
+    "martin_i_pope": {
+      "fullname": "Saint Martin Ier, pape et martyr († 656)"
+    },
+    "martin_of_tours_bishop": {
+      "fullname": "Saint Martin de Tours, évêque († 397)"
+    },
+    "mary_catherine_of_saint_augustine_catherine_de_simon_de_longpre_virgin": {
+      "fullname": "Bienheureuse Catherine de Saint-Augustin, vierge († 1668)"
+    },
+    "mary_euphrasia_pelletier_religious": {
+      "fullname": "Sainte Marie-Euphrasie Pelletier, religieuse († 1868)"
+    },
+    "mary_magdalene": {
+      "fullname": "Sainte Marie-Madeleine, disciple du Christ († Ier s.)"
+    },
+    "mary_magdalene_de_pazzi_virgin": {
+      "fullname": "Sainte Marie-Madeleine de Pazzi, vierge de l’Ordre du Carmel († 1607)"
+    },
+    "mary_mother_of_god": {
+      "fullname": "Sainte Marie, Mère de Dieu"
+    },
+    "mary_mother_of_the_church": {
+      "fullname": "Bienheureuse Vierge Marie, Mère de l’Église"
+    },
+    "mary_of_the_incarnation_barbara_acarie_religious": {
+      "fullname": "Bienheureuse Marie de l’Incarnation, Carmélite à Pontoise († 1618)"
+    },
+    "mary_of_the_incarnation_marie_guyart_religious": {
+      "fullname": "Sainte Marie de l’Incarnation Guyart, Ursuline au Canada († 1672)"
+    },
+    "mary_of_the_providence_eugenie_smet_virgin": {
+      "fullname": "Bienheureuse Marie de la Providence (Eugénie Smet), vierge, fondatrice de la congrégration des Auxilliatrices († 1871 à Paris)"
+    },
+    "mary_of_the_sacred_heart_sophie_therese_de_soubiran_la_louviere_virgin": {
+      "fullname": "Bienheureuse Marie-Thérèse de Soubiran, vierge († 1889)"
+    },
+    "maternus_of_cologne_bishop": {
+      "fullname": "Saint Materne, évêque († IVème s.)"
+    },
+    "maternus_of_cologne_valerius_of_trier_and_eucharius_of_trier_bishops": {
+      "fullname": "Les premiers Apôtres de l’Église en Alsace : Saints Materne, Valère et Euchaire"
+    },
+    "matthew_apostle": {
+      "fullname": "Saint Matthieu, apôtre et évangéliste"
+    },
+    "matthias_apostle": {
+      "fullname": "Saint Matthias, apôtre"
+    },
+    "maurice_of_agaunum_and_companions_martyrs": {
+      "fullname": "Saint Maurice et ses companions, martyrs († v. 287)"
+    },
+    "maurice_of_agaunum_and_companions_martyrs_patron_of_the_diocese_of_angers": {
+      "fullname": "Saint Maurice et ses compagnons, martyrs et patrons de la ville et du diocèse († 287)"
+    },
+    "maurilius_of_angers_bishop_second_patron_of_the_diocese_of_angers": {
+      "fullname": "Saint Maurille, évêque et patron secondaire du diocèse († 453)"
+    },
+    "maurus_of_glanfeuil_abbot": {
+      "fullname": "Saint Maur, abbé († 584)"
+    },
+    "maximilian_mary_raymund_kolbe_priest": {
+      "fullname": "Saint Maximilien-Marie Kolbe, prêtre et martyr († 1941)"
+    },
+    "mederic_of_autun_and_droctoveus_of_autun_abbots": {
+      "fullname": "Saint Merry et Saint Droctovée, Abbés"
+    },
+    "michael_gabriel_and_raphael_archangels": {
+      "fullname": "Saints Michel, Gabriel and Raphaël, archanges"
+    },
+    "modestus_andlauer_and_andrew_bauer_martyrs": {
+      "fullname": "Saints Modeste Andlauer et André Bauer, martyrs († 1900)"
+    },
+    "modestus_andlauer_martyr": {
+      "fullname": "Saint Modeste Andlauer, martyr († 1900)"
+    },
+    "monica_of_hippo": {
+      "fullname": "Sainte Monique, Mère de Saint Augustin d’Hippone († 387)"
+    },
+    "morand_of_cluny_monk": {
+      "fullname": "Saint Morand, moine († v. 1115)"
+    },
+    "most_holy_body_and_blood_of_christ": {
+      "fullname": "Le Saint-Sacrement du Corps et du Sang du Christ"
+    },
+    "most_holy_name_of_jesus": {
+      "fullname": "Saint Nom de Jésus"
+    },
+    "most_holy_name_of_mary": {
+      "fullname": "Le Saint Nom de Marie"
+    },
+    "most_holy_trinity": {
+      "fullname": "La Sainte Trinité"
+    },
+    "most_sacred_heart_of_jesus": {
+      "fullname": "Sacré-Cœur de Jésus"
+    },
+    "mutien_marie_wiaux_religious": {
+      "fullname": "Saint Mutien-Marie Wiaux, Frère des Écoles Chrétiennes († 1917)"
+    }
+  }
+}

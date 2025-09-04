@@ -1,0 +1,234 @@
+{
+  "locale": "sk",
+  "letter": "a",
+  "items": {
+    "adalbert_of_prague_bishop": {
+      "fullname": "Svätého Vojtecha, biskupa a mučeníka"
+    },
+    "adalbert_of_prague_bishop_patron_of_poland": {
+      "fullname": "Svätého Vojtecha, biskupa a mučeníka, patróna Poľska"
+    },
+    "adelaide_of_burgundy_empress": {
+      "fullname": "Svätej Adelaidy Burgundskej, cisárovnej"
+    },
+    "adelphus_of_metz_bishop": {
+      "fullname": "Svätého Adelfa z Metz, biskupa"
+    },
+    "adolph_kolping_priest": {
+      "fullname": "Blahoslaveného Adolfa Kolpinga, kňaza"
+    },
+    "aelred_of_rievaulx_abbot": {
+      "fullname": "Svätého Aelreda z Rievaulx, opáta"
+    },
+    "aengus_of_tallaght_bishop": {
+      "fullname": "Svätého Aengusa, biskupa a opáta"
+    },
+    "agatha_of_sicily_virgin": {
+      "fullname": "Svätej Agáty, panny a mučenice"
+    },
+    "agnes_cao_guiying_martyr": {
+      "fullname": "Svätej Agnesy Cao Guiyingovej, mučenice"
+    },
+    "agnes_of_bohemia_virgin": {
+      "fullname": "Svätej Anežky Českej, panny"
+    },
+    "agnes_of_rome_virgin": {
+      "fullname": "Svätej Agnesy, panny a mučenice"
+    },
+    "aidan_of_ferns_bishop": {
+      "fullname": "Svätého Aidana, biskupa"
+    },
+    "aidan_of_lindisfarne_bishop": {
+      "fullname": "Svätého Aidana Lindisfarnského, biskupa a misionára"
+    },
+    "aidan_of_lindisfarne_bishop_and_the_saints_of_lindisfarne": {
+      "fullname": "Svätého Aidana, biskupa a lindisfarnských svätých"
+    },
+    "ailbe_of_emly_bishop": {
+      "fullname": "Svätého Ailbe, biskupa"
+    },
+    "alban_of_britain_julius_of_caerleon_aaron_of_caerleon_martyrs": {
+      "fullname": "Svätého Albána, Júlia a Árona, mučeníkov"
+    },
+    "alban_of_britain_martyr": {
+      "fullname": "Svätého Albána, mučeníka"
+    },
+    "alberic_crescitelli_priest": {
+      "fullname": "Svätého Alberika Crescitelliho, kňaza a mučeníka"
+    },
+    "albert_chmielowski_religious": {
+      "fullname": "Svätého Alberta Chmielowského, rehoľníka"
+    },
+    "albert_the_great_bishop": {
+      "fullname": "Svätého Alberta Veľkého, biskupa a učiteľa Cirkvi"
+    },
+    "albertina_berkenbrock_virgin": {
+      "fullname": "Blahoslavenej Albertíny Berkenbrockovej, panny a mučenice"
+    },
+    "alberto_hurtado_priest": {
+      "fullname": "Svätého Alberta Hurtada, kňaza"
+    },
+    "all_saints": {
+      "fullname": "Všetkých svätých"
+    },
+    "all_saints_of_ireland": {
+      "fullname": "Všetkých svätých Írska"
+    },
+    "all_saints_of_the_archdiocese_of_paris": {
+      "fullname": "Všetkých svätých Parížskej arcidiecézy"
+    },
+    "all_saints_of_the_diocese_of_saint_denis": {
+      "fullname": "Všetkých svätých Diecézy Saint-Denis"
+    },
+    "all_saints_of_wales": {
+      "fullname": "Všetkých svätých Walesu"
+    },
+    "aloysius_gonzaga_religious": {
+      "fullname": "Svätého Alojza Gonzágu, rehoľníka"
+    },
+    "aloysius_stepinac_bishop": {
+      "fullname": "Blahoslaveného Alojza Stepinaca, biskupa a mučeníka"
+    },
+    "aloysius_versiglia_bishop_and_callistus_caravario_priest_martyrs": {
+      "fullname": "Svätých Alojza Versigliu, biskupa, a Kalixta Caravaria, kňaza, mučeníkov"
+    },
+    "alphonsa_of_the_immaculate_conception_muttathupadathu_virgin": {
+      "fullname": "Svätej Alfonzy od Nepoškvrneného počatia Muttathupadathu, panny"
+    },
+    "alphonsus_mary_liguori_bishop": {
+      "fullname": "Svätého Alfonza Máriu de Liguori, biskupa a učiteľa Cirkvi"
+    },
+    "amand_of_maastricht_bishop": {
+      "fullname": "Svätého Milana, biskupa"
+    },
+    "amandus_of_strasbourg_bishop": {
+      "fullname": "Svätého Milana zo Štrasburgu, biskupa"
+    },
+    "amarin_of_alsace_abbot": {
+      "fullname": "Svätého Amarína, opáta a mučeníka"
+    },
+    "ambrose_of_milan_bishop": {
+      "fullname": "Svätého Ambróza, biskupa a učiteľa Cirkvi"
+    },
+    "andre_bessette_religious": {
+      "fullname": "Svätého Andreja Alfréda Bessetta, rehoľníka"
+    },
+    "andre_grasset_priest": {
+      "fullname": "Blahoslaveného Andreja Grasseta, kňaza a mučeníka"
+    },
+    "andrew_apostle": {
+      "fullname": "Svätého Ondreja, apoštola"
+    },
+    "andrew_apostle_patron_of_russia": {
+      "fullname": "Svätého Ondreja, apoštola, patróna Ruska"
+    },
+    "andrew_apostle_patron_of_scotland": {
+      "fullname": "Svätého Ondreja, apoštola, patróna Škótska"
+    },
+    "andrew_bobola_priest": {
+      "fullname": "Svätého Andreja Bobolu, kňaza a mučeníka"
+    },
+    "andrew_de_soveral_and_ambrose_francis_ferro_priests": {
+      "fullname": "Blahoslavených Andreja de Soverala a Ambróza Františka Ferra, mučeníka"
+    },
+    "andrew_dung_lac_priest_and_companions_martyrs": {
+      "fullname": "Svätého Andreja Dung-Laka, kňaza, a spoločníkov, mučeníkov"
+    },
+    "andrew_kim_tae_gon_priest_paul_chong_ha_sang_and_companions_martyrs": {
+      "fullname": "Svätých Andreja Kima Taegona, kňaza, Pavla Chonga Hasanga a spoločníkov, mučeníkov"
+    },
+    "andrew_zorard_of_nitra_and_benedict_of_skalka_hermits": {
+      "fullname": "Svätých Andreja Svorada a Beňadika, pustovníkov"
+    },
+    "angela_merici_virgin": {
+      "fullname": "Svätej Angely Merici, panny"
+    },
+    "angela_salawa_virgin": {
+      "fullname": "Blahoslavenej Angely Salawovej, panny"
+    },
+    "anno_of_cologne_bishop": {
+      "fullname": "Svätého Anna Kolínskeho, biskupa"
+    },
+    "annunciation_of_the_lord": {
+      "fullname": "Zvestovanie Pána"
+    },
+    "anselm_of_canterbury_bishop": {
+      "fullname": "Svätého Anzelma, biskupa a učiteľa Cirkvi"
+    },
+    "ansgar_of_hamburg_bishop": {
+      "fullname": "Svätého Oskara, biskupa"
+    },
+    "anthony_julian_nowowiejski_bishop_and_companions_martyrs": {
+      "fullname": "Blahoslaveného Antona Juliána Nowowiejskeho, biskupa, a spoločníkov, mučeníka"
+    },
+    "anthony_mary_claret_bishop": {
+      "fullname": "Svätého Antona Máriu Clareta, biskupa"
+    },
+    "anthony_of_egypt_abbot": {
+      "fullname": "Svätého Antona, opáta"
+    },
+    "anthony_of_padua_priest": {
+      "fullname": "Svätého Antona Paduánskeho, kňaza a učiteľa Cirkvi"
+    },
+    "anthony_of_saint_anne_galvao_priest": {
+      "fullname": "Svätého Antona od svätej Anny Galvão, kňaza"
+    },
+    "anthony_of_the_caves_monk": {
+      "fullname": "Svätého Antona Pečerského, mnícha"
+    },
+    "anthony_zaccaria_priest": {
+      "fullname": "Svätého Antona Máriu Zaccariu, kňaza"
+    },
+    "apollinaris_of_ravenna_bishop": {
+      "fullname": "Svätého Apolinára, biskupa a mučeníka"
+    },
+    "arbogast_of_strasbourg_bishop": {
+      "fullname": "Svätého Arbogasta, biskupa"
+    },
+    "arbogast_of_strasbourg_bishop_patron_of_the_archdiocese_of_strasbourg": {
+      "fullname": "Svätého Arbogasta, biskupa, patróna Štrasburskej arcidiecézy"
+    },
+    "asaph_of_wales_bishop": {
+      "fullname": "Svätého Asafa, biskupa"
+    },
+    "ascension_of_the_lord": {
+      "fullname": "Nanebovstúpenie Pána"
+    },
+    "ash_wednesday": {
+      "fullname": "Popolcová streda"
+    },
+    "asicus_of_elphin_bishop": {
+      "fullname": "Svätého Asika, biskupa"
+    },
+    "assumption_of_the_blessed_virgin_mary": {
+      "fullname": "Nanebovzatie preblahoslavenej Panny Márie"
+    },
+    "athanasius_of_alexandria_bishop": {
+      "fullname": "Svätého Atanáza, biskupa a učiteľa Cirkvi"
+    },
+    "attracta_of_killaraght_virgin": {
+      "fullname": "Svätej Atrakty, panny"
+    },
+    "audoen_of_rouen_bishop": {
+      "fullname": "Svätého Audoena, biskupa"
+    },
+    "augustine_kazotic_bishop": {
+      "fullname": "Blahoslaveného Augustína Kažotića, biskupa a mučeníka"
+    },
+    "augustine_of_canterbury_bishop": {
+      "fullname": "Svätého Augustína z Canterbury, biskupa"
+    },
+    "augustine_of_hippo_bishop": {
+      "fullname": "Svätého Augustína, biskupa a učiteľa Cirkvi"
+    },
+    "augustine_zhao_rong_priest": {
+      "fullname": "Svätého Augustína Zhao Ronga, kňaza a mučeníka"
+    },
+    "augustine_zhao_rong_priest_and_companions_martyrs": {
+      "fullname": "Svätých Augustína Zhao Ronga, kňaza, a spoločníkov, mučeníkov"
+    },
+    "aurelia_of_strasbourg_virgin": {
+      "fullname": "Svätej Aurélie zo Štrasburgu, panny"
+    }
+  }
+}

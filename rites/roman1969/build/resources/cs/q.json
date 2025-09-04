@@ -1,0 +1,12 @@
+{
+  "locale": "cs",
+  "letter": "q",
+  "items": {
+    "queenship_of_the_blessed_virgin_mary": {
+      "fullname": "Panny Marie Královny"
+    },
+    "quirinus_of_sescia_bishop": {
+      "fullname": "Sv. Kvirína ze Sisaku, biskupa a mučedníka"
+    }
+  }
+}

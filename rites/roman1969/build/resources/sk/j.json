@@ -1,0 +1,222 @@
+{
+  "locale": "sk",
+  "letter": "j",
+  "items": {
+    "jacinta_marto_and_francisco_marto": {
+      "fullname": "Svätých Hyacinty a Františka Martovcov"
+    },
+    "james_apostle": {
+      "fullname": "Svätého Jakuba, apoštola"
+    },
+    "james_apostle_patron_of_spain": {
+      "fullname": "Svätého Jakuba, apoštola, patróna Španielska"
+    },
+    "james_strzemie_bishop": {
+      "fullname": "Blahoslaveného Jakuba Strzemię, biskupa"
+    },
+    "jane_frances_de_chantal_religious": {
+      "fullname": "Svätej Jany Františky de Chantal, rehoľníčky"
+    },
+    "januarius_i_of_benevento_bishop": {
+      "fullname": "Svätého Januára, biskupa a mučeníka"
+    },
+    "jarlath_of_tuam_bishop": {
+      "fullname": "Svätého Jarláta, biskupa"
+    },
+    "jerome_emiliani": {
+      "fullname": "Svätého Hieronyma Emilianiho"
+    },
+    "jerome_of_stridon_priest": {
+      "fullname": "Svätého Hieronyma, kňaza a učiteľa Cirkvi"
+    },
+    "joachim_and_anne_parents_of_mary": {
+      "fullname": "Svätých Joachima a Anny, rodičov preblahoslavenej Panny Márie"
+    },
+    "joachim_and_anne_patroness_of_the_province_of_quebec_parents_of_mary": {
+      "fullname": "Svätých Anny, patrónky Quebecu, a Joachima, rodičov preblahoslavenej Panny Márie"
+    },
+    "joachim_he_kaizhi_martyr": {
+      "fullname": "Svätého Joachima He Kaizhi, mučeníka"
+    },
+    "joan_of_arc_virgin_copatroness_of_france": {
+      "fullname": "Svätej Jany z Arku, panny, patrónky Francúzska"
+    },
+    "joan_of_portugal_virgin": {
+      "fullname": "Blahoslavenej Jany Portugalskej, panny"
+    },
+    "joaquina_of_saint_francis_of_assisi_de_vedruna_religious": {
+      "fullname": "Svätej Joachimy od svätého Františka z Assisi de Vedruna, rehoľníčky"
+    },
+    "john_apostle": {
+      "fullname": "Svätého Jána, apoštola a evanjelistu"
+    },
+    "john_baptist_de_la_salle_priest": {
+      "fullname": "Svätého Jána Krstiteľa de la Salle, kňaza"
+    },
+    "john_berchmans_religious": {
+      "fullname": "Svätého Jána Berchmansa, rehoľníka"
+    },
+    "john_beyzym_priest": {
+      "fullname": "Blahoslaveného Jána Beyzyma, kňaza"
+    },
+    "john_bosco_priest": {
+      "fullname": "Svätého Jána Bosca, kňaza"
+    },
+    "john_brenner_priest": {
+      "fullname": "Blahoslaveného Jána Brennera, kňaza a mučeníka"
+    },
+    "john_cassian_priest": {
+      "fullname": "Svätého Ján Kassiána, kňaza"
+    },
+    "john_chrysostom_bishop": {
+      "fullname": "Svätého Jána Zlatoústeho, biskupa a učiteľa Cirkvi"
+    },
+    "john_damascene_priest": {
+      "fullname": "Svätého Jána Damascénskeho, kňaza a učiteľa Cirkvi"
+    },
+    "john_de_brebeuf_isaac_jogues_priests_and_companions_martyrs": {
+      "fullname": "Svätých Jána de Brébeuf a Izáka Jogues, kňazov, a ich spoločníkov, mučeníkov"
+    },
+    "john_de_brebeuf_isaac_jogues_priests_and_companions_martyrs_copatrons_of_canada": {
+      "fullname": "Svätých Jána de Brébeuf a Izáka Joguesa, kňazov, a ich spoločníkov, mučeníkov, patrónov Kanady"
+    },
+    "john_de_britto_priest": {
+      "fullname": "Svätého Jána de Britto, kňaza a mučeníka"
+    },
+    "john_eudes_priest": {
+      "fullname": "Svätého Jána Eudesa, kňaza"
+    },
+    "john_fisher_bishop_and_thomas_more_martyrs": {
+      "fullname": "Svätých Jána Fišera, biskupa, a Tomáša Morusa, mučeníkov"
+    },
+    "john_gabriel_perboyre_priest": {
+      "fullname": "Svätého Jána Gabriela Perboyreho, kňaza a mučeníka"
+    },
+    "john_henry_newman_priest": {
+      "fullname": "Svätého Johna Henryho Newmana, kňaza"
+    },
+    "john_i_pope": {
+      "fullname": "Svätého Jána I., pápeža a mučeníka"
+    },
+    "john_jones_priest": {
+      "fullname": "Svätého Jána Jonesa, kňaza a mučeníka"
+    },
+    "john_leonardi_priest": {
+      "fullname": "Svätého Jána Leonardiho, kňaza"
+    },
+    "john_macias_religious": {
+      "fullname": "Svätého Jána Macíasa, rehoľníka"
+    },
+    "john_martin_moye_priest": {
+      "fullname": "Blahoslaveného Jána Martina Moyeho, kňaza"
+    },
+    "john_mary_vianney_priest": {
+      "fullname": "Svätého Jána Máriu Vianneya, kňaza"
+    },
+    "john_nepomucene_neumann_bishop": {
+      "fullname": "Svätého Jána Nepomuk Neumanna, biskupa"
+    },
+    "john_nepomucene_priest": {
+      "fullname": "Svätého Jána Nepomuckého, kňaza a mučeníka"
+    },
+    "john_of_avila_priest": {
+      "fullname": "Svätého Jána z Avily, kňaza a učiteľa Cirkvi"
+    },
+    "john_of_capistrano_priest": {
+      "fullname": "Svätého Jána Kapistránskeho, kňaza"
+    },
+    "john_of_dukla_priest": {
+      "fullname": "Svätého Jána z Dukly, kňaza"
+    },
+    "john_of_god_duarte_cidade_religious": {
+      "fullname": "Svätého Jána od Boha, rehoľníka"
+    },
+    "john_of_kanty_priest": {
+      "fullname": "Svätého Jána Kentského, kňaza"
+    },
+    "john_of_the_cross_priest": {
+      "fullname": "Svätého Jána od Kríža, kňaza a učiteľa Cirkvi"
+    },
+    "john_of_triora_priest": {
+      "fullname": "Svätého Jána z Triory, kňaza a mučeníka"
+    },
+    "john_ogilvie_priest": {
+      "fullname": "Svätého Jána Ogilvie, kňaza a mučeníka"
+    },
+    "john_paul_ii_pope": {
+      "fullname": "Svätého Jána Pavla II., pápeža"
+    },
+    "john_roberts_priest": {
+      "fullname": "Svätého Jána Robertsa, kňaza a mučeníka"
+    },
+    "john_sarkander_priest": {
+      "fullname": "Svätého Jána Sarkandera, kňaza a mučeníka"
+    },
+    "john_scheffler_bishop": {
+      "fullname": "Blahoslaveného Jána Schefflera, biskupa a mučeníka"
+    },
+    "john_xxiii_pope": {
+      "fullname": "Svätého Jána XXIII., pápeža"
+    },
+    "josaphat_kuntsevych_bishop": {
+      "fullname": "Svätého Jozafáta, biskupa a mučeníka"
+    },
+    "jose_maria_de_yermo_y_parres_priest": {
+      "fullname": "Svätého Jozefa Máriu de Yermo y Parres, kňaza"
+    },
+    "josemaria_escriva_de_balaguer_priest": {
+      "fullname": "Svätého Josemaríu Escrivá de Balaguer, kňaza"
+    },
+    "joseph_bilczewski_bishop": {
+      "fullname": "Svätého Jozefa Bilczewského, biskupa"
+    },
+    "joseph_de_anchieta_priest": {
+      "fullname": "Svätého Jozefa de Anchietu, kňaza"
+    },
+    "joseph_freinademetz_priest": {
+      "fullname": "Svätého Jozefa Freinademetza, kňaza"
+    },
+    "joseph_of_calasanz_priest": {
+      "fullname": "Svätého Jozefa Kalazanského"
+    },
+    "joseph_sebastian_pelczar_bishop": {
+      "fullname": "Svätého Jozefa Sebastiána Pelczara, biskupa"
+    },
+    "joseph_spouse_of_mary": {
+      "fullname": "Svätého Jozefa, ženícha preblahoslavenej Panny Márie"
+    },
+    "joseph_spouse_of_mary_patron_of_canada": {
+      "fullname": "Svätého Jozefa, ženícha preblahoslavenej Panny Márie, patróna Kanady"
+    },
+    "joseph_the_worker": {
+      "fullname": "Svätého Jozefa, robotníka"
+    },
+    "joseph_vaz_priest": {
+      "fullname": "Svätého Jozefa Vaza, kňaza"
+    },
+    "joseph_yuan_gengyin_priest": {
+      "fullname": "Svätého Jozefa Juana Gengjina, kňaza a mučeníka"
+    },
+    "joseph_zhang_dapeng_martyr": {
+      "fullname": "Svätého Jozefa Zhang Dapenga, mučeníka"
+    },
+    "josephine_bakhita_virgin": {
+      "fullname": "Svätej Jozefíny Bakhity, panny"
+    },
+    "juan_diego_cuauhtlatoatzin": {
+      "fullname": "Svätého Jána Diega Cuauhtlatoatzina"
+    },
+    "juliana_of_liege_virgin": {
+      "fullname": "Svätej Juliány z Liége, panny"
+    },
+    "julie_billiart_virgin": {
+      "fullname": "Svätej Júlie Billiartovej, panny"
+    },
+    "junipero_serra_priest": {
+      "fullname": "Svätého Junipera Serru, kňaza"
+    },
+    "justin_martyr": {
+      "fullname": "Svätého Justína, mučeníka"
+    }
+  }
+}

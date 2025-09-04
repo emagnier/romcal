@@ -1,0 +1,157 @@
+{
+  "locale": "la",
+  "metadata": {
+    "seasons": {
+      "advent": {
+        "season": "Adventus",
+        "weekday": "$t(weekdays:{{dow}}, capitalize), hebdomada $t(ordinals:{{week}}, { \"context\": \"feminine\" }) Adventus",
+        "sunday": "Dominica $t(ordinals:{{week}}, { \"context\": \"feminine\" }) Adventus",
+        "privileged_weekday": "Dia {{day}} $t(months:11)"
+      },
+      "christmas_time": {
+        "season": "Nativitatis",
+        "day": "$t(weekdays:{{dow}}, capitalize) temporis Nativitatis",
+        "octave": "De die {{count}} infra octavam Nativitatis",
+        "second_sunday_after_christmas": "Dominica secunda post Nativitatem",
+        "before_epiphany": "Die {{day}} $t(months:0)",
+        "after_epiphany": "$t(weekdays:{{dow}}, capitalize) post Epiphaniam"
+      },
+      "ordinary_time": {
+        "season": "Per annum",
+        "weekday": "$t(weekdays:{{dow}}, capitalize), hebdomada $t(ordinals:{{week}}, { \"context\": \"feminine\" }) per annum",
+        "sunday": "Dominica $t(ordinals:{{week}}, { \"context\": \"feminine\" }) per annum"
+      },
+      "lent": {
+        "season": "Quadragesimæ",
+        "weekday": "$t(weekdays:{{dow}}, capitalize), hebdomada $t(ordinals:{{week}}, { \"context\": \"feminine\" }) Quadragesimæ",
+        "sunday": "Dominica $t(ordinals:{{week}}, { \"context\": \"feminine\" }) Quadragesimæ",
+        "day_after_ash_wed": "$t(weekdays:{{dow}}, capitalize) post Cineres",
+        "holy_week_day": "$t(weekdays:{{dow}}, capitalize) Hebdomadæ Sanctæ"
+      },
+      "paschal_triduum": {
+        "season": "Triduum paschale"
+      },
+      "easter_time": {
+        "season": "Paschæ",
+        "weekday": "$t(weekdays:{{dow}}, capitalize), hebdomada $t(ordinals:{{week}}, { \"context\": \"feminine\" }) temporis paschalis",
+        "sunday": "Dominica $t(ordinals:{{week}}, { \"context\": \"feminine\" }) Paschæ",
+        "octave": "De die $t(weekdays:{{dow}}, capitalize) infra octavam Paschæ"
+      }
+    },
+    "periods": {
+      "epiphany": "Epiphaniæ",
+      "holy_week": "Hebdomadæ Sanctæ"
+    },
+    "ranks": {
+      "solemnity": "sollemnitas",
+      "sunday": "dominica",
+      "feast": "festum",
+      "memorial": "memoria",
+      "optional_memorial": "memoria ad libitum",
+      "weekday": "feria"
+    },
+    "cycles": {},
+    "weekdays": {
+      "0": "dominica",
+      "1": "feria secunda",
+      "2": "feria tertia",
+      "3": "feria quarta",
+      "4": "feria quinta",
+      "5": "feria sexta",
+      "6": "sabbato"
+    },
+    "months": {
+      "0": "ianuarii",
+      "1": "februarii",
+      "2": "martii",
+      "3": "aprilis",
+      "4": "maii",
+      "5": "iunii",
+      "6": "iulii",
+      "7": "augusti",
+      "8": "septembris",
+      "9": "octobris",
+      "10": "novembris",
+      "11": "decembris"
+    },
+    "colors": {
+      "black": "niger",
+      "gold": "auri",
+      "green": "viridis",
+      "purple": "violaceus",
+      "red": "ruber",
+      "rose": "rosaceus",
+      "white": "albus"
+    },
+    "ordinals": {
+      "1_masculine": "primus",
+      "1_feminine": "prima",
+      "2_masculine": "secundus",
+      "2_feminine": "secunda",
+      "3_masculine": "tertius",
+      "3_feminine": "tertia",
+      "4_masculine": "quartus",
+      "4_feminine": "quarta",
+      "5_masculine": "quintus",
+      "5_feminine": "quinta",
+      "6_masculine": "sextus",
+      "6_feminine": "sexta",
+      "7_masculine": "septimus",
+      "7_feminine": "septima",
+      "8_masculine": "octavus",
+      "8_feminine": "octava",
+      "9_masculine": "nonus",
+      "9_feminine": "nona",
+      "10_masculine": "decimus",
+      "10_feminine": "decima",
+      "11_masculine": "undecimus",
+      "11_feminine": "undecima",
+      "12_masculine": "duodecimus",
+      "12_feminine": "duodecima",
+      "13_masculine": "decimus tertius",
+      "13_feminine": "decima tertia",
+      "14_masculine": "decimus quartus",
+      "14_feminine": "decima quarta",
+      "15_masculine": "decimus quintus",
+      "15_feminine": "decima quinta",
+      "16_masculine": "decimus sextus",
+      "16_feminine": "decima sexta",
+      "17_masculine": "decimus septimus",
+      "17_feminine": "decima septima",
+      "18_masculine": "decimus octavus",
+      "18_feminine": "decima octava",
+      "19_masculine": "decimus nonus",
+      "19_feminine": "decima nona",
+      "20_masculine": "vigesimus",
+      "20_feminine": "vigesima",
+      "21_masculine": "vigesimus primus",
+      "21_feminine": "vigesima prima",
+      "22_masculine": "vigesimus secundus",
+      "22_feminine": "vigesima secunda",
+      "23_masculine": "vigesimus tertius",
+      "23_feminine": "vigesima tertia",
+      "24_masculine": "vigesimus quartus",
+      "24_feminine": "vigesima quarta",
+      "25_masculine": "vigesimus quintus",
+      "25_feminine": "vigesima quinta",
+      "26_masculine": "vigesimus sextus",
+      "26_feminine": "vigesima sexta",
+      "27_masculine": "vigesimus septimus",
+      "27_feminine": "vigesima septima",
+      "28_masculine": "vigesimus octavus",
+      "28_feminine": "vigesima octava",
+      "29_masculine": "vigesimus nonus",
+      "29_feminine": "vigesima nona",
+      "30_masculine": "trigesimus",
+      "30_feminine": "trigesima",
+      "31_masculine": "trigesimus primus",
+      "31_feminine": "trigesima prima",
+      "32_masculine": "trigesimus secundus",
+      "32_feminine": "trigesima secunda",
+      "33_masculine": "trigesimus tertius",
+      "33_feminine": "trigesima tertia",
+      "34_masculine": "trigesimus quartrus",
+      "34_feminine": "trigesima quartra"
+    }
+  }
+}

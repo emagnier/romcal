@@ -1,0 +1,90 @@
+{
+  "id": "new_zealand",
+  "metadata": {
+    "jurisdiction": "CIVIL",
+    "type": "COUNTRY"
+  },
+  "parentCalendarIds": [],
+  "inputs": {
+    "waitangi_day": {
+      "precedence": "PROPER_FEAST_8F",
+      "dateDef": {
+        "month": 2,
+        "date": 6
+      }
+    },
+    "paul_miki_and_companions_martyrs": {
+      "dateDef": {
+        "month": 2,
+        "date": 7
+      }
+    },
+    "patrick_of_ireland_bishop": {
+      "precedence": "PROPER_FEAST_8F",
+      "dateDef": {
+        "month": 3,
+        "date": 17
+      }
+    },
+    "mark_evangelist": {
+      "precedence": "PROPER_FEAST_8F",
+      "dateDef": {
+        "month": 4,
+        "date": 26
+      }
+    },
+    "louis_grignion_de_montfort_priest": {
+      "precedence": "OPTIONAL_MEMORIAL_12",
+      "dateDef": {
+        "month": 4,
+        "date": 27
+      }
+    },
+    "peter_chanel_priest": {
+      "customLocaleId": "peter_chanel_priest_patron_of_oceania",
+      "precedence": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C",
+      "martyrology": [
+        "peter_chanel_priest"
+      ],
+      "titles": [
+        "PROTO_MARTYR_OF_OCEANIA",
+        "PATRON_OF_OCEANIA"
+      ]
+    },
+    "our_lady_help_of_christians": {
+      "precedence": "PROPER_MEMORIAL_11B",
+      "dateDef": {
+        "month": 5,
+        "date": 24
+      }
+    },
+    "marcellin_champagnat_priest": {
+      "precedence": "OPTIONAL_MEMORIAL_12",
+      "dateDef": {
+        "month": 6,
+        "date": 6
+      }
+    },
+    "dominic_de_guzman_priest": {
+      "precedence": "OPTIONAL_MEMORIAL_12",
+      "dateDef": {
+        "month": 8,
+        "date": 7
+      }
+    },
+    "cajetan_of_thiene_priest": {
+      "precedence": "OPTIONAL_MEMORIAL_12",
+      "dateDef": {
+        "month": 8,
+        "date": 7
+      }
+    },
+    "mary_of_the_cross_mackillop_virgin": {
+      "precedence": "PROPER_FEAST_8F",
+      "dateDef": {
+        "month": 8,
+        "date": 8
+      }
+    }
+  }
+}

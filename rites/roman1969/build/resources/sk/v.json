@@ -1,0 +1,45 @@
+{
+  "locale": "sk",
+  "letter": "v",
+  "items": {
+    "valentine_of_raetia_bishop": {
+      "fullname": "Svätého Valentína z Raetie, biskupa"
+    },
+    "valerius_of_trier_bishop": {
+      "fullname": "Sv. Valéria, biskupa"
+    },
+    "vincent_de_paul_priest": {
+      "fullname": "Svätého Vincenta de Paul, kňaza"
+    },
+    "vincent_ferrer_priest": {
+      "fullname": "Svätého Vincenta Ferrera, kňaza"
+    },
+    "vincent_kadlubek_bishop": {
+      "fullname": "Blahoslaveného Vincenta Kadłubka, biskupa"
+    },
+    "vincent_lewoniuk_and_companions_martyrs": {
+      "fullname": "Blahoslaveného Vincenta Lewoniuka a spoločníkov, mučeníkov"
+    },
+    "vincent_of_saragossa_deacon": {
+      "fullname": "Svätého Vincenta, diakona a mučeníka"
+    },
+    "vincent_pallotti_priest": {
+      "fullname": "Svätého Vincenta Pallottiho, kňaza"
+    },
+    "virgilius_of_salzburg_bishop": {
+      "fullname": "Svätého Virgila zo Salzburgu, biskupa a misionára"
+    },
+    "visitation_of_mary": {
+      "fullname": "Návšteva preblahoslavenej Panny Márie"
+    },
+    "vitus_of_lucania_martyr": {
+      "fullname": "Svätého Víta, mučeníka"
+    },
+    "vladimir_ghika_priest": {
+      "fullname": "Blahoslaveného Vladimíra Ghiku, kňaza a mučeníka"
+    },
+    "vladimir_i_the_great_of_kiev": {
+      "fullname": "Svätého Vladimíra Veľkého"
+    }
+  }
+}

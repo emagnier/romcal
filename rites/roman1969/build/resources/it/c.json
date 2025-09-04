@@ -1,0 +1,96 @@
+{
+  "locale": "it",
+  "letter": "c",
+  "items": {
+    "cajetan_of_thiene_priest": {
+      "fullname": "San Gaetano, sacerdote"
+    },
+    "callistus_i_pope": {
+      "fullname": "San Callisto I, papa e martire"
+    },
+    "camillus_de_lellis_priest": {
+      "fullname": "San Camillo de Lellis, sacerdote"
+    },
+    "carmelites_of_compiegne_virgins_and_martyrs": {
+      "fullname": "Beati carmelitani di Compiègne, vergini e martiri"
+    },
+    "casimir_of_poland": {
+      "fullname": "San Casimiro"
+    },
+    "catherine_of_alexandria_virgin": {
+      "fullname": "Santa Caterina di Alessandria, vergine e martire"
+    },
+    "catherine_of_siena_virgin": {
+      "fullname": "Santa Caterina da Siena, vergine e dottore della Chiesa"
+    },
+    "catherine_of_siena_virgin_copatroness_of_europe": {
+      "fullname": "Santa Caterina da Siena, vergine, dottore della Chiesa e patrona secondaria d’Europa"
+    },
+    "catherine_of_siena_virgin_copatroness_of_italy_and_europe": {
+      "fullname": "Santa Caterina da Siena, vergine, dottore della Chiesa e patrona secondaria d’Italia e d’Europa"
+    },
+    "catherine_zoe_laboure_virgin": {
+      "fullname": "Santa Caterina Labourè, vergine"
+    },
+    "cecilia_of_rome_virgin": {
+      "fullname": "Santa Cecilia, vergine e martire"
+    },
+    "ceraunus_of_paris_bishop": {
+      "fullname": "San Cerauno di Parigi, vescovo"
+    },
+    "chair_of_saint_peter_the_apostle": {
+      "fullname": "Cattedra di San Pietro apostolo"
+    },
+    "charles_borromeo_bishop": {
+      "fullname": "San Carlo Borromeo, vescovo"
+    },
+    "charles_lwanga_and_companions_martyrs": {
+      "fullname": "San Carlo Lwanga e compagni, martiri"
+    },
+    "charles_of_jesus_de_foucauld": {
+      "fullname": "San Charles de Foucauld, sacerdote"
+    },
+    "christopher_magallanes_priest_and_companions_martyrs": {
+      "fullname": "Santi Cristoforo Magallanes, sacerdote, e compagni, martiri"
+    },
+    "clare_of_assisi_virgin": {
+      "fullname": "Santa Chiara, vergine"
+    },
+    "clement_i_pope": {
+      "fullname": "San Clemente I, papa e martire"
+    },
+    "columba_of_iona_abbot": {
+      "fullname": "San Colombano, abate"
+    },
+    "columba_of_iona_abbot_copatron_of_ireland": {
+      "fullname": "San Colombano, abate e patrono secondario dell’Irlanda"
+    },
+    "columban_of_luxeuil_abbot": {
+      "fullname": "San Colombano, abate"
+    },
+    "commemoration_of_all_the_faithful_departed": {
+      "fullname": "Commemorazione di tutti i fedeli defunti"
+    },
+    "conversion_of_saint_paul_the_apostle": {
+      "fullname": "Conversione di San Paolo apostolo"
+    },
+    "cornelius_i_pope_and_cyprian_of_carthage_bishop_martyrs": {
+      "fullname": "Santi Cornelio, papa e Cipriano, vescovo, martiri"
+    },
+    "cosmas_of_cilicia_and_damian_of_cilicia_martyrs": {
+      "fullname": "Santi Cosma e Damiano, martiri"
+    },
+    "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop": {
+      "fullname": "Santi Cirillo, monaco e Metodio, vescovo"
+    },
+    "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop_copatrons_of_europe": {
+      "fullname": "Santi Cirillo, monaco e Metodio, vescovo, patroni secondari d’Europa"
+    },
+    "cyril_of_alexandria_bishop": {
+      "fullname": "San Cirillo di Alessandria, vescovo e dottore della Chiesa"
+    },
+    "cyril_of_jerusalem_bishop": {
+      "fullname": "San Cirillo di Gerusalemme, vescovo e dottore della Chiesa"
+    }
+  }
+}

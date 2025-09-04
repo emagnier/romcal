@@ -1,0 +1,332 @@
+{
+  "locale": "en",
+  "letter": "l",
+  "items": {
+    "labor_day": {
+      "fullname": "Labor Day"
+    },
+    "ladislas_of_gielniow_priest": {
+      "fullname": "Blessed Ladislas of Gielniow, Priest",
+      "canonizationLevel": "BLESSED",
+      "name": "Ladislas of Gielniow",
+      "titles": ["PRIEST"]
+    },
+    "ladislaus_batthyany_strattmann": {
+      "fullname": "Blessed Ladislaus Batthyány-Strattmann",
+      "canonizationLevel": "BLESSED",
+      "name": "Ladislaus Batthyány-Strattmann"
+    },
+    "ladislaus_i_of_hungary": {
+      "fullname": "Saint Ladislaus",
+      "canonizationLevel": "SAINT",
+      "name": "Ladislaus"
+    },
+    "lambert_of_maastricht_bishop": {
+      "fullname": "Saint Lambert of Maastricht, Bishop and Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Lambert of Maastricht",
+      "titles": ["BISHOP", "MARTYR"],
+      "dateOfDeath": 705
+    },
+    "landry_of_paris_bishop": {
+      "fullname": "Saint Landry of Paris, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Landry of Paris",
+      "titles": ["BISHOP"],
+      "dateOfDeath": {
+        "century": 7
+      }
+    },
+    "laserian_of_leighlin_bishop": {
+      "fullname": "Saint Laserian, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Laserian",
+      "titles": ["BISHOP"]
+    },
+    "laud_of_coutances_bishop": {
+      "fullname": "Saint Laud, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Laud",
+      "titles": ["BISHOP"],
+      "dateOfDeath": 566,
+      "sources": [
+        "mr_fr_1982_ed2_coutances",
+        "https://www.diocese50.fr/les-paroisses-et-les-doyennes/notre-dame-coutances/les-saints-du-diocese/saint-lo-eveque-de-coutances-patron-du-diocese",
+        "https://en.wikipedia.org/wiki/Laud_of_Coutances"
+      ]
+    },
+    "laud_of_coutances_bishop_patron_of_the_diocese_of_coutances": {
+      "fullname": "Saint Laud, Bishop, Patron of the Diocese of Coutances"
+    },
+    "laura_vicuna_virgin": {
+      "fullname": "Blessed Laura Vicuña, Virgin",
+      "canonizationLevel": "BLESSED",
+      "name": "Laura Vicuña",
+      "titles": ["VIRGIN"]
+    },
+    "laurence_otoole_bishop": {
+      "fullname": "Saint Laurence O’Toole, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Laurence O’Toole",
+      "titles": ["BISHOP"]
+    },
+    "laurence_wang_bing_and_companions_martyrs": {
+      "fullname": "Saint Laurence Wang Bing and Companions, Martyrs"
+    },
+    "laurence_wang_bing_martyr": {
+      "canonizationLevel": "SAINT",
+      "name": "Laurence Wang Bing",
+      "titles": ["MARTYR"]
+    },
+    "lawrence_bai_xiaoman_martyr": {
+      "fullname": "Saint Lawrence Bai Xiaoman, Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Lawrence Bai Xiaoman",
+      "titles": ["MARTYR"]
+    },
+    "lawrence_of_brindisi_priest": {
+      "fullname": "Saint Lawrence of Brindisi, Priest and Doctor of the Church",
+      "canonizationLevel": "SAINT",
+      "name": "Lawrence of Brindisi",
+      "titles": ["PRIEST", "DOCTOR_OF_THE_CHURCH"],
+      "dateOfDeath": 1619
+    },
+    "lawrence_of_rome_deacon": {
+      "fullname": "Saint Lawrence, Deacon and Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Lawrence",
+      "titles": ["DEACON", "MARTYR"],
+      "dateOfDeath": 258
+    },
+    "lawrence_ruiz_and_companions_martyrs": {
+      "fullname": "Saint Lawrence Ruiz and Companions, Martyrs"
+    },
+    "lawrence_ruiz_martyr": {
+      "canonizationLevel": "SAINT",
+      "name": "Lawrence Ruiz",
+      "titles": ["MARTYR"],
+      "dateOfDeath": 1635,
+      "dateOfDeathIsApproximative": true
+    },
+    "lazarus_of_bethany": {
+      "canonizationLevel": "SAINT",
+      "name": "Lazarus",
+      "dateOfDeath": {
+        "century": 1
+      }
+    },
+    "leander_of_seville_bishop": {
+      "fullname": "Saint Leander of Seville, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Leander of Seville",
+      "titles": ["BISHOP"]
+    },
+    "lelia_of_killeely_virgin": {
+      "fullname": "Saint Lelia, Virgin",
+      "canonizationLevel": "SAINT",
+      "name": "Lelia",
+      "titles": ["VIRGIN"]
+    },
+    "leo_i_the_great_pope": {
+      "fullname": "Saint Leo the Great, Pope and Doctor of the Church",
+      "canonizationLevel": "SAINT",
+      "name": "Leo the Great",
+      "titles": ["POPE", "DOCTOR_OF_THE_CHURCH"]
+    },
+    "leo_ignatius_mangin_priest": {
+      "canonizationLevel": "SAINT",
+      "name": "Leo Ignatius Mangin",
+      "titles": ["PRIEST", "MARTYR"]
+    },
+    "leo_ignatius_mangin_priest_and_companions_martyrs": {
+      "fullname": "Saint Leo Ignatius Mangin, Priest, and Companions, Martyrs"
+    },
+    "leo_ix_pope": {
+      "fullname": "Saint Leo IX, Pope",
+      "canonizationLevel": "SAINT",
+      "name": "Leo IX",
+      "titles": ["POPE"],
+      "dateOfDeath": "1054-4-19"
+    },
+    "leoba_of_tauberbischofsheim_abbess": {
+      "fullname": "Saint Leoba, Abbess",
+      "canonizationLevel": "SAINT",
+      "name": "Leoba",
+      "titles": ["ABBESS"]
+    },
+    "leodegar_of_autun_bishop": {
+      "fullname": "Saint Leodegar of Autun, Bishop and Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Leodegar",
+      "titles": ["ABBOT", "MARTYR"],
+      "dateOfDeath": {
+        "or": [679, 680]
+      }
+    },
+    "leon_de_carentan_bishop": {
+      "fullname": "Saint Leo of Carentan, Bishop and Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Leo of Carentan",
+      "titles": ["BISHOP", "MARTYR"],
+      "dateOfBirth": 856,
+      "dateOfBirthIsApproximative": true,
+      "dateOfDeath": 890,
+      "dateOfDeathIsApproximative": true,
+      "sources": [
+        "mr_fr_1982_ed2_coutances",
+        "https://www.diocese50.fr/les-paroisses-et-les-doyennes/notre-dame-coutances/les-saints-du-diocese/saint-leon-de-carentan-eveque-et-martyr",
+        "https://fr.wikipedia.org/wiki/L%C3%A9on_de_Carentan"
+      ]
+    },
+    "leonard_of_noblac_hermit": {
+      "fullname": "Saint Leonard of Noblac, Hermit",
+      "canonizationLevel": "SAINT",
+      "name": "Leonard of Noblac",
+      "titles": ["HERMIT"]
+    },
+    "leonid_feodorov_priest": {
+      "fullname": "Blessed Leonid Feodorov, Priest and Martyr",
+      "canonizationLevel": "BLESSED",
+      "name": "Leonid Feodorov",
+      "titles": ["PRIEST", "MARTYR"]
+    },
+    "leopold_iii_of_babenberg": {
+      "fullname": "Saint Leopold III of Babenberg",
+      "canonizationLevel": "SAINT",
+      "name": "Leopold III of Babenberg"
+    },
+    "leopold_mandic_priest": {
+      "fullname": "Saint Leopold Mandić, Priest",
+      "canonizationLevel": "SAINT",
+      "name": "Leopold Mandić",
+      "titles": ["PRIEST"]
+    },
+    "licinius_of_angers_bishop": {
+      "fullname": "Saint Licinius of Angers, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Licinius",
+      "titles": ["BISHOP"],
+      "dateOfBirth": 540,
+      "dateOfBirthIsApproximative": true,
+      "dateOfDeath": 610,
+      "dateOfDeathIsApproximative": true,
+      "sources": [
+        "mr_fr_2022_ed3_angers",
+        "https://en.wikipedia.org/wiki/Licinius_of_Angers"
+      ]
+    },
+    "louis_bertrand_priest": {
+      "fullname": "Saint Louis Bertrand, Priest",
+      "canonizationLevel": "SAINT",
+      "name": "Louis Bertrand",
+      "titles": ["PRIEST"]
+    },
+    "louis_flores_priest": {
+      "canonizationLevel": "BLESSED",
+      "name": "Louis Flores",
+      "titles": ["PRIEST", "MARTYR"]
+    },
+    "louis_grignion_de_montfort_priest": {
+      "fullname": "Saint Louis Grignion de Montfort, Priest",
+      "canonizationLevel": "SAINT",
+      "name": "Louis Grignion de Montfort",
+      "titles": ["PRIEST"],
+      "dateOfBirth": "1673-01-31",
+      "dateOfDeath": "1716-04-28",
+      "sources": [
+        "mr_fr_2021_ed3",
+        "https://en.wikipedia.org/wiki/Louis_de_Montfort"
+      ]
+    },
+    "louis_ix_of_france": {
+      "fullname": "Saint Louis",
+      "canonizationLevel": "SAINT",
+      "name": "Louis",
+      "titles": ["KING"],
+      "dateOfDeath": 1270
+    },
+    "louis_of_toulouse_bishop": {
+      "fullname": "Saint Louis of Toulouse, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Louis of Toulouse",
+      "titles": ["BISHOP"],
+      "dateOfBirth": "1274-02-09",
+      "dateOfDeath": "1297-08-19",
+      "dateOfCanonization": "1317-04-07",
+      "sources": [
+        "mr_fr_1974_ed1_region_apostolique_du_midi",
+        "https://en.wikipedia.org/wiki/Louis_of_Toulouse"
+      ]
+    },
+    "louis_zephirin_moreau_bishop": {
+      "fullname": "Blessed Louis-Zéphirin Moreau, Bishop",
+      "canonizationLevel": "BLESSED",
+      "name": "Louis-Zéphirin Moreau",
+      "titles": ["BISHOP"],
+      "dateOfDeath": 1901
+    },
+    "louise_de_marillac_religious": {
+      "fullname": "Saint Louise de Marillac, Religious",
+      "canonizationLevel": "SAINT",
+      "name": "Louise de Marillac",
+      "titles": ["RELIGIOUS"],
+      "dateOfDeath": 1660
+    },
+    "lucius_of_chur_bishop": {
+      "fullname": "Saint Lucius of Chur, Bishop and Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Lucius of Chur",
+      "titles": ["BISHOP", "MARTYR"]
+    },
+    "lucy_of_syracuse_virgin": {
+      "fullname": "Saint Lucy, Virgin and Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Lucy",
+      "titles": ["VIRGIN", "MARTYR"],
+      "dateOfDeath": 305,
+      "dateOfDeathIsApproximative": true
+    },
+    "lucy_yi_zhenmei_virgin": {
+      "fullname": "Saint Lucy Yi Zhenmei, Virgin and Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Lucy Yi Zhenmei",
+      "titles": ["VIRGIN", "MARTYR"]
+    },
+    "ludan_of_scotland_pilgrim": {
+      "fullname": "Saint Ludan, Pilgrim",
+      "canonizationLevel": "SAINT",
+      "name": "Ludan",
+      "titles": ["PILGRIM"],
+      "dateOfDeath": "1202-02-12"
+    },
+    "ludger_of_munster_bishop": {
+      "fullname": "Saint Ludger of Münster, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Ludger of Münster",
+      "titles": ["BISHOP"]
+    },
+    "ludmila_of_bohemia_martyr": {
+      "fullname": "Saint Ludmila, Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Ludmila",
+      "titles": ["MARTYR"]
+    },
+    "luigi_orione_priest": {
+      "fullname": "Saint Luigi Orione, Priest",
+      "canonizationLevel": "SAINT",
+      "name": "Luigi Orione",
+      "titles": ["PRIEST"]
+    },
+    "luke_evangelist": {
+      "fullname": "Saint Luke, Evangelist",
+      "canonizationLevel": "SAINT",
+      "name": "Luke",
+      "titles": ["EVANGELIST"]
+    },
+    "lydia_of_philippi": {
+      "fullname": "Saint Lydia of Philippi",
+      "canonizationLevel": "SAINT",
+      "name": "Lydia of Philippi"
+    }
+  }
+}

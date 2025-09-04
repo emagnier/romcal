@@ -1,0 +1,135 @@
+{
+  "locale": "en",
+  "metadata": {
+    "seasons": {
+      "advent": {
+        "season": "Advent",
+        "weekday": "$t(weekdays:{{dow}}, capitalize) of the $t(ordinals:{{week}}) week of Advent",
+        "sunday": "$t(ordinals:{{week}}, capitalize) Sunday of Advent",
+        "privileged_weekday": "$t(months:11, capitalize) {{day}}"
+      },
+      "christmas_time": {
+        "season": "Christmas Time",
+        "day": "$t(weekdays:{{dow}}, capitalize) of Christmas Time",
+        "octave": "$t(ordinals:{{count}}, capitalize) Day within the Octave of the Nativity of the Lord",
+        "second_sunday_after_christmas": "Second Sunday after the Nativity of the Lord",
+        "before_epiphany": "$t(months:0, capitalize) {{day}}",
+        "after_epiphany": "$t(weekdays:{{dow}}, capitalize) after the Epiphany of the Lord"
+      },
+      "ordinary_time": {
+        "season": "Ordinary Time",
+        "weekday": "$t(weekdays:{{dow}}, capitalize) of the $t(ordinals:{{week}}) week of Ordinary Time",
+        "sunday": "$t(ordinals:{{week}}, capitalize) Sunday in Ordinary Time"
+      },
+      "lent": {
+        "season": "Lent",
+        "weekday": "$t(weekdays:{{dow}}, capitalize) of the $t(ordinals:{{week}}) week of Lent",
+        "sunday": "$t(ordinals:{{week}}, capitalize) Sunday of Lent",
+        "day_after_ash_wed": "$t(weekdays:{{dow}}, capitalize) after Ash Wednesday",
+        "holy_week_day": "$t(weekdays:{{dow}}, capitalize) of Holy Week"
+      },
+      "paschal_triduum": {
+        "season": "Paschal Triduum"
+      },
+      "easter_time": {
+        "season": "Easter Time",
+        "weekday": "$t(weekdays:{{dow}}, capitalize) of the $t(ordinals:{{week}}) week of Easter",
+        "sunday": "$t(ordinals:{{week}}, capitalize) Sunday of Easter",
+        "octave": "$t(weekdays:{{dow}}, capitalize) within the Octave of Easter"
+      }
+    },
+    "periods": {
+      "epiphany": "Epiphany",
+      "holy_week": "Holy Week"
+    },
+    "ranks": {
+      "solemnity": "solemnity",
+      "sunday": "Sunday",
+      "feast": "feast",
+      "memorial": "memorial",
+      "optional_memorial": "optional memorial",
+      "weekday": "weekday"
+    },
+    "cycles": {
+      "proper_of_time": "Proper of Time",
+      "proper_of_saints": "Proper of Saints",
+      "sunday_year_a": "Year A",
+      "sunday_year_b": "Year B",
+      "sunday_year_c": "Year C",
+      "weekday_year_1": "Cycle I",
+      "weekday_year_2": "Cycle II",
+      "psalter_week_1": "Week I",
+      "psalter_week_2": "Week II",
+      "psalter_week_3": "Week III",
+      "psalter_week_4": "Week IV"
+    },
+    "weekdays": {
+      "0": "Sunday",
+      "1": "Monday",
+      "2": "Tuesday",
+      "3": "Wednesday",
+      "4": "Thursday",
+      "5": "Friday",
+      "6": "Saturday"
+    },
+    "months": {
+      "0": "January",
+      "1": "February",
+      "2": "March",
+      "3": "April",
+      "4": "May",
+      "5": "June",
+      "6": "July",
+      "7": "August",
+      "8": "September",
+      "9": "October",
+      "10": "November",
+      "11": "December"
+    },
+    "colors": {
+      "black": "black",
+      "gold": "gold",
+      "green": "green",
+      "purple": "purple",
+      "red": "red",
+      "rose": "rose",
+      "white": "white"
+    },
+    "ordinals": {
+      "1": "first",
+      "2": "second",
+      "3": "third",
+      "4": "fourth",
+      "5": "fifth",
+      "6": "sixth",
+      "7": "seventh",
+      "8": "eighth",
+      "9": "ninth",
+      "10": "tenth",
+      "11": "eleventh",
+      "12": "twelfth",
+      "13": "thirteenth",
+      "14": "fourteenth",
+      "15": "fifteenth",
+      "16": "sixteenth",
+      "17": "seventeenth",
+      "18": "eighteenth",
+      "19": "nineteenth",
+      "20": "twentieth",
+      "21": "twenty-first",
+      "22": "twenty-second",
+      "23": "twenty-third",
+      "24": "twenty-fourth",
+      "25": "twenty-fifth",
+      "26": "twenty-sixth",
+      "27": "twenty-seventh",
+      "28": "twenty-eighth",
+      "29": "twenty-ninth",
+      "30": "thirtieth",
+      "31": "thirty-first",
+      "32": "thirty-second",
+      "33": "thirty-third",
+      "34": "thirty-fourth"
+    }
+  }
+}

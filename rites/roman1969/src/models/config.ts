@@ -1,6 +1,6 @@
 import i18next, { i18n } from 'i18next';
 
-import { GeneralRoman } from '../calendars/general-roman';
+import { GeneralRoman } from '../calendars/general_roman';
 import { Color } from '../constants/colors';
 import { Season } from '../constants/seasons';
 import { ProperOfTime } from '../proper-of-time/proper-of-time';

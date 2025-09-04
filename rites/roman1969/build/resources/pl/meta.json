@@ -1,0 +1,88 @@
+{
+  "locale": "pl",
+  "metadata": {
+    "seasons": {
+      "advent": {
+        "season": "Adwent",
+        "weekday": "$t(weekdays:{{dow}}, capitalize) {{week}} tygodnia Adwentu",
+        "sunday": "{{week}} Niedziela Adwentu",
+        "privileged_weekday": "{{day}} $t(months:11)"
+      },
+      "christmas_time": {
+        "season": "Narodzenie Pańskie",
+        "day": "$t(weekdays:{{dow}}, capitalize) okresu Bożego Narodzenia",
+        "octave": "{{count}} dzień w oktawie Narodzenia Pańskiego",
+        "second_sunday_after_christmas": "2 Niedziela po Narodzeniu Pańskim",
+        "before_epiphany": "{{day}} $t(months:0)",
+        "after_epiphany": "$t(weekdays:{{dow}}, capitalize) po Objawieniu Pańskim"
+      },
+      "ordinary_time": {
+        "season": "Okres Zwykły",
+        "weekday": "$t(weekdays:{{dow}}, capitalize) {{week}} tygodnia zwykłego",
+        "sunday": "{{week}} Niedziela zwykła"
+      },
+      "lent": {
+        "season": "Wielki Post",
+        "weekday": "$t(weekdays:{{dow}}, capitalize) {{week}} tygodnia Wielkiego Postu",
+        "sunday": "{{week}} Niedziela Wielkiego Postu",
+        "day_after_ash_wed": "$t(weekdays:{{dow}}, capitalize) po Popielcu",
+        "holy_week_day": "$t(weekdays:{{dow}}, capitalize) Wielkiego Tygodnia"
+      },
+      "paschal_triduum": {
+        "season": "Triduum Paschalne"
+      },
+      "easter_time": {
+        "season": "Wielkanoc",
+        "weekday": "$t(weekdays:{{dow}}, capitalize) {{week}} tygodnia Wielkanocy",
+        "sunday": "{{week}} Niedziela Wielkanocy",
+        "octave": "$t(weekdays:{{dow}}, capitalize) w oktawie Wielkanocy"
+      }
+    },
+    "periods": {
+      "epiphany": "Objawienie Pańskie",
+      "holy_week": "Wielki Tydzień"
+    },
+    "ranks": {
+      "solemnity": "uroczystość",
+      "sunday": "niedziela",
+      "feast": "święto",
+      "memorial": "wspomnienie obowiązkowe",
+      "optional_memorial": "wspomnienie dowolne",
+      "weekday": "dzień powszedni"
+    },
+    "cycles": {},
+    "weekdays": {
+      "0": "niedziela",
+      "1": "poniedziałek",
+      "2": "wtorek",
+      "3": "środa",
+      "4": "czwartek",
+      "5": "piątek",
+      "6": "sobota"
+    },
+    "months": {
+      "0": "stycznia",
+      "1": "lutego",
+      "2": "marca",
+      "3": "kwietnia",
+      "4": "maja",
+      "5": "czerwca",
+      "6": "lipca",
+      "7": "sierpnia",
+      "8": "września",
+      "9": "października",
+      "10": "listopada",
+      "11": "grudnia"
+    },
+    "colors": {
+      "black": "czarny",
+      "gold": "złoty",
+      "green": "zielony",
+      "purple": "fioletowy",
+      "red": "czerwony",
+      "rose": "różowy",
+      "white": "biały"
+    },
+    "ordinals": {}
+  }
+}

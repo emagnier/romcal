@@ -1,0 +1,87 @@
+{
+  "locale": "it",
+  "letter": "p",
+  "items": {
+    "palm_sunday_of_the_passion_of_the_lord": {
+      "fullname": "Domenica delle Palme: Passione del Signore"
+    },
+    "pancras_of_rome_martyr": {
+      "fullname": "San Pancrazio, martire"
+    },
+    "passion_of_saint_john_the_baptist": {
+      "fullname": "Martirio di San Giovanni Battista"
+    },
+    "patrick_of_ireland_bishop": {
+      "fullname": "San Patrizio, vescovo"
+    },
+    "patrick_of_ireland_bishop_patron_of_ireland": {
+      "fullname": "San Patrizio, vescovo e patrono dell’Irlanda"
+    },
+    "paul_miki_and_companions_martyrs": {
+      "fullname": "San Paolo Miki sacerdote e compagni, martiri"
+    },
+    "paul_of_the_cross_priest": {
+      "fullname": "San Paolo della Croce, sacerdote"
+    },
+    "paul_vi_pope": {
+      "fullname": "San Paolo VI, papa"
+    },
+    "paulinus_of_nola_bishop": {
+      "fullname": "San Paolino di Nola, vescovo"
+    },
+    "pentecost_sunday": {
+      "fullname": "Domenica di Pentecoste"
+    },
+    "perpetua_of_carthage_and_felicity_of_carthage_martyrs": {
+      "fullname": "Sante Perpetua e Felicita, martiri"
+    },
+    "peter_and_paul_apostles": {
+      "fullname": "Santi Pietro e Paolo, apostoli"
+    },
+    "peter_canisius_priest": {
+      "fullname": "San Pietro Canisio, sacerdote e dottore della Chiesa"
+    },
+    "peter_chanel_priest": {
+      "fullname": "San Pietro Chanel, sacerdote e martire"
+    },
+    "peter_chrysologus_bishop": {
+      "fullname": "San Pietro Crisologo, vescovo e dottore della Chiesa"
+    },
+    "peter_claver_priest": {
+      "fullname": "San Pietro Claver, sacerdote"
+    },
+    "peter_damian_bishop": {
+      "fullname": "San Pier Damiani, vescovo e dottore della Chiesa"
+    },
+    "peter_julian_eymard_priest": {
+      "fullname": "San Pietro Giuliano Eymard, sacerdote"
+    },
+    "philip_and_james_apostles": {
+      "fullname": "Santi Filippo e Giacomo, apostoli"
+    },
+    "philip_neri_priest": {
+      "fullname": "San Filippo Neri, sacerdote"
+    },
+    "pius_francesco_forgione_priest": {
+      "fullname": "San Pio da Pietrelcina, sacerdote"
+    },
+    "pius_v_pope": {
+      "fullname": "San Pio V, papa"
+    },
+    "pius_x_pope": {
+      "fullname": "San Pio X, papa"
+    },
+    "polycarp_of_smyrna_bishop": {
+      "fullname": "San Policarpo, vescovo e martire"
+    },
+    "pontian_i_pope_and_hippolytus_of_rome_priest": {
+      "fullname": "Santi Ponziano, papa e Ippolito, sacerdote, martiri"
+    },
+    "presentation_of_the_blessed_virgin_mary": {
+      "fullname": "Presentazione della Beata Vergine Maria"
+    },
+    "presentation_of_the_lord": {
+      "fullname": "Presentazione del Signore"
+    }
+  }
+}

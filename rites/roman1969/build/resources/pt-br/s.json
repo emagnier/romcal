@@ -1,0 +1,42 @@
+{
+  "locale": "pt-br",
+  "letter": "s",
+  "items": {
+    "sancha_of_portugal_and_mafalda_of_portugal_virgins": {
+      "fullname": "Beatas Sancha e Mafalda, virgens, e Teresa, religiosa"
+    },
+    "scholastica_of_nursia_virgin": {
+      "fullname": "Santa Escolástica, virgem"
+    },
+    "sebastian_of_milan_martyr": {
+      "fullname": "São Sebastião, mártir"
+    },
+    "seven_holy_founders_of_the_servite_order": {
+      "fullname": "Santos Sete Fundadores da Ordem dos Servitas"
+    },
+    "sharbel_makhluf_priest": {
+      "fullname": "São Charbel Makhluf, presbítero"
+    },
+    "simon_and_jude_apostles": {
+      "fullname": "Santos Simão e São Judas Tadeu, apóstolos"
+    },
+    "sixtus_ii_pope_and_companions_martyrs": {
+      "fullname": "São Sisto II, papa, e seus companheiros, mártires"
+    },
+    "stanislaus_of_szczepanow_bishop": {
+      "fullname": "Santo Estanislau, bispo e mártir"
+    },
+    "stephen_i_of_hungary": {
+      "fullname": "Santo Estêvão da Hungria"
+    },
+    "stephen_the_first_martyr": {
+      "fullname": "Santo Estêvão, primeiro mártir"
+    },
+    "sunday_of_the_word_of_god": {
+      "fullname": "3º Domingo do Tempo Comum, ou Domingo da Palavra de Deus"
+    },
+    "sylvester_i_pope": {
+      "fullname": "São Silvestre I, papa"
+    }
+  }
+}

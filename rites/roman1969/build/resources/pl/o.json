@@ -1,0 +1,69 @@
+{
+  "locale": "pl",
+  "letter": "o",
+  "items": {
+    "odile_of_alsace_abbess": {
+      "fullname": "Św. Otylii, ksieni"
+    },
+    "odile_of_alsace_abbess_patroness_of_alsace": {
+      "fullname": "Św. Otylii, ksieni, patronka Alzacji"
+    },
+    "odoric_of_pordenone_priest": {
+      "fullname": "Bł. Odoryka z Pordenone, prezbitera"
+    },
+    "otto_of_bamberg_bishop": {
+      "fullname": "Św. Ottona, biskupa"
+    },
+    "our_lady_help_of_christians": {
+      "fullname": "Najświętszej Maryi Panny, Wspomożycielki Wiernych"
+    },
+    "our_lady_of_china": {
+      "fullname": "Najświętszej Maryi Panny z Chin"
+    },
+    "our_lady_of_czestochowa": {
+      "fullname": "Najświętszej Maryi Panny Częstochowskiej"
+    },
+    "our_lady_of_fatima": {
+      "fullname": "Najświętszej Maryi Panny z Fatimy"
+    },
+    "our_lady_of_guadalupe": {
+      "fullname": "Najświętszej Maryi Panny z Guadalupe"
+    },
+    "our_lady_of_guadalupe_patroness_of_the_americas": {
+      "fullname": "Najświętszej Maryi Panny z Guadalupe, Patronki obu Ameryk"
+    },
+    "our_lady_of_loreto": {
+      "fullname": "Najświętszej Maryi Panny Loretańskiej"
+    },
+    "our_lady_of_lourdes": {
+      "fullname": "Najświętszej Maryi Panny z Lourdes"
+    },
+    "our_lady_of_mount_carmel": {
+      "fullname": "Najświętszej Maryi Panny z Góry Karmel"
+    },
+    "our_lady_of_sorrows": {
+      "fullname": "Najświętszej Maryi Panny Bolesnej"
+    },
+    "our_lady_of_sorrows_patroness_of_slovakia": {
+      "fullname": "Najświętszej Maryi Panny Bolesnej, patronki Słowacji"
+    },
+    "our_lady_of_the_miraculous_medal": {
+      "fullname": "Najświętszej Maryi Panny od Cudownego Medalika"
+    },
+    "our_lady_of_the_rosary": {
+      "fullname": "Najświętszej Maryi Panny Różańcowej"
+    },
+    "our_lady_queen_of_poland": {
+      "fullname": "Najświętszej Maryi Panny, Królowej Polski, głownej patronki Polski"
+    },
+    "our_lady_refuge_of_sinners": {
+      "fullname": "Najświętszej Maryi Panny, Ucieczki Grzeszników"
+    },
+    "our_lord_jesus_christ_king_of_the_universe": {
+      "fullname": "Jezusa Chrystusa Króla Wszechświata"
+    },
+    "our_lord_jesus_christ_the_eternal_high_priest": {
+      "fullname": "Jezusa Chrystusa, Najwyższego i Wiecznego Kapłana"
+    }
+  }
+}

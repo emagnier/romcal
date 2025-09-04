@@ -1,0 +1,12 @@
+{
+  "locale": "pl",
+  "letter": "z",
+  "items": {
+    "zdislava_of_lemberk": {
+      "fullname": "Św. Zdzisławy"
+    },
+    "zygmunt_gorazdowski_priest": {
+      "fullname": "Św. Zygmunta Gorazdowskiego, prezbitera"
+    }
+  }
+}

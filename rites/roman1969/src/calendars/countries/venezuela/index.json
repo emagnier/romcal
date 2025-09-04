@@ -1,0 +1,20 @@
+{
+  "id": "venezuela",
+  "metadata": {
+    "jurisdiction": "CIVIL",
+    "type": "COUNTRY"
+  },
+  "parentCalendarIds": [
+    "Americas"
+  ],
+  "inputs": {
+    "our_lord_jesus_christ_the_eternal_high_priest": {
+      "precedence": "PROPER_FEAST_8F",
+      "dateDef": {
+        "dateFn": "pentecostSunday",
+        "addDay": 4
+      },
+      "properCycle": "PROPER_OF_TIME"
+    }
+  }
+}

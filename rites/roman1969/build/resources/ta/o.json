@@ -1,0 +1,162 @@
+{
+  "locale": "ta",
+  "letter": "o",
+  "items": {
+    "odile_of_alsace_abbess": {
+      "fullname": "புனித ஒடில் அல்சாசே - மடாதிபதி"
+    },
+    "odile_of_alsace_abbess_patroness_of_alsace": {
+      "fullname": "புனித ஒடில் - மடாதிபதி, அல்சாசேவின் பாதுகாவலி"
+    },
+    "odoric_of_pordenone_priest": {
+      "fullname": "பொர்டெனோனெவின் முத்திப்பேறுபெற்ற ஒடொறிச்"
+    },
+    "olaf_ii_of_norway_martyr": {
+      "fullname": "புனித இரண்டாம் ஒலெப் - மறைசாட்சி"
+    },
+    "oleksiy_zarytskyi_priest": {
+      "fullname": "முத்திப்பேறுபெற்ற ஒலெக்சி சாரிட்ஸ்கி - அருடபணியாளர், மறைசாட்சி"
+    },
+    "olga_of_kiev": {
+      "fullname": "புனித ஒல்கா"
+    },
+    "oliver_plunket_bishop": {
+      "fullname": "புனித ஒலிவர் ப்ளங்கட் - ஆயர், மறைசாட்சி"
+    },
+    "otteran_of_iona_monk": {
+      "fullname": "புனித ஒடெரன் - துறவி"
+    },
+    "otto_of_bamberg_bishop": {
+      "fullname": "புனித ஒட்டோ பம்பெர்க் - ஆயர்"
+    },
+    "our_lady_help_of_christians": {
+      "fullname": "கிறிஸ்தவர்களின் அடைக்கல மாதா"
+    },
+    "our_lady_mediatrix_of_all_grace": {
+      "fullname": "அனைத்து கிருபைகளின் மத்தியஸ்தகராகிய மாதா"
+    },
+    "our_lady_mother_of_christian_unity": {
+      "fullname": "கிறிஸ்தவர்களின் ஒற்றுமையின் மாதா"
+    },
+    "our_lady_mother_of_divine_providence_patroness_of_puerto_rico": {
+      "fullname": "இறைபாதுப்பின் மாதா - பியொட்ரோ ரிக்கோவின் பாதுகாவலி"
+    },
+    "our_lady_of_aparecida_patroness_of_brazil": {
+      "fullname": "அபரெசிடாவின் மாதா - பிரெசில் நாட்டின் பாதுகாவலி"
+    },
+    "our_lady_of_bethlehem": {
+      "fullname": "பெத்லெகெமின் மாதா"
+    },
+    "our_lady_of_china": {
+      "fullname": "சீனாவின் மாதா"
+    },
+    "our_lady_of_czestochowa": {
+      "fullname": "செஸ்டொசொவாவின் மாதா"
+    },
+    "our_lady_of_fatima": {
+      "fullname": "பாத்திமா மாதா"
+    },
+    "our_lady_of_good_counsel": {
+      "fullname": "நல்லாலோசனை மாதா"
+    },
+    "our_lady_of_guadalupe": {
+      "fullname": "குவாடலுபே மாதா"
+    },
+    "our_lady_of_guadalupe_patroness_of_the_americas": {
+      "fullname": "குவாடலுபே மாதா - அமெரிக்க கண்டங்களின் பாதுகாவலி"
+    },
+    "our_lady_of_guadalupe_patroness_of_the_philippines": {
+      "fullname": "குவாடலுபே மாதா - பிலிப்பைன்ஸ் தீவுகளின் பாதுகாவலி"
+    },
+    "our_lady_of_hungary_patroness_of_hungary": {
+      "fullname": "ஹங்கேரியின் மாதா - ஹங்கேரியின் பாதுகாவலி"
+    },
+    "our_lady_of_itati": {
+      "fullname": "இடாடியின் மாதா"
+    },
+    "our_lady_of_knock": {
+      "fullname": "நொக்கின் மாதா"
+    },
+    "our_lady_of_lanka": {
+      "fullname": "இலங்கை மாதா"
+    },
+    "our_lady_of_lebanon": {
+      "fullname": "லெபனானின் மாதா"
+    },
+    "our_lady_of_loreto": {
+      "fullname": "லொரெடா மாதா"
+    },
+    "our_lady_of_lourdes": {
+      "fullname": "லூர்து மாதா"
+    },
+    "our_lady_of_lujan_patroness_of_argentina": {
+      "fullname": "லுஜன் மாதா - அர்ஜெண்டினாவின் பாதுபாகவலி"
+    },
+    "our_lady_of_madhu": {
+      "fullname": "மடு மாதா"
+    },
+    "our_lady_of_marija_bistrica": {
+      "fullname": "மரிய பிஸ்ரிசா மாதா"
+    },
+    "our_lady_of_mercy": {
+      "fullname": "இரக்கத்தின் மாத"
+    },
+    "our_lady_of_mount_carmel": {
+      "fullname": "காமேலேற் மாதா"
+    },
+    "our_lady_of_mount_carmel_mother_and_queen_of_chile": {
+      "fullname": "காமாலெற் மாதா - சிலியின் அன்னை, அரசி"
+    },
+    "our_lady_of_perpetual_help": {
+      "fullname": "சதா சகாய மாதா"
+    },
+    "our_lady_of_sorrows": {
+      "fullname": "வியாகுல மாதா"
+    },
+    "our_lady_of_sorrows_patroness_of_slovakia": {
+      "fullname": "வியாகுல மாதா - சிலோவாக்கியாவின் பாதுகாவலி"
+    },
+    "our_lady_of_the_discovery_of_the_hidden_christians": {
+      "fullname": "மறைந்திருக்கும் கிறிஸ்தவர்களை கண்டுபிடிக்கும் மாதா"
+    },
+    "our_lady_of_the_gate_of_dawn": {
+      "fullname": "விடியலின் வாயில் மாதா"
+    },
+    "our_lady_of_the_miraculous_medal": {
+      "fullname": "புதுமைப்பதக்க மாதா"
+    },
+    "our_lady_of_the_pillar": {
+      "fullname": "தூண் மாதா"
+    },
+    "our_lady_of_the_rosary": {
+      "fullname": "செபமாலை மாதா"
+    },
+    "our_lady_of_the_valley": {
+      "fullname": "பள்ளத்தாக்குகளின் மாதா"
+    },
+    "our_lady_of_vladimir": {
+      "fullname": "விளாடிமர் மாதா"
+    },
+    "our_lady_of_walsingham": {
+      "fullname": "வெல்சிங்கம் மாதா"
+    },
+    "our_lady_queen_of_peace": {
+      "fullname": "சமாதானத்தின் மாதா"
+    },
+    "our_lady_queen_of_poland": {
+      "fullname": "போலந்தின் மாதா - போலந்தின் பாதுகாவலி"
+    },
+    "our_lady_refuge_of_sinners": {
+      "fullname": "புனித மரியாள் - பாவிகளின் அடைக்கலம்"
+    },
+    "our_lord_jesus_christ_king_of_the_universe": {
+      "fullname": "இயேசு கிறிஸ்து அனைத்துலக அரசர்"
+    },
+    "our_lord_jesus_christ_the_eternal_high_priest": {
+      "fullname": "நமது ஆண்டவராகிய இயேசு கிறிஸ்து, நித்திய தலைமைக் குரு"
+    },
+    "our_lord_of_miracles": {
+      "fullname": "புதுமைகளின் ஆண்டவர்"
+    }
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "locale": "fr",
+  "letter": "p",
+  "items": {
+    "palm_sunday_of_the_passion_of_the_lord": {
+      "fullname": "Dimanche des Rameaux et de la Passion"
+    },
+    "pancras_of_rome_martyr": {
+      "fullname": "Saint Pancrace, martyr à Rome († v. 304)"
+    },
+    "passion_of_saint_john_the_baptist": {
+      "fullname": "martyre de Saint Jean-Baptiste"
+    },
+    "paternus_of_avranches_bishop_and_scubilion_abbot": {
+      "fullname": "Saint Pair, évêque d’Avranches, et saint Scubillion, abbé († v. 565)"
+    },
+    "patrick_of_ireland_bishop": {
+      "fullname": "Saint Patrick, évêque († 461)"
+    },
+    "patrick_of_ireland_bishop_patron_of_ireland": {
+      "fullname": "Saint Patrick, évêque, patron de l’Irlande († 461)"
+    },
+    "paul_miki_and_companions_martyrs": {
+      "fullname": "Saints Paul Miki et ses compagnons, martyrs au Japon († 1597)"
+    },
+    "paul_of_narbonne_bishop": {
+      "fullname": "Saint Paul de Narbonne, évêque († IIIème s.)"
+    },
+    "paul_of_the_cross_priest": {
+      "fullname": "Saint Paul de la Croix, prêtre († 1776)"
+    },
+    "paul_vi_pope": {
+      "fullname": "Saint Paul VI, pape († 1978)"
+    },
+    "paulinus_of_nola_bishop": {
+      "fullname": "Saint Paulin, évêque († 431)"
+    },
+    "pentecost_sunday": {
+      "fullname": "Pentecôte"
+    },
+    "perpetua_of_carthage_and_felicity_of_carthage_martyrs": {
+      "fullname": "Saintes Perpétue et Félicité, martyres à Carthage († 203)"
+    },
+    "peter_adrian_toulorge_priest": {
+      "fullname": "Bienheureux Pierre-Adrien Toulorge, prêtre et martyr († 1793)"
+    },
+    "peter_and_paul_apostles": {
+      "fullname": "Saint Pierre et Saint Paul, apôtres"
+    },
+    "peter_canisius_priest": {
+      "fullname": "Saint Pierre Canisius, prêtre et docteur de l’Église († 1597)"
+    },
+    "peter_chanel_priest": {
+      "fullname": "Saint Pierre Chanel, prêtre et martyr († 1841)"
+    },
+    "peter_chrysologus_bishop": {
+      "fullname": "Saint Pierre Chrysologue, évêque de Ravenne et docteur de l’Église († 451)"
+    },
+    "peter_claver_priest": {
+      "fullname": "Saint Pierre Claver, prêtre Jésuite († 1654)"
+    },
+    "peter_damian_bishop": {
+      "fullname": "Saint Pierre Damien, évêque d’Ostie, docteur de l’Église († 1072)"
+    },
+    "peter_julian_eymard_priest": {
+      "fullname": "Saint Pierre-Julien Eymard, prêtre († 1868)"
+    },
+    "peter_nolasco_religious": {
+      "fullname": "Saint Pierre Nolasque, religieux († 1256)"
+    },
+    "philip_and_james_apostles": {
+      "fullname": "Saint Philippe et Saint Jacques le Mineur, apôtres"
+    },
+    "philip_neri_priest": {
+      "fullname": "Saint Philippe Néri, prêtre († 1595)"
+    },
+    "pirmin_of_hornbach_abbot": {
+      "fullname": "Saint Pirmin, abbé († 753)"
+    },
+    "pius_francesco_forgione_priest": {
+      "fullname": "Saint Pio de Pietrelcina (Padre Pio), prêtre Capucin († 1968)"
+    },
+    "pius_v_pope": {
+      "fullname": "Saint Pie V, pape († 1572)"
+    },
+    "pius_x_pope": {
+      "fullname": "Saint Pie X, pape († 1914)"
+    },
+    "placide_eulalie_victoire_jacqueline_viel_virgin": {
+      "fullname": "Bienheureuse Placide Viel, vierge († 1877)"
+    },
+    "polycarp_of_smyrna_bishop": {
+      "fullname": "Saint Polycarpe, évêque et martyr († 167)"
+    },
+    "pontian_i_pope_and_hippolytus_of_rome_priest": {
+      "fullname": "Saints Pontien, pape, et Hippolyte, prêtre de Rome, martyrs († 235)"
+    },
+    "pothinus_of_lyon_bishop_blandina_of_lyon_virgin_and_companions_martyrs": {
+      "fullname": "Saint Pothin, évêque, Sainte Blandine, vierge, et leurs compagnons, martyrs († 177)"
+    },
+    "pothinus_of_lyon_bishop_patron_the_city_of_lyon_blandina_of_lyon_virgin_and_companions_martyrs": {
+      "fullname": "Saint Pothin, évêque, patron de la ville de Lyon, Sainte Blandine, vierge, et leurs compagnons, martyrs († 177)"
+    },
+    "presentation_of_the_blessed_virgin_mary": {
+      "fullname": "Présentation de la vierge Marie"
+    },
+    "presentation_of_the_lord": {
+      "fullname": "Présentation du Seigneur au Temple"
+    }
+  }
+}

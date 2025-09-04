@@ -1,0 +1,20 @@
+{
+  "id": "americas",
+  "metadata": {
+    "jurisdiction": "CIVIL",
+    "type": "REGION"
+  },
+  "parentCalendarIds": [],
+  "inputs": {
+    "our_lady_of_guadalupe": {
+      "customLocaleId": "our_lady_of_guadalupe_patroness_of_the_americas",
+      "precedence": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C",
+      "titles": {
+        "append": [
+          "PATRONESS_OF_THE_AMERICAS"
+        ]
+      },
+      "commonsDef": "None"
+    }
+  }
+}

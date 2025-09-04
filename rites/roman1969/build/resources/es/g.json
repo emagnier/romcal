@@ -1,0 +1,36 @@
+{
+  "locale": "es",
+  "letter": "g",
+  "items": {
+    "george_of_lydda_martyr": {
+      "fullname": "San Jorge, mártir"
+    },
+    "george_of_lydda_martyr_patron_of_england": {
+      "fullname": "San Jorge, mártir y Patrono de Inglaterra"
+    },
+    "gerard_of_csanad_bishop": {
+      "fullname": "San Gerardo, obispo"
+    },
+    "germain_of_paris_bishop": {
+      "fullname": "San Germán, obispo"
+    },
+    "gertrude_of_nivelles_abbess": {
+      "fullname": "Santa Gertrudis de Nivelles, religiosa"
+    },
+    "gertrude_the_great_virgin": {
+      "fullname": "Santa Gertrudis la Grande, virgen"
+    },
+    "gregory_i_the_great_pope": {
+      "fullname": "San Gregorio Magno, papa y doctor de la Iglesia"
+    },
+    "gregory_of_narek_abbot": {
+      "fullname": "San Gregorio de Narek, Abad y doctor de la Iglesia"
+    },
+    "gregory_vii_pope": {
+      "fullname": "San Gregorio VII, papa"
+    },
+    "gundisalvus_garcia_martyr": {
+      "fullname": "San Gonsalo Garcia, mártir"
+    }
+  }
+}

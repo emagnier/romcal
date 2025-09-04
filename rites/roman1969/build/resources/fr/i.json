@@ -1,0 +1,36 @@
+{
+  "locale": "fr",
+  "letter": "i",
+  "items": {
+    "ignatius_of_antioch_bishop": {
+      "fullname": "Saint Ignace d’Antioche, évêque et martyr, père et docteur de l’Église († 115)"
+    },
+    "ignatius_of_loyola_priest": {
+      "fullname": "Saint Ignace de Loyola, prêtre, fondateur de la Compagnie de Jésus († 1556)"
+    },
+    "immaculate_conception_of_the_blessed_virgin_mary": {
+      "fullname": "Immaculée Conception de la vierge Marie"
+    },
+    "immaculate_heart_of_mary": {
+      "fullname": "Cœur immaculé de Marie"
+    },
+    "innocent_v_pope": {
+      "fullname": "Bienheureux Innocent V, pape († 1276)"
+    },
+    "irenaeus_of_lyon_bishop": {
+      "fullname": "Saint Irénée, évêque, martyr et docteur de l’Église († v. 201)"
+    },
+    "irenaeus_of_lyon_bishop_patron_of_the_archdiocese_of_lyon_and_companions_martyrs": {
+      "fullname": "Saint Irénée, évêque et docteur de l’Église, patron principal du diocèse, et ses compagnons, martyrs († v. 201)"
+    },
+    "isabelle_of_france_virgin": {
+      "fullname": "Bienheureuse Isabelle de France, sœur de saint Louis, vierge († 1270)"
+    },
+    "isidore_of_seville_bishop": {
+      "fullname": "Saint Isidore de Séville, docteur de l’Église, évêque et Confesseur († 636)"
+    },
+    "ivo_of_kermartin_priest": {
+      "fullname": "Saint Yves Hélory, prêtre et juge en Bretagne († 1303)"
+    }
+  }
+}

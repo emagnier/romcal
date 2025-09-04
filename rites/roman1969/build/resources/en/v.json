@@ -1,0 +1,117 @@
+{
+  "locale": "en",
+  "letter": "v",
+  "items": {
+    "valentine_of_raetia_bishop": {
+      "fullname": "Saint Valentine of Raetia, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Valentine of Raetia",
+      "titles": ["BISHOP"]
+    },
+    "valerius_of_trier_bishop": {
+      "fullname": "Saint Valerius, Bishop",
+      "canonizationLevel": "SAINT",
+      "name": "Valerius of Trier",
+      "titles": ["BISHOP"],
+      "dateOfDeath": 320
+    },
+    "vasyl_velychkovsky_bishop": {
+      "canonizationLevel": "BLESSED",
+      "name": "Vasyl Velychkovsky",
+      "titles": ["BISHOP", "MARTYR"],
+      "dateOfDeath": 1973
+    },
+    "viator_of_lyon": {
+      "fullname": "Saint Viator",
+      "canonizationLevel": "SAINT",
+      "name": "Viator of Lyons",
+      "dateOfBirth": 370,
+      "dateOfBirthIsApproximative": true,
+      "dateOfDeath": 389,
+      "dateOfDeathIsApproximative": true,
+      "sources": ["mr_fr_2014_ed2_lyon"]
+    },
+    "vincent_de_paul_priest": {
+      "fullname": "Saint Vincent de Paul, Priest",
+      "canonizationLevel": "SAINT",
+      "name": "Vincent de Paul",
+      "titles": ["PRIEST"],
+      "dateOfDeath": 1660
+    },
+    "vincent_ferrer_priest": {
+      "fullname": "Saint Vincent Ferrer, Priest",
+      "canonizationLevel": "SAINT",
+      "name": "Vincent Ferrer",
+      "titles": ["PRIEST"],
+      "dateOfDeath": 1419
+    },
+    "vincent_kadlubek_bishop": {
+      "fullname": "Blessed Vincent Kadłubek, Bishop",
+      "canonizationLevel": "BLESSED",
+      "name": "Vincent Kadłubek",
+      "titles": ["BISHOP"]
+    },
+    "vincent_lewoniuk_and_companions_martyrs": {
+      "fullname": "Blessed Vincent Lewoniuk and Companions, Martyrs"
+    },
+    "vincent_lewoniuk_martyr": {
+      "canonizationLevel": "BLESSED",
+      "name": "Vincent Lewoniuk",
+      "titles": ["MARTYR"]
+    },
+    "vincent_of_saragossa_deacon": {
+      "fullname": "Saint Vincent, Deacon and Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Vincent",
+      "titles": ["DEACON", "MARTYR"],
+      "dateOfDeath": 304
+    },
+    "vincent_pallotti_priest": {
+      "fullname": "Saint Vincent Pallotti, Priest",
+      "canonizationLevel": "SAINT",
+      "name": "Vincent Pallotti",
+      "titles": ["PRIEST"]
+    },
+    "virgilius_of_salzburg_bishop": {
+      "fullname": "Saint Virgilius, Bishop and Missionary",
+      "canonizationLevel": "SAINT",
+      "name": "Virgilius of Salzburg",
+      "titles": ["BISHOP"]
+    },
+    "visitation_of_mary": {
+      "fullname": "The Visitation of the Blessed Virgin Mary",
+      "name": "Visitation of the Blessed Virgin Mary"
+    },
+    "vitalis_of_savigny_abbot": {
+      "fullname": "Saint Vitalis of Savigny, Abbot",
+      "canonizationLevel": "SAINT",
+      "name": "Vitalis of Savigny",
+      "titles": ["ABBOT"],
+      "dateOfBirth": 1050,
+      "dateOfBirthIsApproximative": true,
+      "dateOfDeath": "1122-09-16",
+      "sources": [
+        "mr_fr_1982_ed2_coutances",
+        "https://www.diocese50.fr/les-paroisses-et-les-doyennes/notre-dame-coutances/les-saints-du-diocese/saint-vital-abbe-de-savigny",
+        "https://en.wikipedia.org/wiki/Vitalis_of_Savigny"
+      ]
+    },
+    "vitus_of_lucania_martyr": {
+      "fullname": "Saint Vitus, Martyr",
+      "canonizationLevel": "SAINT",
+      "name": "Vitus",
+      "titles": ["MARTYR"]
+    },
+    "vladimir_ghika_priest": {
+      "fullname": "Blessed Vladimir Ghika, Priest and Martyr",
+      "canonizationLevel": "BLESSED",
+      "name": "Vladimir Ghika",
+      "titles": ["PRIEST", "MARTYR"]
+    },
+    "vladimir_i_the_great_of_kiev": {
+      "fullname": "Saint Vladimir the Great",
+      "canonizationLevel": "SAINT",
+      "name": "Vladimir the Great"
+    }
+  }
+}

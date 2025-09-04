@@ -1,0 +1,12 @@
+{
+  "locale": "en",
+  "letter": "y",
+  "items": {
+    "yolanda_of_poland_religious": {
+      "fullname": "Blessed Yolanda, Religious",
+      "canonizationLevel": "BLESSED",
+      "name": "Yolanda",
+      "titles": ["RELIGIOUS"]
+    }
+  }
+}

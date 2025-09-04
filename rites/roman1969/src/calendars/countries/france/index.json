@@ -1,0 +1,167 @@
+{
+  "id": "france",
+  "metadata": {
+    "jurisdiction": "CIVIL",
+    "type": "COUNTRY"
+  },
+  "parentCalendarIds": [
+    "Europe"
+  ],
+  "particularConfig": {
+    "epiphanyOnSunday": true,
+    "ascensionOnSunday": false,
+    "corpusChristiOnSunday": true
+  },
+  "inputs": {
+    "genevieve_of_paris_virgin": {
+      "precedence": "OPTIONAL_MEMORIAL_12",
+      "dateDef": {
+        "month": 1,
+        "date": 3
+      },
+      "commonsDef": [
+        "Virgins",
+        "MercyWorkers"
+      ]
+    },
+    "remigius_of_reims_bishop": {
+      "precedence": "OPTIONAL_MEMORIAL_12",
+      "dateDef": {
+        "month": 1,
+        "date": 15
+      },
+      "commonsDef": "Bishops"
+    },
+    "our_lady_of_lourdes": {
+      "commonsDef": "None"
+    },
+    "bernadette_soubirous_virgin": {
+      "precedence": "OPTIONAL_MEMORIAL_12",
+      "dateDef": {
+        "month": 2,
+        "date": 18
+      },
+      "commonsDef": [
+        "Virgins",
+        "Religious"
+      ]
+    },
+    "louise_de_marillac_religious": {
+      "precedence": "OPTIONAL_MEMORIAL_12",
+      "dateDef": {
+        "month": 5,
+        "date": 9
+      },
+      "commonsDef": "HolyWomen"
+    },
+    "ivo_of_kermartin_priest": {
+      "precedence": "OPTIONAL_MEMORIAL_12",
+      "dateDef": {
+        "month": 5,
+        "date": 19
+      },
+      "commonsDef": [
+        "MercyWorkers",
+        "Pastors"
+      ]
+    },
+    "joan_of_arc_virgin": {
+      "customLocaleId": "joan_of_arc_virgin_copatroness_of_france",
+      "precedence": "PROPER_MEMORIAL__SECOND_PATRON_11A",
+      "dateDef": {
+        "month": 5,
+        "date": 30
+      },
+      "titles": {
+        "append": [
+          "COPATRONESS_OF_FRANCE"
+        ]
+      },
+      "commonsDef": "None"
+    },
+    "pothinus_of_lyon_bishop_blandina_of_lyon_virgin_and_companions_martyrs": {
+      "precedence": "OPTIONAL_MEMORIAL_12",
+      "dateDef": {
+        "month": 6,
+        "date": 2
+      },
+      "martyrology": [
+        "pothinus_of_lyon_bishop",
+        "blandina_of_lyon_virgin",
+        "companions_martyrs"
+      ],
+      "commonsDef": "Martyrs"
+    },
+    "clotilde_of_burgundy": {
+      "precedence": "OPTIONAL_MEMORIAL_12",
+      "dateDef": {
+        "month": 6,
+        "date": 4
+      },
+      "commonsDef": "HolyWomen"
+    },
+    "john_mary_vianney_priest": {
+      "commonsDef": "None"
+    },
+    "assumption_of_the_blessed_virgin_mary": {
+      "customLocaleId": "assumption_of_the_blessed_virgin_mary_patroness_of_france",
+      "titles": {
+        "append": [
+          "PATRON_OF_FRANCE"
+        ]
+      }
+    },
+    "louis_ix_of_france": {
+      "precedence": "PROPER_MEMORIAL_11B",
+      "commonsDef": "None"
+    },
+    "caesarius_of_arles_bishop": {
+      "precedence": "OPTIONAL_MEMORIAL_12",
+      "dateDef": {
+        "month": 8,
+        "date": 26
+      },
+      "commonsDef": "Bishops"
+    },
+    "joseph_of_calasanz_priest": {
+      "dateDef": {
+        "month": 8,
+        "date": 26
+      },
+      "commonsDef": "Saints"
+    },
+    "our_lady_of_la_salette": {
+      "precedence": "OPTIONAL_MEMORIAL_12",
+      "dateDef": {
+        "month": 9,
+        "date": 19
+      },
+      "commonsDef": "BlessedVirginMary"
+    },
+    "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin": {
+      "customLocaleId": "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin_copatroness_of_france",
+      "titles": {
+        "append": [
+          "COPATRONESS_OF_FRANCE"
+        ]
+      }
+    },
+    "dedication_of_consecrated_churches": {
+      "precedence": "PROPER_SOLEMNITY__DEDICATION_OF_THE_OWN_CHURCH_4B",
+      "dateDef": {
+        "month": 10,
+        "date": 25
+      },
+      "alternativeTransferDateDefs": [
+        {
+          "dateDef": {
+            "month": 10,
+            "lastDayOfWeekInMonth": 0
+          }
+        }
+      ],
+      "isOptional": true,
+      "commonsDef": "DedicationAnniversary_Inside"
+    }
+  }
+}

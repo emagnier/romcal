@@ -1,0 +1,12 @@
+{
+  "id": "european_russia",
+  "metadata": {
+    "jurisdiction": "CIVIL",
+    "type": "COUNTRY"
+  },
+  "parentCalendarIds": [
+    "Europe",
+    "Russia"
+  ],
+  "inputs": {}
+}

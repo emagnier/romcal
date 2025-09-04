@@ -1,0 +1,101 @@
+{
+  "id": "brazil",
+  "metadata": {
+    "jurisdiction": "CIVIL",
+    "type": "COUNTRY"
+  },
+  "parentCalendarIds": [
+    "Americas"
+  ],
+  "inputs": {
+    "joseph_de_anchieta_priest": {
+      "precedence": "PROPER_MEMORIAL_11B",
+      "dateDef": {
+        "month": 6,
+        "date": 9
+      }
+    },
+    "albertina_berkenbrock_virgin": {
+      "precedence": "PROPER_MEMORIAL_11B",
+      "dateDef": {
+        "month": 6,
+        "date": 15
+      }
+    },
+    "paulina_of_the_agonizing_heart_of_jesus_visintainer_virgin": {
+      "precedence": "PROPER_MEMORIAL_11B",
+      "dateDef": {
+        "month": 7,
+        "date": 9
+      }
+    },
+    "our_lady_of_mount_carmel": {
+      "precedence": "PROPER_FEAST_8F",
+      "dateDef": {
+        "month": 7,
+        "date": 16
+      }
+    },
+    "ignatius_de_azevedo_priest_and_companions_martyrs": {
+      "precedence": "PROPER_MEMORIAL_11B",
+      "dateDef": {
+        "month": 7,
+        "date": 17
+      },
+      "martyrology": [
+        "ignatius_de_azevedo_priest",
+        "companions_martyrs"
+      ]
+    },
+    "rose_of_lima_virgin": {
+      "precedence": "PROPER_FEAST_8F",
+      "dateDef": {
+        "month": 8,
+        "date": 23
+      }
+    },
+    "andrew_de_soveral_and_ambrose_francis_ferro_priests": {
+      "precedence": "PROPER_MEMORIAL_11B",
+      "dateDef": {
+        "month": 10,
+        "date": 3
+      },
+      "martyrology": [
+        "andrew_de_soveral_priest",
+        "ambrose_francis_ferro_priest"
+      ]
+    },
+    "our_lady_of_aparecida": {
+      "customLocaleId": "our_lady_of_aparecida_patroness_of_brazil",
+      "precedence": "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A",
+      "dateDef": {
+        "month": 10,
+        "date": 12
+      },
+      "titles": {
+        "append": [
+          "PATRONESS_OF_BRAZIL"
+        ]
+      }
+    },
+    "anthony_of_saint_anne_galvao_priest": {
+      "precedence": "PROPER_MEMORIAL_11B",
+      "dateDef": {
+        "month": 10,
+        "date": 25
+      }
+    },
+    "roch_gonzalez_alphonsus_rodriguez_and_john_del_castillo_priests": {
+      "precedence": "PROPER_MEMORIAL_11B",
+      "dateDef": {
+        "month": 11,
+        "date": 19
+      },
+      "martyrology": [
+        "roch_gonzalez_priest",
+        "alphonsus_rodriguez_priest",
+        "john_del_castillo_priest"
+      ]
+    }
+  }
+}

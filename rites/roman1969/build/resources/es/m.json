@@ -1,0 +1,150 @@
+{
+  "locale": "es",
+  "letter": "m",
+  "items": {
+    "madeleine_sophie_barat_virgin": {
+      "fullname": "Santa Magdalena Sofía Barat, virgen"
+    },
+    "marcellinus_of_rome_and_peter_the_exorcist_martyrs": {
+      "fullname": "Santos Marcelino y Pedro, mártires"
+    },
+    "marcellus_of_paris_bishop": {
+      "fullname": "San Marcelo de París, obispo"
+    },
+    "margaret_mary_alacoque_virgin": {
+      "fullname": "Santa Margarita María de Alacoque"
+    },
+    "margaret_of_antioch_virgin": {
+      "fullname": "Sant Margarita de Antioquía, virgen y mártir"
+    },
+    "margaret_of_scotland": {
+      "fullname": "Santa Margarita de Escocia"
+    },
+    "maria_goretti_virgin": {
+      "fullname": "Santa María Goretti, virgen y mártir"
+    },
+    "maria_guadalupe_garcia_zavala_virgin": {
+      "fullname": "Santa María Guadalupe García Zavala, virgen"
+    },
+    "maria_micaela_of_the_blessed_sacrament_desmaisieres_virgin": {
+      "fullname": "Santa María Micaela del Santísimo Sacramento, virgen"
+    },
+    "mariana_of_jesus_de_paredes_virgin": {
+      "fullname": "Santa Mariana de Jesús de Paredes, virgen"
+    },
+    "marie_eugenie_of_jesus_milleret_de_brou_virgin": {
+      "fullname": "Santa María Eugenia de Jesús Milleret de Brou, virgen y Fundatrice"
+    },
+    "mark_evangelist": {
+      "fullname": "San Marcos, evangelista"
+    },
+    "martha_of_bethany_mary_of_bethany_and_lazarus_of_bethany": {
+      "fullname": "Santos Marta, María y Lázaro"
+    },
+    "martin_de_porres_religious": {
+      "fullname": "San Martín de Porres, religioso"
+    },
+    "martin_i_pope": {
+      "fullname": "San Martín I, papa y mártir"
+    },
+    "martin_of_tours_bishop": {
+      "fullname": "San Martín de Tours, obispo"
+    },
+    "mary_catherine_of_saint_augustine_catherine_de_simon_de_longpre_virgin": {
+      "fullname": "Beata María Catalina de San Agustín, virgen"
+    },
+    "mary_magdalene": {
+      "fullname": "Santa María Magdalena"
+    },
+    "mary_magdalene_de_pazzi_virgin": {
+      "fullname": "Santa María Magdalena de Pazzi, virgen"
+    },
+    "mary_mother_of_god": {
+      "fullname": "María, Madre de Dios"
+    },
+    "mary_mother_of_the_church": {
+      "fullname": "María, Madre de la Iglesia"
+    },
+    "mary_of_jesus_in_the_blessed_sacrament_venegas_de_la_torre_virgin": {
+      "fullname": "Santa Maria de Jesús Sacramentado Venegas de la Torre, virgen"
+    },
+    "mary_of_the_cross_mackillop_virgin": {
+      "fullname": "Santa María de la Cruz MacKillop, virgen"
+    },
+    "mary_of_the_incarnation_barbara_acarie_religious": {
+      "fullname": "Beata María de la Encarnación Bárbara Acarie, religiosa"
+    },
+    "mary_of_the_incarnation_marie_guyart_religious": {
+      "fullname": "Santa María de la Encarnación María Guyart, religiosa"
+    },
+    "mary_of_the_providence_eugenie_smet_virgin": {
+      "fullname": "Beata María de la Providencia Eugenia Smet, virgen"
+    },
+    "mary_of_the_sacred_heart_sophie_therese_de_soubiran_la_louviere_virgin": {
+      "fullname": "Beata María Teresa de Soubiran La Louvière, virgen"
+    },
+    "mary_soledad_torres_acosta_virgin": {
+      "fullname": "Santa María Soledad Torres Acosta, virgen"
+    },
+    "marydolores_rodriguez_sopena_virgin": {
+      "fullname": "Beata Maria Dolores Rodriguez Sopena, virgen"
+    },
+    "maternus_of_cologne_bishop": {
+      "fullname": "San Materno, obispo"
+    },
+    "maternus_of_cologne_valerius_of_trier_and_eucharius_of_trier_bishops": {
+      "fullname": "Santos Materno, Valerio y Eucario, obispos"
+    },
+    "matilda_of_ringelheim": {
+      "fullname": "Santa Matilda"
+    },
+    "matthew_apostle": {
+      "fullname": "San Mateo, apóstol y evangelista"
+    },
+    "matthias_apostle": {
+      "fullname": "San Matías, apóstol"
+    },
+    "maximilian_mary_raymund_kolbe_priest": {
+      "fullname": "San Maximiliano María Kolbe, presbítero y mártir"
+    },
+    "mederic_of_autun_and_droctoveus_of_autun_abbots": {
+      "fullname": "Santos Mederico y Droctoveo, Abades"
+    },
+    "michael_gabriel_and_raphael_archangels": {
+      "fullname": "Santos Arcángeles Miguel, Gabriel y Rafael"
+    },
+    "miguel_agustin_pro_priest": {
+      "fullname": "Beato Miguel Agustín Pro, presbítero y mártir"
+    },
+    "miguel_febres_cordero_religious": {
+      "fullname": "San Miguel Febres Cordero, religioso"
+    },
+    "modestus_andlauer_and_andrew_bauer_martyrs": {
+      "fullname": "San Modesto Andlauer y Andrés Bauer, mártires"
+    },
+    "modestus_andlauer_martyr": {
+      "fullname": "San Modesto Andlauer, mártir"
+    },
+    "monica_of_hippo": {
+      "fullname": "Santa Mónica"
+    },
+    "morand_of_cluny_monk": {
+      "fullname": "San Morando, monje"
+    },
+    "most_holy_body_and_blood_of_christ": {
+      "fullname": "Corpus Christi"
+    },
+    "most_holy_name_of_jesus": {
+      "fullname": "Santísimo Nombre de Jesús"
+    },
+    "most_holy_name_of_mary": {
+      "fullname": "Santo Nombre de la Santísima Virgen María"
+    },
+    "most_holy_trinity": {
+      "fullname": "Domingo de la Santísima Trinidad"
+    },
+    "most_sacred_heart_of_jesus": {
+      "fullname": "Sagrado Corazón de Jesús"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "locale": "pt-br",
+  "letter": "n",
+  "items": {
+    "nativity_of_john_the_baptist": {
+      "fullname": "Nascimento de João Batista"
+    },
+    "nativity_of_the_blessed_virgin_mary": {
+      "fullname": "Natividade da Virgem Santa Maria"
+    },
+    "nativity_of_the_lord": {
+      "fullname": "Natal"
+    },
+    "nereus_of_terracina_and_achilleus_of_terracina_martyrs": {
+      "fullname": "Santos Nereu e Aquileu, mártires"
+    },
+    "nicholas_barre_priest": {
+      "fullname": "Beato Nicolau Barré, presbítero"
+    },
+    "nicholas_of_myra_bishop": {
+      "fullname": "São Nicolau, bispo"
+    },
+    "norbert_of_xanten_bishop": {
+      "fullname": "São Norberto, obispo"
+    },
+    "nuno_of_saint_mary_pereira_religious": {
+      "fullname": "São Nuno de Santa Maria, religioso"
+    }
+  }
+}

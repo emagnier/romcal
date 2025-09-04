@@ -1,0 +1,33 @@
+{
+  "locale": "de",
+  "letter": "k",
+  "items": {
+    "kateri_tekakwitha_virgin": {
+      "fullname": "Hl. Kateri Tekakwitha, Jungfrau"
+    },
+    "katharine_drexel_virgin": {
+      "fullname": "Hl. Katharine Drexel, Jungfrau"
+    },
+    "kentigern_of_scotland_bishop": {
+      "fullname": "Hl. Kentigern, Bischof"
+    },
+    "kevin_of_glendalough_abbot": {
+      "fullname": "Hl. Kevin, Abt"
+    },
+    "kieran_of_saigir_bishop": {
+      "fullname": "Hl. Kieran, Bischof"
+    },
+    "kilian_of_wurzburg_bishop": {
+      "fullname": "Hl. Kilian, Bischof und Märtyrer"
+    },
+    "kilian_of_wurzburg_bishop_and_companions_martyrs": {
+      "fullname": "Hl. Kilian, Bischof, und Gefährten, Märtyrer"
+    },
+    "kinga_of_poland_virgin": {
+      "fullname": "Hl. Kinga, Jungfrau"
+    },
+    "kuriakose_elias_of_the_holy_family_chavara_priest": {
+      "fullname": "Hl. Kuriakose Elias Chavara vom Heiligen Kind, Priester"
+    }
+  }
+}
