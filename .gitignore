@@ -33,6 +33,33 @@ tmp/
 # Optional eslint cache
 .eslintcache
 
+# Rust
+target/
+**/*.rs.bk
+Cargo.lock
+*.pdb
+
+# Rust build artifacts
+*.rlib
+*.rmeta
+*.d
+*.so
+*.dylib
+*.dll
+*.exe
+
+# Rust test artifacts
+test-results/
+*.prof
+
+# Rust documentation
+/doc/
+/target/doc/
+
+# Rust IDE files
+.rust-analyzer/
+rust-project.json
+
 # Misc
 .DS_Store
 local-*
