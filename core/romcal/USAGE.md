@@ -171,14 +171,100 @@ To get only dates (without LiturgicalDay objects):
 ```ts
 const calendar = romcal('france');
 
-// Specific dates
-calendar.dates.getEasterDate(2025); // Date
+// =============================================================================
+// Individual dates (DateTime<Utc>)
+// =============================================================================
+
+// Major liturgical dates
+calendar.dates.getEasterSundayDate(2025); // Date
+calendar.dates.getEasterSundayDateUnwrap(2025); // Date (panics on error)
 calendar.dates.getChristmasDate(2025); // Date
 calendar.dates.getAshWednesdayDate(2025); // Date
-calendar.dates.getPentecostDate(2025); // Date
+calendar.dates.getPalmSundayDate(2025); // Date
+calendar.dates.getHolyThursdayDate(2025); // Date
+calendar.dates.getGoodFridayDate(2025); // Date
+calendar.dates.getHolySaturdayDate(2025); // Date
+calendar.dates.getAscensionDate(2025); // Date
+calendar.dates.getPentecostSundayDate(2025); // Date
 
-// Date collections
-calendar.dates.getSundaysOfAdventDate(2025); // Date[]
+// Advent dates
+calendar.dates.getFirstSundayOfAdventDate(2025); // Date
+calendar.dates.getSundayOfAdventDate(1, 2025); // Date (1st to 4th Sunday)
+
+// Christmas season dates
+calendar.dates.getHolyFamilyDate(2025); // Date
+calendar.dates.getEpiphanyDate(2025); // Date
+calendar.dates.getBaptismOfTheLordDate(2025); // Date
+calendar.dates.getWeekdayWithinOctaveOfChristmasDate(1, 2025); // Date
+calendar.dates.getMaryMotherOfGodDate(2025); // Date
+calendar.dates.getWeekdayBeforeEpiphanyDate(2, 2025); // Date
+calendar.dates.getWeekdayAfterEpiphanyDate(1, 2025); // Date
+
+// Easter season dates
+calendar.dates.getDivineMercySundayDate(2025); // Date
+
+// Dates after the Pentecost
+calendar.dates.getMaryMotherOfTheChurchDate(2025); // Date
+calendar.dates.getTrinitySundayDate(2025); // Date
+calendar.dates.getCorpusChristiDate(2025); // Date
+calendar.dates.getMostSacredHeartOfJesusDate(2025); // Date
+calendar.dates.getImmaculateHeartOfMaryDate(2025); // Date
+
+// Fixed feasts
+calendar.dates.getPresentationOfTheLordDate(2025); // Date
+calendar.dates.getAnnunciationDate(2025); // Date
+calendar.dates.getNativityOfJohnTheBaptistDate(2025); // Date
+calendar.dates.getPeterAndPaulApostlesDate(2025); // Date
+calendar.dates.getTransfigurationDate(2025); // Date
+calendar.dates.getAssumptionDate(2025); // Date
+calendar.dates.getExaltationOfTheHolyCrossDate(2025); // Date
+calendar.dates.getAllSaintsDate(2025); // Date
+calendar.dates.getChristTheKingSundayDate(2025); // Date
+calendar.dates.getImmaculateConceptionOfMaryDate(2025); // Date
+
+// =============================================================================
+// Date collections (Vec<DateTime<Utc>>)
+// =============================================================================
+
+// Advent collections
+calendar.dates.getAllDatesOfAdvent(2025); // Date[]
+calendar.dates.getAllSundaysOfAdvent(2025); // Date[]
+
+// Christmas season collections
+calendar.dates.getAllDatesOfChristmasTime(2025); // Date[]
+
+// Lent collections
+calendar.dates.getAllDatesOfLent(2025); // Date[]
+calendar.dates.getAllSundaysOfLent(2025); // Date[]
+
+// Holy Week collections
+calendar.dates.getAllDatesOfHolyWeek(2025); // Date[]
+calendar.dates.getAllDatesOfPaschalTriduum(2025); // Date[]
+
+// Easter season collections
+calendar.dates.getAllDatesOfEasterTime(2025); // Date[]
+calendar.dates.getAllSundaysOfEaster(2025); // Date[]
+
+// Ordinary Time collections
+calendar.dates.getAllDatesOfOrdinaryTime(2025); // Date[]
+calendar.dates.getAllDatesOfEarlyOrdinaryTime(2025); // Date[]
+calendar.dates.getAllSundaysOfEarlyOrdinaryTime(2025); // Date[]
+calendar.dates.getAllDatesOfLateOrdinaryTime(2025); // Date[]
+calendar.dates.getAllSundaysOfLateOrdinaryTime(2025); // Date[]
+
+// =============================================================================
+// Season collections (HashMap<Season, DateTime<Utc>>)
+// =============================================================================
+
+calendar.dates.getStartOfSeasonsDates(2025); // {Advent: Date, ChristmasTime: Date, ...}
+calendar.dates.getEndOfSeasonsDates(2025); // {Advent: Date, ChristmasTime: Date, ...}
+
+// =============================================================================
+// Specific date queries (Option<DateTime<Utc>>)
+// =============================================================================
+
+calendar.dates.getDateInEasterTime(1, 2, 2025); // Date (dow: 1-6, week: 1-7)
+calendar.dates.getDateInOrdinaryTime(1, 15, 2025); // Date (dow: 0-6, week: 1-35)
 ```
 
 ## Types

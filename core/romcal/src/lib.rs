@@ -9,7 +9,7 @@
 //!
 //! let config = LiturgicalConfig::default();
 //! let dates = LiturgicalDates::new(config, 2024).unwrap();
-//! let easter = dates.easter_sunday_unwrap(None);
+//! let easter = dates.get_easter_sunday_date_unwrap(None);
 //! ```
 
 pub mod config;

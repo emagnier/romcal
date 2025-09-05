@@ -141,17 +141,17 @@ impl LiturgicalDates {
     // =================================================================================
 
     /// Gets all dates of Advent
-    pub fn all_dates_of_advent(&self, year: Option<i32>) -> Vec<DateTime<Utc>> {
+    pub fn get_all_dates_of_advent(&self, year: Option<i32>) -> Vec<DateTime<Utc>> {
         let year = self.effective_year(year);
-        let start = self.first_sunday_of_advent(Some(year));
-        let end = Self::subtract_days(self.christmas(Some(year)), 1);
+        let start = self.get_first_sunday_of_advent_date(Some(year));
+        let end = Self::subtract_days(self.get_christmas_date(Some(year)), 1);
         Self::range_of_days(start, end)
     }
 
     /// Gets all Sundays of Advent
-    pub fn all_sundays_of_advent(&self, year: Option<i32>) -> Vec<DateTime<Utc>> {
+    pub fn get_all_sundays_of_advent(&self, year: Option<i32>) -> Vec<DateTime<Utc>> {
         let year = self.effective_year(year);
-        let first_sunday = self.first_sunday_of_advent(Some(year));
+        let first_sunday = self.get_first_sunday_of_advent_date(Some(year));
 
         vec![
             first_sunday,
@@ -162,14 +162,14 @@ impl LiturgicalDates {
     }
 
     /// Gets the date of the first Sunday of Advent
-    pub fn first_sunday_of_advent(&self, year: Option<i32>) -> DateTime<Utc> {
+    pub fn get_first_sunday_of_advent_date(&self, year: Option<i32>) -> DateTime<Utc> {
         let year = self.effective_year(year);
-        Self::first_sunday_of_advent_static(year)
+        Self::get_first_sunday_of_advent_date_static(year)
     }
 
     /// Static calculation of the first Sunday of Advent
-    pub fn first_sunday_of_advent_static(year: i32) -> DateTime<Utc> {
-        let christmas = Self::christmas_static(year);
+    pub fn get_first_sunday_of_advent_date_static(year: i32) -> DateTime<Utc> {
+        let christmas = Self::get_christmas_date_static(year);
         match christmas.weekday() {
             Weekday::Sun => Self::get_utc_date(year, 11, 27),
             Weekday::Mon => Self::get_utc_date(year, 12, 3),
@@ -194,7 +194,7 @@ impl LiturgicalDates {
             return None;
         }
 
-        let first_sunday = self.first_sunday_of_advent(Some(year));
+        let first_sunday = self.get_first_sunday_of_advent_date(Some(year));
         let date = Self::add_days(first_sunday, (week - 1) as i64 * 7 + (dow - 1) as i64);
 
         // If the date is on or after December 17 and it's not a Sunday, return None
@@ -228,14 +228,14 @@ impl LiturgicalDates {
     }
 
     /// Gets the date of a Sunday of Advent (1st to 4th)
-    pub fn sunday_of_advent(&self, week: u8, year: Option<i32>) -> Option<DateTime<Utc>> {
+    pub fn get_sunday_of_advent_date(&self, week: u8, year: Option<i32>) -> Option<DateTime<Utc>> {
         let year = self.effective_year(year);
 
         if !(1..=4).contains(&week) {
             return None;
         }
 
-        let first_sunday = self.first_sunday_of_advent(Some(year));
+        let first_sunday = self.get_first_sunday_of_advent_date(Some(year));
         Some(Self::add_days(first_sunday, (week - 1) as i64 * 7))
     }
 
@@ -244,21 +244,21 @@ impl LiturgicalDates {
     // =================================================================================
 
     /// Gets the date of Christmas
-    pub fn christmas(&self, year: Option<i32>) -> DateTime<Utc> {
+    pub fn get_christmas_date(&self, year: Option<i32>) -> DateTime<Utc> {
         let year = self.effective_year(year);
-        Self::christmas_static(year)
+        Self::get_christmas_date_static(year)
     }
 
     /// Static calculation of Christmas
-    pub fn christmas_static(year: i32) -> DateTime<Utc> {
+    pub fn get_christmas_date_static(year: i32) -> DateTime<Utc> {
         Self::get_utc_date(year, 12, 25)
     }
 
     /// Gets all dates in the octave of Christmas (from Christmas to Mary Mother of God, inclusive)
     pub fn all_dates_in_octave_of_christmas(&self, year: Option<i32>) -> Vec<DateTime<Utc>> {
         let year = self.effective_year(year);
-        let christmas = self.christmas(Some(year));
-        let mary_mother_of_god = self.mary_mother_of_god(Some(year));
+        let christmas = self.get_christmas_date(Some(year));
+        let mary_mother_of_god = self.get_mary_mother_of_god_date(Some(year));
 
         // Octave includes Christmas + 6 days + Mary Mother of God
         let mut dates = Self::range_of_days(christmas, Self::add_days(christmas, 6));
@@ -268,7 +268,7 @@ impl LiturgicalDates {
 
     /// Gets the date of the nth weekday within the Octave of the Nativity of the Lord
     /// Sundays and the feast of the Holy Family are excluded
-    pub fn weekday_within_octave_of_christmas(
+    pub fn get_weekday_within_octave_of_christmas_date(
         &self,
         day_of_octave: u8,
         year: Option<i32>,
@@ -279,9 +279,9 @@ impl LiturgicalDates {
             return None;
         }
 
-        let christmas = self.christmas(Some(year));
+        let christmas = self.get_christmas_date(Some(year));
         let date = Self::add_days(christmas, (day_of_octave - 1) as i64);
-        let holy_family = self.holy_family(Some(year));
+        let holy_family = self.get_holy_family_date(Some(year));
 
         // If it's the same date as Holy Family, return None
         if Self::is_same_date(date, holy_family) {
@@ -292,9 +292,9 @@ impl LiturgicalDates {
     }
 
     /// Gets the date of the Holy Family
-    pub fn holy_family(&self, year: Option<i32>) -> DateTime<Utc> {
+    pub fn get_holy_family_date(&self, year: Option<i32>) -> DateTime<Utc> {
         let year = self.effective_year(year);
-        let christmas = self.christmas(Some(year));
+        let christmas = self.get_christmas_date(Some(year));
         if christmas.weekday() == Weekday::Sun {
             // If Christmas is on a Sunday, Holy Family is on December 30
             Self::get_utc_date(year, 12, 30)
@@ -305,10 +305,10 @@ impl LiturgicalDates {
     }
 
     /// Gets all dates occurring in the season of Christmas
-    pub fn all_dates_of_christmas_time(&self, year: Option<i32>) -> Vec<DateTime<Utc>> {
+    pub fn get_all_dates_of_christmas_time(&self, year: Option<i32>) -> Vec<DateTime<Utc>> {
         let year = year.unwrap_or(self.year);
-        let start = self.christmas(Some(year));
-        let end = self.baptism_of_the_lord(Some(year));
+        let start = self.get_christmas_date(Some(year));
+        let end = self.get_baptism_of_the_lord_date(Some(year));
         Self::range_of_days(start, end)
     }
 
@@ -341,8 +341,8 @@ impl LiturgicalDates {
     /// Gets all dates before Epiphany (and from January 2)
     pub fn all_dates_before_epiphany(&self, year: Option<i32>) -> Vec<DateTime<Utc>> {
         let year = year.unwrap_or(self.year);
-        let start = Self::add_days(self.mary_mother_of_god(Some(year)), 1);
-        let epiphany = self.epiphany(Some(year));
+        let start = Self::add_days(self.get_mary_mother_of_god_date(Some(year)), 1);
+        let epiphany = self.get_epiphany_date(Some(year));
 
         // If there are no days between Mary, Mother of God and Epiphany
         if Self::is_same_date(start, epiphany) {
@@ -354,7 +354,11 @@ impl LiturgicalDates {
     }
 
     /// Gets the date of a weekday before Epiphany (and from January 2)
-    pub fn weekday_before_epiphany(&self, day: u8, year: Option<i32>) -> Option<DateTime<Utc>> {
+    pub fn get_weekday_before_epiphany_date(
+        &self,
+        day: u8,
+        year: Option<i32>,
+    ) -> Option<DateTime<Utc>> {
         let year = year.unwrap_or(self.year);
 
         if !(2..=8).contains(&day) {
@@ -368,7 +372,7 @@ impl LiturgicalDates {
     }
 
     /// Gets the date of Epiphany
-    pub fn epiphany(&self, year: Option<i32>) -> DateTime<Utc> {
+    pub fn get_epiphany_date(&self, year: Option<i32>) -> DateTime<Utc> {
         let year = year.unwrap_or(self.year);
         let first_day = Self::get_utc_date(year, 1, 1);
         let mut date = Self::get_utc_date(year, 1, 6);
@@ -399,8 +403,8 @@ impl LiturgicalDates {
     /// Gets all dates after Epiphany, until the day before the Baptism of the Lord
     pub fn all_dates_after_epiphany(&self, year: Option<i32>) -> Vec<DateTime<Utc>> {
         let year = year.unwrap_or(self.year);
-        let start = Self::add_days(self.epiphany(Some(year)), 1);
-        let baptism_of_the_lord = self.baptism_of_the_lord(Some(year));
+        let start = Self::add_days(self.get_epiphany_date(Some(year)), 1);
+        let baptism_of_the_lord = self.get_baptism_of_the_lord_date(Some(year));
 
         // If there are no days between Epiphany and Baptism of the Lord
         if Self::is_same_date(start, baptism_of_the_lord) {
@@ -412,7 +416,11 @@ impl LiturgicalDates {
     }
 
     /// Gets the date of a weekday after Epiphany (and before the Baptism of the Lord)
-    pub fn weekday_after_epiphany(&self, dow: u8, year: Option<i32>) -> Option<DateTime<Utc>> {
+    pub fn get_weekday_after_epiphany_date(
+        &self,
+        dow: u8,
+        year: Option<i32>,
+    ) -> Option<DateTime<Utc>> {
         let year = year.unwrap_or(self.year);
 
         if !(1..=6).contains(&dow) {
@@ -430,23 +438,23 @@ impl LiturgicalDates {
     // =================================================================================
 
     /// Gets the date of Ash Wednesday
-    pub fn ash_wednesday(&self, year: Option<i32>) -> DateTime<Utc> {
+    pub fn get_ash_wednesday_date(&self, year: Option<i32>) -> DateTime<Utc> {
         let year = year.unwrap_or(self.year);
-        Self::subtract_days(self.easter_sunday_unwrap(Some(year)), 46)
+        Self::subtract_days(self.get_easter_sunday_date_unwrap(Some(year)), 46)
     }
 
     /// Gets all dates of Lent
-    pub fn all_dates_of_lent(&self, year: Option<i32>) -> Vec<DateTime<Utc>> {
+    pub fn get_all_dates_of_lent(&self, year: Option<i32>) -> Vec<DateTime<Utc>> {
         let year = year.unwrap_or(self.year);
-        let start = self.ash_wednesday(Some(year));
-        let end = self.holy_thursday(Some(year));
+        let start = self.get_ash_wednesday_date(Some(year));
+        let end = self.get_holy_thursday_date(Some(year));
         Self::range_of_days(start, end)
     }
 
     /// Gets all Sundays of Lent (from Ash Wednesday to the day before Holy Thursday)
-    pub fn all_sundays_of_lent(&self, year: Option<i32>) -> Vec<DateTime<Utc>> {
+    pub fn get_all_sundays_of_lent(&self, year: Option<i32>) -> Vec<DateTime<Utc>> {
         let year = year.unwrap_or(self.year);
-        let first_sunday = Self::add_days(self.ash_wednesday(Some(year)), 4);
+        let first_sunday = Self::add_days(self.get_ash_wednesday_date(Some(year)), 4);
 
         vec![
             first_sunday,
@@ -459,9 +467,9 @@ impl LiturgicalDates {
     }
 
     /// Gets the date of Palm Sunday
-    pub fn palm_sunday(&self, year: Option<i32>) -> DateTime<Utc> {
+    pub fn get_palm_sunday_date(&self, year: Option<i32>) -> DateTime<Utc> {
         let year = year.unwrap_or(self.year);
-        Self::subtract_days(self.easter_sunday_unwrap(Some(year)), 7)
+        Self::subtract_days(self.get_easter_sunday_date_unwrap(Some(year)), 7)
     }
 
     // =================================================================================
@@ -469,28 +477,28 @@ impl LiturgicalDates {
     // =================================================================================
 
     /// Gets the date of Holy Thursday
-    pub fn holy_thursday(&self, year: Option<i32>) -> DateTime<Utc> {
+    pub fn get_holy_thursday_date(&self, year: Option<i32>) -> DateTime<Utc> {
         let year = year.unwrap_or(self.year);
-        Self::subtract_days(self.easter_sunday_unwrap(Some(year)), 3)
+        Self::subtract_days(self.get_easter_sunday_date_unwrap(Some(year)), 3)
     }
 
     /// Gets the date of Good Friday
-    pub fn good_friday(&self, year: Option<i32>) -> DateTime<Utc> {
+    pub fn get_good_friday_date(&self, year: Option<i32>) -> DateTime<Utc> {
         let year = year.unwrap_or(self.year);
-        Self::subtract_days(self.easter_sunday_unwrap(Some(year)), 2)
+        Self::subtract_days(self.get_easter_sunday_date_unwrap(Some(year)), 2)
     }
 
     /// Gets the date of Holy Saturday
-    pub fn holy_saturday(&self, year: Option<i32>) -> DateTime<Utc> {
+    pub fn get_holy_saturday_date(&self, year: Option<i32>) -> DateTime<Utc> {
         let year = year.unwrap_or(self.year);
-        Self::subtract_days(self.easter_sunday_unwrap(Some(year)), 1)
+        Self::subtract_days(self.get_easter_sunday_date_unwrap(Some(year)), 1)
     }
 
     /// Gets all dates of Holy Week
-    pub fn all_dates_of_holy_week(&self, year: Option<i32>) -> Vec<DateTime<Utc>> {
+    pub fn get_all_dates_of_holy_week(&self, year: Option<i32>) -> Vec<DateTime<Utc>> {
         let year = year.unwrap_or(self.year);
-        let start = self.palm_sunday(Some(year));
-        let end = self.holy_saturday(Some(year));
+        let start = self.get_palm_sunday_date(Some(year));
+        let end = self.get_holy_saturday_date(Some(year));
         Self::range_of_days(start, end)
     }
 
@@ -499,10 +507,10 @@ impl LiturgicalDates {
     // =================================================================================
 
     /// Gets all dates of the Paschal Triduum
-    pub fn all_dates_of_paschal_triduum(&self, year: Option<i32>) -> Vec<DateTime<Utc>> {
+    pub fn get_all_dates_of_paschal_triduum(&self, year: Option<i32>) -> Vec<DateTime<Utc>> {
         let year = year.unwrap_or(self.year);
-        let start = self.holy_thursday(Some(year));
-        let end = self.easter_sunday_unwrap(Some(year));
+        let start = self.get_holy_thursday_date(Some(year));
+        let end = self.get_easter_sunday_date_unwrap(Some(year));
         Self::range_of_days(start, end)
     }
 
@@ -515,7 +523,7 @@ impl LiturgicalDates {
     /// # Errors
     ///
     /// Returns `RomcalError::InvalidYear` if the year is before 1583
-    pub fn easter_sunday(&self, year: Option<i32>) -> RomcalResult<DateTime<Utc>> {
+    pub fn get_easter_sunday_date(&self, year: Option<i32>) -> RomcalResult<DateTime<Utc>> {
         let year = year.unwrap_or(self.year);
 
         let easter_date = match self.config.easter_calculation_type {
@@ -530,8 +538,8 @@ impl LiturgicalDates {
     /// # Panics
     ///
     /// Panics if the year is invalid or if there's a calculation error
-    pub fn easter_sunday_unwrap(&self, year: Option<i32>) -> DateTime<Utc> {
-        self.easter_sunday(year)
+    pub fn get_easter_sunday_date_unwrap(&self, year: Option<i32>) -> DateTime<Utc> {
+        self.get_easter_sunday_date(year)
             .expect("Invalid year or calculation error")
     }
 
@@ -539,17 +547,17 @@ impl LiturgicalDates {
     /// from Easter Sunday until the Sunday following Easter (Divine Mercy Sunday), inclusive
     pub fn all_dates_in_octave_of_easter(&self, year: Option<i32>) -> Vec<DateTime<Utc>> {
         let year = year.unwrap_or(self.year);
-        let start = self.easter_sunday_unwrap(Some(year));
-        let end = self.divine_mercy_sunday(Some(year));
+        let start = self.get_easter_sunday_date_unwrap(Some(year));
+        let end = self.get_divine_mercy_sunday_date(Some(year));
         Self::range_of_days(start, end)
     }
 
     /// Gets all Sundays of Easter
     /// Easter Time is the period of fifty days from Easter Sunday to Pentecost Sunday (inclusive).
     /// All Sundays in this period are counted as Sundays of Easter.
-    pub fn all_sundays_of_easter(&self, year: Option<i32>) -> Vec<DateTime<Utc>> {
+    pub fn get_all_sundays_of_easter(&self, year: Option<i32>) -> Vec<DateTime<Utc>> {
         let year = year.unwrap_or(self.year);
-        let first_sunday = self.easter_sunday_unwrap(Some(year));
+        let first_sunday = self.get_easter_sunday_date_unwrap(Some(year));
 
         vec![
             first_sunday,
@@ -564,7 +572,7 @@ impl LiturgicalDates {
     }
 
     /// Gets a weekday or Sunday of Easter Time
-    pub fn weekday_or_sunday_of_easter_time(
+    pub fn get_date_in_easter_time(
         &self,
         dow: u8,
         week: u8,
@@ -577,10 +585,10 @@ impl LiturgicalDates {
         }
 
         let date = Self::add_days(
-            self.easter_sunday_unwrap(Some(year)),
+            self.get_easter_sunday_date_unwrap(Some(year)),
             ((week - 1) * 7 + dow) as i64,
         );
-        let ascension = self.ascension(Some(year));
+        let ascension = self.get_ascension_date(Some(year));
 
         // If it's the same date as Ascension, return None
         if Self::is_same_date(date, ascension) {
@@ -592,35 +600,35 @@ impl LiturgicalDates {
 
     /// Gets all dates occurring in Easter Time
     /// Easter Time is the period of fifty days from Easter Sunday to Pentecost Sunday
-    pub fn all_dates_of_easter_time(&self, year: Option<i32>) -> Vec<DateTime<Utc>> {
+    pub fn get_all_dates_of_easter_time(&self, year: Option<i32>) -> Vec<DateTime<Utc>> {
         let year = year.unwrap_or(self.year);
-        let start = self.easter_sunday_unwrap(Some(year));
-        let end = self.pentecost_sunday(Some(year));
+        let start = self.get_easter_sunday_date_unwrap(Some(year));
+        let end = self.get_pentecost_sunday_date(Some(year));
         Self::range_of_days(start, end)
     }
 
     /// Gets the date of Divine Mercy Sunday
-    pub fn divine_mercy_sunday(&self, year: Option<i32>) -> DateTime<Utc> {
+    pub fn get_divine_mercy_sunday_date(&self, year: Option<i32>) -> DateTime<Utc> {
         let year = year.unwrap_or(self.year);
-        Self::add_days(self.easter_sunday_unwrap(Some(year)), 7)
+        Self::add_days(self.get_easter_sunday_date_unwrap(Some(year)), 7)
     }
 
     /// Gets the date of Ascension
-    pub fn ascension(&self, year: Option<i32>) -> DateTime<Utc> {
+    pub fn get_ascension_date(&self, year: Option<i32>) -> DateTime<Utc> {
         let year = year.unwrap_or(self.year);
         if self.config.ascension_on_sunday {
             // Ascension on the 7th Sunday of Easter (42 days after Easter)
-            Self::add_days(self.easter_sunday_unwrap(Some(year)), 42)
+            Self::add_days(self.get_easter_sunday_date_unwrap(Some(year)), 42)
         } else {
             // Ascension on Thursday (39 days after Easter)
-            Self::add_days(self.easter_sunday_unwrap(Some(year)), 39)
+            Self::add_days(self.get_easter_sunday_date_unwrap(Some(year)), 39)
         }
     }
 
     /// Gets the date of Pentecost
-    pub fn pentecost_sunday(&self, year: Option<i32>) -> DateTime<Utc> {
+    pub fn get_pentecost_sunday_date(&self, year: Option<i32>) -> DateTime<Utc> {
         let year = year.unwrap_or(self.year);
-        Self::add_days(self.easter_sunday_unwrap(Some(year)), 49)
+        Self::add_days(self.get_easter_sunday_date_unwrap(Some(year)), 49)
     }
 
     // =================================================================================
@@ -628,10 +636,10 @@ impl LiturgicalDates {
     // =================================================================================
 
     /// Gets all dates occurring in Ordinary Time
-    pub fn all_dates_of_ordinary_time(&self, year: Option<i32>) -> Vec<DateTime<Utc>> {
+    pub fn get_all_dates_of_ordinary_time(&self, year: Option<i32>) -> Vec<DateTime<Utc>> {
         let year = year.unwrap_or(self.year);
-        let mut early = self.all_dates_of_early_ordinary_time(Some(year));
-        let mut late = self.all_dates_of_late_ordinary_time(Some(year));
+        let mut early = self.get_all_dates_of_early_ordinary_time(Some(year));
+        let mut late = self.get_all_dates_of_late_ordinary_time(Some(year));
         early.append(&mut late);
         early
     }
@@ -640,17 +648,17 @@ impl LiturgicalDates {
     /// Ordinary Time in the early part of the year begins
     /// the day after the Baptism of the Lord and concludes
     /// the day before Ash Wednesday
-    pub fn all_dates_of_early_ordinary_time(&self, year: Option<i32>) -> Vec<DateTime<Utc>> {
+    pub fn get_all_dates_of_early_ordinary_time(&self, year: Option<i32>) -> Vec<DateTime<Utc>> {
         let year = year.unwrap_or(self.year);
-        let start = Self::add_days(self.baptism_of_the_lord(Some(year)), 1);
-        let end = Self::subtract_days(self.ash_wednesday(Some(year)), 1);
+        let start = Self::add_days(self.get_baptism_of_the_lord_date(Some(year)), 1);
+        let end = Self::subtract_days(self.get_ash_wednesday_date(Some(year)), 1);
         Self::range_of_days(start, end)
     }
 
     /// Gets all Sundays that fall within the period of early Ordinary Time
-    pub fn sundays_of_early_ordinary_time(&self, year: Option<i32>) -> Vec<DateTime<Utc>> {
+    pub fn get_all_sundays_of_early_ordinary_time(&self, year: Option<i32>) -> Vec<DateTime<Utc>> {
         let year = year.unwrap_or(self.year);
-        self.all_dates_of_early_ordinary_time(Some(year))
+        self.get_all_dates_of_early_ordinary_time(Some(year))
             .into_iter()
             .filter(|d| d.weekday() == Weekday::Sun)
             .collect()
@@ -658,24 +666,24 @@ impl LiturgicalDates {
 
     /// Gets all dates of late Ordinary Time
     /// Ordinary Time after Pentecost to the day before the First Sunday of Advent
-    pub fn all_dates_of_late_ordinary_time(&self, year: Option<i32>) -> Vec<DateTime<Utc>> {
+    pub fn get_all_dates_of_late_ordinary_time(&self, year: Option<i32>) -> Vec<DateTime<Utc>> {
         let year = year.unwrap_or(self.year);
-        let start = Self::add_days(self.pentecost_sunday(Some(year)), 1);
-        let end = Self::subtract_days(self.first_sunday_of_advent(Some(year)), 1);
+        let start = Self::add_days(self.get_pentecost_sunday_date(Some(year)), 1);
+        let end = Self::subtract_days(self.get_first_sunday_of_advent_date(Some(year)), 1);
         Self::range_of_days(start, end)
     }
 
     /// Gets all Sundays that fall within the period of late Ordinary Time
-    pub fn all_sundays_of_late_ordinary_time(&self, year: Option<i32>) -> Vec<DateTime<Utc>> {
+    pub fn get_all_sundays_of_late_ordinary_time(&self, year: Option<i32>) -> Vec<DateTime<Utc>> {
         let year = year.unwrap_or(self.year);
-        self.all_dates_of_late_ordinary_time(Some(year))
+        self.get_all_dates_of_late_ordinary_time(Some(year))
             .into_iter()
             .filter(|d| d.weekday() == Weekday::Sun)
             .collect()
     }
 
     /// Gets a specific date of Ordinary Time by day of week and week number
-    pub fn date_of_ordinary_time(
+    pub fn get_date_in_ordinary_time(
         &self,
         dow: u8,
         week: u8,
@@ -687,8 +695,8 @@ impl LiturgicalDates {
             return None;
         }
 
-        let early_dates = self.all_dates_of_early_ordinary_time(Some(year));
-        let late_dates = self.all_dates_of_late_ordinary_time(Some(year));
+        let early_dates = self.get_all_dates_of_early_ordinary_time(Some(year));
+        let late_dates = self.get_all_dates_of_late_ordinary_time(Some(year));
 
         // Calculate the starting week number for late Ordinary Time
         let late_ordinary_start_week = 35 - (late_dates.len() + 1) / 7;
@@ -723,15 +731,15 @@ impl LiturgicalDates {
     // =================================================================================
 
     /// Gets the date of Mary, Mother of God (January 1)
-    pub fn mary_mother_of_god(&self, year: Option<i32>) -> DateTime<Utc> {
+    pub fn get_mary_mother_of_god_date(&self, year: Option<i32>) -> DateTime<Utc> {
         let year = year.unwrap_or(self.year);
         Self::get_utc_date(year, 1, 1)
     }
 
     /// Gets the date of the Baptism of the Lord
-    pub fn baptism_of_the_lord(&self, year: Option<i32>) -> DateTime<Utc> {
+    pub fn get_baptism_of_the_lord_date(&self, year: Option<i32>) -> DateTime<Utc> {
         let year = year.unwrap_or(self.year);
-        let epiphany = self.epiphany(Some(year));
+        let epiphany = self.get_epiphany_date(Some(year));
 
         if epiphany.day() == 6 {
             // If Epiphany is celebrated on January 6,
@@ -750,20 +758,20 @@ impl LiturgicalDates {
     }
 
     /// Gets the date of the Presentation of the Lord (February 2)
-    pub fn presentation_of_the_lord(&self, year: Option<i32>) -> DateTime<Utc> {
+    pub fn get_presentation_of_the_lord_date(&self, year: Option<i32>) -> DateTime<Utc> {
         let year = year.unwrap_or(self.year);
         Self::get_utc_date(year, 2, 2)
     }
 
     /// Gets the date of the Annunciation (March 25)
-    pub fn annunciation(&self, year: Option<i32>) -> DateTime<Utc> {
+    pub fn get_annunciation_date(&self, year: Option<i32>) -> DateTime<Utc> {
         let year = year.unwrap_or(self.year);
         let mut date = Self::get_utc_date(year, 3, 25);
 
         // If it falls during Holy Week or the Octave of Easter,
         // it is transferred to the Monday of the 2nd week of Easter
-        let palm_sunday = self.palm_sunday(Some(year));
-        let divine_mercy_sunday = self.divine_mercy_sunday(Some(year));
+        let palm_sunday = self.get_palm_sunday_date(Some(year));
+        let divine_mercy_sunday = self.get_divine_mercy_sunday_date(Some(year));
 
         if date >= palm_sunday && date <= divine_mercy_sunday {
             date = Self::add_days(divine_mercy_sunday, 1);
@@ -774,85 +782,85 @@ impl LiturgicalDates {
 
     /// Gets the date of Mary, Mother of the Church
     /// (occurs the day after Pentecost Sunday)
-    pub fn mary_mother_of_the_church(&self, year: Option<i32>) -> DateTime<Utc> {
+    pub fn get_mary_mother_of_the_church_date(&self, year: Option<i32>) -> DateTime<Utc> {
         let year = year.unwrap_or(self.year);
-        Self::add_days(self.easter_sunday_unwrap(Some(year)), 50)
+        Self::add_days(self.get_easter_sunday_date_unwrap(Some(year)), 50)
     }
 
     /// Gets the date of Trinity Sunday
-    pub fn trinity_sunday(&self, year: Option<i32>) -> DateTime<Utc> {
+    pub fn get_trinity_sunday_date(&self, year: Option<i32>) -> DateTime<Utc> {
         let year = year.unwrap_or(self.year);
-        Self::add_days(self.easter_sunday_unwrap(Some(year)), 56)
+        Self::add_days(self.get_easter_sunday_date_unwrap(Some(year)), 56)
     }
 
     /// Gets the date of Corpus Christi
-    pub fn corpus_christi(&self, year: Option<i32>) -> DateTime<Utc> {
+    pub fn get_corpus_christi_date(&self, year: Option<i32>) -> DateTime<Utc> {
         let year = year.unwrap_or(self.year);
         if self.config.corpus_christi_on_sunday {
             // Corpus Christi on Sunday (63 days after Easter)
-            Self::add_days(self.easter_sunday_unwrap(Some(year)), 63)
+            Self::add_days(self.get_easter_sunday_date_unwrap(Some(year)), 63)
         } else {
             // Corpus Christi on Thursday (60 days after Easter)
-            Self::add_days(self.easter_sunday_unwrap(Some(year)), 60)
+            Self::add_days(self.get_easter_sunday_date_unwrap(Some(year)), 60)
         }
     }
 
     /// Gets the date of the Most Sacred Heart of Jesus
-    pub fn most_sacred_heart_of_jesus(&self, year: Option<i32>) -> DateTime<Utc> {
+    pub fn get_most_sacred_heart_of_jesus_date(&self, year: Option<i32>) -> DateTime<Utc> {
         let year = year.unwrap_or(self.year);
-        Self::add_days(self.easter_sunday_unwrap(Some(year)), 68)
+        Self::add_days(self.get_easter_sunday_date_unwrap(Some(year)), 68)
     }
 
     /// Gets the date of the Immaculate Heart of Mary
-    pub fn immaculate_heart_of_mary(&self, year: Option<i32>) -> DateTime<Utc> {
+    pub fn get_immaculate_heart_of_mary_date(&self, year: Option<i32>) -> DateTime<Utc> {
         let year = year.unwrap_or(self.year);
-        Self::add_days(self.easter_sunday_unwrap(Some(year)), 69)
+        Self::add_days(self.get_easter_sunday_date_unwrap(Some(year)), 69)
     }
 
     /// Gets the date of the Nativity of John the Baptist (June 24)
-    pub fn nativity_of_john_the_baptist(&self, year: Option<i32>) -> DateTime<Utc> {
+    pub fn get_nativity_of_john_the_baptist_date(&self, year: Option<i32>) -> DateTime<Utc> {
         let year = year.unwrap_or(self.year);
         Self::get_utc_date(year, 6, 24)
     }
 
     /// Gets the date of Peter and Paul (June 29)
-    pub fn peter_and_paul_apostles(&self, year: Option<i32>) -> DateTime<Utc> {
+    pub fn get_peter_and_paul_apostles_date(&self, year: Option<i32>) -> DateTime<Utc> {
         let year = year.unwrap_or(self.year);
         Self::get_utc_date(year, 6, 29)
     }
 
     /// Gets the date of the Transfiguration (August 6)
-    pub fn transfiguration(&self, year: Option<i32>) -> DateTime<Utc> {
+    pub fn get_transfiguration_date(&self, year: Option<i32>) -> DateTime<Utc> {
         let year = year.unwrap_or(self.year);
         Self::get_utc_date(year, 8, 6)
     }
 
     /// Gets the date of the Assumption (August 15)
-    pub fn assumption(&self, year: Option<i32>) -> DateTime<Utc> {
+    pub fn get_assumption_date(&self, year: Option<i32>) -> DateTime<Utc> {
         let year = year.unwrap_or(self.year);
         Self::get_utc_date(year, 8, 15)
     }
 
     /// Gets the date of the Exaltation of the Holy Cross (September 14)
-    pub fn exaltation_of_the_holy_cross(&self, year: Option<i32>) -> DateTime<Utc> {
+    pub fn get_exaltation_of_the_holy_cross_date(&self, year: Option<i32>) -> DateTime<Utc> {
         let year = year.unwrap_or(self.year);
         Self::get_utc_date(year, 9, 14)
     }
 
     /// Gets the date of All Saints (November 1)
-    pub fn all_saints(&self, year: Option<i32>) -> DateTime<Utc> {
+    pub fn get_all_saints_date(&self, year: Option<i32>) -> DateTime<Utc> {
         let year = year.unwrap_or(self.year);
         Self::get_utc_date(year, 11, 1)
     }
 
     /// Gets the date of Christ the King
-    pub fn christ_the_king_sunday(&self, year: Option<i32>) -> DateTime<Utc> {
+    pub fn get_christ_the_king_sunday_date(&self, year: Option<i32>) -> DateTime<Utc> {
         let year = year.unwrap_or(self.year);
-        Self::subtract_days(self.first_sunday_of_advent(Some(year)), 7)
+        Self::subtract_days(self.get_first_sunday_of_advent_date(Some(year)), 7)
     }
 
     /// Gets the date of the Immaculate Conception (December 8)
-    pub fn immaculate_conception_of_mary(&self, year: Option<i32>) -> DateTime<Utc> {
+    pub fn get_immaculate_conception_of_mary_date(&self, year: Option<i32>) -> DateTime<Utc> {
         let year = self.effective_year(year);
         let mut date = Self::get_utc_date(year, 12, 8);
 
@@ -869,39 +877,57 @@ impl LiturgicalDates {
     // =================================================================================
 
     /// Gets the start of seasons for a given year
-    pub fn start_of_seasons(&self, year: Option<i32>) -> HashMap<Season, DateTime<Utc>> {
+    pub fn get_start_of_seasons_dates(&self, year: Option<i32>) -> HashMap<Season, DateTime<Utc>> {
         let year = year.unwrap_or(self.year);
         let mut seasons = HashMap::new();
 
-        seasons.insert(Season::Advent, self.first_sunday_of_advent(Some(year - 1)));
-        seasons.insert(Season::ChristmasTime, self.christmas(Some(year - 1)));
-        seasons.insert(Season::Lent, self.ash_wednesday(Some(year)));
-        seasons.insert(Season::PaschalTriduum, self.holy_thursday(Some(year)));
-        seasons.insert(Season::EasterTime, self.easter_sunday_unwrap(Some(year)));
+        seasons.insert(
+            Season::Advent,
+            self.get_first_sunday_of_advent_date(Some(year - 1)),
+        );
+        seasons.insert(
+            Season::ChristmasTime,
+            self.get_christmas_date(Some(year - 1)),
+        );
+        seasons.insert(Season::Lent, self.get_ash_wednesday_date(Some(year)));
+        seasons.insert(
+            Season::PaschalTriduum,
+            self.get_holy_thursday_date(Some(year)),
+        );
+        seasons.insert(
+            Season::EasterTime,
+            self.get_easter_sunday_date_unwrap(Some(year)),
+        );
         seasons.insert(
             Season::OrdinaryTime,
-            Self::add_days(self.baptism_of_the_lord(Some(year)), 1),
+            Self::add_days(self.get_baptism_of_the_lord_date(Some(year)), 1),
         );
 
         seasons
     }
 
     /// Gets the end of seasons for a given year
-    pub fn end_of_seasons(&self, year: Option<i32>) -> HashMap<Season, DateTime<Utc>> {
+    pub fn get_end_of_seasons_dates(&self, year: Option<i32>) -> HashMap<Season, DateTime<Utc>> {
         let year = year.unwrap_or(self.year);
         let mut seasons = HashMap::new();
 
         seasons.insert(Season::Advent, Self::get_utc_date(year - 1, 12, 24));
-        seasons.insert(Season::ChristmasTime, self.baptism_of_the_lord(Some(year)));
-        seasons.insert(Season::Lent, self.holy_thursday(Some(year)));
+        seasons.insert(
+            Season::ChristmasTime,
+            self.get_baptism_of_the_lord_date(Some(year)),
+        );
+        seasons.insert(Season::Lent, self.get_holy_thursday_date(Some(year)));
         seasons.insert(
             Season::PaschalTriduum,
-            self.easter_sunday_unwrap(Some(year)),
+            self.get_easter_sunday_date_unwrap(Some(year)),
         );
-        seasons.insert(Season::EasterTime, self.pentecost_sunday(Some(year)));
+        seasons.insert(
+            Season::EasterTime,
+            self.get_pentecost_sunday_date(Some(year)),
+        );
         seasons.insert(
             Season::OrdinaryTime,
-            Self::add_days(self.christ_the_king_sunday(Some(year)), 6),
+            Self::add_days(self.get_christ_the_king_sunday_date(Some(year)), 6),
         );
 
         seasons
@@ -937,7 +963,7 @@ mod tests {
     fn test_christmas_calculation() {
         let config = LiturgicalConfig::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
-        let christmas = dates.christmas(None);
+        let christmas = dates.get_christmas_date(None);
 
         assert_eq!(christmas.day(), 25);
         assert_eq!(christmas.month(), 12);
@@ -948,7 +974,7 @@ mod tests {
     fn test_easter_calculation() {
         let config = LiturgicalConfig::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
-        let easter = dates.easter_sunday_unwrap(None);
+        let easter = dates.get_easter_sunday_date_unwrap(None);
 
         // Easter 2024 is March 31
         assert_eq!(easter.day(), 31);
@@ -960,7 +986,7 @@ mod tests {
     fn test_ash_wednesday_calculation() {
         let config = LiturgicalConfig::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
-        let ash_wednesday = dates.ash_wednesday(None);
+        let ash_wednesday = dates.get_ash_wednesday_date(None);
 
         // Ash Wednesday 2024 is February 14 (46 days before Easter)
         assert_eq!(ash_wednesday.day(), 14);
@@ -1017,13 +1043,13 @@ mod tests {
         let dates = LiturgicalDates::new(config, 2024).unwrap();
 
         // Test valid week
-        let sunday = dates.sunday_of_advent(1, None);
+        let sunday = dates.get_sunday_of_advent_date(1, None);
         assert!(sunday.is_some());
         assert_eq!(sunday.unwrap().weekday(), Weekday::Sun);
 
         // Test invalid parameters
-        assert!(dates.sunday_of_advent(0, None).is_none()); // Invalid week
-        assert!(dates.sunday_of_advent(5, None).is_none()); // Invalid week
+        assert!(dates.get_sunday_of_advent_date(0, None).is_none()); // Invalid week
+        assert!(dates.get_sunday_of_advent_date(5, None).is_none()); // Invalid week
     }
 
     #[test]
@@ -1036,11 +1062,11 @@ mod tests {
         assert_eq!(octave_dates.len(), 8);
 
         // First date should be Christmas
-        let christmas = dates.christmas(None);
+        let christmas = dates.get_christmas_date(None);
         assert_eq!(octave_dates[0], christmas);
 
         // Last date should be Mary Mother of God
-        let mary_mother_of_god = dates.mary_mother_of_god(None);
+        let mary_mother_of_god = dates.get_mary_mother_of_god_date(None);
         assert_eq!(octave_dates[7], mary_mother_of_god);
     }
 
@@ -1050,25 +1076,29 @@ mod tests {
         let dates = LiturgicalDates::new(config, 2024).unwrap();
 
         // Test valid day of octave
-        let weekday = dates.weekday_within_octave_of_christmas(1, None);
+        let weekday = dates.get_weekday_within_octave_of_christmas_date(1, None);
         assert!(weekday.is_some());
 
         // Test invalid parameters
-        assert!(dates.weekday_within_octave_of_christmas(0, None).is_none()); // Invalid day
-        assert!(dates.weekday_within_octave_of_christmas(9, None).is_none()); // Invalid day
+        assert!(dates
+            .get_weekday_within_octave_of_christmas_date(0, None)
+            .is_none()); // Invalid day
+        assert!(dates
+            .get_weekday_within_octave_of_christmas_date(9, None)
+            .is_none()); // Invalid day
     }
 
     #[test]
     fn test_all_dates_of_christmas_time() {
         let config = LiturgicalConfig::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
-        let christmas_time_dates = dates.all_dates_of_christmas_time(None);
+        let christmas_time_dates = dates.get_all_dates_of_christmas_time(None);
 
         // Should have dates from Christmas to Baptism of the Lord
         assert!(!christmas_time_dates.is_empty());
 
         // First date should be Christmas
-        let christmas = dates.christmas(None);
+        let christmas = dates.get_christmas_date(None);
         assert_eq!(christmas_time_dates[0], christmas);
     }
 
@@ -1076,7 +1106,7 @@ mod tests {
     fn test_epiphany() {
         let config = LiturgicalConfig::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
-        let epiphany = dates.epiphany(None);
+        let epiphany = dates.get_epiphany_date(None);
 
         // Epiphany should be in January
         assert_eq!(epiphany.month(), 1);
@@ -1101,15 +1131,15 @@ mod tests {
         let dates = LiturgicalDates::new(config, 2024).unwrap();
 
         // Test valid day
-        let weekday = dates.weekday_before_epiphany(2, None);
+        let weekday = dates.get_weekday_before_epiphany_date(2, None);
         // May or may not exist depending on the year
         if weekday.is_some() {
             assert_eq!(weekday.unwrap().day(), 2);
         }
 
         // Test invalid parameters
-        assert!(dates.weekday_before_epiphany(1, None).is_none()); // Too early
-        assert!(dates.weekday_before_epiphany(9, None).is_none()); // Too late
+        assert!(dates.get_weekday_before_epiphany_date(1, None).is_none()); // Too early
+        assert!(dates.get_weekday_before_epiphany_date(9, None).is_none()); // Too late
     }
 
     #[test]
@@ -1118,15 +1148,15 @@ mod tests {
         let dates = LiturgicalDates::new(config, 2024).unwrap();
 
         // Test valid day of week
-        let weekday = dates.weekday_after_epiphany(1, None); // Monday
-                                                             // May or may not exist depending on the year
+        let weekday = dates.get_weekday_after_epiphany_date(1, None); // Monday
+                                                                      // May or may not exist depending on the year
         if weekday.is_some() {
             assert_eq!(weekday.unwrap().weekday().num_days_from_sunday() as u8, 1);
         }
 
         // Test invalid parameters
-        assert!(dates.weekday_after_epiphany(0, None).is_none()); // Invalid dow
-        assert!(dates.weekday_after_epiphany(7, None).is_none()); // Invalid dow
+        assert!(dates.get_weekday_after_epiphany_date(0, None).is_none()); // Invalid dow
+        assert!(dates.get_weekday_after_epiphany_date(7, None).is_none()); // Invalid dow
     }
 
     #[test]
@@ -1148,9 +1178,9 @@ mod tests {
         let dates = LiturgicalDates::new(config, 2024).unwrap();
 
         // Test valid year
-        assert!(dates.easter_sunday(Some(2024)).is_ok());
+        assert!(dates.get_easter_sunday_date(Some(2024)).is_ok());
 
         // Test invalid year
-        assert!(dates.easter_sunday(Some(1500)).is_err());
+        assert!(dates.get_easter_sunday_date(Some(1500)).is_err());
     }
 }

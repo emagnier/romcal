@@ -49,7 +49,7 @@ fn demonstrate_easter_calculation(dates: &LiturgicalDates) {
     println!("\n--- Easter calculation ---");
 
     // Using the new API with Result
-    match dates.easter_sunday(Some(2024)) {
+    match dates.get_easter_sunday_date(Some(2024)) {
         Ok(easter) => {
             println!("✅ Easter 2024: {}", easter.format("%d/%m/%Y"));
         }
@@ -59,7 +59,7 @@ fn demonstrate_easter_calculation(dates: &LiturgicalDates) {
     }
 
     // Test with invalid year
-    match dates.easter_sunday(Some(1500)) {
+    match dates.get_easter_sunday_date(Some(1500)) {
         Ok(_) => {
             println!("✅ Easter 1500 calculated (unexpected)");
         }
@@ -76,7 +76,7 @@ fn demonstrate_error_handling(dates: &LiturgicalDates) {
     let test_years = vec![2024, 1500, 1583, 2025];
 
     for year in test_years {
-        match dates.easter_sunday(Some(year)) {
+        match dates.get_easter_sunday_date(Some(year)) {
             Ok(easter) => {
                 println!("✅ Easter {}: {}", year, easter.format("%d/%m/%Y"));
             }
@@ -97,15 +97,15 @@ fn demonstrate_compatibility_api() {
     let dates = LiturgicalDates::new(config, 2024).unwrap();
 
     // Using the compatibility API (can panic)
-    let easter = dates.easter_sunday_unwrap(None);
+    let easter = dates.get_easter_sunday_date_unwrap(None);
     println!(
         "✅ Easter 2024 (compatibility API): {}",
         easter.format("%d/%m/%Y")
     );
 
     // Feast calculations with the compatibility API
-    let ash_wednesday = dates.ash_wednesday(None);
-    let christmas = dates.christmas(None);
+    let ash_wednesday = dates.get_ash_wednesday_date(None);
+    let christmas = dates.get_christmas_date(None);
 
     println!("✅ Ash Wednesday: {}", ash_wednesday.format("%d/%m/%Y"));
     println!("✅ Christmas: {}", christmas.format("%d/%m/%Y"));
@@ -117,7 +117,9 @@ pub fn calculate_easter_wasm(year: i32) -> Result<String, String> {
     let config = LiturgicalConfig::default();
     let dates = LiturgicalDates::new(config, year).map_err(|e| e.to_string())?;
 
-    let easter = dates.easter_sunday(Some(year)).map_err(|e| e.to_string())?;
+    let easter = dates
+        .get_easter_sunday_date(Some(year))
+        .map_err(|e| e.to_string())?;
 
     Ok(easter.format("%Y-%m-%d").to_string())
 }
