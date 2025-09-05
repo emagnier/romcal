@@ -16,7 +16,14 @@ pub mod config;
 pub mod dates;
 pub mod easter;
 pub mod error;
+pub mod wasm;
 
 pub use config::{CalendarScope, EasterCalculationType, LiturgicalConfig};
 pub use dates::{LiturgicalDates, Season};
 pub use error::{validate_range, validate_year, RomcalError, RomcalResult, Validate};
+
+// Re-export WASM types for easier access
+pub use wasm::{
+    romcal, romcal_with_config, romcal_with_config_object, romcal_with_partial_config,
+    PartialRomcalConfig, Romcal, RomcalConfig,
+};

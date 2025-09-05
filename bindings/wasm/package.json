@@ -1,0 +1,31 @@
+{
+  "name": "romcal",
+  "version": "4.0.0",
+  "description": "Liturgical Calendar Library - WASM bindings",
+  "type": "module",
+  "main": "pkg/romcal.js",
+  "types": "pkg/romcal.d.ts",
+  "scripts": {
+    "build": "./build.sh && npm run build:ts",
+    "build:ts": "tsc && cp -r pkg dist/",
+    "build:wasm": "wasm-pack build --target nodejs --out-dir pkg",
+    "build-web": "wasm-pack build --target web --out-dir pkg",
+    "build-bundler": "wasm-pack build --target bundler --out-dir pkg",
+    "test": "npx tsx test.ts",
+    "test:compiled": "npm run build && node dist/test.js"
+  },
+  "keywords": [
+    "liturgical",
+    "calendar",
+    "catholic",
+    "romcal",
+    "wasm"
+  ],
+  "author": "Romcal Contributors",
+  "devDependencies": {
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.0",
+    "@types/node": "^20.0.0"
+  },
+  "license": "MIT"
+}
