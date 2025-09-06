@@ -4,12 +4,12 @@
 
 echo "🔨 Building Romcal WASM bindings..."
 
-# Going to the core/romcal directory
-cd ../../core/romcal
+# Going to the core directory
+cd ../../core
 
 # Compiling WASM directly to bindings/wasm/pkg
 echo "📦 Compiling WASM..."
-wasm-pack build --target nodejs --out-dir ../../bindings/wasm/pkg
+wasm-pack build --target nodejs --out-dir ../bindings/wasm/pkg
 
 echo "✅ Build completed successfully!"
 echo ""

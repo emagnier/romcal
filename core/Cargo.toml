@@ -1,0 +1,23 @@
+[package]
+name = "romcal-core"
+version = "4.0.0"
+edition = "2021"
+authors = ["Romcal Contributors"]
+description = "Liturgical Calendar Library - Core Rust library"
+license = "MIT"
+repository = "https://github.com/romcal/romcal"
+keywords = ["liturgical", "calendar", "catholic", "romcal"]
+categories = ["date-and-time", "web-programming"]
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+chrono = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+wasm-bindgen = { workspace = true }
+js-sys = { workspace = true }
+
+[dependencies.web-sys]
+workspace = true

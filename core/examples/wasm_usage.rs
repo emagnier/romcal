@@ -3,7 +3,7 @@
 //! This example demonstrates how to use the Romcal library with robust error handling,
 //! optimized for use in WebAssembly.
 
-use romcal::{LiturgicalConfig, LiturgicalDates, RomcalResult};
+use romcal_core::{LiturgicalConfig, LiturgicalDates, RomcalResult};
 
 fn main() {
     println!("=== WASM-friendly usage example for Romcal ===\n");

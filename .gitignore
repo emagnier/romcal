@@ -14,6 +14,9 @@ coverage/
 dist/
 tmp/
 
+# TypeScript build info
+*.tsbuildinfo
+
 # Act (run GitHub Actions locally)
 *.event
 
@@ -60,8 +63,37 @@ test-results/
 .rust-analyzer/
 rust-project.json
 
+# WASM build artifacts
+/pkg/
+*.wasm.map
+.wasm-pack/
+
+# Vim
+*.swp
+*.swo
+
+# Environment files
+.env.local
+.env.*.local
+
+# Archives
+*.tgz
+*.tar.gz
+
+# Cache directories
+.cache/
+*.cache
+
+# Temporary files
+*.tmp
+*.temp
+
+# Process files
+*.pid
+
 # Misc
 .DS_Store
+Thumbs.db
 local-*
 *.bak
 *.orig

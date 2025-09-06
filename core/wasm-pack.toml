@@ -8,6 +8,9 @@ repository = "https://github.com/romcal/romcal"
 keywords = ["liturgical", "calendar", "catholic", "romcal", "wasm"]
 categories = ["web-programming", "date-and-time"]
 
+[package.metadata.wasm-pack]
+package = "romcal-core"
+
 [package.metadata.wasm-pack.profile.dev]
 wasm-opt = ["-Os", "--enable-mutable-globals"]
 

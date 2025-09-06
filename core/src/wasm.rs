@@ -26,7 +26,7 @@ pub struct RomcalConfig {
 
 /// WASM-compatible partial configuration structure (builder pattern)
 #[wasm_bindgen]
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default)]
 pub struct PartialRomcalConfig {
     /// Calendar type (e.g., 'general_roman')
     calendar: Option<String>,
@@ -47,14 +47,7 @@ impl PartialRomcalConfig {
     /// Create a new partial configuration
     #[wasm_bindgen(constructor)]
     pub fn new() -> PartialRomcalConfig {
-        PartialRomcalConfig {
-            calendar: None,
-            locale: None,
-            epiphany_on_sunday: None,
-            corpus_christi_on_sunday: None,
-            ascension_on_sunday: None,
-            easter_calculation_type: None,
-        }
+        Self::default()
     }
 
     /// Set calendar
@@ -187,6 +180,7 @@ impl RomcalConfig {
 
 /// WASM-compatible Romcal instance
 #[wasm_bindgen]
+#[derive(Default)]
 pub struct Romcal {
     config: RomcalConfig,
 }
@@ -196,9 +190,7 @@ impl Romcal {
     /// Create a new Romcal instance with default configuration
     #[wasm_bindgen(constructor)]
     pub fn new() -> Romcal {
-        Romcal {
-            config: RomcalConfig::default(),
-        }
+        Self::default()
     }
 
     /// Create a new Romcal instance with custom calendar and locale

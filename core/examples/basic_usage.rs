@@ -1,4 +1,4 @@
-use romcal::{LiturgicalConfig, LiturgicalDates};
+use romcal_core::{LiturgicalConfig, LiturgicalDates};
 
 fn main() {
     // Default configuration

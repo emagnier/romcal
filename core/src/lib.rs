@@ -5,7 +5,7 @@
 //! ## Quick Start
 //!
 //! ```rust
-//! use romcal::{LiturgicalConfig, LiturgicalDates};
+//! use romcal_core::{LiturgicalConfig, LiturgicalDates};
 //!
 //! let config = LiturgicalConfig::default();
 //! let dates = LiturgicalDates::new(config, 2024).unwrap();

@@ -1,5 +1,5 @@
 // Import the WASM module
-import * as wasm from '../pkg/romcal.js';
+import * as wasm from '../pkg/romcal_core.js';
 
 // Initialize the WASM module
 let wasmInitialized = false;
