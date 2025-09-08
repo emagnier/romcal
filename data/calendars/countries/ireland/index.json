@@ -12,7 +12,7 @@
     {
       "id": "munchin_of_limerick_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 1,
         "date": 3
       }
@@ -20,7 +20,7 @@
     {
       "id": "ita_of_killeedy_virgin",
       "precedence": "PROPER_MEMORIAL_11B",
-      "dateDef": {
+      "date_def": {
         "month": 1,
         "date": 15
       }
@@ -28,7 +28,7 @@
     {
       "id": "fursa_of_peronne_abbot",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 1,
         "date": 16
       }
@@ -36,16 +36,16 @@
     {
       "id": "aidan_of_ferns_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 1,
         "date": 30
       }
     },
     {
       "id": "brigid_of_kildare_virgin",
-      "customLocaleId": "brigid_of_kildare_virgin_copatroness_of_ireland",
+      "custom_locale_id": "brigid_of_kildare_virgin_copatroness_of_ireland",
       "precedence": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C",
-      "dateDef": {
+      "date_def": {
         "month": 2,
         "date": 1
       },
@@ -58,7 +58,7 @@
     {
       "id": "mel_of_ardagh_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 2,
         "date": 7
       }
@@ -66,7 +66,7 @@
     {
       "id": "gobnait_of_ballyvourney_virgin",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 2,
         "date": 11
       }
@@ -74,7 +74,7 @@
     {
       "id": "fintan_of_clonenagh_abbot",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 2,
         "date": 17
       }
@@ -82,7 +82,7 @@
     {
       "id": "david_of_wales_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 3,
         "date": 1
       }
@@ -90,7 +90,7 @@
     {
       "id": "kieran_of_saigir_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 3,
         "date": 5
       }
@@ -98,7 +98,7 @@
     {
       "id": "senan_of_inis_cathaigh_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 3,
         "date": 8
       }
@@ -106,16 +106,16 @@
     {
       "id": "aengus_of_tallaght_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 3,
         "date": 11
       }
     },
     {
       "id": "patrick_of_ireland_bishop",
-      "customLocaleId": "patrick_of_ireland_bishop_patron_of_ireland",
+      "custom_locale_id": "patrick_of_ireland_bishop_patron_of_ireland",
       "precedence": "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A",
-      "isHolyDayOfObligation": true,
+      "is_holy_day_of_obligation": true,
       "titles": {
         "append": [
           "PATRON_OF_IRELAND"
@@ -125,7 +125,7 @@
     {
       "id": "enda_of_aran_abbot",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 3,
         "date": 21
       }
@@ -133,7 +133,7 @@
     {
       "id": "macartan_of_clogher_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 3,
         "date": 24
       }
@@ -141,7 +141,7 @@
     {
       "id": "ceallach_of_armagh_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 4,
         "date": 1
       }
@@ -149,7 +149,7 @@
     {
       "id": "laserian_of_leighlin_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 4,
         "date": 18
       }
@@ -157,7 +157,7 @@
     {
       "id": "asicus_of_elphin_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 4,
         "date": 27
       }
@@ -165,7 +165,7 @@
     {
       "id": "conleth_of_kildare_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 5,
         "date": 4
       }
@@ -173,7 +173,7 @@
     {
       "id": "edmund_ignatius_rice_religious",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 5,
         "date": 5
       }
@@ -181,7 +181,7 @@
     {
       "id": "comgall_of_bangor_abbot",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 5,
         "date": 10
       }
@@ -189,7 +189,7 @@
     {
       "id": "carthage_of_lismore_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 5,
         "date": 15
       }
@@ -197,7 +197,7 @@
     {
       "id": "brendan_of_clonfert_abbot",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 5,
         "date": 16
       }
@@ -205,7 +205,7 @@
     {
       "id": "kevin_of_glendalough_abbot",
       "precedence": "PROPER_MEMORIAL_11B",
-      "dateDef": {
+      "date_def": {
         "month": 6,
         "date": 3
       }
@@ -213,7 +213,7 @@
     {
       "id": "jarlath_of_tuam_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 6,
         "date": 6
       }
@@ -221,16 +221,16 @@
     {
       "id": "colman_of_dromore_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 6,
         "date": 7
       }
     },
     {
       "id": "columba_of_iona_abbot",
-      "customLocaleId": "columba_of_iona_abbot_copatron_of_ireland",
+      "custom_locale_id": "columba_of_iona_abbot_copatron_of_ireland",
       "precedence": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C",
-      "dateDef": {
+      "date_def": {
         "month": 6,
         "date": 9
       },
@@ -244,7 +244,7 @@
     {
       "id": "davnet_of_sliabh_beagh_virgin",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 6,
         "date": 14
       }
@@ -252,7 +252,7 @@
     {
       "id": "irish_martyrs",
       "precedence": "PROPER_MEMORIAL_11B",
-      "dateDef": {
+      "date_def": {
         "month": 6,
         "date": 20
       }
@@ -260,7 +260,7 @@
     {
       "id": "oliver_plunket_bishop",
       "precedence": "PROPER_MEMORIAL_11B",
-      "dateDef": {
+      "date_def": {
         "month": 7,
         "date": 1
       }
@@ -268,7 +268,7 @@
     {
       "id": "moninne_of_killeavy_virgin",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 7,
         "date": 6
       }
@@ -276,7 +276,7 @@
     {
       "id": "maelruain_of_tallaght_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 7,
         "date": 7
       }
@@ -284,7 +284,7 @@
     {
       "id": "kilian_of_wurzburg_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 7,
         "date": 8
       }
@@ -292,7 +292,7 @@
     {
       "id": "declan_of_ardmore_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 7,
         "date": 24
       }
@@ -300,7 +300,7 @@
     {
       "id": "muredach_of_killala_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 8,
         "date": 12
       }
@@ -308,7 +308,7 @@
     {
       "id": "attracta_of_killaraght_virgin",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 8,
         "date": 12
       }
@@ -316,7 +316,7 @@
     {
       "id": "lelia_of_killeely_virgin",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 8,
         "date": 12
       }
@@ -324,7 +324,7 @@
     {
       "id": "fachtna_of_rosscarbery_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 8,
         "date": 13
       }
@@ -332,7 +332,7 @@
     {
       "id": "our_lady_of_knock",
       "precedence": "PROPER_FEAST_8F",
-      "dateDef": {
+      "date_def": {
         "month": 8,
         "date": 17
       }
@@ -340,7 +340,7 @@
     {
       "id": "eoghan_of_ardstraw_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 8,
         "date": 23
       }
@@ -348,7 +348,7 @@
     {
       "id": "fiacre_of_breuil_monk",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 8,
         "date": 30
       }
@@ -356,7 +356,7 @@
     {
       "id": "aidan_of_lindisfarne_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 8,
         "date": 31
       }
@@ -364,7 +364,7 @@
     {
       "id": "mac_nissi_of_connor_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 9,
         "date": 4
       }
@@ -372,7 +372,7 @@
     {
       "id": "ciaran_of_clonmacnoise_abbot",
       "precedence": "PROPER_MEMORIAL_11B",
-      "dateDef": {
+      "date_def": {
         "month": 9,
         "date": 9
       }
@@ -380,7 +380,7 @@
     {
       "id": "ailbe_of_emly_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 9,
         "date": 12
       }
@@ -388,7 +388,7 @@
     {
       "id": "finbarr_of_cork_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 9,
         "date": 25
       }
@@ -396,7 +396,7 @@
     {
       "id": "columba_marmion_priest",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 10,
         "date": 3
       }
@@ -404,7 +404,7 @@
     {
       "id": "john_henry_newman_priest",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 10,
         "date": 9
       }
@@ -412,7 +412,7 @@
     {
       "id": "canice_of_kilkenny_abbot",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 10,
         "date": 11
       }
@@ -420,7 +420,7 @@
     {
       "id": "gall_of_switzerland_abbot",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 10,
         "date": 16
       }
@@ -428,7 +428,7 @@
     {
       "id": "otteran_of_iona_monk",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 10,
         "date": 27
       }
@@ -436,7 +436,7 @@
     {
       "id": "colman_of_kilmacduagh_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 10,
         "date": 29
       }
@@ -444,7 +444,7 @@
     {
       "id": "malachy_of_armagh_bishop",
       "precedence": "PROPER_MEMORIAL_11B",
-      "dateDef": {
+      "date_def": {
         "month": 11,
         "date": 3
       }
@@ -452,7 +452,7 @@
     {
       "id": "all_saints_of_ireland",
       "precedence": "PROPER_FEAST_8F",
-      "dateDef": {
+      "date_def": {
         "month": 11,
         "date": 6
       }
@@ -460,7 +460,7 @@
     {
       "id": "willibrord_of_utrecht_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 11,
         "date": 7
       }
@@ -468,7 +468,7 @@
     {
       "id": "laurence_otoole_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 11,
         "date": 14
       }
@@ -476,7 +476,7 @@
     {
       "id": "columban_of_luxeuil_abbot",
       "precedence": "PROPER_MEMORIAL_11B",
-      "dateDef": {
+      "date_def": {
         "month": 11,
         "date": 23
       }
@@ -484,7 +484,7 @@
     {
       "id": "colman_of_cloyne_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 11,
         "date": 25
       }
@@ -492,7 +492,7 @@
     {
       "id": "virgilius_of_salzburg_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 11,
         "date": 27
       },
@@ -505,7 +505,7 @@
     {
       "id": "finnian_of_clonard_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 12,
         "date": 12
       }
@@ -513,7 +513,7 @@
     {
       "id": "flannan_of_killaloe_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 12,
         "date": 18
       }
@@ -521,7 +521,7 @@
     {
       "id": "fachanan_of_kilfenora_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 12,
         "date": 20
       }

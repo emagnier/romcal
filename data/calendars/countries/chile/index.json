@@ -12,7 +12,7 @@
     {
       "id": "laura_vicuna_virgin",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 1,
         "date": 22
       }
@@ -20,7 +20,7 @@
     {
       "id": "pius_ix_pope",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 2,
         "date": 7
       }
@@ -28,14 +28,14 @@
     {
       "id": "our_lady_of_lourdes",
       "precedence": "PROPER_MEMORIAL_11B",
-      "dateDef": {
+      "date_def": {
         "month": 2,
         "date": 11
       }
     },
     {
       "id": "philip_and_james_apostles",
-      "dateDef": {
+      "date_def": {
         "month": 5,
         "date": 4
       }
@@ -43,7 +43,7 @@
     {
       "id": "teresa_of_jesus_of_los_andes_virgin",
       "precedence": "PROPER_FEAST_8F",
-      "dateDef": {
+      "date_def": {
         "month": 7,
         "date": 13
       }
@@ -51,7 +51,7 @@
     {
       "id": "camillus_de_lellis_priest",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 7,
         "date": 14
       }
@@ -59,16 +59,16 @@
     {
       "id": "henry_ii_emperor",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 7,
         "date": 14
       }
     },
     {
       "id": "our_lady_of_mount_carmel",
-      "customLocaleId": "our_lady_of_mount_carmel_mother_and_queen_of_chile",
+      "custom_locale_id": "our_lady_of_mount_carmel_mother_and_queen_of_chile",
       "precedence": "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A",
-      "dateDef": {
+      "date_def": {
         "month": 7,
         "date": 16
       },
@@ -81,7 +81,7 @@
     {
       "id": "alberto_hurtado_priest",
       "precedence": "PROPER_MEMORIAL_11B",
-      "dateDef": {
+      "date_def": {
         "month": 8,
         "date": 18
       }
@@ -89,7 +89,7 @@
     {
       "id": "rose_of_lima_virgin",
       "precedence": "PROPER_FEAST_8F",
-      "dateDef": {
+      "date_def": {
         "month": 8,
         "date": 30
       }
@@ -97,7 +97,7 @@
     {
       "id": "our_lady_of_mercy",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 9,
         "date": 24
       }
@@ -105,11 +105,10 @@
     {
       "id": "our_lord_jesus_christ_the_eternal_high_priest",
       "precedence": "PROPER_FEAST_8F",
-      "dateDef": {
-        "dateFn": "pentecostSunday",
-        "addDay": 4
-      },
-      "properCycle": "PROPER_OF_TIME"
+      "date_def": {
+        "date_fn": "PENTECOST_SUNDAY",
+        "add_day": 4
+      }
     }
   ]
 }

@@ -12,16 +12,15 @@
     {
       "id": "our_lord_jesus_christ_the_eternal_high_priest",
       "precedence": "PROPER_FEAST_8F",
-      "dateDef": {
-        "dateFn": "pentecostSunday",
-        "addDay": 4
-      },
-      "properCycle": "PROPER_OF_TIME"
+      "date_def": {
+        "date_fn": "PENTECOST_SUNDAY",
+        "add_day": 4
+      }
     },
     {
       "id": "our_lady_of_angels",
       "precedence": "GENERAL_SOLEMNITY_3",
-      "dateDef": {
+      "date_def": {
         "month": 8,
         "date": 2
       },
@@ -30,7 +29,7 @@
           "PATRONESS_OF_COSTA_RICA"
         ]
       },
-      "customLocaleId": "our_lady_of_angels_patroness_of_costa_rica"
+      "custom_locale_id": "our_lady_of_angels_patroness_of_costa_rica"
     }
   ]
 }

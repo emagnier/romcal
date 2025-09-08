@@ -12,7 +12,7 @@
     {
       "id": "thorfinn_of_hamar_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 1,
         "date": 8
       }
@@ -20,7 +20,7 @@
     {
       "id": "henry_of_finland_bishop",
       "precedence": "PROPER_MEMORIAL_11B",
-      "dateDef": {
+      "date_def": {
         "month": 1,
         "date": 19
       }
@@ -28,7 +28,7 @@
     {
       "id": "eysteinn_of_nidaros_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 1,
         "date": 26
       }
@@ -36,7 +36,7 @@
     {
       "id": "magnus_erlendsson_martyr",
       "precedence": "PROPER_MEMORIAL_11B",
-      "dateDef": {
+      "date_def": {
         "month": 4,
         "date": 16
       }
@@ -44,7 +44,7 @@
     {
       "id": "eric_ix_of_sweden_martyr",
       "precedence": "PROPER_MEMORIAL_11B",
-      "dateDef": {
+      "date_def": {
         "month": 5,
         "date": 18
       }
@@ -52,7 +52,7 @@
     {
       "id": "sunniva_of_norway_virgin",
       "precedence": "PROPER_MEMORIAL_11B",
-      "dateDef": {
+      "date_def": {
         "month": 7,
         "date": 8
       }
@@ -60,7 +60,7 @@
     {
       "id": "canute_iv_of_denmark_martyr",
       "precedence": "PROPER_MEMORIAL_11B",
-      "dateDef": {
+      "date_def": {
         "month": 7,
         "date": 10
       }
@@ -68,7 +68,7 @@
     {
       "id": "swithun_of_winchester_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 7,
         "date": 15
       }
@@ -76,7 +76,7 @@
     {
       "id": "thorlac_of_iceland_bishop",
       "precedence": "PROPER_MEMORIAL_11B",
-      "dateDef": {
+      "date_def": {
         "month": 7,
         "date": 20
       }
@@ -84,7 +84,7 @@
     {
       "id": "olaf_ii_of_norway_martyr",
       "precedence": "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A",
-      "dateDef": {
+      "date_def": {
         "month": 5,
         "date": 29
       }
@@ -92,7 +92,7 @@
     {
       "id": "nicholas_steno_bishop",
       "precedence": "PROPER_MEMORIAL_11B",
-      "dateDef": {
+      "date_def": {
         "month": 11,
         "date": 25
       }

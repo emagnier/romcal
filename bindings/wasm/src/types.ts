@@ -6,98 +6,11 @@
  */
 
 export type DateDef =
-  | {
-      /**
-       * The date of this liturgical day.
-       */
-      date: number;
-      /**
-       * The month of this liturgical day.
-       */
-      month: MonthIndex;
-      type: Type;
-      /**
-       * Offset the current year to compute dates in the scope of different years.
-       */
-      year_offset?: number | null;
-      [k: string]: unknown;
-    }
-  | {
-      /**
-       * Add additional day(s) to the date computed from the 'dateFn' option.
-       */
-      add_day?: number | null;
-      /**
-       * Possible date function arguments that may be required.
-       */
-      date_args?: number[] | null;
-      /**
-       * A date function name from the [Date] class.
-       */
-      date_fn: DateFn;
-      type: Type1;
-      /**
-       * Offset the current year to compute dates in the scope of different years.
-       */
-      year_offset?: number | null;
-      [k: string]: unknown;
-    }
-  | {
-      /**
-       * Possible date function arguments that may be required.
-       */
-      date_args?: number[] | null;
-      /**
-       * A date function name from the [Date] class.
-       */
-      date_fn: DateFn;
-      /**
-       * Subtract some day(s) to the date computed from the 'dateFn' option.
-       */
-      subtract_day?: number | null;
-      type: Type2;
-      /**
-       * Offset the current year to compute dates in the scope of different years.
-       */
-      year_offset?: number | null;
-      [k: string]: unknown;
-    }
-  | {
-      /**
-       * The day of week this liturgical year must occur.
-       */
-      day_of_week: DayOfWeek;
-      /**
-       * The month of this liturgical day.
-       */
-      month: MonthIndex;
-      /**
-       * The nth week in the month this liturgical year must occur.
-       */
-      nth_week_in_month: number;
-      type: Type3;
-      /**
-       * Offset the current year to compute dates in the scope of different years.
-       */
-      year_offset?: number | null;
-      [k: string]: unknown;
-    }
-  | {
-      /**
-       * The last day of week in the month this liturgical year must occur.
-       */
-      last_day_of_week_in_month: DayOfWeek;
-      /**
-       * The month of this liturgical day.
-       */
-      month: MonthIndex;
-      type: Type4;
-      /**
-       * Offset the current year to compute dates in the scope of different years.
-       */
-      year_offset?: number | null;
-      [k: string]: unknown;
-    };
+  | DateDefMonthDate
+  | DateDefDateFnAddDay
+  | DateDefDateFnSubtractDay
+  | DateDefMonthDowNthWeekInMonth
+  | DateDefMonthLastDowInMonth;
 export type MonthIndex = number;
 export type DayOfWeek = number;
 export type DateDefException =
@@ -105,150 +18,12 @@ export type DateDefException =
       from: DateDef;
       inclusive: boolean;
       to: DateDef;
-      type: Type5;
       [k: string]: unknown;
     }
-  | (
-      | {
-          /**
-           * The date of this liturgical day.
-           */
-          date: number;
-          /**
-           * The month of this liturgical day.
-           */
-          month: MonthIndex;
-          type: Type6;
-          /**
-           * Offset the current year to compute dates in the scope of different years.
-           */
-          year_offset?: number | null;
-          [k: string]: unknown;
-        }
-      | {
-          /**
-           * Add additional day(s) to the date computed from the 'dateFn' option.
-           */
-          add_day?: number | null;
-          /**
-           * Possible date function arguments that may be required.
-           */
-          date_args?: number[] | null;
-          /**
-           * A date function name from the [Date] class.
-           */
-          date_fn: DateFn;
-          type: Type7;
-          /**
-           * Offset the current year to compute dates in the scope of different years.
-           */
-          year_offset?: number | null;
-          [k: string]: unknown;
-        }
-      | {
-          /**
-           * Possible date function arguments that may be required.
-           */
-          date_args?: number[] | null;
-          /**
-           * A date function name from the [Date] class.
-           */
-          date_fn: DateFn;
-          /**
-           * Subtract some day(s) to the date computed from the 'dateFn' option.
-           */
-          subtract_day?: number | null;
-          type: Type8;
-          /**
-           * Offset the current year to compute dates in the scope of different years.
-           */
-          year_offset?: number | null;
-          [k: string]: unknown;
-        }
-      | {
-          /**
-           * The day of week this liturgical year must occur.
-           */
-          day_of_week: DayOfWeek;
-          /**
-           * The month of this liturgical day.
-           */
-          month: MonthIndex;
-          /**
-           * The nth week in the month this liturgical year must occur.
-           */
-          nth_week_in_month: number;
-          type: Type9;
-          /**
-           * Offset the current year to compute dates in the scope of different years.
-           */
-          year_offset?: number | null;
-          [k: string]: unknown;
-        }
-      | {
-          /**
-           * The last day of week in the month this liturgical year must occur.
-           */
-          last_day_of_week_in_month: DayOfWeek;
-          /**
-           * The month of this liturgical day.
-           */
-          month: MonthIndex;
-          type: Type10;
-          /**
-           * Offset the current year to compute dates in the scope of different years.
-           */
-          year_offset?: number | null;
-          [k: string]: unknown;
-        }
-    )
-  | (
-      | {
-          type: Type11;
-          [k: string]: unknown;
-        }
-      | number
-    );
-export type MartyrologyItemPointer =
-  | (
-      | {
-          type: Type12;
-          [k: string]: unknown;
-        }
-      | string
-    )
-  | {
-      /**
-       * Specify the number of persons this martyrology item is representing.
-       */
-      count?: SaintCount | null;
-      /**
-       * Specify if titles should not be displayed. This can occur when a title is already included in the name of the martyrology item.
-       */
-      hide_titles?: boolean | null;
-      /**
-       * The ID of the martyrology item.
-       */
-      id: string;
-      /**
-       * The redefined titles of the martyrology item.
-       */
-      titles?: TitlesDef | null;
-      type: Type15;
-      [k: string]: unknown;
-    };
-export type SaintCount =
-  | (
-      | {
-          type: Type13;
-          [k: string]: unknown;
-        }
-      | number
-    )
-  | {
-      type: Type14;
-      [k: string]: unknown;
-    };
+  | DateDef
+  | DayOfWeek;
+export type MartyrologyItemPointer = string | MartyrologyItemRedefined;
+export type SaintCount = number | null;
 export type TitlesDef = Title[] | CompoundTitle;
 
 export interface CalendarDefinition {
@@ -307,6 +82,112 @@ export interface DayDefinition {
   titles?: TitlesDef | null;
   [k: string]: unknown;
 }
+export interface DateDefMonthDate {
+  /**
+   * The date of this liturgical day.
+   */
+  date: number;
+  /**
+   * The month of this liturgical day.
+   */
+  month: MonthIndex;
+  /**
+   * Offset the current year to compute dates in the scope of different years.
+   */
+  year_offset?: number | null;
+  [k: string]: unknown;
+}
+export interface DateDefDateFnAddDay {
+  /**
+   * Add additional day(s) to the date computed from the 'dateFn' option.
+   */
+  add_day?: number | null;
+  /**
+   * Possible date function arguments that may be required.
+   */
+  date_args?: number[] | null;
+  /**
+   * A date function name from the [Date] class.
+   */
+  date_fn: DateFn;
+  /**
+   * Offset the current year to compute dates in the scope of different years.
+   */
+  year_offset?: number | null;
+  [k: string]: unknown;
+}
+export interface DateDefDateFnSubtractDay {
+  /**
+   * Possible date function arguments that may be required.
+   */
+  date_args?: number[] | null;
+  /**
+   * A date function name from the [Date] class.
+   */
+  date_fn: DateFn;
+  /**
+   * Subtract some day(s) to the date computed from the 'dateFn' option.
+   */
+  subtract_day?: number | null;
+  /**
+   * Offset the current year to compute dates in the scope of different years.
+   */
+  year_offset?: number | null;
+  [k: string]: unknown;
+}
+export interface DateDefMonthDowNthWeekInMonth {
+  /**
+   * The day of week this liturgical year must occur.
+   */
+  day_of_week: DayOfWeek;
+  /**
+   * The month of this liturgical day.
+   */
+  month: MonthIndex;
+  /**
+   * The nth week in the month this liturgical year must occur.
+   */
+  nth_week_in_month: number;
+  /**
+   * Offset the current year to compute dates in the scope of different years.
+   */
+  year_offset?: number | null;
+  [k: string]: unknown;
+}
+export interface DateDefMonthLastDowInMonth {
+  /**
+   * The last day of week in the month this liturgical year must occur.
+   */
+  last_day_of_week_in_month: DayOfWeek;
+  /**
+   * The month of this liturgical day.
+   */
+  month: MonthIndex;
+  /**
+   * Offset the current year to compute dates in the scope of different years.
+   */
+  year_offset?: number | null;
+  [k: string]: unknown;
+}
+export interface MartyrologyItemRedefined {
+  /**
+   * Specify the number of persons this martyrology item is representing.
+   */
+  count?: SaintCount | null;
+  /**
+   * Specify if titles should not be displayed. This can occur when a title is already included in the name of the martyrology item.
+   */
+  hide_titles?: boolean | null;
+  /**
+   * The ID of the martyrology item.
+   */
+  id: string;
+  /**
+   * The redefined titles of the martyrology item.
+   */
+  titles?: TitlesDef | null;
+  [k: string]: unknown;
+}
 export interface CompoundTitle {
   /**
    * Add title(s) to the end of the existing list of title(s).
@@ -359,56 +240,11 @@ export enum CommonDefinition {
   EDUCATORS = "EDUCATORS",
   HOLY_WOMEN = "HOLY_WOMEN"
 }
-export enum Type {
-  MonthDate = "MonthDate"
-}
 export enum DateFn {
   EASTER_SUNDAY = "EASTER_SUNDAY",
   EPIPHANY_SUNDAY = "EPIPHANY_SUNDAY",
   CORPUS_CHRISTI_SUNDAY = "CORPUS_CHRISTI_SUNDAY",
   EASTER_MONDAY = "EASTER_MONDAY"
-}
-export enum Type1 {
-  DateFnAddDay = "DateFnAddDay"
-}
-export enum Type2 {
-  DateFnSubtractDay = "DateFnSubtractDay"
-}
-export enum Type3 {
-  MonthDowNthWeekInMonth = "MonthDowNthWeekInMonth"
-}
-export enum Type4 {
-  MonthLastDowInMonth = "MonthLastDowInMonth"
-}
-export enum Type5 {
-  IfIsBetween = "IfIsBetween"
-}
-export enum Type6 {
-  MonthDate = "MonthDate"
-}
-export enum Type7 {
-  DateFnAddDay = "DateFnAddDay"
-}
-export enum Type8 {
-  DateFnSubtractDay = "DateFnSubtractDay"
-}
-export enum Type9 {
-  MonthDowNthWeekInMonth = "MonthDowNthWeekInMonth"
-}
-export enum Type10 {
-  MonthLastDowInMonth = "MonthLastDowInMonth"
-}
-export enum Type11 {
-  IfIsDayOfWeek = "IfIsDayOfWeek"
-}
-export enum Type12 {
-  ResourceId = "ResourceId"
-}
-export enum Type13 {
-  Number = "Number"
-}
-export enum Type14 {
-  Many = "Many"
 }
 export enum Title {
   ABBESS = "ABBESS",
@@ -478,9 +314,6 @@ export enum Title {
   PATRONESS_OF_COSTA_RICA = "PATRONESS_OF_COSTA_RICA",
   PRINCIPAL_PATRON_OF_THE_DIOCESE = "PRINCIPAL_PATRON_OF_THE_DIOCESE",
   SECOND_PATRON_OF_THE_DIOCESE = "SECOND_PATRON_OF_THE_DIOCESE"
-}
-export enum Type15 {
-  Redefined = "Redefined"
 }
 export enum Precedence {
   TRIDUUM_1 = "TRIDUUM_1",

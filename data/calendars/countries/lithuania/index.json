@@ -12,7 +12,7 @@
     {
       "id": "george_matulaitis_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 1,
         "date": 27
       }
@@ -20,7 +20,7 @@
     {
       "id": "casimir_of_poland",
       "precedence": "PROPER_FEAST_8F",
-      "dateDef": {
+      "date_def": {
         "month": 3,
         "date": 4
       }
@@ -28,7 +28,7 @@
     {
       "id": "bruno_of_querfurt_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 3,
         "date": 9
       }
@@ -36,7 +36,7 @@
     {
       "id": "adalbert_of_prague_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 4,
         "date": 23
       }
@@ -44,7 +44,7 @@
     {
       "id": "andrew_bobola_priest",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 5,
         "date": 16
       }
@@ -52,7 +52,7 @@
     {
       "id": "our_lady_of_the_gate_of_dawn",
       "precedence": "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A",
-      "dateDef": {
+      "date_def": {
         "month": 11,
         "date": 16
       }
@@ -60,7 +60,7 @@
     {
       "id": "roch_of_montpellier",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 8,
         "date": 16
       }
@@ -68,7 +68,7 @@
     {
       "id": "hyacinth_of_poland_priest",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 8,
         "date": 17
       }

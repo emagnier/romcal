@@ -10,14 +10,14 @@
     {
       "id": "waitangi_day",
       "precedence": "PROPER_FEAST_8F",
-      "dateDef": {
+      "date_def": {
         "month": 2,
         "date": 6
       }
     },
     {
       "id": "paul_miki_and_companions_martyrs",
-      "dateDef": {
+      "date_def": {
         "month": 2,
         "date": 7
       }
@@ -25,7 +25,7 @@
     {
       "id": "patrick_of_ireland_bishop",
       "precedence": "PROPER_FEAST_8F",
-      "dateDef": {
+      "date_def": {
         "month": 3,
         "date": 17
       }
@@ -33,7 +33,7 @@
     {
       "id": "mark_evangelist",
       "precedence": "PROPER_FEAST_8F",
-      "dateDef": {
+      "date_def": {
         "month": 4,
         "date": 26
       }
@@ -41,14 +41,14 @@
     {
       "id": "louis_grignion_de_montfort_priest",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 4,
         "date": 27
       }
     },
     {
       "id": "peter_chanel_priest",
-      "customLocaleId": "peter_chanel_priest_patron_of_oceania",
+      "custom_locale_id": "peter_chanel_priest_patron_of_oceania",
       "precedence": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C",
       "martyrology": [
         "peter_chanel_priest"
@@ -61,7 +61,7 @@
     {
       "id": "our_lady_help_of_christians",
       "precedence": "PROPER_MEMORIAL_11B",
-      "dateDef": {
+      "date_def": {
         "month": 5,
         "date": 24
       }
@@ -69,7 +69,7 @@
     {
       "id": "marcellin_champagnat_priest",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 6,
         "date": 6
       }
@@ -77,7 +77,7 @@
     {
       "id": "dominic_de_guzman_priest",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 8,
         "date": 7
       }
@@ -85,7 +85,7 @@
     {
       "id": "cajetan_of_thiene_priest",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 8,
         "date": 7
       }
@@ -93,7 +93,7 @@
     {
       "id": "mary_of_the_cross_mackillop_virgin",
       "precedence": "PROPER_FEAST_8F",
-      "dateDef": {
+      "date_def": {
         "month": 8,
         "date": 8
       }

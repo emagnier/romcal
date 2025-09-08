@@ -16,7 +16,7 @@
     },
     {
       "id": "most_holy_name_of_jesus",
-      "dateDef": {
+      "date_def": {
         "month": 1,
         "date": 4
       }
@@ -24,14 +24,14 @@
     {
       "id": "our_lady_refuge_of_sinners",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 1,
         "date": 16
       }
     },
     {
       "id": "louise_de_marillac_religious",
-      "dateDef": {
+      "date_def": {
         "month": 3,
         "date": 15
       }
@@ -39,7 +39,7 @@
     {
       "id": "our_lady_mediatrix_of_all_grace",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 5,
         "date": 8
       }
@@ -47,7 +47,7 @@
     {
       "id": "mary_of_the_sacred_heart_sophie_therese_de_soubiran_la_louviere_virgin",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 6,
         "date": 7
       }
@@ -55,14 +55,14 @@
     {
       "id": "dedication_of_the_cathedral_basilica_of_saint_denis_france",
       "precedence": "PROPER_FEAST__DEDICATION_OF_THE_CATHEDRAL_CHURCH_8B",
-      "dateDef": {
+      "date_def": {
         "month": 6,
         "date": 11
       }
     },
     {
       "id": "barnabas_apostle",
-      "dateDef": {
+      "date_def": {
         "month": 6,
         "date": 12
       }
@@ -70,7 +70,7 @@
     {
       "id": "audoen_of_rouen_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 8,
         "date": 23
       }
@@ -81,7 +81,7 @@
     },
     {
       "id": "joseph_of_calasanz_priest",
-      "dateDef": {
+      "date_def": {
         "month": 8,
         "date": 26
       }
@@ -89,7 +89,7 @@
     {
       "id": "blessed_martyrs_of_paris",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 9,
         "date": 2
       }
@@ -97,8 +97,8 @@
     {
       "id": "denis_of_paris_bishop",
       "precedence": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_DIOCESE_8A",
-      "customLocaleId": "denis_of_paris_bishop_patron_of_the_city_and_of_the_diocese_of_saint_denis",
-      "dateDef": {
+      "custom_locale_id": "denis_of_paris_bishop_patron_of_the_city_and_of_the_diocese_of_saint_denis",
+      "date_def": {
         "month": 10,
         "date": 9
       },
@@ -111,7 +111,7 @@
     {
       "id": "all_saints_of_the_diocese_of_saint_denis",
       "precedence": "PROPER_MEMORIAL_11B",
-      "dateDef": {
+      "date_def": {
         "month": 11,
         "date": 8
       }
@@ -119,7 +119,7 @@
     {
       "id": "eligius_of_noyon_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 12,
         "date": 1
       }

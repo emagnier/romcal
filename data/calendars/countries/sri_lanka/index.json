@@ -10,7 +10,7 @@
     {
       "id": "joseph_vaz_priest",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 1,
         "date": 16
       }
@@ -18,7 +18,7 @@
     {
       "id": "our_lady_of_lanka",
       "precedence": "PROPER_FEAST_8F",
-      "dateDef": {
+      "date_def": {
         "month": 2,
         "date": 4
       }
@@ -26,7 +26,7 @@
     {
       "id": "our_lady_of_madhu",
       "precedence": "PROPER_FEAST_8F",
-      "dateDef": {
+      "date_def": {
         "month": 7,
         "date": 2
       }

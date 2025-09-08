@@ -12,7 +12,7 @@
     {
       "id": "joseph_de_anchieta_priest",
       "precedence": "PROPER_MEMORIAL_11B",
-      "dateDef": {
+      "date_def": {
         "month": 6,
         "date": 9
       }
@@ -20,7 +20,7 @@
     {
       "id": "albertina_berkenbrock_virgin",
       "precedence": "PROPER_MEMORIAL_11B",
-      "dateDef": {
+      "date_def": {
         "month": 6,
         "date": 15
       }
@@ -28,7 +28,7 @@
     {
       "id": "paulina_of_the_agonizing_heart_of_jesus_visintainer_virgin",
       "precedence": "PROPER_MEMORIAL_11B",
-      "dateDef": {
+      "date_def": {
         "month": 7,
         "date": 9
       }
@@ -36,7 +36,7 @@
     {
       "id": "our_lady_of_mount_carmel",
       "precedence": "PROPER_FEAST_8F",
-      "dateDef": {
+      "date_def": {
         "month": 7,
         "date": 16
       }
@@ -44,7 +44,7 @@
     {
       "id": "ignatius_de_azevedo_priest_and_companions_martyrs",
       "precedence": "PROPER_MEMORIAL_11B",
-      "dateDef": {
+      "date_def": {
         "month": 7,
         "date": 17
       },
@@ -56,7 +56,7 @@
     {
       "id": "rose_of_lima_virgin",
       "precedence": "PROPER_FEAST_8F",
-      "dateDef": {
+      "date_def": {
         "month": 8,
         "date": 23
       }
@@ -64,7 +64,7 @@
     {
       "id": "andrew_de_soveral_and_ambrose_francis_ferro_priests",
       "precedence": "PROPER_MEMORIAL_11B",
-      "dateDef": {
+      "date_def": {
         "month": 10,
         "date": 3
       },
@@ -75,9 +75,9 @@
     },
     {
       "id": "our_lady_of_aparecida",
-      "customLocaleId": "our_lady_of_aparecida_patroness_of_brazil",
+      "custom_locale_id": "our_lady_of_aparecida_patroness_of_brazil",
       "precedence": "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A",
-      "dateDef": {
+      "date_def": {
         "month": 10,
         "date": 12
       },
@@ -90,7 +90,7 @@
     {
       "id": "anthony_of_saint_anne_galvao_priest",
       "precedence": "PROPER_MEMORIAL_11B",
-      "dateDef": {
+      "date_def": {
         "month": 10,
         "date": 25
       }
@@ -98,7 +98,7 @@
     {
       "id": "roch_gonzalez_alphonsus_rodriguez_and_john_del_castillo_priests",
       "precedence": "PROPER_MEMORIAL_11B",
-      "dateDef": {
+      "date_def": {
         "month": 11,
         "date": 19
       },

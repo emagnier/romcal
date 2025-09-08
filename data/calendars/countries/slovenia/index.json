@@ -12,7 +12,7 @@
     {
       "id": "john_nepomucene_priest",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 5,
         "date": 16
       }

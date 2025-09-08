@@ -65,8 +65,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         let file_path = entry.path();
         total_files += 1;
 
-        println!("Validating: {}", file_path.display());
-
         // Read and parse the JSON file
         let file_content = match fs::read_to_string(file_path) {
             Ok(content) => content,
@@ -90,10 +88,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         let validation_result = compiled_schema.validate(&json_data);
 
         if validation_result.is_ok() {
-            println!("  ✅ Valid");
+            println!("✅ Valid: {}", file_path.display());
             valid_files += 1;
         } else {
-            println!("  ❌ Invalid");
+            println!("❌ Invalid: {}", file_path.display());
             invalid_files += 1;
 
             let validation_errors: Vec<ValidationError> =

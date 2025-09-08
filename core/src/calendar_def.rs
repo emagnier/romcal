@@ -41,10 +41,23 @@ pub enum EasterCalculationType {
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum DateFn {
-    EasterSunday,
+    MaryMotherOfTheChurch,
     EpiphanySunday,
+    PresentationOfTheLord,
+    Annunciation,
+    PalmSunday,
+    EasterSunday,
+    DivineMercySunday,
+    ImmaculateHeartOfMary,
+    PentecostSunday,
     CorpusChristiSunday,
-    EasterMonday,
+    NativityOfJohnTheBaptist,
+    PeterAndPaulApostles,
+    Transfiguration,
+    Assumption,
+    ExaltationOfTheHolyCross,
+    AllSaints,
+    ImmaculateConceptionOfMary,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
@@ -290,6 +303,18 @@ pub enum Season {
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+pub enum Colors {
+    Red,
+    Rose,
+    Purple,
+    Green,
+    White,
+    Gold,
+    Black,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum Period {
     ChristmasOctave,
     DaysBeforeEpiphany,
@@ -417,7 +442,7 @@ impl DayOfWeek {
 
 // Union types using enums
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
-#[serde(tag = "type")]
+#[serde(untagged)]
 pub enum DateDef {
     MonthDate(DateDefMonthDate),
     DateFnAddDay(DateDefDateFnAddDay),
@@ -427,34 +452,63 @@ pub enum DateDef {
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
-#[serde(tag = "type")]
+#[serde(untagged)]
 pub enum DateDefExtended {
     DateDef(DateDef),
     AddDay(DateDefAddDay),
     SubtractDay(DateDefSubtractDay),
 }
 
+/// The liturgical day date exception
+/// Represents a condition and the date to set when that condition is met
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
-#[serde(tag = "type")]
+#[serde(untagged)]
 pub enum DateDefException {
+    /// Add an exception if the computed date occurs between two dates
     IfIsBetween {
-        from: Box<DateDef>,
-        to: Box<DateDef>,
-        inclusive: bool,
+        #[serde(rename = "if_is_between")]
+        condition: IfIsBetweenFields,
+        set_date: DateDefExtended,
     },
-    IfIsSameAsDate(Box<DateDef>),
-    IfIsDayOfWeek(DayOfWeek),
+    /// Add an exception if the computed date occurs the same day as another date
+    IfIsSameAsDate {
+        #[serde(rename = "if_is_same_as_date")]
+        condition: Box<DateDef>,
+        set_date: DateDefExtended,
+    },
+    /// Add an exception if the computed date occurs on a specific day of week
+    IfIsDayOfWeek {
+        #[serde(rename = "if_is_day_of_week")]
+        condition: DayOfWeek,
+        set_date: DateDefExtended,
+    },
+}
+
+/// Fields for the "if_is_between" condition
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+pub struct IfIsBetweenFields {
+    pub from: Box<DateDef>,
+    pub to: Box<DateDef>,
+    pub inclusive: bool,
+}
+
+/// Date exceptions that can be either a single exception or an array of exceptions
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[serde(untagged)]
+pub enum DateDefExceptions {
+    Single(DateDefException),
+    Multiple(Vec<DateDefException>),
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
-#[serde(tag = "type")]
+#[serde(untagged)]
 pub enum SaintCount {
     Number(u32),
     Many,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
-#[serde(tag = "type")]
+#[serde(untagged)]
 pub enum MartyrologyItemPointer {
     ResourceId(ResourceId),
     Redefined(MartyrologyItemRedefined),
@@ -465,6 +519,20 @@ pub enum MartyrologyItemPointer {
 pub enum TitlesDef {
     Titles(Vec<Title>),
     CompoundTitle(CompoundTitle),
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[serde(untagged)]
+pub enum CommonsDef {
+    Single(CommonDefinition),
+    Multiple(Vec<CommonDefinition>),
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[serde(untagged)]
+pub enum ColorsDef {
+    Single(Colors),
+    Multiple(Vec<Colors>),
 }
 
 // Structs
@@ -479,14 +547,16 @@ pub struct ParticularConfig {
     /// Configuration options specific to this calendar.
     /// These settings can override or extend the default Romcal configuration or any parent calendar
     /// configuration.
-    pub ascension_on_sunday: bool,
-    pub epiphany_on_sunday: bool,
-    pub corpus_christi_on_sunday: bool,
-    pub easter_calculation_type: EasterCalculationType,
+    pub ascension_on_sunday: Option<bool>,
+    pub epiphany_on_sunday: Option<bool>,
+    pub corpus_christi_on_sunday: Option<bool>,
+    pub easter_calculation_type: Option<EasterCalculationType>,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
 pub struct CalendarDefinition {
+    #[serde(rename = "$schema")]
+    pub schema: Option<String>,
     pub id: CalendarId,
     pub metadata: CalendarMetadata,
     pub particular_config: Option<ParticularConfig>,
@@ -587,13 +657,13 @@ pub struct DayDefinition {
     /// Date definition
     pub date_def: Option<DateDef>,
     /// Date definition exception
-    pub date_exceptions: Option<Vec<DateDefException>>,
+    pub date_exceptions: Option<DateDefExceptions>,
     /// The precedence type of the liturgical day.
     pub precedence: Option<Precedence>,
     /// The **Common** refers to a set of prayers, readings, and chants used for celebrating saints or
     /// feasts that belong to a specific category, such as martyrs, virgins, pastors, or the Blessed
     /// Virgin Mary.
-    pub commons_def: Option<Vec<CommonDefinition>>,
+    pub commons_def: Option<CommonsDef>,
     /// Holy days of obligation are days on which the faithful are expected to attend Mass,
     /// and engage in rest from work and recreation.
     pub is_holy_day_of_obligation: Option<bool>,
@@ -617,4 +687,10 @@ pub struct DayDefinition {
     pub martyrology: Option<Vec<MartyrologyItemPointer>>,
     /// Combined titles of each Saints linked to this date definition.
     pub titles: Option<TitlesDef>,
+    /// If this liturgical day must be removed from this calendar and from all those it inherits
+    /// (the parent calendars), on the final calendar generated by romcal.
+    pub drop: Option<bool>,
+    /// The liturgical color(s) of the liturgical day.
+    /// @deprecated
+    pub colors: Option<ColorsDef>,
 }

@@ -5,13 +5,17 @@
     "aaron_of_caerleon_martyr": {
       "canonizationLevel": "SAINT",
       "name": "Aaron",
-      "titles": ["MARTYR"]
+      "titles": [
+        "MARTYR"
+      ]
     },
     "achard_of_saint_victor_bishop": {
       "fullname": "Blessed Achard of Saint Victor, Bishop",
       "canonizationLevel": "BLESSED",
       "name": "Achard",
-      "titles": ["BISHOP"],
+      "titles": [
+        "BISHOP"
+      ],
       "dateOfBirth": 1100,
       "dateOfBirthIsApproximative": true,
       "dateOfDeath": "1171-03-29",
@@ -24,13 +28,18 @@
     "achilleus_of_terracina_martyr": {
       "canonizationLevel": "SAINT",
       "name": "Achilleus",
-      "titles": ["MARTYR"]
+      "titles": [
+        "MARTYR"
+      ]
     },
     "adalbert_of_prague_bishop": {
       "fullname": "Saint Adalbert, Bishop and Martyr",
       "canonizationLevel": "SAINT",
       "name": "Adalbert",
-      "titles": ["BISHOP", "MARTYR"],
+      "titles": [
+        "BISHOP",
+        "MARTYR"
+      ],
       "dateOfDeath": 997
     },
     "adalbert_of_prague_bishop_patron_of_poland": {
@@ -40,13 +49,17 @@
       "fullname": "Saint Adelaide of Burgundy, Empress",
       "canonizationLevel": "SAINT",
       "name": "Adelaide of Burgundy",
-      "titles": ["EMPRESS"],
+      "titles": [
+        "EMPRESS"
+      ],
       "dateOfDeath": "999-12-16"
     },
     "adeline_de_mortain_abbess": {
       "canonizationLevel": "SAINT",
       "name": "Adeline de Mortain",
-      "titles": ["ABBESS"],
+      "titles": [
+        "ABBESS"
+      ],
       "dateOfDeath": 1125,
       "dateOfDeathIsApproximative": true,
       "sources": [
@@ -62,7 +75,9 @@
       "fullname": "Saint Adelphus, Bishop",
       "canonizationLevel": "SAINT",
       "name": "Adolph Kolping",
-      "titles": ["BISHOP"],
+      "titles": [
+        "BISHOP"
+      ],
       "dateOfDeath": {
         "century": 5
       }
@@ -71,44 +86,61 @@
       "fullname": "Blessed Adolph Kolping, Priest",
       "canonizationLevel": "BLESSED",
       "name": "Adolph Kolping",
-      "titles": ["PRIEST"]
+      "titles": [
+        "PRIEST"
+      ]
     },
     "aelred_of_rievaulx_abbot": {
       "fullname": "Saint Aelred of Rievaulx, Abbot",
       "canonizationLevel": "SAINT",
       "name": "Aelred of Rievaulx",
-      "titles": ["ABBOT"]
+      "titles": [
+        "ABBOT"
+      ]
     },
     "aengus_of_tallaght_bishop": {
       "fullname": "Saint Aengus, Bishop and Abbot",
       "canonizationLevel": "SAINT",
       "name": "Aengus",
-      "titles": ["BISHOP", "ABBOT"]
+      "titles": [
+        "BISHOP",
+        "ABBOT"
+      ]
     },
     "agatha_of_sicily_virgin": {
       "fullname": "Saint Agatha, Virgin and Martyr",
       "canonizationLevel": "SAINT",
       "name": "Agatha",
-      "titles": ["VIRGIN", "MARTYR"],
+      "titles": [
+        "VIRGIN",
+        "MARTYR"
+      ],
       "dateOfDeath": 251
     },
     "agnes_cao_guiying_martyr": {
       "fullname": "Saint Agnes Cao Guiying, Martyr",
       "canonizationLevel": "SAINT",
       "name": "Agnes Cao Guiying",
-      "titles": ["MARTYR"]
+      "titles": [
+        "MARTYR"
+      ]
     },
     "agnes_of_bohemia_virgin": {
       "fullname": "Saint Agnes of Bohemia, Virgin",
       "canonizationLevel": "SAINT",
       "name": "Agnes of Bohemia",
-      "titles": ["VIRGIN"]
+      "titles": [
+        "VIRGIN"
+      ]
     },
     "agnes_of_rome_virgin": {
       "fullname": "Saint Agnes, Virgin and Martyr",
       "canonizationLevel": "SAINT",
       "name": "Agnes",
-      "titles": ["VIRGIN", "MARTYR"],
+      "titles": [
+        "VIRGIN",
+        "MARTYR"
+      ],
       "dateOfDeath": 304,
       "dateOfDeathIsApproximative": true
     },
@@ -116,13 +148,18 @@
       "fullname": "Saint Aidan, Bishop",
       "canonizationLevel": "SAINT",
       "name": "Aidan",
-      "titles": ["BISHOP"]
+      "titles": [
+        "BISHOP"
+      ]
     },
     "aidan_of_lindisfarne_bishop": {
       "fullname": "Saint Aidan of Lindisfarne, Bishop and Missionary",
       "canonizationLevel": "SAINT",
       "name": "Aidan of Lindisfarne",
-      "titles": ["BISHOP", "MISSIONARY"]
+      "titles": [
+        "BISHOP",
+        "MISSIONARY"
+      ]
     },
     "aidan_of_lindisfarne_bishop_and_the_saints_of_lindisfarne": {
       "fullname": "Saint Aidan, Bishop, and the Saints of Lindisfarne"
@@ -131,7 +168,9 @@
       "fullname": "Saint Ailbe, Bishop",
       "canonizationLevel": "SAINT",
       "name": "Ailbe",
-      "titles": ["BISHOP"]
+      "titles": [
+        "BISHOP"
+      ]
     },
     "alban_of_britain_julius_of_caerleon_aaron_of_caerleon_martyrs": {
       "fullname": "Saints Alban, Julius and Aaron, Martyrs"
@@ -140,44 +179,61 @@
       "fullname": "Saint Alban, Martyr",
       "canonizationLevel": "SAINT",
       "name": "Alban",
-      "titles": ["MARTYR"]
+      "titles": [
+        "MARTYR"
+      ]
     },
     "alberic_crescitelli_priest": {
       "fullname": "Saint Alberic Crescitelli, Priest and Martyr",
       "canonizationLevel": "SAINT",
       "name": "Alberic Crescitelli",
-      "titles": ["PRIEST", "MARTYR"]
+      "titles": [
+        "PRIEST",
+        "MARTYR"
+      ]
     },
     "albert_chmielowski_religious": {
       "fullname": "Saint Albert Chmielowski, Religious",
       "canonizationLevel": "SAINT",
       "name": "Albert Chmielowski",
-      "titles": ["RELIGIOUS"]
+      "titles": [
+        "RELIGIOUS"
+      ]
     },
     "albert_the_great_bishop": {
       "fullname": "Saint Albert the Great, Bishop and Doctor of the Church",
       "canonizationLevel": "SAINT",
       "name": "Albert the Great",
-      "titles": ["BISHOP", "DOCTOR_OF_THE_CHURCH"],
+      "titles": [
+        "BISHOP",
+        "DOCTOR_OF_THE_CHURCH"
+      ],
       "dateOfDeath": 1280
     },
     "albertina_berkenbrock_virgin": {
       "fullname": "Blessed Albertina Berkenbrock, Virgin and Martyr",
       "canonizationLevel": "BLESSED",
       "name": "Albertina Berkenbrock",
-      "titles": ["VIRGIN", "MARTYR"]
+      "titles": [
+        "VIRGIN",
+        "MARTYR"
+      ]
     },
     "alberto_hurtado_priest": {
       "fullname": "Saint Alberto Hurtado, Priest",
       "canonizationLevel": "SAINT",
       "name": "Alberto Hurtado",
-      "titles": ["PRIEST"]
+      "titles": [
+        "PRIEST"
+      ]
     },
     "albinus_of_angers_bishop": {
       "fullname": "Saint Albinus of Angers, Abbot",
       "canonizationLevel": "SAINT",
       "name": "Albinus",
-      "titles": ["BISHOP"],
+      "titles": [
+        "BISHOP"
+      ],
       "dateOfBirth": 468,
       "dateOfBirthIsApproximative": true,
       "dateOfDeath": "550-03-01",
@@ -190,8 +246,12 @@
       "canonizationLevel": "SAINT",
       "name": "Alexander",
       "dateOfDeath": 178,
-      "titles": ["MARTYR"],
-      "sources": ["mr_fr_2014_ed2_lyon"]
+      "titles": [
+        "MARTYR"
+      ],
+      "sources": [
+        "mr_fr_2014_ed2_lyon"
+      ]
     },
     "all_holy_bishops_and_priests_of_the_diocese_of_coutances": {
       "fullname": "The Holy Bishops of the diocese of Coutances and Avranches, and the priests, their collaborators"
@@ -204,8 +264,10 @@
       "canonizationLevel": "SAINT",
       "hideCanonizationLevel": true,
       "count": "many",
-      "titles": ["BISHOP"],
-      "hideTitles": true,
+      "titles": [
+        "BISHOP"
+      ],
+      "hide_titles": true,
       "sources": [
         "mr_fr_2022_ed3_angers",
         "https://fr.wikipedia.org/wiki/Liste_des_%C3%A9v%C3%AAques_d%27Angers"
@@ -216,8 +278,10 @@
       "hideCanonizationLevel": true,
       "name": "The Holy Bishops of the diocese of Coutances and Avranches",
       "count": "many",
-      "titles": ["BISHOP"],
-      "hideTitles": true,
+      "titles": [
+        "BISHOP"
+      ],
+      "hide_titles": true,
       "sources": [
         "mr_fr_1982_ed2_coutances",
         "https://www.diocese50.fr/les-paroisses-et-les-doyennes/notre-dame-coutances/les-saints-du-diocese/saints-eveques-de-coutances-et-davranches",
@@ -229,8 +293,10 @@
       "hideCanonizationLevel": true,
       "name": "The Holy Priests of the diocese of Coutances and Avranches",
       "count": "many",
-      "titles": ["PRIEST"],
-      "hideTitles": true,
+      "titles": [
+        "PRIEST"
+      ],
+      "hide_titles": true,
       "sources": [
         "mr_fr_1982_ed2_coutances",
         "https://www.diocese50.fr/les-paroisses-et-les-doyennes/notre-dame-coutances/les-saints-du-diocese/saints-eveques-de-coutances-et-davranches"
@@ -276,19 +342,27 @@
       "fullname": "Saint Aloysius Gonzaga, Religious",
       "canonizationLevel": "SAINT",
       "name": "Aloysius Gonzaga",
-      "titles": ["RELIGIOUS"],
+      "titles": [
+        "RELIGIOUS"
+      ],
       "dateOfDeath": 1591
     },
     "aloysius_stepinac_bishop": {
       "fullname": "Blessed Aloysius Stepinac, Bishop and Martyr",
       "canonizationLevel": "BLESSED",
       "name": "Aloysius Stepinac",
-      "titles": ["BISHOP", "MARTYR"]
+      "titles": [
+        "BISHOP",
+        "MARTYR"
+      ]
     },
     "aloysius_versiglia_bishop": {
       "canonizationLevel": "SAINT",
       "name": "Aloysius Versiglia",
-      "titles": ["BISHOP", "MARTYR"]
+      "titles": [
+        "BISHOP",
+        "MARTYR"
+      ]
     },
     "aloysius_versiglia_bishop_and_callistus_caravario_priest_martyrs": {
       "fullname": "Saints Aloysius Versiglia, Bishop and Callistus Caravario, Priest, Martyrs"
@@ -297,24 +371,34 @@
       "fullname": "Saint Alphonsa of the Immaculate Conception Muttathupadathu, Virgin",
       "canonizationLevel": "SAINT",
       "name": "Alphonsa of the Immaculate Conception Muttathupadathu",
-      "titles": ["VIRGIN"]
+      "titles": [
+        "VIRGIN"
+      ]
     },
     "alphonsus_mary_liguori_bishop": {
       "fullname": "Saint Alphonsus Mary Liguori, Bishop and Doctor of the Church",
       "canonizationLevel": "SAINT",
       "name": "Alphonsus Mary Liguori",
-      "titles": ["BISHOP", "DOCTOR_OF_THE_CHURCH"]
+      "titles": [
+        "BISHOP",
+        "DOCTOR_OF_THE_CHURCH"
+      ]
     },
     "alphonsus_rodriguez_priest": {
       "canonizationLevel": "SAINT",
       "name": "Alphonsus Rodríguez",
-      "titles": ["PRIEST", "MARTYR"]
+      "titles": [
+        "PRIEST",
+        "MARTYR"
+      ]
     },
     "amand_of_maastricht_bishop": {
       "fullname": "Saint Amand, Bishop",
       "canonizationLevel": "SAINT",
       "name": "Amand",
-      "titles": ["BISHOP"],
+      "titles": [
+        "BISHOP"
+      ],
       "dateOfDeath": 676,
       "dateOfDeathIsApproximative": true
     },
@@ -322,7 +406,9 @@
       "fullname": "Saint Amandus of Strasbourg, Bishop",
       "canonizationLevel": "SAINT",
       "name": "Amandus of Strasbourg",
-      "titles": ["BISHOP"],
+      "titles": [
+        "BISHOP"
+      ],
       "dateOfDeath": 346,
       "dateOfDeathIsApproximative": true
     },
@@ -330,42 +416,61 @@
       "fullname": "Saint Amarin, Abbot and Martyr",
       "canonizationLevel": "SAINT",
       "name": "Amarin",
-      "titles": ["ABBOT", "MARTYR"],
+      "titles": [
+        "ABBOT",
+        "MARTYR"
+      ],
       "dateOfDeath": {
-        "or": [674, 676]
+        "or": [
+          674,
+          676
+        ]
       }
     },
     "ambrose_francis_ferro_priest": {
       "canonizationLevel": "SAINT",
       "name": "Ambrose Francis Ferro",
-      "titles": ["PRIEST", "MARTYR"]
+      "titles": [
+        "PRIEST",
+        "MARTYR"
+      ]
     },
     "ambrose_of_milan_bishop": {
       "fullname": "Saint Ambrose, Bishop and Doctor of the Church",
       "canonizationLevel": "SAINT",
       "name": "Ambrose",
-      "titles": ["BISHOP", "DOCTOR_OF_THE_CHURCH"],
+      "titles": [
+        "BISHOP",
+        "DOCTOR_OF_THE_CHURCH"
+      ],
       "dateOfDeath": 397
     },
     "andre_bessette_religious": {
       "fullname": "Saint André Bessette, Religious",
       "canonizationLevel": "SAINT",
       "name": "André Bessette",
-      "titles": ["RELIGIOUS"],
+      "titles": [
+        "RELIGIOUS"
+      ],
       "dateOfDeath": 1937
     },
     "andre_grasset_priest": {
       "fullname": "Blessed André Grasset, Priest and Martyr",
       "canonizationLevel": "BLESSED",
       "name": "André Grasset",
-      "titles": ["PRIEST", "MARTYR"],
+      "titles": [
+        "PRIEST",
+        "MARTYR"
+      ],
       "dateOfDeath": 1792
     },
     "andrew_apostle": {
       "fullname": "Saint Andrew, Apostle",
       "canonizationLevel": "SAINT",
       "name": "Andrew",
-      "titles": ["APOSTLE"]
+      "titles": [
+        "APOSTLE"
+      ]
     },
     "andrew_apostle_patron_of_russia": {
       "fullname": "Saint Andrew, Apostle, Patron of Russia"
@@ -376,14 +481,19 @@
     "andrew_bauer_martyr": {
       "canonizationLevel": "SAINT",
       "name": "Andrew Bauer",
-      "titles": ["MARTYR"],
+      "titles": [
+        "MARTYR"
+      ],
       "dateOfDeath": "1900-7-9"
     },
     "andrew_bobola_priest": {
       "fullname": "Saint Andrew Bobola, Priest and Martyr",
       "canonizationLevel": "SAINT",
       "name": "Andrew Bobola",
-      "titles": ["PRIEST", "MARTYR"]
+      "titles": [
+        "PRIEST",
+        "MARTYR"
+      ]
     },
     "andrew_de_soveral_and_ambrose_francis_ferro_priests": {
       "fullname": "Saints Andrew de Soveral and Ambrose Francis Ferro, Priests and Martyrs"
@@ -391,14 +501,23 @@
     "andrew_de_soveral_priest": {
       "canonizationLevel": "SAINT",
       "name": "Andrew de Soveral",
-      "titles": ["PRIEST", "MARTYR"]
+      "titles": [
+        "PRIEST",
+        "MARTYR"
+      ]
     },
     "andrew_dung_lac_priest": {
       "canonizationLevel": "SAINT",
       "name": "Andrew Dũng-Lạc",
-      "titles": ["PRIEST", "MARTYR"],
+      "titles": [
+        "PRIEST",
+        "MARTYR"
+      ],
       "dateOfDeath": {
-        "between": [1745, 1862]
+        "between": [
+          1745,
+          1862
+        ]
       }
     },
     "andrew_dung_lac_priest_and_companions_martyrs": {
@@ -407,9 +526,15 @@
     "andrew_kim_tae_gon_priest": {
       "canonizationLevel": "SAINT",
       "name": "Andrew Kim Tae-gŏn",
-      "titles": ["PRIEST", "MARTYR"],
+      "titles": [
+        "PRIEST",
+        "MARTYR"
+      ],
       "dateOfDeath": {
-        "between": [1745, 1862]
+        "between": [
+          1745,
+          1862
+        ]
       }
     },
     "andrew_kim_tae_gon_priest_paul_chong_ha_sang_and_companions_martyrs": {
@@ -421,31 +546,41 @@
     "andrew_zorard_of_nitra_hermit": {
       "canonizationLevel": "SAINT",
       "name": "Andrew Zorard",
-      "titles": ["HERMIT"],
+      "titles": [
+        "HERMIT"
+      ],
       "dateOfDeath": 1009
     },
     "angela_merici_virgin": {
       "fullname": "Saint Angela Merici, Virgin",
       "canonizationLevel": "SAINT",
       "name": "Angela Merici",
-      "titles": ["VIRGIN"],
+      "titles": [
+        "VIRGIN"
+      ],
       "dateOfDeath": 1540
     },
     "angela_salawa_virgin": {
       "fullname": "Blessed Angela Salawa, Virgin",
       "canonizationLevel": "BLESSED",
       "name": "Angela Salawa",
-      "titles": ["VIRGIN"]
+      "titles": [
+        "VIRGIN"
+      ]
     },
     "anne_line_virgin_martyr": {
       "canonizationLevel": "SAINT",
       "name": "Anne Line",
-      "titles": ["MARTYR"]
+      "titles": [
+        "MARTYR"
+      ]
     },
     "anne_mother_of_mary": {
       "canonizationLevel": "SAINT",
       "name": "Anne",
-      "titles": ["PARENTS_OF_THE_BLESSED_VIRGIN_MARY"],
+      "titles": [
+        "PARENTS_OF_THE_BLESSED_VIRGIN_MARY"
+      ],
       "dateOfDeath": {
         "century": 1
       }
@@ -453,16 +588,23 @@
     "annemund_of_lyon_bishop": {
       "fullname": "Saint Annemund, Bishop and Martyr",
       "name": "Annemund",
-      "titles": ["BISHOP", "MARTYR"],
+      "titles": [
+        "BISHOP",
+        "MARTYR"
+      ],
       "dateOfDeath": 658,
       "dateOfDeathIsApproximative": true,
-      "sources": ["mr_fr_2014_ed2_lyon"]
+      "sources": [
+        "mr_fr_2014_ed2_lyon"
+      ]
     },
     "anno_of_cologne_bishop": {
       "fullname": "Saint Anno of Cologne, Bishop",
       "canonizationLevel": "SAINT",
       "name": "Anno of Cologne",
-      "titles": ["BISHOP"]
+      "titles": [
+        "BISHOP"
+      ]
     },
     "annunciation_of_the_lord": {
       "fullname": "The Annunciation of the Lord"
@@ -471,34 +613,49 @@
       "fullname": "Saint Anselm, Bishop and Doctor of the Church",
       "canonizationLevel": "SAINT",
       "name": "Anselm",
-      "titles": ["BISHOP", "DOCTOR_OF_THE_CHURCH"],
+      "titles": [
+        "BISHOP",
+        "DOCTOR_OF_THE_CHURCH"
+      ],
       "dateOfDeath": 1109
     },
     "ansgar_of_hamburg_bishop": {
       "fullname": "Saint Ansgar, Bishop",
       "canonizationLevel": "SAINT",
       "name": "Ansgar",
-      "titles": ["BISHOP"],
+      "titles": [
+        "BISHOP"
+      ],
       "dateOfDeath": 865
     },
     "anthony_chevrier_priest": {
       "fullname": "Blessed Anthony Chevrier, Priest",
       "canonizationLevel": "BLESSED",
       "name": "Anthony Chevrier",
-      "titles": ["PRIEST"],
+      "titles": [
+        "PRIEST"
+      ],
       "dateOfBirth": "1826-4-16",
       "dateOfDeath": "1879-10-2",
-      "sources": ["mr_fr_2014_ed2_lyon"]
+      "sources": [
+        "mr_fr_2014_ed2_lyon"
+      ]
     },
     "anthony_fantosati_bishop": {
       "canonizationLevel": "SAINT",
       "name": "Anthony Fantosati",
-      "titles": ["BISHOP", "MARTYR"]
+      "titles": [
+        "BISHOP",
+        "MARTYR"
+      ]
     },
     "anthony_julian_nowowiejski_bishop": {
       "canonizationLevel": "BLESSED",
       "name": "Anthony Julian Nowowiejski",
-      "titles": ["BISHOP", "MARTYR"]
+      "titles": [
+        "BISHOP",
+        "MARTYR"
+      ]
     },
     "anthony_julian_nowowiejski_bishop_and_companions_martyrs": {
       "fullname": "Blessed Anthony Julian Nowowiejski, Bishop, and Companions, Martyrs"
@@ -507,56 +664,76 @@
       "fullname": "Saint Anthony Mary Claret, Bishop",
       "canonizationLevel": "SAINT",
       "name": "Anthony Mary Claret",
-      "titles": ["BISHOP"],
+      "titles": [
+        "BISHOP"
+      ],
       "dateOfBirth": "1807-12-23",
       "dateOfDeath": "1870-10-24",
-      "sources": ["mr_fr_2014_ed2_lyon"]
+      "sources": [
+        "mr_fr_2014_ed2_lyon"
+      ]
     },
     "anthony_of_egypt_abbot": {
       "fullname": "Saint Anthony, Abbot",
       "canonizationLevel": "SAINT",
       "name": "Anthony",
-      "titles": ["ABBOT"],
+      "titles": [
+        "ABBOT"
+      ],
       "dateOfDeath": 356
     },
     "anthony_of_padua_priest": {
       "fullname": "Saint Anthony of Padua, Priest and Doctor of the Church",
       "canonizationLevel": "SAINT",
       "name": "Anthony of Padua",
-      "titles": ["PRIEST", "DOCTOR_OF_THE_CHURCH"],
+      "titles": [
+        "PRIEST",
+        "DOCTOR_OF_THE_CHURCH"
+      ],
       "dateOfDeath": 1231
     },
     "anthony_of_saint_anne_galvao_priest": {
       "fullname": "Saint Anthony of Saint Anne Galvão, Priest",
       "canonizationLevel": "SAINT",
       "name": "Anthony of Saint Anne Galvão",
-      "titles": ["PRIEST"]
+      "titles": [
+        "PRIEST"
+      ]
     },
     "anthony_of_the_caves_monk": {
       "fullname": "Saint Anthony of the Caves, Monk",
       "canonizationLevel": "SAINT",
       "name": "Anthony of the Caves",
-      "titles": ["MONK"]
+      "titles": [
+        "MONK"
+      ]
     },
     "anthony_zaccaria_priest": {
       "fullname": "Saint Anthony Zaccaria, Priest",
       "canonizationLevel": "SAINT",
       "name": "Anthony Zaccaria",
-      "titles": ["PRIEST"],
+      "titles": [
+        "PRIEST"
+      ],
       "dateOfDeath": 1539
     },
     "apollinaris_of_ravenna_bishop": {
       "fullname": "Saint Apollinaris, Bishop and Martyr",
       "canonizationLevel": "SAINT",
       "name": "Apollinaris",
-      "titles": ["BISHOP", "MARTYR"],
+      "titles": [
+        "BISHOP",
+        "MARTYR"
+      ],
       "dateOfDeath": 81
     },
     "arbogast_of_strasbourg_bishop": {
       "fullname": "Saint Arbogast, Bishop",
       "canonizationLevel": "SAINT",
       "name": "Arbogast",
-      "titles": ["BISHOP"],
+      "titles": [
+        "BISHOP"
+      ],
       "dateOfDeath": 678
     },
     "arbogast_of_strasbourg_bishop_patron_of_the_archdiocese_of_strasbourg": {
@@ -566,7 +743,9 @@
       "fullname": "Saint Asaph, Bishop",
       "canonizationLevel": "SAINT",
       "name": "Asaph",
-      "titles": ["BISHOP"]
+      "titles": [
+        "BISHOP"
+      ]
     },
     "ascension_of_the_lord": {
       "fullname": "The Ascension of the Lord"
@@ -578,7 +757,9 @@
       "fullname": "Saint Asicus, Bishop",
       "canonizationLevel": "SAINT",
       "name": "Asicus",
-      "titles": ["BISHOP"]
+      "titles": [
+        "BISHOP"
+      ]
     },
     "assumption_of_the_blessed_virgin_mary": {
       "fullname": "The Assumption of the Blessed Virgin Mary"
@@ -590,13 +771,18 @@
       "fullname": "Saint Athanasius, Bishop and Doctor of the Church",
       "canonizationLevel": "SAINT",
       "name": "Athanasius",
-      "titles": ["BISHOP", "DOCTOR_OF_THE_CHURCH"],
+      "titles": [
+        "BISHOP",
+        "DOCTOR_OF_THE_CHURCH"
+      ],
       "dateOfDeath": 373
     },
     "attala_of_alsace_virgin": {
       "canonizationLevel": "SAINT",
       "name": "Attale",
-      "titles": ["VIRGIN"],
+      "titles": [
+        "VIRGIN"
+      ],
       "dateOfDeath": {
         "century": 8
       }
@@ -605,13 +791,17 @@
       "fullname": "Saint Attracta, Virgin",
       "canonizationLevel": "SAINT",
       "name": "Attracta",
-      "titles": ["VIRGIN"]
+      "titles": [
+        "VIRGIN"
+      ]
     },
     "aubert_of_avranches_bishop": {
       "fullname": "Saint Aubert, Bishop",
       "canonizationLevel": "SAINT",
       "name": "Aubert",
-      "titles": ["BISHOP"],
+      "titles": [
+        "BISHOP"
+      ],
       "dateOfBirth": 660,
       "dateOfBirthIsApproximative": true,
       "dateOfDeath": "725-06-18",
@@ -625,14 +815,18 @@
       "fullname": "Saint Audoen, Bishop",
       "canonizationLevel": "SAINT",
       "name": "Audoen",
-      "titles": ["BISHOP"],
+      "titles": [
+        "BISHOP"
+      ],
       "dateOfDeath": 684
     },
     "audomar_of_therouanne_bishop": {
       "fullname": "Saint Audomar, Bishop",
       "canonizationLevel": "SAINT",
       "name": "Audomar",
-      "titles": ["BISHOP"],
+      "titles": [
+        "BISHOP"
+      ],
       "dateOfBirthIsApproximative": true,
       "dateOfBirth": 600,
       "dateOfDeath": "670-11-01",
@@ -645,35 +839,52 @@
     "augurius_of_tarragona_deacon": {
       "canonizationLevel": "SAINT",
       "name": "Augurius",
-      "titles": ["DEACON", "MARTYR"]
+      "titles": [
+        "DEACON",
+        "MARTYR"
+      ]
     },
     "augustine_kazotic_bishop": {
       "fullname": "Blessed Augustine Kažotić, Bishop and Martyr",
       "canonizationLevel": "BLESSED",
       "name": "Augustine Kažotić",
-      "titles": ["BISHOP", "MARTYR"]
+      "titles": [
+        "BISHOP",
+        "MARTYR"
+      ]
     },
     "augustine_of_canterbury_bishop": {
       "fullname": "Saint Augustine of Canterbury, Bishop",
       "canonizationLevel": "SAINT",
       "name": "Augustine of Canterbury",
-      "titles": ["BISHOP"],
+      "titles": [
+        "BISHOP"
+      ],
       "dateOfDeath": 604
     },
     "augustine_of_hippo_bishop": {
       "fullname": "Saint Augustine, Bishop and Doctor of the Church",
       "canonizationLevel": "SAINT",
       "name": "Augustine",
-      "titles": ["BISHOP", "DOCTOR_OF_THE_CHURCH"],
+      "titles": [
+        "BISHOP",
+        "DOCTOR_OF_THE_CHURCH"
+      ],
       "dateOfDeath": 430
     },
     "augustine_zhao_rong_priest": {
       "fullname": "Saint Augustine Zhao Rong, Priest and Martyr",
       "canonizationLevel": "SAINT",
       "name": "Augustine Zhao Rong",
-      "titles": ["PRIEST", "MARTYR"],
+      "titles": [
+        "PRIEST",
+        "MARTYR"
+      ],
       "dateOfDeath": {
-        "between": [1648, 1930]
+        "between": [
+          1648,
+          1930
+        ]
       }
     },
     "augustine_zhao_rong_priest_and_companions_martyrs": {
@@ -684,7 +895,10 @@
       "canonizationLevel": "SAINT",
       "dateOfCanonization": "2000-10-01",
       "name": "Auguste Chapdelaine",
-      "titles": ["PRIEST", "MARTYR"],
+      "titles": [
+        "PRIEST",
+        "MARTYR"
+      ],
       "dateOfBirth": "1814-01-06",
       "dateOfDeath": "1856-02-29",
       "sources": [
@@ -697,13 +911,17 @@
       "fullname": "Saint Aurelia of Strasbourg, Virgin",
       "canonizationLevel": "SAINT",
       "name": "Aurelia",
-      "titles": ["VIRGIN"]
+      "titles": [
+        "VIRGIN"
+      ]
     },
     "aventin_of_larboust_martyr": {
       "fullname": "Saint Aventin of Larboust, Martyr",
       "canonizationLevel": "SAINT",
       "name": "Aventin",
-      "titles": ["MARTYR"],
+      "titles": [
+        "MARTYR"
+      ],
       "dateOfDeath": {
         "century": 8,
         "sources": [

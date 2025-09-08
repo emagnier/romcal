@@ -11,7 +11,7 @@
   "days_definitions": [
     {
       "id": "catherine_of_siena_virgin",
-      "customLocaleId": "catherine_of_siena_virgin_copatroness_of_italy_and_europe",
+      "custom_locale_id": "catherine_of_siena_virgin_copatroness_of_italy_and_europe",
       "precedence": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C",
       "titles": [
         "VIRGIN",
@@ -22,7 +22,7 @@
     {
       "id": "norbert_of_xanten_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 6,
         "date": 6
       }
@@ -30,14 +30,14 @@
     {
       "id": "mary_magdalene",
       "precedence": "PROPER_FEAST_8F",
-      "dateDef": {
+      "date_def": {
         "month": 7,
         "date": 22
       }
     },
     {
       "id": "francis_of_assisi",
-      "customLocaleId": "francis_of_assisi_patron_of_italy",
+      "custom_locale_id": "francis_of_assisi_patron_of_italy",
       "precedence": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C",
       "titles": {
         "append": [

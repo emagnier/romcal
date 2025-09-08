@@ -6,32 +6,43 @@
       "fullname": "Saint Fabian, Pope and Martyr",
       "canonizationLevel": "SAINT",
       "name": "Fabian",
-      "titles": ["POPE", "MARTYR"],
+      "titles": [
+        "POPE",
+        "MARTYR"
+      ],
       "dateOfDeath": 250
     },
     "fachanan_of_kilfenora_bishop": {
       "fullname": "Saint Fachanan, Bishop",
       "canonizationLevel": "SAINT",
       "name": "Fachanan",
-      "titles": ["BISHOP"]
+      "titles": [
+        "BISHOP"
+      ]
     },
     "fachtna_of_rosscarbery_bishop": {
       "fullname": "Saint Fachtna, Bishop",
       "canonizationLevel": "SAINT",
       "name": "Fachtna",
-      "titles": ["BISHOP"]
+      "titles": [
+        "BISHOP"
+      ]
     },
     "faustina_kowalska_virgin": {
       "fullname": "Saint Faustina Kowalska, Virgin",
       "canonizationLevel": "SAINT",
       "name": "Faustina Kowalska",
-      "titles": ["VIRGIN"],
+      "titles": [
+        "VIRGIN"
+      ],
       "dateOfDeath": 1938
     },
     "felicity_of_carthage_martyr": {
       "canonizationLevel": "SAINT",
       "name": "Felicity",
-      "titles": ["MARTYR"],
+      "titles": [
+        "MARTYR"
+      ],
       "dateOfDeath": 203
     },
     "ferdinand_iii_of_castile": {
@@ -43,20 +54,27 @@
       "fullname": "Saint Fiacre, Monk",
       "canonizationLevel": "SAINT",
       "name": "Fiacre",
-      "titles": ["MONK"]
+      "titles": [
+        "MONK"
+      ]
     },
     "fidelis_of_sigmaringen_priest": {
       "fullname": "Saint Fidelis of Sigmaringen, Priest and Martyr",
       "canonizationLevel": "SAINT",
       "name": "Fidelis of Sigmaringen",
-      "titles": ["PRIEST", "MARTYR"],
+      "titles": [
+        "PRIEST",
+        "MARTYR"
+      ],
       "dateOfDeath": 1622
     },
     "finbarr_of_cork_bishop": {
       "fullname": "Saint Finbarr, Bishop",
       "canonizationLevel": "SAINT",
       "name": "Finbarr",
-      "titles": ["BISHOP"]
+      "titles": [
+        "BISHOP"
+      ]
     },
     "finding_of_the_holy_cross": {
       "fullname": "Finding of the Holy Cross"
@@ -65,27 +83,35 @@
       "fullname": "Saint Finian, Bishop",
       "canonizationLevel": "SAINT",
       "name": "Finian",
-      "titles": ["BISHOP"]
+      "titles": [
+        "BISHOP"
+      ]
     },
     "fintan_of_clonenagh_abbot": {
       "fullname": "Saint Fintan, Abbot",
       "canonizationLevel": "SAINT",
       "name": "Fintan",
-      "titles": ["ABBOT"]
+      "titles": [
+        "ABBOT"
+      ]
     },
     "first_martyrs_of_the_holy_roman_church": {
       "fullname": "The First Martyrs of the Holy Roman Church",
       "name": "First Martyrs of the Holy Roman Church",
-      "titles": ["MARTYR"],
-      "hideTitles": true,
+      "titles": [
+        "MARTYR"
+      ],
+      "hide_titles": true,
       "count": "many",
       "dateOfDeath": 64
     },
     "first_polish_martyrs": {
       "fullname": "Saints Benedict, John, Matthew, Isaac and Christian, the First Polish Martyrs",
       "canonizationLevel": "SAINT",
-      "titles": ["MARTYR"],
-      "hideTitles": true,
+      "titles": [
+        "MARTYR"
+      ],
+      "hide_titles": true,
       "count": 5
     },
     "five_wounds_of_the_lord": {
@@ -95,13 +121,17 @@
       "fullname": "Saint Flannan, Bishop",
       "canonizationLevel": "SAINT",
       "name": "Flannan",
-      "titles": ["BISHOP"]
+      "titles": [
+        "BISHOP"
+      ]
     },
     "florentius_of_anjou_abbot": {
       "fullname": "Saint Florentius, Abbot",
       "canonizationLevel": "SAINT",
       "name": "Florentius",
-      "titles": ["ABBOT"],
+      "titles": [
+        "ABBOT"
+      ],
       "dateOfDeath": {
         "century": 5,
         "sources": [
@@ -118,7 +148,9 @@
       "fullname": "Saint Florentius, Bishop",
       "canonizationLevel": "SAINT",
       "name": "Florentius of Strasbourg",
-      "titles": ["BISHOP"],
+      "titles": [
+        "BISHOP"
+      ],
       "dateOfDeath": {
         "century": 7
       }
@@ -130,13 +162,17 @@
       "fullname": "Saint Florian, Martyr",
       "canonizationLevel": "SAINT",
       "name": "Florian",
-      "titles": ["MARTYR"]
+      "titles": [
+        "MARTYR"
+      ]
     },
     "floscellus_of_normandy_martyr": {
       "fullname": "Saint Floscellus, Martyr",
       "canonizationLevel": "SAINT",
       "name": "Floscellus",
-      "titles": ["MARTYR"],
+      "titles": [
+        "MARTYR"
+      ],
       "dateOfBirth": 280,
       "dateOfBirthIsApproximative": true,
       "dateOfDeath": "296-09-17",
@@ -150,26 +186,35 @@
       "fullname": "Saint Frances of Rome, Religious",
       "canonizationLevel": "SAINT",
       "name": "Frances of Rome",
-      "titles": ["RELIGIOUS"],
+      "titles": [
+        "RELIGIOUS"
+      ],
       "dateOfDeath": 1440
     },
     "frances_xavier_cabrini_virgin": {
       "fullname": "Saint Frances Xavier Cabrini, Virgin",
       "canonizationLevel": "SAINT",
       "name": "Frances Xavier Cabrini",
-      "titles": ["VIRGIN"]
+      "titles": [
+        "VIRGIN"
+      ]
     },
     "francis_borgia_priest": {
       "fullname": "Saint Francis Borgia, Priest",
       "canonizationLevel": "SAINT",
       "name": "Francis Borgia",
-      "titles": ["PRIEST"]
+      "titles": [
+        "PRIEST"
+      ]
     },
     "francis_de_sales_bishop": {
       "fullname": "Saint Francis de Sales, Bishop and Doctor of the Church",
       "canonizationLevel": "SAINT",
       "name": "Francis de Sales",
-      "titles": ["BISHOP", "DOCTOR_OF_THE_CHURCH"],
+      "titles": [
+        "BISHOP",
+        "DOCTOR_OF_THE_CHURCH"
+      ],
       "dateOfDeath": 1622
     },
     "francis_de_sales_bishop_patron_of_the_clergy_of_the_archdiocese_of_lyon": {
@@ -178,7 +223,10 @@
     "francis_diaz_del_rincon_priest": {
       "canonizationLevel": "SAINT",
       "name": "Francis Díaz del Rincon",
-      "titles": ["PRIEST", "MARTYR"]
+      "titles": [
+        "PRIEST",
+        "MARTYR"
+      ]
     },
     "francis_diaz_del_rincon_priest_and_companions_martyrs": {
       "fullname": "Saint Francis Díaz del Rincon, Priest, and Companions, Martyrs"
@@ -187,12 +235,18 @@
       "fullname": "Saint Francis Ferdinand de Capillas, Priest and Martyr",
       "canonizationLevel": "SAINT",
       "name": "Francis Ferdinand de Capillas",
-      "titles": ["PRIEST", "MARTYR"]
+      "titles": [
+        "PRIEST",
+        "MARTYR"
+      ]
     },
     "francis_fogolla_bishop": {
       "canonizationLevel": "SAINT",
       "name": "Francis Fogolla",
-      "titles": ["BISHOP", "MARTYR"]
+      "titles": [
+        "BISHOP",
+        "MARTYR"
+      ]
     },
     "francis_of_assisi": {
       "fullname": "Saint Francis of Assisi",
@@ -207,27 +261,35 @@
       "fullname": "Saint Francis of Paola, Hermit",
       "canonizationLevel": "SAINT",
       "name": "Francis of Paola",
-      "titles": ["HERMIT"],
+      "titles": [
+        "HERMIT"
+      ],
       "dateOfDeath": 1507
     },
     "francis_solanus_priest": {
       "fullname": "Saint Francis Solanus, Priest",
       "canonizationLevel": "SAINT",
       "name": "Francis Solanus",
-      "titles": ["PRIEST"]
+      "titles": [
+        "PRIEST"
+      ]
     },
     "francis_xavier_priest": {
       "fullname": "Saint Francis Xavier, Priest",
       "canonizationLevel": "SAINT",
       "name": "Francis Xavier",
-      "titles": ["PRIEST"],
+      "titles": [
+        "PRIEST"
+      ],
       "dateOfDeath": 1552
     },
     "francis_xavier_seelos_priest": {
       "fullname": "Blessed Francis Xavier Seelos, priest",
       "canonizationLevel": "BLESSED",
       "name": "Francis Xavier Seelos",
-      "titles": ["PRIEST"]
+      "titles": [
+        "PRIEST"
+      ]
     },
     "francisco_marto": {
       "canonizationLevel": "SAINT",
@@ -237,14 +299,18 @@
       "fullname": "Saint François de Laval, Bishop",
       "canonizationLevel": "SAINT",
       "name": "François de Laval",
-      "titles": ["BISHOP"],
+      "titles": [
+        "BISHOP"
+      ],
       "dateOfDeath": 1708
     },
     "frederic_janssoone_priest": {
       "fullname": "Blessed Frédéric Janssoone, Priest",
       "canonizationLevel": "BLESSED",
       "name": "Frédéric Janssoone",
-      "titles": ["PRIEST"],
+      "titles": [
+        "PRIEST"
+      ],
       "dateOfDeath": 1916
     },
     "frederic_ozanam_founder": {
@@ -253,7 +319,9 @@
       "name": "Frédéric Ozanam",
       "dateOfBirth": "1813-4-23",
       "dateOfDeath": "1853-9-8",
-      "sources": ["mr_fr_2014_ed2_lyon"]
+      "sources": [
+        "mr_fr_2014_ed2_lyon"
+      ]
     },
     "friday_of_the_passion_of_the_lord": {
       "fullname": "Friday of the Passion of the Lord"
@@ -262,7 +330,10 @@
       "fullname": "Saint Fridolin of Säckingen, Monk",
       "canonizationLevel": "SAINT",
       "name": "Fridolin of Säckingen",
-      "titles": ["MONK", "MISSIONARY"],
+      "titles": [
+        "MONK",
+        "MISSIONARY"
+      ],
       "dateOfDeath": "540-3-6",
       "dateOfDeathIsApproximative": true
     },
@@ -270,7 +341,9 @@
       "fullname": "Saint Fromundus of Coutances, Bishop",
       "canonizationLevel": "SAINT",
       "name": "Fromundus",
-      "titles": ["BISHOP"],
+      "titles": [
+        "BISHOP"
+      ],
       "dateOfDeath": 691,
       "dateOfDeathIsApproximative": true,
       "sources": [
@@ -282,7 +355,9 @@
     "fructuosus_of_braga_bishop": {
       "canonizationLevel": "SAINT",
       "name": "Fructuosus of Braga",
-      "titles": ["BISHOP"]
+      "titles": [
+        "BISHOP"
+      ]
     },
     "fructuosus_of_braga_martin_of_braga_and_gerald_of_braga_bishops": {
       "fullname": "Saints Fructuosus, Martin and Gerald of Braga, Bishops"
@@ -290,7 +365,10 @@
     "fructuosus_of_tarragona_bishop": {
       "canonizationLevel": "SAINT",
       "name": "Fructuosus",
-      "titles": ["BISHOP", "MARTYR"]
+      "titles": [
+        "BISHOP",
+        "MARTYR"
+      ]
     },
     "fructuosus_of_tarragona_bishop_and_augurius_of_tarragona_and_eulogius_of_tarragona_deacons_martyrs": {
       "fullname": "Saints Fructuosus, Bishop, Augurius and Eulogius, Deacons, Martyrs"
@@ -299,7 +377,10 @@
       "fullname": "Saint Fursa, Abbot and Missionary",
       "canonizationLevel": "SAINT",
       "name": "Fursa",
-      "titles": ["ABBOT", "MISSIONARY"]
+      "titles": [
+        "ABBOT",
+        "MISSIONARY"
+      ]
     }
   }
 }

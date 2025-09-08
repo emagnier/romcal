@@ -10,7 +10,7 @@
     {
       "id": "barbara_of_heliopolis_virgin",
       "precedence": "PROPER_MEMORIAL_11B",
-      "dateDef": {
+      "date_def": {
         "month": 12,
         "date": 4
       }
@@ -18,7 +18,7 @@
     {
       "id": "nicholas_of_myra_bishop",
       "precedence": "PROPER_MEMORIAL_11B",
-      "dateDef": {
+      "date_def": {
         "month": 12,
         "date": 6
       }
@@ -26,7 +26,7 @@
     {
       "id": "sharbel_makhluf_priest",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 12,
         "date": 24
       }
@@ -34,7 +34,7 @@
     {
       "id": "maron_of_syria_hermit",
       "precedence": "PROPER_MEMORIAL_11B",
-      "dateDef": {
+      "date_def": {
         "month": 2,
         "date": 9
       }
@@ -42,7 +42,7 @@
     {
       "id": "rafqa_pietra_choboq_ar_rayes_virgin",
       "precedence": "PROPER_MEMORIAL_11B",
-      "dateDef": {
+      "date_def": {
         "month": 3,
         "date": 23
       }
@@ -50,7 +50,7 @@
     {
       "id": "george_of_lydda_martyr",
       "precedence": "PROPER_MEMORIAL_11B",
-      "dateDef": {
+      "date_def": {
         "month": 4,
         "date": 23
       }
@@ -58,7 +58,7 @@
     {
       "id": "our_lady_of_lebanon",
       "precedence": "PROPER_FEAST_8F",
-      "dateDef": {
+      "date_def": {
         "month": 5,
         "date": 1
       }

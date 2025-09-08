@@ -12,7 +12,7 @@
     {
       "id": "john_cassian_priest",
       "precedence": "PROPER_MEMORIAL_11B",
-      "dateDef": {
+      "date_def": {
         "month": 2,
         "date": 28
       }
@@ -20,7 +20,7 @@
     {
       "id": "vladimir_ghika_priest",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 5,
         "date": 16
       }

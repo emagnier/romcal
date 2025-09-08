@@ -1,7 +1,5 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Precedence",
-  "type": "string",
   "enum": [
     "TRIDUUM_1",
     "PROPER_OF_TIME_SOLEMNITY_2",
@@ -30,5 +28,7 @@
     "PROPER_MEMORIAL_11B",
     "OPTIONAL_MEMORIAL_12",
     "WEEKDAY_13"
-  ]
+  ],
+  "title": "Precedence",
+  "type": "string"
 }

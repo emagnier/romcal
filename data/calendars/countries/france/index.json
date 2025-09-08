@@ -5,10 +5,10 @@
     "jurisdiction": "CIVIL",
     "type": "COUNTRY"
   },
-  "particularConfig": {
-    "epiphanyOnSunday": true,
-    "ascensionOnSunday": false,
-    "corpusChristiOnSunday": true
+  "particular_config": {
+    "epiphany_on_sunday": true,
+    "ascension_on_sunday": false,
+    "corpus_christi_on_sunday": true
   },
   "parent_calendar_ids": [
     "Europe"
@@ -17,66 +17,66 @@
     {
       "id": "genevieve_of_paris_virgin",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 1,
         "date": 3
       },
-      "commonsDef": [
-        "Virgins",
-        "MercyWorkers"
+      "commons_def": [
+        "VIRGINS",
+        "MERCY_WORKERS"
       ]
     },
     {
       "id": "remigius_of_reims_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 1,
         "date": 15
       },
-      "commonsDef": "Bishops"
+      "commons_def": "BISHOPS"
     },
     {
       "id": "our_lady_of_lourdes",
-      "commonsDef": "None"
+      "commons_def": "NONE"
     },
     {
       "id": "bernadette_soubirous_virgin",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 2,
         "date": 18
       },
-      "commonsDef": [
-        "Virgins",
-        "Religious"
+      "commons_def": [
+        "VIRGINS",
+        "RELIGIOUS"
       ]
     },
     {
       "id": "louise_de_marillac_religious",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 5,
         "date": 9
       },
-      "commonsDef": "HolyWomen"
+      "commons_def": "HOLY_WOMEN"
     },
     {
       "id": "ivo_of_kermartin_priest",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 5,
         "date": 19
       },
-      "commonsDef": [
-        "MercyWorkers",
-        "Pastors"
+      "commons_def": [
+        "MERCY_WORKERS",
+        "PASTORS"
       ]
     },
     {
       "id": "joan_of_arc_virgin",
-      "customLocaleId": "joan_of_arc_virgin_copatroness_of_france",
+      "custom_locale_id": "joan_of_arc_virgin_copatroness_of_france",
       "precedence": "PROPER_MEMORIAL__SECOND_PATRON_11A",
-      "dateDef": {
+      "date_def": {
         "month": 5,
         "date": 30
       },
@@ -85,12 +85,12 @@
           "COPATRONESS_OF_FRANCE"
         ]
       },
-      "commonsDef": "None"
+      "commons_def": "NONE"
     },
     {
       "id": "pothinus_of_lyon_bishop_blandina_of_lyon_virgin_and_companions_martyrs",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 6,
         "date": 2
       },
@@ -99,24 +99,24 @@
         "blandina_of_lyon_virgin",
         "companions_martyrs"
       ],
-      "commonsDef": "Martyrs"
+      "commons_def": "MARTYRS"
     },
     {
       "id": "clotilde_of_burgundy",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 6,
         "date": 4
       },
-      "commonsDef": "HolyWomen"
+      "commons_def": "HOLY_WOMEN"
     },
     {
       "id": "john_mary_vianney_priest",
-      "commonsDef": "None"
+      "commons_def": "NONE"
     },
     {
       "id": "assumption_of_the_blessed_virgin_mary",
-      "customLocaleId": "assumption_of_the_blessed_virgin_mary_patroness_of_france",
+      "custom_locale_id": "assumption_of_the_blessed_virgin_mary_patroness_of_france",
       "titles": {
         "append": [
           "PATRON_OF_FRANCE"
@@ -126,37 +126,37 @@
     {
       "id": "louis_ix_of_france",
       "precedence": "PROPER_MEMORIAL_11B",
-      "commonsDef": "None"
+      "commons_def": "NONE"
     },
     {
       "id": "caesarius_of_arles_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 8,
         "date": 26
       },
-      "commonsDef": "Bishops"
+      "commons_def": "BISHOPS"
     },
     {
       "id": "joseph_of_calasanz_priest",
-      "dateDef": {
+      "date_def": {
         "month": 8,
         "date": 26
       },
-      "commonsDef": "Saints"
+      "commons_def": "SAINTS"
     },
     {
       "id": "our_lady_of_la_salette",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 9,
         "date": 19
       },
-      "commonsDef": "BlessedVirginMary"
+      "commons_def": "BLESSED_VIRGIN_MARY"
     },
     {
       "id": "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin",
-      "customLocaleId": "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin_copatroness_of_france",
+      "custom_locale_id": "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin_copatroness_of_france",
       "titles": {
         "append": [
           "COPATRONESS_OF_FRANCE"
@@ -166,20 +166,12 @@
     {
       "id": "dedication_of_consecrated_churches",
       "precedence": "PROPER_SOLEMNITY__DEDICATION_OF_THE_OWN_CHURCH_4B",
-      "dateDef": {
+      "date_def": {
         "month": 10,
         "date": 25
       },
-      "alternativeTransferDateDefs": [
-        {
-          "dateDef": {
-            "month": 10,
-            "lastDayOfWeekInMonth": 0
-          }
-        }
-      ],
-      "isOptional": true,
-      "commonsDef": "DedicationAnniversary_Inside"
+      "is_optional": true,
+      "commons_def": "DEDICATION_ANNIVERSARY__INSIDE"
     }
   ]
 }

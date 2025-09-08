@@ -14,7 +14,7 @@
     {
       "id": "our_lady_of_the_discovery_of_the_hidden_christians",
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "dateDef": {
+      "date_def": {
         "month": 3,
         "date": 17
       }
@@ -22,7 +22,7 @@
     {
       "id": "peter_kibe_priest_and_companions_martyrs",
       "precedence": "PROPER_MEMORIAL_11B",
-      "dateDef": {
+      "date_def": {
         "month": 7,
         "date": 1
       },
@@ -34,7 +34,7 @@
     {
       "id": "205_blessed_martyrs_of_japan",
       "precedence": "PROPER_MEMORIAL_11B",
-      "dateDef": {
+      "date_def": {
         "month": 9,
         "date": 10
       }
@@ -42,7 +42,7 @@
     {
       "id": "thomas_hioji_rokuzayemon_nishi_priest_and_companions_martyrs",
       "precedence": "PROPER_MEMORIAL_11B",
-      "dateDef": {
+      "date_def": {
         "month": 9,
         "date": 28
       },
@@ -54,7 +54,7 @@
     {
       "id": "francis_xavier_priest",
       "precedence": "PROPER_FEAST_8F",
-      "dateDef": {
+      "date_def": {
         "month": 12,
         "date": 3
       }

@@ -12,7 +12,7 @@
   "days_definitions": [
     {
       "id": "our_lady_of_pontmain",
-      "dateDef": {
+      "date_def": {
         "month": 1,
         "date": 17
       },
@@ -20,7 +20,7 @@
     },
     {
       "id": "gaud_of_evreux_bishop",
-      "dateDef": {
+      "date_def": {
         "month": 1,
         "date": 30
       },
@@ -28,7 +28,7 @@
     },
     {
       "id": "augustus_chapdelaine_priest",
-      "dateDef": {
+      "date_def": {
         "month": 2,
         "date": 28
       },
@@ -36,7 +36,7 @@
     },
     {
       "id": "leon_de_carentan_bishop",
-      "dateDef": {
+      "date_def": {
         "month": 3,
         "date": 1
       },
@@ -44,7 +44,7 @@
     },
     {
       "id": "placide_eulalie_victoire_jacqueline_viel_virgin",
-      "dateDef": {
+      "date_def": {
         "month": 3,
         "date": 4
       },
@@ -52,7 +52,7 @@
     },
     {
       "id": "marthe_aimee_adele_le_bouteiller_virgin",
-      "dateDef": {
+      "date_def": {
         "month": 3,
         "date": 18
       },
@@ -60,7 +60,7 @@
     },
     {
       "id": "paternus_of_avranches_bishop_and_scubilion_abbot",
-      "dateDef": {
+      "date_def": {
         "month": 4,
         "date": 16
       },
@@ -72,7 +72,7 @@
     },
     {
       "id": "william_firmatus_abbot",
-      "dateDef": {
+      "date_def": {
         "month": 4,
         "date": 24
       },
@@ -80,7 +80,7 @@
     },
     {
       "id": "achard_of_saint_victor_bishop",
-      "dateDef": {
+      "date_def": {
         "month": 4,
         "date": 29
       },
@@ -88,7 +88,7 @@
     },
     {
       "id": "marculf_of_normandy_abbot",
-      "dateDef": {
+      "date_def": {
         "month": 5,
         "date": 4
       },
@@ -96,7 +96,7 @@
     },
     {
       "id": "germanus_of_normandy_bishop",
-      "dateDef": {
+      "date_def": {
         "month": 5,
         "date": 6
       },
@@ -104,7 +104,7 @@
     },
     {
       "id": "mary_catherine_of_saint_augustine_catherine_de_simon_de_longpre_virgin",
-      "dateDef": {
+      "date_def": {
         "month": 5,
         "date": 8
       },
@@ -112,7 +112,7 @@
     },
     {
       "id": "ortaire_of_landelles_abbot",
-      "dateDef": {
+      "date_def": {
         "month": 5,
         "date": 21
       },
@@ -120,7 +120,7 @@
     },
     {
       "id": "severus_of_avranches_bishop",
-      "dateDef": {
+      "date_def": {
         "month": 7,
         "date": 6
       },
@@ -128,14 +128,14 @@
     },
     {
       "id": "thomas_becket_bishop",
-      "dateDef": {
+      "date_def": {
         "month": 7,
         "date": 7
       }
     },
     {
       "id": "dedication_of_the_cathedral_of_notre_dame_of_coutances_france",
-      "dateDef": {
+      "date_def": {
         "month": 7,
         "date": 12
       },
@@ -143,7 +143,7 @@
     },
     {
       "id": "helier_of_jersey_martyr",
-      "dateDef": {
+      "date_def": {
         "month": 7,
         "date": 16
       },
@@ -151,7 +151,7 @@
     },
     {
       "id": "marie_madeleine_julie_francoise_catherine_postel_virgin",
-      "dateDef": {
+      "date_def": {
         "month": 7,
         "date": 17
       },
@@ -159,7 +159,7 @@
     },
     {
       "id": "clair_of_normandy_priest",
-      "dateDef": {
+      "date_def": {
         "month": 7,
         "date": 18
       },
@@ -171,7 +171,7 @@
     },
     {
       "id": "jacques_francois_lefranc_martyr_and_martyrs_of_the_revolution",
-      "dateDef": {
+      "date_def": {
         "month": 9,
         "date": 2
       },
@@ -186,7 +186,7 @@
     },
     {
       "id": "audomar_of_therouanne_bishop",
-      "dateDef": {
+      "date_def": {
         "month": 9,
         "date": 9
       },
@@ -194,7 +194,7 @@
     },
     {
       "id": "aubert_of_avranches_bishop",
-      "dateDef": {
+      "date_def": {
         "month": 9,
         "date": 10
       },
@@ -202,7 +202,7 @@
     },
     {
       "id": "floscellus_of_normandy_martyr",
-      "dateDef": {
+      "date_def": {
         "month": 9,
         "date": 17
       },
@@ -210,7 +210,7 @@
     },
     {
       "id": "senerius_of_normandy_bishop",
-      "dateDef": {
+      "date_def": {
         "month": 9,
         "date": 18
       },
@@ -218,7 +218,7 @@
     },
     {
       "id": "vitalis_of_savigny_abbot",
-      "dateDef": {
+      "date_def": {
         "month": 9,
         "date": 19
       },
@@ -226,8 +226,8 @@
     },
     {
       "id": "laud_of_coutances_bishop",
-      "customLocaleId": "laud_of_coutances_bishop_patron_of_the_diocese_of_coutances",
-      "dateDef": {
+      "custom_locale_id": "laud_of_coutances_bishop_patron_of_the_diocese_of_coutances",
+      "date_def": {
         "month": 9,
         "date": 22
       },
@@ -240,8 +240,8 @@
     },
     {
       "id": "john_de_brebeuf_isaac_jogues_priests_and_companions_martyrs",
-      "customLocaleId": "john_de_brebeuf_priest_and_companions_martyrs",
-      "dateDef": {
+      "custom_locale_id": "john_de_brebeuf_priest_and_companions_martyrs",
+      "date_def": {
         "month": 9,
         "date": 25
       },
@@ -253,7 +253,7 @@
     },
     {
       "id": "all_holy_bishops_and_priests_of_the_diocese_of_coutances",
-      "dateDef": {
+      "date_def": {
         "month": 10,
         "date": 12
       },
@@ -265,7 +265,7 @@
     },
     {
       "id": "peter_adrian_toulorge_priest",
-      "dateDef": {
+      "date_def": {
         "month": 10,
         "date": 13
       },
@@ -273,7 +273,7 @@
     },
     {
       "id": "dedication_of_the_basilica_of_mont_saint_michel_france",
-      "dateDef": {
+      "date_def": {
         "month": 10,
         "date": 16
       },
@@ -281,7 +281,7 @@
     },
     {
       "id": "thomas_helye_priest",
-      "dateDef": {
+      "date_def": {
         "month": 10,
         "date": 19
       },
@@ -289,7 +289,7 @@
     },
     {
       "id": "adeline_de_mortain_abbess_and_the_saints_of_savigny",
-      "dateDef": {
+      "date_def": {
         "month": 10,
         "date": 20
       },
@@ -302,7 +302,7 @@
     },
     {
       "id": "maglorius_of_dol_monk",
-      "dateDef": {
+      "date_def": {
         "month": 10,
         "date": 25
       },
@@ -310,7 +310,7 @@
     },
     {
       "id": "fromundus_of_coutances_bishop",
-      "dateDef": {
+      "date_def": {
         "month": 10,
         "date": 26
       },
@@ -318,7 +318,7 @@
     },
     {
       "id": "all_saints_of_the_diocese_of_coutances",
-      "dateDef": {
+      "date_def": {
         "month": 11,
         "date": 8
       },
@@ -326,7 +326,7 @@
     },
     {
       "id": "rumpharius_of_coutances_bishop",
-      "dateDef": {
+      "date_def": {
         "month": 11,
         "date": 19
       },
