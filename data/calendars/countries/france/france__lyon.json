@@ -84,7 +84,7 @@
       "precedence": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_DIOCESE_8A",
       "date_def": {
         "date_fn": "EASTER_SUNDAY",
-        "add_day": 13
+        "day_offset": 13
       }
     },
     {

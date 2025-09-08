@@ -176,7 +176,7 @@
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "date_fn": "DIVINE_MERCY_SUNDAY",
-        "add_day": 6
+        "day_offset": 6
       }
     }
   ]

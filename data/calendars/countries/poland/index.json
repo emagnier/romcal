@@ -78,7 +78,7 @@
         "date": 23
       },
       "date_exceptions": {
-        "if_is_between": {
+        "when": {
           "from": {
             "date_fn": "PALM_SUNDAY"
           },
@@ -87,9 +87,9 @@
           },
           "inclusive": true
         },
-        "set_date": {
+        "then": {
           "date_fn": "DIVINE_MERCY_SUNDAY",
-          "add_day": 1
+          "day_offset": 1
         }
       },
       "titles": {
@@ -631,7 +631,7 @@
       "precedence": "PROPER_FEAST_8F",
       "date_def": {
         "date_fn": "PENTECOST_SUNDAY",
-        "add_day": 1
+        "day_offset": 1
       }
     },
     {
@@ -639,7 +639,7 @@
       "precedence": "PROPER_FEAST_8F",
       "date_def": {
         "date_fn": "PENTECOST_SUNDAY",
-        "add_day": 4
+        "day_offset": 4
       }
     }
   ]

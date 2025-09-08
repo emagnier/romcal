@@ -173,9 +173,11 @@
         "date": 1
       },
       "date_exceptions": {
-        "if_is_day_of_week": 6,
-        "set_date": {
-          "add_day": 1
+        "when": {
+          "day_of_week": 6
+        },
+        "then": {
+          "day_offset": 1
         }
       }
     },
@@ -186,9 +188,11 @@
         "date": 2
       },
       "date_exceptions": {
-        "if_is_day_of_week": 0,
-        "set_date": {
-          "add_day": 1
+        "when": {
+          "day_of_week": 0
+        },
+        "then": {
+          "day_offset": 1
         }
       }
     },
@@ -220,15 +224,19 @@
       "id": "peter_and_paul_apostles",
       "date_exceptions": [
         {
-          "if_is_day_of_week": 1,
-          "set_date": {
-            "subtract_day": 1
+          "when": {
+            "day_of_week": 1
+          },
+          "then": {
+            "day_offset": -1
           }
         },
         {
-          "if_is_day_of_week": 6,
-          "set_date": {
-            "add_day": 1
+          "when": {
+            "day_of_week": 6
+          },
+          "then": {
+            "day_offset": 1
           }
         }
       ]
@@ -241,15 +249,19 @@
       },
       "date_exceptions": [
         {
-          "if_is_day_of_week": 1,
-          "set_date": {
-            "subtract_day": 1
+          "when": {
+            "day_of_week": 1
+          },
+          "then": {
+            "day_offset": -1
           }
         },
         {
-          "if_is_day_of_week": 6,
-          "set_date": {
-            "add_day": 1
+          "when": {
+            "day_of_week": 6
+          },
+          "then": {
+            "day_offset": 1
           }
         }
       ]
@@ -259,7 +271,7 @@
       "precedence": "PROPER_FEAST_8F",
       "date_def": {
         "date_fn": "PENTECOST_SUNDAY",
-        "add_day": 4
+        "day_offset": 4
       }
     }
   ]

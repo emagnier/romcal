@@ -181,7 +181,7 @@
       "precedence": "PROPER_FEAST_8F",
       "date_def": {
         "date_fn": "PENTECOST_SUNDAY",
-        "add_day": 4
+        "day_offset": 4
       }
     }
   ]

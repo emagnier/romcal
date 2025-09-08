@@ -136,178 +136,147 @@
     "DateDef": {
       "anyOf": [
         {
-          "$ref": "#/definitions/DateDefMonthDate"
+          "additionalProperties": false,
+          "description": "Simple month/day",
+          "properties": {
+            "date": {
+              "format": "uint32",
+              "minimum": 0.0,
+              "type": "integer"
+            },
+            "day_offset": {
+              "format": "int32",
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "month": {
+              "$ref": "#/definitions/MonthIndex"
+            }
+          },
+          "required": [
+            "date",
+            "month"
+          ],
+          "type": "object"
         },
         {
-          "$ref": "#/definitions/DateDefDateFnAddDay"
+          "additionalProperties": false,
+          "description": "Date function (Easter, Epiphany, etc.)",
+          "properties": {
+            "date_fn": {
+              "$ref": "#/definitions/DateFn"
+            },
+            "day_offset": {
+              "format": "int32",
+              "type": [
+                "integer",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "date_fn"
+          ],
+          "type": "object"
         },
         {
-          "$ref": "#/definitions/DateDefDateFnSubtractDay"
+          "additionalProperties": false,
+          "description": "Nth weekday of month",
+          "properties": {
+            "day_of_week": {
+              "$ref": "#/definitions/DayOfWeek"
+            },
+            "day_offset": {
+              "format": "int32",
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "month": {
+              "$ref": "#/definitions/MonthIndex"
+            },
+            "nth_week_in_month": {
+              "format": "uint32",
+              "minimum": 0.0,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "day_of_week",
+            "month",
+            "nth_week_in_month"
+          ],
+          "type": "object"
         },
         {
-          "$ref": "#/definitions/DateDefMonthDowNthWeekInMonth"
-        },
-        {
-          "$ref": "#/definitions/DateDefMonthLastDowInMonth"
+          "additionalProperties": false,
+          "description": "Last weekday of month",
+          "properties": {
+            "day_offset": {
+              "format": "int32",
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "last_day_of_week_in_month": {
+              "$ref": "#/definitions/DayOfWeek"
+            },
+            "month": {
+              "$ref": "#/definitions/MonthIndex"
+            }
+          },
+          "required": [
+            "last_day_of_week_in_month",
+            "month"
+          ],
+          "type": "object"
         }
       ]
     },
-    "DateDefAddDay": {
-      "additionalProperties": false,
-      "properties": {
-        "add_day": {
-          "format": "int32",
-          "type": "integer"
-        }
-      },
-      "required": [
-        "add_day"
-      ],
-      "type": "object"
-    },
-    "DateDefDateFnAddDay": {
-      "additionalProperties": false,
-      "properties": {
-        "add_day": {
-          "description": "Add additional day(s) to the date computed from the 'dateFn' option.",
-          "format": "int32",
-          "type": [
-            "integer",
-            "null"
-          ]
-        },
-        "date_args": {
-          "description": "Possible date function arguments that may be required.",
-          "items": {
-            "format": "int32",
-            "type": "integer"
-          },
-          "type": [
-            "array",
-            "null"
-          ]
-        },
-        "date_fn": {
-          "allOf": [
-            {
-              "$ref": "#/definitions/DateFn"
-            }
-          ],
-          "description": "A date function name from the [Date] class."
-        },
-        "year_offset": {
-          "description": "Offset the current year to compute dates in the scope of different years.",
-          "format": "int32",
-          "type": [
-            "integer",
-            "null"
-          ]
-        }
-      },
-      "required": [
-        "date_fn"
-      ],
-      "type": "object"
-    },
-    "DateDefDateFnSubtractDay": {
-      "additionalProperties": false,
-      "properties": {
-        "date_args": {
-          "description": "Possible date function arguments that may be required.",
-          "items": {
-            "format": "int32",
-            "type": "integer"
-          },
-          "type": [
-            "array",
-            "null"
-          ]
-        },
-        "date_fn": {
-          "allOf": [
-            {
-              "$ref": "#/definitions/DateFn"
-            }
-          ],
-          "description": "A date function name from the [Date] class."
-        },
-        "subtract_day": {
-          "description": "Subtract some day(s) to the date computed from the 'dateFn' option.",
-          "format": "int32",
-          "type": [
-            "integer",
-            "null"
-          ]
-        },
-        "year_offset": {
-          "description": "Offset the current year to compute dates in the scope of different years.",
-          "format": "int32",
-          "type": [
-            "integer",
-            "null"
-          ]
-        }
-      },
-      "required": [
-        "date_fn"
-      ],
-      "type": "object"
-    },
     "DateDefException": {
+      "additionalProperties": false,
+      "description": "The liturgical day date exception Represents a condition and the date to set when that condition is met",
+      "properties": {
+        "then": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/DateDefExtended"
+            }
+          ],
+          "description": "Date to set when condition is met"
+        },
+        "when": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/ExceptionCondition"
+            }
+          ],
+          "description": "Condition that triggers the exception"
+        }
+      },
+      "required": [
+        "then",
+        "when"
+      ],
+      "type": "object"
+    },
+    "DateDefExceptions": {
       "anyOf": [
         {
-          "additionalProperties": false,
-          "description": "Add an exception if the computed date occurs between two dates",
-          "properties": {
-            "if_is_between": {
-              "$ref": "#/definitions/IfIsBetweenFields"
-            },
-            "set_date": {
-              "$ref": "#/definitions/DateDefExtended"
-            }
-          },
-          "required": [
-            "if_is_between",
-            "set_date"
-          ],
-          "type": "object"
+          "$ref": "#/definitions/DateDefException"
         },
         {
-          "additionalProperties": false,
-          "description": "Add an exception if the computed date occurs the same day as another date",
-          "properties": {
-            "if_is_same_as_date": {
-              "$ref": "#/definitions/DateDef"
-            },
-            "set_date": {
-              "$ref": "#/definitions/DateDefExtended"
-            }
+          "items": {
+            "$ref": "#/definitions/DateDefException"
           },
-          "required": [
-            "if_is_same_as_date",
-            "set_date"
-          ],
-          "type": "object"
-        },
-        {
-          "additionalProperties": false,
-          "description": "Add an exception if the computed date occurs on a specific day of week",
-          "properties": {
-            "if_is_day_of_week": {
-              "$ref": "#/definitions/DayOfWeek"
-            },
-            "set_date": {
-              "$ref": "#/definitions/DateDefExtended"
-            }
-          },
-          "required": [
-            "if_is_day_of_week",
-            "set_date"
-          ],
-          "type": "object"
+          "type": "array"
         }
       ],
-      "description": "The liturgical day date exception Represents a condition and the date to set when that condition is met"
+      "description": "Date exceptions that can be either a single exception or an array of exceptions"
     },
     "DateDefExtended": {
       "anyOf": [
@@ -315,130 +284,20 @@
           "$ref": "#/definitions/DateDef"
         },
         {
-          "$ref": "#/definitions/DateDefAddDay"
-        },
-        {
-          "$ref": "#/definitions/DateDefSubtractDay"
+          "$ref": "#/definitions/DateDefWithOffset"
         }
       ]
     },
-    "DateDefMonthDate": {
+    "DateDefWithOffset": {
       "additionalProperties": false,
       "properties": {
-        "date": {
-          "description": "The date of this liturgical day.",
-          "format": "uint32",
-          "minimum": 0.0,
-          "type": "integer"
-        },
-        "month": {
-          "allOf": [
-            {
-              "$ref": "#/definitions/MonthIndex"
-            }
-          ],
-          "description": "The month of this liturgical day."
-        },
-        "year_offset": {
-          "description": "Offset the current year to compute dates in the scope of different years.",
-          "format": "int32",
-          "type": [
-            "integer",
-            "null"
-          ]
-        }
-      },
-      "required": [
-        "date",
-        "month"
-      ],
-      "type": "object"
-    },
-    "DateDefMonthDowNthWeekInMonth": {
-      "additionalProperties": false,
-      "properties": {
-        "day_of_week": {
-          "allOf": [
-            {
-              "$ref": "#/definitions/DayOfWeek"
-            }
-          ],
-          "description": "The day of week this liturgical year must occur."
-        },
-        "month": {
-          "allOf": [
-            {
-              "$ref": "#/definitions/MonthIndex"
-            }
-          ],
-          "description": "The month of this liturgical day."
-        },
-        "nth_week_in_month": {
-          "description": "The nth week in the month this liturgical year must occur.",
-          "format": "uint32",
-          "minimum": 0.0,
-          "type": "integer"
-        },
-        "year_offset": {
-          "description": "Offset the current year to compute dates in the scope of different years.",
-          "format": "int32",
-          "type": [
-            "integer",
-            "null"
-          ]
-        }
-      },
-      "required": [
-        "day_of_week",
-        "month",
-        "nth_week_in_month"
-      ],
-      "type": "object"
-    },
-    "DateDefMonthLastDowInMonth": {
-      "additionalProperties": false,
-      "properties": {
-        "last_day_of_week_in_month": {
-          "allOf": [
-            {
-              "$ref": "#/definitions/DayOfWeek"
-            }
-          ],
-          "description": "The last day of week in the month this liturgical year must occur."
-        },
-        "month": {
-          "allOf": [
-            {
-              "$ref": "#/definitions/MonthIndex"
-            }
-          ],
-          "description": "The month of this liturgical day."
-        },
-        "year_offset": {
-          "description": "Offset the current year to compute dates in the scope of different years.",
-          "format": "int32",
-          "type": [
-            "integer",
-            "null"
-          ]
-        }
-      },
-      "required": [
-        "last_day_of_week_in_month",
-        "month"
-      ],
-      "type": "object"
-    },
-    "DateDefSubtractDay": {
-      "additionalProperties": false,
-      "properties": {
-        "subtract_day": {
+        "day_offset": {
           "format": "int32",
           "type": "integer"
         }
       },
       "required": [
-        "subtract_day"
+        "day_offset"
       ],
       "type": "object"
     },
@@ -515,14 +374,15 @@
           "description": "Date definition"
         },
         "date_exceptions": {
-          "description": "Date definition exception",
-          "items": {
-            "$ref": "#/definitions/DateDefException"
-          },
-          "type": [
-            "array",
-            "null"
-          ]
+          "anyOf": [
+            {
+              "$ref": "#/definitions/DateDefExceptions"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Date definition exception"
         },
         "drop": {
           "description": "If this liturgical day must be removed from this calendar and from all those it inherits (the parent calendars), on the final calendar generated by romcal.",
@@ -587,6 +447,7 @@
       "type": "object"
     },
     "DayOfWeek": {
+      "description": "Day of week (0-6, where 0=Sunday) with automatic validation",
       "format": "uint8",
       "minimum": 0.0,
       "type": "integer"
@@ -598,26 +459,57 @@
       ],
       "type": "string"
     },
-    "IfIsBetweenFields": {
-      "additionalProperties": false,
-      "description": "Fields for the \"if_is_between\" condition",
-      "properties": {
-        "from": {
-          "$ref": "#/definitions/DateDef"
+    "ExceptionCondition": {
+      "anyOf": [
+        {
+          "additionalProperties": false,
+          "description": "If date is between two dates",
+          "properties": {
+            "from": {
+              "$ref": "#/definitions/DateDef"
+            },
+            "inclusive": {
+              "type": "boolean"
+            },
+            "to": {
+              "$ref": "#/definitions/DateDef"
+            }
+          },
+          "required": [
+            "from",
+            "inclusive",
+            "to"
+          ],
+          "type": "object"
         },
-        "inclusive": {
-          "type": "boolean"
+        {
+          "additionalProperties": false,
+          "description": "If date is same as another date",
+          "properties": {
+            "date": {
+              "$ref": "#/definitions/DateDef"
+            }
+          },
+          "required": [
+            "date"
+          ],
+          "type": "object"
         },
-        "to": {
-          "$ref": "#/definitions/DateDef"
+        {
+          "additionalProperties": false,
+          "description": "If date is a specific day of week",
+          "properties": {
+            "day_of_week": {
+              "$ref": "#/definitions/DayOfWeek"
+            }
+          },
+          "required": [
+            "day_of_week"
+          ],
+          "type": "object"
         }
-      },
-      "required": [
-        "from",
-        "inclusive",
-        "to"
       ],
-      "type": "object"
+      "description": "Exception conditions that can trigger a date change"
     },
     "MartyrologyItemPointer": {
       "anyOf": [
@@ -672,6 +564,7 @@
       "type": "object"
     },
     "MonthIndex": {
+      "description": "Month index (1-12) with automatic validation",
       "format": "uint8",
       "minimum": 0.0,
       "type": "integer"

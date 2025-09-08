@@ -1,11 +1,66 @@
 use schemars::JsonSchema;
-use serde::{Deserialize, Serialize};
+use serde::{Deserialize, Deserializer, Serialize};
+
+// Macro pour générer les types SingleOrMultiple
+macro_rules! single_or_multiple {
+    ($name:ident, $type:ty) => {
+        #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+        #[serde(untagged)]
+        pub enum $name {
+            Single($type),
+            Multiple(Vec<$type>),
+        }
+    };
+}
 
 // Type aliases
 pub type CalendarId = String;
 pub type DayId = String;
 pub type LocaleId = String;
 pub type ResourceId = String;
+
+// Validated types with automatic serde validation
+/// Month index (1-12) with automatic validation
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, JsonSchema)]
+pub struct MonthIndex(pub u8);
+
+impl<'de> Deserialize<'de> for MonthIndex {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        let value = u8::deserialize(deserializer)?;
+        if (1..=12).contains(&value) {
+            Ok(MonthIndex(value))
+        } else {
+            Err(serde::de::Error::custom(format!(
+                "Month must be between 1 and 12, got {}",
+                value
+            )))
+        }
+    }
+}
+
+/// Day of week (0-6, where 0=Sunday) with automatic validation
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, JsonSchema)]
+pub struct DayOfWeek(pub u8);
+
+impl<'de> Deserialize<'de> for DayOfWeek {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        let value = u8::deserialize(deserializer)?;
+        if (0..=6).contains(&value) {
+            Ok(DayOfWeek(value))
+        } else {
+            Err(serde::de::Error::custom(format!(
+                "Day of week must be between 0 and 6, got {}",
+                value
+            )))
+        }
+    }
+}
 
 // Enums
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
@@ -403,38 +458,13 @@ pub enum Title {
 }
 
 // Wrapper structs for primitive types with validation
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
-pub struct MonthIndex(pub u8);
-
 impl MonthIndex {
-    pub fn new(value: u8) -> Result<Self, String> {
-        if (1..=12).contains(&value) {
-            Ok(MonthIndex(value))
-        } else {
-            Err(format!(
-                "MonthIndex must be between 1 and 12, got {}",
-                value
-            ))
-        }
-    }
-
     pub fn value(&self) -> u8 {
         self.0
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
-pub struct DayOfWeek(pub u8);
-
 impl DayOfWeek {
-    pub fn new(value: u8) -> Result<Self, String> {
-        if (0..=6).contains(&value) {
-            Ok(DayOfWeek(value))
-        } else {
-            Err(format!("DayOfWeek must be between 0 and 6, got {}", value))
-        }
-    }
-
     pub fn value(&self) -> u8 {
         self.0
     }
@@ -444,52 +474,67 @@ impl DayOfWeek {
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
 #[serde(untagged)]
 pub enum DateDef {
-    MonthDate(DateDefMonthDate),
-    DateFnAddDay(DateDefDateFnAddDay),
-    DateFnSubtractDay(DateDefDateFnSubtractDay),
-    MonthDowNthWeekInMonth(DateDefMonthDowNthWeekInMonth),
-    MonthLastDowInMonth(DateDefMonthLastDowInMonth),
+    /// Simple month/day
+    MonthDate {
+        month: MonthIndex,
+        date: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        day_offset: Option<i32>,
+    },
+    /// Date function (Easter, Epiphany, etc.)
+    DateFunction {
+        date_fn: DateFn,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        day_offset: Option<i32>,
+    },
+    /// Nth weekday of month
+    WeekdayOfMonth {
+        month: MonthIndex,
+        day_of_week: DayOfWeek,
+        nth_week_in_month: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        day_offset: Option<i32>,
+    },
+    /// Last weekday of month
+    LastWeekdayOfMonth {
+        month: MonthIndex,
+        last_day_of_week_in_month: DayOfWeek,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        day_offset: Option<i32>,
+    },
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
 #[serde(untagged)]
 pub enum DateDefExtended {
     DateDef(DateDef),
-    AddDay(DateDefAddDay),
-    SubtractDay(DateDefSubtractDay),
+    WithOffset(DateDefWithOffset),
 }
 
 /// The liturgical day date exception
 /// Represents a condition and the date to set when that condition is met
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
-#[serde(untagged)]
-pub enum DateDefException {
-    /// Add an exception if the computed date occurs between two dates
-    IfIsBetween {
-        #[serde(rename = "if_is_between")]
-        condition: IfIsBetweenFields,
-        set_date: DateDefExtended,
-    },
-    /// Add an exception if the computed date occurs the same day as another date
-    IfIsSameAsDate {
-        #[serde(rename = "if_is_same_as_date")]
-        condition: Box<DateDef>,
-        set_date: DateDefExtended,
-    },
-    /// Add an exception if the computed date occurs on a specific day of week
-    IfIsDayOfWeek {
-        #[serde(rename = "if_is_day_of_week")]
-        condition: DayOfWeek,
-        set_date: DateDefExtended,
-    },
+pub struct DateDefException {
+    /// Condition that triggers the exception
+    pub when: ExceptionCondition,
+    /// Date to set when condition is met
+    pub then: DateDefExtended,
 }
 
-/// Fields for the "if_is_between" condition
+/// Exception conditions that can trigger a date change
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
-pub struct IfIsBetweenFields {
-    pub from: Box<DateDef>,
-    pub to: Box<DateDef>,
-    pub inclusive: bool,
+#[serde(untagged)]
+pub enum ExceptionCondition {
+    /// If date is between two dates
+    IsBetween {
+        from: Box<DateDef>,
+        to: Box<DateDef>,
+        inclusive: bool,
+    },
+    /// If date is same as another date
+    IsSameAsDate { date: Box<DateDef> },
+    /// If date is a specific day of week
+    IsDayOfWeek { day_of_week: DayOfWeek },
 }
 
 /// Date exceptions that can be either a single exception or an array of exceptions
@@ -514,25 +559,15 @@ pub enum MartyrologyItemPointer {
     Redefined(MartyrologyItemRedefined),
 }
 
+// Utilisation de la macro pour les types SingleOrMultiple
+single_or_multiple!(CommonsDef, CommonDefinition);
+single_or_multiple!(ColorsDef, Colors);
+
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
 #[serde(untagged)]
 pub enum TitlesDef {
     Titles(Vec<Title>),
     CompoundTitle(CompoundTitle),
-}
-
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
-#[serde(untagged)]
-pub enum CommonsDef {
-    Single(CommonDefinition),
-    Multiple(Vec<CommonDefinition>),
-}
-
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
-#[serde(untagged)]
-pub enum ColorsDef {
-    Single(Colors),
-    Multiple(Vec<Colors>),
 }
 
 // Structs
@@ -565,69 +600,8 @@ pub struct CalendarDefinition {
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
-pub struct DateDefMonthDate {
-    /// The month of this liturgical day.
-    pub month: MonthIndex,
-    /// The date of this liturgical day.
-    pub date: u32,
-    /// Offset the current year to compute dates in the scope of different years.
-    pub year_offset: Option<i32>,
-}
-
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
-pub struct DateDefDateFnAddDay {
-    /// A date function name from the [Date] class.
-    pub date_fn: DateFn,
-    /// Possible date function arguments that may be required.
-    pub date_args: Option<Vec<i32>>,
-    /// Add additional day(s) to the date computed from the 'dateFn' option.
-    pub add_day: Option<i32>,
-    /// Offset the current year to compute dates in the scope of different years.
-    pub year_offset: Option<i32>,
-}
-
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
-pub struct DateDefDateFnSubtractDay {
-    /// A date function name from the [Date] class.
-    pub date_fn: DateFn,
-    /// Possible date function arguments that may be required.
-    pub date_args: Option<Vec<i32>>,
-    /// Subtract some day(s) to the date computed from the 'dateFn' option.
-    pub subtract_day: Option<i32>,
-    /// Offset the current year to compute dates in the scope of different years.
-    pub year_offset: Option<i32>,
-}
-
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
-pub struct DateDefMonthDowNthWeekInMonth {
-    /// The month of this liturgical day.
-    pub month: MonthIndex,
-    /// The day of week this liturgical year must occur.
-    pub day_of_week: DayOfWeek,
-    /// The nth week in the month this liturgical year must occur.
-    pub nth_week_in_month: u32,
-    /// Offset the current year to compute dates in the scope of different years.
-    pub year_offset: Option<i32>,
-}
-
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
-pub struct DateDefMonthLastDowInMonth {
-    /// The month of this liturgical day.
-    pub month: MonthIndex,
-    /// The last day of week in the month this liturgical year must occur.
-    pub last_day_of_week_in_month: DayOfWeek,
-    /// Offset the current year to compute dates in the scope of different years.
-    pub year_offset: Option<i32>,
-}
-
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
-pub struct DateDefAddDay {
-    pub add_day: i32,
-}
-
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
-pub struct DateDefSubtractDay {
-    pub subtract_day: i32,
+pub struct DateDefWithOffset {
+    pub day_offset: i32,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]

@@ -38,7 +38,7 @@
       },
       "date_exceptions": [
         {
-          "if_is_between": {
+          "when": {
             "from": {
               "date_fn": "PALM_SUNDAY"
             },
@@ -47,16 +47,18 @@
             },
             "inclusive": true
           },
-          "set_date": {
+          "then": {
             "date_fn": "PALM_SUNDAY",
-            "subtract_day": 1
+            "day_offset": -1
           }
         },
         {
-          "if_is_day_of_week": 0,
-          "set_date": {
+          "when": {
+            "day_of_week": 0
+          },
+          "then": {
             "date_fn": "PALM_SUNDAY",
-            "subtract_day": 1
+            "day_offset": -1
           }
         }
       ]
