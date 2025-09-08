@@ -1,19 +1,21 @@
 {
+  "$schema": "../../../../schemas/calendar-definition.json",
   "id": "france",
   "metadata": {
     "jurisdiction": "CIVIL",
     "type": "COUNTRY"
   },
-  "parentCalendarIds": [
-    "Europe"
-  ],
   "particularConfig": {
     "epiphanyOnSunday": true,
     "ascensionOnSunday": false,
     "corpusChristiOnSunday": true
   },
-  "inputs": {
-    "genevieve_of_paris_virgin": {
+  "parent_calendar_ids": [
+    "Europe"
+  ],
+  "days_definitions": [
+    {
+      "id": "genevieve_of_paris_virgin",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 1,
@@ -24,7 +26,8 @@
         "MercyWorkers"
       ]
     },
-    "remigius_of_reims_bishop": {
+    {
+      "id": "remigius_of_reims_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 1,
@@ -32,10 +35,12 @@
       },
       "commonsDef": "Bishops"
     },
-    "our_lady_of_lourdes": {
+    {
+      "id": "our_lady_of_lourdes",
       "commonsDef": "None"
     },
-    "bernadette_soubirous_virgin": {
+    {
+      "id": "bernadette_soubirous_virgin",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 2,
@@ -46,7 +51,8 @@
         "Religious"
       ]
     },
-    "louise_de_marillac_religious": {
+    {
+      "id": "louise_de_marillac_religious",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 5,
@@ -54,7 +60,8 @@
       },
       "commonsDef": "HolyWomen"
     },
-    "ivo_of_kermartin_priest": {
+    {
+      "id": "ivo_of_kermartin_priest",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 5,
@@ -65,7 +72,8 @@
         "Pastors"
       ]
     },
-    "joan_of_arc_virgin": {
+    {
+      "id": "joan_of_arc_virgin",
       "customLocaleId": "joan_of_arc_virgin_copatroness_of_france",
       "precedence": "PROPER_MEMORIAL__SECOND_PATRON_11A",
       "dateDef": {
@@ -79,7 +87,8 @@
       },
       "commonsDef": "None"
     },
-    "pothinus_of_lyon_bishop_blandina_of_lyon_virgin_and_companions_martyrs": {
+    {
+      "id": "pothinus_of_lyon_bishop_blandina_of_lyon_virgin_and_companions_martyrs",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 6,
@@ -92,7 +101,8 @@
       ],
       "commonsDef": "Martyrs"
     },
-    "clotilde_of_burgundy": {
+    {
+      "id": "clotilde_of_burgundy",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 6,
@@ -100,10 +110,12 @@
       },
       "commonsDef": "HolyWomen"
     },
-    "john_mary_vianney_priest": {
+    {
+      "id": "john_mary_vianney_priest",
       "commonsDef": "None"
     },
-    "assumption_of_the_blessed_virgin_mary": {
+    {
+      "id": "assumption_of_the_blessed_virgin_mary",
       "customLocaleId": "assumption_of_the_blessed_virgin_mary_patroness_of_france",
       "titles": {
         "append": [
@@ -111,11 +123,13 @@
         ]
       }
     },
-    "louis_ix_of_france": {
+    {
+      "id": "louis_ix_of_france",
       "precedence": "PROPER_MEMORIAL_11B",
       "commonsDef": "None"
     },
-    "caesarius_of_arles_bishop": {
+    {
+      "id": "caesarius_of_arles_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 8,
@@ -123,14 +137,16 @@
       },
       "commonsDef": "Bishops"
     },
-    "joseph_of_calasanz_priest": {
+    {
+      "id": "joseph_of_calasanz_priest",
       "dateDef": {
         "month": 8,
         "date": 26
       },
       "commonsDef": "Saints"
     },
-    "our_lady_of_la_salette": {
+    {
+      "id": "our_lady_of_la_salette",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 9,
@@ -138,7 +154,8 @@
       },
       "commonsDef": "BlessedVirginMary"
     },
-    "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin": {
+    {
+      "id": "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin",
       "customLocaleId": "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin_copatroness_of_france",
       "titles": {
         "append": [
@@ -146,7 +163,8 @@
         ]
       }
     },
-    "dedication_of_consecrated_churches": {
+    {
+      "id": "dedication_of_consecrated_churches",
       "precedence": "PROPER_SOLEMNITY__DEDICATION_OF_THE_OWN_CHURCH_4B",
       "dateDef": {
         "month": 10,
@@ -163,5 +181,5 @@
       "isOptional": true,
       "commonsDef": "DedicationAnniversary_Inside"
     }
-  }
+  ]
 }

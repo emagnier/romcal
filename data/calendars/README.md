@@ -2,18 +2,6 @@
 
 This document provides information about calendar definitions in the romcal project, including naming conventions and other relevant details.
 
-## ⚠️ Important Note: TypeScript Files Generation
-
-**All TypeScript files in this directory are automatically generated and should not be manually edited.**
-
-- The `_*.ts` files (like `_france.ts`, `_index.ts`) are generated from JSON files
-- The `index.ts` files in subdirectories are also auto-generated
-- **Focus only on JSON files** - these are the source of truth for calendar definitions
-- Use `npm run generate:calendar-index` to generate or update all TypeScript files
-- This command should be run after any changes to JSON files
-
-**Recommendation**: Always use the automated generation task rather than manual file management.
-
 ## Directory Structure
 
 The `calendars` directory is organized into four main subdirectories:

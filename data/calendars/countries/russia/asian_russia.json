@@ -1,12 +1,13 @@
 {
+  "$schema": "../../../../schemas/calendar-definition.json",
   "id": "asian_russia",
   "metadata": {
     "jurisdiction": "CIVIL",
     "type": "COUNTRY"
   },
-  "parentCalendarIds": [
+  "parent_calendar_ids": [
     "Asia",
     "Russia"
   ],
-  "inputs": {}
+  "days_definitions": []
 }

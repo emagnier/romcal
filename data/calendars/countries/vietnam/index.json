@@ -1,17 +1,19 @@
 {
+  "$schema": "../../../../schemas/calendar-definition.json",
   "id": "vietnam",
   "metadata": {
     "jurisdiction": "CIVIL",
     "type": "COUNTRY"
   },
-  "parentCalendarIds": [],
-  "inputs": {
-    "andrew_dung_lac_priest_and_companions_martyrs": {
+  "parent_calendar_ids": [],
+  "days_definitions": [
+    {
+      "id": "andrew_dung_lac_priest_and_companions_martyrs",
       "precedence": "PROPER_FEAST_8F",
       "dateDef": {
         "month": 11,
         "date": 13
       }
     }
-  }
+  ]
 }

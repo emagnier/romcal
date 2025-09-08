@@ -1,84 +1,96 @@
 {
+  "$schema": "../../../../schemas/calendar-definition.json",
   "id": "peru",
   "metadata": {
     "jurisdiction": "CIVIL",
     "type": "COUNTRY"
   },
-  "parentCalendarIds": [
+  "parent_calendar_ids": [
     "Americas"
   ],
-  "inputs": {
-    "finding_of_the_holy_cross": {
+  "days_definitions": [
+    {
+      "id": "finding_of_the_holy_cross",
       "precedence": "PROPER_FEAST_8F",
       "dateDef": {
         "month": 5,
         "date": 3
       }
     },
-    "our_lady_help_of_christians": {
+    {
+      "id": "our_lady_help_of_christians",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 5,
         "date": 24
       }
     },
-    "mariana_of_jesus_de_paredes_virgin": {
+    {
+      "id": "mariana_of_jesus_de_paredes_virgin",
       "precedence": "PROPER_FEAST_8F",
       "dateDef": {
         "month": 5,
         "date": 26
       }
     },
-    "francis_solanus_priest": {
+    {
+      "id": "francis_solanus_priest",
       "precedence": "PROPER_FEAST_8F",
       "dateDef": {
         "month": 7,
         "date": 14
       }
     },
-    "our_lady_queen_of_peace": {
+    {
+      "id": "our_lady_queen_of_peace",
       "precedence": "PROPER_FEAST_8F",
       "dateDef": {
         "month": 7,
         "date": 28
       }
     },
-    "rose_of_lima_virgin": {
+    {
+      "id": "rose_of_lima_virgin",
       "precedence": "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A",
       "dateDef": {
         "month": 8,
         "date": 23
       }
     },
-    "john_macias_religious": {
+    {
+      "id": "john_macias_religious",
       "precedence": "PROPER_FEAST_8F",
       "dateDef": {
         "month": 9,
         "date": 18
       }
     },
-    "our_lady_of_mercy": {
+    {
+      "id": "our_lady_of_mercy",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 9,
         "date": 24
       }
     },
-    "our_lord_of_miracles": {
+    {
+      "id": "our_lord_of_miracles",
       "precedence": "PROPER_FEAST_8F",
       "dateDef": {
         "month": 10,
         "date": 28
       }
     },
-    "martin_de_porres_religious": {
+    {
+      "id": "martin_de_porres_religious",
       "precedence": "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A",
       "dateDef": {
         "month": 11,
         "date": 3
       }
     },
-    "our_lord_jesus_christ_the_eternal_high_priest": {
+    {
+      "id": "our_lord_jesus_christ_the_eternal_high_priest",
       "precedence": "PROPER_FEAST_8F",
       "dateDef": {
         "dateFn": "pentecostSunday",
@@ -86,5 +98,5 @@
       },
       "properCycle": "PROPER_OF_TIME"
     }
-  }
+  ]
 }

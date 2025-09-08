@@ -1,94 +1,108 @@
 {
+  "$schema": "../../../../schemas/calendar-definition.json",
   "id": "ukraine",
   "metadata": {
     "jurisdiction": "CIVIL",
     "type": "COUNTRY"
   },
-  "parentCalendarIds": [
+  "parent_calendar_ids": [
     "Europe"
   ],
-  "inputs": {
-    "marcelina_darowska_religious": {
+  "days_definitions": [
+    {
+      "id": "marcelina_darowska_religious",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 1,
         "date": 5
       }
     },
-    "bronislaw_markiewicz_priest": {
+    {
+      "id": "bronislaw_markiewicz_priest",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 1,
         "date": 30
       }
     },
-    "mary_mother_of_the_church": {
+    {
+      "id": "mary_mother_of_the_church",
       "precedence": "PROPER_FEAST_8F"
     },
-    "andrew_bobola_priest": {
+    {
+      "id": "andrew_bobola_priest",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 5,
         "date": 16
       }
     },
-    "john_nepomucene_priest": {
+    {
+      "id": "john_nepomucene_priest",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 5,
         "date": 21
       }
     },
-    "albert_chmielowski_religious": {
+    {
+      "id": "albert_chmielowski_religious",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 6,
         "date": 17
       }
     },
-    "zygmunt_gorazdowski_priest": {
+    {
+      "id": "zygmunt_gorazdowski_priest",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 6,
         "date": 26
       }
     },
-    "john_of_dukla_priest": {
+    {
+      "id": "john_of_dukla_priest",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 7,
         "date": 8
       }
     },
-    "hedwig_of_poland": {
+    {
+      "id": "hedwig_of_poland",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 7,
         "date": 18
       }
     },
-    "olga_of_kiev": {
+    {
+      "id": "olga_of_kiev",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 7,
         "date": 24
       }
     },
-    "vladimir_i_the_great_of_kiev": {
+    {
+      "id": "vladimir_i_the_great_of_kiev",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 7,
         "date": 28
       }
     },
-    "our_lady_of_czestochowa": {
+    {
+      "id": "our_lady_of_czestochowa",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 8,
         "date": 26
       }
     },
-    "wladyslaw_bladzinski_priest_and_companions_martyrs": {
+    {
+      "id": "wladyslaw_bladzinski_priest_and_companions_martyrs",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 9,
@@ -99,19 +113,21 @@
         "companions_martyrs"
       ]
     },
-    "stanislaus_kostka_religious": {
+    {
+      "id": "stanislaus_kostka_religious",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 9,
         "date": 18
       }
     },
-    "joseph_bilczewski_bishop": {
+    {
+      "id": "joseph_bilczewski_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 10,
         "date": 23
       }
     }
-  }
+  ]
 }

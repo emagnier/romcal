@@ -1,57 +1,65 @@
 {
+  "$schema": "../../../../schemas/calendar-definition.json",
   "id": "france__coutances",
   "metadata": {
     "jurisdiction": "ECCLESIASTICAL",
     "type": "DIOCESE"
   },
-  "parentCalendarIds": [
+  "parent_calendar_ids": [
     "Europe",
     "France"
   ],
-  "inputs": {
-    "our_lady_of_pontmain": {
+  "days_definitions": [
+    {
+      "id": "our_lady_of_pontmain",
       "dateDef": {
         "month": 1,
         "date": 17
       },
       "precedence": "PROPER_MEMORIAL_11B"
     },
-    "gaud_of_evreux_bishop": {
+    {
+      "id": "gaud_of_evreux_bishop",
       "dateDef": {
         "month": 1,
         "date": 30
       },
       "precedence": "OPTIONAL_MEMORIAL_12"
     },
-    "augustus_chapdelaine_priest": {
+    {
+      "id": "augustus_chapdelaine_priest",
       "dateDef": {
         "month": 2,
         "date": 28
       },
       "precedence": "PROPER_MEMORIAL_11B"
     },
-    "leon_de_carentan_bishop": {
+    {
+      "id": "leon_de_carentan_bishop",
       "dateDef": {
         "month": 3,
         "date": 1
       },
       "precedence": "OPTIONAL_MEMORIAL_12"
     },
-    "placide_eulalie_victoire_jacqueline_viel_virgin": {
+    {
+      "id": "placide_eulalie_victoire_jacqueline_viel_virgin",
       "dateDef": {
         "month": 3,
         "date": 4
       },
       "precedence": "OPTIONAL_MEMORIAL_12"
     },
-    "marthe_aimee_adele_le_bouteiller_virgin": {
+    {
+      "id": "marthe_aimee_adele_le_bouteiller_virgin",
       "dateDef": {
         "month": 3,
         "date": 18
       },
       "precedence": "OPTIONAL_MEMORIAL_12"
     },
-    "paternus_of_avranches_bishop_and_scubilion_abbot": {
+    {
+      "id": "paternus_of_avranches_bishop_and_scubilion_abbot",
       "dateDef": {
         "month": 4,
         "date": 16
@@ -62,93 +70,107 @@
       ],
       "precedence": "PROPER_MEMORIAL_11B"
     },
-    "william_firmatus_abbot": {
+    {
+      "id": "william_firmatus_abbot",
       "dateDef": {
         "month": 4,
         "date": 24
       },
       "precedence": "OPTIONAL_MEMORIAL_12"
     },
-    "achard_of_saint_victor_bishop": {
+    {
+      "id": "achard_of_saint_victor_bishop",
       "dateDef": {
         "month": 4,
         "date": 29
       },
       "precedence": "OPTIONAL_MEMORIAL_12"
     },
-    "marculf_of_normandy_abbot": {
+    {
+      "id": "marculf_of_normandy_abbot",
       "dateDef": {
         "month": 5,
         "date": 4
       },
       "precedence": "PROPER_MEMORIAL_11B"
     },
-    "germanus_of_normandy_bishop": {
+    {
+      "id": "germanus_of_normandy_bishop",
       "dateDef": {
         "month": 5,
         "date": 6
       },
       "precedence": "OPTIONAL_MEMORIAL_12"
     },
-    "mary_catherine_of_saint_augustine_catherine_de_simon_de_longpre_virgin": {
+    {
+      "id": "mary_catherine_of_saint_augustine_catherine_de_simon_de_longpre_virgin",
       "dateDef": {
         "month": 5,
         "date": 8
       },
       "precedence": "OPTIONAL_MEMORIAL_12"
     },
-    "ortaire_of_landelles_abbot": {
+    {
+      "id": "ortaire_of_landelles_abbot",
       "dateDef": {
         "month": 5,
         "date": 21
       },
       "precedence": "OPTIONAL_MEMORIAL_12"
     },
-    "severus_of_avranches_bishop": {
+    {
+      "id": "severus_of_avranches_bishop",
       "dateDef": {
         "month": 7,
         "date": 6
       },
       "precedence": "OPTIONAL_MEMORIAL_12"
     },
-    "thomas_becket_bishop": {
+    {
+      "id": "thomas_becket_bishop",
       "dateDef": {
         "month": 7,
         "date": 7
       }
     },
-    "dedication_of_the_cathedral_of_notre_dame_of_coutances_france": {
+    {
+      "id": "dedication_of_the_cathedral_of_notre_dame_of_coutances_france",
       "dateDef": {
         "month": 7,
         "date": 12
       },
       "precedence": "PROPER_FEAST__DEDICATION_OF_THE_CATHEDRAL_CHURCH_8B"
     },
-    "helier_of_jersey_martyr": {
+    {
+      "id": "helier_of_jersey_martyr",
       "dateDef": {
         "month": 7,
         "date": 16
       },
       "precedence": "OPTIONAL_MEMORIAL_12"
     },
-    "marie_madeleine_julie_francoise_catherine_postel_virgin": {
+    {
+      "id": "marie_madeleine_julie_francoise_catherine_postel_virgin",
       "dateDef": {
         "month": 7,
         "date": 17
       },
       "precedence": "PROPER_MEMORIAL_11B"
     },
-    "clair_of_normandy_priest": {
+    {
+      "id": "clair_of_normandy_priest",
       "dateDef": {
         "month": 7,
         "date": 18
       },
       "precedence": "OPTIONAL_MEMORIAL_12"
     },
-    "john_eudes_priest": {
+    {
+      "id": "john_eudes_priest",
       "precedence": "PROPER_MEMORIAL_11B"
     },
-    "jacques_francois_lefranc_martyr_and_martyrs_of_the_revolution": {
+    {
+      "id": "jacques_francois_lefranc_martyr_and_martyrs_of_the_revolution",
       "dateDef": {
         "month": 9,
         "date": 2
@@ -162,42 +184,48 @@
         }
       ]
     },
-    "audomar_of_therouanne_bishop": {
+    {
+      "id": "audomar_of_therouanne_bishop",
       "dateDef": {
         "month": 9,
         "date": 9
       },
       "precedence": "OPTIONAL_MEMORIAL_12"
     },
-    "aubert_of_avranches_bishop": {
+    {
+      "id": "aubert_of_avranches_bishop",
       "dateDef": {
         "month": 9,
         "date": 10
       },
       "precedence": "PROPER_MEMORIAL_11B"
     },
-    "floscellus_of_normandy_martyr": {
+    {
+      "id": "floscellus_of_normandy_martyr",
       "dateDef": {
         "month": 9,
         "date": 17
       },
       "precedence": "OPTIONAL_MEMORIAL_12"
     },
-    "senerius_of_normandy_bishop": {
+    {
+      "id": "senerius_of_normandy_bishop",
       "dateDef": {
         "month": 9,
         "date": 18
       },
       "precedence": "OPTIONAL_MEMORIAL_12"
     },
-    "vitalis_of_savigny_abbot": {
+    {
+      "id": "vitalis_of_savigny_abbot",
       "dateDef": {
         "month": 9,
         "date": 19
       },
       "precedence": "PROPER_MEMORIAL_11B"
     },
-    "laud_of_coutances_bishop": {
+    {
+      "id": "laud_of_coutances_bishop",
       "customLocaleId": "laud_of_coutances_bishop_patron_of_the_diocese_of_coutances",
       "dateDef": {
         "month": 9,
@@ -210,7 +238,8 @@
         ]
       }
     },
-    "john_de_brebeuf_isaac_jogues_priests_and_companions_martyrs": {
+    {
+      "id": "john_de_brebeuf_isaac_jogues_priests_and_companions_martyrs",
       "customLocaleId": "john_de_brebeuf_priest_and_companions_martyrs",
       "dateDef": {
         "month": 9,
@@ -222,7 +251,8 @@
         "companions_martyrs"
       ]
     },
-    "all_holy_bishops_and_priests_of_the_diocese_of_coutances": {
+    {
+      "id": "all_holy_bishops_and_priests_of_the_diocese_of_coutances",
       "dateDef": {
         "month": 10,
         "date": 12
@@ -233,28 +263,32 @@
         "all_holy_priest_of_the_diocese_of_coutances"
       ]
     },
-    "peter_adrian_toulorge_priest": {
+    {
+      "id": "peter_adrian_toulorge_priest",
       "dateDef": {
         "month": 10,
         "date": 13
       },
       "precedence": "PROPER_MEMORIAL_11B"
     },
-    "dedication_of_the_basilica_of_mont_saint_michel_france": {
+    {
+      "id": "dedication_of_the_basilica_of_mont_saint_michel_france",
       "dateDef": {
         "month": 10,
         "date": 16
       },
       "precedence": "PROPER_MEMORIAL_11B"
     },
-    "thomas_helye_priest": {
+    {
+      "id": "thomas_helye_priest",
       "dateDef": {
         "month": 10,
         "date": 19
       },
       "precedence": "PROPER_MEMORIAL_11B"
     },
-    "adeline_de_mortain_abbess_and_the_saints_of_savigny": {
+    {
+      "id": "adeline_de_mortain_abbess_and_the_saints_of_savigny",
       "dateDef": {
         "month": 10,
         "date": 20
@@ -266,33 +300,37 @@
         "guillaume_niobe_of_savigny_religious"
       ]
     },
-    "maglorius_of_dol_monk": {
+    {
+      "id": "maglorius_of_dol_monk",
       "dateDef": {
         "month": 10,
         "date": 25
       },
       "precedence": "OPTIONAL_MEMORIAL_12"
     },
-    "fromundus_of_coutances_bishop": {
+    {
+      "id": "fromundus_of_coutances_bishop",
       "dateDef": {
         "month": 10,
         "date": 26
       },
       "precedence": "PROPER_MEMORIAL_11B"
     },
-    "all_saints_of_the_diocese_of_coutances": {
+    {
+      "id": "all_saints_of_the_diocese_of_coutances",
       "dateDef": {
         "month": 11,
         "date": 8
       },
       "precedence": "PROPER_MEMORIAL_11B"
     },
-    "rumpharius_of_coutances_bishop": {
+    {
+      "id": "rumpharius_of_coutances_bishop",
       "dateDef": {
         "month": 11,
         "date": 19
       },
       "precedence": "PROPER_MEMORIAL_11B"
     }
-  }
+  ]
 }

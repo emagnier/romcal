@@ -1,123 +1,140 @@
 {
+  "$schema": "../../../../schemas/calendar-definition.json",
   "id": "greece",
   "metadata": {
     "jurisdiction": "CIVIL",
     "type": "COUNTRY"
   },
-  "parentCalendarIds": [
-    "Europe"
-  ],
   "particularConfig": {
     "easterCalculationType": "julian"
   },
-  "inputs": {
-    "cyril_of_jerusalem_bishop": {
+  "parent_calendar_ids": [
+    "Europe"
+  ],
+  "days_definitions": [
+    {
+      "id": "cyril_of_jerusalem_bishop",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 3,
         "date": 18
       }
     },
-    "adalbert_of_prague_bishop": {
+    {
+      "id": "adalbert_of_prague_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 4,
         "date": 22
       }
     },
-    "george_of_lydda_martyr": {
+    {
+      "id": "george_of_lydda_martyr",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 4,
         "date": 23
       }
     },
-    "irene_of_macedonia": {
+    {
+      "id": "irene_of_macedonia",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 5,
         "date": 5
       }
     },
-    "our_lady_of_fatima": {
+    {
+      "id": "our_lady_of_fatima",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 5,
         "date": 15
       }
     },
-    "cyril_of_alexandria_bishop": {
+    {
+      "id": "cyril_of_alexandria_bishop",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 6,
         "date": 27
       }
     },
-    "margaret_of_antioch_virgin": {
+    {
+      "id": "margaret_of_antioch_virgin",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 7,
         "date": 17
       }
     },
-    "pantaleon_of_nicomedia_martyr": {
+    {
+      "id": "pantaleon_of_nicomedia_martyr",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 7,
         "date": 27
       }
     },
-    "lydia_of_philippi": {
+    {
+      "id": "lydia_of_philippi",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 8,
         "date": 3
       }
     },
-    "cosmas_of_cilicia_and_damian_of_cilicia_martyrs": {
+    {
+      "id": "cosmas_of_cilicia_and_damian_of_cilicia_martyrs",
       "precedence": "PROPER_MEMORIAL_11B"
     },
-    "dionysius_the_areopagite_bishop": {
+    {
+      "id": "dionysius_the_areopagite_bishop",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 10,
         "date": 3
       }
     },
-    "demetrius_of_thessaloniki_martyr": {
+    {
+      "id": "demetrius_of_thessaloniki_martyr",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 10,
         "date": 26
       }
     },
-    "presentation_of_the_blessed_virgin_mary": {
+    {
+      "id": "presentation_of_the_blessed_virgin_mary",
       "precedence": "PROPER_FEAST_8F",
       "dateDef": {
         "month": 11,
         "date": 21
       }
     },
-    "barbara_of_heliopolis_virgin": {
+    {
+      "id": "barbara_of_heliopolis_virgin",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 12,
         "date": 4
       }
     },
-    "nicholas_of_myra_bishop": {
+    {
+      "id": "nicholas_of_myra_bishop",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 12,
         "date": 6
       }
     },
-    "spyridon_of_trimythous_bishop": {
+    {
+      "id": "spyridon_of_trimythous_bishop",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 12,
         "date": 12
       }
     }
-  }
+  ]
 }

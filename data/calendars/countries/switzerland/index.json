@@ -1,19 +1,21 @@
 {
+  "$schema": "../../../../schemas/calendar-definition.json",
   "id": "switzerland",
   "metadata": {
     "jurisdiction": "CIVIL",
     "type": "COUNTRY"
   },
-  "parentCalendarIds": [
+  "parent_calendar_ids": [
     "Europe"
   ],
-  "inputs": {
-    "john_nepomucene_priest": {
+  "days_definitions": [
+    {
+      "id": "john_nepomucene_priest",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 5,
         "date": 16
       }
     }
-  }
+  ]
 }

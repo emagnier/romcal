@@ -6,11 +6,12 @@
   "main": "pkg/romcal.js",
   "types": "pkg/romcal.d.ts",
   "scripts": {
-    "build": "./build.sh && npm run build:ts",
+    "build": "../../scripts/build-wasm.sh && npm run build:ts",
     "build:ts": "tsc && cp -r pkg dist/",
     "build:wasm": "wasm-pack build --target nodejs --out-dir pkg",
     "build-web": "wasm-pack build --target web --out-dir pkg",
     "build-bundler": "wasm-pack build --target bundler --out-dir pkg",
+    "generate-types": "json2ts --input ../../schemas/all-types.json --output src/types.ts --inferStringEnumKeysFromValues --enableConstEnums false",
     "test": "npx tsx test.ts",
     "test:compiled": "npm run build && node dist/test.js"
   },
@@ -23,9 +24,10 @@
   ],
   "author": "Romcal Contributors",
   "devDependencies": {
-    "tsx": "^4.7.0",
-    "typescript": "^5.3.0",
-    "@types/node": "^20.0.0"
+    "@types/node": "^24.3.1",
+    "json-schema-to-typescript": "^15.0.4",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
   },
   "license": "MIT"
 }

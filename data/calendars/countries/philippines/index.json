@@ -1,12 +1,14 @@
 {
+  "$schema": "../../../../schemas/calendar-definition.json",
   "id": "philippines",
   "metadata": {
     "jurisdiction": "CIVIL",
     "type": "COUNTRY"
   },
-  "parentCalendarIds": [],
-  "inputs": {
-    "holy_child_of_cebu": {
+  "parent_calendar_ids": [],
+  "days_definitions": [
+    {
+      "id": "holy_child_of_cebu",
       "precedence": "PROPER_FEAST_8F",
       "dateDef": {
         "month": 1,
@@ -14,7 +16,8 @@
         "nthWeekInMonth": 3
       }
     },
-    "peter_baptist_blasquez_paul_miki_and_companions_martyrs": {
+    {
+      "id": "peter_baptist_blasquez_paul_miki_and_companions_martyrs",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 2,
@@ -26,7 +29,8 @@
         "companions_martyrs"
       ]
     },
-    "pedro_calungsod_martyr": {
+    {
+      "id": "pedro_calungsod_martyr",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 4,
@@ -57,28 +61,32 @@
         }
       ]
     },
-    "isidore_the_farmer": {
+    {
+      "id": "isidore_the_farmer",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 5,
         "date": 15
       }
     },
-    "roch_of_montpellier": {
+    {
+      "id": "roch_of_montpellier",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 8,
         "date": 16
       }
     },
-    "ezequiel_moreno_bishop": {
+    {
+      "id": "ezequiel_moreno_bishop",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 8,
         "date": 19
       }
     },
-    "rose_of_lima_virgin": {
+    {
+      "id": "rose_of_lima_virgin",
       "customLocaleId": "rose_of_lima_virgin_copatroness_of_the_philippines",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
@@ -91,10 +99,12 @@
         ]
       }
     },
-    "lawrence_ruiz_and_companions_martyrs": {
+    {
+      "id": "lawrence_ruiz_and_companions_martyrs",
       "precedence": "PROPER_MEMORIAL_11B"
     },
-    "immaculate_conception_of_the_blessed_virgin_mary": {
+    {
+      "id": "immaculate_conception_of_the_blessed_virgin_mary",
       "customLocaleId": "immaculate_conception_of_the_blessed_virgin_mary_patroness_of_the_philippines",
       "precedence": "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A",
       "dateDef": {
@@ -107,7 +117,8 @@
         ]
       }
     },
-    "our_lady_of_guadalupe": {
+    {
+      "id": "our_lady_of_guadalupe",
       "customLocaleId": "our_lady_of_guadalupe_patroness_of_the_philippines",
       "precedence": "PROPER_MEMORIAL_11B",
       "titles": {
@@ -116,5 +127,5 @@
         ]
       }
     }
-  }
+  ]
 }

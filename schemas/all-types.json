@@ -1,0 +1,1028 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CalendarDefinition",
+  "type": "object",
+  "required": [
+    "days_definitions",
+    "id",
+    "metadata",
+    "parent_calendar_ids"
+  ],
+  "properties": {
+    "days_definitions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/DayDefinition"
+      }
+    },
+    "id": {
+      "type": "string"
+    },
+    "metadata": {
+      "$ref": "#/definitions/CalendarMetadata"
+    },
+    "parent_calendar_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "particular_config": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/ParticularConfig"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "definitions": {
+    "CalendarJurisdiction": {
+      "type": "string",
+      "enum": [
+        "ECCLESIASTICAL",
+        "CIVIL"
+      ]
+    },
+    "CalendarMetadata": {
+      "type": "object",
+      "required": [
+        "jurisdiction",
+        "type"
+      ],
+      "properties": {
+        "jurisdiction": {
+          "$ref": "#/definitions/CalendarJurisdiction"
+        },
+        "type": {
+          "$ref": "#/definitions/CalendarType"
+        }
+      }
+    },
+    "CalendarType": {
+      "type": "string",
+      "enum": [
+        "GENERAL_ROMAN",
+        "REGION",
+        "COUNTRY",
+        "ARCHDIOCESE",
+        "DIOCESE",
+        "CITY",
+        "PARISH",
+        "GENERAL_COMMUNITY",
+        "REGIONAL_COMMUNITY",
+        "LOCAL_COMMUNITY",
+        "OTHER"
+      ]
+    },
+    "CommonDefinition": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "DEDICATION_ANNIVERSARY__INSIDE",
+        "DEDICATION_ANNIVERSARY__OUTSIDE",
+        "BLESSED_VIRGIN_MARY",
+        "MARTYRS",
+        "MISSIONARY_MARTYRS",
+        "VIRGIN_MARTYRS",
+        "WOMAN_MARTYRS",
+        "PASTORS",
+        "POPES",
+        "BISHOPS",
+        "FOUNDERS",
+        "MISSIONARIES",
+        "DOCTORS_OF_THE_CHURCH",
+        "VIRGINS",
+        "SAINTS",
+        "ABBOTS",
+        "MONKS",
+        "NUNS",
+        "RELIGIOUS",
+        "MERCY_WORKERS",
+        "EDUCATORS",
+        "HOLY_WOMEN"
+      ]
+    },
+    "CompoundTitle": {
+      "type": "object",
+      "properties": {
+        "append": {
+          "description": "Add title(s) to the end of the existing list of title(s).",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Title"
+          }
+        },
+        "prepend": {
+          "description": "Add title(s) to the beginning of the existing list of title(s).",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Title"
+          }
+        }
+      }
+    },
+    "DateDef": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "date",
+            "month",
+            "type"
+          ],
+          "properties": {
+            "date": {
+              "description": "The date of this liturgical day.",
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0.0
+            },
+            "month": {
+              "description": "The month of this liturgical day.",
+              "allOf": [
+                {
+                  "$ref": "#/definitions/MonthIndex"
+                }
+              ]
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "MonthDate"
+              ]
+            },
+            "year_offset": {
+              "description": "Offset the current year to compute dates in the scope of different years.",
+              "type": [
+                "integer",
+                "null"
+              ],
+              "format": "int32"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "date_fn",
+            "type"
+          ],
+          "properties": {
+            "add_day": {
+              "description": "Add additional day(s) to the date computed from the 'dateFn' option.",
+              "type": [
+                "integer",
+                "null"
+              ],
+              "format": "int32"
+            },
+            "date_args": {
+              "description": "Possible date function arguments that may be required.",
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            "date_fn": {
+              "description": "A date function name from the [Date] class.",
+              "allOf": [
+                {
+                  "$ref": "#/definitions/DateFn"
+                }
+              ]
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "DateFnAddDay"
+              ]
+            },
+            "year_offset": {
+              "description": "Offset the current year to compute dates in the scope of different years.",
+              "type": [
+                "integer",
+                "null"
+              ],
+              "format": "int32"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "date_fn",
+            "type"
+          ],
+          "properties": {
+            "date_args": {
+              "description": "Possible date function arguments that may be required.",
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            "date_fn": {
+              "description": "A date function name from the [Date] class.",
+              "allOf": [
+                {
+                  "$ref": "#/definitions/DateFn"
+                }
+              ]
+            },
+            "subtract_day": {
+              "description": "Subtract some day(s) to the date computed from the 'dateFn' option.",
+              "type": [
+                "integer",
+                "null"
+              ],
+              "format": "int32"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "DateFnSubtractDay"
+              ]
+            },
+            "year_offset": {
+              "description": "Offset the current year to compute dates in the scope of different years.",
+              "type": [
+                "integer",
+                "null"
+              ],
+              "format": "int32"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "day_of_week",
+            "month",
+            "nth_week_in_month",
+            "type"
+          ],
+          "properties": {
+            "day_of_week": {
+              "description": "The day of week this liturgical year must occur.",
+              "allOf": [
+                {
+                  "$ref": "#/definitions/DayOfWeek"
+                }
+              ]
+            },
+            "month": {
+              "description": "The month of this liturgical day.",
+              "allOf": [
+                {
+                  "$ref": "#/definitions/MonthIndex"
+                }
+              ]
+            },
+            "nth_week_in_month": {
+              "description": "The nth week in the month this liturgical year must occur.",
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0.0
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "MonthDowNthWeekInMonth"
+              ]
+            },
+            "year_offset": {
+              "description": "Offset the current year to compute dates in the scope of different years.",
+              "type": [
+                "integer",
+                "null"
+              ],
+              "format": "int32"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "last_day_of_week_in_month",
+            "month",
+            "type"
+          ],
+          "properties": {
+            "last_day_of_week_in_month": {
+              "description": "The last day of week in the month this liturgical year must occur.",
+              "allOf": [
+                {
+                  "$ref": "#/definitions/DayOfWeek"
+                }
+              ]
+            },
+            "month": {
+              "description": "The month of this liturgical day.",
+              "allOf": [
+                {
+                  "$ref": "#/definitions/MonthIndex"
+                }
+              ]
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "MonthLastDowInMonth"
+              ]
+            },
+            "year_offset": {
+              "description": "Offset the current year to compute dates in the scope of different years.",
+              "type": [
+                "integer",
+                "null"
+              ],
+              "format": "int32"
+            }
+          }
+        }
+      ]
+    },
+    "DateDefException": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "from",
+            "inclusive",
+            "to",
+            "type"
+          ],
+          "properties": {
+            "from": {
+              "$ref": "#/definitions/DateDef"
+            },
+            "inclusive": {
+              "type": "boolean"
+            },
+            "to": {
+              "$ref": "#/definitions/DateDef"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "IfIsBetween"
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "oneOf": [
+            {
+              "type": "object",
+              "required": [
+                "date",
+                "month",
+                "type"
+              ],
+              "properties": {
+                "date": {
+                  "description": "The date of this liturgical day.",
+                  "type": "integer",
+                  "format": "uint32",
+                  "minimum": 0.0
+                },
+                "month": {
+                  "description": "The month of this liturgical day.",
+                  "allOf": [
+                    {
+                      "$ref": "#/definitions/MonthIndex"
+                    }
+                  ]
+                },
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "MonthDate"
+                  ]
+                },
+                "year_offset": {
+                  "description": "Offset the current year to compute dates in the scope of different years.",
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "format": "int32"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "required": [
+                "date_fn",
+                "type"
+              ],
+              "properties": {
+                "add_day": {
+                  "description": "Add additional day(s) to the date computed from the 'dateFn' option.",
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "format": "int32"
+                },
+                "date_args": {
+                  "description": "Possible date function arguments that may be required.",
+                  "type": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                },
+                "date_fn": {
+                  "description": "A date function name from the [Date] class.",
+                  "allOf": [
+                    {
+                      "$ref": "#/definitions/DateFn"
+                    }
+                  ]
+                },
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "DateFnAddDay"
+                  ]
+                },
+                "year_offset": {
+                  "description": "Offset the current year to compute dates in the scope of different years.",
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "format": "int32"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "required": [
+                "date_fn",
+                "type"
+              ],
+              "properties": {
+                "date_args": {
+                  "description": "Possible date function arguments that may be required.",
+                  "type": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                },
+                "date_fn": {
+                  "description": "A date function name from the [Date] class.",
+                  "allOf": [
+                    {
+                      "$ref": "#/definitions/DateFn"
+                    }
+                  ]
+                },
+                "subtract_day": {
+                  "description": "Subtract some day(s) to the date computed from the 'dateFn' option.",
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "format": "int32"
+                },
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "DateFnSubtractDay"
+                  ]
+                },
+                "year_offset": {
+                  "description": "Offset the current year to compute dates in the scope of different years.",
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "format": "int32"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "required": [
+                "day_of_week",
+                "month",
+                "nth_week_in_month",
+                "type"
+              ],
+              "properties": {
+                "day_of_week": {
+                  "description": "The day of week this liturgical year must occur.",
+                  "allOf": [
+                    {
+                      "$ref": "#/definitions/DayOfWeek"
+                    }
+                  ]
+                },
+                "month": {
+                  "description": "The month of this liturgical day.",
+                  "allOf": [
+                    {
+                      "$ref": "#/definitions/MonthIndex"
+                    }
+                  ]
+                },
+                "nth_week_in_month": {
+                  "description": "The nth week in the month this liturgical year must occur.",
+                  "type": "integer",
+                  "format": "uint32",
+                  "minimum": 0.0
+                },
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "MonthDowNthWeekInMonth"
+                  ]
+                },
+                "year_offset": {
+                  "description": "Offset the current year to compute dates in the scope of different years.",
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "format": "int32"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "required": [
+                "last_day_of_week_in_month",
+                "month",
+                "type"
+              ],
+              "properties": {
+                "last_day_of_week_in_month": {
+                  "description": "The last day of week in the month this liturgical year must occur.",
+                  "allOf": [
+                    {
+                      "$ref": "#/definitions/DayOfWeek"
+                    }
+                  ]
+                },
+                "month": {
+                  "description": "The month of this liturgical day.",
+                  "allOf": [
+                    {
+                      "$ref": "#/definitions/MonthIndex"
+                    }
+                  ]
+                },
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "MonthLastDowInMonth"
+                  ]
+                },
+                "year_offset": {
+                  "description": "Offset the current year to compute dates in the scope of different years.",
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "format": "int32"
+                }
+              }
+            }
+          ],
+          "required": [
+            "type"
+          ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "IfIsSameAsDate"
+              ]
+            }
+          }
+        },
+        {
+          "type": [
+            "object",
+            "integer"
+          ],
+          "format": "uint8",
+          "minimum": 0.0,
+          "required": [
+            "type"
+          ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "IfIsDayOfWeek"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "DateFn": {
+      "type": "string",
+      "enum": [
+        "EASTER_SUNDAY",
+        "EPIPHANY_SUNDAY",
+        "CORPUS_CHRISTI_SUNDAY",
+        "EASTER_MONDAY"
+      ]
+    },
+    "DayDefinition": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "allow_similar_rank_items": {
+          "description": "In addition to this liturgical day, allow similar items that have the same rank, and the same or lower precedence, so the current liturgical day will not overwrite another defined item.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "commons_def": {
+          "description": "The **Common** refers to a set of prayers, readings, and chants used for celebrating saints or feasts that belong to a specific category, such as martyrs, virgins, pastors, or the Blessed Virgin Mary.",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/CommonDefinition"
+          }
+        },
+        "custom_locale_id": {
+          "description": "Specify a custom locale ID for this date definition, in this calendar.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "date_def": {
+          "description": "Date definition",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/DateDef"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "date_exceptions": {
+          "description": "Date definition exception",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/DateDefException"
+          }
+        },
+        "id": {
+          "type": "string"
+        },
+        "is_holy_day_of_obligation": {
+          "description": "Holy days of obligation are days on which the faithful are expected to attend Mass, and engage in rest from work and recreation.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "is_optional": {
+          "description": "Specify is this LiturgicalDay is optional within a specific liturgical calendar.\n\nUNLY #14: Memorials are either obligatory or optional; their observance is integrated into the celebration of the occurring weekday in accordance with the norms set forth in the General Instruction of the Roman Missal and of the Liturgy of the Hours\n\nNote: also used for the dedication of consecrated churches, which is an optional solemnity that should not overwrite the default weekday.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "martyrology": {
+          "description": "Link one or multiple Saints, Blessed, or any other celebrations from the Martyrology catalog.",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/MartyrologyItemPointer"
+          }
+        },
+        "precedence": {
+          "description": "The precedence type of the liturgical day.",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Precedence"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "titles": {
+          "description": "Combined titles of each Saints linked to this date definition.",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/TitlesDef"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "DayOfWeek": {
+      "type": "integer",
+      "format": "uint8",
+      "minimum": 0.0
+    },
+    "EasterCalculationType": {
+      "type": "string",
+      "enum": [
+        "GREGORIAN",
+        "JULIAN"
+      ]
+    },
+    "MartyrologyItemPointer": {
+      "oneOf": [
+        {
+          "type": [
+            "object",
+            "string"
+          ],
+          "required": [
+            "type"
+          ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "ResourceId"
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "id",
+            "type"
+          ],
+          "properties": {
+            "count": {
+              "description": "Specify the number of persons this martyrology item is representing.",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SaintCount"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "hide_titles": {
+              "description": "Specify if titles should not be displayed. This can occur when a title is already included in the name of the martyrology item.",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "id": {
+              "description": "The ID of the martyrology item.",
+              "type": "string"
+            },
+            "titles": {
+              "description": "The redefined titles of the martyrology item.",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/TitlesDef"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "Redefined"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "MonthIndex": {
+      "type": "integer",
+      "format": "uint8",
+      "minimum": 0.0
+    },
+    "ParticularConfig": {
+      "type": "object",
+      "required": [
+        "ascension_on_sunday",
+        "corpus_christi_on_sunday",
+        "easter_calculation_type",
+        "epiphany_on_sunday"
+      ],
+      "properties": {
+        "ascension_on_sunday": {
+          "description": "Configuration options specific to this calendar. These settings can override or extend the default Romcal configuration or any parent calendar configuration.",
+          "type": "boolean"
+        },
+        "corpus_christi_on_sunday": {
+          "type": "boolean"
+        },
+        "easter_calculation_type": {
+          "$ref": "#/definitions/EasterCalculationType"
+        },
+        "epiphany_on_sunday": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Precedence": {
+      "type": "string",
+      "enum": [
+        "TRIDUUM_1",
+        "PROPER_OF_TIME_SOLEMNITY_2",
+        "PRIVILEGED_SUNDAY_2",
+        "ASH_WEDNESDAY_2",
+        "WEEKDAY_OF_HOLY_WEEK_2",
+        "WEEKDAY_OF_EASTER_OCTAVE_2",
+        "GENERAL_SOLEMNITY_3",
+        "COMMEMORATION_OF_ALL_THE_FAITHFUL_DEPARTED_3",
+        "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A",
+        "PROPER_SOLEMNITY__DEDICATION_OF_THE_OWN_CHURCH_4B",
+        "PROPER_SOLEMNITY__TITLE_OF_THE_OWN_CHURCH_4C",
+        "PROPER_SOLEMNITY__TITLE_OR_FOUNDER_OR_PRIMARY_PATRON_OF_A_RELIGIOUS_ORG_4D",
+        "GENERAL_LORD_FEAST_5",
+        "UNPRIVILEGED_SUNDAY_6",
+        "GENERAL_FEAST_7",
+        "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_DIOCESE_8A",
+        "PROPER_FEAST__DEDICATION_OF_THE_CATHEDRAL_CHURCH_8B",
+        "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C",
+        "PROPER_FEAST__TITLE_OR_FOUNDER_OR_PRIMARY_PATRON_OF_A_RELIGIOUS_ORG_8D",
+        "PROPER_FEAST__TO_AN_INDIVIDUAL_CHURCH_8E",
+        "PROPER_FEAST_8F",
+        "PRIVILEGED_WEEKDAY_9",
+        "GENERAL_MEMORIAL_10",
+        "PROPER_MEMORIAL__SECOND_PATRON_11A",
+        "PROPER_MEMORIAL_11B",
+        "OPTIONAL_MEMORIAL_12",
+        "WEEKDAY_13"
+      ]
+    },
+    "SaintCount": {
+      "oneOf": [
+        {
+          "type": [
+            "object",
+            "integer"
+          ],
+          "format": "uint32",
+          "minimum": 0.0,
+          "required": [
+            "type"
+          ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "Number"
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "type"
+          ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "Many"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "Title": {
+      "type": "string",
+      "enum": [
+        "ABBESS",
+        "ABBOT",
+        "APOSTLE",
+        "ARCHANGEL",
+        "BISHOP",
+        "DEACON",
+        "DOCTOR_OF_THE_CHURCH",
+        "EMPRESS",
+        "EVANGELIST",
+        "FIRST_BISHOP",
+        "HERMIT",
+        "KING",
+        "MARTYR",
+        "MISSIONARY",
+        "MONK",
+        "MOTHER_AND_QUEEN_OF_CHILE",
+        "PARENTS_OF_THE_BLESSED_VIRGIN_MARY",
+        "POPE",
+        "PATRIARCH",
+        "PILGRIM",
+        "PRIEST",
+        "PROPHET",
+        "PROTO_MARTYR_OF_OCEANIA",
+        "QUEEN",
+        "QUEEN_OF_POLAND",
+        "RELIGIOUS",
+        "SLAVIC_MISSIONARY",
+        "SPOUSE_OF_THE_BLESSED_VIRGIN_MARY",
+        "THE_FIRST_MARTYR",
+        "VIRGIN",
+        "COPATRON_OF_EUROPE",
+        "COPATRON_OF_IRELAND",
+        "COPATRON_OF_CANADA",
+        "COPATRONESS_OF_EUROPE",
+        "COPATRONESS_OF_FRANCE",
+        "COPATRONESS_OF_IRELAND",
+        "COPATRONESS_OF_ITALY_AND_EUROPE",
+        "COPATRONESS_OF_THE_PHILIPPINES",
+        "PATRON_OF_CANADA",
+        "PATRON_OF_ENGLAND",
+        "PATRON_OF_EUROPE",
+        "PATRON_OF_FRANCE",
+        "PATRON_OF_IRELAND",
+        "PATRON_OF_ITALY",
+        "PATRON_OF_OCEANIA",
+        "PATRON_OF_POLAND",
+        "PATRON_OF_RUSSIA",
+        "PATRON_OF_SCOTLAND",
+        "PATRON_OF_SPAIN",
+        "PATRON_OF_THE_CZECH_NATION",
+        "PATRON_OF_THE_DIOCESE",
+        "PATRON_OF_WALES",
+        "PATRONESS_OF_ALSACE",
+        "PATRONESS_OF_ARGENTINA",
+        "PATRONESS_OF_BRAZIL",
+        "PATRONESS_OF_HUNGARY",
+        "PATRONESS_OF_PUERTO_RICO",
+        "PATRONESS_OF_SLOVAKIA",
+        "PATRONESS_OF_THE_AMERICAS",
+        "PATRONESS_OF_THE_PHILIPPINES",
+        "PATRONESS_OF_THE_PROVINCE_OF_QUEBEC",
+        "PATRONESS_OF_THE_USA",
+        "PATRON_OF_THE_CLERGY_OF_THE_ARCHDIOCESE_OF_LYON",
+        "PATRON_OF_THE_CITY_OF_LYON",
+        "PATRONESS_OF_COSTA_RICA",
+        "PRINCIPAL_PATRON_OF_THE_DIOCESE",
+        "SECOND_PATRON_OF_THE_DIOCESE"
+      ]
+    },
+    "TitlesDef": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Title"
+          }
+        },
+        {
+          "$ref": "#/definitions/CompoundTitle"
+        }
+      ]
+    }
+  }
+}

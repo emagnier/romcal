@@ -1,56 +1,64 @@
 {
+  "$schema": "../../../../schemas/calendar-definition.json",
   "id": "scotland",
   "metadata": {
     "jurisdiction": "CIVIL",
     "type": "COUNTRY"
   },
-  "parentCalendarIds": [
+  "parent_calendar_ids": [
     "Europe"
   ],
-  "inputs": {
-    "kentigern_of_scotland_bishop": {
+  "days_definitions": [
+    {
+      "id": "kentigern_of_scotland_bishop",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 1,
         "date": 13
       }
     },
-    "john_ogilvie_priest": {
+    {
+      "id": "john_ogilvie_priest",
       "precedence": "PROPER_FEAST_8F",
       "dateDef": {
         "month": 3,
         "date": 10
       }
     },
-    "patrick_of_ireland_bishop": {
+    {
+      "id": "patrick_of_ireland_bishop",
       "precedence": "PROPER_FEAST_8F",
       "dateDef": {
         "month": 3,
         "date": 17
       }
     },
-    "columba_of_iona_abbot": {
+    {
+      "id": "columba_of_iona_abbot",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 6,
         "date": 9
       }
     },
-    "ninian_of_whithorn_bishop": {
+    {
+      "id": "ninian_of_whithorn_bishop",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 9,
         "date": 16
       }
     },
-    "margaret_of_scotland": {
+    {
+      "id": "margaret_of_scotland",
       "precedence": "PROPER_FEAST_8F",
       "dateDef": {
         "month": 11,
         "date": 16
       }
     },
-    "andrew_apostle": {
+    {
+      "id": "andrew_apostle",
       "customLocaleId": "andrew_apostle_patron_of_scotland",
       "precedence": "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A",
       "titles": {
@@ -59,5 +67,5 @@
         ]
       }
     }
-  }
+  ]
 }

@@ -12,12 +12,14 @@
 //! let easter = dates.get_easter_sunday_date_unwrap(None);
 //! ```
 
+pub mod calendar_def;
 pub mod config;
 pub mod dates;
 pub mod easter;
 pub mod error;
 pub mod wasm;
 
+pub use calendar_def::*;
 pub use config::{CalendarScope, EasterCalculationType, LiturgicalConfig};
 pub use dates::{LiturgicalDates, Season};
 pub use error::{validate_range, validate_year, RomcalError, RomcalResult, Validate};

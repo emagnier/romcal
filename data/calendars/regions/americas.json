@@ -1,12 +1,14 @@
 {
+  "$schema": "../../../schemas/calendar-definition.json",
   "id": "americas",
   "metadata": {
     "jurisdiction": "CIVIL",
     "type": "REGION"
   },
-  "parentCalendarIds": [],
-  "inputs": {
-    "our_lady_of_guadalupe": {
+  "parent_calendar_ids": [],
+  "days_definitions": [
+    {
+      "id": "our_lady_of_guadalupe",
       "customLocaleId": "our_lady_of_guadalupe_patroness_of_the_americas",
       "precedence": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C",
       "titles": {
@@ -16,5 +18,5 @@
       },
       "commonsDef": "None"
     }
-  }
+  ]
 }

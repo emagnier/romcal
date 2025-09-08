@@ -1,42 +1,48 @@
 {
+  "$schema": "../../../../schemas/calendar-definition.json",
   "id": "hungary",
   "metadata": {
     "jurisdiction": "CIVIL",
     "type": "COUNTRY"
   },
-  "parentCalendarIds": [
+  "parent_calendar_ids": [
     "Europe"
   ],
-  "inputs": {
-    "paul_of_thebes_hermit": {
+  "days_definitions": [
+    {
+      "id": "paul_of_thebes_hermit",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 1,
         "date": 15
       }
     },
-    "margaret_of_hungary_religious": {
+    {
+      "id": "margaret_of_hungary_religious",
       "precedence": "PROPER_FEAST_8F",
       "dateDef": {
         "month": 1,
         "date": 18
       }
     },
-    "eusebius_of_esztergom_priest": {
+    {
+      "id": "eusebius_of_esztergom_priest",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 1,
         "date": 20
       }
     },
-    "ladislaus_batthyany_strattmann": {
+    {
+      "id": "ladislaus_batthyany_strattmann",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 1,
         "date": 22
       }
     },
-    "jacinta_marto_and_francisco_marto": {
+    {
+      "id": "jacinta_marto_and_francisco_marto",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 2,
@@ -47,160 +53,183 @@
         "francisco_marto"
       ]
     },
-    "matthias_apostle": {
+    {
+      "id": "matthias_apostle",
       "dateDef": {
         "month": 2,
         "date": 24
       }
     },
-    "zoltan_lajos_meszlenyi_bishop": {
+    {
+      "id": "zoltan_lajos_meszlenyi_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 3,
         "date": 4
       }
     },
-    "bernadette_soubirous_virgin": {
+    {
+      "id": "bernadette_soubirous_virgin",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 4,
         "date": 16
       }
     },
-    "adalbert_of_prague_bishop": {
+    {
+      "id": "adalbert_of_prague_bishop",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 4,
         "date": 23
       }
     },
-    "george_of_lydda_martyr": {
+    {
+      "id": "george_of_lydda_martyr",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 4,
         "date": 24
       }
     },
-    "florian_of_lorch_martyr": {
+    {
+      "id": "florian_of_lorch_martyr",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 5,
         "date": 4
       }
     },
-    "ceferino_gimenez_malla_martyr": {
+    {
+      "id": "ceferino_gimenez_malla_martyr",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 5,
         "date": 4
       }
     },
-    "gisela_of_hungary": {
+    {
+      "id": "gisela_of_hungary",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 5,
         "date": 7
       }
     },
-    "sara_salkahazi_virgin": {
+    {
+      "id": "sara_salkahazi_virgin",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 5,
         "date": 11
       }
     },
-    "john_nepomucene_priest": {
+    {
+      "id": "john_nepomucene_priest",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 5,
         "date": 16
       }
     },
-    "john_scheffler_bishop": {
+    {
+      "id": "john_scheffler_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 5,
         "date": 17
       }
     },
-    "william_apor_bishop": {
+    {
+      "id": "william_apor_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 5,
         "date": 23
       }
     },
-    "our_lady_help_of_christians": {
+    {
+      "id": "our_lady_help_of_christians",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 5,
         "date": 24
       }
     },
-    "translation_of_the_relics_of_saint_stephen_of_hungary": {
+    {
+      "id": "translation_of_the_relics_of_saint_stephen_of_hungary",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 5,
         "date": 30
       }
     },
-    "quirinus_of_sescia_bishop": {
+    {
+      "id": "quirinus_of_sescia_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 6,
         "date": 4
       }
     },
-    "agnes_of_bohemia_virgin": {
+    {
+      "id": "agnes_of_bohemia_virgin",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 6,
         "date": 8
       }
     },
-    "istvan_sandor_religious": {
+    {
+      "id": "istvan_sandor_religious",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 6,
         "date": 8
       }
     },
-    "yolanda_of_poland_religious": {
+    {
+      "id": "yolanda_of_poland_religious",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 6,
         "date": 15
       }
     },
-    "cyril_of_alexandria_bishop": {
+    {
+      "id": "cyril_of_alexandria_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 6,
         "date": 26
       }
     },
-    "josemaria_escriva_de_balaguer_priest": {
+    {
+      "id": "josemaria_escriva_de_balaguer_priest",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 6,
         "date": 26
       }
     },
-    "ladislaus_i_of_hungary": {
+    {
+      "id": "ladislaus_i_of_hungary",
       "precedence": "PROPER_FEAST_8F",
       "dateDef": {
         "month": 6,
         "date": 27
       }
     },
-    "visitation_of_mary": {
+    {
+      "id": "visitation_of_mary",
       "precedence": "PROPER_FEAST_8F",
       "dateDef": {
         "month": 7,
         "date": 2
       }
     },
-    "andrew_zorard_of_nitra_and_benedict_of_skalka_hermits": {
+    {
+      "id": "andrew_zorard_of_nitra_and_benedict_of_skalka_hermits",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 7,
@@ -211,62 +240,71 @@
         "benedict_of_skalka_hermit"
       ]
     },
-    "pavel_peter_gojdic_bishop": {
+    {
+      "id": "pavel_peter_gojdic_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 7,
         "date": 17
       }
     },
-    "kinga_of_poland_virgin": {
+    {
+      "id": "kinga_of_poland_virgin",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 7,
         "date": 24
       }
     },
-    "sharbel_makhluf_priest": {
+    {
+      "id": "sharbel_makhluf_priest",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 7,
         "date": 27
       }
     },
-    "innocent_xi_pope": {
+    {
+      "id": "innocent_xi_pope",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 8,
         "date": 13
       }
     },
-    "pontian_i_pope_and_hippolytus_of_rome_priest": {
+    {
+      "id": "pontian_i_pope_and_hippolytus_of_rome_priest",
       "dateDef": {
         "month": 8,
         "date": 16
       }
     },
-    "bernard_of_clairvaux_abbot": {
+    {
+      "id": "bernard_of_clairvaux_abbot",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 8,
         "date": 19
       }
     },
-    "stephen_i_of_hungary": {
+    {
+      "id": "stephen_i_of_hungary",
       "precedence": "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A",
       "dateDef": {
         "month": 8,
         "date": 20
       }
     },
-    "teresa_of_calcutta_religious": {
+    {
+      "id": "teresa_of_calcutta_religious",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 9,
         "date": 5
       }
     },
-    "marko_krizin_melchior_grodziecki_and_stephen_pongracz_priests": {
+    {
+      "id": "marko_krizin_melchior_grodziecki_and_stephen_pongracz_priests",
       "precedence": "PROPER_FEAST_8F",
       "dateDef": {
         "month": 9,
@@ -278,24 +316,28 @@
         "stephen_pongracz_priest"
       ]
     },
-    "most_holy_name_of_mary": {
+    {
+      "id": "most_holy_name_of_mary",
       "precedence": "PROPER_MEMORIAL_11B"
     },
-    "gerard_of_csanad_bishop": {
+    {
+      "id": "gerard_of_csanad_bishop",
       "precedence": "PROPER_FEAST_8F",
       "dateDef": {
         "month": 9,
         "date": 24
       }
     },
-    "szilard_bogdanffy_bishop": {
+    {
+      "id": "szilard_bogdanffy_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 10,
         "date": 3
       }
     },
-    "our_lady_of_hungary": {
+    {
+      "id": "our_lady_of_hungary",
       "customLocaleId": "our_lady_of_hungary_patroness_of_hungary",
       "precedence": "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A",
       "dateDef": {
@@ -308,28 +350,32 @@
         ]
       }
     },
-    "charles_i_of_austria": {
+    {
+      "id": "charles_i_of_austria",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 10,
         "date": 21
       }
     },
-    "maurus_of_pecs_bishop": {
+    {
+      "id": "maurus_of_pecs_bishop",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 10,
         "date": 25
       }
     },
-    "theodore_romzha_bishop": {
+    {
+      "id": "theodore_romzha_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 10,
         "date": 31
       }
     },
-    "commemoration_of_all_the_faithful_departed": {
+    {
+      "id": "commemoration_of_all_the_faithful_departed",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 11,
@@ -340,42 +386,48 @@
         "BLACK"
       ]
     },
-    "emeric_of_hungary": {
+    {
+      "id": "emeric_of_hungary",
       "precedence": "PROPER_FEAST_8F",
       "dateDef": {
         "month": 11,
         "date": 5
       }
     },
-    "hungarian_saints_and_blesseds": {
+    {
+      "id": "hungarian_saints_and_blesseds",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 11,
         "date": 13
       }
     },
-    "gertrude_the_great_virgin": {
+    {
+      "id": "gertrude_the_great_virgin",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 11,
         "date": 17
       }
     },
-    "elizabeth_of_hungary_religious": {
+    {
+      "id": "elizabeth_of_hungary_religious",
       "precedence": "PROPER_FEAST_8F",
       "dateDef": {
         "month": 11,
         "date": 19
       }
     },
-    "john_brenner_priest": {
+    {
+      "id": "john_brenner_priest",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 12,
         "date": 15
       }
     },
-    "our_lord_jesus_christ_the_eternal_high_priest": {
+    {
+      "id": "our_lord_jesus_christ_the_eternal_high_priest",
       "precedence": "PROPER_FEAST_8F",
       "dateDef": {
         "dateFn": "pentecostSunday",
@@ -383,14 +435,17 @@
       },
       "properCycle": "PROPER_OF_TIME"
     },
-    "stephen_the_first_martyr": {
+    {
+      "id": "stephen_the_first_martyr",
       "isHolyDayOfObligation": true
     },
-    "easter_monday": {
+    {
+      "id": "easter_monday",
       "isHolyDayOfObligation": true
     },
-    "mary_mother_of_the_church": {
+    {
+      "id": "mary_mother_of_the_church",
       "isHolyDayOfObligation": true
     }
-  }
+  ]
 }

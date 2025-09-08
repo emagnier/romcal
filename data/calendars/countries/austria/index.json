@@ -1,26 +1,29 @@
 {
+  "$schema": "../../../../schemas/calendar-definition.json",
   "id": "austria",
   "metadata": {
     "jurisdiction": "CIVIL",
     "type": "COUNTRY"
   },
-  "parentCalendarIds": [
+  "parent_calendar_ids": [
     "Europe"
   ],
-  "inputs": {
-    "john_nepomucene_priest": {
+  "days_definitions": [
+    {
+      "id": "john_nepomucene_priest",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 5,
         "date": 16
       }
     },
-    "charles_i_of_austria": {
+    {
+      "id": "charles_i_of_austria",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 10,
         "date": 21
       }
     }
-  }
+  ]
 }

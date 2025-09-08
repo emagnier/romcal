@@ -1,82 +1,93 @@
 {
+  "$schema": "../../../../schemas/calendar-definition.json",
   "id": "finland",
   "metadata": {
     "jurisdiction": "CIVIL",
     "type": "COUNTRY"
   },
-  "parentCalendarIds": [
+  "parent_calendar_ids": [
     "Europe"
   ],
-  "inputs": {
-    "henry_of_finland_bishop": {
+  "days_definitions": [
+    {
+      "id": "henry_of_finland_bishop",
       "precedence": "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A",
       "dateDef": {
         "month": 1,
         "date": 19
       }
     },
-    "eric_ix_of_sweden_martyr": {
+    {
+      "id": "eric_ix_of_sweden_martyr",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 5,
         "date": 18
       }
     },
-    "hemming_of_turku_bishop": {
+    {
+      "id": "hemming_of_turku_bishop",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 5,
         "date": 22
       }
     },
-    "mary_ursula_of_jesus_ledochowska_virgin": {
+    {
+      "id": "mary_ursula_of_jesus_ledochowska_virgin",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 5,
         "date": 29
       }
     },
-    "elizabeth_hesselblad_religious": {
+    {
+      "id": "elizabeth_hesselblad_religious",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 6,
         "date": 4
       }
     },
-    "josemaria_escriva_de_balaguer_priest": {
+    {
+      "id": "josemaria_escriva_de_balaguer_priest",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 6,
         "date": 26
       }
     },
-    "canute_iv_of_denmark_martyr": {
+    {
+      "id": "canute_iv_of_denmark_martyr",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 7,
         "date": 10
       }
     },
-    "thorlac_of_iceland_bishop": {
+    {
+      "id": "thorlac_of_iceland_bishop",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 7,
         "date": 20
       }
     },
-    "olaf_ii_of_norway_martyr": {
+    {
+      "id": "olaf_ii_of_norway_martyr",
       "precedence": "PROPER_MEMORIAL_11B",
       "dateDef": {
         "month": 5,
         "date": 29
       }
     },
-    "nicholas_steno_bishop": {
+    {
+      "id": "nicholas_steno_bishop",
       "precedence": "OPTIONAL_MEMORIAL_12",
       "dateDef": {
         "month": 11,
         "date": 25
       }
     }
-  }
+  ]
 }
