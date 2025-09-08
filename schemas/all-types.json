@@ -376,7 +376,13 @@
         "date_exceptions": {
           "anyOf": [
             {
-              "$ref": "#/definitions/DateDefExceptions"
+              "$ref": "#/definitions/DateDefException"
+            },
+            {
+              "items": {
+                "$ref": "#/definitions/DateDefException"
+              },
+              "type": "array"
             },
             {
               "type": "null"
