@@ -1,7 +1,816 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "additionalProperties": false,
   "definitions": {
+    "AdventSeason": {
+      "additionalProperties": false,
+      "properties": {
+        "privileged_weekday": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "season": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sunday": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "weekday": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CalendarDefinition": {
+      "additionalProperties": false,
+      "definitions": {
+        "CalendarJurisdiction": {
+          "enum": [
+            "ECCLESIASTICAL",
+            "CIVIL"
+          ],
+          "type": "string"
+        },
+        "CalendarMetadata": {
+          "additionalProperties": false,
+          "properties": {
+            "jurisdiction": {
+              "$ref": "#/definitions/CalendarJurisdiction"
+            },
+            "type": {
+              "$ref": "#/definitions/CalendarType"
+            }
+          },
+          "required": [
+            "type",
+            "jurisdiction"
+          ],
+          "type": "object"
+        },
+        "CalendarType": {
+          "enum": [
+            "GENERAL_ROMAN",
+            "REGION",
+            "COUNTRY",
+            "ARCHDIOCESE",
+            "DIOCESE",
+            "CITY",
+            "PARISH",
+            "GENERAL_COMMUNITY",
+            "REGIONAL_COMMUNITY",
+            "LOCAL_COMMUNITY",
+            "OTHER"
+          ],
+          "type": "string"
+        },
+        "Colors": {
+          "enum": [
+            "RED",
+            "ROSE",
+            "PURPLE",
+            "GREEN",
+            "WHITE",
+            "GOLD",
+            "BLACK"
+          ],
+          "type": "string"
+        },
+        "ColorsDef": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Colors"
+            },
+            {
+              "items": {
+                "$ref": "#/definitions/Colors"
+              },
+              "type": "array"
+            }
+          ]
+        },
+        "CommonDefinition": {
+          "enum": [
+            "NONE",
+            "DEDICATION_ANNIVERSARY__INSIDE",
+            "DEDICATION_ANNIVERSARY__OUTSIDE",
+            "BLESSED_VIRGIN_MARY",
+            "MARTYRS",
+            "MISSIONARY_MARTYRS",
+            "VIRGIN_MARTYRS",
+            "WOMAN_MARTYRS",
+            "PASTORS",
+            "POPES",
+            "BISHOPS",
+            "FOUNDERS",
+            "MISSIONARIES",
+            "DOCTORS_OF_THE_CHURCH",
+            "VIRGINS",
+            "SAINTS",
+            "ABBOTS",
+            "MONKS",
+            "NUNS",
+            "RELIGIOUS",
+            "MERCY_WORKERS",
+            "EDUCATORS",
+            "HOLY_WOMEN"
+          ],
+          "type": "string"
+        },
+        "CommonsDef": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/CommonDefinition"
+            },
+            {
+              "items": {
+                "$ref": "#/definitions/CommonDefinition"
+              },
+              "type": "array"
+            }
+          ]
+        },
+        "CompoundTitle": {
+          "additionalProperties": false,
+          "properties": {
+            "append": {
+              "description": "Add title(s) to the end of the existing list of title(s).",
+              "items": {
+                "$ref": "#/definitions/Title"
+              },
+              "type": [
+                "array",
+                "null"
+              ]
+            },
+            "prepend": {
+              "description": "Add title(s) to the beginning of the existing list of title(s).",
+              "items": {
+                "$ref": "#/definitions/Title"
+              },
+              "type": [
+                "array",
+                "null"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "DateDef": {
+          "anyOf": [
+            {
+              "additionalProperties": false,
+              "description": "Simple month/day",
+              "properties": {
+                "date": {
+                  "format": "uint32",
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "day_offset": {
+                  "format": "int32",
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                },
+                "month": {
+                  "$ref": "#/definitions/MonthIndex"
+                }
+              },
+              "required": [
+                "month",
+                "date"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "description": "Date function (Easter, Epiphany, etc.)",
+              "properties": {
+                "date_fn": {
+                  "$ref": "#/definitions/DateFn"
+                },
+                "day_offset": {
+                  "format": "int32",
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "date_fn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "description": "Nth weekday of month",
+              "properties": {
+                "day_of_week": {
+                  "$ref": "#/definitions/DayOfWeek"
+                },
+                "day_offset": {
+                  "format": "int32",
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                },
+                "month": {
+                  "$ref": "#/definitions/MonthIndex"
+                },
+                "nth_week_in_month": {
+                  "format": "uint32",
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "month",
+                "day_of_week",
+                "nth_week_in_month"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "description": "Last weekday of month",
+              "properties": {
+                "day_offset": {
+                  "format": "int32",
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                },
+                "last_day_of_week_in_month": {
+                  "$ref": "#/definitions/DayOfWeek"
+                },
+                "month": {
+                  "$ref": "#/definitions/MonthIndex"
+                }
+              },
+              "required": [
+                "month",
+                "last_day_of_week_in_month"
+              ],
+              "type": "object"
+            }
+          ]
+        },
+        "DateDefException": {
+          "additionalProperties": false,
+          "description": "The liturgical day date exception\nRepresents a condition and the date to set when that condition is met",
+          "properties": {
+            "then": {
+              "$ref": "#/definitions/DateDefExtended",
+              "description": "Date to set when condition is met"
+            },
+            "when": {
+              "$ref": "#/definitions/ExceptionCondition",
+              "description": "Condition that triggers the exception"
+            }
+          },
+          "required": [
+            "when",
+            "then"
+          ],
+          "type": "object"
+        },
+        "DateDefExceptions": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/DateDefException"
+            },
+            {
+              "items": {
+                "$ref": "#/definitions/DateDefException"
+              },
+              "type": "array"
+            }
+          ],
+          "description": "Date exceptions that can be either a single exception or an array of exceptions"
+        },
+        "DateDefExtended": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/DateDef"
+            },
+            {
+              "$ref": "#/definitions/DateDefWithOffset"
+            }
+          ]
+        },
+        "DateDefWithOffset": {
+          "additionalProperties": false,
+          "properties": {
+            "day_offset": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "day_offset"
+          ],
+          "type": "object"
+        },
+        "DateFn": {
+          "enum": [
+            "MARY_MOTHER_OF_THE_CHURCH",
+            "EPIPHANY_SUNDAY",
+            "PRESENTATION_OF_THE_LORD",
+            "ANNUNCIATION",
+            "PALM_SUNDAY",
+            "EASTER_SUNDAY",
+            "DIVINE_MERCY_SUNDAY",
+            "IMMACULATE_HEART_OF_MARY",
+            "PENTECOST_SUNDAY",
+            "CORPUS_CHRISTI_SUNDAY",
+            "NATIVITY_OF_JOHN_THE_BAPTIST",
+            "PETER_AND_PAUL_APOSTLES",
+            "TRANSFIGURATION",
+            "ASSUMPTION",
+            "EXALTATION_OF_THE_HOLY_CROSS",
+            "ALL_SAINTS",
+            "IMMACULATE_CONCEPTION_OF_MARY"
+          ],
+          "type": "string"
+        },
+        "DayDefinition": {
+          "additionalProperties": false,
+          "properties": {
+            "allow_similar_rank_items": {
+              "description": "In addition to this liturgical day, allow similar items that have the same rank,\nand the same or lower precedence,\nso the current liturgical day will not overwrite another defined item.",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "colors": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/ColorsDef"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "The liturgical color(s) of the liturgical day.\n@deprecated"
+            },
+            "commons_def": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/CommonsDef"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "The **Common** refers to a set of prayers, readings, and chants used for celebrating saints or\nfeasts that belong to a specific category, such as martyrs, virgins, pastors, or the Blessed\nVirgin Mary."
+            },
+            "custom_locale_id": {
+              "description": "Specify a custom locale ID for this date definition, in this calendar.",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "date_def": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/DateDef"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Date definition"
+            },
+            "date_exceptions": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/DateDefException"
+                },
+                {
+                  "items": {
+                    "$ref": "#/definitions/DateDefException"
+                  },
+                  "type": "array"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Date definition exception"
+            },
+            "drop": {
+              "description": "If this liturgical day must be removed from this calendar and from all those it inherits\n(the parent calendars), on the final calendar generated by romcal.",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "id": {
+              "type": "string"
+            },
+            "is_holy_day_of_obligation": {
+              "description": "Holy days of obligation are days on which the faithful are expected to attend Mass,\nand engage in rest from work and recreation.",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "is_optional": {
+              "description": "Specify is this LiturgicalDay is optional within a specific liturgical calendar.\n\nUNLY #14:\nMemorials are either obligatory or optional; their observance is integrated into\nthe celebration of the occurring weekday in accordance with the norms set forth in the\nGeneral Instruction of the Roman Missal and of the Liturgy of the Hours\n\nNote: also used for the dedication of consecrated churches, which is an optional solemnity\nthat should not overwrite the default weekday.",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "martyrology": {
+              "description": "Link one or multiple Saints, Blessed, or any other celebrations from the Martyrology catalog.",
+              "items": {
+                "$ref": "#/definitions/MartyrologyItemPointer"
+              },
+              "type": [
+                "array",
+                "null"
+              ]
+            },
+            "precedence": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/Precedence"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "The precedence type of the liturgical day."
+            },
+            "titles": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/TitlesDef"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Combined titles of each Saints linked to this date definition."
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "type": "object"
+        },
+        "DayOfWeek": {
+          "description": "Day of week (0-6, where 0=Sunday) with automatic validation",
+          "format": "uint8",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "EasterCalculationType": {
+          "enum": [
+            "GREGORIAN",
+            "JULIAN"
+          ],
+          "type": "string"
+        },
+        "ExceptionCondition": {
+          "anyOf": [
+            {
+              "additionalProperties": false,
+              "description": "If date is between two dates",
+              "properties": {
+                "from": {
+                  "$ref": "#/definitions/DateDef"
+                },
+                "inclusive": {
+                  "type": "boolean"
+                },
+                "to": {
+                  "$ref": "#/definitions/DateDef"
+                }
+              },
+              "required": [
+                "from",
+                "to",
+                "inclusive"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "description": "If date is same as another date",
+              "properties": {
+                "date": {
+                  "$ref": "#/definitions/DateDef"
+                }
+              },
+              "required": [
+                "date"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "description": "If date is a specific day of week",
+              "properties": {
+                "day_of_week": {
+                  "$ref": "#/definitions/DayOfWeek"
+                }
+              },
+              "required": [
+                "day_of_week"
+              ],
+              "type": "object"
+            }
+          ],
+          "description": "Exception conditions that can trigger a date change"
+        },
+        "MartyrologyItemPointer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/MartyrologyItemRedefined"
+            }
+          ]
+        },
+        "MartyrologyItemRedefined": {
+          "additionalProperties": false,
+          "properties": {
+            "count": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SaintCount"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Specify the number of persons this martyrology item is representing."
+            },
+            "hide_titles": {
+              "description": "Specify if titles should not be displayed. This can occur when a title is already included in\nthe name of the martyrology item.",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "id": {
+              "description": "The ID of the martyrology item.",
+              "type": "string"
+            },
+            "titles": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/TitlesDef"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "The redefined titles of the martyrology item."
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "type": "object"
+        },
+        "MonthIndex": {
+          "description": "Month index (1-12) with automatic validation",
+          "format": "uint8",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "ParticularConfig": {
+          "additionalProperties": false,
+          "properties": {
+            "ascension_on_sunday": {
+              "description": "Configuration options specific to this calendar.\nThese settings can override or extend the default Romcal configuration or any parent calendar\nconfiguration.",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "corpus_christi_on_sunday": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "easter_calculation_type": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/EasterCalculationType"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "epiphany_on_sunday": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "Precedence": {
+          "enum": [
+            "TRIDUUM_1",
+            "PROPER_OF_TIME_SOLEMNITY_2",
+            "PRIVILEGED_SUNDAY_2",
+            "ASH_WEDNESDAY_2",
+            "WEEKDAY_OF_HOLY_WEEK_2",
+            "WEEKDAY_OF_EASTER_OCTAVE_2",
+            "GENERAL_SOLEMNITY_3",
+            "COMMEMORATION_OF_ALL_THE_FAITHFUL_DEPARTED_3",
+            "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A",
+            "PROPER_SOLEMNITY__DEDICATION_OF_THE_OWN_CHURCH_4B",
+            "PROPER_SOLEMNITY__TITLE_OF_THE_OWN_CHURCH_4C",
+            "PROPER_SOLEMNITY__TITLE_OR_FOUNDER_OR_PRIMARY_PATRON_OF_A_RELIGIOUS_ORG_4D",
+            "GENERAL_LORD_FEAST_5",
+            "UNPRIVILEGED_SUNDAY_6",
+            "GENERAL_FEAST_7",
+            "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_DIOCESE_8A",
+            "PROPER_FEAST__DEDICATION_OF_THE_CATHEDRAL_CHURCH_8B",
+            "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C",
+            "PROPER_FEAST__TITLE_OR_FOUNDER_OR_PRIMARY_PATRON_OF_A_RELIGIOUS_ORG_8D",
+            "PROPER_FEAST__TO_AN_INDIVIDUAL_CHURCH_8E",
+            "PROPER_FEAST_8F",
+            "PRIVILEGED_WEEKDAY_9",
+            "GENERAL_MEMORIAL_10",
+            "PROPER_MEMORIAL__SECOND_PATRON_11A",
+            "PROPER_MEMORIAL_11B",
+            "OPTIONAL_MEMORIAL_12",
+            "WEEKDAY_13"
+          ],
+          "type": "string"
+        },
+        "SaintCount": {
+          "anyOf": [
+            {
+              "format": "uint32",
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "Title": {
+          "enum": [
+            "ABBESS",
+            "ABBOT",
+            "APOSTLE",
+            "ARCHANGEL",
+            "BISHOP",
+            "DEACON",
+            "DOCTOR_OF_THE_CHURCH",
+            "EMPRESS",
+            "EVANGELIST",
+            "FIRST_BISHOP",
+            "HERMIT",
+            "KING",
+            "MARTYR",
+            "MISSIONARY",
+            "MONK",
+            "MOTHER_AND_QUEEN_OF_CHILE",
+            "PARENTS_OF_THE_BLESSED_VIRGIN_MARY",
+            "POPE",
+            "PATRIARCH",
+            "PILGRIM",
+            "PRIEST",
+            "PROPHET",
+            "PROTO_MARTYR_OF_OCEANIA",
+            "QUEEN",
+            "QUEEN_OF_POLAND",
+            "RELIGIOUS",
+            "SLAVIC_MISSIONARY",
+            "SPOUSE_OF_THE_BLESSED_VIRGIN_MARY",
+            "THE_FIRST_MARTYR",
+            "VIRGIN",
+            "COPATRON_OF_EUROPE",
+            "COPATRON_OF_IRELAND",
+            "COPATRON_OF_CANADA",
+            "COPATRONESS_OF_EUROPE",
+            "COPATRONESS_OF_FRANCE",
+            "COPATRONESS_OF_IRELAND",
+            "COPATRONESS_OF_ITALY_AND_EUROPE",
+            "COPATRONESS_OF_THE_PHILIPPINES",
+            "PATRON_OF_CANADA",
+            "PATRON_OF_ENGLAND",
+            "PATRON_OF_EUROPE",
+            "PATRON_OF_FRANCE",
+            "PATRON_OF_IRELAND",
+            "PATRON_OF_ITALY",
+            "PATRON_OF_OCEANIA",
+            "PATRON_OF_POLAND",
+            "PATRON_OF_RUSSIA",
+            "PATRON_OF_SCOTLAND",
+            "PATRON_OF_SPAIN",
+            "PATRON_OF_THE_CZECH_NATION",
+            "PATRON_OF_THE_DIOCESE",
+            "PATRON_OF_WALES",
+            "PATRONESS_OF_ALSACE",
+            "PATRONESS_OF_ARGENTINA",
+            "PATRONESS_OF_BRAZIL",
+            "PATRONESS_OF_HUNGARY",
+            "PATRONESS_OF_PUERTO_RICO",
+            "PATRONESS_OF_SLOVAKIA",
+            "PATRONESS_OF_THE_AMERICAS",
+            "PATRONESS_OF_THE_PHILIPPINES",
+            "PATRONESS_OF_THE_PROVINCE_OF_QUEBEC",
+            "PATRONESS_OF_THE_USA",
+            "PATRON_OF_THE_CLERGY_OF_THE_ARCHDIOCESE_OF_LYON",
+            "PATRON_OF_THE_CITY_OF_LYON",
+            "PATRONESS_OF_COSTA_RICA",
+            "PRINCIPAL_PATRON_OF_THE_DIOCESE",
+            "SECOND_PATRON_OF_THE_DIOCESE"
+          ],
+          "type": "string"
+        },
+        "TitlesDef": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/definitions/Title"
+              },
+              "type": "array"
+            },
+            {
+              "$ref": "#/definitions/CompoundTitle"
+            }
+          ]
+        }
+      },
+      "properties": {
+        "$schema": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "days_definitions": {
+          "items": {
+            "$ref": "#/definitions/DayDefinition"
+          },
+          "type": "array"
+        },
+        "id": {
+          "type": "string"
+        },
+        "metadata": {
+          "$ref": "#/definitions/CalendarMetadata"
+        },
+        "parent_calendar_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "particular_config": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ParticularConfig"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "metadata",
+        "parent_calendar_ids",
+        "days_definitions"
+      ],
+      "title": "CalendarDefinition",
+      "type": "object"
+    },
     "CalendarJurisdiction": {
       "enum": [
         "ECCLESIASTICAL",
@@ -20,8 +829,8 @@
         }
       },
       "required": [
-        "jurisdiction",
-        "type"
+        "type",
+        "jurisdiction"
       ],
       "type": "object"
     },
@@ -40,6 +849,55 @@
         "OTHER"
       ],
       "type": "string"
+    },
+    "CanonizationLevel": {
+      "enum": [
+        "BLESSED",
+        "SAINT"
+      ],
+      "type": "string"
+    },
+    "ChristmasTimeSeason": {
+      "additionalProperties": false,
+      "properties": {
+        "after_epiphany": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "before_epiphany": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "day": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "octave": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "season": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "second_sunday_after_christmas": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
     },
     "Colors": {
       "enum": [
@@ -133,6 +991,78 @@
       },
       "type": "object"
     },
+    "CyclesMetadata": {
+      "additionalProperties": false,
+      "properties": {
+        "proper_of_saints": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "proper_of_time": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "psalter_week_1": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "psalter_week_2": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "psalter_week_3": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "psalter_week_4": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sunday_year_a": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sunday_year_b": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sunday_year_c": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "weekday_year_1": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "weekday_year_2": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
     "DateDef": {
       "anyOf": [
         {
@@ -141,7 +1071,7 @@
           "properties": {
             "date": {
               "format": "uint32",
-              "minimum": 0.0,
+              "minimum": 0,
               "type": "integer"
             },
             "day_offset": {
@@ -156,8 +1086,8 @@
             }
           },
           "required": [
-            "date",
-            "month"
+            "month",
+            "date"
           ],
           "type": "object"
         },
@@ -200,13 +1130,13 @@
             },
             "nth_week_in_month": {
               "format": "uint32",
-              "minimum": 0.0,
+              "minimum": 0,
               "type": "integer"
             }
           },
           "required": [
-            "day_of_week",
             "month",
+            "day_of_week",
             "nth_week_in_month"
           ],
           "type": "object"
@@ -230,8 +1160,8 @@
             }
           },
           "required": [
-            "last_day_of_week_in_month",
-            "month"
+            "month",
+            "last_day_of_week_in_month"
           ],
           "type": "object"
         }
@@ -239,28 +1169,20 @@
     },
     "DateDefException": {
       "additionalProperties": false,
-      "description": "The liturgical day date exception Represents a condition and the date to set when that condition is met",
+      "description": "The liturgical day date exception\nRepresents a condition and the date to set when that condition is met",
       "properties": {
         "then": {
-          "allOf": [
-            {
-              "$ref": "#/definitions/DateDefExtended"
-            }
-          ],
+          "$ref": "#/definitions/DateDefExtended",
           "description": "Date to set when condition is met"
         },
         "when": {
-          "allOf": [
-            {
-              "$ref": "#/definitions/ExceptionCondition"
-            }
-          ],
+          "$ref": "#/definitions/ExceptionCondition",
           "description": "Condition that triggers the exception"
         }
       },
       "required": [
-        "then",
-        "when"
+        "when",
+        "then"
       ],
       "type": "object"
     },
@@ -327,7 +1249,7 @@
       "additionalProperties": false,
       "properties": {
         "allow_similar_rank_items": {
-          "description": "In addition to this liturgical day, allow similar items that have the same rank, and the same or lower precedence, so the current liturgical day will not overwrite another defined item.",
+          "description": "In addition to this liturgical day, allow similar items that have the same rank,\nand the same or lower precedence,\nso the current liturgical day will not overwrite another defined item.",
           "type": [
             "boolean",
             "null"
@@ -342,7 +1264,7 @@
               "type": "null"
             }
           ],
-          "description": "The liturgical color(s) of the liturgical day. @deprecated"
+          "description": "The liturgical color(s) of the liturgical day.\n@deprecated"
         },
         "commons_def": {
           "anyOf": [
@@ -353,7 +1275,7 @@
               "type": "null"
             }
           ],
-          "description": "The **Common** refers to a set of prayers, readings, and chants used for celebrating saints or feasts that belong to a specific category, such as martyrs, virgins, pastors, or the Blessed Virgin Mary."
+          "description": "The **Common** refers to a set of prayers, readings, and chants used for celebrating saints or\nfeasts that belong to a specific category, such as martyrs, virgins, pastors, or the Blessed\nVirgin Mary."
         },
         "custom_locale_id": {
           "description": "Specify a custom locale ID for this date definition, in this calendar.",
@@ -391,7 +1313,7 @@
           "description": "Date definition exception"
         },
         "drop": {
-          "description": "If this liturgical day must be removed from this calendar and from all those it inherits (the parent calendars), on the final calendar generated by romcal.",
+          "description": "If this liturgical day must be removed from this calendar and from all those it inherits\n(the parent calendars), on the final calendar generated by romcal.",
           "type": [
             "boolean",
             "null"
@@ -401,14 +1323,14 @@
           "type": "string"
         },
         "is_holy_day_of_obligation": {
-          "description": "Holy days of obligation are days on which the faithful are expected to attend Mass, and engage in rest from work and recreation.",
+          "description": "Holy days of obligation are days on which the faithful are expected to attend Mass,\nand engage in rest from work and recreation.",
           "type": [
             "boolean",
             "null"
           ]
         },
         "is_optional": {
-          "description": "Specify is this LiturgicalDay is optional within a specific liturgical calendar.\n\nUNLY #14: Memorials are either obligatory or optional; their observance is integrated into the celebration of the occurring weekday in accordance with the norms set forth in the General Instruction of the Roman Missal and of the Liturgy of the Hours\n\nNote: also used for the dedication of consecrated churches, which is an optional solemnity that should not overwrite the default weekday.",
+          "description": "Specify is this LiturgicalDay is optional within a specific liturgical calendar.\n\nUNLY #14:\nMemorials are either obligatory or optional; their observance is integrated into\nthe celebration of the occurring weekday in accordance with the norms set forth in the\nGeneral Instruction of the Roman Missal and of the Liturgy of the Hours\n\nNote: also used for the dedication of consecrated churches, which is an optional solemnity\nthat should not overwrite the default weekday.",
           "type": [
             "boolean",
             "null"
@@ -455,13 +1377,240 @@
     "DayOfWeek": {
       "description": "Day of week (0-6, where 0=Sunday) with automatic validation",
       "format": "uint8",
-      "minimum": 0.0,
+      "maximum": 255,
+      "minimum": 0,
       "type": "integer"
     },
     "EasterCalculationType": {
       "enum": [
         "GREGORIAN",
         "JULIAN"
+      ],
+      "type": "string"
+    },
+    "EasterTimeSeason": {
+      "additionalProperties": false,
+      "properties": {
+        "octave": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "season": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sunday": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "weekday": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "EntityDefinition": {
+      "additionalProperties": false,
+      "properties": {
+        "canonization_level": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/CanonizationLevel"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The canonization level of a person."
+        },
+        "count": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SaintCount"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Number of person that this definition represent.\nIt could be set as 'many' if the number is not defined."
+        },
+        "date_of_beatification": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SaintDateDef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Date of Beatification, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century."
+        },
+        "date_of_beatification_is_approximative": {
+          "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "date_of_birth": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SaintDateDef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Date of Birth, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century."
+        },
+        "date_of_birth_is_approximative": {
+          "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "date_of_canonization": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SaintDateDef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Date of Canonization, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century."
+        },
+        "date_of_canonization_is_approximative": {
+          "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "date_of_death": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SaintDateDef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Date of Death, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century."
+        },
+        "date_of_death_is_approximative": {
+          "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "date_of_dedication": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SaintDateDef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Date of Dedication of a church, basilica, or cathedral (or other place of worship),\nas a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century."
+        },
+        "fullname": {
+          "description": "The full name of the entity.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "hide_canonization_level": {
+          "description": "Specify if the canonization level should not be displayed.\nIt's generally the case when the canonization are already included in the name.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "hide_titles": {
+          "description": "Specify if the titles should not be displayed.\nIt's generally the case when titles are already included in the name.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "id": {
+          "description": "The unique identifier of the entity",
+          "type": "string"
+        },
+        "name": {
+          "description": "The short name of the entity, without the canonization level and titles.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sex": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Sex"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Determine if the Saint or the Blessed is a male or a female."
+        },
+        "sources": {
+          "description": "Sources for the information about this entity",
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "titles": {
+          "description": "Titles of the Saint or the Blessed",
+          "items": {
+            "$ref": "#/definitions/Title"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "type": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/EntityType"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The type of the entity.\n@default EntityType.Person"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "type": "object"
+    },
+    "EntityType": {
+      "enum": [
+        "PERSON",
+        "PLACE",
+        "EVENT"
       ],
       "type": "string"
     },
@@ -483,8 +1632,8 @@
           },
           "required": [
             "from",
-            "inclusive",
-            "to"
+            "to",
+            "inclusive"
           ],
           "type": "object"
         },
@@ -517,6 +1666,90 @@
       ],
       "description": "Exception conditions that can trigger a date change"
     },
+    "LentSeason": {
+      "additionalProperties": false,
+      "properties": {
+        "day_after_ash_wed": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "holy_week_day": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "season": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sunday": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "weekday": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "LocaleColors": {
+      "additionalProperties": false,
+      "properties": {
+        "black": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "gold": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "green": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "purple": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "red": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "rose": {
+          "type": "string"
+        },
+        "white": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "rose"
+      ],
+      "type": "object"
+    },
     "MartyrologyItemPointer": {
       "anyOf": [
         {
@@ -542,7 +1775,7 @@
           "description": "Specify the number of persons this martyrology item is representing."
         },
         "hide_titles": {
-          "description": "Specify if titles should not be displayed. This can occur when a title is already included in the name of the martyrology item.",
+          "description": "Specify if titles should not be displayed. This can occur when a title is already included in\nthe name of the martyrology item.",
           "type": [
             "boolean",
             "null"
@@ -572,14 +1805,39 @@
     "MonthIndex": {
       "description": "Month index (1-12) with automatic validation",
       "format": "uint8",
-      "minimum": 0.0,
+      "maximum": 255,
+      "minimum": 0,
       "type": "integer"
+    },
+    "OrdinaryTimeSeason": {
+      "additionalProperties": false,
+      "properties": {
+        "season": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sunday": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "weekday": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
     },
     "ParticularConfig": {
       "additionalProperties": false,
       "properties": {
         "ascension_on_sunday": {
-          "description": "Configuration options specific to this calendar. These settings can override or extend the default Romcal configuration or any parent calendar configuration.",
+          "description": "Configuration options specific to this calendar.\nThese settings can override or extend the default Romcal configuration or any parent calendar\nconfiguration.",
           "type": [
             "boolean",
             "null"
@@ -604,6 +1862,36 @@
         "epiphany_on_sunday": {
           "type": [
             "boolean",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "PaschalTriduumSeason": {
+      "additionalProperties": false,
+      "properties": {
+        "season": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "PeriodsMetadata": {
+      "additionalProperties": false,
+      "properties": {
+        "epiphany": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "holy_week": {
+          "type": [
+            "string",
             "null"
           ]
         }
@@ -642,17 +1930,1191 @@
       ],
       "type": "string"
     },
+    "RanksMetadata": {
+      "additionalProperties": false,
+      "properties": {
+        "feast": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "memorial": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "optional_memorial": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "solemnity": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sunday": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "weekday": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ResourcesDefinition": {
+      "additionalProperties": false,
+      "definitions": {
+        "AdventSeason": {
+          "additionalProperties": false,
+          "properties": {
+            "privileged_weekday": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "season": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "sunday": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "weekday": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "CanonizationLevel": {
+          "enum": [
+            "BLESSED",
+            "SAINT"
+          ],
+          "type": "string"
+        },
+        "ChristmasTimeSeason": {
+          "additionalProperties": false,
+          "properties": {
+            "after_epiphany": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "before_epiphany": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "day": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "octave": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "season": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "second_sunday_after_christmas": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "CyclesMetadata": {
+          "additionalProperties": false,
+          "properties": {
+            "proper_of_saints": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "proper_of_time": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "psalter_week_1": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "psalter_week_2": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "psalter_week_3": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "psalter_week_4": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "sunday_year_a": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "sunday_year_b": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "sunday_year_c": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "weekday_year_1": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "weekday_year_2": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "EasterTimeSeason": {
+          "additionalProperties": false,
+          "properties": {
+            "octave": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "season": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "sunday": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "weekday": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "EntityDefinition": {
+          "additionalProperties": false,
+          "properties": {
+            "canonization_level": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/CanonizationLevel"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "The canonization level of a person."
+            },
+            "count": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SaintCount"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Number of person that this definition represent.\nIt could be set as 'many' if the number is not defined."
+            },
+            "date_of_beatification": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SaintDateDef"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Date of Beatification, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century."
+            },
+            "date_of_beatification_is_approximative": {
+              "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "date_of_birth": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SaintDateDef"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Date of Birth, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century."
+            },
+            "date_of_birth_is_approximative": {
+              "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "date_of_canonization": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SaintDateDef"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Date of Canonization, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century."
+            },
+            "date_of_canonization_is_approximative": {
+              "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "date_of_death": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SaintDateDef"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Date of Death, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century."
+            },
+            "date_of_death_is_approximative": {
+              "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "date_of_dedication": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SaintDateDef"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Date of Dedication of a church, basilica, or cathedral (or other place of worship),\nas a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century."
+            },
+            "fullname": {
+              "description": "The full name of the entity.",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "hide_canonization_level": {
+              "description": "Specify if the canonization level should not be displayed.\nIt's generally the case when the canonization are already included in the name.",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "hide_titles": {
+              "description": "Specify if the titles should not be displayed.\nIt's generally the case when titles are already included in the name.",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "id": {
+              "description": "The unique identifier of the entity",
+              "type": "string"
+            },
+            "name": {
+              "description": "The short name of the entity, without the canonization level and titles.",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "sex": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/Sex"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Determine if the Saint or the Blessed is a male or a female."
+            },
+            "sources": {
+              "description": "Sources for the information about this entity",
+              "items": {
+                "type": "string"
+              },
+              "type": [
+                "array",
+                "null"
+              ]
+            },
+            "titles": {
+              "description": "Titles of the Saint or the Blessed",
+              "items": {
+                "$ref": "#/definitions/Title"
+              },
+              "type": [
+                "array",
+                "null"
+              ]
+            },
+            "type": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/EntityType"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "The type of the entity.\n@default EntityType.Person"
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "type": "object"
+        },
+        "EntityType": {
+          "enum": [
+            "PERSON",
+            "PLACE",
+            "EVENT"
+          ],
+          "type": "string"
+        },
+        "LentSeason": {
+          "additionalProperties": false,
+          "properties": {
+            "day_after_ash_wed": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "holy_week_day": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "season": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "sunday": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "weekday": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "LocaleColors": {
+          "additionalProperties": false,
+          "properties": {
+            "black": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "gold": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "green": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "purple": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "red": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "rose": {
+              "type": "string"
+            },
+            "white": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "rose"
+          ],
+          "type": "object"
+        },
+        "OrdinaryTimeSeason": {
+          "additionalProperties": false,
+          "properties": {
+            "season": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "sunday": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "weekday": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "PaschalTriduumSeason": {
+          "additionalProperties": false,
+          "properties": {
+            "season": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "PeriodsMetadata": {
+          "additionalProperties": false,
+          "properties": {
+            "epiphany": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "holy_week": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "RanksMetadata": {
+          "additionalProperties": false,
+          "properties": {
+            "feast": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "memorial": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "optional_memorial": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "solemnity": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "sunday": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "weekday": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "ResourcesMetadata": {
+          "additionalProperties": false,
+          "properties": {
+            "colors": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/LocaleColors"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "cycles": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/CyclesMetadata"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "months": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": [
+                "object",
+                "null"
+              ]
+            },
+            "ordinals": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": [
+                "object",
+                "null"
+              ]
+            },
+            "periods": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/PeriodsMetadata"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "ranks": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/RanksMetadata"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "seasons": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SeasonsMetadata"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "weekdays": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": [
+                "object",
+                "null"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "SaintCount": {
+          "anyOf": [
+            {
+              "format": "uint32",
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "SaintDate": {
+          "anyOf": [
+            {
+              "format": "uint32",
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "SaintDateDef": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SaintDate"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "between": {
+                  "items": {
+                    "$ref": "#/definitions/SaintDate"
+                  },
+                  "maxItems": 2,
+                  "minItems": 2,
+                  "type": "array"
+                }
+              },
+              "required": [
+                "between"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "or": {
+                  "items": {
+                    "$ref": "#/definitions/SaintDate"
+                  },
+                  "type": "array"
+                }
+              },
+              "required": [
+                "or"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "century": {
+                  "format": "uint32",
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "century"
+              ],
+              "type": "object"
+            }
+          ]
+        },
+        "SeasonsMetadata": {
+          "additionalProperties": false,
+          "properties": {
+            "advent": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/AdventSeason"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "christmas_time": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/ChristmasTimeSeason"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "easter_time": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/EasterTimeSeason"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "lent": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/LentSeason"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "ordinary_time": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/OrdinaryTimeSeason"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "paschal_triduum": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/PaschalTriduumSeason"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "Sex": {
+          "enum": [
+            "MALE",
+            "FEMALE"
+          ],
+          "type": "string"
+        },
+        "Title": {
+          "enum": [
+            "ABBESS",
+            "ABBOT",
+            "APOSTLE",
+            "ARCHANGEL",
+            "BISHOP",
+            "DEACON",
+            "DOCTOR_OF_THE_CHURCH",
+            "EMPRESS",
+            "EVANGELIST",
+            "FIRST_BISHOP",
+            "HERMIT",
+            "KING",
+            "MARTYR",
+            "MISSIONARY",
+            "MONK",
+            "MOTHER_AND_QUEEN_OF_CHILE",
+            "PARENTS_OF_THE_BLESSED_VIRGIN_MARY",
+            "POPE",
+            "PATRIARCH",
+            "PILGRIM",
+            "PRIEST",
+            "PROPHET",
+            "PROTO_MARTYR_OF_OCEANIA",
+            "QUEEN",
+            "QUEEN_OF_POLAND",
+            "RELIGIOUS",
+            "SLAVIC_MISSIONARY",
+            "SPOUSE_OF_THE_BLESSED_VIRGIN_MARY",
+            "THE_FIRST_MARTYR",
+            "VIRGIN",
+            "COPATRON_OF_EUROPE",
+            "COPATRON_OF_IRELAND",
+            "COPATRON_OF_CANADA",
+            "COPATRONESS_OF_EUROPE",
+            "COPATRONESS_OF_FRANCE",
+            "COPATRONESS_OF_IRELAND",
+            "COPATRONESS_OF_ITALY_AND_EUROPE",
+            "COPATRONESS_OF_THE_PHILIPPINES",
+            "PATRON_OF_CANADA",
+            "PATRON_OF_ENGLAND",
+            "PATRON_OF_EUROPE",
+            "PATRON_OF_FRANCE",
+            "PATRON_OF_IRELAND",
+            "PATRON_OF_ITALY",
+            "PATRON_OF_OCEANIA",
+            "PATRON_OF_POLAND",
+            "PATRON_OF_RUSSIA",
+            "PATRON_OF_SCOTLAND",
+            "PATRON_OF_SPAIN",
+            "PATRON_OF_THE_CZECH_NATION",
+            "PATRON_OF_THE_DIOCESE",
+            "PATRON_OF_WALES",
+            "PATRONESS_OF_ALSACE",
+            "PATRONESS_OF_ARGENTINA",
+            "PATRONESS_OF_BRAZIL",
+            "PATRONESS_OF_HUNGARY",
+            "PATRONESS_OF_PUERTO_RICO",
+            "PATRONESS_OF_SLOVAKIA",
+            "PATRONESS_OF_THE_AMERICAS",
+            "PATRONESS_OF_THE_PHILIPPINES",
+            "PATRONESS_OF_THE_PROVINCE_OF_QUEBEC",
+            "PATRONESS_OF_THE_USA",
+            "PATRON_OF_THE_CLERGY_OF_THE_ARCHDIOCESE_OF_LYON",
+            "PATRON_OF_THE_CITY_OF_LYON",
+            "PATRONESS_OF_COSTA_RICA",
+            "PRINCIPAL_PATRON_OF_THE_DIOCESE",
+            "SECOND_PATRON_OF_THE_DIOCESE"
+          ],
+          "type": "string"
+        }
+      },
+      "properties": {
+        "$schema": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "entities": {
+          "description": "Entities of the resources: a person, a place, an event, etc.",
+          "items": {
+            "$ref": "#/definitions/EntityDefinition"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "locale": {
+          "description": "Locale code of the resources, in BCP-47 IETF tag format",
+          "type": "string"
+        },
+        "metadata": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ResourcesMetadata"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Metadata of the resources"
+        }
+      },
+      "required": [
+        "locale"
+      ],
+      "title": "ResourcesDefinition",
+      "type": "object"
+    },
+    "ResourcesMetadata": {
+      "additionalProperties": false,
+      "properties": {
+        "colors": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/LocaleColors"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "cycles": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/CyclesMetadata"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "months": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "ordinals": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "periods": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/PeriodsMetadata"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ranks": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/RanksMetadata"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "seasons": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SeasonsMetadata"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "weekdays": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": [
+            "object",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
     "SaintCount": {
       "anyOf": [
         {
           "format": "uint32",
-          "minimum": 0.0,
+          "minimum": 0,
           "type": "integer"
         },
         {
           "type": "null"
         }
       ]
+    },
+    "SaintDate": {
+      "anyOf": [
+        {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "SaintDateDef": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/SaintDate"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "between": {
+              "items": {
+                "$ref": "#/definitions/SaintDate"
+              },
+              "maxItems": 2,
+              "minItems": 2,
+              "type": "array"
+            }
+          },
+          "required": [
+            "between"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "or": {
+              "items": {
+                "$ref": "#/definitions/SaintDate"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "or"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "century": {
+              "format": "uint32",
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "century"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "SeasonsMetadata": {
+      "additionalProperties": false,
+      "properties": {
+        "advent": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/AdventSeason"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "christmas_time": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ChristmasTimeSeason"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "easter_time": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/EasterTimeSeason"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "lent": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/LentSeason"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ordinary_time": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/OrdinaryTimeSeason"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "paschal_triduum": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/PaschalTriduumSeason"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "Sex": {
+      "enum": [
+        "MALE",
+        "FEMALE"
+      ],
+      "type": "string"
     },
     "Title": {
       "enum": [
@@ -740,48 +3202,22 @@
       ]
     }
   },
-  "properties": {
-    "$schema": {
-      "type": [
-        "string",
-        "null"
-      ]
+  "oneOf": [
+    {
+      "$ref": "#/definitions/CalendarDefinition"
     },
-    "days_definitions": {
-      "items": {
-        "$ref": "#/definitions/DayDefinition"
-      },
-      "type": "array"
+    {
+      "$ref": "#/definitions/ResourcesDefinition"
     },
-    "id": {
-      "type": "string"
+    {
+      "$ref": "#/definitions/DayDefinition"
     },
-    "metadata": {
-      "$ref": "#/definitions/CalendarMetadata"
+    {
+      "$ref": "#/definitions/EntityDefinition"
     },
-    "parent_calendar_ids": {
-      "items": {
-        "type": "string"
-      },
-      "type": "array"
-    },
-    "particular_config": {
-      "anyOf": [
-        {
-          "$ref": "#/definitions/ParticularConfig"
-        },
-        {
-          "type": "null"
-        }
-      ]
+    {
+      "$ref": "#/definitions/Precedence"
     }
-  },
-  "required": [
-    "days_definitions",
-    "id",
-    "metadata",
-    "parent_calendar_ids"
   ],
-  "title": "CalendarDefinition",
-  "type": "object"
+  "title": "RomcalTypes"
 }

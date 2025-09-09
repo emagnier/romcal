@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "definitions": {
     "Colors": {
@@ -102,7 +102,7 @@
           "properties": {
             "date": {
               "format": "uint32",
-              "minimum": 0.0,
+              "minimum": 0,
               "type": "integer"
             },
             "day_offset": {
@@ -117,8 +117,8 @@
             }
           },
           "required": [
-            "date",
-            "month"
+            "month",
+            "date"
           ],
           "type": "object"
         },
@@ -161,13 +161,13 @@
             },
             "nth_week_in_month": {
               "format": "uint32",
-              "minimum": 0.0,
+              "minimum": 0,
               "type": "integer"
             }
           },
           "required": [
-            "day_of_week",
             "month",
+            "day_of_week",
             "nth_week_in_month"
           ],
           "type": "object"
@@ -191,8 +191,8 @@
             }
           },
           "required": [
-            "last_day_of_week_in_month",
-            "month"
+            "month",
+            "last_day_of_week_in_month"
           ],
           "type": "object"
         }
@@ -200,28 +200,20 @@
     },
     "DateDefException": {
       "additionalProperties": false,
-      "description": "The liturgical day date exception Represents a condition and the date to set when that condition is met",
+      "description": "The liturgical day date exception\nRepresents a condition and the date to set when that condition is met",
       "properties": {
         "then": {
-          "allOf": [
-            {
-              "$ref": "#/definitions/DateDefExtended"
-            }
-          ],
+          "$ref": "#/definitions/DateDefExtended",
           "description": "Date to set when condition is met"
         },
         "when": {
-          "allOf": [
-            {
-              "$ref": "#/definitions/ExceptionCondition"
-            }
-          ],
+          "$ref": "#/definitions/ExceptionCondition",
           "description": "Condition that triggers the exception"
         }
       },
       "required": [
-        "then",
-        "when"
+        "when",
+        "then"
       ],
       "type": "object"
     },
@@ -287,7 +279,8 @@
     "DayOfWeek": {
       "description": "Day of week (0-6, where 0=Sunday) with automatic validation",
       "format": "uint8",
-      "minimum": 0.0,
+      "maximum": 255,
+      "minimum": 0,
       "type": "integer"
     },
     "ExceptionCondition": {
@@ -308,8 +301,8 @@
           },
           "required": [
             "from",
-            "inclusive",
-            "to"
+            "to",
+            "inclusive"
           ],
           "type": "object"
         },
@@ -367,7 +360,7 @@
           "description": "Specify the number of persons this martyrology item is representing."
         },
         "hide_titles": {
-          "description": "Specify if titles should not be displayed. This can occur when a title is already included in the name of the martyrology item.",
+          "description": "Specify if titles should not be displayed. This can occur when a title is already included in\nthe name of the martyrology item.",
           "type": [
             "boolean",
             "null"
@@ -397,7 +390,8 @@
     "MonthIndex": {
       "description": "Month index (1-12) with automatic validation",
       "format": "uint8",
-      "minimum": 0.0,
+      "maximum": 255,
+      "minimum": 0,
       "type": "integer"
     },
     "Precedence": {
@@ -436,7 +430,7 @@
       "anyOf": [
         {
           "format": "uint32",
-          "minimum": 0.0,
+          "minimum": 0,
           "type": "integer"
         },
         {
@@ -532,7 +526,7 @@
   },
   "properties": {
     "allow_similar_rank_items": {
-      "description": "In addition to this liturgical day, allow similar items that have the same rank, and the same or lower precedence, so the current liturgical day will not overwrite another defined item.",
+      "description": "In addition to this liturgical day, allow similar items that have the same rank,\nand the same or lower precedence,\nso the current liturgical day will not overwrite another defined item.",
       "type": [
         "boolean",
         "null"
@@ -547,7 +541,7 @@
           "type": "null"
         }
       ],
-      "description": "The liturgical color(s) of the liturgical day. @deprecated"
+      "description": "The liturgical color(s) of the liturgical day.\n@deprecated"
     },
     "commons_def": {
       "anyOf": [
@@ -558,7 +552,7 @@
           "type": "null"
         }
       ],
-      "description": "The **Common** refers to a set of prayers, readings, and chants used for celebrating saints or feasts that belong to a specific category, such as martyrs, virgins, pastors, or the Blessed Virgin Mary."
+      "description": "The **Common** refers to a set of prayers, readings, and chants used for celebrating saints or\nfeasts that belong to a specific category, such as martyrs, virgins, pastors, or the Blessed\nVirgin Mary."
     },
     "custom_locale_id": {
       "description": "Specify a custom locale ID for this date definition, in this calendar.",
@@ -590,7 +584,7 @@
       "description": "Date definition exception"
     },
     "drop": {
-      "description": "If this liturgical day must be removed from this calendar and from all those it inherits (the parent calendars), on the final calendar generated by romcal.",
+      "description": "If this liturgical day must be removed from this calendar and from all those it inherits\n(the parent calendars), on the final calendar generated by romcal.",
       "type": [
         "boolean",
         "null"
@@ -600,14 +594,14 @@
       "type": "string"
     },
     "is_holy_day_of_obligation": {
-      "description": "Holy days of obligation are days on which the faithful are expected to attend Mass, and engage in rest from work and recreation.",
+      "description": "Holy days of obligation are days on which the faithful are expected to attend Mass,\nand engage in rest from work and recreation.",
       "type": [
         "boolean",
         "null"
       ]
     },
     "is_optional": {
-      "description": "Specify is this LiturgicalDay is optional within a specific liturgical calendar.\n\nUNLY #14: Memorials are either obligatory or optional; their observance is integrated into the celebration of the occurring weekday in accordance with the norms set forth in the General Instruction of the Roman Missal and of the Liturgy of the Hours\n\nNote: also used for the dedication of consecrated churches, which is an optional solemnity that should not overwrite the default weekday.",
+      "description": "Specify is this LiturgicalDay is optional within a specific liturgical calendar.\n\nUNLY #14:\nMemorials are either obligatory or optional; their observance is integrated into\nthe celebration of the occurring weekday in accordance with the norms set forth in the\nGeneral Instruction of the Roman Missal and of the Liturgy of the Hours\n\nNote: also used for the dedication of consecrated churches, which is an optional solemnity\nthat should not overwrite the default weekday.",
       "type": [
         "boolean",
         "null"

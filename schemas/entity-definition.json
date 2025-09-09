@@ -1,0 +1,366 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "definitions": {
+    "CanonizationLevel": {
+      "enum": [
+        "BLESSED",
+        "SAINT"
+      ],
+      "type": "string"
+    },
+    "EntityType": {
+      "enum": [
+        "PERSON",
+        "PLACE",
+        "EVENT"
+      ],
+      "type": "string"
+    },
+    "SaintCount": {
+      "anyOf": [
+        {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "SaintDate": {
+      "anyOf": [
+        {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "SaintDateDef": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/SaintDate"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "between": {
+              "items": {
+                "$ref": "#/definitions/SaintDate"
+              },
+              "maxItems": 2,
+              "minItems": 2,
+              "type": "array"
+            }
+          },
+          "required": [
+            "between"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "or": {
+              "items": {
+                "$ref": "#/definitions/SaintDate"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "or"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "century": {
+              "format": "uint32",
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "century"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "Sex": {
+      "enum": [
+        "MALE",
+        "FEMALE"
+      ],
+      "type": "string"
+    },
+    "Title": {
+      "enum": [
+        "ABBESS",
+        "ABBOT",
+        "APOSTLE",
+        "ARCHANGEL",
+        "BISHOP",
+        "DEACON",
+        "DOCTOR_OF_THE_CHURCH",
+        "EMPRESS",
+        "EVANGELIST",
+        "FIRST_BISHOP",
+        "HERMIT",
+        "KING",
+        "MARTYR",
+        "MISSIONARY",
+        "MONK",
+        "MOTHER_AND_QUEEN_OF_CHILE",
+        "PARENTS_OF_THE_BLESSED_VIRGIN_MARY",
+        "POPE",
+        "PATRIARCH",
+        "PILGRIM",
+        "PRIEST",
+        "PROPHET",
+        "PROTO_MARTYR_OF_OCEANIA",
+        "QUEEN",
+        "QUEEN_OF_POLAND",
+        "RELIGIOUS",
+        "SLAVIC_MISSIONARY",
+        "SPOUSE_OF_THE_BLESSED_VIRGIN_MARY",
+        "THE_FIRST_MARTYR",
+        "VIRGIN",
+        "COPATRON_OF_EUROPE",
+        "COPATRON_OF_IRELAND",
+        "COPATRON_OF_CANADA",
+        "COPATRONESS_OF_EUROPE",
+        "COPATRONESS_OF_FRANCE",
+        "COPATRONESS_OF_IRELAND",
+        "COPATRONESS_OF_ITALY_AND_EUROPE",
+        "COPATRONESS_OF_THE_PHILIPPINES",
+        "PATRON_OF_CANADA",
+        "PATRON_OF_ENGLAND",
+        "PATRON_OF_EUROPE",
+        "PATRON_OF_FRANCE",
+        "PATRON_OF_IRELAND",
+        "PATRON_OF_ITALY",
+        "PATRON_OF_OCEANIA",
+        "PATRON_OF_POLAND",
+        "PATRON_OF_RUSSIA",
+        "PATRON_OF_SCOTLAND",
+        "PATRON_OF_SPAIN",
+        "PATRON_OF_THE_CZECH_NATION",
+        "PATRON_OF_THE_DIOCESE",
+        "PATRON_OF_WALES",
+        "PATRONESS_OF_ALSACE",
+        "PATRONESS_OF_ARGENTINA",
+        "PATRONESS_OF_BRAZIL",
+        "PATRONESS_OF_HUNGARY",
+        "PATRONESS_OF_PUERTO_RICO",
+        "PATRONESS_OF_SLOVAKIA",
+        "PATRONESS_OF_THE_AMERICAS",
+        "PATRONESS_OF_THE_PHILIPPINES",
+        "PATRONESS_OF_THE_PROVINCE_OF_QUEBEC",
+        "PATRONESS_OF_THE_USA",
+        "PATRON_OF_THE_CLERGY_OF_THE_ARCHDIOCESE_OF_LYON",
+        "PATRON_OF_THE_CITY_OF_LYON",
+        "PATRONESS_OF_COSTA_RICA",
+        "PRINCIPAL_PATRON_OF_THE_DIOCESE",
+        "SECOND_PATRON_OF_THE_DIOCESE"
+      ],
+      "type": "string"
+    }
+  },
+  "properties": {
+    "canonization_level": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/CanonizationLevel"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "The canonization level of a person."
+    },
+    "count": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/SaintCount"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Number of person that this definition represent.\nIt could be set as 'many' if the number is not defined."
+    },
+    "date_of_beatification": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/SaintDateDef"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Date of Beatification, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century."
+    },
+    "date_of_beatification_is_approximative": {
+      "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "date_of_birth": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/SaintDateDef"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Date of Birth, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century."
+    },
+    "date_of_birth_is_approximative": {
+      "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "date_of_canonization": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/SaintDateDef"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Date of Canonization, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century."
+    },
+    "date_of_canonization_is_approximative": {
+      "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "date_of_death": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/SaintDateDef"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Date of Death, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century."
+    },
+    "date_of_death_is_approximative": {
+      "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "date_of_dedication": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/SaintDateDef"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Date of Dedication of a church, basilica, or cathedral (or other place of worship),\nas a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century."
+    },
+    "fullname": {
+      "description": "The full name of the entity.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "hide_canonization_level": {
+      "description": "Specify if the canonization level should not be displayed.\nIt's generally the case when the canonization are already included in the name.",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "hide_titles": {
+      "description": "Specify if the titles should not be displayed.\nIt's generally the case when titles are already included in the name.",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "id": {
+      "description": "The unique identifier of the entity",
+      "type": "string"
+    },
+    "name": {
+      "description": "The short name of the entity, without the canonization level and titles.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "sex": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/Sex"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Determine if the Saint or the Blessed is a male or a female."
+    },
+    "sources": {
+      "description": "Sources for the information about this entity",
+      "items": {
+        "type": "string"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "titles": {
+      "description": "Titles of the Saint or the Blessed",
+      "items": {
+        "$ref": "#/definitions/Title"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "type": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/EntityType"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "The type of the entity.\n@default EntityType.Person"
+    }
+  },
+  "required": [
+    "id"
+  ],
+  "title": "EntityDefinition",
+  "type": "object"
+}

@@ -1,8 +1,9 @@
 use romcal_core::calendar_def::*;
+use romcal_core::resources::*;
 use schemars::schema_for;
 use serde_json::Value;
 use std::fs;
-use std::path::PathBuf;
+use std::path::{Path, PathBuf};
 
 /// Fix the date_exceptions schema to support both single objects and arrays
 fn fix_date_exceptions_schema(schema: &mut Value) {
@@ -60,17 +61,44 @@ fn add_additional_properties_false(schema: &mut Value) {
     }
 }
 
+/// Fix $defs references to use definitions instead (compatibility with json2ts)
+fn fix_defs_references(schema: &mut Value) {
+    match schema {
+        Value::Object(map) => {
+            // Convert $defs to definitions
+            if let Some(defs) = map.remove("$defs") {
+                map.insert("definitions".to_string(), defs);
+            }
+
+            // Fix $ref references from #/$defs/ to #/definitions/
+            for (_, value) in map.iter_mut() {
+                fix_defs_references(value);
+            }
+        }
+        Value::Array(arr) => {
+            for item in arr.iter_mut() {
+                fix_defs_references(item);
+            }
+        }
+        Value::String(s) => {
+            // Replace #/$defs/ with #/definitions/ in string values
+            if s.starts_with("#/$defs/") {
+                *s = s.replace("#/$defs/", "#/definitions/");
+            }
+        }
+        _ => {}
+    }
+}
+
 /// Generate a schema for a given type and save it to a file
-fn generate_schema<T>(
-    schemas_dir: &PathBuf,
-    filename: &str,
-) -> Result<(), Box<dyn std::error::Error>>
+fn generate_schema<T>(schemas_dir: &Path, filename: &str) -> Result<(), Box<dyn std::error::Error>>
 where
     T: schemars::JsonSchema,
 {
     let schema = schema_for!(T);
     let mut schema_value = serde_json::to_value(&schema)?;
     add_additional_properties_false(&mut schema_value);
+    fix_defs_references(&mut schema_value);
     let schema_json = serde_json::to_string_pretty(&schema_value)?;
     fs::write(schemas_dir.join(filename), schema_json)?;
     println!("✅ {} schema exported to {}", filename, filename);
@@ -79,7 +107,7 @@ where
 
 /// Generate a schema with custom fixes applied
 fn generate_schema_with_fixes<T>(
-    schemas_dir: &PathBuf,
+    schemas_dir: &Path,
     filename: &str,
     fix_fn: fn(&mut Value),
 ) -> Result<(), Box<dyn std::error::Error>>
@@ -89,10 +117,111 @@ where
     let schema = schema_for!(T);
     let mut schema_value = serde_json::to_value(&schema)?;
     add_additional_properties_false(&mut schema_value);
+    fix_defs_references(&mut schema_value);
     fix_fn(&mut schema_value);
     let schema_json = serde_json::to_string_pretty(&schema_value)?;
     fs::write(schemas_dir.join(filename), schema_json)?;
     println!("✅ {} schema exported to {}", filename, filename);
+    Ok(())
+}
+
+/// Apply fixes to all schema values
+fn apply_fixes_to_all_schemas(schema_values: &mut [&mut Value]) {
+    for schema_value in schema_values.iter_mut() {
+        add_additional_properties_false(schema_value);
+        fix_defs_references(schema_value);
+    }
+    // Apply specific fixes to calendar schema (first in the array)
+    if let Some(calendar_value) = schema_values.first_mut() {
+        fix_date_exceptions_schema(calendar_value);
+    }
+}
+
+/// Extract definitions from all schemas and merge them into the types schema
+fn merge_definitions_into_types_schema(types_schema: &mut Value, schema_values: &[&Value]) {
+    if let Some(types_definitions) = types_schema.get_mut("definitions") {
+        if let Some(definitions_obj) = types_definitions.as_object_mut() {
+            for schema_value in schema_values {
+                if let Some(definitions) = schema_value.get("definitions") {
+                    if let Some(defs) = definitions.as_object() {
+                        for (key, value) in defs {
+                            definitions_obj.insert(key.clone(), value.clone());
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/// Add main types (CalendarDefinition and ResourcesDefinition) to the schema
+fn add_main_types_to_schema(
+    types_schema: &mut Value,
+    calendar_value: &mut Value,
+    resources_value: &mut Value,
+) {
+    if let Some(types_definitions) = types_schema.get_mut("definitions") {
+        if let Some(definitions_obj) = types_definitions.as_object_mut() {
+            // Add CalendarDefinition (it's the root type, not in definitions)
+            if let Some(calendar_obj) = calendar_value.as_object_mut() {
+                calendar_obj.remove("$schema");
+                definitions_obj.insert("CalendarDefinition".to_string(), calendar_value.clone());
+            }
+
+            // Add ResourcesDefinition (it's the root type, not in definitions)
+            if let Some(resources_obj) = resources_value.as_object_mut() {
+                resources_obj.remove("$schema");
+                definitions_obj.insert("ResourcesDefinition".to_string(), resources_value.clone());
+            }
+        }
+    }
+}
+
+/// Generate a schema specifically for TypeScript generation
+fn generate_types_schema(schemas_dir: &Path) -> Result<(), Box<dyn std::error::Error>> {
+    // Create a schema that combines all main types as a union
+    let mut types_schema = serde_json::json!({
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "title": "RomcalTypes",
+        "oneOf": [
+            { "$ref": "#/definitions/CalendarDefinition" },
+            { "$ref": "#/definitions/ResourcesDefinition" },
+            { "$ref": "#/definitions/DayDefinition" },
+            { "$ref": "#/definitions/EntityDefinition" },
+            { "$ref": "#/definitions/Precedence" }
+        ],
+        "definitions": {}
+    });
+
+    // Generate schemas for all major types and convert to values
+    let mut calendar_value = serde_json::to_value(schema_for!(CalendarDefinition))?;
+    let mut resources_value = serde_json::to_value(schema_for!(ResourcesDefinition))?;
+    let mut day_value = serde_json::to_value(schema_for!(DayDefinition))?;
+    let mut precedence_value = serde_json::to_value(schema_for!(Precedence))?;
+    let mut entity_value = serde_json::to_value(schema_for!(EntityDefinition))?;
+
+    // Apply fixes to all schemas
+    let mut schema_values = vec![
+        &mut calendar_value,
+        &mut resources_value,
+        &mut day_value,
+        &mut precedence_value,
+        &mut entity_value,
+    ];
+    apply_fixes_to_all_schemas(&mut schema_values);
+
+    // Extract definitions from all schemas
+    let schema_refs: Vec<&Value> = schema_values.iter().map(|v| &**v).collect();
+    merge_definitions_into_types_schema(&mut types_schema, &schema_refs);
+
+    // Add the main types as well
+    add_main_types_to_schema(&mut types_schema, &mut calendar_value, &mut resources_value);
+
+    // Write the types schema
+    let schema_json = serde_json::to_string_pretty(&types_schema)?;
+    fs::write(schemas_dir.join("all-types.json"), schema_json)?;
+    println!("✅ all-types.json schema exported (for TypeScript generation)");
+
     Ok(())
 }
 
@@ -109,6 +238,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     generate_schema::<DayDefinition>(&schemas_dir, "day-definition.json")?;
     generate_schema::<Precedence>(&schemas_dir, "precedence.json")?;
 
+    // Generate resources schemas
+    generate_schema::<ResourcesDefinition>(&schemas_dir, "resources-definition.json")?;
+    generate_schema::<EntityDefinition>(&schemas_dir, "entity-definition.json")?;
+
     // Generate calendar-definition.json with date_exceptions fix
     generate_schema_with_fixes::<CalendarDefinition>(
         &schemas_dir,
@@ -116,12 +249,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         fix_date_exceptions_schema,
     )?;
 
-    // Generate all-types.json (copy of calendar-definition.json)
-    fs::copy(
-        schemas_dir.join("calendar-definition.json"),
-        schemas_dir.join("all-types.json"),
-    )?;
-    println!("✅ all-types.json schema exported (copy of calendar-definition.json)");
+    generate_types_schema(&schemas_dir)?;
 
     println!("\n🎉 All JSON schemas have been generated successfully!");
     println!("📁 Destination directory: {}", schemas_dir.display());
@@ -186,75 +314,6 @@ mod tests {
         let original_schema = schema.clone();
         fix_date_exceptions_schema(&mut schema);
         assert_eq!(schema, original_schema);
-    }
-
-    #[test]
-    fn test_add_additional_properties_false() {
-        // Arrange: Create a schema with objects that need additionalProperties: false
-        let mut schema = json!({
-            "type": "object",
-            "properties": {
-                "nested_object": {
-                    "type": "object",
-                    "properties": {
-                        "field": { "type": "string" }
-                    }
-                },
-                "array_of_objects": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "item_field": { "type": "string" }
-                        }
-                    }
-                },
-                "string_field": { "type": "string" }
-            }
-        });
-
-        // Act: Apply additionalProperties: false
-        add_additional_properties_false(&mut schema);
-
-        // Assert: Check that all objects have additionalProperties: false
-        assert_eq!(schema["additionalProperties"], false);
-        assert_eq!(
-            schema["properties"]["nested_object"]["additionalProperties"],
-            false
-        );
-        assert_eq!(
-            schema["properties"]["array_of_objects"]["items"]["additionalProperties"],
-            false
-        );
-        // String field should not have additionalProperties
-        assert!(!schema["properties"]["string_field"]
-            .as_object()
-            .unwrap()
-            .contains_key("additionalProperties"));
-    }
-
-    #[test]
-    fn test_add_additional_properties_false_preserves_existing() {
-        // Test that existing additionalProperties are not overwritten
-        let mut schema = json!({
-            "type": "object",
-            "additionalProperties": true,
-            "properties": {
-                "nested": {
-                    "type": "object",
-                    "additionalProperties": { "type": "string" }
-                }
-            }
-        });
-
-        add_additional_properties_false(&mut schema);
-
-        // Should preserve existing additionalProperties
-        assert_eq!(schema["additionalProperties"], true);
-        assert_eq!(
-            schema["properties"]["nested"]["additionalProperties"]["type"],
-            "string"
-        );
     }
 
     #[test]

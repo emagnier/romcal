@@ -1,0 +1,909 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "definitions": {
+    "AdventSeason": {
+      "additionalProperties": false,
+      "properties": {
+        "privileged_weekday": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "season": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sunday": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "weekday": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CanonizationLevel": {
+      "enum": [
+        "BLESSED",
+        "SAINT"
+      ],
+      "type": "string"
+    },
+    "ChristmasTimeSeason": {
+      "additionalProperties": false,
+      "properties": {
+        "after_epiphany": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "before_epiphany": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "day": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "octave": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "season": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "second_sunday_after_christmas": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CyclesMetadata": {
+      "additionalProperties": false,
+      "properties": {
+        "proper_of_saints": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "proper_of_time": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "psalter_week_1": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "psalter_week_2": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "psalter_week_3": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "psalter_week_4": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sunday_year_a": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sunday_year_b": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sunday_year_c": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "weekday_year_1": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "weekday_year_2": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "EasterTimeSeason": {
+      "additionalProperties": false,
+      "properties": {
+        "octave": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "season": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sunday": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "weekday": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "EntityDefinition": {
+      "additionalProperties": false,
+      "properties": {
+        "canonization_level": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/CanonizationLevel"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The canonization level of a person."
+        },
+        "count": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SaintCount"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Number of person that this definition represent.\nIt could be set as 'many' if the number is not defined."
+        },
+        "date_of_beatification": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SaintDateDef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Date of Beatification, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century."
+        },
+        "date_of_beatification_is_approximative": {
+          "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "date_of_birth": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SaintDateDef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Date of Birth, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century."
+        },
+        "date_of_birth_is_approximative": {
+          "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "date_of_canonization": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SaintDateDef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Date of Canonization, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century."
+        },
+        "date_of_canonization_is_approximative": {
+          "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "date_of_death": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SaintDateDef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Date of Death, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century."
+        },
+        "date_of_death_is_approximative": {
+          "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "date_of_dedication": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SaintDateDef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Date of Dedication of a church, basilica, or cathedral (or other place of worship),\nas a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century."
+        },
+        "fullname": {
+          "description": "The full name of the entity.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "hide_canonization_level": {
+          "description": "Specify if the canonization level should not be displayed.\nIt's generally the case when the canonization are already included in the name.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "hide_titles": {
+          "description": "Specify if the titles should not be displayed.\nIt's generally the case when titles are already included in the name.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "id": {
+          "description": "The unique identifier of the entity",
+          "type": "string"
+        },
+        "name": {
+          "description": "The short name of the entity, without the canonization level and titles.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sex": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Sex"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Determine if the Saint or the Blessed is a male or a female."
+        },
+        "sources": {
+          "description": "Sources for the information about this entity",
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "titles": {
+          "description": "Titles of the Saint or the Blessed",
+          "items": {
+            "$ref": "#/definitions/Title"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "type": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/EntityType"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The type of the entity.\n@default EntityType.Person"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "type": "object"
+    },
+    "EntityType": {
+      "enum": [
+        "PERSON",
+        "PLACE",
+        "EVENT"
+      ],
+      "type": "string"
+    },
+    "LentSeason": {
+      "additionalProperties": false,
+      "properties": {
+        "day_after_ash_wed": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "holy_week_day": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "season": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sunday": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "weekday": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "LocaleColors": {
+      "additionalProperties": false,
+      "properties": {
+        "black": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "gold": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "green": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "purple": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "red": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "rose": {
+          "type": "string"
+        },
+        "white": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "rose"
+      ],
+      "type": "object"
+    },
+    "OrdinaryTimeSeason": {
+      "additionalProperties": false,
+      "properties": {
+        "season": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sunday": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "weekday": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "PaschalTriduumSeason": {
+      "additionalProperties": false,
+      "properties": {
+        "season": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "PeriodsMetadata": {
+      "additionalProperties": false,
+      "properties": {
+        "epiphany": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "holy_week": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "RanksMetadata": {
+      "additionalProperties": false,
+      "properties": {
+        "feast": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "memorial": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "optional_memorial": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "solemnity": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sunday": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "weekday": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ResourcesMetadata": {
+      "additionalProperties": false,
+      "properties": {
+        "colors": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/LocaleColors"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "cycles": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/CyclesMetadata"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "months": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "ordinals": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "periods": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/PeriodsMetadata"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ranks": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/RanksMetadata"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "seasons": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SeasonsMetadata"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "weekdays": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": [
+            "object",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "SaintCount": {
+      "anyOf": [
+        {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "SaintDate": {
+      "anyOf": [
+        {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "SaintDateDef": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/SaintDate"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "between": {
+              "items": {
+                "$ref": "#/definitions/SaintDate"
+              },
+              "maxItems": 2,
+              "minItems": 2,
+              "type": "array"
+            }
+          },
+          "required": [
+            "between"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "or": {
+              "items": {
+                "$ref": "#/definitions/SaintDate"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "or"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "century": {
+              "format": "uint32",
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "century"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "SeasonsMetadata": {
+      "additionalProperties": false,
+      "properties": {
+        "advent": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/AdventSeason"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "christmas_time": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ChristmasTimeSeason"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "easter_time": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/EasterTimeSeason"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "lent": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/LentSeason"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ordinary_time": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/OrdinaryTimeSeason"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "paschal_triduum": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/PaschalTriduumSeason"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "Sex": {
+      "enum": [
+        "MALE",
+        "FEMALE"
+      ],
+      "type": "string"
+    },
+    "Title": {
+      "enum": [
+        "ABBESS",
+        "ABBOT",
+        "APOSTLE",
+        "ARCHANGEL",
+        "BISHOP",
+        "DEACON",
+        "DOCTOR_OF_THE_CHURCH",
+        "EMPRESS",
+        "EVANGELIST",
+        "FIRST_BISHOP",
+        "HERMIT",
+        "KING",
+        "MARTYR",
+        "MISSIONARY",
+        "MONK",
+        "MOTHER_AND_QUEEN_OF_CHILE",
+        "PARENTS_OF_THE_BLESSED_VIRGIN_MARY",
+        "POPE",
+        "PATRIARCH",
+        "PILGRIM",
+        "PRIEST",
+        "PROPHET",
+        "PROTO_MARTYR_OF_OCEANIA",
+        "QUEEN",
+        "QUEEN_OF_POLAND",
+        "RELIGIOUS",
+        "SLAVIC_MISSIONARY",
+        "SPOUSE_OF_THE_BLESSED_VIRGIN_MARY",
+        "THE_FIRST_MARTYR",
+        "VIRGIN",
+        "COPATRON_OF_EUROPE",
+        "COPATRON_OF_IRELAND",
+        "COPATRON_OF_CANADA",
+        "COPATRONESS_OF_EUROPE",
+        "COPATRONESS_OF_FRANCE",
+        "COPATRONESS_OF_IRELAND",
+        "COPATRONESS_OF_ITALY_AND_EUROPE",
+        "COPATRONESS_OF_THE_PHILIPPINES",
+        "PATRON_OF_CANADA",
+        "PATRON_OF_ENGLAND",
+        "PATRON_OF_EUROPE",
+        "PATRON_OF_FRANCE",
+        "PATRON_OF_IRELAND",
+        "PATRON_OF_ITALY",
+        "PATRON_OF_OCEANIA",
+        "PATRON_OF_POLAND",
+        "PATRON_OF_RUSSIA",
+        "PATRON_OF_SCOTLAND",
+        "PATRON_OF_SPAIN",
+        "PATRON_OF_THE_CZECH_NATION",
+        "PATRON_OF_THE_DIOCESE",
+        "PATRON_OF_WALES",
+        "PATRONESS_OF_ALSACE",
+        "PATRONESS_OF_ARGENTINA",
+        "PATRONESS_OF_BRAZIL",
+        "PATRONESS_OF_HUNGARY",
+        "PATRONESS_OF_PUERTO_RICO",
+        "PATRONESS_OF_SLOVAKIA",
+        "PATRONESS_OF_THE_AMERICAS",
+        "PATRONESS_OF_THE_PHILIPPINES",
+        "PATRONESS_OF_THE_PROVINCE_OF_QUEBEC",
+        "PATRONESS_OF_THE_USA",
+        "PATRON_OF_THE_CLERGY_OF_THE_ARCHDIOCESE_OF_LYON",
+        "PATRON_OF_THE_CITY_OF_LYON",
+        "PATRONESS_OF_COSTA_RICA",
+        "PRINCIPAL_PATRON_OF_THE_DIOCESE",
+        "SECOND_PATRON_OF_THE_DIOCESE"
+      ],
+      "type": "string"
+    }
+  },
+  "properties": {
+    "$schema": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "entities": {
+      "description": "Entities of the resources: a person, a place, an event, etc.",
+      "items": {
+        "$ref": "#/definitions/EntityDefinition"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "locale": {
+      "description": "Locale code of the resources, in BCP-47 IETF tag format",
+      "type": "string"
+    },
+    "metadata": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/ResourcesMetadata"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Metadata of the resources"
+    }
+  },
+  "required": [
+    "locale"
+  ],
+  "title": "ResourcesDefinition",
+  "type": "object"
+}

@@ -4,7 +4,9 @@
   "items": {
     "achard_of_saint_victor_bishop": {
       "fullname": "Bienheureux Achard, évêque d’Avranches († 1171)",
-      "sources": ["mr_fr_1982_ed2_coutances"]
+      "sources": [
+        "mr_fr_1982_ed2_coutances"
+      ]
     },
     "adalbert_of_prague_bishop": {
       "fullname": "Saint Adalbert, évêque de Prague et martyr († 997)"
@@ -17,7 +19,9 @@
     },
     "adeline_de_mortain_abbess_and_the_saints_of_savigny": {
       "fullname": "Sainte Adeline de Mortain († v. 1125) et les saints de Savigny",
-      "sources": ["mr_fr_1982_ed2_coutances"]
+      "sources": [
+        "mr_fr_1982_ed2_coutances"
+      ]
     },
     "adelphus_of_metz_bishop": {
       "fullname": "Saint Adelphe, évêque († Vème s.)"
@@ -33,32 +37,42 @@
     },
     "albinus_of_angers_bishop": {
       "fullname": "Saint Aubin, évêque († 550)",
-      "sources": ["mr_fr_2022_ed3_angers"]
+      "sources": [
+        "mr_fr_2022_ed3_angers"
+      ]
     },
     "all_holy_bishops_and_priests_of_the_diocese_of_coutances": {
       "fullname": "Tous les Saints Évêques du diocèse de Coutances et Avranches, et les prêtres, leurs coopérateurs",
-      "sources": ["mr_fr_1982_ed2_coutances"]
+      "sources": [
+        "mr_fr_1982_ed2_coutances"
+      ]
     },
     "all_holy_bishops_of_the_archdiocese_of_lyon": {
       "fullname": "Tous les Saints Évêques du diocèse de Lyon"
     },
     "all_holy_bishops_of_the_diocese_of_angers": {
       "fullname": "Tous les Saints Évêques du diocèse d’Angers",
-      "sources": ["mr_fr_2022_ed3_angers"]
+      "sources": [
+        "mr_fr_2022_ed3_angers"
+      ]
     },
     "all_saints": {
       "fullname": "Tous les Saints"
     },
     "all_saints_of_the_archdiocese_of_lyon": {
       "fullname": "Tous les Saints du diocèse de Lyon",
-      "sources": ["mr_fr_2014_ed2_lyon"]
+      "sources": [
+        "mr_fr_2014_ed2_lyon"
+      ]
     },
     "all_saints_of_the_archdiocese_of_paris": {
       "fullname": "Tous les Saints du diocèse de Paris"
     },
     "all_saints_of_the_diocese_of_coutances": {
       "fullname": "Tous les Saints du diocèse de Coutances et Avranches",
-      "sources": ["mr_fr_1982_ed2_coutances"]
+      "sources": [
+        "mr_fr_1982_ed2_coutances"
+      ]
     },
     "all_saints_of_the_diocese_of_saint_denis": {
       "fullname": "Tous les Saints du diocèse de Saint-Denis"
@@ -110,7 +124,9 @@
     },
     "annemund_of_lyon_bishop": {
       "fullname": "Saint Ennemond (Chamond), évêque et martyr († v. 658)",
-      "sources": ["mr_fr_2014_ed2_lyon"]
+      "sources": [
+        "mr_fr_2014_ed2_lyon"
+      ]
     },
     "annunciation_of_the_lord": {
       "fullname": "Annonciation du Seigneur"
@@ -123,7 +139,9 @@
     },
     "anthony_chevrier_priest": {
       "fullname": "Bienheureux Antoine Chevrier, prêtre († 1879)",
-      "sources": ["mr_fr_2014_ed2_lyon"]
+      "sources": [
+        "mr_fr_2014_ed2_lyon"
+      ]
     },
     "anthony_mary_claret_bishop": {
       "fullname": "Saint Antoine-Marie Claret, évêque († 1870)"
@@ -163,14 +181,18 @@
     },
     "aubert_of_avranches_bishop": {
       "fullname": "Saint Aubert, évêque († 725)",
-      "sources": ["mr_fr_1982_ed2_coutances"]
+      "sources": [
+        "mr_fr_1982_ed2_coutances"
+      ]
     },
     "audoen_of_rouen_bishop": {
       "fullname": "Saint Ouen, évêque"
     },
     "audomar_of_therouanne_bishop": {
       "fullname": "Saint Omer, évêque († 670)",
-      "sources": ["mr_fr_1982_ed2_coutances"]
+      "sources": [
+        "mr_fr_1982_ed2_coutances"
+      ]
     },
     "augustine_of_canterbury_bishop": {
       "fullname": "Saint Augustin, évêque de Cantorbéry en Angleterre († 604)"
@@ -183,14 +205,18 @@
     },
     "augustus_chapdelaine_priest": {
       "fullname": "Saint Auguste Chapdelaine, prêtre et martyr († 1856)",
-      "sources": ["mr_fr_1982_ed2_coutances"]
+      "sources": [
+        "mr_fr_1982_ed2_coutances"
+      ]
     },
     "aurelia_of_strasbourg_virgin": {
       "fullname": "Sainte Aurélie, vierge († IVème s.)"
     },
     "aventin_of_larboust_martyr": {
       "fullname": "Saint Aventin, martyr († VIIIème s.)",
-      "sources": ["mr_fr_1974_ed1_region_apostolique_du_midi"]
+      "sources": [
+        "mr_fr_1974_ed1_region_apostolique_du_midi"
+      ]
     }
   }
 }
