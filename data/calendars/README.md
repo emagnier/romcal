@@ -43,17 +43,17 @@ Examples:
 ```
 countries/
 ├── france/
-│   ├── index.json
+│   ├── france.json
 │   ├── france__strasbourg.json
 │   ├── france__strasbourg__city.json
 │   ├── france__paris.json
 │   └── france__saint_denis.json
 ├── russia/
-│   ├── index.json
+│   ├── russia.json
 │   ├── asia__russia.json
 │   └── europe__russia.json
 └── united_states/
-    ├── index.json
+    ├── united_states.json
     └── united_states__new_york.json
 
 regions/
@@ -62,10 +62,10 @@ regions/
 
 communities/
 ├── benedictine/
-│   ├── index.json
+│   ├── benedictine.json
 │   └── benedictine__monte_cassino.json
 └── franciscan/
-    ├── index.json
+    ├── franciscan.json
     └── franciscan__assisi.json
 ```
 
@@ -157,7 +157,17 @@ asia__russia.json
 europe__russia.json
 ```
 
-**Special case**: Use `index.json` for the main calendar of a directory when the filename would be identical to the directory name.
+**Base Calendars**: Each directory contains a main file with the entity name (country, region, community) that contains the base definitions:
+
+- **Countries**: `france.json`, `russia.json`, `united_states.json`
+- **Regions**: `europe.json`, `americas.json`
+- **Communities**: `benedictine.json`, `franciscan.json`
+
+**Multi-regional Calendars**: For countries that span multiple regions, the base file contains shared definitions, and region-specific files are created:
+
+- `russia.json` → shared definitions between regions
+- `asia__russia.json` → specific to Asian region
+- `europe__russia.json` → specific to European region
 
 ### 4. TypeScript Variables
 
@@ -210,7 +220,7 @@ const EuropeRussia = { ... };
 
 ```
 ID: france
-File: france.json (or index.json if in france/ directory)
+File: france.json
 Variable: France
 Package: @romcal/calendar.france
 ```
@@ -297,7 +307,7 @@ Package: @romcal/calendar.france.saint-denis.city
 2. **IDs and files**: Always use `snake_case` with double underscores for hierarchy
 3. **TypeScript variables**: Always use `PascalCase` without underscores
 4. **NPM packages**: Always use dots for hierarchy separation
-5. **File naming**: Match the calendar ID exactly (except for `index.json` special case)
+5. **File naming**: Match the calendar ID exactly
 
 ### Best Practices
 
