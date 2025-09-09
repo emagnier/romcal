@@ -213,6 +213,17 @@ export type EntityDefinition = {
    * It could be set as 'many' if the number is not defined.
    */
   count?: SaintCount;
+
+  /**
+   * Sources for the information about this entity
+   */
+  sources?: string[];
+
+  /**
+   * Internal notes
+   * @private
+   */
+  _todo?: string[];
 };
 
 export type SaintCount = number | 'many';

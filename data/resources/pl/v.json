@@ -1,30 +1,38 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "pl",
-  "letter": "v",
-  "items": {
-    "valerius_of_trier_bishop": {
+  "entities": [
+    {
+      "id": "valerius_of_trier_bishop",
       "fullname": "Św. Waleriusza, biskupa"
     },
-    "vincent_de_paul_priest": {
+    {
+      "id": "vincent_de_paul_priest",
       "fullname": "Św. Wincentego à Paulo, prezbitera"
     },
-    "vincent_ferrer_priest": {
+    {
+      "id": "vincent_ferrer_priest",
       "fullname": "Św. Wincentego Ferreriusza, prezbitera"
     },
-    "vincent_kadlubek_bishop": {
+    {
+      "id": "vincent_kadlubek_bishop",
       "fullname": "Bł. Wincentego Kadłubka, biskupa"
     },
-    "vincent_lewoniuk_and_companions_martyrs": {
+    {
+      "id": "vincent_lewoniuk_and_companions_martyrs",
       "fullname": "Błogosławionych męczenników Wincentego Lewoniuka i Towarzyszy"
     },
-    "vincent_of_saragossa_deacon": {
+    {
+      "id": "vincent_of_saragossa_deacon",
       "fullname": "Św. Wincentego, diakona i męczennika"
     },
-    "vincent_pallotti_priest": {
+    {
+      "id": "vincent_pallotti_priest",
       "fullname": "Św. Wincentego Pallottiego, prezbitera"
     },
-    "visitation_of_mary": {
+    {
+      "id": "visitation_of_mary",
       "fullname": "Nawiedzenie Najświętszej Maryi Panny"
     }
-  }
+  ]
 }

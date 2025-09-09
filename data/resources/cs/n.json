@@ -1,48 +1,62 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "cs",
-  "letter": "n",
-  "items": {
-    "nativity_of_john_the_baptist": {
+  "entities": [
+    {
+      "id": "nativity_of_john_the_baptist",
       "fullname": "Narození svatého Jana Křtitele"
     },
-    "nativity_of_the_blessed_virgin_mary": {
+    {
+      "id": "nativity_of_the_blessed_virgin_mary",
       "fullname": "Narození Panny Marie"
     },
-    "nativity_of_the_lord": {
+    {
+      "id": "nativity_of_the_lord",
       "fullname": "Narození Páně"
     },
-    "nazaria_ignacia_of_saint_teresa_of_jesus_march_mesa_virgin": {
+    {
+      "id": "nazaria_ignacia_of_saint_teresa_of_jesus_march_mesa_virgin",
       "fullname": "Sv. Nazárie Ignácie od sv. Terezie od Ježíše March Mesa, panny"
     },
-    "nereus_of_terracina_and_achilleus_of_terracina_martyrs": {
+    {
+      "id": "nereus_of_terracina_and_achilleus_of_terracina_martyrs",
       "fullname": "Sv. Nerea a Achillea, mučedníků"
     },
-    "nicholas_barre_priest": {
+    {
+      "id": "nicholas_barre_priest",
       "fullname": "Bl. Mikuláše Barré, kněze"
     },
-    "nicholas_of_flue_hermit": {
+    {
+      "id": "nicholas_of_flue_hermit",
       "fullname": "Sv. Mikuláše z Flüe, poustevníka"
     },
-    "nicholas_of_myra_bishop": {
+    {
+      "id": "nicholas_of_myra_bishop",
       "fullname": "Sv. Mikuláše, biskupa"
     },
-    "nicholas_steno_bishop": {
+    {
+      "id": "nicholas_steno_bishop",
       "fullname": "Bl. Mikuláše Steno, biskupa"
     },
-    "nicholas_tavelic_priest": {
+    {
+      "id": "nicholas_tavelic_priest",
       "fullname": "Sv. Mikuláše Taveliće, kněze a mučedníka"
     },
-    "ninian_of_whithorn_bishop": {
+    {
+      "id": "ninian_of_whithorn_bishop",
       "fullname": "Sv. Niniána, biskupa"
     },
-    "norbert_of_xanten_bishop": {
+    {
+      "id": "norbert_of_xanten_bishop",
       "fullname": "Sv. Norberta, biskupa"
     },
-    "nuno_of_saint_mary_pereira_religious": {
+    {
+      "id": "nuno_of_saint_mary_pereira_religious",
       "fullname": "Sv. Nuna od sv. Marie Pereira, řeholníka"
     },
-    "nykyta_budka_and_vasyl_velychkovsky_bishops": {
+    {
+      "id": "nykyta_budka_and_vasyl_velychkovsky_bishops",
       "fullname": "Bl. Nikity Budka a Vasila Velichkovského, biskupů a mučedníků"
     }
-  }
+  ]
 }

@@ -1,189 +1,250 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "ta",
-  "letter": "c",
-  "items": {
-    "caesarius_of_arles_bishop": {
+  "entities": [
+    {
+      "id": "caesarius_of_arles_bishop",
       "fullname": "ஆர்ல்சின் புனித சிசேரியஸ் - ஆயர்"
     },
-    "cajetan_of_thiene_priest": {
+    {
+      "id": "cajetan_of_thiene_priest",
       "fullname": "புனித கஜெடான் - அருட்பணியாளர்"
     },
-    "callistus_i_pope": {
+    {
+      "id": "callistus_i_pope",
       "fullname": "புனித முதலாம் கலிஸ்டஸ் - திருத்தந்தை, மறைசாட்சி"
     },
-    "camillus_de_lellis_priest": {
+    {
+      "id": "camillus_de_lellis_priest",
       "fullname": "புனித கமிலஸ் டி லெலிஸ் - அருட்பணியாளர்"
     },
-    "canice_of_kilkenny_abbot": {
+    {
+      "id": "canice_of_kilkenny_abbot",
       "fullname": "புனித கனிஸ் - மடாதிபதி"
     },
-    "canute_iv_of_denmark_eric_ix_of_sweden_and_olaf_ii_of_norway_martyrs": {
+    {
+      "id": "canute_iv_of_denmark_eric_ix_of_sweden_and_olaf_ii_of_norway_martyrs",
       "fullname": "புனிதர்கள் கனுடே, எறிக், ஒலெப் - மறைசாட்சிகள்"
     },
-    "canute_iv_of_denmark_martyr": {
+    {
+      "id": "canute_iv_of_denmark_martyr",
       "fullname": "புனிதர் கனுடே - மறைசாட்சி"
     },
-    "carlos_manuel_rodriguez_santiago": {
+    {
+      "id": "carlos_manuel_rodriguez_santiago",
       "fullname": "முத்திப்பேறுபெற்ற கார்லோஸ் மானுவேல் றொட்றிகூஸ் சந்தியாகு"
     },
-    "carmelites_of_compiegne_virgins_and_martyrs": {
+    {
+      "id": "carmelites_of_compiegne_virgins_and_martyrs",
       "fullname": "கம்பீனின் முத்திப்பேறுபெற்ற கார்மலைட் - கன்னியர்கள், மறைசாட்சிகள்"
     },
-    "caroline_kozka_virgin": {
+    {
+      "id": "caroline_kozka_virgin",
       "fullname": "முத்திப்பேறுபெற்ற கரோலின் கொஸ்கா - கன்னி, மறைசாட்சி"
     },
-    "carthage_of_lismore_bishop": {
+    {
+      "id": "carthage_of_lismore_bishop",
       "fullname": "புனித கார்தேஜ் - ஆயர்"
     },
-    "casimir_of_poland": {
+    {
+      "id": "casimir_of_poland",
       "fullname": "போலந்தின் புனித காஸ்மிர்"
     },
-    "catherine_of_alexandria_virgin": {
+    {
+      "id": "catherine_of_alexandria_virgin",
       "fullname": "அலெக்சான்றியாவின் புனித கத்தரின் - கன்னி, மறைசாட்சி"
     },
-    "catherine_of_siena_virgin": {
+    {
+      "id": "catherine_of_siena_virgin",
       "fullname": "சியன்னாவின் புனித கத்தரின் - கன்னி, மறைவல்லுநர்"
     },
-    "catherine_of_siena_virgin_copatroness_of_europe": {
+    {
+      "id": "catherine_of_siena_virgin_copatroness_of_europe",
       "fullname": "சியன்னாவின் புனித கத்தரின் - கன்னி, மறைவல்லுநர், ஐரோப்பவின் பாதுகாவலி"
     },
-    "catherine_of_siena_virgin_copatroness_of_italy_and_europe": {
+    {
+      "id": "catherine_of_siena_virgin_copatroness_of_italy_and_europe",
       "fullname": "சியன்னாவின் புனித கத்தரின் - கன்னி, ஐரோப்பா மற்றும் இத்தாலியின் பாதுகாவலி"
     },
-    "catherine_zoe_laboure_virgin": {
+    {
+      "id": "catherine_zoe_laboure_virgin",
       "fullname": "புனித கத்தரின் லாபோரே - துறவி"
     },
-    "ceallach_of_armagh_bishop": {
+    {
+      "id": "ceallach_of_armagh_bishop",
       "fullname": "புனித சியாலெச் - ஆயர்"
     },
-    "cecilia_of_rome_virgin": {
+    {
+      "id": "cecilia_of_rome_virgin",
       "fullname": "புனித சிசிலியா - கன்னி, மறைசாட்சி"
     },
-    "ceferino_gimenez_malla_martyr": {
+    {
+      "id": "ceferino_gimenez_malla_martyr",
       "fullname": "புனித செபறீனோ கிமொறிஸ் மாளா - மறைசாட்சி"
     },
-    "ceraunus_of_paris_bishop": {
+    {
+      "id": "ceraunus_of_paris_bishop",
       "fullname": "பாரிஸ் நகரின் புனித சேரன் - ஆயர்"
     },
-    "ceslaus_of_poland_and_hyacinth_of_poland_priests": {
+    {
+      "id": "ceslaus_of_poland_and_hyacinth_of_poland_priests",
       "fullname": "முத்திப்பேறுபெற்ற செஸ்லௌஸ், புனித ஹயசிந்த் - அருட்பணியாளர்கள்"
     },
-    "ceslaus_of_poland_priest": {
+    {
+      "id": "ceslaus_of_poland_priest",
       "fullname": "முத்திப்பேறுபெற்ற செஸ்லௌஸ் - அருட்பணியாளர்"
     },
-    "chad_of_mercia_and_cedd_of_lastingham_bishops": {
+    {
+      "id": "chad_of_mercia_and_cedd_of_lastingham_bishops",
       "fullname": "புனிதர்கள் சாட், செட் - ஆயர்கள்"
     },
-    "chair_of_saint_peter_the_apostle": {
+    {
+      "id": "chair_of_saint_peter_the_apostle",
       "fullname": "திருத்தூதர் புனித பேதுருவின் தலைமைப் பீடம்"
     },
-    "charles_borromeo_bishop": {
+    {
+      "id": "charles_borromeo_bishop",
       "fullname": "புனித சார்லஸ் பொரோமெயோ - ஆயர்"
     },
-    "charles_i_of_austria": {
+    {
+      "id": "charles_i_of_austria",
       "fullname": "ஒஸ்ரியாவின் புனித சார்ல்ஸ்"
     },
-    "charles_lwanga_and_companions_martyrs": {
+    {
+      "id": "charles_lwanga_and_companions_martyrs",
       "fullname": "புனிதர்கள் சார்லஸ் லுவாங்காவும் தோழர்களும் - மறைச்சாட்சியர்"
     },
-    "charles_of_jesus_de_foucauld": {
+    {
+      "id": "charles_of_jesus_de_foucauld",
       "fullname": "முத்திப்பேறுபெற்ற சார்ல்ஸ் டி புகொல்ட் - அருட்பணியாளர்"
     },
-    "charles_spinola_and_jerome_de_angelis_priests": {
+    {
+      "id": "charles_spinola_and_jerome_de_angelis_priests",
       "fullname": "முத்திப்பேறுபெற்றவர்கள் சார்ல்ஸ் ஸ்பினோலா, ஜெரோம் டி ஏஞ்சலிஸ் - அருட்பணியாளர்கள், மறைசாட்சிகள்"
     },
-    "charles_spinola_priest": {
+    {
+      "id": "charles_spinola_priest",
       "fullname": "முத்திப்பேறுபெற்ற சார்ல்ஸ் ஸ்பினோலா - அருட்பணியாளர், மறைசாட்சி"
     },
-    "christopher_magallanes_priest_and_companions_martyrs": {
+    {
+      "id": "christopher_magallanes_priest_and_companions_martyrs",
       "fullname": "புனித கிறிஸ்டோபர் மகல்லானஸ் - அருள்பணியாளர்; தோழர்கள் - மறைச்சாட்சியர்"
     },
-    "christopher_of_palestine_martyr": {
+    {
+      "id": "christopher_of_palestine_martyr",
       "fullname": "புனித கிறிஸ்டோபர் - மறைச்சாட்சி"
     },
-    "ciaran_of_clonmacnoise_abbot": {
+    {
+      "id": "ciaran_of_clonmacnoise_abbot",
       "fullname": "புனித சைரன் - மடாதிபதி"
     },
-    "clare_of_assisi_virgin": {
+    {
+      "id": "clare_of_assisi_virgin",
       "fullname": "புனித கிளாரம்மாள் - கன்னி"
     },
-    "clement_i_pope": {
+    {
+      "id": "clement_i_pope",
       "fullname": "புனித முதலாம் கிளமெண்ட் - திருத்தந்தை, மறைசாட்சி"
     },
-    "clement_mary_hofbauer_priest": {
+    {
+      "id": "clement_mary_hofbauer_priest",
       "fullname": "புனித கிளெமெண்ட் மரிய ஹொப்பர் - அருட்பணியாளர்"
     },
-    "clement_of_ohrid_and_gorazd_of_moravia_bishops_and_companions": {
+    {
+      "id": "clement_of_ohrid_and_gorazd_of_moravia_bishops_and_companions",
       "fullname": "ஒறிட்டின் புனித க்ளெமெண்ட், புனித கொராஸ்ட் - ஆயர்கள், தோழர்கள"
     },
-    "clotilde_of_burgundy": {
+    {
+      "id": "clotilde_of_burgundy",
       "fullname": "புனித க்ளொடில்டா"
     },
-    "colman_of_cloyne_bishop": {
+    {
+      "id": "colman_of_cloyne_bishop",
       "fullname": "க்லோனின். புனித கோல்மன் - ஆயர்"
     },
-    "colman_of_dromore_bishop": {
+    {
+      "id": "colman_of_dromore_bishop",
       "fullname": "ட்றொமோரின் புனித கோல்மன் - ஆயர்"
     },
-    "colman_of_kilmacduagh_bishop": {
+    {
+      "id": "colman_of_kilmacduagh_bishop",
       "fullname": "கில்மக்டக்கின் புனித கோல்மன் - ஆயர்"
     },
-    "columba_marmion_priest": {
+    {
+      "id": "columba_marmion_priest",
       "fullname": "முத்திப்பேறுபெற்ற கொலம்பா மார்மியன் - அருட்பணியாளர்"
     },
-    "columba_of_iona_abbot": {
+    {
+      "id": "columba_of_iona_abbot",
       "fullname": "புனித கொலம்பா - மடாதிபதி"
     },
-    "columba_of_iona_abbot_copatron_of_ireland": {
+    {
+      "id": "columba_of_iona_abbot_copatron_of_ireland",
       "fullname": "புனித கொலம்பா - மடாதிபதி, மறை அறிவிப்பாளர், அயர்லாந்தின் பாதுகாவலர்"
     },
-    "columban_of_luxeuil_abbot": {
+    {
+      "id": "columban_of_luxeuil_abbot",
       "fullname": "புனித கொலம்பன் - மடாதிபதி"
     },
-    "comgall_of_bangor_abbot": {
+    {
+      "id": "comgall_of_bangor_abbot",
       "fullname": "புனித கொம்கெல் - மடாதிபதி"
     },
-    "commemoration_of_all_the_faithful_departed": {
+    {
+      "id": "commemoration_of_all_the_faithful_departed",
       "fullname": "இறந்த ஆத்துமாக்களின் நினைவு நாள்"
     },
-    "conleth_of_kildare_bishop": {
+    {
+      "id": "conleth_of_kildare_bishop",
       "fullname": "புனித கொன்லெத் - ஆயர்"
     },
-    "conrad_of_constance_and_gebhard_of_constance_bishops": {
+    {
+      "id": "conrad_of_constance_and_gebhard_of_constance_bishops",
       "fullname": "புனித கொன்ராட், கொன்ஸ்டன்ஸின் கெபார்ட் - ஆயர்கள்"
     },
-    "conrad_of_parzham_religious": {
+    {
+      "id": "conrad_of_parzham_religious",
       "fullname": "பார்சத்தின் புனித கொன்ராட் - துறவி"
     },
-    "conversion_of_saint_paul_the_apostle": {
+    {
+      "id": "conversion_of_saint_paul_the_apostle",
       "fullname": "திருத்தூதர் புனித பவுலின் மனமாற்றம் - விழா"
     },
-    "corbinian_of_freising_bishop": {
+    {
+      "id": "corbinian_of_freising_bishop",
       "fullname": "புனித கொர்பினியன் - ஆயர்"
     },
-    "cornelius_i_pope_and_cyprian_of_carthage_bishop_martyrs": {
+    {
+      "id": "cornelius_i_pope_and_cyprian_of_carthage_bishop_martyrs",
       "fullname": "புனித கொர்னேலியுஸ் - திருத்தந்தை, புனித சிப்ரியன் - ஆயர், மறைசாட்சிகள்"
     },
-    "cosmas_of_cilicia_and_damian_of_cilicia_martyrs": {
+    {
+      "id": "cosmas_of_cilicia_and_damian_of_cilicia_martyrs",
       "fullname": "புனிதர்கள் கொஸ்மஸ், தமியான் - மறைசாட்சிகள்"
     },
-    "cuthbert_of_lindisfarne_bishop": {
+    {
+      "id": "cuthbert_of_lindisfarne_bishop",
       "fullname": "புனித கத்பேர்ட் - ஆயர்"
     },
-    "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop": {
+    {
+      "id": "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop",
       "fullname": "புனித சிரில் - துறவி, புனித் மெதோடியஸ் - ஆயர்"
     },
-    "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop_copatrons_of_europe": {
+    {
+      "id": "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop_copatrons_of_europe",
       "fullname": "புனித சிரில் - துறவி, புனித மெதோடியஸ் - ஆயர், ஐரோப்பாவின் பாதுகாவலர்கள்"
     },
-    "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop_slavic_missionaries_copatrons_of_europe": {
+    {
+      "id": "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop_slavic_missionaries_copatrons_of_europe",
       "fullname": "புனித சிரில், புனித் மெதோடியஸ் - ஸ்லாவிக்கின் மறை போதகர்கள்"
     },
-    "cyril_of_alexandria_bishop": {
+    {
+      "id": "cyril_of_alexandria_bishop",
       "fullname": "அலெக்சாந்திரியா நகர புனித சிரில் - ஆயர், மறைவல்லுநர்"
     },
-    "cyril_of_jerusalem_bishop": {
+    {
+      "id": "cyril_of_jerusalem_bishop",
       "fullname": "ஜெருசலெம் நகர புனித சிரில் - ஆயர், மறைவல்லுநர்"
     }
-  }
+  ]
 }

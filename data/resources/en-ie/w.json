@@ -1,12 +1,13 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "en-ie",
-  "letter": "w",
-  "items": {
-    "willibrord_of_utrecht_bishop": {
+  "entities": [
+    {
+      "id": "willibrord_of_utrecht_bishop",
       "fullname": "Saint Willibrord, Bishop and Missionary",
       "_todo": [
         "TODO: This property should be removed after one can add titles within celebration definions."
       ]
     }
-  }
+  ]
 }

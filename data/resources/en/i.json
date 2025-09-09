@@ -1,145 +1,209 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "en",
-  "letter": "i",
-  "items": {
-    "ignatius_de_azevedo_priest": {
-      "canonizationLevel": "BLESSED",
+  "entities": [
+    {
+      "id": "ignatius_de_azevedo_priest",
+      "canonization_level": "BLESSED",
       "name": "Ignatius de Azevedo",
-      "titles": ["PRIEST", "MARTYR"]
+      "titles": [
+        "PRIEST",
+        "MARTYR"
+      ]
     },
-    "ignatius_de_azevedo_priest_and_companions_martyrs": {
+    {
+      "id": "ignatius_de_azevedo_priest_and_companions_martyrs",
       "fullname": "Blessed Ignatius de Azevedo, Priest, and Companions, Martyrs"
     },
-    "ignatius_falzon": {
+    {
+      "id": "ignatius_falzon",
       "fullname": "Blessed Ignatius Falzon",
-      "canonizationLevel": "BLESSED",
+      "canonization_level": "BLESSED",
       "name": "Ignatius Falzon"
     },
-    "ignatius_of_antioch_bishop": {
+    {
+      "id": "ignatius_of_antioch_bishop",
       "fullname": "Saint Ignatius of Antioch, Bishop and Martyr",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Ignatius of Antioch",
-      "titles": ["BISHOP", "MARTYR"],
-      "dateOfDeath": 115
+      "titles": [
+        "BISHOP",
+        "MARTYR"
+      ],
+      "date_of_death": 115
     },
-    "ignatius_of_loyola_priest": {
+    {
+      "id": "ignatius_of_loyola_priest",
       "fullname": "Saint Ignatius of Loyola, Priest",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Ignatius of Loyola",
-      "titles": ["PRIEST"],
-      "dateOfDeath": 1556
+      "titles": [
+        "PRIEST"
+      ],
+      "date_of_death": 1556
     },
-    "ildephonsus_of_toledo_bishop": {
+    {
+      "id": "ildephonsus_of_toledo_bishop",
       "fullname": "Saint Ildephonsus of Toledo, Bishop",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Ildephonsus of Toledo",
-      "titles": ["BISHOP"]
+      "titles": [
+        "BISHOP"
+      ]
     },
-    "illtud_the_knight_abbot": {
+    {
+      "id": "illtud_the_knight_abbot",
       "fullname": "Saint Illtud, Abbot",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Illtud",
-      "titles": ["ABBOT"]
+      "titles": [
+        "ABBOT"
+      ]
     },
-    "immaculate_conception_of_the_blessed_virgin_mary": {
+    {
+      "id": "immaculate_conception_of_the_blessed_virgin_mary",
       "fullname": "The Immaculate Conception of the Blessed Virgin Mary"
     },
-    "immaculate_conception_of_the_blessed_virgin_mary_patroness_of_the_philippines": {
+    {
+      "id": "immaculate_conception_of_the_blessed_virgin_mary_patroness_of_the_philippines",
       "fullname": "The Immaculate Conception of the Blessed Virgin Mary, Patroness of the Philippines"
     },
-    "immaculate_conception_of_the_blessed_virgin_mary_patroness_of_the_usa": {
+    {
+      "id": "immaculate_conception_of_the_blessed_virgin_mary_patroness_of_the_usa",
       "fullname": "The Immaculate Conception of the Blessed Virgin Mary, Patroness of the USA"
     },
-    "immaculate_heart_of_mary": {
+    {
+      "id": "immaculate_heart_of_mary",
       "fullname": "The Immaculate Heart of the Blessed Virgin Mary"
     },
-    "innocent_v_pope": {
+    {
+      "id": "innocent_v_pope",
       "fullname": "Blessed Innocent V, Pope",
-      "canonizationLevel": "BLESSED",
+      "canonization_level": "BLESSED",
       "name": "Innocent V",
-      "titles": ["POPE"],
-      "dateOfBirth": 1224,
-      "dateOfBirthIsApproximative": true,
-      "dateOfDeath": "1276-6-22",
-      "sources": ["mr_fr_2014_ed2_lyon"]
+      "titles": [
+        "POPE"
+      ],
+      "date_of_birth": 1224,
+      "date_of_birth_is_approximative": true,
+      "date_of_death": "1276-6-22",
+      "sources": [
+        "mr_fr_2014_ed2_lyon"
+      ]
     },
-    "innocent_xi_pope": {
+    {
+      "id": "innocent_xi_pope",
       "fullname": "Blessed Innocent XI, Pope",
-      "canonizationLevel": "BLESSED",
+      "canonization_level": "BLESSED",
       "name": "Innocent XI",
-      "titles": ["POPE"]
+      "titles": [
+        "POPE"
+      ]
     },
-    "irenaeus_of_lyon_bishop": {
+    {
+      "id": "irenaeus_of_lyon_bishop",
       "fullname": "Saint Irenaeus, Bishop, Martyr and Doctor of the Church",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Irenaeus",
-      "titles": ["BISHOP", "MARTYR", "DOCTOR_OF_THE_CHURCH"],
-      "dateOfBirth": 130,
-      "dateOfBirthIsApproximative": true,
-      "dateOfDeath": 201,
-      "dateOfDeathIsApproximative": true,
-      "sources": ["mr_fr_2014_ed2_lyon"]
+      "titles": [
+        "BISHOP",
+        "MARTYR",
+        "DOCTOR_OF_THE_CHURCH"
+      ],
+      "date_of_birth": 130,
+      "date_of_birth_is_approximative": true,
+      "date_of_death": 201,
+      "date_of_death_is_approximative": true,
+      "sources": [
+        "mr_fr_2014_ed2_lyon"
+      ]
     },
-    "irenaeus_of_lyon_bishop_patron_of_the_archdiocese_of_lyon_and_companions_martyrs": {
+    {
+      "id": "irenaeus_of_lyon_bishop_patron_of_the_archdiocese_of_lyon_and_companions_martyrs",
       "fullname": "Saints Irenaeus, Bishop and Doctor of the Church, Patron of the Archdiocese of Lyon, and Companions, Martyrs"
     },
-    "irene_of_macedonia": {
+    {
+      "id": "irene_of_macedonia",
       "fullname": "Saint Irene",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Irene"
     },
-    "irish_martyrs": {
+    {
+      "id": "irish_martyrs",
       "fullname": "Irish Martyrs",
-      "count": "many"
+      "count": "MANY"
     },
-    "isaac_jogues_priest": {
-      "canonizationLevel": "SAINT",
+    {
+      "id": "isaac_jogues_priest",
+      "canonization_level": "SAINT",
       "name": "Isaac Jogues",
-      "titles": ["PRIEST", "MARTYR"],
-      "dateOfDeath": "1646-10-18"
+      "titles": [
+        "PRIEST",
+        "MARTYR"
+      ],
+      "date_of_death": "1646-10-18"
     },
-    "isabelle_of_france_virgin": {
+    {
+      "id": "isabelle_of_france_virgin",
       "fullname": "Blessed Isabelle of France, Virgin",
-      "canonizationLevel": "BLESSED",
+      "canonization_level": "BLESSED",
       "name": "Isabelle of France",
-      "titles": ["VIRGIN"],
-      "dateOfDeath": 1272
+      "titles": [
+        "VIRGIN"
+      ],
+      "date_of_death": 1272
     },
-    "isidore_of_seville_bishop": {
+    {
+      "id": "isidore_of_seville_bishop",
       "fullname": "Saint Isidore, Bishop and Doctor of the Church",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Isidore",
-      "titles": ["BISHOP", "DOCTOR_OF_THE_CHURCH"],
-      "dateOfDeath": 636
+      "titles": [
+        "BISHOP",
+        "DOCTOR_OF_THE_CHURCH"
+      ],
+      "date_of_death": 636
     },
-    "isidore_the_farmer": {
+    {
+      "id": "isidore_the_farmer",
       "fullname": "Saint Isidore",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Isidore"
     },
-    "istvan_sandor_religious": {
+    {
+      "id": "istvan_sandor_religious",
       "fullname": "Blessed István Sándor, Religious and Martyr",
-      "canonizationLevel": "BLESSED",
+      "canonization_level": "BLESSED",
       "name": "István Sándor",
-      "titles": ["RELIGIOUS", "MARTYR"]
+      "titles": [
+        "RELIGIOUS",
+        "MARTYR"
+      ]
     },
-    "ita_of_killeedy_virgin": {
+    {
+      "id": "ita_of_killeedy_virgin",
       "fullname": "Saint Ita, Virgin",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Ita",
-      "titles": ["VIRGIN"]
+      "titles": [
+        "VIRGIN"
+      ]
     },
-    "ivan_merz": {
+    {
+      "id": "ivan_merz",
       "fullname": "Blessed Ivan Merz",
-      "canonizationLevel": "BLESSED",
+      "canonization_level": "BLESSED",
       "name": "Ivan Merz"
     },
-    "ivo_of_kermartin_priest": {
+    {
+      "id": "ivo_of_kermartin_priest",
       "fullname": "Saint Ivo, Priest",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Ivo",
-      "titles": ["PRIEST"],
-      "dateOfDeath": 1303
+      "titles": [
+        "PRIEST"
+      ],
+      "date_of_death": 1303
     }
-  }
+  ]
 }

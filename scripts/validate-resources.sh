@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Script to validate all calendar JSON files against the schema
-# Usage: ./scripts/validate-calendars.sh [project_root]
+# Script to validate all resource JSON files against the schema
+# Usage: ./scripts/validate-resources.sh [project_root]
 
 set -e
 
@@ -13,7 +13,7 @@ else
     PROJECT_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 fi
 
-echo "🚀 Starting calendar validation..."
+echo "🚀 Starting resource validation..."
 echo "📁 Project root: $PROJECT_ROOT"
 echo ""
 
@@ -27,4 +27,4 @@ cargo build --release --bin validate-json
 # Run the validation
 echo ""
 echo "🔍 Running validation..."
-cargo run --release --bin validate-json -- "data/calendars/**/*.json" "schemas/calendar-definition.json" "$PROJECT_ROOT"
+cargo run --release --bin validate-json -- "data/resources/**/*.json" "schemas/resources-definition.json" "$PROJECT_ROOT"

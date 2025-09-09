@@ -1,126 +1,166 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "es",
-  "letter": "j",
-  "items": {
-    "jacinta_marto_and_francisco_marto": {
+  "entities": [
+    {
+      "id": "jacinta_marto_and_francisco_marto",
       "fullname": "Beatos Jacinta y Francisco Marto"
     },
-    "james_apostle": {
+    {
+      "id": "james_apostle",
       "fullname": "Santiago, apóstol"
     },
-    "james_apostle_patron_of_spain": {
+    {
+      "id": "james_apostle_patron_of_spain",
       "fullname": "Santiago, apóstol, Patrono de España"
     },
-    "jane_frances_de_chantal_religious": {
+    {
+      "id": "jane_frances_de_chantal_religious",
       "fullname": "Santa Juana Francisca de Chantal, religiosa"
     },
-    "januarius_i_of_benevento_bishop": {
+    {
+      "id": "januarius_i_of_benevento_bishop",
       "fullname": "San Jenaro, obispo y mártir"
     },
-    "jerome_emiliani": {
+    {
+      "id": "jerome_emiliani",
       "fullname": "San Jerónimo Emiliani"
     },
-    "jerome_of_stridon_priest": {
+    {
+      "id": "jerome_of_stridon_priest",
       "fullname": "San Jerónimo, presbítero y doctor de la Iglesia"
     },
-    "joachim_and_anne_parents_of_mary": {
+    {
+      "id": "joachim_and_anne_parents_of_mary",
       "fullname": "San Joaquín y Santa Ana"
     },
-    "joachim_and_anne_patroness_of_the_province_of_quebec_parents_of_mary": {
+    {
+      "id": "joachim_and_anne_patroness_of_the_province_of_quebec_parents_of_mary",
       "fullname": "Santa Ana, Patrona de Quebec, y San Joaquín, Padres de la Santísima Virgen María"
     },
-    "joaquina_of_saint_francis_of_assisi_de_vedruna_religious": {
+    {
+      "id": "joaquina_of_saint_francis_of_assisi_de_vedruna_religious",
       "fullname": "Santa Joaquina de Vedruna, religiosa"
     },
-    "john_apostle": {
+    {
+      "id": "john_apostle",
       "fullname": "San Juan, apóstol y evangelista"
     },
-    "john_baptist_de_la_salle_priest": {
+    {
+      "id": "john_baptist_de_la_salle_priest",
       "fullname": "San Juan Bautista de la Salle, presbítero"
     },
-    "john_bosco_priest": {
+    {
+      "id": "john_bosco_priest",
       "fullname": "San Juan Bosco, presbítero"
     },
-    "john_chrysostom_bishop": {
+    {
+      "id": "john_chrysostom_bishop",
       "fullname": "San Juan Crisóstomo, obispo y doctor de la Iglesia"
     },
-    "john_damascene_priest": {
+    {
+      "id": "john_damascene_priest",
       "fullname": "San Juan Damasceno, presbítero y doctor de la Iglesia"
     },
-    "john_de_brebeuf_isaac_jogues_priests_and_companions_martyrs": {
+    {
+      "id": "john_de_brebeuf_isaac_jogues_priests_and_companions_martyrs",
       "fullname": "Santos Juan de Brébeuf e Isaac Jogues, presbíteros, y compañeros, mártires"
     },
-    "john_eudes_priest": {
+    {
+      "id": "john_eudes_priest",
       "fullname": "San Juan Eudes, presbítero"
     },
-    "john_fisher_bishop_and_thomas_more_martyrs": {
+    {
+      "id": "john_fisher_bishop_and_thomas_more_martyrs",
       "fullname": "Santos Juan Fisher, obispo, y Tomás Moro, mártires"
     },
-    "john_i_pope": {
+    {
+      "id": "john_i_pope",
       "fullname": "San Juan I, papa y mártir"
     },
-    "john_leonardi_priest": {
+    {
+      "id": "john_leonardi_priest",
       "fullname": "San Juan Leonardi, presbítero"
     },
-    "john_mary_vianney_priest": {
+    {
+      "id": "john_mary_vianney_priest",
       "fullname": "San Juan María Vianney, presbítero"
     },
-    "john_of_avila_priest": {
+    {
+      "id": "john_of_avila_priest",
       "fullname": "San Juan de Ávila, presbítero y doctor de la Iglesia"
     },
-    "john_of_capistrano_priest": {
+    {
+      "id": "john_of_capistrano_priest",
       "fullname": "San Juan de Capistrano, presbítero"
     },
-    "john_of_god_duarte_cidade_religious": {
+    {
+      "id": "john_of_god_duarte_cidade_religious",
       "fullname": "San Juan de Dios, religioso"
     },
-    "john_of_kanty_priest": {
+    {
+      "id": "john_of_kanty_priest",
       "fullname": "San Juan Kety, presbítero"
     },
-    "john_of_the_cross_priest": {
+    {
+      "id": "john_of_the_cross_priest",
       "fullname": "San Juan de la Cruz, presbítero y doctor de la Iglesia"
     },
-    "john_paul_ii_pope": {
+    {
+      "id": "john_paul_ii_pope",
       "fullname": "papa San Juan Pablo II"
     },
-    "john_xxiii_pope": {
+    {
+      "id": "john_xxiii_pope",
       "fullname": "papa San Juan XXIII"
     },
-    "josaphat_kuntsevych_bishop": {
+    {
+      "id": "josaphat_kuntsevych_bishop",
       "fullname": "San Josafat Kuncewicz, obispo y mártir"
     },
-    "jose_maria_de_yermo_y_parres_priest": {
+    {
+      "id": "jose_maria_de_yermo_y_parres_priest",
       "fullname": "San José Maria de Yermo, presbítero"
     },
-    "josemaria_escriva_de_balaguer_priest": {
+    {
+      "id": "josemaria_escriva_de_balaguer_priest",
       "fullname": "San Josemaría Escrivá de Balaguer, presbítero"
     },
-    "joseph_de_anchieta_priest": {
+    {
+      "id": "joseph_de_anchieta_priest",
       "fullname": "San José de Anchieta, presbítero"
     },
-    "joseph_of_calasanz_priest": {
+    {
+      "id": "joseph_of_calasanz_priest",
       "fullname": "San José de Calasanz, presbítero"
     },
-    "joseph_spouse_of_mary": {
+    {
+      "id": "joseph_spouse_of_mary",
       "fullname": "José, Esposo de María"
     },
-    "joseph_spouse_of_mary_patron_of_canada": {
+    {
+      "id": "joseph_spouse_of_mary_patron_of_canada",
       "fullname": "San José, Esposo de la Santísima Virgen María, Patrono de Canadá"
     },
-    "joseph_the_worker": {
+    {
+      "id": "joseph_the_worker",
       "fullname": "San José Obrero"
     },
-    "josephine_bakhita_virgin": {
+    {
+      "id": "josephine_bakhita_virgin",
       "fullname": "Santa Josefina Bakhita, virgen"
     },
-    "juan_diego_cuauhtlatoatzin": {
+    {
+      "id": "juan_diego_cuauhtlatoatzin",
       "fullname": "San Juan Diego Cuauhtlatoatzin"
     },
-    "junipero_serra_priest": {
+    {
+      "id": "junipero_serra_priest",
       "fullname": "San Junípero Serra, presbítero"
     },
-    "justin_martyr": {
+    {
+      "id": "justin_martyr",
       "fullname": "San Justino, mártir"
     }
-  }
+  ]
 }

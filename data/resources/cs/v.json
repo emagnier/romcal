@@ -1,45 +1,58 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "cs",
-  "letter": "v",
-  "items": {
-    "valentine_of_raetia_bishop": {
+  "entities": [
+    {
+      "id": "valentine_of_raetia_bishop",
       "fullname": "Sv. Valentina z Raetie, biskupa"
     },
-    "valerius_of_trier_bishop": {
+    {
+      "id": "valerius_of_trier_bishop",
       "fullname": "Sv. Valeria, biskupa"
     },
-    "vincent_de_paul_priest": {
+    {
+      "id": "vincent_de_paul_priest",
       "fullname": "Sv. Vincence z Paula, kněze"
     },
-    "vincent_ferrer_priest": {
+    {
+      "id": "vincent_ferrer_priest",
       "fullname": "Sv. Vincence Ferrerského, kněze"
     },
-    "vincent_kadlubek_bishop": {
+    {
+      "id": "vincent_kadlubek_bishop",
       "fullname": "Bl. Vincence Kadłubek, biskupa"
     },
-    "vincent_lewoniuk_and_companions_martyrs": {
+    {
+      "id": "vincent_lewoniuk_and_companions_martyrs",
       "fullname": "Bl. Vincence Lewoniuk a druhů, mučedníků"
     },
-    "vincent_of_saragossa_deacon": {
+    {
+      "id": "vincent_of_saragossa_deacon",
       "fullname": "Sv. Vincence, jáhna a mučedníka"
     },
-    "vincent_pallotti_priest": {
+    {
+      "id": "vincent_pallotti_priest",
       "fullname": "Sv. Vincence Pallottiho, kněze"
     },
-    "virgilius_of_salzburg_bishop": {
+    {
+      "id": "virgilius_of_salzburg_bishop",
       "fullname": "Sv. Virgila ze Salzburgu, biskupa a misionáře"
     },
-    "visitation_of_mary": {
+    {
+      "id": "visitation_of_mary",
       "fullname": "Navštívení Panny Marie"
     },
-    "vitus_of_lucania_martyr": {
+    {
+      "id": "vitus_of_lucania_martyr",
       "fullname": "Sv. Víta, mučedníka"
     },
-    "vladimir_ghika_priest": {
+    {
+      "id": "vladimir_ghika_priest",
       "fullname": "Bl. Vladimíra Ghika, kněze a mučedníka"
     },
-    "vladimir_i_the_great_of_kiev": {
+    {
+      "id": "vladimir_i_the_great_of_kiev",
       "fullname": "Sv. Vladimíra Velikého"
     }
-  }
+  ]
 }

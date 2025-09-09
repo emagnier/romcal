@@ -1,15 +1,18 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "es",
-  "letter": "w",
-  "items": {
-    "wenceslaus_i_of_bohemia_martyr": {
+  "entities": [
+    {
+      "id": "wenceslaus_i_of_bohemia_martyr",
       "fullname": "San Wenceslao de Bohemia, mártir"
     },
-    "wenceslaus_i_of_bohemia_martyr_patron_of_the_czech_nation": {
+    {
+      "id": "wenceslaus_i_of_bohemia_martyr_patron_of_the_czech_nation",
       "fullname": "San Wenceslao de Bohemia, mártir y Patrono de la nación checa"
     },
-    "wendelin_of_trier_hermit": {
+    {
+      "id": "wendelin_of_trier_hermit",
       "fullname": "San Vendelino, Ermitaño"
     }
-  }
+  ]
 }

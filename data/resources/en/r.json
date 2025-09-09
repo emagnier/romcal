@@ -1,186 +1,262 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "en",
-  "letter": "r",
-  "items": {
-    "rabanus_maurus_bishop": {
+  "entities": [
+    {
+      "id": "rabanus_maurus_bishop",
       "fullname": "Saint Rabanus Maurus, Bishop",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Rabanus Maurus",
-      "titles": ["BISHOP"]
+      "titles": [
+        "BISHOP"
+      ]
     },
-    "radim_of_gniezno_bishop": {
+    {
+      "id": "radim_of_gniezno_bishop",
       "fullname": "Saint Radim, Bishop",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Radim",
-      "titles": ["BISHOP"]
+      "titles": [
+        "BISHOP"
+      ]
     },
-    "rafqa_pietra_choboq_ar_rayes_virgin": {
+    {
+      "id": "rafqa_pietra_choboq_ar_rayes_virgin",
       "fullname": "Saint Rafqa Pietra Choboq Ar-Rayès, Virgin",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Rafqa Pietra Choboq Ar-Rayès",
-      "titles": ["VIRGIN"]
+      "titles": [
+        "VIRGIN"
+      ]
     },
-    "raphael_archangel": {
-      "canonizationLevel": "SAINT",
+    {
+      "id": "raphael_archangel",
+      "canonization_level": "SAINT",
       "name": "Raphael",
-      "titles": ["ARCHANGEL"]
+      "titles": [
+        "ARCHANGEL"
+      ]
     },
-    "raphael_chylinski_priest": {
+    {
+      "id": "raphael_chylinski_priest",
       "fullname": "Blessed Raphael Chyliński, Priest",
-      "canonizationLevel": "BLESSED",
+      "canonization_level": "BLESSED",
       "name": "Raphael Chyliński",
-      "titles": ["PRIEST"]
+      "titles": [
+        "PRIEST"
+      ]
     },
-    "raphael_guizar_y_valencia_bishop": {
+    {
+      "id": "raphael_guizar_y_valencia_bishop",
       "fullname": "Saint Raphael Guízar y Valencia, Bishop",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Raphael Guízar y Valencia",
-      "titles": ["BISHOP"]
+      "titles": [
+        "BISHOP"
+      ]
     },
-    "raphael_of_saint_joseph_kalinowski_priest": {
+    {
+      "id": "raphael_of_saint_joseph_kalinowski_priest",
       "fullname": "Saint Raphael of Saint Joseph Kalinowski, Priest",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Raphael of Saint Joseph Kalinowski",
-      "titles": ["PRIEST"]
+      "titles": [
+        "PRIEST"
+      ]
     },
-    "raymond_costeran_and_companions_martyrs": {
+    {
+      "id": "raymond_costeran_and_companions_martyrs",
       "fullname": "Blessed Raymond Costeran and Companions, Martyrs"
     },
-    "raymond_costeran_martyr": {
+    {
+      "id": "raymond_costeran_martyr",
       "fullname": "Blessed Raymond Costeran, Martyr",
-      "canonizationLevel": "BLESSED",
+      "canonization_level": "BLESSED",
       "name": "Raymond Costeran",
-      "titles": ["MARTYR"],
-      "dateOfDeath": "1242-05-29",
-      "sources": ["mr_fr_1974_ed1_region_apostolique_du_midi"]
+      "titles": [
+        "MARTYR"
+      ],
+      "date_of_death": "1242-05-29",
+      "sources": [
+        "mr_fr_1974_ed1_region_apostolique_du_midi"
+      ]
     },
-    "raymond_gayrard_religious": {
+    {
+      "id": "raymond_gayrard_religious",
       "fullname": "Saint Raymond Gayrard, Religious",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Raymond Gayrard",
-      "titles": ["RELIGIOUS"],
-      "dateOfDeath": "1118-07-03",
+      "titles": [
+        "RELIGIOUS"
+      ],
+      "date_of_death": "1118-07-03",
       "sources": [
         "mr_fr_1974_ed1_region_apostolique_du_midi",
         "https://en.wikipedia.org/wiki/Raymond_of_Toulouse_(saint)"
       ]
     },
-    "raymond_of_penyafort_priest": {
+    {
+      "id": "raymond_of_penyafort_priest",
       "fullname": "Saint Raymond of Penyafort, Priest",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Raymond of Penyafort",
-      "titles": ["PRIEST"],
-      "dateOfDeath": 1275
+      "titles": [
+        "PRIEST"
+      ],
+      "date_of_death": 1275
     },
-    "remigius_of_reims_bishop": {
+    {
+      "id": "remigius_of_reims_bishop",
       "fullname": "Saint Remigius, Bishop",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Remigius",
-      "titles": ["BISHOP"],
-      "dateOfDeath": 530
+      "titles": [
+        "BISHOP"
+      ],
+      "date_of_death": 530
     },
-    "rene_goupil_religious": {
+    {
+      "id": "rene_goupil_religious",
       "fullname": "Saint René Goupil, Religious and Martyr",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "René Goupil",
-      "titles": ["RELIGIOUS", "MARTYR"],
-      "dateOfBirth": "1608-05-15",
-      "dateOfDeath": "1642-09-29",
+      "titles": [
+        "RELIGIOUS",
+        "MARTYR"
+      ],
+      "date_of_birth": "1608-05-15",
+      "date_of_death": "1642-09-29",
       "sources": [
         "mr_fr_2022_ed3_angers",
         "https://en.wikipedia.org/wiki/Ren%C3%A9_Goupil"
       ]
     },
-    "richard_gwyn_martyr": {
+    {
+      "id": "richard_gwyn_martyr",
       "fullname": "Saint Richard Gwyn, Martyr",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Richard Gwyn",
-      "titles": ["MARTYR"]
+      "titles": [
+        "MARTYR"
+      ]
     },
-    "richard_of_chichester_bishop": {
+    {
+      "id": "richard_of_chichester_bishop",
       "fullname": "Saint Richard of Chichester, Bishop",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Richard of Chichester",
-      "titles": ["BISHOP"]
+      "titles": [
+        "BISHOP"
+      ]
     },
-    "richardis_of_swabia_empress": {
+    {
+      "id": "richardis_of_swabia_empress",
       "fullname": "Saint Richardis, Empress",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Richardis",
-      "titles": ["EMPRESS"],
-      "dateOfDeath": {
-        "or": [894, 896]
+      "titles": [
+        "EMPRESS"
+      ],
+      "date_of_death": {
+        "or": [
+          894,
+          896
+        ]
       }
     },
-    "rita_of_cascia_religious": {
+    {
+      "id": "rita_of_cascia_religious",
       "fullname": "Saint Rita of Cascia, Religious",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Rita of Cascia",
-      "titles": ["RELIGIOUS"],
-      "dateOfDeath": 1456
+      "titles": [
+        "RELIGIOUS"
+      ],
+      "date_of_death": 1456
     },
-    "robert_bellarmine_bishop": {
+    {
+      "id": "robert_bellarmine_bishop",
       "fullname": "Saint Robert Bellarmine, Bishop and Doctor of the Church",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Robert Bellarmine",
-      "titles": ["BISHOP", "DOCTOR_OF_THE_CHURCH"],
-      "dateOfDeath": 1621
+      "titles": [
+        "BISHOP",
+        "DOCTOR_OF_THE_CHURCH"
+      ],
+      "date_of_death": 1621
     },
-    "roch_gonzalez_alphonsus_rodriguez_and_john_del_castillo_priests": {
+    {
+      "id": "roch_gonzalez_alphonsus_rodriguez_and_john_del_castillo_priests",
       "fullname": "Saints Roch González, Alphonsus Rodríguez and John del Castillo, Priests and Martyrs"
     },
-    "roch_gonzalez_priest": {
-      "canonizationLevel": "SAINT",
+    {
+      "id": "roch_gonzalez_priest",
+      "canonization_level": "SAINT",
       "name": "Roch González",
-      "titles": ["PRIEST", "MARTYR"]
+      "titles": [
+        "PRIEST",
+        "MARTYR"
+      ]
     },
-    "roch_of_montpellier": {
+    {
+      "id": "roch_of_montpellier",
       "fullname": "Saint Roch",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Roch"
     },
-    "romuald_of_ravenna_abbot": {
+    {
+      "id": "romuald_of_ravenna_abbot",
       "fullname": "Saint Romuald, Abbot",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Romuald",
-      "titles": ["ABBOT"],
-      "dateOfDeath": 1027
+      "titles": [
+        "ABBOT"
+      ],
+      "date_of_death": 1027
     },
-    "rosalie_jeanne_marie_rendu_virgin": {
+    {
+      "id": "rosalie_jeanne_marie_rendu_virgin",
       "fullname": "Blessed Rosalie Rendu, Virgin",
-      "canonizationLevel": "BLESSED",
+      "canonization_level": "BLESSED",
       "name": "Rosalie Rendu",
-      "titles": ["VIRGIN"],
-      "dateOfDeath": "1856-2-7"
+      "titles": [
+        "VIRGIN"
+      ],
+      "date_of_death": "1856-2-7"
     },
-    "rose_of_lima_virgin": {
+    {
+      "id": "rose_of_lima_virgin",
       "fullname": "Saint Rose of Lima, Virgin",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Rose of Lima",
-      "titles": ["VIRGIN"],
-      "dateOfDeath": 1617
+      "titles": [
+        "VIRGIN"
+      ],
+      "date_of_death": 1617
     },
-    "rose_of_lima_virgin_copatroness_of_the_philippines": {
+    {
+      "id": "rose_of_lima_virgin_copatroness_of_the_philippines",
       "fullname": "Saint Rose of Lima, Virgin, Copatroness of the Philippines"
     },
-    "rose_philippine_duchesne_virgin": {
+    {
+      "id": "rose_philippine_duchesne_virgin",
       "fullname": "Saint Rose Philippine Duchesne, Virgin",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Rose Philippine Duchesne",
-      "titles": ["VIRGIN"]
+      "titles": [
+        "VIRGIN"
+      ]
     },
-    "rumpharius_of_coutances_bishop": {
+    {
+      "id": "rumpharius_of_coutances_bishop",
       "fullname": "Saint Rumpharius, Bishop",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Rumpharius",
-      "titles": ["BISHOP"],
-      "dateOfDeath": {
-        "century": 6,
-        "sources": [
-          "mr_fr_1982_ed2_coutances",
-          "https://www.diocese50.fr/les-paroisses-et-les-doyennes/notre-dame-coutances/les-saints-du-diocese/saint-romphaire-eveque-de-coutances",
-          "https://fr.wikipedia.org/wiki/Romphaire_de_Coutances"
-        ]
+      "titles": [
+        "BISHOP"
+      ],
+      "date_of_death": {
+        "century": 6
       },
       "sources": [
         "mr_fr_1982_ed2_coutances",
@@ -188,13 +264,17 @@
         "https://fr.wikipedia.org/wiki/Romphaire_de_Coutances"
       ]
     },
-    "rupert_of_salzburg_and_virgilius_of_salzburg_bishops": {
+    {
+      "id": "rupert_of_salzburg_and_virgilius_of_salzburg_bishops",
       "fullname": "Saints Rupert and Virgilius of Salzburg, Bishops"
     },
-    "rupert_of_salzburg_bishop": {
-      "canonizationLevel": "SAINT",
+    {
+      "id": "rupert_of_salzburg_bishop",
+      "canonization_level": "SAINT",
       "name": "Rupert Salzburg",
-      "titles": ["BISHOP"]
+      "titles": [
+        "BISHOP"
+      ]
     }
-  }
+  ]
 }

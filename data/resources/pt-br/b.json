@@ -1,63 +1,82 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "pt-br",
-  "letter": "b",
-  "items": {
-    "baptism_of_the_lord": {
+  "entities": [
+    {
+      "id": "baptism_of_the_lord",
       "fullname": "Batismo do Senhor"
     },
-    "barnabas_apostle": {
+    {
+      "id": "barnabas_apostle",
       "fullname": "São Barnabé, apóstolo"
     },
-    "bartholomew_apostle": {
+    {
+      "id": "bartholomew_apostle",
       "fullname": "São Bartolomeu, apóstolo"
     },
-    "bartholomew_of_the_martyrs_fernandes_bishop": {
+    {
+      "id": "bartholomew_of_the_martyrs_fernandes_bishop",
       "fullname": "São Bartolomeu dos mártires, bispo"
     },
-    "basil_the_great_and_gregory_nazianzen_bishops": {
+    {
+      "id": "basil_the_great_and_gregory_nazianzen_bishops",
       "fullname": "São Basílio Magno e São Gregório Nazianzeno, bispos e doutores da Igreja"
     },
-    "beatrice_da_silva_meneses_virgin": {
+    {
+      "id": "beatrice_da_silva_meneses_virgin",
       "fullname": "Santa Beatriz da Silva, virgem"
     },
-    "bede_the_venerable_priest": {
+    {
+      "id": "bede_the_venerable_priest",
       "fullname": "São Beda Venerável, presbítero e doutor da Igreja"
     },
-    "benedict_of_aniane_abbot": {
+    {
+      "id": "benedict_of_aniane_abbot",
       "fullname": "São Bento de Aniane, abade"
     },
-    "benedict_of_nursia_abbot": {
+    {
+      "id": "benedict_of_nursia_abbot",
       "fullname": "São Bento, abade"
     },
-    "bernard_of_clairvaux_abbot": {
+    {
+      "id": "bernard_of_clairvaux_abbot",
       "fullname": "São Bernardo, abade e doutor da Igreja"
     },
-    "bernardine_of_siena_priest": {
+    {
+      "id": "bernardine_of_siena_priest",
       "fullname": "São Bernardino de Sena, presbítero"
     },
-    "blaise_of_sebaste_bishop": {
+    {
+      "id": "blaise_of_sebaste_bishop",
       "fullname": "São Brás, bispo e mártir"
     },
-    "blessed_martyrs_of_paris": {
+    {
+      "id": "blessed_martyrs_of_paris",
       "fullname": "Beatos mártires da Revolução Francesa"
     },
-    "bonaventure_of_bagnoregio_bishop": {
+    {
+      "id": "bonaventure_of_bagnoregio_bishop",
       "fullname": "São Boaventura, bispo e doutor da Igreja"
     },
-    "boniface_of_mainz_bishop": {
+    {
+      "id": "boniface_of_mainz_bishop",
       "fullname": "São Bonifácio, bispo e mártir"
     },
-    "bridget_of_sweden_religious": {
+    {
+      "id": "bridget_of_sweden_religious",
       "fullname": "Santa Brígida, religiosa"
     },
-    "brigid_of_kildare_virgin": {
+    {
+      "id": "brigid_of_kildare_virgin",
       "fullname": "Santa Brígida de Kildare, abadessa"
     },
-    "brigid_of_kildare_virgin_copatroness_of_ireland": {
+    {
+      "id": "brigid_of_kildare_virgin_copatroness_of_ireland",
       "fullname": "Santa Brígida de Kildare, virgem e copatrona da Irlanda"
     },
-    "bruno_of_cologne_priest": {
+    {
+      "id": "bruno_of_cologne_priest",
       "fullname": "São Bruno, presbítero"
     }
-  }
+  ]
 }

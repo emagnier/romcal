@@ -1,9 +1,10 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "pl",
-  "letter": "q",
-  "items": {
-    "queenship_of_the_blessed_virgin_mary": {
+  "entities": [
+    {
+      "id": "queenship_of_the_blessed_virgin_mary",
       "fullname": "Najświętszej Maryi Panny, Królowej"
     }
-  }
+  ]
 }

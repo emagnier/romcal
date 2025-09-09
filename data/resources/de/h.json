@@ -1,87 +1,114 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "de",
-  "letter": "h",
-  "items": {
-    "hedwig_of_poland": {
+  "entities": [
+    {
+      "id": "hedwig_of_poland",
       "fullname": "Hl. Hedwig von Polen"
     },
-    "hedwig_of_silesia_religious": {
+    {
+      "id": "hedwig_of_silesia_religious",
       "fullname": "Hl. Hedwig, Ordensfrau"
     },
-    "helena_of_constantinople": {
+    {
+      "id": "helena_of_constantinople",
       "fullname": "Hl. Helena"
     },
-    "hemma_of_gurk": {
+    {
+      "id": "hemma_of_gurk",
       "fullname": "Hl. Hemma von Gurk"
     },
-    "hemming_of_turku_bishop": {
+    {
+      "id": "hemming_of_turku_bishop",
       "fullname": "Sel. Hemming von Turku, Bischof"
     },
-    "henry_ii_emperor": {
+    {
+      "id": "henry_ii_emperor",
       "fullname": "Hl. Heinrich"
     },
-    "henry_ii_emperor_and_cunigunde_of_luxembourg": {
+    {
+      "id": "henry_ii_emperor_and_cunigunde_of_luxembourg",
       "fullname": "Hl. Heinrich und Kunigunde"
     },
-    "henry_of_finland_bishop": {
+    {
+      "id": "henry_of_finland_bishop",
       "fullname": "Hl. Heinrich, Bischof und Märtyrer"
     },
-    "henry_suso_priest": {
+    {
+      "id": "henry_suso_priest",
       "fullname": "Sel. Heinrich Seuse, Priester"
     },
-    "hermann_joseph_of_steinfeld_priest": {
+    {
+      "id": "hermann_joseph_of_steinfeld_priest",
       "fullname": "Hl. Hermann Joseph, Priester"
     },
-    "hermenegild_the_visigoths_martyr": {
+    {
+      "id": "hermenegild_the_visigoths_martyr",
       "fullname": "Hl. Hermenegild, Märtyrer"
     },
-    "hilary_of_poitiers_bishop": {
+    {
+      "id": "hilary_of_poitiers_bishop",
       "fullname": "Hl. Hilarius, Bischof und Kirchenlehrer"
     },
-    "hilda_of_whitby_abbess": {
+    {
+      "id": "hilda_of_whitby_abbess",
       "fullname": "Hl. Hilda, Äbtissin"
     },
-    "hildegard_of_bingen_abbess": {
+    {
+      "id": "hildegard_of_bingen_abbess",
       "fullname": "Hl. Hildegard von Bingen, Äbtissin und Kirchenlehrerin"
     },
-    "holy_child_of_cebu": {
+    {
+      "id": "holy_child_of_cebu",
       "fullname": "Das Heilige Kind von Cebu"
     },
-    "holy_family_of_jesus_mary_and_joseph": {
+    {
+      "id": "holy_family_of_jesus_mary_and_joseph",
       "fullname": "Fest der heiligen Familie"
     },
-    "holy_guardian_angels": {
+    {
+      "id": "holy_guardian_angels",
       "fullname": "Hl. Schutzengel"
     },
-    "holy_innocents_martyrs": {
+    {
+      "id": "holy_innocents_martyrs",
       "fullname": "Die Unschuldigen Kinder, Märtyrer"
     },
-    "holy_saturday": {
+    {
+      "id": "holy_saturday",
       "fullname": "Karsamstag/Osternacht"
     },
-    "holy_thursday": {
+    {
+      "id": "holy_thursday",
       "fullname": "Gründonnerstag"
     },
-    "honorat_kozminski_priest": {
+    {
+      "id": "honorat_kozminski_priest",
       "fullname": "Sel. Honorat Koźmiński, Priester"
     },
-    "hosanna_of_cattaro_virgin": {
+    {
+      "id": "hosanna_of_cattaro_virgin",
       "fullname": "Sel. Hosanna von Kotor, Jungfrau"
     },
-    "hroznata_of_bohemia_martyr": {
+    {
+      "id": "hroznata_of_bohemia_martyr",
       "fullname": "Sel. Hroznata, Märtyrer"
     },
-    "hubert_of_liege_bishop": {
+    {
+      "id": "hubert_of_liege_bishop",
       "fullname": "Hl. Hubertus, Bischof"
     },
-    "hugh_of_lincoln_bishop": {
+    {
+      "id": "hugh_of_lincoln_bishop",
       "fullname": "Hl. Hugo von Lincoln, Bischof"
     },
-    "hungarian_saints_and_blesseds": {
+    {
+      "id": "hungarian_saints_and_blesseds",
       "fullname": "Ungarische Heilige und Selige"
     },
-    "hyacinth_of_poland_priest": {
+    {
+      "id": "hyacinth_of_poland_priest",
       "fullname": "Hl. Hyazinth, Priester"
     }
-  }
+  ]
 }

@@ -1,108 +1,142 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "sk",
-  "letter": "b",
-  "items": {
-    "baptism_of_the_lord": {
+  "entities": [
+    {
+      "id": "baptism_of_the_lord",
       "fullname": "Krst Pána"
     },
-    "barbara_of_heliopolis_virgin": {
+    {
+      "id": "barbara_of_heliopolis_virgin",
       "fullname": "Svätej Barbory, panny a mučenice"
     },
-    "barnabas_apostle": {
+    {
+      "id": "barnabas_apostle",
       "fullname": "Svätého Barnabáša, apoštola"
     },
-    "bartholomew_apostle": {
+    {
+      "id": "bartholomew_apostle",
       "fullname": "Svätého Bartolomeja, apoštola"
     },
-    "bartholomew_dias_laurel_religious": {
+    {
+      "id": "bartholomew_dias_laurel_religious",
       "fullname": "Blahoslaveného Bartolomeja Díasa Laurela, rehoľníka a mučeníka"
     },
-    "bartholomew_of_the_martyrs_fernandes_bishop": {
+    {
+      "id": "bartholomew_of_the_martyrs_fernandes_bishop",
       "fullname": "Blahoslaveného Bartolomeja od mučeníkov Fernandesa, biskupa"
     },
-    "basil_the_great_and_gregory_nazianzen_bishops": {
+    {
+      "id": "basil_the_great_and_gregory_nazianzen_bishops",
       "fullname": "Svätých Bazila Veľkého a Gregora Naziánzskeho, biskupov a učiteľov Cirkvi"
     },
-    "beatrice_da_silva_meneses_virgin": {
+    {
+      "id": "beatrice_da_silva_meneses_virgin",
       "fullname": "Svätej Beatrix da Silva, panny"
     },
-    "bede_the_venerable_priest": {
+    {
+      "id": "bede_the_venerable_priest",
       "fullname": "Svätého Bédu Ctihodného, kňaza a učiteľa Cirkvi"
     },
-    "benedict_of_aniane_abbot": {
+    {
+      "id": "benedict_of_aniane_abbot",
       "fullname": "Svätého Benedikta z Aniane, opáta"
     },
-    "benedict_of_jesus_valdivielso_saez_religious": {
+    {
+      "id": "benedict_of_jesus_valdivielso_saez_religious",
       "fullname": "Svätého Benedikta od Ježiša Valdivielsa Sáeza, rehoľníka a mučeníka"
     },
-    "benedict_of_nursia_abbot": {
+    {
+      "id": "benedict_of_nursia_abbot",
       "fullname": "Svätého Benedikta, opáta"
     },
-    "benedict_of_nursia_abbot_patron_of_europe": {
+    {
+      "id": "benedict_of_nursia_abbot_patron_of_europe",
       "fullname": "Svätého Benedikta, opáta, patróna Európy"
     },
-    "benno_of_meissen_bishop": {
+    {
+      "id": "benno_of_meissen_bishop",
       "fullname": "Svätého Benna z Meißenu, biskupa"
     },
-    "bernadette_soubirous_virgin": {
+    {
+      "id": "bernadette_soubirous_virgin",
       "fullname": "Svätej Bernadety Soubirousovej, panny"
     },
-    "bernard_of_clairvaux_abbot": {
+    {
+      "id": "bernard_of_clairvaux_abbot",
       "fullname": "Svätého Bernarda, opáta a učiteľa Cirkvi"
     },
-    "bernardine_of_siena_priest": {
+    {
+      "id": "bernardine_of_siena_priest",
       "fullname": "Svätého Bernardína Sienského, kňaza"
     },
-    "beuno_of_wales_abbot": {
+    {
+      "id": "beuno_of_wales_abbot",
       "fullname": "Svätého Beuna, opáta"
     },
-    "blaise_of_sebaste_bishop": {
+    {
+      "id": "blaise_of_sebaste_bishop",
       "fullname": "Svätého Blažeja, biskupa a mučeníka"
     },
-    "blessed_martyrs_of_paris": {
+    {
+      "id": "blessed_martyrs_of_paris",
       "fullname": "Blahoslavených parížskych mučeníkov Francúzskej revolúcie"
     },
-    "bogumilus_of_dobrow_bishop": {
+    {
+      "id": "bogumilus_of_dobrow_bishop",
       "fullname": "Blahoslaveného Bohumila, biskupa"
     },
-    "boleslawa_mary_lament_virgin": {
+    {
+      "id": "boleslawa_mary_lament_virgin",
       "fullname": "Blahoslavenej Boleslavy Márie Lamentovej, panny"
     },
-    "bonaventure_of_bagnoregio_bishop": {
+    {
+      "id": "bonaventure_of_bagnoregio_bishop",
       "fullname": "Svätého Bonaventúru, biskupa a učiteľa Cirkvi"
     },
-    "boniface_of_mainz_bishop": {
+    {
+      "id": "boniface_of_mainz_bishop",
       "fullname": "Svätého Bonifáca, biskupa a mučeníka"
     },
-    "boris_of_kiev_and_gleb_of_kiev_martyrs": {
+    {
+      "id": "boris_of_kiev_and_gleb_of_kiev_martyrs",
       "fullname": "Svätých Borisa a Gleba, mučeníkov"
     },
-    "brendan_of_clonfert_abbot": {
+    {
+      "id": "brendan_of_clonfert_abbot",
       "fullname": "Svätého Brendana, opáta"
     },
-    "bridget_of_sweden_religious": {
+    {
+      "id": "bridget_of_sweden_religious",
       "fullname": "Svätej Brigity, rehoľníčky"
     },
-    "bridget_of_sweden_religious_copatroness_of_europe": {
+    {
+      "id": "bridget_of_sweden_religious_copatroness_of_europe",
       "fullname": "Svätej Brigity, rehoľníčky, patrónky Európy"
     },
-    "brigid_of_kildare_virgin": {
+    {
+      "id": "brigid_of_kildare_virgin",
       "fullname": "Svätej Brigity Írskej, opátky"
     },
-    "brigid_of_kildare_virgin_copatroness_of_ireland": {
+    {
+      "id": "brigid_of_kildare_virgin_copatroness_of_ireland",
       "fullname": "Svätej Brigity Írskej, panny, patrónky Írska"
     },
-    "bronislava_of_poland_virgin": {
+    {
+      "id": "bronislava_of_poland_virgin",
       "fullname": "Blahoslavenej Bronislavy, panny"
     },
-    "bronislaw_markiewicz_priest": {
+    {
+      "id": "bronislaw_markiewicz_priest",
       "fullname": "Blahoslaveného Bronislava Markiewicza, kňaza"
     },
-    "bruno_of_cologne_priest": {
+    {
+      "id": "bruno_of_cologne_priest",
       "fullname": " Svätého Bruna, kňaza"
     },
-    "bruno_of_querfurt_bishop": {
+    {
+      "id": "bruno_of_querfurt_bishop",
       "fullname": "Svätého Bruna z Querfurtu, biskupa a mučeníka"
     }
-  }
+  ]
 }

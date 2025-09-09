@@ -1,108 +1,142 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "la",
-  "letter": "b",
-  "items": {
-    "baptism_of_the_lord": {
+  "entities": [
+    {
+      "id": "baptism_of_the_lord",
       "fullname": "In Baptismate Domini"
     },
-    "barbara_of_heliopolis_virgin": {
+    {
+      "id": "barbara_of_heliopolis_virgin",
       "fullname": "S. Barbaræ, virginis et martyris"
     },
-    "barnabas_apostle": {
+    {
+      "id": "barnabas_apostle",
       "fullname": "S. Barnabæ, apostoli"
     },
-    "bartholomew_apostle": {
+    {
+      "id": "bartholomew_apostle",
       "fullname": "S. Bartholomæi, apostoli"
     },
-    "bartholomew_dias_laurel_religious": {
+    {
+      "id": "bartholomew_dias_laurel_religious",
       "fullname": "B. Bartholomæi Días Laurel, religiosi et martyris"
     },
-    "bartholomew_of_the_martyrs_fernandes_bishop": {
+    {
+      "id": "bartholomew_of_the_martyrs_fernandes_bishop",
       "fullname": "B. Bartholomæi de Martyribus Fernandes, episcopi"
     },
-    "basil_the_great_and_gregory_nazianzen_bishops": {
+    {
+      "id": "basil_the_great_and_gregory_nazianzen_bishops",
       "fullname": "Ss. Basilii Magni et Gregorii Nazianzeni, episcoporum et Ecclesiæ doctorum"
     },
-    "beatrice_da_silva_meneses_virgin": {
+    {
+      "id": "beatrice_da_silva_meneses_virgin",
       "fullname": "S. Beatricis de Silva, virginis"
     },
-    "bede_the_venerable_priest": {
+    {
+      "id": "bede_the_venerable_priest",
       "fullname": "S. Bedæ Venerabilis, presbyteri et Ecclesiæ doctoris"
     },
-    "benedict_of_aniane_abbot": {
+    {
+      "id": "benedict_of_aniane_abbot",
       "fullname": "S. Benedicti Anianensis, abbatis"
     },
-    "benedict_of_jesus_valdivielso_saez_religious": {
+    {
+      "id": "benedict_of_jesus_valdivielso_saez_religious",
       "fullname": "S. Benedicti a Iesu Valdivielso Sáez, religiosi et martyris"
     },
-    "benedict_of_nursia_abbot": {
+    {
+      "id": "benedict_of_nursia_abbot",
       "fullname": "S. Benedicti, abbatis"
     },
-    "benedict_of_nursia_abbot_patron_of_europe": {
+    {
+      "id": "benedict_of_nursia_abbot_patron_of_europe",
       "fullname": "S. Benedicti, abbatis, patroni Europæ"
     },
-    "benno_of_meissen_bishop": {
+    {
+      "id": "benno_of_meissen_bishop",
       "fullname": "S. Bennonis Misnensis, episcopi"
     },
-    "bernadette_soubirous_virgin": {
+    {
+      "id": "bernadette_soubirous_virgin",
       "fullname": "S. Bernardæ Soubirous, virginis"
     },
-    "bernard_of_clairvaux_abbot": {
+    {
+      "id": "bernard_of_clairvaux_abbot",
       "fullname": "S. Bernardi, abbatis et Ecclesiæ doctoris"
     },
-    "bernardine_of_siena_priest": {
+    {
+      "id": "bernardine_of_siena_priest",
       "fullname": "S. Bernardini Senensis, presbyteri"
     },
-    "beuno_of_wales_abbot": {
+    {
+      "id": "beuno_of_wales_abbot",
       "fullname": "S. Boni, abbatis"
     },
-    "blaise_of_sebaste_bishop": {
+    {
+      "id": "blaise_of_sebaste_bishop",
       "fullname": "S. Blasii, episcopi et martyris"
     },
-    "blessed_martyrs_of_paris": {
+    {
+      "id": "blessed_martyrs_of_paris",
       "fullname": "B. Martyres Revolutionis Gallicæ"
     },
-    "bogumilus_of_dobrow_bishop": {
+    {
+      "id": "bogumilus_of_dobrow_bishop",
       "fullname": "B. Bogumili, episcopi"
     },
-    "boleslawa_mary_lament_virgin": {
+    {
+      "id": "boleslawa_mary_lament_virgin",
       "fullname": "B. Boleslavæ Mariæ Lament, virginis"
     },
-    "bonaventure_of_bagnoregio_bishop": {
+    {
+      "id": "bonaventure_of_bagnoregio_bishop",
       "fullname": "S. Bonaventuræ, episcopi et Ecclesiæ doctoris"
     },
-    "boniface_of_mainz_bishop": {
+    {
+      "id": "boniface_of_mainz_bishop",
       "fullname": "S. Bonifatii, episcopi et martyris"
     },
-    "boris_of_kiev_and_gleb_of_kiev_martyrs": {
+    {
+      "id": "boris_of_kiev_and_gleb_of_kiev_martyrs",
       "fullname": "Ss. Borisi et Hlibi, martyrum"
     },
-    "brendan_of_clonfert_abbot": {
+    {
+      "id": "brendan_of_clonfert_abbot",
       "fullname": "S. Brendani, abbatis"
     },
-    "bridget_of_sweden_religious": {
+    {
+      "id": "bridget_of_sweden_religious",
       "fullname": "S. Birgittæ, religiosæ"
     },
-    "bridget_of_sweden_religious_copatroness_of_europe": {
+    {
+      "id": "bridget_of_sweden_religious_copatroness_of_europe",
       "fullname": "S. Birgittæ, religiosæ, patronæ secundariæ Europæ"
     },
-    "brigid_of_kildare_virgin": {
+    {
+      "id": "brigid_of_kildare_virgin",
       "fullname": "S. Brigidæ, abatissæ"
     },
-    "brigid_of_kildare_virgin_copatroness_of_ireland": {
+    {
+      "id": "brigid_of_kildare_virgin_copatroness_of_ireland",
       "fullname": "S. Brigidæ, virginis, patronæ secundariæ Hiberniæ"
     },
-    "bronislava_of_poland_virgin": {
+    {
+      "id": "bronislava_of_poland_virgin",
       "fullname": "B. Bronislavæ, virginis"
     },
-    "bronislaw_markiewicz_priest": {
+    {
+      "id": "bronislaw_markiewicz_priest",
       "fullname": "B. Bronislawi Markiewicz, presbyteri"
     },
-    "bruno_of_cologne_priest": {
+    {
+      "id": "bruno_of_cologne_priest",
       "fullname": "S. Brunonis, presbyteri"
     },
-    "bruno_of_querfurt_bishop": {
+    {
+      "id": "bruno_of_querfurt_bishop",
       "fullname": "S. Brunonis a Querfurt, episcopi et martyris"
     }
-  }
+  ]
 }

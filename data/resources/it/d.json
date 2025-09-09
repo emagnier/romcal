@@ -1,48 +1,62 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "it",
-  "letter": "d",
-  "items": {
-    "damasus_i_pope": {
+  "entities": [
+    {
+      "id": "damasus_i_pope",
       "fullname": "San Damaso I, papa"
     },
-    "daniel_brottier_priest": {
+    {
+      "id": "daniel_brottier_priest",
       "fullname": "Beato Daniel Brottier, sacerdote"
     },
-    "dedication_of_consecrated_churches": {
+    {
+      "id": "dedication_of_consecrated_churches",
       "fullname": "Dedicazione di chiese consacrate di cui non si conosce la data di consacrazione"
     },
-    "dedication_of_the_basilica_of_saint_mary_major": {
+    {
+      "id": "dedication_of_the_basilica_of_saint_mary_major",
       "fullname": "Dedicazione della Basilica di Santa Maria Maggiore"
     },
-    "dedication_of_the_basilicas_of_saints_peter_and_paul_apostles": {
+    {
+      "id": "dedication_of_the_basilicas_of_saints_peter_and_paul_apostles",
       "fullname": "Dedicazione delle Basiliche dei Santi Pietro e Paolo apostoli"
     },
-    "dedication_of_the_cathedral_basilica_of_saint_denis_france": {
+    {
+      "id": "dedication_of_the_cathedral_basilica_of_saint_denis_france",
       "fullname": "Dedicazione della Basilica Cattedrale di Saint-Denis, Francia"
     },
-    "dedication_of_the_cathedral_of_notre_dame_de_strasbourg_france": {
+    {
+      "id": "dedication_of_the_cathedral_of_notre_dame_de_strasbourg_france",
       "fullname": "Dedicazione della Cattedrale di Notre-Dame de Strasbourg, Francia"
     },
-    "dedication_of_the_lateran_basilica": {
+    {
+      "id": "dedication_of_the_lateran_basilica",
       "fullname": "Dedicazione della basilica Lateranense"
     },
-    "dedication_of_the_notre_dame_de_paris_cathedral_paris_france": {
+    {
+      "id": "dedication_of_the_notre_dame_de_paris_cathedral_paris_france",
       "fullname": "Dedicazione della Cattedrale di Notre-Dame de Paris, Francia"
     },
-    "denis_of_paris_bishop_and_companions_martyrs": {
+    {
+      "id": "denis_of_paris_bishop_and_companions_martyrs",
       "fullname": "San Dionigi, vescovo e compagni, martiri"
     },
-    "denis_of_paris_bishop_patron_of_the_archdiocese_of_paris": {
+    {
+      "id": "denis_of_paris_bishop_patron_of_the_archdiocese_of_paris",
       "fullname": "San Dionigi, vescovo e martire, patrono dell’Arcidiocesi di Parigi"
     },
-    "denis_of_paris_bishop_patron_of_the_city_and_of_the_diocese_of_saint_denis": {
+    {
+      "id": "denis_of_paris_bishop_patron_of_the_city_and_of_the_diocese_of_saint_denis",
       "fullname": "San Dionigi, vescovo e martire, patrono della città e della Diocesi di Saint-Denis"
     },
-    "divine_mercy_sunday": {
+    {
+      "id": "divine_mercy_sunday",
       "fullname": "II domenica di Pasqua o Domenica della Divina Misericordia"
     },
-    "dominic_de_guzman_priest": {
+    {
+      "id": "dominic_de_guzman_priest",
       "fullname": "San Domenico, sacerdote"
     }
-  }
+  ]
 }

@@ -1,36 +1,46 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "pl",
-  "letter": "g",
-  "items": {
-    "gabriel_taurin_dufresse_bishop": {
+  "entities": [
+    {
+      "id": "gabriel_taurin_dufresse_bishop",
       "fullname": "Św. Jana Dufresse, biskupa i męczennika"
     },
-    "george_matulaitis_bishop": {
+    {
+      "id": "george_matulaitis_bishop",
       "fullname": "Bł. Jerzego Matulewicza, biskupa"
     },
-    "george_of_lydda_martyr": {
+    {
+      "id": "george_of_lydda_martyr",
       "fullname": "Św. Grzegorza, męczennika"
     },
-    "george_of_lydda_martyr_patron_of_england": {
+    {
+      "id": "george_of_lydda_martyr_patron_of_england",
       "fullname": "Św. Grzegorza, męczennika, patrona Anglii"
     },
-    "germain_of_paris_bishop": {
+    {
+      "id": "germain_of_paris_bishop",
       "fullname": "Św. Germana, biskupa"
     },
-    "gertrude_the_great_virgin": {
+    {
+      "id": "gertrude_the_great_virgin",
       "fullname": "Św. Gertrudy, dziewicy"
     },
-    "gregory_grassi_francis_fogolla_and_anthony_fantosati_bishops_and_companions_martyrs": {
+    {
+      "id": "gregory_grassi_francis_fogolla_and_anthony_fantosati_bishops_and_companions_martyrs",
       "fullname": "Świętych męczenników Grzegorza Grassiego, Franciszka Fogolli i Antoniego Fantosatiego, biskupów, i Towarzyszy"
     },
-    "gregory_i_the_great_pope": {
+    {
+      "id": "gregory_i_the_great_pope",
       "fullname": "Św. Grzegorza Wielkiego, papieża i doktora Kościoła"
     },
-    "gregory_of_narek_abbot": {
+    {
+      "id": "gregory_of_narek_abbot",
       "fullname": "Św. Grzegorza z Nareku, opata i doktora Kościoła"
     },
-    "gregory_vii_pope": {
+    {
+      "id": "gregory_vii_pope",
       "fullname": "Św. Grzegorza VII, papieża"
     }
-  }
+  ]
 }

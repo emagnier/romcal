@@ -1,9 +1,10 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "cs",
-  "letter": "y",
-  "items": {
-    "yolanda_of_poland_religious": {
+  "entities": [
+    {
+      "id": "yolanda_of_poland_religious",
       "fullname": "Bl. Jolandy, řeholnice"
     }
-  }
+  ]
 }

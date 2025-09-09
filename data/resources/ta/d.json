@@ -1,87 +1,114 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "ta",
-  "letter": "d",
-  "items": {
-    "damasus_i_pope": {
+  "entities": [
+    {
+      "id": "damasus_i_pope",
       "fullname": "புனித முதலாம் டமேசுஸ் - திருத்தந்தை"
     },
-    "damien_de_veuster_priest": {
+    {
+      "id": "damien_de_veuster_priest",
       "fullname": "புனித டேமியன் டி வூஸ்டர் - அருட்பணியாளர்"
     },
-    "daniel_brottier_priest": {
+    {
+      "id": "daniel_brottier_priest",
       "fullname": "புனித டானியேல் ப்ரோடியர் - அருட்பணியாளர்"
     },
-    "david_lewis_priest": {
+    {
+      "id": "david_lewis_priest",
       "fullname": "புனித டேவிட் லுவிஸ் - அருட்பணியாளர், மறைசாட்சி"
     },
-    "david_of_wales_bishop": {
+    {
+      "id": "david_of_wales_bishop",
       "fullname": "புனித டேவிட் - ஆயர்"
     },
-    "david_of_wales_bishop_patron_of_wales": {
+    {
+      "id": "david_of_wales_bishop_patron_of_wales",
       "fullname": "புனித டேவிட் - ஆயர், அயர்லாந்தின் பாதுகாவலர்"
     },
-    "davnet_of_sliabh_beagh_virgin": {
+    {
+      "id": "davnet_of_sliabh_beagh_virgin",
       "fullname": "புனித டவ்நெட் - கன்னி"
     },
-    "declan_of_ardmore_bishop": {
+    {
+      "id": "declan_of_ardmore_bishop",
       "fullname": "புனித டெக்லன் - ஆயர்"
     },
-    "dedication_of_consecrated_churches": {
+    {
+      "id": "dedication_of_consecrated_churches",
       "fullname": "அர்ப்பணிக்கப்பட்ட கோவில்களின் நேர்ந்தளிப்பு"
     },
-    "dedication_of_the_basilica_of_saint_mary_major": {
+    {
+      "id": "dedication_of_the_basilica_of_saint_mary_major",
       "fullname": "புனித மரியாவின் பெருங்கோவில் நேர்ந்தளிப்பு"
     },
-    "dedication_of_the_basilicas_of_saints_peter_and_paul_apostles": {
+    {
+      "id": "dedication_of_the_basilicas_of_saints_peter_and_paul_apostles",
       "fullname": "புனிதர்கள் பேதுரு, பவுல் பெருங்கோவில்களின் நேர்ந்தளிப்பு - திருத்தூதர்கள்"
     },
-    "dedication_of_the_cathedral_basilica_of_saint_denis_france": {
+    {
+      "id": "dedication_of_the_cathedral_basilica_of_saint_denis_france",
       "fullname": "புனித டெனிஸ் ஆசனக்கோவில் நேர்ந்தளிப்பு"
     },
-    "dedication_of_the_cathedral_of_notre_dame_de_strasbourg_france": {
+    {
+      "id": "dedication_of_the_cathedral_of_notre_dame_de_strasbourg_france",
       "fullname": "ஸ்ரெஸ்பேர்கின் ஆசனக்கோவில் நேர்ந்தளிப்பு"
     },
-    "dedication_of_the_lateran_basilica": {
+    {
+      "id": "dedication_of_the_lateran_basilica",
       "fullname": "இலாத்தரன் பெருங்கோவில் நேர்ந்தளிப்பு"
     },
-    "dedication_of_the_notre_dame_de_paris_cathedral_paris_france": {
+    {
+      "id": "dedication_of_the_notre_dame_de_paris_cathedral_paris_france",
       "fullname": "பாரிஸ் நகர் ஆசனக்கோவில் நேர்ந்தளிப்பு"
     },
-    "deiniol_of_bangor_bishop": {
+    {
+      "id": "deiniol_of_bangor_bishop",
       "fullname": "புனித டைனியல் - ஆயர்"
     },
-    "demetrius_of_thessaloniki_martyr": {
+    {
+      "id": "demetrius_of_thessaloniki_martyr",
       "fullname": "தெசலோனிக்காவின் புனித டெமெட்ரியஸ் - மறைசாட்சி"
     },
-    "denis_of_paris_bishop_and_companions_martyrs": {
+    {
+      "id": "denis_of_paris_bishop_and_companions_martyrs",
       "fullname": "புனித டெனிஸ், தோழர்கள் - மறைசாட்சிகள், ஆயர்"
     },
-    "denis_of_paris_bishop_patron_of_the_archdiocese_of_paris": {
+    {
+      "id": "denis_of_paris_bishop_patron_of_the_archdiocese_of_paris",
       "fullname": "புனித டெனிஸ் - மறைசாட்சி, ஆயர், பாரிஸ் மறைமாவட்டத்தின் பாதுகாவலர"
     },
-    "denis_of_paris_bishop_patron_of_the_city_and_of_the_diocese_of_saint_denis": {
+    {
+      "id": "denis_of_paris_bishop_patron_of_the_city_and_of_the_diocese_of_saint_denis",
       "fullname": "புனித டெனிஸ் - மறைசாட்சி, ஆயர், புனித டெனிஸ் நகர், மறைமாவட்டத்தின் பாதுகாவலர்"
     },
-    "dina_belanger_virgin": {
+    {
+      "id": "dina_belanger_virgin",
       "fullname": "முத்திப்பேறுபெற்ற டீனா பெலெஞ்சர் - கன்னி"
     },
-    "dionysius_the_areopagite_bishop": {
+    {
+      "id": "dionysius_the_areopagite_bishop",
       "fullname": "புனித டியோனீசியஸ் ஆரியோபகைட் - ஆயர், மறைசாட்சி"
     },
-    "divine_mercy_sunday": {
+    {
+      "id": "divine_mercy_sunday",
       "fullname": "பாஸ்கா கால 2-ஆம் ஞாயிறு அல்லது இறை இரக்கத்தின் ஞாயிறு"
     },
-    "dominic_de_guzman_priest": {
+    {
+      "id": "dominic_de_guzman_priest",
       "fullname": "புனித டொமினிக் - அருட்பணியாளர்"
     },
-    "dominic_of_the_mother_of_god_barberi_priest": {
+    {
+      "id": "dominic_of_the_mother_of_god_barberi_priest",
       "fullname": "பார்பெரி தேவதாயாரின் முத்திப்பேறுபெற்ற டொமினிக் - அருட்பணியாளர்"
     },
-    "dunstan_of_canterbury_bishop": {
+    {
+      "id": "dunstan_of_canterbury_bishop",
       "fullname": "புனித டன்ஸ்டன் - அருட்பணியாளர்"
     },
-    "dyfrig_of_wales_bishop": {
+    {
+      "id": "dyfrig_of_wales_bishop",
       "fullname": "புனித டிபிறிக் - ஆயர்"
     }
-  }
+  ]
 }

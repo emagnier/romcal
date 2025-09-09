@@ -1,87 +1,114 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "ta",
-  "letter": "h",
-  "items": {
-    "hedwig_of_poland": {
+  "entities": [
+    {
+      "id": "hedwig_of_poland",
       "fullname": "போலந்தின் புனித ஹெட்விக்"
     },
-    "hedwig_of_silesia_religious": {
+    {
+      "id": "hedwig_of_silesia_religious",
       "fullname": "புனித ஹெட்விக் - துறவி"
     },
-    "helena_of_constantinople": {
+    {
+      "id": "helena_of_constantinople",
       "fullname": "புனித ஹெலெனா"
     },
-    "hemma_of_gurk": {
+    {
+      "id": "hemma_of_gurk",
       "fullname": "கேர்கின் புனித ஹெம்மா"
     },
-    "hemming_of_turku_bishop": {
+    {
+      "id": "hemming_of_turku_bishop",
       "fullname": "துர்குவின் முத்திப்பேறுபெற்ற ஹெமின்ங்"
     },
-    "henry_ii_emperor": {
+    {
+      "id": "henry_ii_emperor",
       "fullname": "புனித ஹென்றி - அரசர்"
     },
-    "henry_ii_emperor_and_cunigunde_of_luxembourg": {
+    {
+      "id": "henry_ii_emperor_and_cunigunde_of_luxembourg",
       "fullname": "புனிதர்கள் ஹென்றி, குனிங்குண்டெ - அரசர்"
     },
-    "henry_of_finland_bishop": {
+    {
+      "id": "henry_of_finland_bishop",
       "fullname": "புனித ஹென்றி - ஆயர், மறைசாட்சி"
     },
-    "henry_suso_priest": {
+    {
+      "id": "henry_suso_priest",
       "fullname": "முத்திப்பேறுபெற்ற ஹென்றி சூசோ - அருட்பணியாளர்"
     },
-    "hermann_joseph_of_steinfeld_priest": {
+    {
+      "id": "hermann_joseph_of_steinfeld_priest",
       "fullname": "புனித ஹெர்மன் ஜோசப் - அருட்பணியாளர்"
     },
-    "hermenegild_the_visigoths_martyr": {
+    {
+      "id": "hermenegild_the_visigoths_martyr",
       "fullname": "புனித ஹெர்மன்கில்ட் - மறைசாட்சி"
     },
-    "hilary_of_poitiers_bishop": {
+    {
+      "id": "hilary_of_poitiers_bishop",
       "fullname": "புனித ஹில்லரி - ஆயர், மறைவல்லுனர்"
     },
-    "hilda_of_whitby_abbess": {
+    {
+      "id": "hilda_of_whitby_abbess",
       "fullname": "புனித ஹில்டா - மடாதிபதி"
     },
-    "hildegard_of_bingen_abbess": {
+    {
+      "id": "hildegard_of_bingen_abbess",
       "fullname": "பின்ஜென்னின் புனித ஹில்டகார்ட் - மடாதிபதி, மறைவல்லுனர்"
     },
-    "holy_child_of_cebu": {
+    {
+      "id": "holy_child_of_cebu",
       "fullname": "சிபுவின் குழந்தை இயேசு"
     },
-    "holy_family_of_jesus_mary_and_joseph": {
+    {
+      "id": "holy_family_of_jesus_mary_and_joseph",
       "fullname": "திருக்குடும்பம்"
     },
-    "holy_guardian_angels": {
+    {
+      "id": "holy_guardian_angels",
       "fullname": "காவல் தூதர்கள்"
     },
-    "holy_innocents_martyrs": {
+    {
+      "id": "holy_innocents_martyrs",
       "fullname": "மாசில்லா குழந்தைகள் - மறைசாட்சிகள்"
     },
-    "holy_saturday": {
+    {
+      "id": "holy_saturday",
       "fullname": "புனித சனிக்கிழமை/பாஸ்கா திருவிழிப்பு"
     },
-    "holy_thursday": {
+    {
+      "id": "holy_thursday",
       "fullname": "பெரிய வியாழன்"
     },
-    "honorat_kozminski_priest": {
+    {
+      "id": "honorat_kozminski_priest",
       "fullname": "முத்திப்பேறுபெற்ற ஹொனொரட் கொமின்ஸ்கி - அருட்பணியாளர்"
     },
-    "hosanna_of_cattaro_virgin": {
+    {
+      "id": "hosanna_of_cattaro_virgin",
       "fullname": "காடாரோவின் முத்திப்பேறுபெற்ற ஹொசான்னா - கன்னி"
     },
-    "hroznata_of_bohemia_martyr": {
+    {
+      "id": "hroznata_of_bohemia_martyr",
       "fullname": "முத்திப்பேறுபெற்ற றொஸ்னடா - மறைவல்லுனர்"
     },
-    "hubert_of_liege_bishop": {
+    {
+      "id": "hubert_of_liege_bishop",
       "fullname": "புனித ஹியுபேர்ட் - ஆயர்"
     },
-    "hugh_of_lincoln_bishop": {
+    {
+      "id": "hugh_of_lincoln_bishop",
       "fullname": "லிங்கனின் புனித ஹியூக் - ஆயர்"
     },
-    "hungarian_saints_and_blesseds": {
+    {
+      "id": "hungarian_saints_and_blesseds",
       "fullname": "ஹங்கேரியின் முத்திப்பேறுபெற்றவர்கள், புனிதர்கள்"
     },
-    "hyacinth_of_poland_priest": {
+    {
+      "id": "hyacinth_of_poland_priest",
       "fullname": "புனித ஹயசிந்த் - அருட்பணியாளர்"
     }
-  }
+  ]
 }

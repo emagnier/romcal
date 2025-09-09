@@ -1,9 +1,10 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "ta",
-  "letter": "2",
-  "items": {
-    "205_blessed_martyrs_of_japan": {
+  "entities": [
+    {
+      "id": "205_blessed_martyrs_of_japan",
       "fullname": "205 முத்திப்பேறுபெற்ற ஜப்பானிய வேத சாட்சிகள்"
     }
-  }
+  ]
 }

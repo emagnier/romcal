@@ -1,90 +1,118 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "sk",
-  "letter": "t",
-  "items": {
-    "teilo_of_llandaff_bishop": {
+  "entities": [
+    {
+      "id": "teilo_of_llandaff_bishop",
       "fullname": "Svätého Teila, biskupa"
     },
-    "teresa_benedicta_of_the_cross_stein_virgin": {
+    {
+      "id": "teresa_benedicta_of_the_cross_stein_virgin",
       "fullname": "Svätej Terézie Benedikty od Kríža, panny a mučenice"
     },
-    "teresa_benedicta_of_the_cross_stein_virgin_copatroness_of_europe": {
+    {
+      "id": "teresa_benedicta_of_the_cross_stein_virgin_copatroness_of_europe",
       "fullname": "Svätej Terézie Benedikty od Kríža, panny a mučenice, patrónky Európy"
     },
-    "teresa_of_calcutta_religious": {
+    {
+      "id": "teresa_of_calcutta_religious",
       "fullname": "Svätej Terézie z Kalkaty, panny a rehoľníčky"
     },
-    "teresa_of_jesus_jornet_ibars_virgin": {
+    {
+      "id": "teresa_of_jesus_jornet_ibars_virgin",
       "fullname": "Svätej Terézie od Ježiša Jornet Ibars, panny"
     },
-    "teresa_of_jesus_of_avila_virgin": {
+    {
+      "id": "teresa_of_jesus_of_avila_virgin",
       "fullname": "Svätej Terézie od Ježiša (z Avily), panny a učiteľky Cirkvi"
     },
-    "teresa_of_jesus_of_los_andes_virgin": {
+    {
+      "id": "teresa_of_jesus_of_los_andes_virgin",
       "fullname": "Svätej Terézie od Ježiša z Los Andes, panny"
     },
-    "teresa_of_portugal_religious": {
+    {
+      "id": "teresa_of_portugal_religious",
       "fullname": "Blahoslavenej Terezy Portugalskej, rehoľníčky"
     },
-    "theodore_of_canterbury_bishop": {
+    {
+      "id": "theodore_of_canterbury_bishop",
       "fullname": "Svätého Teodora z Canterbury, biskupa"
     },
-    "theodore_romzha_bishop": {
+    {
+      "id": "theodore_romzha_bishop",
       "fullname": "Blahoslaveného Teodora Romžu, biskupa a mučeníka"
     },
-    "theodosius_of_the_caves_abbot": {
+    {
+      "id": "theodosius_of_the_caves_abbot",
       "fullname": "Svätého Teodóza Pečerského, opáta"
     },
-    "theotonius_of_coimbra_priest": {
+    {
+      "id": "theotonius_of_coimbra_priest",
       "fullname": "Svätého Teotónia, kňaza"
     },
-    "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin": {
+    {
+      "id": "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin",
       "fullname": "Svätej Terézie od Dieťaťa Ježiša (z Lisieux), panny a učiteľky Cirkvi"
     },
-    "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin_copatroness_of_france": {
+    {
+      "id": "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin_copatroness_of_france",
       "fullname": "Svätej Terézie od Dieťaťa Ježiša (z Lisieux), panny a učiteľky Cirkvi, patrónky Francúzska"
     },
-    "thomas_apostle": {
+    {
+      "id": "thomas_apostle",
       "fullname": "Svätého Tomáša, apoštola"
     },
-    "thomas_aquinas_priest": {
+    {
+      "id": "thomas_aquinas_priest",
       "fullname": "Svätého Tomáša Akvinského, kňaza a učiteľa Cirkvi"
     },
-    "thomas_becket_bishop": {
+    {
+      "id": "thomas_becket_bishop",
       "fullname": "Svätého Tomáša Becketa, biskupa a mučeníka"
     },
-    "thomas_hioji_rokuzayemon_nishi_priest_and_companions_martyrs": {
+    {
+      "id": "thomas_hioji_rokuzayemon_nishi_priest_and_companions_martyrs",
       "fullname": "Svätého Tomáša Hioji Rokuzayemona Nishiho, kňaza, a spoločníkov, mučeníkov"
     },
-    "thomas_jean_georges_rehm_priest": {
+    {
+      "id": "thomas_jean_georges_rehm_priest",
       "fullname": "Blahoslaveného Tomáša Jána Juraja Rehma, kňaza a mučeníka"
     },
-    "thomas_of_villanova_bishop": {
+    {
+      "id": "thomas_of_villanova_bishop",
       "fullname": "Svätého Tomáša z Villanovy, biskupa"
     },
-    "thorfinn_of_hamar_bishop": {
+    {
+      "id": "thorfinn_of_hamar_bishop",
       "fullname": "Svätého Torfina, biskupa"
     },
-    "thorlac_of_iceland_bishop": {
+    {
+      "id": "thorlac_of_iceland_bishop",
       "fullname": "Svätého Torlaka, biskupa"
     },
-    "thursday_of_the_lords_supper": {
+    {
+      "id": "thursday_of_the_lords_supper",
       "fullname": "Štvrtok Pánovej večere"
     },
-    "timothy_of_ephesus_and_titus_of_crete_bishops": {
+    {
+      "id": "timothy_of_ephesus_and_titus_of_crete_bishops",
       "fullname": "Svätých Timoteja a Títa, biskupov"
     },
-    "transfiguration_of_the_lord": {
+    {
+      "id": "transfiguration_of_the_lord",
       "fullname": "Premenenie Pána"
     },
-    "translation_of_the_relics_of_odile_of_alsace_abbess": {
+    {
+      "id": "translation_of_the_relics_of_odile_of_alsace_abbess",
       "fullname": "Presunu ostatkov svätej Otílie"
     },
-    "translation_of_the_relics_of_saint_stephen_of_hungary": {
+    {
+      "id": "translation_of_the_relics_of_saint_stephen_of_hungary",
       "fullname": "Presunu ostatkov svätého Štefana Uhorského"
     },
-    "turibius_of_mogrovejo_bishop": {
+    {
+      "id": "turibius_of_mogrovejo_bishop",
       "fullname": "Svätého Turibia de Mongrovejo, biskupa"
     }
-  }
+  ]
 }

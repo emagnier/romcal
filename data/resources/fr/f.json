@@ -1,70 +1,98 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "fr",
-  "letter": "f",
-  "items": {
-    "fabian_i_pope": {
+  "entities": [
+    {
+      "id": "fabian_i_pope",
       "fullname": "Saint Fabien, pape et martyr († 250)"
     },
-    "faustina_kowalska_virgin": {
+    {
+      "id": "faustina_kowalska_virgin",
       "fullname": "Sainte Faustina Kowalska († 1938)"
     },
-    "fidelis_of_sigmaringen_priest": {
+    {
+      "id": "fidelis_of_sigmaringen_priest",
       "fullname": "Saint Fidèle de Sigmaringen, prêtre et martyr († 1622)"
     },
-    "first_martyrs_of_the_holy_roman_church": {
+    {
+      "id": "first_martyrs_of_the_holy_roman_church",
       "fullname": "Premiers martyrs de l’Église de Rome († 64)"
     },
-    "florentius_of_anjou_abbot": {
+    {
+      "id": "florentius_of_anjou_abbot",
       "fullname": "Saint Florent, abbé († Vème s.)",
-      "sources": ["mr_fr_2022_ed3_angers"]
+      "sources": [
+        "mr_fr_2022_ed3_angers"
+      ]
     },
-    "florentius_of_strasbourg_bishop": {
+    {
+      "id": "florentius_of_strasbourg_bishop",
       "fullname": "Saint Florent, évêque († VIIème s.)"
     },
-    "floscellus_of_normandy_martyr": {
+    {
+      "id": "floscellus_of_normandy_martyr",
       "fullname": "Saint Floscel, martyr († v. 296)",
-      "sources": ["mr_fr_1982_ed2_coutances"]
+      "sources": [
+        "mr_fr_1982_ed2_coutances"
+      ]
     },
-    "frances_of_rome_religious": {
+    {
+      "id": "frances_of_rome_religious",
       "fullname": "Sainte Françoise Romaine, religieuse († 1440)"
     },
-    "francis_de_sales_bishop": {
+    {
+      "id": "francis_de_sales_bishop",
       "fullname": "Saint François de Sales, évêque et docteur de l’Église († 1622)"
     },
-    "francis_de_sales_bishop_patron_of_the_clergy_of_the_archdiocese_of_lyon": {
+    {
+      "id": "francis_de_sales_bishop_patron_of_the_clergy_of_the_archdiocese_of_lyon",
       "fullname": "Saint François de Sales, évêque et docteur de l’Église, patron du clergé lyonnais († 1622)",
-      "sources": ["mr_fr_2014_ed2_lyon"]
+      "sources": [
+        "mr_fr_2014_ed2_lyon"
+      ]
     },
-    "francis_of_assisi": {
+    {
+      "id": "francis_of_assisi",
       "fullname": "Saint François d’Assise, fondateur de l’ordre des Frères mineurs († 1226)"
     },
-    "francis_of_assisi_patron_of_italy": {
+    {
+      "id": "francis_of_assisi_patron_of_italy",
       "fullname": "Saint François d’Assise, fondateur de l’ordre des Frères mineurs, patron de l’Italie († 1226)"
     },
-    "francis_of_paola_hermit": {
+    {
+      "id": "francis_of_paola_hermit",
       "fullname": "Saint François de Paule, ermite, fondateur de l’ordre des Minimes († 1507)"
     },
-    "francis_xavier_priest": {
+    {
+      "id": "francis_xavier_priest",
       "fullname": "Saint François-Xavier, prêtre, Jésuite Missionnaire († 1552)"
     },
-    "francois_de_montmorency_laval_bishop": {
+    {
+      "id": "francois_de_montmorency_laval_bishop",
       "fullname": "Saint François de Laval, premier évêque de Québec († 1708)"
     },
-    "frederic_janssoone_priest": {
+    {
+      "id": "frederic_janssoone_priest",
       "fullname": "Bienheureux Frédéric Janssoone, prêtre franciscain († 1916)"
     },
-    "frederic_ozanam_founder": {
+    {
+      "id": "frederic_ozanam_founder",
       "fullname": "Bienheureux Frédéric Ozanam, fondateur de la Société de Saint-Vincent-de-Paul († 1853)"
     },
-    "friday_of_the_passion_of_the_lord": {
+    {
+      "id": "friday_of_the_passion_of_the_lord",
       "fullname": "Vendredi Saint"
     },
-    "fridolin_of_sackingen_monk": {
+    {
+      "id": "fridolin_of_sackingen_monk",
       "fullname": "Saint Fridolin, moine missionnaire († 540)"
     },
-    "fromundus_of_coutances_bishop": {
+    {
+      "id": "fromundus_of_coutances_bishop",
       "fullname": "Saint Fromond, évêque de Coutances († v. 691)",
-      "sources": ["mr_fr_1982_ed2_coutances"]
+      "sources": [
+        "mr_fr_1982_ed2_coutances"
+      ]
     }
-  }
+  ]
 }

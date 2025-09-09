@@ -1,36 +1,46 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "es",
-  "letter": "r",
-  "items": {
-    "raphael_guizar_y_valencia_bishop": {
+  "entities": [
+    {
+      "id": "raphael_guizar_y_valencia_bishop",
       "fullname": "San Rafael Guízar y Valencia, obispo"
     },
-    "raymond_of_penyafort_priest": {
+    {
+      "id": "raymond_of_penyafort_priest",
       "fullname": "San Raimundo de Peñafort, presbítero"
     },
-    "richardis_of_swabia_empress": {
+    {
+      "id": "richardis_of_swabia_empress",
       "fullname": "Santa Ricarda, Emperatriz"
     },
-    "rita_of_cascia_religious": {
+    {
+      "id": "rita_of_cascia_religious",
       "fullname": "Santa Rita de Cascia"
     },
-    "robert_bellarmine_bishop": {
+    {
+      "id": "robert_bellarmine_bishop",
       "fullname": "San Roberto Bearmino, obispo y doctor de la Iglesia"
     },
-    "roch_gonzalez_alphonsus_rodriguez_and_john_del_castillo_priests": {
+    {
+      "id": "roch_gonzalez_alphonsus_rodriguez_and_john_del_castillo_priests",
       "fullname": "Santos Roque González, Alfonso Rodríguez Olmedo y Juan del Castillo, presbíteros y mártires"
     },
-    "roch_of_montpellier": {
+    {
+      "id": "roch_of_montpellier",
       "fullname": "San Roque"
     },
-    "romuald_of_ravenna_abbot": {
+    {
+      "id": "romuald_of_ravenna_abbot",
       "fullname": "San Romualdo, Abad"
     },
-    "rosalie_jeanne_marie_rendu_virgin": {
+    {
+      "id": "rosalie_jeanne_marie_rendu_virgin",
       "fullname": "Beata Rosalía Rendu, virgen"
     },
-    "rose_of_lima_virgin": {
+    {
+      "id": "rose_of_lima_virgin",
       "fullname": "Santa Rosa de Lima, virgen"
     }
-  }
+  ]
 }

@@ -1,222 +1,294 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "ta",
-  "letter": "j",
-  "items": {
-    "jacinta_marto_and_francisco_marto": {
+  "entities": [
+    {
+      "id": "jacinta_marto_and_francisco_marto",
       "fullname": "புனிதர்கள் ஜெசிந்தா, பிரான்சிஸ்கோ மார்டோ"
     },
-    "james_apostle": {
+    {
+      "id": "james_apostle",
       "fullname": "புனித யாகப்பர் - அப்போஸ்தலர்"
     },
-    "james_apostle_patron_of_spain": {
+    {
+      "id": "james_apostle_patron_of_spain",
       "fullname": "புனித யாகப்பர் - அப்போஸ்தலர், ஸ்பெயின் நாட்டின் பாதுகாவலர்"
     },
-    "james_strzemie_bishop": {
+    {
+      "id": "james_strzemie_bishop",
       "fullname": "முத்திப்பேறுபெற்ற ஜேம்ஸ் ஸ்ரெஸ்மி - ஆயர்"
     },
-    "jane_frances_de_chantal_religious": {
+    {
+      "id": "jane_frances_de_chantal_religious",
       "fullname": "புனித ஜேன் பிரான்செஸ் டி ஷோண்டேல் - துறவி"
     },
-    "januarius_i_of_benevento_bishop": {
+    {
+      "id": "januarius_i_of_benevento_bishop",
       "fullname": "புனித ஜனவாரியஸ் - ஆயர், மறைசாட்சி"
     },
-    "jarlath_of_tuam_bishop": {
+    {
+      "id": "jarlath_of_tuam_bishop",
       "fullname": "புனித ஜர்லத் - ஆயர்"
     },
-    "jerome_emiliani": {
+    {
+      "id": "jerome_emiliani",
       "fullname": "புனித ஜெரோம் எமிலியானி"
     },
-    "jerome_of_stridon_priest": {
+    {
+      "id": "jerome_of_stridon_priest",
       "fullname": "புனித ஜெரோம் - அருட்பணியாளர், மறைவல்லுனர்"
     },
-    "joachim_and_anne_parents_of_mary": {
+    {
+      "id": "joachim_and_anne_parents_of_mary",
       "fullname": "புனிதர்கள் சுவக்கீம் அன்னம்மாள் - கன்னி மரியாளின் பெற்றோர்"
     },
-    "joachim_and_anne_patroness_of_the_province_of_quebec_parents_of_mary": {
+    {
+      "id": "joachim_and_anne_patroness_of_the_province_of_quebec_parents_of_mary",
       "fullname": "புனித அன்னம்மாள், குயுபெக்கின் பாதுகாவலி, புனித சுவக்கீம் அன்னம்மாள் - கன்னி மரியாளின் பெற்றோர்"
     },
-    "joachim_he_kaizhi_martyr": {
+    {
+      "id": "joachim_he_kaizhi_martyr",
       "fullname": "புனித சுவக்கீம் ஹீ கைசி - மறைசாட்சி"
     },
-    "joan_of_arc_virgin_copatroness_of_france": {
+    {
+      "id": "joan_of_arc_virgin_copatroness_of_france",
       "fullname": "புனித ஜோன் ஆர்க் - பிரான்ஸ் நாட்டின் பாதுகாவலி"
     },
-    "joan_of_portugal_virgin": {
+    {
+      "id": "joan_of_portugal_virgin",
       "fullname": "போர்த்துக்களின் முத்திப்பேறுபெற்ற ஜோன் ஆர்க் - கன்னி"
     },
-    "joaquina_of_saint_francis_of_assisi_de_vedruna_religious": {
+    {
+      "id": "joaquina_of_saint_francis_of_assisi_de_vedruna_religious",
       "fullname": "வெர்டுனாவின் புனித பிரான்சிஸ் அசிசியாரின் புனித ஜோக்கினா - துறவி"
     },
-    "john_apostle": {
+    {
+      "id": "john_apostle",
       "fullname": "புனித அருளப்பர் - நற்செய்தியாளர், அப்போஸ்தலர்"
     },
-    "john_baptist_de_la_salle_priest": {
+    {
+      "id": "john_baptist_de_la_salle_priest",
       "fullname": "புனித ஜோன் பப்டிஸ்ட் டி லா சால், அருட்பணியாளர்"
     },
-    "john_berchmans_religious": {
+    {
+      "id": "john_berchmans_religious",
       "fullname": "புனித பேர்க்மன் அருளப்பர் - துறவி"
     },
-    "john_beyzym_priest": {
+    {
+      "id": "john_beyzym_priest",
       "fullname": "முத்திப்பேறுபெற்ற அருளப்பர் பேசிம் - அருட்பணியாளர்"
     },
-    "john_bosco_priest": {
+    {
+      "id": "john_bosco_priest",
       "fullname": "புனித ஜோன் பொஸ்கோ - அருட்பணியாளர்"
     },
-    "john_brenner_priest": {
+    {
+      "id": "john_brenner_priest",
       "fullname": "முத்திபேறுபெற்ற ஜோன் பிரெனர் - அருட்பணியாளர், மறைசாட்சி"
     },
-    "john_cassian_priest": {
+    {
+      "id": "john_cassian_priest",
       "fullname": "புனித ஜோன் காசியான் - அருட்பணியாளர்"
     },
-    "john_chrysostom_bishop": {
+    {
+      "id": "john_chrysostom_bishop",
       "fullname": "புனித ஜோன் கிறிசோஸ்டம் - ஆயர், மறைவல்லுனர்"
     },
-    "john_damascene_priest": {
+    {
+      "id": "john_damascene_priest",
       "fullname": "புனித ஜோன் டமெசின் - அருபணியாளர், மறைவல்லுனர்"
     },
-    "john_de_brebeuf_isaac_jogues_priests_and_companions_martyrs": {
+    {
+      "id": "john_de_brebeuf_isaac_jogues_priests_and_companions_martyrs",
       "fullname": "புனிதர்கள் ஜோன் டி புரபூ, ஐசக் ஜோக்ஸ் - அருட்பணியாளர்கள், தோழர்கள், மறைசாட்சிகள்"
     },
-    "john_de_brebeuf_isaac_jogues_priests_and_companions_martyrs_copatrons_of_canada": {
+    {
+      "id": "john_de_brebeuf_isaac_jogues_priests_and_companions_martyrs_copatrons_of_canada",
       "fullname": "புனிதர்கள் ஜோன் டி புரபூ, ஐசக் ஜோக்ஸ் - அருட்பணியாளர்கள், தோழர்கள், மறைசாட்சிகள், கனடாவின் பாதுகாவலர்கள்"
     },
-    "john_de_britto_priest": {
+    {
+      "id": "john_de_britto_priest",
       "fullname": "புனித ஜோன் டி பிறிட்டோ - அருட்பணியாளர், மறைசாட்சி"
     },
-    "john_eudes_priest": {
+    {
+      "id": "john_eudes_priest",
       "fullname": "புனித ஜோன் யூட்ஸ் - அருட்பணியாளர்"
     },
-    "john_fisher_bishop_and_thomas_more_martyrs": {
+    {
+      "id": "john_fisher_bishop_and_thomas_more_martyrs",
       "fullname": "புனித ஜோன் பிஷர் - ஆயர், புனித தோமஸ் மோர் - மறைசாட்சி"
     },
-    "john_gabriel_perboyre_priest": {
+    {
+      "id": "john_gabriel_perboyre_priest",
       "fullname": "புனித ஜோன் கேப்றியேல் பெர்போரே - அருட்பணியாள்ர், மறை சாட்சி"
     },
-    "john_henry_newman_priest": {
+    {
+      "id": "john_henry_newman_priest",
       "fullname": "புனித ஜோன் ஹென்றி நியுமன் - அருட்பணியாளர்"
     },
-    "john_i_pope": {
+    {
+      "id": "john_i_pope",
       "fullname": "புனித முதலாம் அருளப்பர் - திருத்தந்தை, மறைசாட்சி"
     },
-    "john_jones_priest": {
+    {
+      "id": "john_jones_priest",
       "fullname": "புனித ஜொன் ஜோன்ஸ் - அருட்பணியாளர், மறைசாட்சி"
     },
-    "john_leonardi_priest": {
+    {
+      "id": "john_leonardi_priest",
       "fullname": "புனித ஜோன் லெனார்டி - அருட்பணியாளர்"
     },
-    "john_macias_religious": {
+    {
+      "id": "john_macias_religious",
       "fullname": "புனித ஜோன் மாசியஸ் - துறவி"
     },
-    "john_martin_moye_priest": {
+    {
+      "id": "john_martin_moye_priest",
       "fullname": "முத்திப்பேறுபெற்ற ஜோன் மார்டின் மோயே - அருட்பணியாளர்"
     },
-    "john_mary_vianney_priest": {
+    {
+      "id": "john_mary_vianney_priest",
       "fullname": "புனித ஜோன் மரிய வியான்னி - அருட்பணியாள்ர்"
     },
-    "john_nepomucene_neumann_bishop": {
+    {
+      "id": "john_nepomucene_neumann_bishop",
       "fullname": "புனித ஜோன் நியுமன் - ஆயர்"
     },
-    "john_nepomucene_priest": {
+    {
+      "id": "john_nepomucene_priest",
       "fullname": "புனித ஜோன் நெபோமுயுசின் - அருட்பணியாளர், மறைசாட்சி"
     },
-    "john_of_avila_priest": {
+    {
+      "id": "john_of_avila_priest",
       "fullname": "அவிலாவின் புனித அருளப்பர் - அருட்பணியாளர், மறைவல்லுனர்"
     },
-    "john_of_capistrano_priest": {
+    {
+      "id": "john_of_capistrano_priest",
       "fullname": "கபிஸ்ரானோவின் புனித அருளப்பர் - அருட்பணியாளர்"
     },
-    "john_of_dukla_priest": {
+    {
+      "id": "john_of_dukla_priest",
       "fullname": "டுக்லாவின் புனித ஜொன் - அருட்பணியாளர்"
     },
-    "john_of_god_duarte_cidade_religious": {
+    {
+      "id": "john_of_god_duarte_cidade_religious",
       "fullname": "இறைவனின் புனித அருளப்பர் - துறவி"
     },
-    "john_of_kanty_priest": {
+    {
+      "id": "john_of_kanty_priest",
       "fullname": "கனிடியின் புனித அருளப்பர் - அருட்பணியாளர்"
     },
-    "john_of_the_cross_priest": {
+    {
+      "id": "john_of_the_cross_priest",
       "fullname": "புனித சிலுவை அருளப்பர் - அருட்பணியாளர், மறைவல்லுனர்"
     },
-    "john_of_triora_priest": {
+    {
+      "id": "john_of_triora_priest",
       "fullname": "டிறியோராவின் புனித அருளப்பர் - அருட்பணியாளர், மறைசாட்சி"
     },
-    "john_ogilvie_priest": {
+    {
+      "id": "john_ogilvie_priest",
       "fullname": "புனித ஜோன் ஒகில்வி - அருட்பணியாளர், மறைசாட்சி"
     },
-    "john_paul_ii_pope": {
+    {
+      "id": "john_paul_ii_pope",
       "fullname": "புனித இரண்டாம் அருளப்பர் சின்னப்ப்ர் - திருத்தந்தை"
     },
-    "john_roberts_priest": {
+    {
+      "id": "john_roberts_priest",
       "fullname": "புனித ஜோன் ரொபெர்ட்ஸ் - அருட்பணியாளர், மறைசாட்சி"
     },
-    "john_sarkander_priest": {
+    {
+      "id": "john_sarkander_priest",
       "fullname": "புனித ஜோன் சர்கண்டர் - அருட்பணியாளர், மறைசாட்சி"
     },
-    "john_scheffler_bishop": {
+    {
+      "id": "john_scheffler_bishop",
       "fullname": "புனித ஜோன் ஷெப்ளர் - ஆயர், மறைசாட்சி"
     },
-    "john_xxiii_pope": {
+    {
+      "id": "john_xxiii_pope",
       "fullname": "புனித பதின்மூன்றாம் அருளப்பர் - திருத்தந்தை"
     },
-    "josaphat_kuntsevych_bishop": {
+    {
+      "id": "josaphat_kuntsevych_bishop",
       "fullname": "புனித ஜொசபாட் - ஆயர், மறைசாட்சி"
     },
-    "jose_maria_de_yermo_y_parres_priest": {
+    {
+      "id": "jose_maria_de_yermo_y_parres_priest",
       "fullname": "புனித ஜோசெ டி யெர்மொ பாரெஸ் - அருட்பணியாளர்"
     },
-    "josemaria_escriva_de_balaguer_priest": {
+    {
+      "id": "josemaria_escriva_de_balaguer_priest",
       "fullname": "புனித ஜோசெமரியா எஸ்கிரிவா டி பலாகுவர் - அருட்பணியாளர்"
     },
-    "joseph_bilczewski_bishop": {
+    {
+      "id": "joseph_bilczewski_bishop",
       "fullname": "புனித ஜோசப் பில்சுவிஸ்கி - ஆயர்"
     },
-    "joseph_de_anchieta_priest": {
+    {
+      "id": "joseph_de_anchieta_priest",
       "fullname": "புனித ஜோசப் டி அன்கியாட்டா - அருட்பணியாளர்"
     },
-    "joseph_freinademetz_priest": {
+    {
+      "id": "joseph_freinademetz_priest",
       "fullname": "புனித ஜோசப் பிரியண்டமெட்ஸ் - அருட்பணியாளர்"
     },
-    "joseph_of_calasanz_priest": {
+    {
+      "id": "joseph_of_calasanz_priest",
       "fullname": "புனித ஜோசப் களன்சாஸ் - அருட்பணியாளர்"
     },
-    "joseph_sebastian_pelczar_bishop": {
+    {
+      "id": "joseph_sebastian_pelczar_bishop",
       "fullname": "புனித ஜொசப் செபெஸ்டியன் பெல்கார் - ஆயர்"
     },
-    "joseph_spouse_of_mary": {
+    {
+      "id": "joseph_spouse_of_mary",
       "fullname": "புனித யோசேப்பு - புனித கன்னி மரியாவின் கணவர்"
     },
-    "joseph_spouse_of_mary_patron_of_canada": {
+    {
+      "id": "joseph_spouse_of_mary_patron_of_canada",
       "fullname": "புனித சூசையப்பர், புனித கன்னி மரியாளின் கணவர், கனடாவின் பாதுகாவலர்"
     },
-    "joseph_the_worker": {
+    {
+      "id": "joseph_the_worker",
       "fullname": "புனித சூசையப்பர் - தொழிலாளர்"
     },
-    "joseph_vaz_priest": {
+    {
+      "id": "joseph_vaz_priest",
       "fullname": "புனித ஜோசப் வாஸ் - அருட்பணியாளர்"
     },
-    "joseph_yuan_gengyin_priest": {
+    {
+      "id": "joseph_yuan_gengyin_priest",
       "fullname": "புனித ஜோசப் யுவான் கெங்யின் - அருட்பணியாளர், மறைசாட்சி"
     },
-    "joseph_zhang_dapeng_martyr": {
+    {
+      "id": "joseph_zhang_dapeng_martyr",
       "fullname": "புனித ஜோசப் சாங் டிபெங் - மறைசாட்சி"
     },
-    "josephine_bakhita_virgin": {
+    {
+      "id": "josephine_bakhita_virgin",
       "fullname": "புனித ஜோசபின் பகிதா - கன்னி"
     },
-    "juan_diego_cuauhtlatoatzin": {
+    {
+      "id": "juan_diego_cuauhtlatoatzin",
       "fullname": "புனித யுவான் டியாகோ சுவாலடோட்சின்"
     },
-    "juliana_of_liege_virgin": {
+    {
+      "id": "juliana_of_liege_virgin",
       "fullname": "புனித ஜுலியானா லீக் - கன்னி"
     },
-    "julie_billiart_virgin": {
+    {
+      "id": "julie_billiart_virgin",
       "fullname": "புனித ஜூலி பிலியார்ட் - கன்னி"
     },
-    "junipero_serra_priest": {
+    {
+      "id": "junipero_serra_priest",
       "fullname": "புனித ஜுனிபேரோ சேரா - அருட்பணியாளர்"
     },
-    "justin_martyr": {
+    {
+      "id": "justin_martyr",
       "fullname": "புனித ஜஸ்டின் - மறைசாட்சி"
     }
-  }
+  ]
 }

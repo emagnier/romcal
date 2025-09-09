@@ -1,113 +1,162 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "en",
-  "letter": "n",
-  "items": {
-    "nativity_of_john_the_baptist": {
+  "entities": [
+    {
+      "id": "nativity_of_john_the_baptist",
       "fullname": "The Nativity of Saint John the Baptist"
     },
-    "nativity_of_the_blessed_virgin_mary": {
+    {
+      "id": "nativity_of_the_blessed_virgin_mary",
       "fullname": "The Nativity of the Blessed Virgin Mary"
     },
-    "nativity_of_the_lord": {
+    {
+      "id": "nativity_of_the_lord",
       "fullname": "The Nativity of the Lord (Christmas)",
       "name": "The Nativity of the Lord"
     },
-    "nazaria_ignacia_of_saint_teresa_of_jesus_march_mesa_virgin": {
+    {
+      "id": "nazaria_ignacia_of_saint_teresa_of_jesus_march_mesa_virgin",
       "fullname": "Saint Nazaria Ignacia of Saint Teresa of Jesus March Mesa, Virgin",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Nazaria Ignacia of Saint Teresa of Jesus March Mesa",
-      "titles": ["VIRGIN"]
+      "titles": [
+        "VIRGIN"
+      ]
     },
-    "nereus_of_terracina_and_achilleus_of_terracina_martyrs": {
+    {
+      "id": "nereus_of_terracina_and_achilleus_of_terracina_martyrs",
       "fullname": "Saints Nereus and Achilleus, Martyrs"
     },
-    "nereus_of_terracina_martyr": {
-      "canonizationLevel": "SAINT",
+    {
+      "id": "nereus_of_terracina_martyr",
+      "canonization_level": "SAINT",
       "name": "Nereus",
-      "titles": ["MARTYR"],
-      "dateOfDeath": 304,
-      "dateOfDeathIsApproximative": true
+      "titles": [
+        "MARTYR"
+      ],
+      "date_of_death": 304,
+      "date_of_death_is_approximative": true
     },
-    "nicetius_of_lyon_bishop": {
+    {
+      "id": "nicetius_of_lyon_bishop",
       "fullname": "Saint Nicetius, Bishop",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Nicetius",
-      "titles": ["BISHOP"],
-      "dateOfDeath": "573-4-2",
-      "sources": ["mr_fr_2014_ed2_lyon"]
+      "titles": [
+        "BISHOP"
+      ],
+      "date_of_death": "573-4-2",
+      "sources": [
+        "mr_fr_2014_ed2_lyon"
+      ]
     },
-    "nicholas_barre_priest": {
+    {
+      "id": "nicholas_barre_priest",
       "fullname": "Blessed Nicholas Barré, Priest",
-      "canonizationLevel": "BLESSED",
+      "canonization_level": "BLESSED",
       "name": "Nicholas Barré",
-      "titles": ["PRIEST"],
-      "dateOfDeath": "1686-5-31"
+      "titles": [
+        "PRIEST"
+      ],
+      "date_of_death": "1686-5-31"
     },
-    "nicholas_of_flue_hermit": {
+    {
+      "id": "nicholas_of_flue_hermit",
       "fullname": "Saint Nicholas of Flüe, Hermit",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Nicholas of Flüe",
-      "titles": ["HERMIT"]
+      "titles": [
+        "HERMIT"
+      ]
     },
-    "nicholas_of_myra_bishop": {
+    {
+      "id": "nicholas_of_myra_bishop",
       "fullname": "Saint Nicholas, Bishop",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Nicholas",
-      "titles": ["BISHOP"],
-      "dateOfDeath": 350,
-      "dateOfDeathIsApproximative": true
+      "titles": [
+        "BISHOP"
+      ],
+      "date_of_death": 350,
+      "date_of_death_is_approximative": true
     },
-    "nicholas_steno_bishop": {
+    {
+      "id": "nicholas_steno_bishop",
       "fullname": "Blessed Nicholas Steno, Bishop",
-      "canonizationLevel": "BLESSED",
+      "canonization_level": "BLESSED",
       "name": "Nicholas Steno",
-      "titles": ["BISHOP"]
+      "titles": [
+        "BISHOP"
+      ]
     },
-    "nicholas_tavelic_priest": {
+    {
+      "id": "nicholas_tavelic_priest",
       "fullname": "Saint Nicholas Tavelić, Priest and Martyr",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Nicholas Tavelić",
-      "titles": ["PRIEST", "MARTYR"]
+      "titles": [
+        "PRIEST",
+        "MARTYR"
+      ]
     },
-    "ninian_of_whithorn_bishop": {
+    {
+      "id": "ninian_of_whithorn_bishop",
       "fullname": "Saint Ninian, Bishop",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Ninian",
-      "titles": ["BISHOP"]
+      "titles": [
+        "BISHOP"
+      ]
     },
-    "noel_pinot_priest": {
+    {
+      "id": "noel_pinot_priest",
       "fullname": "Blessed Noël Pinot, Priest and Martyr",
-      "canonizationLevel": "BLESSED",
+      "canonization_level": "BLESSED",
       "name": "Noël Pinot",
-      "titles": ["PRIEST", "MARTYR"],
-      "dateOfBirth": "1747-12-19",
-      "dateOfDeath": "1794-02-21",
+      "titles": [
+        "PRIEST",
+        "MARTYR"
+      ],
+      "date_of_birth": "1747-12-19",
+      "date_of_death": "1794-02-21",
       "sources": [
         "mr_fr_2022_ed3_angers",
         "https://en.wikipedia.org/wiki/No%C3%ABl_Pinot"
       ]
     },
-    "norbert_of_xanten_bishop": {
+    {
+      "id": "norbert_of_xanten_bishop",
       "fullname": "Saint Norbert, Bishop",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Norbert",
-      "titles": ["BISHOP"],
-      "dateOfDeath": 1134
+      "titles": [
+        "BISHOP"
+      ],
+      "date_of_death": 1134
     },
-    "nuno_of_saint_mary_pereira_religious": {
+    {
+      "id": "nuno_of_saint_mary_pereira_religious",
       "fullname": "Saint Nuno of Saint Mary Pereira, Religious",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Nuno of Saint Mary Pereira",
-      "titles": ["RELIGIOUS"]
+      "titles": [
+        "RELIGIOUS"
+      ]
     },
-    "nykyta_budka_and_vasyl_velychkovsky_bishops": {
+    {
+      "id": "nykyta_budka_and_vasyl_velychkovsky_bishops",
       "fullname": "Blesseds Nykyta Budka and Vasyl Velychkovsky, Bishops and Martyrs"
     },
-    "nykyta_budka_bishop": {
-      "canonizationLevel": "BLESSED",
+    {
+      "id": "nykyta_budka_bishop",
+      "canonization_level": "BLESSED",
       "name": "Nykyta Budka",
-      "titles": ["BISHOP", "MARTYR"],
-      "dateOfDeath": 1949
+      "titles": [
+        "BISHOP",
+        "MARTYR"
+      ],
+      "date_of_death": 1949
     }
-  }
+  ]
 }

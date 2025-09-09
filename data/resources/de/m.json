@@ -1,273 +1,362 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "de",
-  "letter": "m",
-  "items": {
-    "mac_nissi_of_connor_bishop": {
+  "entities": [
+    {
+      "id": "mac_nissi_of_connor_bishop",
       "fullname": "Hl. Mac Nissi, Bischof"
     },
-    "macartan_of_clogher_bishop": {
+    {
+      "id": "macartan_of_clogher_bishop",
       "fullname": "Hl. Macartan, Bischof"
     },
-    "madeleine_sophie_barat_virgin": {
+    {
+      "id": "madeleine_sophie_barat_virgin",
       "fullname": "Hl. Madeleine Sophie Barat, Jungfrau"
     },
-    "maelruain_of_tallaght_bishop": {
+    {
+      "id": "maelruain_of_tallaght_bishop",
       "fullname": "Hl. Maelruain, Bischof und Abt"
     },
-    "magnus_erlendsson_martyr": {
+    {
+      "id": "magnus_erlendsson_martyr",
       "fullname": "Hl. Magnus, Märtyrer"
     },
-    "malachy_of_armagh_bishop": {
+    {
+      "id": "malachy_of_armagh_bishop",
       "fullname": "Hl. Malachias, Bischof"
     },
-    "marcel_callo_martyr": {
+    {
+      "id": "marcel_callo_martyr",
       "fullname": "Sel. Marcel Callo, Märtyrer"
     },
-    "marcelina_darowska_religious": {
+    {
+      "id": "marcelina_darowska_religious",
       "fullname": "Sel. Marcelina Darowska, Ordensfrau"
     },
-    "marcellin_champagnat_priest": {
+    {
+      "id": "marcellin_champagnat_priest",
       "fullname": "Hl. Marcellin Champagnat, Priester"
     },
-    "marcellinus_of_rome_and_peter_the_exorcist_martyrs": {
+    {
+      "id": "marcellinus_of_rome_and_peter_the_exorcist_martyrs",
       "fullname": "Hl. Marcellinus und Petrus, Märtyrer"
     },
-    "marcellus_of_paris_bishop": {
+    {
+      "id": "marcellus_of_paris_bishop",
       "fullname": "Hl. Marcellus von Paris, Bischof"
     },
-    "margaret_clitherow_anne_line_and_margaret_ward_virgin_martyrs": {
+    {
+      "id": "margaret_clitherow_anne_line_and_margaret_ward_virgin_martyrs",
       "fullname": "Hl. Margaret Clitherow, Anne Line und Margaret Ward, Jungfrauen, Märtyrerinnen"
     },
-    "margaret_mary_alacoque_virgin": {
+    {
+      "id": "margaret_mary_alacoque_virgin",
       "fullname": "Hl. Margareta Maria Alacoque, Jungfrau"
     },
-    "margaret_of_antioch_virgin": {
+    {
+      "id": "margaret_of_antioch_virgin",
       "fullname": "Hl. Margareta von Antiochia, Jungfrau und Märtyrerin"
     },
-    "margaret_of_hungary_religious": {
+    {
+      "id": "margaret_of_hungary_religious",
       "fullname": "Hl. Margareta von Ungarn, Ordensfrau"
     },
-    "margaret_of_scotland": {
+    {
+      "id": "margaret_of_scotland",
       "fullname": "Hl. Margarethe von Schottland"
     },
-    "marguerite_bourgeoys_virgin": {
+    {
+      "id": "marguerite_bourgeoys_virgin",
       "fullname": "Hl. Marguerite Bourgeoys, Jungfrau"
     },
-    "marguerite_dyouville_religious": {
+    {
+      "id": "marguerite_dyouville_religious",
       "fullname": "Hl. Marguerite d’Youville, Ordensfrau"
     },
-    "maria_goretti_virgin": {
+    {
+      "id": "maria_goretti_virgin",
       "fullname": "Hl. Maria Goretti, Jungfrau und Märtyrerin"
     },
-    "maria_guadalupe_garcia_zavala_virgin": {
+    {
+      "id": "maria_guadalupe_garcia_zavala_virgin",
       "fullname": "Hl. María Guadalupe García Zavala, Jungfrau"
     },
-    "maria_micaela_of_the_blessed_sacrament_desmaisieres_virgin": {
+    {
+      "id": "maria_micaela_of_the_blessed_sacrament_desmaisieres_virgin",
       "fullname": "Hl. María Micaela vom Allerheiligsten Sakrament Desmaisières, Jungfrau"
     },
-    "mariana_of_jesus_de_paredes_virgin": {
+    {
+      "id": "mariana_of_jesus_de_paredes_virgin",
       "fullname": "Hl. Mariana von Jesus de Paredes, Jungfrau"
     },
-    "marianne_cope_virgin": {
+    {
+      "id": "marianne_cope_virgin",
       "fullname": "Hl. Marianne Cope, Jungfrau"
     },
-    "marie_anne_blondin_virgin": {
+    {
+      "id": "marie_anne_blondin_virgin",
       "fullname": "Sel. Marie-Anne Blondin, Jungfrau"
     },
-    "marie_eugenie_of_jesus_milleret_de_brou_virgin": {
+    {
+      "id": "marie_eugenie_of_jesus_milleret_de_brou_virgin",
       "fullname": "Hl. Marie-Eugénie von Jesus Milleret de Brou, Jungfrau und Gründerin"
     },
-    "marie_leonie_paradis_virgin": {
+    {
+      "id": "marie_leonie_paradis_virgin",
       "fullname": "Sel. Marie-Léonie Paradis, Jungfrau"
     },
-    "marie_of_saint_ignatius_claudine_thevenet_religious": {
+    {
+      "id": "marie_of_saint_ignatius_claudine_thevenet_religious",
       "fullname": "Hl. Claudine Thévenet, Ordensfrau"
     },
-    "marie_rose_durocher_virgin": {
+    {
+      "id": "marie_rose_durocher_virgin",
       "fullname": "Sel. Marie Rose Durocher, Jungfrau"
     },
-    "mark_evangelist": {
+    {
+      "id": "mark_evangelist",
       "fullname": "Hl. Markus, Evangelist"
     },
-    "marko_krizin_melchior_grodziecki_and_stephen_pongracz_priests": {
+    {
+      "id": "marko_krizin_melchior_grodziecki_and_stephen_pongracz_priests",
       "fullname": "Hl. Marko Krizin, Melchior Grodziecki und Stephan Pongrácz, Priester und Märtyrer"
     },
-    "marko_krizin_priest": {
+    {
+      "id": "marko_krizin_priest",
       "fullname": "Hl. Marko Krizin, Priester und Märtyrer"
     },
-    "maron_of_syria_hermit": {
+    {
+      "id": "maron_of_syria_hermit",
       "fullname": "Hl. Maron, Einsiedler"
     },
-    "martha_of_bethany_mary_of_bethany_and_lazarus_of_bethany": {
+    {
+      "id": "martha_of_bethany_mary_of_bethany_and_lazarus_of_bethany",
       "fullname": "Hl. Martha, Maria und Lazarus"
     },
-    "martin_de_porres_religious": {
+    {
+      "id": "martin_de_porres_religious",
       "fullname": "Hl. Martin von Porres, Ordensmann"
     },
-    "martin_i_pope": {
+    {
+      "id": "martin_i_pope",
       "fullname": "Hl. Martin I., Papst und Märtyrer"
     },
-    "martin_of_tours_bishop": {
+    {
+      "id": "martin_of_tours_bishop",
       "fullname": "Hl. Martin von Tours, Bischof"
     },
-    "martin_wu_xuesheng_and_companions_martyrs": {
+    {
+      "id": "martin_wu_xuesheng_and_companions_martyrs",
       "fullname": "Hl. Martin Wu Xuesheng und Gefährten, Märtyrer"
     },
-    "mary_adeodata_pisani_virgin": {
+    {
+      "id": "mary_adeodata_pisani_virgin",
       "fullname": "Sel. Maria Adeodata Pisani, Jungfrau"
     },
-    "mary_angela_truszkowska_virgin": {
+    {
+      "id": "mary_angela_truszkowska_virgin",
       "fullname": "Sel. Maria Angela Truszkowska, Jungfrau"
     },
-    "mary_assunta_pallotta_virgin": {
+    {
+      "id": "mary_assunta_pallotta_virgin",
       "fullname": "Sel. Maria Assunta Pallotta, Jungfrau"
     },
-    "mary_catherine_of_saint_augustine_catherine_de_simon_de_longpre_virgin": {
+    {
+      "id": "mary_catherine_of_saint_augustine_catherine_de_simon_de_longpre_virgin",
       "fullname": "Sel. Katharina von Sankt Augustin, Jungfrau"
     },
-    "mary_magdalene": {
+    {
+      "id": "mary_magdalene",
       "fullname": "Hl. Maria Magdalena"
     },
-    "mary_magdalene_de_pazzi_virgin": {
+    {
+      "id": "mary_magdalene_de_pazzi_virgin",
       "fullname": "Hl. Maria Magdalena von Pazzi, Jungfrau"
     },
-    "mary_mother_of_god": {
+    {
+      "id": "mary_mother_of_god",
       "fullname": "Hochfest der Gottesmutter Maria"
     },
-    "mary_mother_of_the_church": {
+    {
+      "id": "mary_mother_of_the_church",
       "fullname": "Selige Jungfrau Maria, Mutter der Kirche"
     },
-    "mary_of_jesus_crucified_petkovic_virgin": {
+    {
+      "id": "mary_of_jesus_crucified_petkovic_virgin",
       "fullname": "Sel. Maria vom gekreuzigten Jesus Petković, Jungfrau"
     },
-    "mary_of_jesus_in_the_blessed_sacrament_venegas_de_la_torre_virgin": {
+    {
+      "id": "mary_of_jesus_in_the_blessed_sacrament_venegas_de_la_torre_virgin",
       "fullname": "Hl. Maria von Jesus im Allerheiligsten Sakrament Venegas de la Torre, Jungfrau"
     },
-    "mary_of_jesus_the_good_shepherd_siedliska_virgin": {
+    {
+      "id": "mary_of_jesus_the_good_shepherd_siedliska_virgin",
       "fullname": "Sel. Maria von Jesus dem guten Hirten Siedliska, Jungfrau"
     },
-    "mary_of_the_cross_mackillop_virgin": {
+    {
+      "id": "mary_of_the_cross_mackillop_virgin",
       "fullname": "Hl. Mary MacKillop vom Kreuz, Jungfrau"
     },
-    "mary_of_the_incarnation_barbara_acarie_religious": {
+    {
+      "id": "mary_of_the_incarnation_barbara_acarie_religious",
       "fullname": "Sel. Maria von der Menschwerdung Barbara Acarie, Ordensfrau"
     },
-    "mary_of_the_incarnation_marie_guyart_religious": {
+    {
+      "id": "mary_of_the_incarnation_marie_guyart_religious",
       "fullname": "Hl. Maria von der Menschwerdung Marie Guyart, Ordensfrau"
     },
-    "mary_of_the_providence_eugenie_smet_virgin": {
+    {
+      "id": "mary_of_the_providence_eugenie_smet_virgin",
       "fullname": "Sel. Maria von der Vorsehung Eugénie Smet, Jungfrau"
     },
-    "mary_of_the_sacred_heart_sophie_therese_de_soubiran_la_louviere_virgin": {
+    {
+      "id": "mary_of_the_sacred_heart_sophie_therese_de_soubiran_la_louviere_virgin",
       "fullname": "Sel. Maria Theresia von Soubiran La Louvière, Jungfrau"
     },
-    "mary_soledad_torres_acosta_virgin": {
+    {
+      "id": "mary_soledad_torres_acosta_virgin",
       "fullname": "Hl. Maria Soledad Torres Acosta, Jungfrau"
     },
-    "mary_stella_of_the_blessed_sacrament_mardosewicz_and_companions_virgins": {
+    {
+      "id": "mary_stella_of_the_blessed_sacrament_mardosewicz_and_companions_virgins",
       "fullname": "Sel. Maria Stella vom Allerheiligsten Sakrament Mardosewicz und Gefährtinnen, Jungfrauen und Märtyrerinnen"
     },
-    "mary_theresa_chiramel_mankidiyan_virgin": {
+    {
+      "id": "mary_theresa_chiramel_mankidiyan_virgin",
       "fullname": "Hl. Maria Theresa Chiramel Mankidiyan, Jungfrau"
     },
-    "mary_theresa_ledochowska_virgin": {
+    {
+      "id": "mary_theresa_ledochowska_virgin",
       "fullname": "Sel. Maria Theresia Ledóchowska, Jungfrau"
     },
-    "mary_ursula_of_jesus_ledochowska_virgin": {
+    {
+      "id": "mary_ursula_of_jesus_ledochowska_virgin",
       "fullname": "Hl. Maria Ursula von Jesus Ledóchowska, Jungfrau"
     },
-    "marydolores_rodriguez_sopena_virgin": {
+    {
+      "id": "marydolores_rodriguez_sopena_virgin",
       "fullname": "Sel. Mary Dolores Rodríguez Sopeña, Jungfrau"
     },
-    "maternus_of_cologne_bishop": {
+    {
+      "id": "maternus_of_cologne_bishop",
       "fullname": "Hl. Maternus, Bischof"
     },
-    "maternus_of_cologne_valerius_of_trier_and_eucharius_of_trier_bishops": {
+    {
+      "id": "maternus_of_cologne_valerius_of_trier_and_eucharius_of_trier_bishops",
       "fullname": "Hl. Maternus, Valerius und Eucharius, Bischöfe"
     },
-    "matilda_of_ringelheim": {
+    {
+      "id": "matilda_of_ringelheim",
       "fullname": "Hl. Mathilde"
     },
-    "matthew_apostle": {
+    {
+      "id": "matthew_apostle",
       "fullname": "Hl. Matthäus, Apostel und Evangelist"
     },
-    "matthias_apostle": {
+    {
+      "id": "matthias_apostle",
       "fullname": "Hl. Matthias, Apostel"
     },
-    "maurice_of_agaunum_and_companions_martyrs": {
+    {
+      "id": "maurice_of_agaunum_and_companions_martyrs",
       "fullname": "Hl. Mauritius und Gefährten, Märtyrer"
     },
-    "maurice_tornay_priest": {
+    {
+      "id": "maurice_tornay_priest",
       "fullname": "Sel. Maurice Tornay, Priester und Märtyrer"
     },
-    "maurus_of_pecs_bishop": {
+    {
+      "id": "maurus_of_pecs_bishop",
       "fullname": "Hl. Maurus, Bischof"
     },
-    "maximilian_mary_raymund_kolbe_priest": {
+    {
+      "id": "maximilian_mary_raymund_kolbe_priest",
       "fullname": "Hl. Maximilian Maria Kolbe, Priester und Märtyrer"
     },
-    "mederic_of_autun_and_droctoveus_of_autun_abbots": {
+    {
+      "id": "mederic_of_autun_and_droctoveus_of_autun_abbots",
       "fullname": "Hl. Medericus und Droctoveus, Äbte"
     },
-    "meinrad_of_einsiedeln_martyr": {
+    {
+      "id": "meinrad_of_einsiedeln_martyr",
       "fullname": "Hl. Meinrad von Einsiedeln, Märtyrer"
     },
-    "mel_of_ardagh_bishop": {
+    {
+      "id": "mel_of_ardagh_bishop",
       "fullname": "Hl. Mel, Bischof"
     },
-    "melchior_grodziecki_priest": {
+    {
+      "id": "melchior_grodziecki_priest",
       "fullname": "Hl. Melchior Grodziecki, Priester und Märtyrer"
     },
-    "michael_gabriel_and_raphael_archangels": {
+    {
+      "id": "michael_gabriel_and_raphael_archangels",
       "fullname": "Hl. Michael, Gabriel und Raphael, Erzengel"
     },
-    "michael_kozal_bishop": {
+    {
+      "id": "michael_kozal_bishop",
       "fullname": "Sel. Michael Kozal, Bischof und Märtyrer"
     },
-    "miguel_agustin_pro_priest": {
+    {
+      "id": "miguel_agustin_pro_priest",
       "fullname": "Sel. Miguel Agustín Pro, Priester und Märtyrer"
     },
-    "miguel_febres_cordero_religious": {
+    {
+      "id": "miguel_febres_cordero_religious",
       "fullname": "Hl. Miguel Febres Cordero, Ordensmann"
     },
-    "modestus_andlauer_and_andrew_bauer_martyrs": {
+    {
+      "id": "modestus_andlauer_and_andrew_bauer_martyrs",
       "fullname": "Hl. Modestus Andlauer und Andreas Bauer, Märtyrer"
     },
-    "modestus_andlauer_martyr": {
+    {
+      "id": "modestus_andlauer_martyr",
       "fullname": "Hl. Modestus Andlauer, Märtyrer"
     },
-    "monica_of_hippo": {
+    {
+      "id": "monica_of_hippo",
       "fullname": "Hl. Monika"
     },
-    "moninne_of_killeavy_virgin": {
+    {
+      "id": "moninne_of_killeavy_virgin",
       "fullname": "Hl. Moninne, Jungfrau"
     },
-    "morand_of_cluny_monk": {
+    {
+      "id": "morand_of_cluny_monk",
       "fullname": "Hl. Morand, Mönch"
     },
-    "most_holy_body_and_blood_of_christ": {
+    {
+      "id": "most_holy_body_and_blood_of_christ",
       "fullname": "Fronleichnam"
     },
-    "most_holy_name_of_jesus": {
+    {
+      "id": "most_holy_name_of_jesus",
       "fullname": "Der allerheiligste Name Jesu"
     },
-    "most_holy_name_of_mary": {
+    {
+      "id": "most_holy_name_of_mary",
       "fullname": "Der allerheiligste Name Mariens"
     },
-    "most_holy_trinity": {
+    {
+      "id": "most_holy_trinity",
       "fullname": "Allerheiligste Dreifaltigkeit"
     },
-    "most_sacred_heart_of_jesus": {
+    {
+      "id": "most_sacred_heart_of_jesus",
       "fullname": "Heiligstes Herz Jesu"
     },
-    "munchin_of_limerick_bishop": {
+    {
+      "id": "munchin_of_limerick_bishop",
       "fullname": "Hl. Munchin, Bischof"
     },
-    "muredach_of_killala_bishop": {
+    {
+      "id": "muredach_of_killala_bishop",
       "fullname": "Hl. Muredach, Bischof"
     },
-    "mutien_marie_wiaux_religious": {
+    {
+      "id": "mutien_marie_wiaux_religious",
       "fullname": "Hl. Mutien-Marie Wiaux, Ordensmann"
     }
-  }
+  ]
 }

@@ -1,46 +1,61 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "it",
-  "letter": "f",
-  "items": {
-    "fabian_i_pope": {
+  "entities": [
+    {
+      "id": "fabian_i_pope",
       "fullname": "San Fabiano, papa e martire"
     },
-    "faustina_kowalska_virgin": {
+    {
+      "id": "faustina_kowalska_virgin",
       "fullname": "Santa Faustina Kowalska, vergine",
-      "sources": ["https://it.wikipedia.org/wiki/Maria_Faustina_Kowalska"]
+      "sources": [
+        "https://it.wikipedia.org/wiki/Maria_Faustina_Kowalska"
+      ]
     },
-    "fidelis_of_sigmaringen_priest": {
+    {
+      "id": "fidelis_of_sigmaringen_priest",
       "fullname": "San Fedele da Sigmaringen, sacerdote e martire"
     },
-    "first_martyrs_of_the_holy_roman_church": {
+    {
+      "id": "first_martyrs_of_the_holy_roman_church",
       "fullname": "Santi Primi Martiri della Chiesa Romana"
     },
-    "florentius_of_strasbourg_bishop": {
+    {
+      "id": "florentius_of_strasbourg_bishop",
       "fullname": "San Fiorenzo, vescovo"
     },
-    "frances_of_rome_religious": {
+    {
+      "id": "frances_of_rome_religious",
       "fullname": "Santa Francesca Romana, religiosa"
     },
-    "francis_de_sales_bishop": {
+    {
+      "id": "francis_de_sales_bishop",
       "fullname": "San Francesco di Sales, vescovo e dottore della Chiesa"
     },
-    "francis_of_assisi": {
+    {
+      "id": "francis_of_assisi",
       "fullname": "San Francesco d’Assisi"
     },
-    "francis_of_assisi_patron_of_italy": {
+    {
+      "id": "francis_of_assisi_patron_of_italy",
       "fullname": "San Francesco d’Assisi, patrono d’Italia"
     },
-    "francis_of_paola_hermit": {
+    {
+      "id": "francis_of_paola_hermit",
       "fullname": "San Francesco da Paola, eremita"
     },
-    "francis_xavier_priest": {
+    {
+      "id": "francis_xavier_priest",
       "fullname": "San Francesco Saverio, sacerdote"
     },
-    "frederic_ozanam_founder": {
+    {
+      "id": "frederic_ozanam_founder",
       "fullname": "Beato Federico Ozanam, fondatore"
     },
-    "friday_of_the_passion_of_the_lord": {
+    {
+      "id": "friday_of_the_passion_of_the_lord",
       "fullname": "Venerdì Santo / Passione del Signore"
     }
-  }
+  ]
 }

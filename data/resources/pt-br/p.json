@@ -1,87 +1,114 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "pt-br",
-  "letter": "p",
-  "items": {
-    "palm_sunday_of_the_passion_of_the_lord": {
+  "entities": [
+    {
+      "id": "palm_sunday_of_the_passion_of_the_lord",
       "fullname": "Domingo de Ramos"
     },
-    "pancras_of_rome_martyr": {
+    {
+      "id": "pancras_of_rome_martyr",
       "fullname": "São Pancrácio, mártir"
     },
-    "passion_of_saint_john_the_baptist": {
+    {
+      "id": "passion_of_saint_john_the_baptist",
       "fullname": "Martírio de São João Batista"
     },
-    "patrick_of_ireland_bishop": {
+    {
+      "id": "patrick_of_ireland_bishop",
       "fullname": "São Patrício, bispo"
     },
-    "paul_miki_and_companions_martyrs": {
+    {
+      "id": "paul_miki_and_companions_martyrs",
       "fullname": "Santos Paulo Miki e Companheiros, mártires"
     },
-    "paul_of_the_cross_priest": {
+    {
+      "id": "paul_of_the_cross_priest",
       "fullname": "São Paulo da Cruz, presbítero"
     },
-    "paul_vi_pope": {
+    {
+      "id": "paul_vi_pope",
       "fullname": "São Paulo VI, papa"
     },
-    "paulina_of_the_agonizing_heart_of_jesus_visintainer_virgin": {
+    {
+      "id": "paulina_of_the_agonizing_heart_of_jesus_visintainer_virgin",
       "fullname": "Santa Paulina do Coração Agonizante de Jesus Visintainer, virgem"
     },
-    "paulinus_of_nola_bishop": {
+    {
+      "id": "paulinus_of_nola_bishop",
       "fullname": "São Paulino de Nola, bispo"
     },
-    "pentecost_sunday": {
+    {
+      "id": "pentecost_sunday",
       "fullname": "Pentecostes"
     },
-    "perpetua_of_carthage_and_felicity_of_carthage_martyrs": {
+    {
+      "id": "perpetua_of_carthage_and_felicity_of_carthage_martyrs",
       "fullname": "Santas Perpétua e Felicidade, mártires"
     },
-    "peter_and_paul_apostles": {
+    {
+      "id": "peter_and_paul_apostles",
       "fullname": "São Pedro e São Paulo, Apóstolos"
     },
-    "peter_canisius_priest": {
+    {
+      "id": "peter_canisius_priest",
       "fullname": "São Pedro Canísio, presbítero e doutor da Igreja"
     },
-    "peter_chanel_priest": {
+    {
+      "id": "peter_chanel_priest",
       "fullname": "São Pedro Chanel, presbítero e mártir"
     },
-    "peter_chrysologus_bishop": {
+    {
+      "id": "peter_chrysologus_bishop",
       "fullname": "São Pedro Crisólogo, bispo"
     },
-    "peter_claver_priest": {
+    {
+      "id": "peter_claver_priest",
       "fullname": "São Pedro Claver, presbítero"
     },
-    "peter_damian_bishop": {
+    {
+      "id": "peter_damian_bishop",
       "fullname": "São Pedro Damião, bispo e doutor da Igreja"
     },
-    "peter_julian_eymard_priest": {
+    {
+      "id": "peter_julian_eymard_priest",
       "fullname": "São Pedro Juliano Eymard, presbítero"
     },
-    "philip_and_james_apostles": {
+    {
+      "id": "philip_and_james_apostles",
       "fullname": "São Filipe e Tiago, apóstolos"
     },
-    "philip_neri_priest": {
+    {
+      "id": "philip_neri_priest",
       "fullname": "São Filipe Néri, presbítero"
     },
-    "pius_francesco_forgione_priest": {
+    {
+      "id": "pius_francesco_forgione_priest",
       "fullname": "São Pio de Pietrelcina, presbítero"
     },
-    "pius_v_pope": {
+    {
+      "id": "pius_v_pope",
       "fullname": "São Pio V, papa"
     },
-    "pius_x_pope": {
+    {
+      "id": "pius_x_pope",
       "fullname": "São Pio X, papa"
     },
-    "polycarp_of_smyrna_bishop": {
+    {
+      "id": "polycarp_of_smyrna_bishop",
       "fullname": "São Policarpo, bispo e mártir"
     },
-    "pontian_i_pope_and_hippolytus_of_rome_priest": {
+    {
+      "id": "pontian_i_pope_and_hippolytus_of_rome_priest",
       "fullname": "Santos Pôncio I, papa, e Hipólito de Roma, presbítero"
     },
-    "presentation_of_the_blessed_virgin_mary": {
+    {
+      "id": "presentation_of_the_blessed_virgin_mary",
       "fullname": "Apresentação da Virgem Maria"
     },
-    "presentation_of_the_lord": {
+    {
+      "id": "presentation_of_the_lord",
       "fullname": "Apresentação do Senhor"
     }
-  }
+  ]
 }

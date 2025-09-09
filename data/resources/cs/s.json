@@ -1,96 +1,126 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "cs",
-  "letter": "s",
-  "items": {
-    "salomea_of_poland_religious": {
+  "entities": [
+    {
+      "id": "salomea_of_poland_religious",
       "fullname": "Bl. Salomey Polské, řeholnice"
     },
-    "sancha_of_portugal_and_mafalda_of_portugal_virgins": {
+    {
+      "id": "sancha_of_portugal_and_mafalda_of_portugal_virgins",
       "fullname": "Bl. Sanchi a Mafaldy, panen"
     },
-    "sara_salkahazi_virgin": {
+    {
+      "id": "sara_salkahazi_virgin",
       "fullname": "Bl. Sáry Salkaháziové, panny a mučednice"
     },
-    "scholastica_of_nursia_virgin": {
+    {
+      "id": "scholastica_of_nursia_virgin",
       "fullname": "Sv. Scholastiky, panny"
     },
-    "sebastian_de_aparicio_religious": {
+    {
+      "id": "sebastian_de_aparicio_religious",
       "fullname": "Bl. Šebestiána de Aparicio, řeholníka"
     },
-    "sebastian_of_milan_martyr": {
+    {
+      "id": "sebastian_of_milan_martyr",
       "fullname": "Sv. Šebestiána, mučedníka"
     },
-    "senan_of_inis_cathaigh_bishop": {
+    {
+      "id": "senan_of_inis_cathaigh_bishop",
       "fullname": "Sv. Senana, biskupa"
     },
-    "seven_holy_founders_of_the_servite_order": {
+    {
+      "id": "seven_holy_founders_of_the_servite_order",
       "fullname": "Sv. Alexia a druhů, řeholníků"
     },
-    "seven_martyred_nuns_from_the_franciscan_missionaries_of_mary": {
+    {
+      "id": "seven_martyred_nuns_from_the_franciscan_missionaries_of_mary",
       "fullname": "Sedm mučednic z kongregace Františkánských misionářek Marie"
     },
-    "severinus_of_noricum_monk": {
+    {
+      "id": "severinus_of_noricum_monk",
       "fullname": "Sv. Severina z Norika, mnicha"
     },
-    "sharbel_makhluf_priest": {
+    {
+      "id": "sharbel_makhluf_priest",
       "fullname": "Sv. Šarbela Makhlufa, kněze"
     },
-    "shipwreck_of_saint_paul_apostle": {
+    {
+      "id": "shipwreck_of_saint_paul_apostle",
       "fullname": "Vraku lodi sv. Pavla, apoštola"
     },
-    "sigismund_of_burgundy_martyr": {
+    {
+      "id": "sigismund_of_burgundy_martyr",
       "fullname": "Sv. Zikmunda, mučedníka"
     },
-    "sigmund_felix_felinski_bishop": {
+    {
+      "id": "sigmund_felix_felinski_bishop",
       "fullname": "Sv. Zikmunda Felixe Felińského, biskupa"
     },
-    "simon_and_jude_apostles": {
+    {
+      "id": "simon_and_jude_apostles",
       "fullname": "Sv. Šimona a Judy, apoštolů"
     },
-    "simon_of_lipnica_priest": {
+    {
+      "id": "simon_of_lipnica_priest",
       "fullname": "Sv. Šimona z Lipnice, kněze"
     },
-    "six_welsh_martyrs_and_companions": {
+    {
+      "id": "six_welsh_martyrs_and_companions",
       "fullname": "Šesti mučedníků Walesu a druhů"
     },
-    "sixtus_ii_pope_and_companions_martyrs": {
+    {
+      "id": "sixtus_ii_pope_and_companions_martyrs",
       "fullname": "Sv. Sixta II., papeže, a druhů, mučedníků"
     },
-    "spyridon_of_trimythous_bishop": {
+    {
+      "id": "spyridon_of_trimythous_bishop",
       "fullname": "Sv. Spyridona, biskupa"
     },
-    "stanislaus_kazimierczyk_priest": {
+    {
+      "id": "stanislaus_kazimierczyk_priest",
       "fullname": "Sv. Stanislava Kazimierczyka, kněze"
     },
-    "stanislaus_kostka_religious": {
+    {
+      "id": "stanislaus_kostka_religious",
       "fullname": "Sv. Stanislava Kostky, řeholníka"
     },
-    "stanislaus_of_szczepanow_bishop": {
+    {
+      "id": "stanislaus_of_szczepanow_bishop",
       "fullname": "Sv. Stanislava, biskupa a mučedníka"
     },
-    "stanislaus_of_szczepanow_bishop_patron_of_poland": {
+    {
+      "id": "stanislaus_of_szczepanow_bishop_patron_of_poland",
       "fullname": "Sv. Stanislava, biskupa, mučedníka a patrona Polska"
     },
-    "stephen_i_of_hungary": {
+    {
+      "id": "stephen_i_of_hungary",
       "fullname": "Sv. Štěpána Uherského"
     },
-    "stephen_the_first_martyr": {
+    {
+      "id": "stephen_the_first_martyr",
       "fullname": "Sv. Štěpána, prvomučedníka"
     },
-    "sunday_of_the_word_of_god": {
+    {
+      "id": "sunday_of_the_word_of_god",
       "fullname": "3. neděle v mezidobí, nebo Neděle Božího slova"
     },
-    "sunniva_of_norway_virgin": {
+    {
+      "id": "sunniva_of_norway_virgin",
       "fullname": "Sv. Sunnivy, panny a mučednice"
     },
-    "swithun_of_winchester_bishop": {
+    {
+      "id": "swithun_of_winchester_bishop",
       "fullname": "Sv. Swithuna, biskupa"
     },
-    "sylvester_i_pope": {
+    {
+      "id": "sylvester_i_pope",
       "fullname": "Sv. Silvestra I. papeže"
     },
-    "szilard_bogdanffy_bishop": {
+    {
+      "id": "szilard_bogdanffy_bishop",
       "fullname": "Bl. Szilárda Bogdánffyho, biskupa a mučedníka"
     }
-  }
+  ]
 }

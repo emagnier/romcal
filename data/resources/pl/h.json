@@ -1,46 +1,61 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "pl",
-  "letter": "h",
-  "items": {
-    "hedwig_of_poland": {
+  "entities": [
+    {
+      "id": "hedwig_of_poland",
       "fullname": "Św. Jadwigi Królowej"
     },
-    "hedwig_of_silesia_religious": {
+    {
+      "id": "hedwig_of_silesia_religious",
       "fullname": "Św. Jadwigi Śląskiej"
     },
-    "henry_ii_emperor": {
+    {
+      "id": "henry_ii_emperor",
       "fullname": "Św. Henryka"
     },
-    "henry_of_finland_bishop": {
+    {
+      "id": "henry_of_finland_bishop",
       "fullname": "Św. Henryka, biskupa i męczennika"
     },
-    "hilary_of_poitiers_bishop": {
+    {
+      "id": "hilary_of_poitiers_bishop",
       "fullname": "Św. Hilarego, biskupa i doktora Kościoła"
     },
-    "hildegard_of_bingen_abbess": {
+    {
+      "id": "hildegard_of_bingen_abbess",
       "fullname": "Św. Hildegardy z Bingen, opatki i doktora Kościoła",
-      "sources": ["https://pl.wikipedia.org/wiki/Hildegarda_z_Bingen"]
+      "sources": [
+        "https://pl.wikipedia.org/wiki/Hildegarda_z_Bingen"
+      ]
     },
-    "holy_family_of_jesus_mary_and_joseph": {
+    {
+      "id": "holy_family_of_jesus_mary_and_joseph",
       "fullname": "Świętej Rodziny Jezusa, Maryi i Józefa"
     },
-    "holy_guardian_angels": {
+    {
+      "id": "holy_guardian_angels",
       "fullname": "Świętych Aniołów Stróżów"
     },
-    "holy_innocents_martyrs": {
+    {
+      "id": "holy_innocents_martyrs",
       "fullname": "Św. Młodzianków, męczenników"
     },
-    "holy_saturday": {
+    {
+      "id": "holy_saturday",
       "fullname": "Wielka Sobota"
     },
-    "holy_thursday": {
+    {
+      "id": "holy_thursday",
       "fullname": "Wielki Czwartek"
     },
-    "honorat_kozminski_priest": {
+    {
+      "id": "honorat_kozminski_priest",
       "fullname": "Bł. Honorata Koźmińskiego, prezbitera"
     },
-    "hyacinth_of_poland_priest": {
+    {
+      "id": "hyacinth_of_poland_priest",
       "fullname": "Św. Jacka, prezbitera"
     }
-  }
+  ]
 }

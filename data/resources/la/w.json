@@ -1,45 +1,58 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "la",
-  "letter": "w",
-  "items": {
-    "waitangi_day": {
+  "entities": [
+    {
+      "id": "waitangi_day",
       "fullname": "Dies Nationalis Novæ Zelandiæ"
     },
-    "walpurga_of_heidenheim_abbess": {
+    {
+      "id": "walpurga_of_heidenheim_abbess",
       "fullname": "S. Walburgis, abatissæ"
     },
-    "wenceslaus_i_of_bohemia_martyr": {
+    {
+      "id": "wenceslaus_i_of_bohemia_martyr",
       "fullname": "S. Venceslai, martyris"
     },
-    "wenceslaus_i_of_bohemia_martyr_patron_of_the_czech_nation": {
+    {
+      "id": "wenceslaus_i_of_bohemia_martyr_patron_of_the_czech_nation",
       "fullname": "S. Venceslai, martyris, patroni de gente Bohemica"
     },
-    "wendelin_of_trier_hermit": {
+    {
+      "id": "wendelin_of_trier_hermit",
       "fullname": "S. Vendelini, eremitæ"
     },
-    "wilfrid_of_york_bishop": {
+    {
+      "id": "wilfrid_of_york_bishop",
       "fullname": "S. Wilfridi, episcopi"
     },
-    "william_apor_bishop": {
+    {
+      "id": "william_apor_bishop",
       "fullname": "B. Gulielmi Apor, episcopi et martyris"
     },
-    "willibald_of_eichstatt_bishop": {
+    {
+      "id": "willibald_of_eichstatt_bishop",
       "fullname": "S. Willibaldi, episcopi"
     },
-    "willibrord_of_utrecht_bishop": {
+    {
+      "id": "willibrord_of_utrecht_bishop",
       "fullname": "S. Willibrordi, episcopi"
     },
-    "winefride_of_flintshire_virgin": {
+    {
+      "id": "winefride_of_flintshire_virgin",
       "fullname": "S. Wenefredæ, virginis"
     },
-    "wladyslaw_bladzinski_priest_and_companions_martyrs": {
+    {
+      "id": "wladyslaw_bladzinski_priest_and_companions_martyrs",
       "fullname": "B. Ladislai Błądziński, presbyteri, et sociorum, martyrum"
     },
-    "wolfgang_of_regensburg_bishop": {
+    {
+      "id": "wolfgang_of_regensburg_bishop",
       "fullname": "S. Wolfgangi Ratisbonensis, episcopi"
     },
-    "wulstan_of_worcester_bishop": {
+    {
+      "id": "wulstan_of_worcester_bishop",
       "fullname": "S. Wulstani, episcopi"
     }
-  }
+  ]
 }

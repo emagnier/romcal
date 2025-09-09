@@ -1,42 +1,54 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "it",
-  "letter": "s",
-  "items": {
-    "scholastica_of_nursia_virgin": {
+  "entities": [
+    {
+      "id": "scholastica_of_nursia_virgin",
       "fullname": "Santa Scolastica, vergine"
     },
-    "sebastian_of_milan_martyr": {
+    {
+      "id": "sebastian_of_milan_martyr",
       "fullname": "San Sebastiano, martire"
     },
-    "seven_holy_founders_of_the_servite_order": {
+    {
+      "id": "seven_holy_founders_of_the_servite_order",
       "fullname": "Santi Sette Fondatori dei Servi della Beata Vergine Maria"
     },
-    "sharbel_makhluf_priest": {
+    {
+      "id": "sharbel_makhluf_priest",
       "fullname": "San Charbel Makhluf, sacerdote"
     },
-    "simon_and_jude_apostles": {
+    {
+      "id": "simon_and_jude_apostles",
       "fullname": "Santi Simone e Giuda, apostoli"
     },
-    "sixtus_ii_pope_and_companions_martyrs": {
+    {
+      "id": "sixtus_ii_pope_and_companions_martyrs",
       "fullname": "San Sisto II, papa e compagni, martiri"
     },
-    "stanislaus_of_szczepanow_bishop": {
+    {
+      "id": "stanislaus_of_szczepanow_bishop",
       "fullname": "Santo Stanislao, vescovo e martire"
     },
-    "stanislaus_of_szczepanow_bishop_patron_of_poland": {
+    {
+      "id": "stanislaus_of_szczepanow_bishop_patron_of_poland",
       "fullname": "Santo Stanislao, vescovo, martire e patrono della Polonia"
     },
-    "stephen_i_of_hungary": {
+    {
+      "id": "stephen_i_of_hungary",
       "fullname": "Santo Stefano di Ungheria"
     },
-    "stephen_the_first_martyr": {
+    {
+      "id": "stephen_the_first_martyr",
       "fullname": "Santo Stefano, primo martire"
     },
-    "sunday_of_the_word_of_god": {
+    {
+      "id": "sunday_of_the_word_of_god",
       "fullname": "III domenica del Tempo Ordinario, o Domenica della Parola di Dio"
     },
-    "sylvester_i_pope": {
+    {
+      "id": "sylvester_i_pope",
       "fullname": "San Silvestro I, papa"
     }
-  }
+  ]
 }

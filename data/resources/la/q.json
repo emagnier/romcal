@@ -1,12 +1,14 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "la",
-  "letter": "q",
-  "items": {
-    "queenship_of_the_blessed_virgin_mary": {
+  "entities": [
+    {
+      "id": "queenship_of_the_blessed_virgin_mary",
       "fullname": "B. Mariæ Virginis Reginæ"
     },
-    "quirinus_of_sescia_bishop": {
+    {
+      "id": "quirinus_of_sescia_bishop",
       "fullname": "S. Quirini Sisciensis, episcopi"
     }
-  }
+  ]
 }

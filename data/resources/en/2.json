@@ -1,11 +1,12 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "en",
-  "letter": "2",
-  "items": {
-    "205_blessed_martyrs_of_japan": {
+  "entities": [
+    {
+      "id": "205_blessed_martyrs_of_japan",
       "fullname": "205 Blessed Martyrs of Japan",
-      "canonizationLevel": "BLESSED",
+      "canonization_level": "BLESSED",
       "count": 205
     }
-  }
+  ]
 }

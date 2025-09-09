@@ -1,34 +1,47 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "en",
-  "letter": "z",
-  "items": {
-    "zdenka_cecilia_schelingova_virgin": {
+  "entities": [
+    {
+      "id": "zdenka_cecilia_schelingova_virgin",
       "fullname": "Blessed Zdenka Cecilia Schelingová, Virgin and Martyr",
-      "canonizationLevel": "BLESSED",
+      "canonization_level": "BLESSED",
       "name": "Zdenka Cecilia Schelingová",
-      "titles": ["VIRGIN", "MARTYR"]
+      "titles": [
+        "VIRGIN",
+        "MARTYR"
+      ]
     },
-    "zdislava_of_lemberk": {
+    {
+      "id": "zdislava_of_lemberk",
       "fullname": "Saint Zdislava",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Zdislava"
     },
-    "zepherin_namuncura": {
+    {
+      "id": "zepherin_namuncura",
       "fullname": "Blessed Zepherin Namuncurá",
-      "canonizationLevel": "BLESSED",
+      "canonization_level": "BLESSED",
       "name": "Zepherin Namuncurá"
     },
-    "zoltan_lajos_meszlenyi_bishop": {
+    {
+      "id": "zoltan_lajos_meszlenyi_bishop",
       "fullname": "Blessed Zoltán Lajos Meszlényi, Bishop and Martyr",
-      "canonizationLevel": "BLESSED",
+      "canonization_level": "BLESSED",
       "name": "Zoltán Lajos Meszlényi",
-      "titles": ["BISHOP", "MARTYR"]
+      "titles": [
+        "BISHOP",
+        "MARTYR"
+      ]
     },
-    "zygmunt_gorazdowski_priest": {
+    {
+      "id": "zygmunt_gorazdowski_priest",
       "fullname": "Saint Zygmunt Gorazdowski, Priest",
-      "canonizationLevel": "SAINT",
+      "canonization_level": "SAINT",
       "name": "Zygmunt Gorazdowski",
-      "titles": ["PRIEST"]
+      "titles": [
+        "PRIEST"
+      ]
     }
-  }
+  ]
 }

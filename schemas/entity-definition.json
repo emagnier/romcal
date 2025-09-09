@@ -25,6 +25,10 @@
           "type": "integer"
         },
         {
+          "const": "MANY",
+          "type": "string"
+        },
+        {
           "type": "null"
         }
       ]
@@ -178,6 +182,16 @@
     }
   },
   "properties": {
+    "_todo": {
+      "description": "Internal notes\n@private",
+      "items": {
+        "type": "string"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
     "canonization_level": {
       "anyOf": [
         {

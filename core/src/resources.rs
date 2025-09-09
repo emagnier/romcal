@@ -86,7 +86,7 @@ pub struct LocaleColors {
     pub green: Option<String>,
     pub purple: Option<String>,
     pub red: Option<String>,
-    pub rose: String,
+    pub rose: Option<String>,
     pub white: Option<String>,
 }
 
@@ -253,6 +253,10 @@ pub struct EntityDefinition {
 
     /// Sources for the information about this entity
     pub sources: Option<Vec<String>>,
+
+    /// Internal notes
+    /// @private
+    pub _todo: Option<Vec<String>>,
 }
 
 // Implementations
@@ -281,6 +285,7 @@ impl EntityDefinition {
             date_of_death_is_approximative: None,
             count: None,
             sources: None,
+            _todo: None,
         }
     }
 }

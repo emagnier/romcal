@@ -1,270 +1,358 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "ta",
-  "letter": "m",
-  "items": {
-    "mac_nissi_of_connor_bishop": {
+  "entities": [
+    {
+      "id": "mac_nissi_of_connor_bishop",
       "fullname": "புனித மக் நிசி - ஆயர்"
     },
-    "macartan_of_clogher_bishop": {
+    {
+      "id": "macartan_of_clogher_bishop",
       "fullname": "புனித மகதான் - ஆயர்"
     },
-    "madeleine_sophie_barat_virgin": {
+    {
+      "id": "madeleine_sophie_barat_virgin",
       "fullname": "புனித மடலின் சோபி பரத் - கன்னி"
     },
-    "maelruain_of_tallaght_bishop": {
+    {
+      "id": "maelruain_of_tallaght_bishop",
       "fullname": "புனித மால்ருயன் - ஆயர், மடாதிபதி"
     },
-    "magnus_erlendsson_martyr": {
+    {
+      "id": "magnus_erlendsson_martyr",
       "fullname": "புனித மக்ணுஸ் - மறைசாட்சி"
     },
-    "malachy_of_armagh_bishop": {
+    {
+      "id": "malachy_of_armagh_bishop",
       "fullname": "புனித மலாக்கி - ஆயர்"
     },
-    "marcel_callo_martyr": {
+    {
+      "id": "marcel_callo_martyr",
       "fullname": "முத்திப்பேறுபெற்ற மார்சல் சாலொ - மறைசாட்சி"
     },
-    "marcelina_darowska_religious": {
+    {
+      "id": "marcelina_darowska_religious",
       "fullname": "முத்திப்பேறுபெற்ற மார்சலினா தரௌஸ்கா - துறவி"
     },
-    "marcellin_champagnat_priest": {
+    {
+      "id": "marcellin_champagnat_priest",
       "fullname": "புனித மார்சலின் சாம்பனட் - அருட்பணியாளர்"
     },
-    "marcellinus_of_rome_and_peter_the_exorcist_martyrs": {
+    {
+      "id": "marcellinus_of_rome_and_peter_the_exorcist_martyrs",
       "fullname": "புனிதர்கள் மார்சலினுஸ், இராயப்பர் - மறைசாட்சிகள்"
     },
-    "marcellus_of_paris_bishop": {
+    {
+      "id": "marcellus_of_paris_bishop",
       "fullname": "பாரிசின் புனித மார்சல் - ஆயர்"
     },
-    "margaret_clitherow_anne_line_and_margaret_ward_virgin_martyrs": {
+    {
+      "id": "margaret_clitherow_anne_line_and_margaret_ward_virgin_martyrs",
       "fullname": "புனிதர்கள் மாகிரட் கிளிதரோ, அன்னாள் லின், மார்கிரட் வார்ட் - கன்னியர்கள், மறைசாட்சிகள்"
     },
-    "margaret_mary_alacoque_virgin": {
+    {
+      "id": "margaret_mary_alacoque_virgin",
       "fullname": "புனித மாகிரட் மேரி அலகொக் - கன்னி"
     },
-    "margaret_of_antioch_virgin": {
+    {
+      "id": "margaret_of_antioch_virgin",
       "fullname": "அந்தியோக்கின் புனித மாகிரட் - கன்னி, மறைசாட்சி"
     },
-    "margaret_of_hungary_religious": {
+    {
+      "id": "margaret_of_hungary_religious",
       "fullname": "ஹங்கேரியன் புனித மாகிரட் - துறவி"
     },
-    "margaret_of_scotland": {
+    {
+      "id": "margaret_of_scotland",
       "fullname": "ஸ்கொட்லண்டின் புனித மாகிரட்"
     },
-    "marguerite_bourgeoys_virgin": {
+    {
+      "id": "marguerite_bourgeoys_virgin",
       "fullname": "புனித மாகிரைட் போர்கியொஸ் - கன்னி"
     },
-    "marguerite_dyouville_religious": {
+    {
+      "id": "marguerite_dyouville_religious",
       "fullname": "புனித மாகிரைட் டி யூவில் - துறவி"
     },
-    "maria_goretti_virgin": {
+    {
+      "id": "maria_goretti_virgin",
       "fullname": "புனித மரியா கொரெட்டி - கன்னி, மறைசாட்சி"
     },
-    "maria_guadalupe_garcia_zavala_virgin": {
+    {
+      "id": "maria_guadalupe_garcia_zavala_virgin",
       "fullname": "புனித மரிய குடாலோபே கார்சியா சாவாலா - கன்னி"
     },
-    "maria_micaela_of_the_blessed_sacrament_desmaisieres_virgin": {
+    {
+      "id": "maria_micaela_of_the_blessed_sacrament_desmaisieres_virgin",
       "fullname": "திரு நற்கருணை நாதரின் டெஸ்மைசிரசின் புனித மரியா மிகேலா - கன்னி"
     },
-    "mariana_of_jesus_de_paredes_virgin": {
+    {
+      "id": "mariana_of_jesus_de_paredes_virgin",
       "fullname": "பாராதெஸ் இயேசுவின் புனித மரியானா - கன்னி"
     },
-    "marianne_cope_virgin": {
+    {
+      "id": "marianne_cope_virgin",
       "fullname": "புனித மேரியான் கோப் - கன்னி"
     },
-    "marie_anne_blondin_virgin": {
+    {
+      "id": "marie_anne_blondin_virgin",
       "fullname": "முத்திபேறுபெற்ற மேரி-ஆன் புளொடின் - கன்னி"
     },
-    "marie_eugenie_of_jesus_milleret_de_brou_virgin": {
+    {
+      "id": "marie_eugenie_of_jesus_milleret_de_brou_virgin",
       "fullname": "புனித மேரி-யூஹினி டி ஜீசஸ் - துறவி, நிறுவநர்"
     },
-    "marie_leonie_paradis_virgin": {
+    {
+      "id": "marie_leonie_paradis_virgin",
       "fullname": "முத்திப்பேறுபெற்ற மாரி-லியோனி பாரதிஸ் - கன்னி"
     },
-    "marie_rose_durocher_virgin": {
+    {
+      "id": "marie_rose_durocher_virgin",
       "fullname": "முத்திப்பேறுபெற்ற மாரி ரோஸ் துரோச்சர் - கன்னி"
     },
-    "mark_evangelist": {
+    {
+      "id": "mark_evangelist",
       "fullname": "புனித மாற்கு - நற்செய்தியாளர்"
     },
-    "marko_krizin_melchior_grodziecki_and_stephen_pongracz_priests": {
+    {
+      "id": "marko_krizin_melchior_grodziecki_and_stephen_pongracz_priests",
       "fullname": "புனிதர்கள் மார்கோ கிரிசின், மெல்கியோர் கிரோட்ஸ்செகி, ஸ்தேவான் பொங்ராஸ் - அருட்பணியாளர்கள், மறைசாட்சிகள்"
     },
-    "marko_krizin_priest": {
+    {
+      "id": "marko_krizin_priest",
       "fullname": "புனித மார்கோ கிரிசின் - அருட்பணியாளர், மறைசாட்சி"
     },
-    "maron_of_syria_hermit": {
+    {
+      "id": "maron_of_syria_hermit",
       "fullname": "புனித மரூண் - வனத்து துறவி"
     },
-    "martha_of_bethany_mary_of_bethany_and_lazarus_of_bethany": {
+    {
+      "id": "martha_of_bethany_mary_of_bethany_and_lazarus_of_bethany",
       "fullname": "புனிதரகள் மார்த்தா, மரியாள், லாசரஸ்"
     },
-    "martin_de_porres_religious": {
+    {
+      "id": "martin_de_porres_religious",
       "fullname": "புனித மார்டின் டி போரஸ் - துறவி"
     },
-    "martin_i_pope": {
+    {
+      "id": "martin_i_pope",
       "fullname": "புனித முதலாம் மார்டின் - திருத்தந்தை, மறைசாட்சி"
     },
-    "martin_of_tours_bishop": {
+    {
+      "id": "martin_of_tours_bishop",
       "fullname": "புனித மார்டின் டுவர்ஸ் - ஆயர்"
     },
-    "martin_wu_xuesheng_and_companions_martyrs": {
+    {
+      "id": "martin_wu_xuesheng_and_companions_martyrs",
       "fullname": "புனித மார்டின் வூ சுயுஸ்ஹெங் தோழர்கள் - மறைசாட்சிகள்"
     },
-    "mary_adeodata_pisani_virgin": {
+    {
+      "id": "mary_adeodata_pisani_virgin",
       "fullname": "முத்திப்பேறுபெற்ற மரிய அடியோடா பிசானி - கன்னி"
     },
-    "mary_angela_truszkowska_virgin": {
+    {
+      "id": "mary_angela_truszkowska_virgin",
       "fullname": "முத்திப்பேறுபெற்ற மரிய அஞ்ஜெலா திரஸ்கௌஸ்கா - கன்னி"
     },
-    "mary_assunta_pallotta_virgin": {
+    {
+      "id": "mary_assunta_pallotta_virgin",
       "fullname": "முத்திப்பேறுபெற்ர மரிய அசுந்தா பலோடா - கன்னி"
     },
-    "mary_catherine_of_saint_augustine_catherine_de_simon_de_longpre_virgin": {
+    {
+      "id": "mary_catherine_of_saint_augustine_catherine_de_simon_de_longpre_virgin",
       "fullname": "புனித அகுஸ்தினின் புனித கத்தரின் - கன்னி"
     },
-    "mary_magdalene": {
+    {
+      "id": "mary_magdalene",
       "fullname": "புனித மரிய மக்தெலேனா"
     },
-    "mary_magdalene_de_pazzi_virgin": {
+    {
+      "id": "mary_magdalene_de_pazzi_virgin",
       "fullname": "புனித மரிய மக்தெலேனா டி பாஸ்சி - கன்னி"
     },
-    "mary_mother_of_god": {
+    {
+      "id": "mary_mother_of_god",
       "fullname": "தூய கன்னி மரியா, திரு அவையின் அன்னை"
     },
-    "mary_mother_of_the_church": {
+    {
+      "id": "mary_mother_of_the_church",
       "fullname": "திருச்சபையின் அன்னையாம் புனித கன்னி மரியாள்"
     },
-    "mary_of_jesus_crucified_petkovic_virgin": {
+    {
+      "id": "mary_of_jesus_crucified_petkovic_virgin",
       "fullname": "பெட்கோவிச் சிலுவை இயேசுவின் புனித மரியாள் - கன்னி"
     },
-    "mary_of_jesus_in_the_blessed_sacrament_venegas_de_la_torre_virgin": {
+    {
+      "id": "mary_of_jesus_in_the_blessed_sacrament_venegas_de_la_torre_virgin",
       "fullname": "வெங்கஸ் டி லா தோரேயின் நற்கருணை நாதராகிய இயேசுவின் புனித மரியாள் - கன்னி"
     },
-    "mary_of_jesus_the_good_shepherd_siedliska_virgin": {
+    {
+      "id": "mary_of_jesus_the_good_shepherd_siedliska_virgin",
       "fullname": "சீதிலிஸ்காவின் நல்லாயனாகிய இயேசுவின் புனித மரியாள் - கன்னி"
     },
-    "mary_of_the_cross_mackillop_virgin": {
+    {
+      "id": "mary_of_the_cross_mackillop_virgin",
       "fullname": "திருச்சிலுவையின் புனித மரிய மக்கிலொப் - கன்னி"
     },
-    "mary_of_the_incarnation_barbara_acarie_religious": {
+    {
+      "id": "mary_of_the_incarnation_barbara_acarie_religious",
       "fullname": "முத்திப்பேறுபெற்ற மாரி டி ல இன்கார்னேஷன் - துறவி"
     },
-    "mary_of_the_incarnation_marie_guyart_religious": {
+    {
+      "id": "mary_of_the_incarnation_marie_guyart_religious",
       "fullname": "புனித மாரி இன்கார்னேஷன் குயார்ட் - துறவி"
     },
-    "mary_of_the_providence_eugenie_smet_virgin": {
+    {
+      "id": "mary_of_the_providence_eugenie_smet_virgin",
       "fullname": "முத்திப்பேறுபெற்ற மாரி டி லா பிரொவிடன்ஸ் - கன்னி"
     },
-    "mary_of_the_sacred_heart_sophie_therese_de_soubiran_la_louviere_virgin": {
+    {
+      "id": "mary_of_the_sacred_heart_sophie_therese_de_soubiran_la_louviere_virgin",
       "fullname": "முத்திப்பேறுபெற்ற மாரி-தெரெஸ் டி சுபிரன் - கன்னி"
     },
-    "mary_soledad_torres_acosta_virgin": {
+    {
+      "id": "mary_soledad_torres_acosta_virgin",
       "fullname": "புனித மரிய சோலிடாட் தொரெஸ் அகொஸ்டா - கன்னி"
     },
-    "mary_stella_of_the_blessed_sacrament_mardosewicz_and_companions_virgins": {
+    {
+      "id": "mary_stella_of_the_blessed_sacrament_mardosewicz_and_companions_virgins",
       "fullname": "மர்தோசவிச் நற்கருணை நாதரின் புனித மரிய ஸ்டெலா - தோழர்கள், கன்னியர்கள், மறைசாட்சிகள்"
     },
-    "mary_theresa_chiramel_mankidiyan_virgin": {
+    {
+      "id": "mary_theresa_chiramel_mankidiyan_virgin",
       "fullname": "புனித மரிய தெரெசா சர்மல் மங்கிடியன் - கன்னி"
     },
-    "mary_theresa_ledochowska_virgin": {
+    {
+      "id": "mary_theresa_ledochowska_virgin",
       "fullname": "முத்திப்பேறுபெற்ற மரிய தெரெசா லிடொசௌஸ்கா - கன்னி"
     },
-    "mary_ursula_of_jesus_ledochowska_virgin": {
+    {
+      "id": "mary_ursula_of_jesus_ledochowska_virgin",
       "fullname": "லிடொசௌஸ்கா இயேசுவின் புனித மரிய உருசுலா - கன்னி"
     },
-    "marydolores_rodriguez_sopena_virgin": {
+    {
+      "id": "marydolores_rodriguez_sopena_virgin",
       "fullname": "முத்திபேறுபெற்ற மரிய டொலோரஸ் ரொட்ரிகொஸ் சொபினா - கன்னி"
     },
-    "maternus_of_cologne_bishop": {
+    {
+      "id": "maternus_of_cologne_bishop",
       "fullname": "புனித மதேர்னுஸ் - ஆயர்"
     },
-    "maternus_of_cologne_valerius_of_trier_and_eucharius_of_trier_bishops": {
+    {
+      "id": "maternus_of_cologne_valerius_of_trier_and_eucharius_of_trier_bishops",
       "fullname": "அல்சாஸ் திருச்சபையின் முதலாம் அப்போஸ்தலர்கள்: புனிதர்கள் மதேர்னுஸ், வலரே, யுக்கையர்"
     },
-    "matilda_of_ringelheim": {
+    {
+      "id": "matilda_of_ringelheim",
       "fullname": "புனித மடில்டா"
     },
-    "matthew_apostle": {
+    {
+      "id": "matthew_apostle",
       "fullname": "புனித மத்தேயு - அப்போஸ்தலர், நற்செய்தியாளர்"
     },
-    "matthias_apostle": {
+    {
+      "id": "matthias_apostle",
       "fullname": "புனித மத்தாயஸ் - அப்போஸ்தலர்"
     },
-    "maurice_of_agaunum_and_companions_martyrs": {
+    {
+      "id": "maurice_of_agaunum_and_companions_martyrs",
       "fullname": "புனித மொரிஸ், தோழர்கள் - மறைசாட்சி"
     },
-    "maurice_tornay_priest": {
+    {
+      "id": "maurice_tornay_priest",
       "fullname": "முத்திப்பேறுபெற்ற மொரிஸ் டோனே - அருட்பணியாளர், மறைசாட்சி"
     },
-    "maurus_of_pecs_bishop": {
+    {
+      "id": "maurus_of_pecs_bishop",
       "fullname": "புனித மோரஸ் - ஆயர்"
     },
-    "maximilian_mary_raymund_kolbe_priest": {
+    {
+      "id": "maximilian_mary_raymund_kolbe_priest",
       "fullname": "புனித மக்சிமிலியன் கொல்பே - அருட்பணியாளர், மறைசாட்சி"
     },
-    "mederic_of_autun_and_droctoveus_of_autun_abbots": {
+    {
+      "id": "mederic_of_autun_and_droctoveus_of_autun_abbots",
       "fullname": "புனித மெரி, புனித ட்ரொக்டொவி - மடாதிபதி"
     },
-    "meinrad_of_einsiedeln_martyr": {
+    {
+      "id": "meinrad_of_einsiedeln_martyr",
       "fullname": "ஐசிடெல்னின் புனித மெயின்ரட் - மறைசாட்சி"
     },
-    "mel_of_ardagh_bishop": {
+    {
+      "id": "mel_of_ardagh_bishop",
       "fullname": "புனித மெல் - ஆயர்"
     },
-    "melchior_grodziecki_priest": {
+    {
+      "id": "melchior_grodziecki_priest",
       "fullname": "புனித மெல்கியொர் கிரோடியெகி - அருட்பணியாளர், மறைசாட்சி"
     },
-    "michael_gabriel_and_raphael_archangels": {
+    {
+      "id": "michael_gabriel_and_raphael_archangels",
       "fullname": "புனிதர்கள் மைக்கேல், காபிரியேல், ராபியேல் - அதிதூதர்கள்"
     },
-    "michael_kozal_bishop": {
+    {
+      "id": "michael_kozal_bishop",
       "fullname": "முத்திப்பேறுபெற்ற மைக்கேல் கோசல் - ஆயர், மறைசாட்சி"
     },
-    "miguel_agustin_pro_priest": {
+    {
+      "id": "miguel_agustin_pro_priest",
       "fullname": "முத்திப்பேறுபெற்ற மிகுவேல் ஒகஸ்டின் ப்ரோ - அருட்பணியாளர், மறைசாட்சி"
     },
-    "miguel_febres_cordero_religious": {
+    {
+      "id": "miguel_febres_cordero_religious",
       "fullname": "முத்திப்பேறுபெற்ற மிகுவேல் பெப்ரெஸ் கொடெரொ - துறவி"
     },
-    "modestus_andlauer_and_andrew_bauer_martyrs": {
+    {
+      "id": "modestus_andlauer_and_andrew_bauer_martyrs",
       "fullname": "புனிதரகள் மொடெஸ்ட் அண்ட்லோவர், அண்றே பௌவர் - மறைசாட்சிகள்"
     },
-    "modestus_andlauer_martyr": {
+    {
+      "id": "modestus_andlauer_martyr",
       "fullname": "புனித மொடெஸ்ட் அண்ட்லோவர் - மறைசாட்சிகள்"
     },
-    "monica_of_hippo": {
+    {
+      "id": "monica_of_hippo",
       "fullname": "புனித மொனிக்கா"
     },
-    "moninne_of_killeavy_virgin": {
+    {
+      "id": "moninne_of_killeavy_virgin",
       "fullname": "புனித மொனைன் - கன்னி"
     },
-    "morand_of_cluny_monk": {
+    {
+      "id": "morand_of_cluny_monk",
       "fullname": "புனித மொரண்டஸ் - துறவி"
     },
-    "most_holy_body_and_blood_of_christ": {
+    {
+      "id": "most_holy_body_and_blood_of_christ",
       "fullname": "கிறிஸ்துவின் திருவுடல், திரு இரத்தம்"
     },
-    "most_holy_name_of_jesus": {
+    {
+      "id": "most_holy_name_of_jesus",
       "fullname": "இயேசுவின் அதிபரிசுத்த நாமம்"
     },
-    "most_holy_name_of_mary": {
+    {
+      "id": "most_holy_name_of_mary",
       "fullname": "புனித மரியாளின் அதிபரிசுத்த நாமம்"
     },
-    "most_holy_trinity": {
+    {
+      "id": "most_holy_trinity",
       "fullname": "தூய மூவொரு கடவுள்"
     },
-    "most_sacred_heart_of_jesus": {
+    {
+      "id": "most_sacred_heart_of_jesus",
       "fullname": "இயேசுவின் தூய்மைமிகு இதயம்"
     },
-    "munchin_of_limerick_bishop": {
+    {
+      "id": "munchin_of_limerick_bishop",
       "fullname": "புனித முஞ்சின் - ஆயர்"
     },
-    "muredach_of_killala_bishop": {
+    {
+      "id": "muredach_of_killala_bishop",
       "fullname": "புனித முர்டக் - ஆயர்"
     },
-    "mutien_marie_wiaux_religious": {
+    {
+      "id": "mutien_marie_wiaux_religious",
       "fullname": "புனித மியுதியன்-மரிய வியௌக்ஸ் - துறவி"
     }
-  }
+  ]
 }

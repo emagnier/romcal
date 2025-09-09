@@ -1,4 +1,5 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "fr",
   "metadata": {
     "seasons": {

@@ -1,87 +1,114 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "cs",
-  "letter": "h",
-  "items": {
-    "hedwig_of_poland": {
+  "entities": [
+    {
+      "id": "hedwig_of_poland",
       "fullname": "Sv. Hedviky Polské"
     },
-    "hedwig_of_silesia_religious": {
+    {
+      "id": "hedwig_of_silesia_religious",
       "fullname": "Sv. Hedviky, řeholnice"
     },
-    "helena_of_constantinople": {
+    {
+      "id": "helena_of_constantinople",
       "fullname": "Sv. Heleny"
     },
-    "hemma_of_gurk": {
+    {
+      "id": "hemma_of_gurk",
       "fullname": "Sv. Emy z Gurku"
     },
-    "hemming_of_turku_bishop": {
+    {
+      "id": "hemming_of_turku_bishop",
       "fullname": "Bl. Hemminga z Turku, biskupa"
     },
-    "henry_ii_emperor": {
+    {
+      "id": "henry_ii_emperor",
       "fullname": "Sv. Jindřicha"
     },
-    "henry_ii_emperor_and_cunigunde_of_luxembourg": {
+    {
+      "id": "henry_ii_emperor_and_cunigunde_of_luxembourg",
       "fullname": "Sv. Jindřicha a Kunigundy"
     },
-    "henry_of_finland_bishop": {
+    {
+      "id": "henry_of_finland_bishop",
       "fullname": "Sv. Jindřicha, biskupa a mučedníka"
     },
-    "henry_suso_priest": {
+    {
+      "id": "henry_suso_priest",
       "fullname": "Bl. Jindřicha Suso, kněze"
     },
-    "hermann_joseph_of_steinfeld_priest": {
+    {
+      "id": "hermann_joseph_of_steinfeld_priest",
       "fullname": "Sv. Heřmana Josefa, kněze"
     },
-    "hermenegild_the_visigoths_martyr": {
+    {
+      "id": "hermenegild_the_visigoths_martyr",
       "fullname": "Sv. Hermenegilda, mučedníka"
     },
-    "hilary_of_poitiers_bishop": {
+    {
+      "id": "hilary_of_poitiers_bishop",
       "fullname": "Sv. Hilaria, biskupa a učitele církve"
     },
-    "hilda_of_whitby_abbess": {
+    {
+      "id": "hilda_of_whitby_abbess",
       "fullname": "Sv. Hildy, abatyše"
     },
-    "hildegard_of_bingen_abbess": {
+    {
+      "id": "hildegard_of_bingen_abbess",
       "fullname": "Sv. Hildegardy z Bingen, abatyše a učitelky církve"
     },
-    "holy_child_of_cebu": {
+    {
+      "id": "holy_child_of_cebu",
       "fullname": "Sv. Dítěte z Cebú"
     },
-    "holy_family_of_jesus_mary_and_joseph": {
+    {
+      "id": "holy_family_of_jesus_mary_and_joseph",
       "fullname": "Svaté rodiny Ježíše, Marie a Josefa"
     },
-    "holy_guardian_angels": {
+    {
+      "id": "holy_guardian_angels",
       "fullname": "Svatých andělů strážných"
     },
-    "holy_innocents_martyrs": {
+    {
+      "id": "holy_innocents_martyrs",
       "fullname": "Svatých Mláďátek, mučedníků"
     },
-    "holy_saturday": {
+    {
+      "id": "holy_saturday",
       "fullname": "Bílá sobota/Velikonoční vigilie"
     },
-    "holy_thursday": {
+    {
+      "id": "holy_thursday",
       "fullname": "Zelený čtvrtek"
     },
-    "honorat_kozminski_priest": {
+    {
+      "id": "honorat_kozminski_priest",
       "fullname": "Bl. Honoráta Koźmińského, kněze"
     },
-    "hosanna_of_cattaro_virgin": {
+    {
+      "id": "hosanna_of_cattaro_virgin",
       "fullname": "Bl. Hosanny z Kotoru, panny"
     },
-    "hroznata_of_bohemia_martyr": {
+    {
+      "id": "hroznata_of_bohemia_martyr",
       "fullname": "Bl. Hroznaty, mučedníka"
     },
-    "hubert_of_liege_bishop": {
+    {
+      "id": "hubert_of_liege_bishop",
       "fullname": "Sv. Huberta, biskupa"
     },
-    "hugh_of_lincoln_bishop": {
+    {
+      "id": "hugh_of_lincoln_bishop",
       "fullname": "Sv. Huga z Lincolnu, biskupa"
     },
-    "hungarian_saints_and_blesseds": {
+    {
+      "id": "hungarian_saints_and_blesseds",
       "fullname": "Maďarských svatých a blahoslavených"
     },
-    "hyacinth_of_poland_priest": {
+    {
+      "id": "hyacinth_of_poland_priest",
       "fullname": "Sv. Hyacinta, kněze"
     }
-  }
+  ]
 }

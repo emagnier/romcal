@@ -549,6 +549,7 @@ pub enum DateDefExceptions {
 #[serde(untagged)]
 pub enum SaintCount {
     Number(u32),
+    #[serde(rename = "MANY")]
     Many,
 }
 

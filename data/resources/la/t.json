@@ -1,90 +1,118 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "la",
-  "letter": "t",
-  "items": {
-    "teilo_of_llandaff_bishop": {
+  "entities": [
+    {
+      "id": "teilo_of_llandaff_bishop",
       "fullname": "S. Teliavi, episcopi"
     },
-    "teresa_benedicta_of_the_cross_stein_virgin": {
+    {
+      "id": "teresa_benedicta_of_the_cross_stein_virgin",
       "fullname": "S. Teresiæ Benedictæ a Cruce Stein, virginis et martyris"
     },
-    "teresa_benedicta_of_the_cross_stein_virgin_copatroness_of_europe": {
+    {
+      "id": "teresa_benedicta_of_the_cross_stein_virgin_copatroness_of_europe",
       "fullname": "S. Teresiæ Benedictæ a Cruce Stein, virginis, martyris, patronæ secundariæ Europæ"
     },
-    "teresa_of_calcutta_religious": {
+    {
+      "id": "teresa_of_calcutta_religious",
       "fullname": "S. Teresiæ de Calcutta, religiosi"
     },
-    "teresa_of_jesus_jornet_ibars_virgin": {
+    {
+      "id": "teresa_of_jesus_jornet_ibars_virgin",
       "fullname": "S. Teresiæ a Iesu Jornet Ibars, virginis"
     },
-    "teresa_of_jesus_of_avila_virgin": {
+    {
+      "id": "teresa_of_jesus_of_avila_virgin",
       "fullname": "S. Teresiæ a Iesu, virginis et Ecclesiæ doctoris"
     },
-    "teresa_of_jesus_of_los_andes_virgin": {
+    {
+      "id": "teresa_of_jesus_of_los_andes_virgin",
       "fullname": "S. Teresiæ a Iesu de Los Andes, virginis"
     },
-    "teresa_of_portugal_religious": {
+    {
+      "id": "teresa_of_portugal_religious",
       "fullname": "B. Teresiæ Lusitaniæ, religiosæ"
     },
-    "theodore_of_canterbury_bishop": {
+    {
+      "id": "theodore_of_canterbury_bishop",
       "fullname": "S. Theodori Cantuariensis, episcopi"
     },
-    "theodore_romzha_bishop": {
+    {
+      "id": "theodore_romzha_bishop",
       "fullname": "B. Theodori Romzsa, episcopi et martyris"
     },
-    "theodosius_of_the_caves_abbot": {
+    {
+      "id": "theodosius_of_the_caves_abbot",
       "fullname": "S. Theodosii Kioviensis, abbatis"
     },
-    "theotonius_of_coimbra_priest": {
+    {
+      "id": "theotonius_of_coimbra_priest",
       "fullname": "S. Theotonii, presbyteri"
     },
-    "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin": {
+    {
+      "id": "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin",
       "fullname": "S. Teresiæ a Iesu Infante, virginis et Ecclesiæ doctoris"
     },
-    "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin_copatroness_of_france": {
+    {
+      "id": "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin_copatroness_of_france",
       "fullname": "S. Teresiæ a Iesu Infante et a Sacro Vultu Lexoviensis, virginis et Ecclesiæ doctoris, patronæ secundariæ Galliæ"
     },
-    "thomas_apostle": {
+    {
+      "id": "thomas_apostle",
       "fullname": "S. Thomæ, apostoli"
     },
-    "thomas_aquinas_priest": {
+    {
+      "id": "thomas_aquinas_priest",
       "fullname": "S. Thomæ de Aquino, presbyteri et Ecclesiæ doctoris"
     },
-    "thomas_becket_bishop": {
+    {
+      "id": "thomas_becket_bishop",
       "fullname": "S. Thomæ Becket, episcopi et martyris"
     },
-    "thomas_hioji_rokuzayemon_nishi_priest_and_companions_martyrs": {
+    {
+      "id": "thomas_hioji_rokuzayemon_nishi_priest_and_companions_martyrs",
       "fullname": "Ss. Thomæ Hioji Rokuzayemon Nishi, presbyteri, et sociorum, martyrum"
     },
-    "thomas_jean_georges_rehm_priest": {
+    {
+      "id": "thomas_jean_georges_rehm_priest",
       "fullname": "B. Thomæ Ioannis Georgii Rehm, presbyteri et martyris"
     },
-    "thomas_of_villanova_bishop": {
+    {
+      "id": "thomas_of_villanova_bishop",
       "fullname": "S. Thomæ a Villanova, episcopi"
     },
-    "thorfinn_of_hamar_bishop": {
+    {
+      "id": "thorfinn_of_hamar_bishop",
       "fullname": "S. Thorfinni, episcopi"
     },
-    "thorlac_of_iceland_bishop": {
+    {
+      "id": "thorlac_of_iceland_bishop",
       "fullname": "S. Thorlaci, episcopi"
     },
-    "thursday_of_the_lords_supper": {
+    {
+      "id": "thursday_of_the_lords_supper",
       "fullname": "$(names:holy_thursday), in Cena Domini"
     },
-    "timothy_of_ephesus_and_titus_of_crete_bishops": {
+    {
+      "id": "timothy_of_ephesus_and_titus_of_crete_bishops",
       "fullname": "Ss. Timothei et Titi, episcoporum"
     },
-    "transfiguration_of_the_lord": {
+    {
+      "id": "transfiguration_of_the_lord",
       "fullname": "In Transfiguratione Domini"
     },
-    "translation_of_the_relics_of_odile_of_alsace_abbess": {
+    {
+      "id": "translation_of_the_relics_of_odile_of_alsace_abbess",
       "fullname": "In Translatione reliquiarum S. Odiliæ"
     },
-    "translation_of_the_relics_of_saint_stephen_of_hungary": {
+    {
+      "id": "translation_of_the_relics_of_saint_stephen_of_hungary",
       "fullname": "In Translatione reliquiarum S. Stephani Hungariæ"
     },
-    "turibius_of_mogrovejo_bishop": {
+    {
+      "id": "turibius_of_mogrovejo_bishop",
       "fullname": "S. Turibii de Mogrovejo, episcopi"
     }
-  }
+  ]
 }

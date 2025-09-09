@@ -186,6 +186,16 @@
     "EntityDefinition": {
       "additionalProperties": false,
       "properties": {
+        "_todo": {
+          "description": "Internal notes\n@private",
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
         "canonization_level": {
           "anyOf": [
             {
@@ -449,7 +459,10 @@
           ]
         },
         "rose": {
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "white": {
           "type": [
@@ -458,9 +471,6 @@
           ]
         }
       },
-      "required": [
-        "rose"
-      ],
       "type": "object"
     },
     "OrdinaryTimeSeason": {
@@ -648,6 +658,10 @@
           "format": "uint32",
           "minimum": 0,
           "type": "integer"
+        },
+        {
+          "const": "MANY",
+          "type": "string"
         },
         {
           "type": "null"

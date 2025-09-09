@@ -35,6 +35,30 @@ fn fix_date_exceptions_schema(schema: &mut Value) {
     }
 }
 
+/// Fix the SaintCount schema to support both integers and "MANY" string
+fn fix_saint_count_schema(schema: &mut Value) {
+    if let Some(definitions) = schema.get_mut("definitions") {
+        if let Some(saint_count) = definitions.get_mut("SaintCount") {
+            *saint_count = serde_json::json!({
+                "anyOf": [
+                    {
+                        "format": "uint32",
+                        "minimum": 0,
+                        "type": "integer"
+                    },
+                    {
+                        "const": "MANY",
+                        "type": "string"
+                    },
+                    {
+                        "type": "null"
+                    }
+                ]
+            });
+        }
+    }
+}
+
 /// Add `additionalProperties: false` to all objects in the JSON schema
 fn add_additional_properties_false(schema: &mut Value) {
     match schema {
@@ -99,9 +123,15 @@ where
     let mut schema_value = serde_json::to_value(&schema)?;
     add_additional_properties_false(&mut schema_value);
     fix_defs_references(&mut schema_value);
+
+    if filename == "resources-definition.json" || filename == "entity-definition.json" {
+        fix_saint_count_schema(&mut schema_value);
+    }
+
     let schema_json = serde_json::to_string_pretty(&schema_value)?;
     fs::write(schemas_dir.join(filename), schema_json)?;
     println!("✅ {} schema exported to {}", filename, filename);
+
     Ok(())
 }
 

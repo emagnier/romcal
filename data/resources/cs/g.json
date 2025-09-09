@@ -1,81 +1,106 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "cs",
-  "letter": "g",
-  "items": {
-    "gabriel_taurin_dufresse_bishop": {
+  "entities": [
+    {
+      "id": "gabriel_taurin_dufresse_bishop",
       "fullname": "Sv. Gabriela Taurin Dufress, biskupa a mučedníka"
     },
-    "gall_of_switzerland_abbot": {
+    {
+      "id": "gall_of_switzerland_abbot",
       "fullname": "Sv. Havla, opata a misionáře"
     },
-    "genevieve_of_paris_virgin": {
+    {
+      "id": "genevieve_of_paris_virgin",
       "fullname": "Sv. Jenovéfy, panny"
     },
-    "george_matulaitis_bishop": {
+    {
+      "id": "george_matulaitis_bishop",
       "fullname": "Bl. Jiřího Matulaitise, biskupa"
     },
-    "george_of_lydda_martyr": {
+    {
+      "id": "george_of_lydda_martyr",
       "fullname": "Sv. Jiří, mučedníka"
     },
-    "george_of_lydda_martyr_patron_of_england": {
+    {
+      "id": "george_of_lydda_martyr_patron_of_england",
       "fullname": "Sv. Jiří, mučedníka a patrona Anglie"
     },
-    "george_preca_priest": {
+    {
+      "id": "george_preca_priest",
       "fullname": "Sv. Jiřího Preca, kněze"
     },
-    "gerard_of_csanad_bishop": {
+    {
+      "id": "gerard_of_csanad_bishop",
       "fullname": "Sv. Gerarda z Čanádu, biskupa a mučedníka"
     },
-    "germain_of_paris_bishop": {
+    {
+      "id": "germain_of_paris_bishop",
       "fullname": "Sv. Germana, biskupa"
     },
-    "germanus_of_auxerre_bishop": {
+    {
+      "id": "germanus_of_auxerre_bishop",
       "fullname": "Sv. Germana z Auxerre, biskupa"
     },
-    "gertrude_of_nivelles_abbess": {
+    {
+      "id": "gertrude_of_nivelles_abbess",
       "fullname": "Sv. Gertrudy z Nivelles, abatyše"
     },
-    "gertrude_the_great_virgin": {
+    {
+      "id": "gertrude_the_great_virgin",
       "fullname": "Sv. Gertrudy, panny"
     },
-    "gisela_of_hungary": {
+    {
+      "id": "gisela_of_hungary",
       "fullname": "Bl. Gisely"
     },
-    "gobnait_of_ballyvourney_virgin": {
+    {
+      "id": "gobnait_of_ballyvourney_virgin",
       "fullname": "Sv. Gobnaity, panny"
     },
-    "gorazd_of_moravia_and_companions": {
+    {
+      "id": "gorazd_of_moravia_and_companions",
       "fullname": "Sv. Gorazda a druhů"
     },
-    "gotthard_of_hildesheim_bishop": {
+    {
+      "id": "gotthard_of_hildesheim_bishop",
       "fullname": "Sv. Gotharda, biskupa"
     },
-    "gratia_of_cattaro_religious": {
+    {
+      "id": "gratia_of_cattaro_religious",
       "fullname": "Bl. Gracie z Kotoru, řeholníka"
     },
-    "gregory_grassi_francis_fogolla_and_anthony_fantosati_bishops_and_companions_martyrs": {
+    {
+      "id": "gregory_grassi_francis_fogolla_and_anthony_fantosati_bishops_and_companions_martyrs",
       "fullname": "Sv. Řehoře Grassi, Františka Fogolla a Antonína Fantosati, biskupů, a druhů, mučedníků"
     },
-    "gregory_i_the_great_pope": {
+    {
+      "id": "gregory_i_the_great_pope",
       "fullname": "Sv. Řehoře Velikého, papeže a učitele církve"
     },
-    "gregory_of_narek_abbot": {
+    {
+      "id": "gregory_of_narek_abbot",
       "fullname": "Sv. Řehoře z Nareku, opata a učitele církve"
     },
-    "gregory_vii_pope": {
+    {
+      "id": "gregory_vii_pope",
       "fullname": "Sv. Řehoře VII., papeže"
     },
-    "guardian_angel_of_portugal": {
+    {
+      "id": "guardian_angel_of_portugal",
       "fullname": "Anděla strážného Portugalska"
     },
-    "gundisalvus_garcia_martyr": {
+    {
+      "id": "gundisalvus_garcia_martyr",
       "fullname": "Sv. Gundisalva García, mučedníka"
     },
-    "gundisalvus_of_amarante_priest": {
+    {
+      "id": "gundisalvus_of_amarante_priest",
       "fullname": "Bl. Gundisalva z Amaranta, kněze"
     },
-    "gundisalvus_of_lagos_priest": {
+    {
+      "id": "gundisalvus_of_lagos_priest",
       "fullname": "Bl. Gundisalva z Lagosu, kněze"
     }
-  }
+  ]
 }

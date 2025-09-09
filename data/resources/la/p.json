@@ -1,171 +1,226 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "la",
-  "letter": "p",
-  "items": {
-    "palm_sunday_of_the_passion_of_the_lord": {
+  "entities": [
+    {
+      "id": "palm_sunday_of_the_passion_of_the_lord",
       "fullname": "Dominica in Palmis de Passione Domini"
     },
-    "pancras_of_rome_martyr": {
+    {
+      "id": "pancras_of_rome_martyr",
       "fullname": "S. Pancratii, martyris"
     },
-    "pantaleon_of_nicomedia_martyr": {
+    {
+      "id": "pantaleon_of_nicomedia_martyr",
       "fullname": "S. Pantaleonis, martyris"
     },
-    "paschal_baylon_religious": {
+    {
+      "id": "paschal_baylon_religious",
       "fullname": "S. Paschali Baylón, religiosi"
     },
-    "passion_of_saint_john_the_baptist": {
+    {
+      "id": "passion_of_saint_john_the_baptist",
       "fullname": "In Passione S. Ioannis Baptistæ"
     },
-    "patrick_of_ireland_bishop": {
+    {
+      "id": "patrick_of_ireland_bishop",
       "fullname": "S. Patricii, episcopi"
     },
-    "patrick_of_ireland_bishop_patron_of_ireland": {
+    {
+      "id": "patrick_of_ireland_bishop_patron_of_ireland",
       "fullname": "S. Patricii, episcopi, patroni Hiberniæ"
     },
-    "paul_chen_changpin_and_companions_martyrs": {
+    {
+      "id": "paul_chen_changpin_and_companions_martyrs",
       "fullname": "Ss. Pauli Chen Changpin et sociorum, martyrum"
     },
-    "paul_liu_hanzuo_priest": {
+    {
+      "id": "paul_liu_hanzuo_priest",
       "fullname": "S. Pauli Liu Hanzuo, presbyteri et martyris"
     },
-    "paul_miki_and_companions_martyrs": {
+    {
+      "id": "paul_miki_and_companions_martyrs",
       "fullname": "Ss. Pauli Miki et sociorum, martyrum"
     },
-    "paul_of_the_cross_priest": {
+    {
+      "id": "paul_of_the_cross_priest",
       "fullname": "S. Pauli a Cruce, presbyteri"
     },
-    "paul_of_thebes_hermit": {
+    {
+      "id": "paul_of_thebes_hermit",
       "fullname": "B. Pauli de Thebis, eremitæ"
     },
-    "paul_vi_pope": {
+    {
+      "id": "paul_vi_pope",
       "fullname": "S. Pauli VI, papæ"
     },
-    "paulina_of_the_agonizing_heart_of_jesus_visintainer_virgin": {
+    {
+      "id": "paulina_of_the_agonizing_heart_of_jesus_visintainer_virgin",
       "fullname": "S. Paulinæ a Corde Iesu Agonizanti Visintainer, virginis"
     },
-    "paulinus_of_nola_bishop": {
+    {
+      "id": "paulinus_of_nola_bishop",
       "fullname": "S. Paulini Nolani, episcopi"
     },
-    "paulinus_of_trier_bishop": {
+    {
+      "id": "paulinus_of_trier_bishop",
       "fullname": "S. Paulini Trevirensis, episcopi"
     },
-    "paulinus_of_york_bishop": {
+    {
+      "id": "paulinus_of_york_bishop",
       "fullname": "S. Paulini Eboracensis, episcopi"
     },
-    "pavel_peter_gojdic_bishop": {
+    {
+      "id": "pavel_peter_gojdic_bishop",
       "fullname": "B. Pauli Petri Gojdič, episcopi et martyris"
     },
-    "pedro_calungsod_martyr": {
+    {
+      "id": "pedro_calungsod_martyr",
       "fullname": "S. Petri Calungsod, martyris"
     },
-    "pelagius_of_cordoba_martyr": {
+    {
+      "id": "pelagius_of_cordoba_martyr",
       "fullname": "S. Pelagii Cordubæ, martyris"
     },
-    "pentecost_sunday": {
+    {
+      "id": "pentecost_sunday",
       "fullname": "Dominica Pentecostes"
     },
-    "perpetua_of_carthage_and_felicity_of_carthage_martyrs": {
+    {
+      "id": "perpetua_of_carthage_and_felicity_of_carthage_martyrs",
       "fullname": "Ss. Perpetuæ et Felicitatis, martyrum"
     },
-    "peter_and_paul_apostles": {
+    {
+      "id": "peter_and_paul_apostles",
       "fullname": "Ss. Petri et Pauli, apostolorum"
     },
-    "peter_baptist_blasquez_paul_miki_and_companions_martyrs": {
+    {
+      "id": "peter_baptist_blasquez_paul_miki_and_companions_martyrs",
       "fullname": "Ss. Petri Baptistæ Blázquez, Pauli Miki et sociorum, martyrum"
     },
-    "peter_canisius_priest": {
+    {
+      "id": "peter_canisius_priest",
       "fullname": "S. Petri Canisii, presbyteri et Ecclesiæ doctoris"
     },
-    "peter_chanel_priest": {
+    {
+      "id": "peter_chanel_priest",
       "fullname": "S. Petri Chanel, presbyteri et martyris"
     },
-    "peter_chanel_priest_patron_of_oceania": {
+    {
+      "id": "peter_chanel_priest_patron_of_oceania",
       "fullname": "S. Petri Chanel, protomartyris Oceaniæ, patroni Oceaniæ"
     },
-    "peter_chrysologus_bishop": {
+    {
+      "id": "peter_chrysologus_bishop",
       "fullname": "S. Petri Chrysologi, episcopi et Ecclesiæ doctoris"
     },
-    "peter_claver_priest": {
+    {
+      "id": "peter_claver_priest",
       "fullname": "S. Petri Claver, presbyteri"
     },
-    "peter_damian_bishop": {
+    {
+      "id": "peter_damian_bishop",
       "fullname": "S. Petri Damiani, episcopi et Ecclesiæ doctoris"
     },
-    "peter_de_zuniga_and_louis_flores_priests": {
+    {
+      "id": "peter_de_zuniga_and_louis_flores_priests",
       "fullname": "Bb. Petri de Zúñiga et Ludovici Flores, presbyterorum et martyrum"
     },
-    "peter_julian_eymard_priest": {
+    {
+      "id": "peter_julian_eymard_priest",
       "fullname": "S. Petri Iuliani Eymard, presbyteri"
     },
-    "peter_kibe_priest_and_companions_martyrs": {
+    {
+      "id": "peter_kibe_priest_and_companions_martyrs",
       "fullname": "B. Petri Kibe Kasui, presbyteri, et sociorum, martyrum"
     },
-    "peter_liu_wenyuan_martyr": {
+    {
+      "id": "peter_liu_wenyuan_martyr",
       "fullname": "S. Petri Liu Wenyuan, martyris"
     },
-    "peter_of_alcantara_priest": {
+    {
+      "id": "peter_of_alcantara_priest",
       "fullname": "S. Petri de Alcantara, presbyteri"
     },
-    "peter_sanz_bishop": {
+    {
+      "id": "peter_sanz_bishop",
       "fullname": "S. Petri Sanz, episcopi et martyris"
     },
-    "peter_to_rot_martyr": {
+    {
+      "id": "peter_to_rot_martyr",
       "fullname": "B. Petri To Rot, martyris"
     },
-    "peter_wu_guosheng_martyr": {
+    {
+      "id": "peter_wu_guosheng_martyr",
       "fullname": "S. Petri Wu Guosheng, martyris"
     },
-    "philip_and_james_apostles": {
+    {
+      "id": "philip_and_james_apostles",
       "fullname": "Ss. Philippi et Iacobi, apostolorum"
     },
-    "philip_evans_and_john_lloyd_priests": {
+    {
+      "id": "philip_evans_and_john_lloyd_priests",
       "fullname": "Ss. Philippi Evans et Ioannis Lloyd, presbyterorum et martyrum"
     },
-    "philip_neri_priest": {
+    {
+      "id": "philip_neri_priest",
       "fullname": "S. Philippi Neri, presbyteri"
     },
-    "philip_of_jesus_de_las_casas_martyr": {
+    {
+      "id": "philip_of_jesus_de_las_casas_martyr",
       "fullname": "S. Philippi a Iesu, presbyteri et martyris"
     },
-    "philip_of_jesus_de_las_casas_paul_miki_and_companions_martyrs": {
+    {
+      "id": "philip_of_jesus_de_las_casas_paul_miki_and_companions_martyrs",
       "fullname": "Ss. Philippi a Iesu de las Casas, Pauli Miki et sociorum, martyrum"
     },
-    "pirmin_of_hornbach_abbot": {
+    {
+      "id": "pirmin_of_hornbach_abbot",
       "fullname": "S. Pirminii, abbatis"
     },
-    "pius_francesco_forgione_priest": {
+    {
+      "id": "pius_francesco_forgione_priest",
       "fullname": "S. Pii de Pietrelcina, presbyteri"
     },
-    "pius_ix_pope": {
+    {
+      "id": "pius_ix_pope",
       "fullname": "B. Pii IX, papæ"
     },
-    "pius_v_pope": {
+    {
+      "id": "pius_v_pope",
       "fullname": "S. Pii V, papæ"
     },
-    "pius_x_pope": {
+    {
+      "id": "pius_x_pope",
       "fullname": "S. Pii X, papæ"
     },
-    "polycarp_of_smyrna_bishop": {
+    {
+      "id": "polycarp_of_smyrna_bishop",
       "fullname": "S. Polycarpi, episcopi et martyris"
     },
-    "pontian_i_pope_and_hippolytus_of_rome_priest": {
+    {
+      "id": "pontian_i_pope_and_hippolytus_of_rome_priest",
       "fullname": "Ss. Pontiani, papæ, et Hippolyti, presbyteri, martyrum"
     },
-    "pothinus_of_lyon_bishop_blandina_of_lyon_virgin_and_companions_martyrs": {
+    {
+      "id": "pothinus_of_lyon_bishop_blandina_of_lyon_virgin_and_companions_martyrs",
       "fullname": "Ss. Pothini, episcopi, Blandinæ, virginis, et sociorum, martyrum"
     },
-    "presentation_of_the_blessed_virgin_mary": {
+    {
+      "id": "presentation_of_the_blessed_virgin_mary",
       "fullname": "In Præsentatione B. Mariæ Virginis"
     },
-    "presentation_of_the_lord": {
+    {
+      "id": "presentation_of_the_lord",
       "fullname": "In Præsentatione Domini"
     },
-    "procopius_of_sazava_abbot": {
+    {
+      "id": "procopius_of_sazava_abbot",
       "fullname": "S. Procopii, abbatis"
     },
-    "publius_of_malta_bishop": {
+    {
+      "id": "publius_of_malta_bishop",
       "fullname": "S. Publii, episcopi"
     }
-  }
+  ]
 }

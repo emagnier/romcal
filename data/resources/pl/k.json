@@ -1,9 +1,10 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "pl",
-  "letter": "k",
-  "items": {
-    "kinga_of_poland_virgin": {
+  "entities": [
+    {
+      "id": "kinga_of_poland_virgin",
       "fullname": "Św. Kingi, dziewicy"
     }
-  }
+  ]
 }

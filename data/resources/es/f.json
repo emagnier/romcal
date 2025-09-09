@@ -1,66 +1,86 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "es",
-  "letter": "f",
-  "items": {
-    "fabian_i_pope": {
+  "entities": [
+    {
+      "id": "fabian_i_pope",
       "fullname": "San Fabiano, papa y mártir"
     },
-    "faustina_kowalska_virgin": {
+    {
+      "id": "faustina_kowalska_virgin",
       "fullname": "Santa Faustina Kowalska, virgen"
     },
-    "ferdinand_iii_of_castile": {
+    {
+      "id": "ferdinand_iii_of_castile",
       "fullname": "San Fernando"
     },
-    "fidelis_of_sigmaringen_priest": {
+    {
+      "id": "fidelis_of_sigmaringen_priest",
       "fullname": "San Fidel de Sigmaringa, presbítero y mártir"
     },
-    "finding_of_the_holy_cross": {
+    {
+      "id": "finding_of_the_holy_cross",
       "fullname": "Invención de la Santa Cruz"
     },
-    "first_martyrs_of_the_holy_roman_church": {
+    {
+      "id": "first_martyrs_of_the_holy_roman_church",
       "fullname": "Primeros mártires de la Iglesia de Roma"
     },
-    "florentius_of_strasbourg_bishop": {
+    {
+      "id": "florentius_of_strasbourg_bishop",
       "fullname": "San Florencio, obispo"
     },
-    "frances_of_rome_religious": {
+    {
+      "id": "frances_of_rome_religious",
       "fullname": "Santa Francisca Romana, religiosa"
     },
-    "francis_borgia_priest": {
+    {
+      "id": "francis_borgia_priest",
       "fullname": "San Francisco de Borja, presbítero"
     },
-    "francis_de_sales_bishop": {
+    {
+      "id": "francis_de_sales_bishop",
       "fullname": "San Francisco de Sales, obispo y doctor de la Iglesia"
     },
-    "francis_diaz_del_rincon_priest_and_companions_martyrs": {
+    {
+      "id": "francis_diaz_del_rincon_priest_and_companions_martyrs",
       "fullname": "San Francisco Díaz, presbítero y Compañeros, mártires"
     },
-    "francis_ferdinand_de_capillas_priest": {
+    {
+      "id": "francis_ferdinand_de_capillas_priest",
       "fullname": "San Francisco Fernández de Capillas, presbítero y mártir"
     },
-    "francis_of_assisi": {
+    {
+      "id": "francis_of_assisi",
       "fullname": "San Francisco de Asís"
     },
-    "francis_of_assisi_patron_of_italy": {
+    {
+      "id": "francis_of_assisi_patron_of_italy",
       "fullname": "San Francisco de Asís, Patrono de Italia"
     },
-    "francis_of_paola_hermit": {
+    {
+      "id": "francis_of_paola_hermit",
       "fullname": "San Francisco de Paula, ermitaño"
     },
-    "francis_solanus_priest": {
+    {
+      "id": "francis_solanus_priest",
       "fullname": "San Francisco Solano, presbítero"
     },
-    "francis_xavier_priest": {
+    {
+      "id": "francis_xavier_priest",
       "fullname": "San Francisco Javier, presbítero"
     },
-    "frederic_ozanam_founder": {
+    {
+      "id": "frederic_ozanam_founder",
       "fullname": "Beato Federico Ozanam, fundador"
     },
-    "friday_of_the_passion_of_the_lord": {
+    {
+      "id": "friday_of_the_passion_of_the_lord",
       "fullname": "Viernes Santo"
     },
-    "fructuosus_of_tarragona_bishop_and_augurius_of_tarragona_and_eulogius_of_tarragona_deacons_martyrs": {
+    {
+      "id": "fructuosus_of_tarragona_bishop_and_augurius_of_tarragona_and_eulogius_of_tarragona_deacons_martyrs",
       "fullname": "Santos Fructuoso, obispo, y Augurio y Eulogio, diáconos, mártires"
     }
-  }
+  ]
 }

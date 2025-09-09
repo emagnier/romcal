@@ -1,120 +1,158 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "sk",
-  "letter": "f",
-  "items": {
-    "fabian_i_pope": {
+  "entities": [
+    {
+      "id": "fabian_i_pope",
       "fullname": "Svätého Fabiána, pápeža a mučeníka"
     },
-    "fachanan_of_kilfenora_bishop": {
+    {
+      "id": "fachanan_of_kilfenora_bishop",
       "fullname": "Svätého Fachanana z Kilfenory, biskupa"
     },
-    "fachtna_of_rosscarbery_bishop": {
+    {
+      "id": "fachtna_of_rosscarbery_bishop",
       "fullname": "Svätého Fachtnu z Rosscarbery, biskupa"
     },
-    "faustina_kowalska_virgin": {
+    {
+      "id": "faustina_kowalska_virgin",
       "fullname": "Svätej Faustíny Kowalskej, panny"
     },
-    "ferdinand_iii_of_castile": {
+    {
+      "id": "ferdinand_iii_of_castile",
       "fullname": "Svätého Ferdinanda III. Kastilského"
     },
-    "fiacre_of_breuil_monk": {
+    {
+      "id": "fiacre_of_breuil_monk",
       "fullname": "Svätého Fiakra, mnícha"
     },
-    "fidelis_of_sigmaringen_priest": {
+    {
+      "id": "fidelis_of_sigmaringen_priest",
       "fullname": "Svätého Fidéla zo Sigmaringenu, kňaza a mučeníka"
     },
-    "finbarr_of_cork_bishop": {
+    {
+      "id": "finbarr_of_cork_bishop",
       "fullname": "Svätého Finbarra, biskupa"
     },
-    "finding_of_the_holy_cross": {
+    {
+      "id": "finding_of_the_holy_cross",
       "fullname": "Nájdenie Svätého kríža"
     },
-    "finnian_of_clonard_bishop": {
+    {
+      "id": "finnian_of_clonard_bishop",
       "fullname": "Svätého Finniana z Clonardu, biskupa"
     },
-    "fintan_of_clonenagh_abbot": {
+    {
+      "id": "fintan_of_clonenagh_abbot",
       "fullname": "Svätého Fintana, opáta"
     },
-    "first_martyrs_of_the_holy_roman_church": {
+    {
+      "id": "first_martyrs_of_the_holy_roman_church",
       "fullname": "Prvých svätých mučeníkov Cirkvi v Ríme"
     },
-    "first_polish_martyrs": {
+    {
+      "id": "first_polish_martyrs",
       "fullname": "Svätých Benedikta, Jána, Mateja, Izáka a Kristína, prvých poľských mučeníkov"
     },
-    "five_wounds_of_the_lord": {
+    {
+      "id": "five_wounds_of_the_lord",
       "fullname": "Piatich Rán Krista Pána"
     },
-    "flannan_of_killaloe_bishop": {
+    {
+      "id": "flannan_of_killaloe_bishop",
       "fullname": "Svätého Flannana, biskupa"
     },
-    "florentius_of_strasbourg_bishop": {
+    {
+      "id": "florentius_of_strasbourg_bishop",
       "fullname": "Svätého Florencia, biskupa"
     },
-    "florian_of_lorch_and_companions_martyrs": {
+    {
+      "id": "florian_of_lorch_and_companions_martyrs",
       "fullname": "Svätých Floriána a spoločníkov, mučeníkov"
     },
-    "florian_of_lorch_martyr": {
+    {
+      "id": "florian_of_lorch_martyr",
       "fullname": "Svätého Floriána, mučeníka"
     },
-    "frances_of_rome_religious": {
+    {
+      "id": "frances_of_rome_religious",
       "fullname": "Svätej Františky Rímskej, rehoľníčky"
     },
-    "frances_xavier_cabrini_virgin": {
+    {
+      "id": "frances_xavier_cabrini_virgin",
       "fullname": "Svätej Františky Xaviery Cabriniovej, panny"
     },
-    "francis_borgia_priest": {
+    {
+      "id": "francis_borgia_priest",
       "fullname": "Svätého Františka Borgiu, kňaza"
     },
-    "francis_de_sales_bishop": {
+    {
+      "id": "francis_de_sales_bishop",
       "fullname": "Svätého Františka Saleského, biskupa a učiteľa Cirkvi"
     },
-    "francis_diaz_del_rincon_priest_and_companions_martyrs": {
+    {
+      "id": "francis_diaz_del_rincon_priest_and_companions_martyrs",
       "fullname": "Svätého Františka Diaza, kňaza, a spoločníkov, mučeníkov"
     },
-    "francis_ferdinand_de_capillas_priest": {
+    {
+      "id": "francis_ferdinand_de_capillas_priest",
       "fullname": "Svätého Františka Ferdinanda de Capillas, kňaza a mučeníka"
     },
-    "francis_of_assisi": {
+    {
+      "id": "francis_of_assisi",
       "fullname": "Svätého Františka Assiského"
     },
-    "francis_of_assisi_patron_of_italy": {
+    {
+      "id": "francis_of_assisi_patron_of_italy",
       "fullname": "Svätého Františka Assiského, patróna Talianska"
     },
-    "francis_of_paola_hermit": {
+    {
+      "id": "francis_of_paola_hermit",
       "fullname": "Svätého Františka z Paoly, pustovníka"
     },
-    "francis_solanus_priest": {
+    {
+      "id": "francis_solanus_priest",
       "fullname": "Svätého Františka Solana, kňaza"
     },
-    "francis_xavier_priest": {
+    {
+      "id": "francis_xavier_priest",
       "fullname": "Svätého Františka Xaverského, kňaza"
     },
-    "francis_xavier_seelos_priest": {
+    {
+      "id": "francis_xavier_seelos_priest",
       "fullname": "Blahoslaveného Františka Xavera Seelosa, kňaza"
     },
-    "francois_de_montmorency_laval_bishop": {
+    {
+      "id": "francois_de_montmorency_laval_bishop",
       "fullname": "Svätého Františka de Montmorency-Laval, biskupa"
     },
-    "frederic_janssoone_priest": {
+    {
+      "id": "frederic_janssoone_priest",
       "fullname": "Blahoslaveného Frederika Janssoona, kňaza"
     },
-    "frederic_ozanam_founder": {
+    {
+      "id": "frederic_ozanam_founder",
       "fullname": "Blahoslaveného Frederika Ozanama, zakladateľa"
     },
-    "friday_of_the_passion_of_the_lord": {
+    {
+      "id": "friday_of_the_passion_of_the_lord",
       "fullname": "Piatok utrpenia Pána (Veľký piatok)"
     },
-    "fridolin_of_sackingen_monk": {
+    {
+      "id": "fridolin_of_sackingen_monk",
       "fullname": "Svätého Fridolína zo Säckingen, opáta"
     },
-    "fructuosus_of_braga_martin_of_braga_and_gerald_of_braga_bishops": {
+    {
+      "id": "fructuosus_of_braga_martin_of_braga_and_gerald_of_braga_bishops",
       "fullname": "Svätých Fruktuóza, Martina a Geralda z Bragy, biskupov"
     },
-    "fructuosus_of_tarragona_bishop_and_augurius_of_tarragona_and_eulogius_of_tarragona_deacons_martyrs": {
+    {
+      "id": "fructuosus_of_tarragona_bishop_and_augurius_of_tarragona_and_eulogius_of_tarragona_deacons_martyrs",
       "fullname": "Svätých Fruktuóza z Tarragony, biskupa, Augúria a Eulógia, diakonov, mučeníkov"
     },
-    "fursa_of_peronne_abbot": {
+    {
+      "id": "fursa_of_peronne_abbot",
       "fullname": "Svätého Fursu, opáta a misionára"
     }
-  }
+  ]
 }

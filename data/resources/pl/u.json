@@ -1,9 +1,10 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "pl",
-  "letter": "u",
-  "items": {
-    "urban_i_pope": {
+  "entities": [
+    {
+      "id": "urban_i_pope",
       "fullname": "Św. Urbana I, papieża"
     }
-  }
+  ]
 }

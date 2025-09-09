@@ -1,120 +1,158 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "cs",
-  "letter": "f",
-  "items": {
-    "fabian_i_pope": {
+  "entities": [
+    {
+      "id": "fabian_i_pope",
       "fullname": "Sv. Fabiána, papeže a mučedníka"
     },
-    "fachanan_of_kilfenora_bishop": {
+    {
+      "id": "fachanan_of_kilfenora_bishop",
       "fullname": "Sv. Fachanana z Kilfenory, biskupa"
     },
-    "fachtna_of_rosscarbery_bishop": {
+    {
+      "id": "fachtna_of_rosscarbery_bishop",
       "fullname": "Sv. Fachtny z Rosscarbery, biskupa"
     },
-    "faustina_kowalska_virgin": {
+    {
+      "id": "faustina_kowalska_virgin",
       "fullname": "Sv. Faustiny Kowalské, panny"
     },
-    "ferdinand_iii_of_castile": {
+    {
+      "id": "ferdinand_iii_of_castile",
       "fullname": "Sv. Ferdinanda III. Kastilského"
     },
-    "fiacre_of_breuil_monk": {
+    {
+      "id": "fiacre_of_breuil_monk",
       "fullname": "Sv. Fiakra, mnicha"
     },
-    "fidelis_of_sigmaringen_priest": {
+    {
+      "id": "fidelis_of_sigmaringen_priest",
       "fullname": "Sv. Fidela ze Sigmaringy, kněze a mučedníka"
     },
-    "finbarr_of_cork_bishop": {
+    {
+      "id": "finbarr_of_cork_bishop",
       "fullname": "Sv. Finbara, biskupa"
     },
-    "finding_of_the_holy_cross": {
+    {
+      "id": "finding_of_the_holy_cross",
       "fullname": "Nalezení svatého Kříže"
     },
-    "finnian_of_clonard_bishop": {
+    {
+      "id": "finnian_of_clonard_bishop",
       "fullname": "Sv. Finiana z Clonardu, biskupa"
     },
-    "fintan_of_clonenagh_abbot": {
+    {
+      "id": "fintan_of_clonenagh_abbot",
       "fullname": "Sv. Fintana, opata"
     },
-    "first_martyrs_of_the_holy_roman_church": {
+    {
+      "id": "first_martyrs_of_the_holy_roman_church",
       "fullname": "Svatých prvomučedníků římských"
     },
-    "first_polish_martyrs": {
+    {
+      "id": "first_polish_martyrs",
       "fullname": "Sv. Benedikta, Jana, Matouše, Izáka a Kristina, mučedníků"
     },
-    "five_wounds_of_the_lord": {
+    {
+      "id": "five_wounds_of_the_lord",
       "fullname": "Pěti ran Krista Pána"
     },
-    "flannan_of_killaloe_bishop": {
+    {
+      "id": "flannan_of_killaloe_bishop",
       "fullname": "Sv. Flannana, biskupa"
     },
-    "florentius_of_strasbourg_bishop": {
+    {
+      "id": "florentius_of_strasbourg_bishop",
       "fullname": "Sv. Florencia, biskupa"
     },
-    "florian_of_lorch_and_companions_martyrs": {
+    {
+      "id": "florian_of_lorch_and_companions_martyrs",
       "fullname": "Sv. Floriána a druhů, mučedníků"
     },
-    "florian_of_lorch_martyr": {
+    {
+      "id": "florian_of_lorch_martyr",
       "fullname": "Sv. Floriána, mučedníka"
     },
-    "frances_of_rome_religious": {
+    {
+      "id": "frances_of_rome_religious",
       "fullname": "Sv. Františky Římské, řeholnice"
     },
-    "frances_xavier_cabrini_virgin": {
+    {
+      "id": "frances_xavier_cabrini_virgin",
       "fullname": "Sv. Františky Xavery Cabriniové, panny"
     },
-    "francis_borgia_priest": {
+    {
+      "id": "francis_borgia_priest",
       "fullname": "Sv. Františka Borgiáše, kněze"
     },
-    "francis_de_sales_bishop": {
+    {
+      "id": "francis_de_sales_bishop",
       "fullname": "Sv. Františka Saleského, biskupa a učitele církve"
     },
-    "francis_diaz_del_rincon_priest_and_companions_martyrs": {
+    {
+      "id": "francis_diaz_del_rincon_priest_and_companions_martyrs",
       "fullname": "Sv. Františka Díaz del Rincon, kněze, a druhů, mučedníků"
     },
-    "francis_ferdinand_de_capillas_priest": {
+    {
+      "id": "francis_ferdinand_de_capillas_priest",
       "fullname": "Sv. Františka Ferdinanda de Capillas, kněze a mučedníka"
     },
-    "francis_of_assisi": {
+    {
+      "id": "francis_of_assisi",
       "fullname": "Sv. Františka z Assisi"
     },
-    "francis_of_assisi_patron_of_italy": {
+    {
+      "id": "francis_of_assisi_patron_of_italy",
       "fullname": "Sv. Františka z Assisi, patrona Itálie"
     },
-    "francis_of_paola_hermit": {
+    {
+      "id": "francis_of_paola_hermit",
       "fullname": "Sv. Františka z Pauly, poustevníka"
     },
-    "francis_solanus_priest": {
+    {
+      "id": "francis_solanus_priest",
       "fullname": "Sv. Františka Solana, kněze"
     },
-    "francis_xavier_priest": {
+    {
+      "id": "francis_xavier_priest",
       "fullname": "Sv. Františka Xaverského, kněze"
     },
-    "francis_xavier_seelos_priest": {
+    {
+      "id": "francis_xavier_seelos_priest",
       "fullname": "Bl. Františka Xavera Seelose, kněze"
     },
-    "francois_de_montmorency_laval_bishop": {
+    {
+      "id": "francois_de_montmorency_laval_bishop",
       "fullname": "Sv. Františka de Montmorency-Laval, biskupa"
     },
-    "frederic_janssoone_priest": {
+    {
+      "id": "frederic_janssoone_priest",
       "fullname": "Bl. Frederika Janssoone, kněze"
     },
-    "frederic_ozanam_founder": {
+    {
+      "id": "frederic_ozanam_founder",
       "fullname": "Bl. Frederika Ozanama, zakladatele"
     },
-    "friday_of_the_passion_of_the_lord": {
+    {
+      "id": "friday_of_the_passion_of_the_lord",
       "fullname": "Velký pátek"
     },
-    "fridolin_of_sackingen_monk": {
+    {
+      "id": "fridolin_of_sackingen_monk",
       "fullname": "Sv. Fridolína ze Säckingen, mnicha"
     },
-    "fructuosus_of_braga_martin_of_braga_and_gerald_of_braga_bishops": {
+    {
+      "id": "fructuosus_of_braga_martin_of_braga_and_gerald_of_braga_bishops",
       "fullname": "Sv. Fruktuósa, Martina a Geralda z Bragy, biskupů"
     },
-    "fructuosus_of_tarragona_bishop_and_augurius_of_tarragona_and_eulogius_of_tarragona_deacons_martyrs": {
+    {
+      "id": "fructuosus_of_tarragona_bishop_and_augurius_of_tarragona_and_eulogius_of_tarragona_deacons_martyrs",
       "fullname": "Sv. Fruktuósa, biskupa, Auguria a Eulogia, diakonů, mučedníků"
     },
-    "fursa_of_peronne_abbot": {
+    {
+      "id": "fursa_of_peronne_abbot",
       "fullname": "Sv. Fursy, opata a misionáře"
     }
-  }
+  ]
 }

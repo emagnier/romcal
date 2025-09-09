@@ -1,27 +1,34 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "it",
-  "letter": "r",
-  "items": {
-    "raymond_of_penyafort_priest": {
+  "entities": [
+    {
+      "id": "raymond_of_penyafort_priest",
       "fullname": "San Raimondo di Peñafort, sacerdote"
     },
-    "richardis_of_swabia_empress": {
+    {
+      "id": "richardis_of_swabia_empress",
       "fullname": "Santa Riccarda, imperatrice"
     },
-    "rita_of_cascia_religious": {
+    {
+      "id": "rita_of_cascia_religious",
       "fullname": "Santa Rita da Cascia, religiosa"
     },
-    "robert_bellarmine_bishop": {
+    {
+      "id": "robert_bellarmine_bishop",
       "fullname": "San Roberto Bellarmino, vescovo e dottore della Chiesa"
     },
-    "romuald_of_ravenna_abbot": {
+    {
+      "id": "romuald_of_ravenna_abbot",
       "fullname": "San Romualdo, abate"
     },
-    "rosalie_jeanne_marie_rendu_virgin": {
+    {
+      "id": "rosalie_jeanne_marie_rendu_virgin",
       "fullname": "Beata Rosalia Rendu, vergine"
     },
-    "rose_of_lima_virgin": {
+    {
+      "id": "rose_of_lima_virgin",
       "fullname": "Santa Rosa da Lima, vergine"
     }
-  }
+  ]
 }

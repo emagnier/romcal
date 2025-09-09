@@ -1,99 +1,130 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "sk",
-  "letter": "e",
-  "items": {
-    "easter_sunday": {
+  "entities": [
+    {
+      "id": "easter_sunday",
       "fullname": "Nedeľa Pánovho zmŕtvychvstania"
     },
-    "edmund_bojanowski": {
+    {
+      "id": "edmund_bojanowski",
       "fullname": "Blahoslaveného Edmunda Bojanowského"
     },
-    "edmund_campion_priest": {
+    {
+      "id": "edmund_campion_priest",
       "fullname": "Svätého Edmunda Kampiána, kňaza a mučeníka"
     },
-    "edmund_ignatius_rice_religious": {
+    {
+      "id": "edmund_ignatius_rice_religious",
       "fullname": "Blahoslaveného Edmunda Ignáca Rica, rehoľníka"
     },
-    "edmund_of_abingdon_bishop": {
+    {
+      "id": "edmund_of_abingdon_bishop",
       "fullname": "Svätého Edmunda z Abingdonu, biskupa"
     },
-    "edward_the_confessor": {
+    {
+      "id": "edward_the_confessor",
       "fullname": "Svätého Eduarda Vyznávača"
     },
-    "eligius_of_noyon_bishop": {
+    {
+      "id": "eligius_of_noyon_bishop",
       "fullname": "Svätého Elígia, biskupa"
     },
-    "elijah_prophet": {
+    {
+      "id": "elijah_prophet",
       "fullname": "Svätého Eliáša, proroka"
     },
-    "elizabeth_ann_seton_religious": {
+    {
+      "id": "elizabeth_ann_seton_religious",
       "fullname": "Svätej Alžbety Anny Setonovej, rehoľníčky"
     },
-    "elizabeth_hesselblad_religious": {
+    {
+      "id": "elizabeth_hesselblad_religious",
       "fullname": "Svätej Alžbety Hesselbladovej, panny"
     },
-    "elizabeth_of_hungary_religious": {
+    {
+      "id": "elizabeth_of_hungary_religious",
       "fullname": "Svätej Alžbety Uhorskej, rehoľníčky"
     },
-    "elizabeth_of_portugal": {
+    {
+      "id": "elizabeth_of_portugal",
       "fullname": "Svätej Alžbety Portugalskej"
     },
-    "emeric_of_hungary": {
+    {
+      "id": "emeric_of_hungary",
       "fullname": "Svätého Imricha"
     },
-    "emilie_tavernier_gamelin_religious": {
+    {
+      "id": "emilie_tavernier_gamelin_religious",
       "fullname": "Blahoslavenej Emílie Tavernier Gamelinovej, rehoľníčky"
     },
-    "enda_of_aran_abbot": {
+    {
+      "id": "enda_of_aran_abbot",
       "fullname": "Svätého Endu, opáta"
     },
-    "english_martyrs": {
+    {
+      "id": "english_martyrs",
       "fullname": "Svätých anglických mučeníkov"
     },
-    "eoghan_of_ardstraw_bishop": {
+    {
+      "id": "eoghan_of_ardstraw_bishop",
       "fullname": "Svätého Eoghana, biskupa"
     },
-    "ephrem_the_syrian_deacon": {
+    {
+      "id": "ephrem_the_syrian_deacon",
       "fullname": "Svätého Efréma, diakona a učiteľa Cirkvi"
     },
-    "epiphany_of_the_lord": {
+    {
+      "id": "epiphany_of_the_lord",
       "fullname": "Zjavenie Pána"
     },
-    "eric_ix_of_sweden_martyr": {
+    {
+      "id": "eric_ix_of_sweden_martyr",
       "fullname": "Svätého Erika IX. Švédskeho, mučeníka"
     },
-    "etheldreda_of_ely_abbess": {
+    {
+      "id": "etheldreda_of_ely_abbess",
       "fullname": "Svätej Eteldredy z Ely, opátky"
     },
-    "eucharius_of_trier_bishop": {
+    {
+      "id": "eucharius_of_trier_bishop",
       "fullname": "Svätého Euchária, biskupa"
     },
-    "eugene_de_mazenod_bishop": {
+    {
+      "id": "eugene_de_mazenod_bishop",
       "fullname": "Svätého Eugena de Mazenod, biskupa"
     },
-    "eugenia_of_alsace_and_attala_of_alsace_virgins": {
+    {
+      "id": "eugenia_of_alsace_and_attala_of_alsace_virgins",
       "fullname": "Svätých Eugénie a Attaly, pannien"
     },
-    "eulalia_of_merida_virgin": {
+    {
+      "id": "eulalia_of_merida_virgin",
       "fullname": "Svätej Eulálie z Meridy, panny a mučenice"
     },
-    "eulogius_of_cordoba_bishop": {
+    {
+      "id": "eulogius_of_cordoba_bishop",
       "fullname": "Svätého Eulógia z Córdoby, biskupa"
     },
-    "eusebius_of_esztergom_priest": {
+    {
+      "id": "eusebius_of_esztergom_priest",
       "fullname": "Blahoslaveného Euzébia Ostrihomského, kňaza"
     },
-    "eusebius_of_vercelli_bishop": {
+    {
+      "id": "eusebius_of_vercelli_bishop",
       "fullname": "Svätého Euzébia Vercellského, biskupa"
     },
-    "exaltation_of_the_holy_cross": {
+    {
+      "id": "exaltation_of_the_holy_cross",
       "fullname": "Povýšenie Svätého kríža"
     },
-    "eysteinn_of_nidaros_bishop": {
+    {
+      "id": "eysteinn_of_nidaros_bishop",
       "fullname": "Svätého Eysteina z Nidarosu, biskupa"
     },
-    "ezequiel_moreno_bishop": {
+    {
+      "id": "ezequiel_moreno_bishop",
       "fullname": "Svätého Ezechiela Morena, biskupa"
     }
-  }
+  ]
 }

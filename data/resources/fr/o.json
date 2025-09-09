@@ -1,70 +1,98 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "fr",
-  "letter": "o",
-  "items": {
-    "odile_of_alsace_abbess": {
+  "entities": [
+    {
+      "id": "odile_of_alsace_abbess",
       "fullname": "Sainte Odile, abbesse"
     },
-    "odile_of_alsace_abbess_patroness_of_alsace": {
+    {
+      "id": "odile_of_alsace_abbess_patroness_of_alsace",
       "fullname": "Sainte Odile, abbesse, patronne de l‘Alsace († v. 720)"
     },
-    "ortaire_of_landelles_abbot": {
+    {
+      "id": "ortaire_of_landelles_abbot",
       "fullname": "Saint Ortaire, abbé († 580)",
-      "sources": ["mr_fr_1982_ed2_coutances"]
+      "sources": [
+        "mr_fr_1982_ed2_coutances"
+      ]
     },
-    "our_lady_mediatrix_of_all_grace": {
+    {
+      "id": "our_lady_mediatrix_of_all_grace",
       "fullname": "Marie, Médiatrice de toute grâce"
     },
-    "our_lady_of_fatima": {
+    {
+      "id": "our_lady_of_fatima",
       "fullname": "Notre-Dame de Fatima"
     },
-    "our_lady_of_fourviere": {
+    {
+      "id": "our_lady_of_fourviere",
       "fullname": "Notre-Dame de Fourvière",
-      "sources": ["mr_fr_2014_ed2_lyon"]
+      "sources": [
+        "mr_fr_2014_ed2_lyon"
+      ]
     },
-    "our_lady_of_good_counsel": {
+    {
+      "id": "our_lady_of_good_counsel",
       "fullname": "Notre-Dame du Bon Conseil"
     },
-    "our_lady_of_guadalupe": {
+    {
+      "id": "our_lady_of_guadalupe",
       "fullname": "Notre-Dame de Guadalupé"
     },
-    "our_lady_of_guadalupe_patroness_of_the_americas": {
+    {
+      "id": "our_lady_of_guadalupe_patroness_of_the_americas",
       "fullname": "Notre-Dame de Guadalupé, patronne des Amériques"
     },
-    "our_lady_of_la_salette": {
+    {
+      "id": "our_lady_of_la_salette",
       "fullname": "Bienheureuse Vierge Marie de La Salette",
-      "sources": ["mr_fr_2021_ed3"]
+      "sources": [
+        "mr_fr_2021_ed3"
+      ]
     },
-    "our_lady_of_loreto": {
+    {
+      "id": "our_lady_of_loreto",
       "fullname": "Notre-Dame de Lorette"
     },
-    "our_lady_of_lourdes": {
+    {
+      "id": "our_lady_of_lourdes",
       "fullname": "Notre-Dame de Lourdes"
     },
-    "our_lady_of_mount_carmel": {
+    {
+      "id": "our_lady_of_mount_carmel",
       "fullname": "Notre-Dame du Mont-Carmel"
     },
-    "our_lady_of_pontmain": {
+    {
+      "id": "our_lady_of_pontmain",
       "fullname": "Notre-Dame de Pontmain",
-      "sources": ["mr_fr_1982_ed2_coutances"]
+      "sources": [
+        "mr_fr_1982_ed2_coutances"
+      ]
     },
-    "our_lady_of_sorrows": {
+    {
+      "id": "our_lady_of_sorrows",
       "fullname": "Notre-Dame des Douleurs"
     },
-    "our_lady_of_sorrows_patroness_of_slovakia": {
+    {
+      "id": "our_lady_of_sorrows_patroness_of_slovakia",
       "fullname": "Notre-Dame des Douleurs, patronne de la Slovaquie"
     },
-    "our_lady_of_the_miraculous_medal": {
+    {
+      "id": "our_lady_of_the_miraculous_medal",
       "fullname": "Notre-Dame de la Médaille miraculeuse"
     },
-    "our_lady_of_the_rosary": {
+    {
+      "id": "our_lady_of_the_rosary",
       "fullname": "Notre-Dame du Rosaire"
     },
-    "our_lady_refuge_of_sinners": {
+    {
+      "id": "our_lady_refuge_of_sinners",
       "fullname": "Sainte Marie, refuge des pécheurs"
     },
-    "our_lord_jesus_christ_king_of_the_universe": {
+    {
+      "id": "our_lord_jesus_christ_king_of_the_universe",
       "fullname": "Trente-quatrième et dernier dimanche - Le Christ, Roi de l’Univers"
     }
-  }
+  ]
 }

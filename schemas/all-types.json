@@ -1421,6 +1421,16 @@
     "EntityDefinition": {
       "additionalProperties": false,
       "properties": {
+        "_todo": {
+          "description": "Internal notes\n@private",
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
         "canonization_level": {
           "anyOf": [
             {
@@ -1736,7 +1746,10 @@
           ]
         },
         "rose": {
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "white": {
           "type": [
@@ -1745,9 +1758,6 @@
           ]
         }
       },
-      "required": [
-        "rose"
-      ],
       "type": "object"
     },
     "MartyrologyItemPointer": {
@@ -2159,6 +2169,16 @@
         "EntityDefinition": {
           "additionalProperties": false,
           "properties": {
+            "_todo": {
+              "description": "Internal notes\n@private",
+              "items": {
+                "type": "string"
+              },
+              "type": [
+                "array",
+                "null"
+              ]
+            },
             "canonization_level": {
               "anyOf": [
                 {
@@ -2422,7 +2442,10 @@
               ]
             },
             "rose": {
-              "type": "string"
+              "type": [
+                "string",
+                "null"
+              ]
             },
             "white": {
               "type": [
@@ -2431,9 +2454,6 @@
               ]
             }
           },
-          "required": [
-            "rose"
-          ],
           "type": "object"
         },
         "OrdinaryTimeSeason": {

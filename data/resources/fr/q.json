@@ -1,9 +1,10 @@
 {
+  "$schema": "../../../schemas/resources-definition.json",
   "locale": "fr",
-  "letter": "q",
-  "items": {
-    "queenship_of_the_blessed_virgin_mary": {
+  "entities": [
+    {
+      "id": "queenship_of_the_blessed_virgin_mary",
       "fullname": "Vierge Marie, reine"
     }
-  }
+  ]
 }
