@@ -3,10 +3,10 @@
   "version": "4.0.0",
   "description": "Liturgical Calendar Library - WASM bindings",
   "type": "module",
-  "main": "pkg/romcal.js",
-  "types": "pkg/romcal.d.ts",
+  "main": "dist/src/index.js",
+  "types": "dist/src/types.d.ts",
   "scripts": {
-    "build": "../../scripts/build-wasm.sh && npm run build:ts",
+    "build": "../../scripts/build-adapters.sh wasm && npm run build:ts",
     "build:ts": "tsc && cp -r pkg dist/",
     "build:wasm": "wasm-pack build --target nodejs --out-dir pkg",
     "build-web": "wasm-pack build --target web --out-dir pkg",
