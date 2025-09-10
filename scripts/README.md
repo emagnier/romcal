@@ -2,66 +2,84 @@
 
 This directory contains build and automation scripts for the Romcal project.
 
-## 📋 Available Scripts
+## 📊 Script Responsibilities
 
-### `generate-schema.sh`
+| Script                  | Build | Lint | Format | Test | Generate Schema | Validate Data | Scope             |
+| ----------------------- | ----- | ---- | ------ | ---- | --------------- | ------------- | ----------------- |
+| `build-core.sh`         | ✅    | ❌   | ❌     | ❌   | ❌              | ❌            | Core only         |
+| `build-adapters.sh`     | ✅    | ❌   | ❌     | ❌   | ❌              | ❌            | Adapters only     |
+| `build-all.sh`          | ✅    | ❌   | ❌     | ❌   | ❌              | ❌            | Complete project  |
+| `check-core.sh`         | ❌    | ✅   | ✅     | ✅   | ❌              | ❌            | Core only         |
+| `check-adapters.sh`     | ❌    | ✅   | ✅     | ✅   | ❌              | ❌            | Adapters only     |
+| `check-all.sh`          | ❌    | ✅   | ✅     | ✅   | ❌              | ❌            | Complete project  |
+| `generate-schema.sh`    | ❌    | ❌   | ❌     | ❌   | ✅              | ❌            | Schema generation |
+| `validate-calendars.sh` | ❌    | ❌   | ❌     | ❌   | ❌              | ✅            | Calendar data     |
+| `validate-resources.sh` | ❌    | ❌   | ❌     | ❌   | ❌              | ✅            | Resource data     |
+| `ci.sh`                 | ✅    | ✅   | ✅     | ✅   | ❌              | ❌            | Complete project  |
 
-Generates JSON schemas from Rust definitions.
+## 🚀 Quick Start
 
-**Usage:**
-
-```bash
-# From the project root
-./scripts/generate-schema.sh
-```
-
-**Features:**
-
-- Compiles the schema generator
-- Generates JSON schemas in `schemas/` (root)
-- Displays detailed progress messages
-
-### `build-wasm.sh`
-
-Compiles WASM bindings for JavaScript/TypeScript bindings.
-
-**Usage:**
+**Development:**
 
 ```bash
-# From the project root
-./scripts/build-wasm.sh
+./scripts/build-core.sh      # Quick build
+./scripts/build-adapters.sh wasm  # Build WASM bindings
+./scripts/check-core.sh      # Quality checks
 ```
 
-**Features:**
+**Complete workflow:**
 
-- Compiles Rust code to WASM
-- Generates JavaScript/TypeScript bindings
-- Optimizes WASM binaries
-- Installs necessary dependencies
+```bash
+./scripts/ci.sh              # Full CI pipeline
+./scripts/check-all.sh       # Global quality checks
+```
 
-## 🔧 Adding New Scripts
+## 📋 Scripts Overview
 
-To add a new script:
+### Build Scripts
 
-1. Create the `.sh` file in this directory
-2. Make it executable: `chmod +x script-name.sh`
-3. Document its usage in this README
-4. Test it from the project root
+- **`build-all.sh`** - Builds entire project (core + adapters + tools)
+- **`build-core.sh`** - Builds core module only
+- **`build-adapters.sh`** - Builds all adapters or specific one (`wasm`, `python`)
+
+### Quality Scripts
+
+- **`check-core.sh`** - Runs clippy, rustfmt, tests on core
+- **`check-adapters.sh`** - Runs quality checks on adapters
+- **`check-all.sh`** - Global quality checks (core + adapters + tools + schemas)
+
+### Utility Scripts
+
+- **`ci.sh`** - Complete CI/CD pipeline
+- **`generate-schema.sh`** - Generates JSON schemas from Rust definitions
 
 ## 📁 Structure
 
 ```
 scripts/
 ├── README.md
-├── generate-schema.sh
-├── validate-calendars.sh
-├── transform-calendars.js
-└── build-wasm.sh
+├── build-all.sh          # Build entire project
+├── build-core.sh         # Build core module only
+├── build-adapters.sh     # Build all/specific adapters
+├── check-core.sh         # Quality checks for core
+├── check-adapters.sh     # Quality checks for adapters
+├── ci.sh                 # Complete CI/CD pipeline
+├── check-all.sh          # Global quality checks
+├── generate-schema.sh    # Generate JSON schemas
+├── validate-calendars.sh # Validate calendar data
+├── transform-calendars.js # Transform calendar data
+└── validate-resources.sh # Validate resource data
 ```
+
+## 🔧 Adding New Scripts
+
+1. Create the `.sh` file in this directory
+2. Make it executable: `chmod +x script-name.sh`
+3. Document its usage in this README
+4. Test it from the project root
 
 ## 🎯 Conventions
 
 - All scripts must be executable from the project root
 - Use relative paths for portability
-- Include informative messages with emojis
 - Document usage in this README

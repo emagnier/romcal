@@ -10,17 +10,16 @@ keywords = ["liturgical", "calendar", "catholic", "romcal"]
 categories = ["date-and-time", "web-programming"]
 
 [lib]
-crate-type = ["cdylib", "rlib"]
+crate-type = ["rlib"]
 
 [dependencies]
 chrono = { workspace = true }
-schemars = "1.0.4"
+schemars = { workspace = true }
 serde = { workspace = true }
-serde_json = { version = "1.0", default-features = false, features = ["alloc"] }
-wasm-bindgen = { workspace = true }
+serde_json = { workspace = true }
 
 [dev-dependencies]
-tempfile = "3.21.0"
+tempfile = "3.22.0"
 
 [[bin]]
 name = "generate-schema"

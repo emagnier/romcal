@@ -1,0 +1,25 @@
+[package]
+name = "romcal-core-wasm"
+version = "4.0.0"
+edition = "2021"
+description = "WASM adapter for romcal-core"
+authors = ["romcal contributors"]
+license = "MIT"
+repository = "https://github.com/romcal/romcal"
+homepage = "https://romcal.netlify.app"
+keywords = ["liturgical", "calendar", "catholic", "wasm"]
+categories = ["date-and-time", "web-programming"]
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+romcal-core = { path = "../../" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+wasm-bindgen = { workspace = true }
+js-sys = { workspace = true }
+web-sys = { workspace = true }
+
+[dev-dependencies]
+wasm-bindgen-test = "0.3"

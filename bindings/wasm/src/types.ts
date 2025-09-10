@@ -220,6 +220,11 @@ export interface ResourcesDefinition {
 }
 export interface EntityDefinition {
   /**
+   * Internal notes
+   * @private
+   */
+  _todo?: string[] | null;
+  /**
    * The canonization level of a person.
    */
   canonization_level?: CanonizationLevel | null;
@@ -336,7 +341,7 @@ export interface LocaleColors {
   green?: string | null;
   purple?: string | null;
   red?: string | null;
-  rose: string;
+  rose?: string | null;
   white?: string | null;
 }
 export interface CyclesMetadata {

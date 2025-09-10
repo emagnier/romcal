@@ -35,7 +35,7 @@ fn main() {
         green: Some("vert".to_string()),
         purple: Some("violet".to_string()),
         red: Some("rouge".to_string()),
-        rose: "rose".to_string(),
+        rose: Some("rose".to_string()),
         white: Some("blanc".to_string()),
     };
 
