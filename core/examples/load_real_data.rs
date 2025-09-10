@@ -3,6 +3,21 @@ use romcal_core::config::LiturgicalConfig;
 use romcal_core::resources::ResourcesDefinition;
 use std::fs;
 
+// Calendar files to load
+const CALENDAR_FILES: &[&str] = &[
+    "data/calendars/general_roman/general_roman.json",
+    "data/calendars/countries/france/france.json",
+    "data/calendars/countries/france/france__angers.json",
+];
+
+// Resource files to load
+const RESOURCE_FILES: &[&str] = &[
+    "data/resources/en/meta.json",
+    "data/resources/en/a.json",
+    "data/resources/en/b.json",
+    "data/resources/en/c.json",
+];
+
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("=== Loading real data with LiturgicalConfig ===\n");
 
@@ -13,13 +28,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Load calendars
     println!("\n📅 Loading calendars...");
 
-    let calendar_files = [
-        "data/calendars/general_roman/general_roman.json",
-        "data/calendars/countries/france/france.json",
-        "data/calendars/countries/france/france__angers.json",
-    ];
-
-    for file_path in &calendar_files {
+    for file_path in CALENDAR_FILES {
         if std::path::Path::new(file_path).exists() {
             let content = fs::read_to_string(file_path)?;
             let calendar_def: CalendarDefinition = serde_json::from_str(&content)?;
@@ -33,14 +42,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Load resources
     println!("\n📚 Loading resources...");
 
-    let resource_files = [
-        "data/resources/en/meta.json",
-        "data/resources/en/a.json",
-        "data/resources/en/b.json",
-        "data/resources/en/c.json",
-    ];
-
-    for file_path in &resource_files {
+    for file_path in RESOURCE_FILES {
         if std::path::Path::new(file_path).exists() {
             let content = fs::read_to_string(file_path)?;
             let resources_def: ResourcesDefinition = serde_json::from_str(&content)?;
@@ -123,7 +125,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         println!("  ❌ get_resources('en') : not found");
     }
 
-    // Test serialization (partial)
+    // Test serialization and save to file
     println!("\n💾 Testing serialization :");
     let serialized = serde_json::to_string_pretty(&config)?;
     println!(
@@ -131,7 +133,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         serialized.len()
     );
 
-    // Save a sample
+    // Save complete data to JSON file
+    let output_file = "_loaded_data_output.json";
+    fs::write(output_file, &serialized)?;
+    println!("  📁 Complete data saved to: {}", output_file);
+
+    // Save a sample for display
     let sample = &serialized[..1000.min(serialized.len())];
     println!("  📄 JSON sample :");
     println!("{}...", sample);

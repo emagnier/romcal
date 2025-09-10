@@ -99,3 +99,6 @@ local-*
 *.orig
 *code-workspace
 *~
+
+# Test files
+_*.json
