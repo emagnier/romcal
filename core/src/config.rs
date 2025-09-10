@@ -1,3 +1,5 @@
+use crate::calendar_def::CalendarDefinition;
+use crate::resources::ResourcesDefinition;
 use serde::{Deserialize, Serialize};
 
 // Default configuration constants
@@ -44,6 +46,10 @@ pub struct LiturgicalConfig {
     pub corpus_christi_on_sunday: bool,
     /// Ascension is celebrated on a Sunday (7th Sunday of Easter)
     pub ascension_on_sunday: bool,
+    /// Array of calendar definitions
+    pub calendar_definitions: Vec<CalendarDefinition>,
+    /// Array of resources definitions
+    pub resources: Vec<ResourcesDefinition>,
 }
 
 impl Default for LiturgicalConfig {
@@ -56,6 +62,8 @@ impl Default for LiturgicalConfig {
             epiphany_on_sunday: DEFAULT_EPIPHANY_ON_SUNDAY,
             corpus_christi_on_sunday: DEFAULT_CORPUS_CHRISTI_ON_SUNDAY,
             ascension_on_sunday: DEFAULT_ASCENSION_ON_SUNDAY,
+            calendar_definitions: Vec::new(),
+            resources: Vec::new(),
         }
     }
 }
@@ -95,6 +103,8 @@ impl LiturgicalConfig {
             epiphany_on_sunday,
             corpus_christi_on_sunday,
             ascension_on_sunday,
+            calendar_definitions: Vec::new(),
+            resources: Vec::new(),
         }
     }
 
@@ -117,6 +127,8 @@ impl LiturgicalConfig {
             corpus_christi_on_sunday: corpus_christi_on_sunday
                 .unwrap_or(DEFAULT_CORPUS_CHRISTI_ON_SUNDAY),
             ascension_on_sunday: ascension_on_sunday.unwrap_or(DEFAULT_ASCENSION_ON_SUNDAY),
+            calendar_definitions: Vec::new(),
+            resources: Vec::new(),
         }
     }
 
@@ -183,6 +195,8 @@ impl LiturgicalConfig {
             epiphany_on_sunday,
             corpus_christi_on_sunday,
             ascension_on_sunday,
+            calendar_definitions: Vec::new(),
+            resources: Vec::new(),
         }
     }
 
@@ -228,5 +242,45 @@ impl LiturgicalConfig {
             DEFAULT_CORPUS_CHRISTI_ON_SUNDAY,
             DEFAULT_ASCENSION_ON_SUNDAY,
         )
+    }
+
+    /// Add a calendar definition to the configuration
+    pub fn add_calendar_definition(&mut self, calendar_def: CalendarDefinition) {
+        self.calendar_definitions.push(calendar_def);
+    }
+
+    /// Add multiple calendar definitions to the configuration
+    pub fn add_calendar_definitions(&mut self, calendar_defs: Vec<CalendarDefinition>) {
+        self.calendar_definitions.extend(calendar_defs);
+    }
+
+    /// Get a calendar definition by ID
+    pub fn get_calendar_definition(&self, id: &str) -> Option<&CalendarDefinition> {
+        self.calendar_definitions.iter().find(|def| def.id == id)
+    }
+
+    /// Add a resources definition to the configuration
+    pub fn add_resources(&mut self, resources: ResourcesDefinition) {
+        self.resources.push(resources);
+    }
+
+    /// Add multiple resources definitions to the configuration
+    pub fn add_resources_definitions(&mut self, resources: Vec<ResourcesDefinition>) {
+        self.resources.extend(resources);
+    }
+
+    /// Get a resources definition by locale
+    pub fn get_resources(&self, locale: &str) -> Option<&ResourcesDefinition> {
+        self.resources.iter().find(|res| res.locale == locale)
+    }
+
+    /// Clear all calendar definitions
+    pub fn clear_calendar_definitions(&mut self) {
+        self.calendar_definitions.clear();
+    }
+
+    /// Clear all resources definitions
+    pub fn clear_resources(&mut self) {
+        self.resources.clear();
     }
 }
