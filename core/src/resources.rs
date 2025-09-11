@@ -2,9 +2,9 @@ use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
-// Re-export des types existants depuis calendar_def
+// Re-export existing types from calendar_def
 use crate::calendar_def::Title;
-use crate::types::entities::SaintCount;
+use crate::types::saint_count::SaintCount;
 
 // Type aliases
 pub type LocaleId = String;

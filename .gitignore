@@ -102,3 +102,6 @@ local-*
 
 # Test files
 _*.json
+
+# Dependencies documentation
+_docs/

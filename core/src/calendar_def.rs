@@ -1,9 +1,9 @@
 use schemars::JsonSchema;
 use serde::{Deserialize, Deserializer, Serialize};
 
-use crate::types::entities::SaintCount;
+use crate::types::saint_count::SaintCount;
 
-// Macro pour générer les types SingleOrMultiple
+// Macro to generate SingleOrMultiple types
 macro_rules! single_or_multiple {
     ($name:ident, $type:ty) => {
         #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]

@@ -20,6 +20,7 @@ serde_json = { workspace = true }
 
 [dev-dependencies]
 tempfile = "3.22.0"
+serde_test = "1.0"
 
 [[bin]]
 name = "generate-schema"

@@ -427,28 +427,19 @@
       "type": "string"
     },
     "SaintCount": {
-      "oneOf": [
+      "anyOf": [
         {
-          "enum": [
-            "Many"
-          ],
-          "type": "string"
+          "description": "Specific number of saints",
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
         },
         {
-          "additionalProperties": false,
-          "properties": {
-            "Number": {
-              "format": "uint32",
-              "minimum": 0,
-              "type": "integer"
-            }
-          },
-          "required": [
-            "Number"
-          ],
-          "type": "object"
+          "description": "Indeterminate number of saints",
+          "type": "null"
         }
-      ]
+      ],
+      "description": "Represents the number of saints for an entity or a group of entities.\n\nCan be either a specific number (u32) or \"MANY\" to indicate\nan indeterminate number of saints.\n\n# Serialization\n- `Number(n)` serializes as integer `n`\n- `Many` serializes as string `\"MANY\"`\n\n# Deserialization\n- Integers are converted to `Number(u32)`\n- String `\"MANY\"` is converted to `Many`\n- All other types generate an error"
     },
     "Title": {
       "enum": [
