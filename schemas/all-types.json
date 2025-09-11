@@ -676,6 +676,10 @@
               "type": "integer"
             },
             {
+              "const": "MANY",
+              "type": "string"
+            },
+            {
               "type": "null"
             }
           ]
@@ -2643,6 +2647,10 @@
               "type": "integer"
             },
             {
+              "const": "MANY",
+              "type": "string"
+            },
+            {
               "type": "null"
             }
           ]
@@ -2989,6 +2997,10 @@
           "format": "uint32",
           "minimum": 0,
           "type": "integer"
+        },
+        {
+          "const": "MANY",
+          "type": "string"
         },
         {
           "type": "null"

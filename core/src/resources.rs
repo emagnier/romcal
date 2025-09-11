@@ -3,7 +3,8 @@ use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
 // Re-export des types existants depuis calendar_def
-use crate::calendar_def::{SaintCount, Title};
+use crate::calendar_def::Title;
+use crate::types::entities::SaintCount;
 
 // Type aliases
 pub type LocaleId = String;

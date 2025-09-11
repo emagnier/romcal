@@ -18,6 +18,7 @@ pub mod dates;
 pub mod easter;
 pub mod error;
 pub mod resources;
+pub mod types;
 
 pub use calendar_def::*;
 pub use config::{CalendarScope, EasterCalculationType, LiturgicalConfig};

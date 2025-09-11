@@ -644,6 +644,10 @@
           "type": "integer"
         },
         {
+          "const": "MANY",
+          "type": "string"
+        },
+        {
           "type": "null"
         }
       ]

@@ -240,6 +240,11 @@ fn generate_types_schema(schemas_dir: &Path) -> Result<(), Box<dyn std::error::E
     ];
     apply_fixes_to_all_schemas(&mut schema_values);
 
+    // Apply SaintCount fix to all schemas
+    for schema_value in schema_values.iter_mut() {
+        fix_saint_count_schema(schema_value);
+    }
+
     // Extract definitions from all schemas
     let schema_refs: Vec<&Value> = schema_values.iter().map(|v| &**v).collect();
     merge_definitions_into_types_schema(&mut types_schema, &schema_refs);
@@ -272,11 +277,14 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     generate_schema::<ResourcesDefinition>(&schemas_dir, "resources-definition.json")?;
     generate_schema::<EntityDefinition>(&schemas_dir, "entity-definition.json")?;
 
-    // Generate calendar-definition.json with date_exceptions fix
+    // Generate calendar-definition.json with date_exceptions and saint_count fixes
     generate_schema_with_fixes::<CalendarDefinition>(
         &schemas_dir,
         "calendar-definition.json",
-        fix_date_exceptions_schema,
+        |schema| {
+            fix_date_exceptions_schema(schema);
+            fix_saint_count_schema(schema);
+        },
     )?;
 
     generate_types_schema(&schemas_dir)?;

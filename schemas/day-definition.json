@@ -427,14 +427,26 @@
       "type": "string"
     },
     "SaintCount": {
-      "anyOf": [
+      "oneOf": [
         {
-          "format": "uint32",
-          "minimum": 0,
-          "type": "integer"
+          "enum": [
+            "Many"
+          ],
+          "type": "string"
         },
         {
-          "type": "null"
+          "additionalProperties": false,
+          "properties": {
+            "Number": {
+              "format": "uint32",
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "Number"
+          ],
+          "type": "object"
         }
       ]
     },
