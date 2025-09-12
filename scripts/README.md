@@ -8,9 +8,11 @@ This directory contains build and automation scripts for the Romcal project.
 | ----------------------- | ----- | ---- | ------ | ---- | --------------- | ------------- | ----------------- |
 | `build-core.sh`         | ✅    | ❌   | ❌     | ❌   | ❌              | ❌            | Core only         |
 | `build-adapters.sh`     | ✅    | ❌   | ❌     | ❌   | ❌              | ❌            | Adapters only     |
+| `build-cli.sh`          | ✅    | ❌   | ❌     | ❌   | ❌              | ❌            | CLI only          |
 | `build-all.sh`          | ✅    | ❌   | ❌     | ❌   | ❌              | ❌            | Complete project  |
 | `check-core.sh`         | ❌    | ✅   | ✅     | ✅   | ❌              | ❌            | Core only         |
 | `check-adapters.sh`     | ❌    | ✅   | ✅     | ✅   | ❌              | ❌            | Adapters only     |
+| `check-cli.sh`          | ❌    | ✅   | ✅     | ✅   | ❌              | ❌            | CLI only          |
 | `check-all.sh`          | ❌    | ✅   | ✅     | ✅   | ❌              | ❌            | Complete project  |
 | `generate-schema.sh`    | ❌    | ❌   | ❌     | ❌   | ✅              | ❌            | Schema generation |
 | `validate-calendars.sh` | ❌    | ❌   | ❌     | ❌   | ❌              | ✅            | Calendar data     |
@@ -23,8 +25,10 @@ This directory contains build and automation scripts for the Romcal project.
 
 ```bash
 ./scripts/build-core.sh      # Quick build
+./scripts/build-cli.sh       # Build CLI
 ./scripts/build-adapters.sh wasm  # Build WASM bindings
 ./scripts/check-core.sh      # Quality checks
+./scripts/check-cli.sh       # CLI quality checks
 ```
 
 **Complete workflow:**
@@ -38,15 +42,17 @@ This directory contains build and automation scripts for the Romcal project.
 
 ### Build Scripts
 
-- **`build-all.sh`** - Builds entire project (core + adapters + tools)
+- **`build-all.sh`** - Builds entire project (core + adapters + CLI + tools)
 - **`build-core.sh`** - Builds core module only
+- **`build-cli.sh`** - Builds CLI module only
 - **`build-adapters.sh`** - Builds all adapters or specific one (`wasm`, `python`)
 
 ### Quality Scripts
 
 - **`check-core.sh`** - Runs clippy, rustfmt, tests on core
+- **`check-cli.sh`** - Runs clippy, rustfmt, tests on CLI
 - **`check-adapters.sh`** - Runs quality checks on adapters
-- **`check-all.sh`** - Global quality checks (core + adapters + tools + schemas)
+- **`check-all.sh`** - Global quality checks (core + adapters + CLI + tools + schemas)
 
 ### Utility Scripts
 
@@ -60,11 +66,13 @@ scripts/
 ├── README.md
 ├── build-all.sh          # Build entire project
 ├── build-core.sh         # Build core module only
+├── build-cli.sh          # Build CLI module only
 ├── build-adapters.sh     # Build all/specific adapters
 ├── check-core.sh         # Quality checks for core
+├── check-cli.sh          # Quality checks for CLI
 ├── check-adapters.sh     # Quality checks for adapters
-├── ci.sh                 # Complete CI/CD pipeline
 ├── check-all.sh          # Global quality checks
+├── ci.sh                 # Complete CI/CD pipeline
 ├── generate-schema.sh    # Generate JSON schemas
 ├── validate-calendars.sh # Validate calendar data
 ├── transform-calendars.js # Transform calendar data

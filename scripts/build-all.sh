@@ -25,9 +25,15 @@ echo "2️⃣ Building all adapters..."
 
 echo ""
 
+# Build CLI
+echo "3️⃣ Building CLI..."
+./scripts/build-cli.sh
+
+echo ""
+
 # Build tools (if they exist)
 if [ -d "$PROJECT_ROOT/tools" ]; then
-    echo "3️⃣ Building tools..."
+    echo "4️⃣ Building tools..."
     cd "$PROJECT_ROOT/tools"
     cargo build --release
     echo "✅ Tools built successfully!"
@@ -37,9 +43,11 @@ fi
 echo "🎉 Entire project build completed successfully!"
 echo ""
 echo "📦 Build outputs:"
-echo "   - Core: core/target/release/"
+echo "   - Core library: target/release/libromcal_core.rlib"
+echo "   - Core tools: target/release/generate-schema"
 echo "   - WASM: bindings/wasm/pkg/"
-echo "   - Tools: tools/target/release/"
+echo "   - CLI: target/release/romcal"
+echo "   - Tools: target/release/validate-json"
 echo ""
 echo "To run tests:"
 echo "  cargo test"

@@ -64,23 +64,29 @@ run_script "build-adapters.sh" "3️⃣ Building all adapters"
 # Step 4: Check adapter quality
 run_script "check-adapters.sh" "4️⃣ Checking adapter quality"
 
-# Step 5: Generate schemas
-run_script "generate-schema.sh" "5️⃣ Generating JSON schemas"
+# Step 5: Build CLI module
+run_script "build-cli.sh" "5️⃣ Building CLI module"
 
-# Step 6: Build tools
+# Step 6: Check CLI quality
+run_script "check-cli.sh" "6️⃣ Checking CLI quality"
+
+# Step 7: Generate schemas
+run_script "generate-schema.sh" "7️⃣ Generating JSON schemas"
+
+# Step 8: Build tools
 if [ -d "$PROJECT_ROOT/tools" ]; then
-    run_step "6️⃣ Building and checking tools" "cd '$PROJECT_ROOT/tools' && cargo build --release && cargo clippy --release -- -D warnings && cargo fmt -- --check && cargo test --release"
+    run_step "8️⃣ Building and checking tools" "cd '$PROJECT_ROOT/tools' && cargo build --release && cargo clippy --release -- -D warnings && cargo fmt -- --check && cargo test --release"
 fi
 
-# Step 7: Validate calendars
-run_script "validate-calendars.sh" "7️⃣ Validating calendar files"
+# Step 9: Validate calendars
+run_script "validate-calendars.sh" "9️⃣ Validating calendar files"
 
-# Step 8: Validate resources
-run_script "validate-resources.sh" "8️⃣ Validating resource files"
+# Step 10: Validate resources
+run_script "validate-resources.sh" "🔟 Validating resource files"
 
-# Step 9: Integration tests (if they exist)
+# Step 11: Integration tests (if they exist)
 if [ -d "$PROJECT_ROOT/tests" ]; then
-    run_step "9️⃣ Running integration tests" "cd '$PROJECT_ROOT' && cargo test --release"
+    run_step "1️⃣1️⃣ Running integration tests" "cd '$PROJECT_ROOT' && cargo test --release"
 fi
 
 # Calculate total duration
@@ -95,6 +101,7 @@ echo ""
 echo "📊 Summary:"
 echo "   ✅ Core module built and checked"
 echo "   ✅ All adapters built and checked"
+echo "   ✅ CLI module built and checked"
 echo "   ✅ JSON schemas generated"
 echo "   ✅ Calendar files validated"
 echo "   ✅ Resource files validated"

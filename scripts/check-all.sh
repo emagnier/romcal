@@ -24,9 +24,15 @@ echo "2️⃣ Validating adapters..."
 
 echo ""
 
+# Validate CLI
+echo "3️⃣ Validating CLI..."
+./scripts/check-cli.sh
+
+echo ""
+
 # Validate tools (if they exist)
 if [ -d "$PROJECT_ROOT/tools" ]; then
-    echo "3️⃣ Validating tools..."
+    echo "4️⃣ Validating tools..."
     cd "$PROJECT_ROOT/tools"
     cargo clippy --release -- -D warnings
     cargo fmt -- --check
@@ -36,7 +42,7 @@ if [ -d "$PROJECT_ROOT/tools" ]; then
 fi
 
 # Validate workspace dependencies
-echo "4️⃣ Validating workspace dependencies..."
+echo "5️⃣ Validating workspace dependencies..."
 cd "$PROJECT_ROOT"
 cargo check --workspace
 
@@ -45,7 +51,7 @@ echo ""
 
 # Validate schemas (if they exist)
 if [ -d "$PROJECT_ROOT/schemas" ]; then
-    echo "5️⃣ Validating schemas..."
+    echo "6️⃣ Validating schemas..."
     if [ -f "$PROJECT_ROOT/scripts/validate-schemas.sh" ]; then
         ./scripts/validate-schemas.sh
     else
@@ -59,6 +65,7 @@ echo ""
 echo "📊 Quality checks summary:"
 echo "   ✅ Core module validated"
 echo "   ✅ All adapters validated"
+echo "   ✅ CLI validated"
 echo "   ✅ Tools validated"
 echo "   ✅ Workspace dependencies validated"
 echo "   ✅ Schemas validated"
