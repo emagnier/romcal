@@ -1,4 +1,4 @@
-use clap::{Parser, Subcommand};
+use clap::{Parser, Subcommand, ValueEnum};
 use colored::*;
 use std::process;
 
@@ -10,8 +10,18 @@ mod output;
 // Import command modules
 use commands::config as config_cmd;
 use commands::dates;
+use commands::generate_bundle;
 use commands::list;
 use error::RomcalCliError;
+
+/// Type of validation to perform
+#[derive(ValueEnum, Clone, Debug)]
+pub enum ValidationType {
+    /// Validate calendar definition JSON file
+    CalendarDef,
+    /// Validate resource JSON file
+    Resource,
+}
 
 #[derive(Parser)]
 #[command(
@@ -79,6 +89,22 @@ enum Commands {
     ListLocales,
     /// Display configuration information
     Config,
+    /// Generate a JSON bundle of the current configuration
+    GenerateBundle {
+        /// Output file path (if not specified, prints to stdout)
+        #[arg(short, long)]
+        out: Option<String>,
+    },
+    /// Validate JSON files against schemas
+    Validate {
+        /// Type of validation to perform
+        #[arg(value_enum)]
+        validation_type: ValidationType,
+        /// Path(s) or pattern(s) to JSON files to validate
+        /// Supports glob patterns (e.g., '*.json', '**/*.json') or multiple file paths
+        #[arg(required = true)]
+        files: Vec<String>,
+    },
 }
 
 fn main() {
@@ -124,16 +150,34 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
         ),
         Commands::ListCalendars => list::handle_calendars(common_params.format),
         Commands::ListLocales => list::handle_locales(common_params.format),
-        Commands::Config => config_cmd::handle(
-            common_params.calendar,
-            common_params.locale,
-            common_params.format,
-            common_params.scope,
-            common_params.easter_calculation_type,
-            common_params.ascension_on_sunday,
-            common_params.epiphany_on_sunday,
-            common_params.corpus_christi_on_sunday,
-        ),
+        Commands::Config => config_cmd::handle(config_cmd::ConfigParams {
+            calendar: common_params.calendar.map(|s| s.to_string()),
+            locale: common_params.locale.map(|s| s.to_string()),
+            format: common_params.format.to_string(),
+            scope: common_params.scope.map(|s| s.to_string()),
+            easter_calculation_type: common_params.easter_calculation_type.map(|s| s.to_string()),
+            ascension_on_sunday: common_params.ascension_on_sunday,
+            epiphany_on_sunday: common_params.epiphany_on_sunday,
+            corpus_christi_on_sunday: common_params.corpus_christi_on_sunday,
+        }),
+        Commands::GenerateBundle { out } => {
+            generate_bundle::handle_generate_bundle(generate_bundle::GenerateBundleParams {
+                calendar: common_params.calendar.map(|s| s.to_string()),
+                locale: common_params.locale.map(|s| s.to_string()),
+                scope: common_params.scope.map(|s| s.to_string()),
+                easter_calculation_type: common_params
+                    .easter_calculation_type
+                    .map(|s| s.to_string()),
+                ascension_on_sunday: common_params.ascension_on_sunday,
+                epiphany_on_sunday: common_params.epiphany_on_sunday,
+                corpus_christi_on_sunday: common_params.corpus_christi_on_sunday,
+                output_file: out.map(|s| s.to_string()),
+            })
+        }
+        Commands::Validate {
+            validation_type,
+            files,
+        } => commands::validate::handle_validate(validation_type, &files),
     }
 }
 

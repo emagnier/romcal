@@ -4,10 +4,13 @@ use crate::output::validate_format;
 use crate::output::OutputFormat;
 use romcal_core::LiturgicalDates;
 
+/// Type alias for date calculation methods
+type DateMethod = fn(&LiturgicalDates, Option<i32>) -> chrono::DateTime<chrono::Utc>;
+
 /// Date type configuration
 struct DateTypeConfig {
     name: &'static str,
-    method: fn(&LiturgicalDates, Option<i32>) -> chrono::DateTime<chrono::Utc>,
+    method: DateMethod,
 }
 
 /// Valid date types with their corresponding methods
@@ -83,16 +86,14 @@ const DATE_TYPES: &[DateTypeConfig] = &[
 ];
 
 /// Validate date type and return the corresponding method
-fn validate_and_get_date_method(
-    date_type: &str,
-) -> Result<fn(&LiturgicalDates, Option<i32>) -> chrono::DateTime<chrono::Utc>, RomcalCliError> {
+fn validate_and_get_date_method(date_type: &str) -> Result<DateMethod, RomcalCliError> {
     DATE_TYPES
         .iter()
         .find(|config| config.name == date_type)
         .map(|config| config.method)
         .ok_or_else(|| {
             let valid_types: Vec<&str> = DATE_TYPES.iter().map(|config| config.name).collect();
-            RomcalCliError::config_error(&format!(
+            RomcalCliError::config_error(format!(
                 "Invalid date type: '{}'. Valid types are: {}",
                 date_type,
                 valid_types.join(", ")

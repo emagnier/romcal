@@ -81,17 +81,5 @@ pub const CALENDAR_IDS: &[&str] = &[
 /// This constant contains all locale codes
 /// in the romcal project, sorted alphabetically.
 pub const LOCALE_CODES: &[&str] = &[
-    "cs",
-    "de",
-    "en",
-    "en-gb",
-    "en-ie",
-    "es",
-    "fr",
-    "it",
-    "la",
-    "pl",
-    "pt-br",
-    "sk",
-    "ta",
+    "cs", "de", "en", "en-gb", "en-ie", "es", "fr", "it", "la", "pl", "pt-br", "sk", "ta",
 ];

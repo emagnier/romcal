@@ -5,6 +5,18 @@ use crate::output::OutputFormat;
 use serde_json;
 use serde_yaml;
 
+/// Configuration parameters for the config command
+pub struct ConfigParams {
+    pub calendar: Option<String>,
+    pub locale: Option<String>,
+    pub format: String,
+    pub scope: Option<String>,
+    pub easter_calculation_type: Option<String>,
+    pub ascension_on_sunday: Option<bool>,
+    pub epiphany_on_sunday: Option<bool>,
+    pub corpus_christi_on_sunday: Option<bool>,
+}
+
 /// Configuration data for display
 #[derive(Debug, Clone)]
 struct ConfigDisplayData {
@@ -54,30 +66,21 @@ impl ConfigDisplayData {
 }
 
 /// Handle configuration display command
-pub fn handle(
-    calendar: Option<&str>,
-    locale: Option<&str>,
-    format: &str,
-    scope: Option<&str>,
-    easter_calculation_type: Option<&str>,
-    ascension_on_sunday: Option<bool>,
-    epiphany_on_sunday: Option<bool>,
-    corpus_christi_on_sunday: Option<bool>,
-) -> Result<(), RomcalCliError> {
-    validate_format(format)?;
+pub fn handle(params: ConfigParams) -> Result<(), RomcalCliError> {
+    validate_format(&params.format)?;
 
     let liturgical_config = create_liturgical_config(
-        calendar,
-        locale,
-        scope,
-        easter_calculation_type,
-        ascension_on_sunday,
-        corpus_christi_on_sunday,
-        epiphany_on_sunday,
+        params.calendar.as_deref(),
+        params.locale.as_deref(),
+        params.scope.as_deref(),
+        params.easter_calculation_type.as_deref(),
+        params.ascension_on_sunday,
+        params.corpus_christi_on_sunday,
+        params.epiphany_on_sunday,
     )?;
 
     // Parse output format
-    let output_format = match format.to_lowercase().as_str() {
+    let output_format = match params.format.to_lowercase().as_str() {
         "json" => OutputFormat::Json,
         "csv" => OutputFormat::Csv,
         "yaml" => OutputFormat::Yaml,

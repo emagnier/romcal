@@ -51,9 +51,7 @@ pub fn current_year() -> i32 {
 
 /// Validate a year
 pub fn validate_year(year: i32) -> Result<(), RomcalCliError> {
-    if year < 1583 {
-        Err(RomcalCliError::invalid_year(year))
-    } else if year > 9999 {
+    if !(1583..=9999).contains(&year) {
         Err(RomcalCliError::invalid_year(year))
     } else {
         Ok(())

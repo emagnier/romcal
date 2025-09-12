@@ -25,6 +25,9 @@ pub enum RomcalCliError {
 
     #[error("Romcal error: {0}")]
     RomcalError(#[from] romcal_core::RomcalError),
+
+    #[error("JSON schema validation error: {0}")]
+    SchemaValidationError(#[from] Box<jsonschema::ValidationError<'static>>),
 }
 
 impl RomcalCliError {

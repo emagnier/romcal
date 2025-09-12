@@ -77,3 +77,12 @@ echo "Constants generated successfully:"
 echo "  - ${#CALENDAR_IDS[@]} calendars found"
 echo "  - ${#LOCALES[@]} locales found"
 echo "  - File written: $OUTPUT_FILE"
+
+# Format the generated file with rustfmt
+echo "Formatting generated file with rustfmt..."
+if command -v rustfmt &> /dev/null; then
+    rustfmt "$OUTPUT_FILE"
+    echo "  - File formatted with rustfmt"
+else
+    echo "  - Warning: rustfmt not found, skipping formatting"
+fi

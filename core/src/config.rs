@@ -269,4 +269,10 @@ impl LiturgicalConfig {
     pub fn clear_resources(&mut self) {
         self.resources.clear();
     }
+
+    /// Create a JSON bundle of the current configuration
+    /// This method serializes the LiturgicalConfig to JSON format
+    pub fn create_bundle(&self) -> Result<String, serde_json::Error> {
+        serde_json::to_string_pretty(self)
+    }
 }
