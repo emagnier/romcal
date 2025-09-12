@@ -1,88 +1,113 @@
 use crate::error::RomcalCliError;
 use chrono::Datelike;
-use romcal_core::{
-    CalendarScope, EasterCalculationType, LiturgicalConfig, CALENDAR_IDS, LOCALE_CODES,
-};
+use romcal_core::{CalendarScope, EasterCalculationType, LiturgicalConfig};
 
-/// Default configuration for the CLI
-pub struct CliConfig {
-    pub default_locale: String,
-    pub default_calendar: String,
-    pub default_scope: CalendarScope,
+/// Create a liturgical configuration from CLI parameters
+pub fn create_liturgical_config(
+    calendar: Option<&str>,
+    locale: Option<&str>,
+    scope: Option<&str>,
+    easter_calculation_type: Option<&str>,
+    ascension_on_sunday: Option<bool>,
+    corpus_christi_on_sunday: Option<bool>,
+    epiphany_on_sunday: Option<bool>,
+) -> Result<LiturgicalConfig, RomcalCliError> {
+    // Parse Easter calculation type
+    let easter_calculation_type = match easter_calculation_type.unwrap_or("gregorian") {
+        "gregorian" => EasterCalculationType::Gregorian,
+        "julian" => EasterCalculationType::Julian,
+        _ => {
+            return Err(RomcalCliError::invalid_calculation_type(
+                easter_calculation_type.unwrap_or("unknown"),
+            ))
+        }
+    };
+
+    // Parse scope
+    let scope = match scope.unwrap_or("gregorian") {
+        "gregorian" => CalendarScope::Gregorian,
+        "liturgical" => CalendarScope::Liturgical,
+        _ => return Err(RomcalCliError::invalid_scope(scope.unwrap_or("unknown"))),
+    };
+
+    // Use core's with_optional_values method which handles all defaults and validation
+    let config = LiturgicalConfig::with_optional_values(
+        calendar,
+        locale,
+        easter_calculation_type,
+        scope,
+        epiphany_on_sunday,
+        corpus_christi_on_sunday,
+        ascension_on_sunday,
+    );
+
+    Ok(config)
 }
 
-impl Default for CliConfig {
-    fn default() -> Self {
-        Self {
-            default_locale: "en".to_string(),
-            default_calendar: "general_roman".to_string(),
-            default_scope: CalendarScope::Gregorian,
-        }
+/// Get current year
+pub fn current_year() -> i32 {
+    chrono::Utc::now().year()
+}
+
+/// Validate a year
+pub fn validate_year(year: i32) -> Result<(), RomcalCliError> {
+    if year < 1583 {
+        Err(RomcalCliError::invalid_year(year))
+    } else if year > 9999 {
+        Err(RomcalCliError::invalid_year(year))
+    } else {
+        Ok(())
     }
 }
 
-impl CliConfig {
-    /// Create a liturgical configuration from CLI parameters
-    pub fn create_liturgical_config(
-        &self,
-        calendar: Option<&str>,
-        locale: Option<&str>,
-        easter_type: Option<&str>,
-        ascension_on_sunday: Option<bool>,
-        corpus_christi_on_sunday: Option<bool>,
-        epiphany_on_sunday: Option<bool>,
-    ) -> Result<LiturgicalConfig, RomcalCliError> {
-        let calendar = calendar.unwrap_or(&self.default_calendar);
-        let locale = locale.unwrap_or(&self.default_locale);
+#[cfg(test)]
+mod tests {
+    use super::*;
 
-        // Validate locale
-        if !LOCALE_CODES.contains(&locale) {
-            return Err(RomcalCliError::unsupported_locale(locale));
-        }
+    #[test]
+    fn test_validate_year() {
+        // Test valid years
+        assert!(validate_year(1583).is_ok(), "1583 should be valid");
+        assert!(validate_year(2024).is_ok(), "2024 should be valid");
+        assert!(validate_year(3000).is_ok(), "3000 should be valid");
+        assert!(validate_year(9999).is_ok(), "9999 should be valid");
 
-        // Validate calendar
-        if !CALENDAR_IDS.contains(&calendar) {
-            return Err(RomcalCliError::calendar_not_found(calendar));
-        }
+        // Test invalid years (too small)
+        assert!(validate_year(1582).is_err(), "1582 should be invalid");
+        assert!(validate_year(1000).is_err(), "1000 should be invalid");
+        assert!(validate_year(0).is_err(), "0 should be invalid");
+        assert!(validate_year(-100).is_err(), "-100 should be invalid");
 
-        // Parse Easter calculation type
-        let easter_calculation_type = match easter_type.unwrap_or("gregorian") {
-            "gregorian" => EasterCalculationType::Gregorian,
-            "julian" => EasterCalculationType::Julian,
-            _ => {
-                return Err(RomcalCliError::invalid_calculation_type(
-                    easter_type.unwrap(),
-                ))
-            }
-        };
-
-        // Create configuration
-        let config = LiturgicalConfig {
-            calendar: calendar.to_string(),
-            locale: locale.to_string(),
-            easter_calculation_type,
-            scope: self.default_scope,
-            epiphany_on_sunday: epiphany_on_sunday.unwrap_or(false),
-            corpus_christi_on_sunday: corpus_christi_on_sunday.unwrap_or(true),
-            ascension_on_sunday: ascension_on_sunday.unwrap_or(false),
-            calendar_definitions: vec![],
-            resources: vec![],
-        };
-
-        Ok(config)
+        // Test invalid years (too large)
+        assert!(validate_year(10000).is_err(), "10000 should be invalid");
+        assert!(validate_year(50000).is_err(), "50000 should be invalid");
     }
 
-    /// Get current year
-    pub fn current_year() -> i32 {
-        chrono::Utc::now().year()
-    }
+    #[test]
+    fn test_validate_year_error_message() {
+        let result = validate_year(1582);
+        assert!(result.is_err());
 
-    /// Validate a year
-    pub fn validate_year(year: i32) -> Result<(), RomcalCliError> {
-        if year < 1583 {
-            Err(RomcalCliError::invalid_year(year))
+        if let Err(RomcalCliError::InvalidYear(year)) = result {
+            assert_eq!(year, 1582);
         } else {
-            Ok(())
+            panic!("Expected InvalidYear error");
+        }
+    }
+
+    #[test]
+    fn test_validate_year_maximum_boundary() {
+        // Test maximum valid year
+        assert!(validate_year(9999).is_ok(), "9999 should be valid");
+
+        // Test just over maximum
+        let result = validate_year(10000);
+        assert!(result.is_err(), "10000 should be invalid");
+
+        if let Err(RomcalCliError::InvalidYear(year)) = result {
+            assert_eq!(year, 10000);
+        } else {
+            panic!("Expected InvalidYear error");
         }
     }
 }

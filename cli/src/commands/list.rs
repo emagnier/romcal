@@ -1,56 +1,48 @@
-use crate::error::RomcalCliError;
+use crate::{
+    error::RomcalCliError,
+    output::{validate_format, OutputFormat},
+};
 use romcal_core::{CALENDAR_IDS, LOCALE_CODES};
 use serde_json;
 use serde_yaml;
 
-/// Handle list calendars command
-pub fn handle_calendars(format: &str) -> Result<(), RomcalCliError> {
-    let calendars = CALENDAR_IDS;
+/// Generic function to list items in various formats
+fn list_items(items: &[&str], format: &str) -> Result<(), RomcalCliError> {
+    validate_format(format)?;
 
-    RomcalCliError::validate_format(format)?;
+    let output_format = match format.to_lowercase().as_str() {
+        "json" => OutputFormat::Json,
+        "csv" => OutputFormat::Csv,
+        "yaml" => OutputFormat::Yaml,
+        "lines" => OutputFormat::Lines,
+        _ => unreachable!(), // Already validated above
+    };
 
-    match format {
-        "json" => {
-            println!("{}", serde_json::to_string_pretty(&calendars)?);
+    match output_format {
+        OutputFormat::Json => {
+            println!("{}", serde_json::to_string_pretty(items)?);
         }
-        "lines" => {
-            for calendar in calendars {
-                println!("{}", calendar);
+        OutputFormat::Lines => {
+            for item in items {
+                println!("{}", item);
             }
         }
-        "csv" => {
-            println!("{}", calendars.join(","));
+        OutputFormat::Csv => {
+            println!("{}", items.join(","));
         }
-        "yaml" => {
-            println!("{}", serde_yaml::to_string(&calendars)?);
+        OutputFormat::Yaml => {
+            println!("{}", serde_yaml::to_string(items)?);
         }
-        _ => unreachable!(), // Already validated above
     }
     Ok(())
 }
 
+/// Handle list calendars command
+pub fn handle_calendars(format: &str) -> Result<(), RomcalCliError> {
+    list_items(CALENDAR_IDS, format)
+}
+
 /// Handle list locales command
 pub fn handle_locales(format: &str) -> Result<(), RomcalCliError> {
-    let locales = LOCALE_CODES;
-
-    RomcalCliError::validate_format(format)?;
-
-    match format {
-        "json" => {
-            println!("{}", serde_json::to_string_pretty(&locales)?);
-        }
-        "lines" => {
-            for locale in locales {
-                println!("{}", locale);
-            }
-        }
-        "csv" => {
-            println!("{}", locales.join(","));
-        }
-        "yaml" => {
-            println!("{}", serde_yaml::to_string(&locales)?);
-        }
-        _ => unreachable!(), // Already validated above
-    }
-    Ok(())
+    list_items(LOCALE_CODES, format)
 }

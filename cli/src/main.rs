@@ -26,44 +26,51 @@ struct Cli {
     #[command(subcommand)]
     command: Commands,
 
-    /// Show debug information
+    /// Calendar to use (e.g., 'general_roman', 'france', 'united_states')
     #[arg(short, long, global = true)]
-    debug: bool,
+    calendar: Option<String>,
+
+    /// Locale to use (e.g., 'en', 'fr', 'es')
+    #[arg(short, long, global = true)]
+    locale: Option<String>,
 
     /// Output format (json, csv, yaml, lines)
     #[arg(short, long, global = true, default_value = "yaml")]
     format: String,
 
-    /// Easter calculation type (gregorian, julian)
-    #[arg(long, global = true, default_value = "gregorian")]
-    easter_calculation_type: String,
-
     /// Calendar scope (gregorian, liturgical)
-    #[arg(long, global = true, default_value = "gregorian")]
-    scope: String,
+    #[arg(short, long, global = true)]
+    scope: Option<String>,
+
+    /// Easter calculation type (gregorian, julian)
+    #[arg(long, global = true)]
+    easter_calculation_type: Option<String>,
 
     /// Celebrate Ascension on Sunday
-    #[arg(long, global = true)]
+    #[arg(long, global = true, action = clap::ArgAction::SetTrue)]
     ascension_on_sunday: bool,
 
     /// Celebrate Epiphany on Sunday
-    #[arg(long, global = true)]
+    #[arg(long, global = true, action = clap::ArgAction::SetTrue)]
     epiphany_on_sunday: bool,
 
     /// Celebrate Corpus Christi on Sunday
-    #[arg(long, global = true)]
+    #[arg(long, global = true, action = clap::ArgAction::SetTrue)]
     corpus_christi_on_sunday: bool,
+
+    /// Show debug information
+    #[arg(short, long, global = true)]
+    debug: bool,
 }
 
 #[derive(Subcommand)]
 enum Commands {
     /// Calculate liturgical dates
     Dates {
-        #[command(subcommand)]
-        date_command: dates::DateCommands,
+        /// Type of liturgical date to calculate (e.g., easter_sunday, palm_sunday)
+        date_type: String,
 
         /// Year for date calculations (default: current year)
-        #[arg(short, long)]
         year: Option<i32>,
     },
     /// List available Romcal calendars
@@ -90,26 +97,54 @@ fn main() {
 }
 
 fn run(cli: Cli) -> Result<(), RomcalCliError> {
+    // Extract common parameters to avoid duplication
+    let common_params = CommonParams {
+        calendar: cli.calendar.as_deref(),
+        locale: cli.locale.as_deref(),
+        format: &cli.format,
+        scope: cli.scope.as_deref(),
+        easter_calculation_type: cli.easter_calculation_type.as_deref(),
+        ascension_on_sunday: Some(cli.ascension_on_sunday),
+        epiphany_on_sunday: Some(cli.epiphany_on_sunday),
+        corpus_christi_on_sunday: Some(cli.corpus_christi_on_sunday),
+    };
+
     match cli.command {
-        Commands::Dates { date_command, year } => dates::handle(
-            date_command,
+        Commands::Dates { date_type, year } => dates::handle(
+            &date_type,
             year,
-            &cli.format,
-            &cli.easter_calculation_type,
-            &cli.scope,
-            cli.ascension_on_sunday,
-            cli.epiphany_on_sunday,
-            cli.corpus_christi_on_sunday,
+            common_params.calendar,
+            common_params.locale,
+            common_params.format,
+            common_params.scope,
+            common_params.easter_calculation_type,
+            common_params.ascension_on_sunday,
+            common_params.epiphany_on_sunday,
+            common_params.corpus_christi_on_sunday,
         ),
-        Commands::ListCalendars => list::handle_calendars(&cli.format),
-        Commands::ListLocales => list::handle_locales(&cli.format),
+        Commands::ListCalendars => list::handle_calendars(common_params.format),
+        Commands::ListLocales => list::handle_locales(common_params.format),
         Commands::Config => config_cmd::handle(
-            &cli.format,
-            &cli.easter_calculation_type,
-            &cli.scope,
-            cli.ascension_on_sunday,
-            cli.epiphany_on_sunday,
-            cli.corpus_christi_on_sunday,
+            common_params.calendar,
+            common_params.locale,
+            common_params.format,
+            common_params.scope,
+            common_params.easter_calculation_type,
+            common_params.ascension_on_sunday,
+            common_params.epiphany_on_sunday,
+            common_params.corpus_christi_on_sunday,
         ),
     }
+}
+
+/// Common parameters shared across commands
+struct CommonParams<'a> {
+    calendar: Option<&'a str>,
+    locale: Option<&'a str>,
+    format: &'a str,
+    scope: Option<&'a str>,
+    easter_calculation_type: Option<&'a str>,
+    ascension_on_sunday: Option<bool>,
+    epiphany_on_sunday: Option<bool>,
+    corpus_christi_on_sunday: Option<bool>,
 }

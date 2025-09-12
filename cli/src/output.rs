@@ -1,3 +1,4 @@
+use crate::error::RomcalCliError;
 use serde::{Deserialize, Serialize};
 
 /// Output format options for the CLI
@@ -31,5 +32,33 @@ impl std::fmt::Display for OutputFormat {
             OutputFormat::Yaml => write!(f, "yaml"),
             OutputFormat::Lines => write!(f, "lines"),
         }
+    }
+}
+
+impl OutputFormat {
+    /// Print data in the specified format
+    pub fn print(&self, data: &str) -> Result<(), RomcalCliError> {
+        match self {
+            OutputFormat::Json => {
+                println!("{}", serde_json::to_string_pretty(data)?);
+            }
+            OutputFormat::Csv | OutputFormat::Lines => {
+                println!("{}", data);
+            }
+            OutputFormat::Yaml => {
+                println!("{}", serde_yaml::to_string(data)?);
+            }
+        }
+        Ok(())
+    }
+}
+
+/// Validate output format and return error if invalid
+pub fn validate_format(format: &str) -> Result<(), RomcalCliError> {
+    match format.to_lowercase().as_str() {
+        "json" | "csv" | "yaml" | "lines" => Ok(()),
+        _ => Err(RomcalCliError::config_error(
+            "Invalid format. Must be 'json', 'csv', 'yaml', or 'lines'",
+        )),
     }
 }
