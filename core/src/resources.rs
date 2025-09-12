@@ -1,56 +1,12 @@
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
-use std::collections::HashMap;
 
-// Re-export existing types from calendar_def
-use crate::calendar_def::Title;
-use crate::types::saint_count::SaintCount;
+use crate::types::resource::ResourcesMetadata;
+use crate::types::{CanonizationLevel, EntityType, SaintCount, SaintDateDef, Sex, Title};
 
 // Type aliases
 pub type LocaleId = String;
 pub type EntityId = String;
-
-// Enums
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema, Default)]
-#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
-pub enum EntityType {
-    #[default]
-    Person,
-    Place,
-    Event,
-}
-
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
-#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
-pub enum CanonizationLevel {
-    Blessed,
-    Saint,
-}
-
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
-#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
-pub enum Sex {
-    Male,
-    Female,
-}
-
-// Union types using enums
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
-#[serde(untagged)]
-pub enum SaintDate {
-    Year(u32),
-    YearMonth(String),    // Format: "YYYY-MM"
-    YearMonthDay(String), // Format: "YYYY-MM-DD"
-}
-
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
-#[serde(untagged)]
-pub enum SaintDateDef {
-    Date(SaintDate),
-    Between { between: [SaintDate; 2] },
-    Or { or: Vec<SaintDate> },
-    Century { century: u32 },
-}
 
 // Structs
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
@@ -66,117 +22,6 @@ pub struct ResourcesDefinition {
 
     /// Entities of the resources: a person, a place, an event, etc.
     pub entities: Option<Vec<EntityDefinition>>,
-}
-
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
-pub struct ResourcesMetadata {
-    pub ordinals: Option<HashMap<String, String>>,
-    pub weekdays: Option<HashMap<String, String>>,
-    pub months: Option<HashMap<String, String>>,
-    pub colors: Option<LocaleColors>,
-    pub seasons: Option<SeasonsMetadata>,
-    pub periods: Option<PeriodsMetadata>,
-    pub ranks: Option<RanksMetadata>,
-    pub cycles: Option<CyclesMetadata>,
-}
-
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
-pub struct LocaleColors {
-    pub black: Option<String>,
-    pub gold: Option<String>,
-    pub green: Option<String>,
-    pub purple: Option<String>,
-    pub red: Option<String>,
-    pub rose: Option<String>,
-    pub white: Option<String>,
-}
-
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
-pub struct SeasonsMetadata {
-    pub advent: Option<AdventSeason>,
-    pub christmas_time: Option<ChristmasTimeSeason>,
-    pub ordinary_time: Option<OrdinaryTimeSeason>,
-    pub lent: Option<LentSeason>,
-    pub paschal_triduum: Option<PaschalTriduumSeason>,
-    pub easter_time: Option<EasterTimeSeason>,
-}
-
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
-pub struct AdventSeason {
-    pub season: Option<String>,
-    pub weekday: Option<String>,
-    pub sunday: Option<String>,
-    pub privileged_weekday: Option<String>,
-}
-
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
-pub struct ChristmasTimeSeason {
-    pub season: Option<String>,
-    pub day: Option<String>,
-    pub octave: Option<String>,
-    pub before_epiphany: Option<String>,
-    pub second_sunday_after_christmas: Option<String>,
-    pub after_epiphany: Option<String>,
-}
-
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
-pub struct OrdinaryTimeSeason {
-    pub season: Option<String>,
-    pub weekday: Option<String>,
-    pub sunday: Option<String>,
-}
-
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
-pub struct LentSeason {
-    pub season: Option<String>,
-    pub weekday: Option<String>,
-    pub sunday: Option<String>,
-    pub day_after_ash_wed: Option<String>,
-    pub holy_week_day: Option<String>,
-}
-
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
-pub struct PaschalTriduumSeason {
-    pub season: Option<String>,
-}
-
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
-pub struct EasterTimeSeason {
-    pub season: Option<String>,
-    pub weekday: Option<String>,
-    pub sunday: Option<String>,
-    pub octave: Option<String>,
-}
-
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
-pub struct PeriodsMetadata {
-    pub epiphany: Option<String>,
-    pub holy_week: Option<String>,
-}
-
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
-pub struct RanksMetadata {
-    pub solemnity: Option<String>,
-    pub sunday: Option<String>,
-    pub feast: Option<String>,
-    pub memorial: Option<String>,
-    pub optional_memorial: Option<String>,
-    pub weekday: Option<String>,
-}
-
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
-pub struct CyclesMetadata {
-    pub proper_of_time: Option<String>,
-    pub proper_of_saints: Option<String>,
-    pub sunday_year_a: Option<String>,
-    pub sunday_year_b: Option<String>,
-    pub sunday_year_c: Option<String>,
-    pub weekday_year_1: Option<String>,
-    pub weekday_year_2: Option<String>,
-    pub psalter_week_1: Option<String>,
-    pub psalter_week_2: Option<String>,
-    pub psalter_week_3: Option<String>,
-    pub psalter_week_4: Option<String>,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]

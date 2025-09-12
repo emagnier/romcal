@@ -810,6 +810,7 @@
       "type": "string"
     },
     "Title": {
+      "description": "Titles and patronages associated with saints and blessed",
       "enum": [
         "ABBESS",
         "ABBOT",

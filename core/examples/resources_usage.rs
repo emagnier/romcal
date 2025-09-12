@@ -1,5 +1,5 @@
 use romcal_core::resources::*;
-use romcal_core::Title;
+use romcal_core::types::*;
 use std::collections::HashMap;
 
 fn main() {

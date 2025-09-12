@@ -1,5 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Liturgical precedence levels for determining which celebration takes priority",
   "enum": [
     "TRIDUUM_1",
     "PROPER_OF_TIME_SOLEMNITY_2",

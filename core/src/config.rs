@@ -1,6 +1,10 @@
-use crate::calendar_def::CalendarDefinition;
-use crate::resources::ResourcesDefinition;
 use serde::{Deserialize, Serialize};
+
+use crate::resources::ResourcesDefinition;
+use crate::{
+    calendar_def::CalendarDefinition,
+    types::{CalendarScope, EasterCalculationType},
+};
 
 // Default configuration constants
 const DEFAULT_CALENDAR: &str = "general_roman";
@@ -10,24 +14,6 @@ const DEFAULT_SCOPE: CalendarScope = CalendarScope::Gregorian;
 const DEFAULT_EPIPHANY_ON_SUNDAY: bool = false;
 const DEFAULT_CORPUS_CHRISTI_ON_SUNDAY: bool = true;
 const DEFAULT_ASCENSION_ON_SUNDAY: bool = false;
-
-/// Easter calculation type
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
-pub enum EasterCalculationType {
-    /// Gregorian calculation (default)
-    Gregorian,
-    /// Julian calculation converted to Gregorian
-    Julian,
-}
-
-/// Calendar scope
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
-pub enum CalendarScope {
-    /// Civil year (January 1 to December 31)
-    Gregorian,
-    /// Liturgical year (first Sunday of Advent to the day before the first Sunday of Advent of the next year)
-    Liturgical,
-}
 
 /// Complete configuration for liturgical date calculations
 #[derive(Debug, Clone, Serialize, Deserialize)]

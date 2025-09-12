@@ -41,7 +41,8 @@
       ],
       "type": "string"
     },
-    "Colors": {
+    "Color": {
+      "description": "Liturgical colors used in the celebration of Mass and other liturgical services",
       "enum": [
         "RED",
         "ROSE",
@@ -56,17 +57,18 @@
     "ColorsDef": {
       "anyOf": [
         {
-          "$ref": "#/definitions/Colors"
+          "$ref": "#/definitions/Color"
         },
         {
           "items": {
-            "$ref": "#/definitions/Colors"
+            "$ref": "#/definitions/Color"
           },
           "type": "array"
         }
       ]
     },
     "CommonDefinition": {
+      "description": "Common definition for simplified categorization",
       "enum": [
         "NONE",
         "DEDICATION_ANNIVERSARY__INSIDE",
@@ -294,6 +296,7 @@
       "type": "object"
     },
     "DateFn": {
+      "description": "Date function for calculating liturgical dates",
       "enum": [
         "MARY_MOTHER_OF_THE_CHURCH",
         "EPIPHANY_SUNDAY",
@@ -445,18 +448,26 @@
       "type": "object"
     },
     "DayOfWeek": {
-      "description": "Day of week (0-6, where 0=Sunday) with automatic validation",
+      "description": "Day of week (0-6, where 0=Sunday) with automatic validation\n\nThis type ensures that only valid day-of-week values are accepted during\ndeserialization. The value 0 represents Sunday, 1 represents Monday, etc.",
       "format": "uint8",
       "maximum": 255,
       "minimum": 0,
       "type": "integer"
     },
     "EasterCalculationType": {
-      "enum": [
-        "GREGORIAN",
-        "JULIAN"
-      ],
-      "type": "string"
+      "description": "Easter calculation type",
+      "oneOf": [
+        {
+          "const": "GREGORIAN",
+          "description": "Gregorian calculation (default)",
+          "type": "string"
+        },
+        {
+          "const": "JULIAN",
+          "description": "Julian calculation converted to Gregorian",
+          "type": "string"
+        }
+      ]
     },
     "ExceptionCondition": {
       "anyOf": [
@@ -563,7 +574,7 @@
       "type": "object"
     },
     "MonthIndex": {
-      "description": "Month index (1-12) with automatic validation",
+      "description": "Month index (1-12) with automatic validation\n\nThis type ensures that only valid month values are accepted during\ndeserialization. The value 1 represents January, 2 represents February, etc.",
       "format": "uint8",
       "maximum": 255,
       "minimum": 0,
@@ -605,6 +616,7 @@
       "type": "object"
     },
     "Precedence": {
+      "description": "Liturgical precedence levels for determining which celebration takes priority",
       "enum": [
         "TRIDUUM_1",
         "PROPER_OF_TIME_SOLEMNITY_2",
@@ -653,6 +665,7 @@
       ]
     },
     "Title": {
+      "description": "Titles and patronages associated with saints and blessed",
       "enum": [
         "ABBESS",
         "ABBOT",

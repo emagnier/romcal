@@ -1,27 +1,11 @@
 use chrono::{DateTime, Datelike, Duration, NaiveDate, Utc, Weekday};
-use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
 use super::easter::{calculate_gregorian_easter_date, calculate_julian_easter_date_to_gregorian};
 use crate::error::{validate_year, RomcalResult};
-use crate::{EasterCalculationType, LiturgicalConfig};
-
-/// Liturgical seasons
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
-pub enum Season {
-    /// Advent
-    Advent,
-    /// Christmas Time
-    ChristmasTime,
-    /// Lent
-    Lent,
-    /// Paschal Triduum
-    PaschalTriduum,
-    /// Easter Time
-    EasterTime,
-    /// Ordinary Time
-    OrdinaryTime,
-}
+use crate::types::liturgical::Season;
+use crate::types::EasterCalculationType;
+use crate::LiturgicalConfig;
 
 /// Main structure for liturgical date calculations
 pub struct LiturgicalDates {

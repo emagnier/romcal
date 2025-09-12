@@ -11,7 +11,7 @@
     "build:wasm": "wasm-pack build --target nodejs --out-dir pkg",
     "build-web": "wasm-pack build --target web --out-dir pkg",
     "build-bundler": "wasm-pack build --target bundler --out-dir pkg",
-    "generate-types": "json2ts --input ../../schemas/all-types.json --output src/types.ts --inferStringEnumKeysFromValues --enableConstEnums false",
+    "generate-types": "quicktype --src ../../schemas/all-types.json --src-lang schema --lang typescript --top-level AllTypes --out src/types.ts --explicit-unions --no-combine-classes --just-types --prefer-types",
     "test": "npx tsx test.ts",
     "test:compiled": "npm run build && node dist/test.js"
   },
@@ -25,7 +25,7 @@
   "author": "Romcal Contributors",
   "devDependencies": {
     "@types/node": "^24.3.1",
-    "json-schema-to-typescript": "^15.0.4",
+    "quicktype": "^23.2.6",
     "tsx": "^4.20.5",
     "typescript": "^5.9.2"
   },

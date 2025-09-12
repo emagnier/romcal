@@ -74,8 +74,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         for day_def in &cal_def.days_definitions {
             if let Some(martyrology) = &day_def.martyrology {
                 for item in martyrology {
-                    if let romcal_core::calendar_def::MartyrologyItemPointer::Redefined(obj) = item
-                    {
+                    if let romcal_core::types::MartyrologyItemPointer::Redefined(obj) = item {
                         if obj.count.is_some() {
                             martyrology_with_count += 1;
                         }

@@ -18,6 +18,7 @@ use schemars::JsonSchema;
 pub enum SaintCount {
     /// Specific number of saints
     Number(u32),
+    #[serde(rename = "MANY")]
     /// Indeterminate number of saints
     Many,
 }
