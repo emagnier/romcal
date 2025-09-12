@@ -125,7 +125,7 @@ where
     add_additional_properties_false(&mut schema_value);
     fix_defs_references(&mut schema_value);
 
-    if filename == "resources-definition.json" || filename == "entity-definition.json" {
+    if filename == "resources_definition.json" || filename == "entity_definition.json" {
         fix_saint_count_schema(&mut schema_value);
     }
 
@@ -255,8 +255,8 @@ fn generate_types_schema(schemas_dir: &Path) -> Result<(), Box<dyn std::error::E
 
     // Write the types schema
     let schema_json = serde_json::to_string_pretty(&types_schema)?;
-    fs::write(schemas_dir.join("all-types.json"), schema_json)?;
-    println!("✅ all-types.json schema exported (for TypeScript generation)");
+    fs::write(schemas_dir.join("all_types.json"), schema_json)?;
+    println!("✅ all_types.json schema exported (for TypeScript generation)");
 
     Ok(())
 }
@@ -271,17 +271,17 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("🚀 Starting schema generation...");
 
     // Generate individual schemas
-    generate_schema::<DayDefinition>(&schemas_dir, "day-definition.json")?;
+    generate_schema::<DayDefinition>(&schemas_dir, "day_definition.json")?;
     generate_schema::<Precedence>(&schemas_dir, "precedence.json")?;
 
     // Generate resources schemas
-    generate_schema::<ResourcesDefinition>(&schemas_dir, "resources-definition.json")?;
-    generate_schema::<EntityDefinition>(&schemas_dir, "entity-definition.json")?;
+    generate_schema::<ResourcesDefinition>(&schemas_dir, "resources_definition.json")?;
+    generate_schema::<EntityDefinition>(&schemas_dir, "entity_definition.json")?;
 
-    // Generate calendar-definition.json with date_exceptions and saint_count fixes
+    // Generate calendar_definition.json with date_exceptions and saint_count fixes
     generate_schema_with_fixes::<CalendarDefinition>(
         &schemas_dir,
-        "calendar-definition.json",
+        "calendar_definition.json",
         |schema| {
             fix_date_exceptions_schema(schema);
             fix_saint_count_schema(schema);
@@ -362,14 +362,14 @@ mod tests {
         let schemas_dir = temp_dir.path().to_path_buf();
 
         // Act: Generate a schema
-        let result = generate_schema::<Precedence>(&schemas_dir, "test-schema.json");
+        let result = generate_schema::<Precedence>(&schemas_dir, "test_schema.json");
 
         // Assert: File should be created successfully
         assert!(result.is_ok());
-        assert!(schemas_dir.join("test-schema.json").exists());
+        assert!(schemas_dir.join("test_schema.json").exists());
 
         // Check file content
-        let content = fs::read_to_string(schemas_dir.join("test-schema.json")).unwrap();
+        let content = fs::read_to_string(schemas_dir.join("test_schema.json")).unwrap();
         let schema: serde_json::Value = serde_json::from_str(&content).unwrap();
         assert!(schema["$schema"].is_string());
         // Precedence is an enum, so it should have an "enum" field
@@ -395,15 +395,15 @@ mod tests {
         // Act: Generate schema with fixes
         let result = generate_schema_with_fixes::<DayDefinition>(
             &schemas_dir,
-            "test-fixed-schema.json",
+            "test_fixed_schema.json",
             test_fix,
         );
 
         // Assert: File should be created and contain the fix
         assert!(result.is_ok());
-        assert!(schemas_dir.join("test-fixed-schema.json").exists());
+        assert!(schemas_dir.join("test_fixed_schema.json").exists());
 
-        let content = fs::read_to_string(schemas_dir.join("test-fixed-schema.json")).unwrap();
+        let content = fs::read_to_string(schemas_dir.join("test_fixed_schema.json")).unwrap();
         let schema: serde_json::Value = serde_json::from_str(&content).unwrap();
         assert!(schema["definitions"]["test_property"].is_object());
     }
@@ -415,7 +415,7 @@ mod tests {
         let schemas_dir = temp_dir.path().to_path_buf();
 
         // Test with a valid filename
-        let result = generate_schema::<Precedence>(&schemas_dir, "test-file.json");
+        let result = generate_schema::<Precedence>(&schemas_dir, "test_file.json");
         assert!(result.is_ok());
     }
 

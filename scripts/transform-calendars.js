@@ -19,7 +19,7 @@ function calculateSchemaPath(filePath) {
 	const depth = pathParts.length + 1; // Number of directories to go up
 
 	// Build the relative path to the schema
-	const schemaPath = `${"../".repeat(depth)}schemas/calendar-definition.json`;
+	const schemaPath = `${"../".repeat(depth)}schemas/calendar_definition.json`;
 	return schemaPath;
 }
 

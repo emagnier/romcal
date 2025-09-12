@@ -1,5 +1,5 @@
 {
-  "$schema": "../../../../schemas/calendar-definition.json",
+  "$schema": "../../../../schemas/calendar_definition.json",
   "id": "sri_lanka",
   "metadata": {
     "jurisdiction": "CIVIL",

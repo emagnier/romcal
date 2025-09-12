@@ -11,7 +11,7 @@
     "build:wasm": "wasm-pack build --target nodejs --out-dir pkg",
     "build-web": "wasm-pack build --target web --out-dir pkg",
     "build-bundler": "wasm-pack build --target bundler --out-dir pkg",
-    "generate-types": "quicktype --src ../../schemas/all-types.json --src-lang schema --lang typescript --top-level AllTypes --out src/types.ts --explicit-unions --no-combine-classes --just-types --prefer-types",
+    "generate-types": "quicktype --src ../../schemas/all_types.json --src-lang schema --lang typescript --top-level AllTypes --out src/types.ts --explicit-unions --no-combine-classes --just-types --prefer-types",
     "test": "npx tsx test.ts",
     "test:compiled": "npm run build && node dist/test.js"
   },

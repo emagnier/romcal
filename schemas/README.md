@@ -4,10 +4,10 @@ This directory contains JSON schemas automatically generated from Rust definitio
 
 ## 📁 Available Files
 
-- **`calendar-definition.json`** : Main schema for `CalendarDefinition`
-- **`day-definition.json`** : Schema for `DayDefinition`
+- **`calendar_definition.json`** : Main schema for `CalendarDefinition`
+- **`day_definition.json`** : Schema for `DayDefinition`
 - **`precedence.json`** : Schema for the `Precedence` enumeration
-- **`all-types.json`** : Complete schema with all definitions
+- **`all_types.json`** : Complete schema with all definitions
 
 ## 🔄 Schema Regeneration
 

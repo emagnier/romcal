@@ -1,5 +1,5 @@
 {
-  "$schema": "../../../schemas/resources-definition.json",
+  "$schema": "../../../schemas/resources_definition.json",
   "locale": "es",
   "metadata": {
     "seasons": {
