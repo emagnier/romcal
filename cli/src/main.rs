@@ -66,9 +66,9 @@ enum Commands {
         #[arg(short, long)]
         year: Option<i32>,
     },
-    /// List available calendars
+    /// List available Romcal calendars
     ListCalendars,
-    /// List available locales
+    /// List available Romcal locales
     ListLocales,
     /// Display configuration information
     Config,

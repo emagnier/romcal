@@ -1,12 +1,11 @@
-use crate::config::CliConfig;
 use crate::error::RomcalCliError;
+use romcal_core::{CALENDAR_IDS, LOCALE_CODES};
 use serde_json;
 use serde_yaml;
 
 /// Handle list calendars command
 pub fn handle_calendars(format: &str) -> Result<(), RomcalCliError> {
-    let config = CliConfig::default();
-    let calendars = config.get_supported_calendars();
+    let calendars = CALENDAR_IDS;
 
     RomcalCliError::validate_format(format)?;
 
@@ -32,8 +31,7 @@ pub fn handle_calendars(format: &str) -> Result<(), RomcalCliError> {
 
 /// Handle list locales command
 pub fn handle_locales(format: &str) -> Result<(), RomcalCliError> {
-    let config = CliConfig::default();
-    let locales = config.get_supported_locales();
+    let locales = LOCALE_CODES;
 
     RomcalCliError::validate_format(format)?;
 

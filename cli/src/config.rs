@@ -1,14 +1,14 @@
 use crate::error::RomcalCliError;
 use chrono::Datelike;
-use romcal_core::{CalendarScope, EasterCalculationType, LiturgicalConfig};
+use romcal_core::{
+    CalendarScope, EasterCalculationType, LiturgicalConfig, CALENDAR_IDS, LOCALE_CODES,
+};
 
 /// Default configuration for the CLI
 pub struct CliConfig {
     pub default_locale: String,
     pub default_calendar: String,
     pub default_scope: CalendarScope,
-    pub supported_locales: Vec<String>,
-    pub supported_calendars: Vec<String>,
 }
 
 impl Default for CliConfig {
@@ -17,32 +17,6 @@ impl Default for CliConfig {
             default_locale: "en".to_string(),
             default_calendar: "general_roman".to_string(),
             default_scope: CalendarScope::Gregorian,
-            supported_locales: vec![
-                "en".to_string(),
-                "fr".to_string(),
-                "es".to_string(),
-                "de".to_string(),
-                "it".to_string(),
-                "la".to_string(),
-                "pl".to_string(),
-                "pt-br".to_string(),
-                "sk".to_string(),
-                "ta".to_string(),
-                "cs".to_string(),
-                "en-gb".to_string(),
-                "en-ie".to_string(),
-            ],
-            supported_calendars: vec![
-                "general_roman".to_string(),
-                "france".to_string(),
-                "united_states".to_string(),
-                "spain".to_string(),
-                "germany".to_string(),
-                "italy".to_string(),
-                "poland".to_string(),
-                "slovakia".to_string(),
-                "czech_republic".to_string(),
-            ],
         }
     }
 }
@@ -62,12 +36,12 @@ impl CliConfig {
         let locale = locale.unwrap_or(&self.default_locale);
 
         // Validate locale
-        if !self.supported_locales.contains(&locale.to_string()) {
+        if !LOCALE_CODES.contains(&locale) {
             return Err(RomcalCliError::unsupported_locale(locale));
         }
 
         // Validate calendar
-        if !self.supported_calendars.contains(&calendar.to_string()) {
+        if !CALENDAR_IDS.contains(&calendar) {
             return Err(RomcalCliError::calendar_not_found(calendar));
         }
 
@@ -110,15 +84,5 @@ impl CliConfig {
         } else {
             Ok(())
         }
-    }
-
-    /// Get list of supported locales
-    pub fn get_supported_locales(&self) -> &Vec<String> {
-        &self.supported_locales
-    }
-
-    /// Get list of supported calendars
-    pub fn get_supported_calendars(&self) -> &Vec<String> {
-        &self.supported_calendars
     }
 }

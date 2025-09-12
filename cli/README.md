@@ -160,7 +160,7 @@ romcal dates easter_sunday -y 2024 --scope liturgical
 # Multiple options combined
 romcal dates easter_sunday -y 2024 -f json --easter-calculation-type julian --ascension-on-sunday
 
-# List available locales and calendars
+# List available Romcal locales and calendars
 romcal list-locales
 romcal list-calendars
 
