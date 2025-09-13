@@ -1,7 +1,8 @@
-use crate::config::{create_liturgical_config, current_year, validate_year};
+use crate::config::create_liturgical_config;
 use crate::error::RomcalCliError;
 use crate::output::validate_format;
 use crate::output::OutputFormat;
+use crate::utils::{current_year, validate_year};
 use romcal_core::LiturgicalDates;
 
 /// Type alias for date calculation methods
@@ -114,6 +115,8 @@ pub fn handle(
     ascension_on_sunday: Option<bool>,
     epiphany_on_sunday: Option<bool>,
     corpus_christi_on_sunday: Option<bool>,
+    calendar_definitions: &[String],
+    resources: &[String],
 ) -> Result<(), RomcalCliError> {
     let year = year.unwrap_or_else(current_year);
 
@@ -142,6 +145,8 @@ pub fn handle(
         ascension_on_sunday,
         corpus_christi_on_sunday,
         epiphany_on_sunday,
+        calendar_definitions,
+        resources,
     )?;
 
     // Create liturgical dates instance

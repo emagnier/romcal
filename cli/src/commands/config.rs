@@ -15,6 +15,8 @@ pub struct ConfigParams {
     pub ascension_on_sunday: Option<bool>,
     pub epiphany_on_sunday: Option<bool>,
     pub corpus_christi_on_sunday: Option<bool>,
+    pub calendar_definitions: Vec<String>,
+    pub resources: Vec<String>,
 }
 
 /// Configuration data for display
@@ -77,6 +79,8 @@ pub fn handle(params: ConfigParams) -> Result<(), RomcalCliError> {
         params.ascension_on_sunday,
         params.corpus_christi_on_sunday,
         params.epiphany_on_sunday,
+        &params.calendar_definitions,
+        &params.resources,
     )?;
 
     // Parse output format

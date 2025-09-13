@@ -6,6 +6,7 @@ mod commands;
 mod config;
 mod error;
 mod output;
+mod utils;
 
 // Import command modules
 use commands::config as config_cmd;
@@ -68,6 +69,14 @@ struct Cli {
     #[arg(long, global = true, action = clap::ArgAction::SetTrue)]
     corpus_christi_on_sunday: bool,
 
+    /// Paths to calendar definition JSON files (supports glob patterns)
+    #[arg(long, global = true, value_delimiter = ',')]
+    calendar_definitions: Vec<String>,
+
+    /// Paths to resource JSON files (supports glob patterns)
+    #[arg(long, global = true, value_delimiter = ',')]
+    resources: Vec<String>,
+
     /// Show debug information
     #[arg(short, long, global = true)]
     debug: bool,
@@ -123,6 +132,19 @@ fn main() {
 }
 
 fn run(cli: Cli) -> Result<(), RomcalCliError> {
+    // Validate and expand glob patterns for calendar definitions and resources
+    let calendar_definitions = if !cli.calendar_definitions.is_empty() {
+        utils::collect_json_file_paths(&cli.calendar_definitions)?
+    } else {
+        Vec::new()
+    };
+
+    let resources = if !cli.resources.is_empty() {
+        utils::collect_json_file_paths(&cli.resources)?
+    } else {
+        Vec::new()
+    };
+
     // Extract common parameters to avoid duplication
     let common_params = CommonParams {
         calendar: cli.calendar.as_deref(),
@@ -133,6 +155,8 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
         ascension_on_sunday: Some(cli.ascension_on_sunday),
         epiphany_on_sunday: Some(cli.epiphany_on_sunday),
         corpus_christi_on_sunday: Some(cli.corpus_christi_on_sunday),
+        calendar_definitions: &calendar_definitions,
+        resources: &resources,
     };
 
     match cli.command {
@@ -147,6 +171,8 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
             common_params.ascension_on_sunday,
             common_params.epiphany_on_sunday,
             common_params.corpus_christi_on_sunday,
+            common_params.calendar_definitions,
+            common_params.resources,
         ),
         Commands::ListCalendars => list::handle_calendars(common_params.format),
         Commands::ListLocales => list::handle_locales(common_params.format),
@@ -159,6 +185,8 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
             ascension_on_sunday: common_params.ascension_on_sunday,
             epiphany_on_sunday: common_params.epiphany_on_sunday,
             corpus_christi_on_sunday: common_params.corpus_christi_on_sunday,
+            calendar_definitions: common_params.calendar_definitions.to_vec(),
+            resources: common_params.resources.to_vec(),
         }),
         Commands::GenerateBundle { out } => {
             generate_bundle::handle_generate_bundle(generate_bundle::GenerateBundleParams {
@@ -172,6 +200,8 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
                 epiphany_on_sunday: common_params.epiphany_on_sunday,
                 corpus_christi_on_sunday: common_params.corpus_christi_on_sunday,
                 output_file: out.map(|s| s.to_string()),
+                calendar_definitions: common_params.calendar_definitions.to_vec(),
+                resources: common_params.resources.to_vec(),
             })
         }
         Commands::Validate {
@@ -191,4 +221,6 @@ struct CommonParams<'a> {
     ascension_on_sunday: Option<bool>,
     epiphany_on_sunday: Option<bool>,
     corpus_christi_on_sunday: Option<bool>,
+    calendar_definitions: &'a [String],
+    resources: &'a [String],
 }

@@ -11,6 +11,8 @@ pub struct GenerateBundleParams {
     pub epiphany_on_sunday: Option<bool>,
     pub corpus_christi_on_sunday: Option<bool>,
     pub output_file: Option<String>,
+    pub calendar_definitions: Vec<String>,
+    pub resources: Vec<String>,
 }
 
 /// Handle generate bundle command
@@ -24,6 +26,8 @@ pub fn handle_generate_bundle(params: GenerateBundleParams) -> Result<(), Romcal
         params.ascension_on_sunday,
         params.corpus_christi_on_sunday,
         params.epiphany_on_sunday,
+        &params.calendar_definitions,
+        &params.resources,
     )?;
 
     // Generate the JSON bundle

@@ -63,7 +63,7 @@ pub trait Validate {
 
 /// Validation of years
 pub fn validate_year(year: i32, min_year: i32) -> RomcalResult<()> {
-    if year < min_year {
+    if year < min_year || year > 9999 {
         Err(RomcalError::InvalidYear(year))
     } else {
         Ok(())

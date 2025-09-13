@@ -1,8 +1,9 @@
 use crate::error::RomcalCliError;
-use chrono::Datelike;
+use crate::utils::{parse_calendar_definition_files, parse_resource_files};
 use romcal_core::{CalendarScope, EasterCalculationType, LiturgicalConfig};
 
 /// Create a liturgical configuration from CLI parameters
+#[allow(clippy::too_many_arguments)]
 pub fn create_liturgical_config(
     calendar: Option<&str>,
     locale: Option<&str>,
@@ -11,6 +12,8 @@ pub fn create_liturgical_config(
     ascension_on_sunday: Option<bool>,
     corpus_christi_on_sunday: Option<bool>,
     epiphany_on_sunday: Option<bool>,
+    calendar_definitions: &[String],
+    resources: &[String],
 ) -> Result<LiturgicalConfig, RomcalCliError> {
     // Parse Easter calculation type
     let easter_calculation_type = match easter_calculation_type.unwrap_or("gregorian") {
@@ -30,6 +33,10 @@ pub fn create_liturgical_config(
         _ => return Err(RomcalCliError::invalid_scope(scope.unwrap_or("unknown"))),
     };
 
+    // Load custom calendar definitions and resources if provided
+    let _calendar_def = parse_calendar_definition_files(calendar_definitions)?;
+    let _resource_map = parse_resource_files(resources)?;
+
     // Use core's with_optional_values method which handles all defaults and validation
     let config = LiturgicalConfig::with_optional_values(
         calendar,
@@ -41,25 +48,17 @@ pub fn create_liturgical_config(
         ascension_on_sunday,
     );
 
+    // TODO: Apply custom calendar definitions and resources to config
+    // This would require extending the LiturgicalConfig API to accept custom data
+    // For now, we just validate the files and create the basic config
+
     Ok(config)
-}
-
-/// Get current year
-pub fn current_year() -> i32 {
-    chrono::Utc::now().year()
-}
-
-/// Validate a year
-pub fn validate_year(year: i32) -> Result<(), RomcalCliError> {
-    if !(1583..=9999).contains(&year) {
-        Err(RomcalCliError::invalid_year(year))
-    } else {
-        Ok(())
-    }
 }
 
 #[cfg(test)]
 mod tests {
+    use crate::utils::validate_year;
+
     use super::*;
 
     #[test]

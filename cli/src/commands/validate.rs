@@ -1,69 +1,13 @@
 use crate::error::RomcalCliError;
-use glob::glob;
+use crate::utils;
 use jsonschema::{validator_for, ValidationError};
 use serde_json::Value;
 use std::fs;
-use std::path::Path;
 
 // Include schemas at compile time
 const CALENDAR_DEFINITION_SCHEMA: &str = include_str!("../../../schemas/calendar_definition.json");
 const RESOURCES_DEFINITION_SCHEMA: &str =
     include_str!("../../../schemas/resources_definition.json");
-
-/// Collect files based on pattern (supports glob patterns)
-fn collect_files(pattern: &str) -> Result<Vec<std::path::PathBuf>, RomcalCliError> {
-    let mut files = Vec::new();
-
-    // Check if it's a glob pattern (contains * or **)
-    if pattern.contains('*') {
-        // It's a glob pattern
-        for entry in glob(pattern)
-            .map_err(|e| RomcalCliError::config_error(format!("Invalid glob pattern: {}", e)))?
-        {
-            match entry {
-                Ok(path) => {
-                    if path.is_file() && path.extension().is_some_and(|ext| ext == "json") {
-                        files.push(path);
-                    }
-                }
-                Err(e) => eprintln!("⚠️  Error reading glob entry: {}", e),
-            }
-        }
-    } else {
-        // It's a single file path
-        let path = Path::new(pattern);
-        if path.is_file() && path.extension().is_some_and(|ext| ext == "json") {
-            files.push(path.to_path_buf());
-        } else if path.is_dir() {
-            // If it's a directory, find all JSON files in it
-            for entry in fs::read_dir(path).map_err(|e| {
-                RomcalCliError::config_error(format!("Cannot read directory: {}", e))
-            })? {
-                let entry = entry.map_err(|e| {
-                    RomcalCliError::config_error(format!("Cannot read directory entry: {}", e))
-                })?;
-                let path = entry.path();
-                if path.is_file() && path.extension().is_some_and(|ext| ext == "json") {
-                    files.push(path);
-                }
-            }
-        } else {
-            return Err(RomcalCliError::config_error(format!(
-                "File does not exist: {}",
-                pattern
-            )));
-        }
-    }
-
-    if files.is_empty() {
-        return Err(RomcalCliError::config_error(format!(
-            "No JSON files found matching: {}",
-            pattern
-        )));
-    }
-
-    Ok(files)
-}
 
 /// Type of validation to perform
 #[derive(Clone, Debug)]
@@ -108,11 +52,7 @@ pub fn handle_validate(
     println!();
 
     // Collect files from all inputs
-    let mut all_files = Vec::new();
-    for input in file_inputs {
-        let files = collect_files(input)?;
-        all_files.extend(files);
-    }
+    let all_files = utils::collect_json_files(file_inputs)?;
 
     // Remove duplicates while preserving order
     let mut unique_files = Vec::new();
