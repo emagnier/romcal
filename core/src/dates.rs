@@ -2,10 +2,10 @@ use chrono::{DateTime, Datelike, Duration, NaiveDate, Utc, Weekday};
 use std::collections::HashMap;
 
 use super::easter::{calculate_gregorian_easter_date, calculate_julian_easter_date_to_gregorian};
+use crate::config::LiturgicalConfig;
 use crate::error::{validate_year, RomcalResult};
 use crate::types::liturgical::Season;
 use crate::types::EasterCalculationType;
-use crate::LiturgicalConfig;
 
 /// Main structure for liturgical date calculations
 pub struct LiturgicalDates {
@@ -920,6 +920,8 @@ impl LiturgicalDates {
 
 #[cfg(test)]
 mod tests {
+    use crate::config::LiturgicalConfigPartial;
+
     use super::*;
 
     #[test]
@@ -933,10 +935,10 @@ mod tests {
 
     #[test]
     fn test_liturgical_year_creation() {
-        let config = LiturgicalConfig {
-            scope: crate::CalendarScope::Liturgical,
-            ..LiturgicalConfig::default()
-        };
+        let config = LiturgicalConfig::new(LiturgicalConfigPartial {
+            scope: Some(crate::CalendarScope::Liturgical),
+            ..LiturgicalConfigPartial::default()
+        });
         let dates = LiturgicalDates::new(config, 2024).unwrap();
 
         assert_eq!(dates.year, 2024);

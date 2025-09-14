@@ -93,7 +93,7 @@ pub fn collect_json_files(patterns: &[String]) -> Result<Vec<std::path::PathBuf>
         } else {
             // It's a single file path
             let path = Path::new(pattern);
-            if path.is_file() && is_json_file(&path) {
+            if path.is_file() && is_json_file(path) {
                 try_add_valid_json_file(&mut files, path.to_path_buf());
             } else if path.is_dir() {
                 // If it's a directory, find all JSON files in it
@@ -144,46 +144,40 @@ pub fn collect_json_file_paths(patterns: &[String]) -> Result<Vec<String>, Romca
 // Data loading functions
 // =================================================================================
 
-/// Parse calendar definition files and return a HashMap of calendar_id -> JSON value
+/// Parse calendar definition files and return a Vec of CalendarDefinition
 pub fn parse_calendar_definition_files(
     file_paths: &[String],
-) -> Result<std::collections::HashMap<String, serde_json::Value>, RomcalCliError> {
-    let mut calendar_def = std::collections::HashMap::new();
+) -> Result<Vec<romcal_core::CalendarDefinition>, RomcalCliError> {
+    let mut calendar_definitions = Vec::new();
 
     for file_path in file_paths {
         let json_value = read_json_file(file_path)?;
 
-        // Extract calendar ID from filename or use a default key
-        let calendar_id = std::path::Path::new(file_path)
-            .file_stem()
-            .and_then(|s| s.to_str())
-            .unwrap_or("custom");
+        // Deserialize JSON value to CalendarDefinition
+        let calendar_def: romcal_core::CalendarDefinition = serde_json::from_value(json_value)?;
 
-        calendar_def.insert(calendar_id.to_string(), json_value);
+        calendar_definitions.push(calendar_def);
     }
 
-    Ok(calendar_def)
+    Ok(calendar_definitions)
 }
 
-/// Parse resource files and return a HashMap of locale -> JSON value
+/// Parse resource files and return a Vec of ResourcesDefinition
 pub fn parse_resource_files(
     file_paths: &[String],
-) -> Result<std::collections::HashMap<String, serde_json::Value>, RomcalCliError> {
-    let mut resource_map = std::collections::HashMap::new();
+) -> Result<Vec<romcal_core::ResourcesDefinition>, RomcalCliError> {
+    let mut resource_definitions = Vec::new();
 
     for file_path in file_paths {
         let json_value = read_json_file(file_path)?;
 
-        // Extract locale from filename or use a default key
-        let locale_key = std::path::Path::new(file_path)
-            .file_stem()
-            .and_then(|s| s.to_str())
-            .unwrap_or("custom");
+        // Deserialize JSON value to ResourcesDefinition
+        let resource_def: romcal_core::ResourcesDefinition = serde_json::from_value(json_value)?;
 
-        resource_map.insert(locale_key.to_string(), json_value);
+        resource_definitions.push(resource_def);
     }
 
-    Ok(resource_map)
+    Ok(resource_definitions)
 }
 
 // =================================================================================

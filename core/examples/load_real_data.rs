@@ -1,5 +1,5 @@
 use romcal_core::calendar_def::CalendarDefinition;
-use romcal_core::config::LiturgicalConfig;
+use romcal_core::config::{LiturgicalConfig, LiturgicalConfigPartial};
 use romcal_core::resources::ResourcesDefinition;
 use std::fs;
 
@@ -22,7 +22,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("=== Loading real data with LiturgicalConfig ===\n");
 
     // Create a liturgical configuration
-    let mut config = LiturgicalConfig::new();
+    let mut config = LiturgicalConfig::new(LiturgicalConfigPartial::default());
     println!("✅ Liturgical configuration created");
 
     // Load calendars

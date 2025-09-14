@@ -1,8 +1,7 @@
-use crate::config::create_liturgical_config;
 use crate::error::RomcalCliError;
-use crate::output::validate_format;
 use crate::output::OutputFormat;
 use crate::utils::{current_year, validate_year};
+use romcal_core::LiturgicalConfig;
 use romcal_core::LiturgicalDates;
 
 /// Type alias for date calculation methods
@@ -104,50 +103,18 @@ fn validate_and_get_date_method(date_type: &str) -> Result<DateMethod, RomcalCli
 
 /// Handle dates command
 #[allow(clippy::too_many_arguments)]
-pub fn handle(
+pub fn handle_dates(
     date_type: &str,
     year: Option<i32>,
-    calendar: Option<&str>,
-    locale: Option<&str>,
-    format: &str,
-    scope: Option<&str>,
-    easter_calculation_type: Option<&str>,
-    ascension_on_sunday: Option<bool>,
-    epiphany_on_sunday: Option<bool>,
-    corpus_christi_on_sunday: Option<bool>,
-    calendar_definitions: &[String],
-    resources: &[String],
+    output_format: OutputFormat,
+    liturgical_config: LiturgicalConfig,
 ) -> Result<(), RomcalCliError> {
     let year = year.unwrap_or_else(current_year);
 
     validate_year(year)?;
 
-    validate_format(format)?;
-
-    // Parse output format
-    let output_format = match format.to_lowercase().as_str() {
-        "json" => OutputFormat::Json,
-        "csv" => OutputFormat::Csv,
-        "yaml" => OutputFormat::Yaml,
-        "lines" => OutputFormat::Lines,
-        _ => unreachable!(), // Already validated above
-    };
-
     // Get the date calculation method
     let date_method = validate_and_get_date_method(date_type)?;
-
-    // Create liturgical configuration
-    let liturgical_config = create_liturgical_config(
-        calendar,
-        locale,
-        scope,
-        easter_calculation_type,
-        ascension_on_sunday,
-        corpus_christi_on_sunday,
-        epiphany_on_sunday,
-        calendar_definitions,
-        resources,
-    )?;
 
     // Create liturgical dates instance
     let dates = LiturgicalDates::new(liturgical_config, year)?;

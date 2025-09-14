@@ -1,23 +1,10 @@
-use crate::{
-    error::RomcalCliError,
-    output::{validate_format, OutputFormat},
-};
+use crate::{error::RomcalCliError, output::OutputFormat};
 use romcal_core::{CALENDAR_IDS, LOCALE_CODES};
 use serde_json;
 use serde_yaml;
 
 /// Generic function to list items in various formats
-fn list_items(items: &[&str], format: &str) -> Result<(), RomcalCliError> {
-    validate_format(format)?;
-
-    let output_format = match format.to_lowercase().as_str() {
-        "json" => OutputFormat::Json,
-        "csv" => OutputFormat::Csv,
-        "yaml" => OutputFormat::Yaml,
-        "lines" => OutputFormat::Lines,
-        _ => unreachable!(), // Already validated above
-    };
-
+fn list_items(items: &[&str], output_format: OutputFormat) -> Result<(), RomcalCliError> {
     match output_format {
         OutputFormat::Json => {
             println!("{}", serde_json::to_string_pretty(items)?);
@@ -38,11 +25,11 @@ fn list_items(items: &[&str], format: &str) -> Result<(), RomcalCliError> {
 }
 
 /// Handle list calendars command
-pub fn handle_calendars(format: &str) -> Result<(), RomcalCliError> {
-    list_items(CALENDAR_IDS, format)
+pub fn handle_calendars(output_format: OutputFormat) -> Result<(), RomcalCliError> {
+    list_items(CALENDAR_IDS, output_format)
 }
 
 /// Handle list locales command
-pub fn handle_locales(format: &str) -> Result<(), RomcalCliError> {
-    list_items(LOCALE_CODES, format)
+pub fn handle_locales(output_format: OutputFormat) -> Result<(), RomcalCliError> {
+    list_items(LOCALE_CODES, output_format)
 }

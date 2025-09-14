@@ -1,4 +1,5 @@
-use romcal_core::config::LiturgicalConfig;
+use romcal_core::config::{LiturgicalConfig, LiturgicalConfigPartial};
+use romcal_core::types::{CalendarScope, EasterCalculationType};
 use serde::{Deserialize, Serialize};
 use wasm_bindgen::prelude::*;
 
@@ -81,17 +82,31 @@ impl PartialRomcalConfig {
 
     /// Build the configuration with defaults
     pub fn build(&self) -> RomcalConfig {
-        let config = LiturgicalConfig::from_wasm_strings(
-            self.calendar.as_deref(),
-            self.locale.as_deref(),
-            self.easter_calculation_type.as_deref(),
-            self.scope.as_deref(),
-            self.epiphany_on_sunday,
-            self.corpus_christi_on_sunday,
-            self.ascension_on_sunday,
-        );
+        let easter_type = match self.easter_calculation_type.as_deref() {
+            Some("JULIAN") => Some(EasterCalculationType::Julian),
+            _ => Some(EasterCalculationType::Gregorian),
+        };
 
-        RomcalConfig { inner: config }
+        let scope = match self.scope.as_deref() {
+            Some("LITURGICAL") => Some(CalendarScope::Liturgical),
+            _ => Some(CalendarScope::Gregorian),
+        };
+
+        let config = LiturgicalConfigPartial {
+            calendar: self.calendar.clone(),
+            locale: self.locale.clone(),
+            easter_calculation_type: easter_type,
+            scope,
+            epiphany_on_sunday: self.epiphany_on_sunday,
+            corpus_christi_on_sunday: self.corpus_christi_on_sunday,
+            ascension_on_sunday: self.ascension_on_sunday,
+            calendar_definitions: None,
+            resources: None,
+        };
+
+        RomcalConfig {
+            inner: LiturgicalConfig::new(config),
+        }
     }
 }
 
@@ -101,14 +116,6 @@ impl RomcalConfig {
     #[wasm_bindgen(constructor)]
     pub fn new() -> RomcalConfig {
         Self::default()
-    }
-
-    /// Create a new configuration with calendar and locale
-    #[wasm_bindgen]
-    pub fn with_calendar_and_locale(calendar: &str, locale: &str) -> RomcalConfig {
-        Self {
-            inner: LiturgicalConfig::with_calendar_and_locale(calendar, locale),
-        }
     }
 
     /// Get the calendar type
@@ -175,14 +182,6 @@ impl Romcal {
         Self::default()
     }
 
-    /// Create a new Romcal instance with custom calendar and locale
-    #[wasm_bindgen]
-    pub fn with_calendar_and_locale(calendar: &str, locale: &str) -> Romcal {
-        Romcal {
-            config: RomcalConfig::with_calendar_and_locale(calendar, locale),
-        }
-    }
-
     /// Get the configuration
     #[wasm_bindgen(getter)]
     pub fn config(&self) -> RomcalConfig {
@@ -194,12 +193,6 @@ impl Romcal {
 #[wasm_bindgen]
 pub fn romcal() -> Romcal {
     Romcal::new()
-}
-
-/// Create a new Romcal instance with calendar and locale
-#[wasm_bindgen]
-pub fn romcal_with_config(calendar: &str, locale: &str) -> Romcal {
-    Romcal::with_calendar_and_locale(calendar, locale)
 }
 
 /// Create a new Romcal instance with partial configuration

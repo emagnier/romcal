@@ -1,5 +1,6 @@
 use clap::{Parser, Subcommand, ValueEnum};
 use colored::*;
+use romcal_core::LiturgicalConfig;
 use std::process;
 
 mod commands;
@@ -9,11 +10,15 @@ mod output;
 mod utils;
 
 // Import command modules
-use commands::config as config_cmd;
 use commands::dates;
 use commands::generate_bundle;
 use commands::list;
+use commands::output_config;
 use error::RomcalCliError;
+
+use crate::config::create_liturgical_config;
+use crate::output::validate_format;
+use crate::output::OutputFormat;
 
 /// Type of validation to perform
 #[derive(ValueEnum, Clone, Debug)]
@@ -133,94 +138,54 @@ fn main() {
 
 fn run(cli: Cli) -> Result<(), RomcalCliError> {
     // Validate and expand glob patterns for calendar definitions and resources
-    let calendar_definitions = if !cli.calendar_definitions.is_empty() {
+    let calendar_definitions_paths = if !cli.calendar_definitions.is_empty() {
         utils::collect_json_file_paths(&cli.calendar_definitions)?
     } else {
         Vec::new()
     };
 
-    let resources = if !cli.resources.is_empty() {
+    let resources_paths = if !cli.resources.is_empty() {
         utils::collect_json_file_paths(&cli.resources)?
     } else {
         Vec::new()
     };
 
-    // Extract common parameters to avoid duplication
-    let common_params = CommonParams {
-        calendar: cli.calendar.as_deref(),
-        locale: cli.locale.as_deref(),
-        format: &cli.format,
-        scope: cli.scope.as_deref(),
-        easter_calculation_type: cli.easter_calculation_type.as_deref(),
-        ascension_on_sunday: Some(cli.ascension_on_sunday),
-        epiphany_on_sunday: Some(cli.epiphany_on_sunday),
-        corpus_christi_on_sunday: Some(cli.corpus_christi_on_sunday),
-        calendar_definitions: &calendar_definitions,
-        resources: &resources,
+    // Validate and parse output format
+    let format = cli.format.to_lowercase();
+    validate_format(&format)?;
+    let output_format: OutputFormat = match format.as_str() {
+        "json" => OutputFormat::Json,
+        "csv" => OutputFormat::Csv,
+        "yaml" => OutputFormat::Yaml,
+        "lines" => OutputFormat::Lines,
+        _ => unreachable!(), // Already validated above
     };
 
+    let liturgical_config: LiturgicalConfig = create_liturgical_config(
+        cli.calendar.as_deref(),
+        cli.locale.as_deref(),
+        cli.scope.as_deref(),
+        cli.easter_calculation_type.as_deref(),
+        Some(cli.ascension_on_sunday),
+        Some(cli.corpus_christi_on_sunday),
+        Some(cli.epiphany_on_sunday),
+        &calendar_definitions_paths,
+        &resources_paths,
+    )?;
+
     match cli.command {
-        Commands::Dates { date_type, year } => dates::handle(
-            &date_type,
-            year,
-            common_params.calendar,
-            common_params.locale,
-            common_params.format,
-            common_params.scope,
-            common_params.easter_calculation_type,
-            common_params.ascension_on_sunday,
-            common_params.epiphany_on_sunday,
-            common_params.corpus_christi_on_sunday,
-            common_params.calendar_definitions,
-            common_params.resources,
-        ),
-        Commands::ListCalendars => list::handle_calendars(common_params.format),
-        Commands::ListLocales => list::handle_locales(common_params.format),
-        Commands::Config => config_cmd::handle(config_cmd::ConfigParams {
-            calendar: common_params.calendar.map(|s| s.to_string()),
-            locale: common_params.locale.map(|s| s.to_string()),
-            format: common_params.format.to_string(),
-            scope: common_params.scope.map(|s| s.to_string()),
-            easter_calculation_type: common_params.easter_calculation_type.map(|s| s.to_string()),
-            ascension_on_sunday: common_params.ascension_on_sunday,
-            epiphany_on_sunday: common_params.epiphany_on_sunday,
-            corpus_christi_on_sunday: common_params.corpus_christi_on_sunday,
-            calendar_definitions: common_params.calendar_definitions.to_vec(),
-            resources: common_params.resources.to_vec(),
-        }),
+        Commands::Dates { date_type, year } => {
+            dates::handle_dates(&date_type, year, output_format, liturgical_config)
+        }
+        Commands::ListCalendars => list::handle_calendars(output_format),
+        Commands::ListLocales => list::handle_locales(output_format),
+        Commands::Config => output_config::handle_output_config(output_format, liturgical_config),
         Commands::GenerateBundle { out } => {
-            generate_bundle::handle_generate_bundle(generate_bundle::GenerateBundleParams {
-                calendar: common_params.calendar.map(|s| s.to_string()),
-                locale: common_params.locale.map(|s| s.to_string()),
-                scope: common_params.scope.map(|s| s.to_string()),
-                easter_calculation_type: common_params
-                    .easter_calculation_type
-                    .map(|s| s.to_string()),
-                ascension_on_sunday: common_params.ascension_on_sunday,
-                epiphany_on_sunday: common_params.epiphany_on_sunday,
-                corpus_christi_on_sunday: common_params.corpus_christi_on_sunday,
-                output_file: out.map(|s| s.to_string()),
-                calendar_definitions: common_params.calendar_definitions.to_vec(),
-                resources: common_params.resources.to_vec(),
-            })
+            generate_bundle::handle_generate_bundle(liturgical_config, out.map(|s| s.to_string()))
         }
         Commands::Validate {
             validation_type,
             files,
         } => commands::validate::handle_validate(validation_type, &files),
     }
-}
-
-/// Common parameters shared across commands
-struct CommonParams<'a> {
-    calendar: Option<&'a str>,
-    locale: Option<&'a str>,
-    format: &'a str,
-    scope: Option<&'a str>,
-    easter_calculation_type: Option<&'a str>,
-    ascension_on_sunday: Option<bool>,
-    epiphany_on_sunday: Option<bool>,
-    corpus_christi_on_sunday: Option<bool>,
-    calendar_definitions: &'a [String],
-    resources: &'a [String],
 }

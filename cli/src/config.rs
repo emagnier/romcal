@@ -1,5 +1,6 @@
 use crate::error::RomcalCliError;
 use crate::utils::{parse_calendar_definition_files, parse_resource_files};
+use romcal_core::config::LiturgicalConfigPartial;
 use romcal_core::{CalendarScope, EasterCalculationType, LiturgicalConfig};
 
 /// Create a liturgical configuration from CLI parameters
@@ -34,23 +35,21 @@ pub fn create_liturgical_config(
     };
 
     // Load custom calendar definitions and resources if provided
-    let _calendar_def = parse_calendar_definition_files(calendar_definitions)?;
-    let _resource_map = parse_resource_files(resources)?;
+    let calendar_def = parse_calendar_definition_files(calendar_definitions)?;
+    let resource_map = parse_resource_files(resources)?;
 
-    // Use core's with_optional_values method which handles all defaults and validation
-    let config = LiturgicalConfig::with_optional_values(
-        calendar,
-        locale,
-        easter_calculation_type,
-        scope,
+    // Create a romcal config
+    let config = LiturgicalConfig::new(LiturgicalConfigPartial {
+        calendar: calendar.map(|s| s.to_string()),
+        locale: locale.map(|s| s.to_string()),
+        easter_calculation_type: Some(easter_calculation_type),
+        scope: Some(scope),
         epiphany_on_sunday,
         corpus_christi_on_sunday,
         ascension_on_sunday,
-    );
-
-    // TODO: Apply custom calendar definitions and resources to config
-    // This would require extending the LiturgicalConfig API to accept custom data
-    // For now, we just validate the files and create the basic config
+        calendar_definitions: Some(calendar_def),
+        resources: Some(resource_map),
+    });
 
     Ok(config)
 }
