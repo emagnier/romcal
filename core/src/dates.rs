@@ -2,14 +2,14 @@ use chrono::{DateTime, Datelike, Duration, NaiveDate, Utc, Weekday};
 use std::collections::HashMap;
 
 use super::easter::{calculate_gregorian_easter_date, calculate_julian_easter_date_to_gregorian};
-use crate::config::LiturgicalConfig;
 use crate::error::{validate_year, RomcalResult};
+use crate::preset::Preset;
 use crate::types::liturgical::Season;
 use crate::types::EasterCalculationType;
 
 /// Main structure for liturgical date calculations
 pub struct LiturgicalDates {
-    config: LiturgicalConfig,
+    config: Preset,
     year: i32,
     is_liturgical_year: bool,
 }
@@ -20,7 +20,7 @@ impl LiturgicalDates {
     /// # Errors
     ///
     /// Returns `RomcalError::InvalidYear` if the year is before 1583
-    pub fn new(config: LiturgicalConfig, year: i32) -> RomcalResult<Self> {
+    pub fn new(config: Preset, year: i32) -> RomcalResult<Self> {
         validate_year(year, 1583)?;
         let is_liturgical_year = config.scope == crate::CalendarScope::Liturgical;
         Ok(Self {
@@ -920,13 +920,13 @@ impl LiturgicalDates {
 
 #[cfg(test)]
 mod tests {
-    use crate::config::LiturgicalConfigPartial;
+    use crate::preset::PresetPartial;
 
     use super::*;
 
     #[test]
     fn test_liturgical_dates_creation() {
-        let config = LiturgicalConfig::default();
+        let config = Preset::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
 
         assert_eq!(dates.year, 2024);
@@ -935,9 +935,9 @@ mod tests {
 
     #[test]
     fn test_liturgical_year_creation() {
-        let config = LiturgicalConfig::new(LiturgicalConfigPartial {
+        let config = Preset::new(PresetPartial {
             scope: Some(crate::CalendarScope::Liturgical),
-            ..LiturgicalConfigPartial::default()
+            ..PresetPartial::default()
         });
         let dates = LiturgicalDates::new(config, 2024).unwrap();
 
@@ -947,7 +947,7 @@ mod tests {
 
     #[test]
     fn test_christmas_calculation() {
-        let config = LiturgicalConfig::default();
+        let config = Preset::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
         let christmas = dates.get_christmas_date(None);
 
@@ -958,7 +958,7 @@ mod tests {
 
     #[test]
     fn test_easter_calculation() {
-        let config = LiturgicalConfig::default();
+        let config = Preset::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
         let easter = dates.get_easter_sunday_date_unwrap(None);
 
@@ -970,7 +970,7 @@ mod tests {
 
     #[test]
     fn test_ash_wednesday_calculation() {
-        let config = LiturgicalConfig::default();
+        let config = Preset::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
         let ash_wednesday = dates.get_ash_wednesday_date(None);
 
@@ -995,7 +995,7 @@ mod tests {
 
     #[test]
     fn test_unprivileged_weekday_of_advent() {
-        let config = LiturgicalConfig::default();
+        let config = Preset::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
 
         // Test valid weekday
@@ -1011,7 +1011,7 @@ mod tests {
 
     #[test]
     fn test_privileged_weekday_of_advent() {
-        let config = LiturgicalConfig::default();
+        let config = Preset::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
 
         // Test valid day
@@ -1025,7 +1025,7 @@ mod tests {
 
     #[test]
     fn test_sunday_of_advent() {
-        let config = LiturgicalConfig::default();
+        let config = Preset::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
 
         // Test valid week
@@ -1040,7 +1040,7 @@ mod tests {
 
     #[test]
     fn test_all_dates_in_octave_of_christmas() {
-        let config = LiturgicalConfig::default();
+        let config = Preset::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
         let octave_dates = dates.all_dates_in_octave_of_christmas(None);
 
@@ -1058,7 +1058,7 @@ mod tests {
 
     #[test]
     fn test_weekday_within_octave_of_christmas() {
-        let config = LiturgicalConfig::default();
+        let config = Preset::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
 
         // Test valid day of octave
@@ -1076,7 +1076,7 @@ mod tests {
 
     #[test]
     fn test_all_dates_of_christmas_time() {
-        let config = LiturgicalConfig::default();
+        let config = Preset::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
         let christmas_time_dates = dates.get_all_dates_of_christmas_time(None);
 
@@ -1090,7 +1090,7 @@ mod tests {
 
     #[test]
     fn test_epiphany() {
-        let config = LiturgicalConfig::default();
+        let config = Preset::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
         let epiphany = dates.get_epiphany_date(None);
 
@@ -1101,7 +1101,7 @@ mod tests {
 
     #[test]
     fn test_all_dates_before_epiphany() {
-        let config = LiturgicalConfig::default();
+        let config = Preset::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
         let dates_before = dates.all_dates_before_epiphany(None);
 
@@ -1113,7 +1113,7 @@ mod tests {
 
     #[test]
     fn test_weekday_before_epiphany() {
-        let config = LiturgicalConfig::default();
+        let config = Preset::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
 
         // Test valid day
@@ -1130,7 +1130,7 @@ mod tests {
 
     #[test]
     fn test_weekday_after_epiphany() {
-        let config = LiturgicalConfig::default();
+        let config = Preset::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
 
         // Test valid day of week
@@ -1147,7 +1147,7 @@ mod tests {
 
     #[test]
     fn test_invalid_year_creation() {
-        let config = LiturgicalConfig::default();
+        let config = Preset::default();
 
         // Test invalid year
         assert!(LiturgicalDates::new(config.clone(), 1500).is_err());
@@ -1160,7 +1160,7 @@ mod tests {
 
     #[test]
     fn test_easter_error_handling() {
-        let config = LiturgicalConfig::default();
+        let config = Preset::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
 
         // Test valid year

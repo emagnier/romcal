@@ -8,12 +8,6 @@ pub enum RomcalCliError {
     #[error("Invalid year: {0} (must be >= 1583 and <= 9999)")]
     InvalidYear(i32),
 
-    #[error("Invalid calculation type: {0}. Use 'gregorian' or 'julian'")]
-    InvalidCalculationType(String),
-
-    #[error("Invalid scope: {0}. Use 'gregorian' or 'liturgical'")]
-    InvalidScope(String),
-
     #[error("I/O error: {0}")]
     IoError(#[from] std::io::Error),
 
@@ -37,13 +31,5 @@ impl RomcalCliError {
 
     pub fn invalid_year(year: i32) -> Self {
         Self::InvalidYear(year)
-    }
-
-    pub fn invalid_calculation_type(calc_type: impl Into<String>) -> Self {
-        Self::InvalidCalculationType(calc_type.into())
-    }
-
-    pub fn invalid_scope(scope: impl Into<String>) -> Self {
-        Self::InvalidScope(scope.into())
     }
 }

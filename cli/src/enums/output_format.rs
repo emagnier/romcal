@@ -1,12 +1,13 @@
 use crate::error::RomcalCliError;
+use clap::ValueEnum;
 use serde::{Deserialize, Serialize};
 
 /// Output format options for the CLI
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub enum OutputFormat {
+    Yaml,
     Json,
     Csv,
-    Yaml,
     Lines,
 }
 
@@ -15,9 +16,9 @@ impl std::str::FromStr for OutputFormat {
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         match s.to_lowercase().as_str() {
+            "yaml" => Ok(OutputFormat::Yaml),
             "json" => Ok(OutputFormat::Json),
             "csv" => Ok(OutputFormat::Csv),
-            "yaml" => Ok(OutputFormat::Yaml),
             "lines" => Ok(OutputFormat::Lines),
             _ => Err(format!("Invalid output format: {}", s)),
         }
@@ -27,9 +28,9 @@ impl std::str::FromStr for OutputFormat {
 impl std::fmt::Display for OutputFormat {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
+            OutputFormat::Yaml => write!(f, "yaml"),
             OutputFormat::Json => write!(f, "json"),
             OutputFormat::Csv => write!(f, "csv"),
-            OutputFormat::Yaml => write!(f, "yaml"),
             OutputFormat::Lines => write!(f, "lines"),
         }
     }
@@ -39,26 +40,40 @@ impl OutputFormat {
     /// Print data in the specified format
     pub fn print(&self, data: &str) -> Result<(), RomcalCliError> {
         match self {
+            OutputFormat::Yaml => {
+                println!("{}", serde_yaml::to_string(data)?);
+            }
             OutputFormat::Json => {
                 println!("{}", serde_json::to_string_pretty(data)?);
             }
             OutputFormat::Csv | OutputFormat::Lines => {
                 println!("{}", data);
             }
-            OutputFormat::Yaml => {
-                println!("{}", serde_yaml::to_string(data)?);
-            }
         }
         Ok(())
     }
 }
 
-/// Validate output format and return error if invalid
-pub fn validate_format(format: &str) -> Result<(), RomcalCliError> {
-    match format.to_lowercase().as_str() {
-        "json" | "csv" | "yaml" | "lines" => Ok(()),
-        _ => Err(RomcalCliError::config_error(
-            "Invalid format. Must be 'json', 'csv', 'yaml', or 'lines'",
-        )),
+/// Output format for CLI
+#[derive(ValueEnum, Clone, Debug)]
+pub enum CliOutputFormat {
+    /// YAML format
+    Yaml,
+    /// JSON format
+    Json,
+    /// CSV format
+    Csv,
+    /// Lines format
+    Lines,
+}
+
+impl From<CliOutputFormat> for OutputFormat {
+    fn from(format: CliOutputFormat) -> Self {
+        match format {
+            CliOutputFormat::Yaml => OutputFormat::Yaml,
+            CliOutputFormat::Json => OutputFormat::Json,
+            CliOutputFormat::Csv => OutputFormat::Csv,
+            CliOutputFormat::Lines => OutputFormat::Lines,
+        }
     }
 }

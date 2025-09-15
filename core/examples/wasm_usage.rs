@@ -3,7 +3,7 @@
 //! This example demonstrates how to use the Romcal library with robust error handling,
 //! optimized for use in WebAssembly.
 
-use romcal_core::{LiturgicalConfig, LiturgicalDates, RomcalResult};
+use romcal_core::{LiturgicalDates, Preset, RomcalResult};
 
 fn main() {
     println!("=== WASM-friendly usage example for Romcal ===\n");
@@ -40,7 +40,7 @@ fn main() {
 
 /// Creates a LiturgicalDates instance with error handling
 fn create_liturgical_dates(year: i32) -> RomcalResult<LiturgicalDates> {
-    let config = LiturgicalConfig::default();
+    let config = Preset::default();
     LiturgicalDates::new(config, year)
 }
 
@@ -93,7 +93,7 @@ fn demonstrate_compatibility_api() {
 
     // The compatibility API uses unwrap() and can panic
     // It's useful for existing code that cannot handle errors
-    let config = LiturgicalConfig::default();
+    let config = Preset::default();
     let dates = LiturgicalDates::new(config, 2024).unwrap();
 
     // Using the compatibility API (can panic)
@@ -114,7 +114,7 @@ fn demonstrate_compatibility_api() {
 /// Utility function for WASM interface
 /// This function could be exposed via wasm-bindgen
 pub fn calculate_easter_wasm(year: i32) -> Result<String, String> {
-    let config = LiturgicalConfig::default();
+    let config = Preset::default();
     let dates = LiturgicalDates::new(config, year).map_err(|e| e.to_string())?;
 
     let easter = dates
@@ -127,7 +127,7 @@ pub fn calculate_easter_wasm(year: i32) -> Result<String, String> {
 /// Utility function to validate a year
 /// This function could be exposed via wasm-bindgen
 pub fn validate_year_wasm(year: i32) -> Result<bool, String> {
-    let config = LiturgicalConfig::default();
+    let config = Preset::default();
     match LiturgicalDates::new(config, year) {
         Ok(_) => Ok(true),
         Err(e) => Err(e.to_string()),

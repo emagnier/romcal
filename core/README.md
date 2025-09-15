@@ -25,12 +25,12 @@ romcal = "0.1.0"
 ### Basic example
 
 ```rust
-use romcal::{LiturgicalConfig, LiturgicalDates};
+use romcal::{Preset, LiturgicalDates};
 
 fn main() {
-    // Default configuration
-    let config = LiturgicalConfig::default();
-    let dates = LiturgicalDates::new(config, 2024);
+    // Default preset
+    let preset = Preset::default();
+    let dates = LiturgicalDates::new(preset, 2024);
 
     // Basic calculations
     let easter = dates.easter_sunday(None);
@@ -46,9 +46,9 @@ fn main() {
 ### Custom configuration
 
 ```rust
-use romcal::{LiturgicalConfig, EasterCalculationType, CalendarScope};
+use romcal::{Preset, EasterCalculationType, CalendarScope};
 
-let config = LiturgicalConfig::custom(
+let preset = Preset::custom(
     EasterCalculationType::Gregorian,
     CalendarScope::Gregorian,
     false, // Epiphany on January 6
@@ -61,13 +61,13 @@ let config = LiturgicalConfig::custom(
 
 ```rust
 // Standard Roman rite
-let config = LiturgicalConfig::roman_rite();
+let preset = Preset::roman_rite();
 
 // United States (Ascension and Corpus Christi on Sunday)
-let config = LiturgicalConfig::united_states();
+let preset = Preset::united_states();
 
 // Countries where Epiphany is celebrated on a Sunday
-let config = LiturgicalConfig::epiphany_on_sunday();
+let preset = Preset::epiphany_on_sunday();
 ```
 
 ## Main API

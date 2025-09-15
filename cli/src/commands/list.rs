@@ -1,4 +1,4 @@
-use crate::{error::RomcalCliError, output::OutputFormat};
+use crate::{enums::OutputFormat, error::RomcalCliError};
 use romcal_core::{CALENDAR_IDS, LOCALE_CODES};
 use serde_json;
 use serde_yaml;

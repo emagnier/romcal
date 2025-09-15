@@ -1,8 +1,8 @@
-use romcal_core::{LiturgicalConfig, LiturgicalDates};
+use romcal_core::{LiturgicalDates, Preset};
 
 fn main() {
     // Default configuration
-    let config = LiturgicalConfig::default();
+    let config = Preset::default();
     let dates = LiturgicalDates::new(config, 2024).unwrap();
 
     println!("=== Liturgical date calculations for 2024 ===");
@@ -94,7 +94,7 @@ mod tests {
 
     #[test]
     fn test_easter_2024() {
-        let config = LiturgicalConfig::default();
+        let config = Preset::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
         let easter = dates.get_easter_sunday_date_unwrap(None);
 
@@ -106,7 +106,7 @@ mod tests {
 
     #[test]
     fn test_christmas() {
-        let config = LiturgicalConfig::default();
+        let config = Preset::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
         let christmas = dates.get_christmas_date(None);
 
@@ -118,7 +118,7 @@ mod tests {
 
     #[test]
     fn test_fixed_feasts() {
-        let config = LiturgicalConfig::default();
+        let config = Preset::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
 
         // Mary, Mother of God - January 1

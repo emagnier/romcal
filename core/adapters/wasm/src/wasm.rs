@@ -1,4 +1,4 @@
-use romcal_core::config::{LiturgicalConfig, LiturgicalConfigPartial};
+use romcal_core::preset::{Preset, PresetPartial};
 use romcal_core::types::{CalendarScope, EasterCalculationType};
 use serde::{Deserialize, Serialize};
 use wasm_bindgen::prelude::*;
@@ -7,7 +7,7 @@ use wasm_bindgen::prelude::*;
 #[wasm_bindgen]
 #[derive(Debug, Clone, Serialize, Deserialize, Default)]
 pub struct RomcalConfig {
-    inner: LiturgicalConfig,
+    inner: Preset,
 }
 
 /// Partial configuration structure for builder pattern
@@ -92,7 +92,7 @@ impl PartialRomcalConfig {
             _ => Some(CalendarScope::Gregorian),
         };
 
-        let config = LiturgicalConfigPartial {
+        let config = PresetPartial {
             calendar: self.calendar.clone(),
             locale: self.locale.clone(),
             easter_calculation_type: easter_type,
@@ -105,7 +105,7 @@ impl PartialRomcalConfig {
         };
 
         RomcalConfig {
-            inner: LiturgicalConfig::new(config),
+            inner: Preset::new(config),
         }
     }
 }

@@ -40,10 +40,10 @@ The WASM bindings are generated from the `core/adapters/wasm` module.
 **Usage:**
 
 ```typescript
-import { Romcal, LiturgicalConfig } from './pkg/romcal_core';
+import { Romcal, Preset } from './pkg/romcal_core';
 
 const romcal = new Romcal();
-const config = new LiturgicalConfig();
+const preset = new Preset();
 ```
 
 ### Python (Planned)

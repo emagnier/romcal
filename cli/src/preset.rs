@@ -2,65 +2,57 @@ use crate::error::RomcalCliError;
 use crate::utils::{
     combine_resources_by_locale, parse_calendar_definition_files, parse_resource_files,
 };
-use romcal_core::config::LiturgicalConfigPartial;
-use romcal_core::{CalendarScope, EasterCalculationType, LiturgicalConfig};
+use romcal_core::{CalendarScope, EasterCalculationType, Preset};
 
-/// Create a liturgical configuration from CLI parameters
+/// Create a romcal preset from CLI parameters
 #[allow(clippy::too_many_arguments)]
-pub fn create_liturgical_config(
+pub fn create_preset(
     calendar: Option<&str>,
     locale: Option<&str>,
-    scope: Option<&str>,
-    easter_calculation_type: Option<&str>,
+    scope: Option<CalendarScope>,
+    easter_calculation_type: Option<EasterCalculationType>,
     epiphany_on_sunday: Option<bool>,
     ascension_on_sunday: Option<bool>,
     corpus_christi_on_sunday: Option<bool>,
     calendar_definitions: &[String],
     resources: &[String],
-) -> Result<LiturgicalConfig, RomcalCliError> {
-    // Parse scope
-    let scope = match scope.unwrap_or("gregorian") {
-        "gregorian" => CalendarScope::Gregorian,
-        "liturgical" => CalendarScope::Liturgical,
-        _ => return Err(RomcalCliError::invalid_scope(scope.unwrap_or("unknown"))),
-    };
+) -> Result<Preset, RomcalCliError> {
+    // Start with default preset from core
+    let mut preset = Preset::default();
 
-    // Parse Easter calculation type
-    let easter_calculation_type = match easter_calculation_type.unwrap_or("gregorian") {
-        "gregorian" => EasterCalculationType::Gregorian,
-        "julian" => EasterCalculationType::Julian,
-        _ => {
-            return Err(RomcalCliError::invalid_calculation_type(
-                easter_calculation_type.unwrap_or("unknown"),
-            ))
-        }
-    };
+    // Override with CLI-provided values if specified
+    if let Some(cal) = calendar {
+        preset.calendar = cal.to_string();
+    }
+    if let Some(loc) = locale {
+        preset.locale = loc.to_string();
+    }
+    if let Some(s) = scope {
+        preset.scope = s;
+    }
+    if let Some(easter_type) = easter_calculation_type {
+        preset.easter_calculation_type = easter_type;
+    }
+    if let Some(epiphany) = epiphany_on_sunday {
+        preset.epiphany_on_sunday = epiphany;
+    }
+    if let Some(ascension) = ascension_on_sunday {
+        preset.ascension_on_sunday = ascension;
+    }
+    if let Some(corpus_christi) = corpus_christi_on_sunday {
+        preset.corpus_christi_on_sunday = corpus_christi;
+    }
 
     // Load custom calendar definitions and resources if provided
-    let calendar_def_data = parse_calendar_definition_files(calendar_definitions)?;
-    let resources_data = if !resources.is_empty() {
-        // Parse resource files
+    if !calendar_definitions.is_empty() {
+        preset.calendar_definitions = parse_calendar_definition_files(calendar_definitions)?;
+    }
+    if !resources.is_empty() {
         let parsed_resources = parse_resource_files(resources)?;
-        // Combine resources by locale (deep merge metadata, concatenate entities)
-        combine_resources_by_locale(parsed_resources)?
-    } else {
-        Vec::new()
-    };
+        preset.resources = combine_resources_by_locale(parsed_resources)?;
+    }
 
-    // Create a romcal config
-    let config = LiturgicalConfig::new(LiturgicalConfigPartial {
-        calendar: calendar.map(|s| s.to_string()),
-        locale: locale.map(|s| s.to_string()),
-        scope: Some(scope),
-        easter_calculation_type: Some(easter_calculation_type),
-        epiphany_on_sunday,
-        corpus_christi_on_sunday,
-        ascension_on_sunday,
-        calendar_definitions: Some(calendar_def_data),
-        resources: Some(resources_data),
-    });
-
-    Ok(config)
+    Ok(preset)
 }
 
 #[cfg(test)]

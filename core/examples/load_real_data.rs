@@ -1,5 +1,5 @@
 use romcal_core::calendar_def::CalendarDefinition;
-use romcal_core::config::{LiturgicalConfig, LiturgicalConfigPartial};
+use romcal_core::preset::{Preset, PresetPartial};
 use romcal_core::resources::ResourcesDefinition;
 use std::fs;
 
@@ -19,11 +19,11 @@ const RESOURCE_FILES: &[&str] = &[
 ];
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    println!("=== Loading real data with LiturgicalConfig ===\n");
+    println!("=== Loading real data with Preset ===\n");
 
-    // Create a liturgical configuration
-    let mut config = LiturgicalConfig::new(LiturgicalConfigPartial::default());
-    println!("✅ Liturgical configuration created");
+    // Create a liturgical preset
+    let mut preset = Preset::new(PresetPartial::default());
+    println!("✅ Liturgical preset created");
 
     // Load calendars
     println!("\n📅 Loading calendars...");
@@ -32,7 +32,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         if std::path::Path::new(file_path).exists() {
             let content = fs::read_to_string(file_path)?;
             let calendar_def: CalendarDefinition = serde_json::from_str(&content)?;
-            config.add_calendar_definition(calendar_def);
+            preset.add_calendar_definition(calendar_def);
             println!("  ✅ {} loaded", file_path);
         } else {
             println!("  ❌ {} not found", file_path);
@@ -46,7 +46,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         if std::path::Path::new(file_path).exists() {
             let content = fs::read_to_string(file_path)?;
             let resources_def: ResourcesDefinition = serde_json::from_str(&content)?;
-            config.add_resources(resources_def);
+            preset.add_resources(resources_def);
             println!("  ✅ {} loaded", file_path);
         } else {
             println!("  ❌ {} not found", file_path);
@@ -54,16 +54,16 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     }
 
     // Display a summary
-    println!("\n📊 Configuration summary :");
+    println!("\n📊 Preset summary :");
     println!(
         "  - Calendars loaded : {}",
-        config.calendar_definitions.len()
+        preset.calendar_definitions.len()
     );
-    println!("  - Resources loaded : {}", config.resources.len());
+    println!("  - Resources loaded : {}", preset.resources.len());
 
     // Analyze loaded calendars
     println!("\n🔍 Calendar analysis :");
-    for cal_def in &config.calendar_definitions {
+    for cal_def in &preset.calendar_definitions {
         println!("  📅 Calendar '{}' :", cal_def.id);
         println!("    - Type : {:?}", cal_def.metadata.r#type);
         println!("    - Jurisdiction : {:?}", cal_def.metadata.jurisdiction);
@@ -89,7 +89,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // Analyze loaded resources
     println!("\n📖 Resource analysis :");
-    for res_def in &config.resources {
+    for res_def in &preset.resources {
         println!("  🌐 Resources '{}' :", res_def.locale);
         if let Some(entities) = &res_def.entities {
             println!("    - Entities defined : {}", entities.len());
@@ -112,13 +112,13 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Test utility methods
     println!("\n🔧 Testing utility methods :");
 
-    if let Some(_cal_def) = config.get_calendar_definition("general_roman") {
+    if let Some(_cal_def) = preset.get_calendar_definition("general_roman") {
         println!("  ✅ get_calendar_definition('general_roman') : found");
     } else {
         println!("  ❌ get_calendar_definition('general_roman') : not found");
     }
 
-    if let Some(_res_def) = config.get_resources("en") {
+    if let Some(_res_def) = preset.get_resources("en") {
         println!("  ✅ get_resources('en') : found");
     } else {
         println!("  ❌ get_resources('en') : not found");
@@ -126,7 +126,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // Test serialization and save to file
     println!("\n💾 Testing serialization :");
-    let serialized = serde_json::to_string_pretty(&config)?;
+    let serialized = serde_json::to_string_pretty(&preset)?;
     println!(
         "  ✅ Serialization successful ({} characters)",
         serialized.len()
@@ -143,7 +143,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("{}...", sample);
 
     println!("\n🎉 All tests passed !");
-    println!("✅ LiturgicalConfig works perfectly with real data");
+    println!("✅ Preset works perfectly with real data");
 
     Ok(())
 }

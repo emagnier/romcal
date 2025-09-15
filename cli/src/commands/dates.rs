@@ -1,8 +1,8 @@
+use crate::enums::OutputFormat;
 use crate::error::RomcalCliError;
-use crate::output::OutputFormat;
 use crate::utils::{current_year, validate_year};
-use romcal_core::LiturgicalConfig;
 use romcal_core::LiturgicalDates;
+use romcal_core::Preset;
 
 /// Type alias for date calculation methods
 type DateMethod = fn(&LiturgicalDates, Option<i32>) -> chrono::DateTime<chrono::Utc>;
@@ -103,21 +103,21 @@ fn validate_and_get_date_method(date_type: &str) -> Result<DateMethod, RomcalCli
 
 /// Handle dates command
 #[allow(clippy::too_many_arguments)]
-pub fn handle_dates(
-    date_type: &str,
+pub fn handle(
+    name: &str,
     year: Option<i32>,
     output_format: OutputFormat,
-    liturgical_config: LiturgicalConfig,
+    preset: Preset,
 ) -> Result<(), RomcalCliError> {
     let year = year.unwrap_or_else(current_year);
 
     validate_year(year)?;
 
     // Get the date calculation method
-    let date_method = validate_and_get_date_method(date_type)?;
+    let date_method = validate_and_get_date_method(name)?;
 
     // Create liturgical dates instance
-    let dates = LiturgicalDates::new(liturgical_config, year)?;
+    let dates = LiturgicalDates::new(preset, year)?;
 
     // Calculate the requested date
     let date_result = date_method(&dates, None);

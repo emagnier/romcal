@@ -15,9 +15,9 @@ const DEFAULT_EPIPHANY_ON_SUNDAY: bool = false;
 const DEFAULT_CORPUS_CHRISTI_ON_SUNDAY: bool = true;
 const DEFAULT_ASCENSION_ON_SUNDAY: bool = false;
 
-/// Partial configuration for liturgical date calculations (input)
+/// Partial preset for romcal
 #[derive(Debug, Clone, Serialize, Deserialize, Default)]
-pub struct LiturgicalConfigPartial {
+pub struct PresetPartial {
     /// Calendar type (e.g., 'general_roman', 'france', 'united_states')
     pub calendar: Option<String>,
     /// Locale (e.g., 'en', 'fr', 'es')
@@ -38,9 +38,9 @@ pub struct LiturgicalConfigPartial {
     pub resources: Option<Vec<ResourcesDefinition>>,
 }
 
-/// Complete configuration for liturgical date calculations (output)
+/// Complete preset for romcal
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct LiturgicalConfig {
+pub struct Preset {
     /// Calendar type (e.g., 'general_roman', 'france', 'united_states')
     pub calendar: String,
     /// Locale (e.g., 'en', 'fr', 'es')
@@ -61,7 +61,7 @@ pub struct LiturgicalConfig {
     pub resources: Vec<ResourcesDefinition>,
 }
 
-impl Default for LiturgicalConfig {
+impl Default for Preset {
     fn default() -> Self {
         Self {
             calendar: DEFAULT_CALENDAR.to_string(),
@@ -77,9 +77,9 @@ impl Default for LiturgicalConfig {
     }
 }
 
-impl LiturgicalConfig {
-    /// Creates a new configuration with default values applied to any None fields
-    pub fn new(config: LiturgicalConfigPartial) -> Self {
+impl Preset {
+    /// Creates a new preset with default values applied to any None fields
+    pub fn new(config: PresetPartial) -> Self {
         Self {
             calendar: config
                 .calendar
@@ -140,10 +140,10 @@ impl LiturgicalConfig {
     }
 
     /// Create a JSON bundle of the current configuration
-    /// This method serializes the LiturgicalConfig to JSON format
+    /// This method serializes the Preset to JSON format
     /// and removes null values and empty objects from the output
-    pub fn create_bundle(&self) -> Result<String, serde_json::Error> {
-        crate::bundle::create_bundle(self)
+    pub fn optimize(&self) -> Result<String, serde_json::Error> {
+        crate::optimize::optimize(self)
             .map_err(|e| serde_json::Error::io(std::io::Error::other(e.to_string())))
     }
 }

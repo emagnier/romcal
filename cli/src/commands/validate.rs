@@ -28,9 +28,9 @@ impl From<crate::ValidationType> for ValidationType {
 }
 
 /// Handle validate command
-pub fn handle_validate(
+pub fn handle(
     validation_type: crate::ValidationType,
-    file_inputs: &[String],
+    file_paths: &[String],
 ) -> Result<(), RomcalCliError> {
     let validation_type = ValidationType::from(validation_type);
 
@@ -41,7 +41,7 @@ pub fn handle_validate(
     };
 
     println!("🔍 Validating JSON files...");
-    println!("📁 Input: {}", file_inputs.join(" "));
+    println!("📁 Input: {}", file_paths.join(" "));
     println!(
         "📋 Schema: {} (embedded)",
         match validation_type {
@@ -52,7 +52,7 @@ pub fn handle_validate(
     println!();
 
     // Collect files from all inputs
-    let all_files = utils::collect_json_files(file_inputs)?;
+    let all_files = utils::collect_json_files(file_paths)?;
 
     // Remove duplicates while preserving order
     let mut unique_files = Vec::new();
