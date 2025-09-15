@@ -1,4 +1,5 @@
 use serde::{Deserialize, Serialize};
+use serde_json::Value;
 
 use crate::resources::ResourcesDefinition;
 use crate::{
@@ -22,16 +23,16 @@ pub struct LiturgicalConfigPartial {
     pub calendar: Option<String>,
     /// Locale (e.g., 'en', 'fr', 'es')
     pub locale: Option<String>,
-    /// Easter calculation type
-    pub easter_calculation_type: Option<EasterCalculationType>,
     /// Calendar scope
     pub scope: Option<CalendarScope>,
+    /// Easter calculation type
+    pub easter_calculation_type: Option<EasterCalculationType>,
     /// Epiphany is celebrated on a Sunday (between January 2-8)
     pub epiphany_on_sunday: Option<bool>,
-    /// Corpus Christi is celebrated on a Sunday
-    pub corpus_christi_on_sunday: Option<bool>,
     /// Ascension is celebrated on a Sunday (7th Sunday of Easter)
     pub ascension_on_sunday: Option<bool>,
+    /// Corpus Christi is celebrated on a Sunday
+    pub corpus_christi_on_sunday: Option<bool>,
     /// Array of calendar definitions
     pub calendar_definitions: Option<Vec<CalendarDefinition>>,
     /// Array of resources definitions
@@ -45,16 +46,16 @@ pub struct LiturgicalConfig {
     pub calendar: String,
     /// Locale (e.g., 'en', 'fr', 'es')
     pub locale: String,
-    /// Easter calculation type
-    pub easter_calculation_type: EasterCalculationType,
     /// Calendar scope
     pub scope: CalendarScope,
     /// Epiphany is celebrated on a Sunday (between January 2-8)
     pub epiphany_on_sunday: bool,
-    /// Corpus Christi is celebrated on a Sunday
-    pub corpus_christi_on_sunday: bool,
     /// Ascension is celebrated on a Sunday (7th Sunday of Easter)
     pub ascension_on_sunday: bool,
+    /// Corpus Christi is celebrated on a Sunday
+    pub corpus_christi_on_sunday: bool,
+    /// Easter calculation type
+    pub easter_calculation_type: EasterCalculationType,
     /// Array of calendar definitions
     pub calendar_definitions: Vec<CalendarDefinition>,
     /// Array of resources definitions
@@ -66,8 +67,8 @@ impl Default for LiturgicalConfig {
         Self {
             calendar: DEFAULT_CALENDAR.to_string(),
             locale: DEFAULT_LOCALE.to_string(),
-            easter_calculation_type: DEFAULT_EASTER_TYPE,
             scope: DEFAULT_SCOPE,
+            easter_calculation_type: DEFAULT_EASTER_TYPE,
             epiphany_on_sunday: DEFAULT_EPIPHANY_ON_SUNDAY,
             corpus_christi_on_sunday: DEFAULT_CORPUS_CHRISTI_ON_SUNDAY,
             ascension_on_sunday: DEFAULT_ASCENSION_ON_SUNDAY,
@@ -85,29 +86,21 @@ impl LiturgicalConfig {
                 .calendar
                 .unwrap_or_else(|| DEFAULT_CALENDAR.to_string()),
             locale: config.locale.unwrap_or_else(|| DEFAULT_LOCALE.to_string()),
+            scope: config.scope.unwrap_or(DEFAULT_SCOPE),
             easter_calculation_type: config
                 .easter_calculation_type
                 .unwrap_or(DEFAULT_EASTER_TYPE),
-            scope: config.scope.unwrap_or(DEFAULT_SCOPE),
             epiphany_on_sunday: config
                 .epiphany_on_sunday
                 .unwrap_or(DEFAULT_EPIPHANY_ON_SUNDAY),
-            corpus_christi_on_sunday: config
-                .corpus_christi_on_sunday
-                .unwrap_or(DEFAULT_CORPUS_CHRISTI_ON_SUNDAY),
             ascension_on_sunday: config
                 .ascension_on_sunday
                 .unwrap_or(DEFAULT_ASCENSION_ON_SUNDAY),
+            corpus_christi_on_sunday: config
+                .corpus_christi_on_sunday
+                .unwrap_or(DEFAULT_CORPUS_CHRISTI_ON_SUNDAY),
             calendar_definitions: config.calendar_definitions.unwrap_or_default(),
             resources: config.resources.unwrap_or_default(),
-        }
-    }
-
-    /// Converts easter calculation type to WASM string
-    pub fn easter_calculation_type_to_wasm(&self) -> String {
-        match self.easter_calculation_type {
-            EasterCalculationType::Gregorian => "GREGORIAN".to_string(),
-            EasterCalculationType::Julian => "JULIAN".to_string(),
         }
     }
 
@@ -116,6 +109,14 @@ impl LiturgicalConfig {
         match self.scope {
             CalendarScope::Gregorian => "GREGORIAN".to_string(),
             CalendarScope::Liturgical => "LITURGICAL".to_string(),
+        }
+    }
+
+    /// Converts easter calculation type to WASM string
+    pub fn easter_calculation_type_to_wasm(&self) -> String {
+        match self.easter_calculation_type {
+            EasterCalculationType::Gregorian => "GREGORIAN".to_string(),
+            EasterCalculationType::Julian => "JULIAN".to_string(),
         }
     }
 
@@ -141,7 +142,41 @@ impl LiturgicalConfig {
 
     /// Create a JSON bundle of the current configuration
     /// This method serializes the LiturgicalConfig to JSON format
+    /// and removes null values and empty objects from the output
     pub fn create_bundle(&self) -> Result<String, serde_json::Error> {
-        serde_json::to_string_pretty(self)
+        let value = serde_json::to_value(self)?;
+        let cleaned_value = remove_null_and_empty_values(value);
+        serde_json::to_string_pretty(&cleaned_value)
+    }
+}
+
+/// Recursively removes null values and empty objects from a JSON Value
+fn remove_null_and_empty_values(value: Value) -> Value {
+    match value {
+        Value::Object(map) => {
+            let mut cleaned_map = serde_json::Map::new();
+            for (key, val) in map {
+                let cleaned_val = remove_null_and_empty_values(val);
+                if !cleaned_val.is_null() {
+                    cleaned_map.insert(key, cleaned_val);
+                }
+            }
+            // Return null if the object is empty after cleaning, so it gets filtered out
+            if cleaned_map.is_empty() {
+                Value::Null
+            } else {
+                Value::Object(cleaned_map)
+            }
+        }
+        Value::Array(arr) => {
+            let cleaned: Vec<Value> = arr
+                .into_iter()
+                .map(remove_null_and_empty_values)
+                .filter(|v| !v.is_null())
+                .collect();
+            Value::Array(cleaned)
+        }
+        Value::Null => Value::Null, // This value will be filtered by parent calls
+        other => other,
     }
 }

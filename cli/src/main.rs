@@ -43,47 +43,47 @@ struct Cli {
     command: Commands,
 
     /// Calendar to use (e.g., 'general_roman', 'france', 'united_states')
-    #[arg(short, long, global = true)]
+    #[arg(short = 'c', long, global = true)]
     calendar: Option<String>,
 
     /// Locale to use (e.g., 'en', 'fr', 'es')
-    #[arg(short, long, global = true)]
+    #[arg(short = 'l', long, global = true)]
     locale: Option<String>,
 
     /// Output format (json, csv, yaml, lines)
-    #[arg(short, long, global = true, default_value = "yaml")]
+    #[arg(short = 'f', long, global = true, default_value = "yaml")]
     format: String,
 
     /// Calendar scope (gregorian, liturgical)
-    #[arg(short, long, global = true)]
+    #[arg(short = 's', long, global = true)]
     scope: Option<String>,
 
     /// Easter calculation type (gregorian, julian)
     #[arg(long, global = true)]
     easter_calculation_type: Option<String>,
 
-    /// Celebrate Ascension on Sunday
-    #[arg(long, global = true, action = clap::ArgAction::SetTrue)]
-    ascension_on_sunday: bool,
-
     /// Celebrate Epiphany on Sunday
     #[arg(long, global = true, action = clap::ArgAction::SetTrue)]
     epiphany_on_sunday: bool,
+
+    /// Celebrate Ascension on Sunday
+    #[arg(long, global = true, action = clap::ArgAction::SetTrue)]
+    ascension_on_sunday: bool,
 
     /// Celebrate Corpus Christi on Sunday
     #[arg(long, global = true, action = clap::ArgAction::SetTrue)]
     corpus_christi_on_sunday: bool,
 
     /// Paths to calendar definition JSON files (supports glob patterns)
-    #[arg(long, global = true, value_delimiter = ',')]
+    #[arg(short = 'd', long, global = true, value_delimiter = ',')]
     calendar_definitions: Vec<String>,
 
     /// Paths to resource JSON files (supports glob patterns)
-    #[arg(long, global = true, value_delimiter = ',')]
+    #[arg(short = 'r', long, global = true, value_delimiter = ',')]
     resources: Vec<String>,
 
     /// Show debug information
-    #[arg(short, long, global = true)]
+    #[arg(short = 'D', long, global = true)]
     debug: bool,
 }
 

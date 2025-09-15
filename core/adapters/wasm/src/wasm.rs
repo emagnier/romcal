@@ -18,16 +18,16 @@ pub struct PartialRomcalConfig {
     calendar: Option<String>,
     /// Locale (e.g., 'en', 'fr')
     locale: Option<String>,
-    /// Epiphany is celebrated on a Sunday
-    epiphany_on_sunday: Option<bool>,
-    /// Corpus Christi is celebrated on a Sunday
-    corpus_christi_on_sunday: Option<bool>,
-    /// Ascension is celebrated on a Sunday
-    ascension_on_sunday: Option<bool>,
-    /// Easter calculation type
-    easter_calculation_type: Option<String>,
     /// Calendar scope
     scope: Option<String>,
+    /// Easter calculation type
+    easter_calculation_type: Option<String>,
+    /// Epiphany is celebrated on a Sunday
+    epiphany_on_sunday: Option<bool>,
+    /// Ascension is celebrated on a Sunday
+    ascension_on_sunday: Option<bool>,
+    /// Corpus Christi is celebrated on a Sunday
+    corpus_christi_on_sunday: Option<bool>,
 }
 
 #[wasm_bindgen]

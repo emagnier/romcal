@@ -11,8 +11,8 @@ struct ConfigDisplayData {
     calendar: String,
     scope: String,
     easter_calculation_type: String,
-    ascension_on_sunday: bool,
     epiphany_on_sunday: bool,
+    ascension_on_sunday: bool,
     corpus_christi_on_sunday: bool,
 }
 
@@ -32,8 +32,8 @@ impl ConfigDisplayData {
                 romcal_core::EasterCalculationType::Julian => "julian",
             }
             .to_string(),
-            ascension_on_sunday: config.ascension_on_sunday,
             epiphany_on_sunday: config.epiphany_on_sunday,
+            ascension_on_sunday: config.ascension_on_sunday,
             corpus_christi_on_sunday: config.corpus_christi_on_sunday,
         }
     }
@@ -45,8 +45,8 @@ impl ConfigDisplayData {
             "calendar": self.calendar,
             "scope": self.scope,
             "easter_calculation_type": self.easter_calculation_type,
-            "ascension_on_sunday": self.ascension_on_sunday,
             "epiphany_on_sunday": self.epiphany_on_sunday,
+            "ascension_on_sunday": self.ascension_on_sunday,
             "corpus_christi_on_sunday": self.corpus_christi_on_sunday
         })
     }
@@ -77,8 +77,8 @@ pub fn handle_output_config(
                 "easter_calculation_type,{}",
                 config_data.easter_calculation_type
             );
-            println!("ascension_on_sunday,{}", config_data.ascension_on_sunday);
             println!("epiphany_on_sunday,{}", config_data.epiphany_on_sunday);
+            println!("ascension_on_sunday,{}", config_data.ascension_on_sunday);
             println!(
                 "corpus_christi_on_sunday,{}",
                 config_data.corpus_christi_on_sunday
@@ -92,8 +92,8 @@ pub fn handle_output_config(
                 "easter_calculation_type: {}",
                 config_data.easter_calculation_type
             );
-            println!("ascension_on_sunday: {}", config_data.ascension_on_sunday);
             println!("epiphany_on_sunday: {}", config_data.epiphany_on_sunday);
+            println!("ascension_on_sunday: {}", config_data.ascension_on_sunday);
             println!(
                 "corpus_christi_on_sunday: {}",
                 config_data.corpus_christi_on_sunday

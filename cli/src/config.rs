@@ -1,5 +1,7 @@
 use crate::error::RomcalCliError;
-use crate::utils::{parse_calendar_definition_files, parse_resource_files};
+use crate::utils::{
+    combine_resources_by_locale, parse_calendar_definition_files, parse_resource_files,
+};
 use romcal_core::config::LiturgicalConfigPartial;
 use romcal_core::{CalendarScope, EasterCalculationType, LiturgicalConfig};
 
@@ -10,12 +12,19 @@ pub fn create_liturgical_config(
     locale: Option<&str>,
     scope: Option<&str>,
     easter_calculation_type: Option<&str>,
+    epiphany_on_sunday: Option<bool>,
     ascension_on_sunday: Option<bool>,
     corpus_christi_on_sunday: Option<bool>,
-    epiphany_on_sunday: Option<bool>,
     calendar_definitions: &[String],
     resources: &[String],
 ) -> Result<LiturgicalConfig, RomcalCliError> {
+    // Parse scope
+    let scope = match scope.unwrap_or("gregorian") {
+        "gregorian" => CalendarScope::Gregorian,
+        "liturgical" => CalendarScope::Liturgical,
+        _ => return Err(RomcalCliError::invalid_scope(scope.unwrap_or("unknown"))),
+    };
+
     // Parse Easter calculation type
     let easter_calculation_type = match easter_calculation_type.unwrap_or("gregorian") {
         "gregorian" => EasterCalculationType::Gregorian,
@@ -27,28 +36,28 @@ pub fn create_liturgical_config(
         }
     };
 
-    // Parse scope
-    let scope = match scope.unwrap_or("gregorian") {
-        "gregorian" => CalendarScope::Gregorian,
-        "liturgical" => CalendarScope::Liturgical,
-        _ => return Err(RomcalCliError::invalid_scope(scope.unwrap_or("unknown"))),
-    };
-
     // Load custom calendar definitions and resources if provided
-    let calendar_def = parse_calendar_definition_files(calendar_definitions)?;
-    let resource_map = parse_resource_files(resources)?;
+    let calendar_def_data = parse_calendar_definition_files(calendar_definitions)?;
+    let resources_data = if !resources.is_empty() {
+        // Parse resource files
+        let parsed_resources = parse_resource_files(resources)?;
+        // Combine resources by locale (deep merge metadata, concatenate entities)
+        combine_resources_by_locale(parsed_resources)?
+    } else {
+        Vec::new()
+    };
 
     // Create a romcal config
     let config = LiturgicalConfig::new(LiturgicalConfigPartial {
         calendar: calendar.map(|s| s.to_string()),
         locale: locale.map(|s| s.to_string()),
-        easter_calculation_type: Some(easter_calculation_type),
         scope: Some(scope),
+        easter_calculation_type: Some(easter_calculation_type),
         epiphany_on_sunday,
         corpus_christi_on_sunday,
         ascension_on_sunday,
-        calendar_definitions: Some(calendar_def),
-        resources: Some(resource_map),
+        calendar_definitions: Some(calendar_def_data),
+        resources: Some(resources_data),
     });
 
     Ok(config)

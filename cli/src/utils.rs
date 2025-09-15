@@ -196,3 +196,370 @@ pub fn validate_year(year: i32) -> Result<(), RomcalCliError> {
         _ => RomcalCliError::config_error(format!("Year validation error: {}", e)),
     })
 }
+
+// =================================================================================
+// Resources combination functions
+// =================================================================================
+
+/// Combine multiple ResourcesDefinition by locale
+/// Groups resources by locale and merges them together:
+/// - Deep merge of metadata properties
+/// - Concatenation of entities arrays
+pub fn combine_resources_by_locale(
+    resources: Vec<romcal_core::ResourcesDefinition>,
+) -> Result<Vec<romcal_core::ResourcesDefinition>, RomcalCliError> {
+    use serde_json::{from_value, to_value};
+    use std::collections::HashMap;
+
+    let mut grouped_by_locale: HashMap<String, Vec<romcal_core::ResourcesDefinition>> =
+        HashMap::new();
+
+    // Group resources by locale
+    for resource in resources {
+        let locale = resource.locale.clone();
+        grouped_by_locale
+            .entry(locale)
+            .or_insert_with(Vec::new)
+            .push(resource);
+    }
+
+    let mut combined_resources = Vec::new();
+
+    // Combine resources for each locale
+    for (_locale, mut locale_resources) in grouped_by_locale {
+        if locale_resources.is_empty() {
+            continue;
+        }
+
+        // Start with the first resource as base
+        let mut combined = locale_resources.remove(0);
+
+        // Merge all other resources for this locale
+        for resource in locale_resources {
+            // Ensure locales match
+            if combined.locale != resource.locale {
+                return Err(RomcalCliError::config_error(format!(
+                    "Cannot merge resources with different locales: '{}' and '{}'",
+                    combined.locale, resource.locale
+                )));
+            }
+
+            // Deep merge metadata using custom JSON merge (handles HashMap and arrays correctly)
+            if let (Some(target_metadata), Some(source_metadata)) =
+                (&combined.metadata, &resource.metadata)
+            {
+                // Convert to JSON, merge, then convert back
+                let mut target_json = to_value(target_metadata)?;
+                let source_json = to_value(source_metadata)?;
+                merge_json_values(&mut target_json, &source_json);
+                let merged_metadata: romcal_core::types::resource::ResourcesMetadata =
+                    from_value(target_json)?;
+
+                combined.metadata = Some(merged_metadata);
+            } else if resource.metadata.is_some() {
+                combined.metadata = resource.metadata;
+            }
+
+            // Concatenate entities manually
+            if let Some(source_entities) = resource.entities {
+                let target_entities = combined.entities.get_or_insert_with(Vec::new);
+                target_entities.extend(source_entities);
+            }
+        }
+
+        combined_resources.push(combined);
+    }
+
+    Ok(combined_resources)
+}
+
+/// Merge two JSON values recursively
+/// - For objects: merge properties, with source taking precedence (ignoring null values)
+/// - For arrays: concatenate them
+/// - For primitives: source takes precedence (ignoring null values)
+fn merge_json_values(target: &mut serde_json::Value, source: &serde_json::Value) {
+    match (target, source) {
+        (serde_json::Value::Object(target_map), serde_json::Value::Object(source_map)) => {
+            for (key, source_value) in source_map {
+                // Skip null values - don't let them override existing values
+                if source_value.is_null() {
+                    continue;
+                }
+
+                match target_map.get_mut(key) {
+                    Some(target_value) => {
+                        merge_json_values(target_value, source_value);
+                    }
+                    None => {
+                        target_map.insert(key.clone(), source_value.clone());
+                    }
+                }
+            }
+        }
+        (serde_json::Value::Array(target_array), serde_json::Value::Array(source_array)) => {
+            // Concatenate arrays instead of replacing
+            target_array.extend(source_array.iter().cloned());
+        }
+        (target_value, source_value) => {
+            // Skip null values - don't let them override existing values
+            if !source_value.is_null() {
+                *target_value = source_value.clone();
+            }
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::collections::HashMap;
+
+    fn create_test_entity(id: &str, name: &str) -> romcal_core::EntityDefinition {
+        let mut entity = romcal_core::EntityDefinition::new(id.to_string());
+        entity.name = Some(name.to_string());
+        entity
+    }
+
+    fn create_test_resources_definition(
+        locale: &str,
+        entities: Vec<romcal_core::EntityDefinition>,
+    ) -> romcal_core::ResourcesDefinition {
+        let mut resources = romcal_core::ResourcesDefinition::new(locale.to_string());
+        resources.entities = Some(entities);
+        resources
+    }
+
+    fn create_test_resources_definition_with_metadata(
+        locale: &str,
+        entities: Vec<romcal_core::EntityDefinition>,
+        metadata: romcal_core::types::resource::ResourcesMetadata,
+    ) -> romcal_core::ResourcesDefinition {
+        let mut resources = romcal_core::ResourcesDefinition::new(locale.to_string());
+        resources.entities = Some(entities);
+        resources.metadata = Some(metadata);
+        resources
+    }
+
+    #[test]
+    fn test_combine_resources_by_locale_empty_input() {
+        let result = combine_resources_by_locale(vec![]).unwrap();
+        assert!(result.is_empty());
+    }
+
+    #[test]
+    fn test_combine_resources_by_locale_single_locale() {
+        let resources = vec![
+            create_test_resources_definition("fr", vec![create_test_entity("entity1", "Entity 1")]),
+            create_test_resources_definition("fr", vec![create_test_entity("entity2", "Entity 2")]),
+        ];
+
+        let result = combine_resources_by_locale(resources).unwrap();
+        assert_eq!(result.len(), 1);
+        assert_eq!(result[0].locale, "fr");
+        assert_eq!(result[0].entities.as_ref().unwrap().len(), 2);
+    }
+
+    #[test]
+    fn test_combine_resources_by_locale_multiple_locales() {
+        let resources = vec![
+            create_test_resources_definition("fr", vec![create_test_entity("entity1", "Entity 1")]),
+            create_test_resources_definition("en", vec![create_test_entity("entity2", "Entity 2")]),
+            create_test_resources_definition("fr", vec![create_test_entity("entity3", "Entity 3")]),
+        ];
+
+        let result = combine_resources_by_locale(resources).unwrap();
+        assert_eq!(result.len(), 2);
+
+        // Find the French resources
+        let fr_resources = result.iter().find(|r| r.locale == "fr").unwrap();
+        assert_eq!(fr_resources.entities.as_ref().unwrap().len(), 2);
+
+        // Find the English resources
+        let en_resources = result.iter().find(|r| r.locale == "en").unwrap();
+        assert_eq!(en_resources.entities.as_ref().unwrap().len(), 1);
+    }
+
+    #[test]
+    fn test_combine_resources_by_locale_metadata_merge() {
+        use romcal_core::types::resource::*;
+
+        let metadata1 = ResourcesMetadata {
+            ordinals: Some({
+                let mut map = HashMap::new();
+                map.insert("1st".to_string(), "premier".to_string());
+                map
+            }),
+            weekdays: None,
+            months: None,
+            colors: None,
+            seasons: None,
+            periods: None,
+            ranks: None,
+            cycles: None,
+        };
+
+        let metadata2 = ResourcesMetadata {
+            ordinals: Some({
+                let mut map = HashMap::new();
+                map.insert("2nd".to_string(), "deuxième".to_string());
+                map
+            }),
+            weekdays: Some({
+                let mut map = HashMap::new();
+                map.insert("monday".to_string(), "lundi".to_string());
+                map
+            }),
+            months: None,
+            colors: None,
+            seasons: None,
+            periods: None,
+            ranks: None,
+            cycles: None,
+        };
+
+        let resources = vec![
+            create_test_resources_definition_with_metadata("fr", vec![], metadata1),
+            create_test_resources_definition_with_metadata("fr", vec![], metadata2),
+        ];
+
+        let result = combine_resources_by_locale(resources).unwrap();
+        assert_eq!(result.len(), 1);
+
+        let combined_metadata = result[0].metadata.as_ref().unwrap();
+        assert_eq!(combined_metadata.ordinals.as_ref().unwrap().len(), 2);
+        assert!(combined_metadata
+            .ordinals
+            .as_ref()
+            .unwrap()
+            .contains_key("1st"));
+        assert!(combined_metadata
+            .ordinals
+            .as_ref()
+            .unwrap()
+            .contains_key("2nd"));
+        assert!(combined_metadata
+            .weekdays
+            .as_ref()
+            .unwrap()
+            .contains_key("monday"));
+    }
+
+    #[test]
+    fn test_combine_resources_by_locale_entities_concatenation() {
+        let resources = vec![
+            create_test_resources_definition(
+                "fr",
+                vec![
+                    create_test_entity("entity1", "Entity 1"),
+                    create_test_entity("entity2", "Entity 2"),
+                ],
+            ),
+            create_test_resources_definition("fr", vec![create_test_entity("entity3", "Entity 3")]),
+        ];
+
+        let result = combine_resources_by_locale(resources).unwrap();
+        assert_eq!(result.len(), 1);
+
+        let entities = result[0].entities.as_ref().unwrap();
+        assert_eq!(entities.len(), 3);
+        assert_eq!(entities[0].id, "entity1");
+        assert_eq!(entities[1].id, "entity2");
+        assert_eq!(entities[2].id, "entity3");
+    }
+
+    #[test]
+    fn test_combine_resources_by_locale_different_locales_error() {
+        // This test verifies that we can't accidentally merge resources with different locales
+        // The function should group by locale, so this should work fine
+        let resources = vec![
+            create_test_resources_definition("fr", vec![create_test_entity("entity1", "Entity 1")]),
+            create_test_resources_definition("en", vec![create_test_entity("entity2", "Entity 2")]),
+        ];
+
+        let result = combine_resources_by_locale(resources).unwrap();
+        assert_eq!(result.len(), 2); // Should have 2 separate resources, not merged
+    }
+
+    #[test]
+    fn test_combine_resources_by_locale_ignore_null_values() {
+        use romcal_core::types::resource::*;
+
+        let metadata1 = ResourcesMetadata {
+            ordinals: Some({
+                let mut map = HashMap::new();
+                map.insert("1st".to_string(), "premier".to_string());
+                map
+            }),
+            weekdays: Some({
+                let mut map = HashMap::new();
+                map.insert("monday".to_string(), "lundi".to_string());
+                map
+            }),
+            months: None,
+            colors: None,
+            seasons: None,
+            periods: None,
+            ranks: None,
+            cycles: None,
+        };
+
+        // Second metadata with null values that should not override the first
+        let metadata2 = ResourcesMetadata {
+            ordinals: Some({
+                let mut map = HashMap::new();
+                map.insert("2nd".to_string(), "deuxième".to_string());
+                map
+            }),
+            weekdays: None, // This null should not override the existing weekdays
+            months: Some({
+                let mut map = HashMap::new();
+                map.insert("january".to_string(), "janvier".to_string());
+                map
+            }),
+            colors: None,
+            seasons: None,
+            periods: None,
+            ranks: None,
+            cycles: None,
+        };
+
+        let resources = vec![
+            create_test_resources_definition_with_metadata("fr", vec![], metadata1),
+            create_test_resources_definition_with_metadata("fr", vec![], metadata2),
+        ];
+
+        let result = combine_resources_by_locale(resources).unwrap();
+        assert_eq!(result.len(), 1);
+
+        let combined_metadata = result[0].metadata.as_ref().unwrap();
+
+        // ordinals should have both values
+        assert_eq!(combined_metadata.ordinals.as_ref().unwrap().len(), 2);
+        assert!(combined_metadata
+            .ordinals
+            .as_ref()
+            .unwrap()
+            .contains_key("1st"));
+        assert!(combined_metadata
+            .ordinals
+            .as_ref()
+            .unwrap()
+            .contains_key("2nd"));
+
+        // weekdays should still have the original value (not overridden by null)
+        assert!(combined_metadata
+            .weekdays
+            .as_ref()
+            .unwrap()
+            .contains_key("monday"));
+        assert_eq!(combined_metadata.weekdays.as_ref().unwrap().len(), 1);
+
+        // months should have the new value
+        assert!(combined_metadata
+            .months
+            .as_ref()
+            .unwrap()
+            .contains_key("january"));
+        assert_eq!(combined_metadata.months.as_ref().unwrap().len(), 1);
+    }
+}
