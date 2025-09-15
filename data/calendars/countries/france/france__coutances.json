@@ -6,8 +6,8 @@
     "type": "DIOCESE"
   },
   "parent_calendar_ids": [
-    "Europe",
-    "France"
+    "europe",
+    "france"
   ],
   "days_definitions": [
     {

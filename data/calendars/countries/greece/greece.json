@@ -9,7 +9,7 @@
     "easter_calculation_type": "JULIAN"
   },
   "parent_calendar_ids": [
-    "Europe"
+    "europe"
   ],
   "days_definitions": [
     {

@@ -6,8 +6,8 @@
     "type": "COUNTRY"
   },
   "parent_calendar_ids": [
-    "Europe",
-    "Russia"
+    "europe",
+    "russia"
   ],
   "days_definitions": []
 }

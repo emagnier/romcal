@@ -6,7 +6,7 @@
     "type": "COUNTRY"
   },
   "parent_calendar_ids": [
-    "Europe"
+    "europe"
   ],
   "days_definitions": [
     {
