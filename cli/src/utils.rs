@@ -217,10 +217,7 @@ pub fn combine_resources_by_locale(
     // Group resources by locale
     for resource in resources {
         let locale = resource.locale.clone();
-        grouped_by_locale
-            .entry(locale)
-            .or_insert_with(Vec::new)
-            .push(resource);
+        grouped_by_locale.entry(locale).or_default().push(resource);
     }
 
     let mut combined_resources = Vec::new();

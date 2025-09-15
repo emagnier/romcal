@@ -1,6 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Precedence",
   "description": "Liturgical precedence levels for determining which celebration takes priority",
+  "type": "string",
   "enum": [
     "TRIDUUM_1",
     "PROPER_OF_TIME_SOLEMNITY_2",
@@ -29,7 +31,5 @@
     "PROPER_MEMORIAL_11B",
     "OPTIONAL_MEMORIAL_12",
     "WEEKDAY_13"
-  ],
-  "title": "Precedence",
-  "type": "string"
+  ]
 }

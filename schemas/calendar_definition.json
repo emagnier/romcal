@@ -1,31 +1,69 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "additionalProperties": false,
-  "definitions": {
-    "CalendarJurisdiction": {
-      "enum": [
-        "ECCLESIASTICAL",
-        "CIVIL"
-      ],
+  "title": "CalendarDefinition",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "id": {
       "type": "string"
     },
-    "CalendarMetadata": {
-      "additionalProperties": false,
-      "properties": {
-        "jurisdiction": {
-          "$ref": "#/definitions/CalendarJurisdiction"
+    "metadata": {
+      "$ref": "#/definitions/CalendarMetadata"
+    },
+    "particular_config": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/ParticularConfig"
         },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "parent_calendar_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "days_definitions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/DayDefinition"
+      }
+    }
+  },
+  "required": [
+    "id",
+    "metadata",
+    "parent_calendar_ids",
+    "days_definitions"
+  ],
+  "additionalProperties": false,
+  "definitions": {
+    "CalendarMetadata": {
+      "type": "object",
+      "properties": {
         "type": {
           "$ref": "#/definitions/CalendarType"
+        },
+        "jurisdiction": {
+          "$ref": "#/definitions/CalendarJurisdiction"
         }
       },
       "required": [
         "type",
         "jurisdiction"
       ],
-      "type": "object"
+      "additionalProperties": false
     },
     "CalendarType": {
+      "type": "string",
       "enum": [
         "GENERAL_ROMAN",
         "REGION",
@@ -38,553 +76,26 @@
         "REGIONAL_COMMUNITY",
         "LOCAL_COMMUNITY",
         "OTHER"
-      ],
-      "type": "string"
+      ]
     },
-    "Color": {
-      "description": "Liturgical colors used in the celebration of Mass and other liturgical services",
+    "CalendarJurisdiction": {
+      "type": "string",
       "enum": [
-        "RED",
-        "ROSE",
-        "PURPLE",
-        "GREEN",
-        "WHITE",
-        "GOLD",
-        "BLACK"
-      ],
-      "type": "string"
-    },
-    "ColorsDef": {
-      "anyOf": [
-        {
-          "$ref": "#/definitions/Color"
-        },
-        {
-          "items": {
-            "$ref": "#/definitions/Color"
-          },
-          "type": "array"
-        }
+        "ECCLESIASTICAL",
+        "CIVIL"
       ]
-    },
-    "CommonDefinition": {
-      "description": "Common definition for simplified categorization",
-      "enum": [
-        "NONE",
-        "DEDICATION_ANNIVERSARY__INSIDE",
-        "DEDICATION_ANNIVERSARY__OUTSIDE",
-        "BLESSED_VIRGIN_MARY",
-        "MARTYRS",
-        "MISSIONARY_MARTYRS",
-        "VIRGIN_MARTYRS",
-        "WOMAN_MARTYRS",
-        "PASTORS",
-        "POPES",
-        "BISHOPS",
-        "FOUNDERS",
-        "MISSIONARIES",
-        "DOCTORS_OF_THE_CHURCH",
-        "VIRGINS",
-        "SAINTS",
-        "ABBOTS",
-        "MONKS",
-        "NUNS",
-        "RELIGIOUS",
-        "MERCY_WORKERS",
-        "EDUCATORS",
-        "HOLY_WOMEN"
-      ],
-      "type": "string"
-    },
-    "CommonsDef": {
-      "anyOf": [
-        {
-          "$ref": "#/definitions/CommonDefinition"
-        },
-        {
-          "items": {
-            "$ref": "#/definitions/CommonDefinition"
-          },
-          "type": "array"
-        }
-      ]
-    },
-    "CompoundTitle": {
-      "additionalProperties": false,
-      "properties": {
-        "append": {
-          "description": "Add title(s) to the end of the existing list of title(s).",
-          "items": {
-            "$ref": "#/definitions/Title"
-          },
-          "type": [
-            "array",
-            "null"
-          ]
-        },
-        "prepend": {
-          "description": "Add title(s) to the beginning of the existing list of title(s).",
-          "items": {
-            "$ref": "#/definitions/Title"
-          },
-          "type": [
-            "array",
-            "null"
-          ]
-        }
-      },
-      "type": "object"
-    },
-    "DateDef": {
-      "anyOf": [
-        {
-          "additionalProperties": false,
-          "description": "Simple month/day",
-          "properties": {
-            "date": {
-              "format": "uint32",
-              "minimum": 0,
-              "type": "integer"
-            },
-            "day_offset": {
-              "format": "int32",
-              "type": [
-                "integer",
-                "null"
-              ]
-            },
-            "month": {
-              "$ref": "#/definitions/MonthIndex"
-            }
-          },
-          "required": [
-            "month",
-            "date"
-          ],
-          "type": "object"
-        },
-        {
-          "additionalProperties": false,
-          "description": "Date function (Easter, Epiphany, etc.)",
-          "properties": {
-            "date_fn": {
-              "$ref": "#/definitions/DateFn"
-            },
-            "day_offset": {
-              "format": "int32",
-              "type": [
-                "integer",
-                "null"
-              ]
-            }
-          },
-          "required": [
-            "date_fn"
-          ],
-          "type": "object"
-        },
-        {
-          "additionalProperties": false,
-          "description": "Nth weekday of month",
-          "properties": {
-            "day_of_week": {
-              "$ref": "#/definitions/DayOfWeek"
-            },
-            "day_offset": {
-              "format": "int32",
-              "type": [
-                "integer",
-                "null"
-              ]
-            },
-            "month": {
-              "$ref": "#/definitions/MonthIndex"
-            },
-            "nth_week_in_month": {
-              "format": "uint32",
-              "minimum": 0,
-              "type": "integer"
-            }
-          },
-          "required": [
-            "month",
-            "day_of_week",
-            "nth_week_in_month"
-          ],
-          "type": "object"
-        },
-        {
-          "additionalProperties": false,
-          "description": "Last weekday of month",
-          "properties": {
-            "day_offset": {
-              "format": "int32",
-              "type": [
-                "integer",
-                "null"
-              ]
-            },
-            "last_day_of_week_in_month": {
-              "$ref": "#/definitions/DayOfWeek"
-            },
-            "month": {
-              "$ref": "#/definitions/MonthIndex"
-            }
-          },
-          "required": [
-            "month",
-            "last_day_of_week_in_month"
-          ],
-          "type": "object"
-        }
-      ]
-    },
-    "DateDefException": {
-      "additionalProperties": false,
-      "description": "The liturgical day date exception\nRepresents a condition and the date to set when that condition is met",
-      "properties": {
-        "then": {
-          "$ref": "#/definitions/DateDefExtended",
-          "description": "Date to set when condition is met"
-        },
-        "when": {
-          "$ref": "#/definitions/ExceptionCondition",
-          "description": "Condition that triggers the exception"
-        }
-      },
-      "required": [
-        "when",
-        "then"
-      ],
-      "type": "object"
-    },
-    "DateDefExceptions": {
-      "anyOf": [
-        {
-          "$ref": "#/definitions/DateDefException"
-        },
-        {
-          "items": {
-            "$ref": "#/definitions/DateDefException"
-          },
-          "type": "array"
-        }
-      ],
-      "description": "Date exceptions that can be either a single exception or an array of exceptions"
-    },
-    "DateDefExtended": {
-      "anyOf": [
-        {
-          "$ref": "#/definitions/DateDef"
-        },
-        {
-          "$ref": "#/definitions/DateDefWithOffset"
-        }
-      ]
-    },
-    "DateDefWithOffset": {
-      "additionalProperties": false,
-      "properties": {
-        "day_offset": {
-          "format": "int32",
-          "type": "integer"
-        }
-      },
-      "required": [
-        "day_offset"
-      ],
-      "type": "object"
-    },
-    "DateFn": {
-      "description": "Date function for calculating liturgical dates",
-      "enum": [
-        "MARY_MOTHER_OF_THE_CHURCH",
-        "EPIPHANY_SUNDAY",
-        "PRESENTATION_OF_THE_LORD",
-        "ANNUNCIATION",
-        "PALM_SUNDAY",
-        "EASTER_SUNDAY",
-        "DIVINE_MERCY_SUNDAY",
-        "IMMACULATE_HEART_OF_MARY",
-        "PENTECOST_SUNDAY",
-        "CORPUS_CHRISTI_SUNDAY",
-        "NATIVITY_OF_JOHN_THE_BAPTIST",
-        "PETER_AND_PAUL_APOSTLES",
-        "TRANSFIGURATION",
-        "ASSUMPTION",
-        "EXALTATION_OF_THE_HOLY_CROSS",
-        "ALL_SAINTS",
-        "IMMACULATE_CONCEPTION_OF_MARY"
-      ],
-      "type": "string"
-    },
-    "DayDefinition": {
-      "additionalProperties": false,
-      "properties": {
-        "allow_similar_rank_items": {
-          "description": "In addition to this liturgical day, allow similar items that have the same rank,\nand the same or lower precedence,\nso the current liturgical day will not overwrite another defined item.",
-          "type": [
-            "boolean",
-            "null"
-          ]
-        },
-        "colors": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ColorsDef"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "description": "The liturgical color(s) of the liturgical day.\n@deprecated"
-        },
-        "commons_def": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/CommonsDef"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "description": "The **Common** refers to a set of prayers, readings, and chants used for celebrating saints or\nfeasts that belong to a specific category, such as martyrs, virgins, pastors, or the Blessed\nVirgin Mary."
-        },
-        "custom_locale_id": {
-          "description": "Specify a custom locale ID for this date definition, in this calendar.",
-          "type": [
-            "string",
-            "null"
-          ]
-        },
-        "date_def": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/DateDef"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "description": "Date definition"
-        },
-        "date_exceptions": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/DateDefException"
-            },
-            {
-              "items": {
-                "$ref": "#/definitions/DateDefException"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "description": "Date definition exception"
-        },
-        "drop": {
-          "description": "If this liturgical day must be removed from this calendar and from all those it inherits\n(the parent calendars), on the final calendar generated by romcal.",
-          "type": [
-            "boolean",
-            "null"
-          ]
-        },
-        "id": {
-          "type": "string"
-        },
-        "is_holy_day_of_obligation": {
-          "description": "Holy days of obligation are days on which the faithful are expected to attend Mass,\nand engage in rest from work and recreation.",
-          "type": [
-            "boolean",
-            "null"
-          ]
-        },
-        "is_optional": {
-          "description": "Specify is this LiturgicalDay is optional within a specific liturgical calendar.\n\nUNLY #14:\nMemorials are either obligatory or optional; their observance is integrated into\nthe celebration of the occurring weekday in accordance with the norms set forth in the\nGeneral Instruction of the Roman Missal and of the Liturgy of the Hours\n\nNote: also used for the dedication of consecrated churches, which is an optional solemnity\nthat should not overwrite the default weekday.",
-          "type": [
-            "boolean",
-            "null"
-          ]
-        },
-        "martyrology": {
-          "description": "Link one or multiple Saints, Blessed, or any other celebrations from the Martyrology catalog.",
-          "items": {
-            "$ref": "#/definitions/MartyrologyItemPointer"
-          },
-          "type": [
-            "array",
-            "null"
-          ]
-        },
-        "precedence": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/Precedence"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "description": "The precedence type of the liturgical day."
-        },
-        "titles": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/TitlesDef"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "description": "Combined titles of each Saints linked to this date definition."
-        }
-      },
-      "required": [
-        "id"
-      ],
-      "type": "object"
-    },
-    "DayOfWeek": {
-      "description": "Day of week (0-6, where 0=Sunday) with automatic validation\n\nThis type ensures that only valid day-of-week values are accepted during\ndeserialization. The value 0 represents Sunday, 1 represents Monday, etc.",
-      "format": "uint8",
-      "maximum": 255,
-      "minimum": 0,
-      "type": "integer"
-    },
-    "EasterCalculationType": {
-      "description": "Easter calculation type",
-      "oneOf": [
-        {
-          "const": "GREGORIAN",
-          "description": "Gregorian calculation (default)",
-          "type": "string"
-        },
-        {
-          "const": "JULIAN",
-          "description": "Julian calculation converted to Gregorian",
-          "type": "string"
-        }
-      ]
-    },
-    "ExceptionCondition": {
-      "anyOf": [
-        {
-          "additionalProperties": false,
-          "description": "If date is between two dates",
-          "properties": {
-            "from": {
-              "$ref": "#/definitions/DateDef"
-            },
-            "inclusive": {
-              "type": "boolean"
-            },
-            "to": {
-              "$ref": "#/definitions/DateDef"
-            }
-          },
-          "required": [
-            "from",
-            "to",
-            "inclusive"
-          ],
-          "type": "object"
-        },
-        {
-          "additionalProperties": false,
-          "description": "If date is same as another date",
-          "properties": {
-            "date": {
-              "$ref": "#/definitions/DateDef"
-            }
-          },
-          "required": [
-            "date"
-          ],
-          "type": "object"
-        },
-        {
-          "additionalProperties": false,
-          "description": "If date is a specific day of week",
-          "properties": {
-            "day_of_week": {
-              "$ref": "#/definitions/DayOfWeek"
-            }
-          },
-          "required": [
-            "day_of_week"
-          ],
-          "type": "object"
-        }
-      ],
-      "description": "Exception conditions that can trigger a date change"
-    },
-    "MartyrologyItemPointer": {
-      "anyOf": [
-        {
-          "type": "string"
-        },
-        {
-          "$ref": "#/definitions/MartyrologyItemRedefined"
-        }
-      ]
-    },
-    "MartyrologyItemRedefined": {
-      "additionalProperties": false,
-      "properties": {
-        "count": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/SaintCount"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "description": "Specify the number of persons this martyrology item is representing."
-        },
-        "hide_titles": {
-          "description": "Specify if titles should not be displayed. This can occur when a title is already included in\nthe name of the martyrology item.",
-          "type": [
-            "boolean",
-            "null"
-          ]
-        },
-        "id": {
-          "description": "The ID of the martyrology item.",
-          "type": "string"
-        },
-        "titles": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/TitlesDef"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "description": "The redefined titles of the martyrology item."
-        }
-      },
-      "required": [
-        "id"
-      ],
-      "type": "object"
-    },
-    "MonthIndex": {
-      "description": "Month index (1-12) with automatic validation\n\nThis type ensures that only valid month values are accepted during\ndeserialization. The value 1 represents January, 2 represents February, etc.",
-      "format": "uint8",
-      "maximum": 255,
-      "minimum": 0,
-      "type": "integer"
     },
     "ParticularConfig": {
-      "additionalProperties": false,
+      "type": "object",
       "properties": {
-        "ascension_on_sunday": {
+        "epiphany_on_sunday": {
           "description": "Configuration options specific to this calendar.\nThese settings can override or extend the default Romcal configuration or any parent calendar\nconfiguration.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "ascension_on_sunday": {
           "type": [
             "boolean",
             "null"
@@ -605,18 +116,406 @@
               "type": "null"
             }
           ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "EasterCalculationType": {
+      "description": "Easter calculation type",
+      "oneOf": [
+        {
+          "description": "Gregorian calculation (default)",
+          "type": "string",
+          "const": "GREGORIAN"
         },
-        "epiphany_on_sunday": {
+        {
+          "description": "Julian calculation converted to Gregorian",
+          "type": "string",
+          "const": "JULIAN"
+        }
+      ]
+    },
+    "DayDefinition": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "date_def": {
+          "description": "Date definition",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/DateDef"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "date_exceptions": {
+          "description": "Date definition exception",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/DateDefException"
+            },
+            {
+              "items": {
+                "$ref": "#/definitions/DateDefException"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "precedence": {
+          "description": "The precedence type of the liturgical day.",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Precedence"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "commons_def": {
+          "description": "The **Common** refers to a set of prayers, readings, and chants used for celebrating saints or\nfeasts that belong to a specific category, such as martyrs, virgins, pastors, or the Blessed\nVirgin Mary.",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/CommonsDef"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "is_holy_day_of_obligation": {
+          "description": "Holy days of obligation are days on which the faithful are expected to attend Mass,\nand engage in rest from work and recreation.",
           "type": [
             "boolean",
             "null"
           ]
+        },
+        "allow_similar_rank_items": {
+          "description": "In addition to this liturgical day, allow similar items that have the same rank,\nand the same or lower precedence,\nso the current liturgical day will not overwrite another defined item.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "is_optional": {
+          "description": "Specify is this LiturgicalDay is optional within a specific liturgical calendar.\n\nUNLY #14:\nMemorials are either obligatory or optional; their observance is integrated into\nthe celebration of the occurring weekday in accordance with the norms set forth in the\nGeneral Instruction of the Roman Missal and of the Liturgy of the Hours\n\nNote: also used for the dedication of consecrated churches, which is an optional solemnity\nthat should not overwrite the default weekday.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "custom_locale_id": {
+          "description": "Specify a custom locale ID for this date definition, in this calendar.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "martyrology": {
+          "description": "Link one or multiple Saints, Blessed, or any other celebrations from the Martyrology catalog.",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/MartyrologyItemPointer"
+          }
+        },
+        "titles": {
+          "description": "Combined titles of each Saints linked to this date definition.",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/TitlesDef"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "drop": {
+          "description": "If this liturgical day must be removed from this calendar and from all those it inherits\n(the parent calendars), on the final calendar generated by romcal.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "colors": {
+          "description": "The liturgical color(s) of the liturgical day.\n@deprecated",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ColorsDef"
+            },
+            {
+              "type": "null"
+            }
+          ]
         }
       },
-      "type": "object"
+      "required": [
+        "id"
+      ],
+      "additionalProperties": false
+    },
+    "DateDef": {
+      "anyOf": [
+        {
+          "description": "Simple month/day",
+          "type": "object",
+          "properties": {
+            "month": {
+              "$ref": "#/definitions/MonthIndex"
+            },
+            "date": {
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0
+            },
+            "day_offset": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "format": "int32"
+            }
+          },
+          "required": [
+            "month",
+            "date"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "description": "Date function (Easter, Epiphany, etc.)",
+          "type": "object",
+          "properties": {
+            "date_fn": {
+              "$ref": "#/definitions/DateFn"
+            },
+            "day_offset": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "format": "int32"
+            }
+          },
+          "required": [
+            "date_fn"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "description": "Nth weekday of month",
+          "type": "object",
+          "properties": {
+            "month": {
+              "$ref": "#/definitions/MonthIndex"
+            },
+            "day_of_week": {
+              "$ref": "#/definitions/DayOfWeek"
+            },
+            "nth_week_in_month": {
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0
+            },
+            "day_offset": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "format": "int32"
+            }
+          },
+          "required": [
+            "month",
+            "day_of_week",
+            "nth_week_in_month"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "description": "Last weekday of month",
+          "type": "object",
+          "properties": {
+            "month": {
+              "$ref": "#/definitions/MonthIndex"
+            },
+            "last_day_of_week_in_month": {
+              "$ref": "#/definitions/DayOfWeek"
+            },
+            "day_offset": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "format": "int32"
+            }
+          },
+          "required": [
+            "month",
+            "last_day_of_week_in_month"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "MonthIndex": {
+      "description": "Month index (1-12) with automatic validation\n\nThis type ensures that only valid month values are accepted during\ndeserialization. The value 1 represents January, 2 represents February, etc.",
+      "type": "integer",
+      "format": "uint8",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "DateFn": {
+      "description": "Date function for calculating liturgical dates",
+      "type": "string",
+      "enum": [
+        "MARY_MOTHER_OF_THE_CHURCH",
+        "EPIPHANY_SUNDAY",
+        "PRESENTATION_OF_THE_LORD",
+        "ANNUNCIATION",
+        "PALM_SUNDAY",
+        "EASTER_SUNDAY",
+        "DIVINE_MERCY_SUNDAY",
+        "IMMACULATE_HEART_OF_MARY",
+        "PENTECOST_SUNDAY",
+        "CORPUS_CHRISTI_SUNDAY",
+        "NATIVITY_OF_JOHN_THE_BAPTIST",
+        "PETER_AND_PAUL_APOSTLES",
+        "TRANSFIGURATION",
+        "ASSUMPTION",
+        "EXALTATION_OF_THE_HOLY_CROSS",
+        "ALL_SAINTS",
+        "IMMACULATE_CONCEPTION_OF_MARY"
+      ]
+    },
+    "DayOfWeek": {
+      "description": "Day of week (0-6, where 0=Sunday) with automatic validation\n\nThis type ensures that only valid day-of-week values are accepted during\ndeserialization. The value 0 represents Sunday, 1 represents Monday, etc.",
+      "type": "integer",
+      "format": "uint8",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "DateDefExceptions": {
+      "description": "Date exceptions that can be either a single exception or an array of exceptions",
+      "anyOf": [
+        {
+          "$ref": "#/definitions/DateDefException"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DateDefException"
+          }
+        }
+      ]
+    },
+    "DateDefException": {
+      "description": "The liturgical day date exception\nRepresents a condition and the date to set when that condition is met",
+      "type": "object",
+      "properties": {
+        "when": {
+          "description": "Condition that triggers the exception",
+          "$ref": "#/definitions/ExceptionCondition"
+        },
+        "then": {
+          "description": "Date to set when condition is met",
+          "$ref": "#/definitions/DateDefExtended"
+        }
+      },
+      "required": [
+        "when",
+        "then"
+      ],
+      "additionalProperties": false
+    },
+    "ExceptionCondition": {
+      "description": "Exception conditions that can trigger a date change",
+      "anyOf": [
+        {
+          "description": "If date is between two dates",
+          "type": "object",
+          "properties": {
+            "from": {
+              "$ref": "#/definitions/DateDef"
+            },
+            "to": {
+              "$ref": "#/definitions/DateDef"
+            },
+            "inclusive": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "from",
+            "to",
+            "inclusive"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "description": "If date is same as another date",
+          "type": "object",
+          "properties": {
+            "date": {
+              "$ref": "#/definitions/DateDef"
+            }
+          },
+          "required": [
+            "date"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "description": "If date is a specific day of week",
+          "type": "object",
+          "properties": {
+            "day_of_week": {
+              "$ref": "#/definitions/DayOfWeek"
+            }
+          },
+          "required": [
+            "day_of_week"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "DateDefExtended": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/DateDef"
+        },
+        {
+          "$ref": "#/definitions/DateDefWithOffset"
+        }
+      ]
+    },
+    "DateDefWithOffset": {
+      "type": "object",
+      "properties": {
+        "day_offset": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "day_offset"
+      ],
+      "additionalProperties": false
     },
     "Precedence": {
       "description": "Liturgical precedence levels for determining which celebration takes priority",
+      "type": "string",
       "enum": [
         "TRIDUUM_1",
         "PROPER_OF_TIME_SOLEMNITY_2",
@@ -645,27 +544,118 @@
         "PROPER_MEMORIAL_11B",
         "OPTIONAL_MEMORIAL_12",
         "WEEKDAY_13"
-      ],
-      "type": "string"
+      ]
     },
-    "SaintCount": {
+    "CommonsDef": {
       "anyOf": [
         {
-          "format": "uint32",
-          "minimum": 0,
-          "type": "integer"
+          "$ref": "#/definitions/CommonDefinition"
         },
         {
-          "const": "MANY",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CommonDefinition"
+          }
+        }
+      ]
+    },
+    "CommonDefinition": {
+      "description": "Common definition for simplified categorization",
+      "type": "string",
+      "enum": [
+        "NONE",
+        "DEDICATION_ANNIVERSARY__INSIDE",
+        "DEDICATION_ANNIVERSARY__OUTSIDE",
+        "BLESSED_VIRGIN_MARY",
+        "MARTYRS",
+        "MISSIONARY_MARTYRS",
+        "VIRGIN_MARTYRS",
+        "WOMAN_MARTYRS",
+        "PASTORS",
+        "POPES",
+        "BISHOPS",
+        "FOUNDERS",
+        "MISSIONARIES",
+        "DOCTORS_OF_THE_CHURCH",
+        "VIRGINS",
+        "SAINTS",
+        "ABBOTS",
+        "MONKS",
+        "NUNS",
+        "RELIGIOUS",
+        "MERCY_WORKERS",
+        "EDUCATORS",
+        "HOLY_WOMEN"
+      ]
+    },
+    "MartyrologyItemPointer": {
+      "anyOf": [
+        {
           "type": "string"
         },
         {
-          "type": "null"
+          "$ref": "#/definitions/MartyrologyItemRedefined"
+        }
+      ]
+    },
+    "MartyrologyItemRedefined": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The ID of the martyrology item.",
+          "type": "string"
+        },
+        "titles": {
+          "description": "The redefined titles of the martyrology item.",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/TitlesDef"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "hide_titles": {
+          "description": "Specify if titles should not be displayed. This can occur when a title is already included in\nthe name of the martyrology item.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "count": {
+          "description": "Specify the number of persons this martyrology item is representing.",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SaintCount"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "additionalProperties": false
+    },
+    "TitlesDef": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Title"
+          }
+        },
+        {
+          "$ref": "#/definitions/CompoundTitle"
         }
       ]
     },
     "Title": {
       "description": "Titles and patronages associated with saints and blessed",
+      "type": "string",
       "enum": [
         "ABBESS",
         "ABBOT",
@@ -734,65 +724,75 @@
         "PATRONESS_OF_COSTA_RICA",
         "PRINCIPAL_PATRON_OF_THE_DIOCESE",
         "SECOND_PATRON_OF_THE_DIOCESE"
-      ],
-      "type": "string"
+      ]
     },
-    "TitlesDef": {
-      "anyOf": [
-        {
+    "CompoundTitle": {
+      "type": "object",
+      "properties": {
+        "append": {
+          "description": "Add title(s) to the end of the existing list of title(s).",
+          "type": [
+            "array",
+            "null"
+          ],
           "items": {
             "$ref": "#/definitions/Title"
-          },
-          "type": "array"
+          }
         },
-        {
-          "$ref": "#/definitions/CompoundTitle"
+        "prepend": {
+          "description": "Add title(s) to the beginning of the existing list of title(s).",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Title"
+          }
         }
-      ]
-    }
-  },
-  "properties": {
-    "$schema": {
-      "type": [
-        "string",
-        "null"
-      ]
-    },
-    "days_definitions": {
-      "items": {
-        "$ref": "#/definitions/DayDefinition"
       },
-      "type": "array"
+      "additionalProperties": false
     },
-    "id": {
-      "type": "string"
-    },
-    "metadata": {
-      "$ref": "#/definitions/CalendarMetadata"
-    },
-    "parent_calendar_ids": {
-      "items": {
-        "type": "string"
-      },
-      "type": "array"
-    },
-    "particular_config": {
+    "SaintCount": {
       "anyOf": [
         {
-          "$ref": "#/definitions/ParticularConfig"
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "const": "MANY",
+          "type": "string"
         },
         {
           "type": "null"
         }
       ]
+    },
+    "ColorsDef": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/Color"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Color"
+          }
+        }
+      ]
+    },
+    "Color": {
+      "description": "Liturgical colors used in the celebration of Mass and other liturgical services",
+      "type": "string",
+      "enum": [
+        "RED",
+        "ROSE",
+        "PURPLE",
+        "GREEN",
+        "WHITE",
+        "GOLD",
+        "BLACK"
+      ]
     }
-  },
-  "required": [
-    "id",
-    "metadata",
-    "parent_calendar_ids",
-    "days_definitions"
-  ],
-  "title": "CalendarDefinition",
-  "type": "object"
+  }
 }
