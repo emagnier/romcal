@@ -12,6 +12,7 @@
 //! let easter = dates.get_easter_sunday_date_unwrap(None);
 //! ```
 
+pub mod bundle;
 pub mod calendar_def;
 pub mod config;
 pub mod dates;

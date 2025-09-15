@@ -1,5 +1,4 @@
 use serde::{Deserialize, Serialize};
-use serde_json::Value;
 
 use crate::resources::ResourcesDefinition;
 use crate::{
@@ -144,39 +143,7 @@ impl LiturgicalConfig {
     /// This method serializes the LiturgicalConfig to JSON format
     /// and removes null values and empty objects from the output
     pub fn create_bundle(&self) -> Result<String, serde_json::Error> {
-        let value = serde_json::to_value(self)?;
-        let cleaned_value = remove_null_and_empty_values(value);
-        serde_json::to_string_pretty(&cleaned_value)
-    }
-}
-
-/// Recursively removes null values and empty objects from a JSON Value
-fn remove_null_and_empty_values(value: Value) -> Value {
-    match value {
-        Value::Object(map) => {
-            let mut cleaned_map = serde_json::Map::new();
-            for (key, val) in map {
-                let cleaned_val = remove_null_and_empty_values(val);
-                if !cleaned_val.is_null() {
-                    cleaned_map.insert(key, cleaned_val);
-                }
-            }
-            // Return null if the object is empty after cleaning, so it gets filtered out
-            if cleaned_map.is_empty() {
-                Value::Null
-            } else {
-                Value::Object(cleaned_map)
-            }
-        }
-        Value::Array(arr) => {
-            let cleaned: Vec<Value> = arr
-                .into_iter()
-                .map(remove_null_and_empty_values)
-                .filter(|v| !v.is_null())
-                .collect();
-            Value::Array(cleaned)
-        }
-        Value::Null => Value::Null, // This value will be filtered by parent calls
-        other => other,
+        crate::bundle::create_bundle(self)
+            .map_err(|e| serde_json::Error::io(std::io::Error::other(e.to_string())))
     }
 }
