@@ -30,4 +30,4 @@ pub use preset::Preset;
 pub use resources::{EntityDefinition, EntityId, LocaleId, ResourcesDefinition};
 pub use types::entity::SaintCount;
 pub use types::liturgical::Season;
-pub use types::{CalendarScope, EasterCalculationType};
+pub use types::{CalendarContext, EasterCalculationType};

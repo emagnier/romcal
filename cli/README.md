@@ -102,7 +102,7 @@ These options are available for all commands:
 - `-d, --debug` - Show debug information
 - `-f, --format <FORMAT>` - Output format (json, csv, yaml, lines) [default: yaml]
 - `--easter-calculation-type <TYPE>` - Easter calculation type (gregorian, julian) [default: gregorian]
-- `--scope <SCOPE>` - Calendar scope (gregorian, liturgical) [default: gregorian]
+- `--context <CONTEXT>` - Calendar context (gregorian, liturgical) [default: gregorian]
 - `--ascension-on-sunday` - Celebrate Ascension on Sunday
 - `--epiphany-on-sunday` - Celebrate Epiphany on Sunday
 - `--corpus-christi-on-sunday` - Celebrate Corpus Christi on Sunday
@@ -154,8 +154,8 @@ romcal dates easter_sunday -y 2024 --ascension-on-sunday
 romcal dates epiphany_sunday -y 2024 --epiphany-on-sunday
 romcal dates corpus_christi_sunday -y 2024 --corpus-christi-on-sunday
 
-# Liturgical year scope
-romcal dates easter_sunday -y 2024 --scope liturgical
+# Liturgical year context
+romcal dates easter_sunday -y 2024 --context liturgical
 
 # Multiple options combined
 romcal dates easter_sunday -y 2024 -f json --easter-calculation-type julian --ascension-on-sunday

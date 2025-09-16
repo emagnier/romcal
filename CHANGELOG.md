@@ -87,7 +87,7 @@ The new architecture helped to introduce new features without performance and co
 
 - Data schema output by romcal has been drastically remodeled. Please have look to the documentation for more information.
 - ascensionOnSunday, corpusChristiOnSunday, epiphanyOnSunday option names have been renamed.
-- General romcal option names have been unified. `calendar` is renamed to `scope` and take the values: `gregorian` or `liturgical`.
+- General romcal option names have been unified. `calendar` is renamed to `context` and take the values: `gregorian` or `liturgical`.
 - The provided liturgical year now correspond to the second year (the almost whole part of the civil year).
 - The `.queryFor` method has been removed. A `.groupBy` and filter methods has been added. Related documentation has been added.
 - Content:

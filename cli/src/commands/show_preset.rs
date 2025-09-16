@@ -9,7 +9,7 @@ use serde_yaml;
 struct PresetDisplayData {
     locale: String,
     calendar: String,
-    scope: String,
+    context: String,
     easter_calculation_type: String,
     epiphany_on_sunday: bool,
     ascension_on_sunday: bool,
@@ -22,9 +22,9 @@ impl PresetDisplayData {
         Self {
             locale: preset.locale.clone(),
             calendar: preset.calendar.clone(),
-            scope: match preset.scope {
-                romcal_core::CalendarScope::Gregorian => "gregorian",
-                romcal_core::CalendarScope::Liturgical => "liturgical",
+            context: match preset.context {
+                romcal_core::CalendarContext::Gregorian => "gregorian",
+                romcal_core::CalendarContext::Liturgical => "liturgical",
             }
             .to_string(),
             easter_calculation_type: match preset.easter_calculation_type {
@@ -43,7 +43,7 @@ impl PresetDisplayData {
         serde_json::json!({
             "locale": self.locale,
             "calendar": self.calendar,
-            "scope": self.scope,
+            "context": self.context,
             "easter_calculation_type": self.easter_calculation_type,
             "epiphany_on_sunday": self.epiphany_on_sunday,
             "ascension_on_sunday": self.ascension_on_sunday,
@@ -69,7 +69,7 @@ pub fn handle(output_format: OutputFormat, preset: Preset) -> Result<(), RomcalC
             println!("setting,value");
             println!("locale,{}", preset_data.locale);
             println!("calendar,{}", preset_data.calendar);
-            println!("scope,{}", preset_data.scope);
+            println!("context,{}", preset_data.context);
             println!(
                 "easter_calculation_type,{}",
                 preset_data.easter_calculation_type
@@ -84,7 +84,7 @@ pub fn handle(output_format: OutputFormat, preset: Preset) -> Result<(), RomcalC
         OutputFormat::Lines => {
             println!("locale: {}", preset_data.locale);
             println!("calendar: {}", preset_data.calendar);
-            println!("scope: {}", preset_data.scope);
+            println!("context: {}", preset_data.context);
             println!(
                 "easter_calculation_type: {}",
                 preset_data.easter_calculation_type

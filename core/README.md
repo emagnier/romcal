@@ -46,11 +46,11 @@ fn main() {
 ### Custom configuration
 
 ```rust
-use romcal::{Preset, EasterCalculationType, CalendarScope};
+use romcal::{Preset, EasterCalculationType, CalendarContext};
 
 let preset = Preset::custom(
     EasterCalculationType::Gregorian,
-    CalendarScope::Gregorian,
+    CalendarContext::Gregorian,
     false, // Epiphany on January 6
     true,  // Corpus Christi on Sunday
     false, // Ascension on Thursday

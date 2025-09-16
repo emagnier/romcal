@@ -1,5 +1,5 @@
 use romcal_core::preset::{Preset, PresetPartial};
-use romcal_core::types::{CalendarScope, EasterCalculationType};
+use romcal_core::types::{CalendarContext, EasterCalculationType};
 use serde::{Deserialize, Serialize};
 use wasm_bindgen::prelude::*;
 
@@ -18,8 +18,8 @@ pub struct PartialRomcalConfig {
     calendar: Option<String>,
     /// Locale (e.g., 'en', 'fr')
     locale: Option<String>,
-    /// Calendar scope
-    scope: Option<String>,
+    /// Calendar context
+    context: Option<String>,
     /// Easter calculation type
     easter_calculation_type: Option<String>,
     /// Epiphany is celebrated on a Sunday
@@ -74,10 +74,10 @@ impl PartialRomcalConfig {
         self.easter_calculation_type = easter_calculation_type;
     }
 
-    /// Set calendar scope
+    /// Set calendar context
     #[wasm_bindgen]
-    pub fn set_scope(&mut self, scope: Option<String>) {
-        self.scope = scope;
+    pub fn set_context(&mut self, context: Option<String>) {
+        self.context = context;
     }
 
     /// Build the configuration with defaults
@@ -87,16 +87,16 @@ impl PartialRomcalConfig {
             _ => Some(EasterCalculationType::Gregorian),
         };
 
-        let scope = match self.scope.as_deref() {
-            Some("LITURGICAL") => Some(CalendarScope::Liturgical),
-            _ => Some(CalendarScope::Gregorian),
+        let context = match self.context.as_deref() {
+            Some("LITURGICAL") => Some(CalendarContext::Liturgical),
+            _ => Some(CalendarContext::Gregorian),
         };
 
         let config = PresetPartial {
             calendar: self.calendar.clone(),
             locale: self.locale.clone(),
             easter_calculation_type: easter_type,
-            scope,
+            context,
             epiphany_on_sunday: self.epiphany_on_sunday,
             corpus_christi_on_sunday: self.corpus_christi_on_sunday,
             ascension_on_sunday: self.ascension_on_sunday,
@@ -154,10 +154,10 @@ impl RomcalConfig {
         self.inner.easter_calculation_type_to_wasm()
     }
 
-    /// Get calendar scope
+    /// Get calendar context
     #[wasm_bindgen(getter)]
-    pub fn scope(&self) -> String {
-        self.inner.scope_to_wasm()
+    pub fn context(&self) -> String {
+        self.inner.context_to_wasm()
     }
 
     /// Get the full config as a JSON string
@@ -204,7 +204,7 @@ pub fn romcal_with_partial_config(
     corpus_christi_on_sunday: Option<bool>,
     ascension_on_sunday: Option<bool>,
     easter_calculation_type: Option<String>,
-    scope: Option<String>,
+    context: Option<String>,
 ) -> Romcal {
     let mut partial_config = PartialRomcalConfig::new();
     partial_config.calendar = calendar;
@@ -213,7 +213,7 @@ pub fn romcal_with_partial_config(
     partial_config.corpus_christi_on_sunday = corpus_christi_on_sunday;
     partial_config.ascension_on_sunday = ascension_on_sunday;
     partial_config.easter_calculation_type = easter_calculation_type;
-    partial_config.scope = scope;
+    partial_config.context = context;
 
     Romcal {
         config: partial_config.build(),

@@ -22,7 +22,7 @@ impl LiturgicalDates {
     /// Returns `RomcalError::InvalidYear` if the year is before 1583
     pub fn new(config: Preset, year: i32) -> RomcalResult<Self> {
         validate_year(year, 1583)?;
-        let is_liturgical_year = config.scope == crate::CalendarScope::Liturgical;
+        let is_liturgical_year = config.context == crate::CalendarContext::Liturgical;
         Ok(Self {
             config,
             year,
@@ -936,7 +936,7 @@ mod tests {
     #[test]
     fn test_liturgical_year_creation() {
         let config = Preset::new(PresetPartial {
-            scope: Some(crate::CalendarScope::Liturgical),
+            context: Some(crate::CalendarContext::Liturgical),
             ..PresetPartial::default()
         });
         let dates = LiturgicalDates::new(config, 2024).unwrap();

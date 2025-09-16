@@ -3,14 +3,14 @@ use serde::{Deserialize, Serialize};
 use crate::resources::ResourcesDefinition;
 use crate::{
     calendar_def::CalendarDefinition,
-    types::{CalendarScope, EasterCalculationType},
+    types::{CalendarContext, EasterCalculationType},
 };
 
 // Default configuration constants
 const DEFAULT_CALENDAR: &str = "general_roman";
 const DEFAULT_LOCALE: &str = "en";
 const DEFAULT_EASTER_TYPE: EasterCalculationType = EasterCalculationType::Gregorian;
-const DEFAULT_SCOPE: CalendarScope = CalendarScope::Gregorian;
+const DEFAULT_CONTEXT: CalendarContext = CalendarContext::Gregorian;
 const DEFAULT_EPIPHANY_ON_SUNDAY: bool = false;
 const DEFAULT_CORPUS_CHRISTI_ON_SUNDAY: bool = true;
 const DEFAULT_ASCENSION_ON_SUNDAY: bool = false;
@@ -22,8 +22,8 @@ pub struct PresetPartial {
     pub calendar: Option<String>,
     /// Locale (e.g., 'en', 'fr', 'es')
     pub locale: Option<String>,
-    /// Calendar scope
-    pub scope: Option<CalendarScope>,
+    /// Calendar context
+    pub context: Option<CalendarContext>,
     /// Easter calculation type
     pub easter_calculation_type: Option<EasterCalculationType>,
     /// Epiphany is celebrated on a Sunday (between January 2-8)
@@ -45,8 +45,8 @@ pub struct Preset {
     pub calendar: String,
     /// Locale (e.g., 'en', 'fr', 'es')
     pub locale: String,
-    /// Calendar scope
-    pub scope: CalendarScope,
+    /// Calendar context
+    pub context: CalendarContext,
     /// Epiphany is celebrated on a Sunday (between January 2-8)
     pub epiphany_on_sunday: bool,
     /// Ascension is celebrated on a Sunday (7th Sunday of Easter)
@@ -66,7 +66,7 @@ impl Default for Preset {
         Self {
             calendar: DEFAULT_CALENDAR.to_string(),
             locale: DEFAULT_LOCALE.to_string(),
-            scope: DEFAULT_SCOPE,
+            context: DEFAULT_CONTEXT,
             easter_calculation_type: DEFAULT_EASTER_TYPE,
             epiphany_on_sunday: DEFAULT_EPIPHANY_ON_SUNDAY,
             corpus_christi_on_sunday: DEFAULT_CORPUS_CHRISTI_ON_SUNDAY,
@@ -85,7 +85,7 @@ impl Preset {
                 .calendar
                 .unwrap_or_else(|| DEFAULT_CALENDAR.to_string()),
             locale: config.locale.unwrap_or_else(|| DEFAULT_LOCALE.to_string()),
-            scope: config.scope.unwrap_or(DEFAULT_SCOPE),
+            context: config.context.unwrap_or(DEFAULT_CONTEXT),
             easter_calculation_type: config
                 .easter_calculation_type
                 .unwrap_or(DEFAULT_EASTER_TYPE),
@@ -103,11 +103,11 @@ impl Preset {
         }
     }
 
-    /// Converts calendar scope to WASM string
-    pub fn scope_to_wasm(&self) -> String {
-        match self.scope {
-            CalendarScope::Gregorian => "GREGORIAN".to_string(),
-            CalendarScope::Liturgical => "LITURGICAL".to_string(),
+    /// Converts calendar context to WASM string
+    pub fn context_to_wasm(&self) -> String {
+        match self.context {
+            CalendarContext::Gregorian => "GREGORIAN".to_string(),
+            CalendarContext::Liturgical => "LITURGICAL".to_string(),
         }
     }
 

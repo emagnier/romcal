@@ -170,7 +170,7 @@ Or with any of the optional options:
 // Initialize romcal (all options are optional)
 const romcal = new Romcal({
   localizedCalendar: France_Fr, // The localized calendar to use with romcal
-  scope: 'gregorian' | 'liturgical', // Default: 'gregorian' (Jan 1 to Dec 31). Optionally: 'liturgical' (the first Sunday of Advent to the last Saturday of Ordinary Time)
+  context: 'gregorian' | 'liturgical', // Default: 'gregorian' (Jan 1 to Dec 31). Optionally: 'liturgical' (the first Sunday of Advent to the last Saturday of Ordinary Time)
   epiphanyOnSunday: true | false, // Epiphany always a Sunday (between January 2 - 8), or on January 6
   corpusChristiOnSunday: true | false, // Corpus Christi always a Sunday, or the Thursday after Trinity Sunday
   ascensionOnSunday: true | false, // Ascension always a Sunday, or the 40th day of Easter (a Thursday)
@@ -244,11 +244,11 @@ The first `LiturgicalDay` object is the default one, the following objects are o
 ```
 
 By default, the range dates correspond to a Gregorian calendar (Jan 1 to Dec 31).
-Except if you previously initialized the `Romcal` object with `{ scope: 'liturgical' }`: the range corresponds to a liturgical year (the first Sunday of Advent to the last Saturday of Ordinary Time).
+Except if you previously initialized the `Romcal` object with `{ context: 'liturgical' }`: the range corresponds to a liturgical year (the first Sunday of Advent to the last Saturday of Ordinary Time).
 
 ```ts
 // Will generate a liturgical calendar, from 2029-12-02 to 2030-11-30
-const romcal = new Romcal({ scope: 'liturgical' });
+const romcal = new Romcal({ context: 'liturgical' });
 const data = await romcal.generateCalendar(2030);
 ```
 

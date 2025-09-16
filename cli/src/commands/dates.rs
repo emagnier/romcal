@@ -44,8 +44,8 @@ const DATE_TYPES: &[DateTypeConfig] = &[
         method: LiturgicalDates::get_divine_mercy_sunday_date,
     },
     DateTypeConfig {
-        name: "immaculate_heart_of_mary",
-        method: LiturgicalDates::get_immaculate_heart_of_mary_date,
+        name: "ascension",
+        method: LiturgicalDates::get_ascension_date,
     },
     DateTypeConfig {
         name: "pentecost_sunday",
@@ -54,6 +54,10 @@ const DATE_TYPES: &[DateTypeConfig] = &[
     DateTypeConfig {
         name: "corpus_christi_sunday",
         method: LiturgicalDates::get_corpus_christi_date,
+    },
+    DateTypeConfig {
+        name: "immaculate_heart_of_mary",
+        method: LiturgicalDates::get_immaculate_heart_of_mary_date,
     },
     DateTypeConfig {
         name: "nativity_of_john_the_baptist",

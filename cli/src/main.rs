@@ -1,6 +1,6 @@
 use clap::{Parser, Subcommand};
 use colored::*;
-use romcal_core::{CalendarScope, EasterCalculationType, Preset};
+use romcal_core::{CalendarContext, EasterCalculationType, Preset};
 use std::process;
 
 mod commands;
@@ -17,7 +17,7 @@ use commands::show_preset;
 use error::RomcalCliError;
 
 use crate::enums::{
-    CliCalendarScope, CliEasterCalculationType, CliOutputFormat, OutputFormat, ValidationType,
+    CliCalendarContext, CliEasterCalculationType, CliOutputFormat, OutputFormat, ValidationType,
 };
 use crate::preset::create_preset;
 
@@ -46,15 +46,15 @@ struct Cli {
     #[arg(short = 'f', long, global = true, value_enum, default_value = "yaml")]
     format: CliOutputFormat,
 
-    /// Calendar scope
+    /// Calendar context
     #[arg(
-        short = 's',
+        short = 't',
         long,
         global = true,
         value_enum,
         default_value = "gregorian"
     )]
-    scope: Option<CliCalendarScope>,
+    context: Option<CliCalendarContext>,
 
     /// Celebrate Epiphany on Sunday
     #[arg(long, global = true, action = clap::ArgAction::SetTrue)]
@@ -102,7 +102,7 @@ enum Commands {
     ListLocales,
     /// Show the current preset information
     Preset,
-    /// Optimize the preset and generate a JSON bundle
+    /// Optimize the current preset and generate a JSON bundle
     OptimizePreset {
         /// Output file path (if not specified, prints to stdout)
         #[arg(short, long)]
@@ -157,11 +157,11 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
     let preset: Preset = create_preset(
         cli.calendar.as_deref(),
         cli.locale.as_deref(),
-        cli.scope.map(CalendarScope::from),
+        cli.context.map(CalendarContext::from),
         cli.easter_calculation_type.map(EasterCalculationType::from),
+        Some(cli.epiphany_on_sunday),
         Some(cli.ascension_on_sunday),
         Some(cli.corpus_christi_on_sunday),
-        Some(cli.epiphany_on_sunday),
         &calendar_definitions_paths,
         &resources_paths,
     )?;

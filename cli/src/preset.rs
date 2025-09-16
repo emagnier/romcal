@@ -2,14 +2,14 @@ use crate::error::RomcalCliError;
 use crate::utils::{
     combine_resources_by_locale, parse_calendar_definition_files, parse_resource_files,
 };
-use romcal_core::{CalendarScope, EasterCalculationType, Preset};
+use romcal_core::{CalendarContext, EasterCalculationType, Preset};
 
 /// Create a romcal preset from CLI parameters
 #[allow(clippy::too_many_arguments)]
 pub fn create_preset(
     calendar: Option<&str>,
     locale: Option<&str>,
-    scope: Option<CalendarScope>,
+    context: Option<CalendarContext>,
     easter_calculation_type: Option<EasterCalculationType>,
     epiphany_on_sunday: Option<bool>,
     ascension_on_sunday: Option<bool>,
@@ -27,8 +27,8 @@ pub fn create_preset(
     if let Some(loc) = locale {
         preset.locale = loc.to_string();
     }
-    if let Some(s) = scope {
-        preset.scope = s;
+    if let Some(c) = context {
+        preset.context = c;
     }
     if let Some(easter_type) = easter_calculation_type {
         preset.easter_calculation_type = easter_type;
