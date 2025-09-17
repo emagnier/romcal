@@ -76,6 +76,12 @@ pub const CALENDAR_IDS: &[&str] = &[
     "wales",
 ];
 
+/// Calendar tree structure as JSON
+///
+/// This constant contains the hierarchical structure
+/// of all calendars in the romcal project as a JSON string.
+pub const CALENDAR_TREE_JSON: &str = r#"{"id":"general_roman","children":[{"id":"africa"},{"id":"americas","children":[{"id":"argentina"},{"id":"bolivia"},{"id":"brazil"},{"id":"canada"},{"id":"chile"},{"id":"costa_rica"},{"id":"guatemala"},{"id":"mexico"},{"id":"panama"},{"id":"paraguay"},{"id":"peru"},{"id":"puerto_rico"},{"id":"united_states"},{"id":"uruguay"},{"id":"venezuela"}]},{"id":"asia"},{"id":"australia"},{"id":"china"},{"id":"europe","children":[{"id":"austria"},{"id":"belgium"},{"id":"bosnia_herzegovina"},{"id":"croatia"},{"id":"czech_republic"},{"id":"denmark"},{"id":"england"},{"id":"finland"},{"id":"france","children":[{"id":"france__angers"},{"id":"france__coutances"},{"id":"france__lyon"},{"id":"france__paris"},{"id":"france__saint_denis"},{"id":"france__strasbourg"},{"id":"france__toulouse"}]},{"id":"germany"},{"id":"greece"},{"id":"hungary"},{"id":"ireland"},{"id":"italy"},{"id":"lithuania"},{"id":"malta"},{"id":"netherlands"},{"id":"norway"},{"id":"poland"},{"id":"portugal"},{"id":"romania"},{"id":"scotland"},{"id":"slovakia"},{"id":"slovenia"},{"id":"spain"},{"id":"sweden"},{"id":"switzerland"},{"id":"ukraine"},{"id":"wales"}]},{"id":"india"},{"id":"japan"},{"id":"lebanon"},{"id":"new_zealand"},{"id":"philippines"},{"id":"russia","children":[{"id":"asian_russia"},{"id":"european_russia"}]},{"id":"sri_lanka"},{"id":"vietnam"}]}"#;
+
 /// List of all locale codes
 ///
 /// This constant contains all locale codes
@@ -84,8 +90,10 @@ pub const LOCALE_CODES: &[&str] = &[
     "cs", "de", "en", "en-gb", "en-ie", "es", "fr", "it", "la", "pl", "pt-br", "sk", "ta",
 ];
 
-/// Calendar tree structure as JSON
+/// Locale tree structure as JSON
 ///
 /// This constant contains the hierarchical structure
-/// of all calendars in the romcal project as a JSON string.
-pub const CALENDAR_TREE_JSON: &str = r#"{"id":"general_roman","children":[{"id":"africa","children":[]},{"id":"americas","children":[{"id":"argentina","children":[]},{"id":"bolivia","children":[]},{"id":"brazil","children":[]},{"id":"canada","children":[]},{"id":"chile","children":[]},{"id":"costa_rica","children":[]},{"id":"guatemala","children":[]},{"id":"mexico","children":[]},{"id":"panama","children":[]},{"id":"paraguay","children":[]},{"id":"peru","children":[]},{"id":"puerto_rico","children":[]},{"id":"united_states","children":[]},{"id":"uruguay","children":[]},{"id":"venezuela","children":[]}]},{"id":"asia","children":[]},{"id":"australia","children":[]},{"id":"china","children":[]},{"id":"europe","children":[{"id":"austria","children":[]},{"id":"belgium","children":[]},{"id":"bosnia_herzegovina","children":[]},{"id":"croatia","children":[]},{"id":"czech_republic","children":[]},{"id":"denmark","children":[]},{"id":"england","children":[]},{"id":"finland","children":[]},{"id":"france","children":[{"id":"france__angers","children":[]},{"id":"france__coutances","children":[]},{"id":"france__lyon","children":[]},{"id":"france__paris","children":[]},{"id":"france__saint_denis","children":[]},{"id":"france__strasbourg","children":[]},{"id":"france__toulouse","children":[]}]},{"id":"germany","children":[]},{"id":"greece","children":[]},{"id":"hungary","children":[]},{"id":"ireland","children":[]},{"id":"italy","children":[]},{"id":"lithuania","children":[]},{"id":"malta","children":[]},{"id":"netherlands","children":[]},{"id":"norway","children":[]},{"id":"poland","children":[]},{"id":"portugal","children":[]},{"id":"romania","children":[]},{"id":"scotland","children":[]},{"id":"slovakia","children":[]},{"id":"slovenia","children":[]},{"id":"spain","children":[]},{"id":"sweden","children":[]},{"id":"switzerland","children":[]},{"id":"ukraine","children":[]},{"id":"wales","children":[]}]},{"id":"india","children":[]},{"id":"japan","children":[]},{"id":"lebanon","children":[]},{"id":"new_zealand","children":[]},{"id":"philippines","children":[]},{"id":"russia","children":[{"id":"asian_russia","children":[]},{"id":"european_russia","children":[]}]},{"id":"sri_lanka","children":[]},{"id":"vietnam","children":[]}]}"#;
+/// of all locales in the romcal project as a JSON string.
+/// The tree follows BCP 47 structure with base languages as parents
+/// and specific locales (e.g., en-gb) as children.
+pub const LOCALE_TREE_JSON: &str = r#"[{"locale":"cs"},{"locale":"de"},{"locale":"en","children":[{"locale":"en-gb"},{"locale":"en-ie"}]},{"locale":"es"},{"locale":"fr"},{"locale":"it"},{"locale":"la"},{"locale":"pl"},{"locale":"pt","children":[{"locale":"pt-br"}]},{"locale":"sk"},{"locale":"ta"}]"#;

@@ -104,7 +104,11 @@ enum Commands {
         tree: bool,
     },
     /// List all available romcal locales
-    ListLocales,
+    ListLocales {
+        /// Display locales as a tree structure
+        #[arg(long)]
+        tree: bool,
+    },
     /// Display current calendar configuration
     Preset,
     /// Optimize the current preset and generate a JSON bundle
@@ -176,7 +180,7 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
             dates::handle(&date_name, year, output_format, preset)
         }
         Commands::ListCalendars { tree } => list_calendars::handle_calendars(output_format, tree),
-        Commands::ListLocales => list_locales::handle_locales(output_format),
+        Commands::ListLocales { tree } => list_locales::handle_locales(output_format, tree),
         Commands::Preset => show_preset::handle(output_format, preset),
         Commands::OptimizePreset { out } => {
             optimize_preset::handle(preset, out.map(|s| s.to_string()))
