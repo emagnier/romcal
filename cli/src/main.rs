@@ -12,6 +12,7 @@ mod utils;
 // Import command modules
 use commands::dates;
 use commands::list;
+use commands::list_calendar_tree;
 use commands::optimize_preset;
 use commands::show_preset;
 use error::RomcalCliError;
@@ -96,11 +97,13 @@ enum Commands {
         /// Year for date calculations (default: current year)
         year: Option<i32>,
     },
-    /// List available romcal calendars
+    /// List all available romcal calendars
     ListCalendars,
-    /// List available romcal locales
+    /// Display available romcal calendar hierarchy as a tree structure
+    ListCalendarsTree,
+    /// List all available romcal locales
     ListLocales,
-    /// Show the current preset information
+    /// Display current calendar configuration
     Preset,
     /// Optimize the current preset and generate a JSON bundle
     OptimizePreset {
@@ -108,7 +111,7 @@ enum Commands {
         #[arg(short, long)]
         out: Option<String>,
     },
-    /// Validate JSON files against schemas
+    /// Validate calendar and resource JSON files
     Validate {
         /// Type of validation to perform
         #[arg(value_enum)]
@@ -171,6 +174,7 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
             dates::handle(&date_name, year, output_format, preset)
         }
         Commands::ListCalendars => list::handle_calendars(output_format),
+        Commands::ListCalendarsTree => list_calendar_tree::list_calendar_tree(output_format),
         Commands::ListLocales => list::handle_locales(output_format),
         Commands::Preset => show_preset::handle(output_format, preset),
         Commands::OptimizePreset { out } => {

@@ -139,13 +139,15 @@ romcal validate calendar-def "data/calendars/**/*.json"
 
 ### Information
 
-| Command           | Description                              |
-| ----------------- | ---------------------------------------- |
-| `list-calendars`  | List available calendars                 |
-| `list-locales`    | List supported locales                   |
-| `preset`          | Show current preset information          |
-| `optimize-preset` | Optimize preset and generate JSON bundle |
-| `validate`        | Validate JSON files against schemas      |
+| Command               | Description                              |
+| --------------------- | ---------------------------------------- |
+| `dates`               | Calculate liturgical dates for a year    |
+| `list-calendars`      | List available calendars                 |
+| `list-calendars-tree` | Display calendar hierarchy as a tree     |
+| `list-locales`        | List supported locales                   |
+| `preset`              | Show current preset information          |
+| `optimize-preset`     | Optimize preset and generate JSON bundle |
+| `validate`            | Validate JSON files against schemas      |
 
 ## Options
 
@@ -237,6 +239,7 @@ romcal dates christmas -c united_states -l en
 # List available Romcal locales and calendars
 romcal list-locales
 romcal list-calendars
+romcal list-calendars-tree
 
 # Show current preset information
 romcal preset
@@ -255,6 +258,8 @@ romcal validate calendar-def "data/calendars/**/*.json"
 # List commands with different formats
 romcal list-locales -f json
 romcal list-calendars -f csv
+romcal list-calendars-tree -f json
+romcal list-calendars-tree -f csv
 romcal list-locales -f lines
 
 # CLI automation examples
@@ -307,6 +312,34 @@ romcal list-calendars -f csv | tr ',' '\n' | head -5
 ["en", "fr", "es", "de"]
 ```
 
+**Calendar tree:**
+
+```json
+{
+  "id": "general_roman",
+  "children": [
+    {
+      "id": "africa",
+      "children": []
+    },
+    {
+      "id": "europe",
+      "children": [
+        {
+          "id": "france",
+          "children": [
+            {
+              "id": "france__paris",
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
 ### CSV Format
 
 **Date calculations:**
@@ -319,6 +352,17 @@ romcal list-calendars -f csv | tr ',' '\n' | head -5
 
 ```
 en,fr,es,de,it,la,pl,pt-br,sk,ta,cs,en-gb,en-ie
+```
+
+**Calendar tree:**
+
+```
+id,parent_id,level
+general_roman,,0
+africa,general_roman,1
+europe,general_roman,1
+france,europe,2
+france__paris,france,3
 ```
 
 ### Lines Format
@@ -347,6 +391,24 @@ en-gb
 en-ie
 ```
 
+**Calendar tree:**
+
+```
+general_roman
+  africa
+  americas
+    argentina
+    brazil
+    canada
+  asia
+  europe
+    france
+      france__paris
+      france__lyon
+    germany
+    italy
+```
+
 ## Usage Notes
 
 - All date calculations return the date in YYYY-MM-DD format
@@ -359,6 +421,7 @@ en-ie
 - The `preset` command shows the current configuration including calendar, locale, and other settings
 - The `optimize-preset` command generates an optimized JSON bundle for web applications
 - The `validate` command supports glob patterns for validating multiple files at once
+- The `list-calendars-tree` command displays the hierarchical structure of all calendars, showing parent-child relationships
 
 ## License
 
