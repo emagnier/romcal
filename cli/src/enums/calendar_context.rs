@@ -1,7 +1,8 @@
 use clap::ValueEnum;
 use romcal_core::CalendarContext;
 
-/// Calendar context for CLI
+/// Calendar context for CLI.
+/// Defines the temporal scope for calendar calculations and date ranges.
 #[derive(ValueEnum, Clone, Debug)]
 pub enum CliCalendarContext {
     /// Civil year (January 1 to December 31)

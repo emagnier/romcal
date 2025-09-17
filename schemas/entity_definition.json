@@ -199,29 +199,53 @@
   "additionalProperties": false,
   "definitions": {
     "EntityType": {
-      "type": "string",
-      "enum": [
-        "PERSON",
-        "PLACE",
-        "EVENT"
+      "description": "The type of entity in the liturgical calendar.\nDefines whether the entity represents a person, place, or event.",
+      "oneOf": [
+        {
+          "description": "A person (saint, blessed, or other individual)",
+          "type": "string",
+          "const": "PERSON"
+        },
+        {
+          "description": "A place (shrine, city, or geographical location)",
+          "type": "string",
+          "const": "PLACE"
+        },
+        {
+          "description": "An event (historical or liturgical occurrence)",
+          "type": "string",
+          "const": "EVENT"
+        }
       ]
     },
     "CanonizationLevel": {
-      "type": "string",
-      "enum": [
-        "BLESSED",
-        "SAINT"
+      "description": "Canonization level indicating the official recognition status of a person.\nDefines whether someone is beatified (Blessed) or canonized (Saint).",
+      "oneOf": [
+        {
+          "description": "Beatified person (Blessed) - first step toward sainthood",
+          "type": "string",
+          "const": "BLESSED"
+        },
+        {
+          "description": "Canonized person (Saint) - fully recognized as a saint",
+          "type": "string",
+          "const": "SAINT"
+        }
       ]
     },
     "SaintDateDef": {
+      "description": "Saint date definition supporting various date specifications.\nAllows single dates, date ranges, multiple alternatives, or century specifications.",
       "anyOf": [
         {
+          "description": "Single date specification",
           "$ref": "#/definitions/SaintDate"
         },
         {
+          "description": "Date range between two dates",
           "type": "object",
           "properties": {
             "between": {
+              "description": "The date range (start and end dates)",
               "type": "array",
               "items": {
                 "$ref": "#/definitions/SaintDate"
@@ -236,9 +260,11 @@
           "additionalProperties": false
         },
         {
+          "description": "Multiple alternative dates (any one of them)",
           "type": "object",
           "properties": {
             "or": {
+              "description": "The list of alternative dates",
               "type": "array",
               "items": {
                 "$ref": "#/definitions/SaintDate"
@@ -251,9 +277,11 @@
           "additionalProperties": false
         },
         {
+          "description": "Century specification (e.g., 12 for 12th century)",
           "type": "object",
           "properties": {
             "century": {
+              "description": "The century number",
               "type": "integer",
               "format": "uint32",
               "minimum": 0
@@ -267,22 +295,26 @@
       ]
     },
     "SaintDate": {
+      "description": "Saint date representation with different precision levels.\nSupports year-only, year-month, or full date specifications.",
       "anyOf": [
         {
+          "description": "Year only (e.g., 1234)",
           "type": "integer",
           "format": "uint32",
           "minimum": 0
         },
         {
+          "description": "Year and month in \"YYYY-MM\" format (e.g., \"1234-05\")",
           "type": "string"
         },
         {
+          "description": "Full date in \"YYYY-MM-DD\" format (e.g., \"1234-05-15\")",
           "type": "string"
         }
       ]
     },
     "Title": {
-      "description": "Titles and patronages associated with saints and blessed",
+      "description": "Titles and patronages associated with saints and blessed.\nRepresents the various ecclesiastical titles and patronages that can be assigned to entities.",
       "type": "string",
       "enum": [
         "ABBESS",
@@ -355,10 +387,18 @@
       ]
     },
     "Sex": {
-      "type": "string",
-      "enum": [
-        "MALE",
-        "FEMALE"
+      "description": "Sex of a person.",
+      "oneOf": [
+        {
+          "description": "Male person",
+          "type": "string",
+          "const": "MALE"
+        },
+        {
+          "description": "Female person",
+          "type": "string",
+          "const": "FEMALE"
+        }
       ]
     },
     "SaintCount": {

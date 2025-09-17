@@ -1,5 +1,7 @@
 use thiserror::Error;
 
+/// Errors for the CLI.
+/// Defines the different errors that can occur when running the CLI.
 #[derive(Error, Debug)]
 pub enum RomcalCliError {
     #[error("Configuration error: {0}")]

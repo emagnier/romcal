@@ -132,7 +132,7 @@
         "month": 7,
         "date": 17
       },
-      "martyrology": [
+      "entities": [
         "ceslaus_of_poland_priest",
         "hyacinth_of_poland_priest"
       ]
@@ -144,7 +144,7 @@
         "month": 7,
         "date": 27
       },
-      "martyrology": [
+      "entities": [
         "gorazd_of_moravia",
         "companions_martyrs"
       ]

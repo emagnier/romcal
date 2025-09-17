@@ -1,7 +1,8 @@
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
-/// Common prayers and readings for different categories of saints and celebrations
+/// Common prayers and readings for different categories of saints and celebrations.
+/// Provides standardized liturgical texts for various types of commemorations.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 #[allow(non_camel_case_types)]
@@ -57,7 +58,8 @@ pub enum Common {
     Saints_HolyWomen,
 }
 
-/// Common definition for simplified categorization
+/// Common definition for simplified categorization.
+/// Provides a simplified version of the Common enum for easier classification.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 #[allow(non_camel_case_types)]

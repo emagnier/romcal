@@ -20,7 +20,7 @@
         "date": 2
       },
       "commons_def": "NONE",
-      "martyrology": [
+      "entities": [
         "basil_the_great_bishop",
         "gregory_nazianzen_bishop"
       ]
@@ -140,7 +140,7 @@
         "date": 26
       },
       "commons_def": "NONE",
-      "martyrology": [
+      "entities": [
         "timothy_of_ephesus_bishop",
         "titus_of_crete_bishop"
       ]
@@ -236,7 +236,7 @@
         "date": 6
       },
       "commons_def": "MARTYRS",
-      "martyrology": [
+      "entities": [
         "paul_miki_martyr",
         "companions_martyrs"
       ],
@@ -289,7 +289,7 @@
         "date": 14
       },
       "commons_def": "NONE",
-      "martyrology": [
+      "entities": [
         "cyril_constantine_the_philosopher_monk",
         "methodius_michael_of_thessaloniki_bishop"
       ]
@@ -369,7 +369,7 @@
         "date": 7
       },
       "commons_def": "NONE",
-      "martyrology": [
+      "entities": [
         "perpetua_of_carthage_martyr",
         "felicity_of_carthage_martyr"
       ],
@@ -669,7 +669,7 @@
         "date": 3
       },
       "commons_def": "NONE",
-      "martyrology": [
+      "entities": [
         "philip_apostle",
         "james_apostle"
       ],
@@ -695,7 +695,7 @@
         "date": 12
       },
       "commons_def": "MARTYRS",
-      "martyrology": [
+      "entities": [
         "nereus_of_terracina_martyr",
         "achilleus_of_terracina_martyr"
       ],
@@ -763,7 +763,7 @@
         "date": 21
       },
       "commons_def": "MARTYRS",
-      "martyrology": [
+      "entities": [
         "christopher_magallanes_priest",
         {
           "id": "companions_martyrs",
@@ -891,7 +891,7 @@
         "date": 2
       },
       "commons_def": "MARTYRS",
-      "martyrology": [
+      "entities": [
         "marcellinus_of_rome_martyr",
         "peter_the_exorcist_martyr"
       ],
@@ -905,7 +905,7 @@
         "date": 3
       },
       "commons_def": "NONE",
-      "martyrology": [
+      "entities": [
         "charles_lwanga_martyr",
         "companions_martyrs"
       ],
@@ -1003,7 +1003,7 @@
         "date": 22
       },
       "commons_def": "MARTYRS",
-      "martyrology": [
+      "entities": [
         "john_fisher_bishop",
         "thomas_more_martyr"
       ],
@@ -1049,7 +1049,7 @@
       "is_holy_day_of_obligation": true,
       "colors": "RED",
       "commons_def": "NONE",
-      "martyrology": [
+      "entities": [
         "peter_apostle",
         "paul_apostle"
       ]
@@ -1117,7 +1117,7 @@
         "date": 9
       },
       "commons_def": "MARTYRS",
-      "martyrology": [
+      "entities": [
         "augustine_zhao_rong_priest",
         "companions_martyrs"
       ],
@@ -1248,7 +1248,7 @@
         "date": 26
       },
       "commons_def": "NONE",
-      "martyrology": [
+      "entities": [
         "joachim_father_of_mary",
         "anne_mother_of_mary"
       ]
@@ -1261,7 +1261,7 @@
         "date": 29
       },
       "commons_def": "NONE",
-      "martyrology": [
+      "entities": [
         "martha_of_bethany",
         "mary_of_bethany",
         "lazarus_of_bethany"
@@ -1356,7 +1356,7 @@
         "date": 7
       },
       "commons_def": "MARTYRS",
-      "martyrology": [
+      "entities": [
         "sixtus_ii_pope",
         "companions_martyrs"
       ],
@@ -1438,7 +1438,7 @@
         "MARTYRS",
         "PASTORS"
       ],
-      "martyrology": [
+      "entities": [
         "pontian_i_pope",
         "hippolytus_of_rome_priest"
       ],
@@ -1659,7 +1659,7 @@
         "MARTYRS",
         "PASTORS"
       ],
-      "martyrology": [
+      "entities": [
         "cornelius_i_pope",
         "cyprian_of_carthage_bishop"
       ],
@@ -1710,7 +1710,7 @@
         "date": 20
       },
       "commons_def": "NONE",
-      "martyrology": [
+      "entities": [
         "andrew_kim_tae_gon_priest",
         "paul_chong_ha_sang_martyr",
         "companions_martyrs"
@@ -1747,7 +1747,7 @@
         "date": 26
       },
       "commons_def": "MARTYRS",
-      "martyrology": [
+      "entities": [
         "cosmas_of_cilicia_martyr",
         "damian_of_cilicia_martyr"
       ],
@@ -1780,7 +1780,7 @@
         "date": 28
       },
       "commons_def": "MARTYRS",
-      "martyrology": [
+      "entities": [
         "lawrence_ruiz_martyr",
         "companions_martyrs"
       ],
@@ -1794,7 +1794,7 @@
         "date": 29
       },
       "commons_def": "NONE",
-      "martyrology": [
+      "entities": [
         "michael_archangel",
         "gabriel_archangel",
         "raphael_archangel"
@@ -1877,7 +1877,7 @@
         "date": 9
       },
       "commons_def": "MARTYRS",
-      "martyrology": [
+      "entities": [
         "denis_of_paris_bishop",
         "companions_martyrs"
       ],
@@ -1977,7 +1977,7 @@
         "date": 19
       },
       "commons_def": "MISSIONARY_MARTYRS",
-      "martyrology": [
+      "entities": [
         "john_de_brebeuf_priest",
         "isaac_jogues_priest",
         "companions_martyrs"
@@ -2034,7 +2034,7 @@
         "date": 28
       },
       "commons_def": "NONE",
-      "martyrology": [
+      "entities": [
         "simon_apostle",
         "jude_apostle"
       ],
@@ -2226,7 +2226,7 @@
         "date": 24
       },
       "commons_def": "NONE",
-      "martyrology": [
+      "entities": [
         "andrew_dung_lac_priest",
         "companions_martyrs"
       ],

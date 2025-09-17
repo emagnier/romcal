@@ -137,7 +137,7 @@
     {
       "id": "john_de_brebeuf_isaac_jogues_priests_and_companions_martyrs",
       "precedence": "PROPER_MEMORIAL_11B",
-      "martyrology": [
+      "entities": [
         "john_de_brebeuf_priest",
         "isaac_jogues_priest",
         "companions_martyrs"

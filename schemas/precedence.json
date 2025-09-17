@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Precedence",
-  "description": "Liturgical precedence levels for determining which celebration takes priority",
+  "description": "Liturgical precedence levels for determining which celebration takes priority.\nDefines the hierarchical order of liturgical celebrations according to UNLY norms.",
   "type": "string",
   "enum": [
     "TRIDUUM_1",

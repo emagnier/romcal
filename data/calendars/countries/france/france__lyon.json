@@ -66,7 +66,7 @@
         "month": 4,
         "date": 22
       },
-      "martyrology": [
+      "entities": [
         "epipodius_of_lyon_martyr",
         "alexander_of_lyon_martyr"
       ]
@@ -91,7 +91,7 @@
       "id": "pothinus_of_lyon_bishop_blandina_of_lyon_virgin_and_companions_martyrs",
       "custom_locale_id": "pothinus_of_lyon_bishop_patron_the_city_of_lyon_blandina_of_lyon_virgin_and_companions_martyrs",
       "precedence": "PROPER_FEAST_8F",
-      "martyrology": [
+      "entities": [
         {
           "id": "pothinus_of_lyon_bishop",
           "titles": [
@@ -139,7 +139,7 @@
       "id": "irenaeus_of_lyon_bishop",
       "custom_locale_id": "irenaeus_of_lyon_bishop_patron_of_the_archdiocese_of_lyon_and_companions_martyrs",
       "precedence": "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A",
-      "martyrology": [
+      "entities": [
         {
           "id": "irenaeus_of_lyon_bishop",
           "titles": {
@@ -162,7 +162,7 @@
         "month": 9,
         "date": 1
       },
-      "martyrology": [
+      "entities": [
         "jacques_jules_bonnaud_priest",
         "companions_martyrs"
       ]
@@ -190,7 +190,7 @@
         "month": 9,
         "date": 22
       },
-      "martyrology": [
+      "entities": [
         "maurice_of_agaunum_martyr",
         "companions_martyrs"
       ]

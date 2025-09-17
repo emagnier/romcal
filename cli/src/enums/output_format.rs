@@ -2,12 +2,17 @@ use crate::error::RomcalCliError;
 use clap::ValueEnum;
 use serde::{Deserialize, Serialize};
 
-/// Output format options for the CLI
+/// Output format options for the CLI.
+/// Defines the available formats for displaying calendar data.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub enum OutputFormat {
+    /// YAML format (human-readable, structured)
     Yaml,
+    /// JSON format (machine-readable, structured)
     Json,
+    /// CSV format (comma-separated values, tabular)
     Csv,
+    /// Lines format (simple text, one item per line)
     Lines,
 }
 
@@ -37,7 +42,8 @@ impl std::fmt::Display for OutputFormat {
 }
 
 impl OutputFormat {
-    /// Print data in the specified format
+    /// Print data in the specified format.
+    /// Formats and displays the provided data according to the selected output format.
     pub fn print(&self, data: &str) -> Result<(), RomcalCliError> {
         match self {
             OutputFormat::Yaml => {
@@ -54,16 +60,17 @@ impl OutputFormat {
     }
 }
 
-/// Output format for CLI
+/// Output format for CLI.
+/// CLI-specific enum that implements clap::ValueEnum for command-line argument parsing.
 #[derive(ValueEnum, Clone, Debug)]
 pub enum CliOutputFormat {
-    /// YAML format
+    /// YAML format (human-readable, structured)
     Yaml,
-    /// JSON format
+    /// JSON format (machine-readable, structured)
     Json,
-    /// CSV format
+    /// CSV format (comma-separated values, tabular)
     Csv,
-    /// Lines format
+    /// Lines format (simple text, one item per line)
     Lines,
 }
 

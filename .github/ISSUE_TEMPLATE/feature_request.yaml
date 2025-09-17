@@ -19,7 +19,7 @@ body:
         - Documentation
         - Infrastructure
         - Localization
-        - Martyrology / Celebration Definition
+        - Entities (Martyrology) / Liturgical Day Definition (Celebration)
       default: 0
     validations:
       required: true

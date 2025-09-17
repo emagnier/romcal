@@ -1,7 +1,8 @@
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
-/// Liturgical precedence levels for determining which celebration takes priority
+/// Liturgical precedence levels for determining which celebration takes priority.
+/// Defines the hierarchical order of liturgical celebrations according to UNLY norms.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 #[allow(non_camel_case_types)]

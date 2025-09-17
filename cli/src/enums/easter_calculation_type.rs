@@ -1,7 +1,8 @@
 use clap::ValueEnum;
 use romcal_core::EasterCalculationType;
 
-/// Easter calculation type for CLI
+/// Easter calculation type for CLI.
+/// Defines the algorithm used to calculate the date of Easter.
 #[derive(ValueEnum, Clone, Debug)]
 pub enum CliEasterCalculationType {
     /// Gregorian calculation (default)

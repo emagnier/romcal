@@ -3,13 +3,17 @@ use serde::{Deserialize, Serialize};
 
 use crate::types::EasterCalculationType;
 
+/// Configuration options specific to this calendar.
+/// These settings can override or extend the default Romcal configuration or any parent calendar
+/// configuration.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
 pub struct ParticularConfig {
-    /// Configuration options specific to this calendar.
-    /// These settings can override or extend the default Romcal configuration or any parent calendar
-    /// configuration.
+    /// Epiphany is celebrated on a Sunday
     pub epiphany_on_sunday: Option<bool>,
+    /// Ascension is celebrated on a Sunday
     pub ascension_on_sunday: Option<bool>,
+    /// Corpus Christi is celebrated on a Sunday
     pub corpus_christi_on_sunday: Option<bool>,
+    /// The type of Easter calculation
     pub easter_calculation_type: Option<EasterCalculationType>,
 }

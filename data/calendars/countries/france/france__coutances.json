@@ -64,7 +64,7 @@
         "month": 4,
         "date": 16
       },
-      "martyrology": [
+      "entities": [
         "paternus_of_avranches_bishop",
         "scubilion_abbot"
       ],
@@ -176,7 +176,7 @@
         "date": 2
       },
       "precedence": "PROPER_MEMORIAL_11B",
-      "martyrology": [
+      "entities": [
         "jacques_francois_lefranc_martyr",
         {
           "id": "martyrs_of_the_french_revolution",
@@ -246,7 +246,7 @@
         "date": 25
       },
       "precedence": "PROPER_MEMORIAL_11B",
-      "martyrology": [
+      "entities": [
         "john_de_brebeuf_priest",
         "companions_martyrs"
       ]
@@ -258,7 +258,7 @@
         "date": 12
       },
       "precedence": "PROPER_MEMORIAL_11B",
-      "martyrology": [
+      "entities": [
         "all_holy_bishops_of_the_diocese_of_coutances",
         "all_holy_priest_of_the_diocese_of_coutances"
       ]
@@ -294,7 +294,7 @@
         "date": 20
       },
       "precedence": "OPTIONAL_MEMORIAL_12",
-      "martyrology": [
+      "entities": [
         "adeline_de_mortain_abbess",
         "geoffrey_of_savigny_abbot",
         "guillaume_niobe_of_savigny_religious"

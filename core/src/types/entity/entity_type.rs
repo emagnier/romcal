@@ -1,11 +1,16 @@
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
+/// The type of entity in the liturgical calendar.
+/// Defines whether the entity represents a person, place, or event.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema, Default)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum EntityType {
+    /// A person (saint, blessed, or other individual)
     #[default]
     Person,
+    /// A place (shrine, city, or geographical location)
     Place,
+    /// An event (historical or liturgical occurrence)
     Event,
 }

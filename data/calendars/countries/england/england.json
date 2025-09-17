@@ -193,7 +193,7 @@
         "month": 8,
         "date": 30
       },
-      "martyrology": [
+      "entities": [
         "margaret_clitherow_virgin_martyr",
         "anne_line_virgin_martyr",
         "margaret_ward_virgin_martyr"
@@ -206,7 +206,7 @@
         "month": 8,
         "date": 31
       },
-      "martyrology": [
+      "entities": [
         "aidan_of_lindisfarne_bishop",
         "saints_of_lindisfarne"
       ]
@@ -339,7 +339,7 @@
         "month": 10,
         "date": 26
       },
-      "martyrology": [
+      "entities": [
         "chad_of_mercia_bishop",
         "cedd_of_lastingham_bishop"
       ]

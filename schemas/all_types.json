@@ -20,12 +20,15 @@
   ],
   "definitions": {
     "CalendarMetadata": {
+      "description": "Metadata for a calendar.\nContains essential information about the calendar's type and jurisdiction.",
       "type": "object",
       "properties": {
         "type": {
+          "description": "The type of the calendar",
           "$ref": "#/definitions/CalendarType"
         },
         "jurisdiction": {
+          "description": "The jurisdiction of the calendar",
           "$ref": "#/definitions/CalendarJurisdiction"
         }
       },
@@ -36,51 +39,107 @@
       "additionalProperties": false
     },
     "CalendarType": {
-      "type": "string",
-      "enum": [
-        "GENERAL_ROMAN",
-        "REGION",
-        "COUNTRY",
-        "ARCHDIOCESE",
-        "DIOCESE",
-        "CITY",
-        "PARISH",
-        "GENERAL_COMMUNITY",
-        "REGIONAL_COMMUNITY",
-        "LOCAL_COMMUNITY",
-        "OTHER"
+      "description": "The type of the calendar.\nDefines the scope and authority level of the liturgical calendar.",
+      "oneOf": [
+        {
+          "description": "General Roman Calendar (universal)",
+          "type": "string",
+          "const": "GENERAL_ROMAN"
+        },
+        {
+          "description": "Regional calendar (multiple countries)",
+          "type": "string",
+          "const": "REGION"
+        },
+        {
+          "description": "National calendar (single country)",
+          "type": "string",
+          "const": "COUNTRY"
+        },
+        {
+          "description": "Archdiocesan calendar",
+          "type": "string",
+          "const": "ARCHDIOCESE"
+        },
+        {
+          "description": "Diocesan calendar",
+          "type": "string",
+          "const": "DIOCESE"
+        },
+        {
+          "description": "City calendar",
+          "type": "string",
+          "const": "CITY"
+        },
+        {
+          "description": "Parish calendar",
+          "type": "string",
+          "const": "PARISH"
+        },
+        {
+          "description": "General religious community calendar",
+          "type": "string",
+          "const": "GENERAL_COMMUNITY"
+        },
+        {
+          "description": "Regional religious community calendar",
+          "type": "string",
+          "const": "REGIONAL_COMMUNITY"
+        },
+        {
+          "description": "Local religious community calendar",
+          "type": "string",
+          "const": "LOCAL_COMMUNITY"
+        },
+        {
+          "description": "Other specialized calendar",
+          "type": "string",
+          "const": "OTHER"
+        }
       ]
     },
     "CalendarJurisdiction": {
-      "type": "string",
-      "enum": [
-        "ECCLESIASTICAL",
-        "CIVIL"
+      "description": "The jurisdiction of the calendar.\nDetermines whether the calendar follows ecclesiastical or civil authority.",
+      "oneOf": [
+        {
+          "description": "Calendar under ecclesiastical authority (Church)",
+          "type": "string",
+          "const": "ECCLESIASTICAL"
+        },
+        {
+          "description": "Calendar under civil authority (State)",
+          "type": "string",
+          "const": "CIVIL"
+        }
       ]
     },
     "ParticularConfig": {
+      "description": "Configuration options specific to this calendar.\nThese settings can override or extend the default Romcal configuration or any parent calendar\nconfiguration.",
       "type": "object",
       "properties": {
         "epiphany_on_sunday": {
-          "description": "Configuration options specific to this calendar.\nThese settings can override or extend the default Romcal configuration or any parent calendar\nconfiguration.",
+          "description": "Epiphany is celebrated on a Sunday",
           "type": [
             "boolean",
             "null"
           ]
         },
         "ascension_on_sunday": {
+          "description": "Ascension is celebrated on a Sunday",
           "type": [
             "boolean",
             "null"
           ]
         },
         "corpus_christi_on_sunday": {
+          "description": "Corpus Christi is celebrated on a Sunday",
           "type": [
             "boolean",
             "null"
           ]
         },
         "easter_calculation_type": {
+          "description": "The type of Easter calculation",
           "anyOf": [
             {
               "$ref": "#/definitions/EasterCalculationType"
@@ -94,7 +153,7 @@
       "additionalProperties": false
     },
     "EasterCalculationType": {
-      "description": "Easter calculation type",
+      "description": "The type of Easter calculation",
       "oneOf": [
         {
           "description": "Gregorian calculation (default)",
@@ -109,13 +168,15 @@
       ]
     },
     "DayDefinition": {
+      "description": "Definition of a liturgical day with all its properties and configurations.\nIt represents a complete liturgical day definition that can be used\nto generate calendar entries with proper precedence, colors, and entity associations.",
       "type": "object",
       "properties": {
         "id": {
+          "description": "The unique identifier of the day definition",
           "type": "string"
         },
         "date_def": {
-          "description": "Date definition",
+          "description": "The date definition for this liturgical day",
           "anyOf": [
             {
               "$ref": "#/definitions/DateDef"
@@ -143,7 +204,7 @@
           ]
         },
         "precedence": {
-          "description": "The precedence type of the liturgical day.",
+          "description": "The precedence type of the liturgical day",
           "anyOf": [
             {
               "$ref": "#/definitions/Precedence"
@@ -165,45 +226,45 @@
           ]
         },
         "is_holy_day_of_obligation": {
-          "description": "Holy days of obligation are days on which the faithful are expected to attend Mass,\nand engage in rest from work and recreation.",
+          "description": "Holy days of obligation are days on which the faithful are expected to attend Mass\nand engage in rest from work and recreation",
           "type": [
             "boolean",
             "null"
           ]
         },
         "allow_similar_rank_items": {
-          "description": "In addition to this liturgical day, allow similar items that have the same rank,\nand the same or lower precedence,\nso the current liturgical day will not overwrite another defined item.",
+          "description": "Allow similar items that have the same rank and the same or lower precedence\nto coexist with this liturgical day without being overwritten",
           "type": [
             "boolean",
             "null"
           ]
         },
         "is_optional": {
-          "description": "Specify is this LiturgicalDay is optional within a specific liturgical calendar.\n\nUNLY #14:\nMemorials are either obligatory or optional; their observance is integrated into\nthe celebration of the occurring weekday in accordance with the norms set forth in the\nGeneral Instruction of the Roman Missal and of the Liturgy of the Hours\n\nNote: also used for the dedication of consecrated churches, which is an optional solemnity\nthat should not overwrite the default weekday.",
+          "description": "Specify if this liturgical day is optional within a specific liturgical calendar\n\nUNLY #14:\nMemorials are either obligatory or optional; their observance is integrated into\nthe celebration of the occurring weekday in accordance with the norms set forth in the\nGeneral Instruction of the Roman Missal and of the Liturgy of the Hours\n\nNote: also used for the dedication of consecrated churches, which is an optional solemnity\nthat should not overwrite the default weekday.",
           "type": [
             "boolean",
             "null"
           ]
         },
         "custom_locale_id": {
-          "description": "Specify a custom locale ID for this date definition, in this calendar.",
+          "description": "The custom locale ID for this date definition in this calendar",
           "type": [
             "string",
             "null"
           ]
         },
-        "martyrology": {
-          "description": "Link one or multiple Saints, Blessed, or any other celebrations from the Martyrology catalog.",
+        "entities": {
+          "description": "The entities (Saints, Blessed, or Places) linked from the Entity catalog",
           "type": [
             "array",
             "null"
           ],
           "items": {
-            "$ref": "#/definitions/MartyrologyItemPointer"
+            "$ref": "#/definitions/EntityPointer"
           }
         },
         "titles": {
-          "description": "Combined titles of each Saints linked to this date definition.",
+          "description": "The combined titles of all entities linked to this date definition",
           "anyOf": [
             {
               "$ref": "#/definitions/TitlesDef"
@@ -214,14 +275,14 @@
           ]
         },
         "drop": {
-          "description": "If this liturgical day must be removed from this calendar and from all those it inherits\n(the parent calendars), on the final calendar generated by romcal.",
+          "description": "If this liturgical day must be removed from this calendar and from all parent calendars\nin the final calendar generated by romcal",
           "type": [
             "boolean",
             "null"
           ]
         },
         "colors": {
-          "description": "The liturgical color(s) of the liturgical day.\n@deprecated",
+          "description": "The liturgical color(s) of the liturgical day\n@deprecated",
           "anyOf": [
             {
               "$ref": "#/definitions/ColorsDef"
@@ -238,20 +299,24 @@
       "additionalProperties": false
     },
     "DateDef": {
+      "description": "Date definition supporting various date calculation methods.\nProvides flexible ways to specify liturgical dates using different approaches.",
       "anyOf": [
         {
-          "description": "Simple month/day",
+          "description": "Simple month/day specification",
           "type": "object",
           "properties": {
             "month": {
+              "description": "The month (1-12)",
               "$ref": "#/definitions/MonthIndex"
             },
             "date": {
+              "description": "The day of the month (1-31)",
               "type": "integer",
               "format": "uint32",
               "minimum": 0
             },
             "day_offset": {
+              "description": "Optional day offset for adjustments",
               "type": [
                 "integer",
                 "null"
@@ -266,13 +331,15 @@
           "additionalProperties": false
         },
         {
-          "description": "Date function (Easter, Epiphany, etc.)",
+          "description": "Date function calculation (Easter, Epiphany, etc.)",
           "type": "object",
           "properties": {
             "date_fn": {
+              "description": "The date function to calculate the base date",
               "$ref": "#/definitions/DateFn"
             },
             "day_offset": {
+              "description": "Optional day offset for adjustments",
               "type": [
                 "integer",
                 "null"
@@ -286,21 +353,25 @@
           "additionalProperties": false
         },
         {
-          "description": "Nth weekday of month",
+          "description": "Nth weekday of a specific month",
           "type": "object",
           "properties": {
             "month": {
+              "description": "The month (1-12)",
               "$ref": "#/definitions/MonthIndex"
             },
             "day_of_week": {
+              "description": "The day of the week (0=Sunday, 1=Monday, etc.)",
               "$ref": "#/definitions/DayOfWeek"
             },
             "nth_week_in_month": {
+              "description": "Which occurrence of the weekday (1st, 2nd, 3rd, etc.)",
               "type": "integer",
               "format": "uint32",
               "minimum": 0
             },
             "day_offset": {
+              "description": "Optional day offset for adjustments",
               "type": [
                 "integer",
                 "null"
@@ -316,16 +387,19 @@
           "additionalProperties": false
         },
         {
-          "description": "Last weekday of month",
+          "description": "Last weekday of a specific month",
           "type": "object",
           "properties": {
             "month": {
+              "description": "The month (1-12)",
               "$ref": "#/definitions/MonthIndex"
             },
             "last_day_of_week_in_month": {
+              "description": "The day of the week to find the last occurrence of",
               "$ref": "#/definitions/DayOfWeek"
             },
             "day_offset": {
+              "description": "Optional day offset for adjustments",
               "type": [
                 "integer",
                 "null"
@@ -349,7 +423,7 @@
       "maximum": 255
     },
     "DateFn": {
-      "description": "Date function for calculating liturgical dates",
+      "description": "Date function for calculating liturgical dates.\nRepresents movable feasts and special celebrations that require calculation.",
       "type": "string",
       "enum": [
         "MARY_MOTHER_OF_THE_CHURCH",
@@ -379,12 +453,14 @@
       "maximum": 255
     },
     "DateDefExceptions": {
-      "description": "Date exceptions that can be either a single exception or an array of exceptions",
+      "description": "Date exceptions that can be either a single exception or multiple exceptions.\nSupports both simple single exceptions and complex multiple exception scenarios.",
       "anyOf": [
         {
+          "description": "Single date exception",
           "$ref": "#/definitions/DateDefException"
         },
         {
+          "description": "Multiple date exceptions",
           "type": "array",
           "items": {
             "$ref": "#/definitions/DateDefException"
@@ -393,15 +469,15 @@
       ]
     },
     "DateDefException": {
-      "description": "The liturgical day date exception\nRepresents a condition and the date to set when that condition is met",
+      "description": "The liturgical day date exception.\nRepresents a condition and the date to set when that condition is met.",
       "type": "object",
       "properties": {
         "when": {
-          "description": "Condition that triggers the exception",
+          "description": "The condition that triggers the exception",
           "$ref": "#/definitions/ExceptionCondition"
         },
         "then": {
-          "description": "Date to set when condition is met",
+          "description": "The date to set when the condition is met",
           "$ref": "#/definitions/DateDefExtended"
         }
       },
@@ -412,19 +488,22 @@
       "additionalProperties": false
     },
     "ExceptionCondition": {
-      "description": "Exception conditions that can trigger a date change",
+      "description": "Exception conditions that can trigger a date change.\nDefines various conditions under which a date exception applies.",
       "anyOf": [
         {
-          "description": "If date is between two dates",
+          "description": "If the date is between two specified dates",
           "type": "object",
           "properties": {
             "from": {
+              "description": "The start date of the range",
               "$ref": "#/definitions/DateDef"
             },
             "to": {
+              "description": "The end date of the range",
               "$ref": "#/definitions/DateDef"
             },
             "inclusive": {
+              "description": "Whether the range is inclusive of the start date and the end date",
               "type": "boolean"
             }
           },
@@ -436,10 +515,11 @@
           "additionalProperties": false
         },
         {
-          "description": "If date is same as another date",
+          "description": "If the date is the same as another specified date",
           "type": "object",
           "properties": {
             "date": {
+              "description": "The date to compare against",
               "$ref": "#/definitions/DateDef"
             }
           },
@@ -449,10 +529,11 @@
           "additionalProperties": false
         },
         {
-          "description": "If date is a specific day of week",
+          "description": "If the date falls on a specific day of the week",
           "type": "object",
           "properties": {
             "day_of_week": {
+              "description": "The day of the week to match",
               "$ref": "#/definitions/DayOfWeek"
             }
           },
@@ -464,19 +545,24 @@
       ]
     },
     "DateDefExtended": {
+      "description": "Extended date definition supporting both regular dates and offset dates.\nProvides flexibility for date calculations with optional adjustments.",
       "anyOf": [
         {
+          "description": "Regular date definition",
           "$ref": "#/definitions/DateDef"
         },
         {
+          "description": "Date definition with offset",
           "$ref": "#/definitions/DateDefWithOffset"
         }
       ]
     },
     "DateDefWithOffset": {
+      "description": "Date definition with offset for adjustments.\nUsed when a date needs to be shifted by a specific number of days.",
       "type": "object",
       "properties": {
         "day_offset": {
+          "description": "The number of days to offset the date",
           "type": "integer",
           "format": "int32"
         }
@@ -487,7 +573,7 @@
       "additionalProperties": false
     },
     "Precedence": {
-      "description": "Liturgical precedence levels for determining which celebration takes priority",
+      "description": "Liturgical precedence levels for determining which celebration takes priority.\nDefines the hierarchical order of liturgical celebrations according to UNLY norms.",
       "type": "string",
       "enum": [
         "TRIDUUM_1",
@@ -533,7 +619,7 @@
       ]
     },
     "CommonDefinition": {
-      "description": "Common definition for simplified categorization",
+      "description": "Common definition for simplified categorization.\nProvides a simplified version of the Common enum for easier classification.",
       "type": "string",
       "enum": [
         "NONE",
@@ -561,25 +647,29 @@
         "HOLY_WOMEN"
       ]
     },
-    "MartyrologyItemPointer": {
+    "EntityPointer": {
+      "description": "A pointer to an entity in the entity catalog.\nCan either reference an existing entity by ID or define a custom entity with additional properties.",
       "anyOf": [
         {
+          "description": "Reference to an existing entity by its ID",
           "type": "string"
         },
         {
-          "$ref": "#/definitions/MartyrologyItemRedefined"
+          "description": "Custom entity definition with additional properties specific to a liturgical day",
+          "$ref": "#/definitions/EntityOverride"
         }
       ]
     },
-    "MartyrologyItemRedefined": {
+    "EntityOverride": {
+      "description": "Custom entity definition that extends or overrides properties from the entity catalog.\nUsed when a liturgical day needs specific entity properties that differ from the base entity.",
       "type": "object",
       "properties": {
         "id": {
-          "description": "The ID of the martyrology item.",
+          "description": "The ID of the entity item (must reference an existing entity in the catalog)",
           "type": "string"
         },
         "titles": {
-          "description": "The redefined titles of the martyrology item.",
+          "description": "The custom titles for this entity in the context of this liturgical day",
           "anyOf": [
             {
               "$ref": "#/definitions/TitlesDef"
@@ -590,14 +680,14 @@
           ]
         },
         "hide_titles": {
-          "description": "Specify if titles should not be displayed. This can occur when a title is already included in\nthe name of the martyrology item.",
+          "description": "Whether to hide titles when displaying this entity (useful when titles are already included in the entity name)",
           "type": [
             "boolean",
             "null"
           ]
         },
         "count": {
-          "description": "Specify the number of persons this martyrology item is representing.",
+          "description": "The number of persons this entity represents (useful for groups of martyrs or saints)",
           "anyOf": [
             {
               "$ref": "#/definitions/SaintCount"
@@ -614,20 +704,23 @@
       "additionalProperties": false
     },
     "TitlesDef": {
+      "description": "Title definition that can be either a simple list or a compound definition.\nSupports both direct title lists and compound title operations.",
       "anyOf": [
         {
+          "description": "Simple list of titles",
           "type": "array",
           "items": {
             "$ref": "#/definitions/Title"
           }
         },
         {
+          "description": "Compound title definition with append/prepend operations",
           "$ref": "#/definitions/CompoundTitle"
         }
       ]
     },
     "Title": {
-      "description": "Titles and patronages associated with saints and blessed",
+      "description": "Titles and patronages associated with saints and blessed.\nRepresents the various ecclesiastical titles and patronages that can be assigned to entities.",
       "type": "string",
       "enum": [
         "ABBESS",
@@ -700,10 +793,11 @@
       ]
     },
     "CompoundTitle": {
+      "description": "Compound title definition for combining multiple titles.\nAllows adding titles to the beginning or end of an existing title list.",
       "type": "object",
       "properties": {
         "append": {
-          "description": "Add title(s) to the end of the existing list of title(s).",
+          "description": "The title(s) to add to the end of the existing list of title(s)",
           "type": [
             "array",
             "null"
@@ -713,7 +807,7 @@
           }
         },
         "prepend": {
-          "description": "Add title(s) to the beginning of the existing list of title(s).",
+          "description": "The title(s) to add to the beginning of the existing list of title(s)",
           "type": [
             "array",
             "null"
@@ -755,22 +849,51 @@
       ]
     },
     "Color": {
-      "description": "Liturgical colors used in the celebration of Mass and other liturgical services",
-      "type": "string",
-      "enum": [
-        "RED",
-        "ROSE",
-        "PURPLE",
-        "GREEN",
-        "WHITE",
-        "GOLD",
-        "BLACK"
+      "description": "Liturgical colors used in the celebration of Mass and other liturgical services.\nEach color has specific liturgical significance and is used during particular seasons or celebrations.",
+      "oneOf": [
+        {
+          "description": "Red - used for martyrs, Pentecost, and Palm Sunday",
+          "type": "string",
+          "const": "RED"
+        },
+        {
+          "description": "Rose - used on Gaudete Sunday (3rd Advent) and Laetare Sunday (4th Lent)",
+          "type": "string",
+          "const": "ROSE"
+        },
+        {
+          "description": "Purple - used during Advent and Lent",
+          "type": "string",
+          "const": "PURPLE"
+        },
+        {
+          "description": "Green - used during Ordinary Time",
+          "type": "string",
+          "const": "GREEN"
+        },
+        {
+          "description": "White - used for Christmas, Easter, and most feasts",
+          "type": "string",
+          "const": "WHITE"
+        },
+        {
+          "description": "Gold - used for solemn celebrations and special occasions",
+          "type": "string",
+          "const": "GOLD"
+        },
+        {
+          "description": "Black - used for funerals and All Souls' Day",
+          "type": "string",
+          "const": "BLACK"
+        }
       ]
     },
     "ResourcesMetadata": {
+      "description": "Metadata for localized resources.\nContains all the localized strings and configurations for a specific locale.",
       "type": "object",
       "properties": {
         "ordinals": {
+          "description": "Ordinal numbers (1st, 2nd, 3rd, etc.) in the locale language",
           "type": [
             "object",
             "null"
@@ -780,6 +903,7 @@
           }
         },
         "weekdays": {
+          "description": "Weekday names (Sunday, Monday, etc.) in the locale language",
           "type": [
             "object",
             "null"
@@ -789,6 +913,7 @@
           }
         },
         "months": {
+          "description": "Month names (January, February, etc.) in the locale language",
           "type": [
             "object",
             "null"
@@ -798,6 +923,7 @@
           }
         },
         "colors": {
+          "description": "Liturgical color names in the locale language",
           "anyOf": [
             {
               "$ref": "#/definitions/LocaleColors"
@@ -808,6 +934,7 @@
           ]
         },
         "seasons": {
+          "description": "Liturgical season names and descriptions in the locale language",
           "anyOf": [
             {
               "$ref": "#/definitions/SeasonsMetadata"
@@ -818,6 +945,7 @@
           ]
         },
         "periods": {
+          "description": "Liturgical period names in the locale language",
           "anyOf": [
             {
               "$ref": "#/definitions/PeriodsMetadata"
@@ -828,6 +956,7 @@
           ]
         },
         "ranks": {
+          "description": "Liturgical rank names in the locale language",
           "anyOf": [
             {
               "$ref": "#/definitions/RanksMetadata"
@@ -838,6 +967,7 @@
           ]
         },
         "cycles": {
+          "description": "Liturgical cycle names in the locale language",
           "anyOf": [
             {
               "$ref": "#/definitions/CyclesMetadata"
@@ -851,45 +981,53 @@
       "additionalProperties": false
     },
     "LocaleColors": {
+      "description": "Liturgical color names in the locale language.\nProvides localized names for each liturgical color.",
       "type": "object",
       "properties": {
         "black": {
+          "description": "Black color name in the locale language",
           "type": [
             "string",
             "null"
           ]
         },
         "gold": {
+          "description": "Gold color name in the locale language",
           "type": [
             "string",
             "null"
           ]
         },
         "green": {
+          "description": "Green color name in the locale language",
           "type": [
             "string",
             "null"
           ]
         },
         "purple": {
+          "description": "Purple color name in the locale language",
           "type": [
             "string",
             "null"
           ]
         },
         "red": {
+          "description": "Red color name in the locale language",
           "type": [
             "string",
             "null"
           ]
         },
         "rose": {
+          "description": "Rose color name in the locale language",
           "type": [
             "string",
             "null"
           ]
         },
         "white": {
+          "description": "White color name in the locale language",
           "type": [
             "string",
             "null"
@@ -899,9 +1037,11 @@
       "additionalProperties": false
     },
     "SeasonsMetadata": {
+      "description": "Liturgical season names and descriptions in the locale language.\nProvides localized names for each liturgical season and their components.",
       "type": "object",
       "properties": {
         "advent": {
+          "description": "Advent season names and descriptions",
           "anyOf": [
             {
               "$ref": "#/definitions/AdventSeason"
@@ -912,6 +1052,7 @@
           ]
         },
         "christmas_time": {
+          "description": "Christmas Time season names and descriptions",
           "anyOf": [
             {
               "$ref": "#/definitions/ChristmasTimeSeason"
@@ -922,6 +1063,7 @@
           ]
         },
         "ordinary_time": {
+          "description": "Ordinary Time season names and descriptions",
           "anyOf": [
             {
               "$ref": "#/definitions/OrdinaryTimeSeason"
@@ -932,6 +1074,7 @@
           ]
         },
         "lent": {
+          "description": "Lent season names and descriptions",
           "anyOf": [
             {
               "$ref": "#/definitions/LentSeason"
@@ -942,6 +1085,7 @@
           ]
         },
         "paschal_triduum": {
+          "description": "Paschal Triduum season names and descriptions",
           "anyOf": [
             {
               "$ref": "#/definitions/PaschalTriduumSeason"
@@ -952,6 +1096,7 @@
           ]
         },
         "easter_time": {
+          "description": "Easter Time season names and descriptions",
           "anyOf": [
             {
               "$ref": "#/definitions/EasterTimeSeason"
@@ -965,27 +1110,32 @@
       "additionalProperties": false
     },
     "AdventSeason": {
+      "description": "Advent season localized names and descriptions.\nProvides specific terminology for the Advent season in the locale language.",
       "type": "object",
       "properties": {
         "season": {
+          "description": "General season name for Advent",
           "type": [
             "string",
             "null"
           ]
         },
         "weekday": {
+          "description": "Weekday terminology during Advent",
           "type": [
             "string",
             "null"
           ]
         },
         "sunday": {
+          "description": "Sunday terminology during Advent",
           "type": [
             "string",
             "null"
           ]
         },
         "privileged_weekday": {
+          "description": "Privileged weekday terminology during Advent",
           "type": [
             "string",
             "null"
@@ -995,39 +1145,46 @@
       "additionalProperties": false
     },
     "ChristmasTimeSeason": {
+      "description": "Christmas Time season localized names and descriptions.",
       "type": "object",
       "properties": {
         "season": {
+          "description": "General season name for Christmas Time",
           "type": [
             "string",
             "null"
           ]
         },
         "day": {
+          "description": "Day terminology during Christmas Time",
           "type": [
             "string",
             "null"
           ]
         },
         "octave": {
+          "description": "Octave terminology during Christmas Time",
           "type": [
             "string",
             "null"
           ]
         },
         "before_epiphany": {
+          "description": "Before Epiphany terminology",
           "type": [
             "string",
             "null"
           ]
         },
         "second_sunday_after_christmas": {
+          "description": "Second Sunday after Christmas terminology",
           "type": [
             "string",
             "null"
           ]
         },
         "after_epiphany": {
+          "description": "After Epiphany terminology",
           "type": [
             "string",
             "null"
@@ -1037,21 +1194,25 @@
       "additionalProperties": false
     },
     "OrdinaryTimeSeason": {
+      "description": "Ordinary Time season localized names and descriptions.",
       "type": "object",
       "properties": {
         "season": {
+          "description": "General season name for Ordinary Time",
           "type": [
             "string",
             "null"
           ]
         },
         "weekday": {
+          "description": "Weekday terminology during Ordinary Time",
           "type": [
             "string",
             "null"
           ]
         },
         "sunday": {
+          "description": "Sunday terminology during Ordinary Time",
           "type": [
             "string",
             "null"
@@ -1061,33 +1222,39 @@
       "additionalProperties": false
     },
     "LentSeason": {
+      "description": "Lent season localized names and descriptions.",
       "type": "object",
       "properties": {
         "season": {
+          "description": "General season name for Lent",
           "type": [
             "string",
             "null"
           ]
         },
         "weekday": {
+          "description": "Weekday terminology during Lent",
           "type": [
             "string",
             "null"
           ]
         },
         "sunday": {
+          "description": "Sunday terminology during Lent",
           "type": [
             "string",
             "null"
           ]
         },
         "day_after_ash_wed": {
+          "description": "Day after Ash Wednesday terminology",
           "type": [
             "string",
             "null"
           ]
         },
         "holy_week_day": {
+          "description": "Holy Week day terminology",
           "type": [
             "string",
             "null"
@@ -1097,9 +1264,11 @@
       "additionalProperties": false
     },
     "PaschalTriduumSeason": {
+      "description": "Paschal Triduum season localized names and descriptions.",
       "type": "object",
       "properties": {
         "season": {
+          "description": "General season name for Paschal Triduum",
           "type": [
             "string",
             "null"
@@ -1109,27 +1278,32 @@
       "additionalProperties": false
     },
     "EasterTimeSeason": {
+      "description": "Easter Time season localized names and descriptions.",
       "type": "object",
       "properties": {
         "season": {
+          "description": "General season name for Easter Time",
           "type": [
             "string",
             "null"
           ]
         },
         "weekday": {
+          "description": "Weekday terminology during Easter Time",
           "type": [
             "string",
             "null"
           ]
         },
         "sunday": {
+          "description": "Sunday terminology during Easter Time",
           "type": [
             "string",
             "null"
           ]
         },
         "octave": {
+          "description": "Octave terminology during Easter Time",
           "type": [
             "string",
             "null"
@@ -1139,15 +1313,18 @@
       "additionalProperties": false
     },
     "PeriodsMetadata": {
+      "description": "Liturgical period names in the locale language.",
       "type": "object",
       "properties": {
         "epiphany": {
+          "description": "Epiphany period name",
           "type": [
             "string",
             "null"
           ]
         },
         "holy_week": {
+          "description": "Holy Week period name",
           "type": [
             "string",
             "null"
@@ -1157,39 +1334,46 @@
       "additionalProperties": false
     },
     "RanksMetadata": {
+      "description": "Liturgical rank names in the locale language.",
       "type": "object",
       "properties": {
         "solemnity": {
+          "description": "Solemnity rank name",
           "type": [
             "string",
             "null"
           ]
         },
         "sunday": {
+          "description": "Sunday rank name",
           "type": [
             "string",
             "null"
           ]
         },
         "feast": {
+          "description": "Feast rank name",
           "type": [
             "string",
             "null"
           ]
         },
         "memorial": {
+          "description": "Memorial rank name",
           "type": [
             "string",
             "null"
           ]
         },
         "optional_memorial": {
+          "description": "Optional memorial rank name",
           "type": [
             "string",
             "null"
           ]
         },
         "weekday": {
+          "description": "Weekday rank name",
           "type": [
             "string",
             "null"
@@ -1199,69 +1383,81 @@
       "additionalProperties": false
     },
     "CyclesMetadata": {
+      "description": "Liturgical cycle names in the locale language.",
       "type": "object",
       "properties": {
         "proper_of_time": {
+          "description": "Proper of Time cycle name",
           "type": [
             "string",
             "null"
           ]
         },
         "proper_of_saints": {
+          "description": "Proper of Saints cycle name",
           "type": [
             "string",
             "null"
           ]
         },
         "sunday_year_a": {
+          "description": "Sunday Year A cycle name",
           "type": [
             "string",
             "null"
           ]
         },
         "sunday_year_b": {
+          "description": "Sunday Year B cycle name",
           "type": [
             "string",
             "null"
           ]
         },
         "sunday_year_c": {
+          "description": "Sunday Year C cycle name",
           "type": [
             "string",
             "null"
           ]
         },
         "weekday_year_1": {
+          "description": "Weekday Year 1 cycle name",
           "type": [
             "string",
             "null"
           ]
         },
         "weekday_year_2": {
+          "description": "Weekday Year 2 cycle name",
           "type": [
             "string",
             "null"
           ]
         },
         "psalter_week_1": {
+          "description": "Psalter Week 1 cycle name",
           "type": [
             "string",
             "null"
           ]
         },
         "psalter_week_2": {
+          "description": "Psalter Week 2 cycle name",
           "type": [
             "string",
             "null"
           ]
         },
         "psalter_week_3": {
+          "description": "Psalter Week 3 cycle name",
           "type": [
             "string",
             "null"
           ]
         },
         "psalter_week_4": {
+          "description": "Psalter Week 4 cycle name",
           "type": [
             "string",
             "null"
@@ -1469,29 +1665,53 @@
       "additionalProperties": false
     },
     "EntityType": {
-      "type": "string",
-      "enum": [
-        "PERSON",
-        "PLACE",
-        "EVENT"
+      "description": "The type of entity in the liturgical calendar.\nDefines whether the entity represents a person, place, or event.",
+      "oneOf": [
+        {
+          "description": "A person (saint, blessed, or other individual)",
+          "type": "string",
+          "const": "PERSON"
+        },
+        {
+          "description": "A place (shrine, city, or geographical location)",
+          "type": "string",
+          "const": "PLACE"
+        },
+        {
+          "description": "An event (historical or liturgical occurrence)",
+          "type": "string",
+          "const": "EVENT"
+        }
       ]
     },
     "CanonizationLevel": {
-      "type": "string",
-      "enum": [
-        "BLESSED",
-        "SAINT"
+      "description": "Canonization level indicating the official recognition status of a person.\nDefines whether someone is beatified (Blessed) or canonized (Saint).",
+      "oneOf": [
+        {
+          "description": "Beatified person (Blessed) - first step toward sainthood",
+          "type": "string",
+          "const": "BLESSED"
+        },
+        {
+          "description": "Canonized person (Saint) - fully recognized as a saint",
+          "type": "string",
+          "const": "SAINT"
+        }
       ]
     },
     "SaintDateDef": {
+      "description": "Saint date definition supporting various date specifications.\nAllows single dates, date ranges, multiple alternatives, or century specifications.",
       "anyOf": [
         {
+          "description": "Single date specification",
           "$ref": "#/definitions/SaintDate"
         },
         {
+          "description": "Date range between two dates",
           "type": "object",
           "properties": {
             "between": {
+              "description": "The date range (start and end dates)",
               "type": "array",
               "items": {
                 "$ref": "#/definitions/SaintDate"
@@ -1506,9 +1726,11 @@
           "additionalProperties": false
         },
         {
+          "description": "Multiple alternative dates (any one of them)",
           "type": "object",
           "properties": {
             "or": {
+              "description": "The list of alternative dates",
               "type": "array",
               "items": {
                 "$ref": "#/definitions/SaintDate"
@@ -1521,9 +1743,11 @@
           "additionalProperties": false
         },
         {
+          "description": "Century specification (e.g., 12 for 12th century)",
           "type": "object",
           "properties": {
             "century": {
+              "description": "The century number",
               "type": "integer",
               "format": "uint32",
               "minimum": 0
@@ -1537,36 +1761,51 @@
       ]
     },
     "SaintDate": {
+      "description": "Saint date representation with different precision levels.\nSupports year-only, year-month, or full date specifications.",
       "anyOf": [
         {
+          "description": "Year only (e.g., 1234)",
           "type": "integer",
           "format": "uint32",
           "minimum": 0
         },
         {
+          "description": "Year and month in \"YYYY-MM\" format (e.g., \"1234-05\")",
           "type": "string"
         },
         {
+          "description": "Full date in \"YYYY-MM-DD\" format (e.g., \"1234-05-15\")",
           "type": "string"
         }
       ]
     },
     "Sex": {
-      "type": "string",
-      "enum": [
-        "MALE",
-        "FEMALE"
+      "description": "Sex of a person.",
+      "oneOf": [
+        {
+          "description": "Male person",
+          "type": "string",
+          "const": "MALE"
+        },
+        {
+          "description": "Female person",
+          "type": "string",
+          "const": "FEMALE"
+        }
       ]
     },
     "CalendarDefinition": {
       "definitions": {
         "CalendarMetadata": {
+          "description": "Metadata for a calendar.\nContains essential information about the calendar's type and jurisdiction.",
           "type": "object",
           "properties": {
             "type": {
+              "description": "The type of the calendar",
               "$ref": "#/definitions/CalendarType"
             },
             "jurisdiction": {
+              "description": "The jurisdiction of the calendar",
               "$ref": "#/definitions/CalendarJurisdiction"
             }
           },
@@ -1577,51 +1816,107 @@
           "additionalProperties": false
         },
         "CalendarType": {
-          "type": "string",
-          "enum": [
-            "GENERAL_ROMAN",
-            "REGION",
-            "COUNTRY",
-            "ARCHDIOCESE",
-            "DIOCESE",
-            "CITY",
-            "PARISH",
-            "GENERAL_COMMUNITY",
-            "REGIONAL_COMMUNITY",
-            "LOCAL_COMMUNITY",
-            "OTHER"
+          "description": "The type of the calendar.\nDefines the scope and authority level of the liturgical calendar.",
+          "oneOf": [
+            {
+              "description": "General Roman Calendar (universal)",
+              "type": "string",
+              "const": "GENERAL_ROMAN"
+            },
+            {
+              "description": "Regional calendar (multiple countries)",
+              "type": "string",
+              "const": "REGION"
+            },
+            {
+              "description": "National calendar (single country)",
+              "type": "string",
+              "const": "COUNTRY"
+            },
+            {
+              "description": "Archdiocesan calendar",
+              "type": "string",
+              "const": "ARCHDIOCESE"
+            },
+            {
+              "description": "Diocesan calendar",
+              "type": "string",
+              "const": "DIOCESE"
+            },
+            {
+              "description": "City calendar",
+              "type": "string",
+              "const": "CITY"
+            },
+            {
+              "description": "Parish calendar",
+              "type": "string",
+              "const": "PARISH"
+            },
+            {
+              "description": "General religious community calendar",
+              "type": "string",
+              "const": "GENERAL_COMMUNITY"
+            },
+            {
+              "description": "Regional religious community calendar",
+              "type": "string",
+              "const": "REGIONAL_COMMUNITY"
+            },
+            {
+              "description": "Local religious community calendar",
+              "type": "string",
+              "const": "LOCAL_COMMUNITY"
+            },
+            {
+              "description": "Other specialized calendar",
+              "type": "string",
+              "const": "OTHER"
+            }
           ]
         },
         "CalendarJurisdiction": {
-          "type": "string",
-          "enum": [
-            "ECCLESIASTICAL",
-            "CIVIL"
+          "description": "The jurisdiction of the calendar.\nDetermines whether the calendar follows ecclesiastical or civil authority.",
+          "oneOf": [
+            {
+              "description": "Calendar under ecclesiastical authority (Church)",
+              "type": "string",
+              "const": "ECCLESIASTICAL"
+            },
+            {
+              "description": "Calendar under civil authority (State)",
+              "type": "string",
+              "const": "CIVIL"
+            }
           ]
         },
         "ParticularConfig": {
+          "description": "Configuration options specific to this calendar.\nThese settings can override or extend the default Romcal configuration or any parent calendar\nconfiguration.",
           "type": "object",
           "properties": {
             "epiphany_on_sunday": {
-              "description": "Configuration options specific to this calendar.\nThese settings can override or extend the default Romcal configuration or any parent calendar\nconfiguration.",
+              "description": "Epiphany is celebrated on a Sunday",
               "type": [
                 "boolean",
                 "null"
               ]
             },
             "ascension_on_sunday": {
+              "description": "Ascension is celebrated on a Sunday",
               "type": [
                 "boolean",
                 "null"
               ]
             },
             "corpus_christi_on_sunday": {
+              "description": "Corpus Christi is celebrated on a Sunday",
               "type": [
                 "boolean",
                 "null"
               ]
             },
             "easter_calculation_type": {
+              "description": "The type of Easter calculation",
               "anyOf": [
                 {
                   "$ref": "#/definitions/EasterCalculationType"
@@ -1635,7 +1930,7 @@
           "additionalProperties": false
         },
         "EasterCalculationType": {
-          "description": "Easter calculation type",
+          "description": "The type of Easter calculation",
           "oneOf": [
             {
               "description": "Gregorian calculation (default)",
@@ -1650,13 +1945,15 @@
           ]
         },
         "DayDefinition": {
+          "description": "Definition of a liturgical day with all its properties and configurations.\nIt represents a complete liturgical day definition that can be used\nto generate calendar entries with proper precedence, colors, and entity associations.",
           "type": "object",
           "properties": {
             "id": {
+              "description": "The unique identifier of the day definition",
               "type": "string"
             },
             "date_def": {
-              "description": "Date definition",
+              "description": "The date definition for this liturgical day",
               "anyOf": [
                 {
                   "$ref": "#/definitions/DateDef"
@@ -1684,7 +1981,7 @@
               ]
             },
             "precedence": {
-              "description": "The precedence type of the liturgical day.",
+              "description": "The precedence type of the liturgical day",
               "anyOf": [
                 {
                   "$ref": "#/definitions/Precedence"
@@ -1706,45 +2003,45 @@
               ]
             },
             "is_holy_day_of_obligation": {
-              "description": "Holy days of obligation are days on which the faithful are expected to attend Mass,\nand engage in rest from work and recreation.",
+              "description": "Holy days of obligation are days on which the faithful are expected to attend Mass\nand engage in rest from work and recreation",
               "type": [
                 "boolean",
                 "null"
               ]
             },
             "allow_similar_rank_items": {
-              "description": "In addition to this liturgical day, allow similar items that have the same rank,\nand the same or lower precedence,\nso the current liturgical day will not overwrite another defined item.",
+              "description": "Allow similar items that have the same rank and the same or lower precedence\nto coexist with this liturgical day without being overwritten",
               "type": [
                 "boolean",
                 "null"
               ]
             },
             "is_optional": {
-              "description": "Specify is this LiturgicalDay is optional within a specific liturgical calendar.\n\nUNLY #14:\nMemorials are either obligatory or optional; their observance is integrated into\nthe celebration of the occurring weekday in accordance with the norms set forth in the\nGeneral Instruction of the Roman Missal and of the Liturgy of the Hours\n\nNote: also used for the dedication of consecrated churches, which is an optional solemnity\nthat should not overwrite the default weekday.",
+              "description": "Specify if this liturgical day is optional within a specific liturgical calendar\n\nUNLY #14:\nMemorials are either obligatory or optional; their observance is integrated into\nthe celebration of the occurring weekday in accordance with the norms set forth in the\nGeneral Instruction of the Roman Missal and of the Liturgy of the Hours\n\nNote: also used for the dedication of consecrated churches, which is an optional solemnity\nthat should not overwrite the default weekday.",
               "type": [
                 "boolean",
                 "null"
               ]
             },
             "custom_locale_id": {
-              "description": "Specify a custom locale ID for this date definition, in this calendar.",
+              "description": "The custom locale ID for this date definition in this calendar",
               "type": [
                 "string",
                 "null"
               ]
             },
-            "martyrology": {
-              "description": "Link one or multiple Saints, Blessed, or any other celebrations from the Martyrology catalog.",
+            "entities": {
+              "description": "The entities (Saints, Blessed, or Places) linked from the Entity catalog",
               "type": [
                 "array",
                 "null"
               ],
               "items": {
-                "$ref": "#/definitions/MartyrologyItemPointer"
+                "$ref": "#/definitions/EntityPointer"
               }
             },
             "titles": {
-              "description": "Combined titles of each Saints linked to this date definition.",
+              "description": "The combined titles of all entities linked to this date definition",
               "anyOf": [
                 {
                   "$ref": "#/definitions/TitlesDef"
@@ -1755,14 +2052,14 @@
               ]
             },
             "drop": {
-              "description": "If this liturgical day must be removed from this calendar and from all those it inherits\n(the parent calendars), on the final calendar generated by romcal.",
+              "description": "If this liturgical day must be removed from this calendar and from all parent calendars\nin the final calendar generated by romcal",
               "type": [
                 "boolean",
                 "null"
               ]
             },
             "colors": {
-              "description": "The liturgical color(s) of the liturgical day.\n@deprecated",
+              "description": "The liturgical color(s) of the liturgical day\n@deprecated",
               "anyOf": [
                 {
                   "$ref": "#/definitions/ColorsDef"
@@ -1779,20 +2076,24 @@
           "additionalProperties": false
         },
         "DateDef": {
+          "description": "Date definition supporting various date calculation methods.\nProvides flexible ways to specify liturgical dates using different approaches.",
           "anyOf": [
             {
-              "description": "Simple month/day",
+              "description": "Simple month/day specification",
               "type": "object",
               "properties": {
                 "month": {
+                  "description": "The month (1-12)",
                   "$ref": "#/definitions/MonthIndex"
                 },
                 "date": {
+                  "description": "The day of the month (1-31)",
                   "type": "integer",
                   "format": "uint32",
                   "minimum": 0
                 },
                 "day_offset": {
+                  "description": "Optional day offset for adjustments",
                   "type": [
                     "integer",
                     "null"
@@ -1807,13 +2108,15 @@
               "additionalProperties": false
             },
             {
-              "description": "Date function (Easter, Epiphany, etc.)",
+              "description": "Date function calculation (Easter, Epiphany, etc.)",
               "type": "object",
               "properties": {
                 "date_fn": {
+                  "description": "The date function to calculate the base date",
                   "$ref": "#/definitions/DateFn"
                 },
                 "day_offset": {
+                  "description": "Optional day offset for adjustments",
                   "type": [
                     "integer",
                     "null"
@@ -1827,21 +2130,25 @@
               "additionalProperties": false
             },
             {
-              "description": "Nth weekday of month",
+              "description": "Nth weekday of a specific month",
               "type": "object",
               "properties": {
                 "month": {
+                  "description": "The month (1-12)",
                   "$ref": "#/definitions/MonthIndex"
                 },
                 "day_of_week": {
+                  "description": "The day of the week (0=Sunday, 1=Monday, etc.)",
                   "$ref": "#/definitions/DayOfWeek"
                 },
                 "nth_week_in_month": {
+                  "description": "Which occurrence of the weekday (1st, 2nd, 3rd, etc.)",
                   "type": "integer",
                   "format": "uint32",
                   "minimum": 0
                 },
                 "day_offset": {
+                  "description": "Optional day offset for adjustments",
                   "type": [
                     "integer",
                     "null"
@@ -1857,16 +2164,19 @@
               "additionalProperties": false
             },
             {
-              "description": "Last weekday of month",
+              "description": "Last weekday of a specific month",
               "type": "object",
               "properties": {
                 "month": {
+                  "description": "The month (1-12)",
                   "$ref": "#/definitions/MonthIndex"
                 },
                 "last_day_of_week_in_month": {
+                  "description": "The day of the week to find the last occurrence of",
                   "$ref": "#/definitions/DayOfWeek"
                 },
                 "day_offset": {
+                  "description": "Optional day offset for adjustments",
                   "type": [
                     "integer",
                     "null"
@@ -1890,7 +2200,7 @@
           "maximum": 255
         },
         "DateFn": {
-          "description": "Date function for calculating liturgical dates",
+          "description": "Date function for calculating liturgical dates.\nRepresents movable feasts and special celebrations that require calculation.",
           "type": "string",
           "enum": [
             "MARY_MOTHER_OF_THE_CHURCH",
@@ -1920,12 +2230,14 @@
           "maximum": 255
         },
         "DateDefExceptions": {
-          "description": "Date exceptions that can be either a single exception or an array of exceptions",
+          "description": "Date exceptions that can be either a single exception or multiple exceptions.\nSupports both simple single exceptions and complex multiple exception scenarios.",
           "anyOf": [
             {
+              "description": "Single date exception",
               "$ref": "#/definitions/DateDefException"
             },
             {
+              "description": "Multiple date exceptions",
               "type": "array",
               "items": {
                 "$ref": "#/definitions/DateDefException"
@@ -1934,15 +2246,15 @@
           ]
         },
         "DateDefException": {
-          "description": "The liturgical day date exception\nRepresents a condition and the date to set when that condition is met",
+          "description": "The liturgical day date exception.\nRepresents a condition and the date to set when that condition is met.",
           "type": "object",
           "properties": {
             "when": {
-              "description": "Condition that triggers the exception",
+              "description": "The condition that triggers the exception",
               "$ref": "#/definitions/ExceptionCondition"
             },
             "then": {
-              "description": "Date to set when condition is met",
+              "description": "The date to set when the condition is met",
               "$ref": "#/definitions/DateDefExtended"
             }
           },
@@ -1953,19 +2265,22 @@
           "additionalProperties": false
         },
         "ExceptionCondition": {
-          "description": "Exception conditions that can trigger a date change",
+          "description": "Exception conditions that can trigger a date change.\nDefines various conditions under which a date exception applies.",
           "anyOf": [
             {
-              "description": "If date is between two dates",
+              "description": "If the date is between two specified dates",
               "type": "object",
               "properties": {
                 "from": {
+                  "description": "The start date of the range",
                   "$ref": "#/definitions/DateDef"
                 },
                 "to": {
+                  "description": "The end date of the range",
                   "$ref": "#/definitions/DateDef"
                 },
                 "inclusive": {
+                  "description": "Whether the range is inclusive of the start date and the end date",
                   "type": "boolean"
                 }
               },
@@ -1977,10 +2292,11 @@
               "additionalProperties": false
             },
             {
-              "description": "If date is same as another date",
+              "description": "If the date is the same as another specified date",
               "type": "object",
               "properties": {
                 "date": {
+                  "description": "The date to compare against",
                   "$ref": "#/definitions/DateDef"
                 }
               },
@@ -1990,10 +2306,11 @@
               "additionalProperties": false
             },
             {
-              "description": "If date is a specific day of week",
+              "description": "If the date falls on a specific day of the week",
               "type": "object",
               "properties": {
                 "day_of_week": {
+                  "description": "The day of the week to match",
                   "$ref": "#/definitions/DayOfWeek"
                 }
               },
@@ -2005,19 +2322,24 @@
           ]
         },
         "DateDefExtended": {
+          "description": "Extended date definition supporting both regular dates and offset dates.\nProvides flexibility for date calculations with optional adjustments.",
           "anyOf": [
             {
+              "description": "Regular date definition",
               "$ref": "#/definitions/DateDef"
             },
             {
+              "description": "Date definition with offset",
               "$ref": "#/definitions/DateDefWithOffset"
             }
           ]
         },
         "DateDefWithOffset": {
+          "description": "Date definition with offset for adjustments.\nUsed when a date needs to be shifted by a specific number of days.",
           "type": "object",
           "properties": {
             "day_offset": {
+              "description": "The number of days to offset the date",
               "type": "integer",
               "format": "int32"
             }
@@ -2028,7 +2350,7 @@
           "additionalProperties": false
         },
         "Precedence": {
-          "description": "Liturgical precedence levels for determining which celebration takes priority",
+          "description": "Liturgical precedence levels for determining which celebration takes priority.\nDefines the hierarchical order of liturgical celebrations according to UNLY norms.",
           "type": "string",
           "enum": [
             "TRIDUUM_1",
@@ -2074,7 +2396,7 @@
           ]
         },
         "CommonDefinition": {
-          "description": "Common definition for simplified categorization",
+          "description": "Common definition for simplified categorization.\nProvides a simplified version of the Common enum for easier classification.",
           "type": "string",
           "enum": [
             "NONE",
@@ -2102,25 +2424,29 @@
             "HOLY_WOMEN"
           ]
         },
-        "MartyrologyItemPointer": {
+        "EntityPointer": {
+          "description": "A pointer to an entity in the entity catalog.\nCan either reference an existing entity by ID or define a custom entity with additional properties.",
           "anyOf": [
             {
+              "description": "Reference to an existing entity by its ID",
               "type": "string"
             },
             {
-              "$ref": "#/definitions/MartyrologyItemRedefined"
+              "description": "Custom entity definition with additional properties specific to a liturgical day",
+              "$ref": "#/definitions/EntityOverride"
             }
           ]
         },
-        "MartyrologyItemRedefined": {
+        "EntityOverride": {
+          "description": "Custom entity definition that extends or overrides properties from the entity catalog.\nUsed when a liturgical day needs specific entity properties that differ from the base entity.",
           "type": "object",
           "properties": {
             "id": {
-              "description": "The ID of the martyrology item.",
+              "description": "The ID of the entity item (must reference an existing entity in the catalog)",
               "type": "string"
             },
             "titles": {
-              "description": "The redefined titles of the martyrology item.",
+              "description": "The custom titles for this entity in the context of this liturgical day",
               "anyOf": [
                 {
                   "$ref": "#/definitions/TitlesDef"
@@ -2131,14 +2457,14 @@
               ]
             },
             "hide_titles": {
-              "description": "Specify if titles should not be displayed. This can occur when a title is already included in\nthe name of the martyrology item.",
+              "description": "Whether to hide titles when displaying this entity (useful when titles are already included in the entity name)",
               "type": [
                 "boolean",
                 "null"
               ]
             },
             "count": {
-              "description": "Specify the number of persons this martyrology item is representing.",
+              "description": "The number of persons this entity represents (useful for groups of martyrs or saints)",
               "anyOf": [
                 {
                   "$ref": "#/definitions/SaintCount"
@@ -2155,20 +2481,23 @@
           "additionalProperties": false
         },
         "TitlesDef": {
+          "description": "Title definition that can be either a simple list or a compound definition.\nSupports both direct title lists and compound title operations.",
           "anyOf": [
             {
+              "description": "Simple list of titles",
               "type": "array",
               "items": {
                 "$ref": "#/definitions/Title"
               }
             },
             {
+              "description": "Compound title definition with append/prepend operations",
               "$ref": "#/definitions/CompoundTitle"
             }
           ]
         },
         "Title": {
-          "description": "Titles and patronages associated with saints and blessed",
+          "description": "Titles and patronages associated with saints and blessed.\nRepresents the various ecclesiastical titles and patronages that can be assigned to entities.",
           "type": "string",
           "enum": [
             "ABBESS",
@@ -2241,10 +2570,11 @@
           ]
         },
         "CompoundTitle": {
+          "description": "Compound title definition for combining multiple titles.\nAllows adding titles to the beginning or end of an existing title list.",
           "type": "object",
           "properties": {
             "append": {
-              "description": "Add title(s) to the end of the existing list of title(s).",
+              "description": "The title(s) to add to the end of the existing list of title(s)",
               "type": [
                 "array",
                 "null"
@@ -2254,7 +2584,7 @@
               }
             },
             "prepend": {
-              "description": "Add title(s) to the beginning of the existing list of title(s).",
+              "description": "The title(s) to add to the beginning of the existing list of title(s)",
               "type": [
                 "array",
                 "null"
@@ -2296,16 +2626,43 @@
           ]
         },
         "Color": {
-          "description": "Liturgical colors used in the celebration of Mass and other liturgical services",
-          "type": "string",
-          "enum": [
-            "RED",
-            "ROSE",
-            "PURPLE",
-            "GREEN",
-            "WHITE",
-            "GOLD",
-            "BLACK"
+          "description": "Liturgical colors used in the celebration of Mass and other liturgical services.\nEach color has specific liturgical significance and is used during particular seasons or celebrations.",
+          "oneOf": [
+            {
+              "description": "Red - used for martyrs, Pentecost, and Palm Sunday",
+              "type": "string",
+              "const": "RED"
+            },
+            {
+              "description": "Rose - used on Gaudete Sunday (3rd Advent) and Laetare Sunday (4th Lent)",
+              "type": "string",
+              "const": "ROSE"
+            },
+            {
+              "description": "Purple - used during Advent and Lent",
+              "type": "string",
+              "const": "PURPLE"
+            },
+            {
+              "description": "Green - used during Ordinary Time",
+              "type": "string",
+              "const": "GREEN"
+            },
+            {
+              "description": "White - used for Christmas, Easter, and most feasts",
+              "type": "string",
+              "const": "WHITE"
+            },
+            {
+              "description": "Gold - used for solemn celebrations and special occasions",
+              "type": "string",
+              "const": "GOLD"
+            },
+            {
+              "description": "Black - used for funerals and All Souls' Day",
+              "type": "string",
+              "const": "BLACK"
+            }
           ]
         }
       },
@@ -2358,9 +2715,11 @@
     "ResourcesDefinition": {
       "definitions": {
         "ResourcesMetadata": {
+          "description": "Metadata for localized resources.\nContains all the localized strings and configurations for a specific locale.",
           "type": "object",
           "properties": {
             "ordinals": {
+              "description": "Ordinal numbers (1st, 2nd, 3rd, etc.) in the locale language",
               "type": [
                 "object",
                 "null"
@@ -2370,6 +2729,7 @@
               }
             },
             "weekdays": {
+              "description": "Weekday names (Sunday, Monday, etc.) in the locale language",
               "type": [
                 "object",
                 "null"
@@ -2379,6 +2739,7 @@
               }
             },
             "months": {
+              "description": "Month names (January, February, etc.) in the locale language",
               "type": [
                 "object",
                 "null"
@@ -2388,6 +2749,7 @@
               }
             },
             "colors": {
+              "description": "Liturgical color names in the locale language",
               "anyOf": [
                 {
                   "$ref": "#/definitions/LocaleColors"
@@ -2398,6 +2760,7 @@
               ]
             },
             "seasons": {
+              "description": "Liturgical season names and descriptions in the locale language",
               "anyOf": [
                 {
                   "$ref": "#/definitions/SeasonsMetadata"
@@ -2408,6 +2771,7 @@
               ]
             },
             "periods": {
+              "description": "Liturgical period names in the locale language",
               "anyOf": [
                 {
                   "$ref": "#/definitions/PeriodsMetadata"
@@ -2418,6 +2782,7 @@
               ]
             },
             "ranks": {
+              "description": "Liturgical rank names in the locale language",
               "anyOf": [
                 {
                   "$ref": "#/definitions/RanksMetadata"
@@ -2428,6 +2793,7 @@
               ]
             },
             "cycles": {
+              "description": "Liturgical cycle names in the locale language",
               "anyOf": [
                 {
                   "$ref": "#/definitions/CyclesMetadata"
@@ -2441,45 +2807,53 @@
           "additionalProperties": false
         },
         "LocaleColors": {
+          "description": "Liturgical color names in the locale language.\nProvides localized names for each liturgical color.",
           "type": "object",
           "properties": {
             "black": {
+              "description": "Black color name in the locale language",
               "type": [
                 "string",
                 "null"
               ]
             },
             "gold": {
+              "description": "Gold color name in the locale language",
               "type": [
                 "string",
                 "null"
               ]
             },
             "green": {
+              "description": "Green color name in the locale language",
               "type": [
                 "string",
                 "null"
               ]
             },
             "purple": {
+              "description": "Purple color name in the locale language",
               "type": [
                 "string",
                 "null"
               ]
             },
             "red": {
+              "description": "Red color name in the locale language",
               "type": [
                 "string",
                 "null"
               ]
             },
             "rose": {
+              "description": "Rose color name in the locale language",
               "type": [
                 "string",
                 "null"
               ]
             },
             "white": {
+              "description": "White color name in the locale language",
               "type": [
                 "string",
                 "null"
@@ -2489,9 +2863,11 @@
           "additionalProperties": false
         },
         "SeasonsMetadata": {
+          "description": "Liturgical season names and descriptions in the locale language.\nProvides localized names for each liturgical season and their components.",
           "type": "object",
           "properties": {
             "advent": {
+              "description": "Advent season names and descriptions",
               "anyOf": [
                 {
                   "$ref": "#/definitions/AdventSeason"
@@ -2502,6 +2878,7 @@
               ]
             },
             "christmas_time": {
+              "description": "Christmas Time season names and descriptions",
               "anyOf": [
                 {
                   "$ref": "#/definitions/ChristmasTimeSeason"
@@ -2512,6 +2889,7 @@
               ]
             },
             "ordinary_time": {
+              "description": "Ordinary Time season names and descriptions",
               "anyOf": [
                 {
                   "$ref": "#/definitions/OrdinaryTimeSeason"
@@ -2522,6 +2900,7 @@
               ]
             },
             "lent": {
+              "description": "Lent season names and descriptions",
               "anyOf": [
                 {
                   "$ref": "#/definitions/LentSeason"
@@ -2532,6 +2911,7 @@
               ]
             },
             "paschal_triduum": {
+              "description": "Paschal Triduum season names and descriptions",
               "anyOf": [
                 {
                   "$ref": "#/definitions/PaschalTriduumSeason"
@@ -2542,6 +2922,7 @@
               ]
             },
             "easter_time": {
+              "description": "Easter Time season names and descriptions",
               "anyOf": [
                 {
                   "$ref": "#/definitions/EasterTimeSeason"
@@ -2555,27 +2936,32 @@
           "additionalProperties": false
         },
         "AdventSeason": {
+          "description": "Advent season localized names and descriptions.\nProvides specific terminology for the Advent season in the locale language.",
           "type": "object",
           "properties": {
             "season": {
+              "description": "General season name for Advent",
               "type": [
                 "string",
                 "null"
               ]
             },
             "weekday": {
+              "description": "Weekday terminology during Advent",
               "type": [
                 "string",
                 "null"
               ]
             },
             "sunday": {
+              "description": "Sunday terminology during Advent",
               "type": [
                 "string",
                 "null"
               ]
             },
             "privileged_weekday": {
+              "description": "Privileged weekday terminology during Advent",
               "type": [
                 "string",
                 "null"
@@ -2585,39 +2971,46 @@
           "additionalProperties": false
         },
         "ChristmasTimeSeason": {
+          "description": "Christmas Time season localized names and descriptions.",
           "type": "object",
           "properties": {
             "season": {
+              "description": "General season name for Christmas Time",
               "type": [
                 "string",
                 "null"
               ]
             },
             "day": {
+              "description": "Day terminology during Christmas Time",
               "type": [
                 "string",
                 "null"
               ]
             },
             "octave": {
+              "description": "Octave terminology during Christmas Time",
               "type": [
                 "string",
                 "null"
               ]
             },
             "before_epiphany": {
+              "description": "Before Epiphany terminology",
               "type": [
                 "string",
                 "null"
               ]
             },
             "second_sunday_after_christmas": {
+              "description": "Second Sunday after Christmas terminology",
               "type": [
                 "string",
                 "null"
               ]
             },
             "after_epiphany": {
+              "description": "After Epiphany terminology",
               "type": [
                 "string",
                 "null"
@@ -2627,21 +3020,25 @@
           "additionalProperties": false
         },
         "OrdinaryTimeSeason": {
+          "description": "Ordinary Time season localized names and descriptions.",
           "type": "object",
           "properties": {
             "season": {
+              "description": "General season name for Ordinary Time",
               "type": [
                 "string",
                 "null"
               ]
             },
             "weekday": {
+              "description": "Weekday terminology during Ordinary Time",
               "type": [
                 "string",
                 "null"
               ]
             },
             "sunday": {
+              "description": "Sunday terminology during Ordinary Time",
               "type": [
                 "string",
                 "null"
@@ -2651,33 +3048,39 @@
           "additionalProperties": false
         },
         "LentSeason": {
+          "description": "Lent season localized names and descriptions.",
           "type": "object",
           "properties": {
             "season": {
+              "description": "General season name for Lent",
               "type": [
                 "string",
                 "null"
               ]
             },
             "weekday": {
+              "description": "Weekday terminology during Lent",
               "type": [
                 "string",
                 "null"
               ]
             },
             "sunday": {
+              "description": "Sunday terminology during Lent",
               "type": [
                 "string",
                 "null"
               ]
             },
             "day_after_ash_wed": {
+              "description": "Day after Ash Wednesday terminology",
               "type": [
                 "string",
                 "null"
               ]
             },
             "holy_week_day": {
+              "description": "Holy Week day terminology",
               "type": [
                 "string",
                 "null"
@@ -2687,9 +3090,11 @@
           "additionalProperties": false
         },
         "PaschalTriduumSeason": {
+          "description": "Paschal Triduum season localized names and descriptions.",
           "type": "object",
           "properties": {
             "season": {
+              "description": "General season name for Paschal Triduum",
               "type": [
                 "string",
                 "null"
@@ -2699,27 +3104,32 @@
           "additionalProperties": false
         },
         "EasterTimeSeason": {
+          "description": "Easter Time season localized names and descriptions.",
           "type": "object",
           "properties": {
             "season": {
+              "description": "General season name for Easter Time",
               "type": [
                 "string",
                 "null"
               ]
             },
             "weekday": {
+              "description": "Weekday terminology during Easter Time",
               "type": [
                 "string",
                 "null"
               ]
             },
             "sunday": {
+              "description": "Sunday terminology during Easter Time",
               "type": [
                 "string",
                 "null"
               ]
             },
             "octave": {
+              "description": "Octave terminology during Easter Time",
               "type": [
                 "string",
                 "null"
@@ -2729,15 +3139,18 @@
           "additionalProperties": false
         },
         "PeriodsMetadata": {
+          "description": "Liturgical period names in the locale language.",
           "type": "object",
           "properties": {
             "epiphany": {
+              "description": "Epiphany period name",
               "type": [
                 "string",
                 "null"
               ]
             },
             "holy_week": {
+              "description": "Holy Week period name",
               "type": [
                 "string",
                 "null"
@@ -2747,39 +3160,46 @@
           "additionalProperties": false
         },
         "RanksMetadata": {
+          "description": "Liturgical rank names in the locale language.",
           "type": "object",
           "properties": {
             "solemnity": {
+              "description": "Solemnity rank name",
               "type": [
                 "string",
                 "null"
               ]
             },
             "sunday": {
+              "description": "Sunday rank name",
               "type": [
                 "string",
                 "null"
               ]
             },
             "feast": {
+              "description": "Feast rank name",
               "type": [
                 "string",
                 "null"
               ]
             },
             "memorial": {
+              "description": "Memorial rank name",
               "type": [
                 "string",
                 "null"
               ]
             },
             "optional_memorial": {
+              "description": "Optional memorial rank name",
               "type": [
                 "string",
                 "null"
               ]
             },
             "weekday": {
+              "description": "Weekday rank name",
               "type": [
                 "string",
                 "null"
@@ -2789,69 +3209,81 @@
           "additionalProperties": false
         },
         "CyclesMetadata": {
+          "description": "Liturgical cycle names in the locale language.",
           "type": "object",
           "properties": {
             "proper_of_time": {
+              "description": "Proper of Time cycle name",
               "type": [
                 "string",
                 "null"
               ]
             },
             "proper_of_saints": {
+              "description": "Proper of Saints cycle name",
               "type": [
                 "string",
                 "null"
               ]
             },
             "sunday_year_a": {
+              "description": "Sunday Year A cycle name",
               "type": [
                 "string",
                 "null"
               ]
             },
             "sunday_year_b": {
+              "description": "Sunday Year B cycle name",
               "type": [
                 "string",
                 "null"
               ]
             },
             "sunday_year_c": {
+              "description": "Sunday Year C cycle name",
               "type": [
                 "string",
                 "null"
               ]
             },
             "weekday_year_1": {
+              "description": "Weekday Year 1 cycle name",
               "type": [
                 "string",
                 "null"
               ]
             },
             "weekday_year_2": {
+              "description": "Weekday Year 2 cycle name",
               "type": [
                 "string",
                 "null"
               ]
             },
             "psalter_week_1": {
+              "description": "Psalter Week 1 cycle name",
               "type": [
                 "string",
                 "null"
               ]
             },
             "psalter_week_2": {
+              "description": "Psalter Week 2 cycle name",
               "type": [
                 "string",
                 "null"
               ]
             },
             "psalter_week_3": {
+              "description": "Psalter Week 3 cycle name",
               "type": [
                 "string",
                 "null"
               ]
             },
             "psalter_week_4": {
+              "description": "Psalter Week 4 cycle name",
               "type": [
                 "string",
                 "null"
@@ -3059,29 +3491,53 @@
           "additionalProperties": false
         },
         "EntityType": {
-          "type": "string",
-          "enum": [
-            "PERSON",
-            "PLACE",
-            "EVENT"
+          "description": "The type of entity in the liturgical calendar.\nDefines whether the entity represents a person, place, or event.",
+          "oneOf": [
+            {
+              "description": "A person (saint, blessed, or other individual)",
+              "type": "string",
+              "const": "PERSON"
+            },
+            {
+              "description": "A place (shrine, city, or geographical location)",
+              "type": "string",
+              "const": "PLACE"
+            },
+            {
+              "description": "An event (historical or liturgical occurrence)",
+              "type": "string",
+              "const": "EVENT"
+            }
           ]
         },
         "CanonizationLevel": {
-          "type": "string",
-          "enum": [
-            "BLESSED",
-            "SAINT"
+          "description": "Canonization level indicating the official recognition status of a person.\nDefines whether someone is beatified (Blessed) or canonized (Saint).",
+          "oneOf": [
+            {
+              "description": "Beatified person (Blessed) - first step toward sainthood",
+              "type": "string",
+              "const": "BLESSED"
+            },
+            {
+              "description": "Canonized person (Saint) - fully recognized as a saint",
+              "type": "string",
+              "const": "SAINT"
+            }
           ]
         },
         "SaintDateDef": {
+          "description": "Saint date definition supporting various date specifications.\nAllows single dates, date ranges, multiple alternatives, or century specifications.",
           "anyOf": [
             {
+              "description": "Single date specification",
               "$ref": "#/definitions/SaintDate"
             },
             {
+              "description": "Date range between two dates",
               "type": "object",
               "properties": {
                 "between": {
+                  "description": "The date range (start and end dates)",
                   "type": "array",
                   "items": {
                     "$ref": "#/definitions/SaintDate"
@@ -3096,9 +3552,11 @@
               "additionalProperties": false
             },
             {
+              "description": "Multiple alternative dates (any one of them)",
               "type": "object",
               "properties": {
                 "or": {
+                  "description": "The list of alternative dates",
                   "type": "array",
                   "items": {
                     "$ref": "#/definitions/SaintDate"
@@ -3111,9 +3569,11 @@
               "additionalProperties": false
             },
             {
+              "description": "Century specification (e.g., 12 for 12th century)",
               "type": "object",
               "properties": {
                 "century": {
+                  "description": "The century number",
                   "type": "integer",
                   "format": "uint32",
                   "minimum": 0
@@ -3127,22 +3587,26 @@
           ]
         },
         "SaintDate": {
+          "description": "Saint date representation with different precision levels.\nSupports year-only, year-month, or full date specifications.",
           "anyOf": [
             {
+              "description": "Year only (e.g., 1234)",
               "type": "integer",
               "format": "uint32",
               "minimum": 0
             },
             {
+              "description": "Year and month in \"YYYY-MM\" format (e.g., \"1234-05\")",
               "type": "string"
             },
             {
+              "description": "Full date in \"YYYY-MM-DD\" format (e.g., \"1234-05-15\")",
               "type": "string"
             }
           ]
         },
         "Title": {
-          "description": "Titles and patronages associated with saints and blessed",
+          "description": "Titles and patronages associated with saints and blessed.\nRepresents the various ecclesiastical titles and patronages that can be assigned to entities.",
           "type": "string",
           "enum": [
             "ABBESS",
@@ -3215,10 +3679,18 @@
           ]
         },
         "Sex": {
-          "type": "string",
-          "enum": [
-            "MALE",
-            "FEMALE"
+          "description": "Sex of a person.",
+          "oneOf": [
+            {
+              "description": "Male person",
+              "type": "string",
+              "const": "MALE"
+            },
+            {
+              "description": "Female person",
+              "type": "string",
+              "const": "FEMALE"
+            }
           ]
         },
         "SaintCount": {

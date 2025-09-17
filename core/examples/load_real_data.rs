@@ -69,21 +69,21 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         println!("    - Jurisdiction : {:?}", cal_def.metadata.jurisdiction);
         println!("    - Days defined : {}", cal_def.days_definitions.len());
 
-        // Count martyrology with count
-        let mut martyrology_with_count = 0;
+        // Count entities with count
+        let mut entities_with_count = 0;
         for day_def in &cal_def.days_definitions {
-            if let Some(martyrology) = &day_def.martyrology {
-                for item in martyrology {
-                    if let romcal_core::types::MartyrologyItemPointer::Redefined(obj) = item {
+            if let Some(entities) = &day_def.entities {
+                for item in entities {
+                    if let romcal_core::types::EntityPointer::Override(obj) = item {
                         if obj.count.is_some() {
-                            martyrology_with_count += 1;
+                            entities_with_count += 1;
                         }
                     }
                 }
             }
         }
-        if martyrology_with_count > 0 {
-            println!("    - Martyrology with count : {}", martyrology_with_count);
+        if entities_with_count > 0 {
+            println!("    - Entities with count : {}", entities_with_count);
         }
     }
 

@@ -1,7 +1,8 @@
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
-/// Titles and patronages associated with saints and blessed
+/// Titles and patronages associated with saints and blessed.
+/// Represents the various ecclesiastical titles and patronages that can be assigned to entities.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum Title {
@@ -77,17 +78,23 @@ pub enum Title {
     SecondPatronOfTheDiocese,
 }
 
+/// Compound title definition for combining multiple titles.
+/// Allows adding titles to the beginning or end of an existing title list.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
 pub struct CompoundTitle {
-    /// Add title(s) to the end of the existing list of title(s).
+    /// The title(s) to add to the end of the existing list of title(s)
     pub append: Option<Vec<Title>>,
-    /// Add title(s) to the beginning of the existing list of title(s).
+    /// The title(s) to add to the beginning of the existing list of title(s)
     pub prepend: Option<Vec<Title>>,
 }
 
+/// Title definition that can be either a simple list or a compound definition.
+/// Supports both direct title lists and compound title operations.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
 #[serde(untagged)]
 pub enum TitlesDef {
+    /// Simple list of titles
     Titles(Vec<Title>),
+    /// Compound title definition with append/prepend operations
     CompoundTitle(CompoundTitle),
 }

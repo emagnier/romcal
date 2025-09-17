@@ -16,7 +16,7 @@
         "month": 2,
         "date": 6
       },
-      "martyrology": [
+      "entities": [
         "philip_of_jesus_de_las_casas_martyr",
         "paul_miki_martyr",
         "companions_martyrs"
@@ -133,7 +133,7 @@
         "month": 11,
         "date": 19
       },
-      "martyrology": [
+      "entities": [
         "roch_gonzalez_priest",
         "alphonsus_rodriguez_priest",
         "john_del_castillo_priest"

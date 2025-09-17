@@ -50,7 +50,7 @@
       "id": "peter_chanel_priest",
       "custom_locale_id": "peter_chanel_priest_patron_of_oceania",
       "precedence": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C",
-      "martyrology": [
+      "entities": [
         "peter_chanel_priest"
       ],
       "titles": [
