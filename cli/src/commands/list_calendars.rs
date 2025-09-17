@@ -1,19 +1,43 @@
-//! List calendars tree command.
-//!
-//! This module provides functionality to display the hierarchical structure
-//! of all calendars in the romcal project as a tree.
+use crate::{enums::OutputFormat, error::RomcalCliError};
+use romcal_core::{generated_constants::CALENDAR_TREE_JSON, CALENDAR_IDS};
+use serde_json::{self, Value};
 
-use crate::enums::OutputFormat;
-use crate::error::RomcalCliError;
-use romcal_core::generated_constants::CALENDAR_TREE_JSON;
-use serde_json::Value;
+/// Generic function to list items in various formats
+fn list_items(items: &[&str], output_format: OutputFormat) -> Result<(), RomcalCliError> {
+    match output_format {
+        OutputFormat::Json => {
+            println!("{}", serde_json::to_string_pretty(items)?);
+        }
+        OutputFormat::Lines => {
+            for item in items {
+                println!("{}", item);
+            }
+        }
+        OutputFormat::Csv => {
+            println!("{}", items.join(","));
+        }
+        OutputFormat::Yaml => {
+            println!("{}", serde_yaml::to_string(items)?);
+        }
+    }
+    Ok(())
+}
+
+/// Handle list calendars command
+pub fn handle_calendars(output_format: OutputFormat, tree: bool) -> Result<(), RomcalCliError> {
+    if tree {
+        display_calendar_tree(output_format)
+    } else {
+        list_items(CALENDAR_IDS, output_format)
+    }
+}
 
 /// Display the calendar tree structure.
 ///
 /// This function parses the calendar tree JSON and displays it in a hierarchical format.
 /// The tree shows the relationships between different calendars, with regions containing
 /// countries, and countries containing their sub-regions.
-pub fn list_calendar_tree(format: OutputFormat) -> Result<(), RomcalCliError> {
+fn display_calendar_tree(format: OutputFormat) -> Result<(), RomcalCliError> {
     match format {
         OutputFormat::Json => {
             // Output pretty-printed JSON

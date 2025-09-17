@@ -1,5 +1,5 @@
 use crate::{enums::OutputFormat, error::RomcalCliError};
-use romcal_core::{CALENDAR_IDS, LOCALE_CODES};
+use romcal_core::LOCALE_CODES;
 use serde_json;
 use serde_yaml;
 
@@ -22,11 +22,6 @@ fn list_items(items: &[&str], output_format: OutputFormat) -> Result<(), RomcalC
         }
     }
     Ok(())
-}
-
-/// Handle list calendars command
-pub fn handle_calendars(output_format: OutputFormat) -> Result<(), RomcalCliError> {
-    list_items(CALENDAR_IDS, output_format)
 }
 
 /// Handle list locales command
