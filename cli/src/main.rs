@@ -11,8 +11,7 @@ mod utils;
 
 // Import command modules
 use commands::dates;
-use commands::list_calendars;
-use commands::list_locales;
+use commands::list;
 use commands::optimize_preset;
 use commands::show_preset;
 use error::RomcalCliError;
@@ -70,11 +69,16 @@ struct Cli {
     corpus_christi_on_sunday: bool,
 
     /// Easter calculation type
-    #[arg(long, global = true, value_enum)]
+    #[arg(long = "easter-calc", global = true, value_enum)]
     easter_calculation_type: Option<CliEasterCalculationType>,
 
     /// Paths to calendar definition JSON files (supports glob patterns)
-    #[arg(short = 'd', long, global = true, value_delimiter = ',')]
+    #[arg(
+        short = 'd',
+        long = "definitions",
+        global = true,
+        value_delimiter = ','
+    )]
     calendar_definitions: Vec<String>,
 
     /// Paths to resource JSON files (supports glob patterns)
@@ -97,17 +101,10 @@ enum Commands {
         /// Year for date calculations (default: current year)
         year: Option<i32>,
     },
-    /// List all available romcal calendars
-    ListCalendars {
-        /// Display calendars as a tree structure
-        #[arg(long)]
-        tree: bool,
-    },
-    /// List all available romcal locales
-    ListLocales {
-        /// Display locales as a tree structure
-        #[arg(long)]
-        tree: bool,
+    /// List various romcal elements
+    List {
+        #[command(subcommand)]
+        element: ListCommand,
     },
     /// Display current calendar configuration
     Preset,
@@ -119,9 +116,38 @@ enum Commands {
     },
     /// Validate calendar and resource JSON files
     Validate {
-        /// Type of validation to perform
-        #[arg(value_enum)]
-        validation_type: ValidationType,
+        #[command(subcommand)]
+        validation_type: ValidationCommand,
+    },
+}
+
+#[derive(Subcommand)]
+enum ListCommand {
+    /// List all available romcal calendars
+    Calendars {
+        /// Display calendars as a tree structure
+        #[arg(long)]
+        tree: bool,
+    },
+    /// List all available romcal locales
+    Locales {
+        /// Display locales as a tree structure
+        #[arg(long)]
+        tree: bool,
+    },
+}
+
+#[derive(Subcommand)]
+enum ValidationCommand {
+    /// Validate calendar definition JSON files
+    CalendarDef {
+        /// Path(s) or pattern(s) to JSON files to validate
+        /// Supports glob patterns (e.g., '*.json', '**/*.json') or multiple file paths
+        #[arg(required = true)]
+        file_paths: Vec<String>,
+    },
+    /// Validate resource JSON files
+    Resource {
         /// Path(s) or pattern(s) to JSON files to validate
         /// Supports glob patterns (e.g., '*.json', '**/*.json') or multiple file paths
         #[arg(required = true)]
@@ -179,15 +205,21 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
         Commands::Dates { date_name, year } => {
             dates::handle(&date_name, year, output_format, preset)
         }
-        Commands::ListCalendars { tree } => list_calendars::handle_calendars(output_format, tree),
-        Commands::ListLocales { tree } => list_locales::handle_locales(output_format, tree),
+        Commands::List { element } => match element {
+            ListCommand::Calendars { tree } => list::handle_calendars(output_format, tree),
+            ListCommand::Locales { tree } => list::handle_locales(output_format, tree),
+        },
         Commands::Preset => show_preset::handle(output_format, preset),
         Commands::OptimizePreset { out } => {
             optimize_preset::handle(preset, out.map(|s| s.to_string()))
         }
-        Commands::Validate {
-            validation_type,
-            file_paths,
-        } => commands::validate::handle(validation_type, &file_paths),
+        Commands::Validate { validation_type } => match validation_type {
+            ValidationCommand::CalendarDef { file_paths } => {
+                commands::validate::handle(crate::ValidationType::CalendarDef, &file_paths)
+            }
+            ValidationCommand::Resource { file_paths } => {
+                commands::validate::handle(crate::ValidationType::Resource, &file_paths)
+            }
+        },
     }
 }
