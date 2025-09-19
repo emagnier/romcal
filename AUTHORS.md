@@ -1,18 +1,27 @@
-romcal was originally developed by [Julian Pereira](https://github.com/pejulian) from Malaysia in July 2014.
+# Authors
 
-Since then, many significant contributions have been made towards the progress of this library.
+Romcal was originally developed by [Julian Pereira](https://github.com/pejulian) from Malaysia in July 2014.
+Since then, the project has been drastically rewritten and expanded, and many significant contributions have been made.
 
-This list recognizes contributors to romcal past and present.
+This list recognizes contributors to Romcal past and present.
 
-### Active Contributors
+---
 
-As of March 2025:
+## Main Authors
 
-- [Etienne Magnier](https://github.com/emagnier)
+- [Étienne Magnier](https://github.com/emagnier) — main author and maintainer since v2
+- [Julian Pereira](https://github.com/pejulian) — original author of Romcal v1
+
+---
+
+## Frequent Contributors
+
 - [Tukusej’s Sirs](https://github.com/tukusejssirs)
-- [Julian Pereira](https://github.com/pejulian)
 - [Matej Voboril](https://github.com/tobitenno)
 
-### All contributors
+---
 
-https://github.com/romcal/romcal/graphs/contributors
+## All Contributors
+
+For the complete list of contributors to Romcal, see:
+👉 https://github.com/romcal/romcal/graphs/contributors

@@ -26,9 +26,6 @@
 - **Entity catalog**: Enriched metadata for each liturgical day (saints, blessed, places, events)
 - **Extensible**: Easy to add new calendars and languages
 
-> [!NOTE]
-> Dates before 1969 are returned in post-1969 reform format, even though those years came before this calendar reform.
-
 ## 📜 Liturgical accuracy
 
 Romcal generates liturgical calendars of the Roman Rite of the Roman Catholic Church.
@@ -80,25 +77,27 @@ To use Romcal in your project, see our [complete documentation](docs/) for insta
 
 Contributions are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for community standards.
 
-## 📄 License
+## 📄 License and Authors
 
-This project is licensed under the [MIT License](LICENSE) - see the LICENSE file for details.
+- Code (`/`): Apache License 2.0, authored by Étienne Magnier
+- Data (`/data`): MIT License
+  - Inherited from Romcal v1–v3 by Julian Pereira
+  - Full contributor list: https://github.com/romcal/romcal/graphs/contributors
 
-The MIT License allows you to use, modify, and distribute this software freely, including for commercial purposes.
+See [LICENSE](LICENSE), [data/LICENSE-MIT](data/LICENSE-MIT), and [AUTHORS.md](AUTHORS.md) for details.
+
+## 📝 Naming convention
+
+- **Romcal** (capitalized) refers to the project itself, as a proper name
+- **`romcal`** (lowercase, monospaced) refers to the package name or when used in code examples: `npm install romcal`
 
 ## 📚 Additional resources
 
 - [Changelog](CHANGELOG.md) - Release history and updates
-- [Authors](AUTHORS.md) - Contributors and acknowledgments
-
----
+- [Glossary](.archive/docs/glossary.md) - Terms and definitions
 
 <p align="center">
   <a href="https://github.com/romcal/romcal">
     <img alt="romcal-icon" src="https://user-images.githubusercontent.com/1045997/89793396-1c676600-db26-11ea-9426-991ac1e32b82.png">
   </a>
-</p>
-
-<p align="center">
-  <em>Romcal: precise and performant Catholic liturgical calendars.</em>
 </p>
