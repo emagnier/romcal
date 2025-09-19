@@ -94,10 +94,10 @@ fn test_calendar_files() -> Result<(), Box<dyn std::error::Error>> {
     println!("=== Calendar files test ===");
 
     let calendar_dirs = vec![
-        "data/calendars/general_roman",
-        "data/calendars/countries",
-        "data/calendars/regions",
-        "data/calendars/communities",
+        "data/definitions/general_roman",
+        "data/definitions/countries",
+        "data/definitions/regions",
+        "data/definitions/communities",
     ];
 
     let mut total_tests = 0;
@@ -221,7 +221,7 @@ fn print_help() {
     println!("Examples:");
     println!("  cargo run --example json_roundtrip_test all");
     println!(
-        "  cargo run --example json_roundtrip_test data/calendars/general_roman/general_roman.json"
+        "  cargo run --example json_roundtrip_test data/definitions/general_roman/general_roman.json"
     );
 }
 

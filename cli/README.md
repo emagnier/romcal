@@ -118,23 +118,23 @@ The `validate` command helps you validate JSON files against Romcal schemas.
 
 #### Validation Types
 
-- `calendar-def` - Validate calendar definition JSON files
-- `resource` - Validate resource JSON files
+- `definitions` - Validate calendar definition JSON files
+- `resources` - Validate resource JSON files
 
 #### Examples
 
 ```bash
 # Validate a single calendar definition file
-romcal validate calendar-def data/calendars/france/france.json
+romcal validate definitions data/definitions/france/france.json
 
 # Validate multiple calendar definition files
-romcal validate calendar-def data/calendars/france/*.json
+romcal validate definitions data/definitions/france/*.json
 
 # Validate resource files
-romcal validate resource data/resources/en/*.json
+romcal validate resources data/resources/en/*.json
 
 # Validate with glob patterns
-romcal validate calendar-def "data/calendars/**/*.json"
+romcal validate definitions "data/definitions/**/*.json"
 ```
 
 ### Information
@@ -186,7 +186,7 @@ These options are only available for the `optimize-preset` command:
 
 The `validate` command takes the following arguments:
 
-- `<VALIDATION_TYPE>` - Type of validation to perform (calendar-def, resource)
+- `<VALIDATION_TYPE>` - Type of validation to perform (definitions, resources)
 - `<FILE_PATHS>...` - Path(s) or pattern(s) to JSON files to validate (supports glob patterns)
 
 ### Format Options
@@ -251,9 +251,9 @@ romcal optimize-preset --out bundle.json
 romcal optimize-preset -c france -l fr --out france-bundle.json
 
 # Validate JSON files
-romcal validate calendar-def data/calendars/france/france.json
-romcal validate resource data/resources/en/*.json
-romcal validate calendar-def "data/calendars/**/*.json"
+romcal validate definitions data/definitions/france/france.json
+romcal validate resources data/resources/en/*.json
+romcal validate definitions "data/definitions/**/*.json"
 
 # List commands with different formats
 romcal list-locales -f json

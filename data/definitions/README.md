@@ -4,7 +4,7 @@ This document provides information about calendar definitions in the romcal proj
 
 ## Directory Structure
 
-The `calendars` directory is organized into four main subdirectories:
+The `definitions` directory is organized into four main subdirectories:
 
 - **`general_roman/`** - General Roman Calendar
 - **`regions/`** - Regional calendars (continents, cultural regions)

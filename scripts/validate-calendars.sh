@@ -27,4 +27,4 @@ cargo build --release --bin validate-json
 # Run the validation
 echo ""
 echo "🔍 Running validation..."
-cargo run --release --bin validate-json -- "data/calendars/**/*.json" "schemas/calendar_definition.json" "$PROJECT_ROOT"
+cargo run --release --bin validate-json -- "data/definitions/**/*.json" "schemas/calendar_definition.json" "$PROJECT_ROOT"

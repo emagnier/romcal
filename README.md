@@ -72,7 +72,7 @@ To use Romcal in your project, see our [complete documentation](docs/) for insta
 
 ### Data structure
 
-- `/data/calendars` - Calendar definitions by country, diocese, region and communities
+- `/data/definitions` - Calendar definitions by country, diocese, region and communities
 - `/data/resources` - Localization files and entity catalogs
 
 Contributions are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for community standards.

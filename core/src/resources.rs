@@ -10,7 +10,7 @@ pub type EntityId = String;
 
 // Structs
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
-pub struct ResourcesDefinition {
+pub struct Resources {
     #[serde(rename = "$schema")]
     pub schema: Option<String>,
 
@@ -136,8 +136,8 @@ impl EntityDefinition {
     }
 }
 
-impl ResourcesDefinition {
-    /// Create a new ResourcesDefinition with the given locale
+impl Resources {
+    /// Create a new Resources with the given locale
     pub fn new(locale: LocaleId) -> Self {
         Self {
             schema: None,
@@ -235,8 +235,8 @@ impl ResourcesDefinition {
         }
     }
 
-    /// Merge entities from another ResourcesDefinition
-    pub fn merge_entities(&mut self, other: &ResourcesDefinition) {
+    /// Merge entities from another Resources
+    pub fn merge_entities(&mut self, other: &Resources) {
         if let Some(other_entities) = &other.entities {
             let entities = self.entities.get_or_insert_with(Vec::new);
             entities.extend(other_entities.clone());

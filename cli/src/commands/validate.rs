@@ -6,23 +6,22 @@ use std::fs;
 
 // Include schemas at compile time
 const CALENDAR_DEFINITION_SCHEMA: &str = include_str!("../../../schemas/calendar_definition.json");
-const RESOURCES_DEFINITION_SCHEMA: &str =
-    include_str!("../../../schemas/resources_definition.json");
+const RESOURCES_DEFINITION_SCHEMA: &str = include_str!("../../../schemas/resources.json");
 
 /// Type of validation to perform
 #[derive(Clone, Debug)]
 pub enum ValidationType {
     /// Validate calendar definition JSON file
-    CalendarDef,
+    Definitions,
     /// Validate resource JSON file
-    Resource,
+    Resources,
 }
 
 impl From<crate::ValidationType> for ValidationType {
     fn from(vt: crate::ValidationType) -> Self {
         match vt {
-            crate::ValidationType::CalendarDef => ValidationType::CalendarDef,
-            crate::ValidationType::Resource => ValidationType::Resource,
+            crate::ValidationType::Definitions => ValidationType::Definitions,
+            crate::ValidationType::Resources => ValidationType::Resources,
         }
     }
 }
@@ -36,8 +35,8 @@ pub fn handle(
 
     // Get schema content based on validation type
     let schema_content = match validation_type {
-        ValidationType::CalendarDef => CALENDAR_DEFINITION_SCHEMA,
-        ValidationType::Resource => RESOURCES_DEFINITION_SCHEMA,
+        ValidationType::Definitions => CALENDAR_DEFINITION_SCHEMA,
+        ValidationType::Resources => RESOURCES_DEFINITION_SCHEMA,
     };
 
     println!("🔍 Validating JSON files...");
@@ -45,8 +44,8 @@ pub fn handle(
     println!(
         "📋 Schema: {} (embedded)",
         match validation_type {
-            ValidationType::CalendarDef => "calendar_definition.json",
-            ValidationType::Resource => "resources_definition.json",
+            ValidationType::Definitions => "calendar_definition.json",
+            ValidationType::Resources => "resources.json",
         }
     );
     println!();

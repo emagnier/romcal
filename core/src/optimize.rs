@@ -1,7 +1,7 @@
 use serde_json::Value;
 use std::collections::{HashMap, HashSet};
 
-use crate::{CalendarDefinition, Preset, ResourcesDefinition, RomcalError, RomcalResult};
+use crate::{CalendarDefinition, Preset, Resources, RomcalError, RomcalResult};
 
 // Type aliases for clarity
 type LocaleMap = HashMap<String, String>;
@@ -73,7 +73,7 @@ fn validate_unique_calendar_ids(calendar_definitions: &[CalendarDefinition]) -> 
 
 /// Validate that all resource definitions have unique locales
 /// Returns an error if duplicate locales are found
-fn validate_unique_resource_locales(resources: &[ResourcesDefinition]) -> RomcalResult<()> {
+fn validate_unique_resource_locales(resources: &[Resources]) -> RomcalResult<()> {
     let mut seen_locales = EntityIdSet::new();
 
     for resource in resources {
@@ -109,7 +109,7 @@ fn validate_unique_day_ids(calendar_definitions: &[CalendarDefinition]) -> Romca
 
 /// Validate that all entity IDs are unique within each resource definition
 /// Returns an error if duplicate entity IDs are found in any resource
-fn validate_unique_entity_ids(resources: &[ResourcesDefinition]) -> RomcalResult<()> {
+fn validate_unique_entity_ids(resources: &[Resources]) -> RomcalResult<()> {
     for resource in resources {
         if let Some(entities) = &resource.entities {
             let mut seen_ids = EntityIdSet::new();
@@ -131,7 +131,7 @@ fn validate_unique_entity_ids(resources: &[ResourcesDefinition]) -> RomcalResult
 /// Filter resources to keep only the required locales based on the preset
 /// Returns resources with hierarchical deduplication: most specific to most general
 /// Entities defined in more specific locales are removed from parent locales
-fn filter_resources(preset: &Preset) -> RomcalResult<Vec<ResourcesDefinition>> {
+fn filter_resources(preset: &Preset) -> RomcalResult<Vec<Resources>> {
     let target_locale = &preset.locale;
 
     // Build locale maps for efficient lookups
@@ -148,14 +148,14 @@ fn filter_resources(preset: &Preset) -> RomcalResult<Vec<ResourcesDefinition>> {
 }
 
 /// Build locale maps for efficient lookups
-fn build_locale_maps(preset: &Preset) -> (LocaleMap, HashMap<&str, &ResourcesDefinition>) {
+fn build_locale_maps(preset: &Preset) -> (LocaleMap, HashMap<&str, &Resources>) {
     let available_locales: LocaleMap = preset
         .resources
         .iter()
         .map(|resource| (resource.locale.to_lowercase(), resource.locale.clone()))
         .collect();
 
-    let resources_by_locale: HashMap<&str, &ResourcesDefinition> = preset
+    let resources_by_locale: HashMap<&str, &Resources> = preset
         .resources
         .iter()
         .map(|resource| (resource.locale.as_str(), resource))
@@ -220,8 +220,8 @@ fn build_priority_locales(
 /// Apply hierarchical deduplication to resources
 fn apply_hierarchical_deduplication(
     priority_locales: Vec<String>,
-    resources_by_locale: &HashMap<&str, &ResourcesDefinition>,
-) -> RomcalResult<Vec<ResourcesDefinition>> {
+    resources_by_locale: &HashMap<&str, &Resources>,
+) -> RomcalResult<Vec<Resources>> {
     let mut result = Vec::new();
     let mut defined_entity_ids = EntityIdSet::new();
     let mut defined_metadata_properties = PropertySet::new();
@@ -249,7 +249,7 @@ fn apply_hierarchical_deduplication(
 }
 
 /// Deduplicate entities in a resource
-fn deduplicate_entities(resource: &mut ResourcesDefinition, defined_entity_ids: &mut EntityIdSet) {
+fn deduplicate_entities(resource: &mut Resources, defined_entity_ids: &mut EntityIdSet) {
     if let Some(entities) = &mut resource.entities {
         entities.retain(|entity| {
             if defined_entity_ids.contains(&entity.id) {
@@ -264,7 +264,7 @@ fn deduplicate_entities(resource: &mut ResourcesDefinition, defined_entity_ids: 
 
 /// Deduplicate metadata in a resource
 fn deduplicate_metadata(
-    resource: &mut ResourcesDefinition,
+    resource: &mut Resources,
     defined_metadata_properties: &mut PropertySet,
     defined_seasons_properties: &mut PropertySet,
 ) {

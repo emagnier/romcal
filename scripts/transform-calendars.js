@@ -12,8 +12,8 @@ const path = require("node:path");
  */
 
 function calculateSchemaPath(filePath) {
-	// Calculate the number of directory levels to go up from data/calendars
-	const calendarsDir = path.join(__dirname, "..", "data", "calendars");
+	// Calculate the number of directory levels to go up from data/definitions
+	const calendarsDir = path.join(__dirname, "..", "data", "definitions");
 	const relativePath = path.relative(calendarsDir, filePath);
 	const pathParts = relativePath.split(path.sep);
 	const depth = pathParts.length + 1; // Number of directories to go up

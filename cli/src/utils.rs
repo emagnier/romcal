@@ -162,17 +162,17 @@ pub fn parse_calendar_definition_files(
     Ok(calendar_definitions)
 }
 
-/// Parse resource files and return a Vec of ResourcesDefinition
+/// Parse resource files and return a Vec of Resources
 pub fn parse_resource_files(
     file_paths: &[String],
-) -> Result<Vec<romcal_core::ResourcesDefinition>, RomcalCliError> {
+) -> Result<Vec<romcal_core::Resources>, RomcalCliError> {
     let mut resource_definitions = Vec::new();
 
     for file_path in file_paths {
         let json_value = read_json_file(file_path)?;
 
-        // Deserialize JSON value to ResourcesDefinition
-        let resource_def: romcal_core::ResourcesDefinition = serde_json::from_value(json_value)?;
+        // Deserialize JSON value to Resources
+        let resource_def: romcal_core::Resources = serde_json::from_value(json_value)?;
 
         resource_definitions.push(resource_def);
     }
@@ -201,18 +201,17 @@ pub fn validate_year(year: i32) -> Result<(), RomcalCliError> {
 // Resources combination functions
 // =================================================================================
 
-/// Combine multiple ResourcesDefinition by locale
+/// Combine multiple Resources by locale
 /// Groups resources by locale and merges them together:
 /// - Deep merge of metadata properties
 /// - Concatenation of entities arrays
 pub fn combine_resources_by_locale(
-    resources: Vec<romcal_core::ResourcesDefinition>,
-) -> Result<Vec<romcal_core::ResourcesDefinition>, RomcalCliError> {
+    resources: Vec<romcal_core::Resources>,
+) -> Result<Vec<romcal_core::Resources>, RomcalCliError> {
     use serde_json::{from_value, to_value};
     use std::collections::HashMap;
 
-    let mut grouped_by_locale: HashMap<String, Vec<romcal_core::ResourcesDefinition>> =
-        HashMap::new();
+    let mut grouped_by_locale: HashMap<String, Vec<romcal_core::Resources>> = HashMap::new();
 
     // Group resources by locale
     for resource in resources {
@@ -320,8 +319,8 @@ mod tests {
     fn create_test_resources_definition(
         locale: &str,
         entities: Vec<romcal_core::EntityDefinition>,
-    ) -> romcal_core::ResourcesDefinition {
-        let mut resources = romcal_core::ResourcesDefinition::new(locale.to_string());
+    ) -> romcal_core::Resources {
+        let mut resources = romcal_core::Resources::new(locale.to_string());
         resources.entities = Some(entities);
         resources
     }
@@ -330,8 +329,8 @@ mod tests {
         locale: &str,
         entities: Vec<romcal_core::EntityDefinition>,
         metadata: romcal_core::types::resource::ResourcesMetadata,
-    ) -> romcal_core::ResourcesDefinition {
-        let mut resources = romcal_core::ResourcesDefinition::new(locale.to_string());
+    ) -> romcal_core::Resources {
+        let mut resources = romcal_core::Resources::new(locale.to_string());
         resources.entities = Some(entities);
         resources.metadata = Some(metadata);
         resources

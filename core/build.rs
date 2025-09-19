@@ -6,7 +6,7 @@ use std::process::Command;
 include!("src/data_tree_builder.rs");
 
 // Constants for paths
-const CALENDARS_DIR: &str = "../data/calendars";
+const CALENDARS_DIR: &str = "../data/definitions";
 const RESOURCES_DIR: &str = "../data/resources";
 const OUTPUT_FILE: &str = "src/generated_constants.rs";
 

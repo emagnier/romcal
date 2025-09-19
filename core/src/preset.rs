@@ -1,8 +1,8 @@
 use serde::{Deserialize, Serialize};
 
-use crate::resources::ResourcesDefinition;
+use crate::resources::Resources;
 use crate::{
-    calendar_def::CalendarDefinition,
+    calendar_definition::CalendarDefinition,
     types::{CalendarContext, EasterCalculationType},
 };
 
@@ -35,7 +35,7 @@ pub struct PresetPartial {
     /// Array of calendar definitions
     pub calendar_definitions: Option<Vec<CalendarDefinition>>,
     /// Array of resources definitions
-    pub resources: Option<Vec<ResourcesDefinition>>,
+    pub resources: Option<Vec<Resources>>,
 }
 
 /// Complete preset for romcal
@@ -58,7 +58,7 @@ pub struct Preset {
     /// Array of calendar definitions
     pub calendar_definitions: Vec<CalendarDefinition>,
     /// Array of resources definitions
-    pub resources: Vec<ResourcesDefinition>,
+    pub resources: Vec<Resources>,
 }
 
 impl Default for Preset {
@@ -125,7 +125,7 @@ impl Preset {
     }
 
     /// Get a resources definition by locale
-    pub fn get_resources(&self, locale: &str) -> Option<&ResourcesDefinition> {
+    pub fn get_resources(&self, locale: &str) -> Option<&Resources> {
         self.resources.iter().find(|res| res.locale == locale)
     }
 
@@ -135,7 +135,7 @@ impl Preset {
     }
 
     /// Add a resources definition to the configuration
-    pub fn add_resources(&mut self, resources: ResourcesDefinition) {
+    pub fn add_resources(&mut self, resources: Resources) {
         self.resources.push(resources);
     }
 

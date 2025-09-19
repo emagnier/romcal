@@ -72,7 +72,7 @@ fn main() {
     };
 
     // Create the complete resource definition
-    let mut resources = ResourcesDefinition::new("fr".to_string());
+    let mut resources = Resources::new("fr".to_string());
     resources.schema = Some("https://romcal.org/schemas/resources.json".to_string());
     resources.metadata = Some(metadata);
 
@@ -97,7 +97,7 @@ fn main() {
     }
 
     // Example of entity merging
-    let mut additional_resources = ResourcesDefinition::new("fr".to_string());
+    let mut additional_resources = Resources::new("fr".to_string());
     let mut additional_saint = EntityDefinition::new("mary".to_string());
     additional_saint.name = Some("Marie".to_string());
     additional_saint.fullname = Some("Sainte Marie, Mère de Dieu".to_string());

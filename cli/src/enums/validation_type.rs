@@ -5,7 +5,7 @@ use clap::ValueEnum;
 #[derive(ValueEnum, Clone, Debug)]
 pub enum ValidationType {
     /// Validate calendar definition JSON file
-    CalendarDef,
+    Definitions,
     /// Validate resource JSON file
-    Resource,
+    Resources,
 }

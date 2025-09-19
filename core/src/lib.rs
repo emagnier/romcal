@@ -12,7 +12,7 @@
 //! let easter = dates.get_easter_sunday_date_unwrap(None);
 //! ```
 
-pub mod calendar_def;
+pub mod calendar_definition;
 pub mod dates;
 pub mod easter;
 pub mod error;
@@ -22,12 +22,12 @@ pub mod preset;
 pub mod resources;
 pub mod types;
 
-pub use calendar_def::*;
+pub use calendar_definition::*;
 pub use dates::LiturgicalDates;
 pub use error::{validate_range, validate_year, RomcalError, RomcalResult, Validate};
 pub use generated_constants::{CALENDAR_IDS, LOCALE_CODES};
 pub use preset::Preset;
-pub use resources::{EntityDefinition, EntityId, LocaleId, ResourcesDefinition};
+pub use resources::{EntityDefinition, EntityId, LocaleId, Resources};
 pub use types::entity::SaintCount;
 pub use types::liturgical::Season;
 pub use types::{CalendarContext, EasterCalculationType};

@@ -7,15 +7,6 @@
     },
     {
       "$ref": "#/definitions/ResourcesDefinition"
-    },
-    {
-      "$ref": "#/definitions/DayDefinition"
-    },
-    {
-      "$ref": "#/definitions/EntityDefinition"
-    },
-    {
-      "$ref": "#/definitions/Precedence"
     }
   ],
   "definitions": {
@@ -187,16 +178,10 @@
           ]
         },
         "date_exceptions": {
-          "description": "Date definition exception",
+          "description": "The date definition exceptions (overrides for specific circumstances)",
           "anyOf": [
             {
-              "$ref": "#/definitions/DateDefException"
-            },
-            {
-              "items": {
-                "$ref": "#/definitions/DateDefException"
-              },
-              "type": "array"
+              "$ref": "#/definitions/DateDefExceptions"
             },
             {
               "type": "null"
@@ -1964,16 +1949,10 @@
               ]
             },
             "date_exceptions": {
-              "description": "Date definition exception",
+              "description": "The date definition exceptions (overrides for specific circumstances)",
               "anyOf": [
                 {
-                  "$ref": "#/definitions/DateDefException"
-                },
-                {
-                  "items": {
-                    "$ref": "#/definitions/DateDefException"
-                  },
-                  "type": "array"
+                  "$ref": "#/definitions/DateDefExceptions"
                 },
                 {
                   "type": "null"

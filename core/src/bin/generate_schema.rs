@@ -1,6 +1,5 @@
-use romcal_core::calendar_def::*;
+use romcal_core::calendar_definition::*;
 use romcal_core::resources::*;
-use romcal_core::types::{DayDefinition, Precedence};
 use schemars::schema_for;
 use serde_json::Value;
 use std::fs;
@@ -9,7 +8,7 @@ use std::path::{Path, PathBuf};
 /// Fix the date_exceptions schema to support both single objects and arrays
 fn fix_date_exceptions_schema(schema: &mut Value) {
     if let Some(definitions) = schema.get_mut("definitions") {
-        if let Some(day_definition) = definitions.get_mut("DayDefinition") {
+        if let Some(day_definition) = definitions.get_mut("CalendarDefinition") {
             if let Some(properties) = day_definition.get_mut("properties") {
                 if let Some(date_exceptions) = properties.get_mut("date_exceptions") {
                     // Replace the simple array type with anyOf that supports both single object and array
@@ -185,7 +184,7 @@ fn merge_definitions_into_types_schema(types_schema: &mut Value, schema_values: 
     }
 }
 
-/// Add main types (CalendarDefinition and ResourcesDefinition) to the schema
+/// Add main types (CalendarDefinition and Resources) to the schema
 fn add_main_types_to_schema(
     types_schema: &mut Value,
     calendar_value: &mut Value,
@@ -199,10 +198,10 @@ fn add_main_types_to_schema(
                 definitions_obj.insert("CalendarDefinition".to_string(), calendar_value.clone());
             }
 
-            // Add ResourcesDefinition (it's the root type, not in definitions)
+            // Add Resources (it's the root type, not in definitions)
             if let Some(resources_obj) = resources_value.as_object_mut() {
                 resources_obj.remove("$schema");
-                definitions_obj.insert("ResourcesDefinition".to_string(), resources_value.clone());
+                definitions_obj.insert("Resources".to_string(), resources_value.clone());
             }
         }
     }
@@ -216,29 +215,17 @@ fn generate_types_schema(schemas_dir: &Path) -> Result<(), Box<dyn std::error::E
         "title": "RomcalTypes",
         "oneOf": [
             { "$ref": "#/definitions/CalendarDefinition" },
-            { "$ref": "#/definitions/ResourcesDefinition" },
-            { "$ref": "#/definitions/DayDefinition" },
-            { "$ref": "#/definitions/EntityDefinition" },
-            { "$ref": "#/definitions/Precedence" }
+            { "$ref": "#/definitions/Resources" }
         ],
         "definitions": {}
     });
 
     // Generate schemas for all major types and convert to values
     let mut calendar_value = serde_json::to_value(schema_for!(CalendarDefinition))?;
-    let mut resources_value = serde_json::to_value(schema_for!(ResourcesDefinition))?;
-    let mut day_value = serde_json::to_value(schema_for!(DayDefinition))?;
-    let mut precedence_value = serde_json::to_value(schema_for!(Precedence))?;
-    let mut entity_value = serde_json::to_value(schema_for!(EntityDefinition))?;
+    let mut resources_value = serde_json::to_value(schema_for!(Resources))?;
 
     // Apply fixes to all schemas
-    let mut schema_values = vec![
-        &mut calendar_value,
-        &mut resources_value,
-        &mut day_value,
-        &mut precedence_value,
-        &mut entity_value,
-    ];
+    let mut schema_values = vec![&mut calendar_value, &mut resources_value];
     apply_fixes_to_all_schemas(&mut schema_values);
 
     // Apply SaintCount fix to all schemas
@@ -270,13 +257,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     println!("🚀 Starting schema generation...");
 
-    // Generate individual schemas
-    generate_schema::<DayDefinition>(&schemas_dir, "day_definition.json")?;
-    generate_schema::<Precedence>(&schemas_dir, "precedence.json")?;
-
     // Generate resources schemas
-    generate_schema::<ResourcesDefinition>(&schemas_dir, "resources_definition.json")?;
-    generate_schema::<EntityDefinition>(&schemas_dir, "entity_definition.json")?;
+    generate_schema::<Resources>(&schemas_dir, "resources.json")?;
 
     // Generate calendar_definition.json with date_exceptions and saint_count fixes
     generate_schema_with_fixes::<CalendarDefinition>(
@@ -307,7 +289,7 @@ mod tests {
         // Arrange: Create a schema with date_exceptions as simple array
         let mut schema = json!({
             "definitions": {
-                "DayDefinition": {
+                "CalendarDefinition": {
                     "properties": {
                         "date_exceptions": {
                             "type": "array",
@@ -323,7 +305,7 @@ mod tests {
 
         // Assert: Check that date_exceptions now has anyOf structure
         let date_exceptions =
-            &schema["definitions"]["DayDefinition"]["properties"]["date_exceptions"];
+            &schema["definitions"]["CalendarDefinition"]["properties"]["date_exceptions"];
         assert!(date_exceptions["anyOf"].is_array());
         assert_eq!(date_exceptions["anyOf"].as_array().unwrap().len(), 3);
 
@@ -362,7 +344,7 @@ mod tests {
         let schemas_dir = temp_dir.path().to_path_buf();
 
         // Act: Generate a schema
-        let result = generate_schema::<Precedence>(&schemas_dir, "test_schema.json");
+        let result = generate_schema::<Resources>(&schemas_dir, "test_schema.json");
 
         // Assert: File should be created successfully
         assert!(result.is_ok());
@@ -372,8 +354,8 @@ mod tests {
         let content = fs::read_to_string(schemas_dir.join("test_schema.json")).unwrap();
         let schema: serde_json::Value = serde_json::from_str(&content).unwrap();
         assert!(schema["$schema"].is_string());
-        // Precedence is an enum, so it should have an "enum" field
-        assert!(schema["enum"].is_array());
+        // Resources should have properties
+        assert!(schema["properties"].is_object());
     }
 
     #[test]
@@ -393,7 +375,7 @@ mod tests {
         }
 
         // Act: Generate schema with fixes
-        let result = generate_schema_with_fixes::<DayDefinition>(
+        let result = generate_schema_with_fixes::<CalendarDefinition>(
             &schemas_dir,
             "test_fixed_schema.json",
             test_fix,
@@ -415,7 +397,7 @@ mod tests {
         let schemas_dir = temp_dir.path().to_path_buf();
 
         // Test with a valid filename
-        let result = generate_schema::<Precedence>(&schemas_dir, "test_file.json");
+        let result = generate_schema::<Resources>(&schemas_dir, "test_file.json");
         assert!(result.is_ok());
     }
 
@@ -426,8 +408,8 @@ mod tests {
         let schemas_dir = temp_dir.path().to_path_buf();
 
         // Generate schema twice
-        generate_schema::<DayDefinition>(&schemas_dir, "schema1.json").unwrap();
-        generate_schema::<DayDefinition>(&schemas_dir, "schema2.json").unwrap();
+        generate_schema::<Resources>(&schemas_dir, "schema1.json").unwrap();
+        generate_schema::<Resources>(&schemas_dir, "schema2.json").unwrap();
 
         // Read both files
         let content1 = fs::read_to_string(schemas_dir.join("schema1.json")).unwrap();

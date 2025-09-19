@@ -1,13 +1,13 @@
-use romcal_core::calendar_def::CalendarDefinition;
+use romcal_core::calendar_definition::CalendarDefinition;
 use romcal_core::preset::{Preset, PresetPartial};
-use romcal_core::resources::ResourcesDefinition;
+use romcal_core::resources::Resources;
 use std::fs;
 
 // Calendar files to load
 const CALENDAR_FILES: &[&str] = &[
-    "data/calendars/general_roman/general_roman.json",
-    "data/calendars/countries/france/france.json",
-    "data/calendars/countries/france/france__angers.json",
+    "data/definitions/general_roman/general_roman.json",
+    "data/definitions/countries/france/france.json",
+    "data/definitions/countries/france/france__angers.json",
 ];
 
 // Resource files to load
@@ -45,7 +45,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     for file_path in RESOURCE_FILES {
         if std::path::Path::new(file_path).exists() {
             let content = fs::read_to_string(file_path)?;
-            let resources_def: ResourcesDefinition = serde_json::from_str(&content)?;
+            let resources_def: Resources = serde_json::from_str(&content)?;
             preset.add_resources(resources_def);
             println!("  ✅ {} loaded", file_path);
         } else {

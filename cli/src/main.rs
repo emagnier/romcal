@@ -140,14 +140,14 @@ enum ListCommand {
 #[derive(Subcommand)]
 enum ValidationCommand {
     /// Validate calendar definition JSON files
-    CalendarDef {
+    Definitions {
         /// Path(s) or pattern(s) to JSON files to validate
         /// Supports glob patterns (e.g., '*.json', '**/*.json') or multiple file paths
         #[arg(required = true)]
         file_paths: Vec<String>,
     },
     /// Validate resource JSON files
-    Resource {
+    Resources {
         /// Path(s) or pattern(s) to JSON files to validate
         /// Supports glob patterns (e.g., '*.json', '**/*.json') or multiple file paths
         #[arg(required = true)]
@@ -214,11 +214,11 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
             optimize_preset::handle(preset, out.map(|s| s.to_string()))
         }
         Commands::Validate { validation_type } => match validation_type {
-            ValidationCommand::CalendarDef { file_paths } => {
-                commands::validate::handle(crate::ValidationType::CalendarDef, &file_paths)
+            ValidationCommand::Definitions { file_paths } => {
+                commands::validate::handle(crate::ValidationType::Definitions, &file_paths)
             }
-            ValidationCommand::Resource { file_paths } => {
-                commands::validate::handle(crate::ValidationType::Resource, &file_paths)
+            ValidationCommand::Resources { file_paths } => {
+                commands::validate::handle(crate::ValidationType::Resources, &file_paths)
             }
         },
     }
