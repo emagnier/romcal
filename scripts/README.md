@@ -4,20 +4,21 @@ This directory contains build and automation scripts for the Romcal project.
 
 ## 📊 Script Responsibilities
 
-| Script                  | Build | Lint | Format | Test | Generate Schema | Validate Data | Scope             |
-| ----------------------- | ----- | ---- | ------ | ---- | --------------- | ------------- | ----------------- |
-| `build-core.sh`         | ✅    | ❌   | ❌     | ❌   | ❌              | ❌            | Core only         |
-| `build-adapters.sh`     | ✅    | ❌   | ❌     | ❌   | ❌              | ❌            | Adapters only     |
-| `build-cli.sh`          | ✅    | ❌   | ❌     | ❌   | ❌              | ❌            | CLI only          |
-| `build-all.sh`          | ✅    | ❌   | ❌     | ❌   | ❌              | ❌            | Complete project  |
-| `check-core.sh`         | ❌    | ✅   | ✅     | ✅   | ❌              | ❌            | Core only         |
-| `check-adapters.sh`     | ❌    | ✅   | ✅     | ✅   | ❌              | ❌            | Adapters only     |
-| `check-cli.sh`          | ❌    | ✅   | ✅     | ✅   | ❌              | ❌            | CLI only          |
-| `check-all.sh`          | ❌    | ✅   | ✅     | ✅   | ❌              | ❌            | Complete project  |
-| `generate-schema.sh`    | ❌    | ❌   | ❌     | ❌   | ✅              | ❌            | Schema generation |
-| `validate-calendars.sh` | ❌    | ❌   | ❌     | ❌   | ❌              | ✅            | Calendar data     |
-| `validate-resources.sh` | ❌    | ❌   | ❌     | ❌   | ❌              | ✅            | Resource data     |
-| `ci.sh`                 | ✅    | ✅   | ✅     | ✅   | ❌              | ❌            | Complete project  |
+| Script                    | Build | Lint | Format | Test | Generate Schema | Validate Data | Scope                    |
+| ------------------------- | ----- | ---- | ------ | ---- | --------------- | ------------- | ------------------------ |
+| `build-core.sh`           | ✅    | ❌   | ❌     | ❌   | ❌              | ❌            | Core only                |
+| `build-adapters.sh`       | ✅    | ❌   | ❌     | ❌   | ❌              | ❌            | Adapters only            |
+| `build-cli.sh`            | ✅    | ❌   | ❌     | ❌   | ❌              | ❌            | CLI only                 |
+| `build-all.sh`            | ✅    | ❌   | ❌     | ❌   | ❌              | ❌            | Complete project         |
+| `check-core.sh`           | ❌    | ✅   | ✅     | ✅   | ❌              | ❌            | Core only                |
+| `check-adapters.sh`       | ❌    | ✅   | ✅     | ✅   | ❌              | ❌            | Adapters only            |
+| `check-cli.sh`            | ❌    | ✅   | ✅     | ✅   | ❌              | ❌            | CLI only                 |
+| `check-all.sh`            | ❌    | ✅   | ✅     | ✅   | ❌              | ❌            | Complete project         |
+| `generate-schema.sh`      | ❌    | ❌   | ❌     | ❌   | ✅              | ❌            | Schema generation        |
+| `validate-calendars.sh`   | ❌    | ❌   | ❌     | ❌   | ❌              | ✅            | Calendar data schema     |
+| `validate-resources.sh`   | ❌    | ❌   | ❌     | ❌   | ❌              | ✅            | Resource data schema     |
+| `check-json-roundtrip.sh` | ❌    | ❌   | ❌     | ❌   | ❌              | ✅            | JSON roundtrip integrity |
+| `ci.sh`                   | ✅    | ✅   | ✅     | ✅   | ✅              | ✅            | Complete project         |
 
 ## 🚀 Quick Start
 
@@ -58,6 +59,7 @@ This directory contains build and automation scripts for the Romcal project.
 
 - **`ci.sh`** - Complete CI/CD pipeline
 - **`generate-schema.sh`** - Generates JSON schemas from Rust definitions
+- **`check-json-roundtrip.sh`** - Tests JSON roundtrip integrity (serialization/deserialization)
 
 ## 📁 Structure
 
@@ -72,6 +74,7 @@ scripts/
 ├── check-cli.sh          # Quality checks for CLI
 ├── check-adapters.sh     # Quality checks for adapters
 ├── check-all.sh          # Global quality checks
+├── check-json-roundtrip.sh # JSON roundtrip integrity tests
 ├── ci.sh                 # Complete CI/CD pipeline
 ├── generate-schema.sh    # Generate JSON schemas
 ├── validate-calendars.sh # Validate calendar data

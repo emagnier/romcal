@@ -84,9 +84,12 @@ run_script "validate-calendars.sh" "9️⃣ Validating calendar files"
 # Step 10: Validate resources
 run_script "validate-resources.sh" "🔟 Validating resource files"
 
-# Step 11: Integration tests (if they exist)
+# Step 11: JSON roundtrip tests
+run_script "check-json-roundtrip.sh" "1️⃣1️⃣ Testing JSON roundtrip integrity"
+
+# Step 12: Integration tests (if they exist)
 if [ -d "$PROJECT_ROOT/tests" ]; then
-    run_step "1️⃣1️⃣ Running integration tests" "cd '$PROJECT_ROOT' && cargo test --release"
+    run_step "1️⃣2️⃣ Running integration tests" "cd '$PROJECT_ROOT' && cargo test --release"
 fi
 
 # Calculate total duration
@@ -105,6 +108,7 @@ echo "   ✅ CLI module built and checked"
 echo "   ✅ JSON schemas generated"
 echo "   ✅ Calendar files validated"
 echo "   ✅ Resource files validated"
+echo "   ✅ JSON roundtrip integrity verified"
 echo "   ✅ Tools built and checked"
 echo "   ✅ All quality checks passed"
 echo ""
