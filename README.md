@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  Romcal is a high-performance library that generates liturgical calendars for the Roman Rite of the Catholic Church. It calculates liturgical dates for any year in the standard calendar and provides comprehensive metadata for each liturgical day.
+  Romcal is a <strong>high-performance Rust library</strong> that generates liturgical calendars for the Roman Rite of the Catholic Church. Available as a Rust crate, <strong>CLI</strong> tool, and native bindings for <strong>TypeScript and Python</strong>, it calculates liturgical dates for any year and provides comprehensive metadata for each liturgical day.
 </p>
 
 <p align="center">
@@ -40,18 +40,18 @@ The rules are defined in:
 
 This ensures that Romcal provides accurate, canonical liturgical data for any application.
 
-## ⚡ Performance & Architecture
+## 🚀 Performance & Available Tools
 
-Written in Rust, Romcal delivers exceptional performance with strong typing, JSON schemas, and clean APIs. Available as a Rust crate, CLI tool, and native bindings for JavaScript/TypeScript and Python. Perfect for building liturgical applications across platforms.
+Written in Rust, Romcal delivers exceptional performance with strong typing, JSON schemas, and clean APIs. Available as:
 
-## 🛠️ Available tools
-
-- **Rust crate**: Core library available via [crates.io](https://crates.io/)
+- **Rust crate**: Core library via [crates.io](https://crates.io/)
 - **CLI**: Command-line interface for terminal usage and automation
 - **JavaScript/TypeScript**: [npm package](https://www.npmjs.com/package/romcal) with WASM bindings and tree-shaking support
 - **Python**: [PyPI package](https://pypi.org/project/romcal/) with PyO3 bindings and Pydantic models
 
-## 🚀 Quick start
+Perfect for building liturgical applications across platforms.
+
+## ⚡ Quick start
 
 To use Romcal in your project, see our [complete documentation](docs/) for installation and usage instructions.
 
