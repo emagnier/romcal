@@ -1,6 +1,6 @@
 use romcal_core::resources::*;
 use romcal_core::types::*;
-use std::collections::HashMap;
+use std::collections::BTreeMap;
 
 fn main() {
     // Example of using resource types
@@ -120,8 +120,8 @@ fn main() {
     }
 }
 
-fn create_ordinals() -> HashMap<String, String> {
-    let mut ordinals = HashMap::new();
+fn create_ordinals() -> BTreeMap<String, String> {
+    let mut ordinals = BTreeMap::new();
     ordinals.insert("1".to_string(), "premier".to_string());
     ordinals.insert("1_feminine".to_string(), "première".to_string());
     ordinals.insert("2".to_string(), "deuxième".to_string());
@@ -131,8 +131,8 @@ fn create_ordinals() -> HashMap<String, String> {
     ordinals
 }
 
-fn create_weekdays() -> HashMap<String, String> {
-    let mut weekdays = HashMap::new();
+fn create_weekdays() -> BTreeMap<String, String> {
+    let mut weekdays = BTreeMap::new();
     weekdays.insert("0".to_string(), "dimanche".to_string());
     weekdays.insert("1".to_string(), "lundi".to_string());
     weekdays.insert("2".to_string(), "mardi".to_string());
@@ -143,8 +143,8 @@ fn create_weekdays() -> HashMap<String, String> {
     weekdays
 }
 
-fn create_months() -> HashMap<String, String> {
-    let mut months = HashMap::new();
+fn create_months() -> BTreeMap<String, String> {
+    let mut months = BTreeMap::new();
     months.insert("0".to_string(), "janvier".to_string());
     months.insert("1".to_string(), "février".to_string());
     months.insert("2".to_string(), "mars".to_string());

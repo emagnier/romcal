@@ -45,7 +45,7 @@ pub fn optimize(preset: &Preset) -> RomcalResult<String> {
     // Create a filtered version of the config with only relevant calendar_definitions and resources
     let mut filtered_config = preset.clone();
     filtered_config.calendar_definitions = filter_calendar_definitions(preset)?;
-    filtered_config.resources = filter_resources(preset)?;
+    filtered_config.resources = filter_resources(preset, &filtered_config.calendar_definitions)?;
 
     let value = serde_json::to_value(&filtered_config)
         .map_err(|e| RomcalError::ValidationError(format!("JSON serialization error: {}", e)))?;
@@ -131,7 +131,11 @@ fn validate_unique_entity_ids(resources: &[Resources]) -> RomcalResult<()> {
 /// Filter resources to keep only the required locales based on the preset
 /// Returns resources with hierarchical deduplication: most specific to most general
 /// Entities defined in more specific locales are removed from parent locales
-fn filter_resources(preset: &Preset) -> RomcalResult<Vec<Resources>> {
+/// Only includes entities that are referenced in calendar day_definitions
+fn filter_resources(
+    preset: &Preset,
+    filtered_calendars: &[CalendarDefinition],
+) -> RomcalResult<Vec<Resources>> {
     let target_locale = &preset.locale;
 
     // Build locale maps for efficient lookups
@@ -140,11 +144,43 @@ fn filter_resources(preset: &Preset) -> RomcalResult<Vec<Resources>> {
     // Validate target locale exists
     let exact_locale = validate_target_locale(target_locale, &available_locales)?;
 
+    // Collect used entity IDs
+    let used_entity_ids = collect_used_entity_ids(filtered_calendars);
+
     // Build priority list of locales (most specific to most general)
     let priority_locales = build_priority_locales(target_locale, &available_locales, &exact_locale);
 
-    // Apply hierarchical deduplication
-    apply_hierarchical_deduplication(priority_locales, &resources_by_locale)
+    // Apply hierarchical deduplication with entity filtering
+    apply_hierarchical_deduplication(priority_locales, &resources_by_locale, &used_entity_ids)
+}
+
+/// Collect all entity IDs that are referenced in calendar day_definitions
+/// Includes both day_definition IDs and EntityPointer references
+fn collect_used_entity_ids(calendar_definitions: &[CalendarDefinition]) -> EntityIdSet {
+    let mut used_entity_ids = EntityIdSet::new();
+
+    for calendar_def in calendar_definitions {
+        for day_def in &calendar_def.days_definitions {
+            // Add the day_definition ID itself as a potential entity reference
+            used_entity_ids.insert(day_def.id.clone());
+
+            // Also check EntityPointer elements in the day_definition
+            if let Some(entities) = &day_def.entities {
+                for entity_pointer in entities {
+                    match entity_pointer {
+                        crate::types::calendar::EntityPointer::ResourceId(id) => {
+                            used_entity_ids.insert(id.clone());
+                        }
+                        crate::types::calendar::EntityPointer::Override(entity_override) => {
+                            used_entity_ids.insert(entity_override.id.clone());
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    used_entity_ids
 }
 
 /// Build locale maps for efficient lookups
@@ -217,10 +253,11 @@ fn build_priority_locales(
     priority_locales
 }
 
-/// Apply hierarchical deduplication to resources
+/// Apply hierarchical deduplication to resources with entity filtering
 fn apply_hierarchical_deduplication(
     priority_locales: Vec<String>,
     resources_by_locale: &HashMap<&str, &Resources>,
+    used_entity_ids: &EntityIdSet,
 ) -> RomcalResult<Vec<Resources>> {
     let mut result = Vec::new();
     let mut defined_entity_ids = EntityIdSet::new();
@@ -230,6 +267,9 @@ fn apply_hierarchical_deduplication(
     for locale in priority_locales {
         if let Some(resource) = resources_by_locale.get(locale.as_str()) {
             let mut filtered_resource = (*resource).clone();
+
+            // Filter entities to only include those used in calendar day_definitions
+            filter_entities_by_usage(&mut filtered_resource, used_entity_ids);
 
             // Deduplicate entities
             deduplicate_entities(&mut filtered_resource, &mut defined_entity_ids);
@@ -246,6 +286,13 @@ fn apply_hierarchical_deduplication(
     }
 
     Ok(result)
+}
+
+/// Filter entities to only include those that are used in calendar day_definitions
+fn filter_entities_by_usage(resource: &mut Resources, used_entity_ids: &EntityIdSet) {
+    if let Some(entities) = &mut resource.entities {
+        entities.retain(|entity| used_entity_ids.contains(&entity.id));
+    }
 }
 
 /// Deduplicate entities in a resource
@@ -496,5 +543,246 @@ fn remove_null_and_empty_values(value: Value) -> Value {
         }
         Value::Null => Value::Null, // This value will be filtered by parent calls
         other => other,
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::types::calendar::{
+        CalendarJurisdiction, CalendarType, DayDefinition, EntityPointer,
+    };
+    use crate::types::entity::EntityOverride;
+    use crate::types::EntityType;
+
+    fn create_test_calendar_definition() -> CalendarDefinition {
+        CalendarDefinition {
+            schema: None,
+            id: "test_calendar".to_string(),
+            metadata: crate::types::CalendarMetadata {
+                jurisdiction: CalendarJurisdiction::Ecclesiastical,
+                r#type: CalendarType::Diocese,
+            },
+            particular_config: None,
+            parent_calendar_ids: vec![],
+            days_definitions: vec![
+                DayDefinition {
+                    id: "saint_john".to_string(),
+                    date_def: None,
+                    date_exceptions: None,
+                    precedence: None,
+                    commons_def: None,
+                    is_holy_day_of_obligation: None,
+                    allow_similar_rank_items: None,
+                    is_optional: None,
+                    custom_locale_id: None,
+                    entities: Some(vec![
+                        EntityPointer::ResourceId("john_the_baptist".to_string()),
+                        EntityPointer::Override(EntityOverride {
+                            id: "john_the_evangelist".to_string(),
+                            titles: None,
+                            hide_titles: None,
+                            count: None,
+                        }),
+                    ]),
+                    titles: None,
+                    drop: None,
+                    colors: None,
+                },
+                DayDefinition {
+                    id: "saint_peter".to_string(),
+                    date_def: None,
+                    date_exceptions: None,
+                    precedence: None,
+                    commons_def: None,
+                    is_holy_day_of_obligation: None,
+                    allow_similar_rank_items: None,
+                    is_optional: None,
+                    custom_locale_id: None,
+                    entities: None,
+                    titles: None,
+                    drop: None,
+                    colors: None,
+                },
+            ],
+        }
+    }
+
+    fn create_test_resources() -> Resources {
+        Resources {
+            schema: None,
+            locale: "en".to_string(),
+            metadata: None,
+            entities: Some(vec![
+                crate::resources::EntityDefinition {
+                    id: "john_the_baptist".to_string(),
+                    r#type: Some(EntityType::Person),
+                    fullname: Some("John the Baptist".to_string()),
+                    name: Some("John".to_string()),
+                    canonization_level: None,
+                    date_of_canonization: None,
+                    date_of_canonization_is_approximative: None,
+                    date_of_beatification: None,
+                    date_of_beatification_is_approximative: None,
+                    hide_canonization_level: None,
+                    titles: None,
+                    sex: None,
+                    hide_titles: None,
+                    date_of_dedication: None,
+                    date_of_birth: None,
+                    date_of_birth_is_approximative: None,
+                    date_of_death: None,
+                    date_of_death_is_approximative: None,
+                    count: None,
+                    sources: None,
+                    _todo: None,
+                },
+                crate::resources::EntityDefinition {
+                    id: "john_the_evangelist".to_string(),
+                    r#type: Some(EntityType::Person),
+                    fullname: Some("John the Evangelist".to_string()),
+                    name: Some("John".to_string()),
+                    canonization_level: None,
+                    date_of_canonization: None,
+                    date_of_canonization_is_approximative: None,
+                    date_of_beatification: None,
+                    date_of_beatification_is_approximative: None,
+                    hide_canonization_level: None,
+                    titles: None,
+                    sex: None,
+                    hide_titles: None,
+                    date_of_dedication: None,
+                    date_of_birth: None,
+                    date_of_birth_is_approximative: None,
+                    date_of_death: None,
+                    date_of_death_is_approximative: None,
+                    count: None,
+                    sources: None,
+                    _todo: None,
+                },
+                crate::resources::EntityDefinition {
+                    id: "unused_entity".to_string(),
+                    r#type: Some(EntityType::Person),
+                    fullname: Some("Unused Entity".to_string()),
+                    name: Some("Unused".to_string()),
+                    canonization_level: None,
+                    date_of_canonization: None,
+                    date_of_canonization_is_approximative: None,
+                    date_of_beatification: None,
+                    date_of_beatification_is_approximative: None,
+                    hide_canonization_level: None,
+                    titles: None,
+                    sex: None,
+                    hide_titles: None,
+                    date_of_dedication: None,
+                    date_of_birth: None,
+                    date_of_birth_is_approximative: None,
+                    date_of_death: None,
+                    date_of_death_is_approximative: None,
+                    count: None,
+                    sources: None,
+                    _todo: None,
+                },
+            ]),
+        }
+    }
+
+    #[test]
+    fn test_collect_used_entity_ids() {
+        let calendar_definitions = vec![create_test_calendar_definition()];
+        let used_entity_ids = collect_used_entity_ids(&calendar_definitions);
+
+        // Should include day_definition IDs
+        assert!(used_entity_ids.contains("saint_john"));
+        assert!(used_entity_ids.contains("saint_peter"));
+
+        // Should include ResourceId references
+        assert!(used_entity_ids.contains("john_the_baptist"));
+
+        // Should include Override entity IDs
+        assert!(used_entity_ids.contains("john_the_evangelist"));
+
+        // Should not include entities not referenced
+        assert!(!used_entity_ids.contains("unused_entity"));
+    }
+
+    #[test]
+    fn test_collect_used_entity_ids_empty_entities() {
+        let calendar_definitions = vec![CalendarDefinition {
+            schema: None,
+            id: "test_calendar".to_string(),
+            metadata: crate::types::CalendarMetadata {
+                jurisdiction: CalendarJurisdiction::Ecclesiastical,
+                r#type: CalendarType::Diocese,
+            },
+            particular_config: None,
+            parent_calendar_ids: vec![],
+            days_definitions: vec![DayDefinition {
+                id: "saint_mary".to_string(),
+                date_def: None,
+                date_exceptions: None,
+                precedence: None,
+                commons_def: None,
+                is_holy_day_of_obligation: None,
+                allow_similar_rank_items: None,
+                is_optional: None,
+                custom_locale_id: None,
+                entities: None, // No entities
+                titles: None,
+                drop: None,
+                colors: None,
+            }],
+        }];
+
+        let used_entity_ids = collect_used_entity_ids(&calendar_definitions);
+
+        // Should only include the day_definition ID
+        assert!(used_entity_ids.contains("saint_mary"));
+        assert_eq!(used_entity_ids.len(), 1);
+    }
+
+    #[test]
+    fn test_filter_entities_by_usage() {
+        let mut resources = create_test_resources();
+        let used_entity_ids: EntityIdSet = ["john_the_baptist", "john_the_evangelist"]
+            .iter()
+            .map(|s| s.to_string())
+            .collect();
+
+        filter_entities_by_usage(&mut resources, &used_entity_ids);
+
+        let entities = resources.entities.unwrap();
+        assert_eq!(entities.len(), 2);
+
+        let entity_ids: Vec<String> = entities.iter().map(|e| e.id.clone()).collect();
+        assert!(entity_ids.contains(&"john_the_baptist".to_string()));
+        assert!(entity_ids.contains(&"john_the_evangelist".to_string()));
+        assert!(!entity_ids.contains(&"unused_entity".to_string()));
+    }
+
+    #[test]
+    fn test_filter_entities_by_usage_empty_used_ids() {
+        let mut resources = create_test_resources();
+        let used_entity_ids = EntityIdSet::new();
+
+        filter_entities_by_usage(&mut resources, &used_entity_ids);
+
+        let entities = resources.entities.unwrap();
+        assert_eq!(entities.len(), 0);
+    }
+
+    #[test]
+    fn test_filter_entities_by_usage_no_entities() {
+        let mut resources = Resources {
+            schema: None,
+            locale: "en".to_string(),
+            metadata: None,
+            entities: None,
+        };
+        let used_entity_ids: EntityIdSet = ["some_entity"].iter().map(|s| s.to_string()).collect();
+
+        // Should not panic when entities is None
+        filter_entities_by_usage(&mut resources, &used_entity_ids);
+        assert!(resources.entities.is_none());
     }
 }

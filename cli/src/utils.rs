@@ -308,7 +308,7 @@ fn merge_json_values(target: &mut serde_json::Value, source: &serde_json::Value)
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::collections::HashMap;
+    use std::collections::BTreeMap;
 
     fn create_test_entity(id: &str, name: &str) -> romcal_core::EntityDefinition {
         let mut entity = romcal_core::EntityDefinition::new(id.to_string());
@@ -381,7 +381,7 @@ mod tests {
 
         let metadata1 = ResourcesMetadata {
             ordinals: Some({
-                let mut map = HashMap::new();
+                let mut map = BTreeMap::new();
                 map.insert("1st".to_string(), "premier".to_string());
                 map
             }),
@@ -396,12 +396,12 @@ mod tests {
 
         let metadata2 = ResourcesMetadata {
             ordinals: Some({
-                let mut map = HashMap::new();
+                let mut map = BTreeMap::new();
                 map.insert("2nd".to_string(), "deuxième".to_string());
                 map
             }),
             weekdays: Some({
-                let mut map = HashMap::new();
+                let mut map = BTreeMap::new();
                 map.insert("monday".to_string(), "lundi".to_string());
                 map
             }),
@@ -482,12 +482,12 @@ mod tests {
 
         let metadata1 = ResourcesMetadata {
             ordinals: Some({
-                let mut map = HashMap::new();
+                let mut map = BTreeMap::new();
                 map.insert("1st".to_string(), "premier".to_string());
                 map
             }),
             weekdays: Some({
-                let mut map = HashMap::new();
+                let mut map = BTreeMap::new();
                 map.insert("monday".to_string(), "lundi".to_string());
                 map
             }),
@@ -502,13 +502,13 @@ mod tests {
         // Second metadata with null values that should not override the first
         let metadata2 = ResourcesMetadata {
             ordinals: Some({
-                let mut map = HashMap::new();
+                let mut map = BTreeMap::new();
                 map.insert("2nd".to_string(), "deuxième".to_string());
                 map
             }),
             weekdays: None, // This null should not override the existing weekdays
             months: Some({
-                let mut map = HashMap::new();
+                let mut map = BTreeMap::new();
                 map.insert("january".to_string(), "janvier".to_string());
                 map
             }),

@@ -1,17 +1,17 @@
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
-use std::collections::HashMap;
+use std::collections::BTreeMap;
 
 /// Metadata for localized resources.
 /// Contains all the localized strings and configurations for a specific locale.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
 pub struct ResourcesMetadata {
     /// Ordinal numbers (1st, 2nd, 3rd, etc.) in the locale language
-    pub ordinals: Option<HashMap<String, String>>,
+    pub ordinals: Option<BTreeMap<String, String>>,
     /// Weekday names (Sunday, Monday, etc.) in the locale language
-    pub weekdays: Option<HashMap<String, String>>,
+    pub weekdays: Option<BTreeMap<String, String>>,
     /// Month names (January, February, etc.) in the locale language
-    pub months: Option<HashMap<String, String>>,
+    pub months: Option<BTreeMap<String, String>>,
     /// Liturgical color names in the locale language
     pub colors: Option<LocaleColors>,
     /// Liturgical season names and descriptions in the locale language
@@ -190,4 +190,44 @@ pub struct CyclesMetadata {
     pub psalter_week_3: Option<String>,
     /// Psalter Week 4 cycle name
     pub psalter_week_4: Option<String>,
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::collections::BTreeMap;
+
+    #[test]
+    fn test_serialize_btreemap_alphabetically() {
+        let mut ordinals = BTreeMap::new();
+        ordinals.insert("3rd".to_string(), "troisième".to_string());
+        ordinals.insert("1st".to_string(), "premier".to_string());
+        ordinals.insert("2nd".to_string(), "deuxième".to_string());
+
+        let metadata = ResourcesMetadata {
+            ordinals: Some(ordinals),
+            weekdays: None,
+            months: None,
+            colors: None,
+            seasons: None,
+            periods: None,
+            ranks: None,
+            cycles: None,
+        };
+
+        let json = serde_json::to_string_pretty(&metadata).unwrap();
+
+        // Vérifier que les clés sont dans l'ordre alphabétique
+        assert!(json.contains("\"1st\""));
+        assert!(json.contains("\"2nd\""));
+        assert!(json.contains("\"3rd\""));
+
+        // Vérifier l'ordre en cherchant la position des clés
+        let first_pos = json.find("\"1st\"").unwrap();
+        let second_pos = json.find("\"2nd\"").unwrap();
+        let third_pos = json.find("\"3rd\"").unwrap();
+
+        assert!(first_pos < second_pos);
+        assert!(second_pos < third_pos);
+    }
 }
