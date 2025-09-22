@@ -124,7 +124,7 @@ where
     add_additional_properties_false(&mut schema_value);
     fix_defs_references(&mut schema_value);
 
-    if filename == "resources_definition.json" || filename == "entity_definition.json" {
+    if filename == "resources.json" {
         fix_saint_count_schema(&mut schema_value);
     }
 

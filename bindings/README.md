@@ -7,12 +7,11 @@ This directory contains platform-specific bindings for the romcal-core library.
 ```
 bindings/
 ├── README.md
-├── wasm/          # WebAssembly bindings
+├── typescript/          # Typescript bindings
 │   ├── pkg/       # Generated WASM package
 │   ├── src/       # TypeScript source files
 │   └── ...
 ├── python/        # Python bindings (planned)
-└── dart/          # Dart/Flutter bindings (planned)
 ```
 
 ## 🔧 Building Bindings
@@ -33,7 +32,7 @@ The WASM bindings are generated from the `core/adapters/wasm` module.
 
 **Output:**
 
-- Generated files in `bindings/wasm/pkg/`
+- Generated files in `bindings/typescript/pkg/`
 - TypeScript definitions included
 - Ready for npm publishing
 
@@ -57,17 +56,6 @@ Python bindings will be generated using PyO3.
 ./scripts/build-adapters.sh python
 ```
 
-### Dart/Flutter (Planned)
-
-Dart bindings will be generated using dart_bindgen.
-
-**Build:**
-
-```bash
-# Build Dart bindings (when available)
-./scripts/build-adapters.sh dart
-```
-
 ## 🚀 Development
 
 ### Adding New Bindings
@@ -80,37 +68,35 @@ Dart bindings will be generated using dart_bindgen.
 ### Testing Bindings
 
 ```bash
-# Test WASM bindings
-cd bindings/wasm
+# Test Typescript bindings
+cd bindings/typescript
 npm test
 
 # Test Python bindings (when available)
 cd bindings/python
 python -m pytest
 
-# Test Dart bindings (when available)
-cd bindings/dart
-dart test
-```
 
 ## 📦 Publishing
 
 Each binding directory contains its own package configuration:
 
-- **WASM**: `bindings/wasm/pkg/package.json`
+- **Typescript**: `bindings/typescript/pkg/package.json`
 - **Python**: `bindings/python/pyproject.toml` (planned)
-- **Dart**: `bindings/dart/pubspec.yaml` (planned)
 
 ## 🔗 Architecture
 
 ```
+
 romcal-core (Rust)
-       ↓
+↓
 core/adapters/[platform] (Rust)
-       ↓
+↓
 bindings/[platform] (Generated)
-       ↓
+↓
 Platform-specific package
+
 ```
 
 The core library provides the business logic, adapters provide platform-specific bindings, and the bindings directory contains the final packages ready for distribution.
+```

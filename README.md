@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  Romcal is a high-performance Rust library that generates liturgical calendars for the Roman Rite of the Catholic Church. It calculates liturgical dates for any year in the standard calendar and provides comprehensive metadata for each liturgical day.
+  Romcal is a high-performance library that generates liturgical calendars for the Roman Rite of the Catholic Church. It calculates liturgical dates for any year in the standard calendar and provides comprehensive metadata for each liturgical day.
 </p>
 
 <p align="center">
@@ -24,7 +24,7 @@
 - **Multiple calendars**: Support for numerous liturgical calendars by country, diocese, city, region...
 - **Localization**: Available in multiple languages with easy support for adding new languages
 - **Entity catalog**: Enriched metadata for each liturgical day (saints, blessed, places, events)
-- **Extensible**: Easy to add new calendars and languages
+- **Extensible & Customizable**: Easy to add and customize calendars and locales
 
 ## 📜 Liturgical accuracy
 
@@ -42,16 +42,14 @@ This ensures that Romcal provides accurate, canonical liturgical data for any ap
 
 ## ⚡ Performance & Architecture
 
-Written in Rust, Romcal delivers exceptional performance with strong typing, JSON schemas, and clean APIs that work with any language or framework. Perfect for building liturgical applications across all platforms.
+Written in Rust, Romcal delivers exceptional performance with strong typing, JSON schemas, and clean APIs. Available as a Rust crate, CLI tool, and native bindings for JavaScript/TypeScript and Python. Perfect for building liturgical applications across platforms.
 
 ## 🛠️ Available tools
 
-- **[Complete CLI]()**: Powerful command-line interface for terminal usage, automation, and integration
-- **Native bindings**:
-  - **[JavaScript/TypeScript]()** (WASM, tree-shaking, modern build tools)
-  - **[Python]()** (high-performance bindings, Pydantic models)
-  - **[Dart/Flutter]()** (null safety, cross-platform, Flutter integration)
-  - Additional language bindings welcome
+- **Rust crate**: Core library available via [crates.io](https://crates.io/)
+- **CLI**: Command-line interface for terminal usage and automation
+- **JavaScript/TypeScript**: [npm package](https://www.npmjs.com/package/romcal) with WASM bindings and tree-shaking support
+- **Python**: [PyPI package](https://pypi.org/project/romcal/) with PyO3 bindings and Pydantic models
 
 ## 🚀 Quick start
 

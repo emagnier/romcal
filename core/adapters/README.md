@@ -6,7 +6,6 @@ This directory contains platform-specific adapters for the romcal-core library.
 
 - `wasm/` - WebAssembly adapter for browser and Node.js environments
 - `python/` - Python adapter (planned)
-- `dart/` - Dart/Flutter adapter (planned)
 
 ## WASM Adapter
 

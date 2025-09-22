@@ -1,4 +1,4 @@
-use romcal_core::{CalendarDefinition, ResourcesDefinition};
+use romcal_core::{CalendarDefinition, Resources};
 use serde_json::{self, Value};
 use std::fs;
 use std::path::Path;
@@ -167,7 +167,7 @@ fn test_resource_files() -> Result<(), Box<dyn std::error::Error>> {
 
                 if path.extension().and_then(|s| s.to_str()) == Some("json") {
                     total_tests += 1;
-                    match test_json_roundtrip::<ResourcesDefinition>(path.to_str().unwrap()) {
+                    match test_json_roundtrip::<Resources>(path.to_str().unwrap()) {
                         Ok(_) => passed_tests += 1,
                         Err(e) => eprintln!("Error: {}", e),
                     }
@@ -198,7 +198,7 @@ fn test_specific_file(file_path: &str) -> Result<(), Box<dyn std::error::Error>>
     if file_path.contains("calendars") {
         test_json_roundtrip::<CalendarDefinition>(file_path)?;
     } else if file_path.contains("resources") {
-        test_json_roundtrip::<ResourcesDefinition>(file_path)?;
+        test_json_roundtrip::<Resources>(file_path)?;
     } else {
         return Err(
             "Unable to determine file type. Use a path containing 'calendars' or 'resources'"

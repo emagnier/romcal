@@ -6,7 +6,7 @@
       "$ref": "#/definitions/CalendarDefinition"
     },
     {
-      "$ref": "#/definitions/ResourcesDefinition"
+      "$ref": "#/definitions/Resources"
     }
   ],
   "definitions": {
@@ -2691,7 +2691,7 @@
       ],
       "additionalProperties": false
     },
-    "ResourcesDefinition": {
+    "Resources": {
       "definitions": {
         "ResourcesMetadata": {
           "description": "Metadata for localized resources.\nContains all the localized strings and configurations for a specific locale.",
@@ -3689,7 +3689,7 @@
           ]
         }
       },
-      "title": "ResourcesDefinition",
+      "title": "Resources",
       "type": "object",
       "properties": {
         "$schema": {

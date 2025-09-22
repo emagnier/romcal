@@ -1,6 +1,7 @@
 # Authors
 
-Romcal was originally developed by [Julian Pereira](https://github.com/pejulian) from Malaysia in July 2014.
+Romcal was originally developed by [Julian Pereira](https://github.com/pejulian) from Malaysia in July 2014, and inspired by the C program romcal written by Kenneth G. Bath ([romcal.net](http://romcal.net)).
+
 Since then, the project has been drastically rewritten and expanded, and many significant contributions have been made.
 
 This list recognizes contributors to Romcal past and present.

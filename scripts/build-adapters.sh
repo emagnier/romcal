@@ -38,10 +38,10 @@ build_wasm_adapter() {
     cd "$PROJECT_ROOT/core/adapters/wasm"
 
     # Build with wasm-pack
-    wasm-pack build --target nodejs --out-dir ../../../bindings/wasm/pkg
+    wasm-pack build --target nodejs --out-dir ../../../bindings/typescript/pkg
 
     echo "✅ WASM adapter built successfully!"
-    echo "📦 Output location: bindings/wasm/pkg/"
+    echo "📦 Output location: bindings/typescript/pkg/"
     echo ""
 }
 
@@ -75,7 +75,6 @@ echo ""
 echo "💡 Available adapters:"
 echo "   - wasm: WebAssembly bindings"
 echo "   - python: Python bindings (planned)"
-echo "   - dart: Dart/Flutter bindings (planned)"
 echo ""
 echo "To build a specific adapter:"
 echo "  ./scripts/build-adapters.sh wasm"
