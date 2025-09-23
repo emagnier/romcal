@@ -7,6 +7,9 @@
     },
     {
       "$ref": "#/definitions/Resources"
+    },
+    {
+      "$ref": "#/definitions/LiturgicalDay"
     }
   ],
   "definitions": {
@@ -1779,6 +1782,359 @@
         }
       ]
     },
+    "Rank": {
+      "description": "Liturgical rank indicating the importance and celebration style of a liturgical day",
+      "oneOf": [
+        {
+          "description": "Solemnities are counted among the most important days, whose celebration\nbegins with First Vespers (Evening Prayer I) on the preceding day. Some Solemnities\nare also endowed with their own Vigil Mass, which is to be used on the evening of the\npreceding day, if an evening Mass is celebrated. (UNLY #11)",
+          "type": "string",
+          "const": "SOLEMNITY"
+        },
+        {
+          "description": "On the first day of each week, which is known as the Day of the Lord or the Lord's\nDay, the Church, by an apostolic tradition that draws its origin from the very day of\nthe Resurrection of Christ, celebrates the Paschal Mystery. Hence, Sunday must be\nconsidered the primordial feast day. (UNLY #4)",
+          "type": "string",
+          "const": "SUNDAY"
+        },
+        {
+          "description": "Feasts are celebrated within the limits of the natural day; accordingly they have\nno First Vespers (Evening Prayer I), except in the case of Feasts of the Lord that fall\non a Sunday in Ordinary Time or in Christmas Time and which replace the Sunday\nOffice. (UNLY #13)",
+          "type": "string",
+          "const": "FEAST"
+        },
+        {
+          "description": "**Obligatory memorials** are liturgical commemorations of saints, events, or aspects of the\nfaith. Their observance is mandatory and integrated into the celebration of the occurring\nweekday, following the liturgical norms outlined in the General Instruction of the Roman Missal\nand the Liturgy of the Hours.\nWhen an **obligatory memorial** falls on a weekday during the liturgical season of Lent or a\nprivileged weekday of Advent, it must only be celebrated as an **optional memorial**, as Lent\nand Advent have their own specific liturgical observances that take precedence.",
+          "type": "string",
+          "const": "MEMORIAL"
+        },
+        {
+          "description": "**Optional memorials** are liturgical commemorations of saints, events, or aspects of the\nfaith, but they are not obligatory.\nTheir observance is integrated into the celebration of the occurring weekday, adhering to the\nliturgical norms provided in the General Instruction of the Roman Missal and the Liturgy of\nthe Hours.\nIn cases where multiple **optional memorials** are designated on the same day in the liturgical\ncalendar, only one of them may be celebrated, and the others must be omitted (UNLY #14).\nThis allows for some flexibility in choosing which optional memorial to commemorate when\nmultiple options are available.",
+          "type": "string",
+          "const": "OPTIONAL_MEMORIAL"
+        },
+        {
+          "description": "The days of the week that follow Sunday are called weekdays; however, they are\ncelebrated differently according to the importance of each.\n\na. Ash Wednesday and the weekdays of Holy Week, from Monday up to and including\n   Thursday, take precedence over all other celebrations.\nb. The weekdays of Advent from 17 December up to and including 24 December\n   and all the weekdays of Lent have precedence over Obligatory Memorials.\nc. Other weekdays give way to all Solemnities and Feasts and are combined with\n   Memorials.\n\n (UNLY #16)",
+          "type": "string",
+          "const": "WEEKDAY"
+        }
+      ]
+    },
+    "SeasonInfo": {
+      "description": "Liturgical season information with localized name.",
+      "type": "object",
+      "properties": {
+        "key": {
+          "description": "The season key",
+          "$ref": "#/definitions/Season"
+        },
+        "name": {
+          "description": "The localized name of the season",
+          "type": "string"
+        }
+      },
+      "required": [
+        "key",
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "Season": {
+      "description": "Liturgical seasons of the Church year.\nRepresents the major periods that structure the liturgical calendar.",
+      "oneOf": [
+        {
+          "description": "Advent",
+          "type": "string",
+          "const": "ADVENT"
+        },
+        {
+          "description": "Christmas Time",
+          "type": "string",
+          "const": "CHRISTMAS_TIME"
+        },
+        {
+          "description": "Lent",
+          "type": "string",
+          "const": "LENT"
+        },
+        {
+          "description": "Paschal Triduum",
+          "type": "string",
+          "const": "PASCHAL_TRIDUUM"
+        },
+        {
+          "description": "Easter Time",
+          "type": "string",
+          "const": "EASTER_TIME"
+        },
+        {
+          "description": "Ordinary Time",
+          "type": "string",
+          "const": "ORDINARY_TIME"
+        }
+      ]
+    },
+    "PeriodInfo": {
+      "description": "Liturgical period information with localized name.",
+      "type": "object",
+      "properties": {
+        "key": {
+          "description": "The period key",
+          "$ref": "#/definitions/Period"
+        },
+        "name": {
+          "description": "The localized name of the period",
+          "type": "string"
+        }
+      },
+      "required": [
+        "key",
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "Period": {
+      "description": "Specific periods within liturgical seasons.\nDefines sub-periods that have special liturgical characteristics or rules.",
+      "oneOf": [
+        {
+          "description": "The eight days following Christmas (December 25 - January 1)",
+          "type": "string",
+          "const": "CHRISTMAS_OCTAVE"
+        },
+        {
+          "description": "Days before Epiphany (January 2 to the day before Epiphany)",
+          "type": "string",
+          "const": "DAYS_BEFORE_EPIPHANY"
+        },
+        {
+          "description": "Days from Epiphany to the Presentation (January 6 to the day before the Presentation of the Lord)",
+          "type": "string",
+          "const": "DAYS_FROM_EPIPHANY"
+        },
+        {
+          "description": "Period from Christmas to the Presentation of the Lord",
+          "type": "string",
+          "const": "CHRISTMAS_TO_PRESENTATION_OF_THE_LORD"
+        },
+        {
+          "description": "Period from the Presentation to Holy Thursday",
+          "type": "string",
+          "const": "PRESENTATION_OF_THE_LORD_TO_HOLY_THURSDAY"
+        },
+        {
+          "description": "Holy Week (Palm Sunday to Holy Saturday)",
+          "type": "string",
+          "const": "HOLY_WEEK"
+        },
+        {
+          "description": "The eight days following Easter Sunday",
+          "type": "string",
+          "const": "EASTER_OCTAVE"
+        },
+        {
+          "description": "Early Ordinary Time (after the Presentation of the Lord to the day before Ash Wednesday)",
+          "type": "string",
+          "const": "EARLY_ORDINARY_TIME"
+        },
+        {
+          "description": "Late Ordinary Time (after Pentecost to the day before the First Sunday of Advent)",
+          "type": "string",
+          "const": "LATE_ORDINARY_TIME"
+        }
+      ]
+    },
+    "CommonInfo": {
+      "description": "Liturgical common information with localized name.",
+      "type": "object",
+      "properties": {
+        "key": {
+          "description": "The common key",
+          "$ref": "#/definitions/Common"
+        },
+        "name": {
+          "description": "The localized name of the common",
+          "type": "string"
+        }
+      },
+      "required": [
+        "key",
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "Common": {
+      "description": "Common prayers and readings for different categories of saints and celebrations.\nProvides standardized liturgical texts for various types of commemorations.",
+      "type": "string",
+      "enum": [
+        "NONE",
+        "DEDICATION_ANNIVERSARY__INSIDE",
+        "DEDICATION_ANNIVERSARY__OUTSIDE",
+        "BLESSED_VIRGIN_MARY__ORDINARY_TIME",
+        "BLESSED_VIRGIN_MARY__ADVENT",
+        "BLESSED_VIRGIN_MARY__CHRISTMAS",
+        "BLESSED_VIRGIN_MARY__EASTER",
+        "MARTYRS__OUTSIDE_EASTER__SEVERAL",
+        "MARTYRS__OUTSIDE_EASTER__ONE",
+        "MARTYRS__EASTER__SEVERAL",
+        "MARTYRS__EASTER__ONE",
+        "MARTYRS__MISSIONARY__SEVERAL",
+        "MARTYRS__MISSIONARY__ONE",
+        "MARTYRS__VIRGIN",
+        "MARTYRS__WOMAN",
+        "PASTORS__POPE_OR_BISHOP",
+        "PASTORS__BISHOP",
+        "PASTORS__SEVERAL",
+        "PASTORS__ONE",
+        "PASTORS__FOUNDER__ONE",
+        "PASTORS__FOUNDER__SEVERAL",
+        "PASTORS__MISSIONARY",
+        "DOCTORS_OF_THE_CHURCH",
+        "VIRGINS__SEVERAL",
+        "VIRGINS__ONE",
+        "SAINTS__ALL__SEVERAL",
+        "SAINTS__ALL__ONE",
+        "SAINTS__ABBOT",
+        "SAINT__MONK",
+        "SAINTS__NUN",
+        "SAINTS__RELIGIOUS",
+        "SAINTS__MERCY_WORKS",
+        "SAINTS__EDUCATORS",
+        "SAINTS__HOLY_WOMEN"
+      ]
+    },
+    "ColorInfo": {
+      "description": "Liturgical color information with localized name.",
+      "type": "object",
+      "properties": {
+        "key": {
+          "description": "The color key",
+          "$ref": "#/definitions/Color"
+        },
+        "name": {
+          "description": "The localized name of the color",
+          "type": "string"
+        }
+      },
+      "required": [
+        "key",
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "SundayCycleInfo": {
+      "description": "Sunday cycle information with localized name.",
+      "type": "object",
+      "properties": {
+        "key": {
+          "description": "The Sunday cycle key",
+          "$ref": "#/definitions/SundayCycle"
+        },
+        "name": {
+          "description": "The localized name of the Sunday cycle",
+          "type": "string"
+        }
+      },
+      "required": [
+        "key",
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "SundayCycle": {
+      "description": "A three-year cycle for Sunday Mass readings (and some solemnities), designated by A, B, or C.\nEach cycle begins on the First Sunday of Advent of the previous civil year and ends on Saturday\nafter the Christ the King Solemnity. The cycles follow each other in alphabetical order.\nC year is always divisible by 3, A has remainder of 1, and B remainder of 2.",
+      "oneOf": [
+        {
+          "description": "Year A",
+          "type": "string",
+          "const": "YEAR_A"
+        },
+        {
+          "description": "Year B",
+          "type": "string",
+          "const": "YEAR_B"
+        },
+        {
+          "description": "Year C",
+          "type": "string",
+          "const": "YEAR_C"
+        }
+      ]
+    },
+    "WeekdayCycleInfo": {
+      "description": "Weekday cycle information with localized name.",
+      "type": "object",
+      "properties": {
+        "key": {
+          "description": "The weekday cycle key",
+          "$ref": "#/definitions/WeekdayCycle"
+        },
+        "name": {
+          "description": "The localized name of the weekday cycle",
+          "type": "string"
+        }
+      },
+      "required": [
+        "key",
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "WeekdayCycle": {
+      "description": "A two-year cycle for the weekday Mass readings (also called Cycle I and Cycle II).\nOdd-numbered years are the Cycle I (year 1); even-numbered ones are the Cycle II (year 2).",
+      "oneOf": [
+        {
+          "description": "Year 1 (Cycle I)",
+          "type": "string",
+          "const": "YEAR1"
+        },
+        {
+          "description": "Year 2 (Cycle II)",
+          "type": "string",
+          "const": "YEAR2"
+        }
+      ]
+    },
+    "PsalterWeekCycleInfo": {
+      "description": "Psalter week cycle information with localized name.",
+      "type": "object",
+      "properties": {
+        "key": {
+          "description": "The psalter week cycle key",
+          "$ref": "#/definitions/PsalterWeekCycle"
+        },
+        "name": {
+          "description": "The localized name of the psalter week cycle",
+          "type": "string"
+        }
+      },
+      "required": [
+        "key",
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "PsalterWeekCycle": {
+      "description": "[GILH §133] The four-week cycle of the psalter is coordinated with the liturgical year in such a way that\non the First Sunday of Advent, the First Sunday in Ordinary Time, the First Sunday of Lent,\nand Easter Sunday the cycle is always begun again with Week 1 (others being omitted when necessary).",
+      "oneOf": [
+        {
+          "description": "Week 1",
+          "type": "string",
+          "const": "WEEK1"
+        },
+        {
+          "description": "Week 2",
+          "type": "string",
+          "const": "WEEK2"
+        },
+        {
+          "description": "Week 3",
+          "type": "string",
+          "const": "WEEK3"
+        },
+        {
+          "description": "Week 4",
+          "type": "string",
+          "const": "WEEK4"
+        }
+      ]
+    },
     "CalendarDefinition": {
       "definitions": {
         "CalendarMetadata": {
@@ -2646,6 +3002,7 @@
         }
       },
       "title": "CalendarDefinition",
+      "description": "Calendar definition",
       "type": "object",
       "properties": {
         "$schema": {
@@ -3690,6 +4047,7 @@
         }
       },
       "title": "Resources",
+      "description": "Resources definition",
       "type": "object",
       "properties": {
         "$schema": {
@@ -3726,6 +4084,1339 @@
       },
       "required": [
         "locale"
+      ],
+      "additionalProperties": false
+    },
+    "LiturgicalDay": {
+      "definitions": {
+        "DateDef": {
+          "description": "Date definition supporting various date calculation methods.\nProvides flexible ways to specify liturgical dates using different approaches.",
+          "anyOf": [
+            {
+              "description": "Simple month/day specification",
+              "type": "object",
+              "properties": {
+                "month": {
+                  "description": "The month (1-12)",
+                  "$ref": "#/definitions/MonthIndex"
+                },
+                "date": {
+                  "description": "The day of the month (1-31)",
+                  "type": "integer",
+                  "format": "uint32",
+                  "minimum": 0
+                },
+                "day_offset": {
+                  "description": "Optional day offset for adjustments",
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "format": "int32"
+                }
+              },
+              "required": [
+                "month",
+                "date"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "description": "Date function calculation (Easter, Epiphany, etc.)",
+              "type": "object",
+              "properties": {
+                "date_fn": {
+                  "description": "The date function to calculate the base date",
+                  "$ref": "#/definitions/DateFn"
+                },
+                "day_offset": {
+                  "description": "Optional day offset for adjustments",
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "format": "int32"
+                }
+              },
+              "required": [
+                "date_fn"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "description": "Nth weekday of a specific month",
+              "type": "object",
+              "properties": {
+                "month": {
+                  "description": "The month (1-12)",
+                  "$ref": "#/definitions/MonthIndex"
+                },
+                "day_of_week": {
+                  "description": "The day of the week (0=Sunday, 1=Monday, etc.)",
+                  "$ref": "#/definitions/DayOfWeek"
+                },
+                "nth_week_in_month": {
+                  "description": "Which occurrence of the weekday (1st, 2nd, 3rd, etc.)",
+                  "type": "integer",
+                  "format": "uint32",
+                  "minimum": 0
+                },
+                "day_offset": {
+                  "description": "Optional day offset for adjustments",
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "format": "int32"
+                }
+              },
+              "required": [
+                "month",
+                "day_of_week",
+                "nth_week_in_month"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "description": "Last weekday of a specific month",
+              "type": "object",
+              "properties": {
+                "month": {
+                  "description": "The month (1-12)",
+                  "$ref": "#/definitions/MonthIndex"
+                },
+                "last_day_of_week_in_month": {
+                  "description": "The day of the week to find the last occurrence of",
+                  "$ref": "#/definitions/DayOfWeek"
+                },
+                "day_offset": {
+                  "description": "Optional day offset for adjustments",
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "format": "int32"
+                }
+              },
+              "required": [
+                "month",
+                "last_day_of_week_in_month"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "MonthIndex": {
+          "description": "Month index (1-12) with automatic validation\n\nThis type ensures that only valid month values are accepted during\ndeserialization. The value 1 represents January, 2 represents February, etc.",
+          "type": "integer",
+          "format": "uint8",
+          "minimum": 0,
+          "maximum": 255
+        },
+        "DateFn": {
+          "description": "Date function for calculating liturgical dates.\nRepresents movable feasts and special celebrations that require calculation.",
+          "type": "string",
+          "enum": [
+            "MARY_MOTHER_OF_THE_CHURCH",
+            "EPIPHANY_SUNDAY",
+            "PRESENTATION_OF_THE_LORD",
+            "ANNUNCIATION",
+            "PALM_SUNDAY",
+            "EASTER_SUNDAY",
+            "DIVINE_MERCY_SUNDAY",
+            "IMMACULATE_HEART_OF_MARY",
+            "PENTECOST_SUNDAY",
+            "CORPUS_CHRISTI_SUNDAY",
+            "NATIVITY_OF_JOHN_THE_BAPTIST",
+            "PETER_AND_PAUL_APOSTLES",
+            "TRANSFIGURATION",
+            "ASSUMPTION",
+            "EXALTATION_OF_THE_HOLY_CROSS",
+            "ALL_SAINTS",
+            "IMMACULATE_CONCEPTION_OF_MARY"
+          ]
+        },
+        "DayOfWeek": {
+          "description": "Day of week (0-6, where 0=Sunday) with automatic validation\n\nThis type ensures that only valid day-of-week values are accepted during\ndeserialization. The value 0 represents Sunday, 1 represents Monday, etc.",
+          "type": "integer",
+          "format": "uint8",
+          "minimum": 0,
+          "maximum": 255
+        },
+        "DateDefException": {
+          "description": "The liturgical day date exception.\nRepresents a condition and the date to set when that condition is met.",
+          "type": "object",
+          "properties": {
+            "when": {
+              "description": "The condition that triggers the exception",
+              "$ref": "#/definitions/ExceptionCondition"
+            },
+            "then": {
+              "description": "The date to set when the condition is met",
+              "$ref": "#/definitions/DateDefExtended"
+            }
+          },
+          "required": [
+            "when",
+            "then"
+          ],
+          "additionalProperties": false
+        },
+        "ExceptionCondition": {
+          "description": "Exception conditions that can trigger a date change.\nDefines various conditions under which a date exception applies.",
+          "anyOf": [
+            {
+              "description": "If the date is between two specified dates",
+              "type": "object",
+              "properties": {
+                "from": {
+                  "description": "The start date of the range",
+                  "$ref": "#/definitions/DateDef"
+                },
+                "to": {
+                  "description": "The end date of the range",
+                  "$ref": "#/definitions/DateDef"
+                },
+                "inclusive": {
+                  "description": "Whether the range is inclusive of the start date and the end date",
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "from",
+                "to",
+                "inclusive"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "description": "If the date is the same as another specified date",
+              "type": "object",
+              "properties": {
+                "date": {
+                  "description": "The date to compare against",
+                  "$ref": "#/definitions/DateDef"
+                }
+              },
+              "required": [
+                "date"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "description": "If the date falls on a specific day of the week",
+              "type": "object",
+              "properties": {
+                "day_of_week": {
+                  "description": "The day of the week to match",
+                  "$ref": "#/definitions/DayOfWeek"
+                }
+              },
+              "required": [
+                "day_of_week"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "DateDefExtended": {
+          "description": "Extended date definition supporting both regular dates and offset dates.\nProvides flexibility for date calculations with optional adjustments.",
+          "anyOf": [
+            {
+              "description": "Regular date definition",
+              "$ref": "#/definitions/DateDef"
+            },
+            {
+              "description": "Date definition with offset",
+              "$ref": "#/definitions/DateDefWithOffset"
+            }
+          ]
+        },
+        "DateDefWithOffset": {
+          "description": "Date definition with offset for adjustments.\nUsed when a date needs to be shifted by a specific number of days.",
+          "type": "object",
+          "properties": {
+            "day_offset": {
+              "description": "The number of days to offset the date",
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "required": [
+            "day_offset"
+          ],
+          "additionalProperties": false
+        },
+        "Precedence": {
+          "description": "Liturgical precedence levels for determining which celebration takes priority.\nDefines the hierarchical order of liturgical celebrations according to UNLY norms.",
+          "type": "string",
+          "enum": [
+            "TRIDUUM_1",
+            "PROPER_OF_TIME_SOLEMNITY_2",
+            "PRIVILEGED_SUNDAY_2",
+            "ASH_WEDNESDAY_2",
+            "WEEKDAY_OF_HOLY_WEEK_2",
+            "WEEKDAY_OF_EASTER_OCTAVE_2",
+            "GENERAL_SOLEMNITY_3",
+            "COMMEMORATION_OF_ALL_THE_FAITHFUL_DEPARTED_3",
+            "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A",
+            "PROPER_SOLEMNITY__DEDICATION_OF_THE_OWN_CHURCH_4B",
+            "PROPER_SOLEMNITY__TITLE_OF_THE_OWN_CHURCH_4C",
+            "PROPER_SOLEMNITY__TITLE_OR_FOUNDER_OR_PRIMARY_PATRON_OF_A_RELIGIOUS_ORG_4D",
+            "GENERAL_LORD_FEAST_5",
+            "UNPRIVILEGED_SUNDAY_6",
+            "GENERAL_FEAST_7",
+            "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_DIOCESE_8A",
+            "PROPER_FEAST__DEDICATION_OF_THE_CATHEDRAL_CHURCH_8B",
+            "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C",
+            "PROPER_FEAST__TITLE_OR_FOUNDER_OR_PRIMARY_PATRON_OF_A_RELIGIOUS_ORG_8D",
+            "PROPER_FEAST__TO_AN_INDIVIDUAL_CHURCH_8E",
+            "PROPER_FEAST_8F",
+            "PRIVILEGED_WEEKDAY_9",
+            "GENERAL_MEMORIAL_10",
+            "PROPER_MEMORIAL__SECOND_PATRON_11A",
+            "PROPER_MEMORIAL_11B",
+            "OPTIONAL_MEMORIAL_12",
+            "WEEKDAY_13"
+          ]
+        },
+        "Rank": {
+          "description": "Liturgical rank indicating the importance and celebration style of a liturgical day",
+          "oneOf": [
+            {
+              "description": "Solemnities are counted among the most important days, whose celebration\nbegins with First Vespers (Evening Prayer I) on the preceding day. Some Solemnities\nare also endowed with their own Vigil Mass, which is to be used on the evening of the\npreceding day, if an evening Mass is celebrated. (UNLY #11)",
+              "type": "string",
+              "const": "SOLEMNITY"
+            },
+            {
+              "description": "On the first day of each week, which is known as the Day of the Lord or the Lord's\nDay, the Church, by an apostolic tradition that draws its origin from the very day of\nthe Resurrection of Christ, celebrates the Paschal Mystery. Hence, Sunday must be\nconsidered the primordial feast day. (UNLY #4)",
+              "type": "string",
+              "const": "SUNDAY"
+            },
+            {
+              "description": "Feasts are celebrated within the limits of the natural day; accordingly they have\nno First Vespers (Evening Prayer I), except in the case of Feasts of the Lord that fall\non a Sunday in Ordinary Time or in Christmas Time and which replace the Sunday\nOffice. (UNLY #13)",
+              "type": "string",
+              "const": "FEAST"
+            },
+            {
+              "description": "**Obligatory memorials** are liturgical commemorations of saints, events, or aspects of the\nfaith. Their observance is mandatory and integrated into the celebration of the occurring\nweekday, following the liturgical norms outlined in the General Instruction of the Roman Missal\nand the Liturgy of the Hours.\nWhen an **obligatory memorial** falls on a weekday during the liturgical season of Lent or a\nprivileged weekday of Advent, it must only be celebrated as an **optional memorial**, as Lent\nand Advent have their own specific liturgical observances that take precedence.",
+              "type": "string",
+              "const": "MEMORIAL"
+            },
+            {
+              "description": "**Optional memorials** are liturgical commemorations of saints, events, or aspects of the\nfaith, but they are not obligatory.\nTheir observance is integrated into the celebration of the occurring weekday, adhering to the\nliturgical norms provided in the General Instruction of the Roman Missal and the Liturgy of\nthe Hours.\nIn cases where multiple **optional memorials** are designated on the same day in the liturgical\ncalendar, only one of them may be celebrated, and the others must be omitted (UNLY #14).\nThis allows for some flexibility in choosing which optional memorial to commemorate when\nmultiple options are available.",
+              "type": "string",
+              "const": "OPTIONAL_MEMORIAL"
+            },
+            {
+              "description": "The days of the week that follow Sunday are called weekdays; however, they are\ncelebrated differently according to the importance of each.\n\na. Ash Wednesday and the weekdays of Holy Week, from Monday up to and including\n   Thursday, take precedence over all other celebrations.\nb. The weekdays of Advent from 17 December up to and including 24 December\n   and all the weekdays of Lent have precedence over Obligatory Memorials.\nc. Other weekdays give way to all Solemnities and Feasts and are combined with\n   Memorials.\n\n (UNLY #16)",
+              "type": "string",
+              "const": "WEEKDAY"
+            }
+          ]
+        },
+        "SeasonInfo": {
+          "description": "Liturgical season information with localized name.",
+          "type": "object",
+          "properties": {
+            "key": {
+              "description": "The season key",
+              "$ref": "#/definitions/Season"
+            },
+            "name": {
+              "description": "The localized name of the season",
+              "type": "string"
+            }
+          },
+          "required": [
+            "key",
+            "name"
+          ],
+          "additionalProperties": false
+        },
+        "Season": {
+          "description": "Liturgical seasons of the Church year.\nRepresents the major periods that structure the liturgical calendar.",
+          "oneOf": [
+            {
+              "description": "Advent",
+              "type": "string",
+              "const": "ADVENT"
+            },
+            {
+              "description": "Christmas Time",
+              "type": "string",
+              "const": "CHRISTMAS_TIME"
+            },
+            {
+              "description": "Lent",
+              "type": "string",
+              "const": "LENT"
+            },
+            {
+              "description": "Paschal Triduum",
+              "type": "string",
+              "const": "PASCHAL_TRIDUUM"
+            },
+            {
+              "description": "Easter Time",
+              "type": "string",
+              "const": "EASTER_TIME"
+            },
+            {
+              "description": "Ordinary Time",
+              "type": "string",
+              "const": "ORDINARY_TIME"
+            }
+          ]
+        },
+        "PeriodInfo": {
+          "description": "Liturgical period information with localized name.",
+          "type": "object",
+          "properties": {
+            "key": {
+              "description": "The period key",
+              "$ref": "#/definitions/Period"
+            },
+            "name": {
+              "description": "The localized name of the period",
+              "type": "string"
+            }
+          },
+          "required": [
+            "key",
+            "name"
+          ],
+          "additionalProperties": false
+        },
+        "Period": {
+          "description": "Specific periods within liturgical seasons.\nDefines sub-periods that have special liturgical characteristics or rules.",
+          "oneOf": [
+            {
+              "description": "The eight days following Christmas (December 25 - January 1)",
+              "type": "string",
+              "const": "CHRISTMAS_OCTAVE"
+            },
+            {
+              "description": "Days before Epiphany (January 2 to the day before Epiphany)",
+              "type": "string",
+              "const": "DAYS_BEFORE_EPIPHANY"
+            },
+            {
+              "description": "Days from Epiphany to the Presentation (January 6 to the day before the Presentation of the Lord)",
+              "type": "string",
+              "const": "DAYS_FROM_EPIPHANY"
+            },
+            {
+              "description": "Period from Christmas to the Presentation of the Lord",
+              "type": "string",
+              "const": "CHRISTMAS_TO_PRESENTATION_OF_THE_LORD"
+            },
+            {
+              "description": "Period from the Presentation to Holy Thursday",
+              "type": "string",
+              "const": "PRESENTATION_OF_THE_LORD_TO_HOLY_THURSDAY"
+            },
+            {
+              "description": "Holy Week (Palm Sunday to Holy Saturday)",
+              "type": "string",
+              "const": "HOLY_WEEK"
+            },
+            {
+              "description": "The eight days following Easter Sunday",
+              "type": "string",
+              "const": "EASTER_OCTAVE"
+            },
+            {
+              "description": "Early Ordinary Time (after the Presentation of the Lord to the day before Ash Wednesday)",
+              "type": "string",
+              "const": "EARLY_ORDINARY_TIME"
+            },
+            {
+              "description": "Late Ordinary Time (after Pentecost to the day before the First Sunday of Advent)",
+              "type": "string",
+              "const": "LATE_ORDINARY_TIME"
+            }
+          ]
+        },
+        "CommonInfo": {
+          "description": "Liturgical common information with localized name.",
+          "type": "object",
+          "properties": {
+            "key": {
+              "description": "The common key",
+              "$ref": "#/definitions/Common"
+            },
+            "name": {
+              "description": "The localized name of the common",
+              "type": "string"
+            }
+          },
+          "required": [
+            "key",
+            "name"
+          ],
+          "additionalProperties": false
+        },
+        "Common": {
+          "description": "Common prayers and readings for different categories of saints and celebrations.\nProvides standardized liturgical texts for various types of commemorations.",
+          "type": "string",
+          "enum": [
+            "NONE",
+            "DEDICATION_ANNIVERSARY__INSIDE",
+            "DEDICATION_ANNIVERSARY__OUTSIDE",
+            "BLESSED_VIRGIN_MARY__ORDINARY_TIME",
+            "BLESSED_VIRGIN_MARY__ADVENT",
+            "BLESSED_VIRGIN_MARY__CHRISTMAS",
+            "BLESSED_VIRGIN_MARY__EASTER",
+            "MARTYRS__OUTSIDE_EASTER__SEVERAL",
+            "MARTYRS__OUTSIDE_EASTER__ONE",
+            "MARTYRS__EASTER__SEVERAL",
+            "MARTYRS__EASTER__ONE",
+            "MARTYRS__MISSIONARY__SEVERAL",
+            "MARTYRS__MISSIONARY__ONE",
+            "MARTYRS__VIRGIN",
+            "MARTYRS__WOMAN",
+            "PASTORS__POPE_OR_BISHOP",
+            "PASTORS__BISHOP",
+            "PASTORS__SEVERAL",
+            "PASTORS__ONE",
+            "PASTORS__FOUNDER__ONE",
+            "PASTORS__FOUNDER__SEVERAL",
+            "PASTORS__MISSIONARY",
+            "DOCTORS_OF_THE_CHURCH",
+            "VIRGINS__SEVERAL",
+            "VIRGINS__ONE",
+            "SAINTS__ALL__SEVERAL",
+            "SAINTS__ALL__ONE",
+            "SAINTS__ABBOT",
+            "SAINT__MONK",
+            "SAINTS__NUN",
+            "SAINTS__RELIGIOUS",
+            "SAINTS__MERCY_WORKS",
+            "SAINTS__EDUCATORS",
+            "SAINTS__HOLY_WOMEN"
+          ]
+        },
+        "ColorInfo": {
+          "description": "Liturgical color information with localized name.",
+          "type": "object",
+          "properties": {
+            "key": {
+              "description": "The color key",
+              "$ref": "#/definitions/Color"
+            },
+            "name": {
+              "description": "The localized name of the color",
+              "type": "string"
+            }
+          },
+          "required": [
+            "key",
+            "name"
+          ],
+          "additionalProperties": false
+        },
+        "Color": {
+          "description": "Liturgical colors used in the celebration of Mass and other liturgical services.\nEach color has specific liturgical significance and is used during particular seasons or celebrations.",
+          "oneOf": [
+            {
+              "description": "Red - used for martyrs, Pentecost, and Palm Sunday",
+              "type": "string",
+              "const": "RED"
+            },
+            {
+              "description": "Rose - used on Gaudete Sunday (3rd Advent) and Laetare Sunday (4th Lent)",
+              "type": "string",
+              "const": "ROSE"
+            },
+            {
+              "description": "Purple - used during Advent and Lent",
+              "type": "string",
+              "const": "PURPLE"
+            },
+            {
+              "description": "Green - used during Ordinary Time",
+              "type": "string",
+              "const": "GREEN"
+            },
+            {
+              "description": "White - used for Christmas, Easter, and most feasts",
+              "type": "string",
+              "const": "WHITE"
+            },
+            {
+              "description": "Gold - used for solemn celebrations and special occasions",
+              "type": "string",
+              "const": "GOLD"
+            },
+            {
+              "description": "Black - used for funerals and All Souls' Day",
+              "type": "string",
+              "const": "BLACK"
+            }
+          ]
+        },
+        "TitlesDef": {
+          "description": "Title definition that can be either a simple list or a compound definition.\nSupports both direct title lists and compound title operations.",
+          "anyOf": [
+            {
+              "description": "Simple list of titles",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Title"
+              }
+            },
+            {
+              "description": "Compound title definition with append/prepend operations",
+              "$ref": "#/definitions/CompoundTitle"
+            }
+          ]
+        },
+        "Title": {
+          "description": "Titles and patronages associated with saints and blessed.\nRepresents the various ecclesiastical titles and patronages that can be assigned to entities.",
+          "type": "string",
+          "enum": [
+            "ABBESS",
+            "ABBOT",
+            "APOSTLE",
+            "ARCHANGEL",
+            "BISHOP",
+            "DEACON",
+            "DOCTOR_OF_THE_CHURCH",
+            "EMPRESS",
+            "EVANGELIST",
+            "FIRST_BISHOP",
+            "HERMIT",
+            "KING",
+            "MARTYR",
+            "MISSIONARY",
+            "MONK",
+            "MOTHER_AND_QUEEN_OF_CHILE",
+            "PARENTS_OF_THE_BLESSED_VIRGIN_MARY",
+            "POPE",
+            "PATRIARCH",
+            "PILGRIM",
+            "PRIEST",
+            "PROPHET",
+            "PROTO_MARTYR_OF_OCEANIA",
+            "QUEEN",
+            "QUEEN_OF_POLAND",
+            "RELIGIOUS",
+            "SLAVIC_MISSIONARY",
+            "SPOUSE_OF_THE_BLESSED_VIRGIN_MARY",
+            "THE_FIRST_MARTYR",
+            "VIRGIN",
+            "COPATRON_OF_EUROPE",
+            "COPATRON_OF_IRELAND",
+            "COPATRON_OF_CANADA",
+            "COPATRONESS_OF_EUROPE",
+            "COPATRONESS_OF_FRANCE",
+            "COPATRONESS_OF_IRELAND",
+            "COPATRONESS_OF_ITALY_AND_EUROPE",
+            "COPATRONESS_OF_THE_PHILIPPINES",
+            "PATRON_OF_CANADA",
+            "PATRON_OF_ENGLAND",
+            "PATRON_OF_EUROPE",
+            "PATRON_OF_FRANCE",
+            "PATRON_OF_IRELAND",
+            "PATRON_OF_ITALY",
+            "PATRON_OF_OCEANIA",
+            "PATRON_OF_POLAND",
+            "PATRON_OF_RUSSIA",
+            "PATRON_OF_SCOTLAND",
+            "PATRON_OF_SPAIN",
+            "PATRON_OF_THE_CZECH_NATION",
+            "PATRON_OF_THE_DIOCESE",
+            "PATRON_OF_WALES",
+            "PATRONESS_OF_ALSACE",
+            "PATRONESS_OF_ARGENTINA",
+            "PATRONESS_OF_BRAZIL",
+            "PATRONESS_OF_HUNGARY",
+            "PATRONESS_OF_PUERTO_RICO",
+            "PATRONESS_OF_SLOVAKIA",
+            "PATRONESS_OF_THE_AMERICAS",
+            "PATRONESS_OF_THE_PHILIPPINES",
+            "PATRONESS_OF_THE_PROVINCE_OF_QUEBEC",
+            "PATRONESS_OF_THE_USA",
+            "PATRON_OF_THE_CLERGY_OF_THE_ARCHDIOCESE_OF_LYON",
+            "PATRON_OF_THE_CITY_OF_LYON",
+            "PATRONESS_OF_COSTA_RICA",
+            "PRINCIPAL_PATRON_OF_THE_DIOCESE",
+            "SECOND_PATRON_OF_THE_DIOCESE"
+          ]
+        },
+        "CompoundTitle": {
+          "description": "Compound title definition for combining multiple titles.\nAllows adding titles to the beginning or end of an existing title list.",
+          "type": "object",
+          "properties": {
+            "append": {
+              "description": "The title(s) to add to the end of the existing list of title(s)",
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "$ref": "#/definitions/Title"
+              }
+            },
+            "prepend": {
+              "description": "The title(s) to add to the beginning of the existing list of title(s)",
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "$ref": "#/definitions/Title"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "Entity": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "description": "The unique identifier of the entity",
+              "type": "string"
+            },
+            "type": {
+              "description": "The type of the entity.\n@default EntityType.Person",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/EntityType"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "fullname": {
+              "description": "The full name of the entity.",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "name": {
+              "description": "The short name of the entity, without the canonization level and titles.",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "canonization_level": {
+              "description": "The canonization level of a person.",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/CanonizationLevel"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "date_of_canonization": {
+              "description": "Date of Canonization, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century.",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SaintDateDef"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "date_of_canonization_is_approximative": {
+              "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "date_of_beatification": {
+              "description": "Date of Beatification, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century.",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SaintDateDef"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "date_of_beatification_is_approximative": {
+              "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "hide_canonization_level": {
+              "description": "Specify if the canonization level should not be displayed.\nIt's generally the case when the canonization are already included in the name.",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "titles": {
+              "description": "Titles of the Saint or the Blessed",
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "$ref": "#/definitions/Title"
+              }
+            },
+            "sex": {
+              "description": "Determine if the Saint or the Blessed is a male or a female.",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/Sex"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "hide_titles": {
+              "description": "Specify if the titles should not be displayed.\nIt's generally the case when titles are already included in the name.",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "date_of_dedication": {
+              "description": "Date of Dedication of a church, basilica, or cathedral (or other place of worship),\nas a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century.",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SaintDateDef"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "date_of_birth": {
+              "description": "Date of Birth, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century.",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SaintDateDef"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "date_of_birth_is_approximative": {
+              "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "date_of_death": {
+              "description": "Date of Death, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century.",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SaintDateDef"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "date_of_death_is_approximative": {
+              "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "count": {
+              "description": "Number of person that this definition represent.\nIt could be set as 'many' if the number is not defined.",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SaintCount"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "sources": {
+              "description": "Sources for the information about this entity",
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "string"
+              }
+            },
+            "_todo": {
+              "description": "Internal notes\n@private",
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "additionalProperties": false
+        },
+        "EntityType": {
+          "description": "The type of entity in the liturgical calendar.\nDefines whether the entity represents a person, place, or event.",
+          "oneOf": [
+            {
+              "description": "A person (saint, blessed, or other individual)",
+              "type": "string",
+              "const": "PERSON"
+            },
+            {
+              "description": "A place (shrine, city, or geographical location)",
+              "type": "string",
+              "const": "PLACE"
+            },
+            {
+              "description": "An event (historical or liturgical occurrence)",
+              "type": "string",
+              "const": "EVENT"
+            }
+          ]
+        },
+        "CanonizationLevel": {
+          "description": "Canonization level indicating the official recognition status of a person.\nDefines whether someone is beatified (Blessed) or canonized (Saint).",
+          "oneOf": [
+            {
+              "description": "Beatified person (Blessed) - first step toward sainthood",
+              "type": "string",
+              "const": "BLESSED"
+            },
+            {
+              "description": "Canonized person (Saint) - fully recognized as a saint",
+              "type": "string",
+              "const": "SAINT"
+            }
+          ]
+        },
+        "SaintDateDef": {
+          "description": "Saint date definition supporting various date specifications.\nAllows single dates, date ranges, multiple alternatives, or century specifications.",
+          "anyOf": [
+            {
+              "description": "Single date specification",
+              "$ref": "#/definitions/SaintDate"
+            },
+            {
+              "description": "Date range between two dates",
+              "type": "object",
+              "properties": {
+                "between": {
+                  "description": "The date range (start and end dates)",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/SaintDate"
+                  },
+                  "minItems": 2,
+                  "maxItems": 2
+                }
+              },
+              "required": [
+                "between"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "description": "Multiple alternative dates (any one of them)",
+              "type": "object",
+              "properties": {
+                "or": {
+                  "description": "The list of alternative dates",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/SaintDate"
+                  }
+                }
+              },
+              "required": [
+                "or"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "description": "Century specification (e.g., 12 for 12th century)",
+              "type": "object",
+              "properties": {
+                "century": {
+                  "description": "The century number",
+                  "type": "integer",
+                  "format": "uint32",
+                  "minimum": 0
+                }
+              },
+              "required": [
+                "century"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "SaintDate": {
+          "description": "Saint date representation with different precision levels.\nSupports year-only, year-month, or full date specifications.",
+          "anyOf": [
+            {
+              "description": "Year only (e.g., 1234)",
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0
+            },
+            {
+              "description": "Year and month in \"YYYY-MM\" format (e.g., \"1234-05\")",
+              "type": "string"
+            },
+            {
+              "description": "Full date in \"YYYY-MM-DD\" format (e.g., \"1234-05-15\")",
+              "type": "string"
+            }
+          ]
+        },
+        "Sex": {
+          "description": "Sex of a person.",
+          "oneOf": [
+            {
+              "description": "Male person",
+              "type": "string",
+              "const": "MALE"
+            },
+            {
+              "description": "Female person",
+              "type": "string",
+              "const": "FEMALE"
+            }
+          ]
+        },
+        "SaintCount": {
+          "anyOf": [
+            {
+              "format": "uint32",
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "const": "MANY",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "SundayCycleInfo": {
+          "description": "Sunday cycle information with localized name.",
+          "type": "object",
+          "properties": {
+            "key": {
+              "description": "The Sunday cycle key",
+              "$ref": "#/definitions/SundayCycle"
+            },
+            "name": {
+              "description": "The localized name of the Sunday cycle",
+              "type": "string"
+            }
+          },
+          "required": [
+            "key",
+            "name"
+          ],
+          "additionalProperties": false
+        },
+        "SundayCycle": {
+          "description": "A three-year cycle for Sunday Mass readings (and some solemnities), designated by A, B, or C.\nEach cycle begins on the First Sunday of Advent of the previous civil year and ends on Saturday\nafter the Christ the King Solemnity. The cycles follow each other in alphabetical order.\nC year is always divisible by 3, A has remainder of 1, and B remainder of 2.",
+          "oneOf": [
+            {
+              "description": "Year A",
+              "type": "string",
+              "const": "YEAR_A"
+            },
+            {
+              "description": "Year B",
+              "type": "string",
+              "const": "YEAR_B"
+            },
+            {
+              "description": "Year C",
+              "type": "string",
+              "const": "YEAR_C"
+            }
+          ]
+        },
+        "WeekdayCycleInfo": {
+          "description": "Weekday cycle information with localized name.",
+          "type": "object",
+          "properties": {
+            "key": {
+              "description": "The weekday cycle key",
+              "$ref": "#/definitions/WeekdayCycle"
+            },
+            "name": {
+              "description": "The localized name of the weekday cycle",
+              "type": "string"
+            }
+          },
+          "required": [
+            "key",
+            "name"
+          ],
+          "additionalProperties": false
+        },
+        "WeekdayCycle": {
+          "description": "A two-year cycle for the weekday Mass readings (also called Cycle I and Cycle II).\nOdd-numbered years are the Cycle I (year 1); even-numbered ones are the Cycle II (year 2).",
+          "oneOf": [
+            {
+              "description": "Year 1 (Cycle I)",
+              "type": "string",
+              "const": "YEAR1"
+            },
+            {
+              "description": "Year 2 (Cycle II)",
+              "type": "string",
+              "const": "YEAR2"
+            }
+          ]
+        },
+        "PsalterWeekCycleInfo": {
+          "description": "Psalter week cycle information with localized name.",
+          "type": "object",
+          "properties": {
+            "key": {
+              "description": "The psalter week cycle key",
+              "$ref": "#/definitions/PsalterWeekCycle"
+            },
+            "name": {
+              "description": "The localized name of the psalter week cycle",
+              "type": "string"
+            }
+          },
+          "required": [
+            "key",
+            "name"
+          ],
+          "additionalProperties": false
+        },
+        "PsalterWeekCycle": {
+          "description": "[GILH §133] The four-week cycle of the psalter is coordinated with the liturgical year in such a way that\non the First Sunday of Advent, the First Sunday in Ordinary Time, the First Sunday of Lent,\nand Easter Sunday the cycle is always begun again with Week 1 (others being omitted when necessary).",
+          "oneOf": [
+            {
+              "description": "Week 1",
+              "type": "string",
+              "const": "WEEK1"
+            },
+            {
+              "description": "Week 2",
+              "type": "string",
+              "const": "WEEK2"
+            },
+            {
+              "description": "Week 3",
+              "type": "string",
+              "const": "WEEK3"
+            },
+            {
+              "description": "Week 4",
+              "type": "string",
+              "const": "WEEK4"
+            }
+          ]
+        }
+      },
+      "title": "LiturgicalDay",
+      "description": "A single day in the liturgical calendar with computed values and inheritance information.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The unique identifier of the liturgical day",
+          "type": "string"
+        },
+        "fullname": {
+          "description": "The full name of the liturgical day",
+          "type": "string"
+        },
+        "date": {
+          "description": "The computed date of the liturgical day.",
+          "type": "string"
+        },
+        "date_def": {
+          "description": "The date definition for this liturgical day.",
+          "$ref": "#/definitions/DateDef"
+        },
+        "date_exceptions": {
+          "description": "The date definition exceptions for this liturgical day.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DateDefException"
+          }
+        },
+        "precedence": {
+          "description": "The liturgical precedence for this liturgical day.",
+          "$ref": "#/definitions/Precedence"
+        },
+        "rank": {
+          "description": "The liturgical rank for this liturgical day.",
+          "$ref": "#/definitions/Rank"
+        },
+        "rank_name": {
+          "description": "The localized liturgical rank for this liturgical day.",
+          "type": "string"
+        },
+        "allow_similar_rank_items": {
+          "description": "Allows similar items with the same rank and same or lower precedence\nto coexist without this liturgical day overwriting them.",
+          "type": "boolean"
+        },
+        "is_holy_day_of_obligation": {
+          "description": "Holy days of obligation are days on which the faithful are expected to attend Mass,\nand engage in rest from work and recreation.",
+          "type": "boolean"
+        },
+        "is_optional": {
+          "description": "Indicates if this liturgical day is optional within a specific liturgical calendar.",
+          "type": "boolean"
+        },
+        "seasons": {
+          "description": "The liturgical seasons to which this liturgical day belongs.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SeasonInfo"
+          }
+        },
+        "periods": {
+          "description": "The liturgical periods to which this liturgical day belongs.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PeriodInfo"
+          }
+        },
+        "commons": {
+          "description": "The common prayers, readings, and chants used for celebrating saints or\nfeasts that belong to a specific category, such as martyrs, virgins, pastors, or the Blessed\nVirgin Mary.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CommonInfo"
+          }
+        },
+        "colors": {
+          "description": "The liturgical colors for this liturgical day.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ColorInfo"
+          }
+        },
+        "titles": {
+          "description": "The titles for this liturgical day.",
+          "$ref": "#/definitions/TitlesDef"
+        },
+        "entities": {
+          "description": "The entities (Saints, Blessed, or Places) linked to this liturgical day.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Entity"
+          }
+        },
+        "week_of_season": {
+          "description": "The week number of the current liturgical season.\nStarts from `1`, except in the seasons of lent,\nthe week of Ash Wednesday to the next Saturday is counted as `0`.",
+          "type": "integer",
+          "format": "uint32",
+          "minimum": 0
+        },
+        "day_of_season": {
+          "description": "The day number within the current liturgical season.",
+          "type": "integer",
+          "format": "uint32",
+          "minimum": 0
+        },
+        "day_of_week": {
+          "description": "The day of the week for this liturgical day.\nReturns a number from 0 (Sunday) to 6 (Saturday).",
+          "$ref": "#/definitions/DayOfWeek"
+        },
+        "nth_day_of_week_in_month": {
+          "description": "The nth occurrence of this day of the week within the current month.\nFor example, the 3rd Sunday of the month would have nth_day_of_week_in_month = 3.",
+          "type": "integer",
+          "format": "uint32",
+          "minimum": 0
+        },
+        "start_of_season": {
+          "description": "The first day of the current liturgical season for this liturgical day.",
+          "type": "string"
+        },
+        "end_of_season": {
+          "description": "The last day of the current liturgical season for this liturgical day.",
+          "type": "string"
+        },
+        "start_of_liturgical_year": {
+          "description": "The first day of the current liturgical year for this liturgical day,\ni.e. the first Sunday of Advent.",
+          "type": "string"
+        },
+        "end_of_liturgical_year": {
+          "description": "The last day of the current liturgical year for this liturgical day,\ni.e. the last Saturday of Ordinary Time, in the 34th week.",
+          "type": "string"
+        },
+        "sunday_cycle": {
+          "description": "The Sunday cycle to which this liturgical day belongs.",
+          "$ref": "#/definitions/SundayCycleInfo"
+        },
+        "weekday_cycle": {
+          "description": "The weekday cycle to which this liturgical day belongs.",
+          "$ref": "#/definitions/WeekdayCycleInfo"
+        },
+        "psalter_week": {
+          "description": "The psalter week cycle to which this liturgical day belongs.",
+          "$ref": "#/definitions/PsalterWeekCycleInfo"
+        },
+        "from_calendar_id": {
+          "description": "The ID of the calendar where this liturgical day is defined.\nIndicates the source calendar in the inheritance chain.",
+          "type": "string"
+        },
+        "parent_overrides": {
+          "description": "Contains the differences between this liturgical day and its parent definitions.\nEach element in the array represents the diff between two successive overrides in the inheritance chain.",
+          "type": "array",
+          "items": {
+            "$ref": "#"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "fullname",
+        "date",
+        "date_def",
+        "date_exceptions",
+        "precedence",
+        "rank",
+        "rank_name",
+        "allow_similar_rank_items",
+        "is_holy_day_of_obligation",
+        "is_optional",
+        "seasons",
+        "periods",
+        "commons",
+        "colors",
+        "titles",
+        "entities",
+        "week_of_season",
+        "day_of_season",
+        "day_of_week",
+        "nth_day_of_week_in_month",
+        "start_of_season",
+        "end_of_season",
+        "start_of_liturgical_year",
+        "end_of_liturgical_year",
+        "sunday_cycle",
+        "weekday_cycle",
+        "psalter_week",
+        "from_calendar_id",
+        "parent_overrides"
       ],
       "additionalProperties": false
     }

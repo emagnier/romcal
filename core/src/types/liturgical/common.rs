@@ -103,3 +103,12 @@ pub enum CommonDefinition {
     Educators,
     HolyWomen,
 }
+
+/// Liturgical common information with localized name.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+pub struct CommonInfo {
+    /// The common key
+    pub key: Common,
+    /// The localized name of the common
+    pub name: String,
+}

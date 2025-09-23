@@ -25,3 +25,12 @@ pub enum Period {
     /// Late Ordinary Time (after Pentecost to the day before the First Sunday of Advent)
     LateOrdinaryTime,
 }
+
+/// Liturgical period information with localized name.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+pub struct PeriodInfo {
+    /// The period key
+    pub key: Period,
+    /// The localized name of the period
+    pub name: String,
+}

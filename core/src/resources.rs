@@ -7,7 +7,7 @@ use crate::types::resource::ResourcesMetadata;
 // Type aliases
 pub type LocaleId = String;
 
-// Structs
+/// Resources definition
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
 pub struct Resources {
     #[serde(rename = "$schema")]

@@ -19,3 +19,12 @@ pub enum Season {
     /// Ordinary Time
     OrdinaryTime,
 }
+
+/// Liturgical season information with localized name.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+pub struct SeasonInfo {
+    /// The season key
+    pub key: Season,
+    /// The localized name of the season
+    pub name: String,
+}

@@ -6,7 +6,7 @@ use crate::types::{CalendarMetadata, DayDefinition, ParticularConfig};
 // Type aliases
 pub type CalendarId = String;
 
-// Structs
+/// Calendar definition
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
 pub struct CalendarDefinition {
     #[serde(rename = "$schema")]

@@ -21,3 +21,12 @@ pub enum Color {
     /// Black - used for funerals and All Souls' Day
     Black,
 }
+
+/// Liturgical color information with localized name.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+pub struct ColorInfo {
+    /// The color key
+    pub key: Color,
+    /// The localized name of the color
+    pub name: String,
+}

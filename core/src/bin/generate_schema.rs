@@ -1,4 +1,5 @@
 use romcal_core::calendar_definition::*;
+use romcal_core::liturgical_day::*;
 use romcal_core::resources::*;
 use schemars::schema_for;
 use serde_json::Value;
@@ -184,11 +185,12 @@ fn merge_definitions_into_types_schema(types_schema: &mut Value, schema_values: 
     }
 }
 
-/// Add main types (CalendarDefinition and Resources) to the schema
+/// Add main types (CalendarDefinition, Resources, and LiturgicalDay) to the schema
 fn add_main_types_to_schema(
     types_schema: &mut Value,
     calendar_value: &mut Value,
     resources_value: &mut Value,
+    liturgical_day_value: &mut Value,
 ) {
     if let Some(types_definitions) = types_schema.get_mut("definitions") {
         if let Some(definitions_obj) = types_definitions.as_object_mut() {
@@ -203,6 +205,12 @@ fn add_main_types_to_schema(
                 resources_obj.remove("$schema");
                 definitions_obj.insert("Resources".to_string(), resources_value.clone());
             }
+
+            // Add LiturgicalDay (it's the root type, not in definitions)
+            if let Some(liturgical_day_obj) = liturgical_day_value.as_object_mut() {
+                liturgical_day_obj.remove("$schema");
+                definitions_obj.insert("LiturgicalDay".to_string(), liturgical_day_value.clone());
+            }
         }
     }
 }
@@ -215,7 +223,8 @@ fn generate_types_schema(schemas_dir: &Path) -> Result<(), Box<dyn std::error::E
         "title": "RomcalTypes",
         "oneOf": [
             { "$ref": "#/definitions/CalendarDefinition" },
-            { "$ref": "#/definitions/Resources" }
+            { "$ref": "#/definitions/Resources" },
+            { "$ref": "#/definitions/LiturgicalDay" }
         ],
         "definitions": {}
     });
@@ -223,9 +232,14 @@ fn generate_types_schema(schemas_dir: &Path) -> Result<(), Box<dyn std::error::E
     // Generate schemas for all major types and convert to values
     let mut calendar_value = serde_json::to_value(schema_for!(CalendarDefinition))?;
     let mut resources_value = serde_json::to_value(schema_for!(Resources))?;
+    let mut liturgical_day_value = serde_json::to_value(schema_for!(LiturgicalDay))?;
 
     // Apply fixes to all schemas
-    let mut schema_values = vec![&mut calendar_value, &mut resources_value];
+    let mut schema_values = vec![
+        &mut calendar_value,
+        &mut resources_value,
+        &mut liturgical_day_value,
+    ];
     apply_fixes_to_all_schemas(&mut schema_values);
 
     // Apply SaintCount fix to all schemas
@@ -238,7 +252,12 @@ fn generate_types_schema(schemas_dir: &Path) -> Result<(), Box<dyn std::error::E
     merge_definitions_into_types_schema(&mut types_schema, &schema_refs);
 
     // Add the main types as well
-    add_main_types_to_schema(&mut types_schema, &mut calendar_value, &mut resources_value);
+    add_main_types_to_schema(
+        &mut types_schema,
+        &mut calendar_value,
+        &mut resources_value,
+        &mut liturgical_day_value,
+    );
 
     // Write the types schema
     let schema_json = serde_json::to_string_pretty(&types_schema)?;
