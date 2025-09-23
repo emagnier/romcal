@@ -1451,7 +1451,7 @@
       },
       "additionalProperties": false
     },
-    "EntityDefinition": {
+    "Entity": {
       "type": "object",
       "properties": {
         "id": {
@@ -3271,7 +3271,7 @@
           },
           "additionalProperties": false
         },
-        "EntityDefinition": {
+        "Entity": {
           "type": "object",
           "properties": {
             "id": {
@@ -3720,7 +3720,7 @@
             "null"
           ],
           "items": {
-            "$ref": "#/definitions/EntityDefinition"
+            "$ref": "#/definitions/Entity"
           }
         }
       },

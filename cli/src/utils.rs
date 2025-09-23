@@ -310,15 +310,15 @@ mod tests {
     use super::*;
     use std::collections::BTreeMap;
 
-    fn create_test_entity(id: &str, name: &str) -> romcal_core::EntityDefinition {
-        let mut entity = romcal_core::EntityDefinition::new(id.to_string());
+    fn create_test_entity(id: &str, name: &str) -> romcal_core::Entity {
+        let mut entity = romcal_core::Entity::new(id.to_string());
         entity.name = Some(name.to_string());
         entity
     }
 
     fn create_test_resources_definition(
         locale: &str,
-        entities: Vec<romcal_core::EntityDefinition>,
+        entities: Vec<romcal_core::Entity>,
     ) -> romcal_core::Resources {
         let mut resources = romcal_core::Resources::new(locale.to_string());
         resources.entities = Some(entities);
@@ -327,7 +327,7 @@ mod tests {
 
     fn create_test_resources_definition_with_metadata(
         locale: &str,
-        entities: Vec<romcal_core::EntityDefinition>,
+        entities: Vec<romcal_core::Entity>,
         metadata: romcal_core::types::resource::ResourcesMetadata,
     ) -> romcal_core::Resources {
         let mut resources = romcal_core::Resources::new(locale.to_string());

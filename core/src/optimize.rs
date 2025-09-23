@@ -553,7 +553,7 @@ mod tests {
         CalendarJurisdiction, CalendarType, DayDefinition, EntityPointer,
     };
     use crate::types::entity::EntityOverride;
-    use crate::types::EntityType;
+    use crate::types::entity::EntityType;
 
     fn create_test_calendar_definition() -> CalendarDefinition {
         CalendarDefinition {
@@ -614,7 +614,7 @@ mod tests {
             locale: "en".to_string(),
             metadata: None,
             entities: Some(vec![
-                crate::resources::EntityDefinition {
+                crate::types::entity::Entity {
                     id: "john_the_baptist".to_string(),
                     r#type: Some(EntityType::Person),
                     fullname: Some("John the Baptist".to_string()),
@@ -637,7 +637,7 @@ mod tests {
                     sources: None,
                     _todo: None,
                 },
-                crate::resources::EntityDefinition {
+                crate::types::entity::Entity {
                     id: "john_the_evangelist".to_string(),
                     r#type: Some(EntityType::Person),
                     fullname: Some("John the Evangelist".to_string()),
@@ -660,7 +660,7 @@ mod tests {
                     sources: None,
                     _todo: None,
                 },
-                crate::resources::EntityDefinition {
+                crate::types::entity::Entity {
                     id: "unused_entity".to_string(),
                     r#type: Some(EntityType::Person),
                     fullname: Some("Unused Entity".to_string()),

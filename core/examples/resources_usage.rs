@@ -1,12 +1,13 @@
 use romcal_core::resources::*;
 use romcal_core::types::*;
+use romcal_core::Entity;
 use std::collections::BTreeMap;
 
 fn main() {
     // Example of using resource types
 
     // Create an entity definition for a saint
-    let mut saint_definition = EntityDefinition::new("john_the_baptist".to_string());
+    let mut saint_definition = Entity::new("john_the_baptist".to_string());
     saint_definition.name = Some("Jean-Baptiste".to_string());
     saint_definition.fullname = Some("Saint Jean-Baptiste, Prophète et Martyr".to_string());
     saint_definition.canonization_level = Some(CanonizationLevel::Saint);
@@ -20,7 +21,7 @@ fn main() {
     ]);
 
     // Create an entity definition for a place
-    let mut place_definition = EntityDefinition::new("lourdes".to_string());
+    let mut place_definition = Entity::new("lourdes".to_string());
     place_definition.r#type = Some(EntityType::Place);
     place_definition.name = Some("Lourdes".to_string());
     place_definition.fullname = Some("Notre-Dame de Lourdes".to_string());
@@ -98,7 +99,7 @@ fn main() {
 
     // Example of entity merging
     let mut additional_resources = Resources::new("fr".to_string());
-    let mut additional_saint = EntityDefinition::new("mary".to_string());
+    let mut additional_saint = Entity::new("mary".to_string());
     additional_saint.name = Some("Marie".to_string());
     additional_saint.fullname = Some("Sainte Marie, Mère de Dieu".to_string());
     additional_saint.canonization_level = Some(CanonizationLevel::Saint);
