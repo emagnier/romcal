@@ -146,4 +146,21 @@ impl Preset {
         crate::optimize::optimize(self)
             .map_err(|e| serde_json::Error::io(std::io::Error::other(e.to_string())))
     }
+
+    /// Generate liturgical days for the Proper of Time for a given liturgical year
+    ///
+    /// # Arguments
+    ///
+    /// * `year` - The liturgical year (e.g., 2026 for liturgical year 2025-2026)
+    ///
+    /// # Returns
+    ///
+    /// A vector of liturgical days for the Proper of Time
+    ///
+    /// # Errors
+    ///
+    /// Returns an error if the year is invalid or if there's a calculation error
+    pub fn proper_of_time(&self, year: i32) -> crate::RomcalResult<Vec<crate::LiturgicalDay>> {
+        crate::proper_of_time::ProperOfTime::new(self.clone(), year)?.generate_all()
+    }
 }

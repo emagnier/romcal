@@ -11,13 +11,15 @@ mod utils;
 
 // Import command modules
 use commands::dates;
+use commands::days;
 use commands::list;
 use commands::optimize_preset;
 use commands::show_preset;
 use error::RomcalCliError;
 
 use crate::enums::{
-    CliCalendarContext, CliEasterCalculationType, CliOutputFormat, OutputFormat, ValidationType,
+    CliCalendarContext, CliEasterCalculationType, CliOutputFormat, LiturgicalDayFilter,
+    OutputFormat, ValidationType,
 };
 use crate::preset::create_preset;
 
@@ -100,6 +102,16 @@ enum Commands {
 
         /// Year for date calculations (default: current year)
         year: Option<i32>,
+    },
+    /// Generate liturgical days for the Proper of Time
+    Days {
+        /// Year for liturgical days generation (default: current year)
+        year: Option<i32>,
+
+        /// Filter to show only specific properties of liturgical days
+        /// Can be specified multiple times to include multiple properties
+        #[arg(long, value_delimiter = ',')]
+        filter: Option<Vec<LiturgicalDayFilter>>,
     },
     /// List various romcal elements
     List {
@@ -205,6 +217,7 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
         Commands::Dates { date_name, year } => {
             dates::handle(&date_name, year, output_format, preset)
         }
+        Commands::Days { year, filter } => days::handle(year, filter, preset),
         Commands::List { element } => match element {
             ListCommand::Calendars { tree } => list::handle_calendars(output_format, tree),
             ListCommand::Locales { tree } => list::handle_locales(output_format, tree),

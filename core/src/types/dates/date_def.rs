@@ -13,7 +13,7 @@ pub enum DateDef {
         /// The month (1-12)
         month: MonthIndex,
         /// The day of the month (1-31)
-        date: u32,
+        date: u8,
         /// Optional day offset for adjustments
         #[serde(skip_serializing_if = "Option::is_none")]
         day_offset: Option<i32>,
@@ -33,7 +33,7 @@ pub enum DateDef {
         /// The day of the week (0=Sunday, 1=Monday, etc.)
         day_of_week: DayOfWeek,
         /// Which occurrence of the weekday (1st, 2nd, 3rd, etc.)
-        nth_week_in_month: u32,
+        nth_week_in_month: u8,
         /// Optional day offset for adjustments
         #[serde(skip_serializing_if = "Option::is_none")]
         day_offset: Option<i32>,

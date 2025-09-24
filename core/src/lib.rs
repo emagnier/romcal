@@ -20,6 +20,7 @@ pub mod generated_constants;
 pub mod liturgical_day;
 pub mod optimize;
 pub mod preset;
+pub mod proper_of_time;
 pub mod resources;
 pub mod types;
 
@@ -28,7 +29,8 @@ pub use dates::LiturgicalDates;
 pub use error::{validate_range, validate_year, RomcalError, RomcalResult, Validate};
 pub use generated_constants::{CALENDAR_IDS, LOCALE_CODES};
 pub use liturgical_day::*;
-pub use preset::Preset;
+pub use preset::{Preset, PresetPartial};
+pub use proper_of_time::ProperOfTime;
 pub use resources::*;
 pub use types::entity::SaintCount;
 pub use types::entity::{Entity, EntityId};

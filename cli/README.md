@@ -59,6 +59,44 @@ romcal list-locales
 
 ## Commands
 
+### Generate Liturgical Days
+
+The `days` command generates liturgical days for the Proper of Time and exports them in YAML format.
+
+```bash
+# Generate all liturgical days for current year
+romcal days
+
+# Generate all liturgical days for 2026
+romcal days 2026
+
+# Show only specific properties
+romcal days 2026 --filter id,fullname,date
+
+# Show only precedence and rank
+romcal days 2026 --filter precedence,rank,colors
+
+# Use liturgical year context
+romcal days 2026 --context liturgical
+
+# Use French locale
+romcal days 2026 --locale fr
+```
+
+**Available Filters:**
+
+- `id`, `fullname`, `date` - Basic information
+- `precedence`, `rank`, `rank-name` - Liturgical hierarchy
+- `colors`, `seasons`, `periods` - Visual and temporal information
+- `is-holy-day-of-obligation`, `is-optional` - Observance rules
+- `week-of-season`, `day-of-season`, `day-of-week` - Temporal metadata
+- `sunday-cycle`, `weekday-cycle`, `psalter-week` - Liturgical cycles
+- `start-of-season`, `end-of-season` - Season boundaries
+- `start-of-liturgical-year`, `end-of-liturgical-year` - Year boundaries
+- `commons`, `titles`, `entities` - Content and metadata
+- `allow-similar-rank-items`, `from-calendar-id`, `parent-overrides` - Configuration
+- And many more...
+
 ### Date Calculations
 
 The `dates` command allows you to calculate specific liturgical dates. All date commands return the date in YYYY-MM-DD format.
@@ -139,15 +177,16 @@ romcal validate definitions "data/definitions/**/*.json"
 
 ### Information
 
-| Command               | Description                              |
-| --------------------- | ---------------------------------------- |
-| `dates`               | Calculate liturgical dates for a year    |
-| `list-calendars`      | List available calendars                 |
-| `list-calendars-tree` | Display calendar hierarchy as a tree     |
-| `list-locales`        | List supported locales                   |
-| `preset`              | Show current preset information          |
-| `optimize-preset`     | Optimize preset and generate JSON bundle |
-| `validate`            | Validate JSON files against schemas      |
+| Command               | Description                                 |
+| --------------------- | ------------------------------------------- |
+| `days`                | Generate liturgical days for Proper of Time |
+| `dates`               | Calculate liturgical dates for a year       |
+| `list-calendars`      | List available calendars                    |
+| `list-calendars-tree` | Display calendar hierarchy as a tree        |
+| `list-locales`        | List supported locales                      |
+| `preset`              | Show current preset information             |
+| `optimize-preset`     | Optimize preset and generate JSON bundle    |
+| `validate`            | Validate JSON files against schemas         |
 
 ## Options
 
@@ -201,6 +240,24 @@ All commands support the following output formats:
 ## Examples
 
 ```bash
+# Generate liturgical days (uses current year)
+romcal days
+
+# Generate liturgical days for specific year
+romcal days 2026
+
+# Show only specific properties
+romcal days 2026 --filter id,fullname,date
+
+# Show only precedence and rank
+romcal days 2026 --filter precedence,rank,colors
+
+# Use liturgical year context
+romcal days 2026 --context liturgical
+
+# Use French locale
+romcal days 2026 --locale fr
+
 # Basic date calculations (uses current year)
 romcal dates easter_sunday
 romcal dates all_saints
@@ -278,6 +335,27 @@ romcal list-calendars -f csv | tr ',' '\n' | head -5
 
 ```
 2024-03-31
+```
+
+**Liturgical days (days command):**
+
+```yaml
+- id: advent_1_sunday
+  fullname: 'First Sunday of Advent'
+  date: '2025-11-30'
+  precedence: 1
+  rank: 1
+  colors: ['purple']
+  seasons: ['advent']
+  # ... other properties
+- id: advent_1_monday
+  fullname: 'Monday of the First Week of Advent'
+  date: '2025-12-01'
+  precedence: 2
+  rank: 2
+  colors: ['purple']
+  seasons: ['advent']
+  # ... other properties
 ```
 
 **List commands:**

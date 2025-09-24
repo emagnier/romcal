@@ -179,7 +179,7 @@ impl LiturgicalDates {
         }
 
         let first_sunday = self.get_first_sunday_of_advent_date(Some(year));
-        let date = Self::add_days(first_sunday, (week - 1) as i64 * 7 + (dow - 1) as i64);
+        let date = Self::add_days(first_sunday, (week - 1) as i64 * 7 + dow as i64);
 
         // If the date is on or after December 17 and it's not a Sunday, return None
         if date.month() == 12 && date.day() >= 17 && date.weekday() != Weekday::Sun {
@@ -338,6 +338,7 @@ impl LiturgicalDates {
     }
 
     /// Gets the date of a weekday before Epiphany (and from January 2)
+    /// Only returns weekdays (Monday-Saturday), ignoring Sundays
     pub fn get_weekday_before_epiphany_date(
         &self,
         day: u8,
@@ -351,6 +352,7 @@ impl LiturgicalDates {
 
         self.all_dates_before_epiphany(Some(year))
             .iter()
+            .filter(|d| d.weekday() != Weekday::Sun) // Ignore Sundays
             .find(|d| d.day() == day as u32)
             .copied()
     }
@@ -1126,6 +1128,33 @@ mod tests {
         // Test invalid parameters
         assert!(dates.get_weekday_before_epiphany_date(1, None).is_none()); // Too early
         assert!(dates.get_weekday_before_epiphany_date(9, None).is_none()); // Too late
+    }
+
+    #[test]
+    fn test_weekday_before_epiphany_ignores_sundays() {
+        let config = Preset::default();
+        let dates = LiturgicalDates::new(config, 2026).unwrap();
+
+        // Get all weekdays before epiphany for 2026
+        let all_dates = dates.all_dates_before_epiphany(Some(2026));
+
+        // Find all Sundays in the range
+        let sundays: Vec<_> = all_dates
+            .iter()
+            .filter(|d| d.weekday() == Weekday::Sun)
+            .collect();
+
+        // For each Sunday, verify that get_weekday_before_epiphany_date returns None
+        for sunday in sundays {
+            let day = sunday.day() as u8;
+            let result = dates.get_weekday_before_epiphany_date(day, Some(2026));
+            assert!(
+                result.is_none(),
+                "get_weekday_before_epiphany_date should ignore Sunday {} (day {})",
+                sunday.format("%Y-%m-%d"),
+                day
+            );
+        }
     }
 
     #[test]

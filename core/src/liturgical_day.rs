@@ -83,7 +83,7 @@ pub struct LiturgicalDay {
 
     /// The nth occurrence of this day of the week within the current month.
     /// For example, the 3rd Sunday of the month would have nth_day_of_week_in_month = 3.
-    pub nth_day_of_week_in_month: u32,
+    pub nth_day_of_week_in_month: u8,
 
     /// The first day of the current liturgical season for this liturgical day.
     pub start_of_season: String, // in ISO 8601 format: YYYY-MM-DD
@@ -303,7 +303,7 @@ impl LiturgicalDay {
     }
 
     /// Sets the nth occurrence of this day of the week within the current month.
-    pub fn with_nth_day_of_week_in_month(mut self, nth: u32) -> Self {
+    pub fn with_nth_day_of_week_in_month(mut self, nth: u8) -> Self {
         self.nth_day_of_week_in_month = nth;
         self
     }
