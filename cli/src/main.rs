@@ -17,9 +17,9 @@ use commands::optimize_preset;
 use commands::show_preset;
 use error::RomcalCliError;
 
+use crate::enums::liturgical_day_filter::LiturgicalDayFilterWrapper;
 use crate::enums::{
-    CliCalendarContext, CliEasterCalculationType, CliOutputFormat, LiturgicalDayFilter,
-    OutputFormat, ValidationType,
+    CliCalendarContext, CliEasterCalculationType, CliOutputFormat, OutputFormat, ValidationType,
 };
 use crate::preset::create_preset;
 
@@ -111,7 +111,7 @@ enum Commands {
         /// Filter to show only specific properties of liturgical days
         /// Can be specified multiple times to include multiple properties
         #[arg(long, value_delimiter = ',')]
-        filter: Option<Vec<LiturgicalDayFilter>>,
+        filter: Option<Vec<LiturgicalDayFilterWrapper>>,
     },
     /// List various romcal elements
     List {
@@ -217,7 +217,11 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
         Commands::Dates { date_name, year } => {
             dates::handle(&date_name, year, output_format, preset)
         }
-        Commands::Days { year, filter } => days::handle(year, filter, preset),
+        Commands::Days { year, filter } => {
+            let converted_filter =
+                filter.map(|filters| filters.into_iter().map(|wrapper| wrapper.0).collect());
+            days::handle(year, converted_filter, preset, output_format)
+        }
         Commands::List { element } => match element {
             ListCommand::Calendars { tree } => list::handle_calendars(output_format, tree),
             ListCommand::Locales { tree } => list::handle_locales(output_format, tree),

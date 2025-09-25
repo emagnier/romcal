@@ -1,8 +1,10 @@
-use crate::enums::LiturgicalDayFilter;
+use crate::enums::{LiturgicalDayFilter, OutputFormat};
 use crate::error::RomcalCliError;
 use crate::utils::current_year;
+use csv::Writer;
 use romcal_core::Preset;
 use serde::{Deserialize, Serialize};
+use serde_json;
 use serde_yaml;
 
 /// Filtered liturgical day with only selected properties
@@ -17,6 +19,7 @@ pub fn handle(
     year: Option<i32>,
     filters: Option<Vec<LiturgicalDayFilter>>,
     preset: Preset,
+    output_format: OutputFormat,
 ) -> Result<(), RomcalCliError> {
     let year = year.unwrap_or_else(current_year);
 
@@ -71,11 +74,213 @@ pub fn handle(
             .collect::<Result<Vec<FilteredLiturgicalDay>, RomcalCliError>>()?
     };
 
-    // Output the result in YAML format
-    let yaml_output = serde_yaml::to_string(&output_data)
-        .map_err(|e| RomcalCliError::config_error(format!("Failed to serialize to YAML: {}", e)))?;
-
-    println!("{}", yaml_output);
+    // Output the result in the specified format
+    match output_format {
+        OutputFormat::Yaml => {
+            let yaml_output = serde_yaml::to_string(&output_data).map_err(|e| {
+                RomcalCliError::config_error(format!("Failed to serialize to YAML: {}", e))
+            })?;
+            println!("{}", yaml_output);
+        }
+        OutputFormat::Json => {
+            let json_output = serde_json::to_string_pretty(&output_data).map_err(|e| {
+                RomcalCliError::config_error(format!("Failed to serialize to JSON: {}", e))
+            })?;
+            println!("{}", json_output);
+        }
+        OutputFormat::Csv => {
+            let csv_output = convert_to_csv(&output_data)?;
+            println!("{}", csv_output);
+        }
+        OutputFormat::Lines => {
+            let lines_output = convert_to_lines(&output_data)?;
+            println!("{}", lines_output);
+        }
+    }
 
     Ok(())
+}
+
+/// Convert filtered liturgical days to CSV format
+fn convert_to_csv(data: &[FilteredLiturgicalDay]) -> Result<String, RomcalCliError> {
+    if data.is_empty() {
+        return Ok(String::new());
+    }
+
+    let mut wtr = Writer::from_writer(Vec::new());
+
+    // Get all unique field names from all records
+    let mut field_names: Vec<String> = data
+        .iter()
+        .flat_map(|day| day.fields.keys())
+        .cloned()
+        .collect::<std::collections::HashSet<_>>()
+        .into_iter()
+        .collect();
+    field_names.sort();
+
+    // Write header
+    wtr.write_record(&field_names)
+        .map_err(|e| RomcalCliError::config_error(format!("Failed to write CSV header: {}", e)))?;
+
+    // Write data rows
+    for day in data {
+        let mut record = Vec::new();
+        for field_name in &field_names {
+            let value = day
+                .fields
+                .get(field_name)
+                .map(|v| match v {
+                    serde_json::Value::String(s) => s.clone(),
+                    serde_json::Value::Number(n) => n.to_string(),
+                    serde_json::Value::Bool(b) => b.to_string(),
+                    serde_json::Value::Null => String::new(),
+                    serde_json::Value::Array(arr) => {
+                        // Convert array to comma-separated string
+                        arr.iter()
+                            .map(|v| match v {
+                                serde_json::Value::String(s) => s.clone(),
+                                serde_json::Value::Number(n) => n.to_string(),
+                                serde_json::Value::Bool(b) => b.to_string(),
+                                _ => v.to_string(),
+                            })
+                            .collect::<Vec<_>>()
+                            .join(";")
+                    }
+                    serde_json::Value::Object(_) => v.to_string(),
+                })
+                .unwrap_or_default();
+            record.push(value);
+        }
+        wtr.write_record(&record).map_err(|e| {
+            RomcalCliError::config_error(format!("Failed to write CSV record: {}", e))
+        })?;
+    }
+
+    wtr.flush()
+        .map_err(|e| RomcalCliError::config_error(format!("Failed to flush CSV writer: {}", e)))?;
+
+    let csv_data = wtr
+        .into_inner()
+        .map_err(|e| RomcalCliError::config_error(format!("Failed to get CSV data: {}", e)))?;
+
+    String::from_utf8(csv_data).map_err(|e| {
+        RomcalCliError::config_error(format!("Failed to convert CSV to string: {}", e))
+    })
+}
+
+/// Convert filtered liturgical days to lines format
+fn convert_to_lines(data: &[FilteredLiturgicalDay]) -> Result<String, RomcalCliError> {
+    if data.is_empty() {
+        return Ok(String::new());
+    }
+
+    // First pass: collect all field names and their maximum widths
+    let mut field_widths = std::collections::HashMap::new();
+
+    for day in data {
+        for (key, value) in &day.fields {
+            let field_value = match value {
+                serde_json::Value::String(s) => s.clone(),
+                serde_json::Value::Number(n) => n.to_string(),
+                serde_json::Value::Bool(b) => b.to_string(),
+                serde_json::Value::Null => "null".to_string(),
+                serde_json::Value::Array(arr) => {
+                    // Handle arrays - for seasons and colors, extract the key
+                    if key == "seasons" || key == "colors" {
+                        if let Some(first_item) = arr.first() {
+                            if let Some(key_value) = first_item.get("key").and_then(|v| v.as_str())
+                            {
+                                key_value.to_string()
+                            } else {
+                                format!("{:?}", first_item)
+                            }
+                        } else {
+                            "[]".to_string()
+                        }
+                    } else {
+                        // For other arrays, join with semicolons
+                        arr.iter()
+                            .map(|v| match v {
+                                serde_json::Value::String(s) => s.clone(),
+                                serde_json::Value::Number(n) => n.to_string(),
+                                serde_json::Value::Bool(b) => b.to_string(),
+                                _ => v.to_string(),
+                            })
+                            .collect::<Vec<_>>()
+                            .join(";")
+                    }
+                }
+                serde_json::Value::Object(_) => value.to_string(),
+            };
+
+            let current_width = field_widths.get(key).copied().unwrap_or(0);
+            // Calculate width without ANSI codes: key + "=" + value
+            let new_width = (key.len() + 1 + field_value.len()).max(current_width);
+            field_widths.insert(key.clone(), new_width);
+        }
+    }
+
+    let mut lines = Vec::new();
+
+    for day in data {
+        // Get all available fields for this day in the order they appear
+        let mut fields = Vec::new();
+
+        // Iterate through fields in the order they appear in the HashMap
+        for (key, value) in &day.fields {
+            let field_value = match value {
+                serde_json::Value::String(s) => s.clone(),
+                serde_json::Value::Number(n) => n.to_string(),
+                serde_json::Value::Bool(b) => b.to_string(),
+                serde_json::Value::Null => "null".to_string(),
+                serde_json::Value::Array(arr) => {
+                    // Handle arrays - for seasons and colors, extract the key
+                    if key == "seasons" || key == "colors" {
+                        if let Some(first_item) = arr.first() {
+                            if let Some(key_value) = first_item.get("key").and_then(|v| v.as_str())
+                            {
+                                key_value.to_string()
+                            } else {
+                                format!("{:?}", first_item)
+                            }
+                        } else {
+                            "[]".to_string()
+                        }
+                    } else {
+                        // For other arrays, join with semicolons
+                        arr.iter()
+                            .map(|v| match v {
+                                serde_json::Value::String(s) => s.clone(),
+                                serde_json::Value::Number(n) => n.to_string(),
+                                serde_json::Value::Bool(b) => b.to_string(),
+                                _ => v.to_string(),
+                            })
+                            .collect::<Vec<_>>()
+                            .join(";")
+                    }
+                }
+                serde_json::Value::Object(_) => value.to_string(),
+            };
+
+            // Make keys and equals sign dim using ANSI escape codes
+            let dim_key_equals = format!("\x1b[2m{}={}\x1b[0m", key, ""); // \x1b[2m = dim, \x1b[0m = reset
+            let field_entry = format!("{}{}", dim_key_equals, field_value);
+            let max_width = field_widths
+                .get(key)
+                .copied()
+                .unwrap_or(key.len() + 1 + field_value.len());
+            // Calculate the actual display width without ANSI codes for padding
+            let actual_width = key.len() + 1 + field_value.len();
+            let padding_needed = max_width.saturating_sub(actual_width);
+            let padded_field = format!("{}{}", field_entry, " ".repeat(padding_needed));
+            fields.push(padded_field);
+        }
+
+        // Join all fields with one space
+        let line = fields.join("  ");
+        lines.push(line);
+    }
+
+    Ok(lines.join("\n"))
 }

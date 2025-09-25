@@ -1,5 +1,7 @@
 use clap::ValueEnum;
 use serde::{Deserialize, Serialize};
+use std::fmt;
+use std::str::FromStr;
 
 /// Available filters for LiturgicalDay properties
 #[derive(Debug, Clone, PartialEq, Eq, ValueEnum, Serialize, Deserialize)]
@@ -101,5 +103,76 @@ impl LiturgicalDayFilter {
             LiturgicalDayFilter::FromCalendarId => "from_calendar_id",
             LiturgicalDayFilter::ParentOverrides => "parent_overrides",
         }
+    }
+}
+
+impl fmt::Display for LiturgicalDayFilter {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        // Display with underscores (preferred format)
+        write!(f, "{}", self.field_name())
+    }
+}
+
+/// Helper function to parse a filter string into a LiturgicalDayFilter
+fn parse_filter(s: &str) -> Result<LiturgicalDayFilter, String> {
+    match s {
+        "id" => Ok(LiturgicalDayFilter::Id),
+        "fullname" => Ok(LiturgicalDayFilter::Fullname),
+        "date" => Ok(LiturgicalDayFilter::Date),
+        "date_def" => Ok(LiturgicalDayFilter::DateDef),
+        "date_exceptions" => Ok(LiturgicalDayFilter::DateExceptions),
+        "precedence" => Ok(LiturgicalDayFilter::Precedence),
+        "rank" => Ok(LiturgicalDayFilter::Rank),
+        "rank_name" => Ok(LiturgicalDayFilter::RankName),
+        "allow_similar_rank_items" => Ok(LiturgicalDayFilter::AllowSimilarRankItems),
+        "is_holy_day_of_obligation" => Ok(LiturgicalDayFilter::IsHolyDayOfObligation),
+        "is_optional" => Ok(LiturgicalDayFilter::IsOptional),
+        "seasons" => Ok(LiturgicalDayFilter::Seasons),
+        "periods" => Ok(LiturgicalDayFilter::Periods),
+        "commons" => Ok(LiturgicalDayFilter::Commons),
+        "colors" => Ok(LiturgicalDayFilter::Colors),
+        "titles" => Ok(LiturgicalDayFilter::Titles),
+        "entities" => Ok(LiturgicalDayFilter::Entities),
+        "week_of_season" => Ok(LiturgicalDayFilter::WeekOfSeason),
+        "day_of_season" => Ok(LiturgicalDayFilter::DayOfSeason),
+        "day_of_week" => Ok(LiturgicalDayFilter::DayOfWeek),
+        "nth_day_of_week_in_month" => Ok(LiturgicalDayFilter::NthDayOfWeekInMonth),
+        "start_of_season" => Ok(LiturgicalDayFilter::StartOfSeason),
+        "end_of_season" => Ok(LiturgicalDayFilter::EndOfSeason),
+        "start_of_liturgical_year" => Ok(LiturgicalDayFilter::StartOfLiturgicalYear),
+        "end_of_liturgical_year" => Ok(LiturgicalDayFilter::EndOfLiturgicalYear),
+        "sunday_cycle" => Ok(LiturgicalDayFilter::SundayCycle),
+        "weekday_cycle" => Ok(LiturgicalDayFilter::WeekdayCycle),
+        "psalter_week" => Ok(LiturgicalDayFilter::PsalterWeek),
+        "from_calendar_id" => Ok(LiturgicalDayFilter::FromCalendarId),
+        "parent_overrides" => Ok(LiturgicalDayFilter::ParentOverrides),
+        _ => Err(format!("Unknown filter: {}", s)),
+    }
+}
+
+/// Wrapper type to handle both dash and underscore formats for LiturgicalDayFilter
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct LiturgicalDayFilterWrapper(pub LiturgicalDayFilter);
+
+impl FromStr for LiturgicalDayFilterWrapper {
+    type Err = String;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        // Convert dashes to underscores for matching
+        let normalized = s.replace('-', "_");
+        let filter = parse_filter(&normalized)?;
+        Ok(LiturgicalDayFilterWrapper(filter))
+    }
+}
+
+impl fmt::Display for LiturgicalDayFilterWrapper {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{}", self.0.field_name())
+    }
+}
+
+impl From<LiturgicalDayFilterWrapper> for LiturgicalDayFilter {
+    fn from(wrapper: LiturgicalDayFilterWrapper) -> Self {
+        wrapper.0
     }
 }
