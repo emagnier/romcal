@@ -21,7 +21,6 @@ pub mod liturgical_day;
 pub mod optimize;
 pub mod preset;
 pub mod proper_of_time;
-pub mod proper_of_time_cache;
 pub mod resources;
 pub mod types;
 
@@ -32,7 +31,6 @@ pub use generated_constants::{CALENDAR_IDS, LOCALE_CODES};
 pub use liturgical_day::*;
 pub use preset::{Preset, PresetPartial};
 pub use proper_of_time::ProperOfTime;
-pub use proper_of_time_cache::ProperOfTimeCache;
 pub use resources::*;
 pub use types::entity::SaintCount;
 pub use types::entity::{Entity, EntityId};

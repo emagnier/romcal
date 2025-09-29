@@ -1,133 +1,20 @@
 use chrono::{DateTime, Datelike, Utc};
 
+pub mod cache;
+pub mod common;
+
 use crate::dates::LiturgicalDates;
 use crate::error::RomcalResult;
 use crate::liturgical_day::LiturgicalDay;
 use crate::preset::Preset;
-use crate::proper_of_time_cache::ProperOfTimeCache;
+use crate::proper_of_time::cache::ProperOfTimeCache;
+use crate::proper_of_time::common::{
+    enum_to_string, sort_liturgical_days_by_date, PROPER_OF_TIME_ID, WEEKDAY_NAMES,
+};
 use crate::types::dates::{DateDef, DateFn, DayOfWeek};
 use crate::types::liturgical::{
     Color, ColorInfo, Period, PeriodInfo, Precedence, Rank, Season, SeasonInfo,
 };
-
-/// Helper function to convert an enum to its string representation using Serde
-fn enum_to_string<T>(value: &T) -> String
-where
-    T: serde::Serialize,
-{
-    serde_json::to_string(value)
-        .unwrap_or_default()
-        .trim_matches('"')
-        .to_string()
-}
-
-/// Macro to create a liturgical day with common properties
-/// Reduces code duplication in create_* functions
-macro_rules! create_liturgical_day_base {
-    ($id:expr, $date:expr, $precedence:expr, $rank:expr, $season:expr, $color:expr, $cache:expr) => {{
-        let id = $id.to_string();
-        let date_str = $date.format("%Y-%m-%d").to_string();
-        let dow = $date.weekday().num_days_from_sunday() as u8;
-
-        // Determine season start date based on season
-        let start_of_season = match $season {
-            Season::Advent => $cache.advent_start(),
-            Season::ChristmasTime => $cache.christmas_start(),
-            Season::Lent => $cache.lent_start(),
-            Season::EasterTime => $cache.easter_start(),
-            Season::PaschalTriduum => $cache.triduum_start(),
-            Season::OrdinaryTime => {
-                // For Ordinary Time, we need to determine if it's early or late
-                // This is a simplified approach - in practice, this should be determined by the calling function
-                $cache.easter_start() // Default to Easter start for now
-            }
-        };
-
-        // Calculate day_of_season and week_of_season automatically
-        let days_since_start = ($date.date_naive() - start_of_season.date_naive()).num_days();
-        let day_of_season = if days_since_start < 0 {
-            0
-        } else {
-            (days_since_start + 1) as u32
-        };
-
-        // Special logic for Lent: if day_of_season < 5, week_of_season starts at 0
-        let week_of_season = if $season == Season::Lent && day_of_season < 5 {
-            0
-        } else if day_of_season == 0 { // Should never happen if day_of_season is calculated correctly
-            1
-        } else {
-            ((day_of_season - 1) / 7 + 1) as u32
-        };
-
-        let mut liturgical_day = LiturgicalDay::new(
-            id.clone(),
-            id.clone(),
-            date_str,
-            PROPER_OF_TIME_ID.to_string(),
-        );
-
-        // Common configuration
-        liturgical_day.precedence = $precedence;
-        liturgical_day.rank = $rank;
-        liturgical_day.rank_name = enum_to_string(&$rank);
-        liturgical_day.is_holy_day_of_obligation = dow == 0 && $rank == Rank::Solemnity;
-        liturgical_day.day_of_week = DayOfWeek(dow);
-        liturgical_day.week_of_season = week_of_season;
-        liturgical_day.day_of_season = day_of_season;
-        liturgical_day.start_of_season = $cache.start_of_seasons($season, $date);
-        liturgical_day.start_of_liturgical_year = $cache.liturgical_year_start($season, $date);
-        liturgical_day.end_of_liturgical_year = $cache.liturgical_year_end($season, $date);
-
-        // Season
-        liturgical_day.seasons = vec![SeasonInfo {
-            key: $season,
-            name: enum_to_string(&$season),
-        }];
-
-        // Color
-        liturgical_day.colors = vec![ColorInfo {
-            key: $color,
-            name: enum_to_string(&$color),
-        }];
-
-        // Date definition (placeholder for now)
-        liturgical_day.date_def = DateDef::DateFunction {
-            date_fn: DateFn::EasterSunday, // TODO: Calculate proper DateFn
-            day_offset: None,
-        };
-
-        liturgical_day
-    }};
-}
-
-// =================================================================================
-// UTILITY FUNCTIONS
-// =================================================================================
-
-/// Helper function to sort liturgical days by date in chronological order
-fn sort_liturgical_days_by_date(days: &mut [LiturgicalDay]) {
-    days.sort_by(|a, b| {
-        // Parse dates and compare chronologically
-        let date_a = chrono::NaiveDate::parse_from_str(&a.date, "%Y-%m-%d").unwrap_or_default();
-        let date_b = chrono::NaiveDate::parse_from_str(&b.date, "%Y-%m-%d").unwrap_or_default();
-        date_a.cmp(&date_b)
-    });
-}
-
-/// Calendar ID for the Proper of Time
-const PROPER_OF_TIME_ID: &str = "proper_of_time";
-
-/// Weekday names for liturgical day generation
-const WEEKDAY_NAMES: [&str; 7] = [
-    "sunday",
-    "monday",
-    "tuesday",
-    "wednesday",
-    "thursday",
-    "friday",
-    "saturday",
-];
 
 /// Structure for generating liturgical days of the Proper of Time
 pub struct ProperOfTime {
@@ -141,51 +28,107 @@ impl ProperOfTime {
     ///
     /// # Arguments
     ///
-    /// * `config` - Calendar configuration
+    /// * `preset` - Calendar preset
     /// * `year` - Liturgical year
     ///
     /// # Errors
     ///
     /// Returns an error if the year is invalid
-    pub fn new(config: Preset, year: i32) -> RomcalResult<Self> {
-        let liturgical_dates = LiturgicalDates::new(config.clone(), year)?;
-        let cache = ProperOfTimeCache::new(&config, year)?;
+    pub fn new(preset: Preset, year: i32) -> RomcalResult<Self> {
+        use crate::proper_of_time::cache::ProperOfTimeCache;
+        let liturgical_dates = LiturgicalDates::new(preset.clone(), year)?;
+        let cache = ProperOfTimeCache::new(&preset, year)?;
         Ok(Self {
-            preset: config,
+            preset,
             dates: liturgical_dates,
             cache,
         })
     }
 
-    // =================================================================================
-    // MAIN GENERATION FUNCTION
-    // =================================================================================
+    /// Creates a liturgical day with common properties
+    fn create_liturgical_day_base(
+        &self,
+        id: &str,
+        date: DateTime<Utc>,
+        precedence: Precedence,
+        rank: Rank,
+        season: Season,
+        color: Color,
+    ) -> LiturgicalDay {
+        let id = id.to_string();
+        let date_str = date.format("%Y-%m-%d").to_string();
+        let dow = date.weekday().num_days_from_sunday() as u8;
 
-    /// Generates all liturgical days of the Proper of Time for the liturgical year
-    pub fn generate_all(&self) -> RomcalResult<Vec<LiturgicalDay>> {
-        let mut days = Vec::new();
+        // Determine season start date based on season
+        let start_of_season = match season {
+            Season::Advent => self.cache.advent_start(),
+            Season::ChristmasTime => self.cache.christmas_start(),
+            Season::Lent => self.cache.lent_start(),
+            Season::EasterTime => self.cache.easter_start(),
+            Season::PaschalTriduum => self.cache.triduum_start(),
+            Season::OrdinaryTime => {
+                // For Ordinary Time, we need to determine if it's early or late
+                // This is a simplified approach - in practice, this should be determined by the calling function
+                self.cache.easter_start() // Default to Easter start for now
+            }
+        };
 
-        if self.preset.context == crate::CalendarContext::Liturgical {
-            days.extend(self.advent()?);
-            days.extend(self.early_christmas_time()?);
-        }
+        // Calculate day_of_season and week_of_season automatically
+        let days_since_start = (date.date_naive() - start_of_season.date_naive()).num_days();
+        let day_of_season = if days_since_start < 0 {
+            0
+        } else {
+            (days_since_start + 1) as u32
+        };
 
-        days.extend(self.late_christmas_time()?);
-        days.extend(self.early_ordinary_time()?);
-        days.extend(self.lent()?);
-        days.extend(self.paschal_triduum()?);
-        days.extend(self.easter_time()?);
-        days.extend(self.late_ordinary_time()?);
+        // Special logic for Lent: if day_of_season < 5, week_of_season starts at 0
+        let week_of_season = if season == Season::Lent && day_of_season < 5 {
+            0
+        } else if day_of_season == 0 {
+            // Should never happen if day_of_season is calculated correctly
+            1
+        } else {
+            (day_of_season - 1) / 7 + 1
+        };
 
-        if self.preset.context == crate::CalendarContext::Gregorian {
-            days.extend(self.advent()?);
-            days.extend(self.early_christmas_time()?);
-        }
+        let mut liturgical_day = LiturgicalDay::new(
+            id.clone(),
+            id.clone(),
+            date_str,
+            PROPER_OF_TIME_ID.to_string(),
+        );
 
-        // TODO: Temporary fix to sort days by date
-        sort_liturgical_days_by_date(&mut days);
+        // Common configuration
+        liturgical_day.precedence = precedence;
+        liturgical_day.rank = rank.clone();
+        liturgical_day.rank_name = enum_to_string(&rank);
+        liturgical_day.is_holy_day_of_obligation = dow == 0 && rank == Rank::Solemnity;
+        liturgical_day.day_of_week = DayOfWeek(dow);
+        liturgical_day.week_of_season = week_of_season;
+        liturgical_day.day_of_season = day_of_season;
+        liturgical_day.start_of_season = self.cache.start_of_seasons(season, date);
+        liturgical_day.start_of_liturgical_year = self.cache.liturgical_year_start(season, date);
+        liturgical_day.end_of_liturgical_year = self.cache.liturgical_year_end(season, date);
 
-        Ok(days)
+        // Season
+        liturgical_day.seasons = vec![SeasonInfo {
+            key: season,
+            name: enum_to_string(&season),
+        }];
+
+        // Color
+        liturgical_day.colors = vec![ColorInfo {
+            key: color.clone(),
+            name: enum_to_string(&color),
+        }];
+
+        // Date definition (placeholder for now)
+        liturgical_day.date_def = DateDef::DateFunction {
+            date_fn: DateFn::EasterSunday, // TODO: Calculate proper DateFn
+            day_offset: None,
+        };
+
+        liturgical_day
     }
 
     // =================================================================================
@@ -208,7 +151,7 @@ impl ProperOfTime {
                 .dates
                 .get_sunday_of_advent_date(week, Some(advent_year))
             {
-                let day = self.create_advent_sunday(week, sunday_date, &self.cache)?;
+                let day = self.create_advent_sunday(week, sunday_date)?;
                 days.push(day);
             }
         }
@@ -221,7 +164,7 @@ impl ProperOfTime {
                     self.dates
                         .unprivileged_weekday_of_advent(dow, week, Some(advent_year))
                 {
-                    let day = self.create_advent_weekday(week, dow, weekday_date, &self.cache)?;
+                    let day = self.create_advent_weekday(week, dow, weekday_date)?;
                     days.push(day);
                 }
             }
@@ -236,11 +179,13 @@ impl ProperOfTime {
             {
                 // Calculate the correct week based on the date
                 // December 17-24 can span both week 3 and week 4 of Advent
-                let liturgical_day =
-                    self.create_privileged_advent_weekday(day, privileged_date, &self.cache)?;
+                let liturgical_day = self.create_privileged_advent_weekday(day, privileged_date)?;
                 days.push(liturgical_day);
             }
         }
+
+        // TODO: Temporary fix to sort days by date
+        sort_liturgical_days_by_date(&mut days);
 
         Ok(days)
     }
@@ -264,7 +209,7 @@ impl ProperOfTime {
 
         // EARLY CHRISTMAS TIME DAY TYPES:
         // 1. The Nativity of the Lord (December 25)
-        let day = self.create_nativity_of_the_lord(christmas_date, &self.cache)?;
+        let day = self.create_nativity_of_the_lord(christmas_date)?;
         days.push(day);
 
         // 2. Octave of Christmas (December 26-31, excluding December 25 and January 1)
@@ -273,7 +218,7 @@ impl ProperOfTime {
                 .dates
                 .get_weekday_within_octave_of_christmas_date(count, Some(christmas_year))
             {
-                let day = self.create_christmas_octave_day(count, octave_date, &self.cache)?;
+                let day = self.create_christmas_octave_day(count, octave_date)?;
                 days.push(day);
             }
         }
@@ -281,8 +226,11 @@ impl ProperOfTime {
         // 3. The Holy Family (Sunday within the Octave)
         let holy_family_date = self.dates.get_holy_family_date(Some(christmas_year));
 
-        let day = self.create_holy_family(holy_family_date, &self.cache)?;
+        let day = self.create_holy_family(holy_family_date)?;
         days.push(day);
+
+        // TODO: Temporary fix to sort days by date
+        sort_liturgical_days_by_date(&mut days);
 
         Ok(days)
     }
@@ -314,7 +262,7 @@ impl ProperOfTime {
         // 1. Mary, Mother of God (January 1)
         let mary_mother_of_god_date = self.dates.get_mary_mother_of_god_date(Some(christmas_year));
 
-        let day = self.create_mary_mother_of_god(mary_mother_of_god_date, &self.cache)?;
+        let day = self.create_mary_mother_of_god(mary_mother_of_god_date)?;
         days.push(day);
 
         // 2. Second Sunday after Christmas (if it exists)
@@ -322,7 +270,7 @@ impl ProperOfTime {
             .dates
             .second_sunday_after_christmas(Some(christmas_year));
         if let Some(second_sunday_date) = second_sunday_date {
-            let day = self.create_second_sunday_after_christmas(second_sunday_date, &self.cache)?;
+            let day = self.create_second_sunday_after_christmas(second_sunday_date)?;
             days.push(day);
         }
 
@@ -332,8 +280,7 @@ impl ProperOfTime {
                 .dates
                 .get_weekday_before_epiphany_date(day_num, Some(christmas_year))
             {
-                let liturgical_day =
-                    self.create_weekday_before_epiphany(day_num, weekday_date, &self.cache)?;
+                let liturgical_day = self.create_weekday_before_epiphany(day_num, weekday_date)?;
                 days.push(liturgical_day);
             }
         }
@@ -341,7 +288,7 @@ impl ProperOfTime {
         // 4. The Epiphany of the Lord
         let epiphany_date = self.dates.get_epiphany_date(Some(christmas_year));
 
-        let day = self.create_epiphany_of_the_lord(epiphany_date, &self.cache)?;
+        let day = self.create_epiphany_of_the_lord(epiphany_date)?;
         days.push(day);
 
         // 5. Weekdays after Epiphany
@@ -350,8 +297,7 @@ impl ProperOfTime {
                 .dates
                 .get_weekday_after_epiphany_date(dow, Some(christmas_year))
             {
-                let liturgical_day =
-                    self.create_weekday_after_epiphany(dow, weekday_date, &self.cache)?;
+                let liturgical_day = self.create_weekday_after_epiphany(dow, weekday_date)?;
                 days.push(liturgical_day);
             }
         }
@@ -361,8 +307,11 @@ impl ProperOfTime {
             .dates
             .get_baptism_of_the_lord_date(Some(christmas_year));
 
-        let day = self.create_baptism_of_the_lord(baptism_date, &self.cache)?;
+        let day = self.create_baptism_of_the_lord(baptism_date)?;
         days.push(day);
+
+        // TODO: Temporary fix to sort days by date
+        sort_liturgical_days_by_date(&mut days);
 
         Ok(days)
     }
@@ -388,14 +337,13 @@ impl ProperOfTime {
 
         // LENT DAY TYPES:
         // 1. Ash Wednesday
-        let day = self.create_ash_wednesday(ash_wednesday_date, &self.cache)?;
+        let day = self.create_ash_wednesday(ash_wednesday_date)?;
         days.push(day);
 
         // 2. Days after Ash Wednesday (Thursday-Saturday)
         for dow in 4..=6 {
             let weekday_date = ash_wednesday_date + chrono::Duration::days((dow - 3) as i64);
-            let liturgical_day =
-                self.create_weekday_after_ash_wednesday(dow, weekday_date, &self.cache)?;
+            let liturgical_day = self.create_weekday_after_ash_wednesday(dow, weekday_date)?;
             days.push(liturgical_day);
         }
 
@@ -405,21 +353,24 @@ impl ProperOfTime {
             let dow = (i - (week - 1) * 7) as u8;
 
             let weekday_date = ash_wednesday_date + chrono::Duration::days((i + 4) as i64);
-            let liturgical_day = self.create_lent_weekday(week, dow, weekday_date, &self.cache)?;
+            let liturgical_day = self.create_lent_weekday(week, dow, weekday_date)?;
             days.push(liturgical_day);
         }
 
         // 4. Palm Sunday of the Passion of the Lord
         let palm_sunday_date = self.dates.get_palm_sunday_date(Some(lent_year));
-        let day = self.create_palm_sunday(palm_sunday_date, &self.cache)?;
+        let day = self.create_palm_sunday(palm_sunday_date)?;
         days.push(day);
 
         // 5. Holy Week (Monday-Thursday)
         for dow in 1..=4 {
             let weekday_date = palm_sunday_date + chrono::Duration::days(dow as i64);
-            let liturgical_day = self.create_holy_week_weekday(dow, weekday_date, &self.cache)?;
+            let liturgical_day = self.create_holy_week_weekday(dow, weekday_date)?;
             days.push(liturgical_day);
         }
+
+        // TODO: Temporary fix to sort days by date
+        sort_liturgical_days_by_date(&mut days);
 
         Ok(days)
     }
@@ -444,23 +395,26 @@ impl ProperOfTime {
 
         // PASCHAL TRIDUUM DAY TYPES:
         // 1. Thursday of the Lord's Supper (Holy Thursday)
-        let day = self.create_holy_thursday(holy_thursday_date, &self.cache)?;
+        let day = self.create_holy_thursday(holy_thursday_date)?;
         days.push(day);
 
         // 2. Friday of the Passion of the Lord (Good Friday)
         let good_friday_date = self.dates.get_good_friday_date(Some(triduum_year));
-        let day = self.create_good_friday(good_friday_date, &self.cache)?;
+        let day = self.create_good_friday(good_friday_date)?;
         days.push(day);
 
         // 3. Holy Saturday
         let holy_saturday_date = self.dates.get_holy_saturday_date(Some(triduum_year));
-        let day = self.create_holy_saturday(holy_saturday_date, &self.cache)?;
+        let day = self.create_holy_saturday(holy_saturday_date)?;
         days.push(day);
 
         // 4. Easter Sunday of the Resurrection of the Lord
         let easter_sunday_date = self.dates.get_easter_sunday_date(Some(triduum_year))?;
-        let day = self.create_easter_sunday(easter_sunday_date, &self.cache)?;
+        let day = self.create_easter_sunday(easter_sunday_date)?;
         days.push(day);
+
+        // TODO: Temporary fix to sort days by date
+        sort_liturgical_days_by_date(&mut days);
 
         Ok(days)
     }
@@ -484,13 +438,13 @@ impl ProperOfTime {
         let easter_sunday_date = self.cache.easter_start();
         for dow in 1..=6 {
             let octave_date = easter_sunday_date + chrono::Duration::days(dow as i64);
-            let liturgical_day = self.create_easter_octave_day(dow, octave_date, &self.cache)?;
+            let liturgical_day = self.create_easter_octave_day(dow, octave_date)?;
             days.push(liturgical_day);
         }
 
         // 2. Divine Mercy Sunday (Second Sunday of Easter)
         let divine_mercy_date = self.dates.get_divine_mercy_sunday_date(Some(easter_year));
-        let day = self.create_divine_mercy_sunday(divine_mercy_date, &self.cache)?;
+        let day = self.create_divine_mercy_sunday(divine_mercy_date)?;
         days.push(day);
 
         // 3. All days from 2nd Monday to 7th Saturday of Easter Time
@@ -511,20 +465,21 @@ impl ProperOfTime {
             };
 
             if is_ascension_day {
-                let liturgical_day =
-                    self.create_ascension_of_the_lord(ascension_date, &self.cache)?;
+                let liturgical_day = self.create_ascension_of_the_lord(ascension_date)?;
                 days.push(liturgical_day);
             } else {
-                let liturgical_day =
-                    self.create_easter_time_weekday(week, dow, weekday_date, &self.cache)?;
+                let liturgical_day = self.create_easter_time_weekday(week, dow, weekday_date)?;
                 days.push(liturgical_day);
             }
         }
 
         // 4. Pentecost Sunday
         let pentecost_date = self.dates.get_pentecost_sunday_date(Some(easter_year));
-        let day = self.create_pentecost_sunday(pentecost_date, &self.cache)?;
+        let day = self.create_pentecost_sunday(pentecost_date)?;
         days.push(day);
+
+        // TODO: Temporary fix to sort days by date
+        sort_liturgical_days_by_date(&mut days);
 
         Ok(days)
     }
@@ -569,16 +524,17 @@ impl ProperOfTime {
             // Special cases for specific Sundays
             if week == 3 && dow == 0 {
                 // Sunday of the Word of God (3rd week)
-                let liturgical_day =
-                    self.create_sunday_of_the_word_of_god(*ordinary_date, &self.cache)?;
+                let liturgical_day = self.create_sunday_of_the_word_of_god(*ordinary_date)?;
                 days.push(liturgical_day);
             } else {
                 // Regular Ordinary Time day
-                let liturgical_day =
-                    self.create_ordinary_time_day(week, dow, *ordinary_date, &self.cache)?;
+                let liturgical_day = self.create_ordinary_time_day(week, dow, *ordinary_date)?;
                 days.push(liturgical_day);
             }
         }
+
+        // TODO: Temporary fix to sort days by date
+        sort_liturgical_days_by_date(&mut days);
 
         Ok(days)
     }
@@ -643,32 +599,31 @@ impl ProperOfTime {
             // Check if this date is a solemnity and create the appropriate liturgical day
             if *ordinary_date == trinity_date {
                 // Trinity Sunday
-                let liturgical_day = self.create_most_holy_trinity(*ordinary_date, &self.cache)?;
+                let liturgical_day = self.create_most_holy_trinity(*ordinary_date)?;
                 days.push(liturgical_day);
             } else if *ordinary_date == corpus_christi_date {
                 // Corpus Christi
                 let liturgical_day =
-                    self.create_most_holy_body_and_blood_of_christ(*ordinary_date, &self.cache)?;
+                    self.create_most_holy_body_and_blood_of_christ(*ordinary_date)?;
                 days.push(liturgical_day);
             } else if *ordinary_date == sacred_heart_date {
                 // Sacred Heart
-                let liturgical_day =
-                    self.create_most_sacred_heart_of_jesus(*ordinary_date, &self.cache)?;
+                let liturgical_day = self.create_most_sacred_heart_of_jesus(*ordinary_date)?;
                 days.push(liturgical_day);
             } else if week == 34 && dow == 0 {
                 // Christ the King (34th week)
-                let liturgical_day = self.create_our_lord_jesus_christ_king_of_the_universe(
-                    *ordinary_date,
-                    &self.cache,
-                )?;
+                let liturgical_day =
+                    self.create_our_lord_jesus_christ_king_of_the_universe(*ordinary_date)?;
                 days.push(liturgical_day);
             } else {
                 // Regular Ordinary Time day
-                let liturgical_day =
-                    self.create_ordinary_time_day(week, dow, *ordinary_date, &self.cache)?;
+                let liturgical_day = self.create_ordinary_time_day(week, dow, *ordinary_date)?;
                 days.push(liturgical_day);
             }
         }
+
+        // TODO: Temporary fix to sort days by date
+        sort_liturgical_days_by_date(&mut days);
 
         Ok(days)
     }
@@ -709,20 +664,14 @@ impl ProperOfTime {
     }
 
     /// Creates an Advent Sunday
-    fn create_advent_sunday(
-        &self,
-        week: u8,
-        date: DateTime<Utc>,
-        cache: &ProperOfTimeCache,
-    ) -> RomcalResult<LiturgicalDay> {
-        let mut liturgical_day = create_liturgical_day_base!(
-            format!("advent_{}_sunday", week),
+    fn create_advent_sunday(&self, week: u8, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
+        let mut liturgical_day = self.create_liturgical_day_base(
+            &format!("advent_{}_sunday", week),
             date,
             Precedence::PrivilegedSunday_2,
             Rank::Sunday,
             Season::Advent,
             Color::Purple,
-            cache
         );
 
         // Override specific properties for Advent Sunday
@@ -751,17 +700,15 @@ impl ProperOfTime {
         week: u8,
         dow: u8,
         date: DateTime<Utc>,
-        cache: &ProperOfTimeCache,
     ) -> RomcalResult<LiturgicalDay> {
         let id = format!("advent_{}_{}", week, WEEKDAY_NAMES[dow as usize]);
-        let liturgical_day = create_liturgical_day_base!(
-            id,
+        let liturgical_day = self.create_liturgical_day_base(
+            &id,
             date,
             Precedence::Weekday_13,
             Rank::Weekday,
             Season::Advent,
             Color::Purple,
-            cache
         );
 
         Ok(liturgical_day)
@@ -772,17 +719,15 @@ impl ProperOfTime {
         &self,
         day: u8,
         date: DateTime<Utc>,
-        cache: &ProperOfTimeCache,
     ) -> RomcalResult<LiturgicalDay> {
         let id = format!("advent_december_{}", day);
-        let liturgical_day = create_liturgical_day_base!(
-            id,
+        let liturgical_day = self.create_liturgical_day_base(
+            &id,
             date,
             Precedence::PrivilegedWeekday_9,
             Rank::Weekday,
             Season::Advent,
             Color::Purple,
-            cache
         );
 
         Ok(liturgical_day)
@@ -793,19 +738,14 @@ impl ProperOfTime {
     // ---------------------------------------------------------------------------------
 
     /// Creates the Nativity of the Lord (December 25)
-    fn create_nativity_of_the_lord(
-        &self,
-        date: DateTime<Utc>,
-        cache: &ProperOfTimeCache,
-    ) -> RomcalResult<LiturgicalDay> {
-        let liturgical_day = create_liturgical_day_base!(
+    fn create_nativity_of_the_lord(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
+        let liturgical_day = self.create_liturgical_day_base(
             "nativity_of_the_lord",
             date,
             Precedence::ProperOfTimeSolemnity_2,
             Rank::Solemnity,
             Season::ChristmasTime,
             Color::White,
-            cache
         );
 
         Ok(liturgical_day)
@@ -816,36 +756,29 @@ impl ProperOfTime {
         &self,
         count: u8,
         date: DateTime<Utc>,
-        cache: &ProperOfTimeCache,
     ) -> RomcalResult<LiturgicalDay> {
         let id = format!("christmas_octave_day_{}", count);
-        let liturgical_day = create_liturgical_day_base!(
-            id,
+        let liturgical_day = self.create_liturgical_day_base(
+            &id,
             date,
             Precedence::PrivilegedWeekday_9,
             Rank::Weekday,
             Season::ChristmasTime,
             Color::White,
-            cache
         );
 
         Ok(liturgical_day)
     }
 
     /// Creates the Holy Family
-    fn create_holy_family(
-        &self,
-        date: DateTime<Utc>,
-        cache: &ProperOfTimeCache,
-    ) -> RomcalResult<LiturgicalDay> {
-        let liturgical_day = create_liturgical_day_base!(
+    fn create_holy_family(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
+        let liturgical_day = self.create_liturgical_day_base(
             "holy_family_of_jesus_mary_and_joseph",
             date,
             Precedence::GeneralLordFeast_5,
             Rank::Feast,
             Season::ChristmasTime,
             Color::White,
-            cache
         );
 
         Ok(liturgical_day)
@@ -856,19 +789,14 @@ impl ProperOfTime {
     // ---------------------------------------------------------------------------------
 
     /// Creates Mary, Mother of God (January 1)
-    fn create_mary_mother_of_god(
-        &self,
-        date: DateTime<Utc>,
-        cache: &ProperOfTimeCache,
-    ) -> RomcalResult<LiturgicalDay> {
-        let liturgical_day = create_liturgical_day_base!(
+    fn create_mary_mother_of_god(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
+        let liturgical_day = self.create_liturgical_day_base(
             "mary_mother_of_god",
             date,
             Precedence::GeneralSolemnity_3,
             Rank::Solemnity,
             Season::ChristmasTime,
             Color::White,
-            cache
         );
 
         Ok(liturgical_day)
@@ -878,16 +806,14 @@ impl ProperOfTime {
     fn create_second_sunday_after_christmas(
         &self,
         date: DateTime<Utc>,
-        cache: &ProperOfTimeCache,
     ) -> RomcalResult<LiturgicalDay> {
-        let liturgical_day = create_liturgical_day_base!(
+        let liturgical_day = self.create_liturgical_day_base(
             "second_sunday_after_christmas",
             date,
             Precedence::UnprivilegedSunday_6,
             Rank::Sunday,
             Season::ChristmasTime,
             Color::White,
-            cache
         );
 
         Ok(liturgical_day)
@@ -898,36 +824,29 @@ impl ProperOfTime {
         &self,
         day: u8,
         date: DateTime<Utc>,
-        cache: &ProperOfTimeCache,
     ) -> RomcalResult<LiturgicalDay> {
         let id = format!("christmas_time_january_{}", day);
-        let liturgical_day = create_liturgical_day_base!(
-            id,
+        let liturgical_day = self.create_liturgical_day_base(
+            &id,
             date,
             Precedence::Weekday_13,
             Rank::Weekday,
             Season::ChristmasTime,
             Color::White,
-            cache
         );
 
         Ok(liturgical_day)
     }
 
     /// Creates the Epiphany of the Lord
-    fn create_epiphany_of_the_lord(
-        &self,
-        date: DateTime<Utc>,
-        cache: &ProperOfTimeCache,
-    ) -> RomcalResult<LiturgicalDay> {
-        let liturgical_day = create_liturgical_day_base!(
+    fn create_epiphany_of_the_lord(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
+        let liturgical_day = self.create_liturgical_day_base(
             "epiphany_of_the_lord",
             date,
             Precedence::ProperOfTimeSolemnity_2,
             Rank::Solemnity,
             Season::ChristmasTime,
             Color::White,
-            cache
         );
 
         Ok(liturgical_day)
@@ -938,36 +857,29 @@ impl ProperOfTime {
         &self,
         dow: u8,
         date: DateTime<Utc>,
-        cache: &ProperOfTimeCache,
     ) -> RomcalResult<LiturgicalDay> {
         let id = format!("{}_after_epiphany", WEEKDAY_NAMES[dow as usize]);
-        let liturgical_day = create_liturgical_day_base!(
-            id,
+        let liturgical_day = self.create_liturgical_day_base(
+            &id,
             date,
             Precedence::Weekday_13,
             Rank::Weekday,
             Season::ChristmasTime,
             Color::White,
-            cache
         );
 
         Ok(liturgical_day)
     }
 
     /// Creates the Baptism of the Lord
-    fn create_baptism_of_the_lord(
-        &self,
-        date: DateTime<Utc>,
-        cache: &ProperOfTimeCache,
-    ) -> RomcalResult<LiturgicalDay> {
-        let liturgical_day = create_liturgical_day_base!(
+    fn create_baptism_of_the_lord(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
+        let liturgical_day = self.create_liturgical_day_base(
             "baptism_of_the_lord",
             date,
             Precedence::ProperOfTimeSolemnity_2,
             Rank::Solemnity,
             Season::ChristmasTime,
             Color::White,
-            cache
         );
 
         Ok(liturgical_day)
@@ -978,19 +890,14 @@ impl ProperOfTime {
     // ---------------------------------------------------------------------------------
 
     /// Creates Ash Wednesday
-    fn create_ash_wednesday(
-        &self,
-        date: DateTime<Utc>,
-        cache: &ProperOfTimeCache,
-    ) -> RomcalResult<LiturgicalDay> {
-        let liturgical_day = create_liturgical_day_base!(
+    fn create_ash_wednesday(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
+        let liturgical_day = self.create_liturgical_day_base(
             "ash_wednesday",
             date,
             Precedence::AshWednesday_2,
             Rank::Weekday,
             Season::Lent,
             Color::Purple,
-            cache
         );
 
         Ok(liturgical_day)
@@ -1001,16 +908,14 @@ impl ProperOfTime {
         &self,
         dow: u8,
         date: DateTime<Utc>,
-        cache: &ProperOfTimeCache,
     ) -> RomcalResult<LiturgicalDay> {
-        let liturgical_day = create_liturgical_day_base!(
-            format!("{}_after_ash_wednesday", WEEKDAY_NAMES[dow as usize]),
+        let liturgical_day = self.create_liturgical_day_base(
+            &format!("{}_after_ash_wednesday", WEEKDAY_NAMES[dow as usize]),
             date,
             Precedence::PrivilegedWeekday_9,
             Rank::Weekday,
             Season::Lent,
             Color::Purple,
-            cache
         );
 
         Ok(liturgical_day)
@@ -1022,11 +927,10 @@ impl ProperOfTime {
         week: u32,
         dow: u8,
         date: DateTime<Utc>,
-        cache: &ProperOfTimeCache,
     ) -> RomcalResult<LiturgicalDay> {
         let id = format!("lent_{}_{}", week, WEEKDAY_NAMES[dow as usize]);
-        let liturgical_day = create_liturgical_day_base!(
-            id,
+        let liturgical_day = self.create_liturgical_day_base(
+            &id,
             date,
             if dow == 0 {
                 Precedence::PrivilegedSunday_2
@@ -1044,26 +948,20 @@ impl ProperOfTime {
             } else {
                 Color::Purple
             },
-            cache
         );
 
         Ok(liturgical_day)
     }
 
     /// Creates Palm Sunday of the Passion of the Lord
-    fn create_palm_sunday(
-        &self,
-        date: DateTime<Utc>,
-        cache: &ProperOfTimeCache,
-    ) -> RomcalResult<LiturgicalDay> {
-        let mut liturgical_day = create_liturgical_day_base!(
+    fn create_palm_sunday(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
+        let mut liturgical_day = self.create_liturgical_day_base(
             "palm_sunday_of_the_passion_of_the_lord",
             date,
             Precedence::PrivilegedSunday_2,
             Rank::Sunday,
             Season::Lent,
             Color::Red,
-            cache
         );
 
         // Override specific properties for Palm Sunday
@@ -1077,17 +975,15 @@ impl ProperOfTime {
         &self,
         dow: u8,
         date: DateTime<Utc>,
-        cache: &ProperOfTimeCache,
     ) -> RomcalResult<LiturgicalDay> {
         let id = format!("holy_{}", WEEKDAY_NAMES[dow as usize]);
-        let liturgical_day = create_liturgical_day_base!(
-            id,
+        let liturgical_day = self.create_liturgical_day_base(
+            &id,
             date,
             Precedence::PrivilegedWeekday_9,
             Rank::Weekday,
             Season::Lent,
             Color::Purple,
-            cache
         );
 
         Ok(liturgical_day)
@@ -1098,76 +994,56 @@ impl ProperOfTime {
     // ---------------------------------------------------------------------------------
 
     /// Creates Holy Thursday (Thursday of the Lord's Supper)
-    fn create_holy_thursday(
-        &self,
-        date: DateTime<Utc>,
-        cache: &ProperOfTimeCache,
-    ) -> RomcalResult<LiturgicalDay> {
-        let liturgical_day = create_liturgical_day_base!(
+    fn create_holy_thursday(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
+        let liturgical_day = self.create_liturgical_day_base(
             "thursday_of_the_lords_supper",
             date,
             Precedence::Triduum_1,
             Rank::Weekday,
             Season::PaschalTriduum,
             Color::White,
-            cache
         );
 
         Ok(liturgical_day)
     }
 
     /// Creates Good Friday (Friday of the Passion of the Lord)
-    fn create_good_friday(
-        &self,
-        date: DateTime<Utc>,
-        cache: &ProperOfTimeCache,
-    ) -> RomcalResult<LiturgicalDay> {
-        let liturgical_day = create_liturgical_day_base!(
+    fn create_good_friday(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
+        let liturgical_day = self.create_liturgical_day_base(
             "friday_of_the_passion_of_the_lord",
             date,
             Precedence::Triduum_1,
             Rank::Weekday,
             Season::PaschalTriduum,
             Color::Red,
-            cache
         );
 
         Ok(liturgical_day)
     }
 
     /// Creates Holy Saturday
-    fn create_holy_saturday(
-        &self,
-        date: DateTime<Utc>,
-        cache: &ProperOfTimeCache,
-    ) -> RomcalResult<LiturgicalDay> {
-        let liturgical_day = create_liturgical_day_base!(
+    fn create_holy_saturday(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
+        let liturgical_day = self.create_liturgical_day_base(
             "holy_saturday",
             date,
             Precedence::Triduum_1,
             Rank::Weekday,
             Season::PaschalTriduum,
             Color::White, // Using White as default, can be overridden if needed
-            cache
         );
 
         Ok(liturgical_day)
     }
 
     /// Creates Easter Sunday of the Resurrection of the Lord
-    fn create_easter_sunday(
-        &self,
-        date: DateTime<Utc>,
-        cache: &ProperOfTimeCache,
-    ) -> RomcalResult<LiturgicalDay> {
-        let mut liturgical_day = create_liturgical_day_base!(
+    fn create_easter_sunday(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
+        let mut liturgical_day = self.create_liturgical_day_base(
             "easter_sunday",
             date,
             Precedence::Triduum_1,
             Rank::Sunday,
             Season::PaschalTriduum, // Primary season
             Color::White,
-            cache
         );
 
         // Override specific properties for Easter Sunday
@@ -1197,36 +1073,29 @@ impl ProperOfTime {
         &self,
         dow: u8,
         date: DateTime<Utc>,
-        cache: &ProperOfTimeCache,
     ) -> RomcalResult<LiturgicalDay> {
         let id = format!("easter_{}", WEEKDAY_NAMES[dow as usize]);
-        let liturgical_day = create_liturgical_day_base!(
-            id,
+        let liturgical_day = self.create_liturgical_day_base(
+            &id,
             date,
             Precedence::WeekdayOfEasterOctave_2,
             Rank::Weekday,
             Season::EasterTime,
             Color::White,
-            cache
         );
 
         Ok(liturgical_day)
     }
 
     /// Creates Divine Mercy Sunday (Second Sunday of Easter)
-    fn create_divine_mercy_sunday(
-        &self,
-        date: DateTime<Utc>,
-        cache: &ProperOfTimeCache,
-    ) -> RomcalResult<LiturgicalDay> {
-        let mut liturgical_day = create_liturgical_day_base!(
+    fn create_divine_mercy_sunday(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
+        let mut liturgical_day = self.create_liturgical_day_base(
             "divine_mercy_sunday",
             date,
             Precedence::PrivilegedSunday_2,
             Rank::Sunday,
             Season::EasterTime,
             Color::White,
-            cache
         );
 
         // Override specific properties for Divine Mercy Sunday
@@ -1253,11 +1122,10 @@ impl ProperOfTime {
         week: u8,
         dow: u8,
         date: DateTime<Utc>,
-        cache: &ProperOfTimeCache,
     ) -> RomcalResult<LiturgicalDay> {
         let id = format!("easter_time_{}_{}", week, WEEKDAY_NAMES[dow as usize]);
-        let liturgical_day = create_liturgical_day_base!(
-            id,
+        let liturgical_day = self.create_liturgical_day_base(
+            &id,
             date,
             if dow == 0 {
                 Precedence::PrivilegedSunday_2
@@ -1271,45 +1139,34 @@ impl ProperOfTime {
             },
             Season::EasterTime,
             Color::White,
-            cache
         );
 
         Ok(liturgical_day)
     }
 
     /// Creates the Ascension of the Lord
-    fn create_ascension_of_the_lord(
-        &self,
-        date: DateTime<Utc>,
-        cache: &ProperOfTimeCache,
-    ) -> RomcalResult<LiturgicalDay> {
-        let liturgical_day = create_liturgical_day_base!(
+    fn create_ascension_of_the_lord(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
+        let liturgical_day = self.create_liturgical_day_base(
             "ascension_of_the_lord",
             date,
             Precedence::ProperOfTimeSolemnity_2,
             Rank::Solemnity,
             Season::EasterTime,
             Color::White,
-            cache
         );
 
         Ok(liturgical_day)
     }
 
     /// Creates Pentecost Sunday
-    fn create_pentecost_sunday(
-        &self,
-        date: DateTime<Utc>,
-        cache: &ProperOfTimeCache,
-    ) -> RomcalResult<LiturgicalDay> {
-        let liturgical_day = create_liturgical_day_base!(
+    fn create_pentecost_sunday(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
+        let liturgical_day = self.create_liturgical_day_base(
             "pentecost_sunday",
             date,
             Precedence::ProperOfTimeSolemnity_2,
             Rank::Solemnity,
             Season::EasterTime,
             Color::Red,
-            cache
         );
 
         Ok(liturgical_day)
@@ -1320,19 +1177,14 @@ impl ProperOfTime {
     // ---------------------------------------------------------------------------------
 
     /// Creates the Most Holy Trinity (Trinity Sunday)
-    fn create_most_holy_trinity(
-        &self,
-        date: DateTime<Utc>,
-        cache: &ProperOfTimeCache,
-    ) -> RomcalResult<LiturgicalDay> {
-        let liturgical_day = create_liturgical_day_base!(
+    fn create_most_holy_trinity(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
+        let liturgical_day = self.create_liturgical_day_base(
             "most_holy_trinity",
             date,
             Precedence::GeneralSolemnity_3,
             Rank::Solemnity,
             Season::OrdinaryTime,
             Color::White,
-            cache
         );
 
         Ok(liturgical_day)
@@ -1342,16 +1194,14 @@ impl ProperOfTime {
     fn create_most_holy_body_and_blood_of_christ(
         &self,
         date: DateTime<Utc>,
-        cache: &ProperOfTimeCache,
     ) -> RomcalResult<LiturgicalDay> {
-        let liturgical_day = create_liturgical_day_base!(
+        let liturgical_day = self.create_liturgical_day_base(
             "most_holy_body_and_blood_of_christ",
             date,
             Precedence::GeneralSolemnity_3,
             Rank::Solemnity,
             Season::OrdinaryTime,
             Color::White,
-            cache
         );
 
         Ok(liturgical_day)
@@ -1361,16 +1211,14 @@ impl ProperOfTime {
     fn create_most_sacred_heart_of_jesus(
         &self,
         date: DateTime<Utc>,
-        cache: &ProperOfTimeCache,
     ) -> RomcalResult<LiturgicalDay> {
-        let liturgical_day = create_liturgical_day_base!(
+        let liturgical_day = self.create_liturgical_day_base(
             "most_sacred_heart_of_jesus",
             date,
             Precedence::GeneralSolemnity_3,
             Rank::Solemnity,
             Season::OrdinaryTime,
             Color::White,
-            cache
         );
 
         Ok(liturgical_day)
@@ -1382,11 +1230,10 @@ impl ProperOfTime {
         week: u8,
         dow: u8,
         date: DateTime<Utc>,
-        cache: &ProperOfTimeCache,
     ) -> RomcalResult<LiturgicalDay> {
         let id = format!("ordinary_time_{}_{}", week, WEEKDAY_NAMES[dow as usize]);
-        let mut liturgical_day = create_liturgical_day_base!(
-            id,
+        let mut liturgical_day = self.create_liturgical_day_base(
+            &id,
             date,
             if dow == 0 {
                 Precedence::UnprivilegedSunday_6
@@ -1400,7 +1247,6 @@ impl ProperOfTime {
             },
             Season::OrdinaryTime,
             Color::Green,
-            cache
         );
 
         // TODO: Override week_of_season with the calculated week
@@ -1410,19 +1256,14 @@ impl ProperOfTime {
     }
 
     /// Creates the Sunday of the Word of God (3rd week of Ordinary Time)
-    fn create_sunday_of_the_word_of_god(
-        &self,
-        date: DateTime<Utc>,
-        cache: &ProperOfTimeCache,
-    ) -> RomcalResult<LiturgicalDay> {
-        let mut liturgical_day = create_liturgical_day_base!(
+    fn create_sunday_of_the_word_of_god(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
+        let mut liturgical_day = self.create_liturgical_day_base(
             "sunday_of_the_word_of_god",
             date,
             Precedence::UnprivilegedSunday_6,
             Rank::Sunday,
             Season::OrdinaryTime,
             Color::Green,
-            cache
         );
 
         // TODO: Sunday of the Word of God is always in week 3
@@ -1435,16 +1276,14 @@ impl ProperOfTime {
     fn create_our_lord_jesus_christ_king_of_the_universe(
         &self,
         date: DateTime<Utc>,
-        cache: &ProperOfTimeCache,
     ) -> RomcalResult<LiturgicalDay> {
-        let liturgical_day = create_liturgical_day_base!(
+        let liturgical_day = self.create_liturgical_day_base(
             "our_lord_jesus_christ_king_of_the_universe",
             date,
             Precedence::GeneralSolemnity_3,
             Rank::Solemnity,
             Season::OrdinaryTime,
             Color::White,
-            cache
         );
 
         Ok(liturgical_day)
@@ -1462,8 +1301,8 @@ mod tests {
 
     #[test]
     fn test_proper_of_time_creation() {
-        let config = Preset::default();
-        let proper_of_time = ProperOfTime::new(config, 2026).unwrap();
+        let preset = Preset::default();
+        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
 
         assert_eq!(proper_of_time.cache.advent_year(), 2026);
         assert_eq!(proper_of_time.cache.easter_year(), 2026);
@@ -1471,8 +1310,8 @@ mod tests {
 
     #[test]
     fn test_advent_generation() {
-        let config = Preset::default();
-        let proper_of_time = ProperOfTime::new(config, 2026).unwrap();
+        let preset = Preset::default();
+        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
         let advent_days = proper_of_time.advent().unwrap();
 
         // Check that we have generated days
@@ -1488,11 +1327,11 @@ mod tests {
 
     #[test]
     fn test_liturgical_year_advent() {
-        let config = Preset::new(PresetPartial {
+        let preset = Preset::new(PresetPartial {
             context: Some(crate::CalendarContext::Liturgical),
             ..PresetPartial::default()
         });
-        let proper_of_time = ProperOfTime::new(config, 2026).unwrap();
+        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
         // For liturgical year 2026, Advent begins in 2025
         let advent_days = proper_of_time.advent().unwrap();
 
@@ -1508,8 +1347,8 @@ mod tests {
 
     #[test]
     fn test_early_christmas_time_generation() {
-        let config = Preset::default();
-        let proper_of_time = ProperOfTime::new(config, 2026).unwrap();
+        let preset = Preset::default();
+        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
         let christmas_days = proper_of_time.early_christmas_time().unwrap();
 
         // Check that we have generated days
@@ -1539,11 +1378,11 @@ mod tests {
 
     #[test]
     fn test_liturgical_year_early_christmas_time() {
-        let config = Preset::new(PresetPartial {
+        let preset = Preset::new(PresetPartial {
             context: Some(crate::CalendarContext::Liturgical),
             ..PresetPartial::default()
         });
-        let proper_of_time = ProperOfTime::new(config, 2026).unwrap();
+        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
         // For liturgical year 2026, Christmas is in 2025
         let christmas_days = proper_of_time.early_christmas_time().unwrap();
 
@@ -1559,9 +1398,8 @@ mod tests {
 
     #[test]
     fn test_no_duplicate_dates() {
-        let config = Preset::default();
-        let proper_of_time = ProperOfTime::new(config, 2026).unwrap();
-        let all_days = proper_of_time.generate_all().unwrap();
+        let preset = Preset::default();
+        let all_days = preset.proper_of_time(2026).unwrap();
 
         // Check that we have generated days
         assert!(!all_days.is_empty());
@@ -1629,12 +1467,11 @@ mod tests {
 
     #[test]
     fn test_no_duplicate_dates_liturgical_context() {
-        let config = Preset::new(PresetPartial {
+        let preset = Preset::new(PresetPartial {
             context: Some(crate::CalendarContext::Liturgical),
             ..PresetPartial::default()
         });
-        let proper_of_time = ProperOfTime::new(config, 2026).unwrap();
-        let all_days = proper_of_time.generate_all().unwrap();
+        let all_days = preset.proper_of_time(2026).unwrap();
 
         // Check that we have generated days
         assert!(!all_days.is_empty());
@@ -1668,9 +1505,8 @@ mod tests {
 
     #[test]
     fn test_sort_liturgical_days_by_date() {
-        let config = Preset::default();
-        let proper_of_time = ProperOfTime::new(config, 2026).unwrap();
-        let mut all_days = proper_of_time.generate_all().unwrap();
+        let preset = Preset::default();
+        let mut all_days = preset.proper_of_time(2026).unwrap();
 
         // Shuffle the days to test sorting
         all_days.reverse();
@@ -1695,11 +1531,10 @@ mod tests {
 
     #[test]
     fn test_calendar_continuity() {
-        let config = Preset::default();
-        let proper_of_time = ProperOfTime::new(config, 2026).unwrap();
+        let preset = Preset::default();
 
         // Get all liturgical days
-        let mut days = proper_of_time.generate_all().unwrap();
+        let mut days = preset.proper_of_time(2026).unwrap();
 
         // Sort by date
         sort_liturgical_days_by_date(&mut days);
@@ -1746,8 +1581,8 @@ mod tests {
 
     #[test]
     fn test_late_christmas_time_generation() {
-        let config = Preset::default();
-        let proper_of_time = ProperOfTime::new(config, 2026).unwrap();
+        let preset = Preset::default();
+        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
 
         let days = proper_of_time.late_christmas_time().unwrap();
 
@@ -1770,11 +1605,11 @@ mod tests {
 
     #[test]
     fn test_liturgical_year_late_christmas_time() {
-        let config = Preset::new(PresetPartial {
+        let preset = Preset::new(PresetPartial {
             context: Some(crate::CalendarContext::Liturgical),
             ..PresetPartial::default()
         });
-        let proper_of_time = ProperOfTime::new(config, 2026).unwrap();
+        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
 
         let days = proper_of_time.late_christmas_time().unwrap();
 
@@ -1789,8 +1624,8 @@ mod tests {
 
     #[test]
     fn test_lent_generation() {
-        let config = Preset::default();
-        let proper_of_time = ProperOfTime::new(config, 2026).unwrap();
+        let preset = Preset::default();
+        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
 
         let days = proper_of_time.lent().unwrap();
 
@@ -1818,11 +1653,11 @@ mod tests {
 
     #[test]
     fn test_liturgical_year_lent() {
-        let config = Preset::new(PresetPartial {
+        let preset = Preset::new(PresetPartial {
             context: Some(crate::CalendarContext::Liturgical),
             ..PresetPartial::default()
         });
-        let proper_of_time = ProperOfTime::new(config, 2026).unwrap();
+        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
 
         let days = proper_of_time.lent().unwrap();
 
@@ -1842,8 +1677,8 @@ mod tests {
 
     #[test]
     fn test_paschal_triduum_generation() {
-        let config = Preset::default();
-        let proper_of_time = ProperOfTime::new(config, 2026).unwrap();
+        let preset = Preset::default();
+        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
 
         let days = proper_of_time.paschal_triduum().unwrap();
 
@@ -1871,11 +1706,11 @@ mod tests {
 
     #[test]
     fn test_liturgical_year_paschal_triduum() {
-        let config = Preset::new(PresetPartial {
+        let preset = Preset::new(PresetPartial {
             context: Some(crate::CalendarContext::Liturgical),
             ..PresetPartial::default()
         });
-        let proper_of_time = ProperOfTime::new(config, 2026).unwrap();
+        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
 
         let days = proper_of_time.paschal_triduum().unwrap();
 
@@ -1893,8 +1728,8 @@ mod tests {
 
     #[test]
     fn test_easter_time_generation() {
-        let config = Preset::default();
-        let proper_of_time = ProperOfTime::new(config, 2026).unwrap();
+        let preset = Preset::default();
+        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
 
         let days = proper_of_time.easter_time().unwrap();
 
@@ -1933,11 +1768,11 @@ mod tests {
 
     #[test]
     fn test_liturgical_year_easter_time() {
-        let config = Preset::new(PresetPartial {
+        let preset = Preset::new(PresetPartial {
             context: Some(crate::CalendarContext::Liturgical),
             ..PresetPartial::default()
         });
-        let proper_of_time = ProperOfTime::new(config, 2026).unwrap();
+        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
 
         let days = proper_of_time.easter_time().unwrap();
 
@@ -1955,8 +1790,8 @@ mod tests {
 
     #[test]
     fn test_early_ordinary_time_generation() {
-        let config = Preset::default();
-        let proper_of_time = ProperOfTime::new(config, 2026).unwrap();
+        let preset = Preset::default();
+        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
 
         let days = proper_of_time.early_ordinary_time().unwrap();
 
@@ -1988,8 +1823,8 @@ mod tests {
 
     #[test]
     fn test_late_ordinary_time_generation() {
-        let config = Preset::default();
-        let proper_of_time = ProperOfTime::new(config, 2026).unwrap();
+        let preset = Preset::default();
+        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
 
         let days = proper_of_time.late_ordinary_time().unwrap();
 
@@ -2048,11 +1883,11 @@ mod tests {
     fn test_early_ordinary_time_first_week_incomplete_baptism_monday() {
         // Test with epiphany_on_sunday = true so Baptism of the Lord falls on Monday
         // This means early Ordinary Time starts on Tuesday (no Sunday, no Monday in first week)
-        let config = Preset::new(PresetPartial {
+        let preset = Preset::new(PresetPartial {
             epiphany_on_sunday: Some(true),
             ..PresetPartial::default()
         });
-        let proper_of_time = ProperOfTime::new(config, 2029).unwrap(); // 2029: Baptism on Monday
+        let proper_of_time = ProperOfTime::new(preset, 2029).unwrap(); // 2029: Baptism on Monday
 
         let days = proper_of_time.early_ordinary_time().unwrap();
 
@@ -2122,11 +1957,11 @@ mod tests {
     fn test_early_ordinary_time_first_week_incomplete_baptism_sunday() {
         // Test with epiphany_on_sunday = false so Baptism of the Lord falls on Sunday
         // This means early Ordinary Time starts on Monday (no Sunday in first week)
-        let config = Preset::new(PresetPartial {
+        let preset = Preset::new(PresetPartial {
             epiphany_on_sunday: Some(false),
             ..PresetPartial::default()
         });
-        let proper_of_time = ProperOfTime::new(config, 2030).unwrap(); // 2030: Baptism on Sunday
+        let proper_of_time = ProperOfTime::new(preset, 2030).unwrap(); // 2030: Baptism on Sunday
 
         let days = proper_of_time.early_ordinary_time().unwrap();
 
@@ -2193,8 +2028,8 @@ mod tests {
     fn test_late_ordinary_time_first_week_incomplete() {
         // Test that late Ordinary Time first week is always incomplete (Monday to Saturday only)
         // because the Sunday is Pentecost Sunday
-        let config = Preset::default();
-        let proper_of_time = ProperOfTime::new(config, 2026).unwrap();
+        let preset = Preset::default();
+        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
 
         let days = proper_of_time.late_ordinary_time().unwrap();
 
@@ -2253,8 +2088,8 @@ mod tests {
     fn test_late_ordinary_time_34th_week_christ_king() {
         // Test that the last week of late Ordinary Time is always the 34th week
         // and that the Sunday of this week is Christ the King
-        let config = Preset::default();
-        let proper_of_time = ProperOfTime::new(config, 2026).unwrap();
+        let preset = Preset::default();
+        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
 
         let days = proper_of_time.late_ordinary_time().unwrap();
 

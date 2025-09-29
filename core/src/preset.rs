@@ -161,6 +161,29 @@ impl Preset {
     ///
     /// Returns an error if the year is invalid or if there's a calculation error
     pub fn proper_of_time(&self, year: i32) -> crate::RomcalResult<Vec<crate::LiturgicalDay>> {
-        crate::proper_of_time::ProperOfTime::new(self.clone(), year)?.generate_all()
+        // crate::proper_of_time::ProperOfTime::new(self.clone(), year)?.generate_all()
+
+        let proper_of_time = crate::proper_of_time::ProperOfTime::new(self.clone(), year)?;
+
+        let mut days = Vec::new();
+
+        if self.context == crate::CalendarContext::Liturgical {
+            days.extend(proper_of_time.advent()?);
+            days.extend(proper_of_time.early_christmas_time()?);
+        }
+
+        days.extend(proper_of_time.late_christmas_time()?);
+        days.extend(proper_of_time.early_ordinary_time()?);
+        days.extend(proper_of_time.lent()?);
+        days.extend(proper_of_time.paschal_triduum()?);
+        days.extend(proper_of_time.easter_time()?);
+        days.extend(proper_of_time.late_ordinary_time()?);
+
+        if self.context == crate::CalendarContext::Gregorian {
+            days.extend(proper_of_time.advent()?);
+            days.extend(proper_of_time.early_christmas_time()?);
+        }
+
+        Ok(days)
     }
 }
