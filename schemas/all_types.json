@@ -2006,25 +2006,6 @@
       ],
       "additionalProperties": false
     },
-    "SundayCycleInfo": {
-      "description": "Sunday cycle information with localized name.",
-      "type": "object",
-      "properties": {
-        "key": {
-          "description": "The Sunday cycle key",
-          "$ref": "#/definitions/SundayCycle"
-        },
-        "name": {
-          "description": "The localized name of the Sunday cycle",
-          "type": "string"
-        }
-      },
-      "required": [
-        "key",
-        "name"
-      ],
-      "additionalProperties": false
-    },
     "SundayCycle": {
       "description": "A three-year cycle for Sunday Mass readings (and some solemnities), designated by A, B, or C.\nEach cycle begins on the First Sunday of Advent of the previous civil year and ends on Saturday\nafter the Christ the King Solemnity. The cycles follow each other in alphabetical order.\nC year is always divisible by 3, A has remainder of 1, and B remainder of 2.",
       "oneOf": [
@@ -2045,25 +2026,6 @@
         }
       ]
     },
-    "WeekdayCycleInfo": {
-      "description": "Weekday cycle information with localized name.",
-      "type": "object",
-      "properties": {
-        "key": {
-          "description": "The weekday cycle key",
-          "$ref": "#/definitions/WeekdayCycle"
-        },
-        "name": {
-          "description": "The localized name of the weekday cycle",
-          "type": "string"
-        }
-      },
-      "required": [
-        "key",
-        "name"
-      ],
-      "additionalProperties": false
-    },
     "WeekdayCycle": {
       "description": "A two-year cycle for the weekday Mass readings (also called Cycle I and Cycle II).\nOdd-numbered years are the Cycle I (year 1); even-numbered ones are the Cycle II (year 2).",
       "oneOf": [
@@ -2078,25 +2040,6 @@
           "const": "YEAR2"
         }
       ]
-    },
-    "PsalterWeekCycleInfo": {
-      "description": "Psalter week cycle information with localized name.",
-      "type": "object",
-      "properties": {
-        "key": {
-          "description": "The psalter week cycle key",
-          "$ref": "#/definitions/PsalterWeekCycle"
-        },
-        "name": {
-          "description": "The localized name of the psalter week cycle",
-          "type": "string"
-        }
-      },
-      "required": [
-        "key",
-        "name"
-      ],
-      "additionalProperties": false
     },
     "PsalterWeekCycle": {
       "description": "[GILH §133] The four-week cycle of the psalter is coordinated with the liturgical year in such a way that\non the First Sunday of Advent, the First Sunday in Ordinary Time, the First Sunday of Lent,\nand Easter Sunday the cycle is always begun again with Week 1 (others being omitted when necessary).",
@@ -5094,25 +5037,6 @@
             }
           ]
         },
-        "SundayCycleInfo": {
-          "description": "Sunday cycle information with localized name.",
-          "type": "object",
-          "properties": {
-            "key": {
-              "description": "The Sunday cycle key",
-              "$ref": "#/definitions/SundayCycle"
-            },
-            "name": {
-              "description": "The localized name of the Sunday cycle",
-              "type": "string"
-            }
-          },
-          "required": [
-            "key",
-            "name"
-          ],
-          "additionalProperties": false
-        },
         "SundayCycle": {
           "description": "A three-year cycle for Sunday Mass readings (and some solemnities), designated by A, B, or C.\nEach cycle begins on the First Sunday of Advent of the previous civil year and ends on Saturday\nafter the Christ the King Solemnity. The cycles follow each other in alphabetical order.\nC year is always divisible by 3, A has remainder of 1, and B remainder of 2.",
           "oneOf": [
@@ -5133,25 +5057,6 @@
             }
           ]
         },
-        "WeekdayCycleInfo": {
-          "description": "Weekday cycle information with localized name.",
-          "type": "object",
-          "properties": {
-            "key": {
-              "description": "The weekday cycle key",
-              "$ref": "#/definitions/WeekdayCycle"
-            },
-            "name": {
-              "description": "The localized name of the weekday cycle",
-              "type": "string"
-            }
-          },
-          "required": [
-            "key",
-            "name"
-          ],
-          "additionalProperties": false
-        },
         "WeekdayCycle": {
           "description": "A two-year cycle for the weekday Mass readings (also called Cycle I and Cycle II).\nOdd-numbered years are the Cycle I (year 1); even-numbered ones are the Cycle II (year 2).",
           "oneOf": [
@@ -5166,25 +5071,6 @@
               "const": "YEAR2"
             }
           ]
-        },
-        "PsalterWeekCycleInfo": {
-          "description": "Psalter week cycle information with localized name.",
-          "type": "object",
-          "properties": {
-            "key": {
-              "description": "The psalter week cycle key",
-              "$ref": "#/definitions/PsalterWeekCycle"
-            },
-            "name": {
-              "description": "The localized name of the psalter week cycle",
-              "type": "string"
-            }
-          },
-          "required": [
-            "key",
-            "name"
-          ],
-          "additionalProperties": false
         },
         "PsalterWeekCycle": {
           "description": "[GILH §133] The four-week cycle of the psalter is coordinated with the liturgical year in such a way that\non the First Sunday of Advent, the First Sunday in Ordinary Time, the First Sunday of Lent,\nand Easter Sunday the cycle is always begun again with Week 1 (others being omitted when necessary).",
@@ -5366,15 +5252,27 @@
         },
         "sunday_cycle": {
           "description": "The Sunday cycle to which this liturgical day belongs.",
-          "$ref": "#/definitions/SundayCycleInfo"
+          "$ref": "#/definitions/SundayCycle"
+        },
+        "sunday_cycle_name": {
+          "description": "The localized name of the Sunday cycle to which this liturgical day belongs.",
+          "type": "string"
         },
         "weekday_cycle": {
           "description": "The weekday cycle to which this liturgical day belongs.",
-          "$ref": "#/definitions/WeekdayCycleInfo"
+          "$ref": "#/definitions/WeekdayCycle"
+        },
+        "weekday_cycle_name": {
+          "description": "The localized name of the weekday cycle to which this liturgical day belongs.",
+          "type": "string"
         },
         "psalter_week": {
           "description": "The psalter week cycle to which this liturgical day belongs.",
-          "$ref": "#/definitions/PsalterWeekCycleInfo"
+          "$ref": "#/definitions/PsalterWeekCycle"
+        },
+        "psalter_week_name": {
+          "description": "The localized name of the psalter week cycle to which this liturgical day belongs.",
+          "type": "string"
         },
         "from_calendar_id": {
           "description": "The ID of the calendar where this liturgical day is defined.\nIndicates the source calendar in the inheritance chain.",
@@ -5410,8 +5308,11 @@
         "start_of_liturgical_year",
         "end_of_liturgical_year",
         "sunday_cycle",
+        "sunday_cycle_name",
         "weekday_cycle",
+        "weekday_cycle_name",
         "psalter_week",
+        "psalter_week_name",
         "from_calendar_id",
         "parent_overrides"
       ],

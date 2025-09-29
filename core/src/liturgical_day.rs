@@ -4,8 +4,8 @@ use serde::{Deserialize, Serialize};
 use crate::types::dates::{DateDef, DateDefException, DayOfWeek};
 use crate::types::entity::{Entity, TitlesDef};
 use crate::types::{
-    ColorInfo, CommonInfo, PeriodInfo, Precedence, PsalterWeekCycleInfo, Rank, SundayCycleInfo,
-    WeekdayCycleInfo,
+    ColorInfo, CommonInfo, PeriodInfo, Precedence, PsalterWeekCycle, Rank, SundayCycle,
+    WeekdayCycle,
 };
 use crate::{CalendarId, Season};
 
@@ -103,13 +103,22 @@ pub struct LiturgicalDay {
     pub end_of_liturgical_year: String, // in ISO 8601 format: YYYY-MM-DD
 
     /// The Sunday cycle to which this liturgical day belongs.
-    pub sunday_cycle: SundayCycleInfo,
+    pub sunday_cycle: SundayCycle,
+
+    /// The localized name of the Sunday cycle to which this liturgical day belongs.
+    pub sunday_cycle_name: String,
 
     /// The weekday cycle to which this liturgical day belongs.
-    pub weekday_cycle: WeekdayCycleInfo,
+    pub weekday_cycle: WeekdayCycle,
+
+    /// The localized name of the weekday cycle to which this liturgical day belongs.
+    pub weekday_cycle_name: String,
 
     /// The psalter week cycle to which this liturgical day belongs.
-    pub psalter_week: PsalterWeekCycleInfo,
+    pub psalter_week: PsalterWeekCycle,
+
+    /// The localized name of the psalter week cycle to which this liturgical day belongs.
+    pub psalter_week_name: String,
 
     /// The ID of the calendar where this liturgical day is defined.
     /// Indicates the source calendar in the inheritance chain.
@@ -121,73 +130,7 @@ pub struct LiturgicalDay {
 }
 
 impl LiturgicalDay {
-    /// Creates a new LiturgicalDay with the provided basic information.
-    ///
-    /// # Arguments
-    ///
-    /// * `id` - The unique identifier of the liturgical day
-    /// * `fullname` - The full name of the liturgical day
-    /// * `date` - The computed date in ISO 8601 format
-    /// * `from_calendar_id` - The ID of the calendar where this liturgical day is defined
-    ///
-    /// # Returns
-    ///
-    /// A new LiturgicalDay instance with default values for optional fields.
-    pub fn new(
-        id: LiturgicalDayId,
-        fullname: String,
-        date: String,
-        from_calendar_id: CalendarId,
-    ) -> Self {
-        Self {
-            id,
-            fullname,
-            date,
-            date_def: DateDef::MonthDate {
-                month: crate::types::dates::MonthIndex(1), // January
-                date: 1,
-                day_offset: None,
-            },
-            date_exceptions: Vec::new(),
-            precedence: Precedence::Triduum_1,
-            rank: Rank::Solemnity,
-            rank_name: String::new(),
-            allow_similar_rank_items: false,
-            is_holy_day_of_obligation: false,
-            is_optional: false,
-            season: None,
-            season_name: None,
-            periods: Vec::new(),
-            commons: Vec::new(),
-            colors: Vec::new(),
-            titles: TitlesDef::Titles(Vec::new()),
-            entities: Vec::new(),
-            week_of_season: None,
-            day_of_season: None,
-            day_of_week: DayOfWeek(0), // Sunday
-            nth_day_of_week_in_month: 0,
-            start_of_season: None,
-            end_of_season: None,
-            start_of_liturgical_year: String::new(),
-            end_of_liturgical_year: String::new(),
-            sunday_cycle: SundayCycleInfo {
-                key: crate::types::liturgical::cycles::SundayCycle::YearA,
-                name: String::new(),
-            },
-            weekday_cycle: WeekdayCycleInfo {
-                key: crate::types::liturgical::cycles::WeekdayCycle::Year1,
-                name: String::new(),
-            },
-            psalter_week: PsalterWeekCycleInfo {
-                key: crate::types::liturgical::cycles::PsalterWeekCycle::Week1,
-                name: String::new(),
-            },
-            from_calendar_id,
-            parent_overrides: Vec::new(),
-        }
-    }
-
-    /// Creates a new LiturgicalDay with all required fields specified.
+    /// Creates a new LiturgicalDay.
     ///
     /// # Arguments
     ///
@@ -204,7 +147,7 @@ impl LiturgicalDay {
     ///
     /// A new LiturgicalDay instance with the specified required fields and default values for optional fields.
     #[allow(clippy::too_many_arguments)]
-    pub fn with_required_fields(
+    pub fn new(
         id: LiturgicalDayId,
         fullname: String,
         date: String,
@@ -212,6 +155,12 @@ impl LiturgicalDay {
         precedence: Precedence,
         rank: Rank,
         rank_name: String,
+        sunday_cycle: SundayCycle,
+        sunday_cycle_name: String,
+        weekday_cycle: WeekdayCycle,
+        weekday_cycle_name: String,
+        psalter_week: PsalterWeekCycle,
+        psalter_week_name: String,
         from_calendar_id: CalendarId,
     ) -> Self {
         Self {
@@ -241,18 +190,12 @@ impl LiturgicalDay {
             end_of_season: None,
             start_of_liturgical_year: String::new(),
             end_of_liturgical_year: String::new(),
-            sunday_cycle: SundayCycleInfo {
-                key: crate::types::liturgical::cycles::SundayCycle::YearA,
-                name: String::new(),
-            },
-            weekday_cycle: WeekdayCycleInfo {
-                key: crate::types::liturgical::cycles::WeekdayCycle::Year1,
-                name: String::new(),
-            },
-            psalter_week: PsalterWeekCycleInfo {
-                key: crate::types::liturgical::cycles::PsalterWeekCycle::Week1,
-                name: String::new(),
-            },
+            sunday_cycle,
+            sunday_cycle_name,
+            weekday_cycle,
+            weekday_cycle_name,
+            psalter_week,
+            psalter_week_name,
             from_calendar_id,
             parent_overrides: Vec::new(),
         }
@@ -362,19 +305,6 @@ impl LiturgicalDay {
     ) -> Self {
         self.start_of_season = Some(start_of_season);
         self.end_of_season = Some(end_of_season);
-        self
-    }
-
-    /// Sets the cycles for this liturgical day.
-    pub fn with_cycles(
-        mut self,
-        sunday_cycle: SundayCycleInfo,
-        weekday_cycle: WeekdayCycleInfo,
-        psalter_week: PsalterWeekCycleInfo,
-    ) -> Self {
-        self.sunday_cycle = sunday_cycle;
-        self.weekday_cycle = weekday_cycle;
-        self.psalter_week = psalter_week;
         self
     }
 

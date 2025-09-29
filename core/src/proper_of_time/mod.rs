@@ -24,7 +24,7 @@ use crate::proper_of_time::lent::Lent;
 use crate::proper_of_time::ordinary_time::OrdinaryTime;
 use crate::proper_of_time::paschal_triduum::PaschalTriduum;
 use crate::types::dates::{DateDef, DateFn, DayOfWeek};
-use crate::types::liturgical::{Color, ColorInfo, Precedence, Rank, Season};
+use crate::types::liturgical::{Color, ColorInfo, Precedence, PsalterWeekCycle, Rank, Season};
 
 /// Structure for generating liturgical days of the Proper of Time
 pub struct ProperOfTime {
@@ -68,9 +68,11 @@ impl ProperOfTime {
         let date_str = date.format("%Y-%m-%d").to_string();
         let dow = date.weekday().num_days_from_sunday() as u8;
         let rank = precedence.to_rank();
+        let sunday_cycle = self.cache.sunday_cycle();
+        let weekday_cycle = self.cache.weekday_cycle();
 
         // Calculate season-related fields only if season is provided
-        let (day_of_season, week_of_season) = if let Some(season) = season {
+        let (day_of_season, week_of_season, psalter_week_cycle) = if let Some(season) = season {
             let start_of_season = match season {
                 Season::Advent => self.cache.advent_start(),
                 Season::ChristmasTime => self.cache.christmas_start(),
@@ -102,12 +104,20 @@ impl ProperOfTime {
                 (day_of_season - 1) / 7 + 1
             };
 
-            (Some(day_of_season), Some(week_of_season))
+            (
+                Some(day_of_season),
+                Some(week_of_season),
+                PsalterWeekCycle::from_week(
+                    week_of_season,
+                    season == Season::Lent,
+                    season == Season::ChristmasTime,
+                ),
+            )
         } else {
-            (None, None)
+            (None, None, PsalterWeekCycle::Week1)
         };
 
-        let mut liturgical_day = LiturgicalDay::with_required_fields(
+        let mut liturgical_day = LiturgicalDay::new(
             id.clone(),
             id.clone(),
             date_str,
@@ -119,6 +129,12 @@ impl ProperOfTime {
             precedence,
             rank.clone(),
             enum_to_string(&rank),
+            sunday_cycle,
+            enum_to_string(&sunday_cycle),
+            weekday_cycle,
+            enum_to_string(&weekday_cycle),
+            psalter_week_cycle,
+            enum_to_string(&psalter_week_cycle),
             PROPER_OF_TIME_ID.to_string(),
         )
         .with_day_of_week(DayOfWeek(dow))

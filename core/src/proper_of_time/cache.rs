@@ -5,7 +5,7 @@ use chrono::Utc;
 use crate::dates::LiturgicalDates;
 use crate::error::RomcalResult;
 use crate::preset::Preset;
-use crate::types::liturgical::Season;
+use crate::types::liturgical::{Season, SundayCycle, WeekdayCycle};
 use crate::types::{CalendarContext, EasterCalculationType};
 
 /// Key for caching season data based on preset configuration and year
@@ -65,6 +65,10 @@ pub struct ProperOfTimeCache {
     triduum_start: DateTime<Utc>,
     easter_start: DateTime<Utc>,
     ordinary_start: DateTime<Utc>,
+
+    // Cycles
+    sunday_cycle: SundayCycle,
+    weekday_cycle: WeekdayCycle,
 }
 
 impl ProperOfTimeCache {
@@ -154,6 +158,8 @@ impl ProperOfTimeCache {
             triduum_start,
             easter_start,
             ordinary_start,
+            sunday_cycle: SundayCycle::from_year(year),
+            weekday_cycle: WeekdayCycle::from_year(year),
         })
     }
 
@@ -238,5 +244,13 @@ impl ProperOfTimeCache {
     }
     pub fn triduum_start(&self) -> DateTime<Utc> {
         self.triduum_start
+    }
+
+    // Getters for cycles
+    pub fn sunday_cycle(&self) -> SundayCycle {
+        self.sunday_cycle
+    }
+    pub fn weekday_cycle(&self) -> WeekdayCycle {
+        self.weekday_cycle
     }
 }
