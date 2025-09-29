@@ -3,7 +3,7 @@ use chrono::{DateTime, Utc};
 use crate::error::RomcalResult;
 use crate::liturgical_day::LiturgicalDay;
 use crate::proper_of_time::common::{sort_liturgical_days_by_date, WEEKDAY_NAMES};
-use crate::types::liturgical::{Color, Precedence, Rank, Season};
+use crate::types::liturgical::{Color, Precedence, Season};
 
 use super::ProperOfTime;
 
@@ -87,7 +87,6 @@ impl<'a> Lent<'a> {
             "ash_wednesday",
             date,
             Precedence::AshWednesday_2,
-            Rank::Weekday,
             Season::Lent,
             Color::Purple,
         );
@@ -105,7 +104,6 @@ impl<'a> Lent<'a> {
             &format!("{}_after_ash_wednesday", WEEKDAY_NAMES[dow as usize]),
             date,
             Precedence::PrivilegedWeekday_9,
-            Rank::Weekday,
             Season::Lent,
             Color::Purple,
         );
@@ -128,11 +126,6 @@ impl<'a> Lent<'a> {
             } else {
                 Precedence::PrivilegedWeekday_9
             },
-            if dow == 0 {
-                Rank::Sunday
-            } else {
-                Rank::Weekday
-            },
             Season::Lent,
             if week == 4 && dow == 0 {
                 Color::Rose
@@ -150,7 +143,6 @@ impl<'a> Lent<'a> {
             "palm_sunday_of_the_passion_of_the_lord",
             date,
             Precedence::PrivilegedSunday_2,
-            Rank::Sunday,
             Season::Lent,
             Color::Red,
         );
@@ -171,7 +163,6 @@ impl<'a> Lent<'a> {
             &format!("holy_{}", WEEKDAY_NAMES[dow as usize]),
             date,
             Precedence::PrivilegedWeekday_9,
-            Rank::Weekday,
             Season::Lent,
             Color::Purple,
         );

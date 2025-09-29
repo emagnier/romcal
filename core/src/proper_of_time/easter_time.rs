@@ -3,7 +3,7 @@ use chrono::{DateTime, Utc};
 use crate::error::RomcalResult;
 use crate::liturgical_day::LiturgicalDay;
 use crate::proper_of_time::common::{enum_to_string, sort_liturgical_days_by_date, WEEKDAY_NAMES};
-use crate::types::liturgical::{Color, Precedence, Rank, Season};
+use crate::types::liturgical::{Color, Precedence, Season};
 use crate::types::{DateDef, DateFn, Period, PeriodInfo, SeasonInfo};
 
 use super::ProperOfTime;
@@ -112,7 +112,6 @@ impl<'a> EasterTime<'a> {
             "easter_sunday",
             date,
             Precedence::Triduum_1,
-            Rank::Sunday,
             Season::PaschalTriduum, // Primary season
             Color::White,
         );
@@ -145,7 +144,6 @@ impl<'a> EasterTime<'a> {
             &format!("easter_{}", WEEKDAY_NAMES[dow as usize]),
             date,
             Precedence::WeekdayOfEasterOctave_2,
-            Rank::Weekday,
             Season::EasterTime,
             Color::White,
         );
@@ -159,7 +157,6 @@ impl<'a> EasterTime<'a> {
             "divine_mercy_sunday",
             date,
             Precedence::PrivilegedSunday_2,
-            Rank::Sunday,
             Season::EasterTime,
             Color::White,
         );
@@ -197,11 +194,6 @@ impl<'a> EasterTime<'a> {
             } else {
                 Precedence::Weekday_13
             },
-            if dow == 0 {
-                Rank::Sunday
-            } else {
-                Rank::Weekday
-            },
             Season::EasterTime,
             Color::White,
         );
@@ -215,7 +207,6 @@ impl<'a> EasterTime<'a> {
             "ascension_of_the_lord",
             date,
             Precedence::ProperOfTimeSolemnity_2,
-            Rank::Solemnity,
             Season::EasterTime,
             Color::White,
         );
@@ -229,7 +220,6 @@ impl<'a> EasterTime<'a> {
             "pentecost_sunday",
             date,
             Precedence::ProperOfTimeSolemnity_2,
-            Rank::Solemnity,
             Season::EasterTime,
             Color::Red,
         );

@@ -3,7 +3,7 @@ use chrono::{DateTime, Utc};
 use crate::error::RomcalResult;
 use crate::liturgical_day::LiturgicalDay;
 use crate::proper_of_time::common::{sort_liturgical_days_by_date, WEEKDAY_NAMES};
-use crate::types::liturgical::{Color, Precedence, Rank, Season};
+use crate::types::liturgical::{Color, Precedence, Season};
 
 use super::ProperOfTime;
 
@@ -162,7 +162,6 @@ impl<'a> ChristmasTime<'a> {
             "nativity_of_the_lord",
             date,
             Precedence::ProperOfTimeSolemnity_2,
-            Rank::Solemnity,
             Season::ChristmasTime,
             Color::White,
         );
@@ -180,7 +179,6 @@ impl<'a> ChristmasTime<'a> {
             &format!("christmas_octave_day_{}", count),
             date,
             Precedence::PrivilegedWeekday_9,
-            Rank::Weekday,
             Season::ChristmasTime,
             Color::White,
         );
@@ -194,7 +192,6 @@ impl<'a> ChristmasTime<'a> {
             "holy_family_of_jesus_mary_and_joseph",
             date,
             Precedence::GeneralLordFeast_5,
-            Rank::Feast,
             Season::ChristmasTime,
             Color::White,
         );
@@ -212,7 +209,6 @@ impl<'a> ChristmasTime<'a> {
             "mary_mother_of_god",
             date,
             Precedence::GeneralSolemnity_3,
-            Rank::Solemnity,
             Season::ChristmasTime,
             Color::White,
         );
@@ -229,7 +225,6 @@ impl<'a> ChristmasTime<'a> {
             "second_sunday_after_christmas",
             date,
             Precedence::UnprivilegedSunday_6,
-            Rank::Sunday,
             Season::ChristmasTime,
             Color::White,
         );
@@ -247,7 +242,6 @@ impl<'a> ChristmasTime<'a> {
             &format!("christmas_time_january_{}", day),
             date,
             Precedence::Weekday_13,
-            Rank::Weekday,
             Season::ChristmasTime,
             Color::White,
         );
@@ -261,7 +255,6 @@ impl<'a> ChristmasTime<'a> {
             "epiphany_of_the_lord",
             date,
             Precedence::ProperOfTimeSolemnity_2,
-            Rank::Solemnity,
             Season::ChristmasTime,
             Color::White,
         );
@@ -279,7 +272,6 @@ impl<'a> ChristmasTime<'a> {
             &format!("{}_after_epiphany", WEEKDAY_NAMES[dow as usize]),
             date,
             Precedence::Weekday_13,
-            Rank::Weekday,
             Season::ChristmasTime,
             Color::White,
         );
@@ -293,7 +285,6 @@ impl<'a> ChristmasTime<'a> {
             "baptism_of_the_lord",
             date,
             Precedence::ProperOfTimeSolemnity_2,
-            Rank::Solemnity,
             Season::ChristmasTime,
             Color::White,
         );

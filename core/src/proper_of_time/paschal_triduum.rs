@@ -3,7 +3,7 @@ use chrono::{DateTime, Utc};
 use crate::error::RomcalResult;
 use crate::liturgical_day::LiturgicalDay;
 use crate::proper_of_time::common::sort_liturgical_days_by_date;
-use crate::types::liturgical::{Color, Precedence, Rank, Season};
+use crate::types::liturgical::{Color, Precedence, Season};
 
 use super::ProperOfTime;
 
@@ -70,7 +70,6 @@ impl<'a> PaschalTriduum<'a> {
             "thursday_of_the_lords_supper",
             date,
             Precedence::Triduum_1,
-            Rank::Weekday,
             Season::PaschalTriduum,
             Color::White,
         );
@@ -84,7 +83,6 @@ impl<'a> PaschalTriduum<'a> {
             "friday_of_the_passion_of_the_lord",
             date,
             Precedence::Triduum_1,
-            Rank::Weekday,
             Season::PaschalTriduum,
             Color::Red,
         );
@@ -98,7 +96,6 @@ impl<'a> PaschalTriduum<'a> {
             "holy_saturday",
             date,
             Precedence::Triduum_1,
-            Rank::Weekday,
             Season::PaschalTriduum,
             Color::White, // Using White as default, can be overridden if needed
         );

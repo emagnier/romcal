@@ -61,13 +61,13 @@ impl ProperOfTime {
         id: &str,
         date: DateTime<Utc>,
         precedence: Precedence,
-        rank: Rank,
         season: Season,
         color: Color,
     ) -> LiturgicalDay {
         let id = id.to_string();
         let date_str = date.format("%Y-%m-%d").to_string();
         let dow = date.weekday().num_days_from_sunday() as u8;
+        let rank = precedence.to_rank();
 
         // Determine season start date based on season
         let start_of_season = match season {

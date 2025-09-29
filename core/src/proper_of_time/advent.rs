@@ -3,7 +3,7 @@ use chrono::{DateTime, Utc};
 use crate::error::RomcalResult;
 use crate::liturgical_day::LiturgicalDay;
 use crate::proper_of_time::common::{enum_to_string, sort_liturgical_days_by_date, WEEKDAY_NAMES};
-use crate::types::liturgical::{Color, ColorInfo, Precedence, Rank, Season};
+use crate::types::liturgical::{Color, ColorInfo, Precedence, Season};
 
 use super::ProperOfTime;
 
@@ -87,7 +87,6 @@ impl<'a> Advent<'a> {
             &format!("advent_{}_sunday", week),
             date,
             Precedence::PrivilegedSunday_2,
-            Rank::Sunday,
             Season::Advent,
             Color::Purple,
         );
@@ -123,7 +122,6 @@ impl<'a> Advent<'a> {
             &format!("advent_{}_{}", week, WEEKDAY_NAMES[dow as usize]),
             date,
             Precedence::Weekday_13,
-            Rank::Weekday,
             Season::Advent,
             Color::Purple,
         );
@@ -141,7 +139,6 @@ impl<'a> Advent<'a> {
             &format!("advent_december_{}", day),
             date,
             Precedence::PrivilegedWeekday_9,
-            Rank::Weekday,
             Season::Advent,
             Color::Purple,
         );

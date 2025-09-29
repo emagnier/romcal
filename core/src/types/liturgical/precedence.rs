@@ -1,3 +1,4 @@
+use crate::types::liturgical::Rank;
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
@@ -77,4 +78,93 @@ pub enum Precedence {
 
     // 13 - Weekday
     Weekday_13,
+}
+
+impl Precedence {
+    /// Returns the corresponding liturgical rank for this precedence level.
+    ///
+    /// This method provides a convenient way to get the liturgical rank directly
+    /// from a precedence level, following the hierarchical order defined in the
+    /// Universal Norms on the Liturgical Year and the Calendar (UNLY).
+    ///
+    /// # Returns
+    ///
+    /// The corresponding liturgical rank for this precedence level
+    ///
+    /// # Examples
+    ///
+    /// ```rust
+    /// use romcal_core::types::liturgical::{Precedence, Rank};
+    ///
+    /// let precedence = Precedence::Triduum_1;
+    /// let rank = precedence.to_rank();
+    /// assert_eq!(rank, Rank::Weekday);
+    ///
+    /// let precedence = Precedence::GeneralSolemnity_3;
+    /// let rank = precedence.to_rank();
+    /// assert_eq!(rank, Rank::Solemnity);
+    /// ```
+    pub fn to_rank(&self) -> Rank {
+        match self {
+            // 1 - The Paschal Triduum of the Passion and Resurrection of the Lord
+            Precedence::Triduum_1 => Rank::Weekday,
+
+            // 2 - Proper of Time Solemnities
+            Precedence::ProperOfTimeSolemnity_2 => Rank::Solemnity,
+            // 2 - Privileged Sundays
+            Precedence::PrivilegedSunday_2 => Rank::Sunday,
+            // 2 - Ash Wednesday
+            Precedence::AshWednesday_2 => Rank::Weekday,
+            // 2 - Weekdays of Holy Week
+            Precedence::WeekdayOfHolyWeek_2 => Rank::Weekday,
+            // 2 - Weekdays of Easter Octave
+            Precedence::WeekdayOfEasterOctave_2 => Rank::Solemnity,
+
+            // 3 - General Solemnities
+            Precedence::GeneralSolemnity_3 => Rank::Solemnity,
+            // 3 - Commemoration of All the Faithful Departed
+            Precedence::CommemorationOfAllTheFaithfulDeparted_3 => Rank::Feast,
+
+            // 4 - Proper Solemnities
+            Precedence::ProperSolemnity_PrincipalPatron_4a => Rank::Solemnity,
+            Precedence::ProperSolemnity_DedicationOfTheOwnChurch_4b => Rank::Solemnity,
+            Precedence::ProperSolemnity_TitleOfTheOwnChurch_4c => Rank::Solemnity,
+            Precedence::ProperSolemnity_TitleOrFounderOrPrimaryPatronOfAReligiousOrg_4d => {
+                Rank::Solemnity
+            }
+
+            // 5 - General Lord Feasts
+            Precedence::GeneralLordFeast_5 => Rank::Feast,
+
+            // 6 - Unprivileged Sundays
+            Precedence::UnprivilegedSunday_6 => Rank::Sunday,
+
+            // 7 - General Feasts
+            Precedence::GeneralFeast_7 => Rank::Feast,
+
+            // 8 - Proper Feasts
+            Precedence::ProperFeast_PrincipalPatronOfADiocese_8a => Rank::Feast,
+            Precedence::ProperFeast_DedicationOfTheCathedralChurch_8b => Rank::Feast,
+            Precedence::ProperFeast_PrincipalPatronOfARegion_8c => Rank::Feast,
+            Precedence::ProperFeast_TitleOrFounderOrPrimaryPatronOfAReligiousOrg_8d => Rank::Feast,
+            Precedence::ProperFeast_ToAnIndividualChurch_8e => Rank::Feast,
+            Precedence::ProperFeast_8f => Rank::Feast,
+
+            // 9 - Privileged Weekdays
+            Precedence::PrivilegedWeekday_9 => Rank::Weekday,
+
+            // 10 - General Memorials
+            Precedence::GeneralMemorial_10 => Rank::Memorial,
+
+            // 11 - Proper Memorials
+            Precedence::ProperMemorial_SecondPatron_11a => Rank::Memorial,
+            Precedence::ProperMemorial_11b => Rank::Memorial,
+
+            // 12 - Optional Memorials
+            Precedence::OptionalMemorial_12 => Rank::OptionalMemorial,
+
+            // 13 - Weekdays
+            Precedence::Weekday_13 => Rank::Weekday,
+        }
+    }
 }

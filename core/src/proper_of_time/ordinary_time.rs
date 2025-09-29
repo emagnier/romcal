@@ -3,7 +3,7 @@ use chrono::{DateTime, Datelike, Utc};
 use crate::error::RomcalResult;
 use crate::liturgical_day::LiturgicalDay;
 use crate::proper_of_time::common::{sort_liturgical_days_by_date, WEEKDAY_NAMES};
-use crate::types::liturgical::{Color, Precedence, Rank, Season};
+use crate::types::liturgical::{Color, Precedence, Season};
 
 use super::ProperOfTime;
 
@@ -210,11 +210,6 @@ impl<'a> OrdinaryTime<'a> {
             } else {
                 Precedence::Weekday_13
             },
-            if dow == 0 {
-                Rank::Sunday
-            } else {
-                Rank::Weekday
-            },
             Season::OrdinaryTime,
             Color::Green,
         );
@@ -231,7 +226,6 @@ impl<'a> OrdinaryTime<'a> {
             "sunday_of_the_word_of_god",
             date,
             Precedence::UnprivilegedSunday_6,
-            Rank::Sunday,
             Season::OrdinaryTime,
             Color::Green,
         );
@@ -248,7 +242,6 @@ impl<'a> OrdinaryTime<'a> {
             "most_holy_trinity",
             date,
             Precedence::GeneralSolemnity_3,
-            Rank::Solemnity,
             Season::OrdinaryTime,
             Color::White,
         );
@@ -265,7 +258,6 @@ impl<'a> OrdinaryTime<'a> {
             "most_holy_body_and_blood_of_christ",
             date,
             Precedence::GeneralSolemnity_3,
-            Rank::Solemnity,
             Season::OrdinaryTime,
             Color::White,
         );
@@ -282,7 +274,6 @@ impl<'a> OrdinaryTime<'a> {
             "most_sacred_heart_of_jesus",
             date,
             Precedence::GeneralSolemnity_3,
-            Rank::Solemnity,
             Season::OrdinaryTime,
             Color::White,
         );
@@ -299,7 +290,6 @@ impl<'a> OrdinaryTime<'a> {
             "our_lord_jesus_christ_king_of_the_universe",
             date,
             Precedence::GeneralSolemnity_3,
-            Rank::Solemnity,
             Season::OrdinaryTime,
             Color::White,
         );
@@ -311,7 +301,10 @@ impl<'a> OrdinaryTime<'a> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::preset::{Preset, PresetPartial};
+    use crate::{
+        preset::{Preset, PresetPartial},
+        types::Rank,
+    };
 
     #[test]
     fn test_early_ordinary_time_generation() {
