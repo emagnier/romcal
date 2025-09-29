@@ -4,7 +4,7 @@ use crate::error::RomcalResult;
 use crate::liturgical_day::LiturgicalDay;
 use crate::proper_of_time::common::{enum_to_string, sort_liturgical_days_by_date, WEEKDAY_NAMES};
 use crate::types::liturgical::{Color, Precedence, Season};
-use crate::types::{DateDef, DateFn, Period, PeriodInfo, SeasonInfo};
+use crate::types::{DateDef, DateFn, Period, PeriodInfo};
 
 use super::ProperOfTime;
 
@@ -108,28 +108,16 @@ impl<'a> EasterTime<'a> {
 
     /// Creates Easter Sunday of the Resurrection of the Lord
     fn create_easter_sunday(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
-        let mut liturgical_day = self.proper_of_time.create_liturgical_day_base(
-            "easter_sunday",
-            date,
-            Precedence::Triduum_1,
-            Season::PaschalTriduum, // Primary season
-            Color::White,
-        );
-
-        // Override specific properties for Easter Sunday
-        liturgical_day.is_holy_day_of_obligation = true;
-
-        // Easter Sunday belongs to both PaschalTriduum and EasterTime
-        liturgical_day.seasons = vec![
-            SeasonInfo {
-                key: Season::PaschalTriduum,
-                name: enum_to_string(&Season::PaschalTriduum),
-            },
-            SeasonInfo {
-                key: Season::EasterTime,
-                name: enum_to_string(&Season::EasterTime),
-            },
-        ];
+        let liturgical_day = self
+            .proper_of_time
+            .create_liturgical_day_base(
+                "easter_sunday",
+                date,
+                Precedence::Triduum_1,
+                Some(Season::EasterTime),
+                Color::White,
+            )
+            .with_is_holy_day_of_obligation(true);
 
         Ok(liturgical_day)
     }
@@ -144,7 +132,7 @@ impl<'a> EasterTime<'a> {
             &format!("easter_{}", WEEKDAY_NAMES[dow as usize]),
             date,
             Precedence::WeekdayOfEasterOctave_2,
-            Season::EasterTime,
+            Some(Season::EasterTime),
             Color::White,
         );
 
@@ -153,22 +141,20 @@ impl<'a> EasterTime<'a> {
 
     /// Creates Divine Mercy Sunday (Second Sunday of Easter)
     fn create_divine_mercy_sunday(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
-        let mut liturgical_day = self.proper_of_time.create_liturgical_day_base(
-            "divine_mercy_sunday",
-            date,
-            Precedence::PrivilegedSunday_2,
-            Season::EasterTime,
-            Color::White,
-        );
-
-        // Override specific properties for Divine Mercy Sunday
-        liturgical_day.is_holy_day_of_obligation = true;
-
-        // Add Easter Octave period
-        liturgical_day.periods = vec![PeriodInfo {
-            key: Period::EasterOctave,
-            name: enum_to_string(&Period::EasterOctave),
-        }];
+        let mut liturgical_day = self
+            .proper_of_time
+            .create_liturgical_day_base(
+                "divine_mercy_sunday",
+                date,
+                Precedence::PrivilegedSunday_2,
+                Some(Season::EasterTime),
+                Color::White,
+            )
+            .with_is_holy_day_of_obligation(true)
+            .with_periods(vec![PeriodInfo {
+                key: Period::EasterOctave,
+                name: enum_to_string(&Period::EasterOctave),
+            }]);
 
         // Override date definition with specific function
         liturgical_day.date_def = DateDef::DateFunction {
@@ -194,7 +180,7 @@ impl<'a> EasterTime<'a> {
             } else {
                 Precedence::Weekday_13
             },
-            Season::EasterTime,
+            Some(Season::EasterTime),
             Color::White,
         );
 
@@ -207,7 +193,7 @@ impl<'a> EasterTime<'a> {
             "ascension_of_the_lord",
             date,
             Precedence::ProperOfTimeSolemnity_2,
-            Season::EasterTime,
+            Some(Season::EasterTime),
             Color::White,
         );
 
@@ -220,7 +206,7 @@ impl<'a> EasterTime<'a> {
             "pentecost_sunday",
             date,
             Precedence::ProperOfTimeSolemnity_2,
-            Season::EasterTime,
+            Some(Season::EasterTime),
             Color::Red,
         );
 

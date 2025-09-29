@@ -18,6 +18,8 @@ pub enum Period {
     PresentationOfTheLordToHolyThursday,
     /// Holy Week (Palm Sunday to Holy Saturday)
     HolyWeek,
+    /// Paschal Triduum (start from the Thursday of the Lord's Supper to the Easter Sunday Vespers)
+    PaschalTriduum,
     /// The eight days following Easter Sunday
     EasterOctave,
     /// Early Ordinary Time (after the Presentation of the Lord to the day before Ash Wednesday)

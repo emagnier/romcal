@@ -1,8 +1,8 @@
 use romcal_core::types::entity::{Title, TitlesDef};
 use romcal_core::types::{
     Color, ColorInfo, Common, CommonInfo, DateDef, DayOfWeek, MonthIndex, Period, PeriodInfo,
-    Precedence, PsalterWeekCycle, PsalterWeekCycleInfo, Rank, Season, SeasonInfo, SundayCycle,
-    SundayCycleInfo, WeekdayCycle, WeekdayCycleInfo,
+    Precedence, PsalterWeekCycle, PsalterWeekCycleInfo, Rank, Season, SundayCycle, SundayCycleInfo,
+    WeekdayCycle, WeekdayCycleInfo,
 };
 use romcal_core::LiturgicalDay;
 
@@ -50,10 +50,7 @@ fn main() {
         "2024-12-25".to_string(),
         "general_roman".to_string(),
     )
-    .with_seasons(vec![SeasonInfo {
-        key: Season::ChristmasTime,
-        name: "Christmas Time".to_string(),
-    }])
+    .with_seasons(Season::ChristmasTime)
     .with_periods(vec![PeriodInfo {
         key: Period::ChristmasOctave,
         name: "Christmas Octave".to_string(),
@@ -91,14 +88,16 @@ fn main() {
         "2024-12-25".to_string(), // Christmas Day
         "2025-01-12".to_string(), // Baptism of the Lord
     )
-    .with_flags(true, false, false) // Holy day, not optional, doesn't allow similar items
+    .with_is_holy_day_of_obligation(true)
+    .with_is_optional(false)
+    .with_allow_similar_rank_items(false)
     .with_titles(TitlesDef::Titles(vec![Title::Apostle]));
 
     println!(
         "\nComplex liturgical day: {}",
         complex_day.get_display_name()
     );
-    println!("Seasons: {:?}", complex_day.seasons);
+    println!("Season: {:?}", complex_day.season);
     println!("Colors: {:?}", complex_day.colors);
     println!("Is holy day: {}", complex_day.is_holy_day());
     println!("Is optional: {}", complex_day.is_optional_day());

@@ -87,7 +87,7 @@ impl<'a> Lent<'a> {
             "ash_wednesday",
             date,
             Precedence::AshWednesday_2,
-            Season::Lent,
+            Some(Season::Lent),
             Color::Purple,
         );
 
@@ -104,7 +104,7 @@ impl<'a> Lent<'a> {
             &format!("{}_after_ash_wednesday", WEEKDAY_NAMES[dow as usize]),
             date,
             Precedence::PrivilegedWeekday_9,
-            Season::Lent,
+            Some(Season::Lent),
             Color::Purple,
         );
 
@@ -126,7 +126,7 @@ impl<'a> Lent<'a> {
             } else {
                 Precedence::PrivilegedWeekday_9
             },
-            Season::Lent,
+            Some(Season::Lent),
             if week == 4 && dow == 0 {
                 Color::Rose
             } else {
@@ -139,16 +139,16 @@ impl<'a> Lent<'a> {
 
     /// Creates Palm Sunday of the Passion of the Lord
     fn create_palm_sunday(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
-        let mut liturgical_day = self.proper_of_time.create_liturgical_day_base(
-            "palm_sunday_of_the_passion_of_the_lord",
-            date,
-            Precedence::PrivilegedSunday_2,
-            Season::Lent,
-            Color::Red,
-        );
-
-        // Override specific properties for Palm Sunday
-        liturgical_day.is_holy_day_of_obligation = true;
+        let liturgical_day = self
+            .proper_of_time
+            .create_liturgical_day_base(
+                "palm_sunday_of_the_passion_of_the_lord",
+                date,
+                Precedence::PrivilegedSunday_2,
+                Some(Season::Lent),
+                Color::Red,
+            )
+            .with_is_holy_day_of_obligation(true);
 
         Ok(liturgical_day)
     }
@@ -163,7 +163,7 @@ impl<'a> Lent<'a> {
             &format!("holy_{}", WEEKDAY_NAMES[dow as usize]),
             date,
             Precedence::PrivilegedWeekday_9,
-            Season::Lent,
+            Some(Season::Lent),
             Color::Purple,
         );
 

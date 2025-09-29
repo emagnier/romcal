@@ -24,7 +24,7 @@ use crate::proper_of_time::lent::Lent;
 use crate::proper_of_time::ordinary_time::OrdinaryTime;
 use crate::proper_of_time::paschal_triduum::PaschalTriduum;
 use crate::types::dates::{DateDef, DateFn, DayOfWeek};
-use crate::types::liturgical::{Color, ColorInfo, Precedence, Rank, Season, SeasonInfo};
+use crate::types::liturgical::{Color, ColorInfo, Precedence, Rank, Season};
 
 /// Structure for generating liturgical days of the Proper of Time
 pub struct ProperOfTime {
@@ -61,7 +61,7 @@ impl ProperOfTime {
         id: &str,
         date: DateTime<Utc>,
         precedence: Precedence,
-        season: Season,
+        season: Option<Season>,
         color: Color,
     ) -> LiturgicalDay {
         let id = id.to_string();
@@ -69,62 +69,77 @@ impl ProperOfTime {
         let dow = date.weekday().num_days_from_sunday() as u8;
         let rank = precedence.to_rank();
 
-        // Determine season start date based on season
-        let start_of_season = match season {
-            Season::Advent => self.cache.advent_start(),
-            Season::ChristmasTime => self.cache.christmas_start(),
-            Season::Lent => self.cache.lent_start(),
-            Season::EasterTime => self.cache.easter_start(),
-            Season::PaschalTriduum => self.cache.triduum_start(),
-            Season::OrdinaryTime => {
-                // For Ordinary Time, we need to determine if it's early or late
-                // This is a simplified approach - in practice, this should be determined by the calling function
-                self.cache.easter_start() // Default to Easter start for now
-            }
-        };
+        // Calculate season-related fields only if season is provided
+        let (day_of_season, week_of_season) = if let Some(season) = season {
+            let start_of_season = match season {
+                Season::Advent => self.cache.advent_start(),
+                Season::ChristmasTime => self.cache.christmas_start(),
+                Season::Lent => self.cache.lent_start(),
+                Season::EasterTime => self.cache.easter_start(),
+                Season::PaschalTriduum => self.cache.triduum_start(),
+                Season::OrdinaryTime => {
+                    // For Ordinary Time, we need to determine if it's early or late
+                    // This is a simplified approach - in practice, this should be determined by the calling function
+                    self.cache.easter_start() // Default to Easter start for now
+                }
+            };
 
-        // Calculate day_of_season and week_of_season automatically
-        let days_since_start = (date.date_naive() - start_of_season.date_naive()).num_days();
-        let day_of_season = if days_since_start < 0 {
-            0
+            // Calculate day_of_season and week_of_season automatically
+            let days_since_start = (date.date_naive() - start_of_season.date_naive()).num_days();
+            let day_of_season = if days_since_start < 0 {
+                0
+            } else {
+                (days_since_start + 1) as u32
+            };
+
+            // Special logic for Lent: if day_of_season < 5, week_of_season starts at 0
+            let week_of_season = if season == Season::Lent && day_of_season < 5 {
+                0
+            } else if day_of_season == 0 {
+                // Should never happen if day_of_season is calculated correctly
+                1
+            } else {
+                (day_of_season - 1) / 7 + 1
+            };
+
+            (Some(day_of_season), Some(week_of_season))
         } else {
-            (days_since_start + 1) as u32
+            (None, None)
         };
 
-        // Special logic for Lent: if day_of_season < 5, week_of_season starts at 0
-        let week_of_season = if season == Season::Lent && day_of_season < 5 {
-            0
-        } else if day_of_season == 0 {
-            // Should never happen if day_of_season is calculated correctly
-            1
-        } else {
-            (day_of_season - 1) / 7 + 1
-        };
-
-        let mut liturgical_day = LiturgicalDay::new(
+        let mut liturgical_day = LiturgicalDay::with_required_fields(
             id.clone(),
             id.clone(),
             date_str,
+            DateDef::MonthDate {
+                month: crate::types::dates::MonthIndex(1), // January
+                date: 1,
+                day_offset: None,
+            },
+            precedence,
+            rank.clone(),
+            enum_to_string(&rank),
             PROPER_OF_TIME_ID.to_string(),
-        );
+        )
+        .with_day_of_week(DayOfWeek(dow))
+        .with_is_holy_day_of_obligation(dow == 0 && rank == Rank::Solemnity);
 
-        // Common configuration
-        liturgical_day.precedence = precedence;
-        liturgical_day.rank = rank.clone();
-        liturgical_day.rank_name = enum_to_string(&rank);
-        liturgical_day.is_holy_day_of_obligation = dow == 0 && rank == Rank::Solemnity;
-        liturgical_day.day_of_week = DayOfWeek(dow);
-        liturgical_day.week_of_season = week_of_season;
-        liturgical_day.day_of_season = day_of_season;
-        liturgical_day.start_of_season = self.cache.start_of_seasons(season, date);
-        liturgical_day.start_of_liturgical_year = self.cache.liturgical_year_start(season, date);
-        liturgical_day.end_of_liturgical_year = self.cache.liturgical_year_end(season, date);
+        // Set season-related fields if season is provided
+        if let Some(season) = season {
+            liturgical_day = liturgical_day
+                .with_seasons(season)
+                .with_season_name(enum_to_string(&season))
+                .with_start_of_season(self.cache.start_of_seasons(season, date))
+                .with_liturgical_year_boundaries(
+                    self.cache.liturgical_year_start(season, date),
+                    self.cache.liturgical_year_end(season, date),
+                );
+        }
 
-        // Season
-        liturgical_day.seasons = vec![SeasonInfo {
-            key: season,
-            name: enum_to_string(&season),
-        }];
+        // Set season position if calculated
+        if let (Some(week), Some(day)) = (week_of_season, day_of_season) {
+            liturgical_day = liturgical_day.with_season_position(week, day);
+        }
 
         // Color
         liturgical_day.colors = vec![ColorInfo {

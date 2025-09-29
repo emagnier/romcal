@@ -162,7 +162,7 @@ impl<'a> ChristmasTime<'a> {
             "nativity_of_the_lord",
             date,
             Precedence::ProperOfTimeSolemnity_2,
-            Season::ChristmasTime,
+            Some(Season::ChristmasTime),
             Color::White,
         );
 
@@ -179,7 +179,7 @@ impl<'a> ChristmasTime<'a> {
             &format!("christmas_octave_day_{}", count),
             date,
             Precedence::PrivilegedWeekday_9,
-            Season::ChristmasTime,
+            Some(Season::ChristmasTime),
             Color::White,
         );
 
@@ -192,7 +192,7 @@ impl<'a> ChristmasTime<'a> {
             "holy_family_of_jesus_mary_and_joseph",
             date,
             Precedence::GeneralLordFeast_5,
-            Season::ChristmasTime,
+            Some(Season::ChristmasTime),
             Color::White,
         );
 
@@ -209,7 +209,7 @@ impl<'a> ChristmasTime<'a> {
             "mary_mother_of_god",
             date,
             Precedence::GeneralSolemnity_3,
-            Season::ChristmasTime,
+            Some(Season::ChristmasTime),
             Color::White,
         );
 
@@ -225,7 +225,7 @@ impl<'a> ChristmasTime<'a> {
             "second_sunday_after_christmas",
             date,
             Precedence::UnprivilegedSunday_6,
-            Season::ChristmasTime,
+            Some(Season::ChristmasTime),
             Color::White,
         );
 
@@ -242,7 +242,7 @@ impl<'a> ChristmasTime<'a> {
             &format!("christmas_time_january_{}", day),
             date,
             Precedence::Weekday_13,
-            Season::ChristmasTime,
+            Some(Season::ChristmasTime),
             Color::White,
         );
 
@@ -255,7 +255,7 @@ impl<'a> ChristmasTime<'a> {
             "epiphany_of_the_lord",
             date,
             Precedence::ProperOfTimeSolemnity_2,
-            Season::ChristmasTime,
+            Some(Season::ChristmasTime),
             Color::White,
         );
 
@@ -272,7 +272,7 @@ impl<'a> ChristmasTime<'a> {
             &format!("{}_after_epiphany", WEEKDAY_NAMES[dow as usize]),
             date,
             Precedence::Weekday_13,
-            Season::ChristmasTime,
+            Some(Season::ChristmasTime),
             Color::White,
         );
 
@@ -285,7 +285,7 @@ impl<'a> ChristmasTime<'a> {
             "baptism_of_the_lord",
             date,
             Precedence::ProperOfTimeSolemnity_2,
-            Season::ChristmasTime,
+            Some(Season::ChristmasTime),
             Color::White,
         );
 

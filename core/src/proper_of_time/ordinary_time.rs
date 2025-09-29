@@ -202,7 +202,7 @@ impl<'a> OrdinaryTime<'a> {
         dow: u8,
         date: DateTime<Utc>,
     ) -> RomcalResult<LiturgicalDay> {
-        let mut liturgical_day = self.proper_of_time.create_liturgical_day_base(
+        let liturgical_day = self.proper_of_time.create_liturgical_day_base(
             &format!("ordinary_time_{}_{}", week, WEEKDAY_NAMES[dow as usize]),
             date,
             if dow == 0 {
@@ -210,28 +210,22 @@ impl<'a> OrdinaryTime<'a> {
             } else {
                 Precedence::Weekday_13
             },
-            Season::OrdinaryTime,
+            Some(Season::OrdinaryTime),
             Color::Green,
         );
-
-        // TODO: Override week_of_season with the calculated week
-        liturgical_day.week_of_season = week as u32;
 
         Ok(liturgical_day)
     }
 
     /// Creates the Sunday of the Word of God (3rd week of Ordinary Time)
     fn create_sunday_of_the_word_of_god(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
-        let mut liturgical_day = self.proper_of_time.create_liturgical_day_base(
+        let liturgical_day = self.proper_of_time.create_liturgical_day_base(
             "sunday_of_the_word_of_god",
             date,
             Precedence::UnprivilegedSunday_6,
-            Season::OrdinaryTime,
+            Some(Season::OrdinaryTime),
             Color::Green,
         );
-
-        // TODO: Sunday of the Word of God is always in week 3
-        liturgical_day.week_of_season = 3;
 
         Ok(liturgical_day)
     }
@@ -242,7 +236,7 @@ impl<'a> OrdinaryTime<'a> {
             "most_holy_trinity",
             date,
             Precedence::GeneralSolemnity_3,
-            Season::OrdinaryTime,
+            Some(Season::OrdinaryTime),
             Color::White,
         );
 
@@ -258,7 +252,7 @@ impl<'a> OrdinaryTime<'a> {
             "most_holy_body_and_blood_of_christ",
             date,
             Precedence::GeneralSolemnity_3,
-            Season::OrdinaryTime,
+            Some(Season::OrdinaryTime),
             Color::White,
         );
 
@@ -274,7 +268,7 @@ impl<'a> OrdinaryTime<'a> {
             "most_sacred_heart_of_jesus",
             date,
             Precedence::GeneralSolemnity_3,
-            Season::OrdinaryTime,
+            Some(Season::OrdinaryTime),
             Color::White,
         );
 
@@ -290,7 +284,7 @@ impl<'a> OrdinaryTime<'a> {
             "our_lord_jesus_christ_king_of_the_universe",
             date,
             Precedence::GeneralSolemnity_3,
-            Season::OrdinaryTime,
+            Some(Season::OrdinaryTime),
             Color::White,
         );
 
@@ -322,9 +316,7 @@ mod tests {
         );
 
         // Check for some regular Ordinary Time days
-        let ordinary_weekday = days
-            .iter()
-            .find(|d| d.seasons.iter().any(|s| s.key == Season::OrdinaryTime));
+        let ordinary_weekday = days.iter().find(|d| d.season == Some(Season::OrdinaryTime));
         assert!(
             ordinary_weekday.is_some(),
             "Should have ordinary time weekdays"
@@ -333,7 +325,7 @@ mod tests {
         // Check that all days are in Ordinary Time season
         for day in &days {
             assert!(
-                day.seasons.iter().any(|s| s.key == Season::OrdinaryTime),
+                day.season == Some(Season::OrdinaryTime),
                 "All days should be in Ordinary Time season, but {} is not",
                 day.id
             );
@@ -359,7 +351,7 @@ mod tests {
         // Check that all days are in Ordinary Time season
         for day in &days {
             assert!(
-                day.seasons.iter().any(|s| s.key == Season::OrdinaryTime),
+                day.season == Some(Season::OrdinaryTime),
                 "All days should be in Ordinary Time season, but {} is not",
                 day.id
             );
@@ -385,7 +377,7 @@ mod tests {
         // Check that all days are in Ordinary Time season
         for day in &days {
             assert!(
-                day.seasons.iter().any(|s| s.key == Season::OrdinaryTime),
+                day.season == Some(Season::OrdinaryTime),
                 "All days should be in Ordinary Time season, but {} is not",
                 day.id
             );
@@ -433,9 +425,7 @@ mod tests {
         );
 
         // Check for some regular Ordinary Time days
-        let ordinary_weekday = days
-            .iter()
-            .find(|d| d.seasons.iter().any(|s| s.key == Season::OrdinaryTime));
+        let ordinary_weekday = days.iter().find(|d| d.season == Some(Season::OrdinaryTime));
         assert!(
             ordinary_weekday.is_some(),
             "Should have ordinary time weekdays"
@@ -444,7 +434,7 @@ mod tests {
         // Check that all days are in Ordinary Time season
         for day in &days {
             assert!(
-                day.seasons.iter().any(|s| s.key == Season::OrdinaryTime),
+                day.season == Some(Season::OrdinaryTime),
                 "All days should be in Ordinary Time season, but {} is not",
                 day.id
             );
@@ -465,7 +455,7 @@ mod tests {
         // Check that all days are in Ordinary Time season
         for day in &days {
             assert!(
-                day.seasons.iter().any(|s| s.key == Season::OrdinaryTime),
+                day.season == Some(Season::OrdinaryTime),
                 "All days should be in Ordinary Time season, but {} is not",
                 day.id
             );
@@ -485,16 +475,14 @@ mod tests {
         // Find all ordinary time days (excluding solemnities)
         let ordinary_days: Vec<_> = days
             .iter()
-            .filter(|d| {
-                d.seasons.iter().any(|s| s.key == Season::OrdinaryTime) && d.rank != Rank::Solemnity
-            })
+            .filter(|d| d.season == Some(Season::OrdinaryTime) && d.rank != Rank::Solemnity)
             .collect();
 
         // Group by week_of_season
         let mut weeks: std::collections::HashMap<u32, Vec<_>> = std::collections::HashMap::new();
         for day in &ordinary_days {
             weeks
-                .entry(day.week_of_season)
+                .entry(day.week_of_season.unwrap())
                 .or_insert_with(Vec::new)
                 .push(day);
         }
@@ -516,7 +504,8 @@ mod tests {
         // Verify that Christ the King is indeed on a Sunday of week 34
         let christ_king_day = christ_king.unwrap();
         assert_eq!(
-            christ_king_day.week_of_season, 34,
+            christ_king_day.week_of_season,
+            Some(34),
             "Christ the King should be in week 34"
         );
         assert_eq!(
@@ -526,7 +515,10 @@ mod tests {
         );
 
         // Verify that the 34th week has exactly 7 days total (including Christ the King)
-        let all_week_34_days: Vec<_> = days.iter().filter(|d| d.week_of_season == 34).collect();
+        let all_week_34_days: Vec<_> = days
+            .iter()
+            .filter(|d| d.week_of_season == Some(34))
+            .collect();
         assert_eq!(
             all_week_34_days.len(),
             7,

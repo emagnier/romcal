@@ -83,16 +83,16 @@ impl<'a> Advent<'a> {
 
     /// Creates an Advent Sunday
     fn create_advent_sunday(&self, week: u8, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
-        let mut liturgical_day = self.proper_of_time.create_liturgical_day_base(
-            &format!("advent_{}_sunday", week),
-            date,
-            Precedence::PrivilegedSunday_2,
-            Season::Advent,
-            Color::Purple,
-        );
-
-        // Override specific properties for Advent Sunday
-        liturgical_day.is_holy_day_of_obligation = true;
+        let mut liturgical_day = self
+            .proper_of_time
+            .create_liturgical_day_base(
+                &format!("advent_{}_sunday", week),
+                date,
+                Precedence::PrivilegedSunday_2,
+                Some(Season::Advent),
+                Color::Purple,
+            )
+            .with_is_holy_day_of_obligation(true);
 
         // Colors (rose for the 3rd Sunday - Gaudete)
         if week == 3 {
@@ -122,7 +122,7 @@ impl<'a> Advent<'a> {
             &format!("advent_{}_{}", week, WEEKDAY_NAMES[dow as usize]),
             date,
             Precedence::Weekday_13,
-            Season::Advent,
+            Some(Season::Advent),
             Color::Purple,
         );
 
@@ -139,7 +139,7 @@ impl<'a> Advent<'a> {
             &format!("advent_december_{}", day),
             date,
             Precedence::PrivilegedWeekday_9,
-            Season::Advent,
+            Some(Season::Advent),
             Color::Purple,
         );
 

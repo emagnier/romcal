@@ -28,8 +28,8 @@ pub enum LiturgicalDayFilter {
     IsHolyDayOfObligation,
     /// Indicates if this liturgical day is optional
     IsOptional,
-    /// The liturgical seasons to which this liturgical day belongs
-    Seasons,
+    /// The liturgical season to which this liturgical day belongs
+    Season,
     /// The liturgical periods to which this liturgical day belongs
     Periods,
     /// The common prayers, readings, and chants
@@ -83,7 +83,7 @@ impl LiturgicalDayFilter {
             LiturgicalDayFilter::AllowSimilarRankItems => "allow_similar_rank_items",
             LiturgicalDayFilter::IsHolyDayOfObligation => "is_holy_day_of_obligation",
             LiturgicalDayFilter::IsOptional => "is_optional",
-            LiturgicalDayFilter::Seasons => "seasons",
+            LiturgicalDayFilter::Season => "season",
             LiturgicalDayFilter::Periods => "periods",
             LiturgicalDayFilter::Commons => "commons",
             LiturgicalDayFilter::Colors => "colors",
@@ -127,7 +127,7 @@ fn parse_filter(s: &str) -> Result<LiturgicalDayFilter, String> {
         "allow_similar_rank_items" => Ok(LiturgicalDayFilter::AllowSimilarRankItems),
         "is_holy_day_of_obligation" => Ok(LiturgicalDayFilter::IsHolyDayOfObligation),
         "is_optional" => Ok(LiturgicalDayFilter::IsOptional),
-        "seasons" => Ok(LiturgicalDayFilter::Seasons),
+        "season" => Ok(LiturgicalDayFilter::Season),
         "periods" => Ok(LiturgicalDayFilter::Periods),
         "commons" => Ok(LiturgicalDayFilter::Commons),
         "colors" => Ok(LiturgicalDayFilter::Colors),

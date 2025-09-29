@@ -4,10 +4,10 @@ use serde::{Deserialize, Serialize};
 use crate::types::dates::{DateDef, DateDefException, DayOfWeek};
 use crate::types::entity::{Entity, TitlesDef};
 use crate::types::{
-    ColorInfo, CommonInfo, PeriodInfo, Precedence, PsalterWeekCycleInfo, Rank, SeasonInfo,
-    SundayCycleInfo, WeekdayCycleInfo,
+    ColorInfo, CommonInfo, PeriodInfo, Precedence, PsalterWeekCycleInfo, Rank, SundayCycleInfo,
+    WeekdayCycleInfo,
 };
-use crate::CalendarId;
+use crate::{CalendarId, Season};
 
 /// Unique identifier for a liturgical day
 pub type LiturgicalDayId = String;
@@ -50,7 +50,10 @@ pub struct LiturgicalDay {
     pub is_optional: bool,
 
     /// The liturgical seasons to which this liturgical day belongs.
-    pub seasons: Vec<SeasonInfo>, // Use Enum Season
+    pub season: Option<Season>,
+
+    /// The liturgical season name.
+    pub season_name: Option<String>,
 
     /// The liturgical periods to which this liturgical day belongs.
     pub periods: Vec<PeriodInfo>, // Use Enum Period
@@ -72,10 +75,10 @@ pub struct LiturgicalDay {
     /// The week number of the current liturgical season.
     /// Starts from `1`, except in the seasons of lent,
     /// the week of Ash Wednesday to the next Saturday is counted as `0`.
-    pub week_of_season: u32,
+    pub week_of_season: Option<u32>,
 
     /// The day number within the current liturgical season.
-    pub day_of_season: u32,
+    pub day_of_season: Option<u32>,
 
     /// The day of the week for this liturgical day.
     /// Returns a number from 0 (Sunday) to 6 (Saturday).
@@ -86,10 +89,10 @@ pub struct LiturgicalDay {
     pub nth_day_of_week_in_month: u8,
 
     /// The first day of the current liturgical season for this liturgical day.
-    pub start_of_season: String, // in ISO 8601 format: YYYY-MM-DD
+    pub start_of_season: Option<String>, // in ISO 8601 format: YYYY-MM-DD
 
     /// The last day of the current liturgical season for this liturgical day.
-    pub end_of_season: String, // in ISO 8601 format: YYYY-MM-DD
+    pub end_of_season: Option<String>, // in ISO 8601 format: YYYY-MM-DD
 
     /// The first day of the current liturgical year for this liturgical day,
     /// i.e. the first Sunday of Advent.
@@ -152,18 +155,19 @@ impl LiturgicalDay {
             allow_similar_rank_items: false,
             is_holy_day_of_obligation: false,
             is_optional: false,
-            seasons: Vec::new(),
+            season: None,
+            season_name: None,
             periods: Vec::new(),
             commons: Vec::new(),
             colors: Vec::new(),
             titles: TitlesDef::Titles(Vec::new()),
             entities: Vec::new(),
-            week_of_season: 0,
-            day_of_season: 0,
+            week_of_season: None,
+            day_of_season: None,
             day_of_week: DayOfWeek(0), // Sunday
             nth_day_of_week_in_month: 0,
-            start_of_season: String::new(),
-            end_of_season: String::new(),
+            start_of_season: None,
+            end_of_season: None,
             start_of_liturgical_year: String::new(),
             end_of_liturgical_year: String::new(),
             sunday_cycle: SundayCycleInfo {
@@ -222,18 +226,19 @@ impl LiturgicalDay {
             allow_similar_rank_items: false,
             is_holy_day_of_obligation: false,
             is_optional: false,
-            seasons: Vec::new(),
+            season: None,
+            season_name: None,
             periods: Vec::new(),
             commons: Vec::new(),
             colors: Vec::new(),
             titles: TitlesDef::Titles(Vec::new()),
             entities: Vec::new(),
-            week_of_season: 0,
-            day_of_season: 0,
+            week_of_season: None,
+            day_of_season: None,
             day_of_week: DayOfWeek(0), // Sunday
             nth_day_of_week_in_month: 0,
-            start_of_season: String::new(),
-            end_of_season: String::new(),
+            start_of_season: None,
+            end_of_season: None,
             start_of_liturgical_year: String::new(),
             end_of_liturgical_year: String::new(),
             sunday_cycle: SundayCycleInfo {
@@ -254,8 +259,38 @@ impl LiturgicalDay {
     }
 
     /// Sets the liturgical seasons for this liturgical day.
-    pub fn with_seasons(mut self, seasons: Vec<SeasonInfo>) -> Self {
-        self.seasons = seasons;
+    pub fn with_seasons(mut self, season: Season) -> Self {
+        self.season = Some(season);
+        self
+    }
+
+    /// Sets the liturgical season name for this liturgical day.
+    pub fn with_season_name(mut self, season_name: String) -> Self {
+        self.season_name = Some(season_name);
+        self
+    }
+
+    /// Sets the week number within the liturgical season for this liturgical day.
+    pub fn with_week_of_season(mut self, week_of_season: u32) -> Self {
+        self.week_of_season = Some(week_of_season);
+        self
+    }
+
+    /// Sets the day number within the liturgical season for this liturgical day.
+    pub fn with_day_of_season(mut self, day_of_season: u32) -> Self {
+        self.day_of_season = Some(day_of_season);
+        self
+    }
+
+    /// Sets the start date of the liturgical season for this liturgical day.
+    pub fn with_start_of_season(mut self, start_of_season: String) -> Self {
+        self.start_of_season = Some(start_of_season);
+        self
+    }
+
+    /// Sets the end date of the liturgical season for this liturgical day.
+    pub fn with_end_of_season(mut self, end_of_season: String) -> Self {
+        self.end_of_season = Some(end_of_season);
         self
     }
 
@@ -297,8 +332,8 @@ impl LiturgicalDay {
 
     /// Sets the week and day numbers within the liturgical season.
     pub fn with_season_position(mut self, week_of_season: u32, day_of_season: u32) -> Self {
-        self.week_of_season = week_of_season;
-        self.day_of_season = day_of_season;
+        self.week_of_season = Some(week_of_season);
+        self.day_of_season = Some(day_of_season);
         self
     }
 
@@ -325,8 +360,8 @@ impl LiturgicalDay {
         start_of_season: String,
         end_of_season: String,
     ) -> Self {
-        self.start_of_season = start_of_season;
-        self.end_of_season = end_of_season;
+        self.start_of_season = Some(start_of_season);
+        self.end_of_season = Some(end_of_season);
         self
     }
 
@@ -343,15 +378,20 @@ impl LiturgicalDay {
         self
     }
 
-    /// Sets the boolean flags for this liturgical day.
-    pub fn with_flags(
-        mut self,
-        is_holy_day_of_obligation: bool,
-        is_optional: bool,
-        allow_similar_rank_items: bool,
-    ) -> Self {
+    /// Sets the boolean flag for holy day of obligation.
+    pub fn with_is_holy_day_of_obligation(mut self, is_holy_day_of_obligation: bool) -> Self {
         self.is_holy_day_of_obligation = is_holy_day_of_obligation;
+        self
+    }
+
+    /// Sets the boolean flag for optional.
+    pub fn with_is_optional(mut self, is_optional: bool) -> Self {
         self.is_optional = is_optional;
+        self
+    }
+
+    /// Sets the boolean flag for allowing similar rank items.
+    pub fn with_allow_similar_rank_items(mut self, allow_similar_rank_items: bool) -> Self {
         self.allow_similar_rank_items = allow_similar_rank_items;
         self
     }
