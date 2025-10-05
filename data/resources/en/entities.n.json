@@ -1,22 +1,18 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "en",
-  "entities": [
-    {
-      "id": "nativity_of_john_the_baptist",
+  "entities": {
+    "nativity_of_john_the_baptist": {
       "fullname": "The Nativity of Saint John the Baptist"
     },
-    {
-      "id": "nativity_of_the_blessed_virgin_mary",
+    "nativity_of_the_blessed_virgin_mary": {
       "fullname": "The Nativity of the Blessed Virgin Mary"
     },
-    {
-      "id": "nativity_of_the_lord",
+    "nativity_of_the_lord": {
       "fullname": "The Nativity of the Lord (Christmas)",
       "name": "The Nativity of the Lord"
     },
-    {
-      "id": "nazaria_ignacia_of_saint_teresa_of_jesus_march_mesa_virgin",
+    "nazaria_ignacia_of_saint_teresa_of_jesus_march_mesa_virgin": {
       "fullname": "Saint Nazaria Ignacia of Saint Teresa of Jesus March Mesa, Virgin",
       "canonization_level": "SAINT",
       "name": "Nazaria Ignacia of Saint Teresa of Jesus March Mesa",
@@ -24,12 +20,10 @@
         "VIRGIN"
       ]
     },
-    {
-      "id": "nereus_of_terracina_and_achilleus_of_terracina_martyrs",
+    "nereus_of_terracina_and_achilleus_of_terracina_martyrs": {
       "fullname": "Saints Nereus and Achilleus, Martyrs"
     },
-    {
-      "id": "nereus_of_terracina_martyr",
+    "nereus_of_terracina_martyr": {
       "canonization_level": "SAINT",
       "name": "Nereus",
       "titles": [
@@ -38,8 +32,7 @@
       "date_of_death": 304,
       "date_of_death_is_approximative": true
     },
-    {
-      "id": "nicetius_of_lyon_bishop",
+    "nicetius_of_lyon_bishop": {
       "fullname": "Saint Nicetius, Bishop",
       "canonization_level": "SAINT",
       "name": "Nicetius",
@@ -51,8 +44,7 @@
         "mr_fr_2014_ed2_lyon"
       ]
     },
-    {
-      "id": "nicholas_barre_priest",
+    "nicholas_barre_priest": {
       "fullname": "Blessed Nicholas Barré, Priest",
       "canonization_level": "BLESSED",
       "name": "Nicholas Barré",
@@ -61,8 +53,7 @@
       ],
       "date_of_death": "1686-5-31"
     },
-    {
-      "id": "nicholas_of_flue_hermit",
+    "nicholas_of_flue_hermit": {
       "fullname": "Saint Nicholas of Flüe, Hermit",
       "canonization_level": "SAINT",
       "name": "Nicholas of Flüe",
@@ -70,8 +61,7 @@
         "HERMIT"
       ]
     },
-    {
-      "id": "nicholas_of_myra_bishop",
+    "nicholas_of_myra_bishop": {
       "fullname": "Saint Nicholas, Bishop",
       "canonization_level": "SAINT",
       "name": "Nicholas",
@@ -81,8 +71,7 @@
       "date_of_death": 350,
       "date_of_death_is_approximative": true
     },
-    {
-      "id": "nicholas_steno_bishop",
+    "nicholas_steno_bishop": {
       "fullname": "Blessed Nicholas Steno, Bishop",
       "canonization_level": "BLESSED",
       "name": "Nicholas Steno",
@@ -90,8 +79,7 @@
         "BISHOP"
       ]
     },
-    {
-      "id": "nicholas_tavelic_priest",
+    "nicholas_tavelic_priest": {
       "fullname": "Saint Nicholas Tavelić, Priest and Martyr",
       "canonization_level": "SAINT",
       "name": "Nicholas Tavelić",
@@ -100,8 +88,7 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "ninian_of_whithorn_bishop",
+    "ninian_of_whithorn_bishop": {
       "fullname": "Saint Ninian, Bishop",
       "canonization_level": "SAINT",
       "name": "Ninian",
@@ -109,8 +96,7 @@
         "BISHOP"
       ]
     },
-    {
-      "id": "noel_pinot_priest",
+    "noel_pinot_priest": {
       "fullname": "Blessed Noël Pinot, Priest and Martyr",
       "canonization_level": "BLESSED",
       "name": "Noël Pinot",
@@ -125,8 +111,7 @@
         "https://en.wikipedia.org/wiki/No%C3%ABl_Pinot"
       ]
     },
-    {
-      "id": "norbert_of_xanten_bishop",
+    "norbert_of_xanten_bishop": {
       "fullname": "Saint Norbert, Bishop",
       "canonization_level": "SAINT",
       "name": "Norbert",
@@ -135,8 +120,7 @@
       ],
       "date_of_death": 1134
     },
-    {
-      "id": "nuno_of_saint_mary_pereira_religious",
+    "nuno_of_saint_mary_pereira_religious": {
       "fullname": "Saint Nuno of Saint Mary Pereira, Religious",
       "canonization_level": "SAINT",
       "name": "Nuno of Saint Mary Pereira",
@@ -144,12 +128,10 @@
         "RELIGIOUS"
       ]
     },
-    {
-      "id": "nykyta_budka_and_vasyl_velychkovsky_bishops",
+    "nykyta_budka_and_vasyl_velychkovsky_bishops": {
       "fullname": "Blesseds Nykyta Budka and Vasyl Velychkovsky, Bishops and Martyrs"
     },
-    {
-      "id": "nykyta_budka_bishop",
+    "nykyta_budka_bishop": {
       "canonization_level": "BLESSED",
       "name": "Nykyta Budka",
       "titles": [
@@ -158,5 +140,5 @@
       ],
       "date_of_death": 1949
     }
-  ]
+  }
 }

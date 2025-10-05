@@ -1,42 +1,33 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "pt-br",
-  "entities": [
-    {
-      "id": "george_of_lydda_martyr",
+  "entities": {
+    "george_of_lydda_martyr": {
       "fullname": "São Jorge, mártir"
     },
-    {
-      "id": "germain_of_paris_bishop",
+    "germain_of_paris_bishop": {
       "fullname": "São Germano, bispo"
     },
-    {
-      "id": "gertrude_the_great_virgin",
+    "gertrude_the_great_virgin": {
       "fullname": "Santa Gertrudes, virgem"
     },
-    {
-      "id": "gregory_i_the_great_pope",
+    "gregory_i_the_great_pope": {
       "fullname": "São Gregório Magno, papa e doutor da Igreja"
     },
-    {
-      "id": "gregory_of_narek_abbot",
+    "gregory_of_narek_abbot": {
       "fullname": "São Gregório de Narek, abade e doutor da Igreja"
     },
-    {
-      "id": "gregory_vii_pope",
+    "gregory_vii_pope": {
       "fullname": "São Gregório VII, papa"
     },
-    {
-      "id": "guardian_angel_of_portugal",
+    "guardian_angel_of_portugal": {
       "fullname": "Anjo da Guarda de Portugal"
     },
-    {
-      "id": "gundisalvus_of_amarante_priest",
+    "gundisalvus_of_amarante_priest": {
       "fullname": "São Gonçalo de Amarante, presbítero"
     },
-    {
-      "id": "gundisalvus_of_lagos_priest",
+    "gundisalvus_of_lagos_priest": {
       "fullname": "São Gonçalo de Lagos, presbítero"
     }
-  ]
+  }
 }

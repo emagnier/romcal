@@ -1,90 +1,69 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "la",
-  "entities": [
-    {
-      "id": "rabanus_maurus_bishop",
+  "entities": {
+    "rabanus_maurus_bishop": {
       "fullname": "S. Rabani Mauri, episcopi"
     },
-    {
-      "id": "radim_of_gniezno_bishop",
+    "radim_of_gniezno_bishop": {
       "fullname": "S. Radim, episcopi"
     },
-    {
-      "id": "rafqa_pietra_choboq_ar_rayes_virgin",
+    "rafqa_pietra_choboq_ar_rayes_virgin": {
       "fullname": "S. Rafqa Petræ Choboq Ar-Rayès, virginis"
     },
-    {
-      "id": "raphael_chylinski_priest",
+    "raphael_chylinski_priest": {
       "fullname": "B. Raphaelis Chyliński, presbyteri"
     },
-    {
-      "id": "raphael_guizar_y_valencia_bishop",
+    "raphael_guizar_y_valencia_bishop": {
       "fullname": "S. Raphaelis Guízar Valencia, episcopi"
     },
-    {
-      "id": "raphael_of_saint_joseph_kalinowski_priest",
+    "raphael_of_saint_joseph_kalinowski_priest": {
       "fullname": "S. Raphaelis a Sancto Ioseph Kalinowski, presbyteri"
     },
-    {
-      "id": "raymond_of_penyafort_priest",
+    "raymond_of_penyafort_priest": {
       "fullname": "S. Raimundi de Penyafort, presbyteri"
     },
-    {
-      "id": "remigius_of_reims_bishop",
+    "remigius_of_reims_bishop": {
       "fullname": "S. Remigii, episcopi"
     },
-    {
-      "id": "richard_gwyn_martyr",
+    "richard_gwyn_martyr": {
       "fullname": "S. Richardi Gwyn, martyris"
     },
-    {
-      "id": "richard_of_chichester_bishop",
+    "richard_of_chichester_bishop": {
       "fullname": "S. Richardi Cicestriæ, episcopi"
     },
-    {
-      "id": "richardis_of_swabia_empress",
+    "richardis_of_swabia_empress": {
       "fullname": "S. Richardis, imperatricis"
     },
-    {
-      "id": "rita_of_cascia_religious",
+    "rita_of_cascia_religious": {
       "fullname": "S. Ritæ de Cascia, religiosæ"
     },
-    {
-      "id": "robert_bellarmine_bishop",
+    "robert_bellarmine_bishop": {
       "fullname": "S. Roberti Bellarmini, episcopi et Ecclesiæ doctoris"
     },
-    {
-      "id": "roch_gonzalez_alphonsus_rodriguez_and_john_del_castillo_priests",
+    "roch_gonzalez_alphonsus_rodriguez_and_john_del_castillo_priests": {
       "fullname": "Ss. Rochi González, Alfonsi Rodríguez et Ioannis del Castillo, presbyterorum et martyrum"
     },
-    {
-      "id": "roch_of_montpellier",
+    "roch_of_montpellier": {
       "fullname": "S. Rochi"
     },
-    {
-      "id": "romuald_of_ravenna_abbot",
+    "romuald_of_ravenna_abbot": {
       "fullname": "S. Romualdi, abbatis"
     },
-    {
-      "id": "rosalie_jeanne_marie_rendu_virgin",
+    "rosalie_jeanne_marie_rendu_virgin": {
       "fullname": "B. Rosaliæ Rendu, virginis"
     },
-    {
-      "id": "rose_of_lima_virgin",
+    "rose_of_lima_virgin": {
       "fullname": "S. Rosæ de Lima, virginis"
     },
-    {
-      "id": "rose_of_lima_virgin_copatroness_of_the_philippines",
+    "rose_of_lima_virgin_copatroness_of_the_philippines": {
       "fullname": "S. Rosæ de Lima, virginis, patronæ secundariæ Insularum Philippinæ"
     },
-    {
-      "id": "rose_philippine_duchesne_virgin",
+    "rose_philippine_duchesne_virgin": {
       "fullname": "S. Rosæ Philippinæ Duchesne, virginis"
     },
-    {
-      "id": "rupert_of_salzburg_and_virgilius_of_salzburg_bishops",
+    "rupert_of_salzburg_and_virgilius_of_salzburg_bishops": {
       "fullname": "Ss. Ruperti et Virgilii Salisburgensis, episcoporum"
     }
-  ]
+  }
 }

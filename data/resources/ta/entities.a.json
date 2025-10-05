@@ -1,310 +1,234 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "ta",
-  "entities": [
-    {
-      "id": "adalbert_of_prague_bishop",
+  "entities": {
+    "adalbert_of_prague_bishop": {
       "fullname": "புனித அடால்பெர்ட் - ஆயர், மறைச்சாட்சி"
     },
-    {
-      "id": "adalbert_of_prague_bishop_patron_of_poland",
+    "adalbert_of_prague_bishop_patron_of_poland": {
       "fullname": "புனித அடால்பெர்ட் - ஆயர், மறைச்சாட்சி, போலந்து பாதுகாவலர்"
     },
-    {
-      "id": "adelaide_of_burgundy_empress",
+    "adelaide_of_burgundy_empress": {
       "fullname": "பெர்கண்டியின் புனித அடலைய்ட்"
     },
-    {
-      "id": "adelphus_of_metz_bishop",
+    "adelphus_of_metz_bishop": {
       "fullname": "புனித அடொல்பஸ், ஆயர்"
     },
-    {
-      "id": "adolph_kolping_priest",
+    "adolph_kolping_priest": {
       "fullname": "முத்திபேறுபெற்ற அடொல்ப் கொல்பிங், அருட்பணியாளர்"
     },
-    {
-      "id": "aelred_of_rievaulx_abbot",
+    "aelred_of_rievaulx_abbot": {
       "fullname": "புனித எய்ல்ரெட் றிவோ, மடாதிபதி"
     },
-    {
-      "id": "aengus_of_tallaght_bishop",
+    "aengus_of_tallaght_bishop": {
       "fullname": "புனித எங்குஸ் டலா"
     },
-    {
-      "id": "agatha_of_sicily_virgin",
+    "agatha_of_sicily_virgin": {
       "fullname": "புனித ஆகத்தா - கன்னி, மறைச்சாட்சி"
     },
-    {
-      "id": "agnes_cao_guiying_martyr",
+    "agnes_cao_guiying_martyr": {
       "fullname": "புனித ஆக்னஸ் சாவோ குயிங்- மறைச்சாட்சி"
     },
-    {
-      "id": "agnes_of_bohemia_virgin",
+    "agnes_of_bohemia_virgin": {
       "fullname": "பொஹோமியாவின் புனித ஆக்னஸ் - கன்னி"
     },
-    {
-      "id": "agnes_of_rome_virgin",
+    "agnes_of_rome_virgin": {
       "fullname": "ரோமாவின் புனித ஆக்னஸ் - கன்னி, மறைச்சாட்சி"
     },
-    {
-      "id": "aidan_of_ferns_bishop",
+    "aidan_of_ferns_bishop": {
       "fullname": "பெர்ன்சின் புனித எய்டன் - ஆயர்"
     },
-    {
-      "id": "aidan_of_lindisfarne_bishop",
+    "aidan_of_lindisfarne_bishop": {
       "fullname": "லிண்டிஸ்பானின் புனித எய்டன் - ஆயர்"
     },
-    {
-      "id": "aidan_of_lindisfarne_bishop_and_the_saints_of_lindisfarne",
+    "aidan_of_lindisfarne_bishop_and_the_saints_of_lindisfarne": {
       "fullname": "லிண்டிஸ்பானின் புனித எய்டன், மற்றும் அனைத்து புனிதர்கள்"
     },
-    {
-      "id": "ailbe_of_emly_bishop",
+    "ailbe_of_emly_bishop": {
       "fullname": "எமிலியின் புனித அல்பே - ஆயர்"
     },
-    {
-      "id": "alban_of_britain_julius_of_caerleon_aaron_of_caerleon_martyrs",
+    "alban_of_britain_julius_of_caerleon_aaron_of_caerleon_martyrs": {
       "fullname": "புனிதர்கள் ஆல்பன், ஜூலியஸ், ஏரோன் - மறைசாட்சிகள்"
     },
-    {
-      "id": "alban_of_britain_martyr",
+    "alban_of_britain_martyr": {
       "fullname": "புனித ஆல்பன் - மறைசாட்சி"
     },
-    {
-      "id": "alberic_crescitelli_priest",
+    "alberic_crescitelli_priest": {
       "fullname": "புனித ஆல்பேரிக் கெரெசிடெல்லி - அருட்பணியாளர்"
     },
-    {
-      "id": "albert_chmielowski_religious",
+    "albert_chmielowski_religious": {
       "fullname": "புனித ஆல்பபர்ட் கிமிலொவ்ஸ்கி - துறவி"
     },
-    {
-      "id": "albert_the_great_bishop",
+    "albert_the_great_bishop": {
       "fullname": "புனித பெரிய ஆல்பர்ட் - ஆயர், மறைவல்லுநர்"
     },
-    {
-      "id": "albertina_berkenbrock_virgin",
+    "albertina_berkenbrock_virgin": {
       "fullname": "முத்திப்பேறுபெற்ற ஆல்பெர்டினா பெர்கிண்பிரோக் - கன்னி, மறைசாட்சி"
     },
-    {
-      "id": "alberto_hurtado_priest",
+    "alberto_hurtado_priest": {
       "fullname": "புனித அல்பெர்டோ ஹுர்டாடோ - அருட்பணியாளர்"
     },
-    {
-      "id": "all_saints",
+    "all_saints": {
       "fullname": "அனைத்து புனிதர்கள்"
     },
-    {
-      "id": "all_saints_of_ireland",
+    "all_saints_of_ireland": {
       "fullname": "அயர்லாந்தின் சகல புனிதர்கள்"
     },
-    {
-      "id": "all_saints_of_the_archdiocese_of_paris",
+    "all_saints_of_the_archdiocese_of_paris": {
       "fullname": "பாரிஸ் மறைமாவட்டத்தின் சகல புனிதர்கள்"
     },
-    {
-      "id": "all_saints_of_the_diocese_of_saint_denis",
+    "all_saints_of_the_diocese_of_saint_denis": {
       "fullname": "புனித டெனிஸ் மறைமாவட்டத்தின் சகல புனிதர்கள்"
     },
-    {
-      "id": "all_saints_of_wales",
+    "all_saints_of_wales": {
       "fullname": "வேல்சின் சகல புனிதர்கள்"
     },
-    {
-      "id": "aloysius_gonzaga_religious",
+    "aloysius_gonzaga_religious": {
       "fullname": "புனித அலோசியஸ் கொன்சாகா - துறவி"
     },
-    {
-      "id": "aloysius_stepinac_bishop",
+    "aloysius_stepinac_bishop": {
       "fullname": "முத்திப்பேறுபெற் அலோசியஸ் ஸ்டெபினெக், ஆயர், மறைசாட்சி"
     },
-    {
-      "id": "aloysius_versiglia_bishop_and_callistus_caravario_priest_martyrs",
+    "aloysius_versiglia_bishop_and_callistus_caravario_priest_martyrs": {
       "fullname": "புனித அலோசியஸ் வெசிலியா - ஆயர், புனித கலிஸ்டஸ் கரவாரியோ - அருட்பணியாளர், மறைசாட்சிகள்"
     },
-    {
-      "id": "alphonsa_of_the_immaculate_conception_muttathupadathu_virgin",
+    "alphonsa_of_the_immaculate_conception_muttathupadathu_virgin": {
       "fullname": "புனித அல்போன்ஸா - கன்னி"
     },
-    {
-      "id": "alphonsus_mary_liguori_bishop",
+    "alphonsus_mary_liguori_bishop": {
       "fullname": "புனித அல்போன்ஸ் மரிய லிகோரி - ஆயர், மறைவல்லுநர்"
     },
-    {
-      "id": "amand_of_maastricht_bishop",
+    "amand_of_maastricht_bishop": {
       "fullname": "புனித அமண்ட் - ஆயர்"
     },
-    {
-      "id": "amandus_of_strasbourg_bishop",
+    "amandus_of_strasbourg_bishop": {
       "fullname": "புனித அமண்ட்ட் - ஸ்ரஸ்பேக்கின் முதல் ஆயர்"
     },
-    {
-      "id": "amarin_of_alsace_abbot",
+    "amarin_of_alsace_abbot": {
       "fullname": "புனித அமரின் - மடாதிபதி, மறைசாட்சி"
     },
-    {
-      "id": "ambrose_of_milan_bishop",
+    "ambrose_of_milan_bishop": {
       "fullname": "புனித அம்புரோஸ் - ஆயர், மறைவல்லுநர்"
     },
-    {
-      "id": "andre_bessette_religious",
+    "andre_bessette_religious": {
       "fullname": "புனித அந்திரே பெசெட் - துறவி"
     },
-    {
-      "id": "andre_grasset_priest",
+    "andre_grasset_priest": {
       "fullname": "முத்திப்பேறுபெற்ற அந்திரே கிறாசெட், அருட்பணியாளர், மறைசாட்சி"
     },
-    {
-      "id": "andrew_apostle",
+    "andrew_apostle": {
       "fullname": "புனித அந்திரேயா - திருத்தூதர்"
     },
-    {
-      "id": "andrew_apostle_patron_of_russia",
+    "andrew_apostle_patron_of_russia": {
       "fullname": "புனித அந்திரேயா - திருத்தூதர், ரஷியாவின் பாதுகாவலர்"
     },
-    {
-      "id": "andrew_apostle_patron_of_scotland",
+    "andrew_apostle_patron_of_scotland": {
       "fullname": "புனித அந்திரேயா - திருத்தூதர், ஸ்கொட்லண்டின் பாதுகாவலர்"
     },
-    {
-      "id": "andrew_bobola_priest",
+    "andrew_bobola_priest": {
       "fullname": "புனித அந்திரேயா பாபோலா- அருட்பணியாளர்"
     },
-    {
-      "id": "andrew_de_soveral_and_ambrose_francis_ferro_priests",
+    "andrew_de_soveral_and_ambrose_francis_ferro_priests": {
       "fullname": "புனித அந்திரேயா டி சாவெரெல், அம்புரோஸ் பிரான்சிஸ் பெரோ - அருட்பணியாளர்கள், மறைசாட்சிகள்"
     },
-    {
-      "id": "andrew_dung_lac_priest_and_companions_martyrs",
+    "andrew_dung_lac_priest_and_companions_martyrs": {
       "fullname": "புனிதர்கள் ஆண்ட்ரூ டுங் லாக் மற்றும் தோழர்கள் - அருள்பணியாளர், மறைச்சாட்சியர்"
     },
-    {
-      "id": "andrew_kim_tae_gon_priest_paul_chong_ha_sang_and_companions_martyrs",
+    "andrew_kim_tae_gon_priest_paul_chong_ha_sang_and_companions_martyrs": {
       "fullname": "புனிதர்கள் ஆண்ட்ரூ கிம் தே கோன் - அருள்பணியாளர் பால் சோங் கா சாங்சும் தோழர்களும் - மறைச்சாட்சியர்"
     },
-    {
-      "id": "andrew_zorard_of_nitra_and_benedict_of_skalka_hermits",
+    "andrew_zorard_of_nitra_and_benedict_of_skalka_hermits": {
       "fullname": "புனிதர்கள் அந்திரேயா சோராட், ஸ்கால்காவின் ஆசீர்வாதப்பர், வனத்துறவிகள்"
     },
-    {
-      "id": "angela_merici_virgin",
+    "angela_merici_virgin": {
       "fullname": "புனித அஞ்சலா மெறிச்சி - கன்னி"
     },
-    {
-      "id": "angela_salawa_virgin",
+    "angela_salawa_virgin": {
       "fullname": "முத்திப்பேறுபெற்ற அஞ்சலா சலவா - கன்னி"
     },
-    {
-      "id": "anno_of_cologne_bishop",
+    "anno_of_cologne_bishop": {
       "fullname": "கொலோனின் புனித அன்னோ - ஆயர்"
     },
-    {
-      "id": "annunciation_of_the_lord",
+    "annunciation_of_the_lord": {
       "fullname": "ஆண்டவருடைய பிறப்பின் அறிவிப்பு"
     },
-    {
-      "id": "anselm_of_canterbury_bishop",
+    "anselm_of_canterbury_bishop": {
       "fullname": "புனித ஆன்சலம் - ஆயர், மறைவல்லுநர்"
     },
-    {
-      "id": "ansgar_of_hamburg_bishop",
+    "ansgar_of_hamburg_bishop": {
       "fullname": "புனித ஆன்ஸ்கார் - ஆயர"
     },
-    {
-      "id": "anthony_julian_nowowiejski_bishop_and_companions_martyrs",
+    "anthony_julian_nowowiejski_bishop_and_companions_martyrs": {
       "fullname": "முத்திப்பேறுபெற்ற அந்தோனி ஜூலியன் நொவொவேஸ்கி தோழர்கள் - ஆயர், மறைசாட்சிகள்"
     },
-    {
-      "id": "anthony_mary_claret_bishop",
+    "anthony_mary_claret_bishop": {
       "fullname": "புனித அந்தோனி மரிய கிளாரட் - ஆயர்"
     },
-    {
-      "id": "anthony_of_egypt_abbot",
+    "anthony_of_egypt_abbot": {
       "fullname": "எகிப்தின் புனித அந்தோனி - மடாதிபதி"
     },
-    {
-      "id": "anthony_of_padua_priest",
+    "anthony_of_padua_priest": {
       "fullname": "பாதுவா நகர்ப் புனித அந்தோனியார் - அருள்பணியாளர், மறைவல்லுநர்"
     },
-    {
-      "id": "anthony_of_saint_anne_galvao_priest",
+    "anthony_of_saint_anne_galvao_priest": {
       "fullname": "புனித அன்னா கால்வோவின் புனித அந்தோனியார் - அருட்பணியாளர்"
     },
-    {
-      "id": "anthony_of_the_caves_monk",
+    "anthony_of_the_caves_monk": {
       "fullname": "குகைகளின் புனித அந்தோனியார், வனத்துறவி"
     },
-    {
-      "id": "anthony_zaccaria_priest",
+    "anthony_zaccaria_priest": {
       "fullname": "புனித அந்தோனி சக்கரியா - அருட்பணியாளர்"
     },
-    {
-      "id": "apollinaris_of_ravenna_bishop",
+    "apollinaris_of_ravenna_bishop": {
       "fullname": "புனித அப்போலினாரிஸ் - ஆயர், மறைச்சாட்சி"
     },
-    {
-      "id": "arbogast_of_strasbourg_bishop",
+    "arbogast_of_strasbourg_bishop": {
       "fullname": "புனித ஆர்பகஸ்ட் - ஆயர்"
     },
-    {
-      "id": "arbogast_of_strasbourg_bishop_patron_of_the_archdiocese_of_strasbourg",
+    "arbogast_of_strasbourg_bishop_patron_of_the_archdiocese_of_strasbourg": {
       "fullname": "புனித ஆர்பகஸ்ட் - ஸ்ரஸ்பேர்க் மாவட்டத்தின் பாதுகாவலர்"
     },
-    {
-      "id": "asaph_of_wales_bishop",
+    "asaph_of_wales_bishop": {
       "fullname": "புனித ஆசப் - ஆயர்"
     },
-    {
-      "id": "ascension_of_the_lord",
+    "ascension_of_the_lord": {
       "fullname": "ஆண்டவரின் விண்ணேற்றம்"
     },
-    {
-      "id": "ash_wednesday",
+    "ash_wednesday": {
       "fullname": "திருநீற்றுப் புதன்"
     },
-    {
-      "id": "asicus_of_elphin_bishop",
+    "asicus_of_elphin_bishop": {
       "fullname": "புனித ஆசிகுஸ் - ஆயர்"
     },
-    {
-      "id": "assumption_of_the_blessed_virgin_mary",
+    "assumption_of_the_blessed_virgin_mary": {
       "fullname": "தூய கன்னி மரியாவின் விண்ணேற்றம்"
     },
-    {
-      "id": "athanasius_of_alexandria_bishop",
+    "athanasius_of_alexandria_bishop": {
       "fullname": "புனித அத்தனாசியுஸ் - ஆயர், மறைவல்லுநர்"
     },
-    {
-      "id": "attracta_of_killaraght_virgin",
+    "attracta_of_killaraght_virgin": {
       "fullname": "புனித அட்ராக்டா - கன்னி"
     },
-    {
-      "id": "audoen_of_rouen_bishop",
+    "audoen_of_rouen_bishop": {
       "fullname": "புனித ஒவென் - ஆயர்"
     },
-    {
-      "id": "augustine_kazotic_bishop",
+    "augustine_kazotic_bishop": {
       "fullname": "முத்திப்பேறுபெற்ற ஆகுஸ்தின் காசொடிக் - ஆயர்"
     },
-    {
-      "id": "augustine_of_canterbury_bishop",
+    "augustine_of_canterbury_bishop": {
       "fullname": "காண்டர்பரி நகர்ப் புனித அகுஸ்தின் - ஆயர்"
     },
-    {
-      "id": "augustine_of_hippo_bishop",
+    "augustine_of_hippo_bishop": {
       "fullname": "ஹிப்போவின் புனித அகுஸ்தின் - ஆயர், மறைவல்லுநர்"
     },
-    {
-      "id": "augustine_zhao_rong_priest",
+    "augustine_zhao_rong_priest": {
       "fullname": "புனித அகுஸ்தின் சாவோ றொங் - அருட்பணியாளர்"
     },
-    {
-      "id": "augustine_zhao_rong_priest_and_companions_martyrs",
+    "augustine_zhao_rong_priest_and_companions_martyrs": {
       "fullname": "புனித அகுஸ்தின் சாவோ றொங், தோழர்கள் - அருட்பணியாளர், மறைசாட்சிகள்"
     },
-    {
-      "id": "aurelia_of_strasbourg_virgin",
+    "aurelia_of_strasbourg_virgin": {
       "fullname": "புனித ஒரேலியா - கன்னி"
     }
-  ]
+  }
 }

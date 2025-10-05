@@ -1,10 +1,12 @@
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
+use std::collections::BTreeMap;
 
 use crate::types::entity::{CanonizationLevel, Entity};
 use crate::types::resource::ResourcesMetadata;
+use crate::types::EntityId;
 
-// Type aliases
+/// Locale code of the resources, in BCP-47 IETF tag format
 pub type LocaleId = String;
 
 /// Resources definition
@@ -20,7 +22,7 @@ pub struct Resources {
     pub metadata: Option<ResourcesMetadata>,
 
     /// Entities of the resources: a person, a place, an event, etc.
-    pub entities: Option<Vec<Entity>>,
+    pub entities: Option<BTreeMap<EntityId, Entity>>,
 }
 
 impl Resources {
@@ -35,65 +37,46 @@ impl Resources {
     }
 
     /// Add an entity to the resources
-    pub fn add_entity(&mut self, entity: Entity) {
-        let entities = self.entities.get_or_insert_with(Vec::new);
-        entities.push(entity);
+    pub fn add_entity(&mut self, id: EntityId, entity: Entity) {
+        let entities = self.entities.get_or_insert_with(BTreeMap::new);
+        entities.insert(id, entity);
     }
 
     /// Get an entity by its ID
     pub fn get_entity(&self, id: &str) -> Option<&Entity> {
-        self.entities
-            .as_ref()?
-            .iter()
-            .find(|entity| entity.id == id)
+        self.entities.as_ref()?.get(id)
     }
 
     /// Get a mutable reference to an entity by its ID
     pub fn get_entity_mut(&mut self, id: &str) -> Option<&mut Entity> {
-        self.entities
-            .as_mut()?
-            .iter_mut()
-            .find(|entity| entity.id == id)
+        self.entities.as_mut()?.get_mut(id)
     }
 
     /// Remove an entity by its ID
     pub fn remove_entity(&mut self, id: &str) -> Option<Entity> {
-        if let Some(entities) = &mut self.entities {
-            if let Some(pos) = entities.iter().position(|entity| entity.id == id) {
-                return Some(entities.remove(pos));
-            }
-        }
-        None
+        self.entities.as_mut()?.remove(id)
     }
 
     /// Get all entity IDs
     pub fn get_entity_ids(&self) -> Vec<&String> {
         self.entities
             .as_ref()
-            .map(|entities| entities.iter().map(|entity| &entity.id).collect())
+            .map(|entities| entities.keys().collect())
             .unwrap_or_default()
     }
 
     /// Validate that all entities are properly structured
-    /// Check for uniqueness of IDs and entity structure
+    /// Check for entity structure (uniqueness is guaranteed by BTreeMap)
     pub fn validate_entities(&self) -> Result<(), Vec<String>> {
         let mut errors = Vec::new();
-        let mut seen_ids = std::collections::HashSet::new();
 
         if let Some(entities) = &self.entities {
-            for entity in entities {
-                // Check for duplicate IDs
-                if seen_ids.contains(&entity.id) {
-                    errors.push(format!("Duplicate entity ID: '{}'", entity.id));
-                } else {
-                    seen_ids.insert(&entity.id);
-                }
-
+            for (id, entity) in entities {
                 // Validate entity structure
                 if entity.name.is_none() && entity.fullname.is_none() {
                     errors.push(format!(
                         "Entity '{}' must have either 'name' or 'fullname'",
-                        entity.id
+                        id
                     ));
                 }
 
@@ -104,7 +87,7 @@ impl Resources {
                     } else if entity.fullname.is_none() {
                         errors.push(format!(
                             "Entity '{}' has canonization level '{}' but no fullname to display it",
-                            entity.id,
+                            id,
                             match level {
                                 CanonizationLevel::Blessed => "BLESSED",
                                 CanonizationLevel::Saint => "SAINT",
@@ -125,18 +108,18 @@ impl Resources {
     /// Merge entities from another Resources
     pub fn merge_entities(&mut self, other: &Resources) {
         if let Some(other_entities) = &other.entities {
-            let entities = self.entities.get_or_insert_with(Vec::new);
+            let entities = self.entities.get_or_insert_with(BTreeMap::new);
             entities.extend(other_entities.clone());
         }
     }
 
-    /// Get all entities as a reference to the vector
-    pub fn get_entities(&self) -> Option<&Vec<Entity>> {
+    /// Get all entities as a reference to the map
+    pub fn get_entities(&self) -> Option<&BTreeMap<EntityId, Entity>> {
         self.entities.as_ref()
     }
 
-    /// Get all entities as a mutable reference to the vector
-    pub fn get_entities_mut(&mut self) -> Option<&mut Vec<Entity>> {
+    /// Get all entities as a mutable reference to the map
+    pub fn get_entities_mut(&mut self) -> Option<&mut BTreeMap<EntityId, Entity>> {
         self.entities.as_mut()
     }
 }

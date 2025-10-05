@@ -1,10 +1,9 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "pl",
-  "entities": [
-    {
-      "id": "yolanda_of_poland_religious",
+  "entities": {
+    "yolanda_of_poland_religious": {
       "fullname": "Bł. Jolanty, zakonnicy"
     }
-  ]
+  }
 }

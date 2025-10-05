@@ -1,62 +1,48 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "la",
-  "entities": [
-    {
-      "id": "nativity_of_john_the_baptist",
+  "entities": {
+    "nativity_of_john_the_baptist": {
       "fullname": "In Nativitate S. Ioannis Baptistæ"
     },
-    {
-      "id": "nativity_of_the_blessed_virgin_mary",
+    "nativity_of_the_blessed_virgin_mary": {
       "fullname": "In Nativitate B. Mariæ Virginis"
     },
-    {
-      "id": "nativity_of_the_lord",
+    "nativity_of_the_lord": {
       "fullname": "In Nativitate Domini"
     },
-    {
-      "id": "nazaria_ignacia_of_saint_teresa_of_jesus_march_mesa_virgin",
+    "nazaria_ignacia_of_saint_teresa_of_jesus_march_mesa_virgin": {
       "fullname": "S. Nazariæ Ignatiæ a Sancta Teresia a Iesu March Mesa, virginis"
     },
-    {
-      "id": "nereus_of_terracina_and_achilleus_of_terracina_martyrs",
+    "nereus_of_terracina_and_achilleus_of_terracina_martyrs": {
       "fullname": "Ss. Nerei et Achillei, martyrum"
     },
-    {
-      "id": "nicholas_barre_priest",
+    "nicholas_barre_priest": {
       "fullname": "B. Nicolai Barré, presbyteri"
     },
-    {
-      "id": "nicholas_of_flue_hermit",
+    "nicholas_of_flue_hermit": {
       "fullname": "S. Nicolai de Flüe, eremitæ"
     },
-    {
-      "id": "nicholas_of_myra_bishop",
+    "nicholas_of_myra_bishop": {
       "fullname": "S. Nicolai, episcopi"
     },
-    {
-      "id": "nicholas_steno_bishop",
+    "nicholas_steno_bishop": {
       "fullname": "B. Nicolai Stenonis, episcopi"
     },
-    {
-      "id": "nicholas_tavelic_priest",
+    "nicholas_tavelic_priest": {
       "fullname": "S. Nicolai Tavelić, presbyteri et martyris"
     },
-    {
-      "id": "ninian_of_whithorn_bishop",
+    "ninian_of_whithorn_bishop": {
       "fullname": "S. Niniani, episcopi"
     },
-    {
-      "id": "norbert_of_xanten_bishop",
+    "norbert_of_xanten_bishop": {
       "fullname": "S. Norberti, episcopi"
     },
-    {
-      "id": "nuno_of_saint_mary_pereira_religious",
+    "nuno_of_saint_mary_pereira_religious": {
       "fullname": "S. Nunii a Sancta Maria Pereira, religiosi"
     },
-    {
-      "id": "nykyta_budka_and_vasyl_velychkovsky_bishops",
+    "nykyta_budka_and_vasyl_velychkovsky_bishops": {
       "fullname": "Bb. Niceti Budka et Basilii Velychkovskyi, episcoporum et martyrum"
     }
-  ]
+  }
 }

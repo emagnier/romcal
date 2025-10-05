@@ -1,38 +1,30 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "pt-br",
-  "entities": [
-    {
-      "id": "nativity_of_john_the_baptist",
+  "entities": {
+    "nativity_of_john_the_baptist": {
       "fullname": "Nascimento de João Batista"
     },
-    {
-      "id": "nativity_of_the_blessed_virgin_mary",
+    "nativity_of_the_blessed_virgin_mary": {
       "fullname": "Natividade da Virgem Santa Maria"
     },
-    {
-      "id": "nativity_of_the_lord",
+    "nativity_of_the_lord": {
       "fullname": "Natal"
     },
-    {
-      "id": "nereus_of_terracina_and_achilleus_of_terracina_martyrs",
+    "nereus_of_terracina_and_achilleus_of_terracina_martyrs": {
       "fullname": "Santos Nereu e Aquileu, mártires"
     },
-    {
-      "id": "nicholas_barre_priest",
+    "nicholas_barre_priest": {
       "fullname": "Beato Nicolau Barré, presbítero"
     },
-    {
-      "id": "nicholas_of_myra_bishop",
+    "nicholas_of_myra_bishop": {
       "fullname": "São Nicolau, bispo"
     },
-    {
-      "id": "norbert_of_xanten_bishop",
+    "norbert_of_xanten_bishop": {
       "fullname": "São Norberto, obispo"
     },
-    {
-      "id": "nuno_of_saint_mary_pereira_religious",
+    "nuno_of_saint_mary_pereira_religious": {
       "fullname": "São Nuno de Santa Maria, religioso"
     }
-  ]
+  }
 }

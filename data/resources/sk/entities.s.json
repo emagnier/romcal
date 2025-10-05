@@ -1,126 +1,96 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "sk",
-  "entities": [
-    {
-      "id": "salomea_of_poland_religious",
+  "entities": {
+    "salomea_of_poland_religious": {
       "fullname": "Blahoslavenej Salomey Poľskej, rehoľníčky"
     },
-    {
-      "id": "sancha_of_portugal_and_mafalda_of_portugal_virgins",
+    "sancha_of_portugal_and_mafalda_of_portugal_virgins": {
       "fullname": "Blahoslavených Sanche a Mafaldy, panny"
     },
-    {
-      "id": "sara_salkahazi_virgin",
+    "sara_salkahazi_virgin": {
       "fullname": "Blahoslavenej Sáry Salkaháziovej, panny a mučenice"
     },
-    {
-      "id": "scholastica_of_nursia_virgin",
+    "scholastica_of_nursia_virgin": {
       "fullname": "Svätej Školastiky, panny"
     },
-    {
-      "id": "sebastian_de_aparicio_religious",
+    "sebastian_de_aparicio_religious": {
       "fullname": "Blahoslaveného Šebastiána de Aparicio, Religious"
     },
-    {
-      "id": "sebastian_of_milan_martyr",
+    "sebastian_of_milan_martyr": {
       "fullname": "Svätého Šebastiána, mučeníka"
     },
-    {
-      "id": "senan_of_inis_cathaigh_bishop",
+    "senan_of_inis_cathaigh_bishop": {
       "fullname": "Svätého Senana, biskupa"
     },
-    {
-      "id": "seven_holy_founders_of_the_servite_order",
+    "seven_holy_founders_of_the_servite_order": {
       "fullname": "Siedmich svätých zakladateľov rehole Služobníkov preblahoslavenej Panny Márie"
     },
-    {
-      "id": "seven_martyred_nuns_from_the_franciscan_missionaries_of_mary",
+    "seven_martyred_nuns_from_the_franciscan_missionaries_of_mary": {
       "fullname": "Sedem mučeníc z kongregácie Františkánskych misionárok Márie"
     },
-    {
-      "id": "severinus_of_noricum_monk",
+    "severinus_of_noricum_monk": {
       "fullname": "Svätého Severína z Norika, kňaza"
     },
-    {
-      "id": "sharbel_makhluf_priest",
+    "sharbel_makhluf_priest": {
       "fullname": "Svätého Šarbela Machlúfa, kňaza"
     },
-    {
-      "id": "shipwreck_of_saint_paul_apostle",
+    "shipwreck_of_saint_paul_apostle": {
       "fullname": "Vraku lode svätého Pavla, apoštola"
     },
-    {
-      "id": "sigismund_of_burgundy_martyr",
+    "sigismund_of_burgundy_martyr": {
       "fullname": "Svätého Žigmunda Burgundského, mučeníka"
     },
-    {
-      "id": "sigmund_felix_felinski_bishop",
+    "sigmund_felix_felinski_bishop": {
       "fullname": "Svätého Žigmunda Félixa Felińského, biskupa"
     },
-    {
-      "id": "simon_and_jude_apostles",
+    "simon_and_jude_apostles": {
       "fullname": "Svätých Šimona a Júdu, apoštolov"
     },
-    {
-      "id": "simon_of_lipnica_priest",
+    "simon_of_lipnica_priest": {
       "fullname": "Svätého Šimona z Lipnice, kňaza"
     },
-    {
-      "id": "six_welsh_martyrs_and_companions",
+    "six_welsh_martyrs_and_companions": {
       "fullname": "Šiestich waleských mučeníkov a spoločníkov"
     },
-    {
-      "id": "sixtus_ii_pope_and_companions_martyrs",
+    "sixtus_ii_pope_and_companions_martyrs": {
       "fullname": "Svätých Sixta II., pápeža, a jeho spoločníkov, mučeníkov"
     },
-    {
-      "id": "spyridon_of_trimythous_bishop",
+    "spyridon_of_trimythous_bishop": {
       "fullname": "Svätého Spyridóna, biskupa"
     },
-    {
-      "id": "stanislaus_kazimierczyk_priest",
+    "stanislaus_kazimierczyk_priest": {
       "fullname": "Svätého Stanislava Kazimierczyka, kňaza"
     },
-    {
-      "id": "stanislaus_kostka_religious",
+    "stanislaus_kostka_religious": {
       "fullname": "Svätého Stanislava Kostku, rehoľníka"
     },
-    {
-      "id": "stanislaus_of_szczepanow_bishop",
+    "stanislaus_of_szczepanow_bishop": {
       "fullname": "Svätého Stanislava, biskupa a mučeníka"
     },
-    {
-      "id": "stanislaus_of_szczepanow_bishop_patron_of_poland",
+    "stanislaus_of_szczepanow_bishop_patron_of_poland": {
       "fullname": "Svätého Stanislava, biskupa a mučeníka, patróna Poľska"
     },
-    {
-      "id": "stephen_i_of_hungary",
+    "stephen_i_of_hungary": {
       "fullname": "Svätého Štefana Uhorského"
     },
-    {
-      "id": "stephen_the_first_martyr",
+    "stephen_the_first_martyr": {
       "fullname": "Svätého Štefana, prvého mučeníka"
     },
-    {
-      "id": "sunday_of_the_word_of_god",
+    "sunday_of_the_word_of_god": {
       "fullname": "3. nedeľa v Cezročnom období, alebo Nedeľa Božieho slova"
     },
-    {
-      "id": "sunniva_of_norway_virgin",
+    "sunniva_of_norway_virgin": {
       "fullname": "Svätej Sunnivy, panny a mučenice"
     },
-    {
-      "id": "swithun_of_winchester_bishop",
+    "swithun_of_winchester_bishop": {
       "fullname": "Svätého Swithuna, biskupa"
     },
-    {
-      "id": "sylvester_i_pope",
+    "sylvester_i_pope": {
       "fullname": "Svätého Silvestra I., pápeža"
     },
-    {
-      "id": "szilard_bogdanffy_bishop",
+    "szilard_bogdanffy_bishop": {
       "fullname": "Blahoslaveného Szilárda Bogdánffyho, biskupa a mučeníka"
     }
-  ]
+  }
 }

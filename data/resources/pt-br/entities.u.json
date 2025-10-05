@@ -1,10 +1,9 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "pt-br",
-  "entities": [
-    {
-      "id": "urban_i_pope",
+  "entities": {
+    "urban_i_pope": {
       "fullname": "Papa São Urbano I"
     }
-  ]
+  }
 }

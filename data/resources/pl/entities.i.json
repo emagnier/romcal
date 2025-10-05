@@ -1,38 +1,30 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "pl",
-  "entities": [
-    {
-      "id": "ignatius_of_antioch_bishop",
+  "entities": {
+    "ignatius_of_antioch_bishop": {
       "fullname": "Św. Ignacego Antiocheńskiego, biskupa i męczennika"
     },
-    {
-      "id": "ignatius_of_loyola_priest",
+    "ignatius_of_loyola_priest": {
       "fullname": "Św. Ignacego z Loyoli, prezbitera"
     },
-    {
-      "id": "immaculate_conception_of_the_blessed_virgin_mary",
+    "immaculate_conception_of_the_blessed_virgin_mary": {
       "fullname": "Niepokalane Poczęcie Najświętszej Maryi Panny"
     },
-    {
-      "id": "immaculate_heart_of_mary",
+    "immaculate_heart_of_mary": {
       "fullname": "Niepokalanego Serca Najświętszej Maryi Panny"
     },
-    {
-      "id": "innocent_v_pope",
+    "innocent_v_pope": {
       "fullname": "Bł. Innocentego V, papieża"
     },
-    {
-      "id": "irenaeus_of_lyon_bishop",
+    "irenaeus_of_lyon_bishop": {
       "fullname": "Św. Ireneusza, biskupa, męczennika i doktora Kościoła"
     },
-    {
-      "id": "isabelle_of_france_virgin",
+    "isabelle_of_france_virgin": {
       "fullname": "Bł. Izabeli Francuskiej, dziewicy"
     },
-    {
-      "id": "isidore_of_seville_bishop",
+    "isidore_of_seville_bishop": {
       "fullname": "Św. Izydora, biskupa i doktora Kościoła"
     }
-  ]
+  }
 }

@@ -1,358 +1,270 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "sk",
-  "entities": [
-    {
-      "id": "mac_nissi_of_connor_bishop",
+  "entities": {
+    "mac_nissi_of_connor_bishop": {
       "fullname": "Svätého Mac Nissi, biskupa"
     },
-    {
-      "id": "macartan_of_clogher_bishop",
+    "macartan_of_clogher_bishop": {
       "fullname": "Svätého Makartána, biskupa"
     },
-    {
-      "id": "madeleine_sophie_barat_virgin",
+    "madeleine_sophie_barat_virgin": {
       "fullname": "Svätej Magdalény Žofie Baratovej, panny"
     },
-    {
-      "id": "maelruain_of_tallaght_bishop",
+    "maelruain_of_tallaght_bishop": {
       "fullname": "Svätého Maelruaina, biskupa a opáta"
     },
-    {
-      "id": "magnus_erlendsson_martyr",
+    "magnus_erlendsson_martyr": {
       "fullname": "Svätého Magnusa Erlendssona, mučeníka"
     },
-    {
-      "id": "malachy_of_armagh_bishop",
+    "malachy_of_armagh_bishop": {
       "fullname": "Svätého Malachiáša, biskupa"
     },
-    {
-      "id": "marcel_callo_martyr",
+    "marcel_callo_martyr": {
       "fullname": "Blahoslaveného Marcela Calla, mučeníka"
     },
-    {
-      "id": "marcelina_darowska_religious",
+    "marcelina_darowska_religious": {
       "fullname": "Blahoslavenej Marcelíny Darowskej, rehoľníčky"
     },
-    {
-      "id": "marcellin_champagnat_priest",
+    "marcellin_champagnat_priest": {
       "fullname": "Svätého Marcelína Champagnata, kňaza"
     },
-    {
-      "id": "marcellinus_of_rome_and_peter_the_exorcist_martyrs",
+    "marcellinus_of_rome_and_peter_the_exorcist_martyrs": {
       "fullname": "Svätých Marcelína a Petra, mučeníkov"
     },
-    {
-      "id": "marcellus_of_paris_bishop",
+    "marcellus_of_paris_bishop": {
       "fullname": "Svätého Marcela z Paríža, biskupa"
     },
-    {
-      "id": "margaret_clitherow_anne_line_and_margaret_ward_virgin_martyrs",
+    "margaret_clitherow_anne_line_and_margaret_ward_virgin_martyrs": {
       "fullname": "Svätej Margity Clitherowová, Anny Linová a Margity Wardová, panny, mučeníc"
     },
-    {
-      "id": "margaret_mary_alacoque_virgin",
+    "margaret_mary_alacoque_virgin": {
       "fullname": "Svätej Margity Márie Alacoque, panny"
     },
-    {
-      "id": "margaret_of_antioch_virgin",
+    "margaret_of_antioch_virgin": {
       "fullname": "Svätej Margity Antiochijskej, panny a mučenice"
     },
-    {
-      "id": "margaret_of_hungary_religious",
+    "margaret_of_hungary_religious": {
       "fullname": "Svätej Margity Uhorskej, rehoľníčky"
     },
-    {
-      "id": "margaret_of_scotland",
+    "margaret_of_scotland": {
       "fullname": "Svätej Margity Škótskej"
     },
-    {
-      "id": "marguerite_bourgeoys_virgin",
+    "marguerite_bourgeoys_virgin": {
       "fullname": "Svätej Margaréty Bourgeoys, panny"
     },
-    {
-      "id": "marguerite_dyouville_religious",
+    "marguerite_dyouville_religious": {
       "fullname": "Svätej Margaréty d’Youville, rehoľníčky"
     },
-    {
-      "id": "maria_goretti_virgin",
+    "maria_goretti_virgin": {
       "fullname": "Svätej Márie Goretti, panny a mučenice"
     },
-    {
-      "id": "maria_guadalupe_garcia_zavala_virgin",
+    "maria_guadalupe_garcia_zavala_virgin": {
       "fullname": "Svätej Márie Guadalupe García Zavalovej, panny"
     },
-    {
-      "id": "maria_micaela_of_the_blessed_sacrament_desmaisieres_virgin",
+    "maria_micaela_of_the_blessed_sacrament_desmaisieres_virgin": {
       "fullname": "Svätej Márie Michaely od Najsvätejšej Sviatosti Desmaisières, rehoľníčky"
     },
-    {
-      "id": "mariana_of_jesus_de_paredes_virgin",
+    "mariana_of_jesus_de_paredes_virgin": {
       "fullname": "Svätej Marianny od Ježiša de Paredes, panny"
     },
-    {
-      "id": "marianne_cope_virgin",
+    "marianne_cope_virgin": {
       "fullname": "Svätej Marianny z Molokai, rehoľníčky"
     },
-    {
-      "id": "marie_anne_blondin_virgin",
+    "marie_anne_blondin_virgin": {
       "fullname": "Blahoslavenej Márie Anny Blondinovej, panny"
     },
-    {
-      "id": "marie_eugenie_of_jesus_milleret_de_brou_virgin",
+    "marie_eugenie_of_jesus_milleret_de_brou_virgin": {
       "fullname": "Svätej Márie Eugénie Milleretovej de Brou, panny a zakladateľky"
     },
-    {
-      "id": "marie_leonie_paradis_virgin",
+    "marie_leonie_paradis_virgin": {
       "fullname": "Blahoslavenej Márie Leónie Paradisovej, panny"
     },
-    {
-      "id": "marie_rose_durocher_virgin",
+    "marie_rose_durocher_virgin": {
       "fullname": "Blahoslavenej Márie Ruženy Durocherovej, panny"
     },
-    {
-      "id": "mark_evangelist",
+    "mark_evangelist": {
       "fullname": "Svätého Marka, evanjelistu"
     },
-    {
-      "id": "marko_krizin_melchior_grodziecki_and_stephen_pongracz_priests",
+    "marko_krizin_melchior_grodziecki_and_stephen_pongracz_priests": {
       "fullname": "Svätých Marka Križina, Melichara Grodzieckeho a Štefana Pongrácza, kňazov a mučeníkov"
     },
-    {
-      "id": "marko_krizin_priest",
+    "marko_krizin_priest": {
       "fullname": "Svätého Marka Križina, kňaza a mučeníka"
     },
-    {
-      "id": "maron_of_syria_hermit",
+    "maron_of_syria_hermit": {
       "fullname": "Svätého Maróna, pustovníka"
     },
-    {
-      "id": "martha_of_bethany_mary_of_bethany_and_lazarus_of_bethany",
+    "martha_of_bethany_mary_of_bethany_and_lazarus_of_bethany": {
       "fullname": "Svätých Marty, Márie a Lazára"
     },
-    {
-      "id": "martin_de_porres_religious",
+    "martin_de_porres_religious": {
       "fullname": "Svätého Martina de Porres, rehoľníka"
     },
-    {
-      "id": "martin_i_pope",
+    "martin_i_pope": {
       "fullname": "Svätého Martina I., pápeža a mučeníka"
     },
-    {
-      "id": "martin_of_tours_bishop",
+    "martin_of_tours_bishop": {
       "fullname": "Svätého Martina z Tours, biskupa"
     },
-    {
-      "id": "martin_wu_xuesheng_and_companions_martyrs",
+    "martin_wu_xuesheng_and_companions_martyrs": {
       "fullname": "Svätého Martina Wu Xueshenga a spoločníkov, mučeníkov"
     },
-    {
-      "id": "mary_adeodata_pisani_virgin",
+    "mary_adeodata_pisani_virgin": {
       "fullname": "Blahoslavenej Márie Adeodaty Pisaniovej, panny"
     },
-    {
-      "id": "mary_angela_truszkowska_virgin",
+    "mary_angela_truszkowska_virgin": {
       "fullname": "Blahoslavenej Márie Angely Truszkowskej, panny"
     },
-    {
-      "id": "mary_assunta_pallotta_virgin",
+    "mary_assunta_pallotta_virgin": {
       "fullname": "Blahoslavenej Márie Assunty Pallottovej, panny"
     },
-    {
-      "id": "mary_catherine_of_saint_augustine_catherine_de_simon_de_longpre_virgin",
+    "mary_catherine_of_saint_augustine_catherine_de_simon_de_longpre_virgin": {
       "fullname": "Blahoslavenej Kataríny od sv. Augustína de Simon de Longpré, panny"
     },
-    {
-      "id": "mary_magdalene",
+    "mary_magdalene": {
       "fullname": "Svätej Márie Magdalény"
     },
-    {
-      "id": "mary_magdalene_de_pazzi_virgin",
+    "mary_magdalene_de_pazzi_virgin": {
       "fullname": "Svätej Márie Magdalény de Pazzi, panny"
     },
-    {
-      "id": "mary_mother_of_god",
+    "mary_mother_of_god": {
       "fullname": "Oktáva Narodenia Pána. Slávnosť Panny Márie Bohorodičky"
     },
-    {
-      "id": "mary_mother_of_the_church",
+    "mary_mother_of_the_church": {
       "fullname": "Preblahoslavenej Panny Márie, Matky Cirkvi"
     },
-    {
-      "id": "mary_of_jesus_crucified_petkovic_virgin",
+    "mary_of_jesus_crucified_petkovic_virgin": {
       "fullname": "Blahoslavenej Márie od ukrižovaného Ježiša Petkovićovej, panny"
     },
-    {
-      "id": "mary_of_jesus_in_the_blessed_sacrament_venegas_de_la_torre_virgin",
+    "mary_of_jesus_in_the_blessed_sacrament_venegas_de_la_torre_virgin": {
       "fullname": "Svätej Márie od Ježiša v Najsvätejšej Sviatosti Venegas de la Torre, panny"
     },
-    {
-      "id": "mary_of_jesus_the_good_shepherd_siedliska_virgin",
+    "mary_of_jesus_the_good_shepherd_siedliska_virgin": {
       "fullname": "Blahoslavenej Márie od Ježiša Dobrého Pastiera Siedliskej, panny"
     },
-    {
-      "id": "mary_of_the_cross_mackillop_virgin",
+    "mary_of_the_cross_mackillop_virgin": {
       "fullname": "Svätej Márie od Kríža MacKillopovej, panny"
     },
-    {
-      "id": "mary_of_the_incarnation_barbara_acarie_religious",
+    "mary_of_the_incarnation_barbara_acarie_religious": {
       "fullname": "Blahoslavenej Márie od Vtelenia Barbory Acarie, rehoľníčky"
     },
-    {
-      "id": "mary_of_the_incarnation_marie_guyart_religious",
+    "mary_of_the_incarnation_marie_guyart_religious": {
       "fullname": "Svätej Márie od Vtelenia Márie Guyart, rehoľníčky"
     },
-    {
-      "id": "mary_of_the_providence_eugenie_smet_virgin",
+    "mary_of_the_providence_eugenie_smet_virgin": {
       "fullname": "Blahoslavenej Márie od Prozreteľnosti Eugénie Smetovej, panny"
     },
-    {
-      "id": "mary_of_the_sacred_heart_sophie_therese_de_soubiran_la_louviere_virgin",
+    "mary_of_the_sacred_heart_sophie_therese_de_soubiran_la_louviere_virgin": {
       "fullname": "Blahoslavenej Márie Terezy de Soubiran La Louvière, panny"
     },
-    {
-      "id": "mary_soledad_torres_acosta_virgin",
+    "mary_soledad_torres_acosta_virgin": {
       "fullname": "Svätej Márie Soledad Torres y Acosta, panny"
     },
-    {
-      "id": "mary_stella_of_the_blessed_sacrament_mardosewicz_and_companions_virgins",
+    "mary_stella_of_the_blessed_sacrament_mardosewicz_and_companions_virgins": {
       "fullname": "Blahoslavenej Márie Stelly od Najsvätejšej Sviatosti Mardosewiczovej a spoločníčok, pannien a mučeníc"
     },
-    {
-      "id": "mary_theresa_chiramel_mankidiyan_virgin",
+    "mary_theresa_chiramel_mankidiyan_virgin": {
       "fullname": "Svätej Márie Terézie Chiramelovej, panny"
     },
-    {
-      "id": "mary_theresa_ledochowska_virgin",
+    "mary_theresa_ledochowska_virgin": {
       "fullname": "Blahoslavenej Márie Terezy Ledóchowskej, panny"
     },
-    {
-      "id": "mary_ursula_of_jesus_ledochowska_virgin",
+    "mary_ursula_of_jesus_ledochowska_virgin": {
       "fullname": "Svätej Márie Uršule od Ježiša Ledóchowskej, panny"
     },
-    {
-      "id": "marydolores_rodriguez_sopena_virgin",
+    "marydolores_rodriguez_sopena_virgin": {
       "fullname": "Blahoslavenej Márie Dolores Rodríguez Sopeña, panny"
     },
-    {
-      "id": "maternus_of_cologne_bishop",
+    "maternus_of_cologne_bishop": {
       "fullname": "Svätého Materna, biskupa"
     },
-    {
-      "id": "maternus_of_cologne_valerius_of_trier_and_eucharius_of_trier_bishops",
+    "maternus_of_cologne_valerius_of_trier_and_eucharius_of_trier_bishops": {
       "fullname": "Svätých Materna, Valéra a Eucharia, biskupov"
     },
-    {
-      "id": "matilda_of_ringelheim",
+    "matilda_of_ringelheim": {
       "fullname": "Svätej Matildy"
     },
-    {
-      "id": "matthew_apostle",
+    "matthew_apostle": {
       "fullname": "Svätého Matúša, apoštola a evanjelistu"
     },
-    {
-      "id": "matthias_apostle",
+    "matthias_apostle": {
       "fullname": "Svätého Mateja, apoštola"
     },
-    {
-      "id": "maurice_of_agaunum_and_companions_martyrs",
+    "maurice_of_agaunum_and_companions_martyrs": {
       "fullname": "Svätého Maurícia a spoločníkov, mučeníkov"
     },
-    {
-      "id": "maurice_tornay_priest",
+    "maurice_tornay_priest": {
       "fullname": "Blahoslaveného Mórica Tornaya, kňaza a mučeníka"
     },
-    {
-      "id": "maurus_of_pecs_bishop",
+    "maurus_of_pecs_bishop": {
       "fullname": "Svätého Maura, biskupa"
     },
-    {
-      "id": "maximilian_mary_raymund_kolbe_priest",
+    "maximilian_mary_raymund_kolbe_priest": {
       "fullname": "Svätého Maximiliána Máriu Kolbeho, kňaza a mučeníka"
     },
-    {
-      "id": "mederic_of_autun_and_droctoveus_of_autun_abbots",
+    "mederic_of_autun_and_droctoveus_of_autun_abbots": {
       "fullname": "Svätých Mederika a Droktovea, opátov"
     },
-    {
-      "id": "meinrad_of_einsiedeln_martyr",
+    "meinrad_of_einsiedeln_martyr": {
       "fullname": "Svätého Meinrada z Einsiedelnu, mučeníka"
     },
-    {
-      "id": "mel_of_ardagh_bishop",
+    "mel_of_ardagh_bishop": {
       "fullname": "Svätého Mela, biskupa"
     },
-    {
-      "id": "melchior_grodziecki_priest",
+    "melchior_grodziecki_priest": {
       "fullname": "Svätého Melichara Grodzieckého, kňaza a mučeníka"
     },
-    {
-      "id": "michael_gabriel_and_raphael_archangels",
+    "michael_gabriel_and_raphael_archangels": {
       "fullname": "Svätých Michala, Gabriela a Rafaela, archanjelov"
     },
-    {
-      "id": "michael_kozal_bishop",
+    "michael_kozal_bishop": {
       "fullname": "Blahoslaveného Michaela Kozala, biskupa a mučeníka"
     },
-    {
-      "id": "miguel_agustin_pro_priest",
+    "miguel_agustin_pro_priest": {
       "fullname": "Blahoslaveného Michaela Augustína Pro, kňaza a mučeníka"
     },
-    {
-      "id": "miguel_febres_cordero_religious",
+    "miguel_febres_cordero_religious": {
       "fullname": "Svätého Michala Febresa Cordera, rehoľníka"
     },
-    {
-      "id": "modestus_andlauer_and_andrew_bauer_martyrs",
+    "modestus_andlauer_and_andrew_bauer_martyrs": {
       "fullname": "Svätých Modesta Andlauera a Ondreja Bauera, mučeníkov"
     },
-    {
-      "id": "modestus_andlauer_martyr",
+    "modestus_andlauer_martyr": {
       "fullname": "Svätého Modesta Andlauera, mučeníka"
     },
-    {
-      "id": "monica_of_hippo",
+    "monica_of_hippo": {
       "fullname": "Svätej Moniky"
     },
-    {
-      "id": "moninne_of_killeavy_virgin",
+    "moninne_of_killeavy_virgin": {
       "fullname": "Svätej Moninny, panny"
     },
-    {
-      "id": "morand_of_cluny_monk",
+    "morand_of_cluny_monk": {
       "fullname": "Svätého Moranda, mnícha"
     },
-    {
-      "id": "most_holy_body_and_blood_of_christ",
+    "most_holy_body_and_blood_of_christ": {
       "fullname": "Najsvätejšieho Kristovho Tela a Krvi"
     },
-    {
-      "id": "most_holy_name_of_jesus",
+    "most_holy_name_of_jesus": {
       "fullname": "Najsvätejšieho mena Ježiš"
     },
-    {
-      "id": "most_holy_name_of_mary",
+    "most_holy_name_of_mary": {
       "fullname": "Najsvätejšieho mena Mária"
     },
-    {
-      "id": "most_holy_trinity",
+    "most_holy_trinity": {
       "fullname": "Najsvätejšej Trojice"
     },
-    {
-      "id": "most_sacred_heart_of_jesus",
+    "most_sacred_heart_of_jesus": {
       "fullname": "Najsvätejšieho Srdca Ježišovho"
     },
-    {
-      "id": "munchin_of_limerick_bishop",
+    "munchin_of_limerick_bishop": {
       "fullname": "Svätého Munchina, biskupa"
     },
-    {
-      "id": "muredach_of_killala_bishop",
+    "muredach_of_killala_bishop": {
       "fullname": "Svätého Muredacha, biskupa"
     },
-    {
-      "id": "mutien_marie_wiaux_religious",
+    "mutien_marie_wiaux_religious": {
       "fullname": "Svätého Muciána Máriu Wiaux, rehoľníka"
     }
-  ]
+  }
 }

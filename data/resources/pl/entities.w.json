@@ -1,18 +1,15 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "pl",
-  "entities": [
-    {
-      "id": "wenceslaus_i_of_bohemia_martyr",
+  "entities": {
+    "wenceslaus_i_of_bohemia_martyr": {
       "fullname": "Św. Wacława, męczennika"
     },
-    {
-      "id": "wenceslaus_i_of_bohemia_martyr_patron_of_the_czech_nation",
+    "wenceslaus_i_of_bohemia_martyr_patron_of_the_czech_nation": {
       "fullname": "Św. Wacława, męczennika, patrona narodu czeskiego"
     },
-    {
-      "id": "wendelin_of_trier_hermit",
+    "wendelin_of_trier_hermit": {
       "fullname": "Św. Wendelina, pustelnika"
     }
-  ]
+  }
 }

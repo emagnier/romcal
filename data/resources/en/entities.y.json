@@ -1,9 +1,8 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "en",
-  "entities": [
-    {
-      "id": "yolanda_of_poland_religious",
+  "entities": {
+    "yolanda_of_poland_religious": {
       "fullname": "Blessed Yolanda, Religious",
       "canonization_level": "BLESSED",
       "name": "Yolanda",
@@ -11,5 +10,5 @@
         "RELIGIOUS"
       ]
     }
-  ]
+  }
 }

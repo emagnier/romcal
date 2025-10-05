@@ -1,10 +1,9 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "la",
-  "entities": [
-    {
-      "id": "yolanda_of_poland_religious",
+  "entities": {
+    "yolanda_of_poland_religious": {
       "fullname": "B. Iolentæ, religiosæ"
     }
-  ]
+  }
 }

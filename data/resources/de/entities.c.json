@@ -1,254 +1,192 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "de",
-  "entities": [
-    {
-      "id": "caesarius_of_arles_bishop",
+  "entities": {
+    "caesarius_of_arles_bishop": {
       "fullname": "Hl. Caesarius von Arles, Bischof"
     },
-    {
-      "id": "cajetan_of_thiene_priest",
+    "cajetan_of_thiene_priest": {
       "fullname": "Hl. Kajetan, Priester"
     },
-    {
-      "id": "callistus_i_pope",
+    "callistus_i_pope": {
       "fullname": "Hl. Calixt I., Papst und Märtyrer"
     },
-    {
-      "id": "camillus_de_lellis_priest",
+    "camillus_de_lellis_priest": {
       "fullname": "Hl. Kamillus von Lellis, Priester"
     },
-    {
-      "id": "canada_day",
+    "canada_day": {
       "fullname": "Kanada-Tag"
     },
-    {
-      "id": "canice_of_kilkenny_abbot",
+    "canice_of_kilkenny_abbot": {
       "fullname": "Hl. Canice, Abt"
     },
-    {
-      "id": "canute_iv_of_denmark_eric_ix_of_sweden_and_olaf_ii_of_norway_martyrs",
+    "canute_iv_of_denmark_eric_ix_of_sweden_and_olaf_ii_of_norway_martyrs": {
       "fullname": "Hl. Knut, Erik und Olaf, Märtyrer"
     },
-    {
-      "id": "canute_iv_of_denmark_martyr",
+    "canute_iv_of_denmark_martyr": {
       "fullname": "Hl. Knut, Märtyrer"
     },
-    {
-      "id": "carlos_manuel_rodriguez_santiago",
+    "carlos_manuel_rodriguez_santiago": {
       "fullname": "Sel. Carlos Manuel Rodríguez Santiago"
     },
-    {
-      "id": "carmelites_of_compiegne_virgins_and_martyrs",
+    "carmelites_of_compiegne_virgins_and_martyrs": {
       "fullname": "Sel.n Karmelitinnen von Compiègne, Jungfrauen und Märtyrerinnen"
     },
-    {
-      "id": "caroline_kozka_virgin",
+    "caroline_kozka_virgin": {
       "fullname": "Sel. Caroline Kózka, Jungfrau und Märtyrerin"
     },
-    {
-      "id": "carthage_of_lismore_bishop",
+    "carthage_of_lismore_bishop": {
       "fullname": "Hl. Carthage, Bischof"
     },
-    {
-      "id": "casimir_of_poland",
+    "casimir_of_poland": {
       "fullname": "Hl. Kasimir"
     },
-    {
-      "id": "catherine_of_alexandria_virgin",
+    "catherine_of_alexandria_virgin": {
       "fullname": "Hl. Katharina von Alexandrien, Jungfrau und Märtyrerin"
     },
-    {
-      "id": "catherine_of_siena_virgin",
+    "catherine_of_siena_virgin": {
       "fullname": "Hl. Katharina von Siena, Jungfrau und Kirchenlehrerin"
     },
-    {
-      "id": "catherine_of_siena_virgin_copatroness_of_europe",
+    "catherine_of_siena_virgin_copatroness_of_europe": {
       "fullname": "Hl. Katharina von Siena, Jungfrau und Kirchenlehrerin, Mitpatronin Europas"
     },
-    {
-      "id": "catherine_of_siena_virgin_copatroness_of_italy_and_europe",
+    "catherine_of_siena_virgin_copatroness_of_italy_and_europe": {
       "fullname": "Hl. Katharina von Siena, Jungfrau und Kirchenlehrerin, Mitpatronin Italiens und Europas"
     },
-    {
-      "id": "catherine_zoe_laboure_virgin",
+    "catherine_zoe_laboure_virgin": {
       "fullname": "Hl. Katharina Labouré, Jungfrau"
     },
-    {
-      "id": "ceallach_of_armagh_bishop",
+    "ceallach_of_armagh_bishop": {
       "fullname": "Hl. Ceallach, Bischof"
     },
-    {
-      "id": "cecilia_of_rome_virgin",
+    "cecilia_of_rome_virgin": {
       "fullname": "Hl. Cäcilia, Jungfrau und Märtyrerin"
     },
-    {
-      "id": "ceferino_gimenez_malla_martyr",
+    "ceferino_gimenez_malla_martyr": {
       "fullname": "Sel. Ceferino Giménez Malla, Märtyrer"
     },
-    {
-      "id": "ceraunus_of_paris_bishop",
+    "ceraunus_of_paris_bishop": {
       "fullname": "Hl. Ceraunus von Paris, Bischof"
     },
-    {
-      "id": "ceslaus_of_poland_and_hyacinth_of_poland_priests",
+    "ceslaus_of_poland_and_hyacinth_of_poland_priests": {
       "fullname": "Sel.n Ceslaus und der heilige Hyazinth, Priester"
     },
-    {
-      "id": "ceslaus_of_poland_priest",
+    "ceslaus_of_poland_priest": {
       "fullname": "Sel. Ceslaus, Priester"
     },
-    {
-      "id": "chad_of_mercia_and_cedd_of_lastingham_bishops",
+    "chad_of_mercia_and_cedd_of_lastingham_bishops": {
       "fullname": "Hl. Chad und Cedd, Bischöfe"
     },
-    {
-      "id": "chair_of_saint_peter_the_apostle",
+    "chair_of_saint_peter_the_apostle": {
       "fullname": "Kathedra Petri"
     },
-    {
-      "id": "charles_borromeo_bishop",
+    "charles_borromeo_bishop": {
       "fullname": "Hl. Karl Borromäus, Bischof"
     },
-    {
-      "id": "charles_i_of_austria",
+    "charles_i_of_austria": {
       "fullname": "Sel. Karl von Österreich"
     },
-    {
-      "id": "charles_lwanga_and_companions_martyrs",
+    "charles_lwanga_and_companions_martyrs": {
       "fullname": "Hl. Karl Lwanga und Gefährten, Märtyrer"
     },
-    {
-      "id": "charles_of_jesus_de_foucauld",
+    "charles_of_jesus_de_foucauld": {
       "fullname": "Hl. Charles de Foucauld, Priester"
     },
-    {
-      "id": "charles_spinola_and_jerome_de_angelis_priests",
+    "charles_spinola_and_jerome_de_angelis_priests": {
       "fullname": "Sel.n Karl Spinola und Hieronymus de Angelis, Priester und Märtyrer"
     },
-    {
-      "id": "charles_spinola_priest",
+    "charles_spinola_priest": {
       "fullname": "Sel. Karl Spinola, Priester und Märtyrer"
     },
-    {
-      "id": "christopher_magallanes_priest_and_companions_martyrs",
+    "christopher_magallanes_priest_and_companions_martyrs": {
       "fullname": "Hl. Christophorus Magallanes, Priester, und Gefährten, Märtyrer"
     },
-    {
-      "id": "christopher_of_palestine_martyr",
+    "christopher_of_palestine_martyr": {
       "fullname": "Hl. Christophorus, Märtyrer"
     },
-    {
-      "id": "ciaran_of_clonmacnoise_abbot",
+    "ciaran_of_clonmacnoise_abbot": {
       "fullname": "Hl. Ciarán, Abt"
     },
-    {
-      "id": "clare_of_assisi_virgin",
+    "clare_of_assisi_virgin": {
       "fullname": "Hl. Klara, Jungfrau"
     },
-    {
-      "id": "clement_i_pope",
+    "clement_i_pope": {
       "fullname": "Hl. Clemens I., Papst und Märtyrer"
     },
-    {
-      "id": "clement_mary_hofbauer_priest",
+    "clement_mary_hofbauer_priest": {
       "fullname": "Hl. Klemens Maria Hofbauer, Priester"
     },
-    {
-      "id": "clement_of_ohrid_and_gorazd_of_moravia_bishops_and_companions",
+    "clement_of_ohrid_and_gorazd_of_moravia_bishops_and_companions": {
       "fullname": "Hl. Clemens von Ohrid und Gorazd, Bischöfe, und Gefährten"
     },
-    {
-      "id": "clotilde_of_burgundy",
+    "clotilde_of_burgundy": {
       "fullname": "Hl. Chrodechild"
     },
-    {
-      "id": "colman_of_cloyne_bishop",
+    "colman_of_cloyne_bishop": {
       "fullname": "Hl. Colman von Cloyne, Bischof"
     },
-    {
-      "id": "colman_of_dromore_bishop",
+    "colman_of_dromore_bishop": {
       "fullname": "Hl. Colman von Dromore, Bischof"
     },
-    {
-      "id": "colman_of_kilmacduagh_bishop",
+    "colman_of_kilmacduagh_bishop": {
       "fullname": "Hl. Colman von Kilmacduagh, Bischof"
     },
-    {
-      "id": "columba_marmion_priest",
+    "columba_marmion_priest": {
       "fullname": "Sel. Columba Marmion, Priester"
     },
-    {
-      "id": "columba_of_iona_abbot",
+    "columba_of_iona_abbot": {
       "fullname": "Hl. Columban, Abt"
     },
-    {
-      "id": "columba_of_iona_abbot_copatron_of_ireland",
+    "columba_of_iona_abbot_copatron_of_ireland": {
       "fullname": "Hl. Columban, Abt und Missionar, Mitpatron Irlands"
     },
-    {
-      "id": "columban_of_luxeuil_abbot",
+    "columban_of_luxeuil_abbot": {
       "fullname": "Hl. Columban von Luxeuil, Abt"
     },
-    {
-      "id": "comgall_of_bangor_abbot",
+    "comgall_of_bangor_abbot": {
       "fullname": "Hl. Comgall, Abt"
     },
-    {
-      "id": "commemoration_of_all_the_faithful_departed",
+    "commemoration_of_all_the_faithful_departed": {
       "fullname": "Allerseelen"
     },
-    {
-      "id": "conleth_of_kildare_bishop",
+    "conleth_of_kildare_bishop": {
       "fullname": "Hl. Conleth, Bischof"
     },
-    {
-      "id": "conrad_of_constance_and_gebhard_of_constance_bishops",
+    "conrad_of_constance_and_gebhard_of_constance_bishops": {
       "fullname": "Hl. Konrad und Gebhard von Konstanz, Bischöfe"
     },
-    {
-      "id": "conrad_of_parzham_religious",
+    "conrad_of_parzham_religious": {
       "fullname": "Hl. Konrad von Parzham, Ordensmann"
     },
-    {
-      "id": "conversion_of_saint_paul_the_apostle",
+    "conversion_of_saint_paul_the_apostle": {
       "fullname": "Die Bekehrung des heiligen Paulus, des Apostels"
     },
-    {
-      "id": "corbinian_of_freising_bishop",
+    "corbinian_of_freising_bishop": {
       "fullname": "Hl. Korbinian, Bischof"
     },
-    {
-      "id": "cornelius_i_pope_and_cyprian_of_carthage_bishop_martyrs",
+    "cornelius_i_pope_and_cyprian_of_carthage_bishop_martyrs": {
       "fullname": "Hl. Cornelius, Papst, und Cyprian, Bischof, Märtyrer"
     },
-    {
-      "id": "cosmas_of_cilicia_and_damian_of_cilicia_martyrs",
+    "cosmas_of_cilicia_and_damian_of_cilicia_martyrs": {
       "fullname": "Hl. Kosmas und Damian, Märtyrer"
     },
-    {
-      "id": "cuthbert_of_lindisfarne_bishop",
+    "cuthbert_of_lindisfarne_bishop": {
       "fullname": "Hl. Cuthbert, Bischof"
     },
-    {
-      "id": "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop",
+    "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop": {
       "fullname": "Hl. Cyrill, Mönch, und Methodius, Bischof"
     },
-    {
-      "id": "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop_copatrons_of_europe",
+    "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop_copatrons_of_europe": {
       "fullname": "Hl. Cyrill, Mönch, und Methodius, Bischof, Mitpatrone Europas"
     },
-    {
-      "id": "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop_slavic_missionaries_copatrons_of_europe",
+    "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop_slavic_missionaries_copatrons_of_europe": {
       "fullname": "Hl. Cyrill, Mönch, und Methodius, Bischof, Slawenapostel, Mitpatrone Europas"
     },
-    {
-      "id": "cyril_of_alexandria_bishop",
+    "cyril_of_alexandria_bishop": {
       "fullname": "Hl. Cyrill von Alexandrien, Bischof und Kirchenlehrer"
     },
-    {
-      "id": "cyril_of_jerusalem_bishop",
+    "cyril_of_jerusalem_bishop": {
       "fullname": "Hl. Cyrill von Jerusalem, Bischof und Kirchenlehrer"
     }
-  ]
+  }
 }

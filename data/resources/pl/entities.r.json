@@ -1,42 +1,33 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "pl",
-  "entities": [
-    {
-      "id": "raphael_chylinski_priest",
+  "entities": {
+    "raphael_chylinski_priest": {
       "fullname": "Bł. Rafała Chylińskiego, prezbitera"
     },
-    {
-      "id": "raphael_of_saint_joseph_kalinowski_priest",
+    "raphael_of_saint_joseph_kalinowski_priest": {
       "fullname": "Św. Rafała Kalinowskiego, prezbitera"
     },
-    {
-      "id": "raymond_of_penyafort_priest",
+    "raymond_of_penyafort_priest": {
       "fullname": "Św. Rajmunda z Penyafort, prezbitera"
     },
-    {
-      "id": "richardis_of_swabia_empress",
+    "richardis_of_swabia_empress": {
       "fullname": "Św. Ryszardy, cesarzowej"
     },
-    {
-      "id": "rita_of_cascia_religious",
+    "rita_of_cascia_religious": {
       "fullname": "Św. Rity z Cascii, zakonnicy"
     },
-    {
-      "id": "robert_bellarmine_bishop",
+    "robert_bellarmine_bishop": {
       "fullname": "Św. Roberta Bellarmina, biskupa i doktora Kościoła"
     },
-    {
-      "id": "romuald_of_ravenna_abbot",
+    "romuald_of_ravenna_abbot": {
       "fullname": "Św. Romualda, opata"
     },
-    {
-      "id": "rosalie_jeanne_marie_rendu_virgin",
+    "rosalie_jeanne_marie_rendu_virgin": {
       "fullname": "Bł. Rozalii Rendu, dziewicy"
     },
-    {
-      "id": "rose_of_lima_virgin",
+    "rose_of_lima_virgin": {
       "fullname": "Św. Róży z Limy, dziewicy"
     }
-  ]
+  }
 }

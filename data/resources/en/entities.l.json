@@ -1,13 +1,11 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "en",
-  "entities": [
-    {
-      "id": "labor_day",
+  "entities": {
+    "labor_day": {
       "fullname": "Labor Day"
     },
-    {
-      "id": "ladislas_of_gielniow_priest",
+    "ladislas_of_gielniow_priest": {
       "fullname": "Blessed Ladislas of Gielniow, Priest",
       "canonization_level": "BLESSED",
       "name": "Ladislas of Gielniow",
@@ -15,20 +13,17 @@
         "PRIEST"
       ]
     },
-    {
-      "id": "ladislaus_batthyany_strattmann",
+    "ladislaus_batthyany_strattmann": {
       "fullname": "Blessed Ladislaus Batthyány-Strattmann",
       "canonization_level": "BLESSED",
       "name": "Ladislaus Batthyány-Strattmann"
     },
-    {
-      "id": "ladislaus_i_of_hungary",
+    "ladislaus_i_of_hungary": {
       "fullname": "Saint Ladislaus",
       "canonization_level": "SAINT",
       "name": "Ladislaus"
     },
-    {
-      "id": "lambert_of_maastricht_bishop",
+    "lambert_of_maastricht_bishop": {
       "fullname": "Saint Lambert of Maastricht, Bishop and Martyr",
       "canonization_level": "SAINT",
       "name": "Lambert of Maastricht",
@@ -38,8 +33,7 @@
       ],
       "date_of_death": 705
     },
-    {
-      "id": "landry_of_paris_bishop",
+    "landry_of_paris_bishop": {
       "fullname": "Saint Landry of Paris, Bishop",
       "canonization_level": "SAINT",
       "name": "Landry of Paris",
@@ -50,8 +44,7 @@
         "century": 7
       }
     },
-    {
-      "id": "laserian_of_leighlin_bishop",
+    "laserian_of_leighlin_bishop": {
       "fullname": "Saint Laserian, Bishop",
       "canonization_level": "SAINT",
       "name": "Laserian",
@@ -59,8 +52,7 @@
         "BISHOP"
       ]
     },
-    {
-      "id": "laud_of_coutances_bishop",
+    "laud_of_coutances_bishop": {
       "fullname": "Saint Laud, Bishop",
       "canonization_level": "SAINT",
       "name": "Laud",
@@ -74,12 +66,10 @@
         "https://en.wikipedia.org/wiki/Laud_of_Coutances"
       ]
     },
-    {
-      "id": "laud_of_coutances_bishop_patron_of_the_diocese_of_coutances",
+    "laud_of_coutances_bishop_patron_of_the_diocese_of_coutances": {
       "fullname": "Saint Laud, Bishop, Patron of the Diocese of Coutances"
     },
-    {
-      "id": "laura_vicuna_virgin",
+    "laura_vicuna_virgin": {
       "fullname": "Blessed Laura Vicuña, Virgin",
       "canonization_level": "BLESSED",
       "name": "Laura Vicuña",
@@ -87,8 +77,7 @@
         "VIRGIN"
       ]
     },
-    {
-      "id": "laurence_otoole_bishop",
+    "laurence_otoole_bishop": {
       "fullname": "Saint Laurence O’Toole, Bishop",
       "canonization_level": "SAINT",
       "name": "Laurence O’Toole",
@@ -96,20 +85,17 @@
         "BISHOP"
       ]
     },
-    {
-      "id": "laurence_wang_bing_and_companions_martyrs",
+    "laurence_wang_bing_and_companions_martyrs": {
       "fullname": "Saint Laurence Wang Bing and Companions, Martyrs"
     },
-    {
-      "id": "laurence_wang_bing_martyr",
+    "laurence_wang_bing_martyr": {
       "canonization_level": "SAINT",
       "name": "Laurence Wang Bing",
       "titles": [
         "MARTYR"
       ]
     },
-    {
-      "id": "lawrence_bai_xiaoman_martyr",
+    "lawrence_bai_xiaoman_martyr": {
       "fullname": "Saint Lawrence Bai Xiaoman, Martyr",
       "canonization_level": "SAINT",
       "name": "Lawrence Bai Xiaoman",
@@ -117,8 +103,7 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "lawrence_of_brindisi_priest",
+    "lawrence_of_brindisi_priest": {
       "fullname": "Saint Lawrence of Brindisi, Priest and Doctor of the Church",
       "canonization_level": "SAINT",
       "name": "Lawrence of Brindisi",
@@ -128,8 +113,7 @@
       ],
       "date_of_death": 1619
     },
-    {
-      "id": "lawrence_of_rome_deacon",
+    "lawrence_of_rome_deacon": {
       "fullname": "Saint Lawrence, Deacon and Martyr",
       "canonization_level": "SAINT",
       "name": "Lawrence",
@@ -139,12 +123,10 @@
       ],
       "date_of_death": 258
     },
-    {
-      "id": "lawrence_ruiz_and_companions_martyrs",
+    "lawrence_ruiz_and_companions_martyrs": {
       "fullname": "Saint Lawrence Ruiz and Companions, Martyrs"
     },
-    {
-      "id": "lawrence_ruiz_martyr",
+    "lawrence_ruiz_martyr": {
       "canonization_level": "SAINT",
       "name": "Lawrence Ruiz",
       "titles": [
@@ -153,16 +135,14 @@
       "date_of_death": 1635,
       "date_of_death_is_approximative": true
     },
-    {
-      "id": "lazarus_of_bethany",
+    "lazarus_of_bethany": {
       "canonization_level": "SAINT",
       "name": "Lazarus",
       "date_of_death": {
         "century": 1
       }
     },
-    {
-      "id": "leander_of_seville_bishop",
+    "leander_of_seville_bishop": {
       "fullname": "Saint Leander of Seville, Bishop",
       "canonization_level": "SAINT",
       "name": "Leander of Seville",
@@ -170,8 +150,7 @@
         "BISHOP"
       ]
     },
-    {
-      "id": "lelia_of_killeely_virgin",
+    "lelia_of_killeely_virgin": {
       "fullname": "Saint Lelia, Virgin",
       "canonization_level": "SAINT",
       "name": "Lelia",
@@ -179,8 +158,7 @@
         "VIRGIN"
       ]
     },
-    {
-      "id": "leo_i_the_great_pope",
+    "leo_i_the_great_pope": {
       "fullname": "Saint Leo the Great, Pope and Doctor of the Church",
       "canonization_level": "SAINT",
       "name": "Leo the Great",
@@ -189,8 +167,7 @@
         "DOCTOR_OF_THE_CHURCH"
       ]
     },
-    {
-      "id": "leo_ignatius_mangin_priest",
+    "leo_ignatius_mangin_priest": {
       "canonization_level": "SAINT",
       "name": "Leo Ignatius Mangin",
       "titles": [
@@ -198,12 +175,10 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "leo_ignatius_mangin_priest_and_companions_martyrs",
+    "leo_ignatius_mangin_priest_and_companions_martyrs": {
       "fullname": "Saint Leo Ignatius Mangin, Priest, and Companions, Martyrs"
     },
-    {
-      "id": "leo_ix_pope",
+    "leo_ix_pope": {
       "fullname": "Saint Leo IX, Pope",
       "canonization_level": "SAINT",
       "name": "Leo IX",
@@ -212,8 +187,7 @@
       ],
       "date_of_death": "1054-4-19"
     },
-    {
-      "id": "leoba_of_tauberbischofsheim_abbess",
+    "leoba_of_tauberbischofsheim_abbess": {
       "fullname": "Saint Leoba, Abbess",
       "canonization_level": "SAINT",
       "name": "Leoba",
@@ -221,8 +195,7 @@
         "ABBESS"
       ]
     },
-    {
-      "id": "leodegar_of_autun_bishop",
+    "leodegar_of_autun_bishop": {
       "fullname": "Saint Leodegar of Autun, Bishop and Martyr",
       "canonization_level": "SAINT",
       "name": "Leodegar",
@@ -237,8 +210,7 @@
         ]
       }
     },
-    {
-      "id": "leon_de_carentan_bishop",
+    "leon_de_carentan_bishop": {
       "fullname": "Saint Leo of Carentan, Bishop and Martyr",
       "canonization_level": "SAINT",
       "name": "Leo of Carentan",
@@ -256,8 +228,7 @@
         "https://fr.wikipedia.org/wiki/L%C3%A9on_de_Carentan"
       ]
     },
-    {
-      "id": "leonard_of_noblac_hermit",
+    "leonard_of_noblac_hermit": {
       "fullname": "Saint Leonard of Noblac, Hermit",
       "canonization_level": "SAINT",
       "name": "Leonard of Noblac",
@@ -265,8 +236,7 @@
         "HERMIT"
       ]
     },
-    {
-      "id": "leonid_feodorov_priest",
+    "leonid_feodorov_priest": {
       "fullname": "Blessed Leonid Feodorov, Priest and Martyr",
       "canonization_level": "BLESSED",
       "name": "Leonid Feodorov",
@@ -275,14 +245,12 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "leopold_iii_of_babenberg",
+    "leopold_iii_of_babenberg": {
       "fullname": "Saint Leopold III of Babenberg",
       "canonization_level": "SAINT",
       "name": "Leopold III of Babenberg"
     },
-    {
-      "id": "leopold_mandic_priest",
+    "leopold_mandic_priest": {
       "fullname": "Saint Leopold Mandić, Priest",
       "canonization_level": "SAINT",
       "name": "Leopold Mandić",
@@ -290,8 +258,7 @@
         "PRIEST"
       ]
     },
-    {
-      "id": "licinius_of_angers_bishop",
+    "licinius_of_angers_bishop": {
       "fullname": "Saint Licinius of Angers, Bishop",
       "canonization_level": "SAINT",
       "name": "Licinius",
@@ -307,8 +274,7 @@
         "https://en.wikipedia.org/wiki/Licinius_of_Angers"
       ]
     },
-    {
-      "id": "louis_bertrand_priest",
+    "louis_bertrand_priest": {
       "fullname": "Saint Louis Bertrand, Priest",
       "canonization_level": "SAINT",
       "name": "Louis Bertrand",
@@ -316,8 +282,7 @@
         "PRIEST"
       ]
     },
-    {
-      "id": "louis_flores_priest",
+    "louis_flores_priest": {
       "canonization_level": "BLESSED",
       "name": "Louis Flores",
       "titles": [
@@ -325,8 +290,7 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "louis_grignion_de_montfort_priest",
+    "louis_grignion_de_montfort_priest": {
       "fullname": "Saint Louis Grignion de Montfort, Priest",
       "canonization_level": "SAINT",
       "name": "Louis Grignion de Montfort",
@@ -340,8 +304,7 @@
         "https://en.wikipedia.org/wiki/Louis_de_Montfort"
       ]
     },
-    {
-      "id": "louis_ix_of_france",
+    "louis_ix_of_france": {
       "fullname": "Saint Louis",
       "canonization_level": "SAINT",
       "name": "Louis",
@@ -350,8 +313,7 @@
       ],
       "date_of_death": 1270
     },
-    {
-      "id": "louis_of_toulouse_bishop",
+    "louis_of_toulouse_bishop": {
       "fullname": "Saint Louis of Toulouse, Bishop",
       "canonization_level": "SAINT",
       "name": "Louis of Toulouse",
@@ -366,8 +328,7 @@
         "https://en.wikipedia.org/wiki/Louis_of_Toulouse"
       ]
     },
-    {
-      "id": "louis_zephirin_moreau_bishop",
+    "louis_zephirin_moreau_bishop": {
       "fullname": "Blessed Louis-Zéphirin Moreau, Bishop",
       "canonization_level": "BLESSED",
       "name": "Louis-Zéphirin Moreau",
@@ -376,8 +337,7 @@
       ],
       "date_of_death": 1901
     },
-    {
-      "id": "louise_de_marillac_religious",
+    "louise_de_marillac_religious": {
       "fullname": "Saint Louise de Marillac, Religious",
       "canonization_level": "SAINT",
       "name": "Louise de Marillac",
@@ -386,8 +346,7 @@
       ],
       "date_of_death": 1660
     },
-    {
-      "id": "lucius_of_chur_bishop",
+    "lucius_of_chur_bishop": {
       "fullname": "Saint Lucius of Chur, Bishop and Martyr",
       "canonization_level": "SAINT",
       "name": "Lucius of Chur",
@@ -396,8 +355,7 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "lucy_of_syracuse_virgin",
+    "lucy_of_syracuse_virgin": {
       "fullname": "Saint Lucy, Virgin and Martyr",
       "canonization_level": "SAINT",
       "name": "Lucy",
@@ -408,8 +366,7 @@
       "date_of_death": 305,
       "date_of_death_is_approximative": true
     },
-    {
-      "id": "lucy_yi_zhenmei_virgin",
+    "lucy_yi_zhenmei_virgin": {
       "fullname": "Saint Lucy Yi Zhenmei, Virgin and Martyr",
       "canonization_level": "SAINT",
       "name": "Lucy Yi Zhenmei",
@@ -418,8 +375,7 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "ludan_of_scotland_pilgrim",
+    "ludan_of_scotland_pilgrim": {
       "fullname": "Saint Ludan, Pilgrim",
       "canonization_level": "SAINT",
       "name": "Ludan",
@@ -428,8 +384,7 @@
       ],
       "date_of_death": "1202-02-12"
     },
-    {
-      "id": "ludger_of_munster_bishop",
+    "ludger_of_munster_bishop": {
       "fullname": "Saint Ludger of Münster, Bishop",
       "canonization_level": "SAINT",
       "name": "Ludger of Münster",
@@ -437,8 +392,7 @@
         "BISHOP"
       ]
     },
-    {
-      "id": "ludmila_of_bohemia_martyr",
+    "ludmila_of_bohemia_martyr": {
       "fullname": "Saint Ludmila, Martyr",
       "canonization_level": "SAINT",
       "name": "Ludmila",
@@ -446,8 +400,7 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "luigi_orione_priest",
+    "luigi_orione_priest": {
       "fullname": "Saint Luigi Orione, Priest",
       "canonization_level": "SAINT",
       "name": "Luigi Orione",
@@ -455,8 +408,7 @@
         "PRIEST"
       ]
     },
-    {
-      "id": "luke_evangelist",
+    "luke_evangelist": {
       "fullname": "Saint Luke, Evangelist",
       "canonization_level": "SAINT",
       "name": "Luke",
@@ -464,11 +416,10 @@
         "EVANGELIST"
       ]
     },
-    {
-      "id": "lydia_of_philippi",
+    "lydia_of_philippi": {
       "fullname": "Saint Lydia of Philippi",
       "canonization_level": "SAINT",
       "name": "Lydia of Philippi"
     }
-  ]
+  }
 }

@@ -1,10 +1,9 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "it",
-  "entities": [
-    {
-      "id": "queenship_of_the_blessed_virgin_mary",
+  "entities": {
+    "queenship_of_the_blessed_virgin_mary": {
       "fullname": "Beata Vergine Maria regina"
     }
-  ]
+  }
 }

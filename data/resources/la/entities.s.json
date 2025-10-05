@@ -1,126 +1,96 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "la",
-  "entities": [
-    {
-      "id": "salomea_of_poland_religious",
+  "entities": {
+    "salomea_of_poland_religious": {
       "fullname": "B. Salomeæ, religiosæ"
     },
-    {
-      "id": "sancha_of_portugal_and_mafalda_of_portugal_virgins",
+    "sancha_of_portugal_and_mafalda_of_portugal_virgins": {
       "fullname": "B. Sanchæ et Maphaldæ, virginum"
     },
-    {
-      "id": "sara_salkahazi_virgin",
+    "sara_salkahazi_virgin": {
       "fullname": "B. Saræ Salkaházi, virginis et martyris"
     },
-    {
-      "id": "scholastica_of_nursia_virgin",
+    "scholastica_of_nursia_virgin": {
       "fullname": "S. Scholasticæ, virginis"
     },
-    {
-      "id": "sebastian_de_aparicio_religious",
+    "sebastian_de_aparicio_religious": {
       "fullname": "B. Sebastiani ab Apparitio, religiosi"
     },
-    {
-      "id": "sebastian_of_milan_martyr",
+    "sebastian_of_milan_martyr": {
       "fullname": "S. Sebastiani, martyris"
     },
-    {
-      "id": "senan_of_inis_cathaigh_bishop",
+    "senan_of_inis_cathaigh_bishop": {
       "fullname": "S. Senani, episcopi"
     },
-    {
-      "id": "seven_holy_founders_of_the_servite_order",
+    "seven_holy_founders_of_the_servite_order": {
       "fullname": "Ss. septem Fundatorum Ordinis Servorum B. M. V."
     },
-    {
-      "id": "seven_martyred_nuns_from_the_franciscan_missionaries_of_mary",
+    "seven_martyred_nuns_from_the_franciscan_missionaries_of_mary": {
       "fullname": "Ss. septem sorores ex Instituto Franciscanum Missionariarum Mariæ, martyrum"
     },
-    {
-      "id": "severinus_of_noricum_monk",
+    "severinus_of_noricum_monk": {
       "fullname": "S. Severini de Noricum, monachi"
     },
-    {
-      "id": "sharbel_makhluf_priest",
+    "sharbel_makhluf_priest": {
       "fullname": "S. Sarbelii Makhlūf, presbyteri"
     },
-    {
-      "id": "shipwreck_of_saint_paul_apostle",
+    "shipwreck_of_saint_paul_apostle": {
       "fullname": "Naufragii S. Pauli, apostoli"
     },
-    {
-      "id": "sigismund_of_burgundy_martyr",
+    "sigismund_of_burgundy_martyr": {
       "fullname": "S. Sigismundi, martyris"
     },
-    {
-      "id": "sigmund_felix_felinski_bishop",
+    "sigmund_felix_felinski_bishop": {
       "fullname": "S. Sigismundi Felicis Feliński, episcopi"
     },
-    {
-      "id": "simon_and_jude_apostles",
+    "simon_and_jude_apostles": {
       "fullname": "Ss. Simonis et Iudæ, apostolorum"
     },
-    {
-      "id": "simon_of_lipnica_priest",
+    "simon_of_lipnica_priest": {
       "fullname": "S. Simonis de Lipnica, presbyteri"
     },
-    {
-      "id": "six_welsh_martyrs_and_companions",
+    "six_welsh_martyrs_and_companions": {
       "fullname": "Ss. Sex Matyrum Cambriæ et sociorum"
     },
-    {
-      "id": "sixtus_ii_pope_and_companions_martyrs",
+    "sixtus_ii_pope_and_companions_martyrs": {
       "fullname": "Ss. Xysti II, papæ, et sociorum, martyrum"
     },
-    {
-      "id": "spyridon_of_trimythous_bishop",
+    "spyridon_of_trimythous_bishop": {
       "fullname": "S. Spyridonis, episcopi"
     },
-    {
-      "id": "stanislaus_kazimierczyk_priest",
+    "stanislaus_kazimierczyk_priest": {
       "fullname": "S. Stanislai Kazimierczyk, presbyteri"
     },
-    {
-      "id": "stanislaus_kostka_religious",
+    "stanislaus_kostka_religious": {
       "fullname": "S. Stanislai Kostka, religiosi"
     },
-    {
-      "id": "stanislaus_of_szczepanow_bishop",
+    "stanislaus_of_szczepanow_bishop": {
       "fullname": "S. Stanislai, episcopi et martyris"
     },
-    {
-      "id": "stanislaus_of_szczepanow_bishop_patron_of_poland",
+    "stanislaus_of_szczepanow_bishop_patron_of_poland": {
       "fullname": "S. Stanislai, episcopi, martyris, patroni Poloniæ"
     },
-    {
-      "id": "stephen_i_of_hungary",
+    "stephen_i_of_hungary": {
       "fullname": "S. Stephani Hungariæ"
     },
-    {
-      "id": "stephen_the_first_martyr",
+    "stephen_the_first_martyr": {
       "fullname": "S. Stephani, protomartyris"
     },
-    {
-      "id": "sunday_of_the_word_of_god",
+    "sunday_of_the_word_of_god": {
       "fullname": "Dominica tertia per annum, seu Dominica Verbi Dei"
     },
-    {
-      "id": "sunniva_of_norway_virgin",
+    "sunniva_of_norway_virgin": {
       "fullname": "S. Sunnivæ, virginis et martyris"
     },
-    {
-      "id": "swithun_of_winchester_bishop",
+    "swithun_of_winchester_bishop": {
       "fullname": "S. Swithuni, episcopi"
     },
-    {
-      "id": "sylvester_i_pope",
+    "sylvester_i_pope": {
       "fullname": "S. Silvestri I, papæ"
     },
-    {
-      "id": "szilard_bogdanffy_bishop",
+    "szilard_bogdanffy_bishop": {
       "fullname": "B. Szilárd Bogdánffy, episcopi et martyris"
     }
-  ]
+  }
 }

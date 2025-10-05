@@ -1,9 +1,8 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "en",
-  "entities": [
-    {
-      "id": "zdenka_cecilia_schelingova_virgin",
+  "entities": {
+    "zdenka_cecilia_schelingova_virgin": {
       "fullname": "Blessed Zdenka Cecilia Schelingová, Virgin and Martyr",
       "canonization_level": "BLESSED",
       "name": "Zdenka Cecilia Schelingová",
@@ -12,20 +11,17 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "zdislava_of_lemberk",
+    "zdislava_of_lemberk": {
       "fullname": "Saint Zdislava",
       "canonization_level": "SAINT",
       "name": "Zdislava"
     },
-    {
-      "id": "zepherin_namuncura",
+    "zepherin_namuncura": {
       "fullname": "Blessed Zepherin Namuncurá",
       "canonization_level": "BLESSED",
       "name": "Zepherin Namuncurá"
     },
-    {
-      "id": "zoltan_lajos_meszlenyi_bishop",
+    "zoltan_lajos_meszlenyi_bishop": {
       "fullname": "Blessed Zoltán Lajos Meszlényi, Bishop and Martyr",
       "canonization_level": "BLESSED",
       "name": "Zoltán Lajos Meszlényi",
@@ -34,8 +30,7 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "zygmunt_gorazdowski_priest",
+    "zygmunt_gorazdowski_priest": {
       "fullname": "Saint Zygmunt Gorazdowski, Priest",
       "canonization_level": "SAINT",
       "name": "Zygmunt Gorazdowski",
@@ -43,5 +38,5 @@
         "PRIEST"
       ]
     }
-  ]
+  }
 }

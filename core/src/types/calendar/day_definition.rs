@@ -23,6 +23,9 @@ macro_rules! single_or_multiple {
 single_or_multiple!(CommonsDef, CommonDefinition);
 single_or_multiple!(ColorsDef, Color);
 
+/// Unique identifier for a day definition
+pub type DayId = String;
+
 /// Definition of a liturgical day with all its properties and configurations.
 /// It represents a complete liturgical day definition that can be used
 /// to generate calendar entries with proper precedence, colors, and entity associations.

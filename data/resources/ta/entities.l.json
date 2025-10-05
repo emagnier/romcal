@@ -1,158 +1,120 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "ta",
-  "entities": [
-    {
-      "id": "ladislas_of_gielniow_priest",
+  "entities": {
+    "ladislas_of_gielniow_priest": {
       "fullname": "முத்திப்பேறுபெற்ற லடிஸ்லாஸ் கியெல்னொவ் - அருட்பணியாளர்"
     },
-    {
-      "id": "ladislaus_batthyany_strattmann",
+    "ladislaus_batthyany_strattmann": {
       "fullname": "முத்திப்பேறுபெற்ற லடிஸ்லாஸ் பெதியானி-ஸ்ராட்மன்"
     },
-    {
-      "id": "ladislaus_i_of_hungary",
+    "ladislaus_i_of_hungary": {
       "fullname": "புனித லடிஸ்லாஸ்"
     },
-    {
-      "id": "lambert_of_maastricht_bishop",
+    "lambert_of_maastricht_bishop": {
       "fullname": "புனித லாம்பர்ட் மாஸ்ரிட் - ஆயர், மறைசாட்சி"
     },
-    {
-      "id": "landry_of_paris_bishop",
+    "landry_of_paris_bishop": {
       "fullname": "பாரிசின் புனித லான்றி - ஆயர்"
     },
-    {
-      "id": "laserian_of_leighlin_bishop",
+    "laserian_of_leighlin_bishop": {
       "fullname": "புனித லாசரியன் - ஆயர்"
     },
-    {
-      "id": "laura_vicuna_virgin",
+    "laura_vicuna_virgin": {
       "fullname": "முத்திப்பேறுபெற்ற லோறா விகுனா - கன்னி"
     },
-    {
-      "id": "laurence_otoole_bishop",
+    "laurence_otoole_bishop": {
       "fullname": "புனித லோரன்ஸ் ஓ டூல் - ஆயர்"
     },
-    {
-      "id": "laurence_wang_bing_and_companions_martyrs",
+    "laurence_wang_bing_and_companions_martyrs": {
       "fullname": "புனித லோரன்ஸ் வாங் பிங் - தோழர்கள், மறைசாட்சிகள்"
     },
-    {
-      "id": "lawrence_bai_xiaoman_martyr",
+    "lawrence_bai_xiaoman_martyr": {
       "fullname": "புனித லோரன்ஸ் பாய் சியௌமன் - மறைசாட்சி"
     },
-    {
-      "id": "lawrence_of_brindisi_priest",
+    "lawrence_of_brindisi_priest": {
       "fullname": "புனித லோரன்ஸ் பிறிண்டிசி - அருட்பணியாளர், மறைவல்லுனர்"
     },
-    {
-      "id": "lawrence_of_rome_deacon",
+    "lawrence_of_rome_deacon": {
       "fullname": "புனித லோரன்ஸ் - தியாக்கோன், மறைசாட்சி"
     },
-    {
-      "id": "lawrence_ruiz_and_companions_martyrs",
+    "lawrence_ruiz_and_companions_martyrs": {
       "fullname": "புனித லோரன்ஸ் ருயிஸ் மற்றும் தோழர்கள் - மறைசாட்சிகள்"
     },
-    {
-      "id": "leander_of_seville_bishop",
+    "leander_of_seville_bishop": {
       "fullname": "செவில்லின் புனித லியண்டர் - ஆயர்"
     },
-    {
-      "id": "lelia_of_killeely_virgin",
+    "lelia_of_killeely_virgin": {
       "fullname": "புனித லிலியா - கன்னி"
     },
-    {
-      "id": "leo_i_the_great_pope",
+    "leo_i_the_great_pope": {
       "fullname": "புனித பெரிய லியோ - திருத்தந்தை, மறைவல்லுனர்"
     },
-    {
-      "id": "leo_ignatius_mangin_priest_and_companions_martyrs",
+    "leo_ignatius_mangin_priest_and_companions_martyrs": {
       "fullname": "புனித லியோ இக்னேசியஸ் மங்கின் - அருட்பணியாளர், தோழர்கள், மறைசாட்சிகள்"
     },
-    {
-      "id": "leo_ix_pope",
+    "leo_ix_pope": {
       "fullname": "புனித ஒன்பதாம் லியோ - திருத்தந்தை"
     },
-    {
-      "id": "leoba_of_tauberbischofsheim_abbess",
+    "leoba_of_tauberbischofsheim_abbess": {
       "fullname": "புனித லியோபா - மடாதிபதி"
     },
-    {
-      "id": "leodegar_of_autun_bishop",
+    "leodegar_of_autun_bishop": {
       "fullname": "புனித லியோதகர் - ஆயர், மறைசாட்சி"
     },
-    {
-      "id": "leonard_of_noblac_hermit",
+    "leonard_of_noblac_hermit": {
       "fullname": " நொப்லக்கின் புனித லெணார்ட் - வனத்துறவி"
     },
-    {
-      "id": "leonid_feodorov_priest",
+    "leonid_feodorov_priest": {
       "fullname": "முத்திப்பேறுபெற்ற லியோனிட் வியொடொரொவ் - அருட்பணியாளர், மறைசாட்சி"
     },
-    {
-      "id": "leopold_iii_of_babenberg",
+    "leopold_iii_of_babenberg": {
       "fullname": "பாபென்பெர்க் புனித மூன்றாம் லியோபோல்ட்"
     },
-    {
-      "id": "leopold_mandic_priest",
+    "leopold_mandic_priest": {
       "fullname": "புனித லியோபோல்ட் மண்டிச் - அருட்பணியாளர்"
     },
-    {
-      "id": "louis_bertrand_priest",
+    "louis_bertrand_priest": {
       "fullname": "புனித லுயிஸ் பேர்ட்ரண்ட் - ஆயர்"
     },
-    {
-      "id": "louis_grignion_de_montfort_priest",
+    "louis_grignion_de_montfort_priest": {
       "fullname": "புனித லுயிஸ் கிரிக்னியன் டெ மொண்ட்பேர்ட் - அருட்பணியாளர்"
     },
-    {
-      "id": "louis_ix_of_france",
+    "louis_ix_of_france": {
       "fullname": "புனித லுயிஸ்"
     },
-    {
-      "id": "louis_zephirin_moreau_bishop",
+    "louis_zephirin_moreau_bishop": {
       "fullname": "முத்திப்பேறுபெற்ற லுயிஸ் செபிரின் மொரியோ - ஆயர்"
     },
-    {
-      "id": "louise_de_marillac_religious",
+    "louise_de_marillac_religious": {
       "fullname": "புனித லுயிஸ் மரிலக் - துறவி"
     },
-    {
-      "id": "lucius_of_chur_bishop",
+    "lucius_of_chur_bishop": {
       "fullname": "புனித லுசியஸ் செர் - ஆயர், மறைசாட்சி"
     },
-    {
-      "id": "lucy_of_syracuse_virgin",
+    "lucy_of_syracuse_virgin": {
       "fullname": "புனித லுசி - கன்னி, மறைசாட்சி"
     },
-    {
-      "id": "lucy_yi_zhenmei_virgin",
+    "lucy_yi_zhenmei_virgin": {
       "fullname": "புனித லுசி யி சென்மி - கன்னி, மறைசாட்சி"
     },
-    {
-      "id": "ludan_of_scotland_pilgrim",
+    "ludan_of_scotland_pilgrim": {
       "fullname": "புனித லூடன் - யாத்திரிகர்"
     },
-    {
-      "id": "ludger_of_munster_bishop",
+    "ludger_of_munster_bishop": {
       "fullname": "புனித லுஜர் முன்ஸ்டர் - ஆயர்"
     },
-    {
-      "id": "ludmila_of_bohemia_martyr",
+    "ludmila_of_bohemia_martyr": {
       "fullname": "புனித லுட்மிலா - ஆயர்"
     },
-    {
-      "id": "luigi_orione_priest",
+    "luigi_orione_priest": {
       "fullname": "புனித லூகி ஓரியன் - அருட்பணியாளர்"
     },
-    {
-      "id": "luke_evangelist",
+    "luke_evangelist": {
       "fullname": "புனித லூக்காஸ் - நற்செய்தியாளர்"
     },
-    {
-      "id": "lydia_of_philippi",
+    "lydia_of_philippi": {
       "fullname": "பிலிப்பின் புனித லிடியா"
     }
-  ]
+  }
 }

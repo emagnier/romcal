@@ -1,10 +1,9 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "cs",
-  "entities": [
-    {
-      "id": "205_blessed_martyrs_of_japan",
+  "entities": {
+    "205_blessed_martyrs_of_japan": {
       "fullname": "Bl. 205 japonských mučedníků"
     }
-  ]
+  }
 }

@@ -1,10 +1,9 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "es",
-  "entities": [
-    {
-      "id": "zepherin_namuncura",
+  "entities": {
+    "zepherin_namuncura": {
       "fullname": "Beato Ceferino Namuncurá"
     }
-  ]
+  }
 }

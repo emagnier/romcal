@@ -1,82 +1,63 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "it",
-  "entities": [
-    {
-      "id": "baptism_of_the_lord",
+  "entities": {
+    "baptism_of_the_lord": {
       "fullname": "Battesimo del Signore"
     },
-    {
-      "id": "barnabas_apostle",
+    "barnabas_apostle": {
       "fullname": "San Barnaba, apostolo"
     },
-    {
-      "id": "bartholomew_apostle",
+    "bartholomew_apostle": {
       "fullname": "San Bartolomeo, apostolo"
     },
-    {
-      "id": "basil_the_great_and_gregory_nazianzen_bishops",
+    "basil_the_great_and_gregory_nazianzen_bishops": {
       "fullname": "Santi Basilio Magno e Gregorio Nazianzeno, vescovi e dottori della Chiesa"
     },
-    {
-      "id": "bede_the_venerable_priest",
+    "bede_the_venerable_priest": {
       "fullname": "San Beda Venerabile, sacerdote e dottore della Chiesa"
     },
-    {
-      "id": "benedict_of_aniane_abbot",
+    "benedict_of_aniane_abbot": {
       "fullname": "San Benedetto d’Aniane, abate"
     },
-    {
-      "id": "benedict_of_nursia_abbot",
+    "benedict_of_nursia_abbot": {
       "fullname": "San Benedetto, abate"
     },
-    {
-      "id": "benedict_of_nursia_abbot_patron_of_europe",
+    "benedict_of_nursia_abbot_patron_of_europe": {
       "fullname": "San Benedetto, abate e patrono d’Europa"
     },
-    {
-      "id": "bernard_of_clairvaux_abbot",
+    "bernard_of_clairvaux_abbot": {
       "fullname": "San Bernardo, abate e dottore della Chiesa"
     },
-    {
-      "id": "bernardine_of_siena_priest",
+    "bernardine_of_siena_priest": {
       "fullname": "San Bernardino da Siena, sacerdote"
     },
-    {
-      "id": "blaise_of_sebaste_bishop",
+    "blaise_of_sebaste_bishop": {
       "fullname": "San Biagio, vescovo e martire"
     },
-    {
-      "id": "blessed_martyrs_of_paris",
+    "blessed_martyrs_of_paris": {
       "fullname": "Beati Martiri della Rivoluzione francese"
     },
-    {
-      "id": "bonaventure_of_bagnoregio_bishop",
+    "bonaventure_of_bagnoregio_bishop": {
       "fullname": "San Bonaventura, vescovo e dottore della Chiesa"
     },
-    {
-      "id": "boniface_of_mainz_bishop",
+    "boniface_of_mainz_bishop": {
       "fullname": "San Bonifacio, vescovo e martire"
     },
-    {
-      "id": "bridget_of_sweden_religious",
+    "bridget_of_sweden_religious": {
       "fullname": "Santa Brigida, religiosa"
     },
-    {
-      "id": "bridget_of_sweden_religious_copatroness_of_europe",
+    "bridget_of_sweden_religious_copatroness_of_europe": {
       "fullname": "Santa Brigida, religiosa e patrona secondaria d’Europa"
     },
-    {
-      "id": "brigid_of_kildare_virgin",
+    "brigid_of_kildare_virgin": {
       "fullname": "Santa Brigida di Kildare, badessa"
     },
-    {
-      "id": "brigid_of_kildare_virgin_copatroness_of_ireland",
+    "brigid_of_kildare_virgin_copatroness_of_ireland": {
       "fullname": "Santa Brigida di Kildare, badessa e patrona secondaria d’Irlanda"
     },
-    {
-      "id": "bruno_of_cologne_priest",
+    "bruno_of_cologne_priest": {
       "fullname": "San Bruno, sacerdote"
     }
-  ]
+  }
 }

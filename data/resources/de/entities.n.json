@@ -1,66 +1,51 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "de",
-  "entities": [
-    {
-      "id": "nativity_of_john_the_baptist",
+  "entities": {
+    "nativity_of_john_the_baptist": {
       "fullname": "Die Geburt des heiligen Johannes des Täufers"
     },
-    {
-      "id": "nativity_of_the_blessed_virgin_mary",
+    "nativity_of_the_blessed_virgin_mary": {
       "fullname": "Mariä Geburt"
     },
-    {
-      "id": "nativity_of_the_lord",
+    "nativity_of_the_lord": {
       "fullname": "Weihnachten - Hochfest der Geburt des Herrn"
     },
-    {
-      "id": "nazaria_ignacia_of_saint_teresa_of_jesus_march_mesa_virgin",
+    "nazaria_ignacia_of_saint_teresa_of_jesus_march_mesa_virgin": {
       "fullname": "Hl. Nazaria Ignacia von der heiligen Teresa von Jesus March Mesa, Jungfrau"
     },
-    {
-      "id": "nereus_of_terracina_and_achilleus_of_terracina_martyrs",
+    "nereus_of_terracina_and_achilleus_of_terracina_martyrs": {
       "fullname": "Hl. Nereus und Achilleus, Märtyrer"
     },
-    {
-      "id": "nicetius_of_lyon_bishop",
+    "nicetius_of_lyon_bishop": {
       "fullname": "Hl. Nizier, Bischof"
     },
-    {
-      "id": "nicholas_barre_priest",
+    "nicholas_barre_priest": {
       "fullname": "Sel. Nikolaus Barré, Priester"
     },
-    {
-      "id": "nicholas_of_flue_hermit",
+    "nicholas_of_flue_hermit": {
       "fullname": "Hl. Niklaus von Flüe, Einsiedler"
     },
-    {
-      "id": "nicholas_of_myra_bishop",
+    "nicholas_of_myra_bishop": {
       "fullname": "Hl. Nikolaus, Bischof"
     },
-    {
-      "id": "nicholas_steno_bishop",
+    "nicholas_steno_bishop": {
       "fullname": "Sel. Nikolaus Steno, Bischof"
     },
-    {
-      "id": "nicholas_tavelic_priest",
+    "nicholas_tavelic_priest": {
       "fullname": "Hl. Nikolaus Tavelić, Priester und Märtyrer"
     },
-    {
-      "id": "ninian_of_whithorn_bishop",
+    "ninian_of_whithorn_bishop": {
       "fullname": "Hl. Ninian, Bischof"
     },
-    {
-      "id": "norbert_of_xanten_bishop",
+    "norbert_of_xanten_bishop": {
       "fullname": "Hl. Norbert, Bischof"
     },
-    {
-      "id": "nuno_of_saint_mary_pereira_religious",
+    "nuno_of_saint_mary_pereira_religious": {
       "fullname": "Hl. Nuno von Santa Maria Pereira, Ordensmann"
     },
-    {
-      "id": "nykyta_budka_and_vasyl_velychkovsky_bishops",
+    "nykyta_budka_and_vasyl_velychkovsky_bishops": {
       "fullname": "Sel.n Nykyta Budka und Vasyl Velychkovsky, Bischöfe und Märtyrer"
     }
-  ]
+  }
 }

@@ -1,133 +1,102 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "it",
-  "entities": [
-    {
-      "id": "james_apostle",
+  "entities": {
+    "james_apostle": {
       "fullname": "San Giacomo, apostolo"
     },
-    {
-      "id": "jane_frances_de_chantal_religious",
+    "jane_frances_de_chantal_religious": {
       "fullname": "Santa Giovanna Francesca de Chantal, religiosa"
     },
-    {
-      "id": "januarius_i_of_benevento_bishop",
+    "januarius_i_of_benevento_bishop": {
       "fullname": "San Gennaro, vescovo e martire"
     },
-    {
-      "id": "jerome_emiliani",
+    "jerome_emiliani": {
       "fullname": "San Girolamo Emiliani"
     },
-    {
-      "id": "jerome_of_stridon_priest",
+    "jerome_of_stridon_priest": {
       "fullname": "San Girolamo, sacerdote e dottore della Chiesa"
     },
-    {
-      "id": "joachim_and_anne_parents_of_mary",
+    "joachim_and_anne_parents_of_mary": {
       "fullname": "Santi Gioacchino e Anna, genitori della Beata Vergine Maria"
     },
-    {
-      "id": "john_apostle",
+    "john_apostle": {
       "fullname": "San Giovanni, apostolo ed evangelista"
     },
-    {
-      "id": "john_baptist_de_la_salle_priest",
+    "john_baptist_de_la_salle_priest": {
       "fullname": "San Giovanni Battista de La Salle, sacerdote"
     },
-    {
-      "id": "john_bosco_priest",
+    "john_bosco_priest": {
       "fullname": "San Giovanni Bosco, sacerdote"
     },
-    {
-      "id": "john_chrysostom_bishop",
+    "john_chrysostom_bishop": {
       "fullname": "San Giovanni Crisostomo, vescovo e dottore della Chiesa"
     },
-    {
-      "id": "john_damascene_priest",
+    "john_damascene_priest": {
       "fullname": "San Giovanni Damasceno, sacerdote e dottore della Chiesa"
     },
-    {
-      "id": "john_de_brebeuf_isaac_jogues_priests_and_companions_martyrs",
+    "john_de_brebeuf_isaac_jogues_priests_and_companions_martyrs": {
       "fullname": "Santi Giovanni de Brébeuf e Isacco Jogues, sacerdoti e compagni, martiri"
     },
-    {
-      "id": "john_eudes_priest",
+    "john_eudes_priest": {
       "fullname": "San Giovanni Eudes, sacerdote"
     },
-    {
-      "id": "john_fisher_bishop_and_thomas_more_martyrs",
+    "john_fisher_bishop_and_thomas_more_martyrs": {
       "fullname": "Santi Giovanni Fisher, vescovo e Tommaso More, martiri"
     },
-    {
-      "id": "john_i_pope",
+    "john_i_pope": {
       "fullname": "San Giovanni I, papa e martire"
     },
-    {
-      "id": "john_leonardi_priest",
+    "john_leonardi_priest": {
       "fullname": "San Giovanni Leonardi, sacerdote"
     },
-    {
-      "id": "john_mary_vianney_priest",
+    "john_mary_vianney_priest": {
       "fullname": "San Giovanni Maria Vianney, sacerdote"
     },
-    {
-      "id": "john_of_avila_priest",
+    "john_of_avila_priest": {
       "fullname": "San Giovanni d’Avila, sacerdote e dottore della Chiesa",
       "sources": [
         "https://it.wikipedia.org/wiki/Giovanni_d%27Avila"
       ]
     },
-    {
-      "id": "john_of_capistrano_priest",
+    "john_of_capistrano_priest": {
       "fullname": "San Giovanni da Capestrano, sacerdote"
     },
-    {
-      "id": "john_of_god_duarte_cidade_religious",
+    "john_of_god_duarte_cidade_religious": {
       "fullname": "San Giovanni di Dio, religioso"
     },
-    {
-      "id": "john_of_kanty_priest",
+    "john_of_kanty_priest": {
       "fullname": "San Giovanni da Keti, sacerdote"
     },
-    {
-      "id": "john_of_the_cross_priest",
+    "john_of_the_cross_priest": {
       "fullname": "San Giovanni della Croce, sacerdote e dottore della Chiesa"
     },
-    {
-      "id": "john_paul_ii_pope",
+    "john_paul_ii_pope": {
       "fullname": "San Giovanni Paolo II, papa"
     },
-    {
-      "id": "john_xxiii_pope",
+    "john_xxiii_pope": {
       "fullname": "San Giovanni XXIII, papa"
     },
-    {
-      "id": "josaphat_kuntsevych_bishop",
+    "josaphat_kuntsevych_bishop": {
       "fullname": "San Giosafat, vescovo e martire"
     },
-    {
-      "id": "joseph_of_calasanz_priest",
+    "joseph_of_calasanz_priest": {
       "fullname": "San Giuseppe Calasanzio, sacerdote"
     },
-    {
-      "id": "joseph_spouse_of_mary",
+    "joseph_spouse_of_mary": {
       "fullname": "San Giuseppe, sposo della Beata Vergine Maria"
     },
-    {
-      "id": "joseph_the_worker",
+    "joseph_the_worker": {
       "fullname": "San Giuseppe lavoratore"
     },
-    {
-      "id": "josephine_bakhita_virgin",
+    "josephine_bakhita_virgin": {
       "fullname": "Santa Giuseppina Bakhita, vergine"
     },
-    {
-      "id": "juan_diego_cuauhtlatoatzin",
+    "juan_diego_cuauhtlatoatzin": {
       "fullname": "San Giovanni Diego Cuauhtlatoatzin"
     },
-    {
-      "id": "justin_martyr",
+    "justin_martyr": {
       "fullname": "San Giustino, martire"
     }
-  ]
+  }
 }

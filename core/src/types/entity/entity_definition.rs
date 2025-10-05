@@ -3,14 +3,11 @@ use serde::{Deserialize, Serialize};
 
 use super::{CanonizationLevel, EntityType, SaintCount, SaintDateDef, Sex, Title};
 
-// Type alias
+/// The unique identifier of the entity
 pub type EntityId = String;
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
 pub struct Entity {
-    /// The unique identifier of the entity
-    pub id: EntityId,
-
     /// The type of the entity.
     /// @default EntityType.Person
     pub r#type: Option<EntityType>,
@@ -87,11 +84,16 @@ pub struct Entity {
     pub _todo: Option<Vec<String>>,
 }
 
+impl Default for Entity {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl Entity {
-    /// Create a new Entity with the given ID and default values
-    pub fn new(id: EntityId) -> Self {
+    /// Create a new Entity with default values
+    pub fn new() -> Self {
         Self {
-            id,
             r#type: Some(EntityType::Person),
             fullname: None,
             name: None,

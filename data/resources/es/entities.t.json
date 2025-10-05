@@ -1,78 +1,60 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "es",
-  "entities": [
-    {
-      "id": "teresa_benedicta_of_the_cross_stein_virgin",
+  "entities": {
+    "teresa_benedicta_of_the_cross_stein_virgin": {
       "fullname": "Santa Teresa Benedicta de la Cruz (Edith Stein), virgen y mártir"
     },
-    {
-      "id": "teresa_benedicta_of_the_cross_stein_virgin_copatroness_of_europe",
+    "teresa_benedicta_of_the_cross_stein_virgin_copatroness_of_europe": {
       "fullname": "Santa Teresa Benedicta de la Cruz (Edith Stein), virgen, mártir y Patrona Secundaria de Europa"
     },
-    {
-      "id": "teresa_of_calcutta_religious",
+    "teresa_of_calcutta_religious": {
       "fullname": "Santa Teresa de Calcuta, religiosa"
     },
-    {
-      "id": "teresa_of_jesus_jornet_ibars_virgin",
+    "teresa_of_jesus_jornet_ibars_virgin": {
       "fullname": "Santa Teresa de Jesús Jornet e Ibars, virgen"
     },
-    {
-      "id": "teresa_of_jesus_of_avila_virgin",
+    "teresa_of_jesus_of_avila_virgin": {
       "fullname": "Santa Teresa de Jesús, virgen y doctora de la Iglesia"
     },
-    {
-      "id": "teresa_of_jesus_of_los_andes_virgin",
+    "teresa_of_jesus_of_los_andes_virgin": {
       "fullname": "Santa Teresa de Los Andes, virgen"
     },
-    {
-      "id": "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin",
+    "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin": {
       "fullname": "Santa Teresita del Niño Jesús, virgen y doctora de la Iglesia"
     },
-    {
-      "id": "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin_copatroness_of_france",
+    "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin_copatroness_of_france": {
       "fullname": "Santa Teresita del Niño Jesús, virgen y doctora, Patrona Secundaria de Francia"
     },
-    {
-      "id": "thomas_apostle",
+    "thomas_apostle": {
       "fullname": "Santo Tomás, apóstol"
     },
-    {
-      "id": "thomas_aquinas_priest",
+    "thomas_aquinas_priest": {
       "fullname": "Santo Tomás de Aquino, obispo y doctor de la Iglesia"
     },
-    {
-      "id": "thomas_becket_bishop",
+    "thomas_becket_bishop": {
       "fullname": "San Tomás Becket, obispo y mártir"
     },
-    {
-      "id": "thomas_jean_georges_rehm_priest",
+    "thomas_jean_georges_rehm_priest": {
       "fullname": "Beato Tomás Juan Jorge Rehm, presbítero y mártir"
     },
-    {
-      "id": "thomas_of_villanova_bishop",
+    "thomas_of_villanova_bishop": {
       "fullname": "Santo Tomás de Villanueva, obispo"
     },
-    {
-      "id": "thursday_of_the_lords_supper",
+    "thursday_of_the_lords_supper": {
       "fullname": "$(names:holy_thursday)"
     },
-    {
-      "id": "timothy_of_ephesus_and_titus_of_crete_bishops",
+    "timothy_of_ephesus_and_titus_of_crete_bishops": {
       "fullname": "Santos Timoteo y Tito, obispos"
     },
-    {
-      "id": "transfiguration_of_the_lord",
+    "transfiguration_of_the_lord": {
       "fullname": "Transfiguración"
     },
-    {
-      "id": "translation_of_the_relics_of_odile_of_alsace_abbess",
+    "translation_of_the_relics_of_odile_of_alsace_abbess": {
       "fullname": "Traslado de los restos de santa Odilia"
     },
-    {
-      "id": "turibius_of_mogrovejo_bishop",
+    "turibius_of_mogrovejo_bishop": {
       "fullname": "Santo Toribio de Mogrovejo, obispo"
     }
-  ]
+  }
 }

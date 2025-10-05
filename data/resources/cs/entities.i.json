@@ -1,94 +1,72 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "cs",
-  "entities": [
-    {
-      "id": "ignatius_de_azevedo_priest_and_companions_martyrs",
+  "entities": {
+    "ignatius_de_azevedo_priest_and_companions_martyrs": {
       "fullname": "Bl. Ignáce de Azevedo, kněze, a druhů, mučedníků"
     },
-    {
-      "id": "ignatius_falzon",
+    "ignatius_falzon": {
       "fullname": "Bl. Ignáce Falzon"
     },
-    {
-      "id": "ignatius_of_antioch_bishop",
+    "ignatius_of_antioch_bishop": {
       "fullname": "Sv. Ignáce Antiochijského, biskupa a mučedníka"
     },
-    {
-      "id": "ignatius_of_loyola_priest",
+    "ignatius_of_loyola_priest": {
       "fullname": "Sv. Ignáce z Loyoly, kněze"
     },
-    {
-      "id": "ildephonsus_of_toledo_bishop",
+    "ildephonsus_of_toledo_bishop": {
       "fullname": "Sv. Ildefonse z Toleda, biskupa"
     },
-    {
-      "id": "illtud_the_knight_abbot",
+    "illtud_the_knight_abbot": {
       "fullname": "Sv. Illtuda, opata"
     },
-    {
-      "id": "immaculate_conception_of_the_blessed_virgin_mary",
+    "immaculate_conception_of_the_blessed_virgin_mary": {
       "fullname": "Panny Marie, počaté bez poskvrny prvotního hříchu"
     },
-    {
-      "id": "immaculate_conception_of_the_blessed_virgin_mary_patroness_of_the_philippines",
+    "immaculate_conception_of_the_blessed_virgin_mary_patroness_of_the_philippines": {
       "fullname": "Panny Marie, počaté bez poskvrny prvotního hříchu, patronky Filipín"
     },
-    {
-      "id": "immaculate_conception_of_the_blessed_virgin_mary_patroness_of_the_usa",
+    "immaculate_conception_of_the_blessed_virgin_mary_patroness_of_the_usa": {
       "fullname": "Panny Marie, počaté bez poskvrny prvotního hříchu, patronky USA"
     },
-    {
-      "id": "immaculate_heart_of_mary",
+    "immaculate_heart_of_mary": {
       "fullname": "Neposkvrněného Srdce Panny Marie"
     },
-    {
-      "id": "innocent_v_pope",
+    "innocent_v_pope": {
       "fullname": "Bl. Inocenc V., papeže"
     },
-    {
-      "id": "innocent_xi_pope",
+    "innocent_xi_pope": {
       "fullname": "Bl. Inocence XI., papeže"
     },
-    {
-      "id": "irenaeus_of_lyon_bishop",
+    "irenaeus_of_lyon_bishop": {
       "fullname": "Sv. Ireneje, biskupa, mučedníka a učitele církve"
     },
-    {
-      "id": "irene_of_macedonia",
+    "irene_of_macedonia": {
       "fullname": "Sv. Ireny"
     },
-    {
-      "id": "irish_martyrs",
+    "irish_martyrs": {
       "fullname": "Bl. irských mučedníků"
     },
-    {
-      "id": "isabelle_of_france_virgin",
+    "isabelle_of_france_virgin": {
       "fullname": "Bl. Izabely Francouzské, panny"
     },
-    {
-      "id": "isidore_of_seville_bishop",
+    "isidore_of_seville_bishop": {
       "fullname": "Sv. Izidora, biskupa a učitele církve"
     },
-    {
-      "id": "isidore_the_farmer",
+    "isidore_the_farmer": {
       "fullname": "Sv. Izidora z Madridu, rolníka"
     },
-    {
-      "id": "istvan_sandor_religious",
+    "istvan_sandor_religious": {
       "fullname": "Bl. Štěpána Šándora, řeholníka a mučedníka"
     },
-    {
-      "id": "ita_of_killeedy_virgin",
+    "ita_of_killeedy_virgin": {
       "fullname": "Sv. Ity, panny"
     },
-    {
-      "id": "ivan_merz",
+    "ivan_merz": {
       "fullname": "Bl. Ivana Merze"
     },
-    {
-      "id": "ivo_of_kermartin_priest",
+    "ivo_of_kermartin_priest": {
       "fullname": "Sv. Iva z Kermartinu, kněze"
     }
-  ]
+  }
 }

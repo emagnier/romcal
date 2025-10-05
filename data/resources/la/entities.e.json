@@ -1,130 +1,99 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "la",
-  "entities": [
-    {
-      "id": "easter_sunday",
+  "entities": {
+    "easter_sunday": {
       "fullname": "Dominica Paschæ in Resurrectione Domini"
     },
-    {
-      "id": "edmund_bojanowski",
+    "edmund_bojanowski": {
       "fullname": "B. Edmundi Bojanowski"
     },
-    {
-      "id": "edmund_campion_priest",
+    "edmund_campion_priest": {
       "fullname": "S. Edmundi Campion, presbyteri et martyris"
     },
-    {
-      "id": "edmund_ignatius_rice_religious",
+    "edmund_ignatius_rice_religious": {
       "fullname": "B. Edmundi Ignatii Rice, religiosi"
     },
-    {
-      "id": "edmund_of_abingdon_bishop",
+    "edmund_of_abingdon_bishop": {
       "fullname": "S. Edmundi Abindoniensis. episcopi"
     },
-    {
-      "id": "edward_the_confessor",
+    "edward_the_confessor": {
       "fullname": "S. Eduardi Confessoris"
     },
-    {
-      "id": "eligius_of_noyon_bishop",
+    "eligius_of_noyon_bishop": {
       "fullname": "S. Eligii Noviomensis, episcopi"
     },
-    {
-      "id": "elijah_prophet",
+    "elijah_prophet": {
       "fullname": "S. Eliæ, prophetæ"
     },
-    {
-      "id": "elizabeth_ann_seton_religious",
+    "elizabeth_ann_seton_religious": {
       "fullname": "S. Elisabeth Annæ Seton, religiosæ"
     },
-    {
-      "id": "elizabeth_hesselblad_religious",
+    "elizabeth_hesselblad_religious": {
       "fullname": "S. Mariæ Elisabeth Hesselblad, virginis"
     },
-    {
-      "id": "elizabeth_of_hungary_religious",
+    "elizabeth_of_hungary_religious": {
       "fullname": "S. Elisabeth Hungariæ, religiosæ"
     },
-    {
-      "id": "elizabeth_of_portugal",
+    "elizabeth_of_portugal": {
       "fullname": "S. Elisabeth Lusitaniæ"
     },
-    {
-      "id": "emeric_of_hungary",
+    "emeric_of_hungary": {
       "fullname": "S. Emerici"
     },
-    {
-      "id": "emilie_tavernier_gamelin_religious",
+    "emilie_tavernier_gamelin_religious": {
       "fullname": "B. Æmilia Tavernier Gamelin, religiosæ"
     },
-    {
-      "id": "enda_of_aran_abbot",
+    "enda_of_aran_abbot": {
       "fullname": "S. Endei, abbatis"
     },
-    {
-      "id": "english_martyrs",
+    "english_martyrs": {
       "fullname": "Ss. Martyrum Angliæ"
     },
-    {
-      "id": "eoghan_of_ardstraw_bishop",
+    "eoghan_of_ardstraw_bishop": {
       "fullname": "S. Eugenii, episcopi"
     },
-    {
-      "id": "ephrem_the_syrian_deacon",
+    "ephrem_the_syrian_deacon": {
       "fullname": "S. Ephræm, diaconi et Ecclesiæ doctoris"
     },
-    {
-      "id": "epiphany_of_the_lord",
+    "epiphany_of_the_lord": {
       "fullname": "In Epiphania Domini"
     },
-    {
-      "id": "eric_ix_of_sweden_martyr",
+    "eric_ix_of_sweden_martyr": {
       "fullname": "S. Erici regis Sueciæ, martyris"
     },
-    {
-      "id": "etheldreda_of_ely_abbess",
+    "etheldreda_of_ely_abbess": {
       "fullname": "S. Æthelthrythæ, abatissæ"
     },
-    {
-      "id": "eucharius_of_trier_bishop",
+    "eucharius_of_trier_bishop": {
       "fullname": "S. Eucharii Trevirensis, episcopi"
     },
-    {
-      "id": "eugene_de_mazenod_bishop",
+    "eugene_de_mazenod_bishop": {
       "fullname": "S. Caroli Iosephi Eugenii de Mazenod, episcopi"
     },
-    {
-      "id": "eugenia_of_alsace_and_attala_of_alsace_virgins",
+    "eugenia_of_alsace_and_attala_of_alsace_virgins": {
       "fullname": "Ss. Eugeniæ et Attalæ, virginum"
     },
-    {
-      "id": "eulalia_of_merida_virgin",
+    "eulalia_of_merida_virgin": {
       "fullname": "S. Eulaliæ Emeritensis, virginis et martyris"
     },
-    {
-      "id": "eulogius_of_cordoba_bishop",
+    "eulogius_of_cordoba_bishop": {
       "fullname": "S. Eulogii Cordubensis, episcopi"
     },
-    {
-      "id": "eusebius_of_esztergom_priest",
+    "eusebius_of_esztergom_priest": {
       "fullname": "B. Eusebii Strigoniensis, presbyteri"
     },
-    {
-      "id": "eusebius_of_vercelli_bishop",
+    "eusebius_of_vercelli_bishop": {
       "fullname": "S. Eusebii Vercellensis, episcopi"
     },
-    {
-      "id": "exaltation_of_the_holy_cross",
+    "exaltation_of_the_holy_cross": {
       "fullname": "In Exaltatione Sanctæ Crucis"
     },
-    {
-      "id": "eysteinn_of_nidaros_bishop",
+    "eysteinn_of_nidaros_bishop": {
       "fullname": "S. Augustini Nidrosiensis, episcopi"
     },
-    {
-      "id": "ezequiel_moreno_bishop",
+    "ezequiel_moreno_bishop": {
       "fullname": "S. Ezechielis Moreno, episcopi"
     }
-  ]
+  }
 }

@@ -1,180 +1,138 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "es",
-  "entities": [
-    {
-      "id": "adalbert_of_prague_bishop",
+  "entities": {
+    "adalbert_of_prague_bishop": {
       "fullname": "San Adalberto, obispo y mártir"
     },
-    {
-      "id": "adelaide_of_burgundy_empress",
+    "adelaide_of_burgundy_empress": {
       "fullname": "Santa Adelaida de Borgoña, Emperatriz"
     },
-    {
-      "id": "adelphus_of_metz_bishop",
+    "adelphus_of_metz_bishop": {
       "fullname": "San Adelfus de Métis, obispo"
     },
-    {
-      "id": "agatha_of_sicily_virgin",
+    "agatha_of_sicily_virgin": {
       "fullname": "Santa Águeda, virgen y mártir",
       "sources": [
         "https://liturgiapapal.org/attachments/article/1093/PROPIO%20DE%20LOS%20SANTOS.pdf#page=4"
       ]
     },
-    {
-      "id": "agnes_of_rome_virgin",
+    "agnes_of_rome_virgin": {
       "fullname": "Santa Inés, virgen y mártir",
       "sources": [
         "https://liturgiapapal.org/attachments/article/1093/PROPIO%20DE%20LOS%20SANTOS.pdf#page=3"
       ]
     },
-    {
-      "id": "alban_of_britain_martyr",
+    "alban_of_britain_martyr": {
       "fullname": "San Albano, mártir"
     },
-    {
-      "id": "albert_the_great_bishop",
+    "albert_the_great_bishop": {
       "fullname": "San Alberto Magno, obispo y doctor de la Iglesia"
     },
-    {
-      "id": "alberto_hurtado_priest",
+    "alberto_hurtado_priest": {
       "fullname": "San Alberto Hurtado, presbítero"
     },
-    {
-      "id": "all_saints",
+    "all_saints": {
       "fullname": "Todos los Santos"
     },
-    {
-      "id": "all_saints_of_ireland",
+    "all_saints_of_ireland": {
       "fullname": "Todos los Santos de Irlanda"
     },
-    {
-      "id": "all_saints_of_the_archdiocese_of_paris",
+    "all_saints_of_the_archdiocese_of_paris": {
       "fullname": "Todos los Santos de la Arquidiócesis de París"
     },
-    {
-      "id": "all_saints_of_the_diocese_of_saint_denis",
+    "all_saints_of_the_diocese_of_saint_denis": {
       "fullname": "Todos los Santos de la Diócesis de Saint-Denis"
     },
-    {
-      "id": "all_saints_of_wales",
+    "all_saints_of_wales": {
       "fullname": "Todos los santos de Gales"
     },
-    {
-      "id": "aloysius_gonzaga_religious",
+    "aloysius_gonzaga_religious": {
       "fullname": "San Luis Gonzaga, religioso"
     },
-    {
-      "id": "alphonsus_mary_liguori_bishop",
+    "alphonsus_mary_liguori_bishop": {
       "fullname": "San Alfonso María de Ligorio, obispo y doctor de la Iglesia"
     },
-    {
-      "id": "amandus_of_strasbourg_bishop",
+    "amandus_of_strasbourg_bishop": {
       "fullname": "San Amand de Estrasburgo, obispo"
     },
-    {
-      "id": "amarin_of_alsace_abbot",
+    "amarin_of_alsace_abbot": {
       "fullname": "San Amarino, Abad y mártir"
     },
-    {
-      "id": "ambrose_of_milan_bishop",
+    "ambrose_of_milan_bishop": {
       "fullname": "San Ambrosio, obispo y doctor de la Iglesia"
     },
-    {
-      "id": "andrew_apostle",
+    "andrew_apostle": {
       "fullname": "San Andrés, apóstol"
     },
-    {
-      "id": "andrew_apostle_patron_of_scotland",
+    "andrew_apostle_patron_of_scotland": {
       "fullname": "San Andrés, apóstol y Patrono de Escocia"
     },
-    {
-      "id": "andrew_dung_lac_priest_and_companions_martyrs",
+    "andrew_dung_lac_priest_and_companions_martyrs": {
       "fullname": "Santos Andrés Dung-Lac, presbítero, y compañeros, mártires"
     },
-    {
-      "id": "andrew_kim_tae_gon_priest_paul_chong_ha_sang_and_companions_martyrs",
+    "andrew_kim_tae_gon_priest_paul_chong_ha_sang_and_companions_martyrs": {
       "fullname": "Santos Andrés Kim Taegon, presbítero, Pablo Chong Hasang y compañeros, mártires"
     },
-    {
-      "id": "angela_merici_virgin",
+    "angela_merici_virgin": {
       "fullname": "Santa Ángela Merici, virgen"
     },
-    {
-      "id": "annunciation_of_the_lord",
+    "annunciation_of_the_lord": {
       "fullname": "Anunciación"
     },
-    {
-      "id": "anselm_of_canterbury_bishop",
+    "anselm_of_canterbury_bishop": {
       "fullname": "San Anselmo de Canterbury, obispo y doctor de la Iglesia"
     },
-    {
-      "id": "ansgar_of_hamburg_bishop",
+    "ansgar_of_hamburg_bishop": {
       "fullname": "San Ascario, obispo"
     },
-    {
-      "id": "anthony_mary_claret_bishop",
+    "anthony_mary_claret_bishop": {
       "fullname": "San Antonio María Claret, obispo"
     },
-    {
-      "id": "anthony_of_egypt_abbot",
+    "anthony_of_egypt_abbot": {
       "fullname": "San Antonio de Egipto, Abad"
     },
-    {
-      "id": "anthony_of_padua_priest",
+    "anthony_of_padua_priest": {
       "fullname": "San Antonio de Padua, presbítero y doctor de la Iglesia"
     },
-    {
-      "id": "anthony_zaccaria_priest",
+    "anthony_zaccaria_priest": {
       "fullname": "San Antonio María Zaccaría, presbítero"
     },
-    {
-      "id": "apollinaris_of_ravenna_bishop",
+    "apollinaris_of_ravenna_bishop": {
       "fullname": "San Apolinar, obispo y mártir"
     },
-    {
-      "id": "arbogast_of_strasbourg_bishop",
+    "arbogast_of_strasbourg_bishop": {
       "fullname": "San Arbogast, obispo"
     },
-    {
-      "id": "arbogast_of_strasbourg_bishop_patron_of_the_archdiocese_of_strasbourg",
+    "arbogast_of_strasbourg_bishop_patron_of_the_archdiocese_of_strasbourg": {
       "fullname": "San Arbogast, obispo y Patrono de la Arquidiócesis de Estrasburgo"
     },
-    {
-      "id": "ascension_of_the_lord",
+    "ascension_of_the_lord": {
       "fullname": "Ascensión del Señor"
     },
-    {
-      "id": "ash_wednesday",
+    "ash_wednesday": {
       "fullname": "Miércoles de Ceniza"
     },
-    {
-      "id": "assumption_of_the_blessed_virgin_mary",
+    "assumption_of_the_blessed_virgin_mary": {
       "fullname": "La Asunción de la Santísima Virgen María"
     },
-    {
-      "id": "athanasius_of_alexandria_bishop",
+    "athanasius_of_alexandria_bishop": {
       "fullname": "San Atanasio de Alejandría, obispo y doctor de la Iglesia"
     },
-    {
-      "id": "audoen_of_rouen_bishop",
+    "audoen_of_rouen_bishop": {
       "fullname": "San Audoeno, obispo"
     },
-    {
-      "id": "augustine_of_canterbury_bishop",
+    "augustine_of_canterbury_bishop": {
       "fullname": "San Agustín de Canterbury, obispo"
     },
-    {
-      "id": "augustine_of_hippo_bishop",
+    "augustine_of_hippo_bishop": {
       "fullname": "San Agustín de Hipona, obispo y doctor de la Iglesia"
     },
-    {
-      "id": "augustine_zhao_rong_priest_and_companions_martyrs",
+    "augustine_zhao_rong_priest_and_companions_martyrs": {
       "fullname": "San Agustín Zhao Rong, presbítero, y compañeros, mártires"
     },
-    {
-      "id": "aurelia_of_strasbourg_virgin",
+    "aurelia_of_strasbourg_virgin": {
       "fullname": "Santa Aurelia de Estrasburgo, virgen"
     }
-  ]
+  }
 }

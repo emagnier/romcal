@@ -1,62 +1,48 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "pt-br",
-  "entities": [
-    {
-      "id": "fabian_i_pope",
+  "entities": {
+    "fabian_i_pope": {
       "fullname": "São Fabiano, pap e mártir"
     },
-    {
-      "id": "faustina_kowalska_virgin",
+    "faustina_kowalska_virgin": {
       "fullname": "Santa Faustina Kowalska, virgem"
     },
-    {
-      "id": "fidelis_of_sigmaringen_priest",
+    "fidelis_of_sigmaringen_priest": {
       "fullname": "São Fiel de Sigmaringa, presbítero e mártir"
     },
-    {
-      "id": "first_martyrs_of_the_holy_roman_church",
+    "first_martyrs_of_the_holy_roman_church": {
       "fullname": "Primeiros mártires da Igreja de Roma"
     },
-    {
-      "id": "five_wounds_of_the_lord",
+    "five_wounds_of_the_lord": {
       "fullname": "As Cinco Chagas do Senhor"
     },
-    {
-      "id": "florentius_of_strasbourg_bishop",
+    "florentius_of_strasbourg_bishop": {
       "fullname": "São Florêncio, bispo"
     },
-    {
-      "id": "frances_of_rome_religious",
+    "frances_of_rome_religious": {
       "fullname": "Santa Francisca Romana, religiosa"
     },
-    {
-      "id": "francis_de_sales_bishop",
+    "francis_de_sales_bishop": {
       "fullname": "São Francisco de Sales, bispo e doutor da Igreja"
     },
-    {
-      "id": "francis_of_assisi",
+    "francis_of_assisi": {
       "fullname": "São Francisco de Assis, religioso"
     },
-    {
-      "id": "francis_of_paola_hermit",
+    "francis_of_paola_hermit": {
       "fullname": "São Francisco de Paula, eremita"
     },
-    {
-      "id": "francis_xavier_priest",
+    "francis_xavier_priest": {
       "fullname": "São Francisco Xavier, presbítero"
     },
-    {
-      "id": "frederic_ozanam_founder",
+    "frederic_ozanam_founder": {
       "fullname": "Beato Frederico Ozanam, fundador"
     },
-    {
-      "id": "friday_of_the_passion_of_the_lord",
+    "friday_of_the_passion_of_the_lord": {
       "fullname": "Sexta-feira Santa"
     },
-    {
-      "id": "fructuosus_of_braga_martin_of_braga_and_gerald_of_braga_bishops",
+    "fructuosus_of_braga_martin_of_braga_and_gerald_of_braga_bishops": {
       "fullname": "São Frutuoso de Braga, São Martinho de Braga e São Geraldoo de Braga, bispos"
     }
-  ]
+  }
 }

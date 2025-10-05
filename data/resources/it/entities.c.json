@@ -1,129 +1,99 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "it",
-  "entities": [
-    {
-      "id": "cajetan_of_thiene_priest",
+  "entities": {
+    "cajetan_of_thiene_priest": {
       "fullname": "San Gaetano, sacerdote"
     },
-    {
-      "id": "callistus_i_pope",
+    "callistus_i_pope": {
       "fullname": "San Callisto I, papa e martire"
     },
-    {
-      "id": "camillus_de_lellis_priest",
+    "camillus_de_lellis_priest": {
       "fullname": "San Camillo de Lellis, sacerdote"
     },
-    {
-      "id": "carmelites_of_compiegne_virgins_and_martyrs",
+    "carmelites_of_compiegne_virgins_and_martyrs": {
       "fullname": "Beati carmelitani di Compiègne, vergini e martiri"
     },
-    {
-      "id": "casimir_of_poland",
+    "casimir_of_poland": {
       "fullname": "San Casimiro"
     },
-    {
-      "id": "catherine_of_alexandria_virgin",
+    "catherine_of_alexandria_virgin": {
       "fullname": "Santa Caterina di Alessandria, vergine e martire"
     },
-    {
-      "id": "catherine_of_siena_virgin",
+    "catherine_of_siena_virgin": {
       "fullname": "Santa Caterina da Siena, vergine e dottore della Chiesa"
     },
-    {
-      "id": "catherine_of_siena_virgin_copatroness_of_europe",
+    "catherine_of_siena_virgin_copatroness_of_europe": {
       "fullname": "Santa Caterina da Siena, vergine, dottore della Chiesa e patrona secondaria d’Europa"
     },
-    {
-      "id": "catherine_of_siena_virgin_copatroness_of_italy_and_europe",
+    "catherine_of_siena_virgin_copatroness_of_italy_and_europe": {
       "fullname": "Santa Caterina da Siena, vergine, dottore della Chiesa e patrona secondaria d’Italia e d’Europa"
     },
-    {
-      "id": "catherine_zoe_laboure_virgin",
+    "catherine_zoe_laboure_virgin": {
       "fullname": "Santa Caterina Labourè, vergine"
     },
-    {
-      "id": "cecilia_of_rome_virgin",
+    "cecilia_of_rome_virgin": {
       "fullname": "Santa Cecilia, vergine e martire"
     },
-    {
-      "id": "ceraunus_of_paris_bishop",
+    "ceraunus_of_paris_bishop": {
       "fullname": "San Cerauno di Parigi, vescovo"
     },
-    {
-      "id": "chair_of_saint_peter_the_apostle",
+    "chair_of_saint_peter_the_apostle": {
       "fullname": "Cattedra di San Pietro apostolo"
     },
-    {
-      "id": "charles_borromeo_bishop",
+    "charles_borromeo_bishop": {
       "fullname": "San Carlo Borromeo, vescovo"
     },
-    {
-      "id": "charles_lwanga_and_companions_martyrs",
+    "charles_lwanga_and_companions_martyrs": {
       "fullname": "San Carlo Lwanga e compagni, martiri"
     },
-    {
-      "id": "charles_of_jesus_de_foucauld",
+    "charles_of_jesus_de_foucauld": {
       "fullname": "San Charles de Foucauld, sacerdote"
     },
-    {
-      "id": "christopher_magallanes_priest_and_companions_martyrs",
+    "christopher_magallanes_priest_and_companions_martyrs": {
       "fullname": "Santi Cristoforo Magallanes, sacerdote, e compagni, martiri"
     },
-    {
-      "id": "clare_of_assisi_virgin",
+    "clare_of_assisi_virgin": {
       "fullname": "Santa Chiara, vergine"
     },
-    {
-      "id": "clement_i_pope",
+    "clement_i_pope": {
       "fullname": "San Clemente I, papa e martire"
     },
-    {
-      "id": "columba_of_iona_abbot",
+    "columba_of_iona_abbot": {
       "fullname": "San Colombano, abate"
     },
-    {
-      "id": "columba_of_iona_abbot_copatron_of_ireland",
+    "columba_of_iona_abbot_copatron_of_ireland": {
       "fullname": "San Colombano, abate e patrono secondario dell’Irlanda"
     },
-    {
-      "id": "columban_of_luxeuil_abbot",
+    "columban_of_luxeuil_abbot": {
       "fullname": "San Colombano, abate",
       "sources": [
         "mr_it_2020_ed3"
       ]
     },
-    {
-      "id": "commemoration_of_all_the_faithful_departed",
+    "commemoration_of_all_the_faithful_departed": {
       "fullname": "Commemorazione di tutti i fedeli defunti"
     },
-    {
-      "id": "conversion_of_saint_paul_the_apostle",
+    "conversion_of_saint_paul_the_apostle": {
       "fullname": "Conversione di San Paolo apostolo"
     },
-    {
-      "id": "cornelius_i_pope_and_cyprian_of_carthage_bishop_martyrs",
+    "cornelius_i_pope_and_cyprian_of_carthage_bishop_martyrs": {
       "fullname": "Santi Cornelio, papa e Cipriano, vescovo, martiri"
     },
-    {
-      "id": "cosmas_of_cilicia_and_damian_of_cilicia_martyrs",
+    "cosmas_of_cilicia_and_damian_of_cilicia_martyrs": {
       "fullname": "Santi Cosma e Damiano, martiri"
     },
-    {
-      "id": "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop",
+    "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop": {
       "fullname": "Santi Cirillo, monaco e Metodio, vescovo"
     },
-    {
-      "id": "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop_copatrons_of_europe",
+    "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop_copatrons_of_europe": {
       "fullname": "Santi Cirillo, monaco e Metodio, vescovo, patroni secondari d’Europa"
     },
-    {
-      "id": "cyril_of_alexandria_bishop",
+    "cyril_of_alexandria_bishop": {
       "fullname": "San Cirillo di Alessandria, vescovo e dottore della Chiesa"
     },
-    {
-      "id": "cyril_of_jerusalem_bishop",
+    "cyril_of_jerusalem_bishop": {
       "fullname": "San Cirillo di Gerusalemme, vescovo e dottore della Chiesa"
     }
-  ]
+  }
 }

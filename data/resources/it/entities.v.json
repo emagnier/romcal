@@ -1,26 +1,21 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "it",
-  "entities": [
-    {
-      "id": "valerius_of_trier_bishop",
+  "entities": {
+    "valerius_of_trier_bishop": {
       "fullname": "San Valerio, vescovo"
     },
-    {
-      "id": "vincent_de_paul_priest",
+    "vincent_de_paul_priest": {
       "fullname": "San Vincenzo de’ Paoli, sacerdote"
     },
-    {
-      "id": "vincent_ferrer_priest",
+    "vincent_ferrer_priest": {
       "fullname": "San Vincenzo Ferrer, sacerdote"
     },
-    {
-      "id": "vincent_of_saragossa_deacon",
+    "vincent_of_saragossa_deacon": {
       "fullname": "San Vincenzo, diacono e martire"
     },
-    {
-      "id": "visitation_of_mary",
+    "visitation_of_mary": {
       "fullname": "Visitazione della Beata Vergine Maria"
     }
-  ]
+  }
 }

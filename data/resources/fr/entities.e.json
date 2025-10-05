@@ -1,86 +1,69 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "fr",
-  "entities": [
-    {
-      "id": "easter_sunday",
+  "entities": {
+    "easter_sunday": {
       "fullname": "Dimanche de Pâques - La résurrection du Seigneur"
     },
-    {
-      "id": "eligius_of_noyon_bishop",
+    "eligius_of_noyon_bishop": {
       "fullname": "Saint Éloi, évêque"
     },
-    {
-      "id": "elijah_prophet",
+    "elijah_prophet": {
       "fullname": "Saint Élie, prophète († IXe s. av. J.-C.)"
     },
-    {
-      "id": "elizabeth_of_hungary_religious",
+    "elizabeth_of_hungary_religious": {
       "fullname": "Sainte Élisabeth de Hongrie († 1231)"
     },
-    {
-      "id": "elizabeth_of_portugal",
+    "elizabeth_of_portugal": {
       "fullname": "Sainte Élisabeth du Portugal, reine († 1336)"
     },
-    {
-      "id": "emilie_tavernier_gamelin_religious",
+    "emilie_tavernier_gamelin_religious": {
       "fullname": "Bienheureuse Émilie Tavernier-Gamelin, religieuse, fondatrice des Sœurs de la Providence de Montréal († 1851)"
     },
-    {
-      "id": "ephrem_the_syrian_deacon",
+    "ephrem_the_syrian_deacon": {
       "fullname": "Saint Ephrem, diacre et docteur de l’Église, († 373)"
     },
-    {
-      "id": "epiphany_of_the_lord",
+    "epiphany_of_the_lord": {
       "fullname": "Épiphanie du Seigneur"
     },
-    {
-      "id": "epipodius_of_lyon_and_alexander_of_lyon_martyrs",
+    "epipodius_of_lyon_and_alexander_of_lyon_martyrs": {
       "fullname": "Saints Épipode et Alexandre, martyrs († 178)",
       "sources": [
         "mr_fr_2014_ed2_lyon"
       ]
     },
-    {
-      "id": "erembert_of_toulouse_bishop",
+    "erembert_of_toulouse_bishop": {
       "fullname": "Saint Érembert, évêque († v. 672)",
       "sources": [
         "mr_fr_1974_ed1_region_apostolique_du_midi"
       ]
     },
-    {
-      "id": "eucharius_of_trier_bishop",
+    "eucharius_of_trier_bishop": {
       "fullname": "Saint Euchaire, évêque († IVème s.)"
     },
-    {
-      "id": "eucherius_of_lyon_bishop",
+    "eucherius_of_lyon_bishop": {
       "fullname": "Saint Eucher, évêque († v. 449)",
       "sources": [
         "mr_fr_2014_ed2_lyon"
       ]
     },
-    {
-      "id": "eugene_de_mazenod_bishop",
+    "eugene_de_mazenod_bishop": {
       "fullname": "Saint Eugène de Mazenod, fondateur des Oblats de Marie-Immaculée, évêque de Marseille († 1861)"
     },
-    {
-      "id": "eugenia_of_alsace_and_attala_of_alsace_virgins",
+    "eugenia_of_alsace_and_attala_of_alsace_virgins": {
       "fullname": "Sainte Eugénie et Sainte Attale, vierges († VIIIème s.)"
     },
-    {
-      "id": "eusebius_of_vercelli_bishop",
+    "eusebius_of_vercelli_bishop": {
       "fullname": "Saint Eusèbe de Verceil, évêque († 371)"
     },
-    {
-      "id": "exaltation_of_the_holy_cross",
+    "exaltation_of_the_holy_cross": {
       "fullname": "La Croix Glorieuse"
     },
-    {
-      "id": "exuperius_of_toulouse_bishop",
+    "exuperius_of_toulouse_bishop": {
       "fullname": "Saint Exupère, évêque († v. 410)",
       "sources": [
         "mr_fr_1974_ed1_region_apostolique_du_midi"
       ]
     }
-  ]
+  }
 }

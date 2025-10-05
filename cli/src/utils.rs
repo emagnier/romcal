@@ -258,7 +258,9 @@ pub fn combine_resources_by_locale(
 
             // Concatenate entities manually
             if let Some(source_entities) = resource.entities {
-                let target_entities = combined.entities.get_or_insert_with(Vec::new);
+                let target_entities = combined
+                    .entities
+                    .get_or_insert_with(std::collections::BTreeMap::new);
                 target_entities.extend(source_entities);
             }
         }
@@ -310,15 +312,25 @@ mod tests {
     use super::*;
     use std::collections::BTreeMap;
 
-    fn create_test_entity(id: &str, name: &str) -> romcal_core::Entity {
-        let mut entity = romcal_core::Entity::new(id.to_string());
+    fn create_test_entity(_id: &str, name: &str) -> romcal_core::Entity {
+        let mut entity = romcal_core::Entity::new();
         entity.name = Some(name.to_string());
         entity
     }
 
+    fn create_test_entities_map(
+        entities: Vec<(&str, &str)>,
+    ) -> BTreeMap<String, romcal_core::Entity> {
+        let mut map = BTreeMap::new();
+        for (id, name) in entities {
+            map.insert(id.to_string(), create_test_entity(id, name));
+        }
+        map
+    }
+
     fn create_test_resources_definition(
         locale: &str,
-        entities: Vec<romcal_core::Entity>,
+        entities: BTreeMap<String, romcal_core::Entity>,
     ) -> romcal_core::Resources {
         let mut resources = romcal_core::Resources::new(locale.to_string());
         resources.entities = Some(entities);
@@ -327,7 +339,7 @@ mod tests {
 
     fn create_test_resources_definition_with_metadata(
         locale: &str,
-        entities: Vec<romcal_core::Entity>,
+        entities: BTreeMap<String, romcal_core::Entity>,
         metadata: romcal_core::types::resource::ResourcesMetadata,
     ) -> romcal_core::Resources {
         let mut resources = romcal_core::Resources::new(locale.to_string());
@@ -345,8 +357,14 @@ mod tests {
     #[test]
     fn test_combine_resources_by_locale_single_locale() {
         let resources = vec![
-            create_test_resources_definition("fr", vec![create_test_entity("entity1", "Entity 1")]),
-            create_test_resources_definition("fr", vec![create_test_entity("entity2", "Entity 2")]),
+            create_test_resources_definition(
+                "fr",
+                create_test_entities_map(vec![("entity1", "Entity 1")]),
+            ),
+            create_test_resources_definition(
+                "fr",
+                create_test_entities_map(vec![("entity2", "Entity 2")]),
+            ),
         ];
 
         let result = combine_resources_by_locale(resources).unwrap();
@@ -358,9 +376,18 @@ mod tests {
     #[test]
     fn test_combine_resources_by_locale_multiple_locales() {
         let resources = vec![
-            create_test_resources_definition("fr", vec![create_test_entity("entity1", "Entity 1")]),
-            create_test_resources_definition("en", vec![create_test_entity("entity2", "Entity 2")]),
-            create_test_resources_definition("fr", vec![create_test_entity("entity3", "Entity 3")]),
+            create_test_resources_definition(
+                "fr",
+                create_test_entities_map(vec![("entity1", "Entity 1")]),
+            ),
+            create_test_resources_definition(
+                "en",
+                create_test_entities_map(vec![("entity2", "Entity 2")]),
+            ),
+            create_test_resources_definition(
+                "fr",
+                create_test_entities_map(vec![("entity3", "Entity 3")]),
+            ),
         ];
 
         let result = combine_resources_by_locale(resources).unwrap();
@@ -414,8 +441,8 @@ mod tests {
         };
 
         let resources = vec![
-            create_test_resources_definition_with_metadata("fr", vec![], metadata1),
-            create_test_resources_definition_with_metadata("fr", vec![], metadata2),
+            create_test_resources_definition_with_metadata("fr", BTreeMap::new(), metadata1),
+            create_test_resources_definition_with_metadata("fr", BTreeMap::new(), metadata2),
         ];
 
         let result = combine_resources_by_locale(resources).unwrap();
@@ -445,12 +472,12 @@ mod tests {
         let resources = vec![
             create_test_resources_definition(
                 "fr",
-                vec![
-                    create_test_entity("entity1", "Entity 1"),
-                    create_test_entity("entity2", "Entity 2"),
-                ],
+                create_test_entities_map(vec![("entity1", "Entity 1"), ("entity2", "Entity 2")]),
             ),
-            create_test_resources_definition("fr", vec![create_test_entity("entity3", "Entity 3")]),
+            create_test_resources_definition(
+                "fr",
+                create_test_entities_map(vec![("entity3", "Entity 3")]),
+            ),
         ];
 
         let result = combine_resources_by_locale(resources).unwrap();
@@ -458,9 +485,9 @@ mod tests {
 
         let entities = result[0].entities.as_ref().unwrap();
         assert_eq!(entities.len(), 3);
-        assert_eq!(entities[0].id, "entity1");
-        assert_eq!(entities[1].id, "entity2");
-        assert_eq!(entities[2].id, "entity3");
+        assert!(entities.contains_key("entity1"));
+        assert!(entities.contains_key("entity2"));
+        assert!(entities.contains_key("entity3"));
     }
 
     #[test]
@@ -468,8 +495,14 @@ mod tests {
         // This test verifies that we can't accidentally merge resources with different locales
         // The function should group by locale, so this should work fine
         let resources = vec![
-            create_test_resources_definition("fr", vec![create_test_entity("entity1", "Entity 1")]),
-            create_test_resources_definition("en", vec![create_test_entity("entity2", "Entity 2")]),
+            create_test_resources_definition(
+                "fr",
+                create_test_entities_map(vec![("entity1", "Entity 1")]),
+            ),
+            create_test_resources_definition(
+                "en",
+                create_test_entities_map(vec![("entity2", "Entity 2")]),
+            ),
         ];
 
         let result = combine_resources_by_locale(resources).unwrap();
@@ -520,8 +553,8 @@ mod tests {
         };
 
         let resources = vec![
-            create_test_resources_definition_with_metadata("fr", vec![], metadata1),
-            create_test_resources_definition_with_metadata("fr", vec![], metadata2),
+            create_test_resources_definition_with_metadata("fr", BTreeMap::new(), metadata1),
+            create_test_resources_definition_with_metadata("fr", BTreeMap::new(), metadata2),
         ];
 
         let result = combine_resources_by_locale(resources).unwrap();

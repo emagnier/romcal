@@ -1,54 +1,42 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "pt-br",
-  "entities": [
-    {
-      "id": "sancha_of_portugal_and_mafalda_of_portugal_virgins",
+  "entities": {
+    "sancha_of_portugal_and_mafalda_of_portugal_virgins": {
       "fullname": "Beatas Sancha e Mafalda, virgens, e Teresa, religiosa"
     },
-    {
-      "id": "scholastica_of_nursia_virgin",
+    "scholastica_of_nursia_virgin": {
       "fullname": "Santa Escolástica, virgem"
     },
-    {
-      "id": "sebastian_of_milan_martyr",
+    "sebastian_of_milan_martyr": {
       "fullname": "São Sebastião, mártir"
     },
-    {
-      "id": "seven_holy_founders_of_the_servite_order",
+    "seven_holy_founders_of_the_servite_order": {
       "fullname": "Santos Sete Fundadores da Ordem dos Servitas"
     },
-    {
-      "id": "sharbel_makhluf_priest",
+    "sharbel_makhluf_priest": {
       "fullname": "São Charbel Makhluf, presbítero"
     },
-    {
-      "id": "simon_and_jude_apostles",
+    "simon_and_jude_apostles": {
       "fullname": "Santos Simão e São Judas Tadeu, apóstolos"
     },
-    {
-      "id": "sixtus_ii_pope_and_companions_martyrs",
+    "sixtus_ii_pope_and_companions_martyrs": {
       "fullname": "São Sisto II, papa, e seus companheiros, mártires"
     },
-    {
-      "id": "stanislaus_of_szczepanow_bishop",
+    "stanislaus_of_szczepanow_bishop": {
       "fullname": "Santo Estanislau, bispo e mártir"
     },
-    {
-      "id": "stephen_i_of_hungary",
+    "stephen_i_of_hungary": {
       "fullname": "Santo Estêvão da Hungria"
     },
-    {
-      "id": "stephen_the_first_martyr",
+    "stephen_the_first_martyr": {
       "fullname": "Santo Estêvão, primeiro mártir"
     },
-    {
-      "id": "sunday_of_the_word_of_god",
+    "sunday_of_the_word_of_god": {
       "fullname": "3º Domingo do Tempo Comum, ou Domingo da Palavra de Deus"
     },
-    {
-      "id": "sylvester_i_pope",
+    "sylvester_i_pope": {
       "fullname": "São Silvestre I, papa"
     }
-  ]
+  }
 }

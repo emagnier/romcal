@@ -1,137 +1,105 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "pl",
-  "entities": [
-    {
-      "id": "palm_sunday_of_the_passion_of_the_lord",
+  "entities": {
+    "palm_sunday_of_the_passion_of_the_lord": {
       "fullname": "Niedziela Palmowa Męki Pańskiej"
     },
-    {
-      "id": "pancras_of_rome_martyr",
+    "pancras_of_rome_martyr": {
       "fullname": "Św. Pankracego, męczennika"
     },
-    {
-      "id": "passion_of_saint_john_the_baptist",
+    "passion_of_saint_john_the_baptist": {
       "fullname": "Męczeństwo św. Jana Chrzciciela"
     },
-    {
-      "id": "patrick_of_ireland_bishop",
+    "patrick_of_ireland_bishop": {
       "fullname": "Św. Patryka, biskupa"
     },
-    {
-      "id": "patrick_of_ireland_bishop_patron_of_ireland",
+    "patrick_of_ireland_bishop_patron_of_ireland": {
       "fullname": "Św. Patryka, biskupa, patrona Irlandii"
     },
-    {
-      "id": "paul_chen_changpin_and_companions_martyrs",
+    "paul_chen_changpin_and_companions_martyrs": {
       "fullname": "Świętych męczenników Pawła Chen Changpina i Towarzyszy"
     },
-    {
-      "id": "paul_liu_hanzuo_priest",
+    "paul_liu_hanzuo_priest": {
       "fullname": "Św. Pawła Liu Hanzuo, prezbitera i męczennika"
     },
-    {
-      "id": "paul_miki_and_companions_martyrs",
+    "paul_miki_and_companions_martyrs": {
       "fullname": "Świętych męczenników Pawła Miki i Towarzyszy"
     },
-    {
-      "id": "paul_of_the_cross_priest",
+    "paul_of_the_cross_priest": {
       "fullname": "Św. Pawła od Krzyża, prezbitera"
     },
-    {
-      "id": "paul_vi_pope",
+    "paul_vi_pope": {
       "fullname": "Św. Paweł VI, papieża",
       "sources": [
         "https://pl.wikipedia.org/wiki/Pawe%C5%82_VI"
       ]
     },
-    {
-      "id": "paulinus_of_nola_bishop",
+    "paulinus_of_nola_bishop": {
       "fullname": "Św. Paulina z Noli, biskupa"
     },
-    {
-      "id": "pentecost_sunday",
+    "pentecost_sunday": {
       "fullname": "Niedziela Zesłania Ducha Świętego"
     },
-    {
-      "id": "perpetua_of_carthage_and_felicity_of_carthage_martyrs",
+    "perpetua_of_carthage_and_felicity_of_carthage_martyrs": {
       "fullname": "Świętych męczennic Perpetuy i Felicyty"
     },
-    {
-      "id": "peter_and_paul_apostles",
+    "peter_and_paul_apostles": {
       "fullname": "Świętych Apostołów Piotra i Pawła"
     },
-    {
-      "id": "peter_canisius_priest",
+    "peter_canisius_priest": {
       "fullname": "Św. Piotra Kanizjusza, prezbitera i doktora Kościoła"
     },
-    {
-      "id": "peter_chanel_priest",
+    "peter_chanel_priest": {
       "fullname": "Św. Piotra Chanela, prezbitera i męczennika"
     },
-    {
-      "id": "peter_chrysologus_bishop",
+    "peter_chrysologus_bishop": {
       "fullname": "Św. Piotra Chryzologa, biskupa i doktora Kościoła"
     },
-    {
-      "id": "peter_claver_priest",
+    "peter_claver_priest": {
       "fullname": "Św. Piotra Klawera, prezbitera"
     },
-    {
-      "id": "peter_damian_bishop",
+    "peter_damian_bishop": {
       "fullname": "Św. Piotra Damianiego, biskupa i doktora Kościoła"
     },
-    {
-      "id": "peter_julian_eymard_priest",
+    "peter_julian_eymard_priest": {
       "fullname": "Św. Piotra Juliana Eymarda, prezbitera"
     },
-    {
-      "id": "peter_liu_wenyuan_martyr",
+    "peter_liu_wenyuan_martyr": {
       "fullname": "Św. Piotra Liu Wenyuan, męczennika"
     },
-    {
-      "id": "peter_sanz_bishop",
+    "peter_sanz_bishop": {
       "fullname": "Św. Piotra Sanza, biskupa i męczennika"
     },
-    {
-      "id": "peter_wu_guosheng_martyr",
+    "peter_wu_guosheng_martyr": {
       "fullname": "Św. Piotra Wu Guosheng, męczennika"
     },
-    {
-      "id": "philip_and_james_apostles",
+    "philip_and_james_apostles": {
       "fullname": "Świętych Apostołów Filipa i Jakuba"
     },
-    {
-      "id": "philip_neri_priest",
+    "philip_neri_priest": {
       "fullname": "Św. Filipa Nereusza, prezbitera"
     },
-    {
-      "id": "pius_francesco_forgione_priest",
+    "pius_francesco_forgione_priest": {
       "fullname": "Św. Pio z Pietrelciny, prezbitera"
     },
-    {
-      "id": "pius_v_pope",
+    "pius_v_pope": {
       "fullname": "Św. Piusa V, papieża"
     },
-    {
-      "id": "pius_x_pope",
+    "pius_x_pope": {
       "fullname": "Św. Piusa X, papieża"
     },
-    {
-      "id": "polycarp_of_smyrna_bishop",
+    "polycarp_of_smyrna_bishop": {
       "fullname": "Św. Polikarpa, biskupa i męczennika"
     },
-    {
-      "id": "pontian_i_pope_and_hippolytus_of_rome_priest",
+    "pontian_i_pope_and_hippolytus_of_rome_priest": {
       "fullname": "Świętych męczenników Poncjana, papieża, i Hipolita, prezbitera"
     },
-    {
-      "id": "presentation_of_the_blessed_virgin_mary",
+    "presentation_of_the_blessed_virgin_mary": {
       "fullname": "Ofiarowanie Najświętszej Maryi Panny"
     },
-    {
-      "id": "presentation_of_the_lord",
+    "presentation_of_the_lord": {
       "fullname": "Ofiarowanie Pańskie"
     }
-  ]
+  }
 }

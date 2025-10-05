@@ -1,14 +1,12 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "sk",
-  "entities": [
-    {
-      "id": "queenship_of_the_blessed_virgin_mary",
+  "entities": {
+    "queenship_of_the_blessed_virgin_mary": {
       "fullname": "Preblahoslavenej Panny Márie Kráľovnej"
     },
-    {
-      "id": "quirinus_of_sescia_bishop",
+    "quirinus_of_sescia_bishop": {
       "fullname": "Svätého Kvirína zo Sisaku, biskupa"
     }
-  ]
+  }
 }

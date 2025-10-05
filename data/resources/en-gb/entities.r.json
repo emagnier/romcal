@@ -1,10 +1,9 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "en-gb",
-  "entities": [
-    {
-      "id": "raymond_of_penyafort_priest",
+  "entities": {
+    "raymond_of_penyafort_priest": {
       "fullname": "Saint Raymond of Peñafort, Priest"
     }
-  ]
+  }
 }

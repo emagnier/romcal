@@ -28,10 +28,10 @@
     "entities": {
       "description": "Entities of the resources: a person, a place, an event, etc.",
       "type": [
-        "array",
+        "object",
         "null"
       ],
-      "items": {
+      "additionalProperties": {
         "$ref": "#/definitions/Entity"
       }
     }
@@ -622,10 +622,6 @@
     "Entity": {
       "type": "object",
       "properties": {
-        "id": {
-          "description": "The unique identifier of the entity",
-          "type": "string"
-        },
         "type": {
           "description": "The type of the entity.\n@default EntityType.Person",
           "anyOf": [
@@ -812,9 +808,6 @@
           }
         }
       },
-      "required": [
-        "id"
-      ],
       "additionalProperties": false
     },
     "EntityType": {

@@ -1,94 +1,72 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "la",
-  "entities": [
-    {
-      "id": "ignatius_de_azevedo_priest_and_companions_martyrs",
+  "entities": {
+    "ignatius_de_azevedo_priest_and_companions_martyrs": {
       "fullname": "B. Ignatii de Azevedo, presbyteri, et sociorum, martyrum"
     },
-    {
-      "id": "ignatius_falzon",
+    "ignatius_falzon": {
       "fullname": "B. Ignatii Falzon"
     },
-    {
-      "id": "ignatius_of_antioch_bishop",
+    "ignatius_of_antioch_bishop": {
       "fullname": "S. Ignatii Antiocheni, episcopi et martyris"
     },
-    {
-      "id": "ignatius_of_loyola_priest",
+    "ignatius_of_loyola_priest": {
       "fullname": "S. Ignatii de Loyola, presbyteri"
     },
-    {
-      "id": "ildephonsus_of_toledo_bishop",
+    "ildephonsus_of_toledo_bishop": {
       "fullname": "S. Ildephonsi Toletani, episcopi"
     },
-    {
-      "id": "illtud_the_knight_abbot",
+    "illtud_the_knight_abbot": {
       "fullname": "S. Hilduti, abbatis"
     },
-    {
-      "id": "immaculate_conception_of_the_blessed_virgin_mary",
+    "immaculate_conception_of_the_blessed_virgin_mary": {
       "fullname": "In Conceptione Immaculata Beatæ Mariæ Virginis"
     },
-    {
-      "id": "immaculate_conception_of_the_blessed_virgin_mary_patroness_of_the_philippines",
+    "immaculate_conception_of_the_blessed_virgin_mary_patroness_of_the_philippines": {
       "fullname": "In Conceptione Immaculata Beatæ Mariæ Virginis, Patronæ Insularum Philippinarum"
     },
-    {
-      "id": "immaculate_conception_of_the_blessed_virgin_mary_patroness_of_the_usa",
+    "immaculate_conception_of_the_blessed_virgin_mary_patroness_of_the_usa": {
       "fullname": "In Conceptione Immaculata Beatæ Mariæ Virginis, Patronæ Civitatum Fœderatæ Americæ"
     },
-    {
-      "id": "immaculate_heart_of_mary",
+    "immaculate_heart_of_mary": {
       "fullname": "Immaculati Cordis B. Mariæ Virginis"
     },
-    {
-      "id": "innocent_v_pope",
+    "innocent_v_pope": {
       "fullname": "B. Innocentii V, papæ"
     },
-    {
-      "id": "innocent_xi_pope",
+    "innocent_xi_pope": {
       "fullname": "B. Innocentii XI, papæ"
     },
-    {
-      "id": "irenaeus_of_lyon_bishop",
+    "irenaeus_of_lyon_bishop": {
       "fullname": "S. Irenæi, episcopi, martyris et Ecclesiæ doctoris"
     },
-    {
-      "id": "irene_of_macedonia",
+    "irene_of_macedonia": {
       "fullname": "S. Irenæ"
     },
-    {
-      "id": "irish_martyrs",
+    "irish_martyrs": {
       "fullname": "Bb. Martyrum Hiberniæ"
     },
-    {
-      "id": "isabelle_of_france_virgin",
+    "isabelle_of_france_virgin": {
       "fullname": "B. Isabellæ Galliæ, virginis"
     },
-    {
-      "id": "isidore_of_seville_bishop",
+    "isidore_of_seville_bishop": {
       "fullname": "S. Isidori, episcopi et Ecclesiæ doctoris"
     },
-    {
-      "id": "isidore_the_farmer",
+    "isidore_the_farmer": {
       "fullname": "S. Isidori Agricolæ"
     },
-    {
-      "id": "istvan_sandor_religious",
+    "istvan_sandor_religious": {
       "fullname": "B. Stephani Sándor, martyris"
     },
-    {
-      "id": "ita_of_killeedy_virgin",
+    "ita_of_killeedy_virgin": {
       "fullname": "S. Itæ, virginis"
     },
-    {
-      "id": "ivan_merz",
+    "ivan_merz": {
       "fullname": "B. Ivani Merz"
     },
-    {
-      "id": "ivo_of_kermartin_priest",
+    "ivo_of_kermartin_priest": {
       "fullname": "S. Ivonis, presbyteri"
     }
-  ]
+  }
 }

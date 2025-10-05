@@ -1,326 +1,246 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "de",
-  "entities": [
-    {
-      "id": "adalbert_of_prague_bishop",
+  "entities": {
+    "adalbert_of_prague_bishop": {
       "fullname": "Hl. Adalbert, Bischof und Märtyrer"
     },
-    {
-      "id": "adalbert_of_prague_bishop_patron_of_poland",
+    "adalbert_of_prague_bishop_patron_of_poland": {
       "fullname": "Hl. Adalbert, Bischof und Märtyrer, Schutzpatron Polens"
     },
-    {
-      "id": "adelaide_of_burgundy_empress",
+    "adelaide_of_burgundy_empress": {
       "fullname": "Hl. Adelheid von Burgund, Kaiserin"
     },
-    {
-      "id": "adelphus_of_metz_bishop",
+    "adelphus_of_metz_bishop": {
       "fullname": "Hl. Adelphus, Bischof"
     },
-    {
-      "id": "adolph_kolping_priest",
+    "adolph_kolping_priest": {
       "fullname": "Sel. Adolph Kolping, Priester"
     },
-    {
-      "id": "aelred_of_rievaulx_abbot",
+    "aelred_of_rievaulx_abbot": {
       "fullname": "Hl. Aelred von Rievaulx, Abt"
     },
-    {
-      "id": "aengus_of_tallaght_bishop",
+    "aengus_of_tallaght_bishop": {
       "fullname": "Hl. Aengus, Bischof und Abt"
     },
-    {
-      "id": "agatha_of_sicily_virgin",
+    "agatha_of_sicily_virgin": {
       "fullname": "Hl. Agatha, Jungfrau und Märtyrerin"
     },
-    {
-      "id": "agnes_cao_guiying_martyr",
+    "agnes_cao_guiying_martyr": {
       "fullname": "Hl. Agnes Cao Guiying, Märtyrerin"
     },
-    {
-      "id": "agnes_of_bohemia_virgin",
+    "agnes_of_bohemia_virgin": {
       "fullname": "Hl. Agnes von Böhmen, Jungfrau"
     },
-    {
-      "id": "agnes_of_rome_virgin",
+    "agnes_of_rome_virgin": {
       "fullname": "Hl. Agnes, Jungfrau und Märtyrerin"
     },
-    {
-      "id": "aidan_of_ferns_bishop",
+    "aidan_of_ferns_bishop": {
       "fullname": "Hl. Aidan, Bischof"
     },
-    {
-      "id": "aidan_of_lindisfarne_bishop",
+    "aidan_of_lindisfarne_bishop": {
       "fullname": "Hl. Aidan von Lindisfarne, Bischof und Missionar"
     },
-    {
-      "id": "aidan_of_lindisfarne_bishop_and_the_saints_of_lindisfarne",
+    "aidan_of_lindisfarne_bishop_and_the_saints_of_lindisfarne": {
       "fullname": "Hl. Aidan, Bischof, und die Heiligen von Lindisfarne"
     },
-    {
-      "id": "ailbe_of_emly_bishop",
+    "ailbe_of_emly_bishop": {
       "fullname": "Hl. Ailbe, Bischof"
     },
-    {
-      "id": "alban_of_britain_julius_of_caerleon_aaron_of_caerleon_martyrs",
+    "alban_of_britain_julius_of_caerleon_aaron_of_caerleon_martyrs": {
       "fullname": "Hl. Alban, Julius und Aaron, Märtyrer"
     },
-    {
-      "id": "alban_of_britain_martyr",
+    "alban_of_britain_martyr": {
       "fullname": "Hl. Alban, Märtyrer"
     },
-    {
-      "id": "alberic_crescitelli_priest",
+    "alberic_crescitelli_priest": {
       "fullname": "Hl. Alberich Crescitelli, Priester und Märtyrer"
     },
-    {
-      "id": "albert_chmielowski_religious",
+    "albert_chmielowski_religious": {
       "fullname": "Hl. Albert Chmielowski, Ordensmann"
     },
-    {
-      "id": "albert_the_great_bishop",
+    "albert_the_great_bishop": {
       "fullname": "Hl. Albert der Große, Bischof und Kirchenlehrer"
     },
-    {
-      "id": "albertina_berkenbrock_virgin",
+    "albertina_berkenbrock_virgin": {
       "fullname": "Sel. Albertina Berkenbrock, Jungfrau und Märtyrerin"
     },
-    {
-      "id": "alberto_hurtado_priest",
+    "alberto_hurtado_priest": {
       "fullname": "Hl. Alberto Hurtado, Priester"
     },
-    {
-      "id": "all_holy_bishops_of_the_archdiocese_of_lyon",
+    "all_holy_bishops_of_the_archdiocese_of_lyon": {
       "fullname": "Alle heiligen Bischöfe der Erzdiözese Lyon"
     },
-    {
-      "id": "all_saints",
+    "all_saints": {
       "fullname": "Allerheiligen"
     },
-    {
-      "id": "all_saints_of_ireland",
+    "all_saints_of_ireland": {
       "fullname": "Alle Heiligen von Irland"
     },
-    {
-      "id": "all_saints_of_the_archdiocese_of_lyon",
+    "all_saints_of_the_archdiocese_of_lyon": {
       "fullname": "Alle Heiligen der Erzdiözese Lyon"
     },
-    {
-      "id": "all_saints_of_the_archdiocese_of_paris",
+    "all_saints_of_the_archdiocese_of_paris": {
       "fullname": "Alle Heiligen der Erzdiözese Paris"
     },
-    {
-      "id": "all_saints_of_the_diocese_of_saint_denis",
+    "all_saints_of_the_diocese_of_saint_denis": {
       "fullname": "Alle Heiligen der Diözese Saint-Denis"
     },
-    {
-      "id": "all_saints_of_wales",
+    "all_saints_of_wales": {
       "fullname": "Alle Heiligen von Wales"
     },
-    {
-      "id": "aloysius_gonzaga_religious",
+    "aloysius_gonzaga_religious": {
       "fullname": "Hl. Aloisius Gonzaga, Ordensmann"
     },
-    {
-      "id": "aloysius_stepinac_bishop",
+    "aloysius_stepinac_bishop": {
       "fullname": "Sel. Aloysius Stepinac, Bischof und Märtyrer"
     },
-    {
-      "id": "aloysius_versiglia_bishop_and_callistus_caravario_priest_martyrs",
+    "aloysius_versiglia_bishop_and_callistus_caravario_priest_martyrs": {
       "fullname": "Hl. Aloisius Versiglia, Bischof, und Callistus Caravario, Priester, Märtyrer"
     },
-    {
-      "id": "alphonsa_of_the_immaculate_conception_muttathupadathu_virgin",
+    "alphonsa_of_the_immaculate_conception_muttathupadathu_virgin": {
       "fullname": "Hl. Alphonsa von der Unbefleckten Empfängnis Muttathupadathu, Jungfrau"
     },
-    {
-      "id": "alphonsus_mary_liguori_bishop",
+    "alphonsus_mary_liguori_bishop": {
       "fullname": "Hl. Alfons Maria von Liguori, Bischof und Kirchenlehrer"
     },
-    {
-      "id": "amand_of_maastricht_bishop",
+    "amand_of_maastricht_bishop": {
       "fullname": "Hl. Amand, Bischof"
     },
-    {
-      "id": "amandus_of_strasbourg_bishop",
+    "amandus_of_strasbourg_bishop": {
       "fullname": "Hl. Amandus von Straßburg, Bischof"
     },
-    {
-      "id": "amarin_of_alsace_abbot",
+    "amarin_of_alsace_abbot": {
       "fullname": "Hl. Amarin, Abt und Märtyrer"
     },
-    {
-      "id": "ambrose_of_milan_bishop",
+    "ambrose_of_milan_bishop": {
       "fullname": "Hl. Ambrosius, Bischof und Kirchenlehrer"
     },
-    {
-      "id": "andre_bessette_religious",
+    "andre_bessette_religious": {
       "fullname": "Hl. André Bessette, Ordensmann"
     },
-    {
-      "id": "andre_grasset_priest",
+    "andre_grasset_priest": {
       "fullname": "Sel. André Grasset, Priester und Märtyrer"
     },
-    {
-      "id": "andrew_apostle",
+    "andrew_apostle": {
       "fullname": "Hl. Andreas, Apostel"
     },
-    {
-      "id": "andrew_apostle_patron_of_russia",
+    "andrew_apostle_patron_of_russia": {
       "fullname": "Hl. Andreas, Apostel, Schutzpatron Russlands"
     },
-    {
-      "id": "andrew_apostle_patron_of_scotland",
+    "andrew_apostle_patron_of_scotland": {
       "fullname": "Hl. Andreas, Apostel, Schutzpatron Schottlands"
     },
-    {
-      "id": "andrew_bobola_priest",
+    "andrew_bobola_priest": {
       "fullname": "Hl. Andreas Bobola, Priester und Märtyrer"
     },
-    {
-      "id": "andrew_de_soveral_and_ambrose_francis_ferro_priests",
+    "andrew_de_soveral_and_ambrose_francis_ferro_priests": {
       "fullname": "Hl. Andreas de Soveral und Ambrosius Franz Ferro, Priester und Märtyrer"
     },
-    {
-      "id": "andrew_dung_lac_priest_and_companions_martyrs",
+    "andrew_dung_lac_priest_and_companions_martyrs": {
       "fullname": "Hl. Andreas Dung-Lac, Priester, und Gefährten, Märtyrer"
     },
-    {
-      "id": "andrew_kim_tae_gon_priest_paul_chong_ha_sang_and_companions_martyrs",
+    "andrew_kim_tae_gon_priest_paul_chong_ha_sang_and_companions_martyrs": {
       "fullname": "Hl. Andreas Kim Tae-gŏn, Priester, Paul Chŏng Ha-sang und Gefährten, Märtyrer"
     },
-    {
-      "id": "andrew_zorard_of_nitra_and_benedict_of_skalka_hermits",
+    "andrew_zorard_of_nitra_and_benedict_of_skalka_hermits": {
       "fullname": "Hl. Andreas Zorard und Benedikt, Einsiedler"
     },
-    {
-      "id": "angela_merici_virgin",
+    "angela_merici_virgin": {
       "fullname": "Hl. Angela Merici, Jungfrau"
     },
-    {
-      "id": "angela_salawa_virgin",
+    "angela_salawa_virgin": {
       "fullname": "Sel. Angela Salawa, Jungfrau"
     },
-    {
-      "id": "annemund_of_lyon_bishop",
+    "annemund_of_lyon_bishop": {
       "fullname": "Hl. Annemund, Bischof und Märtyrer"
     },
-    {
-      "id": "anno_of_cologne_bishop",
+    "anno_of_cologne_bishop": {
       "fullname": "Hl. Anno von Köln, Bischof"
     },
-    {
-      "id": "annunciation_of_the_lord",
+    "annunciation_of_the_lord": {
       "fullname": "Die Verkündigung des Herrn"
     },
-    {
-      "id": "anselm_of_canterbury_bishop",
+    "anselm_of_canterbury_bishop": {
       "fullname": "Hl. Anselm, Bischof und Kirchenlehrer"
     },
-    {
-      "id": "ansgar_of_hamburg_bishop",
+    "ansgar_of_hamburg_bishop": {
       "fullname": "Hl. Ansgar, Bischof"
     },
-    {
-      "id": "anthony_chevrier_priest",
+    "anthony_chevrier_priest": {
       "fullname": "Sel. Antonius Chevrier, Priester"
     },
-    {
-      "id": "anthony_julian_nowowiejski_bishop_and_companions_martyrs",
+    "anthony_julian_nowowiejski_bishop_and_companions_martyrs": {
       "fullname": "Sel. Antonius Julian Nowowiejski, Bischof, und Gefährten, Märtyrer"
     },
-    {
-      "id": "anthony_mary_claret_bishop",
+    "anthony_mary_claret_bishop": {
       "fullname": "Hl. Antonius Maria Claret, Bischof"
     },
-    {
-      "id": "anthony_of_egypt_abbot",
+    "anthony_of_egypt_abbot": {
       "fullname": "Hl. Antonius, Abt"
     },
-    {
-      "id": "anthony_of_padua_priest",
+    "anthony_of_padua_priest": {
       "fullname": "Hl. Antonius von Padua, Priester und Kirchenlehrer"
     },
-    {
-      "id": "anthony_of_saint_anne_galvao_priest",
+    "anthony_of_saint_anne_galvao_priest": {
       "fullname": "Hl. Antonius von St. Anna Galvão, Priester"
     },
-    {
-      "id": "anthony_of_the_caves_monk",
+    "anthony_of_the_caves_monk": {
       "fullname": "Hl. Antonius von den Höhlen, Mönch"
     },
-    {
-      "id": "anthony_zaccaria_priest",
+    "anthony_zaccaria_priest": {
       "fullname": "Hl. Antonius Maria Zaccaria, Priester"
     },
-    {
-      "id": "apollinaris_of_ravenna_bishop",
+    "apollinaris_of_ravenna_bishop": {
       "fullname": "Hl. Apollinaris, Bischof und Märtyrer"
     },
-    {
-      "id": "arbogast_of_strasbourg_bishop",
+    "arbogast_of_strasbourg_bishop": {
       "fullname": "Hl. Arbogast, Bischof"
     },
-    {
-      "id": "arbogast_of_strasbourg_bishop_patron_of_the_archdiocese_of_strasbourg",
+    "arbogast_of_strasbourg_bishop_patron_of_the_archdiocese_of_strasbourg": {
       "fullname": "Hl. Arbogast, Bischof, Schutzpatron der Erzdiözese Straßburg"
     },
-    {
-      "id": "asaph_of_wales_bishop",
+    "asaph_of_wales_bishop": {
       "fullname": "Hl. Asaph, Bischof"
     },
-    {
-      "id": "ascension_of_the_lord",
+    "ascension_of_the_lord": {
       "fullname": "Christi Himmelfahrt"
     },
-    {
-      "id": "ash_wednesday",
+    "ash_wednesday": {
       "fullname": "Aschermittwoch"
     },
-    {
-      "id": "asicus_of_elphin_bishop",
+    "asicus_of_elphin_bishop": {
       "fullname": "Hl. Asicus, Bischof"
     },
-    {
-      "id": "assumption_of_the_blessed_virgin_mary",
+    "assumption_of_the_blessed_virgin_mary": {
       "fullname": "Mariä Aufnahme in den Himmel"
     },
-    {
-      "id": "athanasius_of_alexandria_bishop",
+    "athanasius_of_alexandria_bishop": {
       "fullname": "Hl. Athanasius, Bischof und Kirchenlehrer"
     },
-    {
-      "id": "attracta_of_killaraght_virgin",
+    "attracta_of_killaraght_virgin": {
       "fullname": "Hl. Attracta, Jungfrau"
     },
-    {
-      "id": "audoen_of_rouen_bishop",
+    "audoen_of_rouen_bishop": {
       "fullname": "Hl. Audoen, Bischof"
     },
-    {
-      "id": "augustine_kazotic_bishop",
+    "augustine_kazotic_bishop": {
       "fullname": "Sel. Augustinus Kažotić, Bischof und Märtyrer"
     },
-    {
-      "id": "augustine_of_canterbury_bishop",
+    "augustine_of_canterbury_bishop": {
       "fullname": "Hl. Augustinus von Canterbury, Bischof"
     },
-    {
-      "id": "augustine_of_hippo_bishop",
+    "augustine_of_hippo_bishop": {
       "fullname": "Hl. Augustinus, Bischof und Kirchenlehrer"
     },
-    {
-      "id": "augustine_zhao_rong_priest",
+    "augustine_zhao_rong_priest": {
       "fullname": "Hl. Augustinus Zhao Rong, Priester und Märtyrer"
     },
-    {
-      "id": "augustine_zhao_rong_priest_and_companions_martyrs",
+    "augustine_zhao_rong_priest_and_companions_martyrs": {
       "fullname": "Hl. Augustinus Zhao Rong, Priester, und Gefährten, Märtyrer"
     },
-    {
-      "id": "aurelia_of_strasbourg_virgin",
+    "aurelia_of_strasbourg_virgin": {
       "fullname": "Hl. Aurelia von Straßburg, Jungfrau"
     }
-  ]
+  }
 }

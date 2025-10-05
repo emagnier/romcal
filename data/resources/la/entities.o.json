@@ -1,214 +1,162 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "la",
-  "entities": [
-    {
-      "id": "odile_of_alsace_abbess",
+  "entities": {
+    "odile_of_alsace_abbess": {
       "fullname": "S. Odiliæ, abatissæ"
     },
-    {
-      "id": "odile_of_alsace_abbess_patroness_of_alsace",
+    "odile_of_alsace_abbess_patroness_of_alsace": {
       "fullname": "S. Odiliæ, abatissæ, patronæ Alsatiæ"
     },
-    {
-      "id": "odoric_of_pordenone_priest",
+    "odoric_of_pordenone_priest": {
       "fullname": "B. Odorici de Portu Naonis, presbyteri"
     },
-    {
-      "id": "olaf_ii_of_norway_martyr",
+    "olaf_ii_of_norway_martyr": {
       "fullname": "S. Olavi, martyris"
     },
-    {
-      "id": "oleksiy_zarytskyi_priest",
+    "oleksiy_zarytskyi_priest": {
       "fullname": "B. Alexii Zaryckyj, presbyteri et martyri"
     },
-    {
-      "id": "olga_of_kiev",
+    "olga_of_kiev": {
       "fullname": "S. Olgæ Kioviensis"
     },
-    {
-      "id": "oliver_plunket_bishop",
+    "oliver_plunket_bishop": {
       "fullname": "S. Oliverii Plunket, episcopi et martyris"
     },
-    {
-      "id": "otteran_of_iona_monk",
+    "otteran_of_iona_monk": {
       "fullname": "S. Otterani, monachi"
     },
-    {
-      "id": "otto_of_bamberg_bishop",
+    "otto_of_bamberg_bishop": {
       "fullname": "S. Ottonis Bambergensis, episcopi"
     },
-    {
-      "id": "our_lady_help_of_christians",
+    "our_lady_help_of_christians": {
       "fullname": "B. Mariæ Virginis Auxilium Christianorum"
     },
-    {
-      "id": "our_lady_mediatrix_of_all_grace",
+    "our_lady_mediatrix_of_all_grace": {
       "fullname": "B. Mariæ Virginis Omnium Gratiarum Mediatricis"
     },
-    {
-      "id": "our_lady_mother_of_christian_unity",
+    "our_lady_mother_of_christian_unity": {
       "fullname": "B. Mariæ Virginis Unitatis Christianorum Matris"
     },
-    {
-      "id": "our_lady_mother_of_divine_providence_patroness_of_puerto_rico",
+    "our_lady_mother_of_divine_providence_patroness_of_puerto_rico": {
       "fullname": "B. Mariæ Virginis Divinæ Providentiæ Matris atque Patronæ Portus Divitis"
     },
-    {
-      "id": "our_lady_of_aparecida_patroness_of_brazil",
+    "our_lady_of_aparecida_patroness_of_brazil": {
       "fullname": "B. Mariæ Virginis de Aparecida, Patronæ Brasiliæ"
     },
-    {
-      "id": "our_lady_of_bethlehem",
+    "our_lady_of_bethlehem": {
       "fullname": "B. Mariæ Virginis de Bethlehem"
     },
-    {
-      "id": "our_lady_of_china",
+    "our_lady_of_china": {
       "fullname": "B. Mariæ Virginis Sinæ"
     },
-    {
-      "id": "our_lady_of_czestochowa",
+    "our_lady_of_czestochowa": {
       "fullname": "B. Mariæ Virginis de Częstochowa"
     },
-    {
-      "id": "our_lady_of_fatima",
+    "our_lady_of_fatima": {
       "fullname": "B. Mariæ Virginis de Fatima"
     },
-    {
-      "id": "our_lady_of_good_counsel",
+    "our_lady_of_good_counsel": {
       "fullname": "B. Mariæ Virginis boni Consilii Matris"
     },
-    {
-      "id": "our_lady_of_guadalupe",
+    "our_lady_of_guadalupe": {
       "fullname": "B. Mariæ Virginis de Guadalupe"
     },
-    {
-      "id": "our_lady_of_guadalupe_patroness_of_the_americas",
+    "our_lady_of_guadalupe_patroness_of_the_americas": {
       "fullname": "B. Mariæ Virginis de Guadalupe, Patronæ Americæ"
     },
-    {
-      "id": "our_lady_of_guadalupe_patroness_of_the_philippines",
+    "our_lady_of_guadalupe_patroness_of_the_philippines": {
       "fullname": "Beatæ Mariæ Virginis de Guadalupe, Patronæ Insularum Philippinarum"
     },
-    {
-      "id": "our_lady_of_hungary_patroness_of_hungary",
+    "our_lady_of_hungary_patroness_of_hungary": {
       "fullname": "B. Mariæ Virginis, Patronæ Hungariæ"
     },
-    {
-      "id": "our_lady_of_itati",
+    "our_lady_of_itati": {
       "fullname": "B. Mariæ Virginis de Itati"
     },
-    {
-      "id": "our_lady_of_knock",
+    "our_lady_of_knock": {
       "fullname": "B. Mariæ Virginis de Knock"
     },
-    {
-      "id": "our_lady_of_lanka",
+    "our_lady_of_lanka": {
       "fullname": "B. Mariæ Virginis de Lanka"
     },
-    {
-      "id": "our_lady_of_lebanon",
+    "our_lady_of_lebanon": {
       "fullname": "B. Mariæ Virginis de Libano"
     },
-    {
-      "id": "our_lady_of_loreto",
+    "our_lady_of_loreto": {
       "fullname": "B. Mariæ Virginis de Loreto"
     },
-    {
-      "id": "our_lady_of_lourdes",
+    "our_lady_of_lourdes": {
       "fullname": "B. Mariæ Virginis de Lourdes"
     },
-    {
-      "id": "our_lady_of_lujan_patroness_of_argentina",
+    "our_lady_of_lujan_patroness_of_argentina": {
       "fullname": "B. Mariæ Virginis de Luján, Patronæ Argentinæ"
     },
-    {
-      "id": "our_lady_of_madhu",
+    "our_lady_of_madhu": {
       "fullname": "B. Mariæ Virginis de Madhu"
     },
-    {
-      "id": "our_lady_of_marija_bistrica",
+    "our_lady_of_marija_bistrica": {
       "fullname": "B. Mariæ Virginis de Marija Bistrica"
     },
-    {
-      "id": "our_lady_of_mercy",
+    "our_lady_of_mercy": {
       "fullname": "B. Mariæ Virginis a Misericordia"
     },
-    {
-      "id": "our_lady_of_mount_carmel",
+    "our_lady_of_mount_carmel": {
       "fullname": "B. Mariæ Virginis de Monte Carmelo"
     },
-    {
-      "id": "our_lady_of_mount_carmel_mother_and_queen_of_chile",
+    "our_lady_of_mount_carmel_mother_and_queen_of_chile": {
       "fullname": "B. Mariæ Virginis de Monte Carmelo, Chiliæ Matris atque Reginæ"
     },
-    {
-      "id": "our_lady_of_perpetual_help",
+    "our_lady_of_perpetual_help": {
       "fullname": "B. Mariæ Virginis perpetuæ Auxilium"
     },
-    {
-      "id": "our_lady_of_sorrows",
+    "our_lady_of_sorrows": {
       "fullname": "B. Mariæ Virginis Perdolentis"
     },
-    {
-      "id": "our_lady_of_sorrows_patroness_of_slovakia",
+    "our_lady_of_sorrows_patroness_of_slovakia": {
       "fullname": "B. Mariæ Virginis Perdolentis, Patronæ Slovaciæ"
     },
-    {
-      "id": "our_lady_of_the_discovery_of_the_hidden_christians",
+    "our_lady_of_the_discovery_of_the_hidden_christians": {
       "fullname": "B. Mariæ Virginis a Inventione occultorum Christianorum"
     },
-    {
-      "id": "our_lady_of_the_gate_of_dawn",
+    "our_lady_of_the_gate_of_dawn": {
       "fullname": "B. Mariæ Virginis Portæ Auroræ"
     },
-    {
-      "id": "our_lady_of_the_miraculous_medal",
+    "our_lady_of_the_miraculous_medal": {
       "fullname": "B. Mariæ Virginis a Numisma Mirabile"
     },
-    {
-      "id": "our_lady_of_the_pillar",
+    "our_lady_of_the_pillar": {
       "fullname": "B. Mariæ Virginis a Columna"
     },
-    {
-      "id": "our_lady_of_the_rosary",
+    "our_lady_of_the_rosary": {
       "fullname": "B. Mariæ Virginis a Rosario"
     },
-    {
-      "id": "our_lady_of_the_valley",
+    "our_lady_of_the_valley": {
       "fullname": "B. Mariæ Virginis de Valle"
     },
-    {
-      "id": "our_lady_of_vladimir",
+    "our_lady_of_vladimir": {
       "fullname": "B. Mariæ Virginis Volodimiriensis"
     },
-    {
-      "id": "our_lady_of_walsingham",
+    "our_lady_of_walsingham": {
       "fullname": "B. Mariæ Virginis de Walsingham"
     },
-    {
-      "id": "our_lady_queen_of_peace",
+    "our_lady_queen_of_peace": {
       "fullname": "B. Mariæ Virginis Reginæ Pacis"
     },
-    {
-      "id": "our_lady_queen_of_poland",
+    "our_lady_queen_of_poland": {
       "fullname": "B Mariæ Virginis Reginæ Poloniæ"
     },
-    {
-      "id": "our_lady_refuge_of_sinners",
+    "our_lady_refuge_of_sinners": {
       "fullname": "B. Mariæ Virginis Refugii peccatorum"
     },
-    {
-      "id": "our_lord_jesus_christ_king_of_the_universe",
+    "our_lord_jesus_christ_king_of_the_universe": {
       "fullname": "D. N. I. C. universorum regis"
     },
-    {
-      "id": "our_lord_jesus_christ_the_eternal_high_priest",
+    "our_lord_jesus_christ_the_eternal_high_priest": {
       "fullname": "Domini nostri Iesu Christi, Summi et Æterni Sacerdotis"
     },
-    {
-      "id": "our_lord_of_miracles",
+    "our_lord_of_miracles": {
       "fullname": "Domini Miraculorum"
     }
-  ]
+  }
 }

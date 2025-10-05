@@ -1,198 +1,150 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "pl",
-  "entities": [
-    {
-      "id": "adalbert_of_prague_bishop",
+  "entities": {
+    "adalbert_of_prague_bishop": {
       "fullname": "Św. Wojciecha, biskupa i męczennika"
     },
-    {
-      "id": "adalbert_of_prague_bishop_patron_of_poland",
+    "adalbert_of_prague_bishop_patron_of_poland": {
       "fullname": "Św. Wojciecha, biskupa i męczennika, głównego patrona Polski"
     },
-    {
-      "id": "adelaide_of_burgundy_empress",
+    "adelaide_of_burgundy_empress": {
       "fullname": "Św. Adelajdy Burgundzkiej, cesarzowej"
     },
-    {
-      "id": "adelphus_of_metz_bishop",
+    "adelphus_of_metz_bishop": {
       "fullname": "Św. Adelfa z Metz, biskupa"
     },
-    {
-      "id": "agatha_of_sicily_virgin",
+    "agatha_of_sicily_virgin": {
       "fullname": "Św. Agaty, dziewicy i męczennicy"
     },
-    {
-      "id": "agnes_cao_guiying_martyr",
+    "agnes_cao_guiying_martyr": {
       "fullname": "Św. Agnieszki Cao Guiying, męczennicy"
     },
-    {
-      "id": "agnes_of_rome_virgin",
+    "agnes_of_rome_virgin": {
       "fullname": "Św. Agnieszki, dziewicy i męczennicy"
     },
-    {
-      "id": "alberic_crescitelli_priest",
+    "alberic_crescitelli_priest": {
       "fullname": "Św. Alberyka Crescitellego, prezbitera i męczennika"
     },
-    {
-      "id": "albert_chmielowski_religious",
+    "albert_chmielowski_religious": {
       "fullname": "Św. Brata Alberta Chmielowskiego, zakonnika"
     },
-    {
-      "id": "albert_the_great_bishop",
+    "albert_the_great_bishop": {
       "fullname": "Św. Alberta Wielkiego, biskupa i doktora Kościoła"
     },
-    {
-      "id": "all_saints",
+    "all_saints": {
       "fullname": "Wszystkich Świętych"
     },
-    {
-      "id": "all_saints_of_the_archdiocese_of_paris",
+    "all_saints_of_the_archdiocese_of_paris": {
       "fullname": "Wszystkich Świętych archidiecezji paryskiej"
     },
-    {
-      "id": "all_saints_of_the_diocese_of_saint_denis",
+    "all_saints_of_the_diocese_of_saint_denis": {
       "fullname": "Wszystkich Świętych diecezji Saint-Denis"
     },
-    {
-      "id": "aloysius_gonzaga_religious",
+    "aloysius_gonzaga_religious": {
       "fullname": "Św. Alojzego Gonzagi, zakonnika"
     },
-    {
-      "id": "aloysius_versiglia_bishop_and_callistus_caravario_priest_martyrs",
+    "aloysius_versiglia_bishop_and_callistus_caravario_priest_martyrs": {
       "fullname": "Świętych Alojzego Versiglii, biskupa i Kaliksta Caravaria, prezbitera"
     },
-    {
-      "id": "alphonsus_mary_liguori_bishop",
+    "alphonsus_mary_liguori_bishop": {
       "fullname": "Św. Alfonsa Marii Liguoriego, biskupa i doktora Kościoła"
     },
-    {
-      "id": "amandus_of_strasbourg_bishop",
+    "amandus_of_strasbourg_bishop": {
       "fullname": "Św. Amanda ze Strasburga, biskupa"
     },
-    {
-      "id": "amarin_of_alsace_abbot",
+    "amarin_of_alsace_abbot": {
       "fullname": "Św. Amarina, opata i męczennika"
     },
-    {
-      "id": "ambrose_of_milan_bishop",
+    "ambrose_of_milan_bishop": {
       "fullname": "Św. Ambrożego, biskupa i doktora Kościoła"
     },
-    {
-      "id": "andrew_apostle",
+    "andrew_apostle": {
       "fullname": "Św. Andrzeja, Apostoła"
     },
-    {
-      "id": "andrew_apostle_patron_of_scotland",
+    "andrew_apostle_patron_of_scotland": {
       "fullname": "Św. Andrzeja, Apostoła, patrona Szkocji"
     },
-    {
-      "id": "andrew_bobola_priest",
+    "andrew_bobola_priest": {
       "fullname": "Św. Andrzeja Boboli, prezbitera i męczennika, patrona Polski"
     },
-    {
-      "id": "andrew_dung_lac_priest_and_companions_martyrs",
+    "andrew_dung_lac_priest_and_companions_martyrs": {
       "fullname": "Świętych męczenników Andrzeja Dung-Lac, prezbitera, i Towarzyszy"
     },
-    {
-      "id": "andrew_kim_tae_gon_priest_paul_chong_ha_sang_and_companions_martyrs",
+    "andrew_kim_tae_gon_priest_paul_chong_ha_sang_and_companions_martyrs": {
       "fullname": "Świętych męczenników Andrzeja Kim Taegon, prezbitera, Pawła Chong Hasang i Towarzyszy"
     },
-    {
-      "id": "andrew_zorard_of_nitra_and_benedict_of_skalka_hermits",
+    "andrew_zorard_of_nitra_and_benedict_of_skalka_hermits": {
       "fullname": "Świętych pustelników Andrzeja Świerada i Benedykta"
     },
-    {
-      "id": "angela_merici_virgin",
+    "angela_merici_virgin": {
       "fullname": "Św. Anieli Merici, dziewicy"
     },
-    {
-      "id": "angela_salawa_virgin",
+    "angela_salawa_virgin": {
       "fullname": "Bł. Anieli Salawy, dziewicy"
     },
-    {
-      "id": "annunciation_of_the_lord",
+    "annunciation_of_the_lord": {
       "fullname": "Zwiastowanie Pańskie"
     },
-    {
-      "id": "anselm_of_canterbury_bishop",
+    "anselm_of_canterbury_bishop": {
       "fullname": "Św. Anzelma, biskupa i doktora Kościoła"
     },
-    {
-      "id": "ansgar_of_hamburg_bishop",
+    "ansgar_of_hamburg_bishop": {
       "fullname": "Św. Oskara, biskupa"
     },
-    {
-      "id": "anthony_julian_nowowiejski_bishop_and_companions_martyrs",
+    "anthony_julian_nowowiejski_bishop_and_companions_martyrs": {
       "fullname": "Błogosławionych męczenników Antoniego Juliana Nowowiejskiego, biskupa, i Towarzyszy"
     },
-    {
-      "id": "anthony_mary_claret_bishop",
+    "anthony_mary_claret_bishop": {
       "fullname": "Św. Antoniego Marii Clareta, biskupa"
     },
-    {
-      "id": "anthony_of_egypt_abbot",
+    "anthony_of_egypt_abbot": {
       "fullname": "Św. Antoniego, opata"
     },
-    {
-      "id": "anthony_of_padua_priest",
+    "anthony_of_padua_priest": {
       "fullname": "Św. Antoniego z Padwy, prezbitera i doktora Kościoła"
     },
-    {
-      "id": "anthony_zaccaria_priest",
+    "anthony_zaccaria_priest": {
       "fullname": "Św. Antoniego Marii Zaccarii, prezbitera"
     },
-    {
-      "id": "apollinaris_of_ravenna_bishop",
+    "apollinaris_of_ravenna_bishop": {
       "fullname": "Św. Apolinarego, biskupa i męczennika"
     },
-    {
-      "id": "arbogast_of_strasbourg_bishop",
+    "arbogast_of_strasbourg_bishop": {
       "fullname": "Św. Arbogasta, biskupa"
     },
-    {
-      "id": "arbogast_of_strasbourg_bishop_patron_of_the_archdiocese_of_strasbourg",
+    "arbogast_of_strasbourg_bishop_patron_of_the_archdiocese_of_strasbourg": {
       "fullname": "Św. Arbogasta, biskupa i patrona archidiecezji Strasburskiej"
     },
-    {
-      "id": "ascension_of_the_lord",
+    "ascension_of_the_lord": {
       "fullname": "Wniebowstąpienie Pańskie"
     },
-    {
-      "id": "ash_wednesday",
+    "ash_wednesday": {
       "fullname": "Środa Popielcowa"
     },
-    {
-      "id": "assumption_of_the_blessed_virgin_mary",
+    "assumption_of_the_blessed_virgin_mary": {
       "fullname": "Wniebowzięcie Najświętszej Maryi Panny"
     },
-    {
-      "id": "athanasius_of_alexandria_bishop",
+    "athanasius_of_alexandria_bishop": {
       "fullname": "Św. Atanazego, biskupa i doktora Kościoła"
     },
-    {
-      "id": "audoen_of_rouen_bishop",
+    "audoen_of_rouen_bishop": {
       "fullname": "Św. Audoena, biskupa"
     },
-    {
-      "id": "augustine_of_canterbury_bishop",
+    "augustine_of_canterbury_bishop": {
       "fullname": "Św. Augustyna z Canterbury, biskupa"
     },
-    {
-      "id": "augustine_of_hippo_bishop",
+    "augustine_of_hippo_bishop": {
       "fullname": "Św. Augustyna, biskupa i doktora Kościoła"
     },
-    {
-      "id": "augustine_zhao_rong_priest",
+    "augustine_zhao_rong_priest": {
       "fullname": "Św. Augustyna Zhao Rong, prezbitera i męczennika"
     },
-    {
-      "id": "augustine_zhao_rong_priest_and_companions_martyrs",
+    "augustine_zhao_rong_priest_and_companions_martyrs": {
       "fullname": "Świętych męczenników Augustyna Zhao Rong, prezbitera, i Towarzyszy"
     },
-    {
-      "id": "aurelia_of_strasbourg_virgin",
+    "aurelia_of_strasbourg_virgin": {
       "fullname": "Św. Aurelii ze Strasburga, dziewicy"
     }
-  ]
+  }
 }

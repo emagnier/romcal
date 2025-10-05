@@ -1,142 +1,108 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "ta",
-  "entities": [
-    {
-      "id": "baptism_of_the_lord",
+  "entities": {
+    "baptism_of_the_lord": {
       "fullname": "ஆண்டவரின் திருமுழுக்கு"
     },
-    {
-      "id": "barbara_of_heliopolis_virgin",
+    "barbara_of_heliopolis_virgin": {
       "fullname": "புனித பார்பரா - கன்னி, மறைசாட்சி"
     },
-    {
-      "id": "barnabas_apostle",
+    "barnabas_apostle": {
       "fullname": "புனித பர்னபா - திருத்தூதர்"
     },
-    {
-      "id": "bartholomew_apostle",
+    "bartholomew_apostle": {
       "fullname": "புனித பார்த்தலோமேயு - திருத்தூதர்"
     },
-    {
-      "id": "bartholomew_dias_laurel_religious",
+    "bartholomew_dias_laurel_religious": {
       "fullname": "முத்திப்பேறுபெற்ற பார்த்தலோமேயு டயஸ் லோரல் - துறவி, மறைசாட்சி"
     },
-    {
-      "id": "bartholomew_of_the_martyrs_fernandes_bishop",
+    "bartholomew_of_the_martyrs_fernandes_bishop": {
       "fullname": "மறைசாட்சிகளின் புனித பார்த்தலோமெயு பெர்னாண்டஸ் - ஆயர்"
     },
-    {
-      "id": "basil_the_great_and_gregory_nazianzen_bishops",
+    "basil_the_great_and_gregory_nazianzen_bishops": {
       "fullname": "புனிதர்கள் பெரிய பேசில், நசியான்சு நகர்ப் புனித கிரகோரி ஆயர்கள், மறைவல்லுநர்கள்"
     },
-    {
-      "id": "beatrice_da_silva_meneses_virgin",
+    "beatrice_da_silva_meneses_virgin": {
       "fullname": "புனித பியட்ரிஸ் த சில்வா - கன்னி"
     },
-    {
-      "id": "bede_the_venerable_priest",
+    "bede_the_venerable_priest": {
       "fullname": "வணக்கத்துக்கு உரிய புனித பீடு - அருள்பணியாளர், மறைவல்லுநர்"
     },
-    {
-      "id": "benedict_of_aniane_abbot",
+    "benedict_of_aniane_abbot": {
       "fullname": "அனியனின் புனித பெனடிக்ட், மடாதிபதி"
     },
-    {
-      "id": "benedict_of_jesus_valdivielso_saez_religious",
+    "benedict_of_jesus_valdivielso_saez_religious": {
       "fullname": "இயேசு வல்டிவியெல்சோ சாயெஸின் புனித பெனடிக்ட் - துறவி"
     },
-    {
-      "id": "benedict_of_nursia_abbot",
+    "benedict_of_nursia_abbot": {
       "fullname": "புனித பெனடிக்ட் - மடாதிபதி"
     },
-    {
-      "id": "benedict_of_nursia_abbot_patron_of_europe",
+    "benedict_of_nursia_abbot_patron_of_europe": {
       "fullname": "புனித பெனடிக்ட் - மடாதிபதி, ஐரோப்பாவின் பாதுகாவலர்"
     },
-    {
-      "id": "benno_of_meissen_bishop",
+    "benno_of_meissen_bishop": {
       "fullname": "மைசனின் புனித பெனோ - ஆயர்"
     },
-    {
-      "id": "bernadette_soubirous_virgin",
+    "bernadette_soubirous_virgin": {
       "fullname": "புனித பெர்னடேட் சுபிறியுஸ் - கன்னி"
     },
-    {
-      "id": "bernard_of_clairvaux_abbot",
+    "bernard_of_clairvaux_abbot": {
       "fullname": "புனித பெர்னார்டு - துறவு மடத்துத் தலைவர், மறைவல்லுநர்"
     },
-    {
-      "id": "bernardine_of_siena_priest",
+    "bernardine_of_siena_priest": {
       "fullname": "சியன்னா நகர்ப் புனித பெர்னார்தின் - அருள்பணியாளர்"
     },
-    {
-      "id": "beuno_of_wales_abbot",
+    "beuno_of_wales_abbot": {
       "fullname": "வேல்சின் புனித பியுனோ - மடாதிபதி"
     },
-    {
-      "id": "blaise_of_sebaste_bishop",
+    "blaise_of_sebaste_bishop": {
       "fullname": "புனித ப்ளேஸ் - ஆயர், மறைச்சாட்சி"
     },
-    {
-      "id": "blessed_martyrs_of_paris",
+    "blessed_martyrs_of_paris": {
       "fullname": "பாரிஸ் நகரின் முத்திப்பேறுபெற்ற வேதசாட்சிகள் - மறைச்சாட்சியர்"
     },
-    {
-      "id": "bogumilus_of_dobrow_bishop",
+    "bogumilus_of_dobrow_bishop": {
       "fullname": "முத்திப்பேறுபெற்ற போகுமிலஸ் - ஆயர்"
     },
-    {
-      "id": "boleslawa_mary_lament_virgin",
+    "boleslawa_mary_lament_virgin": {
       "fullname": "முத்திப்பேறுபெற்ற போலெஸ்லவா மரிய லமெண்ட் - கன்னி"
     },
-    {
-      "id": "bonaventure_of_bagnoregio_bishop",
+    "bonaventure_of_bagnoregio_bishop": {
       "fullname": "புனித பொனவென்சர் - ஆயர், மறைவல்லுநர்"
     },
-    {
-      "id": "boniface_of_mainz_bishop",
+    "boniface_of_mainz_bishop": {
       "fullname": "புனித பொனிபஸ் - ஆயர், மறைசாட்சி"
     },
-    {
-      "id": "boris_of_kiev_and_gleb_of_kiev_martyrs",
+    "boris_of_kiev_and_gleb_of_kiev_martyrs": {
       "fullname": "புனித பொறிஸ், புனித க்ளெப் - மறைசாட்சிகள்"
     },
-    {
-      "id": "brendan_of_clonfert_abbot",
+    "brendan_of_clonfert_abbot": {
       "fullname": "புனித பிறெண்டன் - மடாதிபதி"
     },
-    {
-      "id": "bridget_of_sweden_religious",
+    "bridget_of_sweden_religious": {
       "fullname": "புனித பிரிட்ஜிட் - துறவி"
     },
-    {
-      "id": "bridget_of_sweden_religious_copatroness_of_europe",
+    "bridget_of_sweden_religious_copatroness_of_europe": {
       "fullname": "புனித பிரிட்ஜிட் - துறவி, ஐரோப்பாவின் பாதுகாவலி"
     },
-    {
-      "id": "brigid_of_kildare_virgin",
+    "brigid_of_kildare_virgin": {
       "fullname": "புனித பிரிட்ஜிட் - மடாதிபத"
     },
-    {
-      "id": "brigid_of_kildare_virgin_copatroness_of_ireland",
+    "brigid_of_kildare_virgin_copatroness_of_ireland": {
       "fullname": "புனித பிரிட்ஜிட் - கன்னி, அயர்லாந்தின் பாதுகாவலி"
     },
-    {
-      "id": "bronislava_of_poland_virgin",
+    "bronislava_of_poland_virgin": {
       "fullname": "போலந்தின் முத்திப்பேறுபெற்ற ப்றோனிஸ்லாவா - கன்னி"
     },
-    {
-      "id": "bronislaw_markiewicz_priest",
+    "bronislaw_markiewicz_priest": {
       "fullname": "முத்திப்பேறுபெற்ற பறோனிஸ்லோ மார்கவிச் - அருட்பணியாளர்"
     },
-    {
-      "id": "bruno_of_cologne_priest",
+    "bruno_of_cologne_priest": {
       "fullname": "புனித புரூனோ - அருள்பணியாளர்"
     },
-    {
-      "id": "bruno_of_querfurt_bishop",
+    "bruno_of_querfurt_bishop": {
       "fullname": "கியூபோர்டின் புனித புரூனோ - ஆயர், மறைசாட்சி"
     }
-  ]
+  }
 }

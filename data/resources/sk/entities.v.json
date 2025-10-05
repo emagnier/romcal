@@ -1,58 +1,45 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "sk",
-  "entities": [
-    {
-      "id": "valentine_of_raetia_bishop",
+  "entities": {
+    "valentine_of_raetia_bishop": {
       "fullname": "Svätého Valentína z Raetie, biskupa"
     },
-    {
-      "id": "valerius_of_trier_bishop",
+    "valerius_of_trier_bishop": {
       "fullname": "Sv. Valéria, biskupa"
     },
-    {
-      "id": "vincent_de_paul_priest",
+    "vincent_de_paul_priest": {
       "fullname": "Svätého Vincenta de Paul, kňaza"
     },
-    {
-      "id": "vincent_ferrer_priest",
+    "vincent_ferrer_priest": {
       "fullname": "Svätého Vincenta Ferrera, kňaza"
     },
-    {
-      "id": "vincent_kadlubek_bishop",
+    "vincent_kadlubek_bishop": {
       "fullname": "Blahoslaveného Vincenta Kadłubka, biskupa"
     },
-    {
-      "id": "vincent_lewoniuk_and_companions_martyrs",
+    "vincent_lewoniuk_and_companions_martyrs": {
       "fullname": "Blahoslaveného Vincenta Lewoniuka a spoločníkov, mučeníkov"
     },
-    {
-      "id": "vincent_of_saragossa_deacon",
+    "vincent_of_saragossa_deacon": {
       "fullname": "Svätého Vincenta, diakona a mučeníka"
     },
-    {
-      "id": "vincent_pallotti_priest",
+    "vincent_pallotti_priest": {
       "fullname": "Svätého Vincenta Pallottiho, kňaza"
     },
-    {
-      "id": "virgilius_of_salzburg_bishop",
+    "virgilius_of_salzburg_bishop": {
       "fullname": "Svätého Virgila zo Salzburgu, biskupa a misionára"
     },
-    {
-      "id": "visitation_of_mary",
+    "visitation_of_mary": {
       "fullname": "Návšteva preblahoslavenej Panny Márie"
     },
-    {
-      "id": "vitus_of_lucania_martyr",
+    "vitus_of_lucania_martyr": {
       "fullname": "Svätého Víta, mučeníka"
     },
-    {
-      "id": "vladimir_ghika_priest",
+    "vladimir_ghika_priest": {
       "fullname": "Blahoslaveného Vladimíra Ghiku, kňaza a mučeníka"
     },
-    {
-      "id": "vladimir_i_the_great_of_kiev",
+    "vladimir_i_the_great_of_kiev": {
       "fullname": "Svätého Vladimíra Veľkého"
     }
-  ]
+  }
 }

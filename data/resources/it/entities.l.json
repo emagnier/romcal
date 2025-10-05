@@ -1,54 +1,42 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "it",
-  "entities": [
-    {
-      "id": "landry_of_paris_bishop",
+  "entities": {
+    "landry_of_paris_bishop": {
       "fullname": "San Landerico di Parigi, vescovo"
     },
-    {
-      "id": "lawrence_of_brindisi_priest",
+    "lawrence_of_brindisi_priest": {
       "fullname": "San Lorenzo da Brindisi, sacerdote e dottore della Chiesa"
     },
-    {
-      "id": "lawrence_of_rome_deacon",
+    "lawrence_of_rome_deacon": {
       "fullname": "San Lorenzo, diacono e martire"
     },
-    {
-      "id": "lawrence_ruiz_and_companions_martyrs",
+    "lawrence_ruiz_and_companions_martyrs": {
       "fullname": "Santi Lorenzo Ruiz e compagni, martiri"
     },
-    {
-      "id": "leo_i_the_great_pope",
+    "leo_i_the_great_pope": {
       "fullname": "San Leone Magno, papa e dottore della Chiesa"
     },
-    {
-      "id": "leodegar_of_autun_bishop",
+    "leodegar_of_autun_bishop": {
       "fullname": "San Leodegario di Autun, vescovo e martire"
     },
-    {
-      "id": "louis_grignion_de_montfort_priest",
+    "louis_grignion_de_montfort_priest": {
       "fullname": "San Luigi Maria Grignion de Montfort, sacerdote"
     },
-    {
-      "id": "louis_ix_of_france",
+    "louis_ix_of_france": {
       "fullname": "San Ludovico"
     },
-    {
-      "id": "louise_de_marillac_religious",
+    "louise_de_marillac_religious": {
       "fullname": "Santa Luisa di Marillac, religiosa"
     },
-    {
-      "id": "lucy_of_syracuse_virgin",
+    "lucy_of_syracuse_virgin": {
       "fullname": "Santa Lucia, vergine e martire"
     },
-    {
-      "id": "ludan_of_scotland_pilgrim",
+    "ludan_of_scotland_pilgrim": {
       "fullname": "San Ludano, pellegrino"
     },
-    {
-      "id": "luke_evangelist",
+    "luke_evangelist": {
       "fullname": "San Luca, evangelista"
     }
-  ]
+  }
 }

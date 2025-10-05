@@ -1,18 +1,15 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "de",
-  "entities": [
-    {
-      "id": "ulrich_of_augsburg_bishop",
+  "entities": {
+    "ulrich_of_augsburg_bishop": {
       "fullname": "Hl. Ulrich von Augsburg, Bischof"
     },
-    {
-      "id": "urban_i_pope",
+    "urban_i_pope": {
       "fullname": "Hl. Urban I., Papst"
     },
-    {
-      "id": "ursula_of_cologne_and_companions_virgins",
+    "ursula_of_cologne_and_companions_virgins": {
       "fullname": "Hl. Ursula und Gefährtinnen, Jungfrauen und Märtyrerinnen"
     }
-  ]
+  }
 }

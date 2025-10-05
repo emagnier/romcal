@@ -1,158 +1,120 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "ta",
-  "entities": [
-    {
-      "id": "fabian_i_pope",
+  "entities": {
+    "fabian_i_pope": {
       "fullname": "புனித பேபியன் - திருத்தந்தை, மறைச்சாட்சி"
     },
-    {
-      "id": "fachanan_of_kilfenora_bishop",
+    "fachanan_of_kilfenora_bishop": {
       "fullname": "புனித பாக்கேனன் - ஆயர்"
     },
-    {
-      "id": "fachtna_of_rosscarbery_bishop",
+    "fachtna_of_rosscarbery_bishop": {
       "fullname": "புனித பாக்ட்னா - ஆயர்"
     },
-    {
-      "id": "faustina_kowalska_virgin",
+    "faustina_kowalska_virgin": {
       "fullname": "புனித பௌஸ்டினா கொவலஸ்கா - கன்னி"
     },
-    {
-      "id": "ferdinand_iii_of_castile",
+    "ferdinand_iii_of_castile": {
       "fullname": "காஸ்டிலின் மூன்றாவது பெர்தினந்து"
     },
-    {
-      "id": "fiacre_of_breuil_monk",
+    "fiacre_of_breuil_monk": {
       "fullname": "புனித பியாகர் - துறவி"
     },
-    {
-      "id": "fidelis_of_sigmaringen_priest",
+    "fidelis_of_sigmaringen_priest": {
       "fullname": "சிக்மறிங்கனின் புனித பிடெலிஸ் - அருட்பணியாளர், மறைசாட்சி"
     },
-    {
-      "id": "finbarr_of_cork_bishop",
+    "finbarr_of_cork_bishop": {
       "fullname": "புனித பின்பர் - ஆயர்"
     },
-    {
-      "id": "finding_of_the_holy_cross",
+    "finding_of_the_holy_cross": {
       "fullname": "பரிசுத்த சிலுவையை கண்டுபிடித்தல்"
     },
-    {
-      "id": "finnian_of_clonard_bishop",
+    "finnian_of_clonard_bishop": {
       "fullname": "புனித பினியன் - ஆயர்"
     },
-    {
-      "id": "fintan_of_clonenagh_abbot",
+    "fintan_of_clonenagh_abbot": {
       "fullname": "புனித பின்டன் - மடாதிபதி"
     },
-    {
-      "id": "first_martyrs_of_the_holy_roman_church",
+    "first_martyrs_of_the_holy_roman_church": {
       "fullname": "புனித றோமை திருச்சபையின் முதல் மறைச்சாட்சிகள்"
     },
-    {
-      "id": "first_polish_martyrs",
+    "first_polish_martyrs": {
       "fullname": "புனித பெனெடிக்ட், அருளப்பர், மத்தேயு, ஈசாக்கு, கிறிஸ்டியன் - போலந்தின் முதல் மறைச்சாட்சிகள்"
     },
-    {
-      "id": "five_wounds_of_the_lord",
+    "five_wounds_of_the_lord": {
       "fullname": "ஆண்டவரின் ஐந்து திருக்காயங்கள்"
     },
-    {
-      "id": "flannan_of_killaloe_bishop",
+    "flannan_of_killaloe_bishop": {
       "fullname": "புனித பிளானன் - ஆயர்"
     },
-    {
-      "id": "florentius_of_strasbourg_bishop",
+    "florentius_of_strasbourg_bishop": {
       "fullname": "புனித புளோரன்சியஸ் - ஆயர்"
     },
-    {
-      "id": "florian_of_lorch_and_companions_martyrs",
+    "florian_of_lorch_and_companions_martyrs": {
       "fullname": "புனித புளோரியன் தோழர்கள் - மறைச்சாட்சி"
     },
-    {
-      "id": "florian_of_lorch_martyr",
+    "florian_of_lorch_martyr": {
       "fullname": "புனித புளோரியன் - மறைச்சாட்சி"
     },
-    {
-      "id": "frances_of_rome_religious",
+    "frances_of_rome_religious": {
       "fullname": "ரோமாபுரியின் புனித பிரான்செஸ் - துறவி"
     },
-    {
-      "id": "frances_xavier_cabrini_virgin",
+    "frances_xavier_cabrini_virgin": {
       "fullname": "புனித பிரான்செஸ் சேவியர் கப்ரினி - கன்னி"
     },
-    {
-      "id": "francis_borgia_priest",
+    "francis_borgia_priest": {
       "fullname": "புனித பிரான்சிஸ் பொர்கியா - அருட்பணியாளர்"
     },
-    {
-      "id": "francis_de_sales_bishop",
+    "francis_de_sales_bishop": {
       "fullname": "புனித பிரான்சிஸ் டி சாலேஸ் - ஆயர், மறைவல்லுநர்"
     },
-    {
-      "id": "francis_diaz_del_rincon_priest_and_companions_martyrs",
+    "francis_diaz_del_rincon_priest_and_companions_martyrs": {
       "fullname": "புனித பிரான்சிஸ் டயஸ் டெல் றின்கன் தோழர்கள் - அருட்பணியாளர், மறைசாட்சிகள்"
     },
-    {
-      "id": "francis_ferdinand_de_capillas_priest",
+    "francis_ferdinand_de_capillas_priest": {
       "fullname": "புனித பிரான்சிஸ் பெர்திநெந்து டி கப்பிலஸ் - அருள்பணியாளர், மறைசாட்சி"
     },
-    {
-      "id": "francis_of_assisi",
+    "francis_of_assisi": {
       "fullname": "அசிசியின் புனித பிரான்சிஸ்"
     },
-    {
-      "id": "francis_of_assisi_patron_of_italy",
+    "francis_of_assisi_patron_of_italy": {
       "fullname": "அசிசியின் புனித பிரான்சிஸ் - இத்தாலியின் பாதுகாவலர்"
     },
-    {
-      "id": "francis_of_paola_hermit",
+    "francis_of_paola_hermit": {
       "fullname": "பவோலா நகர்ப் புனித பிரான்சிஸ் - வனத்துறவி"
     },
-    {
-      "id": "francis_solanus_priest",
+    "francis_solanus_priest": {
       "fullname": "புனித பிரான்சிஸ் சொலானுஸ் - அருட்பணியாளர்"
     },
-    {
-      "id": "francis_xavier_priest",
+    "francis_xavier_priest": {
       "fullname": "புனித பிரான்சிஸ் சவேரியார் - அருட்பணியாளர்"
     },
-    {
-      "id": "francis_xavier_seelos_priest",
+    "francis_xavier_seelos_priest": {
       "fullname": "முத்திபேறுபெற்ற பிரான்சிஸ் சவேரியார் சீலோஸ் - அருட்பணியாளர்"
     },
-    {
-      "id": "francois_de_montmorency_laval_bishop",
+    "francois_de_montmorency_laval_bishop": {
       "fullname": "லாவல்லின் புனித பிரான்சுவா - ஆயர்"
     },
-    {
-      "id": "frederic_janssoone_priest",
+    "frederic_janssoone_priest": {
       "fullname": "முத்திப்பேறுபெற்ற பிரெடெறிக் ஜன்சூன் - அருட்பணியாளர்"
     },
-    {
-      "id": "frederic_ozanam_founder",
+    "frederic_ozanam_founder": {
       "fullname": "முத்திபேறுபெற்ற பிரெடெறிக் ஓசானம் - நிறுவனர்"
     },
-    {
-      "id": "friday_of_the_passion_of_the_lord",
+    "friday_of_the_passion_of_the_lord": {
       "fullname": "பெரிய வெள்ளி"
     },
-    {
-      "id": "fridolin_of_sackingen_monk",
+    "fridolin_of_sackingen_monk": {
       "fullname": "சக்கின்ஜனின் புனித பிரிடொலின் - வனத்துறவி"
     },
-    {
-      "id": "fructuosus_of_braga_martin_of_braga_and_gerald_of_braga_bishops",
+    "fructuosus_of_braga_martin_of_braga_and_gerald_of_braga_bishops": {
       "fullname": "புனிதர்கள் புருக்ஷுசஸ், மார்டின், பிராகாவின் ஜெரால்ட் - ஆயர்கள்"
     },
-    {
-      "id": "fructuosus_of_tarragona_bishop_and_augurius_of_tarragona_and_eulogius_of_tarragona_deacons_martyrs",
+    "fructuosus_of_tarragona_bishop_and_augurius_of_tarragona_and_eulogius_of_tarragona_deacons_martyrs": {
       "fullname": "புனித புருக்ஷுசஸ் - ஆயர், ஒகோறியஸ், இயுலோஜியஸ் - திருத்தொண்டர்கள், மறைசாட்சிகள்"
     },
-    {
-      "id": "fursa_of_peronne_abbot",
+    "fursa_of_peronne_abbot": {
       "fullname": "புனித புர்ஸ்சா - மடாதிபதி, மறையறிவிப்பாளர்"
     }
-  ]
+  }
 }

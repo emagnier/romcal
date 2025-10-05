@@ -1,38 +1,30 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "pt-br",
-  "entities": [
-    {
-      "id": "raymond_of_penyafort_priest",
+  "entities": {
+    "raymond_of_penyafort_priest": {
       "fullname": "São Raimundo de Penyafort, presbítero"
     },
-    {
-      "id": "richardis_of_swabia_empress",
+    "richardis_of_swabia_empress": {
       "fullname": "Santa Ricarda, imperatriz"
     },
-    {
-      "id": "rita_of_cascia_religious",
+    "rita_of_cascia_religious": {
       "fullname": "Santa Rita de Cássia, religiosa"
     },
-    {
-      "id": "robert_bellarmine_bishop",
+    "robert_bellarmine_bishop": {
       "fullname": "São Roberto Belarmino, bispo e doutor da Igreja"
     },
-    {
-      "id": "roch_gonzalez_alphonsus_rodriguez_and_john_del_castillo_priests",
+    "roch_gonzalez_alphonsus_rodriguez_and_john_del_castillo_priests": {
       "fullname": "São Roque González Alfonso Rodríguez e São João del Castillo, presbíteros e mártires"
     },
-    {
-      "id": "romuald_of_ravenna_abbot",
+    "romuald_of_ravenna_abbot": {
       "fullname": "São Romualdo, abade"
     },
-    {
-      "id": "rosalie_jeanne_marie_rendu_virgin",
+    "rosalie_jeanne_marie_rendu_virgin": {
       "fullname": "Beata Rosália Rendu, virgem"
     },
-    {
-      "id": "rose_of_lima_virgin",
+    "rose_of_lima_virgin": {
       "fullname": "Santa Rosa de Lima, virgem"
     }
-  ]
+  }
 }

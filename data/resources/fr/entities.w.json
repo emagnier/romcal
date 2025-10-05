@@ -1,25 +1,21 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "fr",
-  "entities": [
-    {
-      "id": "wenceslaus_i_of_bohemia_martyr",
+  "entities": {
+    "wenceslaus_i_of_bohemia_martyr": {
       "fullname": "Saint Venceslas, martyr († 929)"
     },
-    {
-      "id": "wenceslaus_i_of_bohemia_martyr_patron_of_the_czech_nation",
+    "wenceslaus_i_of_bohemia_martyr_patron_of_the_czech_nation": {
       "fullname": "Saint Venceslas, martyr et patron de la nation tchèque († 929)"
     },
-    {
-      "id": "wendelin_of_trier_hermit",
+    "wendelin_of_trier_hermit": {
       "fullname": "Saint Wendelin, ermite"
     },
-    {
-      "id": "william_firmatus_abbot",
+    "william_firmatus_abbot": {
       "fullname": "Saint Guillaume Firmat, abbé († 1103)",
       "sources": [
         "mr_fr_1982_ed2_coutances"
       ]
     }
-  ]
+  }
 }

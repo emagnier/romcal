@@ -1,118 +1,90 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "ta",
-  "entities": [
-    {
-      "id": "teilo_of_llandaff_bishop",
+  "entities": {
+    "teilo_of_llandaff_bishop": {
       "fullname": "புனித தியெல்லொ - ஆயர்"
     },
-    {
-      "id": "teresa_benedicta_of_the_cross_stein_virgin",
+    "teresa_benedicta_of_the_cross_stein_virgin": {
       "fullname": "சிலுவை ஸ்டெயினின் புனித தெரெசா பெனெடிக்டா - கன்னி, மறைசாட்சி"
     },
-    {
-      "id": "teresa_benedicta_of_the_cross_stein_virgin_copatroness_of_europe",
+    "teresa_benedicta_of_the_cross_stein_virgin_copatroness_of_europe": {
       "fullname": "சிலுவை ஸ்டெயினின் புனித தெரெசா பெனெடிக்டா - கன்னி, மறைசாட்சி, ஐரோப்பாவின் பாதுகாவலி"
     },
-    {
-      "id": "teresa_of_calcutta_religious",
+    "teresa_of_calcutta_religious": {
       "fullname": "கல்கத்தாவின் புனித அன்னை தெரெசம்மாள்"
     },
-    {
-      "id": "teresa_of_jesus_jornet_ibars_virgin",
+    "teresa_of_jesus_jornet_ibars_virgin": {
       "fullname": "இயேசு ஜோர்னட் இபார்சின் புனித தெரெசாள் - கன்னி"
     },
-    {
-      "id": "teresa_of_jesus_of_avila_virgin",
+    "teresa_of_jesus_of_avila_virgin": {
       "fullname": "அவிலா இயேசுவின் புனித தெரெசாள் - கன்னி, மறைவல்லுனர்"
     },
-    {
-      "id": "teresa_of_jesus_of_los_andes_virgin",
+    "teresa_of_jesus_of_los_andes_virgin": {
       "fullname": "லொஸ் அண்டேஸ் இயேசுவின் புனித தெரெசாள் - கன்னி"
     },
-    {
-      "id": "teresa_of_portugal_religious",
+    "teresa_of_portugal_religious": {
       "fullname": "போர்த்துகளின் முத்திப்பேறுபெற்ற புனித தெரெசாள் - துறவி"
     },
-    {
-      "id": "theodore_of_canterbury_bishop",
+    "theodore_of_canterbury_bishop": {
       "fullname": "கண்டபெரியின் புனித தியோடொர் - ஆயர்"
     },
-    {
-      "id": "theodore_romzha_bishop",
+    "theodore_romzha_bishop": {
       "fullname": "முத்திப்பேறுபெற்ற தியோடொர் ரொம்சா - ஆயர், மறைசாட்சி"
     },
-    {
-      "id": "theodosius_of_the_caves_abbot",
+    "theodosius_of_the_caves_abbot": {
       "fullname": "கேவ்சின் புனித தியோடொசியஸ் - மடாதிபதி"
     },
-    {
-      "id": "theotonius_of_coimbra_priest",
+    "theotonius_of_coimbra_priest": {
       "fullname": "கொய்ம்பிராவின் புனித தியோடோனியஸ் - அருட்பணியாளர்"
     },
-    {
-      "id": "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin",
+    "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin": {
       "fullname": "குழந்தை இயேசுவின் புனித தெரேசாள், லிசியூவின் பரிசுத்த முகம் - கன்னி, மறைவல்லுனர்"
     },
-    {
-      "id": "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin_copatroness_of_france",
+    "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin_copatroness_of_france": {
       "fullname": "குழந்தை இயேசுவின் புனித தெரேசாள், லிசியூவின் பரிசுத்த முகம் - கன்னி, மறைவல்லுனர், பிரான்சின் பாதுகாவலி"
     },
-    {
-      "id": "thomas_apostle",
+    "thomas_apostle": {
       "fullname": "புனித தோமையார் - அப்போஸ்தலர்"
     },
-    {
-      "id": "thomas_aquinas_priest",
+    "thomas_aquinas_priest": {
       "fullname": "புனித தோமஸ் அக்குவினாஸ் - அருட்பணியாளர், மறைவல்லுனர்"
     },
-    {
-      "id": "thomas_becket_bishop",
+    "thomas_becket_bishop": {
       "fullname": "புனித தோமஸ் பெக்கட், ஆயர், மறைசாட்சி"
     },
-    {
-      "id": "thomas_hioji_rokuzayemon_nishi_priest_and_companions_martyrs",
+    "thomas_hioji_rokuzayemon_nishi_priest_and_companions_martyrs": {
       "fullname": "புனித தோமஸ் ஹியோஜி ரொகுசயிமொன் நிஷி - அருட்பணியாளர், தோழர்கள், மறைசாட்சிகள்"
     },
-    {
-      "id": "thomas_jean_georges_rehm_priest",
+    "thomas_jean_georges_rehm_priest": {
       "fullname": "முத்திப்பேறுபெற்ற ஜீன் ஜோர்ஜஸ் றெம் - அருட்பணியாளர், மறைசாட்சி"
     },
-    {
-      "id": "thomas_of_villanova_bishop",
+    "thomas_of_villanova_bishop": {
       "fullname": "விலனோவாவின் புனித தோமஸ் - ஆயர்"
     },
-    {
-      "id": "thorfinn_of_hamar_bishop",
+    "thorfinn_of_hamar_bishop": {
       "fullname": "புனித தோர்பின் - ஆயர்"
     },
-    {
-      "id": "thorlac_of_iceland_bishop",
+    "thorlac_of_iceland_bishop": {
       "fullname": "புனித தோர்லக் - ஆயர்"
     },
-    {
-      "id": "thursday_of_the_lords_supper",
+    "thursday_of_the_lords_supper": {
       "fullname": "பெரிய வியாழன் - ஆண்டவருடைய இரவு விருந்து"
     },
-    {
-      "id": "timothy_of_ephesus_and_titus_of_crete_bishops",
+    "timothy_of_ephesus_and_titus_of_crete_bishops": {
       "fullname": "புனிதர்கள் திமொதி, தீத்து - ஆயர்கள்"
     },
-    {
-      "id": "transfiguration_of_the_lord",
+    "transfiguration_of_the_lord": {
       "fullname": "ஆண்டவருடைய தோற்ற மாற்றம்"
     },
-    {
-      "id": "translation_of_the_relics_of_odile_of_alsace_abbess",
+    "translation_of_the_relics_of_odile_of_alsace_abbess": {
       "fullname": "பரிசுத்த பண்டங்களின் மொழிபெயர்ப்பான புனித ஒடில்"
     },
-    {
-      "id": "translation_of_the_relics_of_saint_stephen_of_hungary",
+    "translation_of_the_relics_of_saint_stephen_of_hungary": {
       "fullname": "பரிசுத்த பண்டங்களின் மொழிபெயர்ப்பான ஹங்கேரியின் புனித ஒடில்"
     },
-    {
-      "id": "turibius_of_mogrovejo_bishop",
+    "turibius_of_mogrovejo_bishop": {
       "fullname": "மொக்ரோவிஜொவின் புனித துருபியஸ் - ஆயர்"
     }
-  ]
+  }
 }

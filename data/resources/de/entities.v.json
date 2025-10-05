@@ -1,62 +1,48 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "de",
-  "entities": [
-    {
-      "id": "valentine_of_raetia_bishop",
+  "entities": {
+    "valentine_of_raetia_bishop": {
       "fullname": "Hl. Valentin von Rätien, Bischof"
     },
-    {
-      "id": "valerius_of_trier_bishop",
+    "valerius_of_trier_bishop": {
       "fullname": "Hl. Valerius, Bischof"
     },
-    {
-      "id": "viator_of_lyon",
+    "viator_of_lyon": {
       "fullname": "Hl. Viator"
     },
-    {
-      "id": "vincent_de_paul_priest",
+    "vincent_de_paul_priest": {
       "fullname": "Hl. Vinzenz von Paul, Priester"
     },
-    {
-      "id": "vincent_ferrer_priest",
+    "vincent_ferrer_priest": {
       "fullname": "Hl. Vinzenz Ferrer, Priester"
     },
-    {
-      "id": "vincent_kadlubek_bishop",
+    "vincent_kadlubek_bishop": {
       "fullname": "Sel. Vinzenz Kadłubek, Bischof"
     },
-    {
-      "id": "vincent_lewoniuk_and_companions_martyrs",
+    "vincent_lewoniuk_and_companions_martyrs": {
       "fullname": "Sel. Vinzenz Lewoniuk und Gefährten, Märtyrer"
     },
-    {
-      "id": "vincent_of_saragossa_deacon",
+    "vincent_of_saragossa_deacon": {
       "fullname": "Hl. Vinzenz, Diakon und Märtyrer"
     },
-    {
-      "id": "vincent_pallotti_priest",
+    "vincent_pallotti_priest": {
       "fullname": "Hl. Vinzenz Pallotti, Priester"
     },
-    {
-      "id": "virgilius_of_salzburg_bishop",
+    "virgilius_of_salzburg_bishop": {
       "fullname": "Hl. Virgil, Bischof und Missionar"
     },
-    {
-      "id": "visitation_of_mary",
+    "visitation_of_mary": {
       "fullname": "Mariä Heimsuchung"
     },
-    {
-      "id": "vitus_of_lucania_martyr",
+    "vitus_of_lucania_martyr": {
       "fullname": "Hl. Vitus, Märtyrer"
     },
-    {
-      "id": "vladimir_ghika_priest",
+    "vladimir_ghika_priest": {
       "fullname": "Sel. Wladimir Ghika, Priester und Märtyrer"
     },
-    {
-      "id": "vladimir_i_the_great_of_kiev",
+    "vladimir_i_the_great_of_kiev": {
       "fullname": "Hl. Wladimir der Große"
     }
-  ]
+  }
 }

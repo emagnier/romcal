@@ -1,98 +1,78 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "fr",
-  "entities": [
-    {
-      "id": "fabian_i_pope",
+  "entities": {
+    "fabian_i_pope": {
       "fullname": "Saint Fabien, pape et martyr († 250)"
     },
-    {
-      "id": "faustina_kowalska_virgin",
+    "faustina_kowalska_virgin": {
       "fullname": "Sainte Faustina Kowalska († 1938)"
     },
-    {
-      "id": "fidelis_of_sigmaringen_priest",
+    "fidelis_of_sigmaringen_priest": {
       "fullname": "Saint Fidèle de Sigmaringen, prêtre et martyr († 1622)"
     },
-    {
-      "id": "first_martyrs_of_the_holy_roman_church",
+    "first_martyrs_of_the_holy_roman_church": {
       "fullname": "Premiers martyrs de l’Église de Rome († 64)"
     },
-    {
-      "id": "florentius_of_anjou_abbot",
+    "florentius_of_anjou_abbot": {
       "fullname": "Saint Florent, abbé († Vème s.)",
       "sources": [
         "mr_fr_2022_ed3_angers"
       ]
     },
-    {
-      "id": "florentius_of_strasbourg_bishop",
+    "florentius_of_strasbourg_bishop": {
       "fullname": "Saint Florent, évêque († VIIème s.)"
     },
-    {
-      "id": "floscellus_of_normandy_martyr",
+    "floscellus_of_normandy_martyr": {
       "fullname": "Saint Floscel, martyr († v. 296)",
       "sources": [
         "mr_fr_1982_ed2_coutances"
       ]
     },
-    {
-      "id": "frances_of_rome_religious",
+    "frances_of_rome_religious": {
       "fullname": "Sainte Françoise Romaine, religieuse († 1440)"
     },
-    {
-      "id": "francis_de_sales_bishop",
+    "francis_de_sales_bishop": {
       "fullname": "Saint François de Sales, évêque et docteur de l’Église († 1622)"
     },
-    {
-      "id": "francis_de_sales_bishop_patron_of_the_clergy_of_the_archdiocese_of_lyon",
+    "francis_de_sales_bishop_patron_of_the_clergy_of_the_archdiocese_of_lyon": {
       "fullname": "Saint François de Sales, évêque et docteur de l’Église, patron du clergé lyonnais († 1622)",
       "sources": [
         "mr_fr_2014_ed2_lyon"
       ]
     },
-    {
-      "id": "francis_of_assisi",
+    "francis_of_assisi": {
       "fullname": "Saint François d’Assise, fondateur de l’ordre des Frères mineurs († 1226)"
     },
-    {
-      "id": "francis_of_assisi_patron_of_italy",
+    "francis_of_assisi_patron_of_italy": {
       "fullname": "Saint François d’Assise, fondateur de l’ordre des Frères mineurs, patron de l’Italie († 1226)"
     },
-    {
-      "id": "francis_of_paola_hermit",
+    "francis_of_paola_hermit": {
       "fullname": "Saint François de Paule, ermite, fondateur de l’ordre des Minimes († 1507)"
     },
-    {
-      "id": "francis_xavier_priest",
+    "francis_xavier_priest": {
       "fullname": "Saint François-Xavier, prêtre, Jésuite Missionnaire († 1552)"
     },
-    {
-      "id": "francois_de_montmorency_laval_bishop",
+    "francois_de_montmorency_laval_bishop": {
       "fullname": "Saint François de Laval, premier évêque de Québec († 1708)"
     },
-    {
-      "id": "frederic_janssoone_priest",
+    "frederic_janssoone_priest": {
       "fullname": "Bienheureux Frédéric Janssoone, prêtre franciscain († 1916)"
     },
-    {
-      "id": "frederic_ozanam_founder",
+    "frederic_ozanam_founder": {
       "fullname": "Bienheureux Frédéric Ozanam, fondateur de la Société de Saint-Vincent-de-Paul († 1853)"
     },
-    {
-      "id": "friday_of_the_passion_of_the_lord",
+    "friday_of_the_passion_of_the_lord": {
       "fullname": "Vendredi Saint"
     },
-    {
-      "id": "fridolin_of_sackingen_monk",
+    "fridolin_of_sackingen_monk": {
       "fullname": "Saint Fridolin, moine missionnaire († 540)"
     },
-    {
-      "id": "fromundus_of_coutances_bishop",
+    "fromundus_of_coutances_bishop": {
       "fullname": "Saint Fromond, évêque de Coutances († v. 691)",
       "sources": [
         "mr_fr_1982_ed2_coutances"
       ]
     }
-  ]
+  }
 }

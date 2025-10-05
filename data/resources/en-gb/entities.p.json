@@ -1,17 +1,15 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "en-gb",
-  "entities": [
-    {
-      "id": "paulina_of_the_agonizing_heart_of_jesus_visintainer_virgin",
+  "entities": {
+    "paulina_of_the_agonizing_heart_of_jesus_visintainer_virgin": {
       "fullname": "Saint Paulina of the Agonising Heart of Jesus Visintainer, Virgin"
     },
-    {
-      "id": "pius_v_pope",
+    "pius_v_pope": {
       "fullname": "Saint Pius V, Pope and Religious",
       "_todo": [
         "TODO: This property should be removed after one can add titles within celebration definions."
       ]
     }
-  ]
+  }
 }

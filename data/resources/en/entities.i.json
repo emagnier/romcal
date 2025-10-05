@@ -1,9 +1,8 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "en",
-  "entities": [
-    {
-      "id": "ignatius_de_azevedo_priest",
+  "entities": {
+    "ignatius_de_azevedo_priest": {
       "canonization_level": "BLESSED",
       "name": "Ignatius de Azevedo",
       "titles": [
@@ -11,18 +10,15 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "ignatius_de_azevedo_priest_and_companions_martyrs",
+    "ignatius_de_azevedo_priest_and_companions_martyrs": {
       "fullname": "Blessed Ignatius de Azevedo, Priest, and Companions, Martyrs"
     },
-    {
-      "id": "ignatius_falzon",
+    "ignatius_falzon": {
       "fullname": "Blessed Ignatius Falzon",
       "canonization_level": "BLESSED",
       "name": "Ignatius Falzon"
     },
-    {
-      "id": "ignatius_of_antioch_bishop",
+    "ignatius_of_antioch_bishop": {
       "fullname": "Saint Ignatius of Antioch, Bishop and Martyr",
       "canonization_level": "SAINT",
       "name": "Ignatius of Antioch",
@@ -32,8 +28,7 @@
       ],
       "date_of_death": 115
     },
-    {
-      "id": "ignatius_of_loyola_priest",
+    "ignatius_of_loyola_priest": {
       "fullname": "Saint Ignatius of Loyola, Priest",
       "canonization_level": "SAINT",
       "name": "Ignatius of Loyola",
@@ -42,8 +37,7 @@
       ],
       "date_of_death": 1556
     },
-    {
-      "id": "ildephonsus_of_toledo_bishop",
+    "ildephonsus_of_toledo_bishop": {
       "fullname": "Saint Ildephonsus of Toledo, Bishop",
       "canonization_level": "SAINT",
       "name": "Ildephonsus of Toledo",
@@ -51,8 +45,7 @@
         "BISHOP"
       ]
     },
-    {
-      "id": "illtud_the_knight_abbot",
+    "illtud_the_knight_abbot": {
       "fullname": "Saint Illtud, Abbot",
       "canonization_level": "SAINT",
       "name": "Illtud",
@@ -60,24 +53,19 @@
         "ABBOT"
       ]
     },
-    {
-      "id": "immaculate_conception_of_the_blessed_virgin_mary",
+    "immaculate_conception_of_the_blessed_virgin_mary": {
       "fullname": "The Immaculate Conception of the Blessed Virgin Mary"
     },
-    {
-      "id": "immaculate_conception_of_the_blessed_virgin_mary_patroness_of_the_philippines",
+    "immaculate_conception_of_the_blessed_virgin_mary_patroness_of_the_philippines": {
       "fullname": "The Immaculate Conception of the Blessed Virgin Mary, Patroness of the Philippines"
     },
-    {
-      "id": "immaculate_conception_of_the_blessed_virgin_mary_patroness_of_the_usa",
+    "immaculate_conception_of_the_blessed_virgin_mary_patroness_of_the_usa": {
       "fullname": "The Immaculate Conception of the Blessed Virgin Mary, Patroness of the USA"
     },
-    {
-      "id": "immaculate_heart_of_mary",
+    "immaculate_heart_of_mary": {
       "fullname": "The Immaculate Heart of the Blessed Virgin Mary"
     },
-    {
-      "id": "innocent_v_pope",
+    "innocent_v_pope": {
       "fullname": "Blessed Innocent V, Pope",
       "canonization_level": "BLESSED",
       "name": "Innocent V",
@@ -91,8 +79,7 @@
         "mr_fr_2014_ed2_lyon"
       ]
     },
-    {
-      "id": "innocent_xi_pope",
+    "innocent_xi_pope": {
       "fullname": "Blessed Innocent XI, Pope",
       "canonization_level": "BLESSED",
       "name": "Innocent XI",
@@ -100,8 +87,7 @@
         "POPE"
       ]
     },
-    {
-      "id": "irenaeus_of_lyon_bishop",
+    "irenaeus_of_lyon_bishop": {
       "fullname": "Saint Irenaeus, Bishop, Martyr and Doctor of the Church",
       "canonization_level": "SAINT",
       "name": "Irenaeus",
@@ -118,23 +104,19 @@
         "mr_fr_2014_ed2_lyon"
       ]
     },
-    {
-      "id": "irenaeus_of_lyon_bishop_patron_of_the_archdiocese_of_lyon_and_companions_martyrs",
+    "irenaeus_of_lyon_bishop_patron_of_the_archdiocese_of_lyon_and_companions_martyrs": {
       "fullname": "Saints Irenaeus, Bishop and Doctor of the Church, Patron of the Archdiocese of Lyon, and Companions, Martyrs"
     },
-    {
-      "id": "irene_of_macedonia",
+    "irene_of_macedonia": {
       "fullname": "Saint Irene",
       "canonization_level": "SAINT",
       "name": "Irene"
     },
-    {
-      "id": "irish_martyrs",
+    "irish_martyrs": {
       "fullname": "Irish Martyrs",
       "count": "MANY"
     },
-    {
-      "id": "isaac_jogues_priest",
+    "isaac_jogues_priest": {
       "canonization_level": "SAINT",
       "name": "Isaac Jogues",
       "titles": [
@@ -143,8 +125,7 @@
       ],
       "date_of_death": "1646-10-18"
     },
-    {
-      "id": "isabelle_of_france_virgin",
+    "isabelle_of_france_virgin": {
       "fullname": "Blessed Isabelle of France, Virgin",
       "canonization_level": "BLESSED",
       "name": "Isabelle of France",
@@ -153,8 +134,7 @@
       ],
       "date_of_death": 1272
     },
-    {
-      "id": "isidore_of_seville_bishop",
+    "isidore_of_seville_bishop": {
       "fullname": "Saint Isidore, Bishop and Doctor of the Church",
       "canonization_level": "SAINT",
       "name": "Isidore",
@@ -164,14 +144,12 @@
       ],
       "date_of_death": 636
     },
-    {
-      "id": "isidore_the_farmer",
+    "isidore_the_farmer": {
       "fullname": "Saint Isidore",
       "canonization_level": "SAINT",
       "name": "Isidore"
     },
-    {
-      "id": "istvan_sandor_religious",
+    "istvan_sandor_religious": {
       "fullname": "Blessed István Sándor, Religious and Martyr",
       "canonization_level": "BLESSED",
       "name": "István Sándor",
@@ -180,8 +158,7 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "ita_of_killeedy_virgin",
+    "ita_of_killeedy_virgin": {
       "fullname": "Saint Ita, Virgin",
       "canonization_level": "SAINT",
       "name": "Ita",
@@ -189,14 +166,12 @@
         "VIRGIN"
       ]
     },
-    {
-      "id": "ivan_merz",
+    "ivan_merz": {
       "fullname": "Blessed Ivan Merz",
       "canonization_level": "BLESSED",
       "name": "Ivan Merz"
     },
-    {
-      "id": "ivo_of_kermartin_priest",
+    "ivo_of_kermartin_priest": {
       "fullname": "Saint Ivo, Priest",
       "canonization_level": "SAINT",
       "name": "Ivo",
@@ -205,5 +180,5 @@
       ],
       "date_of_death": 1303
     }
-  ]
+  }
 }

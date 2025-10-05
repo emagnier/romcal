@@ -1,54 +1,42 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "es",
-  "entities": [
-    {
-      "id": "scholastica_of_nursia_virgin",
+  "entities": {
+    "scholastica_of_nursia_virgin": {
       "fullname": "Santa Escolástica, virgen"
     },
-    {
-      "id": "sebastian_de_aparicio_religious",
+    "sebastian_de_aparicio_religious": {
       "fullname": "Beato Sebastián de Aparicio, religioso"
     },
-    {
-      "id": "sebastian_of_milan_martyr",
+    "sebastian_of_milan_martyr": {
       "fullname": "San Sebastián, mártir"
     },
-    {
-      "id": "seven_holy_founders_of_the_servite_order",
+    "seven_holy_founders_of_the_servite_order": {
       "fullname": "Los Santos Siete Fundadores de la Orden de los Servitas"
     },
-    {
-      "id": "sharbel_makhluf_priest",
+    "sharbel_makhluf_priest": {
       "fullname": "San Sarbelio Makhluf, presbítero y eremita"
     },
-    {
-      "id": "simon_and_jude_apostles",
+    "simon_and_jude_apostles": {
       "fullname": "Santos Simón y Judas, apóstoles"
     },
-    {
-      "id": "sixtus_ii_pope_and_companions_martyrs",
+    "sixtus_ii_pope_and_companions_martyrs": {
       "fullname": "Santos Sixto II, papa, y compañeros, mártires"
     },
-    {
-      "id": "stanislaus_of_szczepanow_bishop",
+    "stanislaus_of_szczepanow_bishop": {
       "fullname": "San Estanislao de Cracovia, obispo y mártir"
     },
-    {
-      "id": "stephen_i_of_hungary",
+    "stephen_i_of_hungary": {
       "fullname": "San Esteban de Hungría"
     },
-    {
-      "id": "stephen_the_first_martyr",
+    "stephen_the_first_martyr": {
       "fullname": "San Esteban, Primer mártir"
     },
-    {
-      "id": "sunday_of_the_word_of_god",
+    "sunday_of_the_word_of_god": {
       "fullname": "3º domingo del Tiempo Ordinario, o domingo de la Palabra de Dios"
     },
-    {
-      "id": "sylvester_i_pope",
+    "sylvester_i_pope": {
       "fullname": "San Silvestre I, papa"
     }
-  ]
+  }
 }

@@ -1,158 +1,120 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "la",
-  "entities": [
-    {
-      "id": "ladislas_of_gielniow_priest",
+  "entities": {
+    "ladislas_of_gielniow_priest": {
       "fullname": "B. Ladislai a Gielniów, presbyteri"
     },
-    {
-      "id": "ladislaus_batthyany_strattmann",
+    "ladislaus_batthyany_strattmann": {
       "fullname": "B. Ladislai Batthyány-Strattmann"
     },
-    {
-      "id": "ladislaus_i_of_hungary",
+    "ladislaus_i_of_hungary": {
       "fullname": "S. Ladislai"
     },
-    {
-      "id": "lambert_of_maastricht_bishop",
+    "lambert_of_maastricht_bishop": {
       "fullname": "S. Lamberti, episcopi et martyris"
     },
-    {
-      "id": "landry_of_paris_bishop",
+    "landry_of_paris_bishop": {
       "fullname": "S. Landerici Parisiensis, episcopi"
     },
-    {
-      "id": "laserian_of_leighlin_bishop",
+    "laserian_of_leighlin_bishop": {
       "fullname": "S. Laseriani, episcopi"
     },
-    {
-      "id": "laura_vicuna_virgin",
+    "laura_vicuna_virgin": {
       "fullname": "B. Lauræ Vicuña, virginis"
     },
-    {
-      "id": "laurence_otoole_bishop",
+    "laurence_otoole_bishop": {
       "fullname": "S. Laurentii O’Toole, episcopi"
     },
-    {
-      "id": "laurence_wang_bing_and_companions_martyrs",
+    "laurence_wang_bing_and_companions_martyrs": {
       "fullname": "Ss. Laurentii Wang Bing et sociorum, martyrum"
     },
-    {
-      "id": "lawrence_bai_xiaoman_martyr",
+    "lawrence_bai_xiaoman_martyr": {
       "fullname": "S. Laurentii Bai Xiaoman, martyris"
     },
-    {
-      "id": "lawrence_of_brindisi_priest",
+    "lawrence_of_brindisi_priest": {
       "fullname": "S. Laurentii de Brindisi, presbyteri et Ecclesiæ doctoris"
     },
-    {
-      "id": "lawrence_of_rome_deacon",
+    "lawrence_of_rome_deacon": {
       "fullname": "S. Laurentii, diaconi et martyris"
     },
-    {
-      "id": "lawrence_ruiz_and_companions_martyrs",
+    "lawrence_ruiz_and_companions_martyrs": {
       "fullname": "Ss. Laurentii Ruiz et sociorum, martyrum"
     },
-    {
-      "id": "leander_of_seville_bishop",
+    "leander_of_seville_bishop": {
       "fullname": "S. Leandri, episcopi"
     },
-    {
-      "id": "lelia_of_killeely_virgin",
+    "lelia_of_killeely_virgin": {
       "fullname": "S. Leliæ, virginis"
     },
-    {
-      "id": "leo_i_the_great_pope",
+    "leo_i_the_great_pope": {
       "fullname": "S. Leonis Magni, papæ et Ecclesiæ doctoris"
     },
-    {
-      "id": "leo_ignatius_mangin_priest_and_companions_martyrs",
+    "leo_ignatius_mangin_priest_and_companions_martyrs": {
       "fullname": "Ss. Leonis Ignatii Mangin, presbyteri, et sociorum, martyrum"
     },
-    {
-      "id": "leo_ix_pope",
+    "leo_ix_pope": {
       "fullname": "S. Leonis IX, papæ"
     },
-    {
-      "id": "leoba_of_tauberbischofsheim_abbess",
+    "leoba_of_tauberbischofsheim_abbess": {
       "fullname": "S. Leobæ, abatissæ"
     },
-    {
-      "id": "leodegar_of_autun_bishop",
+    "leodegar_of_autun_bishop": {
       "fullname": "S. Leodegarii Augustodunensis, episcopi et martyris"
     },
-    {
-      "id": "leonard_of_noblac_hermit",
+    "leonard_of_noblac_hermit": {
       "fullname": "S. Leonardi, eremitæ"
     },
-    {
-      "id": "leonid_feodorov_priest",
+    "leonid_feodorov_priest": {
       "fullname": "B. Leonidæ Fiodorov, presbyteri et martyris"
     },
-    {
-      "id": "leopold_iii_of_babenberg",
+    "leopold_iii_of_babenberg": {
       "fullname": "S. Leopoldi III Babenbergis"
     },
-    {
-      "id": "leopold_mandic_priest",
+    "leopold_mandic_priest": {
       "fullname": "S. Leopoldi Mandić, presbyteri"
     },
-    {
-      "id": "louis_bertrand_priest",
+    "louis_bertrand_priest": {
       "fullname": "S. Ludovici Bertrán, presbyteri"
     },
-    {
-      "id": "louis_grignion_de_montfort_priest",
+    "louis_grignion_de_montfort_priest": {
       "fullname": "S. Ludovici Mariæ Grignion de Montfort, presbyteri"
     },
-    {
-      "id": "louis_ix_of_france",
+    "louis_ix_of_france": {
       "fullname": "S. Ludovici"
     },
-    {
-      "id": "louis_zephirin_moreau_bishop",
+    "louis_zephirin_moreau_bishop": {
       "fullname": "B. Ludovici Zephyrini Moreau, episcopi"
     },
-    {
-      "id": "louise_de_marillac_religious",
+    "louise_de_marillac_religious": {
       "fullname": "S. Ludovicæ de Marillac, religiosæ"
     },
-    {
-      "id": "lucius_of_chur_bishop",
+    "lucius_of_chur_bishop": {
       "fullname": "S. Lucii I, papæ"
     },
-    {
-      "id": "lucy_of_syracuse_virgin",
+    "lucy_of_syracuse_virgin": {
       "fullname": "S. Luciæ, virginis et martyris"
     },
-    {
-      "id": "lucy_yi_zhenmei_virgin",
+    "lucy_yi_zhenmei_virgin": {
       "fullname": "S. Luciæ Yi Zhenmei, virginis et martyris"
     },
-    {
-      "id": "ludan_of_scotland_pilgrim",
+    "ludan_of_scotland_pilgrim": {
       "fullname": "S. Ludani, pellegrini"
     },
-    {
-      "id": "ludger_of_munster_bishop",
+    "ludger_of_munster_bishop": {
       "fullname": "S. Ludgeri Monasteriensis, episcopi"
     },
-    {
-      "id": "ludmila_of_bohemia_martyr",
+    "ludmila_of_bohemia_martyr": {
       "fullname": "S. Ludmilæ, martyris"
     },
-    {
-      "id": "luigi_orione_priest",
+    "luigi_orione_priest": {
       "fullname": "S. Aloisii Orione, presbyteri"
     },
-    {
-      "id": "luke_evangelist",
+    "luke_evangelist": {
       "fullname": "S. Lucæ, evangelistæ"
     },
-    {
-      "id": "lydia_of_philippi",
+    "lydia_of_philippi": {
       "fullname": "S. Lydiæ"
     }
-  ]
+  }
 }

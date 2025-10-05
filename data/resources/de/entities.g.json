@@ -1,110 +1,84 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "de",
-  "entities": [
-    {
-      "id": "gabriel_taurin_dufresse_bishop",
+  "entities": {
+    "gabriel_taurin_dufresse_bishop": {
       "fullname": "Hl. Gabriel-Taurin Dufresse, Bischof und Märtyrer"
     },
-    {
-      "id": "gall_of_switzerland_abbot",
+    "gall_of_switzerland_abbot": {
       "fullname": "Hl. Gallus, Abt und Missionar"
     },
-    {
-      "id": "genevieve_of_paris_virgin",
+    "genevieve_of_paris_virgin": {
       "fullname": "Hl. Genoveva, Jungfrau"
     },
-    {
-      "id": "george_matulaitis_bishop",
+    "george_matulaitis_bishop": {
       "fullname": "Sel. Georg Matulaitis, Bischof"
     },
-    {
-      "id": "george_of_lydda_martyr",
+    "george_of_lydda_martyr": {
       "fullname": "Hl. Georg, Märtyrer"
     },
-    {
-      "id": "george_of_lydda_martyr_patron_of_england",
+    "george_of_lydda_martyr_patron_of_england": {
       "fullname": "Hl. Georg, Märtyrer, Schutzpatron Englands"
     },
-    {
-      "id": "george_preca_priest",
+    "george_preca_priest": {
       "fullname": "Hl. Georg Preca, Priester"
     },
-    {
-      "id": "gerard_of_csanad_bishop",
+    "gerard_of_csanad_bishop": {
       "fullname": "Hl. Gerhard von Csanád, Bischof und Märtyrer"
     },
-    {
-      "id": "germain_of_paris_bishop",
+    "germain_of_paris_bishop": {
       "fullname": "Hl. Germanus von Paris, Bischof"
     },
-    {
-      "id": "germanus_of_auxerre_bishop",
+    "germanus_of_auxerre_bishop": {
       "fullname": "Hl. Germanus von Auxerre, Bischof"
     },
-    {
-      "id": "gertrude_of_nivelles_abbess",
+    "gertrude_of_nivelles_abbess": {
       "fullname": "Hl. Gertrud von Nivelles, Äbtissin"
     },
-    {
-      "id": "gertrude_the_great_virgin",
+    "gertrude_the_great_virgin": {
       "fullname": "Hl. Gertrud, Jungfrau"
     },
-    {
-      "id": "gisela_of_hungary",
+    "gisela_of_hungary": {
       "fullname": "Sel. Gisela"
     },
-    {
-      "id": "gobnait_of_ballyvourney_virgin",
+    "gobnait_of_ballyvourney_virgin": {
       "fullname": "Hl. Gobnait, Jungfrau"
     },
-    {
-      "id": "gorazd_of_moravia_and_companions",
+    "gorazd_of_moravia_and_companions": {
       "fullname": "Hl. Gorazd und Gefährten"
     },
-    {
-      "id": "gotthard_of_hildesheim_bishop",
+    "gotthard_of_hildesheim_bishop": {
       "fullname": "Hl. Godehard, Bischof"
     },
-    {
-      "id": "gratia_of_cattaro_religious",
+    "gratia_of_cattaro_religious": {
       "fullname": "Sel. Gratia von Kotor, Ordensfrau"
     },
-    {
-      "id": "gregory_grassi_francis_fogolla_and_anthony_fantosati_bishops_and_companions_martyrs",
+    "gregory_grassi_francis_fogolla_and_anthony_fantosati_bishops_and_companions_martyrs": {
       "fullname": "Hl. Gregor Grassi, Franz Fogolla und Antonius Fantosati, Bischöfe, und Gefährten, Märtyrer"
     },
-    {
-      "id": "gregory_i_the_great_pope",
+    "gregory_i_the_great_pope": {
       "fullname": "Hl. Gregor der Große, Papst und Kirchenlehrer"
     },
-    {
-      "id": "gregory_of_narek_abbot",
+    "gregory_of_narek_abbot": {
       "fullname": "Hl. Gregor von Narek, Abt und Kirchenlehrer"
     },
-    {
-      "id": "gregory_vii_pope",
+    "gregory_vii_pope": {
       "fullname": "Hl. Gregor VII., Papst"
     },
-    {
-      "id": "gregory_x_pope",
+    "gregory_x_pope": {
       "fullname": "Sel. Gregor X., Papst"
     },
-    {
-      "id": "guardian_angel_of_portugal",
+    "guardian_angel_of_portugal": {
       "fullname": "Der Schutzengel Portugals"
     },
-    {
-      "id": "gundisalvus_garcia_martyr",
+    "gundisalvus_garcia_martyr": {
       "fullname": "Hl. Gundisalvus Garcia, Märtyrer"
     },
-    {
-      "id": "gundisalvus_of_amarante_priest",
+    "gundisalvus_of_amarante_priest": {
       "fullname": "Sel. Gundisalvus von Amarante, Priester"
     },
-    {
-      "id": "gundisalvus_of_lagos_priest",
+    "gundisalvus_of_lagos_priest": {
       "fullname": "Sel. Gundisalvus von Lagos, Priester"
     }
-  ]
+  }
 }

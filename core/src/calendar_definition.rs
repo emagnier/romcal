@@ -2,13 +2,10 @@ use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 
-use crate::types::{CalendarMetadata, DayDefinition, ParticularConfig};
+use crate::types::{CalendarMetadata, DayDefinition, DayId, ParticularConfig};
 
 /// Unique identifier for a calendar
 pub type CalendarId = String;
-
-/// Unique identifier for a day definition
-pub type DayId = String;
 
 /// Calendar definition
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]

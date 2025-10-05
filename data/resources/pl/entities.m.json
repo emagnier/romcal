@@ -1,190 +1,144 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "pl",
-  "entities": [
-    {
-      "id": "madeleine_sophie_barat_virgin",
+  "entities": {
+    "madeleine_sophie_barat_virgin": {
       "fullname": "Św. Magdaleny Zofii Barat, dziewicy"
     },
-    {
-      "id": "marcellinus_of_rome_and_peter_the_exorcist_martyrs",
+    "marcellinus_of_rome_and_peter_the_exorcist_martyrs": {
       "fullname": "Świętych męczenników Marcelina i Piotra"
     },
-    {
-      "id": "marcellus_of_paris_bishop",
+    "marcellus_of_paris_bishop": {
       "fullname": "Św. Marcelego z Paryża, biskupa"
     },
-    {
-      "id": "margaret_mary_alacoque_virgin",
+    "margaret_mary_alacoque_virgin": {
       "fullname": "Św. Małgorzaty Marii Alacoque, dziewicy"
     },
-    {
-      "id": "margaret_of_scotland",
+    "margaret_of_scotland": {
       "fullname": "Św. Małgorzaty Szkockiej"
     },
-    {
-      "id": "maria_goretti_virgin",
+    "maria_goretti_virgin": {
       "fullname": "Św. Marii Goretti, dziewicy i męczennicy"
     },
-    {
-      "id": "marie_eugenie_of_jesus_milleret_de_brou_virgin",
+    "marie_eugenie_of_jesus_milleret_de_brou_virgin": {
       "fullname": "Św. Marii Eugenii od Jezusa Milleret de Brou, dziewicy i założycielki"
     },
-    {
-      "id": "mark_evangelist",
+    "mark_evangelist": {
       "fullname": "Św. Marka, Ewangelisty"
     },
-    {
-      "id": "martha_of_bethany_mary_of_bethany_and_lazarus_of_bethany",
+    "martha_of_bethany_mary_of_bethany_and_lazarus_of_bethany": {
       "fullname": "Świętych Marty, Marii i Łazarza"
     },
-    {
-      "id": "martin_de_porres_religious",
+    "martin_de_porres_religious": {
       "fullname": "Św. Marcina de Porres, zakonnika"
     },
-    {
-      "id": "martin_i_pope",
+    "martin_i_pope": {
       "fullname": "Św. Marcina I, papieża i męczennika"
     },
-    {
-      "id": "martin_of_tours_bishop",
+    "martin_of_tours_bishop": {
       "fullname": "Św. Marcina z Tours, biskupa"
     },
-    {
-      "id": "martin_wu_xuesheng_and_companions_martyrs",
+    "martin_wu_xuesheng_and_companions_martyrs": {
       "fullname": "Świętych męczenników Marcina Wu Xueshenga i Towarzyszy"
     },
-    {
-      "id": "mary_angela_truszkowska_virgin",
+    "mary_angela_truszkowska_virgin": {
       "fullname": "Bł. Marii Angeli Truszkowskiej, dziewicy"
     },
-    {
-      "id": "mary_assunta_pallotta_virgin",
+    "mary_assunta_pallotta_virgin": {
       "fullname": "Bł. Marii Assunty Pallotty, Dziewicy"
     },
-    {
-      "id": "mary_magdalene",
+    "mary_magdalene": {
       "fullname": "Św. Marii Magdaleny"
     },
-    {
-      "id": "mary_magdalene_de_pazzi_virgin",
+    "mary_magdalene_de_pazzi_virgin": {
       "fullname": "Św. Marii Magdaleny de Pazzi, dziewicy"
     },
-    {
-      "id": "mary_mother_of_god",
+    "mary_mother_of_god": {
       "fullname": "Świętej Bożej Rodzicielki Maryi"
     },
-    {
-      "id": "mary_mother_of_the_church",
+    "mary_mother_of_the_church": {
       "fullname": "Najświętszej Maryi Panny, Matki Kościoła"
     },
-    {
-      "id": "mary_of_jesus_the_good_shepherd_siedliska_virgin",
+    "mary_of_jesus_the_good_shepherd_siedliska_virgin": {
       "fullname": "Bł. Marii od Pana Jezusa Dobrego Pasterza (Franciszki Siedliskiej), zakonnicy"
     },
-    {
-      "id": "mary_of_the_incarnation_barbara_acarie_religious",
+    "mary_of_the_incarnation_barbara_acarie_religious": {
       "fullname": "Bł. Marii od Wcielenia Barbary Acarie, zakonnicy"
     },
-    {
-      "id": "mary_of_the_incarnation_marie_guyart_religious",
+    "mary_of_the_incarnation_marie_guyart_religious": {
       "fullname": "Św. Marii od Wcielenia Marii Guyart, zakonnicy"
     },
-    {
-      "id": "mary_of_the_providence_eugenie_smet_virgin",
+    "mary_of_the_providence_eugenie_smet_virgin": {
       "fullname": "Bł. Marii od Opatrzności Eugenii Smet, dziewicy"
     },
-    {
-      "id": "mary_of_the_sacred_heart_sophie_therese_de_soubiran_la_louviere_virgin",
+    "mary_of_the_sacred_heart_sophie_therese_de_soubiran_la_louviere_virgin": {
       "fullname": "Bł. Marii Teresy de Soubiran La Louvière, dziewicy"
     },
-    {
-      "id": "mary_stella_of_the_blessed_sacrament_mardosewicz_and_companions_virgins",
+    "mary_stella_of_the_blessed_sacrament_mardosewicz_and_companions_virgins": {
       "fullname": "Błogosławionych dziewic i męczennic Marii Stelli i Towarzyszek"
     },
-    {
-      "id": "mary_theresa_ledochowska_virgin",
+    "mary_theresa_ledochowska_virgin": {
       "fullname": "Bł. Marii Teresy Ledóchowskiej, dziewicy"
     },
-    {
-      "id": "mary_ursula_of_jesus_ledochowska_virgin",
+    "mary_ursula_of_jesus_ledochowska_virgin": {
       "fullname": "Św. Urszuli Ledóchowskiej, dziewicy"
     },
-    {
-      "id": "maternus_of_cologne_bishop",
+    "maternus_of_cologne_bishop": {
       "fullname": "Św. Maternusa, biskupa"
     },
-    {
-      "id": "maternus_of_cologne_valerius_of_trier_and_eucharius_of_trier_bishops",
+    "maternus_of_cologne_valerius_of_trier_and_eucharius_of_trier_bishops": {
       "fullname": "Św. Maternusa, Waleriusza i Euchariusza, biskupów"
     },
-    {
-      "id": "matthew_apostle",
+    "matthew_apostle": {
       "fullname": "Św. Mateusza, Apostoła i Ewangelisty"
     },
-    {
-      "id": "matthias_apostle",
+    "matthias_apostle": {
       "fullname": "Św. Macieja, Apostoła"
     },
-    {
-      "id": "maurice_tornay_priest",
+    "maurice_tornay_priest": {
       "fullname": "Bł. Maurycego Tornaya, prezbitera i męczennika"
     },
-    {
-      "id": "maximilian_mary_raymund_kolbe_priest",
+    "maximilian_mary_raymund_kolbe_priest": {
       "fullname": "Św. Maksymiliana Marii Kolbego, prezbitera i męczennika"
     },
-    {
-      "id": "mederic_of_autun_and_droctoveus_of_autun_abbots",
+    "mederic_of_autun_and_droctoveus_of_autun_abbots": {
       "fullname": "Świętych Mederyka i Droktoweusza, opatów"
     },
-    {
-      "id": "melchior_grodziecki_priest",
+    "melchior_grodziecki_priest": {
       "fullname": "Św. Melchiora Grodzieckiego, prezbitera i męczennika"
     },
-    {
-      "id": "michael_gabriel_and_raphael_archangels",
+    "michael_gabriel_and_raphael_archangels": {
       "fullname": "Świętych Archaniołów Michała, Gabriela i Rafała"
     },
-    {
-      "id": "michael_kozal_bishop",
+    "michael_kozal_bishop": {
       "fullname": "Bł. Michała Kozala, biskupa i męczennika"
     },
-    {
-      "id": "modestus_andlauer_and_andrew_bauer_martyrs",
+    "modestus_andlauer_and_andrew_bauer_martyrs": {
       "fullname": "Św. Modesta Andlauera i Andrzeja Bauera, męczenników"
     },
-    {
-      "id": "modestus_andlauer_martyr",
+    "modestus_andlauer_martyr": {
       "fullname": "Św. Modesta Andlauera, męczennika"
     },
-    {
-      "id": "monica_of_hippo",
+    "monica_of_hippo": {
       "fullname": "Św. Moniki"
     },
-    {
-      "id": "morand_of_cluny_monk",
+    "morand_of_cluny_monk": {
       "fullname": "Św. Moranda, mnicha"
     },
-    {
-      "id": "most_holy_body_and_blood_of_christ",
+    "most_holy_body_and_blood_of_christ": {
       "fullname": "Najświętszego Ciała i Krwi Chrystusa"
     },
-    {
-      "id": "most_holy_name_of_jesus",
+    "most_holy_name_of_jesus": {
       "fullname": "Najświętszego Imienia Jezus"
     },
-    {
-      "id": "most_holy_name_of_mary",
+    "most_holy_name_of_mary": {
       "fullname": "Najświętszego Imienia Maryi"
     },
-    {
-      "id": "most_holy_trinity",
+    "most_holy_trinity": {
       "fullname": "Najświętszej Trójcy"
     },
-    {
-      "id": "most_sacred_heart_of_jesus",
+    "most_sacred_heart_of_jesus": {
       "fullname": "Najświętszego Serca Pana Jezusa"
     }
-  ]
+  }
 }

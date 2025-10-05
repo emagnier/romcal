@@ -1,26 +1,21 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "cs",
-  "entities": [
-    {
-      "id": "zdenka_cecilia_schelingova_virgin",
+  "entities": {
+    "zdenka_cecilia_schelingova_virgin": {
       "fullname": "Bl. Zdenky Cecilie Schelingové, panny a mučednice"
     },
-    {
-      "id": "zdislava_of_lemberk",
+    "zdislava_of_lemberk": {
       "fullname": "Sv. Zdislavy"
     },
-    {
-      "id": "zepherin_namuncura",
+    "zepherin_namuncura": {
       "fullname": "Bl. Zeffirína Namuncurá"
     },
-    {
-      "id": "zoltan_lajos_meszlenyi_bishop",
+    "zoltan_lajos_meszlenyi_bishop": {
       "fullname": "Bl. Zoltána Ludvíka Meszlényiho, biskupa a mučedníka"
     },
-    {
-      "id": "zygmunt_gorazdowski_priest",
+    "zygmunt_gorazdowski_priest": {
       "fullname": "Sv. Zikmunda Gorazdowského, kněze"
     }
-  ]
+  }
 }

@@ -1,58 +1,45 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "la",
-  "entities": [
-    {
-      "id": "valentine_of_raetia_bishop",
+  "entities": {
+    "valentine_of_raetia_bishop": {
       "fullname": "S. Valentini Rhætiæ, episcopi"
     },
-    {
-      "id": "valerius_of_trier_bishop",
+    "valerius_of_trier_bishop": {
       "fullname": "S. Valerii, episcopi"
     },
-    {
-      "id": "vincent_de_paul_priest",
+    "vincent_de_paul_priest": {
       "fullname": "S. Vincentii de Paul, presbyteri"
     },
-    {
-      "id": "vincent_ferrer_priest",
+    "vincent_ferrer_priest": {
       "fullname": "S. Vincentii Ferrer, presbyteri"
     },
-    {
-      "id": "vincent_kadlubek_bishop",
+    "vincent_kadlubek_bishop": {
       "fullname": "B. Vincentii Kadłubek, episcopi"
     },
-    {
-      "id": "vincent_lewoniuk_and_companions_martyrs",
+    "vincent_lewoniuk_and_companions_martyrs": {
       "fullname": "Beatorum Martyrum de Pratulin"
     },
-    {
-      "id": "vincent_of_saragossa_deacon",
+    "vincent_of_saragossa_deacon": {
       "fullname": "S. Vincentii, diaconi et martyris"
     },
-    {
-      "id": "vincent_pallotti_priest",
+    "vincent_pallotti_priest": {
       "fullname": "S. Vincentii Pallotti, presbyteri"
     },
-    {
-      "id": "virgilius_of_salzburg_bishop",
+    "virgilius_of_salzburg_bishop": {
       "fullname": "S. Virgilii Salisburgensis, episcopi"
     },
-    {
-      "id": "visitation_of_mary",
+    "visitation_of_mary": {
       "fullname": "In Visitatione B. Mariæ Virginis"
     },
-    {
-      "id": "vitus_of_lucania_martyr",
+    "vitus_of_lucania_martyr": {
       "fullname": "S. Viti, martyris"
     },
-    {
-      "id": "vladimir_ghika_priest",
+    "vladimir_ghika_priest": {
       "fullname": "B. Vladimiri Ghika, presbyteri et martyris"
     },
-    {
-      "id": "vladimir_i_the_great_of_kiev",
+    "vladimir_i_the_great_of_kiev": {
       "fullname": "S. Vladimiri I Magni"
     }
-  ]
+  }
 }

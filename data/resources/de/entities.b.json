@@ -1,146 +1,111 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "de",
-  "entities": [
-    {
-      "id": "baldomerus_of_lyon_religious",
+  "entities": {
+    "baldomerus_of_lyon_religious": {
       "fullname": "Hl. Baldomerus, Ordensmann"
     },
-    {
-      "id": "baptism_of_the_lord",
+    "baptism_of_the_lord": {
       "fullname": "Taufe des Herrn"
     },
-    {
-      "id": "barbara_of_heliopolis_virgin",
+    "barbara_of_heliopolis_virgin": {
       "fullname": "Hl. Barbara, Jungfrau und Märtyrerin"
     },
-    {
-      "id": "barnabas_apostle",
+    "barnabas_apostle": {
       "fullname": "Hl. Barnabas, Apostel"
     },
-    {
-      "id": "bartholomew_apostle",
+    "bartholomew_apostle": {
       "fullname": "Hl. Bartholomäus, Apostel"
     },
-    {
-      "id": "bartholomew_dias_laurel_religious",
+    "bartholomew_dias_laurel_religious": {
       "fullname": "Sel. Bartholomäus Días Laurel, Ordensmann und Märtyrer"
     },
-    {
-      "id": "bartholomew_of_the_martyrs_fernandes_bishop",
+    "bartholomew_of_the_martyrs_fernandes_bishop": {
       "fullname": "Hl. Bartholomäus der Märtyrer Fernandes, Bischof"
     },
-    {
-      "id": "basil_the_great_and_gregory_nazianzen_bishops",
+    "basil_the_great_and_gregory_nazianzen_bishops": {
       "fullname": "Hl. Basilius der Große und Gregor von Nazianz, Bischöfe und Kirchenlehrer"
     },
-    {
-      "id": "beatrice_da_silva_meneses_virgin",
+    "beatrice_da_silva_meneses_virgin": {
       "fullname": "Hl. Beatrix da Silva Meneses, Jungfrau"
     },
-    {
-      "id": "bede_the_venerable_priest",
+    "bede_the_venerable_priest": {
       "fullname": "Hl. Beda Venerabilis, Priester und Kirchenlehrer"
     },
-    {
-      "id": "benedict_of_aniane_abbot",
+    "benedict_of_aniane_abbot": {
       "fullname": "Hl. Benedikt von Aniane, Abt"
     },
-    {
-      "id": "benedict_of_jesus_valdivielso_saez_religious",
+    "benedict_of_jesus_valdivielso_saez_religious": {
       "fullname": "Hl. Benedikt von Jesus Valdivielso Sáez, Ordensmann und Märtyrer"
     },
-    {
-      "id": "benedict_of_nursia_abbot",
+    "benedict_of_nursia_abbot": {
       "fullname": "Hl. Benedikt, Abt"
     },
-    {
-      "id": "benedict_of_nursia_abbot_patron_of_europe",
+    "benedict_of_nursia_abbot_patron_of_europe": {
       "fullname": "Hl. Benedikt, Abt, Schutzpatron Europas"
     },
-    {
-      "id": "benno_of_meissen_bishop",
+    "benno_of_meissen_bishop": {
       "fullname": "Hl. Benno von Meißen, Bischof"
     },
-    {
-      "id": "bernadette_soubirous_virgin",
+    "bernadette_soubirous_virgin": {
       "fullname": "Hl. Bernadette Soubirous, Jungfrau"
     },
-    {
-      "id": "bernard_of_clairvaux_abbot",
+    "bernard_of_clairvaux_abbot": {
       "fullname": "Hl. Bernhard, Abt und Kirchenlehrer"
     },
-    {
-      "id": "bernardine_of_siena_priest",
+    "bernardine_of_siena_priest": {
       "fullname": "Hl. Bernhardin von Siena, Priester"
     },
-    {
-      "id": "beuno_of_wales_abbot",
+    "beuno_of_wales_abbot": {
       "fullname": "Hl. Beuno, Abt"
     },
-    {
-      "id": "blaise_of_sebaste_bishop",
+    "blaise_of_sebaste_bishop": {
       "fullname": "Hl. Blasius, Bischof und Märtyrer"
     },
-    {
-      "id": "blessed_martyrs_of_paris",
+    "blessed_martyrs_of_paris": {
       "fullname": "Selige Märtyrer von Paris"
     },
-    {
-      "id": "bogumilus_of_dobrow_bishop",
+    "bogumilus_of_dobrow_bishop": {
       "fullname": "Sel. Bogumilus, Bischof"
     },
-    {
-      "id": "boleslawa_mary_lament_virgin",
+    "boleslawa_mary_lament_virgin": {
       "fullname": "Sel. Boleslawa Maria Lament, Jungfrau"
     },
-    {
-      "id": "bonaventure_of_bagnoregio_bishop",
+    "bonaventure_of_bagnoregio_bishop": {
       "fullname": "Hl. Bonaventura, Bischof und Kirchenlehrer"
     },
-    {
-      "id": "boniface_of_mainz_bishop",
+    "boniface_of_mainz_bishop": {
       "fullname": "Hl. Bonifatius, Bischof und Märtyrer"
     },
-    {
-      "id": "boris_of_kiev_and_gleb_of_kiev_martyrs",
+    "boris_of_kiev_and_gleb_of_kiev_martyrs": {
       "fullname": "Hl. Boris und Gleb, Märtyrer"
     },
-    {
-      "id": "brendan_of_clonfert_abbot",
+    "brendan_of_clonfert_abbot": {
       "fullname": "Hl. Brendan, Abt"
     },
-    {
-      "id": "bridget_of_sweden_religious",
+    "bridget_of_sweden_religious": {
       "fullname": "Hl. Birgitta, Ordensfrau"
     },
-    {
-      "id": "bridget_of_sweden_religious_copatroness_of_europe",
+    "bridget_of_sweden_religious_copatroness_of_europe": {
       "fullname": "Hl. Birgitta, Ordensfrau, Mitpatronin Europas"
     },
-    {
-      "id": "brigid_of_kildare_virgin",
+    "brigid_of_kildare_virgin": {
       "fullname": "Hl. Brigida, Äbtissin"
     },
-    {
-      "id": "brigid_of_kildare_virgin_copatroness_of_ireland",
+    "brigid_of_kildare_virgin_copatroness_of_ireland": {
       "fullname": "Hl. Brigida, Jungfrau, Mitpatronin Irlands"
     },
-    {
-      "id": "bronislava_of_poland_virgin",
+    "bronislava_of_poland_virgin": {
       "fullname": "Sel. Bronislava, Jungfrau"
     },
-    {
-      "id": "bronislaw_markiewicz_priest",
+    "bronislaw_markiewicz_priest": {
       "fullname": "Sel. Bronisław Markiewicz, Priester"
     },
-    {
-      "id": "bruno_of_cologne_priest",
+    "bruno_of_cologne_priest": {
       "fullname": "Hl. Bruno, Priester"
     },
-    {
-      "id": "bruno_of_querfurt_bishop",
+    "bruno_of_querfurt_bishop": {
       "fullname": "Hl. Bruno von Querfurt, Bischof und Märtyrer"
     }
-  ]
+  }
 }

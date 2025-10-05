@@ -1,13 +1,11 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "en",
-  "entities": [
-    {
-      "id": "waitangi_day",
+  "entities": {
+    "waitangi_day": {
       "fullname": "Waitangi Day"
     },
-    {
-      "id": "walpurga_of_heidenheim_abbess",
+    "walpurga_of_heidenheim_abbess": {
       "fullname": "Saint Walpurga of Heidenheim, Abbess",
       "canonization_level": "SAINT",
       "name": "Walpurga of Heidenheim",
@@ -15,8 +13,7 @@
         "ABBESS"
       ]
     },
-    {
-      "id": "wenceslaus_i_of_bohemia_martyr",
+    "wenceslaus_i_of_bohemia_martyr": {
       "fullname": "Saint Wenceslaus, Martyr",
       "canonization_level": "SAINT",
       "name": "Wenceslaus",
@@ -25,12 +22,10 @@
       ],
       "date_of_death": 929
     },
-    {
-      "id": "wenceslaus_i_of_bohemia_martyr_patron_of_the_czech_nation",
+    "wenceslaus_i_of_bohemia_martyr_patron_of_the_czech_nation": {
       "fullname": "Saint Wenceslaus, Martyr, Patron of the Czech nation"
     },
-    {
-      "id": "wendelin_of_trier_hermit",
+    "wendelin_of_trier_hermit": {
       "fullname": "Saint Wendelin, Hermit",
       "canonization_level": "SAINT",
       "name": "Wendelin of Trier",
@@ -40,8 +35,7 @@
       ],
       "date_of_death": 617
     },
-    {
-      "id": "wilfrid_of_york_bishop",
+    "wilfrid_of_york_bishop": {
       "fullname": "Saint Wilfrid, Bishop",
       "canonization_level": "SAINT",
       "name": "Wilfrid",
@@ -49,8 +43,7 @@
         "BISHOP"
       ]
     },
-    {
-      "id": "william_apor_bishop",
+    "william_apor_bishop": {
       "fullname": "Blessed William Apor, Bishop and Martyr",
       "canonization_level": "BLESSED",
       "name": "William Apor",
@@ -59,8 +52,7 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "william_firmatus_abbot",
+    "william_firmatus_abbot": {
       "fullname": "Saint William Firmatus, Abbot",
       "canonization_level": "SAINT",
       "name": "William Firmatus",
@@ -75,8 +67,7 @@
         "https://en.wikipedia.org/wiki/William_Firmatus"
       ]
     },
-    {
-      "id": "willibald_of_eichstatt_bishop",
+    "willibald_of_eichstatt_bishop": {
       "fullname": "Saint Willibald, Bishop",
       "canonization_level": "SAINT",
       "name": "Willibald",
@@ -84,8 +75,7 @@
         "BISHOP"
       ]
     },
-    {
-      "id": "willibrord_of_utrecht_bishop",
+    "willibrord_of_utrecht_bishop": {
       "fullname": "Saint Willibrord, Bishop",
       "canonization_level": "SAINT",
       "name": "Willibrord",
@@ -93,8 +83,7 @@
         "BISHOP"
       ]
     },
-    {
-      "id": "winefride_of_flintshire_virgin",
+    "winefride_of_flintshire_virgin": {
       "fullname": "Saint Winefride, Virgin",
       "canonization_level": "SAINT",
       "name": "Winefride",
@@ -102,8 +91,7 @@
         "VIRGIN"
       ]
     },
-    {
-      "id": "wladyslaw_bladzinski_priest",
+    "wladyslaw_bladzinski_priest": {
       "canonization_level": "BLESSED",
       "name": "Wladyslaw Błądziński",
       "titles": [
@@ -111,12 +99,10 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "wladyslaw_bladzinski_priest_and_companions_martyrs",
+    "wladyslaw_bladzinski_priest_and_companions_martyrs": {
       "fullname": "Blessed Wladyslaw Błądziński, Priest, and Companions, Martyrs"
     },
-    {
-      "id": "wolfgang_of_regensburg_bishop",
+    "wolfgang_of_regensburg_bishop": {
       "fullname": "Saint Wolfgang of Regensburg, Bishop",
       "canonization_level": "SAINT",
       "name": "Wolfgang of Regensburg",
@@ -124,8 +110,7 @@
         "BISHOP"
       ]
     },
-    {
-      "id": "wulstan_of_worcester_bishop",
+    "wulstan_of_worcester_bishop": {
       "fullname": "Saint Wulstan, Bishop",
       "canonization_level": "SAINT",
       "name": "Wulstan",
@@ -133,5 +118,5 @@
         "BISHOP"
       ]
     }
-  ]
+  }
 }

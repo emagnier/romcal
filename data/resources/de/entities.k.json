@@ -1,42 +1,33 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "de",
-  "entities": [
-    {
-      "id": "kateri_tekakwitha_virgin",
+  "entities": {
+    "kateri_tekakwitha_virgin": {
       "fullname": "Hl. Kateri Tekakwitha, Jungfrau"
     },
-    {
-      "id": "katharine_drexel_virgin",
+    "katharine_drexel_virgin": {
       "fullname": "Hl. Katharine Drexel, Jungfrau"
     },
-    {
-      "id": "kentigern_of_scotland_bishop",
+    "kentigern_of_scotland_bishop": {
       "fullname": "Hl. Kentigern, Bischof"
     },
-    {
-      "id": "kevin_of_glendalough_abbot",
+    "kevin_of_glendalough_abbot": {
       "fullname": "Hl. Kevin, Abt"
     },
-    {
-      "id": "kieran_of_saigir_bishop",
+    "kieran_of_saigir_bishop": {
       "fullname": "Hl. Kieran, Bischof"
     },
-    {
-      "id": "kilian_of_wurzburg_bishop",
+    "kilian_of_wurzburg_bishop": {
       "fullname": "Hl. Kilian, Bischof und Märtyrer"
     },
-    {
-      "id": "kilian_of_wurzburg_bishop_and_companions_martyrs",
+    "kilian_of_wurzburg_bishop_and_companions_martyrs": {
       "fullname": "Hl. Kilian, Bischof, und Gefährten, Märtyrer"
     },
-    {
-      "id": "kinga_of_poland_virgin",
+    "kinga_of_poland_virgin": {
       "fullname": "Hl. Kinga, Jungfrau"
     },
-    {
-      "id": "kuriakose_elias_of_the_holy_family_chavara_priest",
+    "kuriakose_elias_of_the_holy_family_chavara_priest": {
       "fullname": "Hl. Kuriakose Elias Chavara vom Heiligen Kind, Priester"
     }
-  ]
+  }
 }

@@ -1,58 +1,45 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "it",
-  "entities": [
-    {
-      "id": "teresa_benedicta_of_the_cross_stein_virgin",
+  "entities": {
+    "teresa_benedicta_of_the_cross_stein_virgin": {
       "fullname": "Santa Teresa Benedetta della Croce, vergine e martire"
     },
-    {
-      "id": "teresa_benedicta_of_the_cross_stein_virgin_copatroness_of_europe",
+    "teresa_benedicta_of_the_cross_stein_virgin_copatroness_of_europe": {
       "fullname": "Santa Teresa Benedetta della Croce, vergine, martire e patrona secondaria d’Europa"
     },
-    {
-      "id": "teresa_of_jesus_of_avila_virgin",
+    "teresa_of_jesus_of_avila_virgin": {
       "fullname": "Santa Teresa di Gesù d’Avila, vergine e dottore della Chiesa"
     },
-    {
-      "id": "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin",
+    "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin": {
       "fullname": "Santa Teresa di Gesu’ Bambino, vergine e dottore della Chiesa"
     },
-    {
-      "id": "thomas_apostle",
+    "thomas_apostle": {
       "fullname": "San Tommaso, apostolo"
     },
-    {
-      "id": "thomas_aquinas_priest",
+    "thomas_aquinas_priest": {
       "fullname": "San Tommaso d’Aquino, sacerdote e dottore della Chiesa"
     },
-    {
-      "id": "thomas_becket_bishop",
+    "thomas_becket_bishop": {
       "fullname": "San Tommaso Becket, vescovo e martire"
     },
-    {
-      "id": "thomas_jean_georges_rehm_priest",
+    "thomas_jean_georges_rehm_priest": {
       "fullname": "Beato Tommaso Jean-Georges Rehm, sacerdote e martire"
     },
-    {
-      "id": "thursday_of_the_lords_supper",
+    "thursday_of_the_lords_supper": {
       "fullname": "Giovedì Santo / Cena del Signore"
     },
-    {
-      "id": "timothy_of_ephesus_and_titus_of_crete_bishops",
+    "timothy_of_ephesus_and_titus_of_crete_bishops": {
       "fullname": "Santi Timoteo e Tito, vescovi"
     },
-    {
-      "id": "transfiguration_of_the_lord",
+    "transfiguration_of_the_lord": {
       "fullname": "Trasfigurazione del Signore"
     },
-    {
-      "id": "translation_of_the_relics_of_odile_of_alsace_abbess",
+    "translation_of_the_relics_of_odile_of_alsace_abbess": {
       "fullname": "Traslazione delle reliquie di santa Odìlia"
     },
-    {
-      "id": "turibius_of_mogrovejo_bishop",
+    "turibius_of_mogrovejo_bishop": {
       "fullname": "San Turibio de Mogrovejo, vescovo"
     }
-  ]
+  }
 }

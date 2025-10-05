@@ -1,46 +1,36 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "it",
-  "entities": [
-    {
-      "id": "easter_sunday",
+  "entities": {
+    "easter_sunday": {
       "fullname": "Domenica di Pasqua / Risurrezione del Signore"
     },
-    {
-      "id": "eligius_of_noyon_bishop",
+    "eligius_of_noyon_bishop": {
       "fullname": "Sant’Eligio di Noyon, vescovo"
     },
-    {
-      "id": "elizabeth_of_hungary_religious",
+    "elizabeth_of_hungary_religious": {
       "fullname": "Sant’Elisabetta di Ungheria, religiosa"
     },
-    {
-      "id": "elizabeth_of_portugal",
+    "elizabeth_of_portugal": {
       "fullname": "Santa Elisabetta di Portogallo"
     },
-    {
-      "id": "ephrem_the_syrian_deacon",
+    "ephrem_the_syrian_deacon": {
       "fullname": "Sant’Efrem, diacono e dottore della Chiesa"
     },
-    {
-      "id": "epiphany_of_the_lord",
+    "epiphany_of_the_lord": {
       "fullname": "Epifania del Signore"
     },
-    {
-      "id": "eucharius_of_trier_bishop",
+    "eucharius_of_trier_bishop": {
       "fullname": "Sant’Eucario, vescovo"
     },
-    {
-      "id": "eugenia_of_alsace_and_attala_of_alsace_virgins",
+    "eugenia_of_alsace_and_attala_of_alsace_virgins": {
       "fullname": "Sante Eugenia e Attala, vergini"
     },
-    {
-      "id": "eusebius_of_vercelli_bishop",
+    "eusebius_of_vercelli_bishop": {
       "fullname": "Sant’Eusebio di Vercelli, vescovo"
     },
-    {
-      "id": "exaltation_of_the_holy_cross",
+    "exaltation_of_the_holy_cross": {
       "fullname": "Esaltazione della Santa Croce"
     }
-  ]
+  }
 }

@@ -1,90 +1,69 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "cs",
-  "entities": [
-    {
-      "id": "rabanus_maurus_bishop",
+  "entities": {
+    "rabanus_maurus_bishop": {
       "fullname": "Sv. Rabana Maura, biskupa"
     },
-    {
-      "id": "radim_of_gniezno_bishop",
+    "radim_of_gniezno_bishop": {
       "fullname": "Sv. Radima, biskupa"
     },
-    {
-      "id": "rafqa_pietra_choboq_ar_rayes_virgin",
+    "rafqa_pietra_choboq_ar_rayes_virgin": {
       "fullname": "Sv. Rebeky Petry Choboq Ar-Rayès, panny"
     },
-    {
-      "id": "raphael_chylinski_priest",
+    "raphael_chylinski_priest": {
       "fullname": "Bl. Rafaela Chylińského, kněze"
     },
-    {
-      "id": "raphael_guizar_y_valencia_bishop",
+    "raphael_guizar_y_valencia_bishop": {
       "fullname": "Sv. Rafaela Guízar, biskupa"
     },
-    {
-      "id": "raphael_of_saint_joseph_kalinowski_priest",
+    "raphael_of_saint_joseph_kalinowski_priest": {
       "fullname": "Sv. Rafaela od sv. Josefa Kalinowského, kněze"
     },
-    {
-      "id": "raymond_of_penyafort_priest",
+    "raymond_of_penyafort_priest": {
       "fullname": "Sv. Rajmunda z Peñafortu, kněze"
     },
-    {
-      "id": "remigius_of_reims_bishop",
+    "remigius_of_reims_bishop": {
       "fullname": "Sv. Remigia, biskupa"
     },
-    {
-      "id": "richard_gwyn_martyr",
+    "richard_gwyn_martyr": {
       "fullname": "Sv. Richarda Gwyna, mučedníka"
     },
-    {
-      "id": "richard_of_chichester_bishop",
+    "richard_of_chichester_bishop": {
       "fullname": "Sv. Richarda z Chichesteru, biskupa"
     },
-    {
-      "id": "richardis_of_swabia_empress",
+    "richardis_of_swabia_empress": {
       "fullname": "Sv. Richardy, císařovny"
     },
-    {
-      "id": "rita_of_cascia_religious",
+    "rita_of_cascia_religious": {
       "fullname": "Sv. Rity z Cascie, řeholnice"
     },
-    {
-      "id": "robert_bellarmine_bishop",
+    "robert_bellarmine_bishop": {
       "fullname": "Sv. Roberta Bellarmina, biskupa a učitele církve"
     },
-    {
-      "id": "roch_gonzalez_alphonsus_rodriguez_and_john_del_castillo_priests",
+    "roch_gonzalez_alphonsus_rodriguez_and_john_del_castillo_priests": {
       "fullname": "Sv. Rocha Gonzáleze, Alfonsa Rodrígueze a Jana del Castillo, kněží a mučedníků"
     },
-    {
-      "id": "roch_of_montpellier",
+    "roch_of_montpellier": {
       "fullname": "Sv. Rocha"
     },
-    {
-      "id": "romuald_of_ravenna_abbot",
+    "romuald_of_ravenna_abbot": {
       "fullname": "Sv. Romualda, opata"
     },
-    {
-      "id": "rosalie_jeanne_marie_rendu_virgin",
+    "rosalie_jeanne_marie_rendu_virgin": {
       "fullname": "Bl. Rosalie Rendu, panny"
     },
-    {
-      "id": "rose_of_lima_virgin",
+    "rose_of_lima_virgin": {
       "fullname": "Sv. Růženy z Limy, panny"
     },
-    {
-      "id": "rose_of_lima_virgin_copatroness_of_the_philippines",
+    "rose_of_lima_virgin_copatroness_of_the_philippines": {
       "fullname": "Sv. Růženy z Limy, panny a spolupatronky Filipín"
     },
-    {
-      "id": "rose_philippine_duchesne_virgin",
+    "rose_philippine_duchesne_virgin": {
       "fullname": "Sv. Růženy Filipíny Duchesne, panny"
     },
-    {
-      "id": "rupert_of_salzburg_and_virgilius_of_salzburg_bishops",
+    "rupert_of_salzburg_and_virgilius_of_salzburg_bishops": {
       "fullname": "Sv. Ruperta a Virgila ze Salzburgu, biskupů"
     }
-  ]
+  }
 }

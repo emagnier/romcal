@@ -1,117 +1,90 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "it",
-  "entities": [
-    {
-      "id": "palm_sunday_of_the_passion_of_the_lord",
+  "entities": {
+    "palm_sunday_of_the_passion_of_the_lord": {
       "fullname": "Domenica delle Palme: Passione del Signore"
     },
-    {
-      "id": "pancras_of_rome_martyr",
+    "pancras_of_rome_martyr": {
       "fullname": "San Pancrazio, martire"
     },
-    {
-      "id": "passion_of_saint_john_the_baptist",
+    "passion_of_saint_john_the_baptist": {
       "fullname": "Martirio di San Giovanni Battista"
     },
-    {
-      "id": "patrick_of_ireland_bishop",
+    "patrick_of_ireland_bishop": {
       "fullname": "San Patrizio, vescovo"
     },
-    {
-      "id": "patrick_of_ireland_bishop_patron_of_ireland",
+    "patrick_of_ireland_bishop_patron_of_ireland": {
       "fullname": "San Patrizio, vescovo e patrono dell’Irlanda"
     },
-    {
-      "id": "paul_miki_and_companions_martyrs",
+    "paul_miki_and_companions_martyrs": {
       "fullname": "San Paolo Miki sacerdote e compagni, martiri"
     },
-    {
-      "id": "paul_of_the_cross_priest",
+    "paul_of_the_cross_priest": {
       "fullname": "San Paolo della Croce, sacerdote"
     },
-    {
-      "id": "paul_vi_pope",
+    "paul_vi_pope": {
       "fullname": "San Paolo VI, papa",
       "sources": [
         "mr_it_2020_ed3"
       ]
     },
-    {
-      "id": "paulinus_of_nola_bishop",
+    "paulinus_of_nola_bishop": {
       "fullname": "San Paolino di Nola, vescovo"
     },
-    {
-      "id": "pentecost_sunday",
+    "pentecost_sunday": {
       "fullname": "Domenica di Pentecoste"
     },
-    {
-      "id": "perpetua_of_carthage_and_felicity_of_carthage_martyrs",
+    "perpetua_of_carthage_and_felicity_of_carthage_martyrs": {
       "fullname": "Sante Perpetua e Felicita, martiri"
     },
-    {
-      "id": "peter_and_paul_apostles",
+    "peter_and_paul_apostles": {
       "fullname": "Santi Pietro e Paolo, apostoli"
     },
-    {
-      "id": "peter_canisius_priest",
+    "peter_canisius_priest": {
       "fullname": "San Pietro Canisio, sacerdote e dottore della Chiesa"
     },
-    {
-      "id": "peter_chanel_priest",
+    "peter_chanel_priest": {
       "fullname": "San Pietro Chanel, sacerdote e martire"
     },
-    {
-      "id": "peter_chrysologus_bishop",
+    "peter_chrysologus_bishop": {
       "fullname": "San Pietro Crisologo, vescovo e dottore della Chiesa"
     },
-    {
-      "id": "peter_claver_priest",
+    "peter_claver_priest": {
       "fullname": "San Pietro Claver, sacerdote"
     },
-    {
-      "id": "peter_damian_bishop",
+    "peter_damian_bishop": {
       "fullname": "San Pier Damiani, vescovo e dottore della Chiesa"
     },
-    {
-      "id": "peter_julian_eymard_priest",
+    "peter_julian_eymard_priest": {
       "fullname": "San Pietro Giuliano Eymard, sacerdote"
     },
-    {
-      "id": "philip_and_james_apostles",
+    "philip_and_james_apostles": {
       "fullname": "Santi Filippo e Giacomo, apostoli"
     },
-    {
-      "id": "philip_neri_priest",
+    "philip_neri_priest": {
       "fullname": "San Filippo Neri, sacerdote"
     },
-    {
-      "id": "pius_francesco_forgione_priest",
+    "pius_francesco_forgione_priest": {
       "fullname": "San Pio da Pietrelcina, sacerdote"
     },
-    {
-      "id": "pius_v_pope",
+    "pius_v_pope": {
       "fullname": "San Pio V, papa"
     },
-    {
-      "id": "pius_x_pope",
+    "pius_x_pope": {
       "fullname": "San Pio X, papa"
     },
-    {
-      "id": "polycarp_of_smyrna_bishop",
+    "polycarp_of_smyrna_bishop": {
       "fullname": "San Policarpo, vescovo e martire"
     },
-    {
-      "id": "pontian_i_pope_and_hippolytus_of_rome_priest",
+    "pontian_i_pope_and_hippolytus_of_rome_priest": {
       "fullname": "Santi Ponziano, papa e Ippolito, sacerdote, martiri"
     },
-    {
-      "id": "presentation_of_the_blessed_virgin_mary",
+    "presentation_of_the_blessed_virgin_mary": {
       "fullname": "Presentazione della Beata Vergine Maria"
     },
-    {
-      "id": "presentation_of_the_lord",
+    "presentation_of_the_lord": {
       "fullname": "Presentazione del Signore"
     }
-  ]
+  }
 }

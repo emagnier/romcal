@@ -1,15 +1,13 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "en",
-  "entities": [
-    {
-      "id": "hedwig_of_poland",
+  "entities": {
+    "hedwig_of_poland": {
       "fullname": "Saint Hedwig of Poland",
       "canonization_level": "SAINT",
       "name": "Hedwig of Poland"
     },
-    {
-      "id": "hedwig_of_silesia_religious",
+    "hedwig_of_silesia_religious": {
       "fullname": "Saint Hedwig, Religious",
       "canonization_level": "SAINT",
       "name": "Hedwig",
@@ -18,14 +16,12 @@
       ],
       "date_of_death": 1243
     },
-    {
-      "id": "helena_of_constantinople",
+    "helena_of_constantinople": {
       "fullname": "Saint Helena",
       "canonization_level": "SAINT",
       "name": "Helena"
     },
-    {
-      "id": "helier_of_jersey_martyr",
+    "helier_of_jersey_martyr": {
       "fullname": "Saint Helier, Martyr",
       "canonization_level": "SAINT",
       "name": "Helier",
@@ -40,14 +36,12 @@
         "https://en.wikipedia.org/wiki/Helier"
       ]
     },
-    {
-      "id": "hemma_of_gurk",
+    "hemma_of_gurk": {
       "fullname": "Saint Hemma of Gurk",
       "canonization_level": "SAINT",
       "name": "Hemma of Gurk"
     },
-    {
-      "id": "hemming_of_turku_bishop",
+    "hemming_of_turku_bishop": {
       "fullname": "Blessed Hemming of Turku, Bishop",
       "canonization_level": "BLESSED",
       "name": "Hemming of Turku",
@@ -55,19 +49,16 @@
         "BISHOP"
       ]
     },
-    {
-      "id": "henry_ii_emperor",
+    "henry_ii_emperor": {
       "fullname": "Saint Henry",
       "canonization_level": "SAINT",
       "name": "Henry",
       "date_of_death": 1024
     },
-    {
-      "id": "henry_ii_emperor_and_cunigunde_of_luxembourg",
+    "henry_ii_emperor_and_cunigunde_of_luxembourg": {
       "fullname": "Saints Henry and Cunigunde"
     },
-    {
-      "id": "henry_of_finland_bishop",
+    "henry_of_finland_bishop": {
       "fullname": "Saint Henry, Bishop and Martyr",
       "canonization_level": "SAINT",
       "name": "Henry",
@@ -77,8 +68,7 @@
       ],
       "date_of_death": 1156
     },
-    {
-      "id": "henry_suso_priest",
+    "henry_suso_priest": {
       "fullname": "Blessed Henry Suso, Priest",
       "canonization_level": "BLESSED",
       "name": "Henry Suso",
@@ -86,8 +76,7 @@
         "PRIEST"
       ]
     },
-    {
-      "id": "hermann_joseph_of_steinfeld_priest",
+    "hermann_joseph_of_steinfeld_priest": {
       "fullname": "Saint Hermann Joseph, Priest",
       "canonization_level": "SAINT",
       "name": "Hermann Joseph",
@@ -95,8 +84,7 @@
         "PRIEST"
       ]
     },
-    {
-      "id": "hermenegild_the_visigoths_martyr",
+    "hermenegild_the_visigoths_martyr": {
       "fullname": "Saint Hermenegild, Martyr",
       "canonization_level": "SAINT",
       "name": "Hermenegild",
@@ -104,8 +92,7 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "hilarius_of_toulouse_bishop",
+    "hilarius_of_toulouse_bishop": {
       "fullname": "Saint Hilary of Toulouse, Bishop",
       "canonization_level": "SAINT",
       "name": "Hilarius",
@@ -119,12 +106,10 @@
         "https://en.wikipedia.org/wiki/Roman_Catholic_Archdiocese_of_Toulouse"
       ]
     },
-    {
-      "id": "hilarius_of_toulouse_bishop_and_sylvius_of_toulouse_bishops",
+    "hilarius_of_toulouse_bishop_and_sylvius_of_toulouse_bishops": {
       "fullname": "Saints Hilary and Sylvius of Toulouse, Bishops"
     },
-    {
-      "id": "hilary_of_poitiers_bishop",
+    "hilary_of_poitiers_bishop": {
       "fullname": "Saint Hilary, Bishop and Doctor of the Church",
       "canonization_level": "SAINT",
       "name": "Hilary",
@@ -134,8 +119,7 @@
       ],
       "date_of_death": 367
     },
-    {
-      "id": "hilda_of_whitby_abbess",
+    "hilda_of_whitby_abbess": {
       "fullname": "Saint Hilda, Abbess",
       "canonization_level": "SAINT",
       "name": "Hilda",
@@ -143,8 +127,7 @@
         "ABBESS"
       ]
     },
-    {
-      "id": "hildegard_of_bingen_abbess",
+    "hildegard_of_bingen_abbess": {
       "fullname": "Saint Hildegard of Bingen, Abbess and Doctor of the Church",
       "canonization_level": "SAINT",
       "name": "Hildegard of Bingen",
@@ -153,8 +136,7 @@
         "DOCTOR_OF_THE_CHURCH"
       ]
     },
-    {
-      "id": "hippolytus_of_rome_priest",
+    "hippolytus_of_rome_priest": {
       "canonization_level": "SAINT",
       "name": "Hippolytus",
       "titles": [
@@ -163,22 +145,18 @@
       ],
       "date_of_death": 235
     },
-    {
-      "id": "holy_child_of_cebu",
+    "holy_child_of_cebu": {
       "fullname": "The Holy Child of Cebú",
       "name": "Holy Child of Cebú"
     },
-    {
-      "id": "holy_family_of_jesus_mary_and_joseph",
+    "holy_family_of_jesus_mary_and_joseph": {
       "fullname": "The Holy Family of Jesus, Mary and Joseph"
     },
-    {
-      "id": "holy_guardian_angels",
+    "holy_guardian_angels": {
       "fullname": "The Holy Guardian Angels",
       "count": "MANY"
     },
-    {
-      "id": "holy_hermits_and_evangelists",
+    "holy_hermits_and_evangelists": {
       "fullname": "The Holy Hermits and Evangelists",
       "titles": [
         "HERMIT",
@@ -189,8 +167,7 @@
         "mr_fr_2022_ed3_angers"
       ]
     },
-    {
-      "id": "holy_innocents_martyrs",
+    "holy_innocents_martyrs": {
       "fullname": "The Holy Innocents, Martyrs",
       "name": "Holy Innocents",
       "titles": [
@@ -200,16 +177,13 @@
       "date_of_death": 2,
       "date_of_death_is_approximative": true
     },
-    {
-      "id": "holy_saturday",
+    "holy_saturday": {
       "fullname": "Holy Saturday/Easter Vigil"
     },
-    {
-      "id": "holy_thursday",
+    "holy_thursday": {
       "fullname": "Holy Thursday"
     },
-    {
-      "id": "honorat_kozminski_priest",
+    "honorat_kozminski_priest": {
       "fullname": "Blessed Honorat Koźmiński, Priest",
       "canonization_level": "BLESSED",
       "name": "Honorat Koźmiński",
@@ -217,8 +191,7 @@
         "PRIEST"
       ]
     },
-    {
-      "id": "hosanna_of_cattaro_virgin",
+    "hosanna_of_cattaro_virgin": {
       "fullname": "Blessed Hosanna of Cattaro, Virgin",
       "canonization_level": "BLESSED",
       "name": "Hosanna of Cattaro",
@@ -226,8 +199,7 @@
         "VIRGIN"
       ]
     },
-    {
-      "id": "hroznata_of_bohemia_martyr",
+    "hroznata_of_bohemia_martyr": {
       "fullname": "Blessed Hroznata, Martyr",
       "canonization_level": "BLESSED",
       "name": "Hroznata",
@@ -235,8 +207,7 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "hubert_of_liege_bishop",
+    "hubert_of_liege_bishop": {
       "fullname": "Saint Hubert, Bishop",
       "canonization_level": "SAINT",
       "name": "Hubert",
@@ -245,8 +216,7 @@
       ],
       "date_of_death": 727
     },
-    {
-      "id": "hugh_of_lincoln_bishop",
+    "hugh_of_lincoln_bishop": {
       "fullname": "Saint Hugh of Lincoln, Bishop",
       "canonization_level": "SAINT",
       "name": "Hugh of Lincoln",
@@ -254,13 +224,11 @@
         "BISHOP"
       ]
     },
-    {
-      "id": "hungarian_saints_and_blesseds",
+    "hungarian_saints_and_blesseds": {
       "fullname": "Hungarian Saints and Blesseds",
       "count": "MANY"
     },
-    {
-      "id": "hyacinth_of_poland_priest",
+    "hyacinth_of_poland_priest": {
       "fullname": "Saint Hyacinth, Priest",
       "canonization_level": "SAINT",
       "name": "Hyacinth",
@@ -268,5 +236,5 @@
         "PRIEST"
       ]
     }
-  ]
+  }
 }

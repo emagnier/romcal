@@ -1,226 +1,171 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "cs",
-  "entities": [
-    {
-      "id": "palm_sunday_of_the_passion_of_the_lord",
+  "entities": {
+    "palm_sunday_of_the_passion_of_the_lord": {
       "fullname": "Květná neděle"
     },
-    {
-      "id": "pancras_of_rome_martyr",
+    "pancras_of_rome_martyr": {
       "fullname": "Sv. Pankráce, mučedníka"
     },
-    {
-      "id": "pantaleon_of_nicomedia_martyr",
+    "pantaleon_of_nicomedia_martyr": {
       "fullname": "Sv. Pantaleona z Nikomedie, mučedníka"
     },
-    {
-      "id": "paschal_baylon_religious",
+    "paschal_baylon_religious": {
       "fullname": "Sv. Paschala Baylóna, řeholníka"
     },
-    {
-      "id": "passion_of_saint_john_the_baptist",
+    "passion_of_saint_john_the_baptist": {
       "fullname": "Umučení sv. Jana Křtitele"
     },
-    {
-      "id": "patrick_of_ireland_bishop",
+    "patrick_of_ireland_bishop": {
       "fullname": "Sv. Patrika, biskupa"
     },
-    {
-      "id": "patrick_of_ireland_bishop_patron_of_ireland",
+    "patrick_of_ireland_bishop_patron_of_ireland": {
       "fullname": "Sv. Patrika, biskupa a patrona Irska"
     },
-    {
-      "id": "paul_chen_changpin_and_companions_martyrs",
+    "paul_chen_changpin_and_companions_martyrs": {
       "fullname": "Sv. Pavla Chen Changpin a druhů, mučedníků"
     },
-    {
-      "id": "paul_liu_hanzuo_priest",
+    "paul_liu_hanzuo_priest": {
       "fullname": "Sv. Pavla Liu Hanzuo, kněze a mučedníka"
     },
-    {
-      "id": "paul_miki_and_companions_martyrs",
+    "paul_miki_and_companions_martyrs": {
       "fullname": "Sv. Pavla Mikiho a druhů, mučedníků"
     },
-    {
-      "id": "paul_of_the_cross_priest",
+    "paul_of_the_cross_priest": {
       "fullname": "Sv. Pavla od Kříže, kněze"
     },
-    {
-      "id": "paul_of_thebes_hermit",
+    "paul_of_thebes_hermit": {
       "fullname": "Bl. Pavla z Téb, poustevníka"
     },
-    {
-      "id": "paul_vi_pope",
+    "paul_vi_pope": {
       "fullname": "Sv. Pavla VI., papeže"
     },
-    {
-      "id": "paulina_of_the_agonizing_heart_of_jesus_visintainer_virgin",
+    "paulina_of_the_agonizing_heart_of_jesus_visintainer_virgin": {
       "fullname": "Sv. Pavlíny od Bolestného Srdce Ježíšova Visintainer, panny"
     },
-    {
-      "id": "paulinus_of_nola_bishop",
+    "paulinus_of_nola_bishop": {
       "fullname": "Sv. Paulína Nolánského, biskupa"
     },
-    {
-      "id": "paulinus_of_trier_bishop",
+    "paulinus_of_trier_bishop": {
       "fullname": "Sv. Paulína z Trevíru, biskupa"
     },
-    {
-      "id": "paulinus_of_york_bishop",
+    "paulinus_of_york_bishop": {
       "fullname": "Sv. Paulína z Yorku, biskupa"
     },
-    {
-      "id": "pavel_peter_gojdic_bishop",
+    "pavel_peter_gojdic_bishop": {
       "fullname": "Bl. Pavla Petra Gojdiče, biskupa a mučedníka"
     },
-    {
-      "id": "pedro_calungsod_martyr",
+    "pedro_calungsod_martyr": {
       "fullname": "Sv. Petra Calungsod, mučedníka"
     },
-    {
-      "id": "pelagius_of_cordoba_martyr",
+    "pelagius_of_cordoba_martyr": {
       "fullname": "Sv. Pelagia z Córdoby, mučedníka"
     },
-    {
-      "id": "pentecost_sunday",
+    "pentecost_sunday": {
       "fullname": "Seslání Ducha svatého"
     },
-    {
-      "id": "perpetua_of_carthage_and_felicity_of_carthage_martyrs",
+    "perpetua_of_carthage_and_felicity_of_carthage_martyrs": {
       "fullname": "Sv. Perpetuy a Felicity, mučednic"
     },
-    {
-      "id": "peter_and_paul_apostles",
+    "peter_and_paul_apostles": {
       "fullname": "Sv. Petra a Pavla, apoštolů"
     },
-    {
-      "id": "peter_baptist_blasquez_paul_miki_and_companions_martyrs",
+    "peter_baptist_blasquez_paul_miki_and_companions_martyrs": {
       "fullname": "Sv. Petra Bautist Blásqueze, Pavla Mikiho a druhů, mučedníků"
     },
-    {
-      "id": "peter_canisius_priest",
+    "peter_canisius_priest": {
       "fullname": "Sv. Petra Kanisia, kněze a učitele církve"
     },
-    {
-      "id": "peter_chanel_priest",
+    "peter_chanel_priest": {
       "fullname": "Sv. Petra Chanela, kněze a mučedníka"
     },
-    {
-      "id": "peter_chanel_priest_patron_of_oceania",
+    "peter_chanel_priest_patron_of_oceania": {
       "fullname": "Sv. Petra Chanela, prvního mučedníka Oceánie a patrona Oceánie"
     },
-    {
-      "id": "peter_chrysologus_bishop",
+    "peter_chrysologus_bishop": {
       "fullname": "Sv. Petra Chryzologa, biskupa a učitele církve"
     },
-    {
-      "id": "peter_claver_priest",
+    "peter_claver_priest": {
       "fullname": "Sv. Petra Klavera, kněze"
     },
-    {
-      "id": "peter_damian_bishop",
+    "peter_damian_bishop": {
       "fullname": "Sv. Petra Damianiho, biskupa a učitele církve"
     },
-    {
-      "id": "peter_de_zuniga_and_louis_flores_priests",
+    "peter_de_zuniga_and_louis_flores_priests": {
       "fullname": "Bl. Petra de Zúñiga a Ludvíka Flores, kněží a mučedníků"
     },
-    {
-      "id": "peter_julian_eymard_priest",
+    "peter_julian_eymard_priest": {
       "fullname": "Sv. Petra Juliána Eymarda, kněze"
     },
-    {
-      "id": "peter_kibe_priest_and_companions_martyrs",
+    "peter_kibe_priest_and_companions_martyrs": {
       "fullname": "Bl. Petra Kibe, kněze, a druhů, mučedníků"
     },
-    {
-      "id": "peter_liu_wenyuan_martyr",
+    "peter_liu_wenyuan_martyr": {
       "fullname": "Sv. Petra Liu Wenyuan, mučedníka"
     },
-    {
-      "id": "peter_of_alcantara_priest",
+    "peter_of_alcantara_priest": {
       "fullname": "Sv. Petra z Alkantary, kněze"
     },
-    {
-      "id": "peter_sanz_bishop",
+    "peter_sanz_bishop": {
       "fullname": "Sv. Petra Sanz, biskupa a mučedníka"
     },
-    {
-      "id": "peter_to_rot_martyr",
+    "peter_to_rot_martyr": {
       "fullname": "Bl. Petra To Rot, mučedníka"
     },
-    {
-      "id": "peter_wu_guosheng_martyr",
+    "peter_wu_guosheng_martyr": {
       "fullname": "Sv. Petra Wu Guosheng, mučedníka"
     },
-    {
-      "id": "philip_and_james_apostles",
+    "philip_and_james_apostles": {
       "fullname": "Sv. Filipa a Jakuba, apoštolů"
     },
-    {
-      "id": "philip_evans_and_john_lloyd_priests",
+    "philip_evans_and_john_lloyd_priests": {
       "fullname": "Sv. Filipa Evanse a Jana Lloyda, kněží a mučedníků"
     },
-    {
-      "id": "philip_neri_priest",
+    "philip_neri_priest": {
       "fullname": "Sv. Filipa Neriho, kněze"
     },
-    {
-      "id": "philip_of_jesus_de_las_casas_martyr",
+    "philip_of_jesus_de_las_casas_martyr": {
       "fullname": "Sv. Filipa od Ježiša de las Casas, mučedníka"
     },
-    {
-      "id": "philip_of_jesus_de_las_casas_paul_miki_and_companions_martyrs",
+    "philip_of_jesus_de_las_casas_paul_miki_and_companions_martyrs": {
       "fullname": "Sv. Filipa od Ježíše de las Casas, Pavla Mikiho a druhů, mučedníků"
     },
-    {
-      "id": "pirmin_of_hornbach_abbot",
+    "pirmin_of_hornbach_abbot": {
       "fullname": "Sv. Pirmina, opata"
     },
-    {
-      "id": "pius_francesco_forgione_priest",
+    "pius_francesco_forgione_priest": {
       "fullname": "Sv. Pia z Pietrelciny, kněze"
     },
-    {
-      "id": "pius_ix_pope",
+    "pius_ix_pope": {
       "fullname": "Bl. Pia IX., papeže"
     },
-    {
-      "id": "pius_v_pope",
+    "pius_v_pope": {
       "fullname": "Sv. Pia V., papeže"
     },
-    {
-      "id": "pius_x_pope",
+    "pius_x_pope": {
       "fullname": "Sv. Pia X., papeže"
     },
-    {
-      "id": "polycarp_of_smyrna_bishop",
+    "polycarp_of_smyrna_bishop": {
       "fullname": "Sv. Polykarpa, biskupa a mučedníka"
     },
-    {
-      "id": "pontian_i_pope_and_hippolytus_of_rome_priest",
+    "pontian_i_pope_and_hippolytus_of_rome_priest": {
       "fullname": "Sv. Ponciána, papeže, a Hippolyta, kněze, mučedníků"
     },
-    {
-      "id": "pothinus_of_lyon_bishop_blandina_of_lyon_virgin_and_companions_martyrs",
+    "pothinus_of_lyon_bishop_blandina_of_lyon_virgin_and_companions_martyrs": {
       "fullname": "Sv. Potína, biskupa, Blandiny, panny a druhů, mučedníků"
     },
-    {
-      "id": "presentation_of_the_blessed_virgin_mary",
+    "presentation_of_the_blessed_virgin_mary": {
       "fullname": "Zasvěcení Panny Marie v Jeruzalémě"
     },
-    {
-      "id": "presentation_of_the_lord",
+    "presentation_of_the_lord": {
       "fullname": "Uvedení Páně do chrámu"
     },
-    {
-      "id": "procopius_of_sazava_abbot",
+    "procopius_of_sazava_abbot": {
       "fullname": "Sv. Prokopa, opata"
     },
-    {
-      "id": "publius_of_malta_bishop",
+    "publius_of_malta_bishop": {
       "fullname": "Sv. Publia, biskupa"
     }
-  ]
+  }
 }

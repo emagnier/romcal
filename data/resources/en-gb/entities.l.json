@@ -1,14 +1,12 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "en-gb",
-  "entities": [
-    {
-      "id": "labor_day",
+  "entities": {
+    "labor_day": {
       "fullname": "Labour Day"
     },
-    {
-      "id": "louis_grignion_de_montfort_priest",
+    "louis_grignion_de_montfort_priest": {
       "fullname": "Saint Louis Marie Grignion de Montfort, Priest"
     }
-  ]
+  }
 }

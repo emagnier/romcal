@@ -36,9 +36,6 @@ pub fn optimize(preset: &Preset) -> RomcalResult<String> {
     // Validate that all resource locales are unique
     validate_unique_resource_locales(&preset.resources)?;
 
-    // Validate that all entity IDs are unique within each resource definition
-    validate_unique_entity_ids(&preset.resources)?;
-
     // Create a filtered version of the config with only relevant calendar_definitions and resources
     let mut filtered_config = preset.clone();
     filtered_config.calendar_definitions = filter_calendar_definitions(preset)?;
@@ -79,27 +76,6 @@ fn validate_unique_resource_locales(resources: &[Resources]) -> RomcalResult<()>
                 "Duplicate locale '{}' found in resources. Each resource must have a unique locale.",
                 resource.locale
             )));
-        }
-    }
-
-    Ok(())
-}
-
-/// Validate that all entity IDs are unique within each resource definition
-/// Returns an error if duplicate entity IDs are found in any resource
-fn validate_unique_entity_ids(resources: &[Resources]) -> RomcalResult<()> {
-    for resource in resources {
-        if let Some(entities) = &resource.entities {
-            let mut seen_ids = EntityIdSet::new();
-
-            for entity in entities {
-                if !seen_ids.insert(entity.id.clone()) {
-                    return Err(RomcalError::ValidationError(format!(
-                        "Duplicate entity ID '{}' found in resource '{}'. Each entity must have a unique ID within a resource.",
-                        entity.id, resource.locale
-                    )));
-                }
-            }
         }
     }
 
@@ -269,18 +245,18 @@ fn apply_hierarchical_deduplication(
 /// Filter entities to only include those that are used in calendar day_definitions
 fn filter_entities_by_usage(resource: &mut Resources, used_entity_ids: &EntityIdSet) {
     if let Some(entities) = &mut resource.entities {
-        entities.retain(|entity| used_entity_ids.contains(&entity.id));
+        entities.retain(|id, _entity| used_entity_ids.contains(id));
     }
 }
 
 /// Deduplicate entities in a resource
 fn deduplicate_entities(resource: &mut Resources, defined_entity_ids: &mut EntityIdSet) {
     if let Some(entities) = &mut resource.entities {
-        entities.retain(|entity| {
-            if defined_entity_ids.contains(&entity.id) {
+        entities.retain(|id, _entity| {
+            if defined_entity_ids.contains(id) {
                 false // Remove entity already defined in more specific locale
             } else {
-                defined_entity_ids.insert(entity.id.clone());
+                defined_entity_ids.insert(id.clone());
                 true // Keep entity and mark it as defined
             }
         });
@@ -593,81 +569,91 @@ mod tests {
     }
 
     fn create_test_resources() -> Resources {
+        let mut entities = std::collections::BTreeMap::new();
+
+        entities.insert(
+            "john_the_baptist".to_string(),
+            crate::types::entity::Entity {
+                r#type: Some(EntityType::Person),
+                fullname: Some("John the Baptist".to_string()),
+                name: Some("John".to_string()),
+                canonization_level: None,
+                date_of_canonization: None,
+                date_of_canonization_is_approximative: None,
+                date_of_beatification: None,
+                date_of_beatification_is_approximative: None,
+                hide_canonization_level: None,
+                titles: None,
+                sex: None,
+                hide_titles: None,
+                date_of_dedication: None,
+                date_of_birth: None,
+                date_of_birth_is_approximative: None,
+                date_of_death: None,
+                date_of_death_is_approximative: None,
+                count: None,
+                sources: None,
+                _todo: None,
+            },
+        );
+
+        entities.insert(
+            "john_the_evangelist".to_string(),
+            crate::types::entity::Entity {
+                r#type: Some(EntityType::Person),
+                fullname: Some("John the Evangelist".to_string()),
+                name: Some("John".to_string()),
+                canonization_level: None,
+                date_of_canonization: None,
+                date_of_canonization_is_approximative: None,
+                date_of_beatification: None,
+                date_of_beatification_is_approximative: None,
+                hide_canonization_level: None,
+                titles: None,
+                sex: None,
+                hide_titles: None,
+                date_of_dedication: None,
+                date_of_birth: None,
+                date_of_birth_is_approximative: None,
+                date_of_death: None,
+                date_of_death_is_approximative: None,
+                count: None,
+                sources: None,
+                _todo: None,
+            },
+        );
+
+        entities.insert(
+            "unused_entity".to_string(),
+            crate::types::entity::Entity {
+                r#type: Some(EntityType::Person),
+                fullname: Some("Unused Entity".to_string()),
+                name: Some("Unused".to_string()),
+                canonization_level: None,
+                date_of_canonization: None,
+                date_of_canonization_is_approximative: None,
+                date_of_beatification: None,
+                date_of_beatification_is_approximative: None,
+                hide_canonization_level: None,
+                titles: None,
+                sex: None,
+                hide_titles: None,
+                date_of_dedication: None,
+                date_of_birth: None,
+                date_of_birth_is_approximative: None,
+                date_of_death: None,
+                date_of_death_is_approximative: None,
+                count: None,
+                sources: None,
+                _todo: None,
+            },
+        );
+
         Resources {
             schema: None,
             locale: "en".to_string(),
             metadata: None,
-            entities: Some(vec![
-                crate::types::entity::Entity {
-                    id: "john_the_baptist".to_string(),
-                    r#type: Some(EntityType::Person),
-                    fullname: Some("John the Baptist".to_string()),
-                    name: Some("John".to_string()),
-                    canonization_level: None,
-                    date_of_canonization: None,
-                    date_of_canonization_is_approximative: None,
-                    date_of_beatification: None,
-                    date_of_beatification_is_approximative: None,
-                    hide_canonization_level: None,
-                    titles: None,
-                    sex: None,
-                    hide_titles: None,
-                    date_of_dedication: None,
-                    date_of_birth: None,
-                    date_of_birth_is_approximative: None,
-                    date_of_death: None,
-                    date_of_death_is_approximative: None,
-                    count: None,
-                    sources: None,
-                    _todo: None,
-                },
-                crate::types::entity::Entity {
-                    id: "john_the_evangelist".to_string(),
-                    r#type: Some(EntityType::Person),
-                    fullname: Some("John the Evangelist".to_string()),
-                    name: Some("John".to_string()),
-                    canonization_level: None,
-                    date_of_canonization: None,
-                    date_of_canonization_is_approximative: None,
-                    date_of_beatification: None,
-                    date_of_beatification_is_approximative: None,
-                    hide_canonization_level: None,
-                    titles: None,
-                    sex: None,
-                    hide_titles: None,
-                    date_of_dedication: None,
-                    date_of_birth: None,
-                    date_of_birth_is_approximative: None,
-                    date_of_death: None,
-                    date_of_death_is_approximative: None,
-                    count: None,
-                    sources: None,
-                    _todo: None,
-                },
-                crate::types::entity::Entity {
-                    id: "unused_entity".to_string(),
-                    r#type: Some(EntityType::Person),
-                    fullname: Some("Unused Entity".to_string()),
-                    name: Some("Unused".to_string()),
-                    canonization_level: None,
-                    date_of_canonization: None,
-                    date_of_canonization_is_approximative: None,
-                    date_of_beatification: None,
-                    date_of_beatification_is_approximative: None,
-                    hide_canonization_level: None,
-                    titles: None,
-                    sex: None,
-                    hide_titles: None,
-                    date_of_dedication: None,
-                    date_of_birth: None,
-                    date_of_birth_is_approximative: None,
-                    date_of_death: None,
-                    date_of_death_is_approximative: None,
-                    count: None,
-                    sources: None,
-                    _todo: None,
-                },
-            ]),
+            entities: Some(entities),
         }
     }
 
@@ -744,7 +730,7 @@ mod tests {
         let entities = resources.entities.unwrap();
         assert_eq!(entities.len(), 2);
 
-        let entity_ids: Vec<String> = entities.iter().map(|e| e.id.clone()).collect();
+        let entity_ids: Vec<String> = entities.keys().cloned().collect();
         assert!(entity_ids.contains(&"john_the_baptist".to_string()));
         assert!(entity_ids.contains(&"john_the_evangelist".to_string()));
         assert!(!entity_ids.contains(&"unused_entity".to_string()));

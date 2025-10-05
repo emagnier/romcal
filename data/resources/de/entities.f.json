@@ -1,162 +1,123 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "de",
-  "entities": [
-    {
-      "id": "fabian_i_pope",
+  "entities": {
+    "fabian_i_pope": {
       "fullname": "Hl. Fabian, Papst und Märtyrer"
     },
-    {
-      "id": "fachanan_of_kilfenora_bishop",
+    "fachanan_of_kilfenora_bishop": {
       "fullname": "Hl. Fachanan, Bischof"
     },
-    {
-      "id": "fachtna_of_rosscarbery_bishop",
+    "fachtna_of_rosscarbery_bishop": {
       "fullname": "Hl. Fachtna, Bischof"
     },
-    {
-      "id": "faustina_kowalska_virgin",
+    "faustina_kowalska_virgin": {
       "fullname": "Hl. Faustina Kowalska, Jungfrau"
     },
-    {
-      "id": "ferdinand_iii_of_castile",
+    "ferdinand_iii_of_castile": {
       "fullname": "Hl. Ferdinand III. von Kastilien"
     },
-    {
-      "id": "fiacre_of_breuil_monk",
+    "fiacre_of_breuil_monk": {
       "fullname": "Hl. Fiacrius, Mönch"
     },
-    {
-      "id": "fidelis_of_sigmaringen_priest",
+    "fidelis_of_sigmaringen_priest": {
       "fullname": "Hl. Fidelis von Sigmaringen, Priester und Märtyrer"
     },
-    {
-      "id": "finbarr_of_cork_bishop",
+    "finbarr_of_cork_bishop": {
       "fullname": "Hl. Finbarr, Bischof"
     },
-    {
-      "id": "finding_of_the_holy_cross",
+    "finding_of_the_holy_cross": {
       "fullname": "Kreuzauffindung"
     },
-    {
-      "id": "finnian_of_clonard_bishop",
+    "finnian_of_clonard_bishop": {
       "fullname": "Hl. Finnian, Bischof"
     },
-    {
-      "id": "fintan_of_clonenagh_abbot",
+    "fintan_of_clonenagh_abbot": {
       "fullname": "Hl. Fintan, Abt"
     },
-    {
-      "id": "first_martyrs_of_the_holy_roman_church",
+    "first_martyrs_of_the_holy_roman_church": {
       "fullname": "Die ersten Märtyrer der heiligen römischen Kirche"
     },
-    {
-      "id": "first_polish_martyrs",
+    "first_polish_martyrs": {
       "fullname": "Hl. Benedikt, Johannes, Matthäus, Isaak und Christian, die ersten polnischen Märtyrer"
     },
-    {
-      "id": "five_wounds_of_the_lord",
+    "five_wounds_of_the_lord": {
       "fullname": "Fünf Wunden des Herrn"
     },
-    {
-      "id": "flannan_of_killaloe_bishop",
+    "flannan_of_killaloe_bishop": {
       "fullname": "Hl. Flannan, Bischof"
     },
-    {
-      "id": "florentius_of_strasbourg_bishop",
+    "florentius_of_strasbourg_bishop": {
       "fullname": "Hl. Florentius, Bischof"
     },
-    {
-      "id": "florian_of_lorch_and_companions_martyrs",
+    "florian_of_lorch_and_companions_martyrs": {
       "fullname": "Hl. Florian und Gefährten, Märtyrer"
     },
-    {
-      "id": "florian_of_lorch_martyr",
+    "florian_of_lorch_martyr": {
       "fullname": "Hl. Florian, Märtyrer"
     },
-    {
-      "id": "frances_of_rome_religious",
+    "frances_of_rome_religious": {
       "fullname": "Hl. Franziska von Rom, Ordensfrau"
     },
-    {
-      "id": "frances_xavier_cabrini_virgin",
+    "frances_xavier_cabrini_virgin": {
       "fullname": "Hl. Franziska Xaviera Cabrini, Jungfrau"
     },
-    {
-      "id": "francis_borgia_priest",
+    "francis_borgia_priest": {
       "fullname": "Hl. Franz Borgia, Priester"
     },
-    {
-      "id": "francis_de_sales_bishop",
+    "francis_de_sales_bishop": {
       "fullname": "Hl. Franz von Sales, Bischof und Kirchenlehrer"
     },
-    {
-      "id": "francis_de_sales_bishop_patron_of_the_clergy_of_the_archdiocese_of_lyon",
+    "francis_de_sales_bishop_patron_of_the_clergy_of_the_archdiocese_of_lyon": {
       "fullname": "Hl. Franz von Sales, Bischof und Kirchenlehrer, Schutzpatron des Klerus der Erzdiözese Lyon"
     },
-    {
-      "id": "francis_diaz_del_rincon_priest_and_companions_martyrs",
+    "francis_diaz_del_rincon_priest_and_companions_martyrs": {
       "fullname": "Hl. Franz Díaz del Rincon, Priester, und Gefährten, Märtyrer"
     },
-    {
-      "id": "francis_ferdinand_de_capillas_priest",
+    "francis_ferdinand_de_capillas_priest": {
       "fullname": "Hl. Franz Ferdinand de Capillas, Priester und Märtyrer"
     },
-    {
-      "id": "francis_of_assisi",
+    "francis_of_assisi": {
       "fullname": "Hl. Franz von Assisi"
     },
-    {
-      "id": "francis_of_assisi_patron_of_italy",
+    "francis_of_assisi_patron_of_italy": {
       "fullname": "Hl. Franz von Assisi, Schutzpatron Italiens"
     },
-    {
-      "id": "francis_of_paola_hermit",
+    "francis_of_paola_hermit": {
       "fullname": "Hl. Franz von Paola, Einsiedler"
     },
-    {
-      "id": "francis_solanus_priest",
+    "francis_solanus_priest": {
       "fullname": "Hl. Franz Solanus, Priester"
     },
-    {
-      "id": "francis_xavier_priest",
+    "francis_xavier_priest": {
       "fullname": "Hl. Franz Xaver, Priester"
     },
-    {
-      "id": "francis_xavier_seelos_priest",
+    "francis_xavier_seelos_priest": {
       "fullname": "Sel. Franz Xaver Seelos, Priester"
     },
-    {
-      "id": "francois_de_montmorency_laval_bishop",
+    "francois_de_montmorency_laval_bishop": {
       "fullname": "Hl. François de Laval, Bischof"
     },
-    {
-      "id": "frederic_janssoone_priest",
+    "frederic_janssoone_priest": {
       "fullname": "Sel. Frédéric Janssoone, Priester"
     },
-    {
-      "id": "frederic_ozanam_founder",
+    "frederic_ozanam_founder": {
       "fullname": "Sel. Frédéric Ozanam, Gründer"
     },
-    {
-      "id": "friday_of_the_passion_of_the_lord",
+    "friday_of_the_passion_of_the_lord": {
       "fullname": "Karfreitag"
     },
-    {
-      "id": "fridolin_of_sackingen_monk",
+    "fridolin_of_sackingen_monk": {
       "fullname": "Hl. Fridolin von Säckingen, Mönch"
     },
-    {
-      "id": "fructuosus_of_braga_martin_of_braga_and_gerald_of_braga_bishops",
+    "fructuosus_of_braga_martin_of_braga_and_gerald_of_braga_bishops": {
       "fullname": "Hl. Fructuosus, Martin und Gerald von Braga, Bischöfe"
     },
-    {
-      "id": "fructuosus_of_tarragona_bishop_and_augurius_of_tarragona_and_eulogius_of_tarragona_deacons_martyrs",
+    "fructuosus_of_tarragona_bishop_and_augurius_of_tarragona_and_eulogius_of_tarragona_deacons_martyrs": {
       "fullname": "Hl. Fructuosus, Bischof, Augurius und Eulogius, Diakone, Märtyrer"
     },
-    {
-      "id": "fursa_of_peronne_abbot",
+    "fursa_of_peronne_abbot": {
       "fullname": "Hl. Fursa, Abt und Missionar"
     }
-  ]
+  }
 }

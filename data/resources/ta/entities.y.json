@@ -1,10 +1,9 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "ta",
-  "entities": [
-    {
-      "id": "yolanda_of_poland_religious",
+  "entities": {
+    "yolanda_of_poland_religious": {
       "fullname": "முத்திப்பேறுபெற்ற யோலண்டா - துறவி"
     }
-  ]
+  }
 }

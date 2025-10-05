@@ -1,106 +1,81 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "ta",
-  "entities": [
-    {
-      "id": "gabriel_taurin_dufresse_bishop",
+  "entities": {
+    "gabriel_taurin_dufresse_bishop": {
       "fullname": "புனித கேப்றியேல் டோரின் டுபெரெஸ் - ஆயர், மறைசாட்சி"
     },
-    {
-      "id": "gall_of_switzerland_abbot",
+    "gall_of_switzerland_abbot": {
       "fullname": "புனித கோல், மடாதிபதி, மறையறிவிப்பாளர்"
     },
-    {
-      "id": "genevieve_of_paris_virgin",
+    "genevieve_of_paris_virgin": {
       "fullname": "புனித ஜெனவிவ் - கன்னி"
     },
-    {
-      "id": "george_matulaitis_bishop",
+    "george_matulaitis_bishop": {
       "fullname": "முத்திபேறுபெற்ற ஜோர்ஜ் மடுலாடிஸ் - ஆயர்"
     },
-    {
-      "id": "george_of_lydda_martyr",
+    "george_of_lydda_martyr": {
       "fullname": "புனித ஜோர்ஜ் - மறைசாட்சி"
     },
-    {
-      "id": "george_of_lydda_martyr_patron_of_england",
+    "george_of_lydda_martyr_patron_of_england": {
       "fullname": "புனித ஜோர்ஜ் - மறைசாட்சி, இங்கிலாந்தின் பாதுகாவலர்"
     },
-    {
-      "id": "george_preca_priest",
+    "george_preca_priest": {
       "fullname": "புனித ஜோர்ஜ் ப்ரேக்கா - அருட்பணியாளர்"
     },
-    {
-      "id": "gerard_of_csanad_bishop",
+    "gerard_of_csanad_bishop": {
       "fullname": "புனித சனாதின் ஜெராட் - ஆயர், மறைசாட்சி"
     },
-    {
-      "id": "germain_of_paris_bishop",
+    "germain_of_paris_bishop": {
       "fullname": "புனித பரிசின் ஜெர்மையின் - ஆயர்"
     },
-    {
-      "id": "germanus_of_auxerre_bishop",
+    "germanus_of_auxerre_bishop": {
       "fullname": "புனித ஒக்சியரின் ஜெர்மானுஸ் - ஆயர்"
     },
-    {
-      "id": "gertrude_of_nivelles_abbess",
+    "gertrude_of_nivelles_abbess": {
       "fullname": "புனித நிவெலின் கேட்ரூட் - மடாதிபதி"
     },
-    {
-      "id": "gertrude_the_great_virgin",
+    "gertrude_the_great_virgin": {
       "fullname": "புனித கேட்ரூட் - கன்னி"
     },
-    {
-      "id": "gisela_of_hungary",
+    "gisela_of_hungary": {
       "fullname": "முத்திப்பேறுபெற்ற கிசெல்லா"
     },
-    {
-      "id": "gobnait_of_ballyvourney_virgin",
+    "gobnait_of_ballyvourney_virgin": {
       "fullname": "புனித கொப்னைட் - கன்னி"
     },
-    {
-      "id": "gorazd_of_moravia_and_companions",
+    "gorazd_of_moravia_and_companions": {
       "fullname": "புனித கொராஸ்ட் மற்றும் தோழர்கள்"
     },
-    {
-      "id": "gotthard_of_hildesheim_bishop",
+    "gotthard_of_hildesheim_bishop": {
       "fullname": "புனித கொத்தார்ட் - ஆயர்"
     },
-    {
-      "id": "gratia_of_cattaro_religious",
+    "gratia_of_cattaro_religious": {
       "fullname": "முத்திப்பேறுபெற்ற காத்தாரோவின் கிராசியா - துறவி"
     },
-    {
-      "id": "gregory_grassi_francis_fogolla_and_anthony_fantosati_bishops_and_companions_martyrs",
+    "gregory_grassi_francis_fogolla_and_anthony_fantosati_bishops_and_companions_martyrs": {
       "fullname": "புனித கிரகோரி கிராஸி, அந்தோனியார் பன்டொசடி - ஆயர், தோழர்கள், மறைசாட்சிகள்"
     },
-    {
-      "id": "gregory_i_the_great_pope",
+    "gregory_i_the_great_pope": {
       "fullname": "புனித கிரகோரியார் - திருத்தந்தை, மறைவல்லுனர்"
     },
-    {
-      "id": "gregory_of_narek_abbot",
+    "gregory_of_narek_abbot": {
       "fullname": "நாரெக்கின் புனித கிரகோரியார் - மடாதிபதி, மறைவல்லுநர்"
     },
-    {
-      "id": "gregory_vii_pope",
+    "gregory_vii_pope": {
       "fullname": "புனித ஏழாம் கிரகோரியார் - திருத்தந்தை"
     },
-    {
-      "id": "guardian_angel_of_portugal",
+    "guardian_angel_of_portugal": {
       "fullname": "போர்த்துக்களின் காவல் தூதர்கள்"
     },
-    {
-      "id": "gundisalvus_garcia_martyr",
+    "gundisalvus_garcia_martyr": {
       "fullname": "புனித குண்டுஸ்சால்வுஸ் கிராசியா - மறைசாட்சி"
     },
-    {
-      "id": "gundisalvus_of_amarante_priest",
+    "gundisalvus_of_amarante_priest": {
       "fullname": "புனித குண்டுஸ்சால்வுஸ் கிராசியா - அருட்பணியாளர்"
     },
-    {
-      "id": "gundisalvus_of_lagos_priest",
+    "gundisalvus_of_lagos_priest": {
       "fullname": "லாகோசின் முத்திப்பேறுபெற்ற குண்டுஸ்சால்வுஸ் கிராசியா - அருட்பணியாளர்"
     }
-  ]
+  }
 }

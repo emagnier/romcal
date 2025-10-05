@@ -1,42 +1,33 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "la",
-  "entities": [
-    {
-      "id": "kateri_tekakwitha_virgin",
+  "entities": {
+    "kateri_tekakwitha_virgin": {
       "fullname": "S. Catharinæ Tekakwitha, virginis"
     },
-    {
-      "id": "katharine_drexel_virgin",
+    "katharine_drexel_virgin": {
       "fullname": "S. Catharinæ Mariæ Drexel, virginis"
     },
-    {
-      "id": "kentigern_of_scotland_bishop",
+    "kentigern_of_scotland_bishop": {
       "fullname": "S. Kentigerni, episcopi"
     },
-    {
-      "id": "kevin_of_glendalough_abbot",
+    "kevin_of_glendalough_abbot": {
       "fullname": "S. Cœmgeni, abbatis"
     },
-    {
-      "id": "kieran_of_saigir_bishop",
+    "kieran_of_saigir_bishop": {
       "fullname": "S. Kyarani, episcopi"
     },
-    {
-      "id": "kilian_of_wurzburg_bishop",
+    "kilian_of_wurzburg_bishop": {
       "fullname": "S. Kiliani, episcopi et martyris"
     },
-    {
-      "id": "kilian_of_wurzburg_bishop_and_companions_martyrs",
+    "kilian_of_wurzburg_bishop_and_companions_martyrs": {
       "fullname": "Ss. Kiliani, episcopi, et sociorum, martyrum"
     },
-    {
-      "id": "kinga_of_poland_virgin",
+    "kinga_of_poland_virgin": {
       "fullname": "S. Cunegundæ, virginis"
     },
-    {
-      "id": "kuriakose_elias_of_the_holy_family_chavara_priest",
+    "kuriakose_elias_of_the_holy_family_chavara_priest": {
       "fullname": "S. Kuriakose Eliæ Chavara a Sacra Familia Chavara, presbyteri"
     }
-  ]
+  }
 }

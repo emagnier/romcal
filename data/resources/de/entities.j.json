@@ -1,314 +1,237 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "de",
-  "entities": [
-    {
-      "id": "jacinta_marto_and_francisco_marto",
+  "entities": {
+    "jacinta_marto_and_francisco_marto": {
       "fullname": "Hl. Jacinta und Francisco Marto"
     },
-    {
-      "id": "jacques_jules_bonnaud_priest_and_companions_martyrs",
+    "jacques_jules_bonnaud_priest_and_companions_martyrs": {
       "fullname": "Sel. Jacques-Jules Bonnaud, Priester, und Gefährten, Märtyrer"
     },
-    {
-      "id": "james_apostle",
+    "james_apostle": {
       "fullname": "Hl. Jakobus, Apostel"
     },
-    {
-      "id": "james_apostle_patron_of_spain",
+    "james_apostle_patron_of_spain": {
       "fullname": "Hl. Jakobus, Apostel, Schutzpatron Spaniens"
     },
-    {
-      "id": "james_strzemie_bishop",
+    "james_strzemie_bishop": {
       "fullname": "Sel. Jakob Strzemię, Bischof"
     },
-    {
-      "id": "jane_frances_de_chantal_religious",
+    "jane_frances_de_chantal_religious": {
       "fullname": "Hl. Johanna Franziska von Chantal, Ordensfrau"
     },
-    {
-      "id": "januarius_i_of_benevento_bishop",
+    "januarius_i_of_benevento_bishop": {
       "fullname": "Hl. Januarius, Bischof und Märtyrer"
     },
-    {
-      "id": "jarlath_of_tuam_bishop",
+    "jarlath_of_tuam_bishop": {
       "fullname": "Hl. Jarlath, Bischof"
     },
-    {
-      "id": "jean_louis_bonnard_priest",
+    "jean_louis_bonnard_priest": {
       "fullname": "Hl. Jean-Louis Bonnard, Priester und Märtyrer"
     },
-    {
-      "id": "jean_pierre_neel_priest",
+    "jean_pierre_neel_priest": {
       "fullname": "Hl. Jean Pierre Néel, Priester und Märtyrer"
     },
-    {
-      "id": "jerome_emiliani",
+    "jerome_emiliani": {
       "fullname": "Hl. Hieronymus Ämiliani"
     },
-    {
-      "id": "jerome_of_stridon_priest",
+    "jerome_of_stridon_priest": {
       "fullname": "Hl. Hieronymus, Priester und Kirchenlehrer"
     },
-    {
-      "id": "joachim_and_anne_parents_of_mary",
+    "joachim_and_anne_parents_of_mary": {
       "fullname": "Hl. Joachim und Anna, Eltern der seligen Jungfrau Maria"
     },
-    {
-      "id": "joachim_and_anne_patroness_of_the_province_of_quebec_parents_of_mary",
+    "joachim_and_anne_patroness_of_the_province_of_quebec_parents_of_mary": {
       "fullname": "Hl. Anna, Schutzpatronin der Provinz Quebec, und Joachim, Eltern der seligen Jungfrau Maria"
     },
-    {
-      "id": "joachim_he_kaizhi_martyr",
+    "joachim_he_kaizhi_martyr": {
       "fullname": "Hl. Joachim He Kaizhi, Märtyrer"
     },
-    {
-      "id": "joan_of_arc_virgin_copatroness_of_france",
+    "joan_of_arc_virgin_copatroness_of_france": {
       "fullname": "Hl. Johanna von Orleans, Jungfrau, Mitpatronin Frankreichs"
     },
-    {
-      "id": "joan_of_portugal_virgin",
+    "joan_of_portugal_virgin": {
       "fullname": "Sel. Johanna von Portugal, Jungfrau"
     },
-    {
-      "id": "joaquina_of_saint_francis_of_assisi_de_vedruna_religious",
+    "joaquina_of_saint_francis_of_assisi_de_vedruna_religious": {
       "fullname": "Hl. Joaquina Vedruna de Mas, Ordensfrau"
     },
-    {
-      "id": "john_apostle",
+    "john_apostle": {
       "fullname": "Hl. Johannes, Apostel und Evangelist"
     },
-    {
-      "id": "john_baptist_de_la_salle_priest",
+    "john_baptist_de_la_salle_priest": {
       "fullname": "Hl. Johannes Baptist de la Salle, Priester"
     },
-    {
-      "id": "john_berchmans_religious",
+    "john_berchmans_religious": {
       "fullname": "Hl. Johannes Berchmans, Ordensmann"
     },
-    {
-      "id": "john_beyzym_priest",
+    "john_beyzym_priest": {
       "fullname": "Sel. Johannes Beyzym, Priester"
     },
-    {
-      "id": "john_bosco_priest",
+    "john_bosco_priest": {
       "fullname": "Hl. Johannes Bosco, Priester"
     },
-    {
-      "id": "john_brenner_priest",
+    "john_brenner_priest": {
       "fullname": "Sel. Johannes Brenner, Priester und Märtyrer"
     },
-    {
-      "id": "john_cassian_priest",
+    "john_cassian_priest": {
       "fullname": "Hl. Johannes Cassian, Priester"
     },
-    {
-      "id": "john_chrysostom_bishop",
+    "john_chrysostom_bishop": {
       "fullname": "Hl. Johannes Chrysostomus, Bischof und Kirchenlehrer"
     },
-    {
-      "id": "john_damascene_priest",
+    "john_damascene_priest": {
       "fullname": "Hl. Johannes von Damaskus, Priester und Kirchenlehrer"
     },
-    {
-      "id": "john_de_brebeuf_isaac_jogues_priests_and_companions_martyrs",
+    "john_de_brebeuf_isaac_jogues_priests_and_companions_martyrs": {
       "fullname": "Hl. Johannes de Brébeuf und Isaak Jogues, Priester, und Gefährten, Märtyrer"
     },
-    {
-      "id": "john_de_brebeuf_isaac_jogues_priests_and_companions_martyrs_copatrons_of_canada",
+    "john_de_brebeuf_isaac_jogues_priests_and_companions_martyrs_copatrons_of_canada": {
       "fullname": "Hl. Johannes de Brébeuf und Isaak Jogues, Priester, und Gefährten, Märtyrer, Mitpatrone Kanadas"
     },
-    {
-      "id": "john_de_britto_priest",
+    "john_de_britto_priest": {
       "fullname": "Hl. Johannes de Brito, Priester und Märtyrer"
     },
-    {
-      "id": "john_eudes_priest",
+    "john_eudes_priest": {
       "fullname": "Hl. Johannes Eudes, Priester"
     },
-    {
-      "id": "john_fisher_bishop_and_thomas_more_martyrs",
+    "john_fisher_bishop_and_thomas_more_martyrs": {
       "fullname": "Hl. Johannes Fisher, Bischof, und Thomas Morus, Märtyrer"
     },
-    {
-      "id": "john_francis_regis_priest",
+    "john_francis_regis_priest": {
       "fullname": "Hl. Johannes Franz Regis, Priester"
     },
-    {
-      "id": "john_gabriel_perboyre_priest",
+    "john_gabriel_perboyre_priest": {
       "fullname": "Hl. Johannes Gabriel Perboyre, Priester und Märtyrer"
     },
-    {
-      "id": "john_henry_newman_priest",
+    "john_henry_newman_priest": {
       "fullname": "Hl. John Henry Newman, Priester"
     },
-    {
-      "id": "john_i_pope",
+    "john_i_pope": {
       "fullname": "Hl. Johannes I., Papst und Märtyrer"
     },
-    {
-      "id": "john_jones_priest",
+    "john_jones_priest": {
       "fullname": "Hl. John Jones, Priester und Märtyrer"
     },
-    {
-      "id": "john_leonardi_priest",
+    "john_leonardi_priest": {
       "fullname": "Hl. Johannes Leonardi, Priester"
     },
-    {
-      "id": "john_macias_religious",
+    "john_macias_religious": {
       "fullname": "Hl. Johannes Macías, Ordensmann"
     },
-    {
-      "id": "john_martin_moye_priest",
+    "john_martin_moye_priest": {
       "fullname": "Sel. John Martin Moye, Priester"
     },
-    {
-      "id": "john_mary_vianney_priest",
+    "john_mary_vianney_priest": {
       "fullname": "Hl. Pfarrer von Ars, Priester"
     },
-    {
-      "id": "john_nepomucene_neumann_bishop",
+    "john_nepomucene_neumann_bishop": {
       "fullname": "Hl. Johannes Nepomuk Neumann, Bischof"
     },
-    {
-      "id": "john_nepomucene_priest",
+    "john_nepomucene_priest": {
       "fullname": "Hl. Johannes Nepomuk, Priester und Märtyrer"
     },
-    {
-      "id": "john_of_avila_priest",
+    "john_of_avila_priest": {
       "fullname": "Hl. Johannes von Ávila, Priester und Kirchenlehrer"
     },
-    {
-      "id": "john_of_capistrano_priest",
+    "john_of_capistrano_priest": {
       "fullname": "Hl. Johannes von Capestrano, Priester"
     },
-    {
-      "id": "john_of_dukla_priest",
+    "john_of_dukla_priest": {
       "fullname": "Hl. Johannes von Dukla, Priester"
     },
-    {
-      "id": "john_of_god_duarte_cidade_religious",
+    "john_of_god_duarte_cidade_religious": {
       "fullname": "Hl. Johannes von Gott, Ordensmann"
     },
-    {
-      "id": "john_of_kanty_priest",
+    "john_of_kanty_priest": {
       "fullname": "Hl. Johannes von Kanty, Priester"
     },
-    {
-      "id": "john_of_the_cross_priest",
+    "john_of_the_cross_priest": {
       "fullname": "Hl. Johannes vom Kreuz, Priester und Kirchenlehrer"
     },
-    {
-      "id": "john_of_triora_priest",
+    "john_of_triora_priest": {
       "fullname": "Hl. Johannes von Triora, Priester und Märtyrer"
     },
-    {
-      "id": "john_ogilvie_priest",
+    "john_ogilvie_priest": {
       "fullname": "Hl. John Ogilvie, Priester und Märtyrer"
     },
-    {
-      "id": "john_paul_ii_pope",
+    "john_paul_ii_pope": {
       "fullname": "Hl. Johannes Paul II., Papst"
     },
-    {
-      "id": "john_roberts_priest",
+    "john_roberts_priest": {
       "fullname": "Hl. John Roberts, Priester und Märtyrer"
     },
-    {
-      "id": "john_sarkander_priest",
+    "john_sarkander_priest": {
       "fullname": "Hl. Johannes Sarkander, Priester und Märtyrer"
     },
-    {
-      "id": "john_scheffler_bishop",
+    "john_scheffler_bishop": {
       "fullname": "Sel. Johannes Scheffler, Bischof und Märtyrer"
     },
-    {
-      "id": "john_xxiii_pope",
+    "john_xxiii_pope": {
       "fullname": "Hl. Johannes XXIII., Papst"
     },
-    {
-      "id": "josaphat_kuntsevych_bishop",
+    "josaphat_kuntsevych_bishop": {
       "fullname": "Hl. Josaphat, Bischof und Märtyrer"
     },
-    {
-      "id": "jose_maria_de_yermo_y_parres_priest",
+    "jose_maria_de_yermo_y_parres_priest": {
       "fullname": "Hl. José María de Yermo y Parres, Priester"
     },
-    {
-      "id": "josemaria_escriva_de_balaguer_priest",
+    "josemaria_escriva_de_balaguer_priest": {
       "fullname": "Hl. Josefmaria Escrivá, Priester"
     },
-    {
-      "id": "joseph_bilczewski_bishop",
+    "joseph_bilczewski_bishop": {
       "fullname": "Hl. Joseph Bilczewski, Bischof"
     },
-    {
-      "id": "joseph_de_anchieta_priest",
+    "joseph_de_anchieta_priest": {
       "fullname": "Hl. José de Anchieta, Priester"
     },
-    {
-      "id": "joseph_freinademetz_priest",
+    "joseph_freinademetz_priest": {
       "fullname": "Hl. Josef Freinademetz, Priester"
     },
-    {
-      "id": "joseph_of_calasanz_priest",
+    "joseph_of_calasanz_priest": {
       "fullname": "Hl. Joseph von Calasanza, Priester"
     },
-    {
-      "id": "joseph_sebastian_pelczar_bishop",
+    "joseph_sebastian_pelczar_bishop": {
       "fullname": "Hl. Joseph Sebastian Pelczar, Bischof"
     },
-    {
-      "id": "joseph_spouse_of_mary",
+    "joseph_spouse_of_mary": {
       "fullname": "Hl. Josef, Bräutigam der seligen Jungfrau Maria"
     },
-    {
-      "id": "joseph_spouse_of_mary_patron_of_canada",
+    "joseph_spouse_of_mary_patron_of_canada": {
       "fullname": "Hl. Josef, Bräutigam der seligen Jungfrau Maria, Schutzpatron Kanadas"
     },
-    {
-      "id": "joseph_the_worker",
+    "joseph_the_worker": {
       "fullname": "Hl. Josef der Arbeiter"
     },
-    {
-      "id": "joseph_vaz_priest",
+    "joseph_vaz_priest": {
       "fullname": "Hl. Joseph Vaz, Priester"
     },
-    {
-      "id": "joseph_yuan_gengyin_priest",
+    "joseph_yuan_gengyin_priest": {
       "fullname": "Hl. Joseph Yuan Gengyin, Priester und Märtyrer"
     },
-    {
-      "id": "joseph_zhang_dapeng_martyr",
+    "joseph_zhang_dapeng_martyr": {
       "fullname": "Hl. Joseph Zhang Dapeng, Märtyrer"
     },
-    {
-      "id": "josephine_bakhita_virgin",
+    "josephine_bakhita_virgin": {
       "fullname": "Hl. Josephine Bakhita, Jungfrau"
     },
-    {
-      "id": "juan_diego_cuauhtlatoatzin",
+    "juan_diego_cuauhtlatoatzin": {
       "fullname": "Hl. Juan Diego Cuauhtlatoatzin"
     },
-    {
-      "id": "juliana_of_liege_virgin",
+    "juliana_of_liege_virgin": {
       "fullname": "Hl. Juliana von Lüttich, Jungfrau"
     },
-    {
-      "id": "julie_billiart_virgin",
+    "julie_billiart_virgin": {
       "fullname": "Hl. Julie Billiart, Jungfrau"
     },
-    {
-      "id": "junipero_serra_priest",
+    "junipero_serra_priest": {
       "fullname": "Hl. Junípero Serra, Priester"
     },
-    {
-      "id": "justin_martyr",
+    "justin_martyr": {
       "fullname": "Hl. Justinus, Märtyrer"
     },
-    {
-      "id": "justus_of_lyon_bishop",
+    "justus_of_lyon_bishop": {
       "fullname": "Hl. Justus, Bischof"
     }
-  ]
+  }
 }

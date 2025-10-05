@@ -1,126 +1,96 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "de",
-  "entities": [
-    {
-      "id": "teilo_of_llandaff_bishop",
+  "entities": {
+    "teilo_of_llandaff_bishop": {
       "fullname": "Hl. Teilo, Bischof"
     },
-    {
-      "id": "teresa_benedicta_of_the_cross_stein_virgin",
+    "teresa_benedicta_of_the_cross_stein_virgin": {
       "fullname": "Hl. Teresa Benedicta vom Kreuz Stein, Jungfrau und Märtyrerin"
     },
-    {
-      "id": "teresa_benedicta_of_the_cross_stein_virgin_copatroness_of_europe",
+    "teresa_benedicta_of_the_cross_stein_virgin_copatroness_of_europe": {
       "fullname": "Hl. Teresa Benedicta vom Kreuz Stein, Jungfrau und Märtyrerin, Mitpatronin Europas"
     },
-    {
-      "id": "teresa_of_calcutta_religious",
+    "teresa_of_calcutta_religious": {
       "fullname": "Hl. Teresa von Kalkutta, Ordensfrau"
     },
-    {
-      "id": "teresa_of_jesus_jornet_ibars_virgin",
+    "teresa_of_jesus_jornet_ibars_virgin": {
       "fullname": "Hl. Teresa von Jesus Jornet Ibars, Jungfrau"
     },
-    {
-      "id": "teresa_of_jesus_of_avila_virgin",
+    "teresa_of_jesus_of_avila_virgin": {
       "fullname": "Hl. Teresa von Ávila, Jungfrau und Kirchenlehrerin"
     },
-    {
-      "id": "teresa_of_jesus_of_los_andes_virgin",
+    "teresa_of_jesus_of_los_andes_virgin": {
       "fullname": "Hl. Teresa von Jesus von Los Andes, Jungfrau"
     },
-    {
-      "id": "teresa_of_portugal_religious",
+    "teresa_of_portugal_religious": {
       "fullname": "Sel. Teresa von Portugal, Ordensfrau"
     },
-    {
-      "id": "thanksgiving_day",
+    "thanksgiving_day": {
       "fullname": "Erntedankfest"
     },
-    {
-      "id": "theodore_of_canterbury_bishop",
+    "theodore_of_canterbury_bishop": {
       "fullname": "Hl. Theodor von Canterbury, Bischof"
     },
-    {
-      "id": "theodore_romzha_bishop",
+    "theodore_romzha_bishop": {
       "fullname": "Sel. Theodore Romzha, Bischof und Märtyrer"
     },
-    {
-      "id": "theodosius_of_the_caves_abbot",
+    "theodosius_of_the_caves_abbot": {
       "fullname": "Hl. Theodosius von den Höhlen, Abt"
     },
-    {
-      "id": "theotonius_of_coimbra_priest",
+    "theotonius_of_coimbra_priest": {
       "fullname": "Hl. Theotonius von Coimbra, Priester"
     },
-    {
-      "id": "therese_marie_victoire_couderc_virgin",
+    "therese_marie_victoire_couderc_virgin": {
       "fullname": "Hl. Therese Couderc, Jungfrau"
     },
-    {
-      "id": "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin",
+    "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin": {
       "fullname": "Hl. Therese vom Kinde Jesus, Jungfrau und Kirchenlehrerin"
     },
-    {
-      "id": "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin_copatroness_of_france",
+    "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin_copatroness_of_france": {
       "fullname": "Hl. Therese vom Kinde Jesus, Jungfrau und Kirchenlehrerin, Mitpatronin Frankreichs"
     },
-    {
-      "id": "thomas_apostle",
+    "thomas_apostle": {
       "fullname": "Hl. Thomas, Apostel"
     },
-    {
-      "id": "thomas_aquinas_priest",
+    "thomas_aquinas_priest": {
       "fullname": "Hl. Thomas von Aquin, Priester und Kirchenlehrer"
     },
-    {
-      "id": "thomas_becket_bishop",
+    "thomas_becket_bishop": {
       "fullname": "Hl. Thomas Becket, Bischof und Märtyrer"
     },
-    {
-      "id": "thomas_hioji_rokuzayemon_nishi_priest_and_companions_martyrs",
+    "thomas_hioji_rokuzayemon_nishi_priest_and_companions_martyrs": {
       "fullname": "Hl. Thomas Hioji Rokuzayemon Nishi, Priester, und Gefährten, Märtyrer"
     },
-    {
-      "id": "thomas_jean_georges_rehm_priest",
+    "thomas_jean_georges_rehm_priest": {
       "fullname": "Sel. Thomas Jean-Georges Rehm, Priester und Märtyrer"
     },
-    {
-      "id": "thomas_of_villanova_bishop",
+    "thomas_of_villanova_bishop": {
       "fullname": "Hl. Thomas von Villanova, Bischof"
     },
-    {
-      "id": "thorfinn_of_hamar_bishop",
+    "thorfinn_of_hamar_bishop": {
       "fullname": "Hl. Thorfinn, Bischof"
     },
-    {
-      "id": "thorlac_of_iceland_bishop",
+    "thorlac_of_iceland_bishop": {
       "fullname": "Hl. Thorlac, Bischof"
     },
-    {
-      "id": "thursday_of_the_lords_supper",
+    "thursday_of_the_lords_supper": {
       "fullname": "Donnerstag des Abendmahls des Herrn"
     },
-    {
-      "id": "timothy_of_ephesus_and_titus_of_crete_bishops",
+    "timothy_of_ephesus_and_titus_of_crete_bishops": {
       "fullname": "Hl. Timotheus und Titus, Bischöfe"
     },
-    {
-      "id": "transfiguration_of_the_lord",
+    "transfiguration_of_the_lord": {
       "fullname": "Verklärung des Herrn"
     },
-    {
-      "id": "translation_of_the_relics_of_odile_of_alsace_abbess",
+    "translation_of_the_relics_of_odile_of_alsace_abbess": {
       "fullname": "Übertragung der Reliquien der heiligen Odilia"
     },
-    {
-      "id": "translation_of_the_relics_of_saint_stephen_of_hungary",
+    "translation_of_the_relics_of_saint_stephen_of_hungary": {
       "fullname": "Übertragung der Reliquien des heiligen Stephan von Ungarn"
     },
-    {
-      "id": "turibius_of_mogrovejo_bishop",
+    "turibius_of_mogrovejo_bishop": {
       "fullname": "Hl. Turibius von Mogrovejo, Bischof"
     }
-  ]
+  }
 }

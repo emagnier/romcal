@@ -1,9 +1,8 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "en",
-  "entities": [
-    {
-      "id": "odile_of_alsace_abbess",
+  "entities": {
+    "odile_of_alsace_abbess": {
       "fullname": "Saint Odile, Abbess",
       "canonization_level": "SAINT",
       "name": "Odile of Alsace",
@@ -13,12 +12,10 @@
       "date_of_death": 720,
       "date_of_death_is_approximative": true
     },
-    {
-      "id": "odile_of_alsace_abbess_patroness_of_alsace",
+    "odile_of_alsace_abbess_patroness_of_alsace": {
       "fullname": "Saint Odile, Abbess, Patroness of Alsace"
     },
-    {
-      "id": "odoric_of_pordenone_priest",
+    "odoric_of_pordenone_priest": {
       "fullname": "Blessed Odoric of Pordenone, Priest",
       "canonization_level": "BLESSED",
       "name": "Odoric of Pordenone",
@@ -26,8 +23,7 @@
         "PRIEST"
       ]
     },
-    {
-      "id": "olaf_ii_of_norway_martyr",
+    "olaf_ii_of_norway_martyr": {
       "fullname": "Saint Olaf II, Martyr",
       "canonization_level": "SAINT",
       "name": "Olaf II",
@@ -35,8 +31,7 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "oleksiy_zarytskyi_priest",
+    "oleksiy_zarytskyi_priest": {
       "fullname": "Blessed Oleksiy Zarytskyi, Priest and Martyr",
       "canonization_level": "BLESSED",
       "name": "Oleksiy Zarytskyi",
@@ -45,14 +40,12 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "olga_of_kiev",
+    "olga_of_kiev": {
       "fullname": "Saint Olga",
       "canonization_level": "SAINT",
       "name": "Olga"
     },
-    {
-      "id": "oliver_plunket_bishop",
+    "oliver_plunket_bishop": {
       "fullname": "Saint Oliver Plunket, Bishop and Martyr",
       "canonization_level": "SAINT",
       "name": "Oliver Plunket",
@@ -61,8 +54,7 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "ortaire_of_landelles_abbot",
+    "ortaire_of_landelles_abbot": {
       "fullname": "Saint Ortaire, Abbot",
       "canonization_level": "SAINT",
       "name": "Ortaire",
@@ -78,8 +70,7 @@
         "https://fr.wikipedia.org/wiki/Ortaire_de_Landelles"
       ]
     },
-    {
-      "id": "otteran_of_iona_monk",
+    "otteran_of_iona_monk": {
       "fullname": "Saint Otteran, Monk",
       "canonization_level": "SAINT",
       "name": "Otteran",
@@ -87,8 +78,7 @@
         "MONK"
       ]
     },
-    {
-      "id": "otto_of_bamberg_bishop",
+    "otto_of_bamberg_bishop": {
       "fullname": "Saint Otto of Bamberg, Bishop",
       "canonization_level": "SAINT",
       "name": "Otto of Bamberg",
@@ -96,157 +86,121 @@
         "BISHOP"
       ]
     },
-    {
-      "id": "our_lady_help_of_christians",
+    "our_lady_help_of_christians": {
       "fullname": "Our Lady, Help of Christians"
     },
-    {
-      "id": "our_lady_mediatrix_of_all_grace",
+    "our_lady_mediatrix_of_all_grace": {
       "fullname": "Our Lady, Mediatrix of All Grace"
     },
-    {
-      "id": "our_lady_mother_of_christian_unity",
+    "our_lady_mother_of_christian_unity": {
       "fullname": "Our Lady, Mother of Christian Unity"
     },
-    {
-      "id": "our_lady_mother_of_divine_providence",
+    "our_lady_mother_of_divine_providence": {
       "name": "Our Lady, Mother of Divine Providence"
     },
-    {
-      "id": "our_lady_mother_of_divine_providence_patroness_of_puerto_rico",
+    "our_lady_mother_of_divine_providence_patroness_of_puerto_rico": {
       "fullname": "Our Lady, Mother of Divine Providence, Patroness of Puerto Rico"
     },
-    {
-      "id": "our_lady_of_angels",
+    "our_lady_of_angels": {
       "name": "Our Lady of Angels"
     },
-    {
-      "id": "our_lady_of_angels_patroness_of_costa_rica",
+    "our_lady_of_angels_patroness_of_costa_rica": {
       "fullname": "Our Lady of Angels, Patroness of Costa Rica",
       "sources": [
         "https://gcatholic.org/calendar/2024/CR-en.htm + @TobiTenno direct translation of the Spanish title"
       ]
     },
-    {
-      "id": "our_lady_of_aparecida",
+    "our_lady_of_aparecida": {
       "name": "Our Lady of Aparecida"
     },
-    {
-      "id": "our_lady_of_aparecida_patroness_of_brazil",
+    "our_lady_of_aparecida_patroness_of_brazil": {
       "fullname": "Our Lady of Aparecida, Patroness of Brazil"
     },
-    {
-      "id": "our_lady_of_bethlehem",
+    "our_lady_of_bethlehem": {
       "fullname": "Our Lady of Bethlehem"
     },
-    {
-      "id": "our_lady_of_china",
+    "our_lady_of_china": {
       "fullname": "Our Lady of China"
     },
-    {
-      "id": "our_lady_of_czestochowa",
+    "our_lady_of_czestochowa": {
       "fullname": "Our Lady of Częstochowa"
     },
-    {
-      "id": "our_lady_of_fatima",
+    "our_lady_of_fatima": {
       "fullname": "Our Lady of Fatima"
     },
-    {
-      "id": "our_lady_of_fourviere",
+    "our_lady_of_fourviere": {
       "fullname": "Our Lady of Fourvière",
       "sources": [
         "mr_fr_2014_ed2_lyon"
       ]
     },
-    {
-      "id": "our_lady_of_good_counsel",
+    "our_lady_of_good_counsel": {
       "fullname": "Our Lady of Good Counsel"
     },
-    {
-      "id": "our_lady_of_guadalupe",
+    "our_lady_of_guadalupe": {
       "fullname": "Our Lady of Guadalupe"
     },
-    {
-      "id": "our_lady_of_guadalupe_patroness_of_the_americas",
+    "our_lady_of_guadalupe_patroness_of_the_americas": {
       "fullname": "Our Lady of Guadalupe, Patroness of the Americas"
     },
-    {
-      "id": "our_lady_of_guadalupe_patroness_of_the_philippines",
+    "our_lady_of_guadalupe_patroness_of_the_philippines": {
       "fullname": "Our Lady of Guadalupe, Patroness of the Philippines"
     },
-    {
-      "id": "our_lady_of_hungary",
+    "our_lady_of_hungary": {
       "name": "Our Lady of Hungary"
     },
-    {
-      "id": "our_lady_of_hungary_patroness_of_hungary",
+    "our_lady_of_hungary_patroness_of_hungary": {
       "fullname": "Our Lady of Hungary, Patroness of Hungary"
     },
-    {
-      "id": "our_lady_of_itati",
+    "our_lady_of_itati": {
       "fullname": "Our Lady of Itatí"
     },
-    {
-      "id": "our_lady_of_knock",
+    "our_lady_of_knock": {
       "fullname": "Our Lady of Knock"
     },
-    {
-      "id": "our_lady_of_la_salette",
+    "our_lady_of_la_salette": {
       "fullname": "Our Lady of La Salette",
       "sources": [
         "https://en.wikipedia.org/wiki/Our_Lady_of_La_Salette"
       ]
     },
-    {
-      "id": "our_lady_of_lanka",
+    "our_lady_of_lanka": {
       "fullname": "Our Lady of Lanka"
     },
-    {
-      "id": "our_lady_of_lebanon",
+    "our_lady_of_lebanon": {
       "fullname": "Our Lady of Lebanon"
     },
-    {
-      "id": "our_lady_of_loreto",
+    "our_lady_of_loreto": {
       "fullname": "Our Lady of Loreto"
     },
-    {
-      "id": "our_lady_of_lourdes",
+    "our_lady_of_lourdes": {
       "fullname": "Our Lady of Lourdes"
     },
-    {
-      "id": "our_lady_of_lujan",
+    "our_lady_of_lujan": {
       "name": "Our Lady of Luján"
     },
-    {
-      "id": "our_lady_of_lujan_patroness_of_argentina",
+    "our_lady_of_lujan_patroness_of_argentina": {
       "fullname": "Our Lady of Luján, Patroness of Argentina"
     },
-    {
-      "id": "our_lady_of_madhu",
+    "our_lady_of_madhu": {
       "fullname": "Our Lady of Madhu"
     },
-    {
-      "id": "our_lady_of_marija_bistrica",
+    "our_lady_of_marija_bistrica": {
       "fullname": "Our Lady of Marija Bistrica"
     },
-    {
-      "id": "our_lady_of_mercy",
+    "our_lady_of_mercy": {
       "fullname": "Our Lady of Mercy"
     },
-    {
-      "id": "our_lady_of_mount_carmel",
+    "our_lady_of_mount_carmel": {
       "fullname": "Our Lady of Mount Carmel"
     },
-    {
-      "id": "our_lady_of_mount_carmel_mother_and_queen_of_chile",
+    "our_lady_of_mount_carmel_mother_and_queen_of_chile": {
       "fullname": "Our Lady of Mount Carmel, Mother and Queen of Chile"
     },
-    {
-      "id": "our_lady_of_perpetual_help",
+    "our_lady_of_perpetual_help": {
       "fullname": "Our Lady of Perpetual Help"
     },
-    {
-      "id": "our_lady_of_pontmain",
+    "our_lady_of_pontmain": {
       "fullname": "Our Lady of Pontmain",
       "sources": [
         "mr_fr_1982_ed2_coutances",
@@ -254,74 +208,58 @@
         "https://en.wikipedia.org/wiki/Our_Lady_of_Pontmain"
       ]
     },
-    {
-      "id": "our_lady_of_sorrows",
+    "our_lady_of_sorrows": {
       "fullname": "Our Lady of Sorrows"
     },
-    {
-      "id": "our_lady_of_sorrows_patroness_of_slovakia",
+    "our_lady_of_sorrows_patroness_of_slovakia": {
       "fullname": "Our Lady of Sorrows, Patroness of Slovakia"
     },
-    {
-      "id": "our_lady_of_the_discovery_of_the_hidden_christians",
+    "our_lady_of_the_discovery_of_the_hidden_christians": {
       "fullname": "Our Lady of the Discovery of the Hidden Christians"
     },
-    {
-      "id": "our_lady_of_the_gate_of_dawn",
+    "our_lady_of_the_gate_of_dawn": {
       "fullname": "Our Lady of the Gate of Dawn"
     },
-    {
-      "id": "our_lady_of_the_miraculous_medal",
+    "our_lady_of_the_miraculous_medal": {
       "fullname": "Our Lady of the Miraculous Medal"
     },
-    {
-      "id": "our_lady_of_the_pillar",
+    "our_lady_of_the_pillar": {
       "fullname": "Our Lady of the Pillar"
     },
-    {
-      "id": "our_lady_of_the_rosary",
+    "our_lady_of_the_rosary": {
       "fullname": "Our Lady of the Rosary"
     },
-    {
-      "id": "our_lady_of_the_valley",
+    "our_lady_of_the_valley": {
       "fullname": "Our Lady of the Valley"
     },
-    {
-      "id": "our_lady_of_vladimir",
+    "our_lady_of_vladimir": {
       "fullname": "Our Lady of Vladimir"
     },
-    {
-      "id": "our_lady_of_walsingham",
+    "our_lady_of_walsingham": {
       "fullname": "Our Lady of Walsingham"
     },
-    {
-      "id": "our_lady_queen_of_peace",
+    "our_lady_queen_of_peace": {
       "fullname": "Our Lady of Peace"
     },
-    {
-      "id": "our_lady_queen_of_poland",
+    "our_lady_queen_of_poland": {
       "fullname": "Our Lady, Queen of Poland",
       "name": "Our Lady",
       "titles": [
         "QUEEN_OF_POLAND"
       ]
     },
-    {
-      "id": "our_lady_refuge_of_sinners",
+    "our_lady_refuge_of_sinners": {
       "fullname": "Our Lady, Refuge of Sinners"
     },
-    {
-      "id": "our_lord_jesus_christ_king_of_the_universe",
+    "our_lord_jesus_christ_king_of_the_universe": {
       "fullname": "Our Lord Jesus Christ, King of the Universe",
       "titles": []
     },
-    {
-      "id": "our_lord_jesus_christ_the_eternal_high_priest",
+    "our_lord_jesus_christ_the_eternal_high_priest": {
       "fullname": "Our Lord Jesus Christ, the Eternal High Priest"
     },
-    {
-      "id": "our_lord_of_miracles",
+    "our_lord_of_miracles": {
       "fullname": "Our Lord of Miracles"
     }
-  ]
+  }
 }

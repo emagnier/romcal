@@ -1,158 +1,120 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "cs",
-  "entities": [
-    {
-      "id": "ladislas_of_gielniow_priest",
+  "entities": {
+    "ladislas_of_gielniow_priest": {
       "fullname": "Bl. Vladislava z Gielniówa, kněze"
     },
-    {
-      "id": "ladislaus_batthyany_strattmann",
+    "ladislaus_batthyany_strattmann": {
       "fullname": "Bl. Ladislava Batthyány-Strattmanna"
     },
-    {
-      "id": "ladislaus_i_of_hungary",
+    "ladislaus_i_of_hungary": {
       "fullname": "Sv. Ladislava"
     },
-    {
-      "id": "lambert_of_maastricht_bishop",
+    "lambert_of_maastricht_bishop": {
       "fullname": "Sv. Lamberta z Maastrichtu, biskupa a mučedníka"
     },
-    {
-      "id": "landry_of_paris_bishop",
+    "landry_of_paris_bishop": {
       "fullname": "Sv. Landerika, biskupa"
     },
-    {
-      "id": "laserian_of_leighlin_bishop",
+    "laserian_of_leighlin_bishop": {
       "fullname": "Sv. Laseriana, biskupa"
     },
-    {
-      "id": "laura_vicuna_virgin",
+    "laura_vicuna_virgin": {
       "fullname": "Bl. Laury Vicuña, panny"
     },
-    {
-      "id": "laurence_otoole_bishop",
+    "laurence_otoole_bishop": {
       "fullname": "Sv. Vavřince O’Toole, biskupa"
     },
-    {
-      "id": "laurence_wang_bing_and_companions_martyrs",
+    "laurence_wang_bing_and_companions_martyrs": {
       "fullname": "Sv. Vavřince Wang Bing a druhů, mučedníků"
     },
-    {
-      "id": "lawrence_bai_xiaoman_martyr",
+    "lawrence_bai_xiaoman_martyr": {
       "fullname": "Sv. Vavřince Bai Xiaoman, mučedníka"
     },
-    {
-      "id": "lawrence_of_brindisi_priest",
+    "lawrence_of_brindisi_priest": {
       "fullname": "Sv. Vavřince z Brindisi, kněze a učitele církve"
     },
-    {
-      "id": "lawrence_of_rome_deacon",
+    "lawrence_of_rome_deacon": {
       "fullname": "Sv. Vavřince, mučedníka"
     },
-    {
-      "id": "lawrence_ruiz_and_companions_martyrs",
+    "lawrence_ruiz_and_companions_martyrs": {
       "fullname": "Sv. Vavřince Ruize a druhů, mučedníků"
     },
-    {
-      "id": "leander_of_seville_bishop",
+    "leander_of_seville_bishop": {
       "fullname": "Sv. Leandra ze Sevilly, biskupa"
     },
-    {
-      "id": "lelia_of_killeely_virgin",
+    "lelia_of_killeely_virgin": {
       "fullname": "Sv. Lelie, panny"
     },
-    {
-      "id": "leo_i_the_great_pope",
+    "leo_i_the_great_pope": {
       "fullname": "Sv. Lva Velikého, papeže a učitele církve"
     },
-    {
-      "id": "leo_ignatius_mangin_priest_and_companions_martyrs",
+    "leo_ignatius_mangin_priest_and_companions_martyrs": {
       "fullname": "Sv. Lva Ignáce Mangina, kněze a druhů, mučedníků"
     },
-    {
-      "id": "leo_ix_pope",
+    "leo_ix_pope": {
       "fullname": "Sv. Lva IX., papeže"
     },
-    {
-      "id": "leoba_of_tauberbischofsheim_abbess",
+    "leoba_of_tauberbischofsheim_abbess": {
       "fullname": "Sv. Leoby, abatyše"
     },
-    {
-      "id": "leodegar_of_autun_bishop",
+    "leodegar_of_autun_bishop": {
       "fullname": "Sv. Leodegara z Autunu, biskupa a mučedníka"
     },
-    {
-      "id": "leonard_of_noblac_hermit",
+    "leonard_of_noblac_hermit": {
       "fullname": "Sv. Leonarda z Noblatu, poustevníka"
     },
-    {
-      "id": "leonid_feodorov_priest",
+    "leonid_feodorov_priest": {
       "fullname": "Bl. Leonida Fedorova, kněze a mučedníka"
     },
-    {
-      "id": "leopold_iii_of_babenberg",
+    "leopold_iii_of_babenberg": {
       "fullname": "Sv. Leopolda III. Babenberského"
     },
-    {
-      "id": "leopold_mandic_priest",
+    "leopold_mandic_priest": {
       "fullname": "Sv. Leopolda Mandiće, kněze"
     },
-    {
-      "id": "louis_bertrand_priest",
+    "louis_bertrand_priest": {
       "fullname": "Sv. Ludvíka Bertranda, kněze"
     },
-    {
-      "id": "louis_grignion_de_montfort_priest",
+    "louis_grignion_de_montfort_priest": {
       "fullname": "Sv. Ludvíka Marie Grigniona z Montfortu, kněze"
     },
-    {
-      "id": "louis_ix_of_france",
+    "louis_ix_of_france": {
       "fullname": "Sv. Ludvíka"
     },
-    {
-      "id": "louis_zephirin_moreau_bishop",
+    "louis_zephirin_moreau_bishop": {
       "fullname": "Bl. Ludvíka Zeffirína Moreau, biskupa"
     },
-    {
-      "id": "louise_de_marillac_religious",
+    "louise_de_marillac_religious": {
       "fullname": "Sv. Ludvíky de Marillac, řeholnice"
     },
-    {
-      "id": "lucius_of_chur_bishop",
+    "lucius_of_chur_bishop": {
       "fullname": "Sv. Lucia z Churu, biskupa a mučedníka"
     },
-    {
-      "id": "lucy_of_syracuse_virgin",
+    "lucy_of_syracuse_virgin": {
       "fullname": "Sv. Lucie, panny a mučednice"
     },
-    {
-      "id": "lucy_yi_zhenmei_virgin",
+    "lucy_yi_zhenmei_virgin": {
       "fullname": "Sv. Lucie Yi Zhenmei, panny a mučednice"
     },
-    {
-      "id": "ludan_of_scotland_pilgrim",
+    "ludan_of_scotland_pilgrim": {
       "fullname": "Sv. Ludana, poutníka"
     },
-    {
-      "id": "ludger_of_munster_bishop",
+    "ludger_of_munster_bishop": {
       "fullname": "Sv. Ludgera z Münsteru, biskupa"
     },
-    {
-      "id": "ludmila_of_bohemia_martyr",
+    "ludmila_of_bohemia_martyr": {
       "fullname": "Sv. Ludmily, mučednice"
     },
-    {
-      "id": "luigi_orione_priest",
+    "luigi_orione_priest": {
       "fullname": "Sv. Aloise Orioneho, kněze"
     },
-    {
-      "id": "luke_evangelist",
+    "luke_evangelist": {
       "fullname": "Sv. Lukáše, evangelisty"
     },
-    {
-      "id": "lydia_of_philippi",
+    "lydia_of_philippi": {
       "fullname": "Sv. Lýdie z Filíp"
     }
-  ]
+  }
 }

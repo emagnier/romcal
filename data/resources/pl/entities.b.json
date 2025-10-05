@@ -1,102 +1,78 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "pl",
-  "entities": [
-    {
-      "id": "baptism_of_the_lord",
+  "entities": {
+    "baptism_of_the_lord": {
       "fullname": "Chrzest Pański"
     },
-    {
-      "id": "barbara_of_heliopolis_virgin",
+    "barbara_of_heliopolis_virgin": {
       "fullname": "Św. Barbary, dziewicy i męczennicy"
     },
-    {
-      "id": "barnabas_apostle",
+    "barnabas_apostle": {
       "fullname": "Św. Barnaby, Apostoła"
     },
-    {
-      "id": "bartholomew_apostle",
+    "bartholomew_apostle": {
       "fullname": "Św. Bartłomieja, Apostoła"
     },
-    {
-      "id": "basil_the_great_and_gregory_nazianzen_bishops",
+    "basil_the_great_and_gregory_nazianzen_bishops": {
       "fullname": "Świętych Bazylego Wielkiego i Grzegorza z Nazjanzu, biskupów i doktorów Kościoła"
     },
-    {
-      "id": "bede_the_venerable_priest",
+    "bede_the_venerable_priest": {
       "fullname": "Św. Bedy Czcigodnego, prezbitera i doktora Kościoła"
     },
-    {
-      "id": "benedict_of_aniane_abbot",
+    "benedict_of_aniane_abbot": {
       "fullname": "Św. Benedykta z Anianu, opata"
     },
-    {
-      "id": "benedict_of_nursia_abbot",
+    "benedict_of_nursia_abbot": {
       "fullname": "Św. Benedykta, opata"
     },
-    {
-      "id": "benedict_of_nursia_abbot_patron_of_europe",
+    "benedict_of_nursia_abbot_patron_of_europe": {
       "fullname": "Św. Benedykta, opata, patrona Europy"
     },
-    {
-      "id": "bernard_of_clairvaux_abbot",
+    "bernard_of_clairvaux_abbot": {
       "fullname": "Św. Bernarda, opata i doktora Kościoła"
     },
-    {
-      "id": "bernardine_of_siena_priest",
+    "bernardine_of_siena_priest": {
       "fullname": "Św. Bernardyna ze Sieny, prezbitera"
     },
-    {
-      "id": "blaise_of_sebaste_bishop",
+    "blaise_of_sebaste_bishop": {
       "fullname": "Św. Błażeja, biskupa i męczennika"
     },
-    {
-      "id": "blessed_martyrs_of_paris",
+    "blessed_martyrs_of_paris": {
       "fullname": "Bł. Męczenników z Paryża"
     },
-    {
-      "id": "bogumilus_of_dobrow_bishop",
+    "bogumilus_of_dobrow_bishop": {
       "fullname": "Bł. Bogumiła, biskupa"
     },
-    {
-      "id": "boleslawa_mary_lament_virgin",
+    "boleslawa_mary_lament_virgin": {
       "fullname": "Bł. Bolesławy Marii Lament, dziewicy"
     },
-    {
-      "id": "bonaventure_of_bagnoregio_bishop",
+    "bonaventure_of_bagnoregio_bishop": {
       "fullname": "Św. Bonawentury, biskupa i doktora Kościoła"
     },
-    {
-      "id": "boniface_of_mainz_bishop",
+    "boniface_of_mainz_bishop": {
       "fullname": "Św. Bonifacego, biskupa i męczennika"
     },
-    {
-      "id": "bridget_of_sweden_religious",
+    "bridget_of_sweden_religious": {
       "fullname": "Św. Brygidy, zakonnicy"
     },
-    {
-      "id": "bridget_of_sweden_religious_copatroness_of_europe",
+    "bridget_of_sweden_religious_copatroness_of_europe": {
       "fullname": "Św. Brygidy, zakonnicy, patronki Europy"
     },
-    {
-      "id": "brigid_of_kildare_virgin",
+    "brigid_of_kildare_virgin": {
       "fullname": "Św. Brygidy z Kildare, ksieni"
     },
-    {
-      "id": "brigid_of_kildare_virgin_copatroness_of_ireland",
+    "brigid_of_kildare_virgin_copatroness_of_ireland": {
       "fullname": "Św. Brygidy z Kildare, dziewicy i patronki Irlandii"
     },
-    {
-      "id": "bronislava_of_poland_virgin",
+    "bronislava_of_poland_virgin": {
       "fullname": "Bł. Bronisławy, dziewicy"
     },
-    {
-      "id": "bruno_of_cologne_priest",
+    "bruno_of_cologne_priest": {
       "fullname": "Św. Brunona, prezbitera"
     },
-    {
-      "id": "bruno_of_querfurt_bishop",
+    "bruno_of_querfurt_bishop": {
       "fullname": "Św. Brunona Bonifacego z Kwerfurtu, biskupa i męczennika"
     }
-  ]
+  }
 }

@@ -1,107 +1,84 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "fr",
-  "entities": [
-    {
-      "id": "baldomerus_of_lyon_religious",
+  "entities": {
+    "baldomerus_of_lyon_religious": {
       "fullname": "Saint Galmier, religieux († v. 630)",
       "sources": [
         "mr_fr_2014_ed2_lyon"
       ]
     },
-    {
-      "id": "baptism_of_the_lord",
+    "baptism_of_the_lord": {
       "fullname": "Baptême du Seigneur"
     },
-    {
-      "id": "barnabas_apostle",
+    "barnabas_apostle": {
       "fullname": "Saint Barnabé, apôtre"
     },
-    {
-      "id": "bartholomew_apostle",
+    "bartholomew_apostle": {
       "fullname": "Saint Barthélemy, apôtre"
     },
-    {
-      "id": "basil_the_great_and_gregory_nazianzen_bishops",
+    "basil_the_great_and_gregory_nazianzen_bishops": {
       "fullname": "Saints Basile le Grand († 379) et Grégoire de Naziance († 390), évêques et docteurs de l’Église"
     },
-    {
-      "id": "bede_the_venerable_priest",
+    "bede_the_venerable_priest": {
       "fullname": "Saint Bède le Vénérable, prêtre et docteur de l’Église († 735)"
     },
-    {
-      "id": "benedict_of_aniane_abbot",
+    "benedict_of_aniane_abbot": {
       "fullname": "Saint Benoît d’Aniane, abbé († 820)"
     },
-    {
-      "id": "benedict_of_nursia_abbot",
+    "benedict_of_nursia_abbot": {
       "fullname": "Saint Benoît de Nursie, Patriarche des moines d’Occident, fondateur de l’ordre des Bénédictins († v. 547)"
     },
-    {
-      "id": "benedict_of_nursia_abbot_patron_of_europe",
+    "benedict_of_nursia_abbot_patron_of_europe": {
       "fullname": "Saint Benoît de Nursie, Patriarche des moines d’Occident, fondateur de l’ordre des Bénédictins et patron de l’Europe († v. 547)"
     },
-    {
-      "id": "bernadette_soubirous_virgin",
+    "bernadette_soubirous_virgin": {
       "fullname": "Sainte Bernadette Soubirous, vierge († 1879)"
     },
-    {
-      "id": "bernard_of_clairvaux_abbot",
+    "bernard_of_clairvaux_abbot": {
       "fullname": "Saint Bernard de Clairvaux, abbé, docteur de l’Église († 1153)"
     },
-    {
-      "id": "bernardine_of_siena_priest",
+    "bernardine_of_siena_priest": {
       "fullname": "Saint Bernardin de Sienne, prêtre († 1444)"
     },
-    {
-      "id": "bertrand_of_comminges_bishop",
+    "bertrand_of_comminges_bishop": {
       "fullname": "Saint Bertrand de Comminges, évêque († 1126)",
       "sources": [
         "mr_fr_1974_ed1_region_apostolique_du_midi"
       ]
     },
-    {
-      "id": "blaise_of_sebaste_bishop",
+    "blaise_of_sebaste_bishop": {
       "fullname": "Saint Blaise de Sébaste, évêque et martyr († 316)"
     },
-    {
-      "id": "blessed_martyrs_of_angers",
+    "blessed_martyrs_of_angers": {
       "fullname": "Bienheureux Martyrs d’Angers († 1793-1794)",
       "sources": [
         "mr_fr_2022_ed3_angers"
       ]
     },
-    {
-      "id": "blessed_martyrs_of_paris",
+    "blessed_martyrs_of_paris": {
       "fullname": "Bienheureux Martyrs de Paris († du 2 au 6 septembre 1792)"
     },
-    {
-      "id": "bonaventure_of_bagnoregio_bishop",
+    "bonaventure_of_bagnoregio_bishop": {
       "fullname": "Saint Bonaventure, évêque d’Albano et docteur de l’Église († 1274)"
     },
-    {
-      "id": "boniface_of_mainz_bishop",
+    "boniface_of_mainz_bishop": {
       "fullname": "Saint Boniface, évêque et martyr († 754)"
     },
-    {
-      "id": "bridget_of_sweden_religious",
+    "bridget_of_sweden_religious": {
       "fullname": "Sainte Brigitte de Suède, veuve puis religieuse, fondatrice de l’ordre du Saint-Sauveur († 1373)"
     },
-    {
-      "id": "bridget_of_sweden_religious_copatroness_of_europe",
+    "bridget_of_sweden_religious_copatroness_of_europe": {
       "fullname": "Sainte Brigitte de Suède, veuve puis religieuse, fondatrice de l’ordre du Saint-Sauveur, co-patronne de l’Europe († 1373)"
     },
-    {
-      "id": "brigid_of_kildare_virgin",
+    "brigid_of_kildare_virgin": {
       "fullname": "Saint Brigide, abbesse († 523)"
     },
-    {
-      "id": "brigid_of_kildare_virgin_copatroness_of_ireland",
+    "brigid_of_kildare_virgin_copatroness_of_ireland": {
       "fullname": "Saint Brigide, abbesse et co-patronne d’Irlande († 523)"
     },
-    {
-      "id": "bruno_of_cologne_priest",
+    "bruno_of_cologne_priest": {
       "fullname": "Saint Bruno, prêtre, fondateur des Chartreux († 1101)"
     }
-  ]
+  }
 }

@@ -1,98 +1,75 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "de",
-  "entities": [
-    {
-      "id": "ignatius_de_azevedo_priest_and_companions_martyrs",
+  "entities": {
+    "ignatius_de_azevedo_priest_and_companions_martyrs": {
       "fullname": "Sel. Ignatius von Azevedo, Priester, und Gefährten, Märtyrer"
     },
-    {
-      "id": "ignatius_falzon",
+    "ignatius_falzon": {
       "fullname": "Sel. Ignatius Falzon"
     },
-    {
-      "id": "ignatius_of_antioch_bishop",
+    "ignatius_of_antioch_bishop": {
       "fullname": "Hl. Ignatius von Antiochien, Bischof und Märtyrer"
     },
-    {
-      "id": "ignatius_of_loyola_priest",
+    "ignatius_of_loyola_priest": {
       "fullname": "Hl. Ignatius von Loyola, Priester"
     },
-    {
-      "id": "ildephonsus_of_toledo_bishop",
+    "ildephonsus_of_toledo_bishop": {
       "fullname": "Hl. Ildephonsus von Toledo, Bischof"
     },
-    {
-      "id": "illtud_the_knight_abbot",
+    "illtud_the_knight_abbot": {
       "fullname": "Hl. Illtud, Abt"
     },
-    {
-      "id": "immaculate_conception_of_the_blessed_virgin_mary",
+    "immaculate_conception_of_the_blessed_virgin_mary": {
       "fullname": "Hochfest der ohne Erbsünde empfangenen Jungfrau und Gottesmutter Maria"
     },
-    {
-      "id": "immaculate_conception_of_the_blessed_virgin_mary_patroness_of_the_philippines",
+    "immaculate_conception_of_the_blessed_virgin_mary_patroness_of_the_philippines": {
       "fullname": "Die Unbefleckte Empfängnis der seligen Jungfrau Maria, Schutzpatronin der Philippinen"
     },
-    {
-      "id": "immaculate_conception_of_the_blessed_virgin_mary_patroness_of_the_usa",
+    "immaculate_conception_of_the_blessed_virgin_mary_patroness_of_the_usa": {
       "fullname": "Die Unbefleckte Empfängnis der seligen Jungfrau Maria, Schutzpatronin der USA"
     },
-    {
-      "id": "immaculate_heart_of_mary",
+    "immaculate_heart_of_mary": {
       "fullname": "Das Unbefleckte Herz Mariä"
     },
-    {
-      "id": "innocent_v_pope",
+    "innocent_v_pope": {
       "fullname": "Sel. Innozenz V., Papst"
     },
-    {
-      "id": "innocent_xi_pope",
+    "innocent_xi_pope": {
       "fullname": "Sel. Innozenz XI., Papst"
     },
-    {
-      "id": "irenaeus_of_lyon_bishop",
+    "irenaeus_of_lyon_bishop": {
       "fullname": "Hl. Irenäus, Bischof, Märtyrer und Kirchenlehrer"
     },
-    {
-      "id": "irenaeus_of_lyon_bishop_patron_of_the_archdiocese_of_lyon_and_companions_martyrs",
+    "irenaeus_of_lyon_bishop_patron_of_the_archdiocese_of_lyon_and_companions_martyrs": {
       "fullname": "Hl. Irenäus, Bischof und Kirchenlehrer, Schutzpatron der Erzdiözese Lyon, und Gefährten, Märtyrer"
     },
-    {
-      "id": "irene_of_macedonia",
+    "irene_of_macedonia": {
       "fullname": "Hl. Irene"
     },
-    {
-      "id": "irish_martyrs",
+    "irish_martyrs": {
       "fullname": "Irische Märtyrer"
     },
-    {
-      "id": "isabelle_of_france_virgin",
+    "isabelle_of_france_virgin": {
       "fullname": "Sel. Isabelle von Frankreich, Jungfrau"
     },
-    {
-      "id": "isidore_of_seville_bishop",
+    "isidore_of_seville_bishop": {
       "fullname": "Hl. Isidor, Bischof und Kirchenlehrer"
     },
-    {
-      "id": "isidore_the_farmer",
+    "isidore_the_farmer": {
       "fullname": "Hl. Isidor der Bauer"
     },
-    {
-      "id": "istvan_sandor_religious",
+    "istvan_sandor_religious": {
       "fullname": "Sel. István Sándor, Ordensmann und Märtyrer"
     },
-    {
-      "id": "ita_of_killeedy_virgin",
+    "ita_of_killeedy_virgin": {
       "fullname": "Hl. Ita, Jungfrau"
     },
-    {
-      "id": "ivan_merz",
+    "ivan_merz": {
       "fullname": "Sel. Ivan Merz"
     },
-    {
-      "id": "ivo_of_kermartin_priest",
+    "ivo_of_kermartin_priest": {
       "fullname": "Hl. Ivo, Priester"
     }
-  ]
+  }
 }

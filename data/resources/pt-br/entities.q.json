@@ -1,10 +1,9 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "pt-br",
-  "entities": [
-    {
-      "id": "queenship_of_the_blessed_virgin_mary",
+  "entities": {
+    "queenship_of_the_blessed_virgin_mary": {
       "fullname": "Bem-aventurada virgem Maria, Rainha do Céu"
     }
-  ]
+  }
 }

@@ -1,42 +1,33 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "sk",
-  "entities": [
-    {
-      "id": "kateri_tekakwitha_virgin",
+  "entities": {
+    "kateri_tekakwitha_virgin": {
       "fullname": "Svätej Kataríny Tekakwithy, panny"
     },
-    {
-      "id": "katharine_drexel_virgin",
+    "katharine_drexel_virgin": {
       "fullname": "Svätej Kataríny Drexelovej, panny"
     },
-    {
-      "id": "kentigern_of_scotland_bishop",
+    "kentigern_of_scotland_bishop": {
       "fullname": "Svätého Munga, biskupa"
     },
-    {
-      "id": "kevin_of_glendalough_abbot",
+    "kevin_of_glendalough_abbot": {
       "fullname": "Svätého Kevina, opáta"
     },
-    {
-      "id": "kieran_of_saigir_bishop",
+    "kieran_of_saigir_bishop": {
       "fullname": "Svätého Kierana zo Saighir, biskupa"
     },
-    {
-      "id": "kilian_of_wurzburg_bishop",
+    "kilian_of_wurzburg_bishop": {
       "fullname": "Svätého Kiliána, biskupa a mučeníka"
     },
-    {
-      "id": "kilian_of_wurzburg_bishop_and_companions_martyrs",
+    "kilian_of_wurzburg_bishop_and_companions_martyrs": {
       "fullname": "Svätého Kiliána, biskupa, a spoločníkov, mučeníkov"
     },
-    {
-      "id": "kinga_of_poland_virgin",
+    "kinga_of_poland_virgin": {
       "fullname": "Svätej Kingy, panny"
     },
-    {
-      "id": "kuriakose_elias_of_the_holy_family_chavara_priest",
+    "kuriakose_elias_of_the_holy_family_chavara_priest": {
       "fullname": "Blahoslaveného Kyriaka Eliáša od Svätej rodiny Chavaru, kňaza"
     }
-  ]
+  }
 }

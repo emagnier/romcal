@@ -1,58 +1,45 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "cs",
-  "entities": [
-    {
-      "id": "waitangi_day",
+  "entities": {
+    "waitangi_day": {
       "fullname": "Den Waitangi"
     },
-    {
-      "id": "walpurga_of_heidenheim_abbess",
+    "walpurga_of_heidenheim_abbess": {
       "fullname": "Sv. Valburgy z Heidenheimu, abatyše"
     },
-    {
-      "id": "wenceslaus_i_of_bohemia_martyr",
+    "wenceslaus_i_of_bohemia_martyr": {
       "fullname": "Sv. Václava, mučedníka"
     },
-    {
-      "id": "wenceslaus_i_of_bohemia_martyr_patron_of_the_czech_nation",
+    "wenceslaus_i_of_bohemia_martyr_patron_of_the_czech_nation": {
       "fullname": "Sv. Václava, mučedníka a patrona českého národa"
     },
-    {
-      "id": "wendelin_of_trier_hermit",
+    "wendelin_of_trier_hermit": {
       "fullname": "Sv. Vendelína, poustevníka"
     },
-    {
-      "id": "wilfrid_of_york_bishop",
+    "wilfrid_of_york_bishop": {
       "fullname": "Sv. Vilfrida, biskupa"
     },
-    {
-      "id": "william_apor_bishop",
+    "william_apor_bishop": {
       "fullname": "Bl. Viléma Apore, biskupa a mučedníka"
     },
-    {
-      "id": "willibald_of_eichstatt_bishop",
+    "willibald_of_eichstatt_bishop": {
       "fullname": "Sv. Willibalda, biskupa"
     },
-    {
-      "id": "willibrord_of_utrecht_bishop",
+    "willibrord_of_utrecht_bishop": {
       "fullname": "Sv. Willibrorda, biskupa"
     },
-    {
-      "id": "winefride_of_flintshire_virgin",
+    "winefride_of_flintshire_virgin": {
       "fullname": "Sv. Winefridy, panny"
     },
-    {
-      "id": "wladyslaw_bladzinski_priest_and_companions_martyrs",
+    "wladyslaw_bladzinski_priest_and_companions_martyrs": {
       "fullname": "Bl. Vladislava Błądziński, kněze, a druhů, mučedníků"
     },
-    {
-      "id": "wolfgang_of_regensburg_bishop",
+    "wolfgang_of_regensburg_bishop": {
       "fullname": "Sv. Wolfganga, biskupa"
     },
-    {
-      "id": "wulstan_of_worcester_bishop",
+    "wulstan_of_worcester_bishop": {
       "fullname": "Sv. Wulstana, biskupa"
     }
-  ]
+  }
 }

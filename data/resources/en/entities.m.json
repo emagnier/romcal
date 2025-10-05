@@ -1,9 +1,8 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "en",
-  "entities": [
-    {
-      "id": "mac_nissi_of_connor_bishop",
+  "entities": {
+    "mac_nissi_of_connor_bishop": {
       "fullname": "Saint Mac Nissi, Bishop",
       "canonization_level": "SAINT",
       "name": "Mac Nissi",
@@ -11,8 +10,7 @@
         "BISHOP"
       ]
     },
-    {
-      "id": "macartan_of_clogher_bishop",
+    "macartan_of_clogher_bishop": {
       "fullname": "Saint Macartan, Bishop",
       "canonization_level": "SAINT",
       "name": "Macartan",
@@ -20,8 +18,7 @@
         "BISHOP"
       ]
     },
-    {
-      "id": "madeleine_sophie_barat_virgin",
+    "madeleine_sophie_barat_virgin": {
       "fullname": "Saint Madeleine Sophie Barat, Virgin",
       "canonization_level": "SAINT",
       "name": "Madeleine Sophie Barat",
@@ -30,8 +27,7 @@
       ],
       "date_of_death": 1865
     },
-    {
-      "id": "maelruain_of_tallaght_bishop",
+    "maelruain_of_tallaght_bishop": {
       "fullname": "Saint Maelruain, Bishop and Abbot",
       "canonization_level": "SAINT",
       "name": "Maelruain",
@@ -40,16 +36,14 @@
         "ABBOT"
       ]
     },
-    {
-      "id": "mafalda_of_portugal_virgin",
+    "mafalda_of_portugal_virgin": {
       "canonization_level": "BLESSED",
       "name": "Mafalda",
       "titles": [
         "VIRGIN"
       ]
     },
-    {
-      "id": "maglorius_of_dol_monk",
+    "maglorius_of_dol_monk": {
       "fullname": "Saint Maglorius of Dol, Monk",
       "canonization_level": "SAINT",
       "name": "Maglorius",
@@ -70,8 +64,7 @@
         "https://en.wikipedia.org/wiki/Magloire"
       ]
     },
-    {
-      "id": "magnus_erlendsson_martyr",
+    "magnus_erlendsson_martyr": {
       "fullname": "Saint Magnus, Martyr",
       "canonization_level": "SAINT",
       "name": "Magnus",
@@ -79,8 +72,7 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "malachy_of_armagh_bishop",
+    "malachy_of_armagh_bishop": {
       "fullname": "Saint Malachy, Bishop",
       "canonization_level": "SAINT",
       "name": "Malachy",
@@ -88,8 +80,7 @@
         "BISHOP"
       ]
     },
-    {
-      "id": "marcel_callo_martyr",
+    "marcel_callo_martyr": {
       "fullname": "Blessed Marcel Callo, Martyr",
       "canonization_level": "BLESSED",
       "name": "Marcel Callo",
@@ -97,8 +88,7 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "marcelina_darowska_religious",
+    "marcelina_darowska_religious": {
       "fullname": "Blessed Marcelina Darowska, Religious",
       "canonization_level": "BLESSED",
       "name": "Marcelina Darowska",
@@ -106,8 +96,7 @@
         "RELIGIOUS"
       ]
     },
-    {
-      "id": "marcellin_champagnat_priest",
+    "marcellin_champagnat_priest": {
       "fullname": "Saint Marcellin Champagnat, Priest",
       "canonization_level": "SAINT",
       "name": "Marcellin Champagnat",
@@ -120,12 +109,10 @@
         "mr_fr_2014_ed2_lyon"
       ]
     },
-    {
-      "id": "marcellinus_of_rome_and_peter_the_exorcist_martyrs",
+    "marcellinus_of_rome_and_peter_the_exorcist_martyrs": {
       "fullname": "Saints Marcellinus and Peter, Martyrs"
     },
-    {
-      "id": "marcellinus_of_rome_martyr",
+    "marcellinus_of_rome_martyr": {
       "canonization_level": "SAINT",
       "name": "Marcellinus",
       "titles": [
@@ -133,8 +120,7 @@
       ],
       "date_of_death": 304
     },
-    {
-      "id": "marcellus_of_paris_bishop",
+    "marcellus_of_paris_bishop": {
       "fullname": "Saint Marcellus of Paris, Bishop",
       "canonization_level": "SAINT",
       "name": "Marcellus of Paris",
@@ -145,8 +131,7 @@
         "century": 5
       }
     },
-    {
-      "id": "marculf_of_normandy_abbot",
+    "marculf_of_normandy_abbot": {
       "fullname": "Saint Marculf, Abbot",
       "canonization_level": "SAINT",
       "name": "Marculf",
@@ -163,20 +148,17 @@
         "https://en.wikipedia.org/wiki/Marculf"
       ]
     },
-    {
-      "id": "margaret_clitherow_anne_line_and_margaret_ward_virgin_martyrs",
+    "margaret_clitherow_anne_line_and_margaret_ward_virgin_martyrs": {
       "fullname": "Saints Margaret Clitherow, Anne Line and Margaret Ward, Virgin, Martyrs"
     },
-    {
-      "id": "margaret_clitherow_virgin_martyr",
+    "margaret_clitherow_virgin_martyr": {
       "canonization_level": "SAINT",
       "name": "Margaret Clitherow",
       "titles": [
         "MARTYR"
       ]
     },
-    {
-      "id": "margaret_mary_alacoque_virgin",
+    "margaret_mary_alacoque_virgin": {
       "fullname": "Saint Margaret Mary Alacoque, Virgin",
       "canonization_level": "SAINT",
       "name": "Margaret Mary Alacoque",
@@ -185,8 +167,7 @@
       ],
       "date_of_death": 1690
     },
-    {
-      "id": "margaret_of_antioch_virgin",
+    "margaret_of_antioch_virgin": {
       "fullname": "Saint Margaret of Antioch, Virgin and Martyr",
       "canonization_level": "SAINT",
       "name": "Margaret of Antioch",
@@ -195,8 +176,7 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "margaret_of_hungary_religious",
+    "margaret_of_hungary_religious": {
       "fullname": "Saint Margaret of Hungary, Religious",
       "canonization_level": "SAINT",
       "name": "Margaret of Hungary",
@@ -204,23 +184,20 @@
         "RELIGIOUS"
       ]
     },
-    {
-      "id": "margaret_of_scotland",
+    "margaret_of_scotland": {
       "fullname": "Saint Margaret of Scotland",
       "canonization_level": "SAINT",
       "name": "Margaret of Scotland",
       "date_of_death": 1093
     },
-    {
-      "id": "margaret_ward_virgin_martyr",
+    "margaret_ward_virgin_martyr": {
       "canonization_level": "SAINT",
       "name": "Margaret Ward",
       "titles": [
         "MARTYR"
       ]
     },
-    {
-      "id": "marguerite_bourgeoys_virgin",
+    "marguerite_bourgeoys_virgin": {
       "fullname": "Saint Marguerite Bourgeoys, Virgin",
       "canonization_level": "SAINT",
       "name": "Marguerite Bourgeoys",
@@ -229,8 +206,7 @@
       ],
       "date_of_death": 1700
     },
-    {
-      "id": "marguerite_dyouville_religious",
+    "marguerite_dyouville_religious": {
       "fullname": "Saint Marguerite d’Youville, Religious",
       "canonization_level": "SAINT",
       "name": "Marguerite d’Youville",
@@ -239,8 +215,7 @@
       ],
       "date_of_death": 1771
     },
-    {
-      "id": "maria_goretti_virgin",
+    "maria_goretti_virgin": {
       "fullname": "Saint Maria Goretti, Virgin and Martyr",
       "canonization_level": "SAINT",
       "name": "Maria Goretti",
@@ -250,8 +225,7 @@
       ],
       "date_of_death": 1902
     },
-    {
-      "id": "maria_guadalupe_garcia_zavala_virgin",
+    "maria_guadalupe_garcia_zavala_virgin": {
       "fullname": "Saint María Guadalupe García Zavala, Virgin",
       "canonization_level": "SAINT",
       "name": "María Guadalupe García Zavala",
@@ -259,8 +233,7 @@
         "VIRGIN"
       ]
     },
-    {
-      "id": "maria_micaela_of_the_blessed_sacrament_desmaisieres_virgin",
+    "maria_micaela_of_the_blessed_sacrament_desmaisieres_virgin": {
       "fullname": "Saint María Micaela of the Blessed Sacrament Desmaisières, Virgin",
       "canonization_level": "SAINT",
       "name": "María Micaela of the Blessed Sacrament Desmaisières",
@@ -268,8 +241,7 @@
         "VIRGIN"
       ]
     },
-    {
-      "id": "mariana_of_jesus_de_paredes_virgin",
+    "mariana_of_jesus_de_paredes_virgin": {
       "fullname": "Saint Mariana of Jesus de Paredes, Virgin",
       "canonization_level": "SAINT",
       "name": "Mariana of Jesus de Paredes",
@@ -277,8 +249,7 @@
         "VIRGIN"
       ]
     },
-    {
-      "id": "marianne_cope_virgin",
+    "marianne_cope_virgin": {
       "fullname": "Saint Marianne Cope, Virgin",
       "canonization_level": "SAINT",
       "name": "Marianne Cope",
@@ -286,8 +257,7 @@
         "VIRGIN"
       ]
     },
-    {
-      "id": "marie_anne_blondin_virgin",
+    "marie_anne_blondin_virgin": {
       "fullname": "Blessed Marie-Anne Blondin, Virgin",
       "canonization_level": "BLESSED",
       "name": "Marie-Anne Blondin",
@@ -296,8 +266,7 @@
       ],
       "date_of_death": 1890
     },
-    {
-      "id": "marie_eugenie_of_jesus_milleret_de_brou_virgin",
+    "marie_eugenie_of_jesus_milleret_de_brou_virgin": {
       "fullname": "Saint Marie-Eugénie of Jesus Milleret de Brou, Virgin and Foundress",
       "canonization_level": "SAINT",
       "name": "Marie-Eugénie of Jesus Milleret de Brou",
@@ -306,8 +275,7 @@
       ],
       "date_of_death": 1898
     },
-    {
-      "id": "marie_leonie_paradis_virgin",
+    "marie_leonie_paradis_virgin": {
       "fullname": "Blessed Marie-Léonie Paradis, Virgin",
       "canonization_level": "BLESSED",
       "name": "Marie-Léonie Paradis",
@@ -316,8 +284,7 @@
       ],
       "date_of_death": 1912
     },
-    {
-      "id": "marie_madeleine_julie_francoise_catherine_postel_virgin",
+    "marie_madeleine_julie_francoise_catherine_postel_virgin": {
       "fullname": "Saint Marie Madeleine Postel, Virgin",
       "canonization_level": "SAINT",
       "name": "Marie Madeleine Postel",
@@ -332,8 +299,7 @@
         "https://en.wikipedia.org/wiki/Marie-Madeleine_Postel"
       ]
     },
-    {
-      "id": "marie_of_saint_ignatius_claudine_thevenet_religious",
+    "marie_of_saint_ignatius_claudine_thevenet_religious": {
       "fullname": "Saint Claudine Thévenet, Religious",
       "canonization_level": "SAINT",
       "name": "Claudine Thévenet",
@@ -345,8 +311,7 @@
         "mr_fr_2014_ed2_lyon"
       ]
     },
-    {
-      "id": "marie_rose_durocher_virgin",
+    "marie_rose_durocher_virgin": {
       "fullname": "Blessed Marie Rose Durocher, Virgin",
       "canonization_level": "BLESSED",
       "name": "Marie Rose Durocher",
@@ -355,8 +320,7 @@
       ],
       "date_of_death": 1849
     },
-    {
-      "id": "mark_evangelist",
+    "mark_evangelist": {
       "fullname": "Saint Mark, Evangelist",
       "canonization_level": "SAINT",
       "name": "Mark",
@@ -364,12 +328,10 @@
         "EVANGELIST"
       ]
     },
-    {
-      "id": "marko_krizin_melchior_grodziecki_and_stephen_pongracz_priests",
+    "marko_krizin_melchior_grodziecki_and_stephen_pongracz_priests": {
       "fullname": "Saints Marko Krizin, Melchior Grodziecki and Stephen Pongrácz, Priests and Martyrs"
     },
-    {
-      "id": "marko_krizin_priest",
+    "marko_krizin_priest": {
       "fullname": "Saint Marko Krizin, Priest and Martyr",
       "canonization_level": "SAINT",
       "name": "Marko Krizin",
@@ -378,8 +340,7 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "maron_of_syria_hermit",
+    "maron_of_syria_hermit": {
       "fullname": "Saint Maroun, Hermit",
       "canonization_level": "SAINT",
       "name": "Maroun",
@@ -387,20 +348,17 @@
         "HERMIT"
       ]
     },
-    {
-      "id": "martha_of_bethany",
+    "martha_of_bethany": {
       "canonization_level": "SAINT",
       "name": "Martha",
       "date_of_death": {
         "century": 1
       }
     },
-    {
-      "id": "martha_of_bethany_mary_of_bethany_and_lazarus_of_bethany",
+    "martha_of_bethany_mary_of_bethany_and_lazarus_of_bethany": {
       "fullname": "Saints Martha, Mary and Lazarus"
     },
-    {
-      "id": "marthe_aimee_adele_le_bouteiller_virgin",
+    "marthe_aimee_adele_le_bouteiller_virgin": {
       "fullname": "Blessed Martha Aimée-Adèle le Bouteiller, Virgin",
       "canonization_level": "BLESSED",
       "date_of_beatification": "1990-11-04",
@@ -415,8 +373,7 @@
         "https://en.wikipedia.org/wiki/Aim%C3%A9e-Ad%C3%A8le_Le_Bouteiller"
       ]
     },
-    {
-      "id": "martin_de_porres_religious",
+    "martin_de_porres_religious": {
       "fullname": "Saint Martin de Porres, Religious",
       "canonization_level": "SAINT",
       "name": "Martin de Porres",
@@ -425,8 +382,7 @@
       ],
       "date_of_death": 1639
     },
-    {
-      "id": "martin_i_pope",
+    "martin_i_pope": {
       "fullname": "Saint Martin I, Pope and Martyr",
       "canonization_level": "SAINT",
       "name": "Martin I",
@@ -436,16 +392,14 @@
       ],
       "date_of_death": 656
     },
-    {
-      "id": "martin_of_braga_bishop",
+    "martin_of_braga_bishop": {
       "canonization_level": "SAINT",
       "name": "Martin of Braga",
       "titles": [
         "BISHOP"
       ]
     },
-    {
-      "id": "martin_of_tours_bishop",
+    "martin_of_tours_bishop": {
       "fullname": "Saint Martin of Tours, Bishop",
       "canonization_level": "SAINT",
       "name": "Martin of Tours",
@@ -454,20 +408,17 @@
       ],
       "date_of_death": 397
     },
-    {
-      "id": "martin_wu_xuesheng_and_companions_martyrs",
+    "martin_wu_xuesheng_and_companions_martyrs": {
       "fullname": "Saint Martin Wu Xuesheng and Companions, Martyrs"
     },
-    {
-      "id": "martin_wu_xuesheng_martyr",
+    "martin_wu_xuesheng_martyr": {
       "canonization_level": "SAINT",
       "name": "Martin Wu Xuesheng",
       "titles": [
         "MARTYR"
       ]
     },
-    {
-      "id": "martyrs_of_the_french_revolution",
+    "martyrs_of_the_french_revolution": {
       "name": "Martyrs of the French Revolution",
       "titles": [
         "MARTYR"
@@ -480,8 +431,7 @@
       },
       "count": "MANY"
     },
-    {
-      "id": "mary_adeodata_pisani_virgin",
+    "mary_adeodata_pisani_virgin": {
       "fullname": "Blessed Mary Adeodata Pisani, Virgin",
       "canonization_level": "BLESSED",
       "name": "Mary Adeodata Pisani",
@@ -489,8 +439,7 @@
         "VIRGIN"
       ]
     },
-    {
-      "id": "mary_angela_truszkowska_virgin",
+    "mary_angela_truszkowska_virgin": {
       "fullname": "Blessed Mary Angela Truszkowska, Virgin",
       "canonization_level": "BLESSED",
       "name": "Mary Angela Truszkowska",
@@ -498,8 +447,7 @@
         "VIRGIN"
       ]
     },
-    {
-      "id": "mary_assunta_pallotta_virgin",
+    "mary_assunta_pallotta_virgin": {
       "fullname": "Blessed Mary Assunta Pallotta, Virgin",
       "canonization_level": "BLESSED",
       "name": "Mary Assunta Pallotta",
@@ -507,8 +455,7 @@
         "VIRGIN"
       ]
     },
-    {
-      "id": "mary_catherine_of_saint_augustine_catherine_de_simon_de_longpre_virgin",
+    "mary_catherine_of_saint_augustine_catherine_de_simon_de_longpre_virgin": {
       "fullname": "Blessed Catherine of Saint Augustine, Virgin",
       "canonization_level": "BLESSED",
       "date_of_beatification": "1989-04-23",
@@ -523,8 +470,7 @@
         "https://en.wikipedia.org/wiki/Catherine_of_St._Augustine"
       ]
     },
-    {
-      "id": "mary_euphrasia_pelletier_religious",
+    "mary_euphrasia_pelletier_religious": {
       "fullname": "Saint Mary Euphrasia Pelletier, Religious",
       "canonization_level": "SAINT",
       "name": "Mary Euphrasia Pelletier",
@@ -538,8 +484,7 @@
         "https://en.wikipedia.org/wiki/Mary_Euphrasia_Pelletier"
       ]
     },
-    {
-      "id": "mary_magdalene",
+    "mary_magdalene": {
       "fullname": "Saint Mary Magdalene",
       "canonization_level": "SAINT",
       "name": "Mary Magdalene",
@@ -547,8 +492,7 @@
         "century": 1
       }
     },
-    {
-      "id": "mary_magdalene_de_pazzi_virgin",
+    "mary_magdalene_de_pazzi_virgin": {
       "fullname": "Saint Mary Magdalene de’ Pazzi, Virgin",
       "canonization_level": "SAINT",
       "name": "Mary Magdalene de’ Pazzi",
@@ -557,27 +501,23 @@
       ],
       "date_of_death": 1607
     },
-    {
-      "id": "mary_mother_of_god",
+    "mary_mother_of_god": {
       "fullname": "The Octave Day of the Nativity of the Lord: Solemnity of Mary, the Holy Mother of God",
       "name": "Mary, the Holy Mother of God"
     },
-    {
-      "id": "mary_mother_of_the_church",
+    "mary_mother_of_the_church": {
       "fullname": "Blessed Virgin Mary, Mother of the Church",
       "canonization_level": "BLESSED",
       "name": "Virgin Mary, Mother of the Church"
     },
-    {
-      "id": "mary_of_bethany",
+    "mary_of_bethany": {
       "canonization_level": "SAINT",
       "name": "Mary",
       "date_of_death": {
         "century": 1
       }
     },
-    {
-      "id": "mary_of_jesus_crucified_petkovic_virgin",
+    "mary_of_jesus_crucified_petkovic_virgin": {
       "fullname": "Blessed Mary of Jesus Crucified Petković, Virgin",
       "canonization_level": "BLESSED",
       "name": "Mary of Jesus Crucified Petković",
@@ -585,8 +525,7 @@
         "VIRGIN"
       ]
     },
-    {
-      "id": "mary_of_jesus_in_the_blessed_sacrament_venegas_de_la_torre_virgin",
+    "mary_of_jesus_in_the_blessed_sacrament_venegas_de_la_torre_virgin": {
       "fullname": "Saint Mary of Jesus in the Blessed Sacrament Venegas de la Torre, Virgin",
       "canonization_level": "SAINT",
       "name": "Mary of Jesus in the Blessed Sacrament Venegas de la Torre",
@@ -594,8 +533,7 @@
         "VIRGIN"
       ]
     },
-    {
-      "id": "mary_of_jesus_the_good_shepherd_siedliska_virgin",
+    "mary_of_jesus_the_good_shepherd_siedliska_virgin": {
       "fullname": "Blessed Mary of Jesus the Good Shepherd Siedliska, Virgin",
       "canonization_level": "BLESSED",
       "name": "Mary of Jesus the Good Shepherd Siedliska",
@@ -603,8 +541,7 @@
         "VIRGIN"
       ]
     },
-    {
-      "id": "mary_of_the_cross_mackillop_virgin",
+    "mary_of_the_cross_mackillop_virgin": {
       "fullname": "Saint Mary of the Cross MacKillop, Virgin",
       "canonization_level": "SAINT",
       "name": "Mary of the Cross MacKillop",
@@ -612,8 +549,7 @@
         "VIRGIN"
       ]
     },
-    {
-      "id": "mary_of_the_incarnation_barbara_acarie_religious",
+    "mary_of_the_incarnation_barbara_acarie_religious": {
       "fullname": "Blessed Mary of the Incarnation Barbara Acarie, Religious",
       "canonization_level": "BLESSED",
       "name": "Mary of the Incarnation Barbara Acarie",
@@ -622,8 +558,7 @@
       ],
       "date_of_death": 1618
     },
-    {
-      "id": "mary_of_the_incarnation_marie_guyart_religious",
+    "mary_of_the_incarnation_marie_guyart_religious": {
       "fullname": "Saint Mary of the Incarnation Marie Guyart, Religious",
       "canonization_level": "SAINT",
       "name": "Mary of the Incarnation Marie Guyart",
@@ -632,8 +567,7 @@
       ],
       "date_of_death": 1672
     },
-    {
-      "id": "mary_of_the_providence_eugenie_smet_virgin",
+    "mary_of_the_providence_eugenie_smet_virgin": {
       "fullname": "Blessed Mary of the Providence Eugénie Smet, Virgin",
       "canonization_level": "BLESSED",
       "name": "Mary of the Providence Eugénie Smet",
@@ -642,8 +576,7 @@
       ],
       "date_of_death": 1871
     },
-    {
-      "id": "mary_of_the_sacred_heart_sophie_therese_de_soubiran_la_louviere_virgin",
+    "mary_of_the_sacred_heart_sophie_therese_de_soubiran_la_louviere_virgin": {
       "fullname": "Blessed Mary Thérèse de Soubiran La Louvière, Virgin",
       "canonization_level": "BLESSED",
       "name": "Mary Thérèse de Soubiran La Louvière",
@@ -652,8 +585,7 @@
       ],
       "date_of_death": 1889
     },
-    {
-      "id": "mary_soledad_torres_acosta_virgin",
+    "mary_soledad_torres_acosta_virgin": {
       "fullname": "Saint Mary Soledad Torres y Acosta, Virgin",
       "canonization_level": "SAINT",
       "name": "Mary Soledad Torres y Acosta",
@@ -661,12 +593,10 @@
         "VIRGIN"
       ]
     },
-    {
-      "id": "mary_stella_of_the_blessed_sacrament_mardosewicz_and_companions_virgins",
+    "mary_stella_of_the_blessed_sacrament_mardosewicz_and_companions_virgins": {
       "fullname": "Blessed Mary Stella of the Blessed Sacrament Mardosewicz and Companions, Virgins and Martyrs"
     },
-    {
-      "id": "mary_stella_of_the_blessed_sacrament_mardosewicz_virgin",
+    "mary_stella_of_the_blessed_sacrament_mardosewicz_virgin": {
       "canonization_level": "BLESSED",
       "name": "Mary Stella of the Blessed Sacrament Mardosewicz",
       "titles": [
@@ -674,8 +604,7 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "mary_theresa_chiramel_mankidiyan_virgin",
+    "mary_theresa_chiramel_mankidiyan_virgin": {
       "fullname": "Saint Mary Theresa Chiramel Mankidiyan, Virgin",
       "canonization_level": "SAINT",
       "name": "Mary Theresa Chiramel Mankidiyan",
@@ -683,8 +612,7 @@
         "VIRGIN"
       ]
     },
-    {
-      "id": "mary_theresa_ledochowska_virgin",
+    "mary_theresa_ledochowska_virgin": {
       "fullname": "Blessed Mary Theresa Ledóchowska, Virgin",
       "canonization_level": "BLESSED",
       "name": "Mary Theresa Ledóchowska",
@@ -692,8 +620,7 @@
         "VIRGIN"
       ]
     },
-    {
-      "id": "mary_ursula_of_jesus_ledochowska_virgin",
+    "mary_ursula_of_jesus_ledochowska_virgin": {
       "fullname": "Saint Mary Ursula of Jesus Ledóchowska, Virgin",
       "canonization_level": "SAINT",
       "name": "Mary Ursula of Jesus Ledóchowska",
@@ -701,8 +628,7 @@
         "VIRGIN"
       ]
     },
-    {
-      "id": "marydolores_rodriguez_sopena_virgin",
+    "marydolores_rodriguez_sopena_virgin": {
       "fullname": "Blessed Mary Dolores Rodríguez Sopeña, Virgin",
       "canonization_level": "BLESSED",
       "name": "Mary Dolores Rodríguez Sopeña",
@@ -710,8 +636,7 @@
         "VIRGIN"
       ]
     },
-    {
-      "id": "maternus_of_cologne_bishop",
+    "maternus_of_cologne_bishop": {
       "fullname": "Saint Maternus, Bishop",
       "canonization_level": "SAINT",
       "name": "Maternus",
@@ -722,18 +647,15 @@
         "century": 4
       }
     },
-    {
-      "id": "maternus_of_cologne_valerius_of_trier_and_eucharius_of_trier_bishops",
+    "maternus_of_cologne_valerius_of_trier_and_eucharius_of_trier_bishops": {
       "fullname": "Saints Maternus, Valerius and Eucharius, Bishops"
     },
-    {
-      "id": "matilda_of_ringelheim",
+    "matilda_of_ringelheim": {
       "fullname": "Saint Matilda",
       "canonization_level": "SAINT",
       "name": "Matilda"
     },
-    {
-      "id": "matthew_apostle",
+    "matthew_apostle": {
       "fullname": "Saint Matthew, Apostle and Evangelist",
       "canonization_level": "SAINT",
       "name": "Matthew",
@@ -742,8 +664,7 @@
         "EVANGELIST"
       ]
     },
-    {
-      "id": "matthias_apostle",
+    "matthias_apostle": {
       "fullname": "Saint Matthias, Apostle",
       "canonization_level": "SAINT",
       "name": "Matthias",
@@ -751,19 +672,16 @@
         "APOSTLE"
       ]
     },
-    {
-      "id": "maurice_of_agaunum_and_companions_martyrs",
+    "maurice_of_agaunum_and_companions_martyrs": {
       "fullname": "Saint Maurice and Companions, Martyrs"
     },
-    {
-      "id": "maurice_of_agaunum_and_companions_martyrs_patron_of_the_diocese_of_angers",
+    "maurice_of_agaunum_and_companions_martyrs_patron_of_the_diocese_of_angers": {
       "fullname": "Saint Maurice and Companions, Martyrs and Patrons of the city and the diocese of Angers",
       "sources": [
         "mr_fr_2022_ed3_angers"
       ]
     },
-    {
-      "id": "maurice_of_agaunum_martyr",
+    "maurice_of_agaunum_martyr": {
       "canonization_level": "SAINT",
       "name": "Maurice",
       "titles": [
@@ -781,8 +699,7 @@
         "https://en.wikipedia.org/wiki/Saint_Maurice"
       ]
     },
-    {
-      "id": "maurice_tornay_priest",
+    "maurice_tornay_priest": {
       "fullname": "Blessed Maurice Tornay, Priest and Martyr",
       "canonization_level": "BLESSED",
       "name": "Maurice Tornay",
@@ -791,8 +708,7 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "maurilius_of_angers_bishop",
+    "maurilius_of_angers_bishop": {
       "canonization_level": "SAINT",
       "name": "Maurilius",
       "titles": [
@@ -806,15 +722,13 @@
         "https://en.wikipedia.org/wiki/Maurilius_of_Angers"
       ]
     },
-    {
-      "id": "maurilius_of_angers_bishop_second_patron_of_the_diocese_of_angers",
+    "maurilius_of_angers_bishop_second_patron_of_the_diocese_of_angers": {
       "fullname": "Saint Maurilius, Bishop and Copatron of the diocese of Angers",
       "sources": [
         "mr_fr_2022_ed3_angers"
       ]
     },
-    {
-      "id": "maurus_of_glanfeuil_abbot",
+    "maurus_of_glanfeuil_abbot": {
       "fullname": "Saint Maurus, Abbot",
       "canonization_level": "SAINT",
       "name": "Maurus",
@@ -828,8 +742,7 @@
         "https://en.wikipedia.org/wiki/Saint_Maurus"
       ]
     },
-    {
-      "id": "maurus_of_pecs_bishop",
+    "maurus_of_pecs_bishop": {
       "fullname": "Saint Maurus, Bishop",
       "canonization_level": "SAINT",
       "name": "Maurus",
@@ -837,8 +750,7 @@
         "BISHOP"
       ]
     },
-    {
-      "id": "maximilian_mary_raymund_kolbe_priest",
+    "maximilian_mary_raymund_kolbe_priest": {
       "fullname": "Saint Maximilian Mary Kolbe, Priest and Martyr",
       "canonization_level": "SAINT",
       "name": "Maximilian Mary Kolbe",
@@ -848,8 +760,7 @@
       ],
       "date_of_death": 1941
     },
-    {
-      "id": "mederic_of_autun_abbot",
+    "mederic_of_autun_abbot": {
       "canonization_level": "SAINT",
       "name": "Mederic",
       "titles": [
@@ -859,12 +770,10 @@
         "century": 7
       }
     },
-    {
-      "id": "mederic_of_autun_and_droctoveus_of_autun_abbots",
+    "mederic_of_autun_and_droctoveus_of_autun_abbots": {
       "fullname": "Saints Mederic and Droctoveus, Abbots"
     },
-    {
-      "id": "meinrad_of_einsiedeln_martyr",
+    "meinrad_of_einsiedeln_martyr": {
       "fullname": "Saint Meinrad of Einsiedeln, Martyr",
       "canonization_level": "SAINT",
       "name": "Meinrad of Einsiedeln",
@@ -872,8 +781,7 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "mel_of_ardagh_bishop",
+    "mel_of_ardagh_bishop": {
       "fullname": "Saint Mel, Bishop",
       "canonization_level": "SAINT",
       "name": "Mel",
@@ -881,8 +789,7 @@
         "BISHOP"
       ]
     },
-    {
-      "id": "melchior_grodziecki_priest",
+    "melchior_grodziecki_priest": {
       "fullname": "Saint Melchior Grodziecki, Priest and Martyr",
       "canonization_level": "SAINT",
       "name": "Melchior Grodziecki",
@@ -891,8 +798,7 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "methodius_michael_of_thessaloniki_bishop",
+    "methodius_michael_of_thessaloniki_bishop": {
       "canonization_level": "SAINT",
       "name": "Methodius",
       "titles": [
@@ -900,20 +806,17 @@
       ],
       "date_of_death": "885-04-06"
     },
-    {
-      "id": "michael_archangel",
+    "michael_archangel": {
       "canonization_level": "SAINT",
       "name": "Michael",
       "titles": [
         "ARCHANGEL"
       ]
     },
-    {
-      "id": "michael_gabriel_and_raphael_archangels",
+    "michael_gabriel_and_raphael_archangels": {
       "fullname": "Saints Michael, Gabriel and Raphael, Archangels"
     },
-    {
-      "id": "michael_kozal_bishop",
+    "michael_kozal_bishop": {
       "fullname": "Blessed Michael Kozal, Bishop and Martyr",
       "canonization_level": "BLESSED",
       "name": "Michael Kozal",
@@ -922,8 +825,7 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "miguel_agustin_pro_priest",
+    "miguel_agustin_pro_priest": {
       "fullname": "Blessed Miguel Agustín Pro, Priest and Martyr",
       "canonization_level": "BLESSED",
       "name": "Miguel Agustin Pro",
@@ -932,8 +834,7 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "miguel_febres_cordero_religious",
+    "miguel_febres_cordero_religious": {
       "fullname": "Saint Miguel Febres Cordero, Religious",
       "canonization_level": "SAINT",
       "name": "Miguel Febres Cordero",
@@ -941,12 +842,10 @@
         "RELIGIOUS"
       ]
     },
-    {
-      "id": "modestus_andlauer_and_andrew_bauer_martyrs",
+    "modestus_andlauer_and_andrew_bauer_martyrs": {
       "fullname": "Saints Modestus Andlauer and Andrew Bauer, Martyrs"
     },
-    {
-      "id": "modestus_andlauer_martyr",
+    "modestus_andlauer_martyr": {
       "fullname": "Saint Modestus Andlauer, Martyr",
       "canonization_level": "SAINT",
       "name": "Modestus Andlauer",
@@ -955,15 +854,13 @@
       ],
       "date_of_death": "1900-6-19"
     },
-    {
-      "id": "monica_of_hippo",
+    "monica_of_hippo": {
       "fullname": "Saint Monica",
       "canonization_level": "SAINT",
       "name": "Monica",
       "date_of_death": 387
     },
-    {
-      "id": "moninne_of_killeavy_virgin",
+    "moninne_of_killeavy_virgin": {
       "fullname": "Saint Moninne, Virgin",
       "canonization_level": "SAINT",
       "name": "Moninne",
@@ -971,8 +868,7 @@
         "VIRGIN"
       ]
     },
-    {
-      "id": "morand_of_cluny_monk",
+    "morand_of_cluny_monk": {
       "fullname": "Saint Morand, Monk",
       "canonization_level": "SAINT",
       "name": "Morand",
@@ -982,30 +878,24 @@
       "date_of_death": "1115-6-3",
       "date_of_death_is_approximative": true
     },
-    {
-      "id": "most_holy_body_and_blood_of_christ",
+    "most_holy_body_and_blood_of_christ": {
       "fullname": "The Most Holy Body and Blood of Christ"
     },
-    {
-      "id": "most_holy_name_of_jesus",
+    "most_holy_name_of_jesus": {
       "fullname": "The Most Holy Name of Jesus",
       "name": "Most Holy Name of Jesus"
     },
-    {
-      "id": "most_holy_name_of_mary",
+    "most_holy_name_of_mary": {
       "fullname": "The Most Holy Name of Mary",
       "name": "Most Holy Name of Mary"
     },
-    {
-      "id": "most_holy_trinity",
+    "most_holy_trinity": {
       "fullname": "The Most Holy Trinity"
     },
-    {
-      "id": "most_sacred_heart_of_jesus",
+    "most_sacred_heart_of_jesus": {
       "fullname": "The Most Sacred Heart of Jesus"
     },
-    {
-      "id": "munchin_of_limerick_bishop",
+    "munchin_of_limerick_bishop": {
       "fullname": "Saint Munchin, Bishop",
       "canonization_level": "SAINT",
       "name": "Munchin",
@@ -1013,8 +903,7 @@
         "BISHOP"
       ]
     },
-    {
-      "id": "muredach_of_killala_bishop",
+    "muredach_of_killala_bishop": {
       "fullname": "Saint Muredach, Bishop",
       "canonization_level": "SAINT",
       "name": "Muredach",
@@ -1022,8 +911,7 @@
         "BISHOP"
       ]
     },
-    {
-      "id": "mutien_marie_wiaux_religious",
+    "mutien_marie_wiaux_religious": {
       "fullname": "Saint Mutien-Marie Wiaux, Religious",
       "canonization_level": "SAINT",
       "name": "Mutien-Marie Wiaux",
@@ -1032,5 +920,5 @@
       ],
       "date_of_death": 1917
     }
-  ]
+  }
 }

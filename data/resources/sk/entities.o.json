@@ -1,214 +1,162 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "sk",
-  "entities": [
-    {
-      "id": "odile_of_alsace_abbess",
+  "entities": {
+    "odile_of_alsace_abbess": {
       "fullname": "Svätej Otílie, opátky"
     },
-    {
-      "id": "odile_of_alsace_abbess_patroness_of_alsace",
+    "odile_of_alsace_abbess_patroness_of_alsace": {
       "fullname": "Svätej Otílie, opátky, patrónky Alsaska"
     },
-    {
-      "id": "odoric_of_pordenone_priest",
+    "odoric_of_pordenone_priest": {
       "fullname": "Blahoslaveného Odorika z Pordenone, kňaza"
     },
-    {
-      "id": "olaf_ii_of_norway_martyr",
+    "olaf_ii_of_norway_martyr": {
       "fullname": "Svätého Olafa, mučeníka"
     },
-    {
-      "id": "oleksiy_zarytskyi_priest",
+    "oleksiy_zarytskyi_priest": {
       "fullname": "Blahoslaveného Alexeja Zaryckého, kňaza a mučeníka"
     },
-    {
-      "id": "olga_of_kiev",
+    "olga_of_kiev": {
       "fullname": "Svätej Oľgy"
     },
-    {
-      "id": "oliver_plunket_bishop",
+    "oliver_plunket_bishop": {
       "fullname": "Svätého Olivera Plunketa, biskupa a mučeníka"
     },
-    {
-      "id": "otteran_of_iona_monk",
+    "otteran_of_iona_monk": {
       "fullname": "Svätého Oterána, mnícha"
     },
-    {
-      "id": "otto_of_bamberg_bishop",
+    "otto_of_bamberg_bishop": {
       "fullname": "Svätého Ota z Bambergu, biskupa"
     },
-    {
-      "id": "our_lady_help_of_christians",
+    "our_lady_help_of_christians": {
       "fullname": "Preblahoslavenej Panny Márie, Pomocnice kresťanov"
     },
-    {
-      "id": "our_lady_mediatrix_of_all_grace",
+    "our_lady_mediatrix_of_all_grace": {
       "fullname": "Preblahoslavenej Panny Márie, Prostrednice všetkých milostí"
     },
-    {
-      "id": "our_lady_mother_of_christian_unity",
+    "our_lady_mother_of_christian_unity": {
       "fullname": "Preblahoslavenej Panny Márie, Matky jednoty kresťanov"
     },
-    {
-      "id": "our_lady_mother_of_divine_providence_patroness_of_puerto_rico",
+    "our_lady_mother_of_divine_providence_patroness_of_puerto_rico": {
       "fullname": "Preblahoslavenej Panny Márie, Matky Božej Prozreteľnosti, patrónky Portorika"
     },
-    {
-      "id": "our_lady_of_aparecida_patroness_of_brazil",
+    "our_lady_of_aparecida_patroness_of_brazil": {
       "fullname": "Preblahoslavenej Panny Márie z Aparecidy, patrónky Brazílie"
     },
-    {
-      "id": "our_lady_of_bethlehem",
+    "our_lady_of_bethlehem": {
       "fullname": "Preblahoslavenej Panny Márie Betlehemskej"
     },
-    {
-      "id": "our_lady_of_china",
+    "our_lady_of_china": {
       "fullname": "Preblahoslavenej Panny Márie Čínskej"
     },
-    {
-      "id": "our_lady_of_czestochowa",
+    "our_lady_of_czestochowa": {
       "fullname": "Preblahoslavenej Panny Márie Čenstochovskej"
     },
-    {
-      "id": "our_lady_of_fatima",
+    "our_lady_of_fatima": {
       "fullname": "Preblahoslavenej Panny Márie Fatimskej"
     },
-    {
-      "id": "our_lady_of_good_counsel",
+    "our_lady_of_good_counsel": {
       "fullname": "Preblahoslavenej Panny Márie Dobrej Rady"
     },
-    {
-      "id": "our_lady_of_guadalupe",
+    "our_lady_of_guadalupe": {
       "fullname": "Preblahoslavenej Panny Márie Guadalupskej"
     },
-    {
-      "id": "our_lady_of_guadalupe_patroness_of_the_americas",
+    "our_lady_of_guadalupe_patroness_of_the_americas": {
       "fullname": "Preblahoslavenej Panny Márie Guadalupskej, patrónky Ameriky"
     },
-    {
-      "id": "our_lady_of_guadalupe_patroness_of_the_philippines",
+    "our_lady_of_guadalupe_patroness_of_the_philippines": {
       "fullname": "Preblahoslavenej Panny Márie Guadalupskej, patrónky Filipín"
     },
-    {
-      "id": "our_lady_of_hungary_patroness_of_hungary",
+    "our_lady_of_hungary_patroness_of_hungary": {
       "fullname": "Preblahoslavenej Panny Márie Maďarov, patrónky Maďarska"
     },
-    {
-      "id": "our_lady_of_itati",
+    "our_lady_of_itati": {
       "fullname": "Preblahoslavenej Panny Márie Itatskej"
     },
-    {
-      "id": "our_lady_of_knock",
+    "our_lady_of_knock": {
       "fullname": "Preblahoslavenej Panny Márie z Knock"
     },
-    {
-      "id": "our_lady_of_lanka",
+    "our_lady_of_lanka": {
       "fullname": "Preblahoslavenej Panny Márie z Lanky"
     },
-    {
-      "id": "our_lady_of_lebanon",
+    "our_lady_of_lebanon": {
       "fullname": "Preblahoslavenej Panny Márie z Lebanonu"
     },
-    {
-      "id": "our_lady_of_loreto",
+    "our_lady_of_loreto": {
       "fullname": "Preblahoslavenej Panny Márie Loretánskej"
     },
-    {
-      "id": "our_lady_of_lourdes",
+    "our_lady_of_lourdes": {
       "fullname": "Preblahoslavenej Panny Márie Lurdskej"
     },
-    {
-      "id": "our_lady_of_lujan_patroness_of_argentina",
+    "our_lady_of_lujan_patroness_of_argentina": {
       "fullname": "Preblahoslavenej Panny Marie Lujánska, patrónky Argentíny"
     },
-    {
-      "id": "our_lady_of_madhu",
+    "our_lady_of_madhu": {
       "fullname": "Preblahoslavenej Panny Márie z Madhu"
     },
-    {
-      "id": "our_lady_of_marija_bistrica",
+    "our_lady_of_marija_bistrica": {
       "fullname": "Preblahoslavenej Panny Márie z Marije Bistrice"
     },
-    {
-      "id": "our_lady_of_mercy",
+    "our_lady_of_mercy": {
       "fullname": "Preblahoslavenej Panny Márie milosrdenstva"
     },
-    {
-      "id": "our_lady_of_mount_carmel",
+    "our_lady_of_mount_carmel": {
       "fullname": "Preblahoslavenej Panny Márie Karmelskej"
     },
-    {
-      "id": "our_lady_of_mount_carmel_mother_and_queen_of_chile",
+    "our_lady_of_mount_carmel_mother_and_queen_of_chile": {
       "fullname": "Preblahoslavenej Panny Márie Karmelskej, Matky a Kráľovnej Chile"
     },
-    {
-      "id": "our_lady_of_perpetual_help",
+    "our_lady_of_perpetual_help": {
       "fullname": "Preblahoslavenej Panny Márie ustavičnej pomoci"
     },
-    {
-      "id": "our_lady_of_sorrows",
+    "our_lady_of_sorrows": {
       "fullname": "Sedembolestnej Panny Márie"
     },
-    {
-      "id": "our_lady_of_sorrows_patroness_of_slovakia",
+    "our_lady_of_sorrows_patroness_of_slovakia": {
       "fullname": "Sedembolestnej Panny Márie, patrónky Slovenska"
     },
-    {
-      "id": "our_lady_of_the_discovery_of_the_hidden_christians",
+    "our_lady_of_the_discovery_of_the_hidden_christians": {
       "fullname": "Preblahoslavenej Panny Márie od objavenia skrytých kresťanov"
     },
-    {
-      "id": "our_lady_of_the_gate_of_dawn",
+    "our_lady_of_the_gate_of_dawn": {
       "fullname": "Preblahoslavenej Panny Márie Ostrobramskej"
     },
-    {
-      "id": "our_lady_of_the_miraculous_medal",
+    "our_lady_of_the_miraculous_medal": {
       "fullname": "Preblahoslavenej Panny Márie Zázračnej medaily"
     },
-    {
-      "id": "our_lady_of_the_pillar",
+    "our_lady_of_the_pillar": {
       "fullname": "Preblahoslavenej Panny Márie na Stĺpe"
     },
-    {
-      "id": "our_lady_of_the_rosary",
+    "our_lady_of_the_rosary": {
       "fullname": "Ružencovej Panny Márie"
     },
-    {
-      "id": "our_lady_of_the_valley",
+    "our_lady_of_the_valley": {
       "fullname": "Preblahoslavenej Panny Márie z Údolia"
     },
-    {
-      "id": "our_lady_of_vladimir",
+    "our_lady_of_vladimir": {
       "fullname": "Preblahoslavenej Panny Márie Vladimírskej"
     },
-    {
-      "id": "our_lady_of_walsingham",
+    "our_lady_of_walsingham": {
       "fullname": "Preblahoslavenej Panny Márie Walsinghamskej"
     },
-    {
-      "id": "our_lady_queen_of_peace",
+    "our_lady_queen_of_peace": {
       "fullname": "Preblahoslavenej Panny Márie, Kráľovnej pokoja"
     },
-    {
-      "id": "our_lady_queen_of_poland",
+    "our_lady_queen_of_poland": {
       "fullname": "Preblahoslavenej Panny Márie, Kráľovnej Poľska"
     },
-    {
-      "id": "our_lady_refuge_of_sinners",
+    "our_lady_refuge_of_sinners": {
       "fullname": "Preblahoslavenej Panny Márie, Útočiska hriešnikov"
     },
-    {
-      "id": "our_lord_jesus_christ_king_of_the_universe",
+    "our_lord_jesus_christ_king_of_the_universe": {
       "fullname": "Nášho Pána Ježiša Krista, Kráľa neba i zeme"
     },
-    {
-      "id": "our_lord_jesus_christ_the_eternal_high_priest",
+    "our_lord_jesus_christ_the_eternal_high_priest": {
       "fullname": "Nášho Pána Ježiša Krista, najvyššieho a večného kňaza"
     },
-    {
-      "id": "our_lord_of_miracles",
+    "our_lord_of_miracles": {
       "fullname": "Pána zázrakov"
     }
-  ]
+  }
 }

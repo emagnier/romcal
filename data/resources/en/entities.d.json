@@ -1,9 +1,8 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "en",
-  "entities": [
-    {
-      "id": "damasus_i_pope",
+  "entities": {
+    "damasus_i_pope": {
       "fullname": "Saint Damasus I, Pope",
       "canonization_level": "SAINT",
       "name": "Damasus I",
@@ -12,16 +11,14 @@
       ],
       "date_of_death": 384
     },
-    {
-      "id": "damian_of_cilicia_martyr",
+    "damian_of_cilicia_martyr": {
       "canonization_level": "SAINT",
       "name": "Damian",
       "titles": [
         "MARTYR"
       ]
     },
-    {
-      "id": "damien_de_veuster_priest",
+    "damien_de_veuster_priest": {
       "fullname": "Saint Damien de Veuster, Priest",
       "canonization_level": "SAINT",
       "name": "Damien de Veuster",
@@ -30,8 +27,7 @@
       ],
       "date_of_death": 1889
     },
-    {
-      "id": "daniel_brottier_priest",
+    "daniel_brottier_priest": {
       "fullname": "Blessed Daniel Brottier, Priest",
       "canonization_level": "BLESSED",
       "name": "Daniel Brottier",
@@ -40,8 +36,7 @@
       ],
       "date_of_death": "28-2-1936"
     },
-    {
-      "id": "david_lewis_priest",
+    "david_lewis_priest": {
       "fullname": "Saint David Lewis, Priest and Martyr",
       "canonization_level": "SAINT",
       "name": "David Lewis",
@@ -50,8 +45,7 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "david_of_wales_bishop",
+    "david_of_wales_bishop": {
       "fullname": "Saint David, Bishop",
       "canonization_level": "SAINT",
       "name": "David",
@@ -59,12 +53,10 @@
         "BISHOP"
       ]
     },
-    {
-      "id": "david_of_wales_bishop_patron_of_wales",
+    "david_of_wales_bishop_patron_of_wales": {
       "fullname": "Saint David, Bishop, Patron of Wales"
     },
-    {
-      "id": "davnet_of_sliabh_beagh_virgin",
+    "davnet_of_sliabh_beagh_virgin": {
       "fullname": "Saint Davnet, Virgin",
       "canonization_level": "SAINT",
       "name": "Davnet",
@@ -72,8 +64,7 @@
         "VIRGIN"
       ]
     },
-    {
-      "id": "declan_of_ardmore_bishop",
+    "declan_of_ardmore_bishop": {
       "fullname": "Saint Declan, Bishop",
       "canonization_level": "SAINT",
       "name": "Declan",
@@ -81,12 +72,10 @@
         "BISHOP"
       ]
     },
-    {
-      "id": "dedication_of_consecrated_churches",
+    "dedication_of_consecrated_churches": {
       "fullname": "The Dedication of Consecrated Churches Whose Date of Consecration is Unknown"
     },
-    {
-      "id": "dedication_of_the_basilica_of_mont_saint_michel_france",
+    "dedication_of_the_basilica_of_mont_saint_michel_france": {
       "fullname": "The Dedication of the Basilica of Mont-Saint-Michel, France",
       "date_of_dedication": "709-10-16",
       "sources": [
@@ -95,13 +84,11 @@
         "https://en.wikipedia.org/wiki/Mont-Saint-Michel_Abbey"
       ]
     },
-    {
-      "id": "dedication_of_the_basilica_of_saint_mary_major",
+    "dedication_of_the_basilica_of_saint_mary_major": {
       "fullname": "The Dedication of the Basilica of Saint Mary Major",
       "name": "Dedication of the Basilica of Saint Mary Major"
     },
-    {
-      "id": "dedication_of_the_basilicas_of_saints_peter_and_paul_apostles",
+    "dedication_of_the_basilicas_of_saints_peter_and_paul_apostles": {
       "fullname": "The Dedication of the Basilicas of Saints Peter and Paul, Apostles",
       "name": "Dedication of the Basilicas of Saints Peter and Paul",
       "titles": [
@@ -109,16 +96,13 @@
       ],
       "count": 2
     },
-    {
-      "id": "dedication_of_the_cathedral_basilica_of_saint_denis_france",
+    "dedication_of_the_cathedral_basilica_of_saint_denis_france": {
       "fullname": "The Dedication of the Cathedral Basilica of Saint-Denis, France"
     },
-    {
-      "id": "dedication_of_the_cathedral_of_notre_dame_de_strasbourg_france",
+    "dedication_of_the_cathedral_of_notre_dame_de_strasbourg_france": {
       "fullname": "The Dedication of the Cathedral of Notre-Dame of Strasbourg"
     },
-    {
-      "id": "dedication_of_the_cathedral_of_notre_dame_of_coutances_france",
+    "dedication_of_the_cathedral_of_notre_dame_of_coutances_france": {
       "fullname": "The Dedication of the Cathedral of Coutances, France",
       "date_of_dedication": "1057-12-03",
       "sources": [
@@ -127,12 +111,10 @@
         "https://en.wikipedia.org/wiki/Coutances_Cathedral"
       ]
     },
-    {
-      "id": "dedication_of_the_cathedral_of_saint_john_the_baptist_lyon_france",
+    "dedication_of_the_cathedral_of_saint_john_the_baptist_lyon_france": {
       "fullname": "The Dedication of the Cathedral of Saint John the Baptist, Lyon"
     },
-    {
-      "id": "dedication_of_the_cathedral_of_saint_maurice_of_agaunum_angers_france",
+    "dedication_of_the_cathedral_of_saint_maurice_of_agaunum_angers_france": {
       "fullname": "The Dedication of the Cathedral Saint Maurice of Angers, France",
       "date_of_dedication": 1096,
       "sources": [
@@ -140,8 +122,7 @@
         "https://en.wikipedia.org/wiki/Angers_Cathedral"
       ]
     },
-    {
-      "id": "dedication_of_the_cathedral_of_saint_stephen_of_toulouse_france",
+    "dedication_of_the_cathedral_of_saint_stephen_of_toulouse_france": {
       "fullname": "The Dedication of the Cathedral of Saint Stephen of Toulouse, France",
       "date_of_dedication": "1592-08-30",
       "sources": [
@@ -149,17 +130,14 @@
         "https://en.wikipedia.org/wiki/Toulouse_Cathedral"
       ]
     },
-    {
-      "id": "dedication_of_the_lateran_basilica",
+    "dedication_of_the_lateran_basilica": {
       "fullname": "The Dedication of the Lateran Basilica",
       "name": "Dedication of the Lateran Basilica"
     },
-    {
-      "id": "dedication_of_the_notre_dame_de_paris_cathedral_paris_france",
+    "dedication_of_the_notre_dame_de_paris_cathedral_paris_france": {
       "fullname": "The Dedication of the Notre-Dame de Paris Cathedral, Paris"
     },
-    {
-      "id": "deiniol_of_bangor_bishop",
+    "deiniol_of_bangor_bishop": {
       "fullname": "Saint Deiniol, Bishop",
       "canonization_level": "SAINT",
       "name": "Deiniol",
@@ -167,8 +145,7 @@
         "BISHOP"
       ]
     },
-    {
-      "id": "demetrius_of_thessaloniki_martyr",
+    "demetrius_of_thessaloniki_martyr": {
       "fullname": "Saint Demetrius of Thessaloniki, Martyr",
       "canonization_level": "SAINT",
       "name": "Demetrius of Thessaloniki",
@@ -176,8 +153,7 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "denis_of_paris_bishop",
+    "denis_of_paris_bishop": {
       "canonization_level": "SAINT",
       "name": "Denis",
       "titles": [
@@ -192,20 +168,16 @@
         ]
       }
     },
-    {
-      "id": "denis_of_paris_bishop_and_companions_martyrs",
+    "denis_of_paris_bishop_and_companions_martyrs": {
       "fullname": "Saint Denis, Bishop, and Companions, Martyrs"
     },
-    {
-      "id": "denis_of_paris_bishop_patron_of_the_archdiocese_of_paris",
+    "denis_of_paris_bishop_patron_of_the_archdiocese_of_paris": {
       "fullname": "Saint Denis, Bishop and Martyr, Patron of the Archdiocese of Paris"
     },
-    {
-      "id": "denis_of_paris_bishop_patron_of_the_city_and_of_the_diocese_of_saint_denis",
+    "denis_of_paris_bishop_patron_of_the_city_and_of_the_diocese_of_saint_denis": {
       "fullname": "Saint Denis, Bishop and Martyr, Patron of the City and of the Diocese of Saint-Denis"
     },
-    {
-      "id": "dina_belanger_virgin",
+    "dina_belanger_virgin": {
       "fullname": "Blessed Dina Bélanger, Virgin",
       "canonization_level": "BLESSED",
       "name": "Dina Bélanger",
@@ -214,8 +186,7 @@
       ],
       "date_of_death": 1929
     },
-    {
-      "id": "dionysius_the_areopagite_bishop",
+    "dionysius_the_areopagite_bishop": {
       "fullname": "Saint Dionysius the Areopagite, Bishop and Martyr",
       "canonization_level": "SAINT",
       "name": "Dionysius the Areopagite",
@@ -224,21 +195,18 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "dismas_the_good_thief",
+    "dismas_the_good_thief": {
       "fullname": "Dismas the Good Thief",
       "canonization_level": "SAINT",
       "sources": [
         "mr_fr_2014_ed2_lyon"
       ]
     },
-    {
-      "id": "divine_mercy_sunday",
+    "divine_mercy_sunday": {
       "fullname": "Second Sunday of Easter or Sunday of Divine Mercy",
       "name": "Sunday of Divine Mercy"
     },
-    {
-      "id": "dominic_de_guzman_priest",
+    "dominic_de_guzman_priest": {
       "fullname": "Saint Dominic, Priest",
       "canonization_level": "SAINT",
       "name": "Dominic",
@@ -247,8 +215,7 @@
       ],
       "date_of_death": 1221
     },
-    {
-      "id": "dominic_of_the_mother_of_god_barberi_priest",
+    "dominic_of_the_mother_of_god_barberi_priest": {
       "fullname": "Blessed Dominic of the Mother of God Barberi, Priest",
       "canonization_level": "BLESSED",
       "name": "Dominic of the Mother of God Barberi",
@@ -256,8 +223,7 @@
         "PRIEST"
       ]
     },
-    {
-      "id": "droctoveus_of_autun_abbot",
+    "droctoveus_of_autun_abbot": {
       "canonization_level": "SAINT",
       "name": "Droctoveus",
       "titles": [
@@ -265,8 +231,7 @@
       ],
       "date_of_death": 558
     },
-    {
-      "id": "dunstan_of_canterbury_bishop",
+    "dunstan_of_canterbury_bishop": {
       "fullname": "Saint Dunstan, Bishop",
       "canonization_level": "SAINT",
       "name": "Dunstan",
@@ -274,8 +239,7 @@
         "BISHOP"
       ]
     },
-    {
-      "id": "dyfrig_of_wales_bishop",
+    "dyfrig_of_wales_bishop": {
       "fullname": "Saint Dyfrig, Bishop",
       "canonization_level": "SAINT",
       "name": "Dyfrig",
@@ -283,5 +247,5 @@
         "BISHOP"
       ]
     }
-  ]
+  }
 }

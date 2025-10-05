@@ -1,137 +1,105 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "pl",
-  "entities": [
-    {
-      "id": "cajetan_of_thiene_priest",
+  "entities": {
+    "cajetan_of_thiene_priest": {
       "fullname": "Św. Kajetana, prezbitera"
     },
-    {
-      "id": "callistus_i_pope",
+    "callistus_i_pope": {
       "fullname": "Św. Kaliksta I, papieża i męczennika"
     },
-    {
-      "id": "camillus_de_lellis_priest",
+    "camillus_de_lellis_priest": {
       "fullname": "Św. Kamila de Lellis, prezbitera"
     },
-    {
-      "id": "carmelites_of_compiegne_virgins_and_martyrs",
+    "carmelites_of_compiegne_virgins_and_martyrs": {
       "fullname": "Bł. karmelitanek z Compiègne, dziewic i męczennic"
     },
-    {
-      "id": "caroline_kozka_virgin",
+    "caroline_kozka_virgin": {
       "fullname": "Bł. Karoliny Kózkówny, dziewicy i męczennicy"
     },
-    {
-      "id": "casimir_of_poland",
+    "casimir_of_poland": {
       "fullname": "Św. Kazimierza, królewicza"
     },
-    {
-      "id": "catherine_of_alexandria_virgin",
+    "catherine_of_alexandria_virgin": {
       "fullname": "Św. Katarzyny Aleksandryjskiej, dziewicy i męczennicy"
     },
-    {
-      "id": "catherine_of_siena_virgin",
+    "catherine_of_siena_virgin": {
       "fullname": "Św. Katarzyny Sieneńskiej, dziewicy i doktora Kościoła"
     },
-    {
-      "id": "catherine_of_siena_virgin_copatroness_of_europe",
+    "catherine_of_siena_virgin_copatroness_of_europe": {
       "fullname": "Św. Katarzyny Sieneńskiej, dziewicy i doktora Kościoła, patronki Europy"
     },
-    {
-      "id": "catherine_of_siena_virgin_copatroness_of_italy_and_europe",
+    "catherine_of_siena_virgin_copatroness_of_italy_and_europe": {
       "fullname": "Św. Katarzyny Sieneńskiej, dziewicy i doktora Kościoła, patronki Włoch i Europy"
     },
-    {
-      "id": "catherine_zoe_laboure_virgin",
+    "catherine_zoe_laboure_virgin": {
       "fullname": "Św. Katarzyny Labouré, dziewicy"
     },
-    {
-      "id": "cecilia_of_rome_virgin",
+    "cecilia_of_rome_virgin": {
       "fullname": "Św. Cecylii, dziewicy i męczennicy"
     },
-    {
-      "id": "ceraunus_of_paris_bishop",
+    "ceraunus_of_paris_bishop": {
       "fullname": "Św. Cerana z Paryża, biskupa"
     },
-    {
-      "id": "ceslaus_of_poland_priest",
+    "ceslaus_of_poland_priest": {
       "fullname": "Bł. Czesława, prezbitera"
     },
-    {
-      "id": "chair_of_saint_peter_the_apostle",
+    "chair_of_saint_peter_the_apostle": {
       "fullname": "Katedry św. Piotra, Apostoła"
     },
-    {
-      "id": "charles_borromeo_bishop",
+    "charles_borromeo_bishop": {
       "fullname": "Św. Karola Boromeusza, biskupa"
     },
-    {
-      "id": "charles_lwanga_and_companions_martyrs",
+    "charles_lwanga_and_companions_martyrs": {
       "fullname": "Świętych męczenników Karola Lwangi i Towarzyszy"
     },
-    {
-      "id": "charles_of_jesus_de_foucauld",
+    "charles_of_jesus_de_foucauld": {
       "fullname": "Św. Karola de Foucauld, prezbitera"
     },
-    {
-      "id": "christopher_magallanes_priest_and_companions_martyrs",
+    "christopher_magallanes_priest_and_companions_martyrs": {
       "fullname": "Świętych męczenników Krzysztofa Magallanesa, prezbitera, i Towarzyszy"
     },
-    {
-      "id": "clare_of_assisi_virgin",
+    "clare_of_assisi_virgin": {
       "fullname": "Św. Klary, dziewicy"
     },
-    {
-      "id": "clement_i_pope",
+    "clement_i_pope": {
       "fullname": "Św. Klemensa I, papieża i męczennika"
     },
-    {
-      "id": "columba_of_iona_abbot",
+    "columba_of_iona_abbot": {
       "fullname": "Św. Kolumbana, zakonnika"
     },
-    {
-      "id": "columba_of_iona_abbot_copatron_of_ireland",
+    "columba_of_iona_abbot_copatron_of_ireland": {
       "fullname": "Św. Kolumbana, zakonnika, patrona Irlandii"
     },
-    {
-      "id": "columban_of_luxeuil_abbot",
+    "columban_of_luxeuil_abbot": {
       "fullname": "Św. Kolumbana, opata",
       "sources": [
         "https://pl.wikipedia.org/wiki/Kolumban_M%C5%82odszy"
       ]
     },
-    {
-      "id": "commemoration_of_all_the_faithful_departed",
+    "commemoration_of_all_the_faithful_departed": {
       "fullname": "Wspomnienie wszystkich wiernych zmarłych"
     },
-    {
-      "id": "conversion_of_saint_paul_the_apostle",
+    "conversion_of_saint_paul_the_apostle": {
       "fullname": "Nawrócenie św. Pawła, Apostoła"
     },
-    {
-      "id": "cornelius_i_pope_and_cyprian_of_carthage_bishop_martyrs",
+    "cornelius_i_pope_and_cyprian_of_carthage_bishop_martyrs": {
       "fullname": "Świętych męczenników Korneliusza, papieża, i Cypriana, biskupa"
     },
-    {
-      "id": "cosmas_of_cilicia_and_damian_of_cilicia_martyrs",
+    "cosmas_of_cilicia_and_damian_of_cilicia_martyrs": {
       "fullname": "Świętych męczenników Kosmy i Damiana"
     },
-    {
-      "id": "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop",
+    "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop": {
       "fullname": "Świętych Cyryla, mnicha i Metodego, biskupa"
     },
-    {
-      "id": "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop_copatrons_of_europe",
+    "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop_copatrons_of_europe": {
       "fullname": "Świętych Cyryla, mnicha i Metodego, biskupa, patronów Europy"
     },
-    {
-      "id": "cyril_of_alexandria_bishop",
+    "cyril_of_alexandria_bishop": {
       "fullname": "Św. Cyryla Aleksandryjskiego, biskupa i doktora Kościoła"
     },
-    {
-      "id": "cyril_of_jerusalem_bishop",
+    "cyril_of_jerusalem_bishop": {
       "fullname": "Św. Cyryla Jerozolimskiego, biskupa i doktora Kościoła"
     }
-  ]
+  }
 }

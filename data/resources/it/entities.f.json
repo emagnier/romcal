@@ -1,61 +1,48 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "it",
-  "entities": [
-    {
-      "id": "fabian_i_pope",
+  "entities": {
+    "fabian_i_pope": {
       "fullname": "San Fabiano, papa e martire"
     },
-    {
-      "id": "faustina_kowalska_virgin",
+    "faustina_kowalska_virgin": {
       "fullname": "Santa Faustina Kowalska, vergine",
       "sources": [
         "https://it.wikipedia.org/wiki/Maria_Faustina_Kowalska"
       ]
     },
-    {
-      "id": "fidelis_of_sigmaringen_priest",
+    "fidelis_of_sigmaringen_priest": {
       "fullname": "San Fedele da Sigmaringen, sacerdote e martire"
     },
-    {
-      "id": "first_martyrs_of_the_holy_roman_church",
+    "first_martyrs_of_the_holy_roman_church": {
       "fullname": "Santi Primi Martiri della Chiesa Romana"
     },
-    {
-      "id": "florentius_of_strasbourg_bishop",
+    "florentius_of_strasbourg_bishop": {
       "fullname": "San Fiorenzo, vescovo"
     },
-    {
-      "id": "frances_of_rome_religious",
+    "frances_of_rome_religious": {
       "fullname": "Santa Francesca Romana, religiosa"
     },
-    {
-      "id": "francis_de_sales_bishop",
+    "francis_de_sales_bishop": {
       "fullname": "San Francesco di Sales, vescovo e dottore della Chiesa"
     },
-    {
-      "id": "francis_of_assisi",
+    "francis_of_assisi": {
       "fullname": "San Francesco d’Assisi"
     },
-    {
-      "id": "francis_of_assisi_patron_of_italy",
+    "francis_of_assisi_patron_of_italy": {
       "fullname": "San Francesco d’Assisi, patrono d’Italia"
     },
-    {
-      "id": "francis_of_paola_hermit",
+    "francis_of_paola_hermit": {
       "fullname": "San Francesco da Paola, eremita"
     },
-    {
-      "id": "francis_xavier_priest",
+    "francis_xavier_priest": {
       "fullname": "San Francesco Saverio, sacerdote"
     },
-    {
-      "id": "frederic_ozanam_founder",
+    "frederic_ozanam_founder": {
       "fullname": "Beato Federico Ozanam, fondatore"
     },
-    {
-      "id": "friday_of_the_passion_of_the_lord",
+    "friday_of_the_passion_of_the_lord": {
       "fullname": "Venerdì Santo / Passione del Signore"
     }
-  ]
+  }
 }

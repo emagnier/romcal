@@ -1,52 +1,42 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "fr",
-  "entities": [
-    {
-      "id": "nativity_of_john_the_baptist",
+  "entities": {
+    "nativity_of_john_the_baptist": {
       "fullname": "Nativité de Saint Jean le Baptiste"
     },
-    {
-      "id": "nativity_of_the_blessed_virgin_mary",
+    "nativity_of_the_blessed_virgin_mary": {
       "fullname": "Nativité de la vierge Marie"
     },
-    {
-      "id": "nativity_of_the_lord",
+    "nativity_of_the_lord": {
       "fullname": "Nativité du Seigneur"
     },
-    {
-      "id": "nereus_of_terracina_and_achilleus_of_terracina_martyrs",
+    "nereus_of_terracina_and_achilleus_of_terracina_martyrs": {
       "fullname": "Saints Nérée et Achillée, martyrs à Rome († v. 304)"
     },
-    {
-      "id": "nicetius_of_lyon_bishop",
+    "nicetius_of_lyon_bishop": {
       "fullname": "Saint Nizier, évêque († 573)",
       "sources": [
         "mr_fr_2014_ed2_lyon"
       ]
     },
-    {
-      "id": "nicholas_barre_priest",
+    "nicholas_barre_priest": {
       "fullname": "Bienheureux. Nicolas Barré, prêtre († 1686 à Paris)"
     },
-    {
-      "id": "nicholas_of_myra_bishop",
+    "nicholas_of_myra_bishop": {
       "fullname": "Saint Nicolas, évêque de Myre († v. 350)"
     },
-    {
-      "id": "noel_pinot_priest",
+    "noel_pinot_priest": {
       "fullname": "Bienheureux Noël Pinot, prêtre et martyr († 1794)",
       "sources": [
         "mr_fr_2022_ed3_angers"
       ]
     },
-    {
-      "id": "norbert_of_xanten_bishop",
+    "norbert_of_xanten_bishop": {
       "fullname": "Saint Norbert, évêque († 1134)"
     },
-    {
-      "id": "nykyta_budka_and_vasyl_velychkovsky_bishops",
+    "nykyta_budka_and_vasyl_velychkovsky_bishops": {
       "fullname": "Bienheureux Nicétas Budka († 1949) et Vasyl Velychkowsky († 1973), évêques et martyrs"
     }
-  ]
+  }
 }

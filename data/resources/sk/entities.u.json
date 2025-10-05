@@ -1,18 +1,15 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "sk",
-  "entities": [
-    {
-      "id": "ulrich_of_augsburg_bishop",
+  "entities": {
+    "ulrich_of_augsburg_bishop": {
       "fullname": "Svätého Ulricha z Augsburgu, biskupa"
     },
-    {
-      "id": "urban_i_pope",
+    "urban_i_pope": {
       "fullname": "Svätého Urbana I., pápeža"
     },
-    {
-      "id": "ursula_of_cologne_and_companions_virgins",
+    "ursula_of_cologne_and_companions_virgins": {
       "fullname": "Svätej Uršule a spoločníčok, panien a mučeníc"
     }
-  ]
+  }
 }

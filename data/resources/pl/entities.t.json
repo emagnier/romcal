@@ -1,58 +1,45 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "pl",
-  "entities": [
-    {
-      "id": "teresa_benedicta_of_the_cross_stein_virgin",
+  "entities": {
+    "teresa_benedicta_of_the_cross_stein_virgin": {
       "fullname": "Św. Teresy Benedykty od Krzyża, dziewicy i męczennicy"
     },
-    {
-      "id": "teresa_benedicta_of_the_cross_stein_virgin_copatroness_of_europe",
+    "teresa_benedicta_of_the_cross_stein_virgin_copatroness_of_europe": {
       "fullname": "Św. Teresy Benedykty od Krzyża, dziewicy i męczennicy, patronki Europy"
     },
-    {
-      "id": "teresa_of_jesus_of_avila_virgin",
+    "teresa_of_jesus_of_avila_virgin": {
       "fullname": "Św. Teresy od Jezusa, dziewicy i doktora Kościoła"
     },
-    {
-      "id": "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin",
+    "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin": {
       "fullname": "Św. Teresy od Dzieciątka Jezus, dziewicy i doktora Kościoła"
     },
-    {
-      "id": "thomas_apostle",
+    "thomas_apostle": {
       "fullname": "Św. Tomasza, Apostoła"
     },
-    {
-      "id": "thomas_aquinas_priest",
+    "thomas_aquinas_priest": {
       "fullname": "Św. Tomasza z Akwinu, prezbitera i doktora Kościoła"
     },
-    {
-      "id": "thomas_becket_bishop",
+    "thomas_becket_bishop": {
       "fullname": "Św. Tomasza Becketa, biskupa i męczennika"
     },
-    {
-      "id": "thomas_jean_georges_rehm_priest",
+    "thomas_jean_georges_rehm_priest": {
       "fullname": "Bł. Tomasza Jana Jerzego Rehma, prezbitera i męczennika"
     },
-    {
-      "id": "thursday_of_the_lords_supper",
+    "thursday_of_the_lords_supper": {
       "fullname": "$(names:holy_thursday)"
     },
-    {
-      "id": "timothy_of_ephesus_and_titus_of_crete_bishops",
+    "timothy_of_ephesus_and_titus_of_crete_bishops": {
       "fullname": "Świętych biskupów Tymoteusza i Tytusa"
     },
-    {
-      "id": "transfiguration_of_the_lord",
+    "transfiguration_of_the_lord": {
       "fullname": "Przemienienie Pańskie"
     },
-    {
-      "id": "translation_of_the_relics_of_odile_of_alsace_abbess",
+    "translation_of_the_relics_of_odile_of_alsace_abbess": {
       "fullname": "Przeniesienie relikwii św. Otylii"
     },
-    {
-      "id": "turibius_of_mogrovejo_bishop",
+    "turibius_of_mogrovejo_bishop": {
       "fullname": "Św. Turybiusza z Mongrovejo, biskupa"
     }
-  ]
+  }
 }

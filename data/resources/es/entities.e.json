@@ -1,62 +1,48 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "es",
-  "entities": [
-    {
-      "id": "easter_sunday",
+  "entities": {
+    "easter_sunday": {
       "fullname": "Domingo de Pascua"
     },
-    {
-      "id": "eligius_of_noyon_bishop",
+    "eligius_of_noyon_bishop": {
       "fullname": "San Eligio, obispo"
     },
-    {
-      "id": "elijah_prophet",
+    "elijah_prophet": {
       "fullname": "San Elías, profeta"
     },
-    {
-      "id": "elizabeth_of_hungary_religious",
+    "elizabeth_of_hungary_religious": {
       "fullname": "Santa Isabel de Hungría, religiosa"
     },
-    {
-      "id": "elizabeth_of_portugal",
+    "elizabeth_of_portugal": {
       "fullname": "Santa Isabel de Portugal"
     },
-    {
-      "id": "ephrem_the_syrian_deacon",
+    "ephrem_the_syrian_deacon": {
       "fullname": "San Efrén de Siria, Diácono y doctor de la Iglesia"
     },
-    {
-      "id": "epiphany_of_the_lord",
+    "epiphany_of_the_lord": {
       "fullname": "Epifanía"
     },
-    {
-      "id": "eucharius_of_trier_bishop",
+    "eucharius_of_trier_bishop": {
       "fullname": "San Euchario, obispo"
     },
-    {
-      "id": "eugenia_of_alsace_and_attala_of_alsace_virgins",
+    "eugenia_of_alsace_and_attala_of_alsace_virgins": {
       "fullname": "Santas Eugènia y Attala, vírgenes"
     },
-    {
-      "id": "eulalia_of_merida_virgin",
+    "eulalia_of_merida_virgin": {
       "fullname": "Santa Eulalia de Mérida, virgen y mártir"
     },
-    {
-      "id": "eulogius_of_cordoba_bishop",
+    "eulogius_of_cordoba_bishop": {
       "fullname": "San Eulogio de Córdoba, obispo"
     },
-    {
-      "id": "eusebius_of_vercelli_bishop",
+    "eusebius_of_vercelli_bishop": {
       "fullname": "San Eusebio de Vercelli, obispo"
     },
-    {
-      "id": "exaltation_of_the_holy_cross",
+    "exaltation_of_the_holy_cross": {
       "fullname": "Exaltación de la Santa Cruz"
     },
-    {
-      "id": "ezequiel_moreno_bishop",
+    "ezequiel_moreno_bishop": {
       "fullname": "San Ezequiel Moreno, obispo"
     }
-  ]
+  }
 }

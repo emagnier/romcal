@@ -1,58 +1,45 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "sk",
-  "entities": [
-    {
-      "id": "waitangi_day",
+  "entities": {
+    "waitangi_day": {
       "fullname": "Deň Waitangi"
     },
-    {
-      "id": "walpurga_of_heidenheim_abbess",
+    "walpurga_of_heidenheim_abbess": {
       "fullname": "Svätej Valburgy z Heidenheimu, opátky"
     },
-    {
-      "id": "wenceslaus_i_of_bohemia_martyr",
+    "wenceslaus_i_of_bohemia_martyr": {
       "fullname": "Svätého Václava, mučeníka"
     },
-    {
-      "id": "wenceslaus_i_of_bohemia_martyr_patron_of_the_czech_nation",
+    "wenceslaus_i_of_bohemia_martyr_patron_of_the_czech_nation": {
       "fullname": "Svätého Václava, mučeníka, patróna českého národa"
     },
-    {
-      "id": "wendelin_of_trier_hermit",
+    "wendelin_of_trier_hermit": {
       "fullname": "Svätého Vendelína, pustovníka"
     },
-    {
-      "id": "wilfrid_of_york_bishop",
+    "wilfrid_of_york_bishop": {
       "fullname": "Svätého Vilfrida, biskupa"
     },
-    {
-      "id": "william_apor_bishop",
+    "william_apor_bishop": {
       "fullname": "Blahoslaveného Viliama Apora, biskupa a mučeníka"
     },
-    {
-      "id": "willibald_of_eichstatt_bishop",
+    "willibald_of_eichstatt_bishop": {
       "fullname": "Svätého Willibalda, biskupa"
     },
-    {
-      "id": "willibrord_of_utrecht_bishop",
+    "willibrord_of_utrecht_bishop": {
       "fullname": "Svätého Willibrorda, biskupa"
     },
-    {
-      "id": "winefride_of_flintshire_virgin",
+    "winefride_of_flintshire_virgin": {
       "fullname": "Svätej Winefridy, panny"
     },
-    {
-      "id": "wladyslaw_bladzinski_priest_and_companions_martyrs",
+    "wladyslaw_bladzinski_priest_and_companions_martyrs": {
       "fullname": "Blahoslaveného Vladislava Błądzińskiho, kňaza a spoločníkov, mučeníkov"
     },
-    {
-      "id": "wolfgang_of_regensburg_bishop",
+    "wolfgang_of_regensburg_bishop": {
       "fullname": "Svätého Wolfganga z Regensburgu, biskupa"
     },
-    {
-      "id": "wulstan_of_worcester_bishop",
+    "wulstan_of_worcester_bishop": {
       "fullname": "Svätého Vulstana, biskupa"
     }
-  ]
+  }
 }

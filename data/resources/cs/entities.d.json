@@ -1,114 +1,87 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "cs",
-  "entities": [
-    {
-      "id": "damasus_i_pope",
+  "entities": {
+    "damasus_i_pope": {
       "fullname": "Sv. Damasa I. papeže"
     },
-    {
-      "id": "damien_de_veuster_priest",
+    "damien_de_veuster_priest": {
       "fullname": "Sv. Damiána de Veuster, kněze"
     },
-    {
-      "id": "daniel_brottier_priest",
+    "daniel_brottier_priest": {
       "fullname": "Bl. Daniela Brottiera, kněze"
     },
-    {
-      "id": "david_lewis_priest",
+    "david_lewis_priest": {
       "fullname": "Sv. Davida Lewise, kněze a mučedníka"
     },
-    {
-      "id": "david_of_wales_bishop",
+    "david_of_wales_bishop": {
       "fullname": "Sv. Davida z Walesu, biskupa"
     },
-    {
-      "id": "david_of_wales_bishop_patron_of_wales",
+    "david_of_wales_bishop_patron_of_wales": {
       "fullname": "Sv. Davida, biskupa a patrona Walesu"
     },
-    {
-      "id": "davnet_of_sliabh_beagh_virgin",
+    "davnet_of_sliabh_beagh_virgin": {
       "fullname": "Sv. Davnety, panny"
     },
-    {
-      "id": "declan_of_ardmore_bishop",
+    "declan_of_ardmore_bishop": {
       "fullname": "Sv. Deklana, biskupa"
     },
-    {
-      "id": "dedication_of_consecrated_churches",
+    "dedication_of_consecrated_churches": {
       "fullname": "Výročí posvěcení kostela"
     },
-    {
-      "id": "dedication_of_the_basilica_of_saint_mary_major",
+    "dedication_of_the_basilica_of_saint_mary_major": {
       "fullname": "Posvěcení římské baziliky Panny Marie"
     },
-    {
-      "id": "dedication_of_the_basilicas_of_saints_peter_and_paul_apostles",
+    "dedication_of_the_basilicas_of_saints_peter_and_paul_apostles": {
       "fullname": "Posvěcení římských bazilik svatých apoštolů Petra a Pavla"
     },
-    {
-      "id": "dedication_of_the_cathedral_basilica_of_saint_denis_france",
+    "dedication_of_the_cathedral_basilica_of_saint_denis_france": {
       "fullname": "Posvěcení Katedrální baziliky Saint-Denis, Francie"
     },
-    {
-      "id": "dedication_of_the_cathedral_of_notre_dame_de_strasbourg_france",
+    "dedication_of_the_cathedral_of_notre_dame_de_strasbourg_france": {
       "fullname": "Posvěcení Katedrály Notre-Dame de Strasbourg, Francie"
     },
-    {
-      "id": "dedication_of_the_lateran_basilica",
+    "dedication_of_the_lateran_basilica": {
       "fullname": "Posvěcení lateránské baziliky"
     },
-    {
-      "id": "dedication_of_the_notre_dame_de_paris_cathedral_paris_france",
+    "dedication_of_the_notre_dame_de_paris_cathedral_paris_france": {
       "fullname": "Posvěcení Katedrály Notre-Dame de Paris, Francie"
     },
-    {
-      "id": "deiniol_of_bangor_bishop",
+    "deiniol_of_bangor_bishop": {
       "fullname": "Sv. Deiniola, biskupa"
     },
-    {
-      "id": "demetrius_of_thessaloniki_martyr",
+    "demetrius_of_thessaloniki_martyr": {
       "fullname": "Sv. Demetria Soluňského, mučedníka"
     },
-    {
-      "id": "denis_of_paris_bishop_and_companions_martyrs",
+    "denis_of_paris_bishop_and_companions_martyrs": {
       "fullname": "Sv. Dionýsia, biskupa, a druhů, mučedníků"
     },
-    {
-      "id": "denis_of_paris_bishop_patron_of_the_archdiocese_of_paris",
+    "denis_of_paris_bishop_patron_of_the_archdiocese_of_paris": {
       "fullname": "Sv. Dionýsia, biskupa a mučedníka, patrona Arcidiecéze pařížské"
     },
-    {
-      "id": "denis_of_paris_bishop_patron_of_the_city_and_of_the_diocese_of_saint_denis",
+    "denis_of_paris_bishop_patron_of_the_city_and_of_the_diocese_of_saint_denis": {
       "fullname": "Sv. Dionýsia, biskupa a mučedníka, patrona města a Diecéze Saint-Denis"
     },
-    {
-      "id": "dina_belanger_virgin",
+    "dina_belanger_virgin": {
       "fullname": "Bl. Diny Bélangerové, panny"
     },
-    {
-      "id": "dionysius_the_areopagite_bishop",
+    "dionysius_the_areopagite_bishop": {
       "fullname": "Sv. Dionýsia Areopagity, biskupa a mučedníka"
     },
-    {
-      "id": "divine_mercy_sunday",
+    "divine_mercy_sunday": {
       "fullname": "2. neděle velikonoční nebo Neděle Božího milosrdenství"
     },
-    {
-      "id": "dominic_de_guzman_priest",
+    "dominic_de_guzman_priest": {
       "fullname": "Sv. Dominika, kněze"
     },
-    {
-      "id": "dominic_of_the_mother_of_god_barberi_priest",
+    "dominic_of_the_mother_of_god_barberi_priest": {
       "fullname": "Bl. Dominika od Matky Boží Barberi, kněze"
     },
-    {
-      "id": "dunstan_of_canterbury_bishop",
+    "dunstan_of_canterbury_bishop": {
       "fullname": "Sv. Dunstana z Canterbury, biskupa"
     },
-    {
-      "id": "dyfrig_of_wales_bishop",
+    "dyfrig_of_wales_bishop": {
       "fullname": "Sv. Dubricia z Walesu, biskupa"
     }
-  ]
+  }
 }

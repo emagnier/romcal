@@ -1,9 +1,8 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "en",
-  "entities": [
-    {
-      "id": "kateri_tekakwitha_virgin",
+  "entities": {
+    "kateri_tekakwitha_virgin": {
       "fullname": "Saint Kateri Tekakwitha, Virgin",
       "canonization_level": "SAINT",
       "name": "Kateri Tekakwitha",
@@ -12,8 +11,7 @@
       ],
       "date_of_death": 1680
     },
-    {
-      "id": "katharine_drexel_virgin",
+    "katharine_drexel_virgin": {
       "fullname": "Saint Katharine Drexel, Virgin",
       "canonization_level": "SAINT",
       "name": "Katharine Drexel",
@@ -21,8 +19,7 @@
         "VIRGIN"
       ]
     },
-    {
-      "id": "kentigern_of_scotland_bishop",
+    "kentigern_of_scotland_bishop": {
       "fullname": "Saint Kentigern, Bishop",
       "canonization_level": "SAINT",
       "name": "Kentigern",
@@ -30,8 +27,7 @@
         "BISHOP"
       ]
     },
-    {
-      "id": "kevin_of_glendalough_abbot",
+    "kevin_of_glendalough_abbot": {
       "fullname": "Saint Kevin, Abbot",
       "canonization_level": "SAINT",
       "name": "Kevin",
@@ -39,8 +35,7 @@
         "ABBOT"
       ]
     },
-    {
-      "id": "kieran_of_saigir_bishop",
+    "kieran_of_saigir_bishop": {
       "fullname": "Saint Kieran, Bishop",
       "canonization_level": "SAINT",
       "name": "Kieran",
@@ -48,8 +43,7 @@
         "BISHOP"
       ]
     },
-    {
-      "id": "kilian_of_wurzburg_bishop",
+    "kilian_of_wurzburg_bishop": {
       "fullname": "Saint Kilian, Bishop and Martyr",
       "canonization_level": "SAINT",
       "name": "Kilian",
@@ -58,12 +52,10 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "kilian_of_wurzburg_bishop_and_companions_martyrs",
+    "kilian_of_wurzburg_bishop_and_companions_martyrs": {
       "fullname": "Saint Kilian, Bishop, and Companions, Martyrs"
     },
-    {
-      "id": "kinga_of_poland_virgin",
+    "kinga_of_poland_virgin": {
       "fullname": "Saint Kinga, Virgin",
       "canonization_level": "SAINT",
       "name": "Kinga",
@@ -71,8 +63,7 @@
         "VIRGIN"
       ]
     },
-    {
-      "id": "kuriakose_elias_of_the_holy_family_chavara_priest",
+    "kuriakose_elias_of_the_holy_family_chavara_priest": {
       "fullname": "Saint Kuriakose Elias of the Holy Family Chavara, priest",
       "canonization_level": "SAINT",
       "name": "Kuriakose Elias of the Holy Family Chavara",
@@ -80,5 +71,5 @@
         "PRIEST"
       ]
     }
-  ]
+  }
 }

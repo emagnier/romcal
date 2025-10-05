@@ -1,58 +1,45 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "ta",
-  "entities": [
-    {
-      "id": "valentine_of_raetia_bishop",
+  "entities": {
+    "valentine_of_raetia_bishop": {
       "fullname": "ரெய்தியாவின் புனித வலண்டைன் - ஆயர்"
     },
-    {
-      "id": "valerius_of_trier_bishop",
+    "valerius_of_trier_bishop": {
       "fullname": "புனித வெலெரியஸ் - ஆயர்"
     },
-    {
-      "id": "vincent_de_paul_priest",
+    "vincent_de_paul_priest": {
       "fullname": "புனித வின்சண்ட் டி போல் - அருட்பணியாளர்"
     },
-    {
-      "id": "vincent_ferrer_priest",
+    "vincent_ferrer_priest": {
       "fullname": "புனித வின்சண்ட் பேரர் - அருட்பணியாளர்"
     },
-    {
-      "id": "vincent_kadlubek_bishop",
+    "vincent_kadlubek_bishop": {
       "fullname": "முத்திப்பேறுபெற்ற வின்சண்ட் கடுபெக் - ஆயர்"
     },
-    {
-      "id": "vincent_lewoniuk_and_companions_martyrs",
+    "vincent_lewoniuk_and_companions_martyrs": {
       "fullname": "முத்திப்பேறுபெற்ற வின்சண்ட் லிவோனியுக், தோழர்கள், மறைசாட்சிகள்"
     },
-    {
-      "id": "vincent_of_saragossa_deacon",
+    "vincent_of_saragossa_deacon": {
       "fullname": "புனித வின்சண்ட் - தியாக்கோன், மறைசாட்சி"
     },
-    {
-      "id": "vincent_pallotti_priest",
+    "vincent_pallotti_priest": {
       "fullname": "புனித வின்சண்ட் பலொட்டி - அருட்பணியாளர்"
     },
-    {
-      "id": "virgilius_of_salzburg_bishop",
+    "virgilius_of_salzburg_bishop": {
       "fullname": "புனித பெர்கள் - ஆயர், வேதபோதகர்"
     },
-    {
-      "id": "visitation_of_mary",
+    "visitation_of_mary": {
       "fullname": "கன்னி மரியாள் எலிசபெத்தை சந்தித்தல்"
     },
-    {
-      "id": "vitus_of_lucania_martyr",
+    "vitus_of_lucania_martyr": {
       "fullname": "புனித விட்டஸ் - மறைசாட்சி"
     },
-    {
-      "id": "vladimir_ghika_priest",
+    "vladimir_ghika_priest": {
       "fullname": "முத்திப்பேறுபெற்ற விலாடிமிர் கிக்கா - அருட்பணியாளர், மறைசாட்சி"
     },
-    {
-      "id": "vladimir_i_the_great_of_kiev",
+    "vladimir_i_the_great_of_kiev": {
       "fullname": "புனித பெரிய விலாடிமிர்"
     }
-  ]
+  }
 }

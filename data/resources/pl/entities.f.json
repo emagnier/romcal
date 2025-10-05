@@ -1,74 +1,57 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "pl",
-  "entities": [
-    {
-      "id": "fabian_i_pope",
+  "entities": {
+    "fabian_i_pope": {
       "fullname": "Św. Fabiana, papieża i męczennika"
     },
-    {
-      "id": "faustina_kowalska_virgin",
+    "faustina_kowalska_virgin": {
       "fullname": "Św. Faustyny Kowalskiej, dziewicy"
     },
-    {
-      "id": "fidelis_of_sigmaringen_priest",
+    "fidelis_of_sigmaringen_priest": {
       "fullname": "Św. Fidelisa z Sigmaringen, prezbitera i męczennika"
     },
-    {
-      "id": "first_martyrs_of_the_holy_roman_church",
+    "first_martyrs_of_the_holy_roman_church": {
       "fullname": "Świętych Pierwszych Męczenników Świętego Kościoła rzymskiego"
     },
-    {
-      "id": "first_polish_martyrs",
+    "first_polish_martyrs": {
       "fullname": "Świętych Benedykta, Jana, Mateusza, Izaaka i Krystyna, pierwszych męczenników Polski"
     },
-    {
-      "id": "florentius_of_strasbourg_bishop",
+    "florentius_of_strasbourg_bishop": {
       "fullname": "Św. Florencjusza, biskupa"
     },
-    {
-      "id": "florian_of_lorch_martyr",
+    "florian_of_lorch_martyr": {
       "fullname": "Św. Floriana, męczennika"
     },
-    {
-      "id": "frances_of_rome_religious",
+    "frances_of_rome_religious": {
       "fullname": "Św. Franciszki Rzymianki, zakonnicy"
     },
-    {
-      "id": "francis_de_sales_bishop",
+    "francis_de_sales_bishop": {
       "fullname": "Św. Franciszka Salezego, biskupa i doktora Kościoła"
     },
-    {
-      "id": "francis_diaz_del_rincon_priest_and_companions_martyrs",
+    "francis_diaz_del_rincon_priest_and_companions_martyrs": {
       "fullname": "Świętych męczenników Franciszka Diaza, prezbitera, i Towarzyszy"
     },
-    {
-      "id": "francis_ferdinand_de_capillas_priest",
+    "francis_ferdinand_de_capillas_priest": {
       "fullname": "Św. Franciszka Fernandeza de Capillas, prezbitera i męczennika"
     },
-    {
-      "id": "francis_of_assisi",
+    "francis_of_assisi": {
       "fullname": "Św. Franciszka z Asyżu"
     },
-    {
-      "id": "francis_of_assisi_patron_of_italy",
+    "francis_of_assisi_patron_of_italy": {
       "fullname": "Św. Franciszka z Asyżu, patrona Włoch"
     },
-    {
-      "id": "francis_of_paola_hermit",
+    "francis_of_paola_hermit": {
       "fullname": "Św. Franciszka z Paoli, pustelnika"
     },
-    {
-      "id": "francis_xavier_priest",
+    "francis_xavier_priest": {
       "fullname": "Św. Franciszka Ksawerego, prezbitera"
     },
-    {
-      "id": "frederic_ozanam_founder",
+    "frederic_ozanam_founder": {
       "fullname": "Bł. Fryderyka Ozanama, założyciela"
     },
-    {
-      "id": "friday_of_the_passion_of_the_lord",
+    "friday_of_the_passion_of_the_lord": {
       "fullname": "Wielki Piątek Męki Pańskiej"
     }
-  ]
+  }
 }

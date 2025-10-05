@@ -1,19 +1,16 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "en",
-  "entities": [
-    {
-      "id": "easter_sunday",
+  "entities": {
+    "easter_sunday": {
       "fullname": "Easter Sunday of the Resurrection of the Lord"
     },
-    {
-      "id": "edmund_bojanowski",
+    "edmund_bojanowski": {
       "fullname": "Blessed Edmund Bojanowski",
       "canonization_level": "BLESSED",
       "name": "Edmund Bojanowski"
     },
-    {
-      "id": "edmund_campion_priest",
+    "edmund_campion_priest": {
       "fullname": "Saint Edmund Campion, Priest and Martyr",
       "canonization_level": "SAINT",
       "name": "Edmund Campion",
@@ -22,8 +19,7 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "edmund_ignatius_rice_religious",
+    "edmund_ignatius_rice_religious": {
       "fullname": "Blessed Edmund Rice, Religious",
       "canonization_level": "BLESSED",
       "name": "Edmund Rice",
@@ -31,8 +27,7 @@
         "RELIGIOUS"
       ]
     },
-    {
-      "id": "edmund_of_abingdon_bishop",
+    "edmund_of_abingdon_bishop": {
       "fullname": "Saint Edmund of Abingdon, Bishop",
       "canonization_level": "SAINT",
       "name": "Edmund of Abingdon",
@@ -40,14 +35,12 @@
         "BISHOP"
       ]
     },
-    {
-      "id": "edward_the_confessor",
+    "edward_the_confessor": {
       "fullname": "Saint Edward the Confessor",
       "canonization_level": "SAINT",
       "name": "Edward the Confessor"
     },
-    {
-      "id": "eligius_of_noyon_bishop",
+    "eligius_of_noyon_bishop": {
       "fullname": "Saint Eligius, Bishop",
       "canonization_level": "SAINT",
       "name": "Eloi",
@@ -56,8 +49,7 @@
       ],
       "date_of_death": 660
     },
-    {
-      "id": "elijah_prophet",
+    "elijah_prophet": {
       "fullname": "Saint Elijah, Prophet",
       "canonization_level": "SAINT",
       "name": "Elijah",
@@ -65,8 +57,7 @@
         "PROPHET"
       ]
     },
-    {
-      "id": "elizabeth_ann_seton_religious",
+    "elizabeth_ann_seton_religious": {
       "fullname": "Saint Elizabeth Ann Seton, Religious",
       "canonization_level": "SAINT",
       "name": "Elizabeth Ann Seton",
@@ -74,8 +65,7 @@
         "RELIGIOUS"
       ]
     },
-    {
-      "id": "elizabeth_hesselblad_religious",
+    "elizabeth_hesselblad_religious": {
       "fullname": "Saint Elizabeth Hesselblad, Religious",
       "canonization_level": "SAINT",
       "name": "Elizabeth Hesselblad",
@@ -83,8 +73,7 @@
         "RELIGIOUS"
       ]
     },
-    {
-      "id": "elizabeth_of_hungary_religious",
+    "elizabeth_of_hungary_religious": {
       "fullname": "Saint Elizabeth of Hungary, Religious",
       "canonization_level": "SAINT",
       "name": "Elizabeth of Hungary",
@@ -93,8 +82,7 @@
       ],
       "date_of_death": 1231
     },
-    {
-      "id": "elizabeth_of_portugal",
+    "elizabeth_of_portugal": {
       "fullname": "Saint Elizabeth of Portugal",
       "canonization_level": "SAINT",
       "name": "Elizabeth of Portugal",
@@ -103,14 +91,12 @@
       ],
       "date_of_death": 1336
     },
-    {
-      "id": "emeric_of_hungary",
+    "emeric_of_hungary": {
       "fullname": "Saint Emeric",
       "canonization_level": "SAINT",
       "name": "Emeric"
     },
-    {
-      "id": "emilie_tavernier_gamelin_religious",
+    "emilie_tavernier_gamelin_religious": {
       "fullname": "Blessed Émilie Tavernier-Gamelin, Religious",
       "canonization_level": "BLESSED",
       "name": "Émilie Tavernier-Gamelin",
@@ -119,8 +105,7 @@
       ],
       "date_of_death": 1851
     },
-    {
-      "id": "enda_of_aran_abbot",
+    "enda_of_aran_abbot": {
       "fullname": "Saint Enda, Abbot",
       "canonization_level": "SAINT",
       "name": "Enda",
@@ -128,8 +113,7 @@
         "ABBOT"
       ]
     },
-    {
-      "id": "english_martyrs",
+    "english_martyrs": {
       "fullname": "English Martyrs",
       "titles": [
         "MARTYR"
@@ -137,8 +121,7 @@
       "hide_titles": true,
       "count": "MANY"
     },
-    {
-      "id": "eoghan_of_ardstraw_bishop",
+    "eoghan_of_ardstraw_bishop": {
       "fullname": "Saint Eoghan, Bishop",
       "canonization_level": "SAINT",
       "name": "Eoghan",
@@ -146,8 +129,7 @@
         "BISHOP"
       ]
     },
-    {
-      "id": "ephrem_the_syrian_deacon",
+    "ephrem_the_syrian_deacon": {
       "fullname": "Saint Ephrem, Deacon and Doctor of the Church",
       "canonization_level": "SAINT",
       "name": "Ephrem",
@@ -157,16 +139,13 @@
       ],
       "date_of_death": 373
     },
-    {
-      "id": "epiphany_of_the_lord",
+    "epiphany_of_the_lord": {
       "fullname": "The Epiphany of the Lord"
     },
-    {
-      "id": "epipodius_of_lyon_and_alexander_of_lyon_martyrs",
+    "epipodius_of_lyon_and_alexander_of_lyon_martyrs": {
       "fullname": "Saints Epipodius and Alexander, Martyrs"
     },
-    {
-      "id": "epipodius_of_lyon_martyr",
+    "epipodius_of_lyon_martyr": {
       "canonization_level": "SAINT",
       "name": "Epipodius",
       "date_of_death": 178,
@@ -177,8 +156,7 @@
         "mr_fr_2014_ed2_lyon"
       ]
     },
-    {
-      "id": "erembert_of_toulouse_bishop",
+    "erembert_of_toulouse_bishop": {
       "fullname": "Saint Erembert of Toulouse, Bishop",
       "canonization_level": "SAINT",
       "name": "Erembert",
@@ -194,8 +172,7 @@
         "https://en.wikipedia.org/wiki/Erembert_of_Toulouse"
       ]
     },
-    {
-      "id": "eric_ix_of_sweden_martyr",
+    "eric_ix_of_sweden_martyr": {
       "fullname": "Saint Eric IX of Sweden, Martyr",
       "canonization_level": "SAINT",
       "name": "Eric IX of Sweden",
@@ -203,8 +180,7 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "etheldreda_of_ely_abbess",
+    "etheldreda_of_ely_abbess": {
       "fullname": "Saint Etheldreda, Abbess",
       "canonization_level": "SAINT",
       "name": "Etheldreda",
@@ -212,8 +188,7 @@
         "ABBESS"
       ]
     },
-    {
-      "id": "eucharius_of_trier_bishop",
+    "eucharius_of_trier_bishop": {
       "fullname": "Saint Eucharius, Bishop",
       "canonization_level": "SAINT",
       "name": "Eucharius",
@@ -224,8 +199,7 @@
         "century": 3
       }
     },
-    {
-      "id": "eucherius_of_lyon_bishop",
+    "eucherius_of_lyon_bishop": {
       "fullname": "Saint Eucherius, Bishop",
       "canonization_level": "SAINT",
       "name": "Eucharius",
@@ -240,8 +214,7 @@
         "mr_fr_2014_ed2_lyon"
       ]
     },
-    {
-      "id": "eugene_de_mazenod_bishop",
+    "eugene_de_mazenod_bishop": {
       "fullname": "Saint Eugène de Mazenod, Bishop",
       "canonization_level": "SAINT",
       "name": "Eugène de Mazenod",
@@ -250,12 +223,10 @@
       ],
       "date_of_death": 1861
     },
-    {
-      "id": "eugenia_of_alsace_and_attala_of_alsace_virgins",
+    "eugenia_of_alsace_and_attala_of_alsace_virgins": {
       "fullname": "Saints Eugenia and Attala, Virgins"
     },
-    {
-      "id": "eugenia_of_alsace_virgin",
+    "eugenia_of_alsace_virgin": {
       "canonization_level": "SAINT",
       "name": "Eugenie of Alsace",
       "titles": [
@@ -265,8 +236,7 @@
         "century": 8
       }
     },
-    {
-      "id": "eulalia_of_merida_virgin",
+    "eulalia_of_merida_virgin": {
       "fullname": "Saint Eulalia of Merida, Virgin and Martyr",
       "canonization_level": "SAINT",
       "name": "Eulalia of Merida",
@@ -275,8 +245,7 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "eulogius_of_cordoba_bishop",
+    "eulogius_of_cordoba_bishop": {
       "fullname": "Saint Eulogius of Córdoba, Bishop",
       "canonization_level": "SAINT",
       "name": "Eulogius of Córdoba",
@@ -284,8 +253,7 @@
         "BISHOP"
       ]
     },
-    {
-      "id": "eulogius_of_tarragona_deacon",
+    "eulogius_of_tarragona_deacon": {
       "canonization_level": "SAINT",
       "name": "Eulogius",
       "titles": [
@@ -293,8 +261,7 @@
         "MARTYR"
       ]
     },
-    {
-      "id": "eusebius_of_esztergom_priest",
+    "eusebius_of_esztergom_priest": {
       "fullname": "Blessed Eusebius of Esztergom, Priest",
       "canonization_level": "BLESSED",
       "name": "Eusebius of Esztergom",
@@ -302,8 +269,7 @@
         "PRIEST"
       ]
     },
-    {
-      "id": "eusebius_of_vercelli_bishop",
+    "eusebius_of_vercelli_bishop": {
       "fullname": "Saint Eusebius of Vercelli, Bishop",
       "canonization_level": "SAINT",
       "name": "Eusebius of Vercelli",
@@ -312,12 +278,10 @@
       ],
       "date_of_death": 371
     },
-    {
-      "id": "exaltation_of_the_holy_cross",
+    "exaltation_of_the_holy_cross": {
       "fullname": "The Exaltation of the Holy Cross"
     },
-    {
-      "id": "exuperius_of_toulouse_bishop",
+    "exuperius_of_toulouse_bishop": {
       "fullname": "Saint Exuperius of Toulouse, Bishop",
       "canonization_level": "SAINT",
       "name": "Exuperius",
@@ -331,8 +295,7 @@
         "https://en.wikipedia.org/wiki/Exuperius"
       ]
     },
-    {
-      "id": "eysteinn_of_nidaros_bishop",
+    "eysteinn_of_nidaros_bishop": {
       "fullname": "Saint Eysteinn of Nidaros, Bishop",
       "canonization_level": "SAINT",
       "name": "Eysteinn of Nidaros",
@@ -340,8 +303,7 @@
         "BISHOP"
       ]
     },
-    {
-      "id": "ezequiel_moreno_bishop",
+    "ezequiel_moreno_bishop": {
       "fullname": "Saint Ezequiel Moreno, Bishop",
       "canonization_level": "SAINT",
       "name": "Ezequiel Moreno",
@@ -349,5 +311,5 @@
         "BISHOP"
       ]
     }
-  ]
+  }
 }

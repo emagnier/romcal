@@ -1,66 +1,51 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "es",
-  "entities": [
-    {
-      "id": "landry_of_paris_bishop",
+  "entities": {
+    "landry_of_paris_bishop": {
       "fullname": "San Landerico de París, obispo"
     },
-    {
-      "id": "laura_vicuna_virgin",
+    "laura_vicuna_virgin": {
       "fullname": "Beata Laura Vicuna, virgen"
     },
-    {
-      "id": "lawrence_of_brindisi_priest",
+    "lawrence_of_brindisi_priest": {
       "fullname": "San Lorenzo de Brindis, presbítero y doctor de la Iglesia"
     },
-    {
-      "id": "lawrence_of_rome_deacon",
+    "lawrence_of_rome_deacon": {
       "fullname": "San Lorenzo, diácono y mártir"
     },
-    {
-      "id": "lawrence_ruiz_and_companions_martyrs",
+    "lawrence_ruiz_and_companions_martyrs": {
       "fullname": "San Lorenzo Ruiz y Compañeros, mártires"
     },
-    {
-      "id": "leander_of_seville_bishop",
+    "leander_of_seville_bishop": {
       "fullname": "San Leandro de Sevilla, obispo"
     },
-    {
-      "id": "leo_i_the_great_pope",
+    "leo_i_the_great_pope": {
       "fullname": "San León Magno, papa y doctor de la Iglesia"
     },
-    {
-      "id": "leodegar_of_autun_bishop",
+    "leodegar_of_autun_bishop": {
       "fullname": "San Leodegario de Autun, obispo y mártir"
     },
-    {
-      "id": "louis_grignion_de_montfort_priest",
+    "louis_grignion_de_montfort_priest": {
       "fullname": "San Luis María Grignion de Montfort, presbítero"
     },
-    {
-      "id": "louis_ix_of_france",
+    "louis_ix_of_france": {
       "fullname": "San Luis"
     },
-    {
-      "id": "louise_de_marillac_religious",
+    "louise_de_marillac_religious": {
       "fullname": "Santa Luisa de Marillac, religiosa"
     },
-    {
-      "id": "lucy_of_syracuse_virgin",
+    "lucy_of_syracuse_virgin": {
       "fullname": "Santa Lucía, virgen y mártir"
     },
-    {
-      "id": "ludan_of_scotland_pilgrim",
+    "ludan_of_scotland_pilgrim": {
       "fullname": "San Ludano, peregrino"
     },
-    {
-      "id": "luigi_orione_priest",
+    "luigi_orione_priest": {
       "fullname": "San Luis Orione, presbítero"
     },
-    {
-      "id": "luke_evangelist",
+    "luke_evangelist": {
       "fullname": "San Lucas, evangelista"
     }
-  ]
+  }
 }

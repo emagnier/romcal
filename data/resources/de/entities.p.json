@@ -1,230 +1,174 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "de",
-  "entities": [
-    {
-      "id": "palm_sunday_of_the_passion_of_the_lord",
+  "entities": {
+    "palm_sunday_of_the_passion_of_the_lord": {
       "fullname": "Palmsonntag"
     },
-    {
-      "id": "pancras_of_rome_martyr",
+    "pancras_of_rome_martyr": {
       "fullname": "Hl. Pankratius, Märtyrer"
     },
-    {
-      "id": "pantaleon_of_nicomedia_martyr",
+    "pantaleon_of_nicomedia_martyr": {
       "fullname": "Hl. Pantaleon von Nikomedien, Märtyrer"
     },
-    {
-      "id": "paschal_baylon_religious",
+    "paschal_baylon_religious": {
       "fullname": "Hl. Paschalis Baylon, Ordensmann"
     },
-    {
-      "id": "passion_of_saint_john_the_baptist",
+    "passion_of_saint_john_the_baptist": {
       "fullname": "Enthauptung des hl. Johannes‘ des Täufers"
     },
-    {
-      "id": "patrick_of_ireland_bishop",
+    "patrick_of_ireland_bishop": {
       "fullname": "Hl. Patrick, Bischof"
     },
-    {
-      "id": "patrick_of_ireland_bishop_patron_of_ireland",
+    "patrick_of_ireland_bishop_patron_of_ireland": {
       "fullname": "Hl. Patrick, Bischof, Schutzpatron Irlands"
     },
-    {
-      "id": "paul_chen_changpin_and_companions_martyrs",
+    "paul_chen_changpin_and_companions_martyrs": {
       "fullname": "Hl. Paul Chen Changpin und Gefährten, Märtyrer"
     },
-    {
-      "id": "paul_liu_hanzuo_priest",
+    "paul_liu_hanzuo_priest": {
       "fullname": "Hl. Paul Liu Hanzuo, Priester und Märtyrer"
     },
-    {
-      "id": "paul_miki_and_companions_martyrs",
+    "paul_miki_and_companions_martyrs": {
       "fullname": "Hl. Paul Miki und Gefährten, Märtyrer"
     },
-    {
-      "id": "paul_of_the_cross_priest",
+    "paul_of_the_cross_priest": {
       "fullname": "Hl. Paul vom Kreuz, Priester"
     },
-    {
-      "id": "paul_of_thebes_hermit",
+    "paul_of_thebes_hermit": {
       "fullname": "Sel. Paul von Theben, Einsiedler"
     },
-    {
-      "id": "paul_vi_pope",
+    "paul_vi_pope": {
       "fullname": "Hl. Paul VI., Papst"
     },
-    {
-      "id": "paulina_of_the_agonizing_heart_of_jesus_visintainer_virgin",
+    "paulina_of_the_agonizing_heart_of_jesus_visintainer_virgin": {
       "fullname": "Hl. Paulina vom leidenden Herzen Jesu Visintainer, Jungfrau"
     },
-    {
-      "id": "paulinus_of_nola_bishop",
+    "paulinus_of_nola_bishop": {
       "fullname": "Hl. Paulinus von Nola, Bischof"
     },
-    {
-      "id": "paulinus_of_trier_bishop",
+    "paulinus_of_trier_bishop": {
       "fullname": "Hl. Paulinus von Trier, Bischof"
     },
-    {
-      "id": "paulinus_of_york_bishop",
+    "paulinus_of_york_bishop": {
       "fullname": "Hl. Paulinus von York, Bischof"
     },
-    {
-      "id": "pavel_peter_gojdic_bishop",
+    "pavel_peter_gojdic_bishop": {
       "fullname": "Sel. Pavel Peter Gojdič, Bischof und Märtyrer"
     },
-    {
-      "id": "pedro_calungsod_martyr",
+    "pedro_calungsod_martyr": {
       "fullname": "Hl. Pedro Calungsod, Märtyrer"
     },
-    {
-      "id": "pelagius_of_cordoba_martyr",
+    "pelagius_of_cordoba_martyr": {
       "fullname": "Hl. Pelagius von Córdoba, Märtyrer"
     },
-    {
-      "id": "pentecost_sunday",
+    "pentecost_sunday": {
       "fullname": "Pfingstsonntag"
     },
-    {
-      "id": "perpetua_of_carthage_and_felicity_of_carthage_martyrs",
+    "perpetua_of_carthage_and_felicity_of_carthage_martyrs": {
       "fullname": "Hl. Perpetua und Felicitas, Märtyrerinnen"
     },
-    {
-      "id": "peter_and_paul_apostles",
+    "peter_and_paul_apostles": {
       "fullname": "Hl. Petrus und Paulus, Apostel"
     },
-    {
-      "id": "peter_baptist_blasquez_paul_miki_and_companions_martyrs",
+    "peter_baptist_blasquez_paul_miki_and_companions_martyrs": {
       "fullname": "Hl. Peter Baptist Blásquez, Paul Miki und Gefährten, Märtyrer"
     },
-    {
-      "id": "peter_canisius_priest",
+    "peter_canisius_priest": {
       "fullname": "Hl. Petrus Canisius, Priester und Kirchenlehrer"
     },
-    {
-      "id": "peter_chanel_priest",
+    "peter_chanel_priest": {
       "fullname": "Hl. Peter Chanel, Priester und Märtyrer"
     },
-    {
-      "id": "peter_chanel_priest_patron_of_oceania",
+    "peter_chanel_priest_patron_of_oceania": {
       "fullname": "Hl. Peter Chanel, Protomärtyrer von Ozeanien, Schutzpatron von Ozeanien"
     },
-    {
-      "id": "peter_chrysologus_bishop",
+    "peter_chrysologus_bishop": {
       "fullname": "Hl. Petrus Chrysologus, Bischof und Kirchenlehrer"
     },
-    {
-      "id": "peter_claver_priest",
+    "peter_claver_priest": {
       "fullname": "Hl. Petrus Claver, Priester"
     },
-    {
-      "id": "peter_damian_bishop",
+    "peter_damian_bishop": {
       "fullname": "Hl. Petrus Damiani, Bischof und Kirchenlehrer"
     },
-    {
-      "id": "peter_de_zuniga_and_louis_flores_priests",
+    "peter_de_zuniga_and_louis_flores_priests": {
       "fullname": "Sel.n Peter de Zúñiga und Ludwig Flores, Priester und Märtyrer"
     },
-    {
-      "id": "peter_julian_eymard_priest",
+    "peter_julian_eymard_priest": {
       "fullname": "Hl. Peter Julian Eymard, Priester"
     },
-    {
-      "id": "peter_kibe_priest_and_companions_martyrs",
+    "peter_kibe_priest_and_companions_martyrs": {
       "fullname": "Sel. Peter Kibe, Priester, und Gefährten, Märtyrer"
     },
-    {
-      "id": "peter_liu_wenyuan_martyr",
+    "peter_liu_wenyuan_martyr": {
       "fullname": "Hl. Peter Liu Wenyuan, Märtyrer"
     },
-    {
-      "id": "peter_of_alcantara_priest",
+    "peter_of_alcantara_priest": {
       "fullname": "Hl. Petrus von Alcantara, Priester"
     },
-    {
-      "id": "peter_sanz_bishop",
+    "peter_sanz_bishop": {
       "fullname": "Hl. Peter Sanz, Bischof und Märtyrer"
     },
-    {
-      "id": "peter_to_rot_martyr",
+    "peter_to_rot_martyr": {
       "fullname": "Sel. Peter To Rot, Märtyrer"
     },
-    {
-      "id": "peter_wu_guosheng_martyr",
+    "peter_wu_guosheng_martyr": {
       "fullname": "Hl. Peter Wu Guosheng, Märtyrer"
     },
-    {
-      "id": "philip_and_james_apostles",
+    "philip_and_james_apostles": {
       "fullname": "Hl. Philippus und Jakobus, Apostel"
     },
-    {
-      "id": "philip_evans_and_john_lloyd_priests",
+    "philip_evans_and_john_lloyd_priests": {
       "fullname": "Hl. Philip Evans und John Lloyd, Priester und Märtyrer"
     },
-    {
-      "id": "philip_neri_priest",
+    "philip_neri_priest": {
       "fullname": "Hl. Philipp Neri, Priester"
     },
-    {
-      "id": "philip_of_jesus_de_las_casas_martyr",
+    "philip_of_jesus_de_las_casas_martyr": {
       "fullname": "Hl. Philip von Jesus de las Casas, Märtyrer"
     },
-    {
-      "id": "philip_of_jesus_de_las_casas_paul_miki_and_companions_martyrs",
+    "philip_of_jesus_de_las_casas_paul_miki_and_companions_martyrs": {
       "fullname": "Hl. Philip von Jesus de las Casas, Paul Miki und Gefährten, Märtyrer"
     },
-    {
-      "id": "pirmin_of_hornbach_abbot",
+    "pirmin_of_hornbach_abbot": {
       "fullname": "Hl. Pirminius, Abt"
     },
-    {
-      "id": "pius_francesco_forgione_priest",
+    "pius_francesco_forgione_priest": {
       "fullname": "Hl. Pio von Pietrelcina, Priester"
     },
-    {
-      "id": "pius_ix_pope",
+    "pius_ix_pope": {
       "fullname": "Sel. Pius IX., Papst"
     },
-    {
-      "id": "pius_v_pope",
+    "pius_v_pope": {
       "fullname": "Hl. Pius V., Papst"
     },
-    {
-      "id": "pius_x_pope",
+    "pius_x_pope": {
       "fullname": "Hl. Pius X., Papst"
     },
-    {
-      "id": "polycarp_of_smyrna_bishop",
+    "polycarp_of_smyrna_bishop": {
       "fullname": "Hl. Polykarp, Bischof und Märtyrer"
     },
-    {
-      "id": "pontian_i_pope_and_hippolytus_of_rome_priest",
+    "pontian_i_pope_and_hippolytus_of_rome_priest": {
       "fullname": "Hl. Pontianus, Papst, und Hippolyt, Priester, Märtyrer"
     },
-    {
-      "id": "pothinus_of_lyon_bishop_blandina_of_lyon_virgin_and_companions_martyrs",
+    "pothinus_of_lyon_bishop_blandina_of_lyon_virgin_and_companions_martyrs": {
       "fullname": "Hl. Pothinus, Bischof, Blandina, Jungfrau, und Gefährten, Märtyrer"
     },
-    {
-      "id": "pothinus_of_lyon_bishop_patron_the_city_of_lyon_blandina_of_lyon_virgin_and_companions_martyrs",
+    "pothinus_of_lyon_bishop_patron_the_city_of_lyon_blandina_of_lyon_virgin_and_companions_martyrs": {
       "fullname": "Hl. Pothinus, Bischof, Schutzpatron der Stadt Lyon, Blandina, Jungfrau, und Gefährten, Märtyrer"
     },
-    {
-      "id": "presentation_of_the_blessed_virgin_mary",
+    "presentation_of_the_blessed_virgin_mary": {
       "fullname": "Gedenktag Unserer Lieben Frau in Jerusalem"
     },
-    {
-      "id": "presentation_of_the_lord",
+    "presentation_of_the_lord": {
       "fullname": "Darstellung des Herrn"
     },
-    {
-      "id": "procopius_of_sazava_abbot",
+    "procopius_of_sazava_abbot": {
       "fullname": "Hl. Prokop von Sázava, Abt"
     },
-    {
-      "id": "publius_of_malta_bishop",
+    "publius_of_malta_bishop": {
       "fullname": "Hl. Publius, Bischof"
     }
-  ]
+  }
 }

@@ -1,226 +1,171 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "ta",
-  "entities": [
-    {
-      "id": "palm_sunday_of_the_passion_of_the_lord",
+  "entities": {
+    "palm_sunday_of_the_passion_of_the_lord": {
       "fullname": "குருத்து ஞாயிறு"
     },
-    {
-      "id": "pancras_of_rome_martyr",
+    "pancras_of_rome_martyr": {
       "fullname": "புனித பங்க்ராஸ் - மறைசாட்சி"
     },
-    {
-      "id": "pantaleon_of_nicomedia_martyr",
+    "pantaleon_of_nicomedia_martyr": {
       "fullname": "நிகொமிடியாவின் புனித பந்தெலியன் - மறைசாட்சி"
     },
-    {
-      "id": "paschal_baylon_religious",
+    "paschal_baylon_religious": {
       "fullname": "புனித பாஸ்கல் பேலொன் - துறவி"
     },
-    {
-      "id": "passion_of_saint_john_the_baptist",
+    "passion_of_saint_john_the_baptist": {
       "fullname": "திருமுழுக்கு அருளப்பரின் இறப்பு"
     },
-    {
-      "id": "patrick_of_ireland_bishop",
+    "patrick_of_ireland_bishop": {
       "fullname": "புனித பட்றிக் - ஆயர்"
     },
-    {
-      "id": "patrick_of_ireland_bishop_patron_of_ireland",
+    "patrick_of_ireland_bishop_patron_of_ireland": {
       "fullname": "புனித பட்றிக் - ஆயர், அயர்லாந்தின் பாதுகாவலர்"
     },
-    {
-      "id": "paul_chen_changpin_and_companions_martyrs",
+    "paul_chen_changpin_and_companions_martyrs": {
       "fullname": "புனித பவுல் சென் சங்பின், தோழர்கள் - மறைசாட்சி"
     },
-    {
-      "id": "paul_liu_hanzuo_priest",
+    "paul_liu_hanzuo_priest": {
       "fullname": "புனித பவுல் லுயு ஹன்சூ - அருட்பணியாளர், மறைசாட்சி"
     },
-    {
-      "id": "paul_miki_and_companions_martyrs",
+    "paul_miki_and_companions_martyrs": {
       "fullname": "புனித பவுல் மிகி, தோழர்கள் - மறைசாட்சி"
     },
-    {
-      "id": "paul_of_the_cross_priest",
+    "paul_of_the_cross_priest": {
       "fullname": "புனித சிலுவை பவுல் - அருட்பணியாளர்"
     },
-    {
-      "id": "paul_of_thebes_hermit",
+    "paul_of_thebes_hermit": {
       "fullname": "தேப்சின் புனித பவுல் - வனத்து துறவி"
     },
-    {
-      "id": "paul_vi_pope",
+    "paul_vi_pope": {
       "fullname": "புனித ஆறாம் பவுல் - திருத்தந்தை"
     },
-    {
-      "id": "paulina_of_the_agonizing_heart_of_jesus_visintainer_virgin",
+    "paulina_of_the_agonizing_heart_of_jesus_visintainer_virgin": {
       "fullname": "வேதனைபடுகின்ற இயேசுவின் இருதய விசிண்டைனரின் புனித பவுலினா - கன்னி"
     },
-    {
-      "id": "paulinus_of_nola_bishop",
+    "paulinus_of_nola_bishop": {
       "fullname": "புனித பவுலினஸ் நோலா - ஆயர்"
     },
-    {
-      "id": "paulinus_of_trier_bishop",
+    "paulinus_of_trier_bishop": {
       "fullname": "புனித பவுலினஸ் டிரியர் - ஆயர்"
     },
-    {
-      "id": "paulinus_of_york_bishop",
+    "paulinus_of_york_bishop": {
       "fullname": "யோர்க்கின் புனித பவுலினஸ் - ஆயர்"
     },
-    {
-      "id": "pavel_peter_gojdic_bishop",
+    "pavel_peter_gojdic_bishop": {
       "fullname": "பேறுபெற்ற பாவெல் பேதுரு கொடுச் - ஆயர், மறைசாட்சி"
     },
-    {
-      "id": "pedro_calungsod_martyr",
+    "pedro_calungsod_martyr": {
       "fullname": "புனித பேதுரு களுங்சொட் - மறைசாட்சி"
     },
-    {
-      "id": "pelagius_of_cordoba_martyr",
+    "pelagius_of_cordoba_martyr": {
       "fullname": "புனித பெலெஜியச் கொர்டோபா - மறைசாட்சி"
     },
-    {
-      "id": "pentecost_sunday",
+    "pentecost_sunday": {
       "fullname": "பெந்தகோஸ்து ஞாயிறு"
     },
-    {
-      "id": "perpetua_of_carthage_and_felicity_of_carthage_martyrs",
+    "perpetua_of_carthage_and_felicity_of_carthage_martyrs": {
       "fullname": "புனிதரகள் பெர்பெட்சுவா, பெலிசிடி - மறைசாட்சிகள்"
     },
-    {
-      "id": "peter_and_paul_apostles",
+    "peter_and_paul_apostles": {
       "fullname": "புனிதர்கள் பேதுரு, பவுல் - திருத்தூதர்கள்"
     },
-    {
-      "id": "peter_baptist_blasquez_paul_miki_and_companions_martyrs",
+    "peter_baptist_blasquez_paul_miki_and_companions_martyrs": {
       "fullname": "புனிதர்கள் பேதுரு பப்டிஸ்ட் ப்ளாஸ்குவி, பவுல் மிக்கி, தோழர்கள் - மறைசாட்சிகள்"
     },
-    {
-      "id": "peter_canisius_priest",
+    "peter_canisius_priest": {
       "fullname": "புனித பேதுரு கனிசியஸ் - அருட்பணியாளர், மறைவல்லுனர்"
     },
-    {
-      "id": "peter_chanel_priest",
+    "peter_chanel_priest": {
       "fullname": "புனித பேதுரு சனல் - அருட்பணியாளர், மறைசாட்சி"
     },
-    {
-      "id": "peter_chanel_priest_patron_of_oceania",
+    "peter_chanel_priest_patron_of_oceania": {
       "fullname": "புனித பேதுரு சனல் - அருட்பணியாளர், ஓசானியாவின் முதல் மறைசாட்சி, ஓசானியாவின் பாதுகாவலர்"
     },
-    {
-      "id": "peter_chrysologus_bishop",
+    "peter_chrysologus_bishop": {
       "fullname": "புனித பேதுரு கிறிசலோகுஸ் - ஆயர், மறைவல்லுனர்"
     },
-    {
-      "id": "peter_claver_priest",
+    "peter_claver_priest": {
       "fullname": "புனித பேதுரு கிலேவர் - அருட்பணியாளர்"
     },
-    {
-      "id": "peter_damian_bishop",
+    "peter_damian_bishop": {
       "fullname": "புனித பேதுரு தாமியான் - ஆயர், மறைவல்லுனர்"
     },
-    {
-      "id": "peter_de_zuniga_and_louis_flores_priests",
+    "peter_de_zuniga_and_louis_flores_priests": {
       "fullname": "முத்திப்பேறுபெற்றவர்களான பேதுரு டி சினிகா, லுயிஸ் புளோரஸ் - அருட்பணியாளர், மறைசாட்சிகள்"
     },
-    {
-      "id": "peter_julian_eymard_priest",
+    "peter_julian_eymard_priest": {
       "fullname": "புனித பேதுரு ஜூலியன் எமார்ட் - அருட்பணியாளர்"
     },
-    {
-      "id": "peter_kibe_priest_and_companions_martyrs",
+    "peter_kibe_priest_and_companions_martyrs": {
       "fullname": "முத்திப்பேறுபெற்ற பேதுரு கிப், தோழர்கள் - அருட்பணியாளர், மறைசாட்சிகள்"
     },
-    {
-      "id": "peter_liu_wenyuan_martyr",
+    "peter_liu_wenyuan_martyr": {
       "fullname": "புனித பேதுரு லுயு வென்யுவான் - மறைசாட்சி"
     },
-    {
-      "id": "peter_of_alcantara_priest",
+    "peter_of_alcantara_priest": {
       "fullname": "அல்காந்திராவின் புனித பேதுரு - அருட்பணியாளர்"
     },
-    {
-      "id": "peter_sanz_bishop",
+    "peter_sanz_bishop": {
       "fullname": "புனித பேதுரு சான்ஸ் - ஆயர், மறைசாட்சி"
     },
-    {
-      "id": "peter_to_rot_martyr",
+    "peter_to_rot_martyr": {
       "fullname": "முத்திப்பேறுபெற்ற பேதுரு டொ ரொட் - மறைசாட்சி"
     },
-    {
-      "id": "peter_wu_guosheng_martyr",
+    "peter_wu_guosheng_martyr": {
       "fullname": "புனித பேற்று வூ குவாஷெங் - மறைசாட்சி"
     },
-    {
-      "id": "philip_and_james_apostles",
+    "philip_and_james_apostles": {
       "fullname": "புனிதர்கள் பிலிப், யாக்கோபு - அப்போஸ்தலர்கள்"
     },
-    {
-      "id": "philip_evans_and_john_lloyd_priests",
+    "philip_evans_and_john_lloyd_priests": {
       "fullname": "புனிதர்கள் பிலிப் இவான்ஸ், ஜோன் லொய்ட் - அருட்பணியாளர்கள், மறைசாட்சிகள்"
     },
-    {
-      "id": "philip_neri_priest",
+    "philip_neri_priest": {
       "fullname": "புனித பிலிப்பு நேரி - அருட்பணியாளர்"
     },
-    {
-      "id": "philip_of_jesus_de_las_casas_martyr",
+    "philip_of_jesus_de_las_casas_martyr": {
       "fullname": "இயேசு டி லாஸ் காசாசின் புனித பிலிப்பு - மறைசாட்சி"
     },
-    {
-      "id": "philip_of_jesus_de_las_casas_paul_miki_and_companions_martyrs",
+    "philip_of_jesus_de_las_casas_paul_miki_and_companions_martyrs": {
       "fullname": "இயேசு டி லாஸ் காசாசின் புனித பிலிப்பு, புனித பவுல் மிக்கி, தோழர்கள் - மறைசாட்சிகள்"
     },
-    {
-      "id": "pirmin_of_hornbach_abbot",
+    "pirmin_of_hornbach_abbot": {
       "fullname": "புனித பேர்மின் - மடாதிபதி"
     },
-    {
-      "id": "pius_francesco_forgione_priest",
+    "pius_francesco_forgione_priest": {
       "fullname": "பியட்ரெல்சினாவின் புனித பயஸ் (தந்தை பியோ) - அருட்பணியாளர்"
     },
-    {
-      "id": "pius_ix_pope",
+    "pius_ix_pope": {
       "fullname": "முத்திப்பேறுபெற்ற ஒன்பதாம் பயஸ் - திருத்தந்தை"
     },
-    {
-      "id": "pius_v_pope",
+    "pius_v_pope": {
       "fullname": "புனித ஐந்தாம் பயஸ் - திருத்தந்தை"
     },
-    {
-      "id": "pius_x_pope",
+    "pius_x_pope": {
       "fullname": "புனித பத்தாம் பயஸ் - திருத்தந்தை"
     },
-    {
-      "id": "polycarp_of_smyrna_bishop",
+    "polycarp_of_smyrna_bishop": {
       "fullname": "புனித பொலிகாப் - ஆயர், மறைசாட்சி"
     },
-    {
-      "id": "pontian_i_pope_and_hippolytus_of_rome_priest",
+    "pontian_i_pope_and_hippolytus_of_rome_priest": {
       "fullname": "புனிதர்கள் பொந்தியன், திருத்தந்தை, ஹிப்பொலிடஸ், அருட்பணியாளர், மறைசாட்சிகள்"
     },
-    {
-      "id": "pothinus_of_lyon_bishop_blandina_of_lyon_virgin_and_companions_martyrs",
+    "pothinus_of_lyon_bishop_blandina_of_lyon_virgin_and_companions_martyrs": {
       "fullname": "புனித பொதினுஸ் - ஆயர், புனித பிளண்டினா - கன்னி, தோழர்கள், மறைசாட்சிகள்"
     },
-    {
-      "id": "presentation_of_the_blessed_virgin_mary",
+    "presentation_of_the_blessed_virgin_mary": {
       "fullname": "கன்னி மரியாளை காணிக்கையாக ஒப்புக்கொடுத்தல்"
     },
-    {
-      "id": "presentation_of_the_lord",
+    "presentation_of_the_lord": {
       "fullname": "ஆண்டவரைக் காணிக்கையாக அர்ப்பணித்தல்"
     },
-    {
-      "id": "procopius_of_sazava_abbot",
+    "procopius_of_sazava_abbot": {
       "fullname": "சசாவின் புனித ப்ரொகொபியஸ் - மடாதிபதி"
     },
-    {
-      "id": "publius_of_malta_bishop",
+    "publius_of_malta_bishop": {
       "fullname": "புனித ப்ப்லியஸ் - ஆயர்"
     }
-  ]
+  }
 }

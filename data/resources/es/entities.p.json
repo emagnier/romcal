@@ -1,134 +1,102 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "es",
-  "entities": [
-    {
-      "id": "palm_sunday_of_the_passion_of_the_lord",
+  "entities": {
+    "palm_sunday_of_the_passion_of_the_lord": {
       "fullname": "Domingo de Ramos"
     },
-    {
-      "id": "pancras_of_rome_martyr",
+    "pancras_of_rome_martyr": {
       "fullname": "San Pancracio, mártir"
     },
-    {
-      "id": "paschal_baylon_religious",
+    "paschal_baylon_religious": {
       "fullname": "San Pascual Bailón, religioso"
     },
-    {
-      "id": "passion_of_saint_john_the_baptist",
+    "passion_of_saint_john_the_baptist": {
       "fullname": "Martirio de San Juan Bautista"
     },
-    {
-      "id": "patrick_of_ireland_bishop",
+    "patrick_of_ireland_bishop": {
       "fullname": "San Patricio, obispo"
     },
-    {
-      "id": "paul_miki_and_companions_martyrs",
+    "paul_miki_and_companions_martyrs": {
       "fullname": "Santos Pablo Miki y compañeros, mártires"
     },
-    {
-      "id": "paul_of_the_cross_priest",
+    "paul_of_the_cross_priest": {
       "fullname": "San Pablo de la Cruz, presbítero"
     },
-    {
-      "id": "paul_vi_pope",
+    "paul_vi_pope": {
       "fullname": "San Pablo VI, papa"
     },
-    {
-      "id": "paulinus_of_nola_bishop",
+    "paulinus_of_nola_bishop": {
       "fullname": "San Paulino de Nola, obispo"
     },
-    {
-      "id": "pelagius_of_cordoba_martyr",
+    "pelagius_of_cordoba_martyr": {
       "fullname": "San Pelayo, mártir"
     },
-    {
-      "id": "pentecost_sunday",
+    "pentecost_sunday": {
       "fullname": "Pentecostés"
     },
-    {
-      "id": "perpetua_of_carthage_and_felicity_of_carthage_martyrs",
+    "perpetua_of_carthage_and_felicity_of_carthage_martyrs": {
       "fullname": "Santas Perpetua y Felicidad, mártires"
     },
-    {
-      "id": "peter_and_paul_apostles",
+    "peter_and_paul_apostles": {
       "fullname": "San Pedro y San Pablo, apóstoles"
     },
-    {
-      "id": "peter_canisius_priest",
+    "peter_canisius_priest": {
       "fullname": "San Pedro Canisio, presbítero y doctor de la Iglesia"
     },
-    {
-      "id": "peter_chanel_priest",
+    "peter_chanel_priest": {
       "fullname": "San Pedro Chanel, presbítero y mártir"
     },
-    {
-      "id": "peter_chrysologus_bishop",
+    "peter_chrysologus_bishop": {
       "fullname": "San Pedro Crisólogo, obispo y doctor de la Iglesia"
     },
-    {
-      "id": "peter_claver_priest",
+    "peter_claver_priest": {
       "fullname": "San Pedro Claver, presbítero"
     },
-    {
-      "id": "peter_damian_bishop",
+    "peter_damian_bishop": {
       "fullname": "San Pedro Damián, obispo y doctor de la Iglesia"
     },
-    {
-      "id": "peter_de_zuniga_and_louis_flores_priests",
+    "peter_de_zuniga_and_louis_flores_priests": {
       "fullname": "Beatos Pedro Zuniga y Luis Flores, presbíteros y mártires"
     },
-    {
-      "id": "peter_julian_eymard_priest",
+    "peter_julian_eymard_priest": {
       "fullname": "San Pedro Julián Eymard, presbítero"
     },
-    {
-      "id": "peter_of_alcantara_priest",
+    "peter_of_alcantara_priest": {
       "fullname": "San Pedro de Alcántara, presbítero"
     },
-    {
-      "id": "philip_and_james_apostles",
+    "philip_and_james_apostles": {
       "fullname": "Santos Felipe y Santiago, apóstoles"
     },
-    {
-      "id": "philip_neri_priest",
+    "philip_neri_priest": {
       "fullname": "San Felipe Neri, presbítero"
     },
-    {
-      "id": "philip_of_jesus_de_las_casas_martyr",
+    "philip_of_jesus_de_las_casas_martyr": {
       "fullname": "San Felipe de Jesús de las Casas, mártir"
     },
-    {
-      "id": "pius_francesco_forgione_priest",
+    "pius_francesco_forgione_priest": {
       "fullname": "San Pío de Pietrelcina, presbítero"
     },
-    {
-      "id": "pius_ix_pope",
+    "pius_ix_pope": {
       "fullname": "Beato Pío IX, papa"
     },
-    {
-      "id": "pius_v_pope",
+    "pius_v_pope": {
       "fullname": "San Pío V, papa"
     },
-    {
-      "id": "pius_x_pope",
+    "pius_x_pope": {
       "fullname": "San Pío X, papa"
     },
-    {
-      "id": "polycarp_of_smyrna_bishop",
+    "polycarp_of_smyrna_bishop": {
       "fullname": "San Policarpo, obispo y mártir"
     },
-    {
-      "id": "pontian_i_pope_and_hippolytus_of_rome_priest",
+    "pontian_i_pope_and_hippolytus_of_rome_priest": {
       "fullname": "San Ponciano, papa y San Hipólito, presbítero, mártires,"
     },
-    {
-      "id": "presentation_of_the_blessed_virgin_mary",
+    "presentation_of_the_blessed_virgin_mary": {
       "fullname": "Presentación de la Santísima Virgen María"
     },
-    {
-      "id": "presentation_of_the_lord",
+    "presentation_of_the_lord": {
       "fullname": "Presentación de Jesús en el Templo"
     }
-  ]
+  }
 }

@@ -1,13 +1,12 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "en-gb",
-  "entities": [
-    {
-      "id": "bernardine_of_siena_priest",
+  "entities": {
+    "bernardine_of_siena_priest": {
       "fullname": "Saint Bernardine of Siena, Priest, Religious and Missionary",
       "_todo": [
         "TODO: This property should be removed after one can add titles within celebration definions."
       ]
     }
-  ]
+  }
 }

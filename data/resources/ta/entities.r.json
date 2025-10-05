@@ -1,90 +1,69 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "ta",
-  "entities": [
-    {
-      "id": "rabanus_maurus_bishop",
+  "entities": {
+    "rabanus_maurus_bishop": {
       "fullname": "புனித றபனுஸ் மௌருஸ் - ஆயர்"
     },
-    {
-      "id": "radim_of_gniezno_bishop",
+    "radim_of_gniezno_bishop": {
       "fullname": "புனித றடிம் - ஆயர்"
     },
-    {
-      "id": "rafqa_pietra_choboq_ar_rayes_virgin",
+    "rafqa_pietra_choboq_ar_rayes_virgin": {
       "fullname": "புனித ரப்கா பியட்ரா சொபொக் அர்-ரெயெஸ் - கன்னி"
     },
-    {
-      "id": "raphael_chylinski_priest",
+    "raphael_chylinski_priest": {
       "fullname": "முத்திப்பேறுபெற்ற ராபெல் சிலின்ஸ்கி - அருட்பணியாளர்"
     },
-    {
-      "id": "raphael_guizar_y_valencia_bishop",
+    "raphael_guizar_y_valencia_bishop": {
       "fullname": "புனித ராபெல் குயிசர் வலன்சியா - ஆயர்"
     },
-    {
-      "id": "raphael_of_saint_joseph_kalinowski_priest",
+    "raphael_of_saint_joseph_kalinowski_priest": {
       "fullname": "புனித சூசை கலினௌஸ்கியின் புனித ராபெல் - அருட்பணியாளர்"
     },
-    {
-      "id": "raymond_of_penyafort_priest",
+    "raymond_of_penyafort_priest": {
       "fullname": "புனித ரேமெண்ட் பெனியபொர்ட் - அருட்பணியாளர்"
     },
-    {
-      "id": "remigius_of_reims_bishop",
+    "remigius_of_reims_bishop": {
       "fullname": "புனித ரெமிஜியஸ் - ஆயர்"
     },
-    {
-      "id": "richard_gwyn_martyr",
+    "richard_gwyn_martyr": {
       "fullname": "புனித ரிசர்ட் குவின் - மறைசாட்சி"
     },
-    {
-      "id": "richard_of_chichester_bishop",
+    "richard_of_chichester_bishop": {
       "fullname": "புனித ர்சர்ட் சிசெஸ்டர் - ஆயர்"
     },
-    {
-      "id": "richardis_of_swabia_empress",
+    "richardis_of_swabia_empress": {
       "fullname": "புனித ரிசர்டிஸ் - அரசி"
     },
-    {
-      "id": "rita_of_cascia_religious",
+    "rita_of_cascia_religious": {
       "fullname": "புனித றீடா காசியா - துறவி"
     },
-    {
-      "id": "robert_bellarmine_bishop",
+    "robert_bellarmine_bishop": {
       "fullname": "புனித ரொபெர்ட் பெளார்மின் - ஆயர், மறைவல்லுனர்"
     },
-    {
-      "id": "roch_gonzalez_alphonsus_rodriguez_and_john_del_castillo_priests",
+    "roch_gonzalez_alphonsus_rodriguez_and_john_del_castillo_priests": {
       "fullname": "புனிதர்கள் ரோச் கொன்சால்வேஸ், அல்போன்சஸ் ரொட்றிகோஸ், ஜோன் டி கஸ்டில்லோ - அருட்பணியாளர்கள், மறைசாட்சிகள்"
     },
-    {
-      "id": "roch_of_montpellier",
+    "roch_of_montpellier": {
       "fullname": "புனித றோச்"
     },
-    {
-      "id": "romuald_of_ravenna_abbot",
+    "romuald_of_ravenna_abbot": {
       "fullname": "புனித ரொமுவல்ட் - மடாதிபதி"
     },
-    {
-      "id": "rosalie_jeanne_marie_rendu_virgin",
+    "rosalie_jeanne_marie_rendu_virgin": {
       "fullname": "முத்திப்பேறுபெற்ற றொசலி ரெண்டு - கன்னி"
     },
-    {
-      "id": "rose_of_lima_virgin",
+    "rose_of_lima_virgin": {
       "fullname": "புனித றோஸ் லிமா - கன்னி"
     },
-    {
-      "id": "rose_of_lima_virgin_copatroness_of_the_philippines",
+    "rose_of_lima_virgin_copatroness_of_the_philippines": {
       "fullname": "புனித றோஸ் லிமா - கன்னி, பிலிப்பின் நாட்டின் பாதுகாவலி"
     },
-    {
-      "id": "rose_philippine_duchesne_virgin",
+    "rose_philippine_duchesne_virgin": {
       "fullname": "புனித றோஸ் பிலிப்பின் டசெஸ்ன் - கன்னி"
     },
-    {
-      "id": "rupert_of_salzburg_and_virgilius_of_salzburg_bishops",
+    "rupert_of_salzburg_and_virgilius_of_salzburg_bishops": {
       "fullname": "புனிதர்கள் ரூபர்ட், விஜிலியஸ் சால்ஸ்பெர்க் - ஆயர்"
     }
-  ]
+  }
 }

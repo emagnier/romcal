@@ -1,126 +1,96 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "ta",
-  "entities": [
-    {
-      "id": "salomea_of_poland_religious",
+  "entities": {
+    "salomea_of_poland_religious": {
       "fullname": "போலந்தின் முத்திப்பேறுபெற்ற சாலோமியா - துறவி"
     },
-    {
-      "id": "sancha_of_portugal_and_mafalda_of_portugal_virgins",
+    "sancha_of_portugal_and_mafalda_of_portugal_virgins": {
       "fullname": "முத்திப்பேறுபெற்றவர்களான சன்சா, மபல்டா - கன்னியர்கள்"
     },
-    {
-      "id": "sara_salkahazi_virgin",
+    "sara_salkahazi_virgin": {
       "fullname": "முத்திப்பேறுபெற்ற சாரா சல்கஹசி - கன்னி, மறைசாட்சி"
     },
-    {
-      "id": "scholastica_of_nursia_virgin",
+    "scholastica_of_nursia_virgin": {
       "fullname": "புனித ஸ்கொலஸ்டிகா - கன்னி"
     },
-    {
-      "id": "sebastian_de_aparicio_religious",
+    "sebastian_de_aparicio_religious": {
       "fullname": "முத்திப்பேறுபெற்ற செபஸ்தியன் டி அபரிச்சியோ - துறவி"
     },
-    {
-      "id": "sebastian_of_milan_martyr",
+    "sebastian_of_milan_martyr": {
       "fullname": "புனித செபஸ்தியன் - மறைசாட்சி"
     },
-    {
-      "id": "senan_of_inis_cathaigh_bishop",
+    "senan_of_inis_cathaigh_bishop": {
       "fullname": "புனித செனன் - ஆயர்"
     },
-    {
-      "id": "seven_holy_founders_of_the_servite_order",
+    "seven_holy_founders_of_the_servite_order": {
       "fullname": "செவைட் துறவற சபையின் ஏழு நிறுவனர்கள்"
     },
-    {
-      "id": "seven_martyred_nuns_from_the_franciscan_missionaries_of_mary",
+    "seven_martyred_nuns_from_the_franciscan_missionaries_of_mary": {
       "fullname": "புனித மரியாளின் பிரான்சிஸ்கன் வேதபோதக கன்னியர்களின் ஏழு மறைசாட்சிகள்"
     },
-    {
-      "id": "severinus_of_noricum_monk",
+    "severinus_of_noricum_monk": {
       "fullname": "நோரிகும் புனித செவெரினுஸ் - துறவி"
     },
-    {
-      "id": "sharbel_makhluf_priest",
+    "sharbel_makhluf_priest": {
       "fullname": "புனித ஷர்பெல் மஹ்லுப் - அருட்பணியாளர்"
     },
-    {
-      "id": "shipwreck_of_saint_paul_apostle",
+    "shipwreck_of_saint_paul_apostle": {
       "fullname": "கப்பல் விபத்தில் சிக்கிய புனித பவுல் - அப்போஸ்த்தலர்"
     },
-    {
-      "id": "sigismund_of_burgundy_martyr",
+    "sigismund_of_burgundy_martyr": {
       "fullname": "புனித சிகிஸ்முண்ட் - மறைசாட்சி"
     },
-    {
-      "id": "sigmund_felix_felinski_bishop",
+    "sigmund_felix_felinski_bishop": {
       "fullname": "புனித சிக்மண்ட் பீலிக்ஸ் பெலின்ஸ்கி - ஆயர்"
     },
-    {
-      "id": "simon_and_jude_apostles",
+    "simon_and_jude_apostles": {
       "fullname": "புனிதர்கள் சீமோன், யூதா - அப்போஸ்தலர்கள்"
     },
-    {
-      "id": "simon_of_lipnica_priest",
+    "simon_of_lipnica_priest": {
       "fullname": "லிப்னிக்காவின் புனித சீமோன் - அருட்பணியாளர்"
     },
-    {
-      "id": "six_welsh_martyrs_and_companions",
+    "six_welsh_martyrs_and_companions": {
       "fullname": "வேல்ஸின் ஆறு மறைசாட்சிகள் - தோழர்கள்"
     },
-    {
-      "id": "sixtus_ii_pope_and_companions_martyrs",
+    "sixtus_ii_pope_and_companions_martyrs": {
       "fullname": "புனித இரண்டாம் சிக்ஸ்டஸ் - திருத்தந்தை, தோழர்கள், மறைசாட்சிகள்"
     },
-    {
-      "id": "spyridon_of_trimythous_bishop",
+    "spyridon_of_trimythous_bishop": {
       "fullname": "புனித ஸ்பிறிடன் - ஆயர்"
     },
-    {
-      "id": "stanislaus_kazimierczyk_priest",
+    "stanislaus_kazimierczyk_priest": {
       "fullname": "புனித ஸ்டனிஸ்லௌஸ் கசிமியர்ஸ்கி - ஆயர்"
     },
-    {
-      "id": "stanislaus_kostka_religious",
+    "stanislaus_kostka_religious": {
       "fullname": "புனித ஸ்டனிஸ்லௌஸ் கொஸ்ட்கா - துறவி"
     },
-    {
-      "id": "stanislaus_of_szczepanow_bishop",
+    "stanislaus_of_szczepanow_bishop": {
       "fullname": "புனித ஸ்டனிஸ்லௌஸ் - ஆயர், மறைசாட்சி"
     },
-    {
-      "id": "stanislaus_of_szczepanow_bishop_patron_of_poland",
+    "stanislaus_of_szczepanow_bishop_patron_of_poland": {
       "fullname": "புனித ஸ்டனிஸ்லௌஸ் - ஆயர், மறைசாட்சி, போலந்தின் பாதுகாவலர்"
     },
-    {
-      "id": "stephen_i_of_hungary",
+    "stephen_i_of_hungary": {
       "fullname": "ஹங்கேரியின் புனித ஸ்தேவான்"
     },
-    {
-      "id": "stephen_the_first_martyr",
+    "stephen_the_first_martyr": {
       "fullname": "புனித ஸ்தேவான் - முதல் மறைசாட்சி"
     },
-    {
-      "id": "sunday_of_the_word_of_god",
+    "sunday_of_the_word_of_god": {
       "fullname": "இறைவார்த்தை ஞாயிறு"
     },
-    {
-      "id": "sunniva_of_norway_virgin",
+    "sunniva_of_norway_virgin": {
       "fullname": "புனித சுனிவா - கன்னி, மறைசாட்சி"
     },
-    {
-      "id": "swithun_of_winchester_bishop",
+    "swithun_of_winchester_bishop": {
       "fullname": "புனித சுவிதுன் - ஆயர்"
     },
-    {
-      "id": "sylvester_i_pope",
+    "sylvester_i_pope": {
       "fullname": "புனித முதலாம் சில்வெஸ்டர் - திருத்தந்தை"
     },
-    {
-      "id": "szilard_bogdanffy_bishop",
+    "szilard_bogdanffy_bishop": {
       "fullname": "முத்திப்பேற்பெற்ற சிலர்ட் பொக்தன்பி - ஆயர், மறைசாட்சி"
     }
-  ]
+  }
 }

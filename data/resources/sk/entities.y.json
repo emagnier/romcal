@@ -1,10 +1,9 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "sk",
-  "entities": [
-    {
-      "id": "yolanda_of_poland_religious",
+  "entities": {
+    "yolanda_of_poland_religious": {
       "fullname": "Blahoslavenej Jolany, rehoľníčky"
     }
-  ]
+  }
 }

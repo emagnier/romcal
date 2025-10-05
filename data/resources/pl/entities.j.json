@@ -1,185 +1,141 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "pl",
-  "entities": [
-    {
-      "id": "james_apostle",
+  "entities": {
+    "james_apostle": {
       "fullname": "Św. Jakuba, Apostoła"
     },
-    {
-      "id": "james_strzemie_bishop",
+    "james_strzemie_bishop": {
       "fullname": "Bł. Jakuba Strzemię, biskupa"
     },
-    {
-      "id": "jane_frances_de_chantal_religious",
+    "jane_frances_de_chantal_religious": {
       "fullname": "Św. Joanny Franciszki de Chantal, zakonnicy"
     },
-    {
-      "id": "januarius_i_of_benevento_bishop",
+    "januarius_i_of_benevento_bishop": {
       "fullname": "Św. Januarego, biskupa i męczennika"
     },
-    {
-      "id": "jerome_emiliani",
+    "jerome_emiliani": {
       "fullname": "Św. Hieronima Emilianiego"
     },
-    {
-      "id": "jerome_of_stridon_priest",
+    "jerome_of_stridon_priest": {
       "fullname": "Św. Hieronima, prezbitera i doktora Kościoła"
     },
-    {
-      "id": "joachim_and_anne_parents_of_mary",
+    "joachim_and_anne_parents_of_mary": {
       "fullname": "Świętych Joachima i Anny, rodziców Najświętszej Maryi Panny"
     },
-    {
-      "id": "joachim_he_kaizhi_martyr",
+    "joachim_he_kaizhi_martyr": {
       "fullname": "Św. Joachima He Kaizhi, męczennika"
     },
-    {
-      "id": "john_apostle",
+    "john_apostle": {
       "fullname": "Św. Jana, Apostoła i Ewangelisty"
     },
-    {
-      "id": "john_baptist_de_la_salle_priest",
+    "john_baptist_de_la_salle_priest": {
       "fullname": "Św. Jana Chrzciciela de la Salle, prezbitera"
     },
-    {
-      "id": "john_beyzym_priest",
+    "john_beyzym_priest": {
       "fullname": "Bł. Jana Beyzyma, prezbitera"
     },
-    {
-      "id": "john_bosco_priest",
+    "john_bosco_priest": {
       "fullname": "Św. Jana Bosko, prezbitera"
     },
-    {
-      "id": "john_chrysostom_bishop",
+    "john_chrysostom_bishop": {
       "fullname": "Św. Jana Chryzostoma, biskupa i doktora Kościoła"
     },
-    {
-      "id": "john_damascene_priest",
+    "john_damascene_priest": {
       "fullname": "Św. Jana Damasceńskiego, prezbitera i doktora Kościoła"
     },
-    {
-      "id": "john_de_brebeuf_isaac_jogues_priests_and_companions_martyrs",
+    "john_de_brebeuf_isaac_jogues_priests_and_companions_martyrs": {
       "fullname": "Świętych męczenników Jana de Brebeuf, Izaaka Jogues’a, prezbiterów, i Towarzyszy"
     },
-    {
-      "id": "john_eudes_priest",
+    "john_eudes_priest": {
       "fullname": "Św. Jana Eudesa, prezbitera"
     },
-    {
-      "id": "john_fisher_bishop_and_thomas_more_martyrs",
+    "john_fisher_bishop_and_thomas_more_martyrs": {
       "fullname": "Świętych męczenników Jana Fishera, biskupa i Tomasza More’a"
     },
-    {
-      "id": "john_gabriel_perboyre_priest",
+    "john_gabriel_perboyre_priest": {
       "fullname": "Św. Jana Gabriela Perboyre’a, prezbitera i męczennika"
     },
-    {
-      "id": "john_i_pope",
+    "john_i_pope": {
       "fullname": "Św. Jana I, papieża i męczennika"
     },
-    {
-      "id": "john_leonardi_priest",
+    "john_leonardi_priest": {
       "fullname": "Św. Jana Leonardiego, prezbitera"
     },
-    {
-      "id": "john_martin_moye_priest",
+    "john_martin_moye_priest": {
       "fullname": "Bł. Jana Marcina Moyego, prezbitera"
     },
-    {
-      "id": "john_mary_vianney_priest",
+    "john_mary_vianney_priest": {
       "fullname": "Św. Jana Marii Vianneya, prezbitera"
     },
-    {
-      "id": "john_of_avila_priest",
+    "john_of_avila_priest": {
       "fullname": "Św. Jana z Ávili, prezbitera i doktora Kościoła",
       "sources": [
         "https://pl.wikipedia.org/wiki/Jan_z_%C3%81vili"
       ]
     },
-    {
-      "id": "john_of_capistrano_priest",
+    "john_of_capistrano_priest": {
       "fullname": "Św. Jana Kapistrana, prezbitera"
     },
-    {
-      "id": "john_of_dukla_priest",
+    "john_of_dukla_priest": {
       "fullname": "Św. Jana z Dukli, prezbitera"
     },
-    {
-      "id": "john_of_god_duarte_cidade_religious",
+    "john_of_god_duarte_cidade_religious": {
       "fullname": "Św. Jana Bożego, zakonnika"
     },
-    {
-      "id": "john_of_kanty_priest",
+    "john_of_kanty_priest": {
       "fullname": "Św. Jana Kantego, prezbitera"
     },
-    {
-      "id": "john_of_the_cross_priest",
+    "john_of_the_cross_priest": {
       "fullname": "Św. Jana od Krzyża, prezbitera i doktora Kościoła"
     },
-    {
-      "id": "john_of_triora_priest",
+    "john_of_triora_priest": {
       "fullname": "Św. Jana z Triory, prezbitera i męczennika"
     },
-    {
-      "id": "john_paul_ii_pope",
+    "john_paul_ii_pope": {
       "fullname": "Św. Jana Pawła II, papieża"
     },
-    {
-      "id": "john_sarkander_priest",
+    "john_sarkander_priest": {
       "fullname": "Św. Jana Sarkandra, prezbitera i męczennika"
     },
-    {
-      "id": "john_xxiii_pope",
+    "john_xxiii_pope": {
       "fullname": "Św. Jana XXIII, papieża"
     },
-    {
-      "id": "josaphat_kuntsevych_bishop",
+    "josaphat_kuntsevych_bishop": {
       "fullname": "Św. Jozafata, biskupa i męczennika"
     },
-    {
-      "id": "joseph_bilczewski_bishop",
+    "joseph_bilczewski_bishop": {
       "fullname": "Św. Józefa Bilczewskiego, biskupa"
     },
-    {
-      "id": "joseph_freinademetz_priest",
+    "joseph_freinademetz_priest": {
       "fullname": "Św. Józefa Freinademetza, prezbitera"
     },
-    {
-      "id": "joseph_of_calasanz_priest",
+    "joseph_of_calasanz_priest": {
       "fullname": "Św. Józefa Kalasantego, prezbitera"
     },
-    {
-      "id": "joseph_sebastian_pelczar_bishop",
+    "joseph_sebastian_pelczar_bishop": {
       "fullname": "Św. Józefa Sebastiana Pelczara, biskupa"
     },
-    {
-      "id": "joseph_spouse_of_mary",
+    "joseph_spouse_of_mary": {
       "fullname": "Św. Józefa, Oblubieńca Najświętszej Maryi Panny"
     },
-    {
-      "id": "joseph_the_worker",
+    "joseph_the_worker": {
       "fullname": "Św. Józefa, rzemieślnika"
     },
-    {
-      "id": "joseph_yuan_gengyin_priest",
+    "joseph_yuan_gengyin_priest": {
       "fullname": "Św. Józefa Yuana, prezbitera i męczennika"
     },
-    {
-      "id": "joseph_zhang_dapeng_martyr",
+    "joseph_zhang_dapeng_martyr": {
       "fullname": "Św. Józefa Zhang Dapenga, męczennika"
     },
-    {
-      "id": "josephine_bakhita_virgin",
+    "josephine_bakhita_virgin": {
       "fullname": "Św. Józefiny Bakhity, dziewicy"
     },
-    {
-      "id": "juan_diego_cuauhtlatoatzin",
+    "juan_diego_cuauhtlatoatzin": {
       "fullname": "Św. Jana Diego Cuahtlatoatzin"
     },
-    {
-      "id": "justin_martyr",
+    "justin_martyr": {
       "fullname": "Św. Justyna, męczennika"
     }
-  ]
+  }
 }

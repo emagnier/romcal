@@ -1,34 +1,27 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "it",
-  "entities": [
-    {
-      "id": "george_of_lydda_martyr",
+  "entities": {
+    "george_of_lydda_martyr": {
       "fullname": "San Giorgio, martire"
     },
-    {
-      "id": "george_of_lydda_martyr_patron_of_england",
+    "george_of_lydda_martyr_patron_of_england": {
       "fullname": "San Giorgio, martire e patrono d’Inghilterra"
     },
-    {
-      "id": "germain_of_paris_bishop",
+    "germain_of_paris_bishop": {
       "fullname": "San Germano di Parigi, vescovo"
     },
-    {
-      "id": "gertrude_the_great_virgin",
+    "gertrude_the_great_virgin": {
       "fullname": "Santa Geltrude, vergine"
     },
-    {
-      "id": "gregory_i_the_great_pope",
+    "gregory_i_the_great_pope": {
       "fullname": "San Gregorio Magno, papa e dottore della Chiesa"
     },
-    {
-      "id": "gregory_of_narek_abbot",
+    "gregory_of_narek_abbot": {
       "fullname": "San Gregorio di Narek, abate e dottore della Chiesa"
     },
-    {
-      "id": "gregory_vii_pope",
+    "gregory_vii_pope": {
       "fullname": "San Gregorio VII, papa"
     }
-  ]
+  }
 }

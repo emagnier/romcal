@@ -1,65 +1,51 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "pt-br",
-  "entities": [
-    {
-      "id": "teresa_benedicta_of_the_cross_stein_virgin",
+  "entities": {
+    "teresa_benedicta_of_the_cross_stein_virgin": {
       "fullname": "Santa Teresa Benedita da Cruz, virgem e mártir"
     },
-    {
-      "id": "teresa_of_jesus_of_avila_virgin",
+    "teresa_of_jesus_of_avila_virgin": {
       "fullname": "Santa Teresa de Jesus, virgem e doutora da Igreja",
       "sources": [
         "https://www.cnbb.org.br/liturgia-diaria/ 15-Oct-2025 (Retrieved 24-Jun-2025)"
       ]
     },
-    {
-      "id": "teresa_of_portugal_religious",
+    "teresa_of_portugal_religious": {
       "fullname": "Beata Teresa de Portugal, religiosa"
     },
-    {
-      "id": "theotonius_of_coimbra_priest",
+    "theotonius_of_coimbra_priest": {
       "fullname": "Santo Teotónio, presbítero"
     },
-    {
-      "id": "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin",
+    "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin": {
       "fullname": "Santa Teresinha do Menino Jesus, virgem e doutora da Igreja"
     },
-    {
-      "id": "thomas_apostle",
+    "thomas_apostle": {
       "fullname": "São Tomé, apóstolo"
     },
-    {
-      "id": "thomas_aquinas_priest",
+    "thomas_aquinas_priest": {
       "fullname": "São Tomás de Aquino, presbítero e doutor da Igreja"
     },
-    {
-      "id": "thomas_becket_bishop",
+    "thomas_becket_bishop": {
       "fullname": "São Tomás de Cantuária, bispo"
     },
-    {
-      "id": "thomas_jean_georges_rehm_priest",
+    "thomas_jean_georges_rehm_priest": {
       "fullname": "Beato Tomás João Jorge Rehm, presbítero e mártir"
     },
-    {
-      "id": "thursday_of_the_lords_supper",
+    "thursday_of_the_lords_supper": {
       "fullname": "$(names:holy_thursday)"
     },
-    {
-      "id": "timothy_of_ephesus_and_titus_of_crete_bishops",
+    "timothy_of_ephesus_and_titus_of_crete_bishops": {
       "fullname": "Santos Timóteo e Tito, bispos"
     },
-    {
-      "id": "transfiguration_of_the_lord",
+    "transfiguration_of_the_lord": {
       "fullname": "Transfiguração do Senhor"
     },
-    {
-      "id": "translation_of_the_relics_of_odile_of_alsace_abbess",
+    "translation_of_the_relics_of_odile_of_alsace_abbess": {
       "fullname": "Trasladação dos restos mortais da Santa Odília"
     },
-    {
-      "id": "turibius_of_mogrovejo_bishop",
+    "turibius_of_mogrovejo_bishop": {
       "fullname": "São Turíbio de Mongrovejo, bispo"
     }
-  ]
+  }
 }

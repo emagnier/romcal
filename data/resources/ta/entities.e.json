@@ -1,130 +1,99 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "ta",
-  "entities": [
-    {
-      "id": "easter_sunday",
+  "entities": {
+    "easter_sunday": {
       "fullname": "ஆண்டவருடைய உயிர்ப்பின் பாஸ்கா ஞாயிறு"
     },
-    {
-      "id": "edmund_bojanowski",
+    "edmund_bojanowski": {
       "fullname": "முத்திபேறுபெற்ற எட்மண்ட் போஜோனோஸ்கி"
     },
-    {
-      "id": "edmund_campion_priest",
+    "edmund_campion_priest": {
       "fullname": "புனித எட்மண்ட் காம்பியன் - அருட்பணியாளர், மறைசாட்சி"
     },
-    {
-      "id": "edmund_ignatius_rice_religious",
+    "edmund_ignatius_rice_religious": {
       "fullname": "முத்திப்பேறுபெற்ற எட்மண்ட் ரைஸ் - துறவி"
     },
-    {
-      "id": "edmund_of_abingdon_bishop",
+    "edmund_of_abingdon_bishop": {
       "fullname": "அபிங்கடனின் புனித எட்மண்ட் - ஆயர்"
     },
-    {
-      "id": "edward_the_confessor",
+    "edward_the_confessor": {
       "fullname": "ஒப்புரவாளராகிய புனித எட்வட்"
     },
-    {
-      "id": "eligius_of_noyon_bishop",
+    "eligius_of_noyon_bishop": {
       "fullname": "புனித எலோய் - ஆயர்"
     },
-    {
-      "id": "elijah_prophet",
+    "elijah_prophet": {
       "fullname": "புனித எலியாஸ் - இறைவாக்கினர்"
     },
-    {
-      "id": "elizabeth_ann_seton_religious",
+    "elizabeth_ann_seton_religious": {
       "fullname": "புனித எலிசபெத் அன்னாள் செடன் - துறவி"
     },
-    {
-      "id": "elizabeth_hesselblad_religious",
+    "elizabeth_hesselblad_religious": {
       "fullname": "புனித எலிசபெத் ஹசல்பிளட் - துறவி"
     },
-    {
-      "id": "elizabeth_of_hungary_religious",
+    "elizabeth_of_hungary_religious": {
       "fullname": "ஹங்கேரியின் புனித எலிசபெத் - துறவி"
     },
-    {
-      "id": "elizabeth_of_portugal",
+    "elizabeth_of_portugal": {
       "fullname": "போர்த்துக்கல் நாட்டுப் புனித எலிசபெத்"
     },
-    {
-      "id": "emeric_of_hungary",
+    "emeric_of_hungary": {
       "fullname": "புனித எமறிச்"
     },
-    {
-      "id": "emilie_tavernier_gamelin_religious",
+    "emilie_tavernier_gamelin_religious": {
       "fullname": "முத்திப்பேறுபெற்ற எமிலி ட்ரவனியர் கெமலின் - துறவி"
     },
-    {
-      "id": "enda_of_aran_abbot",
+    "enda_of_aran_abbot": {
       "fullname": "புனித எண்டா - மடாதிபதி"
     },
-    {
-      "id": "english_martyrs",
+    "english_martyrs": {
       "fullname": "ஆங்கிலேய மறைசாட்சிகள்"
     },
-    {
-      "id": "eoghan_of_ardstraw_bishop",
+    "eoghan_of_ardstraw_bishop": {
       "fullname": "புனித இயோகன் - ஆயர்"
     },
-    {
-      "id": "ephrem_the_syrian_deacon",
+    "ephrem_the_syrian_deacon": {
       "fullname": "புனித எப்ரெம் - தியாக்கோன், மறைவல்லுநர்"
     },
-    {
-      "id": "epiphany_of_the_lord",
+    "epiphany_of_the_lord": {
       "fullname": "ஆண்டவரின் திருக்காட்சி"
     },
-    {
-      "id": "eric_ix_of_sweden_martyr",
+    "eric_ix_of_sweden_martyr": {
       "fullname": "சுவீடனின் ஒன்பதாம் எரிக் - மறைச்சாட்சி"
     },
-    {
-      "id": "etheldreda_of_ely_abbess",
+    "etheldreda_of_ely_abbess": {
       "fullname": "புனித எதல்றிடா - மடாதிபதி"
     },
-    {
-      "id": "eucharius_of_trier_bishop",
+    "eucharius_of_trier_bishop": {
       "fullname": "புனித யுகேறியஸ் - ஆயர்"
     },
-    {
-      "id": "eugene_de_mazenod_bishop",
+    "eugene_de_mazenod_bishop": {
       "fullname": "புனித யூஜின் டி மசினோட் - ஆயர்"
     },
-    {
-      "id": "eugenia_of_alsace_and_attala_of_alsace_virgins",
+    "eugenia_of_alsace_and_attala_of_alsace_virgins": {
       "fullname": "புனித அத்தாலேயின் புனித யூனினி - கன்னி"
     },
-    {
-      "id": "eulalia_of_merida_virgin",
+    "eulalia_of_merida_virgin": {
       "fullname": "மெறிடாவின் புனித யுலாலியா - கன்னி, மறைசாட்சி"
     },
-    {
-      "id": "eulogius_of_cordoba_bishop",
+    "eulogius_of_cordoba_bishop": {
       "fullname": "கொர்டோபாவின் முத்திபேறுபெற்ற யூலொஜியஸ் - ஆயர்"
     },
-    {
-      "id": "eusebius_of_esztergom_priest",
+    "eusebius_of_esztergom_priest": {
       "fullname": "எஸ்டர்கோமின் முத்திபேறுபெற்ற யுசெபியஸ் - அருட்பணியாளர்"
     },
-    {
-      "id": "eusebius_of_vercelli_bishop",
+    "eusebius_of_vercelli_bishop": {
       "fullname": "வெர்செலியின் யுசெபியஸ் - ஆயர்"
     },
-    {
-      "id": "exaltation_of_the_holy_cross",
+    "exaltation_of_the_holy_cross": {
       "fullname": "திருச்சிலுவையின் மாட்சி"
     },
-    {
-      "id": "eysteinn_of_nidaros_bishop",
+    "eysteinn_of_nidaros_bishop": {
       "fullname": "நிடரோசின் புனித ஈஸ்டின் - ஆயர்"
     },
-    {
-      "id": "ezequiel_moreno_bishop",
+    "ezequiel_moreno_bishop": {
       "fullname": "புனித எசெகுவெல் மொறினோ - ஆயர்"
     }
-  ]
+  }
 }

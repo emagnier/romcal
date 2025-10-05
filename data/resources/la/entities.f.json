@@ -1,158 +1,120 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "la",
-  "entities": [
-    {
-      "id": "fabian_i_pope",
+  "entities": {
+    "fabian_i_pope": {
       "fullname": "S. Fabiani, papæ et martyris"
     },
-    {
-      "id": "fachanan_of_kilfenora_bishop",
+    "fachanan_of_kilfenora_bishop": {
       "fullname": "S. Fachanani Finaborensis, episcopi"
     },
-    {
-      "id": "fachtna_of_rosscarbery_bishop",
+    "fachtna_of_rosscarbery_bishop": {
       "fullname": "S. Fachanani, episcopi"
     },
-    {
-      "id": "faustina_kowalska_virgin",
+    "faustina_kowalska_virgin": {
       "fullname": "S. Faustinæ Kowalska, virginis"
     },
-    {
-      "id": "ferdinand_iii_of_castile",
+    "ferdinand_iii_of_castile": {
       "fullname": "S. Ferdinandi"
     },
-    {
-      "id": "fiacre_of_breuil_monk",
+    "fiacre_of_breuil_monk": {
       "fullname": "S. Fiacrii, monachi"
     },
-    {
-      "id": "fidelis_of_sigmaringen_priest",
+    "fidelis_of_sigmaringen_priest": {
       "fullname": "S. Fidelis a Sigmaringen, presbyteri et martyris"
     },
-    {
-      "id": "finbarr_of_cork_bishop",
+    "finbarr_of_cork_bishop": {
       "fullname": "S. Barri Corcagie, episcopi"
     },
-    {
-      "id": "finding_of_the_holy_cross",
+    "finding_of_the_holy_cross": {
       "fullname": "In Inventione Sanctæ Crucis"
     },
-    {
-      "id": "finnian_of_clonard_bishop",
+    "finnian_of_clonard_bishop": {
       "fullname": "S. Finniani Clonardensis, episcopi"
     },
-    {
-      "id": "fintan_of_clonenagh_abbot",
+    "fintan_of_clonenagh_abbot": {
       "fullname": "S. Fintani, abbatis"
     },
-    {
-      "id": "first_martyrs_of_the_holy_roman_church",
+    "first_martyrs_of_the_holy_roman_church": {
       "fullname": "Ss. Protomartyrum S. Romanæ Ecclesiæ"
     },
-    {
-      "id": "first_polish_martyrs",
+    "first_polish_martyrs": {
       "fullname": "Ss. Benedicti, Ioannis, Matthæi, Isaac, Christiani, martyrum"
     },
-    {
-      "id": "five_wounds_of_the_lord",
+    "five_wounds_of_the_lord": {
       "fullname": "Ss.mi D. N. I. C. quinque vulneribus"
     },
-    {
-      "id": "flannan_of_killaloe_bishop",
+    "flannan_of_killaloe_bishop": {
       "fullname": "S. Flannani, episcopi"
     },
-    {
-      "id": "florentius_of_strasbourg_bishop",
+    "florentius_of_strasbourg_bishop": {
       "fullname": "S. Florentii Florentii Argentinensis, episcopi"
     },
-    {
-      "id": "florian_of_lorch_and_companions_martyrs",
+    "florian_of_lorch_and_companions_martyrs": {
       "fullname": "Ss. Floriani et sociorum, martyrum"
     },
-    {
-      "id": "florian_of_lorch_martyr",
+    "florian_of_lorch_martyr": {
       "fullname": "S. Floriani, martyris"
     },
-    {
-      "id": "frances_of_rome_religious",
+    "frances_of_rome_religious": {
       "fullname": "S. Franciscæ Romanæ, religiosæ"
     },
-    {
-      "id": "frances_xavier_cabrini_virgin",
+    "frances_xavier_cabrini_virgin": {
       "fullname": "S. Franciscæ Xaveriæ Cabrini, virginis"
     },
-    {
-      "id": "francis_borgia_priest",
+    "francis_borgia_priest": {
       "fullname": "S. Francisci Borgia, presbyteri"
     },
-    {
-      "id": "francis_de_sales_bishop",
+    "francis_de_sales_bishop": {
       "fullname": "S. Francisci de Sales, episcopi et Ecclesiæ doctoris"
     },
-    {
-      "id": "francis_diaz_del_rincon_priest_and_companions_martyrs",
+    "francis_diaz_del_rincon_priest_and_companions_martyrs": {
       "fullname": "Ss. Francisci Diaz, presbyteri, et sociorum, martyrum"
     },
-    {
-      "id": "francis_ferdinand_de_capillas_priest",
+    "francis_ferdinand_de_capillas_priest": {
       "fullname": "S. Francisci Fernández de Capillas, presbyteri et martyris"
     },
-    {
-      "id": "francis_of_assisi",
+    "francis_of_assisi": {
       "fullname": "S. Francisci Assisiensis"
     },
-    {
-      "id": "francis_of_assisi_patron_of_italy",
+    "francis_of_assisi_patron_of_italy": {
       "fullname": "S. Francisci Assisiensis, patroni Italiæ"
     },
-    {
-      "id": "francis_of_paola_hermit",
+    "francis_of_paola_hermit": {
       "fullname": "S. Francisci de Paola, eremitæ"
     },
-    {
-      "id": "francis_solanus_priest",
+    "francis_solanus_priest": {
       "fullname": "S. Francisci Solani, presbyteri"
     },
-    {
-      "id": "francis_xavier_priest",
+    "francis_xavier_priest": {
       "fullname": "S. Francisci Xavier, presbyteri"
     },
-    {
-      "id": "francis_xavier_seelos_priest",
+    "francis_xavier_seelos_priest": {
       "fullname": "B. Francisci Xaverii Seelos, presbyteri"
     },
-    {
-      "id": "francois_de_montmorency_laval_bishop",
+    "francois_de_montmorency_laval_bishop": {
       "fullname": "S. Francisci de Montmorency-Laval, episcopi"
     },
-    {
-      "id": "frederic_janssoone_priest",
+    "frederic_janssoone_priest": {
       "fullname": "B. Friderici Janssoone, presbyteri"
     },
-    {
-      "id": "frederic_ozanam_founder",
+    "frederic_ozanam_founder": {
       "fullname": "B. Friderici Ozanam, fundatoris"
     },
-    {
-      "id": "friday_of_the_passion_of_the_lord",
+    "friday_of_the_passion_of_the_lord": {
       "fullname": "Feria VI in Passione Domini"
     },
-    {
-      "id": "fridolin_of_sackingen_monk",
+    "fridolin_of_sackingen_monk": {
       "fullname": "S. Fridolini, monachi"
     },
-    {
-      "id": "fructuosus_of_braga_martin_of_braga_and_gerald_of_braga_bishops",
+    "fructuosus_of_braga_martin_of_braga_and_gerald_of_braga_bishops": {
       "fullname": "Ss. Fructuosi, Martini et Geraldi Bracarensis, episcoporum"
     },
-    {
-      "id": "fructuosus_of_tarragona_bishop_and_augurius_of_tarragona_and_eulogius_of_tarragona_deacons_martyrs",
+    "fructuosus_of_tarragona_bishop_and_augurius_of_tarragona_and_eulogius_of_tarragona_deacons_martyrs": {
       "fullname": "Ss. Fructuosi, episcopi, Augurii et Eulogii, diaconorum, martyrum"
     },
-    {
-      "id": "fursa_of_peronne_abbot",
+    "fursa_of_peronne_abbot": {
       "fullname": "S. Fursei, abbatis"
     }
-  ]
+  }
 }

@@ -1,9 +1,8 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "en",
-  "entities": [
-    {
-      "id": "ulrich_of_augsburg_bishop",
+  "entities": {
+    "ulrich_of_augsburg_bishop": {
       "fullname": "Saint Ulrich of Augsburg, Bishop",
       "canonization_level": "SAINT",
       "name": "Ulrich of Augsburg",
@@ -12,8 +11,7 @@
       ],
       "date_of_death": "973-7-4"
     },
-    {
-      "id": "urban_i_pope",
+    "urban_i_pope": {
       "fullname": "Saint Urban I, Pope",
       "canonization_level": "SAINT",
       "name": "Urban I",
@@ -25,8 +23,7 @@
         "century": 3
       }
     },
-    {
-      "id": "urban_ii_pope",
+    "urban_ii_pope": {
       "fullname": "Blessed Urban II, Pope",
       "canonization_level": "BLESSED",
       "name": "Urban II",
@@ -41,8 +38,7 @@
         "https://en.wikipedia.org/wiki/Pope_Urban_II"
       ]
     },
-    {
-      "id": "urban_v_pope",
+    "urban_v_pope": {
       "fullname": "Blessed Urban V, Pope",
       "canonization_level": "BLESSED",
       "name": "Urban V",
@@ -57,12 +53,10 @@
         "https://en.wikipedia.org/wiki/Pope_Urban_V"
       ]
     },
-    {
-      "id": "ursula_of_cologne_and_companions_virgins",
+    "ursula_of_cologne_and_companions_virgins": {
       "fullname": "Saint Ursula and Companions, Virgins and Martyrs"
     },
-    {
-      "id": "ursula_of_cologne_virgin",
+    "ursula_of_cologne_virgin": {
       "canonization_level": "SAINT",
       "name": "Ursula",
       "titles": [
@@ -70,5 +64,5 @@
         "MARTYR"
       ]
     }
-  ]
+  }
 }

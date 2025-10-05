@@ -1,54 +1,42 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "it",
-  "entities": [
-    {
-      "id": "scholastica_of_nursia_virgin",
+  "entities": {
+    "scholastica_of_nursia_virgin": {
       "fullname": "Santa Scolastica, vergine"
     },
-    {
-      "id": "sebastian_of_milan_martyr",
+    "sebastian_of_milan_martyr": {
       "fullname": "San Sebastiano, martire"
     },
-    {
-      "id": "seven_holy_founders_of_the_servite_order",
+    "seven_holy_founders_of_the_servite_order": {
       "fullname": "Santi Sette Fondatori dei Servi della Beata Vergine Maria"
     },
-    {
-      "id": "sharbel_makhluf_priest",
+    "sharbel_makhluf_priest": {
       "fullname": "San Charbel Makhluf, sacerdote"
     },
-    {
-      "id": "simon_and_jude_apostles",
+    "simon_and_jude_apostles": {
       "fullname": "Santi Simone e Giuda, apostoli"
     },
-    {
-      "id": "sixtus_ii_pope_and_companions_martyrs",
+    "sixtus_ii_pope_and_companions_martyrs": {
       "fullname": "San Sisto II, papa e compagni, martiri"
     },
-    {
-      "id": "stanislaus_of_szczepanow_bishop",
+    "stanislaus_of_szczepanow_bishop": {
       "fullname": "Santo Stanislao, vescovo e martire"
     },
-    {
-      "id": "stanislaus_of_szczepanow_bishop_patron_of_poland",
+    "stanislaus_of_szczepanow_bishop_patron_of_poland": {
       "fullname": "Santo Stanislao, vescovo, martire e patrono della Polonia"
     },
-    {
-      "id": "stephen_i_of_hungary",
+    "stephen_i_of_hungary": {
       "fullname": "Santo Stefano di Ungheria"
     },
-    {
-      "id": "stephen_the_first_martyr",
+    "stephen_the_first_martyr": {
       "fullname": "Santo Stefano, primo martire"
     },
-    {
-      "id": "sunday_of_the_word_of_god",
+    "sunday_of_the_word_of_god": {
       "fullname": "III domenica del Tempo Ordinario, o Domenica della Parola di Dio"
     },
-    {
-      "id": "sylvester_i_pope",
+    "sylvester_i_pope": {
       "fullname": "San Silvestro I, papa"
     }
-  ]
+  }
 }

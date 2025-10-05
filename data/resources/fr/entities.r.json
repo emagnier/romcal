@@ -1,73 +1,60 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "fr",
-  "entities": [
-    {
-      "id": "raymond_costeran_and_companions_martyrs",
+  "entities": {
+    "raymond_costeran_and_companions_martyrs": {
       "fullname": "Bienheureux Raymond et ses compagnons, martyrs († 1242)",
       "sources": [
         "mr_fr_1974_ed1_region_apostolique_du_midi"
       ]
     },
-    {
-      "id": "raymond_costeran_martyr",
+    "raymond_costeran_martyr": {
       "fullname": "Bienheureux Raymond, martyr († 1242)",
       "sources": [
         "mr_fr_1974_ed1_region_apostolique_du_midi"
       ]
     },
-    {
-      "id": "raymond_gayrard_religious",
+    "raymond_gayrard_religious": {
       "fullname": "Saint Raymond Gayrard, religieux († 1118)",
       "sources": [
         "mr_fr_1974_ed1_region_apostolique_du_midi"
       ]
     },
-    {
-      "id": "raymond_of_penyafort_priest",
+    "raymond_of_penyafort_priest": {
       "fullname": "Saint Raymond de Peñafort, prêtre († 1275)"
     },
-    {
-      "id": "remigius_of_reims_bishop",
+    "remigius_of_reims_bishop": {
       "fullname": "Saint Remi, évêque de Reims († 530)"
     },
-    {
-      "id": "rene_goupil_religious",
+    "rene_goupil_religious": {
       "fullname": "Saint René Goupil, religieux et martyr († 1642)",
       "sources": [
         "mr_fr_2022_ed3_angers"
       ]
     },
-    {
-      "id": "richardis_of_swabia_empress",
+    "richardis_of_swabia_empress": {
       "fullname": "Sainte Richarde, impératrice († 894 ou 896)"
     },
-    {
-      "id": "rita_of_cascia_religious",
+    "rita_of_cascia_religious": {
       "fullname": "Sainte Rita da Cascia, veuve puis religieuse († 1456)"
     },
-    {
-      "id": "robert_bellarmine_bishop",
+    "robert_bellarmine_bishop": {
       "fullname": "Saint Robert Bellarmin, Jésuite, évêque et docteur de l’Église († 1621)"
     },
-    {
-      "id": "romuald_of_ravenna_abbot",
+    "romuald_of_ravenna_abbot": {
       "fullname": "Saint Romuald, anachorète et père des moines Camaldules († 1027)"
     },
-    {
-      "id": "rosalie_jeanne_marie_rendu_virgin",
+    "rosalie_jeanne_marie_rendu_virgin": {
       "fullname": "Bienheureuse Rosalie Rendu, vierge († 1856)"
     },
-    {
-      "id": "rose_of_lima_virgin",
+    "rose_of_lima_virgin": {
       "fullname": "Sainte Rose de Lima, vierge († 1617)"
     },
-    {
-      "id": "rumpharius_of_coutances_bishop",
+    "rumpharius_of_coutances_bishop": {
       "fullname": "Saint Romphaire, évêque de Coutance († VIème s.)",
       "sources": [
         "mr_fr_1982_ed2_coutances"
       ]
     }
-  ]
+  }
 }

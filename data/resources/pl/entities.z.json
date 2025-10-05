@@ -1,14 +1,12 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "pl",
-  "entities": [
-    {
-      "id": "zdislava_of_lemberk",
+  "entities": {
+    "zdislava_of_lemberk": {
       "fullname": "Św. Zdzisławy"
     },
-    {
-      "id": "zygmunt_gorazdowski_priest",
+    "zygmunt_gorazdowski_priest": {
       "fullname": "Św. Zygmunta Gorazdowskiego, prezbitera"
     }
-  ]
+  }
 }

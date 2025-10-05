@@ -1,14 +1,12 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "ta",
-  "entities": [
-    {
-      "id": "queenship_of_the_blessed_virgin_mary",
+  "entities": {
+    "queenship_of_the_blessed_virgin_mary": {
       "fullname": "விண்ணக மண்ணக அரசியாகிய கன்னி மரியாள்"
     },
-    {
-      "id": "quirinus_of_sescia_bishop",
+    "quirinus_of_sescia_bishop": {
       "fullname": "செஸ்சியாவின் புனித குயரினஸ் - ஆயர். மறைசாட்சி"
     }
-  ]
+  }
 }

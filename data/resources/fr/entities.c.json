@@ -1,151 +1,117 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "fr",
-  "entities": [
-    {
-      "id": "caesarius_of_arles_bishop",
+  "entities": {
+    "caesarius_of_arles_bishop": {
       "fullname": "Saint Césaire d’Arles, évêque († 542)"
     },
-    {
-      "id": "cajetan_of_thiene_priest",
+    "cajetan_of_thiene_priest": {
       "fullname": "Saint Gaétan de Thienne, prêtre († 1547)"
     },
-    {
-      "id": "callistus_i_pope",
+    "callistus_i_pope": {
       "fullname": "Saint Calixte Ier, pape et martyr († 222)"
     },
-    {
-      "id": "camillus_de_lellis_priest",
+    "camillus_de_lellis_priest": {
       "fullname": "Saint Camille de Lellis, prêtre († 1614)"
     },
-    {
-      "id": "canada_day",
+    "canada_day": {
       "fullname": "Fête du Canada",
       "sources": [
         "mr_fr_2021_ed3"
       ]
     },
-    {
-      "id": "carmelites_of_compiegne_virgins_and_martyrs",
+    "carmelites_of_compiegne_virgins_and_martyrs": {
       "fullname": "Bienheureuses Carmélites de Compiègne : Mère Thérèse et ses 15 compagnes, martyres († guillotinées en 1794)"
     },
-    {
-      "id": "casimir_of_poland",
+    "casimir_of_poland": {
       "fullname": "Saint Casimir († 1484)"
     },
-    {
-      "id": "catherine_of_alexandria_virgin",
+    "catherine_of_alexandria_virgin": {
       "fullname": "Sainte Catherine d’Alexandrie, vierge et martyre († IVème s.)"
     },
-    {
-      "id": "catherine_of_siena_virgin",
+    "catherine_of_siena_virgin": {
       "fullname": "Sainte Catherine de Sienne, vierge et docteur de l’Église († 1380)"
     },
-    {
-      "id": "catherine_of_siena_virgin_copatroness_of_europe",
+    "catherine_of_siena_virgin_copatroness_of_europe": {
       "fullname": "Sainte Catherine de Sienne, vierge, docteur de l’Église, co-patronne de l’Europe († 1380)"
     },
-    {
-      "id": "catherine_of_siena_virgin_copatroness_of_italy_and_europe",
+    "catherine_of_siena_virgin_copatroness_of_italy_and_europe": {
       "fullname": "Sainte Catherine de Sienne, vierge, docteur de l’Église, co-patronne de l’Italie et de l’Europe († 1380)"
     },
-    {
-      "id": "catherine_zoe_laboure_virgin",
+    "catherine_zoe_laboure_virgin": {
       "fullname": "Sainte Catherine Labouré, vierge († 1876)"
     },
-    {
-      "id": "cecilia_of_rome_virgin",
+    "cecilia_of_rome_virgin": {
       "fullname": "Sainte Cécile, vierge et martyre à Rome († 230)"
     },
-    {
-      "id": "ceraunus_of_paris_bishop",
+    "ceraunus_of_paris_bishop": {
       "fullname": "Saint Céran, évêque de Paris († au 7e s.)"
     },
-    {
-      "id": "chair_of_saint_peter_the_apostle",
+    "chair_of_saint_peter_the_apostle": {
       "fullname": "Chaire de Saint Pierre, apôtre"
     },
-    {
-      "id": "charles_borromeo_bishop",
+    "charles_borromeo_bishop": {
       "fullname": "Saint Charles Borromée, archevêque de Milan († 1584)"
     },
-    {
-      "id": "charles_lwanga_and_companions_martyrs",
+    "charles_lwanga_and_companions_martyrs": {
       "fullname": "Saints Charles Lwanga et ses douze compagnons, martyrs († 618)"
     },
-    {
-      "id": "charles_of_jesus_de_foucauld",
+    "charles_of_jesus_de_foucauld": {
       "fullname": "Saint Charles de Foucauld, prêtre, ermite et missionnaire au Sahara († 1916)"
     },
-    {
-      "id": "christopher_magallanes_priest_and_companions_martyrs",
+    "christopher_magallanes_priest_and_companions_martyrs": {
       "fullname": "Saints Cristóbal Magallanes, prêtre, et ses 24 compagnons, martyrs mexicains († 1927)"
     },
-    {
-      "id": "clair_of_normandy_priest",
+    "clair_of_normandy_priest": {
       "fullname": "Saint Clair, prêtre et martyr († v. 884)",
       "sources": [
         "mr_fr_1982_ed2_coutances"
       ]
     },
-    {
-      "id": "clare_of_assisi_virgin",
+    "clare_of_assisi_virgin": {
       "fullname": "Sainte Claire, vierge"
     },
-    {
-      "id": "clement_i_pope",
+    "clement_i_pope": {
       "fullname": "Saint Clément Ier, pape et martyr († 97)"
     },
-    {
-      "id": "clotilde_of_burgundy",
+    "clotilde_of_burgundy": {
       "fullname": "Sainte Clotilde, reine des Francs († 545)"
     },
-    {
-      "id": "columba_of_iona_abbot",
+    "columba_of_iona_abbot": {
       "fullname": "Saint Colomba, religieux († 615)"
     },
-    {
-      "id": "columba_of_iona_abbot_copatron_of_ireland",
+    "columba_of_iona_abbot_copatron_of_ireland": {
       "fullname": "Saint Colomba, religieux, co-patron de l’Irlande († 615)"
     },
-    {
-      "id": "columban_of_luxeuil_abbot",
+    "columban_of_luxeuil_abbot": {
       "fullname": "Saint Colomban, abbé († 615)"
     },
-    {
-      "id": "commemoration_of_all_the_faithful_departed",
+    "commemoration_of_all_the_faithful_departed": {
       "fullname": "Commémoration de tous les fidèles défunts"
     },
-    {
-      "id": "conversion_of_saint_paul_the_apostle",
+    "conversion_of_saint_paul_the_apostle": {
       "fullname": "Conversion de Saint Paul, apôtre"
     },
-    {
-      "id": "cornelius_i_pope_and_cyprian_of_carthage_bishop_martyrs",
+    "cornelius_i_pope_and_cyprian_of_carthage_bishop_martyrs": {
       "fullname": "Saints martyrs Corneille, pape, et Cyprien, évêque († IIIème s.)"
     },
-    {
-      "id": "cosmas_of_cilicia_and_damian_of_cilicia_martyrs",
+    "cosmas_of_cilicia_and_damian_of_cilicia_martyrs": {
       "fullname": "Saints Côme et Damien, martyrs († IIIème s.)"
     },
-    {
-      "id": "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop",
+    "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop": {
       "fullname": "Saints Cyrille, Moine, et Méthode, évêque, apôtres des Slaves († au IXème s.)"
     },
-    {
-      "id": "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop_copatrons_of_europe",
+    "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop_copatrons_of_europe": {
       "fullname": "Saints Cyrille, Moine, et Méthode, évêque, apôtres des Slaves, co-patrons de l’Europe († au IXème s.)"
     },
-    {
-      "id": "cyril_of_alexandria_bishop",
+    "cyril_of_alexandria_bishop": {
       "fullname": "Saint Cyrille, évêque d’Alexandrie et docteur de l’Église († 444)",
       "sources": [
         "mr_fr_2014_ed2_lyon"
       ]
     },
-    {
-      "id": "cyril_of_jerusalem_bishop",
+    "cyril_of_jerusalem_bishop": {
       "fullname": "Saint Cyrille de Jérusalem, évêque de Jérusalem, docteur de l’Église († 387)"
     }
-  ]
+  }
 }

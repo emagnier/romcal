@@ -1,74 +1,57 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "pl",
-  "entities": [
-    {
-      "id": "ladislas_of_gielniow_priest",
+  "entities": {
+    "ladislas_of_gielniow_priest": {
       "fullname": "Bł. Władysława z Gielniowa, prezbitera"
     },
-    {
-      "id": "landry_of_paris_bishop",
+    "landry_of_paris_bishop": {
       "fullname": "Św. Landeryka z Paryża, biskupa"
     },
-    {
-      "id": "laurence_wang_bing_and_companions_martyrs",
+    "laurence_wang_bing_and_companions_martyrs": {
       "fullname": "Świętych męczenników Wawrzyńca Wang Binga i Towarzyszy"
     },
-    {
-      "id": "lawrence_bai_xiaoman_martyr",
+    "lawrence_bai_xiaoman_martyr": {
       "fullname": "Św. Wawrzyńa Bai Xiaomana, męczennika"
     },
-    {
-      "id": "lawrence_of_brindisi_priest",
+    "lawrence_of_brindisi_priest": {
       "fullname": "Św. Wawrzyńca z Brindisi, prezbitera i doktora Kościoła"
     },
-    {
-      "id": "lawrence_of_rome_deacon",
+    "lawrence_of_rome_deacon": {
       "fullname": "Św. Wawrzyńca, diakona i męczennika"
     },
-    {
-      "id": "lawrence_ruiz_and_companions_martyrs",
+    "lawrence_ruiz_and_companions_martyrs": {
       "fullname": "Świętych męczenników Wawrzyńca Ruiz i Towarzyszy"
     },
-    {
-      "id": "leo_i_the_great_pope",
+    "leo_i_the_great_pope": {
       "fullname": "Św. Leona Wielkiego, papieża i doktora Kościoła"
     },
-    {
-      "id": "leo_ignatius_mangin_priest_and_companions_martyrs",
+    "leo_ignatius_mangin_priest_and_companions_martyrs": {
       "fullname": "Świętych męczenników Leona Mangina, prezbitera, i Towarzyszy"
     },
-    {
-      "id": "leodegar_of_autun_bishop",
+    "leodegar_of_autun_bishop": {
       "fullname": "Św. Leodegara z Autun, biskupa i męczennika"
     },
-    {
-      "id": "louis_grignion_de_montfort_priest",
+    "louis_grignion_de_montfort_priest": {
       "fullname": "Św. Ludwika Marii Grignion de Montfort, prezbitera"
     },
-    {
-      "id": "louis_ix_of_france",
+    "louis_ix_of_france": {
       "fullname": "Św. Ludwika"
     },
-    {
-      "id": "louise_de_marillac_religious",
+    "louise_de_marillac_religious": {
       "fullname": "Św. Ludwiki de Marillac, zakonnicy"
     },
-    {
-      "id": "lucy_of_syracuse_virgin",
+    "lucy_of_syracuse_virgin": {
       "fullname": "Św. Łucji, dziewicy i męczennicy"
     },
-    {
-      "id": "lucy_yi_zhenmei_virgin",
+    "lucy_yi_zhenmei_virgin": {
       "fullname": "Św. Łucji Yi Zhenmei, dziewicy i męcznnicy"
     },
-    {
-      "id": "ludan_of_scotland_pilgrim",
+    "ludan_of_scotland_pilgrim": {
       "fullname": "Św. Ludana, pielgrzyma"
     },
-    {
-      "id": "luke_evangelist",
+    "luke_evangelist": {
       "fullname": "Św. Łukasza, Ewangelisty"
     }
-  ]
+  }
 }

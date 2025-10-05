@@ -1,10 +1,9 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "fr",
-  "entities": [
-    {
-      "id": "kateri_tekakwitha_virgin",
+  "entities": {
+    "kateri_tekakwitha_virgin": {
       "fullname": "Sainte Kateri Tekakwitha, vierge Amérindienne († 1680)"
     }
-  ]
+  }
 }

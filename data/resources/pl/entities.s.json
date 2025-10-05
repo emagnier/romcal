@@ -1,78 +1,60 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "pl",
-  "entities": [
-    {
-      "id": "salomea_of_poland_religious",
+  "entities": {
+    "salomea_of_poland_religious": {
       "fullname": "Bł. Salomei, zakonnicy"
     },
-    {
-      "id": "scholastica_of_nursia_virgin",
+    "scholastica_of_nursia_virgin": {
       "fullname": "Św. Scholastyki, dziewicy"
     },
-    {
-      "id": "sebastian_of_milan_martyr",
+    "sebastian_of_milan_martyr": {
       "fullname": "Św. Sebastiana, męczennika"
     },
-    {
-      "id": "seven_holy_founders_of_the_servite_order",
+    "seven_holy_founders_of_the_servite_order": {
       "fullname": "Świętych Siedmiu Założycieli Zakonu Serwitów Najświętszej Maryi Panny"
     },
-    {
-      "id": "seven_martyred_nuns_from_the_franciscan_missionaries_of_mary",
+    "seven_martyred_nuns_from_the_franciscan_missionaries_of_mary": {
       "fullname": "Siedmiu męcznnic ze Zgromadzenia Franciszkanek Misjonarek Maryi"
     },
-    {
-      "id": "sharbel_makhluf_priest",
+    "sharbel_makhluf_priest": {
       "fullname": "Św. Szarbela Maklufa, prezbitera"
     },
-    {
-      "id": "sigmund_felix_felinski_bishop",
+    "sigmund_felix_felinski_bishop": {
       "fullname": "Św. Zygmunta Szczęsnego Felińskiego, biskupa"
     },
-    {
-      "id": "simon_and_jude_apostles",
+    "simon_and_jude_apostles": {
       "fullname": "Świętych Apostołów Szymona i Judy Tadeusza"
     },
-    {
-      "id": "simon_of_lipnica_priest",
+    "simon_of_lipnica_priest": {
       "fullname": "Św. Szymona z Lipnicy, prezbitera"
     },
-    {
-      "id": "sixtus_ii_pope_and_companions_martyrs",
+    "sixtus_ii_pope_and_companions_martyrs": {
       "fullname": "Świętych męczenników Sykstusa II, papieża, i Towarzyszy"
     },
-    {
-      "id": "stanislaus_kazimierczyk_priest",
+    "stanislaus_kazimierczyk_priest": {
       "fullname": "Św. Stanisława Kazimierczyka, prezbitera"
     },
-    {
-      "id": "stanislaus_kostka_religious",
+    "stanislaus_kostka_religious": {
       "fullname": "Św. Stanisława Kostki, zakonnika, patrona Polski"
     },
-    {
-      "id": "stanislaus_of_szczepanow_bishop",
+    "stanislaus_of_szczepanow_bishop": {
       "fullname": "Św. Stanisława, biskupa i męczennika"
     },
-    {
-      "id": "stanislaus_of_szczepanow_bishop_patron_of_poland",
+    "stanislaus_of_szczepanow_bishop_patron_of_poland": {
       "fullname": "Św. Stanisława, biskupa i męczennika, głównego patrona Polski"
     },
-    {
-      "id": "stephen_i_of_hungary",
+    "stephen_i_of_hungary": {
       "fullname": "Św. Stefana Węgierskiego"
     },
-    {
-      "id": "stephen_the_first_martyr",
+    "stephen_the_first_martyr": {
       "fullname": "Św. Szczepana, pierwszego męczennika"
     },
-    {
-      "id": "sunday_of_the_word_of_god",
+    "sunday_of_the_word_of_god": {
       "fullname": "3 Niedziela zwykła, czyli Niedziela Słowa Bożego"
     },
-    {
-      "id": "sylvester_i_pope",
+    "sylvester_i_pope": {
       "fullname": "Św. Sylwestra I, papieża"
     }
-  ]
+  }
 }

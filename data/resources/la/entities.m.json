@@ -1,358 +1,270 @@
 {
   "$schema": "../../../schemas/resources_definition.json",
   "locale": "la",
-  "entities": [
-    {
-      "id": "mac_nissi_of_connor_bishop",
+  "entities": {
+    "mac_nissi_of_connor_bishop": {
       "fullname": "S. Macnisi, episcopi"
     },
-    {
-      "id": "macartan_of_clogher_bishop",
+    "macartan_of_clogher_bishop": {
       "fullname": "S. Macartini, episcopi"
     },
-    {
-      "id": "madeleine_sophie_barat_virgin",
+    "madeleine_sophie_barat_virgin": {
       "fullname": "S. Magdalenæ Sophiæ Barat, virginis"
     },
-    {
-      "id": "maelruain_of_tallaght_bishop",
+    "maelruain_of_tallaght_bishop": {
       "fullname": "S. Maelruain, episcopi et abbatis"
     },
-    {
-      "id": "magnus_erlendsson_martyr",
+    "magnus_erlendsson_martyr": {
       "fullname": "S. Magni, martyris"
     },
-    {
-      "id": "malachy_of_armagh_bishop",
+    "malachy_of_armagh_bishop": {
       "fullname": "S. Malachi, episcopi"
     },
-    {
-      "id": "marcel_callo_martyr",
+    "marcel_callo_martyr": {
       "fullname": "B. Marcelli Callo, martyris"
     },
-    {
-      "id": "marcelina_darowska_religious",
+    "marcelina_darowska_religious": {
       "fullname": "B. Mariæ Marcellinæ Darowska, martyris"
     },
-    {
-      "id": "marcellin_champagnat_priest",
+    "marcellin_champagnat_priest": {
       "fullname": "S. Marcellini Iosephi Benedicti Champagnat, presbyteri"
     },
-    {
-      "id": "marcellinus_of_rome_and_peter_the_exorcist_martyrs",
+    "marcellinus_of_rome_and_peter_the_exorcist_martyrs": {
       "fullname": "Ss. Marcellini et Petri, martyrum"
     },
-    {
-      "id": "marcellus_of_paris_bishop",
+    "marcellus_of_paris_bishop": {
       "fullname": "S. Marcelli Parisiensis, episcopi"
     },
-    {
-      "id": "margaret_clitherow_anne_line_and_margaret_ward_virgin_martyrs",
+    "margaret_clitherow_anne_line_and_margaret_ward_virgin_martyrs": {
       "fullname": "Ss. Margaritæ Clitherow, Annæ Line et Margaritæ Ward, virginis, martyrum"
     },
-    {
-      "id": "margaret_mary_alacoque_virgin",
+    "margaret_mary_alacoque_virgin": {
       "fullname": "S. Margaritæ Mariæ Alacoque, virginis"
     },
-    {
-      "id": "margaret_of_antioch_virgin",
+    "margaret_of_antioch_virgin": {
       "fullname": "S. Margaritæ, virginis et martyris"
     },
-    {
-      "id": "margaret_of_hungary_religious",
+    "margaret_of_hungary_religious": {
       "fullname": "S. Margaritæ Hungariæ, religiosæ"
     },
-    {
-      "id": "margaret_of_scotland",
+    "margaret_of_scotland": {
       "fullname": "S. Margaritæ Scotiæ"
     },
-    {
-      "id": "marguerite_bourgeoys_virgin",
+    "marguerite_bourgeoys_virgin": {
       "fullname": "S. Margaritæ Bourgeoys, virginis"
     },
-    {
-      "id": "marguerite_dyouville_religious",
+    "marguerite_dyouville_religious": {
       "fullname": "S. Margaritæ d’Youville, religiosæ"
     },
-    {
-      "id": "maria_goretti_virgin",
+    "maria_goretti_virgin": {
       "fullname": "S. Mariæ Goretti, virginis et martyris"
     },
-    {
-      "id": "maria_guadalupe_garcia_zavala_virgin",
+    "maria_guadalupe_garcia_zavala_virgin": {
       "fullname": "S. Mariæ Guadalupe García Zavala, virginis"
     },
-    {
-      "id": "maria_micaela_of_the_blessed_sacrament_desmaisieres_virgin",
+    "maria_micaela_of_the_blessed_sacrament_desmaisieres_virgin": {
       "fullname": "S. Mariæ Michaelæ a Sanctissimo Sacramento Desmaisières, virginis"
     },
-    {
-      "id": "mariana_of_jesus_de_paredes_virgin",
+    "mariana_of_jesus_de_paredes_virgin": {
       "fullname": "S. Mariæ Annæ a Iesu de Paredes, virginis"
     },
-    {
-      "id": "marianne_cope_virgin",
+    "marianne_cope_virgin": {
       "fullname": "S. Mariæ Annæ Cope, virginis"
     },
-    {
-      "id": "marie_anne_blondin_virgin",
+    "marie_anne_blondin_virgin": {
       "fullname": "B. Mariæ Annæ Blondin, virginis"
     },
-    {
-      "id": "marie_eugenie_of_jesus_milleret_de_brou_virgin",
+    "marie_eugenie_of_jesus_milleret_de_brou_virgin": {
       "fullname": "S. Mariæ Eugeniæ a Iesu Milleret de Brou, virginis et fundatricis"
     },
-    {
-      "id": "marie_leonie_paradis_virgin",
+    "marie_leonie_paradis_virgin": {
       "fullname": "B. Mariæ Leoniæ Paradis, virginis"
     },
-    {
-      "id": "marie_rose_durocher_virgin",
+    "marie_rose_durocher_virgin": {
       "fullname": "B. Mariæ Rosæ Durocher, virginis"
     },
-    {
-      "id": "mark_evangelist",
+    "mark_evangelist": {
       "fullname": "S. Marci, evangelistæ"
     },
-    {
-      "id": "marko_krizin_melchior_grodziecki_and_stephen_pongracz_priests",
+    "marko_krizin_melchior_grodziecki_and_stephen_pongracz_priests": {
       "fullname": "Ss. Marci Crisini, Melchioris Grodziecki et Stephani Pongracz, presbyterorum et martyrum"
     },
-    {
-      "id": "marko_krizin_priest",
+    "marko_krizin_priest": {
       "fullname": "S. Marci Crisini, presbyteri et martyris"
     },
-    {
-      "id": "maron_of_syria_hermit",
+    "maron_of_syria_hermit": {
       "fullname": "S. Maronis, eremitæ"
     },
-    {
-      "id": "martha_of_bethany_mary_of_bethany_and_lazarus_of_bethany",
+    "martha_of_bethany_mary_of_bethany_and_lazarus_of_bethany": {
       "fullname": "S. Marthæ, Mariæ et Lazari"
     },
-    {
-      "id": "martin_de_porres_religious",
+    "martin_de_porres_religious": {
       "fullname": "S. Martini de Porres, religiosi"
     },
-    {
-      "id": "martin_i_pope",
+    "martin_i_pope": {
       "fullname": "S. Martini I, papæ et martyris"
     },
-    {
-      "id": "martin_of_tours_bishop",
+    "martin_of_tours_bishop": {
       "fullname": "S. Martini Turonensis, episcopi"
     },
-    {
-      "id": "martin_wu_xuesheng_and_companions_martyrs",
+    "martin_wu_xuesheng_and_companions_martyrs": {
       "fullname": "Ss. Martini Wu Xuesheng et sociorum, martyrum"
     },
-    {
-      "id": "mary_adeodata_pisani_virgin",
+    "mary_adeodata_pisani_virgin": {
       "fullname": "B. Mariæ Adeodatæ Pisani, virginis"
     },
-    {
-      "id": "mary_angela_truszkowska_virgin",
+    "mary_angela_truszkowska_virgin": {
       "fullname": "B. Mariæ Angelæ Truszkowska, virginis"
     },
-    {
-      "id": "mary_assunta_pallotta_virgin",
+    "mary_assunta_pallotta_virgin": {
       "fullname": "B. Mariæ Assumptæ Pallotta, virginis"
     },
-    {
-      "id": "mary_catherine_of_saint_augustine_catherine_de_simon_de_longpre_virgin",
+    "mary_catherine_of_saint_augustine_catherine_de_simon_de_longpre_virgin": {
       "fullname": "B. Mariæ Catharinæ a S. Augustino de Simon de Longpré, virginis"
     },
-    {
-      "id": "mary_magdalene",
+    "mary_magdalene": {
       "fullname": "S. Mariæ Magdalenæ"
     },
-    {
-      "id": "mary_magdalene_de_pazzi_virgin",
+    "mary_magdalene_de_pazzi_virgin": {
       "fullname": "S. Mariæ Magdalenæ de’ Pazzi, virginis"
     },
-    {
-      "id": "mary_mother_of_god",
+    "mary_mother_of_god": {
       "fullname": "In octava Nativitatis. Sollemnitas Sanctæ Dei Genetricis Mariæ"
     },
-    {
-      "id": "mary_mother_of_the_church",
+    "mary_mother_of_the_church": {
       "fullname": "B. Mariæ Virginis Ecclesiæ Matris"
     },
-    {
-      "id": "mary_of_jesus_crucified_petkovic_virgin",
+    "mary_of_jesus_crucified_petkovic_virgin": {
       "fullname": "B. Mariæ a Iesu Crucifixo Petković, virginis"
     },
-    {
-      "id": "mary_of_jesus_in_the_blessed_sacrament_venegas_de_la_torre_virgin",
+    "mary_of_jesus_in_the_blessed_sacrament_venegas_de_la_torre_virgin": {
       "fullname": "S. Mariæ a Iesu Sacramentato Venegas de la Torre, virginis"
     },
-    {
-      "id": "mary_of_jesus_the_good_shepherd_siedliska_virgin",
+    "mary_of_jesus_the_good_shepherd_siedliska_virgin": {
       "fullname": "B. Mariæ a Iesu Bono Pastore Siedliska, virginis"
     },
-    {
-      "id": "mary_of_the_cross_mackillop_virgin",
+    "mary_of_the_cross_mackillop_virgin": {
       "fullname": "S. Mariæ a Cruce MacKillop, virginis"
     },
-    {
-      "id": "mary_of_the_incarnation_barbara_acarie_religious",
+    "mary_of_the_incarnation_barbara_acarie_religious": {
       "fullname": "B. Mariæ ab Incarnatione Barbaræ Acarie, religiosæ"
     },
-    {
-      "id": "mary_of_the_incarnation_marie_guyart_religious",
+    "mary_of_the_incarnation_marie_guyart_religious": {
       "fullname": "S. Mariæ ab Incarnatione Marie Guyart, religiosæ"
     },
-    {
-      "id": "mary_of_the_providence_eugenie_smet_virgin",
+    "mary_of_the_providence_eugenie_smet_virgin": {
       "fullname": "B. Mariæ a Providentia Eugeniæ Smet, virginis"
     },
-    {
-      "id": "mary_of_the_sacred_heart_sophie_therese_de_soubiran_la_louviere_virgin",
+    "mary_of_the_sacred_heart_sophie_therese_de_soubiran_la_louviere_virgin": {
       "fullname": "B. Mariæ Teresiæ de Soubiran La Louvière, virginis"
     },
-    {
-      "id": "mary_soledad_torres_acosta_virgin",
+    "mary_soledad_torres_acosta_virgin": {
       "fullname": "S. Mariæ a Solitudine Torres Acosta, virginis"
     },
-    {
-      "id": "mary_stella_of_the_blessed_sacrament_mardosewicz_and_companions_virgins",
+    "mary_stella_of_the_blessed_sacrament_mardosewicz_and_companions_virgins": {
       "fullname": "B. Mariæ Stellæ a SS.mo Sacramento Mardosewicz et sociorum, virginum et martyrum"
     },
-    {
-      "id": "mary_theresa_chiramel_mankidiyan_virgin",
+    "mary_theresa_chiramel_mankidiyan_virgin": {
       "fullname": "S. Mariæ Teresiæ Chiramel Mankidiyan, virginis"
     },
-    {
-      "id": "mary_theresa_ledochowska_virgin",
+    "mary_theresa_ledochowska_virgin": {
       "fullname": "B. Mariæ Teresiæ Ledóchowska, virginis"
     },
-    {
-      "id": "mary_ursula_of_jesus_ledochowska_virgin",
+    "mary_ursula_of_jesus_ledochowska_virgin": {
       "fullname": "S. Mariæ Ursulæ a Iesu Ledóchowska, virginis"
     },
-    {
-      "id": "marydolores_rodriguez_sopena_virgin",
+    "marydolores_rodriguez_sopena_virgin": {
       "fullname": "B. Mariæ Perdolentis Rodríguez Sopeña, virginis"
     },
-    {
-      "id": "maternus_of_cologne_bishop",
+    "maternus_of_cologne_bishop": {
       "fullname": "S. Materni, episcopi"
     },
-    {
-      "id": "maternus_of_cologne_valerius_of_trier_and_eucharius_of_trier_bishops",
+    "maternus_of_cologne_valerius_of_trier_and_eucharius_of_trier_bishops": {
       "fullname": "Ss. Materni, Valerii et Eucharii, episcoporum"
     },
-    {
-      "id": "matilda_of_ringelheim",
+    "matilda_of_ringelheim": {
       "fullname": "S. Matildæ"
     },
-    {
-      "id": "matthew_apostle",
+    "matthew_apostle": {
       "fullname": "S. Matthæi, apostoli et evangelistæ"
     },
-    {
-      "id": "matthias_apostle",
+    "matthias_apostle": {
       "fullname": "S. Matthiæ, apostoli"
     },
-    {
-      "id": "maurice_of_agaunum_and_companions_martyrs",
+    "maurice_of_agaunum_and_companions_martyrs": {
       "fullname": "Ss. Mauritii et sociorum, martyrum"
     },
-    {
-      "id": "maurice_tornay_priest",
+    "maurice_tornay_priest": {
       "fullname": "B. Mauritii Tornay, presbyteri et martyris"
     },
-    {
-      "id": "maurus_of_pecs_bishop",
+    "maurus_of_pecs_bishop": {
       "fullname": "S. Mauri, episcopi"
     },
-    {
-      "id": "maximilian_mary_raymund_kolbe_priest",
+    "maximilian_mary_raymund_kolbe_priest": {
       "fullname": "S. Maximiliani Mariæ Kolbe, presbyteri et martyris"
     },
-    {
-      "id": "mederic_of_autun_and_droctoveus_of_autun_abbots",
+    "mederic_of_autun_and_droctoveus_of_autun_abbots": {
       "fullname": "Ss. Mederici et Droctovæi, abbatum"
     },
-    {
-      "id": "meinrad_of_einsiedeln_martyr",
+    "meinrad_of_einsiedeln_martyr": {
       "fullname": "S. Meinradi, martyris"
     },
-    {
-      "id": "mel_of_ardagh_bishop",
+    "mel_of_ardagh_bishop": {
       "fullname": "S. Melis, episcopi"
     },
-    {
-      "id": "melchior_grodziecki_priest",
+    "melchior_grodziecki_priest": {
       "fullname": "S. Melchioris Grodziecki, presbyteri et martyris"
     },
-    {
-      "id": "michael_gabriel_and_raphael_archangels",
+    "michael_gabriel_and_raphael_archangels": {
       "fullname": "Ss. Michaelis, Gabrielis et Raphaelis, archangelorum"
     },
-    {
-      "id": "michael_kozal_bishop",
+    "michael_kozal_bishop": {
       "fullname": "B. Michaelis Kozal, episcopi et martyris"
     },
-    {
-      "id": "miguel_agustin_pro_priest",
+    "miguel_agustin_pro_priest": {
       "fullname": "B. Michaelis Augustini Pro, presbyteri et martyris"
     },
-    {
-      "id": "miguel_febres_cordero_religious",
+    "miguel_febres_cordero_religious": {
       "fullname": "S. Michaelis Febres Cordero, religiosi"
     },
-    {
-      "id": "modestus_andlauer_and_andrew_bauer_martyrs",
+    "modestus_andlauer_and_andrew_bauer_martyrs": {
       "fullname": "Ss. Modesti Andlauer et Andreæ Bauer, martyrum"
     },
-    {
-      "id": "modestus_andlauer_martyr",
+    "modestus_andlauer_martyr": {
       "fullname": "S. Modesti Andlauer, martyris"
     },
-    {
-      "id": "monica_of_hippo",
+    "monica_of_hippo": {
       "fullname": "S. Monicæ"
     },
-    {
-      "id": "moninne_of_killeavy_virgin",
+    "moninne_of_killeavy_virgin": {
       "fullname": "S. Moninnæ, virginis"
     },
-    {
-      "id": "morand_of_cluny_monk",
+    "morand_of_cluny_monk": {
       "fullname": "S. Morandi, monachi"
     },
-    {
-      "id": "most_holy_body_and_blood_of_christ",
+    "most_holy_body_and_blood_of_christ": {
       "fullname": "Ss.mi Corporis et Sanguinis Christi"
     },
-    {
-      "id": "most_holy_name_of_jesus",
+    "most_holy_name_of_jesus": {
       "fullname": "Ss.mi Nominis Iesu"
     },
-    {
-      "id": "most_holy_name_of_mary",
+    "most_holy_name_of_mary": {
       "fullname": "Ss.mi Nominis Mariæ"
     },
-    {
-      "id": "most_holy_trinity",
+    "most_holy_trinity": {
       "fullname": "Ss.mæ Trinitatis"
     },
-    {
-      "id": "most_sacred_heart_of_jesus",
+    "most_sacred_heart_of_jesus": {
       "fullname": "Sacratissimi Cordis Iesu"
     },
-    {
-      "id": "munchin_of_limerick_bishop",
+    "munchin_of_limerick_bishop": {
       "fullname": "S. Mainchini, episcopi"
     },
-    {
-      "id": "muredach_of_killala_bishop",
+    "muredach_of_killala_bishop": {
       "fullname": "S. Muredachi, episcopi"
     },
-    {
-      "id": "mutien_marie_wiaux_religious",
+    "mutien_marie_wiaux_religious": {
       "fullname": "S. Muciani Mariæ Wiaux, religiosi"
     }
-  ]
+  }
 }
