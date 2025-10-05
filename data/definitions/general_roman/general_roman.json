@@ -11,9 +11,8 @@
     "corpus_christi_on_sunday": false
   },
   "parent_calendar_ids": [],
-  "days_definitions": [
-    {
-      "id": "basil_the_great_and_gregory_nazianzen_bishops",
+  "days_definitions": {
+    "basil_the_great_and_gregory_nazianzen_bishops": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 1,
@@ -25,8 +24,7 @@
         "gregory_nazianzen_bishop"
       ]
     },
-    {
-      "id": "most_holy_name_of_jesus",
+    "most_holy_name_of_jesus": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 1,
@@ -34,8 +32,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "raymond_of_penyafort_priest",
+    "raymond_of_penyafort_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 1,
@@ -43,8 +40,7 @@
       },
       "commons_def": "PASTORS"
     },
-    {
-      "id": "hilary_of_poitiers_bishop",
+    "hilary_of_poitiers_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 1,
@@ -55,8 +51,7 @@
         "DOCTORS_OF_THE_CHURCH"
       ]
     },
-    {
-      "id": "anthony_of_egypt_abbot",
+    "anthony_of_egypt_abbot": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 1,
@@ -64,8 +59,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "fabian_i_pope",
+    "fabian_i_pope": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 1,
@@ -77,8 +71,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "sebastian_of_milan_martyr",
+    "sebastian_of_milan_martyr": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 1,
@@ -87,8 +80,7 @@
       "commons_def": "MARTYRS",
       "colors": "RED"
     },
-    {
-      "id": "agnes_of_rome_virgin",
+    "agnes_of_rome_virgin": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 1,
@@ -100,8 +92,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "vincent_of_saragossa_deacon",
+    "vincent_of_saragossa_deacon": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 1,
@@ -110,8 +101,7 @@
       "commons_def": "MARTYRS",
       "colors": "RED"
     },
-    {
-      "id": "francis_de_sales_bishop",
+    "francis_de_sales_bishop": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 1,
@@ -122,8 +112,7 @@
         "DOCTORS_OF_THE_CHURCH"
       ]
     },
-    {
-      "id": "conversion_of_saint_paul_the_apostle",
+    "conversion_of_saint_paul_the_apostle": {
       "precedence": "GENERAL_FEAST_7",
       "date_def": {
         "month": 1,
@@ -132,8 +121,7 @@
       "commons_def": "NONE",
       "colors": "WHITE"
     },
-    {
-      "id": "timothy_of_ephesus_and_titus_of_crete_bishops",
+    "timothy_of_ephesus_and_titus_of_crete_bishops": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 1,
@@ -145,8 +133,7 @@
         "titus_of_crete_bishop"
       ]
     },
-    {
-      "id": "angela_merici_virgin",
+    "angela_merici_virgin": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 1,
@@ -157,8 +144,7 @@
         "EDUCATORS"
       ]
     },
-    {
-      "id": "thomas_aquinas_priest",
+    "thomas_aquinas_priest": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 1,
@@ -169,8 +155,7 @@
         "PASTORS"
       ]
     },
-    {
-      "id": "john_bosco_priest",
+    "john_bosco_priest": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 1,
@@ -181,8 +166,7 @@
         "EDUCATORS"
       ]
     },
-    {
-      "id": "presentation_of_the_lord",
+    "presentation_of_the_lord": {
       "precedence": "GENERAL_LORD_FEAST_5",
       "date_def": {
         "date_fn": "PRESENTATION_OF_THE_LORD"
@@ -190,8 +174,7 @@
       "commons_def": "NONE",
       "colors": "WHITE"
     },
-    {
-      "id": "blaise_of_sebaste_bishop",
+    "blaise_of_sebaste_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 2,
@@ -203,8 +186,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "ansgar_of_hamburg_bishop",
+    "ansgar_of_hamburg_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 2,
@@ -215,8 +197,7 @@
         "BISHOPS"
       ]
     },
-    {
-      "id": "agatha_of_sicily_virgin",
+    "agatha_of_sicily_virgin": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 2,
@@ -228,8 +209,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "paul_miki_and_companions_martyrs",
+    "paul_miki_and_companions_martyrs": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 2,
@@ -242,8 +222,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "jerome_emiliani",
+    "jerome_emiliani": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 2,
@@ -251,8 +230,7 @@
       },
       "commons_def": "EDUCATORS"
     },
-    {
-      "id": "josephine_bakhita_virgin",
+    "josephine_bakhita_virgin": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 2,
@@ -260,8 +238,7 @@
       },
       "commons_def": "VIRGINS"
     },
-    {
-      "id": "scholastica_of_nursia_virgin",
+    "scholastica_of_nursia_virgin": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 2,
@@ -272,8 +249,7 @@
         "NUNS"
       ]
     },
-    {
-      "id": "our_lady_of_lourdes",
+    "our_lady_of_lourdes": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 2,
@@ -281,8 +257,7 @@
       },
       "commons_def": "BLESSED_VIRGIN_MARY"
     },
-    {
-      "id": "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop",
+    "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 2,
@@ -294,8 +269,7 @@
         "methodius_michael_of_thessaloniki_bishop"
       ]
     },
-    {
-      "id": "seven_holy_founders_of_the_servite_order",
+    "seven_holy_founders_of_the_servite_order": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 2,
@@ -303,8 +277,7 @@
       },
       "commons_def": "RELIGIOUS"
     },
-    {
-      "id": "peter_damian_bishop",
+    "peter_damian_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 2,
@@ -315,8 +288,7 @@
         "BISHOPS"
       ]
     },
-    {
-      "id": "chair_of_saint_peter_the_apostle",
+    "chair_of_saint_peter_the_apostle": {
       "precedence": "GENERAL_FEAST_7",
       "date_def": {
         "month": 2,
@@ -325,8 +297,7 @@
       "commons_def": "NONE",
       "colors": "WHITE"
     },
-    {
-      "id": "polycarp_of_smyrna_bishop",
+    "polycarp_of_smyrna_bishop": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 2,
@@ -338,8 +309,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "gregory_of_narek_abbot",
+    "gregory_of_narek_abbot": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 2,
@@ -350,8 +320,7 @@
         "ABBOTS"
       ]
     },
-    {
-      "id": "casimir_of_poland",
+    "casimir_of_poland": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 3,
@@ -361,8 +330,7 @@
         "SAINTS"
       ]
     },
-    {
-      "id": "perpetua_of_carthage_and_felicity_of_carthage_martyrs",
+    "perpetua_of_carthage_and_felicity_of_carthage_martyrs": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 3,
@@ -375,8 +343,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "john_of_god_duarte_cidade_religious",
+    "john_of_god_duarte_cidade_religious": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 3,
@@ -387,8 +354,7 @@
         "MERCY_WORKERS"
       ]
     },
-    {
-      "id": "frances_of_rome_religious",
+    "frances_of_rome_religious": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 3,
@@ -399,8 +365,7 @@
         "RELIGIOUS"
       ]
     },
-    {
-      "id": "patrick_of_ireland_bishop",
+    "patrick_of_ireland_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 3,
@@ -411,8 +376,7 @@
         "BISHOPS"
       ]
     },
-    {
-      "id": "cyril_of_jerusalem_bishop",
+    "cyril_of_jerusalem_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 3,
@@ -423,8 +387,7 @@
         "DOCTORS_OF_THE_CHURCH"
       ]
     },
-    {
-      "id": "joseph_spouse_of_mary",
+    "joseph_spouse_of_mary": {
       "precedence": "GENERAL_SOLEMNITY_3",
       "date_def": {
         "month": 3,
@@ -459,8 +422,7 @@
       "is_holy_day_of_obligation": true,
       "colors": "WHITE"
     },
-    {
-      "id": "turibius_of_mogrovejo_bishop",
+    "turibius_of_mogrovejo_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 3,
@@ -468,8 +430,7 @@
       },
       "commons_def": "BISHOPS"
     },
-    {
-      "id": "annunciation_of_the_lord",
+    "annunciation_of_the_lord": {
       "precedence": "GENERAL_SOLEMNITY_3",
       "date_def": {
         "date_fn": "ANNUNCIATION"
@@ -477,8 +438,7 @@
       "commons_def": "NONE",
       "colors": "WHITE"
     },
-    {
-      "id": "francis_of_paola_hermit",
+    "francis_of_paola_hermit": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 4,
@@ -486,8 +446,7 @@
       },
       "commons_def": "RELIGIOUS"
     },
-    {
-      "id": "isidore_of_seville_bishop",
+    "isidore_of_seville_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 4,
@@ -498,8 +457,7 @@
         "DOCTORS_OF_THE_CHURCH"
       ]
     },
-    {
-      "id": "vincent_ferrer_priest",
+    "vincent_ferrer_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 4,
@@ -507,8 +465,7 @@
       },
       "commons_def": "MISSIONARIES"
     },
-    {
-      "id": "john_baptist_de_la_salle_priest",
+    "john_baptist_de_la_salle_priest": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 4,
@@ -519,8 +476,7 @@
         "EDUCATORS"
       ]
     },
-    {
-      "id": "stanislaus_of_szczepanow_bishop",
+    "stanislaus_of_szczepanow_bishop": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 4,
@@ -532,8 +488,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "martin_i_pope",
+    "martin_i_pope": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 4,
@@ -545,8 +500,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "anselm_of_canterbury_bishop",
+    "anselm_of_canterbury_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 4,
@@ -557,8 +511,7 @@
         "DOCTORS_OF_THE_CHURCH"
       ]
     },
-    {
-      "id": "george_of_lydda_martyr",
+    "george_of_lydda_martyr": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 4,
@@ -567,8 +520,7 @@
       "commons_def": "MARTYRS",
       "colors": "RED"
     },
-    {
-      "id": "adalbert_of_prague_bishop",
+    "adalbert_of_prague_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 4,
@@ -580,8 +532,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "fidelis_of_sigmaringen_priest",
+    "fidelis_of_sigmaringen_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 4,
@@ -593,8 +544,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "mark_evangelist",
+    "mark_evangelist": {
       "precedence": "GENERAL_FEAST_7",
       "date_def": {
         "month": 4,
@@ -603,8 +553,7 @@
       "commons_def": "NONE",
       "colors": "RED"
     },
-    {
-      "id": "peter_chanel_priest",
+    "peter_chanel_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 4,
@@ -616,8 +565,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "louis_grignion_de_montfort_priest",
+    "louis_grignion_de_montfort_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 4,
@@ -625,8 +573,7 @@
       },
       "commons_def": "PASTORS"
     },
-    {
-      "id": "catherine_of_siena_virgin",
+    "catherine_of_siena_virgin": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 4,
@@ -634,8 +581,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "pius_v_pope",
+    "pius_v_pope": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 4,
@@ -643,8 +589,7 @@
       },
       "commons_def": "POPES"
     },
-    {
-      "id": "joseph_the_worker",
+    "joseph_the_worker": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 5,
@@ -652,8 +597,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "athanasius_of_alexandria_bishop",
+    "athanasius_of_alexandria_bishop": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 5,
@@ -661,8 +605,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "philip_and_james_apostles",
+    "philip_and_james_apostles": {
       "precedence": "GENERAL_FEAST_7",
       "date_def": {
         "month": 5,
@@ -675,8 +618,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "john_of_avila_priest",
+    "john_of_avila_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 5,
@@ -687,8 +629,7 @@
         "DOCTORS_OF_THE_CHURCH"
       ]
     },
-    {
-      "id": "nereus_of_terracina_and_achilleus_of_terracina_martyrs",
+    "nereus_of_terracina_and_achilleus_of_terracina_martyrs": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 5,
@@ -701,8 +642,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "pancras_of_rome_martyr",
+    "pancras_of_rome_martyr": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 5,
@@ -711,8 +651,7 @@
       "commons_def": "MARTYRS",
       "colors": "RED"
     },
-    {
-      "id": "our_lady_of_fatima",
+    "our_lady_of_fatima": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 5,
@@ -720,8 +659,7 @@
       },
       "commons_def": "BLESSED_VIRGIN_MARY"
     },
-    {
-      "id": "matthias_apostle",
+    "matthias_apostle": {
       "precedence": "GENERAL_FEAST_7",
       "date_def": {
         "month": 5,
@@ -730,8 +668,7 @@
       "commons_def": "NONE",
       "colors": "RED"
     },
-    {
-      "id": "john_i_pope",
+    "john_i_pope": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 5,
@@ -743,8 +680,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "bernardine_of_siena_priest",
+    "bernardine_of_siena_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 5,
@@ -755,8 +691,7 @@
         "RELIGIOUS"
       ]
     },
-    {
-      "id": "christopher_magallanes_priest_and_companions_martyrs",
+    "christopher_magallanes_priest_and_companions_martyrs": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 5,
@@ -772,8 +707,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "rita_of_cascia_religious",
+    "rita_of_cascia_religious": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 5,
@@ -781,8 +715,7 @@
       },
       "commons_def": "RELIGIOUS"
     },
-    {
-      "id": "bede_the_venerable_priest",
+    "bede_the_venerable_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 5,
@@ -793,8 +726,7 @@
         "MONKS"
       ]
     },
-    {
-      "id": "gregory_vii_pope",
+    "gregory_vii_pope": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 5,
@@ -802,8 +734,7 @@
       },
       "commons_def": "POPES"
     },
-    {
-      "id": "mary_magdalene_de_pazzi_virgin",
+    "mary_magdalene_de_pazzi_virgin": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 5,
@@ -814,8 +745,7 @@
         "RELIGIOUS"
       ]
     },
-    {
-      "id": "philip_neri_priest",
+    "philip_neri_priest": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 5,
@@ -823,8 +753,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "augustine_of_canterbury_bishop",
+    "augustine_of_canterbury_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 5,
@@ -835,8 +764,7 @@
         "BISHOPS"
       ]
     },
-    {
-      "id": "paul_vi_pope",
+    "paul_vi_pope": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 5,
@@ -846,8 +774,7 @@
         "POPES"
       ]
     },
-    {
-      "id": "visitation_of_mary",
+    "visitation_of_mary": {
       "precedence": "GENERAL_FEAST_7",
       "date_def": {
         "month": 5,
@@ -855,16 +782,14 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "mary_mother_of_the_church",
+    "mary_mother_of_the_church": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "date_fn": "MARY_MOTHER_OF_THE_CHURCH"
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "immaculate_heart_of_mary",
+    "immaculate_heart_of_mary": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "date_fn": "IMMACULATE_HEART_OF_MARY"
@@ -873,8 +798,7 @@
       "colors": "WHITE",
       "commons_def": "NONE"
     },
-    {
-      "id": "justin_martyr",
+    "justin_martyr": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 6,
@@ -883,8 +807,7 @@
       "commons_def": "NONE",
       "colors": "RED"
     },
-    {
-      "id": "marcellinus_of_rome_and_peter_the_exorcist_martyrs",
+    "marcellinus_of_rome_and_peter_the_exorcist_martyrs": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 6,
@@ -897,8 +820,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "charles_lwanga_and_companions_martyrs",
+    "charles_lwanga_and_companions_martyrs": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 6,
@@ -911,8 +833,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "boniface_of_mainz_bishop",
+    "boniface_of_mainz_bishop": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 6,
@@ -924,8 +845,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "norbert_of_xanten_bishop",
+    "norbert_of_xanten_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 6,
@@ -936,8 +856,7 @@
         "RELIGIOUS"
       ]
     },
-    {
-      "id": "ephrem_the_syrian_deacon",
+    "ephrem_the_syrian_deacon": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 6,
@@ -945,8 +864,7 @@
       },
       "commons_def": "DOCTORS_OF_THE_CHURCH"
     },
-    {
-      "id": "barnabas_apostle",
+    "barnabas_apostle": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 6,
@@ -955,8 +873,7 @@
       "commons_def": "NONE",
       "colors": "RED"
     },
-    {
-      "id": "anthony_of_padua_priest",
+    "anthony_of_padua_priest": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 6,
@@ -968,8 +885,7 @@
         "RELIGIOUS"
       ]
     },
-    {
-      "id": "romuald_of_ravenna_abbot",
+    "romuald_of_ravenna_abbot": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 6,
@@ -977,8 +893,7 @@
       },
       "commons_def": "ABBOTS"
     },
-    {
-      "id": "aloysius_gonzaga_religious",
+    "aloysius_gonzaga_religious": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 6,
@@ -986,8 +901,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "paulinus_of_nola_bishop",
+    "paulinus_of_nola_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 6,
@@ -995,8 +909,7 @@
       },
       "commons_def": "BISHOPS"
     },
-    {
-      "id": "john_fisher_bishop_and_thomas_more_martyrs",
+    "john_fisher_bishop_and_thomas_more_martyrs": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 6,
@@ -1009,8 +922,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "nativity_of_john_the_baptist",
+    "nativity_of_john_the_baptist": {
       "precedence": "GENERAL_SOLEMNITY_3",
       "date_def": {
         "date_fn": "NATIVITY_OF_JOHN_THE_BAPTIST"
@@ -1018,8 +930,7 @@
       "commons_def": "NONE",
       "colors": "WHITE"
     },
-    {
-      "id": "cyril_of_alexandria_bishop",
+    "cyril_of_alexandria_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 6,
@@ -1030,8 +941,7 @@
         "DOCTORS_OF_THE_CHURCH"
       ]
     },
-    {
-      "id": "irenaeus_of_lyon_bishop",
+    "irenaeus_of_lyon_bishop": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 6,
@@ -1040,8 +950,7 @@
       "commons_def": "NONE",
       "colors": "RED"
     },
-    {
-      "id": "peter_and_paul_apostles",
+    "peter_and_paul_apostles": {
       "precedence": "GENERAL_SOLEMNITY_3",
       "date_def": {
         "date_fn": "PETER_AND_PAUL_APOSTLES"
@@ -1054,8 +963,7 @@
         "paul_apostle"
       ]
     },
-    {
-      "id": "first_martyrs_of_the_holy_roman_church",
+    "first_martyrs_of_the_holy_roman_church": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 6,
@@ -1064,8 +972,7 @@
       "commons_def": "MARTYRS",
       "colors": "RED"
     },
-    {
-      "id": "thomas_apostle",
+    "thomas_apostle": {
       "precedence": "GENERAL_FEAST_7",
       "date_def": {
         "month": 7,
@@ -1074,8 +981,7 @@
       "commons_def": "NONE",
       "colors": "RED"
     },
-    {
-      "id": "elizabeth_of_portugal",
+    "elizabeth_of_portugal": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 7,
@@ -1083,8 +989,7 @@
       },
       "commons_def": "MERCY_WORKERS"
     },
-    {
-      "id": "anthony_zaccaria_priest",
+    "anthony_zaccaria_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 7,
@@ -1096,8 +1001,7 @@
         "RELIGIOUS"
       ]
     },
-    {
-      "id": "maria_goretti_virgin",
+    "maria_goretti_virgin": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 7,
@@ -1109,8 +1013,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "augustine_zhao_rong_priest_and_companions_martyrs",
+    "augustine_zhao_rong_priest_and_companions_martyrs": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 7,
@@ -1123,8 +1026,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "benedict_of_nursia_abbot",
+    "benedict_of_nursia_abbot": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 7,
@@ -1132,8 +1034,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "henry_ii_emperor",
+    "henry_ii_emperor": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 7,
@@ -1141,8 +1042,7 @@
       },
       "commons_def": "SAINTS"
     },
-    {
-      "id": "camillus_de_lellis_priest",
+    "camillus_de_lellis_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 7,
@@ -1150,8 +1050,7 @@
       },
       "commons_def": "MERCY_WORKERS"
     },
-    {
-      "id": "bonaventure_of_bagnoregio_bishop",
+    "bonaventure_of_bagnoregio_bishop": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 7,
@@ -1162,8 +1061,7 @@
         "DOCTORS_OF_THE_CHURCH"
       ]
     },
-    {
-      "id": "our_lady_of_mount_carmel",
+    "our_lady_of_mount_carmel": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 7,
@@ -1171,8 +1069,7 @@
       },
       "commons_def": "BLESSED_VIRGIN_MARY"
     },
-    {
-      "id": "apollinaris_of_ravenna_bishop",
+    "apollinaris_of_ravenna_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 7,
@@ -1184,8 +1081,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "lawrence_of_brindisi_priest",
+    "lawrence_of_brindisi_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 7,
@@ -1197,8 +1093,7 @@
         "RELIGIOUS"
       ]
     },
-    {
-      "id": "mary_magdalene",
+    "mary_magdalene": {
       "precedence": "GENERAL_FEAST_7",
       "date_def": {
         "month": 7,
@@ -1206,8 +1101,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "bridget_of_sweden_religious",
+    "bridget_of_sweden_religious": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 7,
@@ -1218,8 +1112,7 @@
         "RELIGIOUS"
       ]
     },
-    {
-      "id": "sharbel_makhluf_priest",
+    "sharbel_makhluf_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 7,
@@ -1230,8 +1123,7 @@
         "MONKS"
       ]
     },
-    {
-      "id": "james_apostle",
+    "james_apostle": {
       "precedence": "GENERAL_FEAST_7",
       "date_def": {
         "month": 7,
@@ -1240,8 +1132,7 @@
       "commons_def": "NONE",
       "colors": "RED"
     },
-    {
-      "id": "joachim_and_anne_parents_of_mary",
+    "joachim_and_anne_parents_of_mary": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 7,
@@ -1253,8 +1144,7 @@
         "anne_mother_of_mary"
       ]
     },
-    {
-      "id": "martha_of_bethany_mary_of_bethany_and_lazarus_of_bethany",
+    "martha_of_bethany_mary_of_bethany_and_lazarus_of_bethany": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 7,
@@ -1267,8 +1157,7 @@
         "lazarus_of_bethany"
       ]
     },
-    {
-      "id": "peter_chrysologus_bishop",
+    "peter_chrysologus_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 7,
@@ -1279,8 +1168,7 @@
         "DOCTORS_OF_THE_CHURCH"
       ]
     },
-    {
-      "id": "ignatius_of_loyola_priest",
+    "ignatius_of_loyola_priest": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 7,
@@ -1288,8 +1176,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "alphonsus_mary_liguori_bishop",
+    "alphonsus_mary_liguori_bishop": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 8,
@@ -1300,8 +1187,7 @@
         "DOCTORS_OF_THE_CHURCH"
       ]
     },
-    {
-      "id": "eusebius_of_vercelli_bishop",
+    "eusebius_of_vercelli_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 8,
@@ -1309,8 +1195,7 @@
       },
       "commons_def": "BISHOPS"
     },
-    {
-      "id": "peter_julian_eymard_priest",
+    "peter_julian_eymard_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 8,
@@ -1321,8 +1206,7 @@
         "PASTORS"
       ]
     },
-    {
-      "id": "john_mary_vianney_priest",
+    "john_mary_vianney_priest": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 8,
@@ -1330,8 +1214,7 @@
       },
       "commons_def": "PASTORS"
     },
-    {
-      "id": "dedication_of_the_basilica_of_saint_mary_major",
+    "dedication_of_the_basilica_of_saint_mary_major": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 8,
@@ -1339,8 +1222,7 @@
       },
       "commons_def": "BLESSED_VIRGIN_MARY"
     },
-    {
-      "id": "transfiguration_of_the_lord",
+    "transfiguration_of_the_lord": {
       "precedence": "GENERAL_LORD_FEAST_5",
       "date_def": {
         "date_fn": "TRANSFIGURATION"
@@ -1348,8 +1230,7 @@
       "commons_def": "NONE",
       "colors": "WHITE"
     },
-    {
-      "id": "sixtus_ii_pope_and_companions_martyrs",
+    "sixtus_ii_pope_and_companions_martyrs": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 8,
@@ -1362,8 +1243,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "cajetan_of_thiene_priest",
+    "cajetan_of_thiene_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 8,
@@ -1374,8 +1254,7 @@
         "RELIGIOUS"
       ]
     },
-    {
-      "id": "dominic_de_guzman_priest",
+    "dominic_de_guzman_priest": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 8,
@@ -1383,8 +1262,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "teresa_benedicta_of_the_cross_stein_virgin",
+    "teresa_benedicta_of_the_cross_stein_virgin": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 8,
@@ -1396,8 +1274,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "lawrence_of_rome_deacon",
+    "lawrence_of_rome_deacon": {
       "precedence": "GENERAL_FEAST_7",
       "date_def": {
         "month": 8,
@@ -1406,8 +1283,7 @@
       "commons_def": "NONE",
       "colors": "RED"
     },
-    {
-      "id": "clare_of_assisi_virgin",
+    "clare_of_assisi_virgin": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 8,
@@ -1418,8 +1294,7 @@
         "NUNS"
       ]
     },
-    {
-      "id": "jane_frances_de_chantal_religious",
+    "jane_frances_de_chantal_religious": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 8,
@@ -1427,8 +1302,7 @@
       },
       "commons_def": "RELIGIOUS"
     },
-    {
-      "id": "pontian_i_pope_and_hippolytus_of_rome_priest",
+    "pontian_i_pope_and_hippolytus_of_rome_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 8,
@@ -1444,8 +1318,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "maximilian_mary_raymund_kolbe_priest",
+    "maximilian_mary_raymund_kolbe_priest": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 8,
@@ -1454,8 +1327,7 @@
       "commons_def": "NONE",
       "colors": "RED"
     },
-    {
-      "id": "assumption_of_the_blessed_virgin_mary",
+    "assumption_of_the_blessed_virgin_mary": {
       "precedence": "PROPER_OF_TIME_SOLEMNITY_2",
       "date_def": {
         "date_fn": "ASSUMPTION"
@@ -1464,8 +1336,7 @@
       "is_holy_day_of_obligation": true,
       "colors": "WHITE"
     },
-    {
-      "id": "stephen_i_of_hungary",
+    "stephen_i_of_hungary": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 8,
@@ -1473,8 +1344,7 @@
       },
       "commons_def": "SAINTS"
     },
-    {
-      "id": "john_eudes_priest",
+    "john_eudes_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 8,
@@ -1485,8 +1355,7 @@
         "RELIGIOUS"
       ]
     },
-    {
-      "id": "bernard_of_clairvaux_abbot",
+    "bernard_of_clairvaux_abbot": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 8,
@@ -1494,8 +1363,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "pius_x_pope",
+    "pius_x_pope": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 8,
@@ -1505,8 +1373,7 @@
         "POPES"
       ]
     },
-    {
-      "id": "queenship_of_the_blessed_virgin_mary",
+    "queenship_of_the_blessed_virgin_mary": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 8,
@@ -1514,8 +1381,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "rose_of_lima_virgin",
+    "rose_of_lima_virgin": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 8,
@@ -1523,8 +1389,7 @@
       },
       "commons_def": "VIRGINS"
     },
-    {
-      "id": "bartholomew_apostle",
+    "bartholomew_apostle": {
       "precedence": "GENERAL_FEAST_7",
       "date_def": {
         "month": 8,
@@ -1533,8 +1398,7 @@
       "commons_def": "NONE",
       "colors": "RED"
     },
-    {
-      "id": "louis_ix_of_france",
+    "louis_ix_of_france": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 8,
@@ -1542,8 +1406,7 @@
       },
       "commons_def": "SAINTS"
     },
-    {
-      "id": "joseph_of_calasanz_priest",
+    "joseph_of_calasanz_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 8,
@@ -1554,8 +1417,7 @@
         "PASTORS"
       ]
     },
-    {
-      "id": "monica_of_hippo",
+    "monica_of_hippo": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 8,
@@ -1563,8 +1425,7 @@
       },
       "commons_def": "HOLY_WOMEN"
     },
-    {
-      "id": "augustine_of_hippo_bishop",
+    "augustine_of_hippo_bishop": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 8,
@@ -1572,8 +1433,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "passion_of_saint_john_the_baptist",
+    "passion_of_saint_john_the_baptist": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 8,
@@ -1582,8 +1442,7 @@
       "commons_def": "NONE",
       "colors": "RED"
     },
-    {
-      "id": "gregory_i_the_great_pope",
+    "gregory_i_the_great_pope": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 9,
@@ -1591,8 +1450,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "nativity_of_the_blessed_virgin_mary",
+    "nativity_of_the_blessed_virgin_mary": {
       "precedence": "GENERAL_FEAST_7",
       "date_def": {
         "month": 9,
@@ -1600,8 +1458,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "peter_claver_priest",
+    "peter_claver_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 9,
@@ -1612,8 +1469,7 @@
         "MERCY_WORKERS"
       ]
     },
-    {
-      "id": "most_holy_name_of_mary",
+    "most_holy_name_of_mary": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 9,
@@ -1621,8 +1477,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "john_chrysostom_bishop",
+    "john_chrysostom_bishop": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 9,
@@ -1630,8 +1485,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "exaltation_of_the_holy_cross",
+    "exaltation_of_the_holy_cross": {
       "precedence": "GENERAL_LORD_FEAST_5",
       "date_def": {
         "date_fn": "EXALTATION_OF_THE_HOLY_CROSS"
@@ -1639,8 +1493,7 @@
       "commons_def": "NONE",
       "colors": "RED"
     },
-    {
-      "id": "our_lady_of_sorrows",
+    "our_lady_of_sorrows": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 9,
@@ -1648,8 +1501,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "cornelius_i_pope_and_cyprian_of_carthage_bishop_martyrs",
+    "cornelius_i_pope_and_cyprian_of_carthage_bishop_martyrs": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 9,
@@ -1665,8 +1517,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "hildegard_of_bingen_abbess",
+    "hildegard_of_bingen_abbess": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 9,
@@ -1677,8 +1528,7 @@
         "NUNS"
       ]
     },
-    {
-      "id": "robert_bellarmine_bishop",
+    "robert_bellarmine_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 9,
@@ -1689,8 +1539,7 @@
         "DOCTORS_OF_THE_CHURCH"
       ]
     },
-    {
-      "id": "januarius_i_of_benevento_bishop",
+    "januarius_i_of_benevento_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 9,
@@ -1702,8 +1551,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "andrew_kim_tae_gon_priest_paul_chong_ha_sang_and_companions_martyrs",
+    "andrew_kim_tae_gon_priest_paul_chong_ha_sang_and_companions_martyrs": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 9,
@@ -1717,8 +1565,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "matthew_apostle",
+    "matthew_apostle": {
       "precedence": "GENERAL_FEAST_7",
       "date_def": {
         "month": 9,
@@ -1727,8 +1574,7 @@
       "commons_def": "NONE",
       "colors": "RED"
     },
-    {
-      "id": "pius_francesco_forgione_priest",
+    "pius_francesco_forgione_priest": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 9,
@@ -1739,8 +1585,7 @@
         "RELIGIOUS"
       ]
     },
-    {
-      "id": "cosmas_of_cilicia_and_damian_of_cilicia_martyrs",
+    "cosmas_of_cilicia_and_damian_of_cilicia_martyrs": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 9,
@@ -1753,8 +1598,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "vincent_de_paul_priest",
+    "vincent_de_paul_priest": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 9,
@@ -1762,8 +1606,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "wenceslaus_i_of_bohemia_martyr",
+    "wenceslaus_i_of_bohemia_martyr": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 9,
@@ -1772,8 +1615,7 @@
       "commons_def": "MARTYRS",
       "colors": "RED"
     },
-    {
-      "id": "lawrence_ruiz_and_companions_martyrs",
+    "lawrence_ruiz_and_companions_martyrs": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 9,
@@ -1786,8 +1628,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "michael_gabriel_and_raphael_archangels",
+    "michael_gabriel_and_raphael_archangels": {
       "precedence": "GENERAL_FEAST_7",
       "date_def": {
         "month": 9,
@@ -1800,8 +1641,7 @@
         "raphael_archangel"
       ]
     },
-    {
-      "id": "jerome_of_stridon_priest",
+    "jerome_of_stridon_priest": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 9,
@@ -1809,8 +1649,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin",
+    "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 10,
@@ -1818,8 +1657,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "holy_guardian_angels",
+    "holy_guardian_angels": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 10,
@@ -1827,8 +1665,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "francis_of_assisi",
+    "francis_of_assisi": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 10,
@@ -1836,8 +1673,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "faustina_kowalska_virgin",
+    "faustina_kowalska_virgin": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 10,
@@ -1848,8 +1684,7 @@
         "NUNS"
       ]
     },
-    {
-      "id": "bruno_of_cologne_priest",
+    "bruno_of_cologne_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 10,
@@ -1860,8 +1695,7 @@
         "PASTORS"
       ]
     },
-    {
-      "id": "our_lady_of_the_rosary",
+    "our_lady_of_the_rosary": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 10,
@@ -1869,8 +1703,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "denis_of_paris_bishop_and_companions_martyrs",
+    "denis_of_paris_bishop_and_companions_martyrs": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 10,
@@ -1883,8 +1716,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "john_leonardi_priest",
+    "john_leonardi_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 10,
@@ -1895,8 +1727,7 @@
         "MERCY_WORKERS"
       ]
     },
-    {
-      "id": "john_xxiii_pope",
+    "john_xxiii_pope": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 10,
@@ -1904,8 +1735,7 @@
       },
       "commons_def": "POPES"
     },
-    {
-      "id": "callistus_i_pope",
+    "callistus_i_pope": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 10,
@@ -1917,8 +1747,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "teresa_of_jesus_of_avila_virgin",
+    "teresa_of_jesus_of_avila_virgin": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 10,
@@ -1926,8 +1755,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "hedwig_of_silesia_religious",
+    "hedwig_of_silesia_religious": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 10,
@@ -1938,8 +1766,7 @@
         "HOLY_WOMEN"
       ]
     },
-    {
-      "id": "margaret_mary_alacoque_virgin",
+    "margaret_mary_alacoque_virgin": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 10,
@@ -1949,8 +1776,7 @@
         "VIRGINS"
       ]
     },
-    {
-      "id": "ignatius_of_antioch_bishop",
+    "ignatius_of_antioch_bishop": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 10,
@@ -1959,8 +1785,7 @@
       "commons_def": "NONE",
       "colors": "RED"
     },
-    {
-      "id": "luke_evangelist",
+    "luke_evangelist": {
       "precedence": "GENERAL_FEAST_7",
       "date_def": {
         "month": 10,
@@ -1969,8 +1794,7 @@
       "commons_def": "NONE",
       "colors": "RED"
     },
-    {
-      "id": "john_de_brebeuf_isaac_jogues_priests_and_companions_martyrs",
+    "john_de_brebeuf_isaac_jogues_priests_and_companions_martyrs": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 10,
@@ -1984,8 +1808,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "paul_of_the_cross_priest",
+    "paul_of_the_cross_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 10,
@@ -1993,8 +1816,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "john_paul_ii_pope",
+    "john_paul_ii_pope": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 10,
@@ -2002,8 +1824,7 @@
       },
       "commons_def": "POPES"
     },
-    {
-      "id": "john_of_capistrano_priest",
+    "john_of_capistrano_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 10,
@@ -2014,8 +1835,7 @@
         "RELIGIOUS"
       ]
     },
-    {
-      "id": "anthony_mary_claret_bishop",
+    "anthony_mary_claret_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 10,
@@ -2026,8 +1846,7 @@
         "BISHOPS"
       ]
     },
-    {
-      "id": "simon_and_jude_apostles",
+    "simon_and_jude_apostles": {
       "precedence": "GENERAL_FEAST_7",
       "date_def": {
         "month": 10,
@@ -2040,8 +1859,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "all_saints",
+    "all_saints": {
       "precedence": "GENERAL_SOLEMNITY_3",
       "date_def": {
         "date_fn": "ALL_SAINTS"
@@ -2050,8 +1868,7 @@
       "is_holy_day_of_obligation": true,
       "colors": "WHITE"
     },
-    {
-      "id": "commemoration_of_all_the_faithful_departed",
+    "commemoration_of_all_the_faithful_departed": {
       "precedence": "GENERAL_SOLEMNITY_3",
       "date_def": {
         "month": 11,
@@ -2063,8 +1880,7 @@
         "BLACK"
       ]
     },
-    {
-      "id": "martin_de_porres_religious",
+    "martin_de_porres_religious": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 11,
@@ -2074,8 +1890,7 @@
         "RELIGIOUS"
       ]
     },
-    {
-      "id": "charles_borromeo_bishop",
+    "charles_borromeo_bishop": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 11,
@@ -2083,8 +1898,7 @@
       },
       "commons_def": "BISHOPS"
     },
-    {
-      "id": "dedication_of_the_lateran_basilica",
+    "dedication_of_the_lateran_basilica": {
       "precedence": "GENERAL_FEAST_7",
       "date_def": {
         "month": 11,
@@ -2092,8 +1906,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "leo_i_the_great_pope",
+    "leo_i_the_great_pope": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 11,
@@ -2101,8 +1914,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "martin_of_tours_bishop",
+    "martin_of_tours_bishop": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 11,
@@ -2110,8 +1922,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "josaphat_kuntsevych_bishop",
+    "josaphat_kuntsevych_bishop": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 11,
@@ -2120,8 +1931,7 @@
       "commons_def": "NONE",
       "colors": "RED"
     },
-    {
-      "id": "albert_the_great_bishop",
+    "albert_the_great_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 11,
@@ -2132,8 +1942,7 @@
         "DOCTORS_OF_THE_CHURCH"
       ]
     },
-    {
-      "id": "margaret_of_scotland",
+    "margaret_of_scotland": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 11,
@@ -2141,8 +1950,7 @@
       },
       "commons_def": "MERCY_WORKERS"
     },
-    {
-      "id": "gertrude_the_great_virgin",
+    "gertrude_the_great_virgin": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 11,
@@ -2153,8 +1961,7 @@
         "NUNS"
       ]
     },
-    {
-      "id": "elizabeth_of_hungary_religious",
+    "elizabeth_of_hungary_religious": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 11,
@@ -2162,8 +1969,7 @@
       },
       "commons_def": "MERCY_WORKERS"
     },
-    {
-      "id": "dedication_of_the_basilicas_of_saints_peter_and_paul_apostles",
+    "dedication_of_the_basilicas_of_saints_peter_and_paul_apostles": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 11,
@@ -2171,8 +1977,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "presentation_of_the_blessed_virgin_mary",
+    "presentation_of_the_blessed_virgin_mary": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 11,
@@ -2180,8 +1985,7 @@
       },
       "commons_def": "BLESSED_VIRGIN_MARY"
     },
-    {
-      "id": "cecilia_of_rome_virgin",
+    "cecilia_of_rome_virgin": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 11,
@@ -2193,8 +1997,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "clement_i_pope",
+    "clement_i_pope": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 11,
@@ -2206,8 +2009,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "columban_of_luxeuil_abbot",
+    "columban_of_luxeuil_abbot": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 11,
@@ -2218,8 +2020,7 @@
         "ABBOTS"
       ]
     },
-    {
-      "id": "andrew_dung_lac_priest_and_companions_martyrs",
+    "andrew_dung_lac_priest_and_companions_martyrs": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 11,
@@ -2232,8 +2033,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "catherine_of_alexandria_virgin",
+    "catherine_of_alexandria_virgin": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 11,
@@ -2245,8 +2045,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "andrew_apostle",
+    "andrew_apostle": {
       "precedence": "GENERAL_FEAST_7",
       "date_def": {
         "month": 11,
@@ -2255,8 +2054,7 @@
       "commons_def": "NONE",
       "colors": "RED"
     },
-    {
-      "id": "francis_xavier_priest",
+    "francis_xavier_priest": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 12,
@@ -2264,8 +2062,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "john_damascene_priest",
+    "john_damascene_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 12,
@@ -2276,8 +2073,7 @@
         "DOCTORS_OF_THE_CHURCH"
       ]
     },
-    {
-      "id": "nicholas_of_myra_bishop",
+    "nicholas_of_myra_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 12,
@@ -2285,8 +2081,7 @@
       },
       "commons_def": "BISHOPS"
     },
-    {
-      "id": "ambrose_of_milan_bishop",
+    "ambrose_of_milan_bishop": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 12,
@@ -2294,8 +2089,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "immaculate_conception_of_the_blessed_virgin_mary",
+    "immaculate_conception_of_the_blessed_virgin_mary": {
       "precedence": "GENERAL_SOLEMNITY_3",
       "date_def": {
         "date_fn": "IMMACULATE_CONCEPTION_OF_MARY"
@@ -2304,8 +2098,7 @@
       "is_holy_day_of_obligation": true,
       "colors": "WHITE"
     },
-    {
-      "id": "juan_diego_cuauhtlatoatzin",
+    "juan_diego_cuauhtlatoatzin": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 12,
@@ -2313,8 +2106,7 @@
       },
       "commons_def": "SAINTS"
     },
-    {
-      "id": "our_lady_of_loreto",
+    "our_lady_of_loreto": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 12,
@@ -2322,8 +2114,7 @@
       },
       "commons_def": "BLESSED_VIRGIN_MARY"
     },
-    {
-      "id": "damasus_i_pope",
+    "damasus_i_pope": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 12,
@@ -2331,8 +2122,7 @@
       },
       "commons_def": "POPES"
     },
-    {
-      "id": "our_lady_of_guadalupe",
+    "our_lady_of_guadalupe": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 12,
@@ -2340,8 +2130,7 @@
       },
       "commons_def": "BLESSED_VIRGIN_MARY"
     },
-    {
-      "id": "lucy_of_syracuse_virgin",
+    "lucy_of_syracuse_virgin": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 12,
@@ -2353,8 +2142,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "john_of_the_cross_priest",
+    "john_of_the_cross_priest": {
       "precedence": "GENERAL_MEMORIAL_10",
       "date_def": {
         "month": 12,
@@ -2362,8 +2150,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "peter_canisius_priest",
+    "peter_canisius_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 12,
@@ -2374,8 +2161,7 @@
         "DOCTORS_OF_THE_CHURCH"
       ]
     },
-    {
-      "id": "john_of_kanty_priest",
+    "john_of_kanty_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 12,
@@ -2386,8 +2172,7 @@
         "MERCY_WORKERS"
       ]
     },
-    {
-      "id": "stephen_the_first_martyr",
+    "stephen_the_first_martyr": {
       "precedence": "GENERAL_FEAST_7",
       "date_def": {
         "month": 12,
@@ -2396,8 +2181,7 @@
       "commons_def": "NONE",
       "colors": "RED"
     },
-    {
-      "id": "john_apostle",
+    "john_apostle": {
       "precedence": "GENERAL_FEAST_7",
       "date_def": {
         "month": 12,
@@ -2406,8 +2190,7 @@
       "commons_def": "NONE",
       "colors": "WHITE"
     },
-    {
-      "id": "holy_innocents_martyrs",
+    "holy_innocents_martyrs": {
       "precedence": "GENERAL_FEAST_7",
       "date_def": {
         "month": 12,
@@ -2416,8 +2199,7 @@
       "commons_def": "NONE",
       "colors": "RED"
     },
-    {
-      "id": "thomas_becket_bishop",
+    "thomas_becket_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 12,
@@ -2429,8 +2211,7 @@
       ],
       "colors": "RED"
     },
-    {
-      "id": "sylvester_i_pope",
+    "sylvester_i_pope": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 12,
@@ -2440,5 +2221,5 @@
         "POPES"
       ]
     }
-  ]
+  }
 }

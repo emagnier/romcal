@@ -217,12 +217,12 @@ mod tests {
 
         let json = serde_json::to_string_pretty(&metadata).unwrap();
 
-        // Vérifier que les clés sont dans l'ordre alphabétique
+        // Verify that keys are in alphabetical order
         assert!(json.contains("\"1st\""));
         assert!(json.contains("\"2nd\""));
         assert!(json.contains("\"3rd\""));
 
-        // Vérifier l'ordre en cherchant la position des clés
+        // Verify order by checking key positions
         let first_pos = json.find("\"1st\"").unwrap();
         let second_pos = json.find("\"2nd\"").unwrap();
         let third_pos = json.find("\"3rd\"").unwrap();

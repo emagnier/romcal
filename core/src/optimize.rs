@@ -33,9 +33,6 @@ pub fn optimize(preset: &Preset) -> RomcalResult<String> {
     // Validate that all calendar IDs are unique
     validate_unique_calendar_ids(&preset.calendar_definitions)?;
 
-    // Validate that all day definition IDs are unique within each calendar
-    validate_unique_day_ids(&preset.calendar_definitions)?;
-
     // Validate that all resource locales are unique
     validate_unique_resource_locales(&preset.resources)?;
 
@@ -82,25 +79,6 @@ fn validate_unique_resource_locales(resources: &[Resources]) -> RomcalResult<()>
                 "Duplicate locale '{}' found in resources. Each resource must have a unique locale.",
                 resource.locale
             )));
-        }
-    }
-
-    Ok(())
-}
-
-/// Validate that all day definition IDs are unique within each calendar definition
-/// Returns an error if duplicate day definition IDs are found in any calendar
-fn validate_unique_day_ids(calendar_definitions: &[CalendarDefinition]) -> RomcalResult<()> {
-    for calendar_def in calendar_definitions {
-        let mut seen_ids = EntityIdSet::new();
-
-        for day_def in &calendar_def.days_definitions {
-            if !seen_ids.insert(day_def.id.clone()) {
-                return Err(RomcalError::ValidationError(format!(
-                    "Duplicate day definition ID '{}' found in calendar '{}'. Each day definition must have a unique ID within a calendar.",
-                    day_def.id, calendar_def.id
-                )));
-            }
         }
     }
 
@@ -160,9 +138,9 @@ fn collect_used_entity_ids(calendar_definitions: &[CalendarDefinition]) -> Entit
     let mut used_entity_ids = EntityIdSet::new();
 
     for calendar_def in calendar_definitions {
-        for day_def in &calendar_def.days_definitions {
+        for (day_id, day_def) in &calendar_def.days_definitions {
             // Add the day_definition ID itself as a potential entity reference
-            used_entity_ids.insert(day_def.id.clone());
+            used_entity_ids.insert(day_id.clone());
 
             // Also check EntityPointer elements in the day_definition
             if let Some(entities) = &day_def.entities {
@@ -565,46 +543,52 @@ mod tests {
             },
             particular_config: None,
             parent_calendar_ids: vec![],
-            days_definitions: vec![
-                DayDefinition {
-                    id: "saint_john".to_string(),
-                    date_def: None,
-                    date_exceptions: None,
-                    precedence: None,
-                    commons_def: None,
-                    is_holy_day_of_obligation: None,
-                    allow_similar_rank_items: None,
-                    is_optional: None,
-                    custom_locale_id: None,
-                    entities: Some(vec![
-                        EntityPointer::ResourceId("john_the_baptist".to_string()),
-                        EntityPointer::Override(EntityOverride {
-                            id: "john_the_evangelist".to_string(),
-                            titles: None,
-                            hide_titles: None,
-                            count: None,
-                        }),
-                    ]),
-                    titles: None,
-                    drop: None,
-                    colors: None,
-                },
-                DayDefinition {
-                    id: "saint_peter".to_string(),
-                    date_def: None,
-                    date_exceptions: None,
-                    precedence: None,
-                    commons_def: None,
-                    is_holy_day_of_obligation: None,
-                    allow_similar_rank_items: None,
-                    is_optional: None,
-                    custom_locale_id: None,
-                    entities: None,
-                    titles: None,
-                    drop: None,
-                    colors: None,
-                },
-            ],
+            days_definitions: {
+                let mut map = std::collections::BTreeMap::new();
+                map.insert(
+                    "saint_john".to_string(),
+                    DayDefinition {
+                        date_def: None,
+                        date_exceptions: None,
+                        precedence: None,
+                        commons_def: None,
+                        is_holy_day_of_obligation: None,
+                        allow_similar_rank_items: None,
+                        is_optional: None,
+                        custom_locale_id: None,
+                        entities: Some(vec![
+                            EntityPointer::ResourceId("john_the_baptist".to_string()),
+                            EntityPointer::Override(EntityOverride {
+                                id: "john_the_evangelist".to_string(),
+                                titles: None,
+                                hide_titles: None,
+                                count: None,
+                            }),
+                        ]),
+                        titles: None,
+                        drop: None,
+                        colors: None,
+                    },
+                );
+                map.insert(
+                    "saint_peter".to_string(),
+                    DayDefinition {
+                        date_def: None,
+                        date_exceptions: None,
+                        precedence: None,
+                        commons_def: None,
+                        is_holy_day_of_obligation: None,
+                        allow_similar_rank_items: None,
+                        is_optional: None,
+                        custom_locale_id: None,
+                        entities: None,
+                        titles: None,
+                        drop: None,
+                        colors: None,
+                    },
+                );
+                map
+            },
         }
     }
 
@@ -717,21 +701,27 @@ mod tests {
             },
             particular_config: None,
             parent_calendar_ids: vec![],
-            days_definitions: vec![DayDefinition {
-                id: "saint_mary".to_string(),
-                date_def: None,
-                date_exceptions: None,
-                precedence: None,
-                commons_def: None,
-                is_holy_day_of_obligation: None,
-                allow_similar_rank_items: None,
-                is_optional: None,
-                custom_locale_id: None,
-                entities: None, // No entities
-                titles: None,
-                drop: None,
-                colors: None,
-            }],
+            days_definitions: {
+                let mut map = std::collections::BTreeMap::new();
+                map.insert(
+                    "saint_mary".to_string(),
+                    DayDefinition {
+                        date_def: None,
+                        date_exceptions: None,
+                        precedence: None,
+                        commons_def: None,
+                        is_holy_day_of_obligation: None,
+                        allow_similar_rank_items: None,
+                        is_optional: None,
+                        custom_locale_id: None,
+                        entities: None, // No entities
+                        titles: None,
+                        drop: None,
+                        colors: None,
+                    },
+                );
+                map
+            },
         }];
 
         let used_entity_ids = collect_used_entity_ids(&calendar_definitions);

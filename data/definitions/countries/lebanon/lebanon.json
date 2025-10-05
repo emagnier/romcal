@@ -6,62 +6,55 @@
     "type": "COUNTRY"
   },
   "parent_calendar_ids": [],
-  "days_definitions": [
-    {
-      "id": "barbara_of_heliopolis_virgin",
+  "days_definitions": {
+    "barbara_of_heliopolis_virgin": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 12,
         "date": 4
       }
     },
-    {
-      "id": "nicholas_of_myra_bishop",
+    "nicholas_of_myra_bishop": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 12,
         "date": 6
       }
     },
-    {
-      "id": "sharbel_makhluf_priest",
+    "sharbel_makhluf_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 12,
         "date": 24
       }
     },
-    {
-      "id": "maron_of_syria_hermit",
+    "maron_of_syria_hermit": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 2,
         "date": 9
       }
     },
-    {
-      "id": "rafqa_pietra_choboq_ar_rayes_virgin",
+    "rafqa_pietra_choboq_ar_rayes_virgin": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 3,
         "date": 23
       }
     },
-    {
-      "id": "george_of_lydda_martyr",
+    "george_of_lydda_martyr": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 4,
         "date": 23
       }
     },
-    {
-      "id": "our_lady_of_lebanon",
+    "our_lady_of_lebanon": {
       "precedence": "PROPER_FEAST_8F",
       "date_def": {
         "month": 5,
         "date": 1
       }
     }
-  ]
+  }
 }

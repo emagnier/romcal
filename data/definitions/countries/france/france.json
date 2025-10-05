@@ -13,9 +13,8 @@
   "parent_calendar_ids": [
     "europe"
   ],
-  "days_definitions": [
-    {
-      "id": "genevieve_of_paris_virgin",
+  "days_definitions": {
+    "genevieve_of_paris_virgin": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 1,
@@ -26,8 +25,7 @@
         "MERCY_WORKERS"
       ]
     },
-    {
-      "id": "remigius_of_reims_bishop",
+    "remigius_of_reims_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 1,
@@ -35,12 +33,10 @@
       },
       "commons_def": "BISHOPS"
     },
-    {
-      "id": "our_lady_of_lourdes",
+    "our_lady_of_lourdes": {
       "commons_def": "NONE"
     },
-    {
-      "id": "bernadette_soubirous_virgin",
+    "bernadette_soubirous_virgin": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 2,
@@ -51,8 +47,7 @@
         "RELIGIOUS"
       ]
     },
-    {
-      "id": "louise_de_marillac_religious",
+    "louise_de_marillac_religious": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 5,
@@ -60,8 +55,7 @@
       },
       "commons_def": "HOLY_WOMEN"
     },
-    {
-      "id": "ivo_of_kermartin_priest",
+    "ivo_of_kermartin_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 5,
@@ -72,8 +66,7 @@
         "PASTORS"
       ]
     },
-    {
-      "id": "joan_of_arc_virgin",
+    "joan_of_arc_virgin": {
       "custom_locale_id": "joan_of_arc_virgin_copatroness_of_france",
       "precedence": "PROPER_MEMORIAL__SECOND_PATRON_11A",
       "date_def": {
@@ -87,8 +80,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "pothinus_of_lyon_bishop_blandina_of_lyon_virgin_and_companions_martyrs",
+    "pothinus_of_lyon_bishop_blandina_of_lyon_virgin_and_companions_martyrs": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 6,
@@ -101,8 +93,7 @@
       ],
       "commons_def": "MARTYRS"
     },
-    {
-      "id": "clotilde_of_burgundy",
+    "clotilde_of_burgundy": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 6,
@@ -110,12 +101,10 @@
       },
       "commons_def": "HOLY_WOMEN"
     },
-    {
-      "id": "john_mary_vianney_priest",
+    "john_mary_vianney_priest": {
       "commons_def": "NONE"
     },
-    {
-      "id": "assumption_of_the_blessed_virgin_mary",
+    "assumption_of_the_blessed_virgin_mary": {
       "custom_locale_id": "assumption_of_the_blessed_virgin_mary_patroness_of_france",
       "titles": {
         "append": [
@@ -123,13 +112,11 @@
         ]
       }
     },
-    {
-      "id": "louis_ix_of_france",
+    "louis_ix_of_france": {
       "precedence": "PROPER_MEMORIAL_11B",
       "commons_def": "NONE"
     },
-    {
-      "id": "caesarius_of_arles_bishop",
+    "caesarius_of_arles_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 8,
@@ -137,16 +124,14 @@
       },
       "commons_def": "BISHOPS"
     },
-    {
-      "id": "joseph_of_calasanz_priest",
+    "joseph_of_calasanz_priest": {
       "date_def": {
         "month": 8,
         "date": 26
       },
       "commons_def": "SAINTS"
     },
-    {
-      "id": "our_lady_of_la_salette",
+    "our_lady_of_la_salette": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 9,
@@ -154,8 +139,7 @@
       },
       "commons_def": "BLESSED_VIRGIN_MARY"
     },
-    {
-      "id": "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin",
+    "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin": {
       "custom_locale_id": "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin_copatroness_of_france",
       "titles": {
         "append": [
@@ -163,8 +147,7 @@
         ]
       }
     },
-    {
-      "id": "dedication_of_consecrated_churches",
+    "dedication_of_consecrated_churches": {
       "precedence": "PROPER_SOLEMNITY__DEDICATION_OF_THE_OWN_CHURCH_4B",
       "date_def": {
         "month": 10,
@@ -173,5 +156,5 @@
       "is_optional": true,
       "commons_def": "DEDICATION_ANNIVERSARY__INSIDE"
     }
-  ]
+  }
 }

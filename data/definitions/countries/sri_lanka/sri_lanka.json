@@ -6,30 +6,27 @@
     "type": "COUNTRY"
   },
   "parent_calendar_ids": [],
-  "days_definitions": [
-    {
-      "id": "joseph_vaz_priest",
+  "days_definitions": {
+    "joseph_vaz_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 1,
         "date": 16
       }
     },
-    {
-      "id": "our_lady_of_lanka",
+    "our_lady_of_lanka": {
       "precedence": "PROPER_FEAST_8F",
       "date_def": {
         "month": 2,
         "date": 4
       }
     },
-    {
-      "id": "our_lady_of_madhu",
+    "our_lady_of_madhu": {
       "precedence": "PROPER_FEAST_8F",
       "date_def": {
         "month": 7,
         "date": 2
       }
     }
-  ]
+  }
 }

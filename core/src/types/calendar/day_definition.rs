@@ -5,8 +5,6 @@ use crate::types::{
     Color, CommonDefinition, DateDef, DateDefExceptions, EntityPointer, Precedence, TitlesDef,
 };
 
-/// Unique identifier for a day definition
-pub type DayId = String;
 /// Locale identifier for internationalization
 pub type LocaleId = String;
 
@@ -30,8 +28,6 @@ single_or_multiple!(ColorsDef, Color);
 /// to generate calendar entries with proper precedence, colors, and entity associations.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
 pub struct DayDefinition {
-    /// The unique identifier of the day definition
-    pub id: DayId,
     /// The date definition for this liturgical day
     pub date_def: Option<DateDef>,
     /// The date definition exceptions (overrides for specific circumstances)

@@ -6,9 +6,8 @@
     "type": "REGION"
   },
   "parent_calendar_ids": [],
-  "days_definitions": [
-    {
-      "id": "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop",
+  "days_definitions": {
+    "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop": {
       "custom_locale_id": "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop_copatrons_of_europe",
       "precedence": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C",
       "titles": {
@@ -18,8 +17,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "catherine_of_siena_virgin",
+    "catherine_of_siena_virgin": {
       "custom_locale_id": "catherine_of_siena_virgin_copatroness_of_europe",
       "precedence": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C",
       "titles": {
@@ -29,8 +27,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "benedict_of_nursia_abbot",
+    "benedict_of_nursia_abbot": {
       "custom_locale_id": "benedict_of_nursia_abbot_patron_of_europe",
       "precedence": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C",
       "titles": {
@@ -40,8 +37,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "bridget_of_sweden_religious",
+    "bridget_of_sweden_religious": {
       "custom_locale_id": "bridget_of_sweden_religious_copatroness_of_europe",
       "precedence": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C",
       "titles": {
@@ -51,8 +47,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "teresa_benedicta_of_the_cross_stein_virgin",
+    "teresa_benedicta_of_the_cross_stein_virgin": {
       "custom_locale_id": "teresa_benedicta_of_the_cross_stein_virgin_copatroness_of_europe",
       "precedence": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C",
       "titles": {
@@ -62,5 +57,5 @@
       },
       "commons_def": "NONE"
     }
-  ]
+  }
 }

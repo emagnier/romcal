@@ -8,9 +8,8 @@
   "parent_calendar_ids": [
     "americas"
   ],
-  "days_definitions": [
-    {
-      "id": "philip_of_jesus_de_las_casas_paul_miki_and_companions_martyrs",
+  "days_definitions": {
+    "philip_of_jesus_de_las_casas_paul_miki_and_companions_martyrs": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 2,
@@ -22,112 +21,98 @@
         "companions_martyrs"
       ]
     },
-    {
-      "id": "turibius_of_mogrovejo_bishop",
+    "turibius_of_mogrovejo_bishop": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 3,
         "date": 23
       }
     },
-    {
-      "id": "mariana_of_jesus_de_paredes_virgin",
+    "mariana_of_jesus_de_paredes_virgin": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 5,
         "date": 25
       }
     },
-    {
-      "id": "nazaria_ignacia_of_saint_teresa_of_jesus_march_mesa_virgin",
+    "nazaria_ignacia_of_saint_teresa_of_jesus_march_mesa_virgin": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 3,
         "date": 23
       }
     },
-    {
-      "id": "camillus_de_lellis_priest",
+    "camillus_de_lellis_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 7,
         "date": 12
       }
     },
-    {
-      "id": "francis_solanus_priest",
+    "francis_solanus_priest": {
       "precedence": "PROPER_FEAST_8F",
       "date_def": {
         "month": 7,
         "date": 14
       }
     },
-    {
-      "id": "our_lady_of_mount_carmel",
+    "our_lady_of_mount_carmel": {
       "precedence": "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A",
       "date_def": {
         "month": 7,
         "date": 16
       }
     },
-    {
-      "id": "rose_of_lima_virgin",
+    "rose_of_lima_virgin": {
       "precedence": "PROPER_FEAST_8F",
       "date_def": {
         "month": 8,
         "date": 23
       }
     },
-    {
-      "id": "peter_claver_priest",
+    "peter_claver_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 9,
         "date": 9
       }
     },
-    {
-      "id": "john_macias_religious",
+    "john_macias_religious": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 9,
         "date": 18
       }
     },
-    {
-      "id": "louis_bertrand_priest",
+    "louis_bertrand_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 10,
         "date": 9
       }
     },
-    {
-      "id": "miguel_febres_cordero_religious",
+    "miguel_febres_cordero_religious": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 10,
         "date": 21
       }
     },
-    {
-      "id": "anthony_mary_claret_bishop",
+    "anthony_mary_claret_bishop": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 10,
         "date": 24
       }
     },
-    {
-      "id": "martin_de_porres_religious",
+    "martin_de_porres_religious": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 11,
         "date": 3
       }
     },
-    {
-      "id": "roch_gonzalez_alphonsus_rodriguez_and_john_del_castillo_priests",
+    "roch_gonzalez_alphonsus_rodriguez_and_john_del_castillo_priests": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 11,
@@ -139,13 +124,12 @@
         "john_del_castillo_priest"
       ]
     },
-    {
-      "id": "our_lord_jesus_christ_the_eternal_high_priest",
+    "our_lord_jesus_christ_the_eternal_high_priest": {
       "precedence": "PROPER_FEAST_8F",
       "date_def": {
         "date_fn": "PENTECOST_SUNDAY",
         "day_offset": 4
       }
     }
-  ]
+  }
 }

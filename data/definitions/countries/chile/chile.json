@@ -8,64 +8,56 @@
   "parent_calendar_ids": [
     "americas"
   ],
-  "days_definitions": [
-    {
-      "id": "laura_vicuna_virgin",
+  "days_definitions": {
+    "laura_vicuna_virgin": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 1,
         "date": 22
       }
     },
-    {
-      "id": "pius_ix_pope",
+    "pius_ix_pope": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 2,
         "date": 7
       }
     },
-    {
-      "id": "our_lady_of_lourdes",
+    "our_lady_of_lourdes": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 2,
         "date": 11
       }
     },
-    {
-      "id": "philip_and_james_apostles",
+    "philip_and_james_apostles": {
       "date_def": {
         "month": 5,
         "date": 4
       }
     },
-    {
-      "id": "teresa_of_jesus_of_los_andes_virgin",
+    "teresa_of_jesus_of_los_andes_virgin": {
       "precedence": "PROPER_FEAST_8F",
       "date_def": {
         "month": 7,
         "date": 13
       }
     },
-    {
-      "id": "camillus_de_lellis_priest",
+    "camillus_de_lellis_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 7,
         "date": 14
       }
     },
-    {
-      "id": "henry_ii_emperor",
+    "henry_ii_emperor": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 7,
         "date": 14
       }
     },
-    {
-      "id": "our_lady_of_mount_carmel",
+    "our_lady_of_mount_carmel": {
       "custom_locale_id": "our_lady_of_mount_carmel_mother_and_queen_of_chile",
       "precedence": "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A",
       "date_def": {
@@ -78,37 +70,33 @@
         ]
       }
     },
-    {
-      "id": "alberto_hurtado_priest",
+    "alberto_hurtado_priest": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 8,
         "date": 18
       }
     },
-    {
-      "id": "rose_of_lima_virgin",
+    "rose_of_lima_virgin": {
       "precedence": "PROPER_FEAST_8F",
       "date_def": {
         "month": 8,
         "date": 30
       }
     },
-    {
-      "id": "our_lady_of_mercy",
+    "our_lady_of_mercy": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 9,
         "date": 24
       }
     },
-    {
-      "id": "our_lord_jesus_christ_the_eternal_high_priest",
+    "our_lord_jesus_christ_the_eternal_high_priest": {
       "precedence": "PROPER_FEAST_8F",
       "date_def": {
         "date_fn": "PENTECOST_SUNDAY",
         "day_offset": 4
       }
     }
-  ]
+  }
 }

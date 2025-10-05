@@ -9,29 +9,25 @@
     "europe",
     "france"
   ],
-  "days_definitions": [
-    {
-      "id": "thomas_aquinas_priest",
+  "days_definitions": {
+    "thomas_aquinas_priest": {
       "precedence": "PROPER_FEAST_8F"
     },
-    {
-      "id": "peter_nolasco_religious",
+    "peter_nolasco_religious": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 1,
         "date": 30
       }
     },
-    {
-      "id": "erembert_of_toulouse_bishop",
+    "erembert_of_toulouse_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 5,
         "date": 15
       }
     },
-    {
-      "id": "hilarius_of_toulouse_bishop_and_sylvius_of_toulouse_bishops",
+    "hilarius_of_toulouse_bishop_and_sylvius_of_toulouse_bishops": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 5,
@@ -42,8 +38,7 @@
         "sylvius_of_toulouse_bishop"
       ]
     },
-    {
-      "id": "raymond_costeran_and_companions_martyrs",
+    "raymond_costeran_and_companions_martyrs": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 5,
@@ -54,24 +49,21 @@
         "companions_martyrs"
       ]
     },
-    {
-      "id": "aventin_of_larboust_martyr",
+    "aventin_of_larboust_martyr": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 6,
         "date": 13
       }
     },
-    {
-      "id": "germaine_cousin_virgin",
+    "germaine_cousin_virgin": {
       "precedence": "PROPER_FEAST_8F",
       "date_def": {
         "month": 6,
         "date": 15
       }
     },
-    {
-      "id": "john_francis_regis_priest",
+    "john_francis_regis_priest": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 6,
@@ -81,80 +73,70 @@
         "PRIEST"
       ]
     },
-    {
-      "id": "raymond_gayrard_religious",
+    "raymond_gayrard_religious": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 7,
         "date": 4
       }
     },
-    {
-      "id": "urban_ii_pope",
+    "urban_ii_pope": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 7,
         "date": 28
       }
     },
-    {
-      "id": "louis_of_toulouse_bishop",
+    "louis_of_toulouse_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 8,
         "date": 19
       }
     },
-    {
-      "id": "dedication_of_the_cathedral_of_saint_stephen_of_toulouse_france",
+    "dedication_of_the_cathedral_of_saint_stephen_of_toulouse_france": {
       "precedence": "PROPER_FEAST__DEDICATION_OF_THE_CATHEDRAL_CHURCH_8B",
       "date_def": {
         "month": 8,
         "date": 30
       }
     },
-    {
-      "id": "exuperius_of_toulouse_bishop",
+    "exuperius_of_toulouse_bishop": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 9,
         "date": 28
       }
     },
-    {
-      "id": "bertrand_of_comminges_bishop",
+    "bertrand_of_comminges_bishop": {
       "precedence": "PROPER_FEAST_8F",
       "date_def": {
         "month": 10,
         "date": 16
       }
     },
-    {
-      "id": "urban_v_pope",
+    "urban_v_pope": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 11,
         "date": 7
       }
     },
-    {
-      "id": "saturnin_of_toulouse_bishop",
+    "saturnin_of_toulouse_bishop": {
       "precedence": "PROPER_FEAST_8F",
       "date_def": {
         "month": 11,
         "date": 29
       }
     },
-    {
-      "id": "paul_of_narbonne_bishop",
+    "paul_of_narbonne_bishop": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 12,
         "date": 11
       }
     },
-    {
-      "id": "stephen_the_first_martyr",
+    "stephen_the_first_martyr": {
       "custom_locale_id": "stephen_the_first_martyr_and_principal_patron_of_the_archdiocese_of_toulouse",
       "precedence": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_DIOCESE_8A",
       "titles": {
@@ -163,5 +145,5 @@
         ]
       }
     }
-  ]
+  }
 }

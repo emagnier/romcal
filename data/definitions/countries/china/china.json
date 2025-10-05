@@ -6,41 +6,36 @@
     "type": "COUNTRY"
   },
   "parent_calendar_ids": [],
-  "days_definitions": [
-    {
-      "id": "odoric_of_pordenone_priest",
+  "days_definitions": {
+    "odoric_of_pordenone_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 1,
         "date": 14
       }
     },
-    {
-      "id": "francis_ferdinand_de_capillas_priest",
+    "francis_ferdinand_de_capillas_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 1,
         "date": 15
       }
     },
-    {
-      "id": "lawrence_bai_xiaoman_martyr",
+    "lawrence_bai_xiaoman_martyr": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 1,
         "date": 23
       }
     },
-    {
-      "id": "augustine_zhao_rong_priest",
+    "augustine_zhao_rong_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 1,
         "date": 27
       }
     },
-    {
-      "id": "laurence_wang_bing_and_companions_martyrs",
+    "laurence_wang_bing_and_companions_martyrs": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 1,
@@ -51,24 +46,21 @@
         "companions_martyrs"
       ]
     },
-    {
-      "id": "joseph_freinademetz_priest",
+    "joseph_freinademetz_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 1,
         "date": 29
       }
     },
-    {
-      "id": "john_of_triora_priest",
+    "john_of_triora_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 2,
         "date": 13
       }
     },
-    {
-      "id": "martin_wu_xuesheng_and_companions_martyrs",
+    "martin_wu_xuesheng_and_companions_martyrs": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 2,
@@ -79,24 +71,21 @@
         "companions_martyrs"
       ]
     },
-    {
-      "id": "lucy_yi_zhenmei_virgin",
+    "lucy_yi_zhenmei_virgin": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 2,
         "date": 19
       }
     },
-    {
-      "id": "paul_liu_hanzuo_priest",
+    "paul_liu_hanzuo_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 2,
         "date": 21
       }
     },
-    {
-      "id": "aloysius_versiglia_bishop_and_callistus_caravario_priest_martyrs",
+    "aloysius_versiglia_bishop_and_callistus_caravario_priest_martyrs": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 2,
@@ -107,40 +96,35 @@
         "callistus_caravario_priest"
       ]
     },
-    {
-      "id": "agnes_cao_guiying_martyr",
+    "agnes_cao_guiying_martyr": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 3,
         "date": 1
       }
     },
-    {
-      "id": "joseph_zhang_dapeng_martyr",
+    "joseph_zhang_dapeng_martyr": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 3,
         "date": 12
       }
     },
-    {
-      "id": "mary_assunta_pallotta_virgin",
+    "mary_assunta_pallotta_virgin": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 4,
         "date": 8
       }
     },
-    {
-      "id": "john_martin_moye_priest",
+    "john_martin_moye_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 5,
         "date": 4
       }
     },
-    {
-      "id": "our_lady_of_china",
+    "our_lady_of_china": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 5,
@@ -148,32 +132,28 @@
         "nth_week_in_month": 2
       }
     },
-    {
-      "id": "peter_liu_wenyuan_martyr",
+    "peter_liu_wenyuan_martyr": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 5,
         "date": 14
       }
     },
-    {
-      "id": "peter_sanz_bishop",
+    "peter_sanz_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 5,
         "date": 27
       }
     },
-    {
-      "id": "joachim_he_kaizhi_martyr",
+    "joachim_he_kaizhi_martyr": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 5,
         "date": 29
       }
     },
-    {
-      "id": "gregory_grassi_francis_fogolla_and_anthony_fantosati_bishops_and_companions_martyrs",
+    "gregory_grassi_francis_fogolla_and_anthony_fantosati_bishops_and_companions_martyrs": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 6,
@@ -186,28 +166,24 @@
         "companions_martyrs"
       ]
     },
-    {
-      "id": "joseph_yuan_gengyin_priest",
+    "joseph_yuan_gengyin_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 6,
         "date": 23
       }
     },
-    {
-      "id": "seven_martyred_nuns_from_the_franciscan_missionaries_of_mary",
+    "seven_martyred_nuns_from_the_franciscan_missionaries_of_mary": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 7,
         "date": 8
       }
     },
-    {
-      "id": "augustine_zhao_rong_priest_and_companions_martyrs",
+    "augustine_zhao_rong_priest_and_companions_martyrs": {
       "precedence": "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A"
     },
-    {
-      "id": "leo_ignatius_mangin_priest_and_companions_martyrs",
+    "leo_ignatius_mangin_priest_and_companions_martyrs": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 7,
@@ -218,16 +194,14 @@
         "companions_martyrs"
       ]
     },
-    {
-      "id": "alberic_crescitelli_priest",
+    "alberic_crescitelli_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 7,
         "date": 21
       }
     },
-    {
-      "id": "paul_chen_changpin_and_companions_martyrs",
+    "paul_chen_changpin_and_companions_martyrs": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 7,
@@ -238,24 +212,21 @@
         "companions_martyrs"
       ]
     },
-    {
-      "id": "maurice_tornay_priest",
+    "maurice_tornay_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 8,
         "date": 11
       }
     },
-    {
-      "id": "john_gabriel_perboyre_priest",
+    "john_gabriel_perboyre_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 9,
         "date": 11
       }
     },
-    {
-      "id": "francis_diaz_del_rincon_priest_and_companions_martyrs",
+    "francis_diaz_del_rincon_priest_and_companions_martyrs": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 10,
@@ -266,29 +237,26 @@
         "companions_martyrs"
       ]
     },
-    {
-      "id": "peter_wu_guosheng_martyr",
+    "peter_wu_guosheng_martyr": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 11,
         "date": 7
       }
     },
-    {
-      "id": "gabriel_taurin_dufresse_bishop",
+    "gabriel_taurin_dufresse_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 11,
         "date": 27
       }
     },
-    {
-      "id": "our_lord_jesus_christ_the_eternal_high_priest",
+    "our_lord_jesus_christ_the_eternal_high_priest": {
       "precedence": "PROPER_FEAST_8F",
       "date_def": {
         "date_fn": "PENTECOST_SUNDAY",
         "day_offset": 4
       }
     }
-  ]
+  }
 }

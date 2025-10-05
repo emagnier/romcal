@@ -13,9 +13,8 @@
   "parent_calendar_ids": [
     "americas"
   ],
-  "days_definitions": [
-    {
-      "id": "andre_bessette_religious",
+  "days_definitions": {
+    "andre_bessette_religious": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 1,
@@ -23,15 +22,13 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "raymond_of_penyafort_priest",
+    "raymond_of_penyafort_priest": {
       "date_def": {
         "month": 1,
         "date": 8
       }
     },
-    {
-      "id": "marguerite_bourgeoys_virgin",
+    "marguerite_bourgeoys_virgin": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 1,
@@ -39,8 +36,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "joseph_spouse_of_mary",
+    "joseph_spouse_of_mary": {
       "custom_locale_id": "joseph_spouse_of_mary_patron_of_canada",
       "precedence": "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A",
       "titles": {
@@ -49,8 +45,7 @@
         ]
       }
     },
-    {
-      "id": "kateri_tekakwitha_virgin",
+    "kateri_tekakwitha_virgin": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 4,
@@ -58,8 +53,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "marie_anne_blondin_virgin",
+    "marie_anne_blondin_virgin": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 4,
@@ -67,8 +61,7 @@
       },
       "commons_def": "VIRGINS"
     },
-    {
-      "id": "our_lady_of_good_counsel",
+    "our_lady_of_good_counsel": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 4,
@@ -76,8 +69,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "mary_of_the_incarnation_marie_guyart_religious",
+    "mary_of_the_incarnation_marie_guyart_religious": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 4,
@@ -85,15 +77,13 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "pius_v_pope",
+    "pius_v_pope": {
       "date_def": {
         "month": 5,
         "date": 1
       }
     },
-    {
-      "id": "marie_leonie_paradis_virgin",
+    "marie_leonie_paradis_virgin": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 5,
@@ -101,8 +91,7 @@
       },
       "commons_def": "VIRGINS"
     },
-    {
-      "id": "francois_de_montmorency_laval_bishop",
+    "francois_de_montmorency_laval_bishop": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 5,
@@ -110,8 +99,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "mary_catherine_of_saint_augustine_catherine_de_simon_de_longpre_virgin",
+    "mary_catherine_of_saint_augustine_catherine_de_simon_de_longpre_virgin": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 5,
@@ -122,8 +110,7 @@
         "MERCY_WORKERS"
       ]
     },
-    {
-      "id": "eugene_de_mazenod_bishop",
+    "eugene_de_mazenod_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 5,
@@ -134,8 +121,7 @@
         "MISSIONARIES"
       ]
     },
-    {
-      "id": "louis_zephirin_moreau_bishop",
+    "louis_zephirin_moreau_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 5,
@@ -143,8 +129,7 @@
       },
       "commons_def": "BISHOPS"
     },
-    {
-      "id": "nykyta_budka_and_vasyl_velychkovsky_bishops",
+    "nykyta_budka_and_vasyl_velychkovsky_bishops": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 6,
@@ -159,8 +144,7 @@
         "vasyl_velychkovsky_bishop"
       ]
     },
-    {
-      "id": "canada_day",
+    "canada_day": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 7,
@@ -168,8 +152,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "joachim_and_anne_parents_of_mary",
+    "joachim_and_anne_parents_of_mary": {
       "precedence": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C",
       "custom_locale_id": "joachim_and_anne_patroness_of_the_province_of_quebec_parents_of_mary",
       "entities": [
@@ -184,8 +167,7 @@
         "joachim_father_of_mary"
       ]
     },
-    {
-      "id": "frederic_janssoone_priest",
+    "frederic_janssoone_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 8,
@@ -193,8 +175,7 @@
       },
       "commons_def": "PASTORS"
     },
-    {
-      "id": "labor_day",
+    "labor_day": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 9,
@@ -203,8 +184,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "andre_grasset_priest",
+    "andre_grasset_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 9,
@@ -215,8 +195,7 @@
         "PASTORS"
       ]
     },
-    {
-      "id": "dina_belanger_virgin",
+    "dina_belanger_virgin": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 9,
@@ -224,8 +203,7 @@
       },
       "commons_def": "VIRGINS"
     },
-    {
-      "id": "emilie_tavernier_gamelin_religious",
+    "emilie_tavernier_gamelin_religious": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 9,
@@ -233,15 +211,13 @@
       },
       "commons_def": "RELIGIOUS"
     },
-    {
-      "id": "cosmas_of_cilicia_and_damian_of_cilicia_martyrs",
+    "cosmas_of_cilicia_and_damian_of_cilicia_martyrs": {
       "date_def": {
         "month": 9,
         "date": 25
       }
     },
-    {
-      "id": "john_de_brebeuf_isaac_jogues_priests_and_companions_martyrs",
+    "john_de_brebeuf_isaac_jogues_priests_and_companions_martyrs": {
       "custom_locale_id": "john_de_brebeuf_isaac_jogues_priests_and_companions_martyrs_copatrons_of_canada",
       "precedence": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C",
       "date_def": {
@@ -255,8 +231,7 @@
         ]
       }
     },
-    {
-      "id": "marie_rose_durocher_virgin",
+    "marie_rose_durocher_virgin": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 10,
@@ -264,8 +239,7 @@
       },
       "commons_def": "VIRGINS"
     },
-    {
-      "id": "thanksgiving_day",
+    "thanksgiving_day": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 10,
@@ -274,8 +248,7 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "marguerite_dyouville_religious",
+    "marguerite_dyouville_religious": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 10,
@@ -283,22 +256,19 @@
       },
       "commons_def": "NONE"
     },
-    {
-      "id": "hedwig_of_silesia_religious",
+    "hedwig_of_silesia_religious": {
       "date_def": {
         "month": 10,
         "date": 20
       }
     },
-    {
-      "id": "margaret_mary_alacoque_virgin",
+    "margaret_mary_alacoque_virgin": {
       "date_def": {
         "month": 10,
         "date": 20
       }
     },
-    {
-      "id": "dedication_of_consecrated_churches",
+    "dedication_of_consecrated_churches": {
       "precedence": "PROPER_SOLEMNITY__DEDICATION_OF_THE_OWN_CHURCH_4B",
       "date_def": {
         "month": 10,
@@ -307,5 +277,5 @@
       "is_optional": true,
       "commons_def": "DEDICATION_ANNIVERSARY__INSIDE"
     }
-  ]
+  }
 }

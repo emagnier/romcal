@@ -13,61 +13,53 @@
   "parent_calendar_ids": [
     "europe"
   ],
-  "days_definitions": [
-    {
-      "id": "joseph_spouse_of_mary",
+  "days_definitions": {
+    "joseph_spouse_of_mary": {
       "is_holy_day_of_obligation": false
     },
-    {
-      "id": "adalbert_of_prague_bishop",
+    "adalbert_of_prague_bishop": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 4,
         "date": 23
       }
     },
-    {
-      "id": "george_of_lydda_martyr",
+    "george_of_lydda_martyr": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 4,
         "date": 24
       }
     },
-    {
-      "id": "florian_of_lorch_martyr",
+    "florian_of_lorch_martyr": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 5,
         "date": 4
       }
     },
-    {
-      "id": "sara_salkahazi_virgin",
+    "sara_salkahazi_virgin": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 5,
         "date": 11
       }
     },
-    {
-      "id": "john_nepomucene_priest",
+    "john_nepomucene_priest": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 5,
         "date": 16
       }
     },
-    {
-      "id": "visitation_of_mary",
+    "visitation_of_mary": {
       "precedence": "PROPER_FEAST_8F",
       "date_def": {
         "month": 7,
         "date": 2
       }
     },
-    {
-      "id": "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop",
+    "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop": {
       "custom_locale_id": "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop_slavic_missionaries_copatrons_of_europe",
       "precedence": "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A",
       "date_def": {
@@ -78,16 +70,14 @@
         "SLAVIC_MISSIONARY"
       ]
     },
-    {
-      "id": "anthony_zaccaria_priest",
+    "anthony_zaccaria_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 7,
         "date": 7
       }
     },
-    {
-      "id": "andrew_zorard_of_nitra_and_benedict_of_skalka_hermits",
+    "andrew_zorard_of_nitra_and_benedict_of_skalka_hermits": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 7,
@@ -98,8 +88,7 @@
         "benedict_of_skalka_hermit"
       ]
     },
-    {
-      "id": "gorazd_of_moravia_and_companions",
+    "gorazd_of_moravia_and_companions": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 7,
@@ -110,24 +99,21 @@
         "companions_martyrs"
       ]
     },
-    {
-      "id": "zdenka_cecilia_schelingova_virgin",
+    "zdenka_cecilia_schelingova_virgin": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 7,
         "date": 30
       }
     },
-    {
-      "id": "helena_of_constantinople",
+    "helena_of_constantinople": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 8,
         "date": 18
       }
     },
-    {
-      "id": "marko_krizin_melchior_grodziecki_and_stephen_pongracz_priests",
+    "marko_krizin_melchior_grodziecki_and_stephen_pongracz_priests": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 9,
@@ -139,8 +125,7 @@
         "stephen_pongracz_priest"
       ]
     },
-    {
-      "id": "our_lady_of_sorrows",
+    "our_lady_of_sorrows": {
       "custom_locale_id": "our_lady_of_sorrows_patroness_of_slovakia",
       "precedence": "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A",
       "titles": {
@@ -149,24 +134,21 @@
         ]
       }
     },
-    {
-      "id": "gall_of_switzerland_abbot",
+    "gall_of_switzerland_abbot": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 10,
         "date": 16
       }
     },
-    {
-      "id": "maurus_of_pecs_bishop",
+    "maurus_of_pecs_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 10,
         "date": 25
       }
     },
-    {
-      "id": "dedication_of_consecrated_churches",
+    "dedication_of_consecrated_churches": {
       "precedence": "PROPER_SOLEMNITY__DEDICATION_OF_THE_OWN_CHURCH_4B",
       "date_def": {
         "month": 10,
@@ -174,8 +156,7 @@
       },
       "is_optional": true
     },
-    {
-      "id": "commemoration_of_all_the_faithful_departed",
+    "commemoration_of_all_the_faithful_departed": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 11,
@@ -186,21 +167,19 @@
         "BLACK"
       ]
     },
-    {
-      "id": "barbara_of_heliopolis_virgin",
+    "barbara_of_heliopolis_virgin": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 12,
         "date": 4
       }
     },
-    {
-      "id": "our_lord_jesus_christ_the_eternal_high_priest",
+    "our_lord_jesus_christ_the_eternal_high_priest": {
       "precedence": "PROPER_FEAST_8F",
       "date_def": {
         "date_fn": "PENTECOST_SUNDAY",
         "day_offset": 4
       }
     }
-  ]
+  }
 }

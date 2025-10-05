@@ -11,130 +11,114 @@
   "parent_calendar_ids": [
     "europe"
   ],
-  "days_definitions": [
-    {
-      "id": "cyril_of_jerusalem_bishop",
+  "days_definitions": {
+    "cyril_of_jerusalem_bishop": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 3,
         "date": 18
       }
     },
-    {
-      "id": "adalbert_of_prague_bishop",
+    "adalbert_of_prague_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 4,
         "date": 22
       }
     },
-    {
-      "id": "george_of_lydda_martyr",
+    "george_of_lydda_martyr": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 4,
         "date": 23
       }
     },
-    {
-      "id": "irene_of_macedonia",
+    "irene_of_macedonia": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 5,
         "date": 5
       }
     },
-    {
-      "id": "our_lady_of_fatima",
+    "our_lady_of_fatima": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 5,
         "date": 15
       }
     },
-    {
-      "id": "cyril_of_alexandria_bishop",
+    "cyril_of_alexandria_bishop": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 6,
         "date": 27
       }
     },
-    {
-      "id": "margaret_of_antioch_virgin",
+    "margaret_of_antioch_virgin": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 7,
         "date": 17
       }
     },
-    {
-      "id": "pantaleon_of_nicomedia_martyr",
+    "pantaleon_of_nicomedia_martyr": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 7,
         "date": 27
       }
     },
-    {
-      "id": "lydia_of_philippi",
+    "lydia_of_philippi": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 8,
         "date": 3
       }
     },
-    {
-      "id": "cosmas_of_cilicia_and_damian_of_cilicia_martyrs",
+    "cosmas_of_cilicia_and_damian_of_cilicia_martyrs": {
       "precedence": "PROPER_MEMORIAL_11B"
     },
-    {
-      "id": "dionysius_the_areopagite_bishop",
+    "dionysius_the_areopagite_bishop": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 10,
         "date": 3
       }
     },
-    {
-      "id": "demetrius_of_thessaloniki_martyr",
+    "demetrius_of_thessaloniki_martyr": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 10,
         "date": 26
       }
     },
-    {
-      "id": "presentation_of_the_blessed_virgin_mary",
+    "presentation_of_the_blessed_virgin_mary": {
       "precedence": "PROPER_FEAST_8F",
       "date_def": {
         "month": 11,
         "date": 21
       }
     },
-    {
-      "id": "barbara_of_heliopolis_virgin",
+    "barbara_of_heliopolis_virgin": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 12,
         "date": 4
       }
     },
-    {
-      "id": "nicholas_of_myra_bishop",
+    "nicholas_of_myra_bishop": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 12,
         "date": 6
       }
     },
-    {
-      "id": "spyridon_of_trimythous_bishop",
+    "spyridon_of_trimythous_bishop": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 12,
         "date": 12
       }
     }
-  ]
+  }
 }

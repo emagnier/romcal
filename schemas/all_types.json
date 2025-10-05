@@ -165,10 +165,6 @@
       "description": "Definition of a liturgical day with all its properties and configurations.\nIt represents a complete liturgical day definition that can be used\nto generate calendar entries with proper precedence, colors, and entity associations.",
       "type": "object",
       "properties": {
-        "id": {
-          "description": "The unique identifier of the day definition",
-          "type": "string"
-        },
         "date_def": {
           "description": "The date definition for this liturgical day",
           "anyOf": [
@@ -281,9 +277,6 @@
           ]
         }
       },
-      "required": [
-        "id"
-      ],
       "additionalProperties": false
     },
     "DateDef": {
@@ -2220,10 +2213,6 @@
           "description": "Definition of a liturgical day with all its properties and configurations.\nIt represents a complete liturgical day definition that can be used\nto generate calendar entries with proper precedence, colors, and entity associations.",
           "type": "object",
           "properties": {
-            "id": {
-              "description": "The unique identifier of the day definition",
-              "type": "string"
-            },
             "date_def": {
               "description": "The date definition for this liturgical day",
               "anyOf": [
@@ -2336,9 +2325,6 @@
               ]
             }
           },
-          "required": [
-            "id"
-          ],
           "additionalProperties": false
         },
         "DateDef": {
@@ -2967,8 +2953,8 @@
           }
         },
         "days_definitions": {
-          "type": "array",
-          "items": {
+          "type": "object",
+          "additionalProperties": {
             "$ref": "#/definitions/DayDefinition"
           }
         }

@@ -8,86 +8,76 @@
   "parent_calendar_ids": [
     "europe"
   ],
-  "days_definitions": [
-    {
-      "id": "henry_of_finland_bishop",
+  "days_definitions": {
+    "henry_of_finland_bishop": {
       "precedence": "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A",
       "date_def": {
         "month": 1,
         "date": 19
       }
     },
-    {
-      "id": "eric_ix_of_sweden_martyr",
+    "eric_ix_of_sweden_martyr": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 5,
         "date": 18
       }
     },
-    {
-      "id": "hemming_of_turku_bishop",
+    "hemming_of_turku_bishop": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 5,
         "date": 22
       }
     },
-    {
-      "id": "mary_ursula_of_jesus_ledochowska_virgin",
+    "mary_ursula_of_jesus_ledochowska_virgin": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 5,
         "date": 29
       }
     },
-    {
-      "id": "elizabeth_hesselblad_religious",
+    "elizabeth_hesselblad_religious": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 6,
         "date": 4
       }
     },
-    {
-      "id": "josemaria_escriva_de_balaguer_priest",
+    "josemaria_escriva_de_balaguer_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 6,
         "date": 26
       }
     },
-    {
-      "id": "canute_iv_of_denmark_martyr",
+    "canute_iv_of_denmark_martyr": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 7,
         "date": 10
       }
     },
-    {
-      "id": "thorlac_of_iceland_bishop",
+    "thorlac_of_iceland_bishop": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 7,
         "date": 20
       }
     },
-    {
-      "id": "olaf_ii_of_norway_martyr",
+    "olaf_ii_of_norway_martyr": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 5,
         "date": 29
       }
     },
-    {
-      "id": "nicholas_steno_bishop",
+    "nicholas_steno_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 11,
         "date": 25
       }
     }
-  ]
+  }
 }

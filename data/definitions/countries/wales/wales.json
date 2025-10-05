@@ -8,17 +8,15 @@
   "parent_calendar_ids": [
     "europe"
   ],
-  "days_definitions": [
-    {
-      "id": "teilo_of_llandaff_bishop",
+  "days_definitions": {
+    "teilo_of_llandaff_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 2,
         "date": 9
       }
     },
-    {
-      "id": "david_of_wales_bishop",
+    "david_of_wales_bishop": {
       "custom_locale_id": "david_of_wales_bishop_patron_of_wales",
       "precedence": "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A",
       "date_def": {
@@ -31,24 +29,21 @@
         ]
       }
     },
-    {
-      "id": "beuno_of_wales_abbot",
+    "beuno_of_wales_abbot": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 4,
         "date": 20
       }
     },
-    {
-      "id": "asaph_of_wales_bishop",
+    "asaph_of_wales_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 5,
         "date": 5
       }
     },
-    {
-      "id": "alban_of_britain_julius_of_caerleon_aaron_of_caerleon_martyrs",
+    "alban_of_britain_julius_of_caerleon_aaron_of_caerleon_martyrs": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 6,
@@ -60,16 +55,14 @@
         "aaron_of_caerleon_martyr"
       ]
     },
-    {
-      "id": "john_jones_priest",
+    "john_jones_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 7,
         "date": 12
       }
     },
-    {
-      "id": "philip_evans_and_john_lloyd_priests",
+    "philip_evans_and_john_lloyd_priests": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 7,
@@ -80,63 +73,55 @@
         "john_lloyd_priest"
       ]
     },
-    {
-      "id": "germanus_of_auxerre_bishop",
+    "germanus_of_auxerre_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 8,
         "date": 3
       }
     },
-    {
-      "id": "david_lewis_priest",
+    "david_lewis_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 8,
         "date": 26
       }
     },
-    {
-      "id": "deiniol_of_bangor_bishop",
+    "deiniol_of_bangor_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 9,
         "date": 11
       }
     },
-    {
-      "id": "john_henry_newman_priest",
+    "john_henry_newman_priest": {
       "precedence": "PROPER_FEAST_8F",
       "date_def": {
         "month": 10,
         "date": 9
       }
     },
-    {
-      "id": "denis_of_paris_bishop_and_companions_martyrs",
+    "denis_of_paris_bishop_and_companions_martyrs": {
       "date_def": {
         "month": 10,
         "date": 10
       }
     },
-    {
-      "id": "john_leonardi_priest",
+    "john_leonardi_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 10,
         "date": 10
       }
     },
-    {
-      "id": "richard_gwyn_martyr",
+    "richard_gwyn_martyr": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 10,
         "date": 16
       }
     },
-    {
-      "id": "six_welsh_martyrs_and_companions",
+    "six_welsh_martyrs_and_companions": {
       "precedence": "PROPER_FEAST_8F",
       "date_def": {
         "month": 10,
@@ -150,24 +135,21 @@
         }
       ]
     },
-    {
-      "id": "winefride_of_flintshire_virgin",
+    "winefride_of_flintshire_virgin": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 11,
         "date": 3
       }
     },
-    {
-      "id": "illtud_the_knight_abbot",
+    "illtud_the_knight_abbot": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 11,
         "date": 6
       }
     },
-    {
-      "id": "all_saints",
+    "all_saints": {
       "date_def": {
         "month": 11,
         "date": 1
@@ -181,8 +163,7 @@
         }
       }
     },
-    {
-      "id": "commemoration_of_all_the_faithful_departed",
+    "commemoration_of_all_the_faithful_departed": {
       "date_def": {
         "month": 11,
         "date": 2
@@ -196,32 +177,28 @@
         }
       }
     },
-    {
-      "id": "all_saints_of_wales",
+    "all_saints_of_wales": {
       "precedence": "PROPER_FEAST_8F",
       "date_def": {
         "month": 11,
         "date": 6
       }
     },
-    {
-      "id": "dyfrig_of_wales_bishop",
+    "dyfrig_of_wales_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 11,
         "date": 14
       }
     },
-    {
-      "id": "john_roberts_priest",
+    "john_roberts_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 12,
         "date": 10
       }
     },
-    {
-      "id": "peter_and_paul_apostles",
+    "peter_and_paul_apostles": {
       "date_exceptions": [
         {
           "when": {
@@ -241,8 +218,7 @@
         }
       ]
     },
-    {
-      "id": "assumption_of_the_blessed_virgin_mary",
+    "assumption_of_the_blessed_virgin_mary": {
       "date_def": {
         "month": 8,
         "date": 15
@@ -266,13 +242,12 @@
         }
       ]
     },
-    {
-      "id": "our_lord_jesus_christ_the_eternal_high_priest",
+    "our_lord_jesus_christ_the_eternal_high_priest": {
       "precedence": "PROPER_FEAST_8F",
       "date_def": {
         "date_fn": "PENTECOST_SUNDAY",
         "day_offset": 4
       }
     }
-  ]
+  }
 }

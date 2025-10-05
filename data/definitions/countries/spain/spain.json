@@ -8,17 +8,15 @@
   "parent_calendar_ids": [
     "europe"
   ],
-  "days_definitions": [
-    {
-      "id": "eulogius_of_cordoba_bishop",
+  "days_definitions": {
+    "eulogius_of_cordoba_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 1,
         "date": 9
       }
     },
-    {
-      "id": "fructuosus_of_tarragona_bishop_and_augurius_of_tarragona_and_eulogius_of_tarragona_deacons_martyrs",
+    "fructuosus_of_tarragona_bishop_and_augurius_of_tarragona_and_eulogius_of_tarragona_deacons_martyrs": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 1,
@@ -30,104 +28,91 @@
         "eulogius_of_tarragona_deacon"
       ]
     },
-    {
-      "id": "vincent_of_saragossa_deacon",
+    "vincent_of_saragossa_deacon": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 1,
         "date": 22
       }
     },
-    {
-      "id": "ildephonsus_of_toledo_bishop",
+    "ildephonsus_of_toledo_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 1,
         "date": 23
       }
     },
-    {
-      "id": "hermenegild_the_visigoths_martyr",
+    "hermenegild_the_visigoths_martyr": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 4,
         "date": 13
       }
     },
-    {
-      "id": "isidore_of_seville_bishop",
+    "isidore_of_seville_bishop": {
       "precedence": "PROPER_FEAST_8F",
       "date_def": {
         "month": 4,
         "date": 26
       }
     },
-    {
-      "id": "john_of_avila_priest",
+    "john_of_avila_priest": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 5,
         "date": 10
       }
     },
-    {
-      "id": "isidore_the_farmer",
+    "isidore_the_farmer": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 5,
         "date": 15
       }
     },
-    {
-      "id": "paschal_baylon_religious",
+    "paschal_baylon_religious": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 5,
         "date": 17
       }
     },
-    {
-      "id": "joaquina_of_saint_francis_of_assisi_de_vedruna_religious",
+    "joaquina_of_saint_francis_of_assisi_de_vedruna_religious": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 5,
         "date": 22
       }
     },
-    {
-      "id": "ferdinand_iii_of_castile",
+    "ferdinand_iii_of_castile": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 5,
         "date": 30
       }
     },
-    {
-      "id": "maria_micaela_of_the_blessed_sacrament_desmaisieres_virgin",
+    "maria_micaela_of_the_blessed_sacrament_desmaisieres_virgin": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 6,
         "date": 15
       }
     },
-    {
-      "id": "pelagius_of_cordoba_martyr",
+    "pelagius_of_cordoba_martyr": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 6,
         "date": 26
       }
     },
-    {
-      "id": "our_lady_of_mount_carmel",
+    "our_lady_of_mount_carmel": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 7,
         "date": 16
       }
     },
-    {
-      "id": "james_apostle",
+    "james_apostle": {
       "custom_locale_id": "james_apostle_patron_of_spain",
       "precedence": "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A",
       "titles": {
@@ -136,101 +121,89 @@
         ]
       }
     },
-    {
-      "id": "ezequiel_moreno_bishop",
+    "ezequiel_moreno_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 8,
         "date": 19
       }
     },
-    {
-      "id": "teresa_of_jesus_jornet_ibars_virgin",
+    "teresa_of_jesus_jornet_ibars_virgin": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 8,
         "date": 26
       }
     },
-    {
-      "id": "francis_borgia_priest",
+    "francis_borgia_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 10,
         "date": 3
       }
     },
-    {
-      "id": "thomas_of_villanova_bishop",
+    "thomas_of_villanova_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 10,
         "date": 10
       }
     },
-    {
-      "id": "mary_soledad_torres_acosta_virgin",
+    "mary_soledad_torres_acosta_virgin": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 10,
         "date": 11
       }
     },
-    {
-      "id": "our_lady_of_the_pillar",
+    "our_lady_of_the_pillar": {
       "precedence": "PROPER_FEAST_8F",
       "date_def": {
         "month": 10,
         "date": 12
       }
     },
-    {
-      "id": "teresa_of_jesus_of_avila_virgin",
+    "teresa_of_jesus_of_avila_virgin": {
       "precedence": "PROPER_FEAST_8F",
       "date_def": {
         "month": 10,
         "date": 15
       }
     },
-    {
-      "id": "peter_of_alcantara_priest",
+    "peter_of_alcantara_priest": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 10,
         "date": 19
       }
     },
-    {
-      "id": "leander_of_seville_bishop",
+    "leander_of_seville_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 11,
         "date": 13
       }
     },
-    {
-      "id": "eulalia_of_merida_virgin",
+    "eulalia_of_merida_virgin": {
       "precedence": "OPTIONAL_MEMORIAL_12",
       "date_def": {
         "month": 12,
         "date": 10
       }
     },
-    {
-      "id": "john_of_the_cross_priest",
+    "john_of_the_cross_priest": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 12,
         "date": 14
       }
     },
-    {
-      "id": "our_lord_jesus_christ_the_eternal_high_priest",
+    "our_lord_jesus_christ_the_eternal_high_priest": {
       "precedence": "PROPER_FEAST_8F",
       "date_def": {
         "date_fn": "PENTECOST_SUNDAY",
         "day_offset": 4
       }
     }
-  ]
+  }
 }

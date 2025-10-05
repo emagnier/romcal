@@ -8,14 +8,13 @@
   "parent_calendar_ids": [
     "europe"
   ],
-  "days_definitions": [
-    {
-      "id": "john_nepomucene_priest",
+  "days_definitions": {
+    "john_nepomucene_priest": {
       "precedence": "PROPER_MEMORIAL_11B",
       "date_def": {
         "month": 5,
         "date": 16
       }
     }
-  ]
+  }
 }

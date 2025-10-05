@@ -6,14 +6,13 @@
     "type": "COUNTRY"
   },
   "parent_calendar_ids": [],
-  "days_definitions": [
-    {
-      "id": "andrew_dung_lac_priest_and_companions_martyrs",
+  "days_definitions": {
+    "andrew_dung_lac_priest_and_companions_martyrs": {
       "precedence": "PROPER_FEAST_8F",
       "date_def": {
         "month": 11,
         "date": 13
       }
     }
-  ]
+  }
 }
