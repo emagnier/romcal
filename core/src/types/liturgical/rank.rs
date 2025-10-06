@@ -1,8 +1,9 @@
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
+use strum::EnumIter;
 
 /// Liturgical rank indicating the importance and celebration style of a liturgical day
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema, EnumIter)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum Rank {
     /// Solemnities are counted among the most important days, whose celebration
@@ -55,4 +56,74 @@ pub enum Rank {
     ///
     ///  (UNLY #16)
     Weekday,
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use strum::IntoEnumIterator;
+
+    #[test]
+    fn test_rank_iteration_order() {
+        let variants: Vec<Rank> = Rank::iter().collect();
+
+        // Verify that the order is exactly the declaration order
+        assert_eq!(variants[0], Rank::Solemnity);
+        assert_eq!(variants[1], Rank::Sunday);
+        assert_eq!(variants[2], Rank::Feast);
+        assert_eq!(variants[3], Rank::Memorial);
+        assert_eq!(variants[4], Rank::OptionalMemorial);
+        assert_eq!(variants[5], Rank::Weekday);
+
+        // Verify that we have all variants
+        assert_eq!(variants.len(), 6);
+    }
+
+    #[test]
+    fn test_rank_iteration_consistency() {
+        // Verify that the order is always the same across multiple iterations
+        let first_iteration: Vec<Rank> = Rank::iter().collect();
+        let second_iteration: Vec<Rank> = Rank::iter().collect();
+
+        assert_eq!(first_iteration, second_iteration);
+    }
+
+    #[test]
+    fn test_rank_serialization() {
+        // Verify that serialization works
+        let rank = Rank::Solemnity;
+        let json = serde_json::to_string(&rank).unwrap();
+        assert_eq!(json, "\"SOLEMNITY\"");
+
+        let deserialized: Rank = serde_json::from_str(&json).unwrap();
+        assert_eq!(deserialized, Rank::Solemnity);
+    }
+
+    #[test]
+    fn test_rank_hierarchical_order() {
+        // Test that rank follows the correct hierarchical order (highest to lowest importance)
+        let variants: Vec<Rank> = Rank::iter().collect();
+
+        // The first should be the highest rank (Solemnity)
+        assert_eq!(variants[0], Rank::Solemnity);
+
+        // The last should be the lowest rank (Weekday)
+        assert_eq!(variants[5], Rank::Weekday);
+
+        // Verify the complete hierarchy
+        assert_eq!(variants[0], Rank::Solemnity); // Highest
+        assert_eq!(variants[1], Rank::Sunday); // Second highest
+        assert_eq!(variants[2], Rank::Feast); // Third
+        assert_eq!(variants[3], Rank::Memorial); // Fourth
+        assert_eq!(variants[4], Rank::OptionalMemorial); // Fifth
+        assert_eq!(variants[5], Rank::Weekday); // Lowest
+    }
+
+    #[test]
+    fn test_rank_comparison() {
+        // Test that rank comparison works as expected
+        assert!(Rank::Solemnity == Rank::Solemnity);
+        assert!(Rank::Sunday != Rank::Feast);
+        assert!(Rank::Memorial != Rank::OptionalMemorial);
+    }
 }

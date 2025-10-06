@@ -1,10 +1,11 @@
 use crate::types::liturgical::Rank;
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
+use strum::EnumIter;
 
 /// Liturgical precedence levels for determining which celebration takes priority.
 /// Defines the hierarchical order of liturgical celebrations according to UNLY norms.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema, EnumIter)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 #[allow(non_camel_case_types)]
 pub enum Precedence {
@@ -166,5 +167,123 @@ impl Precedence {
             // 13 - Weekdays
             Precedence::Weekday_13 => Rank::Weekday,
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use strum::IntoEnumIterator;
+
+    #[test]
+    fn test_precedence_iteration_order() {
+        let variants: Vec<Precedence> = Precedence::iter().collect();
+
+        // Verify that the order is exactly the declaration order
+        assert_eq!(variants[0], Precedence::Triduum_1);
+        assert_eq!(variants[1], Precedence::ProperOfTimeSolemnity_2);
+        assert_eq!(variants[2], Precedence::PrivilegedSunday_2);
+        assert_eq!(variants[3], Precedence::AshWednesday_2);
+        assert_eq!(variants[4], Precedence::WeekdayOfHolyWeek_2);
+        assert_eq!(variants[5], Precedence::WeekdayOfEasterOctave_2);
+        assert_eq!(variants[6], Precedence::GeneralSolemnity_3);
+        assert_eq!(
+            variants[7],
+            Precedence::CommemorationOfAllTheFaithfulDeparted_3
+        );
+        assert_eq!(variants[8], Precedence::ProperSolemnity_PrincipalPatron_4a);
+        assert_eq!(
+            variants[9],
+            Precedence::ProperSolemnity_DedicationOfTheOwnChurch_4b
+        );
+        assert_eq!(
+            variants[10],
+            Precedence::ProperSolemnity_TitleOfTheOwnChurch_4c
+        );
+        assert_eq!(
+            variants[11],
+            Precedence::ProperSolemnity_TitleOrFounderOrPrimaryPatronOfAReligiousOrg_4d
+        );
+        assert_eq!(variants[12], Precedence::GeneralLordFeast_5);
+        assert_eq!(variants[13], Precedence::UnprivilegedSunday_6);
+        assert_eq!(variants[14], Precedence::GeneralFeast_7);
+        assert_eq!(
+            variants[15],
+            Precedence::ProperFeast_PrincipalPatronOfADiocese_8a
+        );
+        assert_eq!(
+            variants[16],
+            Precedence::ProperFeast_DedicationOfTheCathedralChurch_8b
+        );
+        assert_eq!(
+            variants[17],
+            Precedence::ProperFeast_PrincipalPatronOfARegion_8c
+        );
+        assert_eq!(
+            variants[18],
+            Precedence::ProperFeast_TitleOrFounderOrPrimaryPatronOfAReligiousOrg_8d
+        );
+        assert_eq!(
+            variants[19],
+            Precedence::ProperFeast_ToAnIndividualChurch_8e
+        );
+        assert_eq!(variants[20], Precedence::ProperFeast_8f);
+        assert_eq!(variants[21], Precedence::PrivilegedWeekday_9);
+        assert_eq!(variants[22], Precedence::GeneralMemorial_10);
+        assert_eq!(variants[23], Precedence::ProperMemorial_SecondPatron_11a);
+        assert_eq!(variants[24], Precedence::ProperMemorial_11b);
+        assert_eq!(variants[25], Precedence::OptionalMemorial_12);
+        assert_eq!(variants[26], Precedence::Weekday_13);
+
+        // Verify that we have all variants
+        assert_eq!(variants.len(), 27);
+    }
+
+    #[test]
+    fn test_precedence_iteration_consistency() {
+        // Verify that the order is always the same across multiple iterations
+        let first_iteration: Vec<Precedence> = Precedence::iter().collect();
+        let second_iteration: Vec<Precedence> = Precedence::iter().collect();
+
+        assert_eq!(first_iteration, second_iteration);
+    }
+
+    #[test]
+    fn test_precedence_serialization() {
+        // Verify that serialization works
+        let precedence = Precedence::Triduum_1;
+        let json = serde_json::to_string(&precedence).unwrap();
+        assert_eq!(json, "\"TRIDUUM_1\"");
+
+        let deserialized: Precedence = serde_json::from_str(&json).unwrap();
+        assert_eq!(deserialized, Precedence::Triduum_1);
+    }
+
+    #[test]
+    fn test_precedence_to_rank() {
+        // Test that to_rank method works correctly
+        assert_eq!(Precedence::Triduum_1.to_rank(), Rank::Weekday);
+        assert_eq!(Precedence::GeneralSolemnity_3.to_rank(), Rank::Solemnity);
+        assert_eq!(Precedence::PrivilegedSunday_2.to_rank(), Rank::Sunday);
+        assert_eq!(Precedence::GeneralFeast_7.to_rank(), Rank::Feast);
+        assert_eq!(Precedence::GeneralMemorial_10.to_rank(), Rank::Memorial);
+        assert_eq!(
+            Precedence::OptionalMemorial_12.to_rank(),
+            Rank::OptionalMemorial
+        );
+    }
+
+    #[test]
+    fn test_precedence_hierarchical_order() {
+        // Test that precedence follows the correct hierarchical order
+        let variants: Vec<Precedence> = Precedence::iter().collect();
+
+        // The first few should be the highest precedence (1-2)
+        assert!(matches!(variants[0], Precedence::Triduum_1));
+        assert!(matches!(variants[1], Precedence::ProperOfTimeSolemnity_2));
+        assert!(matches!(variants[2], Precedence::PrivilegedSunday_2));
+
+        // The last should be the lowest precedence (13)
+        assert!(matches!(variants[26], Precedence::Weekday_13));
     }
 }

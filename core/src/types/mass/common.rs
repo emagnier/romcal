@@ -1,9 +1,10 @@
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
+use strum::EnumIter;
 
 /// Common prayers and readings for different categories of saints and celebrations.
 /// Provides standardized liturgical texts for various types of commemorations.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema, EnumIter)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 #[allow(non_camel_case_types)]
 pub enum Common {
@@ -60,7 +61,7 @@ pub enum Common {
 
 /// Common definition for simplified categorization.
 /// Provides a simplified version of the Common enum for easier classification.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema, EnumIter)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 #[allow(non_camel_case_types)]
 pub enum CommonDefinition {
@@ -111,4 +112,50 @@ pub struct CommonInfo {
     pub key: Common,
     /// The localized name of the common
     pub name: String,
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use strum::IntoEnumIterator;
+
+    #[test]
+    fn test_common_iteration_consistency() {
+        // Verify that the order is always the same across multiple iterations
+        let first_iteration: Vec<Common> = Common::iter().collect();
+        let second_iteration: Vec<Common> = Common::iter().collect();
+
+        assert_eq!(first_iteration, second_iteration);
+    }
+
+    #[test]
+    fn test_common_definition_iteration_consistency() {
+        // Verify that the order is always the same across multiple iterations
+        let first_iteration: Vec<CommonDefinition> = CommonDefinition::iter().collect();
+        let second_iteration: Vec<CommonDefinition> = CommonDefinition::iter().collect();
+
+        assert_eq!(first_iteration, second_iteration);
+    }
+
+    #[test]
+    fn test_common_serialization() {
+        // Verify that serialization works
+        let common = Common::BlessedVirginMary_OrdinaryTime;
+        let json = serde_json::to_string(&common).unwrap();
+        assert_eq!(json, "\"BLESSED_VIRGIN_MARY__ORDINARY_TIME\"");
+
+        let deserialized: Common = serde_json::from_str(&json).unwrap();
+        assert_eq!(deserialized, Common::BlessedVirginMary_OrdinaryTime);
+    }
+
+    #[test]
+    fn test_common_definition_serialization() {
+        // Verify that serialization works
+        let common_def = CommonDefinition::BlessedVirginMary;
+        let json = serde_json::to_string(&common_def).unwrap();
+        assert_eq!(json, "\"BLESSED_VIRGIN_MARY\"");
+
+        let deserialized: CommonDefinition = serde_json::from_str(&json).unwrap();
+        assert_eq!(deserialized, CommonDefinition::BlessedVirginMary);
+    }
 }

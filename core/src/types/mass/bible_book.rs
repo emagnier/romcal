@@ -1,10 +1,11 @@
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 use std::fmt;
+use strum::EnumIter;
 
 /// Books of the Bible using OSIS (Open Scripture Information Standard) identifiers.
 /// OSIS provides standardized abbreviations for biblical books used in liturgical and biblical applications.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema, EnumIter)]
 pub enum BibleBook {
     // Old Testament (47 books)
 

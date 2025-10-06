@@ -1,11 +1,12 @@
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
+use strum::EnumIter;
 
 /// A three-year cycle for Sunday Mass readings (and some solemnities), designated by A, B, or C.
 /// Each cycle begins on the First Sunday of Advent of the previous civil year and ends on Saturday
 /// after the Christ the King Solemnity. The cycles follow each other in alphabetical order.
 /// C year is always divisible by 3, A has remainder of 1, and B remainder of 2.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, JsonSchema, EnumIter)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum SundayCycle {
     /// Year A
@@ -16,9 +17,23 @@ pub enum SundayCycle {
     YearC,
 }
 
+/// Combined Sunday cycle for cases where readings can apply to multiple years.
+/// This allows for flexible configuration where the same readings can be used
+/// across different combinations of Sunday cycles.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, JsonSchema, EnumIter)]
+#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+pub enum SundayCycleCombined {
+    /// Years A and B combined
+    YearAB,
+    /// Years A and C combined
+    YearAC,
+    /// Years B and C combined
+    YearBC,
+}
+
 /// A two-year cycle for the weekday Mass readings (also called Cycle I and Cycle II).
 /// Odd-numbered years are the Cycle I (year 1); even-numbered ones are the Cycle II (year 2).
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, JsonSchema, EnumIter)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum WeekdayCycle {
     /// Year 1 (Cycle I)
@@ -30,7 +45,7 @@ pub enum WeekdayCycle {
 /// [GILH §133] The four-week cycle of the psalter is coordinated with the liturgical year in such a way that
 /// on the First Sunday of Advent, the First Sunday in Ordinary Time, the First Sunday of Lent,
 /// and Easter Sunday the cycle is always begun again with Week 1 (others being omitted when necessary).
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, JsonSchema, EnumIter)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum PsalterWeekCycle {
     /// Week 1
@@ -335,5 +350,140 @@ mod tests {
                 | PsalterWeekCycle::Week4 => {}
             }
         }
+    }
+
+    // Tests for strum iteration order
+    use strum::IntoEnumIterator;
+
+    #[test]
+    fn test_sunday_cycle_iteration_order() {
+        let variants: Vec<SundayCycle> = SundayCycle::iter().collect();
+
+        // Verify that the order is exactly the declaration order
+        assert_eq!(variants[0], SundayCycle::YearA);
+        assert_eq!(variants[1], SundayCycle::YearB);
+        assert_eq!(variants[2], SundayCycle::YearC);
+
+        // Verify that we have all variants
+        assert_eq!(variants.len(), 3);
+    }
+
+    #[test]
+    fn test_sunday_cycle_combined_iteration_order() {
+        let variants: Vec<SundayCycleCombined> = SundayCycleCombined::iter().collect();
+
+        // Verify that the order is exactly the declaration order
+        assert_eq!(variants[0], SundayCycleCombined::YearAB);
+        assert_eq!(variants[1], SundayCycleCombined::YearAC);
+        assert_eq!(variants[2], SundayCycleCombined::YearBC);
+
+        // Verify that we have all variants
+        assert_eq!(variants.len(), 3);
+    }
+
+    #[test]
+    fn test_weekday_cycle_iteration_order() {
+        let variants: Vec<WeekdayCycle> = WeekdayCycle::iter().collect();
+
+        // Verify that the order is exactly the declaration order
+        assert_eq!(variants[0], WeekdayCycle::Year1);
+        assert_eq!(variants[1], WeekdayCycle::Year2);
+
+        // Verify that we have all variants
+        assert_eq!(variants.len(), 2);
+    }
+
+    #[test]
+    fn test_psalter_week_cycle_iteration_order() {
+        let variants: Vec<PsalterWeekCycle> = PsalterWeekCycle::iter().collect();
+
+        // Verify that the order is exactly the declaration order
+        assert_eq!(variants[0], PsalterWeekCycle::Week1);
+        assert_eq!(variants[1], PsalterWeekCycle::Week2);
+        assert_eq!(variants[2], PsalterWeekCycle::Week3);
+        assert_eq!(variants[3], PsalterWeekCycle::Week4);
+
+        // Verify that we have all variants
+        assert_eq!(variants.len(), 4);
+    }
+
+    #[test]
+    fn test_sunday_cycle_iteration_consistency() {
+        // Verify that the order is always the same across multiple iterations
+        let first_iteration: Vec<SundayCycle> = SundayCycle::iter().collect();
+        let second_iteration: Vec<SundayCycle> = SundayCycle::iter().collect();
+
+        assert_eq!(first_iteration, second_iteration);
+    }
+
+    #[test]
+    fn test_sunday_cycle_combined_iteration_consistency() {
+        // Verify that the order is always the same across multiple iterations
+        let first_iteration: Vec<SundayCycleCombined> = SundayCycleCombined::iter().collect();
+        let second_iteration: Vec<SundayCycleCombined> = SundayCycleCombined::iter().collect();
+
+        assert_eq!(first_iteration, second_iteration);
+    }
+
+    #[test]
+    fn test_weekday_cycle_iteration_consistency() {
+        // Verify that the order is always the same across multiple iterations
+        let first_iteration: Vec<WeekdayCycle> = WeekdayCycle::iter().collect();
+        let second_iteration: Vec<WeekdayCycle> = WeekdayCycle::iter().collect();
+
+        assert_eq!(first_iteration, second_iteration);
+    }
+
+    #[test]
+    fn test_psalter_week_cycle_iteration_consistency() {
+        // Verify that the order is always the same across multiple iterations
+        let first_iteration: Vec<PsalterWeekCycle> = PsalterWeekCycle::iter().collect();
+        let second_iteration: Vec<PsalterWeekCycle> = PsalterWeekCycle::iter().collect();
+
+        assert_eq!(first_iteration, second_iteration);
+    }
+
+    #[test]
+    fn test_sunday_cycle_serialization() {
+        // Verify that serialization works
+        let cycle = SundayCycle::YearA;
+        let json = serde_json::to_string(&cycle).unwrap();
+        assert_eq!(json, "\"YEAR_A\"");
+
+        let deserialized: SundayCycle = serde_json::from_str(&json).unwrap();
+        assert_eq!(deserialized, SundayCycle::YearA);
+    }
+
+    #[test]
+    fn test_sunday_cycle_combined_serialization() {
+        // Verify that serialization works
+        let cycle = SundayCycleCombined::YearAB;
+        let json = serde_json::to_string(&cycle).unwrap();
+        assert_eq!(json, "\"YEAR_A_B\"");
+
+        let deserialized: SundayCycleCombined = serde_json::from_str(&json).unwrap();
+        assert_eq!(deserialized, SundayCycleCombined::YearAB);
+    }
+
+    #[test]
+    fn test_weekday_cycle_serialization() {
+        // Verify that serialization works
+        let cycle = WeekdayCycle::Year1;
+        let json = serde_json::to_string(&cycle).unwrap();
+        assert_eq!(json, "\"YEAR1\"");
+
+        let deserialized: WeekdayCycle = serde_json::from_str(&json).unwrap();
+        assert_eq!(deserialized, WeekdayCycle::Year1);
+    }
+
+    #[test]
+    fn test_psalter_week_cycle_serialization() {
+        // Verify that serialization works
+        let cycle = PsalterWeekCycle::Week1;
+        let json = serde_json::to_string(&cycle).unwrap();
+        assert_eq!(json, "\"WEEK1\"");
+
+        let deserialized: PsalterWeekCycle = serde_json::from_str(&json).unwrap();
+        assert_eq!(deserialized, PsalterWeekCycle::Week1);
     }
 }

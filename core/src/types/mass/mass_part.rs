@@ -1,12 +1,13 @@
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
+use strum::EnumIter;
 
 /// Parts that make up the Mass celebration.
 /// Each part represents a specific element of the liturgical celebration.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema, EnumIter)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum MassPart {
-    /// Messianic Entry - entrance chant for special occasions
+    /// Messianic entry reading (during the procession with palms, before the Mass of the Passion)
     MessianicEntry,
     /// Entrance Antiphon - opening chant of the Mass
     EntranceAntiphon,
@@ -20,18 +21,30 @@ pub enum MassPart {
     Canticle,
     /// Reading 2 - second reading (usually from the New Testament)
     Reading2,
-    /// Reading 3 - third reading (when applicable)
-    Reading3,
-    /// Reading 4 - fourth reading (when applicable)
-    Reading4,
-    /// Reading 5 - fifth reading (when applicable)
-    Reading5,
-    /// Reading 6 - sixth reading (when applicable)
-    Reading6,
-    /// Reading 7 - seventh reading (when applicable)
-    Reading7,
-    /// Epistle - reading from the epistles
-    Epistle,
+    /// Psalm (Easter Vigil)
+    EasterVigilPsalm2,
+    /// Reading 3 - third reading (Easter Vigil)
+    EasterVigilReading3,
+    /// Canticle 3 (Easter Vigil)
+    EasterVigilCanticle3,
+    /// Reading 4 - fourth reading (Easter Vigil)
+    EasterVigilReading4,
+    /// Psalm 4 (Easter Vigil)
+    EasterVigilPsalm4,
+    /// Reading 5 - fifth reading (Easter Vigil)
+    EasterVigilReading5,
+    /// Canticle 5 (Easter Vigil)
+    EasterVigilCanticle5,
+    /// Reading 6 - sixth reading (Easter Vigil)
+    EasterVigilReading6,
+    /// Psalm 6 (Easter Vigil)
+    EasterVigilPsalm6,
+    /// Reading 7 - seventh reading (Easter Vigil)
+    EasterVigilReading7,
+    /// Psalm 7 (Easter Vigil)
+    EasterVigilPsalm7,
+    /// Epistle - reading from the epistles (Easter Vigil)
+    EasterVigilEpistle,
     /// Sequence - special chant on certain feasts
     Sequence,
     /// Alleluia - acclamation before the Gospel
@@ -60,12 +73,12 @@ impl MassPart {
             MassPart::MessianicEntry,
             MassPart::Reading1,
             MassPart::Reading2,
-            MassPart::Reading3,
-            MassPart::Reading4,
-            MassPart::Reading5,
-            MassPart::Reading6,
-            MassPart::Reading7,
-            MassPart::Epistle,
+            MassPart::EasterVigilReading3,
+            MassPart::EasterVigilReading4,
+            MassPart::EasterVigilReading5,
+            MassPart::EasterVigilReading6,
+            MassPart::EasterVigilReading7,
+            MassPart::EasterVigilEpistle,
             MassPart::Gospel,
         ]
     }
@@ -109,11 +122,99 @@ impl MassPart {
     /// Get all psalm mass parts.
     /// This corresponds to the TypeScript `PsalmsPartTypes` array.
     pub fn psalm_parts() -> &'static [MassPart] {
-        &[MassPart::Psalm, MassPart::Canticle]
+        &[
+            MassPart::Psalm,
+            MassPart::Canticle,
+            MassPart::EasterVigilPsalm2,
+            MassPart::EasterVigilCanticle3,
+            MassPart::EasterVigilPsalm4,
+            MassPart::EasterVigilCanticle5,
+            MassPart::EasterVigilPsalm6,
+            MassPart::EasterVigilPsalm7,
+        ]
     }
 
     /// Check if a mass part is a psalm part.
     pub fn is_psalm_part(&self) -> bool {
         Self::psalm_parts().contains(self)
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use strum::IntoEnumIterator;
+
+    #[test]
+    fn test_mass_part_iteration_order() {
+        let variants: Vec<MassPart> = MassPart::iter().collect();
+
+        // Verify that the order is exactly the declaration order
+        assert_eq!(variants[0], MassPart::MessianicEntry);
+        assert_eq!(variants[1], MassPart::EntranceAntiphon);
+        assert_eq!(variants[2], MassPart::Collect);
+        assert_eq!(variants[3], MassPart::Reading1);
+        assert_eq!(variants[4], MassPart::Psalm);
+        assert_eq!(variants[5], MassPart::Canticle);
+        assert_eq!(variants[6], MassPart::Reading2);
+        assert_eq!(variants[7], MassPart::EasterVigilPsalm2);
+        assert_eq!(variants[8], MassPart::EasterVigilReading3);
+        assert_eq!(variants[9], MassPart::EasterVigilCanticle3);
+        assert_eq!(variants[10], MassPart::EasterVigilReading4);
+        assert_eq!(variants[11], MassPart::EasterVigilPsalm4);
+        assert_eq!(variants[12], MassPart::EasterVigilReading5);
+        assert_eq!(variants[13], MassPart::EasterVigilCanticle5);
+        assert_eq!(variants[14], MassPart::EasterVigilReading6);
+        assert_eq!(variants[15], MassPart::EasterVigilPsalm6);
+        assert_eq!(variants[16], MassPart::EasterVigilReading7);
+        assert_eq!(variants[17], MassPart::EasterVigilPsalm7);
+        assert_eq!(variants[18], MassPart::EasterVigilEpistle);
+        assert_eq!(variants[19], MassPart::Sequence);
+        assert_eq!(variants[20], MassPart::Alleluia);
+        assert_eq!(variants[21], MassPart::Gospel);
+        assert_eq!(variants[22], MassPart::PrayerOverTheOfferings);
+        assert_eq!(variants[23], MassPart::Preface);
+        assert_eq!(variants[24], MassPart::CommunionAntiphon);
+        assert_eq!(variants[25], MassPart::PrayerAfterCommunion);
+        assert_eq!(variants[26], MassPart::SolemnBlessing);
+        assert_eq!(variants[27], MassPart::PrayerOverThePeople);
+
+        // Verify that we have all variants
+        assert_eq!(variants.len(), 28);
+    }
+
+    #[test]
+    fn test_mass_part_iteration_consistency() {
+        // Verify that the order is always the same across multiple iterations
+        let first_iteration: Vec<MassPart> = MassPart::iter().collect();
+        let second_iteration: Vec<MassPart> = MassPart::iter().collect();
+
+        assert_eq!(first_iteration, second_iteration);
+    }
+
+    #[test]
+    fn test_mass_part_serialization() {
+        // Verify that serialization works
+        let mass_part = MassPart::Gospel;
+        let json = serde_json::to_string(&mass_part).unwrap();
+        assert_eq!(json, "\"GOSPEL\"");
+
+        let deserialized: MassPart = serde_json::from_str(&json).unwrap();
+        assert_eq!(deserialized, MassPart::Gospel);
+    }
+
+    #[test]
+    fn test_mass_part_categories() {
+        // Test that the category methods still work correctly
+        assert!(MassPart::Gospel.is_reading_part());
+        assert!(MassPart::EntranceAntiphon.is_antiphon_part());
+        assert!(MassPart::Collect.is_prayer_part());
+        assert!(MassPart::Psalm.is_psalm_part());
+
+        // Test that non-matching parts return false
+        assert!(!MassPart::EntranceAntiphon.is_reading_part());
+        assert!(!MassPart::Gospel.is_antiphon_part());
+        assert!(!MassPart::Psalm.is_prayer_part());
+        assert!(!MassPart::Collect.is_psalm_part());
     }
 }

@@ -1,9 +1,10 @@
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
+use strum::EnumIter;
 
 /// Titles and patronages associated with saints and blessed.
 /// Represents the various ecclesiastical titles and patronages that can be assigned to entities.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema, EnumIter)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum Title {
     // Original Title variants
@@ -97,4 +98,30 @@ pub enum TitlesDef {
     Titles(Vec<Title>),
     /// Compound title definition with append/prepend operations
     CompoundTitle(CompoundTitle),
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use strum::IntoEnumIterator;
+
+    #[test]
+    fn test_title_iteration_consistency() {
+        // Verify that the order is always the same across multiple iterations
+        let first_iteration: Vec<Title> = Title::iter().collect();
+        let second_iteration: Vec<Title> = Title::iter().collect();
+
+        assert_eq!(first_iteration, second_iteration);
+    }
+
+    #[test]
+    fn test_title_serialization() {
+        // Verify that serialization works
+        let title = Title::Abbot;
+        let json = serde_json::to_string(&title).unwrap();
+        assert_eq!(json, "\"ABBOT\"");
+
+        let deserialized: Title = serde_json::from_str(&json).unwrap();
+        assert_eq!(deserialized, Title::Abbot);
+    }
 }
