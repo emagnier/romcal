@@ -68,6 +68,7 @@ pub const CALENDAR_IDS: &[&str] = &[
     "sri_lanka",
     "sweden",
     "switzerland",
+    "temporal_cycle",
     "ukraine",
     "united_states",
     "uruguay",
@@ -80,7 +81,7 @@ pub const CALENDAR_IDS: &[&str] = &[
 ///
 /// This constant contains the hierarchical structure
 /// of all calendars in the romcal project as a JSON string.
-pub const CALENDAR_TREE_JSON: &str = r#"{"id":"general_roman","children":[{"id":"africa"},{"id":"americas","children":[{"id":"argentina"},{"id":"bolivia"},{"id":"brazil"},{"id":"canada"},{"id":"chile"},{"id":"costa_rica"},{"id":"guatemala"},{"id":"mexico"},{"id":"panama"},{"id":"paraguay"},{"id":"peru"},{"id":"puerto_rico"},{"id":"united_states"},{"id":"uruguay"},{"id":"venezuela"}]},{"id":"asia"},{"id":"australia"},{"id":"china"},{"id":"europe","children":[{"id":"austria"},{"id":"belgium"},{"id":"bosnia_herzegovina"},{"id":"croatia"},{"id":"czech_republic"},{"id":"denmark"},{"id":"england"},{"id":"finland"},{"id":"france","children":[{"id":"france__angers"},{"id":"france__coutances"},{"id":"france__lyon"},{"id":"france__paris"},{"id":"france__saint_denis"},{"id":"france__strasbourg"},{"id":"france__toulouse"}]},{"id":"germany"},{"id":"greece"},{"id":"hungary"},{"id":"ireland"},{"id":"italy"},{"id":"lithuania"},{"id":"malta"},{"id":"netherlands"},{"id":"norway"},{"id":"poland"},{"id":"portugal"},{"id":"romania"},{"id":"scotland"},{"id":"slovakia"},{"id":"slovenia"},{"id":"spain"},{"id":"sweden"},{"id":"switzerland"},{"id":"ukraine"},{"id":"wales"}]},{"id":"india"},{"id":"japan"},{"id":"lebanon"},{"id":"new_zealand"},{"id":"philippines"},{"id":"russia","children":[{"id":"asian_russia"},{"id":"european_russia"}]},{"id":"sri_lanka"},{"id":"vietnam"}]}"#;
+pub const CALENDAR_TREE_JSON: &str = r#"{"id":"general_roman","children":[{"id":"africa"},{"id":"americas","children":[{"id":"argentina"},{"id":"bolivia"},{"id":"brazil"},{"id":"canada"},{"id":"chile"},{"id":"costa_rica"},{"id":"guatemala"},{"id":"mexico"},{"id":"panama"},{"id":"paraguay"},{"id":"peru"},{"id":"puerto_rico"},{"id":"united_states"},{"id":"uruguay"},{"id":"venezuela"}]},{"id":"asia"},{"id":"australia"},{"id":"china"},{"id":"europe","children":[{"id":"austria"},{"id":"belgium"},{"id":"bosnia_herzegovina"},{"id":"croatia"},{"id":"czech_republic"},{"id":"denmark"},{"id":"england"},{"id":"finland"},{"id":"france","children":[{"id":"france__angers"},{"id":"france__coutances"},{"id":"france__lyon"},{"id":"france__paris"},{"id":"france__saint_denis"},{"id":"france__strasbourg"},{"id":"france__toulouse"}]},{"id":"germany"},{"id":"greece"},{"id":"hungary"},{"id":"ireland"},{"id":"italy"},{"id":"lithuania"},{"id":"malta"},{"id":"netherlands"},{"id":"norway"},{"id":"poland"},{"id":"portugal"},{"id":"romania"},{"id":"scotland"},{"id":"slovakia"},{"id":"slovenia"},{"id":"spain"},{"id":"sweden"},{"id":"switzerland"},{"id":"ukraine"},{"id":"wales"}]},{"id":"india"},{"id":"japan"},{"id":"lebanon"},{"id":"new_zealand"},{"id":"philippines"},{"id":"russia","children":[{"id":"asian_russia"},{"id":"european_russia"}]},{"id":"sri_lanka"},{"id":"temporal_cycle"},{"id":"vietnam"}]}"#;
 
 /// List of all locale codes
 ///

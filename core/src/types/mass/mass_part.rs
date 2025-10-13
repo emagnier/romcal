@@ -4,7 +4,9 @@ use strum::EnumIter;
 
 /// Parts that make up the Mass celebration.
 /// Each part represents a specific element of the liturgical celebration.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema, EnumIter)]
+#[derive(
+    Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema, EnumIter, PartialOrd, Ord,
+)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum MassPart {
     /// Messianic entry reading (during the procession with palms, before the Mass of the Passion)
@@ -14,33 +16,41 @@ pub enum MassPart {
     /// Collect - opening prayer of the Mass
     Collect,
     /// Reading 1 - first reading from the Old Testament
+    #[serde(rename = "READING_1")]
     Reading1,
     /// Psalm - responsorial psalm
     Psalm,
     /// Canticle - biblical canticle
     Canticle,
     /// Reading 2 - second reading (usually from the New Testament)
+    #[serde(rename = "READING_2")]
     Reading2,
     /// Psalm (Easter Vigil)
+    #[serde(rename = "EASTER_VIGIL_PSALM_2")]
     EasterVigilPsalm2,
     /// Reading 3 - third reading (Easter Vigil)
     EasterVigilReading3,
+    #[serde(rename = "EASTER_VIGIL_CANTICLE_3")]
     /// Canticle 3 (Easter Vigil)
     EasterVigilCanticle3,
     /// Reading 4 - fourth reading (Easter Vigil)
     EasterVigilReading4,
+    #[serde(rename = "EASTER_VIGIL_PSALM_4")]
     /// Psalm 4 (Easter Vigil)
     EasterVigilPsalm4,
     /// Reading 5 - fifth reading (Easter Vigil)
     EasterVigilReading5,
+    #[serde(rename = "EASTER_VIGIL_CANTICLE_5")]
     /// Canticle 5 (Easter Vigil)
     EasterVigilCanticle5,
     /// Reading 6 - sixth reading (Easter Vigil)
     EasterVigilReading6,
+    #[serde(rename = "EASTER_VIGIL_PSALM_6")]
     /// Psalm 6 (Easter Vigil)
     EasterVigilPsalm6,
     /// Reading 7 - seventh reading (Easter Vigil)
     EasterVigilReading7,
+    #[serde(rename = "EASTER_VIGIL_PSALM_7")]
     /// Psalm 7 (Easter Vigil)
     EasterVigilPsalm7,
     /// Epistle - reading from the epistles (Easter Vigil)

@@ -544,6 +544,7 @@ mod tests {
                         titles: None,
                         drop: None,
                         colors: None,
+                        masses: None,
                     },
                 );
                 map.insert(
@@ -561,6 +562,7 @@ mod tests {
                         titles: None,
                         drop: None,
                         colors: None,
+                        masses: None,
                     },
                 );
                 map
@@ -704,6 +706,7 @@ mod tests {
                         titles: None,
                         drop: None,
                         colors: None,
+                        masses: None,
                     },
                 );
                 map

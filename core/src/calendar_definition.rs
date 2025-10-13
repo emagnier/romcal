@@ -44,6 +44,7 @@ mod tests {
                 titles: None,
                 drop: None,
                 colors: None,
+                masses: None,
             },
         );
 

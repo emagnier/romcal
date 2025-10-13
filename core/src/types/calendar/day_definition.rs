@@ -2,7 +2,8 @@ use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
 use crate::types::{
-    Color, CommonDefinition, DateDef, DateDefExceptions, EntityPointer, Precedence, TitlesDef,
+    Color, CommonDefinition, DateDef, DateDefExceptions, EntityPointer, MassesDefinitions,
+    Precedence, TitlesDef,
 };
 
 /// Locale identifier for internationalization
@@ -69,4 +70,6 @@ pub struct DayDefinition {
     /// The liturgical color(s) of the liturgical day
     /// @deprecated
     pub colors: Option<ColorsDef>,
+    /// The masses definitions for this liturgical day
+    pub masses: Option<MassesDefinitions>,
 }

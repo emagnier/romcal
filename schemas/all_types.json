@@ -275,6 +275,17 @@
               "type": "null"
             }
           ]
+        },
+        "masses": {
+          "description": "The masses definitions for this liturgical day",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/MassesDefinitions"
+            },
+            {
+              "type": "null"
+            }
+          ]
         }
       },
       "additionalProperties": false
@@ -870,6 +881,27 @@
           "const": "BLACK"
         }
       ]
+    },
+    "MassesDefinitions": {
+      "description": "All mass definitions for a liturgical day",
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/MassCycleDefinition"
+      }
+    },
+    "MassCycleDefinition": {
+      "description": "Mass contents for a specific mass time, organized by liturgical cycle",
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/MassContent"
+      }
+    },
+    "MassContent": {
+      "description": "Content of a mass for a specific liturgical cycle\nMaps mass parts (readings, psalms, prayers, antiphons, etc.) to their texts",
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
     },
     "ResourcesMetadata": {
       "description": "Metadata for localized resources.\nContains all the localized strings and configurations for a specific locale.",
@@ -2316,6 +2348,17 @@
                   "type": "null"
                 }
               ]
+            },
+            "masses": {
+              "description": "The masses definitions for this liturgical day",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/MassesDefinitions"
+                },
+                {
+                  "type": "null"
+                }
+              ]
             }
           },
           "additionalProperties": false
@@ -2911,6 +2954,27 @@
               "const": "BLACK"
             }
           ]
+        },
+        "MassesDefinitions": {
+          "description": "All mass definitions for a liturgical day",
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/MassCycleDefinition"
+          }
+        },
+        "MassCycleDefinition": {
+          "description": "Mass contents for a specific mass time, organized by liturgical cycle",
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/MassContent"
+          }
+        },
+        "MassContent": {
+          "description": "Content of a mass for a specific liturgical cycle\nMaps mass parts (readings, psalms, prayers, antiphons, etc.) to their texts",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
         }
       },
       "title": "CalendarDefinition",

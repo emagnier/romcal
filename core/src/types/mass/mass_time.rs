@@ -4,7 +4,9 @@ use strum::EnumIter;
 
 /// Times of Mass celebrations in the liturgical calendar.
 /// Different Masses are celebrated at various times and occasions throughout the liturgical year.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema, EnumIter)]
+#[derive(
+    Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema, EnumIter, PartialOrd, Ord,
+)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum MassTime {
     /// Easter Vigil - the most important Mass of the liturgical year, celebrated on Holy Saturday night
