@@ -1,3 +1,4 @@
+#[cfg(feature = "schema-gen")]
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
@@ -12,7 +13,8 @@ pub type LocaleId = String;
 /// Macro to generate SingleOrMultiple types for handling both single values and arrays
 macro_rules! single_or_multiple {
     ($name:ident, $type:ty) => {
-        #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+        #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+        #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
         #[serde(untagged)]
         pub enum $name {
             Single($type),
@@ -30,7 +32,8 @@ pub type DayId = String;
 /// Definition of a liturgical day with all its properties and configurations.
 /// It represents a complete liturgical day definition that can be used
 /// to generate calendar entries with proper precedence, colors, and entity associations.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 pub struct DayDefinition {
     /// The date definition for this liturgical day
     pub date_def: Option<DateDef>,

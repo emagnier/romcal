@@ -17,12 +17,12 @@ cd "$PROJECT_ROOT/core"
 
 # Build the schema generation binary
 echo "🔨 Building schema generation binary..."
-cargo build --release --bin generate-schema
+cargo build --release --bin generate-schema --features schema-gen
 
 # Run the schema generation
 echo ""
 echo "🔧 Generating JSON schemas..."
-cargo run --release --bin generate-schema
+cargo run --release --bin generate-schema --features schema-gen
 
 echo ""
 echo "✅ Schema generation completed!"

@@ -1,12 +1,10 @@
-use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 use strum::EnumIter;
 
 /// Times of Mass celebrations in the liturgical calendar.
 /// Different Masses are celebrated at various times and occasions throughout the liturgical year.
-#[derive(
-    Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema, EnumIter, PartialOrd, Ord,
-)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, EnumIter, PartialOrd, Ord)]
+#[cfg_attr(feature = "schema-gen", derive(schemars::JsonSchema))]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum MassTime {
     /// Easter Vigil - the most important Mass of the liturgical year, celebrated on Holy Saturday night
@@ -29,6 +27,23 @@ pub enum MassTime {
     ChrismMass,
     /// Evening Mass - Mass celebrated in the evening
     EveningMass,
+}
+
+// Schema generation functions (only compiled when feature "schema-gen" is enabled)
+#[cfg(feature = "schema-gen")]
+pub fn get_mass_time_description(time: &MassTime) -> &'static str {
+    match time {
+        MassTime::EasterVigil => "Easter Vigil - the most important Mass of the liturgical year, celebrated on Holy Saturday night",
+        MassTime::PreviousEveningMass => "Previous Evening Mass - Mass celebrated the evening before a major feast",
+        MassTime::NightMass => "Night Mass - Mass celebrated during the night hours",
+        MassTime::MassAtDawn => "Mass at Dawn - Mass celebrated at dawn, particularly on Easter Sunday",
+        MassTime::MorningMass => "Morning Mass - Mass celebrated in the morning",
+        MassTime::MassOfThePassion => "Mass of the Passion - Mass focusing on Christ's passion, beginning with the procession with palms",
+        MassTime::CelebrationOfThePassion => "Celebration of the Passion - special celebration of Christ's passion",
+        MassTime::DayMass => "Day Mass - regular Mass celebrated during the day",
+        MassTime::ChrismMass => "Chrism Mass - Mass where holy oils are blessed, typically on Holy Thursday morning",
+        MassTime::EveningMass => "Evening Mass - Mass celebrated in the evening",
+    }
 }
 
 #[cfg(test)]

@@ -1,11 +1,13 @@
 use crate::types::liturgical::Rank;
+#[cfg(feature = "schema-gen")]
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 use strum::EnumIter;
 
 /// Liturgical precedence levels for determining which celebration takes priority.
 /// Defines the hierarchical order of liturgical celebrations according to UNLY norms.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema, EnumIter)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, EnumIter)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 #[allow(non_camel_case_types)]
 pub enum Precedence {

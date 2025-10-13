@@ -1,3 +1,4 @@
+#[cfg(feature = "schema-gen")]
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
@@ -6,7 +7,8 @@ use crate::types::TitlesDef;
 
 /// Custom entity definition that extends or overrides properties from the entity catalog.
 /// Used when a liturgical day needs specific entity properties that differ from the base entity.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 pub struct EntityOverride {
     /// The ID of the entity item (must reference an existing entity in the catalog)
     pub id: String,

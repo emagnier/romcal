@@ -1,3 +1,4 @@
+#[cfg(feature = "schema-gen")]
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
@@ -8,7 +9,8 @@ use crate::types::{CalendarMetadata, DayDefinition, DayId, ParticularConfig};
 pub type CalendarId = String;
 
 /// Calendar definition
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 pub struct CalendarDefinition {
     #[serde(rename = "$schema")]
     pub schema: Option<String>,

@@ -1,10 +1,12 @@
+#[cfg(feature = "schema-gen")]
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 
 /// Metadata for localized resources.
 /// Contains all the localized strings and configurations for a specific locale.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 pub struct ResourcesMetadata {
     /// Ordinal numbers (1st, 2nd, 3rd, etc.) in the locale language
     pub ordinals: Option<BTreeMap<String, String>>,
@@ -26,7 +28,8 @@ pub struct ResourcesMetadata {
 
 /// Liturgical color names in the locale language.
 /// Provides localized names for each liturgical color.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 pub struct LocaleColors {
     /// Black color name in the locale language
     pub black: Option<String>,
@@ -46,7 +49,8 @@ pub struct LocaleColors {
 
 /// Liturgical season names and descriptions in the locale language.
 /// Provides localized names for each liturgical season and their components.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 pub struct SeasonsMetadata {
     /// Advent season names and descriptions
     pub advent: Option<AdventSeason>,
@@ -64,7 +68,8 @@ pub struct SeasonsMetadata {
 
 /// Advent season localized names and descriptions.
 /// Provides specific terminology for the Advent season in the locale language.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 pub struct AdventSeason {
     /// General season name for Advent
     pub season: Option<String>,
@@ -77,7 +82,8 @@ pub struct AdventSeason {
 }
 
 /// Christmas Time season localized names and descriptions.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 pub struct ChristmasTimeSeason {
     /// General season name for Christmas Time
     pub season: Option<String>,
@@ -94,7 +100,8 @@ pub struct ChristmasTimeSeason {
 }
 
 /// Ordinary Time season localized names and descriptions.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 pub struct OrdinaryTimeSeason {
     /// General season name for Ordinary Time
     pub season: Option<String>,
@@ -105,7 +112,8 @@ pub struct OrdinaryTimeSeason {
 }
 
 /// Lent season localized names and descriptions.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 pub struct LentSeason {
     /// General season name for Lent
     pub season: Option<String>,
@@ -120,14 +128,16 @@ pub struct LentSeason {
 }
 
 /// Paschal Triduum season localized names and descriptions.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 pub struct PaschalTriduumSeason {
     /// General season name for Paschal Triduum
     pub season: Option<String>,
 }
 
 /// Easter Time season localized names and descriptions.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 pub struct EasterTimeSeason {
     /// General season name for Easter Time
     pub season: Option<String>,
@@ -140,7 +150,8 @@ pub struct EasterTimeSeason {
 }
 
 /// Liturgical period names in the locale language.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 pub struct PeriodsMetadata {
     /// Epiphany period name
     pub epiphany: Option<String>,
@@ -149,7 +160,8 @@ pub struct PeriodsMetadata {
 }
 
 /// Liturgical rank names in the locale language.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 pub struct RanksMetadata {
     /// Solemnity rank name
     pub solemnity: Option<String>,
@@ -166,7 +178,8 @@ pub struct RanksMetadata {
 }
 
 /// Liturgical cycle names in the locale language.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 pub struct CyclesMetadata {
     /// Proper of Time cycle name
     pub proper_of_time: Option<String>,

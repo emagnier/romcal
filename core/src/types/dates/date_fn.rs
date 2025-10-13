@@ -1,10 +1,12 @@
+#[cfg(feature = "schema-gen")]
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 use strum::EnumIter;
 
 /// Date function for calculating liturgical dates.
 /// Represents movable feasts and special celebrations that require calculation.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize, JsonSchema, EnumIter)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize, EnumIter)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum DateFn {
     MaryMotherOfTheChurch,

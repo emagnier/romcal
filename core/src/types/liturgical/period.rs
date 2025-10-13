@@ -1,10 +1,12 @@
+#[cfg(feature = "schema-gen")]
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 use strum::EnumIter;
 
 /// Specific periods within liturgical seasons.
 /// Defines sub-periods that have special liturgical characteristics or rules.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema, EnumIter)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, EnumIter)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum Period {
     /// The eight days following Christmas (December 25 - January 1)
@@ -30,7 +32,8 @@ pub enum Period {
 }
 
 /// Liturgical period information with localized name.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 pub struct PeriodInfo {
     /// The period key
     pub key: Period,

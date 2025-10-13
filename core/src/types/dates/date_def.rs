@@ -1,3 +1,4 @@
+#[cfg(feature = "schema-gen")]
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
@@ -5,7 +6,8 @@ use crate::types::{DateFn, DayOfWeek, MonthIndex};
 
 /// Date definition supporting various date calculation methods.
 /// Provides flexible ways to specify liturgical dates using different approaches.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[serde(untagged)]
 pub enum DateDef {
     /// Simple month/day specification
@@ -52,7 +54,8 @@ pub enum DateDef {
 
 /// Date definition with offset for adjustments.
 /// Used when a date needs to be shifted by a specific number of days.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 pub struct DateDefWithOffset {
     /// The number of days to offset the date
     pub day_offset: i32,
@@ -60,7 +63,8 @@ pub struct DateDefWithOffset {
 
 /// Extended date definition supporting both regular dates and offset dates.
 /// Provides flexibility for date calculations with optional adjustments.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[serde(untagged)]
 pub enum DateDefExtended {
     /// Regular date definition
@@ -71,7 +75,8 @@ pub enum DateDefExtended {
 
 /// The liturgical day date exception.
 /// Represents a condition and the date to set when that condition is met.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 pub struct DateDefException {
     /// The condition that triggers the exception
     pub when: ExceptionCondition,
@@ -81,7 +86,8 @@ pub struct DateDefException {
 
 /// Exception conditions that can trigger a date change.
 /// Defines various conditions under which a date exception applies.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[serde(untagged)]
 pub enum ExceptionCondition {
     /// If the date is between two specified dates
@@ -107,7 +113,8 @@ pub enum ExceptionCondition {
 
 /// Date exceptions that can be either a single exception or multiple exceptions.
 /// Supports both simple single exceptions and complex multiple exception scenarios.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[serde(untagged)]
 pub enum DateDefExceptions {
     /// Single date exception

@@ -1,3 +1,4 @@
+#[cfg(feature = "schema-gen")]
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
@@ -8,7 +9,8 @@ pub type ResourceId = String;
 
 /// A pointer to an entity in the entity catalog.
 /// Can either reference an existing entity by ID or define a custom entity with additional properties.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[serde(untagged)]
 pub enum EntityPointer {
     /// Reference to an existing entity by its ID

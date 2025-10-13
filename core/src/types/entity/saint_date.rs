@@ -1,9 +1,11 @@
+#[cfg(feature = "schema-gen")]
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
 /// Saint date representation with different precision levels.
 /// Supports year-only, year-month, or full date specifications.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[serde(untagged)]
 pub enum SaintDate {
     /// Year only (e.g., 1234)
@@ -16,7 +18,8 @@ pub enum SaintDate {
 
 /// Saint date definition supporting various date specifications.
 /// Allows single dates, date ranges, multiple alternatives, or century specifications.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[serde(untagged)]
 pub enum SaintDateDef {
     /// Single date specification

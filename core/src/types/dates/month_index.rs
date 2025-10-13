@@ -1,3 +1,4 @@
+#[cfg(feature = "schema-gen")]
 use schemars::JsonSchema;
 use serde::{Deserialize, Deserializer, Serialize};
 
@@ -5,7 +6,8 @@ use serde::{Deserialize, Deserializer, Serialize};
 ///
 /// This type ensures that only valid month values are accepted during
 /// deserialization. The value 1 represents January, 2 represents February, etc.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 pub struct MonthIndex(pub u8);
 
 impl<'de> Deserialize<'de> for MonthIndex {

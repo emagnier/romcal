@@ -1,10 +1,12 @@
+#[cfg(feature = "schema-gen")]
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 use strum::EnumIter;
 
 /// Canonization level indicating the official recognition status of a person.
 /// Defines whether someone is beatified (Blessed) or canonized (Saint).
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema, EnumIter)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, EnumIter)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum CanonizationLevel {
     /// Beatified person (Blessed) - first step toward sainthood

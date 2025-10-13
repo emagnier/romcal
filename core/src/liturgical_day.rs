@@ -1,3 +1,4 @@
+#[cfg(feature = "schema-gen")]
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
@@ -13,7 +14,8 @@ use crate::{CalendarId, Season};
 pub type LiturgicalDayId = String;
 
 /// A single day in the liturgical calendar with computed values and inheritance information.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 pub struct LiturgicalDay {
     /// The unique identifier of the liturgical day
     pub id: LiturgicalDayId,

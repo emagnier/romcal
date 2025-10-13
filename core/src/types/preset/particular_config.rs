@@ -1,3 +1,4 @@
+#[cfg(feature = "schema-gen")]
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
@@ -6,7 +7,8 @@ use crate::types::EasterCalculationType;
 /// Configuration options specific to this calendar.
 /// These settings can override or extend the default Romcal configuration or any parent calendar
 /// configuration.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 pub struct ParticularConfig {
     /// Epiphany is celebrated on a Sunday
     pub epiphany_on_sunday: Option<bool>,

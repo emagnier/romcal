@@ -1,12 +1,10 @@
-use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 use strum::EnumIter;
 
 /// Parts that make up the Mass celebration.
 /// Each part represents a specific element of the liturgical celebration.
-#[derive(
-    Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema, EnumIter, PartialOrd, Ord,
-)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, EnumIter, PartialOrd, Ord)]
+#[cfg_attr(feature = "schema-gen", derive(schemars::JsonSchema))]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum MassPart {
     /// Messianic entry reading (during the procession with palms, before the Mass of the Passion)
@@ -15,7 +13,7 @@ pub enum MassPart {
     EntranceAntiphon,
     /// Collect - opening prayer of the Mass
     Collect,
-    /// Reading 1 - first reading from the Old Testament
+    /// Reading 1 - first reading (usually from the Old Testament)
     #[serde(rename = "READING_1")]
     Reading1,
     /// Psalm - responsorial psalm
@@ -29,26 +27,31 @@ pub enum MassPart {
     #[serde(rename = "EASTER_VIGIL_PSALM_2")]
     EasterVigilPsalm2,
     /// Reading 3 - third reading (Easter Vigil)
+    #[serde(rename = "EASTER_VIGIL_READING_3")]
     EasterVigilReading3,
     #[serde(rename = "EASTER_VIGIL_CANTICLE_3")]
     /// Canticle 3 (Easter Vigil)
     EasterVigilCanticle3,
     /// Reading 4 - fourth reading (Easter Vigil)
+    #[serde(rename = "EASTER_VIGIL_READING_4")]
     EasterVigilReading4,
     #[serde(rename = "EASTER_VIGIL_PSALM_4")]
     /// Psalm 4 (Easter Vigil)
     EasterVigilPsalm4,
     /// Reading 5 - fifth reading (Easter Vigil)
+    #[serde(rename = "EASTER_VIGIL_READING_5")]
     EasterVigilReading5,
     #[serde(rename = "EASTER_VIGIL_CANTICLE_5")]
     /// Canticle 5 (Easter Vigil)
     EasterVigilCanticle5,
     /// Reading 6 - sixth reading (Easter Vigil)
+    #[serde(rename = "EASTER_VIGIL_READING_6")]
     EasterVigilReading6,
     #[serde(rename = "EASTER_VIGIL_PSALM_6")]
     /// Psalm 6 (Easter Vigil)
     EasterVigilPsalm6,
     /// Reading 7 - seventh reading (Easter Vigil)
+    #[serde(rename = "EASTER_VIGIL_READING_7")]
     EasterVigilReading7,
     #[serde(rename = "EASTER_VIGIL_PSALM_7")]
     /// Psalm 7 (Easter Vigil)
@@ -147,6 +150,41 @@ impl MassPart {
     /// Check if a mass part is a psalm part.
     pub fn is_psalm_part(&self) -> bool {
         Self::psalm_parts().contains(self)
+    }
+}
+
+// Schema generation functions (only compiled when feature "schema-gen" is enabled)
+#[cfg(feature = "schema-gen")]
+pub fn get_mass_part_description(part: &MassPart) -> &'static str {
+    match part {
+        MassPart::MessianicEntry => "Messianic entry reading (during the procession with palms, before the Mass of the Passion)",
+        MassPart::EntranceAntiphon => "Entrance Antiphon - opening chant of the Mass",
+        MassPart::Collect => "Collect - opening prayer of the Mass",
+        MassPart::Reading1 => "Reading 1 - first reading (usually from the Old Testament)",
+        MassPart::Psalm => "Psalm - responsorial psalm",
+        MassPart::Canticle => "Canticle - biblical canticle",
+        MassPart::Reading2 => "Reading 2 - second reading (usually from the New Testament)",
+        MassPart::EasterVigilPsalm2 => "Psalm 2 (Easter Vigil)",
+        MassPart::EasterVigilReading3 => "Reading 3 - third reading (Easter Vigil)",
+        MassPart::EasterVigilCanticle3 => "Canticle 3 (Easter Vigil)",
+        MassPart::EasterVigilReading4 => "Reading 4 - fourth reading (Easter Vigil)",
+        MassPart::EasterVigilPsalm4 => "Psalm 4 (Easter Vigil)",
+        MassPart::EasterVigilReading5 => "Reading 5 - fifth reading (Easter Vigil)",
+        MassPart::EasterVigilCanticle5 => "Canticle 5 (Easter Vigil)",
+        MassPart::EasterVigilReading6 => "Reading 6 - sixth reading (Easter Vigil)",
+        MassPart::EasterVigilPsalm6 => "Psalm 6 (Easter Vigil)",
+        MassPart::EasterVigilReading7 => "Reading 7 - seventh reading (Easter Vigil)",
+        MassPart::EasterVigilPsalm7 => "Psalm 7 (Easter Vigil)",
+        MassPart::EasterVigilEpistle => "Epistle - reading from the epistles (Easter Vigil)",
+        MassPart::Sequence => "Sequence - special chant on certain feasts",
+        MassPart::Alleluia => "Alleluia - acclamation before the Gospel",
+        MassPart::Gospel => "Gospel - reading from the Gospels",
+        MassPart::PrayerOverTheOfferings => "Prayer over the Offerings - prayer during the offertory",
+        MassPart::Preface => "Preface - introduction to the Eucharistic Prayer",
+        MassPart::CommunionAntiphon => "Communion Antiphon - chant during communion",
+        MassPart::PrayerAfterCommunion => "Prayer after Communion - concluding prayer",
+        MassPart::SolemnBlessing => "Solemn Blessing - special blessing on certain occasions",
+        MassPart::PrayerOverThePeople => "Prayer over the People - blessing over the congregation",
     }
 }
 

@@ -1,4 +1,6 @@
+#[cfg(feature = "schema-gen")]
 use schemars::JsonSchema;
+use serde::{Deserialize, Deserializer, Serialize, Serializer};
 
 /// Represents the number of saints for an entity or a group of entities.
 ///
@@ -13,157 +15,92 @@ use schemars::JsonSchema;
 /// - Integers are converted to `Number(u32)`
 /// - String `"MANY"` is converted to `Many`
 /// - All other types generate an error
-#[derive(Debug, Clone, PartialEq, Eq, JsonSchema)]
-#[serde(untagged)]
+#[derive(Debug, Clone, PartialEq, Eq)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 pub enum SaintCount {
     /// Specific number of saints
     Number(u32),
-    #[serde(rename = "MANY")]
     /// Indeterminate number of saints
-    Many,
+    Many(String),
 }
 
-impl serde::Serialize for SaintCount {
-    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-    where
-        S: serde::Serializer,
-    {
+impl SaintCount {
+    /// Create a new SaintCount with a specific number
+    pub fn number(n: u32) -> Self {
+        Self::Number(n)
+    }
+
+    /// Create a new SaintCount representing "MANY"
+    pub fn many() -> Self {
+        Self::Many("MANY".to_string())
+    }
+
+    /// Check if this represents "MANY"
+    pub fn is_many(&self) -> bool {
+        matches!(self, Self::Many(s) if s == "MANY")
+    }
+
+    /// Get the number if it's a specific number, None if it's "MANY"
+    pub fn as_number(&self) -> Option<u32> {
         match self {
-            SaintCount::Number(n) => serializer.serialize_u32(*n),
-            SaintCount::Many => serializer.serialize_str("MANY"),
+            Self::Number(n) => Some(*n),
+            Self::Many(_) => None,
         }
     }
 }
 
-impl<'de> serde::Deserialize<'de> for SaintCount {
+impl Serialize for SaintCount {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        match self {
+            Self::Number(n) => serializer.serialize_u32(*n),
+            Self::Many(s) => serializer.serialize_str(s),
+        }
+    }
+}
+
+impl<'de> Deserialize<'de> for SaintCount {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
-        D: serde::Deserializer<'de>,
+        D: Deserializer<'de>,
     {
-        use serde::de::{self, Visitor};
-        use std::fmt;
+        use serde_json::Value;
 
-        struct SaintCountVisitor;
+        let value = Value::deserialize(deserializer)?;
 
-        impl<'de> Visitor<'de> for SaintCountVisitor {
-            type Value = SaintCount;
-
-            fn expecting(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
-                formatter.write_str("a number between 0 and 4294967295 or the string 'MANY'")
-            }
-
-            fn visit_u8<E>(self, value: u8) -> Result<Self::Value, E> {
-                Ok(SaintCount::Number(value as u32))
-            }
-
-            fn visit_u16<E>(self, value: u16) -> Result<Self::Value, E> {
-                Ok(SaintCount::Number(value as u32))
-            }
-
-            fn visit_u32<E>(self, value: u32) -> Result<Self::Value, E> {
-                Ok(SaintCount::Number(value))
-            }
-
-            fn visit_u64<E>(self, value: u64) -> Result<Self::Value, E>
-            where
-                E: de::Error,
-            {
-                if value <= u32::MAX as u64 {
-                    Ok(SaintCount::Number(value as u32))
+        match value {
+            Value::Number(n) => {
+                if let Some(u) = n.as_u64() {
+                    if u <= u32::MAX as u64 {
+                        Ok(Self::Number(u as u32))
+                    } else {
+                        Err(serde::de::Error::custom(format!(
+                            "number {} too large for u32 (maximum: {})",
+                            u,
+                            u32::MAX
+                        )))
+                    }
                 } else {
-                    Err(de::Error::custom(format!(
-                        "number {} too large for u32 (maximum: {})",
-                        value,
-                        u32::MAX
-                    )))
-                }
-            }
-
-            fn visit_i8<E>(self, value: i8) -> Result<Self::Value, E>
-            where
-                E: de::Error,
-            {
-                if value >= 0 {
-                    Ok(SaintCount::Number(value as u32))
-                } else {
-                    Err(de::Error::custom(format!(
+                    Err(serde::de::Error::custom(format!(
                         "negative number {} not allowed for SaintCount",
-                        value
+                        n
                     )))
                 }
             }
-
-            fn visit_i16<E>(self, value: i16) -> Result<Self::Value, E>
-            where
-                E: de::Error,
-            {
-                if value >= 0 {
-                    Ok(SaintCount::Number(value as u32))
+            Value::String(s) => {
+                if s == "MANY" {
+                    Ok(Self::Many(s))
                 } else {
-                    Err(de::Error::custom(format!(
-                        "negative number {} not allowed for SaintCount",
-                        value
-                    )))
-                }
-            }
-
-            fn visit_i32<E>(self, value: i32) -> Result<Self::Value, E>
-            where
-                E: de::Error,
-            {
-                if value >= 0 {
-                    Ok(SaintCount::Number(value as u32))
-                } else {
-                    Err(de::Error::custom(format!(
-                        "negative number {} not allowed for SaintCount",
-                        value
-                    )))
-                }
-            }
-
-            fn visit_i64<E>(self, value: i64) -> Result<Self::Value, E>
-            where
-                E: de::Error,
-            {
-                if value >= 0 && value <= u32::MAX as i64 {
-                    Ok(SaintCount::Number(value as u32))
-                } else if value < 0 {
-                    Err(de::Error::custom(format!(
-                        "negative number {} not allowed for SaintCount",
-                        value
-                    )))
-                } else {
-                    Err(de::Error::custom(format!(
-                        "number {} too large for u32 (maximum: {})",
-                        value,
-                        u32::MAX
-                    )))
-                }
-            }
-
-            fn visit_str<E>(self, value: &str) -> Result<Self::Value, E>
-            where
-                E: de::Error,
-            {
-                if value == "MANY" {
-                    Ok(SaintCount::Many)
-                } else {
-                    Err(de::Error::custom(format!(
+                    Err(serde::de::Error::custom(format!(
                         "expected 'MANY' or a number, got string: '{}'",
-                        value
+                        s
                     )))
                 }
             }
-
-            fn visit_string<E>(self, value: String) -> Result<Self::Value, E>
-            where
-                E: de::Error,
-            {
-                self.visit_str(&value)
-            }
+            _ => Err(serde::de::Error::custom("expected 'MANY' or a number")),
         }
-
-        deserializer.deserialize_any(SaintCountVisitor)
     }
 }
 
@@ -180,7 +117,7 @@ mod tests {
         assert_ser_tokens(&SaintCount::Number(42), &[Token::U32(42)]);
         assert_ser_tokens(&SaintCount::Number(0), &[Token::U32(0)]);
         assert_ser_tokens(&SaintCount::Number(u32::MAX), &[Token::U32(u32::MAX)]);
-        assert_ser_tokens(&SaintCount::Many, &[Token::Str("MANY")]);
+        assert_ser_tokens(&SaintCount::Many("MANY".to_string()), &[Token::Str("MANY")]);
     }
 
     #[test]
@@ -189,7 +126,7 @@ mod tests {
         assert_de_tokens(&SaintCount::Number(42), &[Token::U32(42)]);
         assert_de_tokens(&SaintCount::Number(0), &[Token::U32(0)]);
         assert_de_tokens(&SaintCount::Number(u32::MAX), &[Token::U32(u32::MAX)]);
-        assert_de_tokens(&SaintCount::Many, &[Token::Str("MANY")]);
+        assert_de_tokens(&SaintCount::Many("MANY".to_string()), &[Token::Str("MANY")]);
 
         // Test with different numeric types
         assert_de_tokens(&SaintCount::Number(42), &[Token::U8(42)]);
@@ -202,7 +139,7 @@ mod tests {
     fn test_saint_count_roundtrip() {
         // Test complete roundtrip
         assert_tokens(&SaintCount::Number(42), &[Token::U32(42)]);
-        assert_tokens(&SaintCount::Many, &[Token::Str("MANY")]);
+        assert_tokens(&SaintCount::Many("MANY".to_string()), &[Token::Str("MANY")]);
     }
 
     #[test]
@@ -240,7 +177,7 @@ mod tests {
         use serde_json;
 
         // Test JSON serialization
-        let many = SaintCount::Many;
+        let many = SaintCount::Many("MANY".to_string());
         let json = serde_json::to_string(&many).unwrap();
         assert_eq!(json, r#""MANY""#);
 
@@ -251,7 +188,7 @@ mod tests {
         // Test JSON deserialization
         let json_with_many = r#""MANY""#;
         let result: SaintCount = serde_json::from_str(json_with_many).unwrap();
-        assert!(matches!(result, SaintCount::Many));
+        assert!(matches!(result, SaintCount::Many(s) if s == "MANY"));
 
         let json_with_number = r#"42"#;
         let result: SaintCount = serde_json::from_str(json_with_number).unwrap();

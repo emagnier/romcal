@@ -1,3 +1,4 @@
+#[cfg(feature = "schema-gen")]
 use schemars::JsonSchema;
 use serde::{Deserialize, Deserializer, Serialize};
 
@@ -5,7 +6,8 @@ use serde::{Deserialize, Deserializer, Serialize};
 ///
 /// This type ensures that only valid day-of-week values are accepted during
 /// deserialization. The value 0 represents Sunday, 1 represents Monday, etc.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 pub struct DayOfWeek(pub u8);
 
 impl<'de> Deserialize<'de> for DayOfWeek {

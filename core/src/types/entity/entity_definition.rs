@@ -1,3 +1,4 @@
+#[cfg(feature = "schema-gen")]
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
@@ -6,7 +7,8 @@ use super::{CanonizationLevel, EntityType, SaintCount, SaintDateDef, Sex, Title}
 /// The unique identifier of the entity
 pub type EntityId = String;
 
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 pub struct Entity {
     /// The type of the entity.
     /// @default EntityType.Person

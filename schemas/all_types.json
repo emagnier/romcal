@@ -885,23 +885,211 @@
     "MassesDefinitions": {
       "description": "All mass definitions for a liturgical day",
       "type": "object",
-      "additionalProperties": {
-        "$ref": "#/definitions/MassCycleDefinition"
-      }
+      "properties": {
+        "celebration_of_the_passion": {
+          "description": "Celebration of the Passion - special celebration of Christ's passion",
+          "$ref": "#/definitions/MassCycleDefinition"
+        },
+        "chrism_mass": {
+          "description": "Chrism Mass - Mass where holy oils are blessed, typically on Holy Thursday morning",
+          "$ref": "#/definitions/MassCycleDefinition"
+        },
+        "day_mass": {
+          "description": "Day Mass - regular Mass celebrated during the day",
+          "$ref": "#/definitions/MassCycleDefinition"
+        },
+        "easter_vigil": {
+          "description": "Easter Vigil - the most important Mass of the liturgical year, celebrated on Holy Saturday night",
+          "$ref": "#/definitions/MassCycleDefinition"
+        },
+        "evening_mass": {
+          "description": "Evening Mass - Mass celebrated in the evening",
+          "$ref": "#/definitions/MassCycleDefinition"
+        },
+        "mass_at_dawn": {
+          "description": "Mass at Dawn - Mass celebrated at dawn, particularly on Easter Sunday",
+          "$ref": "#/definitions/MassCycleDefinition"
+        },
+        "mass_of_the_passion": {
+          "description": "Mass of the Passion - Mass focusing on Christ's passion, beginning with the procession with palms",
+          "$ref": "#/definitions/MassCycleDefinition"
+        },
+        "morning_mass": {
+          "description": "Morning Mass - Mass celebrated in the morning",
+          "$ref": "#/definitions/MassCycleDefinition"
+        },
+        "night_mass": {
+          "description": "Night Mass - Mass celebrated during the night hours",
+          "$ref": "#/definitions/MassCycleDefinition"
+        },
+        "previous_evening_mass": {
+          "description": "Previous Evening Mass - Mass celebrated the evening before a major feast",
+          "$ref": "#/definitions/MassCycleDefinition"
+        }
+      },
+      "additionalProperties": false
     },
     "MassCycleDefinition": {
       "description": "Mass contents for a specific mass time, organized by liturgical cycle",
       "type": "object",
-      "additionalProperties": {
-        "$ref": "#/definitions/MassContent"
-      }
+      "properties": {
+        "invariant": {
+          "description": "Invariant content that applies to all cycles",
+          "$ref": "#/definitions/MassContent"
+        },
+        "year_1": {
+          "description": "Year 1 of the weekday cycle (Cycle I)",
+          "$ref": "#/definitions/MassContent"
+        },
+        "year_2": {
+          "description": "Year 2 of the weekday cycle (Cycle II)",
+          "$ref": "#/definitions/MassContent"
+        },
+        "year_a": {
+          "description": "Year A of the Sunday cycle",
+          "$ref": "#/definitions/MassContent"
+        },
+        "year_a_b": {
+          "description": "Combined years A and B of the Sunday cycle",
+          "$ref": "#/definitions/MassContent"
+        },
+        "year_a_c": {
+          "description": "Combined years A and C of the Sunday cycle",
+          "$ref": "#/definitions/MassContent"
+        },
+        "year_b": {
+          "description": "Year B of the Sunday cycle",
+          "$ref": "#/definitions/MassContent"
+        },
+        "year_b_c": {
+          "description": "Combined years B and C of the Sunday cycle",
+          "$ref": "#/definitions/MassContent"
+        },
+        "year_c": {
+          "description": "Year C of the Sunday cycle",
+          "$ref": "#/definitions/MassContent"
+        }
+      },
+      "additionalProperties": false
     },
     "MassContent": {
       "description": "Content of a mass for a specific liturgical cycle\nMaps mass parts (readings, psalms, prayers, antiphons, etc.) to their texts",
       "type": "object",
-      "additionalProperties": {
-        "type": "string"
-      }
+      "properties": {
+        "alleluia": {
+          "description": "Alleluia - acclamation before the Gospel",
+          "type": "string"
+        },
+        "canticle": {
+          "description": "Canticle - biblical canticle",
+          "type": "string"
+        },
+        "collect": {
+          "description": "Collect - opening prayer of the Mass",
+          "type": "string"
+        },
+        "communion_antiphon": {
+          "description": "Communion Antiphon - chant during communion",
+          "type": "string"
+        },
+        "easter_vigil_canticle_3": {
+          "description": "Canticle 3 (Easter Vigil)",
+          "type": "string"
+        },
+        "easter_vigil_canticle_5": {
+          "description": "Canticle 5 (Easter Vigil)",
+          "type": "string"
+        },
+        "easter_vigil_epistle": {
+          "description": "Epistle - reading from the epistles (Easter Vigil)",
+          "type": "string"
+        },
+        "easter_vigil_psalm_2": {
+          "description": "Psalm 2 (Easter Vigil)",
+          "type": "string"
+        },
+        "easter_vigil_psalm_4": {
+          "description": "Psalm 4 (Easter Vigil)",
+          "type": "string"
+        },
+        "easter_vigil_psalm_6": {
+          "description": "Psalm 6 (Easter Vigil)",
+          "type": "string"
+        },
+        "easter_vigil_psalm_7": {
+          "description": "Psalm 7 (Easter Vigil)",
+          "type": "string"
+        },
+        "easter_vigil_reading_3": {
+          "description": "Reading 3 - third reading (Easter Vigil)",
+          "type": "string"
+        },
+        "easter_vigil_reading_4": {
+          "description": "Reading 4 - fourth reading (Easter Vigil)",
+          "type": "string"
+        },
+        "easter_vigil_reading_5": {
+          "description": "Reading 5 - fifth reading (Easter Vigil)",
+          "type": "string"
+        },
+        "easter_vigil_reading_6": {
+          "description": "Reading 6 - sixth reading (Easter Vigil)",
+          "type": "string"
+        },
+        "easter_vigil_reading_7": {
+          "description": "Reading 7 - seventh reading (Easter Vigil)",
+          "type": "string"
+        },
+        "entrance_antiphon": {
+          "description": "Entrance Antiphon - opening chant of the Mass",
+          "type": "string"
+        },
+        "gospel": {
+          "description": "Gospel - reading from the Gospels",
+          "type": "string"
+        },
+        "messianic_entry": {
+          "description": "Messianic entry reading (during the procession with palms, before the Mass of the Passion)",
+          "type": "string"
+        },
+        "prayer_after_communion": {
+          "description": "Prayer after Communion - concluding prayer",
+          "type": "string"
+        },
+        "prayer_over_the_offerings": {
+          "description": "Prayer over the Offerings - prayer during the offertory",
+          "type": "string"
+        },
+        "prayer_over_the_people": {
+          "description": "Prayer over the People - blessing over the congregation",
+          "type": "string"
+        },
+        "preface": {
+          "description": "Preface - introduction to the Eucharistic Prayer",
+          "type": "string"
+        },
+        "psalm": {
+          "description": "Psalm - responsorial psalm",
+          "type": "string"
+        },
+        "reading_1": {
+          "description": "Reading 1 - first reading (usually from the Old Testament)",
+          "type": "string"
+        },
+        "reading_2": {
+          "description": "Reading 2 - second reading (usually from the New Testament)",
+          "type": "string"
+        },
+        "sequence": {
+          "description": "Sequence - special chant on certain feasts",
+          "type": "string"
+        },
+        "solemn_blessing": {
+          "description": "Solemn Blessing - special blessing on certain occasions",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
     },
     "ResourcesMetadata": {
       "description": "Metadata for localized resources.\nContains all the localized strings and configurations for a specific locale.",
@@ -2958,23 +3146,211 @@
         "MassesDefinitions": {
           "description": "All mass definitions for a liturgical day",
           "type": "object",
-          "additionalProperties": {
-            "$ref": "#/definitions/MassCycleDefinition"
-          }
+          "properties": {
+            "celebration_of_the_passion": {
+              "description": "Celebration of the Passion - special celebration of Christ's passion",
+              "$ref": "#/definitions/MassCycleDefinition"
+            },
+            "chrism_mass": {
+              "description": "Chrism Mass - Mass where holy oils are blessed, typically on Holy Thursday morning",
+              "$ref": "#/definitions/MassCycleDefinition"
+            },
+            "day_mass": {
+              "description": "Day Mass - regular Mass celebrated during the day",
+              "$ref": "#/definitions/MassCycleDefinition"
+            },
+            "easter_vigil": {
+              "description": "Easter Vigil - the most important Mass of the liturgical year, celebrated on Holy Saturday night",
+              "$ref": "#/definitions/MassCycleDefinition"
+            },
+            "evening_mass": {
+              "description": "Evening Mass - Mass celebrated in the evening",
+              "$ref": "#/definitions/MassCycleDefinition"
+            },
+            "mass_at_dawn": {
+              "description": "Mass at Dawn - Mass celebrated at dawn, particularly on Easter Sunday",
+              "$ref": "#/definitions/MassCycleDefinition"
+            },
+            "mass_of_the_passion": {
+              "description": "Mass of the Passion - Mass focusing on Christ's passion, beginning with the procession with palms",
+              "$ref": "#/definitions/MassCycleDefinition"
+            },
+            "morning_mass": {
+              "description": "Morning Mass - Mass celebrated in the morning",
+              "$ref": "#/definitions/MassCycleDefinition"
+            },
+            "night_mass": {
+              "description": "Night Mass - Mass celebrated during the night hours",
+              "$ref": "#/definitions/MassCycleDefinition"
+            },
+            "previous_evening_mass": {
+              "description": "Previous Evening Mass - Mass celebrated the evening before a major feast",
+              "$ref": "#/definitions/MassCycleDefinition"
+            }
+          },
+          "additionalProperties": false
         },
         "MassCycleDefinition": {
           "description": "Mass contents for a specific mass time, organized by liturgical cycle",
           "type": "object",
-          "additionalProperties": {
-            "$ref": "#/definitions/MassContent"
-          }
+          "properties": {
+            "invariant": {
+              "description": "Invariant content that applies to all cycles",
+              "$ref": "#/definitions/MassContent"
+            },
+            "year_1": {
+              "description": "Year 1 of the weekday cycle (Cycle I)",
+              "$ref": "#/definitions/MassContent"
+            },
+            "year_2": {
+              "description": "Year 2 of the weekday cycle (Cycle II)",
+              "$ref": "#/definitions/MassContent"
+            },
+            "year_a": {
+              "description": "Year A of the Sunday cycle",
+              "$ref": "#/definitions/MassContent"
+            },
+            "year_a_b": {
+              "description": "Combined years A and B of the Sunday cycle",
+              "$ref": "#/definitions/MassContent"
+            },
+            "year_a_c": {
+              "description": "Combined years A and C of the Sunday cycle",
+              "$ref": "#/definitions/MassContent"
+            },
+            "year_b": {
+              "description": "Year B of the Sunday cycle",
+              "$ref": "#/definitions/MassContent"
+            },
+            "year_b_c": {
+              "description": "Combined years B and C of the Sunday cycle",
+              "$ref": "#/definitions/MassContent"
+            },
+            "year_c": {
+              "description": "Year C of the Sunday cycle",
+              "$ref": "#/definitions/MassContent"
+            }
+          },
+          "additionalProperties": false
         },
         "MassContent": {
           "description": "Content of a mass for a specific liturgical cycle\nMaps mass parts (readings, psalms, prayers, antiphons, etc.) to their texts",
           "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          }
+          "properties": {
+            "alleluia": {
+              "description": "Alleluia - acclamation before the Gospel",
+              "type": "string"
+            },
+            "canticle": {
+              "description": "Canticle - biblical canticle",
+              "type": "string"
+            },
+            "collect": {
+              "description": "Collect - opening prayer of the Mass",
+              "type": "string"
+            },
+            "communion_antiphon": {
+              "description": "Communion Antiphon - chant during communion",
+              "type": "string"
+            },
+            "easter_vigil_canticle_3": {
+              "description": "Canticle 3 (Easter Vigil)",
+              "type": "string"
+            },
+            "easter_vigil_canticle_5": {
+              "description": "Canticle 5 (Easter Vigil)",
+              "type": "string"
+            },
+            "easter_vigil_epistle": {
+              "description": "Epistle - reading from the epistles (Easter Vigil)",
+              "type": "string"
+            },
+            "easter_vigil_psalm_2": {
+              "description": "Psalm 2 (Easter Vigil)",
+              "type": "string"
+            },
+            "easter_vigil_psalm_4": {
+              "description": "Psalm 4 (Easter Vigil)",
+              "type": "string"
+            },
+            "easter_vigil_psalm_6": {
+              "description": "Psalm 6 (Easter Vigil)",
+              "type": "string"
+            },
+            "easter_vigil_psalm_7": {
+              "description": "Psalm 7 (Easter Vigil)",
+              "type": "string"
+            },
+            "easter_vigil_reading_3": {
+              "description": "Reading 3 - third reading (Easter Vigil)",
+              "type": "string"
+            },
+            "easter_vigil_reading_4": {
+              "description": "Reading 4 - fourth reading (Easter Vigil)",
+              "type": "string"
+            },
+            "easter_vigil_reading_5": {
+              "description": "Reading 5 - fifth reading (Easter Vigil)",
+              "type": "string"
+            },
+            "easter_vigil_reading_6": {
+              "description": "Reading 6 - sixth reading (Easter Vigil)",
+              "type": "string"
+            },
+            "easter_vigil_reading_7": {
+              "description": "Reading 7 - seventh reading (Easter Vigil)",
+              "type": "string"
+            },
+            "entrance_antiphon": {
+              "description": "Entrance Antiphon - opening chant of the Mass",
+              "type": "string"
+            },
+            "gospel": {
+              "description": "Gospel - reading from the Gospels",
+              "type": "string"
+            },
+            "messianic_entry": {
+              "description": "Messianic entry reading (during the procession with palms, before the Mass of the Passion)",
+              "type": "string"
+            },
+            "prayer_after_communion": {
+              "description": "Prayer after Communion - concluding prayer",
+              "type": "string"
+            },
+            "prayer_over_the_offerings": {
+              "description": "Prayer over the Offerings - prayer during the offertory",
+              "type": "string"
+            },
+            "prayer_over_the_people": {
+              "description": "Prayer over the People - blessing over the congregation",
+              "type": "string"
+            },
+            "preface": {
+              "description": "Preface - introduction to the Eucharistic Prayer",
+              "type": "string"
+            },
+            "psalm": {
+              "description": "Psalm - responsorial psalm",
+              "type": "string"
+            },
+            "reading_1": {
+              "description": "Reading 1 - first reading (usually from the Old Testament)",
+              "type": "string"
+            },
+            "reading_2": {
+              "description": "Reading 2 - second reading (usually from the New Testament)",
+              "type": "string"
+            },
+            "sequence": {
+              "description": "Sequence - special chant on certain feasts",
+              "type": "string"
+            },
+            "solemn_blessing": {
+              "description": "Solemn Blessing - special blessing on certain occasions",
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
         }
       },
       "title": "CalendarDefinition",

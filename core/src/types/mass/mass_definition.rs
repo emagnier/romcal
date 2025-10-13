@@ -1,13 +1,24 @@
+#[cfg(feature = "schema-gen")]
+use crate::types::liturgical::cycles::get_liturgical_cycle_description;
+#[cfg(feature = "schema-gen")]
+use crate::types::mass::{
+    mass_part::get_mass_part_description, mass_time::get_mass_time_description,
+};
 use crate::types::{MassPart, MassTime};
-use schemars::JsonSchema;
+#[cfg(feature = "schema-gen")]
+use schemars::{JsonSchema, Schema, SchemaGenerator};
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
+use strum::EnumIter;
+#[cfg(feature = "schema-gen")]
+use strum::IntoEnumIterator;
 
 /// Liturgical cycle for lectionary readings
 /// Includes both actual cycles (Year A, B, C, etc.) and invariant content
 #[derive(
-    Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, JsonSchema, PartialOrd, Ord,
+    Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, PartialOrd, Ord, EnumIter,
 )]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum LiturgicalCycle {
     /// Invariant content that applies to all cycles
@@ -25,15 +36,138 @@ pub enum LiturgicalCycle {
     /// Combined years B and C of the Sunday cycle
     YearBC,
     /// Year 1 of the weekday cycle (Cycle I)
+    #[serde(rename = "YEAR_1")]
     Year1,
     /// Year 2 of the weekday cycle (Cycle II)
+    #[serde(rename = "YEAR_2")]
     Year2,
+}
+
+// ============================================================================
+// Schema generation functions (only compiled when feature "schema-gen" is enabled)
+// ============================================================================
+
+#[cfg(feature = "schema-gen")]
+fn screaming_snake_to_snake_case(s: &str) -> String {
+    s.to_lowercase()
+}
+
+#[cfg(feature = "schema-gen")]
+fn mass_content_schema(_gen: &mut SchemaGenerator) -> Schema {
+    let properties = MassPart::iter()
+        .map(|variant| {
+            let screaming_key = serde_json::to_string(&variant)
+                .unwrap()
+                .trim_matches('"')
+                .to_string();
+            let snake_key = screaming_snake_to_snake_case(&screaming_key);
+            let description = get_mass_part_description(&variant);
+            (
+                snake_key,
+                serde_json::json!({
+                    "type": "string",
+                    "description": description
+                }),
+            )
+        })
+        .collect::<BTreeMap<_, _>>();
+
+    serde_json::from_value(serde_json::json!({
+        "type": "object",
+        "description": "Content of a mass for a specific liturgical cycle. Maps mass parts (readings, psalms, prayers, antiphons, etc.) to their texts.",
+        "properties": properties,
+        "additionalProperties": false
+    })).unwrap()
+}
+
+#[cfg(feature = "schema-gen")]
+fn mass_cycle_definition_schema(_gen: &mut SchemaGenerator) -> Schema {
+    // Ensure MassContent is added to the schema by generating it
+    let _ = _gen.subschema_for::<MassContent>();
+
+    let properties = LiturgicalCycle::iter()
+        .map(|variant| {
+            let screaming_key = serde_json::to_string(&variant)
+                .unwrap()
+                .trim_matches('"')
+                .to_string();
+            let snake_key = screaming_snake_to_snake_case(&screaming_key);
+            let description = get_liturgical_cycle_description(&variant);
+            (
+                snake_key,
+                serde_json::json!({
+                    "$ref": "#/definitions/MassContent",
+                    "description": description
+                }),
+            )
+        })
+        .collect::<BTreeMap<_, _>>();
+
+    serde_json::from_value(serde_json::json!({
+        "type": "object",
+        "description": "Mass contents for a specific mass time, organized by liturgical cycle",
+        "properties": properties,
+        "additionalProperties": false
+    }))
+    .unwrap()
+}
+
+#[cfg(feature = "schema-gen")]
+fn masses_definitions_schema(_gen: &mut SchemaGenerator) -> Schema {
+    // Ensure MassCycleDefinition is added to the schema by generating it
+    let _ = _gen.subschema_for::<MassCycleDefinition>();
+
+    let properties = MassTime::iter()
+        .map(|variant| {
+            let screaming_key = serde_json::to_string(&variant)
+                .unwrap()
+                .trim_matches('"')
+                .to_string();
+            let snake_key = screaming_snake_to_snake_case(&screaming_key);
+            let description = get_mass_time_description(&variant);
+            (
+                snake_key,
+                serde_json::json!({
+                    "$ref": "#/definitions/MassCycleDefinition",
+                    "description": description
+                }),
+            )
+        })
+        .collect::<BTreeMap<_, _>>();
+
+    serde_json::from_value(serde_json::json!({
+        "type": "object",
+        "description": "All mass definitions for a liturgical day",
+        "properties": properties,
+        "additionalProperties": false
+    }))
+    .unwrap()
 }
 
 /// Content of a mass for a specific liturgical cycle
 /// Maps mass parts (readings, psalms, prayers, antiphons, etc.) to their texts
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
+#[cfg_attr(feature = "schema-gen", schemars(schema_with = "mass_content_schema"))]
 pub struct MassContent(BTreeMap<MassPart, String>);
+
+impl Serialize for MassContent {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        self.0.serialize(serializer)
+    }
+}
+
+impl<'de> Deserialize<'de> for MassContent {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        BTreeMap::deserialize(deserializer).map(MassContent)
+    }
+}
 
 impl MassContent {
     pub fn new() -> Self {
@@ -68,8 +202,31 @@ impl Default for MassContent {
 }
 
 /// Mass contents for a specific mass time, organized by liturgical cycle
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
+#[cfg_attr(
+    feature = "schema-gen",
+    schemars(schema_with = "mass_cycle_definition_schema")
+)]
 pub struct MassCycleDefinition(BTreeMap<LiturgicalCycle, MassContent>);
+
+impl Serialize for MassCycleDefinition {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        self.0.serialize(serializer)
+    }
+}
+
+impl<'de> Deserialize<'de> for MassCycleDefinition {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        BTreeMap::deserialize(deserializer).map(MassCycleDefinition)
+    }
+}
 
 impl MassCycleDefinition {
     pub fn new() -> Self {
@@ -104,8 +261,31 @@ impl Default for MassCycleDefinition {
 }
 
 /// All mass definitions for a liturgical day
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Eq)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
+#[cfg_attr(
+    feature = "schema-gen",
+    schemars(schema_with = "masses_definitions_schema")
+)]
 pub struct MassesDefinitions(BTreeMap<MassTime, MassCycleDefinition>);
+
+impl Serialize for MassesDefinitions {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        self.0.serialize(serializer)
+    }
+}
+
+impl<'de> Deserialize<'de> for MassesDefinitions {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        BTreeMap::deserialize(deserializer).map(MassesDefinitions)
+    }
+}
 
 impl MassesDefinitions {
     pub fn new() -> Self {

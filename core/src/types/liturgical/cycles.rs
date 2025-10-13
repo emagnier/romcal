@@ -1,3 +1,6 @@
+#[cfg(feature = "schema-gen")]
+use crate::types::mass::mass_definition::LiturgicalCycle;
+#[cfg(feature = "schema-gen")]
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 use strum::EnumIter;
@@ -6,7 +9,8 @@ use strum::EnumIter;
 /// Each cycle begins on the First Sunday of Advent of the previous civil year and ends on Saturday
 /// after the Christ the King Solemnity. The cycles follow each other in alphabetical order.
 /// C year is always divisible by 3, A has remainder of 1, and B remainder of 2.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, JsonSchema, EnumIter)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, EnumIter)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum SundayCycle {
     /// Year A
@@ -20,7 +24,8 @@ pub enum SundayCycle {
 /// Combined Sunday cycle for cases where readings can apply to multiple years.
 /// This allows for flexible configuration where the same readings can be used
 /// across different combinations of Sunday cycles.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, JsonSchema, EnumIter)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, EnumIter)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum SundayCycleCombined {
     /// Years A and B combined
@@ -33,7 +38,8 @@ pub enum SundayCycleCombined {
 
 /// A two-year cycle for the weekday Mass readings (also called Cycle I and Cycle II).
 /// Odd-numbered years are the Cycle I (year 1); even-numbered ones are the Cycle II (year 2).
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, JsonSchema, EnumIter)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, EnumIter)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum WeekdayCycle {
     /// Year 1 (Cycle I)
@@ -45,7 +51,8 @@ pub enum WeekdayCycle {
 /// [GILH §133] The four-week cycle of the psalter is coordinated with the liturgical year in such a way that
 /// on the First Sunday of Advent, the First Sunday in Ordinary Time, the First Sunday of Lent,
 /// and Easter Sunday the cycle is always begun again with Week 1 (others being omitted when necessary).
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, JsonSchema, EnumIter)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, EnumIter)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum PsalterWeekCycle {
     /// Week 1
@@ -199,6 +206,22 @@ impl PsalterWeekCycle {
                 _ => unreachable!(), // This should never happen with modulo 4
             }
         }
+    }
+}
+
+// Schema generation functions (only compiled when feature "schema-gen" is enabled)
+#[cfg(feature = "schema-gen")]
+pub fn get_liturgical_cycle_description(cycle: &LiturgicalCycle) -> &'static str {
+    match cycle {
+        LiturgicalCycle::Invariant => "Invariant content that applies to all cycles",
+        LiturgicalCycle::YearA => "Year A of the Sunday cycle",
+        LiturgicalCycle::YearB => "Year B of the Sunday cycle",
+        LiturgicalCycle::YearC => "Year C of the Sunday cycle",
+        LiturgicalCycle::YearAB => "Combined years A and B of the Sunday cycle",
+        LiturgicalCycle::YearAC => "Combined years A and C of the Sunday cycle",
+        LiturgicalCycle::YearBC => "Combined years B and C of the Sunday cycle",
+        LiturgicalCycle::Year1 => "Year 1 of the weekday cycle (Cycle I)",
+        LiturgicalCycle::Year2 => "Year 2 of the weekday cycle (Cycle II)",
     }
 }
 

@@ -149,6 +149,7 @@ where
     let mut schema_value = serde_json::to_value(&schema)?;
     add_additional_properties_false(&mut schema_value);
     fix_defs_references(&mut schema_value);
+
     fix_fn(&mut schema_value);
     let schema_json = serde_json::to_string_pretty(&schema_value)?;
     fs::write(schemas_dir.join(filename), schema_json)?;
