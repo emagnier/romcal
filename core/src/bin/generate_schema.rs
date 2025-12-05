@@ -30,7 +30,6 @@ impl Default for SchemaConfig {
 /// Specific errors for schema generation
 #[derive(Debug)]
 pub enum SchemaGenerationError {
-    SchemaCreation(String),
     Serialization(String),
     FileWrite {
         path: PathBuf,
@@ -45,9 +44,6 @@ pub enum SchemaGenerationError {
 impl std::fmt::Display for SchemaGenerationError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            SchemaGenerationError::SchemaCreation(msg) => {
-                write!(f, "Failed to create schema: {}", msg)
-            }
             SchemaGenerationError::Serialization(msg) => {
                 write!(f, "Failed to serialize schema: {}", msg)
             }
@@ -68,68 +64,6 @@ impl std::error::Error for SchemaGenerationError {
             SchemaGenerationError::DirectoryCreation { source, .. } => Some(source),
             _ => None,
         }
-    }
-}
-
-/// Trait for schema fixes
-trait SchemaFix {
-    fn apply(&self, schema: &mut Value) -> Result<(), SchemaGenerationError>;
-}
-
-/// Fix for date_exceptions schema: support for single objects and arrays
-struct DateExceptionsFix;
-
-impl SchemaFix for DateExceptionsFix {
-    fn apply(&self, schema: &mut Value) -> Result<(), SchemaGenerationError> {
-        if let Some(definitions) = schema.get_mut("definitions") {
-            if let Some(day_definition) = definitions.get_mut("CalendarDefinition") {
-                if let Some(properties) = day_definition.get_mut("properties") {
-                    if let Some(date_exceptions) = properties.get_mut("date_exceptions") {
-                        *date_exceptions = serde_json::json!({
-                            "description": "Date definition exception",
-                            "anyOf": [
-                                { "$ref": "#/definitions/DateDefException" },
-                                {
-                                    "items": { "$ref": "#/definitions/DateDefException" },
-                                    "type": "array"
-                                },
-                                { "type": "null" }
-                            ]
-                        });
-                    }
-                }
-            }
-        }
-        Ok(())
-    }
-}
-
-/// Fix for SaintCount schema: support for integers and "MANY" string
-struct SaintCountFix;
-
-impl SchemaFix for SaintCountFix {
-    fn apply(&self, schema: &mut Value) -> Result<(), SchemaGenerationError> {
-        if let Some(definitions) = schema.get_mut("definitions") {
-            if let Some(saint_count) = definitions.get_mut("SaintCount") {
-                *saint_count = serde_json::json!({
-                    "anyOf": [
-                        {
-                            "format": "uint32",
-                            "minimum": 0,
-                            "type": "integer"
-                        },
-                        {
-                            "const": "MANY",
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ]
-                });
-            }
-        }
-        Ok(())
     }
 }
 
@@ -204,51 +138,6 @@ where
         fix_defs_references(&mut schema_value);
     }
 
-    // Apply specific fixes based on filename
-    if filename == "resources.json" {
-        let saint_count_fix = SaintCountFix;
-        saint_count_fix.apply(&mut schema_value)?;
-    }
-
-    // Write the schema to file
-    let schema_json = serde_json::to_string_pretty(&schema_value)
-        .map_err(|e| SchemaGenerationError::Serialization(e.to_string()))?;
-    let file_path = config.output_dir.join(filename);
-    fs::write(&file_path, schema_json).map_err(|source| SchemaGenerationError::FileWrite {
-        path: file_path,
-        source,
-    })?;
-
-    println!("✅ {} schema exported to {}", filename, filename);
-    Ok(())
-}
-
-/// Generate a schema with custom fixes applied
-fn generate_schema_with_fixes<T>(
-    config: &SchemaConfig,
-    filename: &str,
-    fixes: Vec<Box<dyn SchemaFix>>,
-) -> Result<(), SchemaGenerationError>
-where
-    T: schemars::JsonSchema,
-{
-    let schema = schema_for!(T);
-    let mut schema_value = serde_json::to_value(&schema)
-        .map_err(|e| SchemaGenerationError::Serialization(e.to_string()))?;
-
-    // Apply standard fixes
-    if config.enable_additional_properties_false {
-        add_additional_properties_false(&mut schema_value);
-    }
-    if config.enable_defs_fix {
-        fix_defs_references(&mut schema_value);
-    }
-
-    // Apply custom fixes
-    for fix in fixes {
-        fix.apply(&mut schema_value)?;
-    }
-
     // Write the schema to file
     let schema_json = serde_json::to_string_pretty(&schema_value)
         .map_err(|e| SchemaGenerationError::Serialization(e.to_string()))?;
@@ -319,7 +208,7 @@ fn add_main_types_to_schema(
     }
 }
 
-/// Generate a schema specifically for TypeScript generation
+/// Generate a schema specifically for TypeScript and Pydantic generation
 fn generate_types_schema(config: &SchemaConfig) -> Result<(), SchemaGenerationError> {
     // Create a schema that combines all main types as a union
     let mut types_schema = serde_json::json!({
@@ -346,15 +235,6 @@ fn generate_types_schema(config: &SchemaConfig) -> Result<(), SchemaGenerationEr
     apply_standard_fixes(&mut resources_value, config);
     apply_standard_fixes(&mut liturgical_day_value, config);
 
-    // Apply specific fixes
-    let date_exceptions_fix = DateExceptionsFix;
-    let saint_count_fix = SaintCountFix;
-
-    date_exceptions_fix.apply(&mut calendar_value)?;
-    saint_count_fix.apply(&mut calendar_value)?;
-    saint_count_fix.apply(&mut resources_value)?;
-    saint_count_fix.apply(&mut liturgical_day_value)?;
-
     // Extract definitions from all schemas
     let schema_refs: Vec<&Value> = vec![&calendar_value, &resources_value, &liturgical_day_value];
     merge_definitions_into_types_schema(&mut types_schema, &schema_refs);
@@ -376,7 +256,7 @@ fn generate_types_schema(config: &SchemaConfig) -> Result<(), SchemaGenerationEr
         source,
     })?;
 
-    println!("✅ all_types.json schema exported (for TypeScript generation)");
+    println!("✅ all_types.json schema exported (for TypeScript and Pydantic generation)");
     Ok(())
 }
 
@@ -398,16 +278,10 @@ fn main() -> Result<(), SchemaGenerationError> {
     // Generate resources schema
     generate_schema::<Resources>(&config, "resources.json")?;
 
-    // Generate calendar_definition.json with specific fixes
-    let calendar_fixes: Vec<Box<dyn SchemaFix>> =
-        vec![Box::new(DateExceptionsFix), Box::new(SaintCountFix)];
-    generate_schema_with_fixes::<CalendarDefinition>(
-        &config,
-        "calendar_definition.json",
-        calendar_fixes,
-    )?;
+    // Generate calendar_definition.json
+    generate_schema::<CalendarDefinition>(&config, "calendar_definition.json")?;
 
-    // Generate types schema for TypeScript generation
+    // Generate types schema for TypeScript and Pydantic generation
     generate_types_schema(&config)?;
 
     println!("\n🎉 All JSON schemas have been generated successfully!");
@@ -418,64 +292,8 @@ fn main() -> Result<(), SchemaGenerationError> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use serde_json::json;
     use std::fs;
     use tempfile::TempDir;
-
-    #[test]
-    fn test_date_exceptions_fix() {
-        // Arrange: Create a schema with date_exceptions as simple array
-        let mut schema = json!({
-            "definitions": {
-                "CalendarDefinition": {
-                    "properties": {
-                        "date_exceptions": {
-                            "type": "array",
-                            "items": { "$ref": "#/definitions/DateDefException" }
-                        }
-                    }
-                }
-            }
-        });
-
-        // Act: Apply the fix
-        let fix = DateExceptionsFix;
-        fix.apply(&mut schema).unwrap();
-
-        // Assert: Check that date_exceptions now has anyOf structure
-        let date_exceptions =
-            &schema["definitions"]["CalendarDefinition"]["properties"]["date_exceptions"];
-        assert!(date_exceptions["anyOf"].is_array());
-        assert_eq!(date_exceptions["anyOf"].as_array().unwrap().len(), 3);
-
-        // Check the three options: single object, array, and null
-        let any_of = date_exceptions["anyOf"].as_array().unwrap();
-        assert!(any_of
-            .iter()
-            .any(|item| item["$ref"] == "#/definitions/DateDefException"));
-        assert!(any_of.iter().any(|item| item["type"] == "array"));
-        assert!(any_of.iter().any(|item| item["type"] == "null"));
-    }
-
-    #[test]
-    fn test_date_exceptions_fix_missing_definitions() {
-        // Test with schema that doesn't have the expected structure
-        let mut schema = json!({
-            "definitions": {
-                "OtherDefinition": {
-                    "properties": {
-                        "some_field": { "type": "string" }
-                    }
-                }
-            }
-        });
-
-        // Should not panic and should not modify the schema
-        let original_schema = schema.clone();
-        let fix = DateExceptionsFix;
-        fix.apply(&mut schema).unwrap();
-        assert_eq!(schema, original_schema);
-    }
 
     #[test]
     fn test_generate_schema_creates_file() {
@@ -499,28 +317,6 @@ mod tests {
         assert!(schema["$schema"].is_string());
         // Resources should have properties
         assert!(schema["properties"].is_object());
-    }
-
-    #[test]
-    fn test_generate_schema_with_fixes_applies_fixes() {
-        // Arrange: Create a temporary directory
-        let temp_dir = TempDir::new().unwrap();
-        let config = SchemaConfig {
-            output_dir: temp_dir.path().to_path_buf(),
-            ..Default::default()
-        };
-
-        // Act: Generate schema with fixes
-        let fixes: Vec<Box<dyn SchemaFix>> = vec![Box::new(DateExceptionsFix)];
-        let result = generate_schema_with_fixes::<CalendarDefinition>(
-            &config,
-            "test_fixed_schema.json",
-            fixes,
-        );
-
-        // Assert: File should be created successfully
-        assert!(result.is_ok());
-        assert!(config.output_dir.join("test_fixed_schema.json").exists());
     }
 
     #[test]

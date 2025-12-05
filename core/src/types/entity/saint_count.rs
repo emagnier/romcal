@@ -1,6 +1,33 @@
 #[cfg(feature = "schema-gen")]
-use schemars::JsonSchema;
+use schemars::{JsonSchema, Schema, SchemaGenerator};
 use serde::{Deserialize, Deserializer, Serialize, Serializer};
+
+// ============================================================================
+// Schema generation function (only compiled when feature "schema-gen" is enabled)
+// ============================================================================
+
+/// Custom JSON Schema for SaintCount.
+/// Generates a schema that accepts either an integer or the string "MANY".
+#[cfg(feature = "schema-gen")]
+fn saint_count_schema(_gen: &mut SchemaGenerator) -> Schema {
+    serde_json::from_value(serde_json::json!({
+        "anyOf": [
+            {
+                "type": "integer",
+                "format": "uint32",
+                "minimum": 0
+            },
+            {
+                "const": "MANY",
+                "type": "string"
+            },
+            {
+                "type": "null"
+            }
+        ]
+    }))
+    .unwrap()
+}
 
 /// Represents the number of saints for an entity or a group of entities.
 ///
@@ -17,6 +44,7 @@ use serde::{Deserialize, Deserializer, Serialize, Serializer};
 /// - All other types generate an error
 #[derive(Debug, Clone, PartialEq, Eq)]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
+#[cfg_attr(feature = "schema-gen", schemars(schema_with = "saint_count_schema"))]
 pub enum SaintCount {
     /// Specific number of saints
     Number(u32),
