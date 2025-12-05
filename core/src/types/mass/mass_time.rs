@@ -5,7 +5,7 @@ use strum::EnumIter;
 /// Different Masses are celebrated at various times and occasions throughout the liturgical year.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, EnumIter, PartialOrd, Ord)]
 #[cfg_attr(feature = "schema-gen", derive(schemars::JsonSchema))]
-#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+#[serde(rename_all = "snake_case")]
 pub enum MassTime {
     /// Easter Vigil - the most important Mass of the liturgical year, celebrated on Holy Saturday night
     EasterVigil,
@@ -85,7 +85,7 @@ mod tests {
         // Verify that serialization always works
         let mass_time = MassTime::DayMass;
         let json = serde_json::to_string(&mass_time).unwrap();
-        assert_eq!(json, "\"DAY_MASS\"");
+        assert_eq!(json, "\"day_mass\"");
 
         let deserialized: MassTime = serde_json::from_str(&json).unwrap();
         assert_eq!(deserialized, MassTime::DayMass);

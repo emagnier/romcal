@@ -163,4 +163,27 @@ impl Preset {
     pub fn proper_of_time(&self, year: i32) -> crate::RomcalResult<Vec<crate::LiturgicalDay>> {
         crate::proper_of_time::ProperOfTime::new(self.clone(), year)?.generate_all()
     }
+
+    /// Generate the complete liturgical calendar for a given liturgical year
+    ///
+    /// This method combines the Proper of Time with particular calendars
+    /// and applies precedence rules according to UNLY #49.
+    ///
+    /// # Arguments
+    ///
+    /// * `year` - The liturgical year (e.g., 2026 for liturgical year 2025-2026)
+    ///
+    /// # Returns
+    ///
+    /// A BTreeMap of date strings (YYYY-MM-DD) to vectors of LiturgicalDay objects
+    ///
+    /// # Errors
+    ///
+    /// Returns an error if the year is invalid or if there's a calculation error
+    pub fn generate_calendar(
+        &self,
+        year: i32,
+    ) -> crate::RomcalResult<crate::calendar::LiturgicalCalendar> {
+        crate::calendar::Calendar::new(self.clone(), year)?.generate()
+    }
 }

@@ -12,6 +12,7 @@
 //! let easter = dates.get_easter_sunday_date_unwrap(None);
 //! ```
 
+pub mod calendar;
 pub mod calendar_definition;
 pub mod dates;
 pub mod easter;
@@ -24,6 +25,7 @@ pub mod proper_of_time;
 pub mod resources;
 pub mod types;
 
+pub use calendar::{Calendar, LiturgicalCalendar};
 pub use calendar_definition::*;
 pub use dates::LiturgicalDates;
 pub use error::{validate_range, validate_year, RomcalError, RomcalResult, Validate};

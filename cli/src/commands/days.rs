@@ -23,8 +23,9 @@ pub fn handle(
 ) -> Result<(), RomcalCliError> {
     let year = year.unwrap_or_else(current_year);
 
-    // Generate liturgical days using proper_of_time
-    let liturgical_days = preset.proper_of_time(year)?;
+    // Generate liturgical calendar and flatten to Vec<LiturgicalDay>
+    let calendar = preset.generate_calendar(year)?;
+    let liturgical_days: Vec<_> = calendar.into_values().flatten().collect();
 
     // Apply filters if specified
     let output_data = if let Some(filters) = filters {

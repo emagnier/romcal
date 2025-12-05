@@ -5,7 +5,7 @@ use strum::EnumIter;
 /// Each part represents a specific element of the liturgical celebration.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, EnumIter, PartialOrd, Ord)]
 #[cfg_attr(feature = "schema-gen", derive(schemars::JsonSchema))]
-#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+#[serde(rename_all = "snake_case")]
 pub enum MassPart {
     /// Messianic entry reading (during the procession with palms, before the Mass of the Passion)
     MessianicEntry,
@@ -14,46 +14,46 @@ pub enum MassPart {
     /// Collect - opening prayer of the Mass
     Collect,
     /// Reading 1 - first reading (usually from the Old Testament)
-    #[serde(rename = "READING_1")]
+    #[serde(rename = "reading_1")]
     Reading1,
     /// Psalm - responsorial psalm
     Psalm,
     /// Canticle - biblical canticle
     Canticle,
     /// Reading 2 - second reading (usually from the New Testament)
-    #[serde(rename = "READING_2")]
+    #[serde(rename = "reading_2")]
     Reading2,
     /// Psalm (Easter Vigil)
-    #[serde(rename = "EASTER_VIGIL_PSALM_2")]
+    #[serde(rename = "easter_vigil_psalm_2")]
     EasterVigilPsalm2,
     /// Reading 3 - third reading (Easter Vigil)
-    #[serde(rename = "EASTER_VIGIL_READING_3")]
+    #[serde(rename = "easter_vigil_reading_3")]
     EasterVigilReading3,
-    #[serde(rename = "EASTER_VIGIL_CANTICLE_3")]
+    #[serde(rename = "easter_vigil_canticle_3")]
     /// Canticle 3 (Easter Vigil)
     EasterVigilCanticle3,
     /// Reading 4 - fourth reading (Easter Vigil)
-    #[serde(rename = "EASTER_VIGIL_READING_4")]
+    #[serde(rename = "easter_vigil_reading_4")]
     EasterVigilReading4,
-    #[serde(rename = "EASTER_VIGIL_PSALM_4")]
+    #[serde(rename = "easter_vigil_psalm_4")]
     /// Psalm 4 (Easter Vigil)
     EasterVigilPsalm4,
     /// Reading 5 - fifth reading (Easter Vigil)
-    #[serde(rename = "EASTER_VIGIL_READING_5")]
+    #[serde(rename = "easter_vigil_reading_5")]
     EasterVigilReading5,
-    #[serde(rename = "EASTER_VIGIL_CANTICLE_5")]
+    #[serde(rename = "easter_vigil_canticle_5")]
     /// Canticle 5 (Easter Vigil)
     EasterVigilCanticle5,
     /// Reading 6 - sixth reading (Easter Vigil)
-    #[serde(rename = "EASTER_VIGIL_READING_6")]
+    #[serde(rename = "easter_vigil_reading_6")]
     EasterVigilReading6,
-    #[serde(rename = "EASTER_VIGIL_PSALM_6")]
+    #[serde(rename = "easter_vigil_psalm_6")]
     /// Psalm 6 (Easter Vigil)
     EasterVigilPsalm6,
     /// Reading 7 - seventh reading (Easter Vigil)
-    #[serde(rename = "EASTER_VIGIL_READING_7")]
+    #[serde(rename = "easter_vigil_reading_7")]
     EasterVigilReading7,
-    #[serde(rename = "EASTER_VIGIL_PSALM_7")]
+    #[serde(rename = "easter_vigil_psalm_7")]
     /// Psalm 7 (Easter Vigil)
     EasterVigilPsalm7,
     /// Epistle - reading from the epistles (Easter Vigil)
@@ -245,7 +245,7 @@ mod tests {
         // Verify that serialization works
         let mass_part = MassPart::Gospel;
         let json = serde_json::to_string(&mass_part).unwrap();
-        assert_eq!(json, "\"GOSPEL\"");
+        assert_eq!(json, "\"gospel\"");
 
         let deserialized: MassPart = serde_json::from_str(&json).unwrap();
         assert_eq!(deserialized, MassPart::Gospel);

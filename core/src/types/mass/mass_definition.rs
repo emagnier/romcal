@@ -19,7 +19,7 @@ use strum::IntoEnumIterator;
     Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, PartialOrd, Ord, EnumIter,
 )]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
-#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+#[serde(rename_all = "snake_case")]
 pub enum LiturgicalCycle {
     /// Invariant content that applies to all cycles
     Invariant,
@@ -36,10 +36,10 @@ pub enum LiturgicalCycle {
     /// Combined years B and C of the Sunday cycle
     YearBC,
     /// Year 1 of the weekday cycle (Cycle I)
-    #[serde(rename = "YEAR_1")]
+    #[serde(rename = "year_1")]
     Year1,
     /// Year 2 of the weekday cycle (Cycle II)
-    #[serde(rename = "YEAR_2")]
+    #[serde(rename = "year_2")]
     Year2,
 }
 
@@ -329,7 +329,7 @@ mod tests {
         // Test invariant cycle
         let invariant = LiturgicalCycle::Invariant;
         let json = serde_json::to_string(&invariant).unwrap();
-        assert_eq!(json, "\"INVARIANT\"");
+        assert_eq!(json, "\"invariant\"");
 
         let deserialized: LiturgicalCycle = serde_json::from_str(&json).unwrap();
         assert_eq!(deserialized, LiturgicalCycle::Invariant);
@@ -337,7 +337,7 @@ mod tests {
         // Test year A cycle
         let year_a = LiturgicalCycle::YearA;
         let json = serde_json::to_string(&year_a).unwrap();
-        assert_eq!(json, "\"YEAR_A\"");
+        assert_eq!(json, "\"year_a\"");
 
         let deserialized: LiturgicalCycle = serde_json::from_str(&json).unwrap();
         assert_eq!(deserialized, LiturgicalCycle::YearA);
@@ -351,8 +351,8 @@ mod tests {
 
         let json = serde_json::to_string_pretty(&content).unwrap();
         println!("MassContent JSON: {}", json);
-        assert!(json.contains("\"READING_1\""));
-        assert!(json.contains("\"GOSPEL\""));
+        assert!(json.contains("\"reading_1\""));
+        assert!(json.contains("\"gospel\""));
 
         let deserialized: MassContent = serde_json::from_str(&json).unwrap();
         assert_eq!(deserialized.len(), 2);
@@ -378,10 +378,10 @@ mod tests {
         lectionary.insert(LiturgicalCycle::YearA, year_a);
 
         let json = serde_json::to_string_pretty(&lectionary).unwrap();
-        assert!(json.contains("\"INVARIANT\""));
-        assert!(json.contains("\"YEAR_A\""));
-        assert!(json.contains("\"ALLELUIA\""));
-        assert!(json.contains("\"READING_1\""));
+        assert!(json.contains("\"invariant\""));
+        assert!(json.contains("\"year_a\""));
+        assert!(json.contains("\"alleluia\""));
+        assert!(json.contains("\"reading_1\""));
 
         let deserialized: MassCycleDefinition = serde_json::from_str(&json).unwrap();
         assert_eq!(deserialized.len(), 2);
@@ -401,9 +401,9 @@ mod tests {
         masses.insert(MassTime::DayMass, day_mass);
 
         let json = serde_json::to_string_pretty(&masses).unwrap();
-        assert!(json.contains("\"DAY_MASS\""));
-        assert!(json.contains("\"INVARIANT\""));
-        assert!(json.contains("\"ALLELUIA\""));
+        assert!(json.contains("\"day_mass\""));
+        assert!(json.contains("\"invariant\""));
+        assert!(json.contains("\"alleluia\""));
 
         let deserialized: MassesDefinitions = serde_json::from_str(&json).unwrap();
         assert_eq!(deserialized.len(), 1);
@@ -459,15 +459,15 @@ mod tests {
         println!("{}", json);
 
         // Verify JSON structure
-        assert!(json.contains("\"DAY_MASS\""));
-        assert!(json.contains("\"EVENING_MASS\""));
-        assert!(json.contains("\"INVARIANT\""));
-        assert!(json.contains("\"YEAR_A\""));
-        assert!(json.contains("\"YEAR_B\""));
-        assert!(json.contains("\"ALLELUIA\""));
-        assert!(json.contains("\"READING_1\""));
-        assert!(json.contains("\"PSALM\""));
-        assert!(json.contains("\"GOSPEL\""));
+        assert!(json.contains("\"day_mass\""));
+        assert!(json.contains("\"evening_mass\""));
+        assert!(json.contains("\"invariant\""));
+        assert!(json.contains("\"year_a\""));
+        assert!(json.contains("\"year_b\""));
+        assert!(json.contains("\"alleluia\""));
+        assert!(json.contains("\"reading_1\""));
+        assert!(json.contains("\"psalm\""));
+        assert!(json.contains("\"gospel\""));
 
         // Deserialize back
         let deserialized: MassesDefinitions = serde_json::from_str(&json).unwrap();
