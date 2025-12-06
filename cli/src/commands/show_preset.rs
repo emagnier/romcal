@@ -2,7 +2,7 @@ use crate::enums::OutputFormat;
 use crate::error::RomcalCliError;
 use romcal_core::Preset;
 use serde_json;
-use serde_yaml;
+use serde_saphyr;
 
 /// Configuration data for display
 #[derive(Debug, Clone)]
@@ -97,7 +97,10 @@ pub fn handle(output_format: OutputFormat, preset: Preset) -> Result<(), RomcalC
             );
         }
         OutputFormat::Yaml => {
-            println!("{}", serde_yaml::to_string(&preset_data.to_json_value())?);
+            let yaml = serde_saphyr::to_string(&preset_data.to_json_value()).map_err(|e| {
+                RomcalCliError::config_error(format!("Failed to serialize preset to YAML: {}", e))
+            })?;
+            println!("{}", yaml);
         }
     }
 

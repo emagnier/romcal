@@ -2,6 +2,7 @@ use crate::{enums::OutputFormat, error::RomcalCliError};
 use romcal_core::{generated_constants::CALENDAR_TREE_JSON, CALENDAR_IDS};
 use romcal_core::{generated_constants::LOCALE_TREE_JSON, LOCALE_CODES};
 use serde_json::{self, Value};
+use serde_saphyr;
 
 /// Generic function to list items in various formats
 fn list_items(items: &[&str], output_format: OutputFormat) -> Result<(), RomcalCliError> {
@@ -18,7 +19,10 @@ fn list_items(items: &[&str], output_format: OutputFormat) -> Result<(), RomcalC
             println!("{}", items.join(","));
         }
         OutputFormat::Yaml => {
-            println!("{}", serde_yaml::to_string(items)?);
+            let yaml = serde_saphyr::to_string(&items.to_vec()).map_err(|e| {
+                RomcalCliError::config_error(format!("Failed to serialize to YAML: {}", e))
+            })?;
+            println!("{}", yaml);
         }
     }
     Ok(())
@@ -58,7 +62,12 @@ fn display_calendar_tree(format: OutputFormat) -> Result<(), RomcalCliError> {
         OutputFormat::Yaml => {
             // Parse JSON and convert to YAML
             let tree: Value = serde_json::from_str(CALENDAR_TREE_JSON)?;
-            let yaml = serde_yaml::to_string(&tree)?;
+            let yaml = serde_saphyr::to_string(&tree).map_err(|e| {
+                RomcalCliError::config_error(format!(
+                    "Failed to serialize calendar tree to YAML: {}",
+                    e
+                ))
+            })?;
             print!("{}", yaml);
         }
         OutputFormat::Csv => {
@@ -90,7 +99,12 @@ fn display_locale_tree(format: OutputFormat) -> Result<(), RomcalCliError> {
         OutputFormat::Yaml => {
             // Parse JSON and convert to YAML
             let tree: Value = serde_json::from_str(LOCALE_TREE_JSON)?;
-            let yaml = serde_yaml::to_string(&tree)?;
+            let yaml = serde_saphyr::to_string(&tree).map_err(|e| {
+                RomcalCliError::config_error(format!(
+                    "Failed to serialize locale tree to YAML: {}",
+                    e
+                ))
+            })?;
             print!("{}", yaml);
         }
         OutputFormat::Csv => {

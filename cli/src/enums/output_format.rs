@@ -1,6 +1,7 @@
 use crate::error::RomcalCliError;
 use clap::ValueEnum;
 use serde::{Deserialize, Serialize};
+use serde_saphyr;
 
 /// Output format options for the CLI.
 /// Defines the available formats for displaying calendar data.
@@ -47,7 +48,10 @@ impl OutputFormat {
     pub fn print(&self, data: &str) -> Result<(), RomcalCliError> {
         match self {
             OutputFormat::Yaml => {
-                println!("{}", serde_yaml::to_string(data)?);
+                let yaml = serde_saphyr::to_string(&data.to_string()).map_err(|e| {
+                    RomcalCliError::config_error(format!("Failed to serialize to YAML: {}", e))
+                })?;
+                println!("{}", yaml);
             }
             OutputFormat::Json => {
                 println!("{}", serde_json::to_string_pretty(data)?);

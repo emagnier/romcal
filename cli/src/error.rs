@@ -17,7 +17,7 @@ pub enum RomcalCliError {
     JsonError(#[from] serde_json::Error),
 
     #[error("YAML serialization error: {0}")]
-    YamlError(#[from] serde_yaml::Error),
+    YamlError(#[from] serde_saphyr::Error),
 
     #[error("Romcal error: {0}")]
     RomcalError(#[from] romcal_core::RomcalError),

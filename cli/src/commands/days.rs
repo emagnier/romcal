@@ -5,7 +5,7 @@ use csv::Writer;
 use romcal_core::Preset;
 use serde::{Deserialize, Serialize};
 use serde_json;
-use serde_yaml;
+use serde_saphyr;
 use std::collections::BTreeMap;
 
 /// Filtered liturgical day with only selected properties
@@ -88,7 +88,7 @@ pub fn handle(
     // Output the result in the specified format
     match output_format {
         OutputFormat::Yaml => {
-            let yaml_output = serde_yaml::to_string(&output_data).map_err(|e| {
+            let yaml_output = serde_saphyr::to_string(&output_data).map_err(|e| {
                 RomcalCliError::config_error(format!("Failed to serialize to YAML: {}", e))
             })?;
             println!("{}", yaml_output);
