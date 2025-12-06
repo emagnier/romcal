@@ -5,7 +5,7 @@
 //! precedence rules according to UNLY #49.
 
 use chrono::{Datelike, Duration, NaiveDate, Weekday};
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, HashMap, HashSet};
 
 use crate::dates::LiturgicalDates;
 use crate::error::{RomcalError, RomcalResult};
@@ -34,6 +34,10 @@ pub struct Calendar {
     start_of_year: NaiveDate,
     /// End date of the liturgical year
     end_of_year: NaiveDate,
+    /// Calendar hierarchy ordered from most general to most specific
+    calendar_hierarchy: Vec<CalendarDefinition>,
+    /// Mapping calendar_id -> priority (0 = general_roman, higher = more specific)
+    calendar_priority: HashMap<String, usize>,
 }
 
 /// Internal structure to hold built calendar data
@@ -58,6 +62,8 @@ impl Calendar {
     pub fn new(preset: Preset, year: i32) -> RomcalResult<Self> {
         let dates = LiturgicalDates::new(preset.clone(), year)?;
 
+        let (calendar_hierarchy, calendar_priority) = Self::resolve_calendar_hierarchy(&preset);
+
         // Calculate liturgical year boundaries
         // Start: First Sunday of Advent (previous calendar year)
         // End: Saturday before the next First Sunday of Advent
@@ -73,6 +79,8 @@ impl Calendar {
             year,
             start_of_year,
             end_of_year,
+            calendar_hierarchy,
+            calendar_priority,
         })
     }
 
@@ -133,10 +141,8 @@ impl Calendar {
 
         // Step 2: Process particular calendars in hierarchy order
         // Start with the target calendar and traverse up to parent calendars
-        let calendar_hierarchy = self.resolve_calendar_hierarchy();
-
-        for calendar_def in calendar_hierarchy {
-            self.process_calendar_definition(&calendar_def, &mut by_ids, &mut dates_index)?;
+        for calendar_def in &self.calendar_hierarchy {
+            self.process_calendar_definition(calendar_def, &mut by_ids, &mut dates_index)?;
         }
 
         Ok(BuiltData {
@@ -146,26 +152,34 @@ impl Calendar {
     }
 
     /// Resolves the calendar hierarchy from the target calendar to root
-    fn resolve_calendar_hierarchy(&self) -> Vec<CalendarDefinition> {
+    fn resolve_calendar_hierarchy(
+        preset: &Preset,
+    ) -> (Vec<CalendarDefinition>, HashMap<String, usize>) {
         let mut hierarchy = Vec::new();
-        let mut visited_ids = std::collections::HashSet::new();
+        let mut visited_ids = HashSet::new();
 
         // Start with the target calendar
-        if let Some(target) = self.preset.get_calendar_definition(&self.preset.calendar) {
-            self.collect_calendar_hierarchy(target, &mut hierarchy, &mut visited_ids);
+        if let Some(target) = preset.get_calendar_definition(&preset.calendar) {
+            Self::collect_calendar_hierarchy(preset, target, &mut hierarchy, &mut visited_ids);
         }
 
         // Reverse to process from root to target (inheritance order)
         hierarchy.reverse();
-        hierarchy
+
+        let mut calendar_priority = HashMap::new();
+        for (idx, calendar) in hierarchy.iter().enumerate() {
+            calendar_priority.entry(calendar.id.clone()).or_insert(idx);
+        }
+
+        (hierarchy, calendar_priority)
     }
 
     /// Recursively collects calendar definitions in hierarchy
     fn collect_calendar_hierarchy(
-        &self,
+        preset: &Preset,
         calendar: &CalendarDefinition,
         hierarchy: &mut Vec<CalendarDefinition>,
-        visited: &mut std::collections::HashSet<String>,
+        visited: &mut HashSet<String>,
     ) {
         if visited.contains(&calendar.id) {
             return;
@@ -177,8 +191,8 @@ impl Calendar {
 
         // Process parent calendars
         for parent_id in &calendar.parent_calendar_ids {
-            if let Some(parent) = self.preset.get_calendar_definition(parent_id) {
-                self.collect_calendar_hierarchy(parent, hierarchy, visited);
+            if let Some(parent) = preset.get_calendar_definition(parent_id) {
+                Self::collect_calendar_hierarchy(preset, parent, hierarchy, visited);
             }
         }
     }
@@ -609,28 +623,34 @@ impl Calendar {
                 .collect();
         }
 
-        // Handle allowSimilarRankItems
+        // Detect weekday_13 and optional memorials
+        let weekday_13 = days
+            .iter()
+            .find(|d| d.precedence == Precedence::Weekday_13)
+            .cloned();
+
+        let mut optional_memorials: Vec<LiturgicalDay> = days
+            .iter()
+            .filter(|d| d.precedence == Precedence::OptionalMemorial_12)
+            .cloned()
+            .collect();
+
+        // Sort optional memorials by calendar priority (more general first)
+        optional_memorials.sort_by_key(|d| {
+            self.calendar_priority
+                .get(&d.from_calendar_id)
+                .copied()
+                .unwrap_or(usize::MAX)
+        });
+
+        // Base result starts with the highest precedence day
         let mut result = vec![highest.clone()];
 
+        // Handle allowSimilarRankItems
         if highest.allow_similar_rank_items {
-            // Include other days with the same rank
             for day in days.iter().skip(1) {
-                if day.rank == highest.rank {
+                if day.rank == highest.rank && !result.iter().any(|d| d.id == day.id) {
                     result.push(day.clone());
-                }
-            }
-        }
-
-        // Handle optional memorials
-        // Optional memorials can be added after the main celebration on certain days
-        let can_have_optional_memorials = self.can_have_optional_memorials(highest);
-
-        if can_have_optional_memorials {
-            for day in days.iter().skip(1) {
-                if day.is_optional || day.rank == Rank::OptionalMemorial {
-                    if !result.iter().any(|d| d.id == day.id) {
-                        result.push(day.clone());
-                    }
                 }
             }
         }
@@ -638,14 +658,48 @@ impl Calendar {
         // During Lent, obligatory memorials become optional (UNLY #14)
         if let Some(Season::Lent) = highest.season {
             for day in days.iter().skip(1) {
-                if day.rank == Rank::Memorial {
+                if day.rank == Rank::Memorial && !result.iter().any(|d| d.id == day.id) {
                     let mut optional_day = day.clone();
                     optional_day.is_optional = true;
-                    if !result.iter().any(|d| d.id == optional_day.id) {
-                        result.push(optional_day);
-                    }
+                    optional_day.rank = Rank::OptionalMemorial;
+                    result.push(optional_day);
                 }
             }
+        }
+
+        // Optional memorial handling with weekday inclusion
+        let highest_allows_optional = self.can_have_optional_memorials(highest);
+        let highest_is_optional = highest.precedence == Precedence::OptionalMemorial_12;
+
+        if (highest_allows_optional || highest_is_optional) && !optional_memorials.is_empty() {
+            let mut ordered: Vec<LiturgicalDay> = Vec::new();
+
+            if let Some(weekday) = weekday_13.clone() {
+                if !ordered.iter().any(|d| d.id == weekday.id) {
+                    ordered.push(weekday);
+                }
+            }
+
+            if highest.precedence != Precedence::Weekday_13
+                && highest.precedence != Precedence::OptionalMemorial_12
+                && !ordered.iter().any(|d| d.id == highest.id)
+            {
+                ordered.push(highest.clone());
+            }
+
+            for day in optional_memorials {
+                if !ordered.iter().any(|d| d.id == day.id) {
+                    ordered.push(day);
+                }
+            }
+
+            for day in result {
+                if !ordered.iter().any(|d| d.id == day.id) {
+                    ordered.push(day);
+                }
+            }
+
+            return ordered;
         }
 
         result
@@ -1068,5 +1122,91 @@ mod tests {
         // Solemnity should win over Memorial
         assert_eq!(result.len(), 1);
         assert_eq!(result[0].id, "solemnity");
+    }
+
+    #[test]
+    fn test_optional_memorials_keep_weekday_and_order_by_calendar() {
+        use crate::types::liturgical::{PsalterWeekCycle, SundayCycle, WeekdayCycle};
+        use std::collections::HashMap;
+
+        let preset = Preset::default();
+        let mut calendar = Calendar::new(preset, 2026).unwrap();
+
+        // Simulate a hierarchy: general_roman (0) < france (1) < france__angers (2)
+        calendar.calendar_priority = HashMap::from([
+            ("general_roman".to_string(), 0),
+            ("france".to_string(), 1),
+            ("france__angers".to_string(), 2),
+        ]);
+
+        let mut days = vec![
+            LiturgicalDay::new(
+                "weekday".to_string(),
+                "Weekday".to_string(),
+                "2026-06-01".to_string(),
+                DateDef::MonthDate {
+                    month: crate::types::dates::MonthIndex(6),
+                    date: 1,
+                    day_offset: None,
+                },
+                Precedence::Weekday_13,
+                Rank::Weekday,
+                "Weekday".to_string(),
+                SundayCycle::YearA,
+                "Year A".to_string(),
+                WeekdayCycle::Year1,
+                "Year I".to_string(),
+                PsalterWeekCycle::Week1,
+                "Week 1".to_string(),
+                "general_roman".to_string(),
+            ),
+            LiturgicalDay::new(
+                "optional_france".to_string(),
+                "Optional Memorial France".to_string(),
+                "2026-06-01".to_string(),
+                DateDef::MonthDate {
+                    month: crate::types::dates::MonthIndex(6),
+                    date: 1,
+                    day_offset: None,
+                },
+                Precedence::OptionalMemorial_12,
+                Rank::OptionalMemorial,
+                "Optional Memorial".to_string(),
+                SundayCycle::YearA,
+                "Year A".to_string(),
+                WeekdayCycle::Year1,
+                "Year I".to_string(),
+                PsalterWeekCycle::Week1,
+                "Week 1".to_string(),
+                "france".to_string(),
+            ),
+            LiturgicalDay::new(
+                "optional_general".to_string(),
+                "Optional Memorial General".to_string(),
+                "2026-06-01".to_string(),
+                DateDef::MonthDate {
+                    month: crate::types::dates::MonthIndex(6),
+                    date: 1,
+                    day_offset: None,
+                },
+                Precedence::OptionalMemorial_12,
+                Rank::OptionalMemorial,
+                "Optional Memorial".to_string(),
+                SundayCycle::YearA,
+                "Year A".to_string(),
+                WeekdayCycle::Year1,
+                "Year I".to_string(),
+                PsalterWeekCycle::Week1,
+                "Week 1".to_string(),
+                "general_roman".to_string(),
+            ),
+        ];
+
+        let result = calendar.apply_precedence_rules(&mut days);
+
+        assert_eq!(result.len(), 3);
+        assert_eq!(result[0].id, "weekday");
+        assert_eq!(result[1].id, "optional_general");
+        assert_eq!(result[2].id, "optional_france");
     }
 }
