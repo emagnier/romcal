@@ -105,6 +105,7 @@ local-*
 
 # Test files
 _*.json
+_*.yaml
 
 # Dependencies documentation
 _docs/
