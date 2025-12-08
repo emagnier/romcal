@@ -9,12 +9,13 @@ use std::collections::{BTreeMap, HashMap, HashSet};
 
 use crate::dates::LiturgicalDates;
 use crate::error::{RomcalError, RomcalResult};
-use crate::liturgical_day::LiturgicalDay;
+use crate::liturgical_day::{LiturgicalDay, ParentOverride};
 use crate::preset::Preset;
+use crate::proper_of_time::common::PROPER_OF_TIME_ID;
 use crate::proper_of_time::ProperOfTime;
 use crate::types::calendar::{DayDefinition, DayId};
 use crate::types::dates::{DateDef, DateDefException, DateDefExceptions, ExceptionCondition};
-use crate::types::liturgical::{Precedence, Rank, Season};
+use crate::types::liturgical::{Color, ColorInfo, Precedence, Rank, Season};
 use crate::CalendarDefinition;
 
 /// Type alias for the liturgical calendar output
@@ -151,20 +152,28 @@ impl Calendar {
         })
     }
 
-    /// Resolves the calendar hierarchy from the target calendar to root
+    /// Resolves the calendar hierarchy from root to target (general to specific)
     fn resolve_calendar_hierarchy(
         preset: &Preset,
     ) -> (Vec<CalendarDefinition>, HashMap<String, usize>) {
         let mut hierarchy = Vec::new();
         let mut visited_ids = HashSet::new();
 
-        // Start with the target calendar
+        // Always start with general_roman as the base calendar (most general)
+        // It should be processed first, even if not explicitly in parent chain
+        if let Some(general_roman) = preset.get_calendar_definition("general_roman") {
+            if !visited_ids.contains("general_roman") {
+                hierarchy.push(general_roman.clone());
+                visited_ids.insert("general_roman".to_string());
+            }
+        }
+
+        // Then process the target calendar and its parent chain
         if let Some(target) = preset.get_calendar_definition(&preset.calendar) {
             Self::collect_calendar_hierarchy(preset, target, &mut hierarchy, &mut visited_ids);
         }
 
-        // Reverse to process from root to target (inheritance order)
-        hierarchy.reverse();
+        // Post-order DFS produces the correct order (general → specific), no reverse needed
 
         let mut calendar_priority = HashMap::new();
         for (idx, calendar) in hierarchy.iter().enumerate() {
@@ -186,15 +195,15 @@ impl Calendar {
         }
         visited.insert(calendar.id.clone());
 
-        // Add this calendar
-        hierarchy.push(calendar.clone());
-
-        // Process parent calendars
+        // Process parent calendars FIRST (post-order DFS)
         for parent_id in &calendar.parent_calendar_ids {
             if let Some(parent) = preset.get_calendar_definition(parent_id) {
                 Self::collect_calendar_hierarchy(preset, parent, hierarchy, visited);
             }
         }
+
+        // Add this calendar AFTER processing all parents
+        hierarchy.push(calendar.clone());
     }
 
     /// Processes a calendar definition and adds its days to the index
@@ -205,8 +214,29 @@ impl Calendar {
         dates_index: &mut BTreeMap<String, Vec<String>>,
     ) -> RomcalResult<()> {
         for (day_id, day_def) in &calendar_def.days_definitions {
-            // Handle drop flag
+            // Handle drop flag with validations
             if day_def.drop.unwrap_or(false) {
+                // Validation 1: Verify the element exists before dropping
+                if !by_ids.contains_key(day_id) {
+                    return Err(RomcalError::ValidationError(format!(
+                        "In the '{}' calendar, trying to drop a LiturgicalDay that doesn't exist: '{}'.",
+                        calendar_def.id, day_id
+                    )));
+                }
+
+                // Validation 2: Prevent dropping elements from Proper of Time
+                if let Some(existing_days) = by_ids.get(day_id) {
+                    if existing_days
+                        .iter()
+                        .any(|d| d.from_calendar_id == PROPER_OF_TIME_ID)
+                    {
+                        return Err(RomcalError::ValidationError(format!(
+                            "In the '{}' calendar, you can't drop a LiturgicalDay from the Proper of Time: '{}'.",
+                            calendar_def.id, day_id
+                        )));
+                    }
+                }
+
                 // Remove this day from all dates
                 if let Some(days) = by_ids.remove(day_id) {
                     for day in &days {
@@ -218,8 +248,34 @@ impl Calendar {
                 continue;
             }
 
-            // Calculate the date for this day definition
-            if let Some(date) = self.build_date(day_def, day_id, 0)? {
+            // Check if a day with the same ID already exists (for inheritance)
+            let existing_day = by_ids.get(day_id).and_then(|days| days.first());
+
+            // Build effective DayDefinition with inherited properties for date calculation
+            // This ensures date_def is inherited before build_date is called
+            let mut effective_day_def = day_def.clone();
+            if effective_day_def.date_def.is_none() {
+                if let Some(existing) = existing_day {
+                    effective_day_def.date_def = Some(existing.date_def.clone());
+                }
+            }
+            // Also inherit date_exceptions if not defined
+            if effective_day_def.date_exceptions.is_none() {
+                if let Some(existing) = existing_day {
+                    if !existing.date_exceptions.is_empty() {
+                        use crate::types::dates::DateDefExceptions;
+                        effective_day_def.date_exceptions =
+                            Some(if existing.date_exceptions.len() == 1 {
+                                DateDefExceptions::Single(existing.date_exceptions[0].clone())
+                            } else {
+                                DateDefExceptions::Multiple(existing.date_exceptions.clone())
+                            });
+                    }
+                }
+            }
+
+            // Calculate the date for this day definition using effective_day_def
+            if let Some(date) = self.build_date(&effective_day_def, day_id, 0)? {
                 // Check if date is within liturgical year
                 if date < self.start_of_year || date > self.end_of_year {
                     continue;
@@ -227,20 +283,47 @@ impl Calendar {
 
                 let date_str = date.format("%Y-%m-%d").to_string();
 
-                // Create or update LiturgicalDay
-                // For now, create a minimal LiturgicalDay from the definition
-                // In a full implementation, this would merge with existing data
-                if let Some(liturgical_day) = self.create_liturgical_day_from_definition(
+                // Create or update LiturgicalDay with inherited properties
+                // Use original day_def (not effective_day_def) so explicit values take precedence
+                if let Some(mut liturgical_day) = self.create_liturgical_day_from_definition(
                     day_id,
                     day_def,
                     &date_str,
                     calendar_def,
+                    by_ids,
+                    dates_index,
                 )? {
-                    // Update indices
-                    by_ids
-                        .entry(day_id.clone())
-                        .or_default()
-                        .push(liturgical_day);
+                    // Inherit properties from Proper of Time if this is not from Proper of Time
+                    if calendar_def.id != PROPER_OF_TIME_ID {
+                        self.inherit_proper_of_time_properties(
+                            &mut liturgical_day,
+                            &date_str,
+                            day_def,
+                            by_ids,
+                            dates_index,
+                        );
+                    }
+
+                    // Update indices - REPLACE existing day with same ID instead of adding
+                    if let Some(old_days) = by_ids.get(day_id) {
+                        // Remove old day from dates_index for its old date(s)
+                        let old_dates: Vec<String> =
+                            old_days.iter().map(|d| d.date.clone()).collect();
+                        for old_date in old_dates {
+                            if let Some(ids) = dates_index.get_mut(&old_date) {
+                                ids.retain(|id| id != day_id);
+                            }
+                        }
+                        // Replace in by_ids
+                        by_ids.insert(day_id.clone(), vec![liturgical_day]);
+                    } else {
+                        // New day, just add it
+                        by_ids
+                            .entry(day_id.clone())
+                            .or_default()
+                            .push(liturgical_day);
+                    }
+                    // Add to new date in dates_index
                     dates_index
                         .entry(date_str)
                         .or_default()
@@ -250,6 +333,129 @@ impl Calendar {
         }
 
         Ok(())
+    }
+
+    /// Gets the Proper of Time LiturgicalDay for a given date
+    fn get_proper_of_time_day_for_date<'a>(
+        &self,
+        date_str: &str,
+        by_ids: &'a BTreeMap<String, Vec<LiturgicalDay>>,
+        dates_index: &BTreeMap<String, Vec<String>>,
+    ) -> Option<&'a LiturgicalDay> {
+        // Get all day IDs for this date
+        if let Some(day_ids) = dates_index.get(date_str) {
+            // Find the first day from Proper of Time
+            for day_id in day_ids {
+                if let Some(days) = by_ids.get(day_id) {
+                    if let Some(proper_day) = days
+                        .iter()
+                        .find(|d| d.from_calendar_id == PROPER_OF_TIME_ID && d.date == date_str)
+                    {
+                        return Some(proper_day);
+                    }
+                }
+            }
+        }
+        None
+    }
+
+    /// Inherits properties from the Proper of Time day to a particular calendar day
+    fn inherit_proper_of_time_properties(
+        &self,
+        liturgical_day: &mut LiturgicalDay,
+        date_str: &str,
+        day_def: &DayDefinition,
+        by_ids: &BTreeMap<String, Vec<LiturgicalDay>>,
+        dates_index: &BTreeMap<String, Vec<String>>,
+    ) {
+        // Get the Proper of Time day for this date
+        let proper_day = match self.get_proper_of_time_day_for_date(date_str, by_ids, dates_index) {
+            Some(day) => day,
+            None => return, // No Proper of Time day found for this date
+        };
+
+        // Copy season if not defined
+        if liturgical_day.season.is_none() {
+            liturgical_day.season = proper_day.season;
+        }
+
+        // Copy season name if not defined
+        if liturgical_day.season_name.is_none() {
+            liturgical_day.season_name = proper_day.season_name.clone();
+        }
+
+        // Copy periods if empty
+        if liturgical_day.periods.is_empty() {
+            liturgical_day.periods = proper_day.periods.clone();
+        }
+
+        // Handle colors: explicit calendar color > martyr rule > proper of time color
+        if liturgical_day.colors.is_empty() {
+            if day_def.colors.is_some() {
+                // Use explicit color from calendar definition
+                // This is already set in create_liturgical_day_from_definition
+            } else if liturgical_day.titles.contains_martyr() {
+                // Martyrs get red color
+                use crate::proper_of_time::common::enum_to_string;
+                liturgical_day.colors = vec![ColorInfo {
+                    key: Color::Red,
+                    name: enum_to_string(&Color::Red),
+                }];
+            } else {
+                // Copy colors from Proper of Time
+                liturgical_day.colors = proper_day.colors.clone();
+            }
+        }
+
+        // Copy week_of_season if not defined
+        if liturgical_day.week_of_season.is_none() {
+            liturgical_day.week_of_season = proper_day.week_of_season;
+        }
+
+        // Copy day_of_season if not defined
+        if liturgical_day.day_of_season.is_none() {
+            liturgical_day.day_of_season = proper_day.day_of_season;
+        }
+
+        // day_of_week is always computed from the date, so just use proper_day's value
+        liturgical_day.day_of_week = proper_day.day_of_week.clone();
+
+        // Copy nth_day_of_week_in_month
+        if liturgical_day.nth_day_of_week_in_month == 0 {
+            liturgical_day.nth_day_of_week_in_month = proper_day.nth_day_of_week_in_month;
+        }
+
+        // Copy start_of_season if not defined
+        if liturgical_day.start_of_season.is_none() {
+            liturgical_day.start_of_season = proper_day.start_of_season.clone();
+        }
+
+        // Copy end_of_season if not defined
+        if liturgical_day.end_of_season.is_none() {
+            liturgical_day.end_of_season = proper_day.end_of_season.clone();
+        }
+
+        // Copy start_of_liturgical_year if empty
+        if liturgical_day.start_of_liturgical_year.is_empty() {
+            liturgical_day.start_of_liturgical_year = proper_day.start_of_liturgical_year.clone();
+        }
+
+        // Copy end_of_liturgical_year if empty
+        if liturgical_day.end_of_liturgical_year.is_empty() {
+            liturgical_day.end_of_liturgical_year = proper_day.end_of_liturgical_year.clone();
+        }
+
+        // Copy sunday_cycle
+        liturgical_day.sunday_cycle = proper_day.sunday_cycle;
+        liturgical_day.sunday_cycle_name = proper_day.sunday_cycle_name.clone();
+
+        // Copy weekday_cycle
+        liturgical_day.weekday_cycle = proper_day.weekday_cycle;
+        liturgical_day.weekday_cycle_name = proper_day.weekday_cycle_name.clone();
+
+        // Copy psalter_week
+        liturgical_day.psalter_week = proper_day.psalter_week;
+        liturgical_day.psalter_week_name = proper_day.psalter_week_name.clone();
     }
 
     /// Builds a date from a DateDef with exception handling
@@ -531,9 +737,19 @@ impl Calendar {
         day_def: &DayDefinition,
         date_str: &str,
         calendar_def: &CalendarDefinition,
+        by_ids: &BTreeMap<String, Vec<LiturgicalDay>>,
+        _dates_index: &BTreeMap<String, Vec<String>>,
     ) -> RomcalResult<Option<LiturgicalDay>> {
-        // Get precedence or default to Weekday
-        let precedence = day_def.precedence.clone().unwrap_or(Precedence::Weekday_13);
+        // Check if a day with the same ID already exists (from a parent calendar)
+        let existing_day = by_ids.get(day_id).and_then(|days| days.first());
+
+        // Inherit properties from existing day if not defined in day_def
+        // Precedence: use day_def if defined, otherwise inherit from existing, otherwise default
+        let precedence = day_def
+            .precedence
+            .clone()
+            .or_else(|| existing_day.map(|d| d.precedence.clone()))
+            .unwrap_or(Precedence::Weekday_13);
         let rank = precedence.to_rank();
 
         // Parse the date to get day of week
@@ -551,16 +767,37 @@ impl Calendar {
         let weekday_cycle = WeekdayCycle::from_year(self.year);
         let psalter_week = PsalterWeekCycle::Week1; // Simplified
 
+        // Inherit date_def if not defined in day_def
+        let date_def = day_def
+            .date_def
+            .clone()
+            .or_else(|| existing_day.map(|d| d.date_def.clone()))
+            .unwrap_or(DateDef::MonthDate {
+                month: crate::types::dates::MonthIndex(1),
+                date: 1,
+                day_offset: None,
+            });
+
+        // Inherit other boolean properties
+        let is_holy_day_of_obligation = day_def
+            .is_holy_day_of_obligation
+            .or_else(|| existing_day.map(|d| d.is_holy_day_of_obligation))
+            .unwrap_or(false);
+        let is_optional = day_def
+            .is_optional
+            .or_else(|| existing_day.map(|d| d.is_optional))
+            .unwrap_or(false);
+        let allow_similar_rank_items = day_def
+            .allow_similar_rank_items
+            .or_else(|| existing_day.map(|d| d.allow_similar_rank_items))
+            .unwrap_or(false);
+
         let mut liturgical_day = LiturgicalDay::new(
             day_id.clone(),
             day_id.clone(), // fullname - would be localized in full implementation
             date_str.to_string(),
-            day_def.date_def.clone().unwrap_or(DateDef::MonthDate {
-                month: crate::types::dates::MonthIndex(1),
-                date: 1,
-                day_offset: None,
-            }),
-            precedence,
+            date_def,
+            precedence.clone(),
             rank.clone(),
             enum_to_string(&rank),
             sunday_cycle,
@@ -572,19 +809,133 @@ impl Calendar {
             calendar_def.id.clone(),
         )
         .with_day_of_week(crate::types::dates::DayOfWeek(dow))
-        .with_is_holy_day_of_obligation(day_def.is_holy_day_of_obligation.unwrap_or(false))
-        .with_is_optional(day_def.is_optional.unwrap_or(false))
-        .with_allow_similar_rank_items(day_def.allow_similar_rank_items.unwrap_or(false));
+        .with_is_holy_day_of_obligation(is_holy_day_of_obligation)
+        .with_is_optional(is_optional)
+        .with_allow_similar_rank_items(allow_similar_rank_items);
 
-        // Add date exceptions
+        // Add date exceptions - inherit if not defined in day_def
         if let Some(exceptions) = &day_def.date_exceptions {
             liturgical_day.date_exceptions = match exceptions {
                 DateDefExceptions::Single(e) => vec![e.clone()],
                 DateDefExceptions::Multiple(list) => list.clone(),
             };
+        } else if let Some(existing) = existing_day {
+            // Inherit date_exceptions from existing day if not defined
+            if !existing.date_exceptions.is_empty() {
+                liturgical_day.date_exceptions = existing.date_exceptions.clone();
+            }
+        }
+
+        // Add titles - inherit if not defined in day_def
+        if let Some(titles) = &day_def.titles {
+            liturgical_day.titles = titles.clone();
+        } else if let Some(existing) = existing_day {
+            // Inherit titles from existing day if not defined
+            if !existing.titles.is_empty() {
+                liturgical_day.titles = existing.titles.clone();
+            }
+        }
+
+        // Add explicit colors if defined (priority over martyr rule)
+        // Inherit if not defined in day_def
+        if let Some(colors_def) = &day_def.colors {
+            use crate::types::calendar::ColorsDef;
+            let colors: Vec<Color> = match colors_def {
+                ColorsDef::Single(c) => vec![c.clone()],
+                ColorsDef::Multiple(list) => list.clone(),
+            };
+            liturgical_day.colors = colors
+                .into_iter()
+                .map(|c| ColorInfo {
+                    key: c.clone(),
+                    name: enum_to_string(&c),
+                })
+                .collect();
+        } else if let Some(existing) = existing_day {
+            // Inherit colors from existing day if not defined
+            if !existing.colors.is_empty() {
+                liturgical_day.colors = existing.colors.clone();
+            }
+        }
+
+        // Calculate and store parent overrides (diff from parent definitions)
+        let parent_overrides =
+            self.compute_parent_overrides(day_id, day_def, calendar_def, by_ids)?;
+        if !parent_overrides.is_empty() {
+            liturgical_day.parent_overrides = parent_overrides;
         }
 
         Ok(Some(liturgical_day))
+    }
+
+    /// Computes the parent overrides (diff) for a day definition
+    fn compute_parent_overrides(
+        &self,
+        day_id: &DayId,
+        day_def: &DayDefinition,
+        calendar_def: &CalendarDefinition,
+        by_ids: &BTreeMap<String, Vec<LiturgicalDay>>,
+    ) -> RomcalResult<Vec<ParentOverride>> {
+        let mut overrides = Vec::new();
+
+        // Check if this day already exists from a parent calendar
+        if let Some(existing_days) = by_ids.get(day_id) {
+            // Find existing days that are NOT from proper_of_time
+            // and NOT from the current calendar
+            for existing_day in existing_days {
+                if existing_day.from_calendar_id != PROPER_OF_TIME_ID
+                    && existing_day.from_calendar_id != calendar_def.id
+                {
+                    // Create a diff for this parent
+                    let mut parent_override =
+                        ParentOverride::new(existing_day.from_calendar_id.clone());
+
+                    // Check what's different
+                    if day_def.date_def.is_some() {
+                        parent_override.date_def = Some(existing_day.date_def.clone());
+                    }
+
+                    if day_def.date_exceptions.is_some() && !existing_day.date_exceptions.is_empty()
+                    {
+                        parent_override.date_exceptions =
+                            Some(existing_day.date_exceptions.clone());
+                    }
+
+                    if day_def.precedence.is_some() {
+                        parent_override.precedence = Some(existing_day.precedence.clone());
+                        parent_override.rank = Some(existing_day.rank.clone());
+                    }
+
+                    if day_def.colors.is_some() && !existing_day.colors.is_empty() {
+                        parent_override.colors = Some(existing_day.colors.clone());
+                    }
+
+                    if day_def.titles.is_some() {
+                        parent_override.titles = Some(existing_day.titles.clone());
+                    }
+
+                    if day_def.is_holy_day_of_obligation.is_some() {
+                        parent_override.is_holy_day_of_obligation =
+                            Some(existing_day.is_holy_day_of_obligation);
+                    }
+
+                    if day_def.is_optional.is_some() {
+                        parent_override.is_optional = Some(existing_day.is_optional);
+                    }
+
+                    if day_def.allow_similar_rank_items.is_some() {
+                        parent_override.allow_similar_rank_items =
+                            Some(existing_day.allow_similar_rank_items);
+                    }
+
+                    if parent_override.has_changes() {
+                        overrides.push(parent_override);
+                    }
+                }
+            }
+        }
+
+        Ok(overrides)
     }
 
     /// Applies precedence rules according to UNLY #49
@@ -1208,5 +1559,59 @@ mod tests {
         assert_eq!(result[0].id, "weekday");
         assert_eq!(result[1].id, "optional_general");
         assert_eq!(result[2].id, "optional_france");
+    }
+
+    #[test]
+    fn test_proper_of_time_end_of_season_not_null() {
+        let preset = Preset::default();
+        let calendar = Calendar::new(preset, 2026).unwrap();
+        let result = calendar.generate().unwrap();
+
+        // Check that all days from Proper of Time have end_of_season defined
+        for (_date, days) in &result {
+            for day in days {
+                if day.from_calendar_id == PROPER_OF_TIME_ID {
+                    assert!(
+                        day.end_of_season.is_some(),
+                        "Day '{}' from Proper of Time on {} should have end_of_season defined",
+                        day.id,
+                        day.date
+                    );
+                }
+            }
+        }
+    }
+
+    #[test]
+    fn test_parent_override_structure() {
+        use crate::liturgical_day::ParentOverride;
+
+        // Test that ParentOverride can be created and checked for changes
+        let mut override_empty = ParentOverride::new("test_calendar".to_string());
+        assert!(!override_empty.has_changes());
+
+        override_empty.precedence = Some(Precedence::GeneralMemorial_10);
+        assert!(override_empty.has_changes());
+    }
+
+    #[test]
+    fn test_martyr_color_from_titles() {
+        use crate::types::entity::{Title, TitlesDef};
+
+        // Test with martyr title
+        let martyr_titles = TitlesDef::Titles(vec![Title::Bishop, Title::Martyr]);
+        assert!(martyr_titles.contains_martyr());
+
+        // Test without martyr title
+        let non_martyr_titles = TitlesDef::Titles(vec![Title::Bishop, Title::Virgin]);
+        assert!(!non_martyr_titles.contains_martyr());
+
+        // Test TheFirstMartyr
+        let first_martyr_titles = TitlesDef::Titles(vec![Title::TheFirstMartyr]);
+        assert!(first_martyr_titles.contains_martyr());
+
+        // Test ProtoMartyrOfOceania
+        let proto_martyr_titles = TitlesDef::Titles(vec![Title::ProtoMartyrOfOceania]);
+        assert!(proto_martyr_titles.contains_martyr());
     }
 }

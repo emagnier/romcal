@@ -66,6 +66,16 @@ pub struct ProperOfTimeCache {
     easter_start: DateTime<Utc>,
     ordinary_start: DateTime<Utc>,
 
+    // Season end dates
+    advent_end: DateTime<Utc>,
+    christmas_end: DateTime<Utc>,
+    christmas_end_from_new_year: DateTime<Utc>,
+    lent_end: DateTime<Utc>,
+    triduum_end: DateTime<Utc>,
+    easter_end: DateTime<Utc>,
+    ordinary_early_end: DateTime<Utc>,
+    ordinary_late_end: DateTime<Utc>,
+
     // Cycles
     sunday_cycle: SundayCycle,
     weekday_cycle: WeekdayCycle,
@@ -139,6 +149,40 @@ impl ProperOfTimeCache {
             .checked_add_signed(chrono::Duration::days(1))
             .unwrap();
 
+        // Calculate season end dates
+        // Advent ends on December 24 (Christmas Eve)
+        let advent_end = christmas_start
+            .checked_sub_signed(chrono::Duration::days(1))
+            .unwrap();
+
+        // Christmas Time ends on the day of the Baptism of the Lord
+        let christmas_end = dates.get_baptism_of_the_lord_date(Some(christmas_year + 1));
+        let christmas_end_from_new_year = if preset.context == CalendarContext::Liturgical {
+            christmas_end
+        } else {
+            dates.get_baptism_of_the_lord_date(Some(christmas_year))
+        };
+
+        // Lent ends on Holy Thursday (the day before the evening Mass of the Lord's Supper)
+        let lent_end = triduum_start;
+
+        // Paschal Triduum ends on Easter Sunday evening (but Easter Sunday itself starts Easter Time)
+        let triduum_end = easter_start;
+
+        // Easter Time ends on Pentecost Sunday
+        let easter_end = dates.get_pentecost_sunday_date(Some(easter_year));
+
+        // Ordinary Time (early) ends on the day before Ash Wednesday
+        let ordinary_early_end = lent_start
+            .checked_sub_signed(chrono::Duration::days(1))
+            .unwrap();
+
+        // Ordinary Time (late) ends on the Saturday before the 1st Sunday of Advent
+        let ordinary_late_end = dates
+            .get_first_sunday_of_advent_date(Some(ordinary_year))
+            .checked_sub_signed(chrono::Duration::days(1))
+            .unwrap();
+
         Ok(Self {
             key,
             advent_year,
@@ -158,6 +202,14 @@ impl ProperOfTimeCache {
             triduum_start,
             easter_start,
             ordinary_start,
+            advent_end,
+            christmas_end,
+            christmas_end_from_new_year,
+            lent_end,
+            triduum_end,
+            easter_end,
+            ordinary_early_end,
+            ordinary_late_end,
             sunday_cycle: SundayCycle::from_year(year),
             weekday_cycle: WeekdayCycle::from_year(year),
         })
@@ -227,6 +279,32 @@ impl ProperOfTimeCache {
             Season::OrdinaryTime => self.ordinary_start,
         };
         start_of_season.format("%Y-%m-%d").to_string()
+    }
+
+    /// Determine season end date based on season
+    pub fn end_of_seasons(&self, season: Season, date: DateTime<Utc>) -> String {
+        let end_of_season = match season {
+            Season::Advent => self.advent_end,
+            Season::ChristmasTime => {
+                if date.month() == 1 {
+                    self.christmas_end_from_new_year
+                } else {
+                    self.christmas_end
+                }
+            }
+            Season::Lent => self.lent_end,
+            Season::EasterTime => self.easter_end,
+            Season::PaschalTriduum => self.triduum_end,
+            Season::OrdinaryTime => {
+                // Determine if we're in early or late Ordinary Time
+                if date < self.lent_start {
+                    self.ordinary_early_end
+                } else {
+                    self.ordinary_late_end
+                }
+            }
+        };
+        end_of_season.format("%Y-%m-%d").to_string()
     }
 
     // Getters for season start dates

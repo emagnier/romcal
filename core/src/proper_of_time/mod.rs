@@ -146,6 +146,7 @@ impl ProperOfTime {
                 .with_seasons(season)
                 .with_season_name(enum_to_string(&season))
                 .with_start_of_season(self.cache.start_of_seasons(season, date))
+                .with_end_of_season(self.cache.end_of_seasons(season, date))
                 .with_liturgical_year_boundaries(
                     self.cache.liturgical_year_start(season, date),
                     self.cache.liturgical_year_end(season, date),

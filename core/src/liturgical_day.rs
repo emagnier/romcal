@@ -5,13 +5,95 @@ use serde::{Deserialize, Serialize};
 use crate::types::dates::{DateDef, DateDefException, DayOfWeek};
 use crate::types::entity::{Entity, TitlesDef};
 use crate::types::{
-    ColorInfo, CommonInfo, PeriodInfo, Precedence, PsalterWeekCycle, Rank, SundayCycle,
-    WeekdayCycle,
+    ColorInfo, CommonDefinition, CommonInfo, PeriodInfo, Precedence, PsalterWeekCycle, Rank,
+    SundayCycle, WeekdayCycle,
 };
 use crate::{CalendarId, Season};
 
 /// Unique identifier for a liturgical day
 pub type LiturgicalDayId = String;
+
+/// Represents the differences between a liturgical day definition and its parent definition.
+/// This is a lightweight structure that only contains fields that can be overridden.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
+pub struct ParentOverride {
+    /// The ID of the calendar from which this override originates
+    pub from_calendar_id: CalendarId,
+
+    /// The date definition if it was changed
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub date_def: Option<DateDef>,
+
+    /// The date exceptions if they were changed
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub date_exceptions: Option<Vec<DateDefException>>,
+
+    /// The precedence if it was changed
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub precedence: Option<Precedence>,
+
+    /// The rank if it was changed
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub rank: Option<Rank>,
+
+    /// The colors if they were changed
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub colors: Option<Vec<ColorInfo>>,
+
+    /// The titles if they were changed
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub titles: Option<TitlesDef>,
+
+    /// The commons definition if it was changed
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub commons_def: Option<Vec<CommonDefinition>>,
+
+    /// The is_holy_day_of_obligation flag if it was changed
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub is_holy_day_of_obligation: Option<bool>,
+
+    /// The is_optional flag if it was changed
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub is_optional: Option<bool>,
+
+    /// The allow_similar_rank_items flag if it was changed
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub allow_similar_rank_items: Option<bool>,
+}
+
+impl ParentOverride {
+    /// Creates a new ParentOverride with only the from_calendar_id set.
+    pub fn new(from_calendar_id: CalendarId) -> Self {
+        Self {
+            from_calendar_id,
+            date_def: None,
+            date_exceptions: None,
+            precedence: None,
+            rank: None,
+            colors: None,
+            titles: None,
+            commons_def: None,
+            is_holy_day_of_obligation: None,
+            is_optional: None,
+            allow_similar_rank_items: None,
+        }
+    }
+
+    /// Returns true if this override has any changes
+    pub fn has_changes(&self) -> bool {
+        self.date_def.is_some()
+            || self.date_exceptions.is_some()
+            || self.precedence.is_some()
+            || self.rank.is_some()
+            || self.colors.is_some()
+            || self.titles.is_some()
+            || self.commons_def.is_some()
+            || self.is_holy_day_of_obligation.is_some()
+            || self.is_optional.is_some()
+            || self.allow_similar_rank_items.is_some()
+    }
+}
 
 /// A single day in the liturgical calendar with computed values and inheritance information.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -127,8 +209,9 @@ pub struct LiturgicalDay {
     pub from_calendar_id: CalendarId,
 
     /// Contains the differences between this liturgical day and its parent definitions.
-    /// Each element in the array represents the diff between two successive overrides in the inheritance chain.
-    pub parent_overrides: Vec<LiturgicalDay>,
+    /// Each element in the array represents the diff from a parent calendar definition.
+    /// The array is ordered from most general (e.g., general_roman) to most specific.
+    pub parent_overrides: Vec<ParentOverride>,
 }
 
 impl LiturgicalDay {
@@ -329,13 +412,13 @@ impl LiturgicalDay {
     }
 
     /// Sets the parent overrides for this liturgical day.
-    pub fn with_parent_overrides(mut self, parent_overrides: Vec<LiturgicalDay>) -> Self {
+    pub fn with_parent_overrides(mut self, parent_overrides: Vec<ParentOverride>) -> Self {
         self.parent_overrides = parent_overrides;
         self
     }
 
     /// Adds a parent override to this liturgical day.
-    pub fn add_parent_override(&mut self, parent_override: LiturgicalDay) {
+    pub fn add_parent_override(&mut self, parent_override: ParentOverride) {
         self.parent_overrides.push(parent_override);
     }
 
