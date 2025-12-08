@@ -50,6 +50,8 @@ pub enum DateDef {
         #[serde(skip_serializing_if = "Option::is_none")]
         day_offset: Option<i32>,
     },
+    /// Inherited from the proper of time
+    InheritedFromProperOfTime {},
 }
 
 /// Date definition with offset for adjustments.

@@ -41,11 +41,12 @@ pub enum SundayCycleCombined {
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, EnumIter)]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+#[allow(non_camel_case_types)] // Intentionally using Year_1/Year_2 to produce YEAR_1/YEAR_2 in JSON
 pub enum WeekdayCycle {
     /// Year 1 (Cycle I)
-    Year1,
+    Year_1,
     /// Year 2 (Cycle II)
-    Year2,
+    Year_2,
 }
 
 /// [GILH §133] The four-week cycle of the psalter is coordinated with the liturgical year in such a way that
@@ -54,15 +55,16 @@ pub enum WeekdayCycle {
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, EnumIter)]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+#[allow(non_camel_case_types)] // Intentionally using Week_1/Week_2/etc. to produce WEEK_1/WEEK_2/etc. in JSON
 pub enum PsalterWeekCycle {
     /// Week 1
-    Week1,
+    Week_1,
     /// Week 2
-    Week2,
+    Week_2,
     /// Week 3
-    Week3,
+    Week_3,
     /// Week 4
-    Week4,
+    Week_4,
 }
 
 impl SundayCycle {
@@ -123,15 +125,15 @@ impl WeekdayCycle {
     /// ```rust
     /// use romcal_core::types::liturgical::cycles::WeekdayCycle;
     ///
-    /// assert_eq!(WeekdayCycle::from_year(2023), WeekdayCycle::Year1); // odd year
-    /// assert_eq!(WeekdayCycle::from_year(2024), WeekdayCycle::Year2); // even year
-    /// assert_eq!(WeekdayCycle::from_year(2025), WeekdayCycle::Year1); // odd year
+    /// assert_eq!(WeekdayCycle::from_year(2023), WeekdayCycle::Year_1); // odd year
+    /// assert_eq!(WeekdayCycle::from_year(2024), WeekdayCycle::Year_2); // even year
+    /// assert_eq!(WeekdayCycle::from_year(2025), WeekdayCycle::Year_1); // odd year
     /// ```
     pub fn from_year(year: i32) -> Self {
         if year % 2 == 0 {
-            WeekdayCycle::Year2
+            WeekdayCycle::Year_2
         } else {
-            WeekdayCycle::Year1
+            WeekdayCycle::Year_1
         }
     }
 }
@@ -163,46 +165,46 @@ impl PsalterWeekCycle {
     /// use romcal_core::types::liturgical::cycles::PsalterWeekCycle;
     ///
     /// // Normal case: week 1 of Advent
-    /// assert_eq!(PsalterWeekCycle::from_week(1, false, false), PsalterWeekCycle::Week1);
+    /// assert_eq!(PsalterWeekCycle::from_week(1, false, false), PsalterWeekCycle::Week_1);
     ///
     /// // Lent exception: first week of Lent is week 4
-    /// assert_eq!(PsalterWeekCycle::from_week(1, true, false), PsalterWeekCycle::Week4);
+    /// assert_eq!(PsalterWeekCycle::from_week(1, true, false), PsalterWeekCycle::Week_4);
     ///
     /// // Christmas Time: special calculation
-    /// assert_eq!(PsalterWeekCycle::from_week(2, false, true), PsalterWeekCycle::Week1);
+    /// assert_eq!(PsalterWeekCycle::from_week(2, false, true), PsalterWeekCycle::Week_1);
     /// ```
     pub fn from_week(week_of_season: u32, is_lent: bool, is_christmas_time: bool) -> Self {
         if is_lent && week_of_season == 1 {
             // Special case for Lent: first week is week 4
-            PsalterWeekCycle::Week4
+            PsalterWeekCycle::Week_4
         } else if is_lent {
-            // Lent: after week 1 (which is Week4), continue with Week1, Week2, Week3
+            // Lent: after week 1 (which is Week_4), continue with Week_1, Week_2, Week_3
             let week_index = (week_of_season + 2) % 4;
             match week_index {
-                0 => PsalterWeekCycle::Week1,
-                1 => PsalterWeekCycle::Week2,
-                2 => PsalterWeekCycle::Week3,
-                3 => PsalterWeekCycle::Week4,
+                0 => PsalterWeekCycle::Week_1,
+                1 => PsalterWeekCycle::Week_2,
+                2 => PsalterWeekCycle::Week_3,
+                3 => PsalterWeekCycle::Week_4,
                 _ => unreachable!(), // This should never happen with modulo 4
             }
         } else if is_christmas_time {
             // Christmas Time: special calculation based on GILH §133
             let week_index = (2 + week_of_season) % 4;
             match week_index {
-                0 => PsalterWeekCycle::Week1,
-                1 => PsalterWeekCycle::Week2,
-                2 => PsalterWeekCycle::Week3,
-                3 => PsalterWeekCycle::Week4,
+                0 => PsalterWeekCycle::Week_1,
+                1 => PsalterWeekCycle::Week_2,
+                2 => PsalterWeekCycle::Week_3,
+                3 => PsalterWeekCycle::Week_4,
                 _ => unreachable!(), // This should never happen with modulo 4
             }
         } else {
             // Normal case: cycle restarts at beginning of each season
             let week_index = (week_of_season + 3) % 4; // Equivalent to (week_of_season - 1) % 4 but safe
             match week_index {
-                0 => PsalterWeekCycle::Week1,
-                1 => PsalterWeekCycle::Week2,
-                2 => PsalterWeekCycle::Week3,
-                3 => PsalterWeekCycle::Week4,
+                0 => PsalterWeekCycle::Week_1,
+                1 => PsalterWeekCycle::Week_2,
+                2 => PsalterWeekCycle::Week_3,
+                3 => PsalterWeekCycle::Week_4,
                 _ => unreachable!(), // This should never happen with modulo 4
             }
         }
@@ -220,8 +222,8 @@ pub fn get_liturgical_cycle_description(cycle: &LiturgicalCycle) -> &'static str
         LiturgicalCycle::YearAB => "Combined years A and B of the Sunday cycle",
         LiturgicalCycle::YearAC => "Combined years A and C of the Sunday cycle",
         LiturgicalCycle::YearBC => "Combined years B and C of the Sunday cycle",
-        LiturgicalCycle::Year1 => "Year 1 of the weekday cycle (Cycle I)",
-        LiturgicalCycle::Year2 => "Year 2 of the weekday cycle (Cycle II)",
+        LiturgicalCycle::Year1 => "Year 1 of the weekday cycle (Cycle I)", // Note: LiturgicalCycle uses Year1, not Year_1
+        LiturgicalCycle::Year2 => "Year 2 of the weekday cycle (Cycle II)", // Note: LiturgicalCycle uses Year2, not Year_2
     }
 }
 
@@ -244,17 +246,17 @@ mod tests {
 
     #[test]
     fn test_weekday_cycle_from_year() {
-        assert_eq!(WeekdayCycle::from_year(0), WeekdayCycle::Year2); // even year -> Year2
-        assert_eq!(WeekdayCycle::from_year(1), WeekdayCycle::Year1); // odd year -> Year1
-        assert_eq!(WeekdayCycle::from_year(-1), WeekdayCycle::Year1); // odd year -> Year1
-        assert_eq!(WeekdayCycle::from_year(-2), WeekdayCycle::Year2); // even year -> Year2
+        assert_eq!(WeekdayCycle::from_year(0), WeekdayCycle::Year_2); // even year -> Year_2
+        assert_eq!(WeekdayCycle::from_year(1), WeekdayCycle::Year_1); // odd year -> Year_1
+        assert_eq!(WeekdayCycle::from_year(-1), WeekdayCycle::Year_1); // odd year -> Year_1
+        assert_eq!(WeekdayCycle::from_year(-2), WeekdayCycle::Year_2); // even year -> Year_2
 
-        assert_eq!(WeekdayCycle::from_year(2020), WeekdayCycle::Year2); // even year -> Year2
-        assert_eq!(WeekdayCycle::from_year(2021), WeekdayCycle::Year1); // odd year -> Year1
-        assert_eq!(WeekdayCycle::from_year(2022), WeekdayCycle::Year2); // even year -> Year2
-        assert_eq!(WeekdayCycle::from_year(2023), WeekdayCycle::Year1); // odd year -> Year1
-        assert_eq!(WeekdayCycle::from_year(2024), WeekdayCycle::Year2); // even year -> Year2
-        assert_eq!(WeekdayCycle::from_year(2025), WeekdayCycle::Year1); // odd year -> Year1
+        assert_eq!(WeekdayCycle::from_year(2020), WeekdayCycle::Year_2); // even year -> Year_2
+        assert_eq!(WeekdayCycle::from_year(2021), WeekdayCycle::Year_1); // odd year -> Year_1
+        assert_eq!(WeekdayCycle::from_year(2022), WeekdayCycle::Year_2); // even year -> Year_2
+        assert_eq!(WeekdayCycle::from_year(2023), WeekdayCycle::Year_1); // odd year -> Year_1
+        assert_eq!(WeekdayCycle::from_year(2024), WeekdayCycle::Year_2); // even year -> Year_2
+        assert_eq!(WeekdayCycle::from_year(2025), WeekdayCycle::Year_1); // odd year -> Year_1
     }
 
     #[test]
@@ -262,69 +264,69 @@ mod tests {
         // Test normal case (Advent, Easter Time, Ordinary Time)
         assert_eq!(
             PsalterWeekCycle::from_week(1, false, false),
-            PsalterWeekCycle::Week1
+            PsalterWeekCycle::Week_1
         );
         assert_eq!(
             PsalterWeekCycle::from_week(2, false, false),
-            PsalterWeekCycle::Week2
+            PsalterWeekCycle::Week_2
         );
         assert_eq!(
             PsalterWeekCycle::from_week(3, false, false),
-            PsalterWeekCycle::Week3
+            PsalterWeekCycle::Week_3
         );
         assert_eq!(
             PsalterWeekCycle::from_week(4, false, false),
-            PsalterWeekCycle::Week4
+            PsalterWeekCycle::Week_4
         );
         assert_eq!(
             PsalterWeekCycle::from_week(5, false, false),
-            PsalterWeekCycle::Week1
+            PsalterWeekCycle::Week_1
         ); // Cycle repeats
 
         // Test Lent exception: first week is week 4
         assert_eq!(
             PsalterWeekCycle::from_week(1, true, false),
-            PsalterWeekCycle::Week4
+            PsalterWeekCycle::Week_4
         );
         assert_eq!(
             PsalterWeekCycle::from_week(2, true, false),
-            PsalterWeekCycle::Week1
+            PsalterWeekCycle::Week_1
         );
         assert_eq!(
             PsalterWeekCycle::from_week(3, true, false),
-            PsalterWeekCycle::Week2
+            PsalterWeekCycle::Week_2
         );
         assert_eq!(
             PsalterWeekCycle::from_week(4, true, false),
-            PsalterWeekCycle::Week3
+            PsalterWeekCycle::Week_3
         );
 
         // Test Christmas Time: special calculation
         assert_eq!(
             PsalterWeekCycle::from_week(1, false, true),
-            PsalterWeekCycle::Week4
-        ); // (2+1) % 4 = 3 -> Week4
+            PsalterWeekCycle::Week_4
+        ); // (2+1) % 4 = 3 -> Week_4
         assert_eq!(
             PsalterWeekCycle::from_week(2, false, true),
-            PsalterWeekCycle::Week1
-        ); // (2+2) % 4 = 0 -> Week1
+            PsalterWeekCycle::Week_1
+        ); // (2+2) % 4 = 0 -> Week_1
         assert_eq!(
             PsalterWeekCycle::from_week(3, false, true),
-            PsalterWeekCycle::Week2
-        ); // (2+3) % 4 = 1 -> Week2
+            PsalterWeekCycle::Week_2
+        ); // (2+3) % 4 = 1 -> Week_2
         assert_eq!(
             PsalterWeekCycle::from_week(4, false, true),
-            PsalterWeekCycle::Week3
-        ); // (2+4) % 4 = 2 -> Week3
+            PsalterWeekCycle::Week_3
+        ); // (2+4) % 4 = 2 -> Week_3
 
         // Test edge cases
         assert_eq!(
             PsalterWeekCycle::from_week(0, false, false),
-            PsalterWeekCycle::Week4
+            PsalterWeekCycle::Week_4
         ); // (0-1) % 4 = 3
         assert_eq!(
             PsalterWeekCycle::from_week(8, false, false),
-            PsalterWeekCycle::Week4
+            PsalterWeekCycle::Week_4
         ); // (8-1) % 4 = 3
     }
 
@@ -341,7 +343,7 @@ mod tests {
             }
 
             match weekday_cycle {
-                WeekdayCycle::Year1 | WeekdayCycle::Year2 => {}
+                WeekdayCycle::Year_1 | WeekdayCycle::Year_2 => {}
             }
         }
 
@@ -353,24 +355,24 @@ mod tests {
 
             // Verify that cycles are valid enum values
             match psalter_cycle_normal {
-                PsalterWeekCycle::Week1
-                | PsalterWeekCycle::Week2
-                | PsalterWeekCycle::Week3
-                | PsalterWeekCycle::Week4 => {}
+                PsalterWeekCycle::Week_1
+                | PsalterWeekCycle::Week_2
+                | PsalterWeekCycle::Week_3
+                | PsalterWeekCycle::Week_4 => {}
             }
 
             match psalter_cycle_lent {
-                PsalterWeekCycle::Week1
-                | PsalterWeekCycle::Week2
-                | PsalterWeekCycle::Week3
-                | PsalterWeekCycle::Week4 => {}
+                PsalterWeekCycle::Week_1
+                | PsalterWeekCycle::Week_2
+                | PsalterWeekCycle::Week_3
+                | PsalterWeekCycle::Week_4 => {}
             }
 
             match psalter_cycle_christmas {
-                PsalterWeekCycle::Week1
-                | PsalterWeekCycle::Week2
-                | PsalterWeekCycle::Week3
-                | PsalterWeekCycle::Week4 => {}
+                PsalterWeekCycle::Week_1
+                | PsalterWeekCycle::Week_2
+                | PsalterWeekCycle::Week_3
+                | PsalterWeekCycle::Week_4 => {}
             }
         }
     }
@@ -409,8 +411,8 @@ mod tests {
         let variants: Vec<WeekdayCycle> = WeekdayCycle::iter().collect();
 
         // Verify that the order is exactly the declaration order
-        assert_eq!(variants[0], WeekdayCycle::Year1);
-        assert_eq!(variants[1], WeekdayCycle::Year2);
+        assert_eq!(variants[0], WeekdayCycle::Year_1);
+        assert_eq!(variants[1], WeekdayCycle::Year_2);
 
         // Verify that we have all variants
         assert_eq!(variants.len(), 2);
@@ -421,10 +423,10 @@ mod tests {
         let variants: Vec<PsalterWeekCycle> = PsalterWeekCycle::iter().collect();
 
         // Verify that the order is exactly the declaration order
-        assert_eq!(variants[0], PsalterWeekCycle::Week1);
-        assert_eq!(variants[1], PsalterWeekCycle::Week2);
-        assert_eq!(variants[2], PsalterWeekCycle::Week3);
-        assert_eq!(variants[3], PsalterWeekCycle::Week4);
+        assert_eq!(variants[0], PsalterWeekCycle::Week_1);
+        assert_eq!(variants[1], PsalterWeekCycle::Week_2);
+        assert_eq!(variants[2], PsalterWeekCycle::Week_3);
+        assert_eq!(variants[3], PsalterWeekCycle::Week_4);
 
         // Verify that we have all variants
         assert_eq!(variants.len(), 4);
@@ -491,22 +493,22 @@ mod tests {
     #[test]
     fn test_weekday_cycle_serialization() {
         // Verify that serialization works
-        let cycle = WeekdayCycle::Year1;
+        let cycle = WeekdayCycle::Year_1;
         let json = serde_json::to_string(&cycle).unwrap();
-        assert_eq!(json, "\"YEAR1\"");
+        assert_eq!(json, "\"YEAR_1\"");
 
         let deserialized: WeekdayCycle = serde_json::from_str(&json).unwrap();
-        assert_eq!(deserialized, WeekdayCycle::Year1);
+        assert_eq!(deserialized, WeekdayCycle::Year_1);
     }
 
     #[test]
     fn test_psalter_week_cycle_serialization() {
         // Verify that serialization works
-        let cycle = PsalterWeekCycle::Week1;
+        let cycle = PsalterWeekCycle::Week_1;
         let json = serde_json::to_string(&cycle).unwrap();
-        assert_eq!(json, "\"WEEK1\"");
+        assert_eq!(json, "\"WEEK_1\"");
 
         let deserialized: PsalterWeekCycle = serde_json::from_str(&json).unwrap();
-        assert_eq!(deserialized, PsalterWeekCycle::Week1);
+        assert_eq!(deserialized, PsalterWeekCycle::Week_1);
     }
 }

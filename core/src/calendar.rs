@@ -639,6 +639,12 @@ impl Calendar {
 
                 Ok(Some(final_date))
             }
+
+            DateDef::InheritedFromProperOfTime {} => {
+                // This date comes from the Proper of Time and should not be calculated here
+                // Return None to indicate that the date is already set from Proper of Time
+                Ok(None)
+            }
         }
     }
 
@@ -765,7 +771,7 @@ impl Calendar {
 
         let sunday_cycle = SundayCycle::from_year(self.year);
         let weekday_cycle = WeekdayCycle::from_year(self.year);
-        let psalter_week = PsalterWeekCycle::Week1; // Simplified
+        let psalter_week = PsalterWeekCycle::Week_1; // Simplified
 
         // Inherit date_def if not defined in day_def
         let date_def = day_def
@@ -1188,9 +1194,9 @@ mod tests {
             "Weekday".to_string(),
             SundayCycle::YearA,
             "Year A".to_string(),
-            WeekdayCycle::Year1,
+            WeekdayCycle::Year_1,
             "Year I".to_string(),
-            PsalterWeekCycle::Week1,
+            PsalterWeekCycle::Week_1,
             "Week 1".to_string(),
             "test".to_string(),
         );
@@ -1209,9 +1215,9 @@ mod tests {
             "Weekday".to_string(),
             SundayCycle::YearA,
             "Year A".to_string(),
-            WeekdayCycle::Year1,
+            WeekdayCycle::Year_1,
             "Year I".to_string(),
-            PsalterWeekCycle::Week1,
+            PsalterWeekCycle::Week_1,
             "Week 1".to_string(),
             "test".to_string(),
         );
@@ -1406,9 +1412,9 @@ mod tests {
             "Solemnity".to_string(),
             SundayCycle::YearA,
             "Year A".to_string(),
-            WeekdayCycle::Year1,
+            WeekdayCycle::Year_1,
             "Year I".to_string(),
-            PsalterWeekCycle::Week1,
+            PsalterWeekCycle::Week_1,
             "Week 1".to_string(),
             "test".to_string(),
         )];
@@ -1439,9 +1445,9 @@ mod tests {
             "Solemnity".to_string(),
             SundayCycle::YearA,
             "Year A".to_string(),
-            WeekdayCycle::Year1,
+            WeekdayCycle::Year_1,
             "Year I".to_string(),
-            PsalterWeekCycle::Week1,
+            PsalterWeekCycle::Week_1,
             "Week 1".to_string(),
             "test".to_string(),
         );
@@ -1460,9 +1466,9 @@ mod tests {
             "Memorial".to_string(),
             SundayCycle::YearA,
             "Year A".to_string(),
-            WeekdayCycle::Year1,
+            WeekdayCycle::Year_1,
             "Year I".to_string(),
-            PsalterWeekCycle::Week1,
+            PsalterWeekCycle::Week_1,
             "Week 1".to_string(),
             "test".to_string(),
         );
@@ -1505,9 +1511,9 @@ mod tests {
                 "Weekday".to_string(),
                 SundayCycle::YearA,
                 "Year A".to_string(),
-                WeekdayCycle::Year1,
+                WeekdayCycle::Year_1,
                 "Year I".to_string(),
-                PsalterWeekCycle::Week1,
+                PsalterWeekCycle::Week_1,
                 "Week 1".to_string(),
                 "general_roman".to_string(),
             ),
@@ -1525,9 +1531,9 @@ mod tests {
                 "Optional Memorial".to_string(),
                 SundayCycle::YearA,
                 "Year A".to_string(),
-                WeekdayCycle::Year1,
+                WeekdayCycle::Year_1,
                 "Year I".to_string(),
-                PsalterWeekCycle::Week1,
+                PsalterWeekCycle::Week_1,
                 "Week 1".to_string(),
                 "france".to_string(),
             ),
@@ -1545,9 +1551,9 @@ mod tests {
                 "Optional Memorial".to_string(),
                 SundayCycle::YearA,
                 "Year A".to_string(),
-                WeekdayCycle::Year1,
+                WeekdayCycle::Year_1,
                 "Year I".to_string(),
-                PsalterWeekCycle::Week1,
+                PsalterWeekCycle::Week_1,
                 "Week 1".to_string(),
                 "general_roman".to_string(),
             ),

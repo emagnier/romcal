@@ -23,7 +23,7 @@ use crate::proper_of_time::easter_time::EasterTime;
 use crate::proper_of_time::lent::Lent;
 use crate::proper_of_time::ordinary_time::OrdinaryTime;
 use crate::proper_of_time::paschal_triduum::PaschalTriduum;
-use crate::types::dates::{DateDef, DateFn, DayOfWeek};
+use crate::types::dates::{DateDef, DayOfWeek};
 use crate::types::liturgical::{Color, ColorInfo, Precedence, PsalterWeekCycle, Rank, Season};
 
 /// Structure for generating liturgical days of the Proper of Time
@@ -114,7 +114,7 @@ impl ProperOfTime {
                 ),
             )
         } else {
-            (None, None, PsalterWeekCycle::Week1)
+            (None, None, PsalterWeekCycle::Week_1)
         };
 
         let mut liturgical_day = LiturgicalDay::new(
@@ -164,11 +164,7 @@ impl ProperOfTime {
             name: enum_to_string(&color),
         }];
 
-        // Date definition (placeholder for now)
-        liturgical_day.date_def = DateDef::DateFunction {
-            date_fn: DateFn::EasterSunday, // TODO: Calculate proper DateFn
-            day_offset: None,
-        };
+        liturgical_day.date_def = DateDef::InheritedFromProperOfTime {}.into();
 
         liturgical_day
     }
