@@ -576,6 +576,7 @@ mod tests {
         entities.insert(
             "john_the_baptist".to_string(),
             crate::types::entity::Entity {
+                id: Some("john_the_baptist".to_string()),
                 r#type: Some(EntityType::Person),
                 fullname: Some("John the Baptist".to_string()),
                 name: Some("John".to_string()),
@@ -602,6 +603,7 @@ mod tests {
         entities.insert(
             "john_the_evangelist".to_string(),
             crate::types::entity::Entity {
+                id: Some("john_the_evangelist".to_string()),
                 r#type: Some(EntityType::Person),
                 fullname: Some("John the Evangelist".to_string()),
                 name: Some("John".to_string()),
@@ -628,6 +630,7 @@ mod tests {
         entities.insert(
             "unused_entity".to_string(),
             crate::types::entity::Entity {
+                id: Some("unused_entity".to_string()),
                 r#type: Some(EntityType::Person),
                 fullname: Some("Unused Entity".to_string()),
                 name: Some("Unused".to_string()),

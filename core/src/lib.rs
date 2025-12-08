@@ -14,8 +14,10 @@
 
 pub mod calendar;
 pub mod calendar_definition;
+pub mod data_tree_builder;
 pub mod dates;
 pub mod easter;
+pub mod entity_resolver;
 pub mod error;
 pub mod generated_constants;
 pub mod liturgical_day;
@@ -28,6 +30,7 @@ pub mod types;
 pub use calendar::{Calendar, LiturgicalCalendar};
 pub use calendar_definition::*;
 pub use dates::LiturgicalDates;
+pub use entity_resolver::EntityResolver;
 pub use error::{validate_range, validate_year, RomcalError, RomcalResult, Validate};
 pub use generated_constants::{CALENDAR_IDS, LOCALE_CODES};
 pub use liturgical_day::*;

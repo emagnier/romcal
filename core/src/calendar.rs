@@ -8,6 +8,7 @@ use chrono::{Datelike, Duration, NaiveDate, Weekday};
 use std::collections::{BTreeMap, HashMap, HashSet};
 
 use crate::dates::LiturgicalDates;
+use crate::entity_resolver::EntityResolver;
 use crate::error::{RomcalError, RomcalResult};
 use crate::liturgical_day::{LiturgicalDay, ParentOverride};
 use crate::preset::Preset;
@@ -39,6 +40,8 @@ pub struct Calendar {
     calendar_hierarchy: Vec<CalendarDefinition>,
     /// Mapping calendar_id -> priority (0 = general_roman, higher = more specific)
     calendar_priority: HashMap<String, usize>,
+    /// Entity resolver for resolving entity pointers to full entities
+    entity_resolver: EntityResolver,
 }
 
 /// Internal structure to hold built calendar data
@@ -74,6 +77,9 @@ impl Calendar {
             .date_naive()
             - Duration::days(1);
 
+        // Create entity resolver with locale-merged resources
+        let entity_resolver = EntityResolver::new(&preset);
+
         Ok(Self {
             preset,
             dates,
@@ -82,6 +88,7 @@ impl Calendar {
             end_of_year,
             calendar_hierarchy,
             calendar_priority,
+            entity_resolver,
         })
     }
 
@@ -798,9 +805,17 @@ impl Calendar {
             .or_else(|| existing_day.map(|d| d.allow_similar_rank_items))
             .unwrap_or(false);
 
+        // Resolve the fullname from the entity
+        // If custom_locale_id is defined, use it for lookup, otherwise use day_id
+        let custom_locale_id = day_def.custom_locale_id.as_deref();
+        let fullname = self
+            .entity_resolver
+            .get_fullname_for_day(day_id, custom_locale_id)
+            .unwrap_or_else(|| day_id.clone());
+
         let mut liturgical_day = LiturgicalDay::new(
             day_id.clone(),
-            day_id.clone(), // fullname - would be localized in full implementation
+            fullname, // Use resolved fullname from entity
             date_str.to_string(),
             date_def,
             precedence.clone(),
@@ -832,9 +847,22 @@ impl Calendar {
             }
         }
 
-        // Add titles - inherit if not defined in day_def
+        // Resolve entities for this day using the entity resolver
+        // Priority: day_def.entities > fallback on day_id
+        let resolved_entities = self
+            .entity_resolver
+            .resolve_entities_for_day(day_def, day_id);
+
+        // Set entities on the liturgical day
+        liturgical_day.entities = resolved_entities.clone();
+
+        // Add titles - priority: day_def.titles > combined from entities > inherited from existing
         if let Some(titles) = &day_def.titles {
+            // Explicitly defined titles in the calendar definition
             liturgical_day.titles = titles.clone();
+        } else if !resolved_entities.is_empty() {
+            // Combine titles from all resolved entities
+            liturgical_day.titles = self.entity_resolver.combine_titles(&resolved_entities);
         } else if let Some(existing) = existing_day {
             // Inherit titles from existing day if not defined
             if !existing.titles.is_empty() {
