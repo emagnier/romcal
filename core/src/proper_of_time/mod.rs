@@ -26,7 +26,9 @@ use crate::proper_of_time::ordinary_time::OrdinaryTime;
 use crate::proper_of_time::paschal_triduum::PaschalTriduum;
 use crate::template_resolver::{ProperOfTimeDayType, TemplateResolver};
 use crate::types::dates::{DateDef, DayOfWeek};
-use crate::types::liturgical::{Color, ColorInfo, Precedence, PsalterWeekCycle, Rank, Season};
+use crate::types::liturgical::{
+    Color, ColorInfo, Period, PeriodInfo, Precedence, PsalterWeekCycle, Rank, Season,
+};
 
 /// Structure for generating liturgical days of the Proper of Time
 pub struct ProperOfTime {
@@ -272,6 +274,25 @@ impl ProperOfTime {
         liturgical_day.date_def = DateDef::InheritedFromProperOfTime {};
 
         liturgical_day
+    }
+
+    /// Converts a list of Period enums to PeriodInfo with localized names.
+    ///
+    /// Uses the TemplateResolver to get localized names for each period.
+    /// Falls back to the enum string representation if no translation is found.
+    pub fn resolve_periods(&self, periods: Vec<Period>) -> Vec<PeriodInfo> {
+        periods
+            .into_iter()
+            .map(|period| {
+                let period_key = enum_to_string(&period);
+                let name = self
+                    .template_resolver
+                    .as_ref()
+                    .map(|r| r.get_period(&period_key))
+                    .unwrap_or_else(|| period_key.clone());
+                PeriodInfo { key: period, name }
+            })
+            .collect()
     }
 
     /// Generates all liturgical days of the Proper of Time for the liturgical year

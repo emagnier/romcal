@@ -40,8 +40,16 @@
       }
     },
     "periods": {
-      "epiphany": "திருக்காட்சி",
-      "holy_week": "புனித வாரம்"
+      "christmas_octave": "கிறிஸ்துமஸ் எண்நாள் திருவிழா",
+      "days_before_epiphany": "திருக்காட்சிக்கு முன் நாட்கள்",
+      "days_from_epiphany": "திருக்காட்சிக்குப் பின் நாட்கள்",
+      "christmas_to_presentation_of_the_lord": "கிறிஸ்துமஸிலிருந்து ஆண்டவரின் காணிக்கையாக்கல் வரை",
+      "presentation_of_the_lord_to_holy_thursday": "ஆண்டவரின் காணிக்கையாக்கலிலிருந்து புனித வியாழன் வரை",
+      "holy_week": "புனித வாரம்",
+      "paschal_triduum": "பாஸ்கா மூன்று நாட்கள்",
+      "easter_octave": "உயிர்ப்பு எண்நாள் திருவிழா",
+      "early_ordinary_time": "பொதுக்காலம் (தொடக்கம்)",
+      "late_ordinary_time": "பொதுக்காலம் (முடிவு)"
     },
     "ranks": {
       "solemnity": "பெருவிழா",

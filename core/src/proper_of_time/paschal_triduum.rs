@@ -4,7 +4,7 @@ use crate::error::RomcalResult;
 use crate::liturgical_day::LiturgicalDay;
 use crate::proper_of_time::common::sort_liturgical_days_by_date;
 use crate::template_resolver::ProperOfTimeDayType;
-use crate::types::liturgical::{Color, Precedence, Season};
+use crate::types::liturgical::{Color, Period, Precedence, Season};
 
 use super::ProperOfTime;
 
@@ -68,14 +68,20 @@ impl<'a> PaschalTriduum<'a> {
     /// Creates Holy Thursday (Thursday of the Lord's Supper)
     fn create_holy_thursday(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
         let day_type = ProperOfTimeDayType::HolyThursday;
-        let liturgical_day = self.proper_of_time.create_liturgical_day_base(
-            "thursday_of_the_lords_supper",
-            date,
-            Precedence::Triduum_1,
-            Some(Season::PaschalTriduum),
-            Color::White,
-            Some(&day_type),
-        );
+        let periods = self
+            .proper_of_time
+            .resolve_periods(vec![Period::PaschalTriduum, Period::HolyWeek]);
+        let liturgical_day = self
+            .proper_of_time
+            .create_liturgical_day_base(
+                "thursday_of_the_lords_supper",
+                date,
+                Precedence::Triduum_1,
+                Some(Season::PaschalTriduum),
+                Color::White,
+                Some(&day_type),
+            )
+            .with_periods(periods);
 
         Ok(liturgical_day)
     }
@@ -83,14 +89,20 @@ impl<'a> PaschalTriduum<'a> {
     /// Creates Good Friday (Friday of the Passion of the Lord)
     fn create_good_friday(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
         let day_type = ProperOfTimeDayType::GoodFriday;
-        let liturgical_day = self.proper_of_time.create_liturgical_day_base(
-            "friday_of_the_passion_of_the_lord",
-            date,
-            Precedence::Triduum_1,
-            Some(Season::PaschalTriduum),
-            Color::Red,
-            Some(&day_type),
-        );
+        let periods = self
+            .proper_of_time
+            .resolve_periods(vec![Period::PaschalTriduum, Period::HolyWeek]);
+        let liturgical_day = self
+            .proper_of_time
+            .create_liturgical_day_base(
+                "friday_of_the_passion_of_the_lord",
+                date,
+                Precedence::Triduum_1,
+                Some(Season::PaschalTriduum),
+                Color::Red,
+                Some(&day_type),
+            )
+            .with_periods(periods);
 
         Ok(liturgical_day)
     }
@@ -98,14 +110,20 @@ impl<'a> PaschalTriduum<'a> {
     /// Creates Holy Saturday
     fn create_holy_saturday(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
         let day_type = ProperOfTimeDayType::HolySaturday;
-        let liturgical_day = self.proper_of_time.create_liturgical_day_base(
-            "holy_saturday",
-            date,
-            Precedence::Triduum_1,
-            Some(Season::PaschalTriduum),
-            Color::White, // Using White as default, can be overridden if needed
-            Some(&day_type),
-        );
+        let periods = self
+            .proper_of_time
+            .resolve_periods(vec![Period::PaschalTriduum, Period::HolyWeek]);
+        let liturgical_day = self
+            .proper_of_time
+            .create_liturgical_day_base(
+                "holy_saturday",
+                date,
+                Precedence::Triduum_1,
+                Some(Season::PaschalTriduum),
+                Color::White, // Using White as default, can be overridden if needed
+                Some(&day_type),
+            )
+            .with_periods(periods);
 
         Ok(liturgical_day)
     }

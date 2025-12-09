@@ -40,8 +40,16 @@
       }
     },
     "periods": {
-      "epiphany": "Epifanía",
-      "holy_week": "Semana Santa"
+      "christmas_octave": "Octava de Navidad",
+      "days_before_epiphany": "Días antes de Epifanía",
+      "days_from_epiphany": "Días desde Epifanía",
+      "christmas_to_presentation_of_the_lord": "De Navidad a la Presentación del Señor",
+      "presentation_of_the_lord_to_holy_thursday": "De la Presentación del Señor al Jueves Santo",
+      "holy_week": "Semana Santa",
+      "paschal_triduum": "Triduo Pascual",
+      "easter_octave": "Octava de Pascua",
+      "early_ordinary_time": "Tiempo Ordinario (inicio)",
+      "late_ordinary_time": "Tiempo Ordinario (fin)"
     },
     "ranks": {
       "solemnity": "solemnidades",

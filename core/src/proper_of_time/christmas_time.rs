@@ -4,7 +4,7 @@ use crate::error::RomcalResult;
 use crate::liturgical_day::LiturgicalDay;
 use crate::proper_of_time::common::{sort_liturgical_days_by_date, WEEKDAY_NAMES};
 use crate::template_resolver::ProperOfTimeDayType;
-use crate::types::liturgical::{Color, Precedence, Season};
+use crate::types::liturgical::{Color, Period, Precedence, Season};
 
 use super::ProperOfTime;
 
@@ -96,12 +96,17 @@ impl<'a> ChristmasTime<'a> {
         days.push(day);
 
         // 2. Second Sunday after Christmas (if it exists)
+        let epiphany_date = self
+            .proper_of_time
+            .dates
+            .get_epiphany_date(Some(christmas_year));
         let second_sunday_date = self
             .proper_of_time
             .dates
             .second_sunday_after_christmas(Some(christmas_year));
         if let Some(second_sunday_date) = second_sunday_date {
-            let day = self.create_second_sunday_after_christmas(second_sunday_date)?;
+            let day =
+                self.create_second_sunday_after_christmas(second_sunday_date, epiphany_date)?;
             days.push(day);
         }
 
@@ -160,14 +165,21 @@ impl<'a> ChristmasTime<'a> {
     /// Creates the Nativity of the Lord (December 25)
     fn create_nativity_of_the_lord(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
         // Entity-based day, fullname comes from entity resolution
-        let liturgical_day = self.proper_of_time.create_liturgical_day_base(
-            "nativity_of_the_lord",
-            date,
-            Precedence::ProperOfTimeSolemnity_2,
-            Some(Season::ChristmasTime),
-            Color::White,
-            None,
-        );
+        let periods = self.proper_of_time.resolve_periods(vec![
+            Period::ChristmasOctave,
+            Period::ChristmasToPresentationOfTheLord,
+        ]);
+        let liturgical_day = self
+            .proper_of_time
+            .create_liturgical_day_base(
+                "nativity_of_the_lord",
+                date,
+                Precedence::ProperOfTimeSolemnity_2,
+                Some(Season::ChristmasTime),
+                Color::White,
+                None,
+            )
+            .with_periods(periods);
 
         Ok(liturgical_day)
     }
@@ -179,14 +191,21 @@ impl<'a> ChristmasTime<'a> {
         date: DateTime<Utc>,
     ) -> RomcalResult<LiturgicalDay> {
         let day_type = ProperOfTimeDayType::ChristmasOctave { count };
-        let liturgical_day = self.proper_of_time.create_liturgical_day_base(
-            &format!("christmas_octave_day_{}", count),
-            date,
-            Precedence::PrivilegedWeekday_9,
-            Some(Season::ChristmasTime),
-            Color::White,
-            Some(&day_type),
-        );
+        let periods = self.proper_of_time.resolve_periods(vec![
+            Period::ChristmasOctave,
+            Period::ChristmasToPresentationOfTheLord,
+        ]);
+        let liturgical_day = self
+            .proper_of_time
+            .create_liturgical_day_base(
+                &format!("christmas_octave_day_{}", count),
+                date,
+                Precedence::PrivilegedWeekday_9,
+                Some(Season::ChristmasTime),
+                Color::White,
+                Some(&day_type),
+            )
+            .with_periods(periods);
 
         Ok(liturgical_day)
     }
@@ -194,14 +213,21 @@ impl<'a> ChristmasTime<'a> {
     /// Creates the Holy Family
     fn create_holy_family(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
         // Entity-based day, fullname comes from entity resolution
-        let liturgical_day = self.proper_of_time.create_liturgical_day_base(
-            "holy_family_of_jesus_mary_and_joseph",
-            date,
-            Precedence::GeneralLordFeast_5,
-            Some(Season::ChristmasTime),
-            Color::White,
-            None,
-        );
+        let periods = self.proper_of_time.resolve_periods(vec![
+            Period::ChristmasOctave,
+            Period::ChristmasToPresentationOfTheLord,
+        ]);
+        let liturgical_day = self
+            .proper_of_time
+            .create_liturgical_day_base(
+                "holy_family_of_jesus_mary_and_joseph",
+                date,
+                Precedence::GeneralLordFeast_5,
+                Some(Season::ChristmasTime),
+                Color::White,
+                None,
+            )
+            .with_periods(periods);
 
         Ok(liturgical_day)
     }
@@ -213,14 +239,21 @@ impl<'a> ChristmasTime<'a> {
     /// Creates Mary, Mother of God (January 1)
     fn create_mary_mother_of_god(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
         // Entity-based day, fullname comes from entity resolution
-        let liturgical_day = self.proper_of_time.create_liturgical_day_base(
-            "mary_mother_of_god",
-            date,
-            Precedence::GeneralSolemnity_3,
-            Some(Season::ChristmasTime),
-            Color::White,
-            None,
-        );
+        let periods = self.proper_of_time.resolve_periods(vec![
+            Period::ChristmasOctave,
+            Period::ChristmasToPresentationOfTheLord,
+        ]);
+        let liturgical_day = self
+            .proper_of_time
+            .create_liturgical_day_base(
+                "mary_mother_of_god",
+                date,
+                Precedence::GeneralSolemnity_3,
+                Some(Season::ChristmasTime),
+                Color::White,
+                None,
+            )
+            .with_periods(periods);
 
         Ok(liturgical_day)
     }
@@ -229,16 +262,30 @@ impl<'a> ChristmasTime<'a> {
     fn create_second_sunday_after_christmas(
         &self,
         date: DateTime<Utc>,
+        epiphany_date: DateTime<Utc>,
     ) -> RomcalResult<LiturgicalDay> {
         let day_type = ProperOfTimeDayType::SecondSundayAfterChristmas;
-        let liturgical_day = self.proper_of_time.create_liturgical_day_base(
-            "second_sunday_after_christmas",
-            date,
-            Precedence::UnprivilegedSunday_6,
-            Some(Season::ChristmasTime),
-            Color::White,
-            Some(&day_type),
-        );
+        // Determine if before or after Epiphany
+        let epiphany_period = if date < epiphany_date {
+            Period::DaysBeforeEpiphany
+        } else {
+            Period::DaysFromEpiphany
+        };
+        let periods = self.proper_of_time.resolve_periods(vec![
+            epiphany_period,
+            Period::ChristmasToPresentationOfTheLord,
+        ]);
+        let liturgical_day = self
+            .proper_of_time
+            .create_liturgical_day_base(
+                "second_sunday_after_christmas",
+                date,
+                Precedence::UnprivilegedSunday_6,
+                Some(Season::ChristmasTime),
+                Color::White,
+                Some(&day_type),
+            )
+            .with_periods(periods);
 
         Ok(liturgical_day)
     }
@@ -250,14 +297,21 @@ impl<'a> ChristmasTime<'a> {
         date: DateTime<Utc>,
     ) -> RomcalResult<LiturgicalDay> {
         let day_type = ProperOfTimeDayType::BeforeEpiphany { day };
-        let liturgical_day = self.proper_of_time.create_liturgical_day_base(
-            &format!("christmas_time_january_{}", day),
-            date,
-            Precedence::Weekday_13,
-            Some(Season::ChristmasTime),
-            Color::White,
-            Some(&day_type),
-        );
+        let periods = self.proper_of_time.resolve_periods(vec![
+            Period::DaysBeforeEpiphany,
+            Period::ChristmasToPresentationOfTheLord,
+        ]);
+        let liturgical_day = self
+            .proper_of_time
+            .create_liturgical_day_base(
+                &format!("christmas_time_january_{}", day),
+                date,
+                Precedence::Weekday_13,
+                Some(Season::ChristmasTime),
+                Color::White,
+                Some(&day_type),
+            )
+            .with_periods(periods);
 
         Ok(liturgical_day)
     }
@@ -265,14 +319,21 @@ impl<'a> ChristmasTime<'a> {
     /// Creates the Epiphany of the Lord
     fn create_epiphany_of_the_lord(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
         // Entity-based day, fullname comes from entity resolution
-        let liturgical_day = self.proper_of_time.create_liturgical_day_base(
-            "epiphany_of_the_lord",
-            date,
-            Precedence::ProperOfTimeSolemnity_2,
-            Some(Season::ChristmasTime),
-            Color::White,
-            None,
-        );
+        let periods = self.proper_of_time.resolve_periods(vec![
+            Period::DaysFromEpiphany,
+            Period::ChristmasToPresentationOfTheLord,
+        ]);
+        let liturgical_day = self
+            .proper_of_time
+            .create_liturgical_day_base(
+                "epiphany_of_the_lord",
+                date,
+                Precedence::ProperOfTimeSolemnity_2,
+                Some(Season::ChristmasTime),
+                Color::White,
+                None,
+            )
+            .with_periods(periods);
 
         Ok(liturgical_day)
     }
@@ -284,14 +345,21 @@ impl<'a> ChristmasTime<'a> {
         date: DateTime<Utc>,
     ) -> RomcalResult<LiturgicalDay> {
         let day_type = ProperOfTimeDayType::AfterEpiphany { dow };
-        let liturgical_day = self.proper_of_time.create_liturgical_day_base(
-            &format!("{}_after_epiphany", WEEKDAY_NAMES[dow as usize]),
-            date,
-            Precedence::Weekday_13,
-            Some(Season::ChristmasTime),
-            Color::White,
-            Some(&day_type),
-        );
+        let periods = self.proper_of_time.resolve_periods(vec![
+            Period::DaysFromEpiphany,
+            Period::ChristmasToPresentationOfTheLord,
+        ]);
+        let liturgical_day = self
+            .proper_of_time
+            .create_liturgical_day_base(
+                &format!("{}_after_epiphany", WEEKDAY_NAMES[dow as usize]),
+                date,
+                Precedence::Weekday_13,
+                Some(Season::ChristmasTime),
+                Color::White,
+                Some(&day_type),
+            )
+            .with_periods(periods);
 
         Ok(liturgical_day)
     }
@@ -299,14 +367,21 @@ impl<'a> ChristmasTime<'a> {
     /// Creates the Baptism of the Lord
     fn create_baptism_of_the_lord(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
         // Entity-based day, fullname comes from entity resolution
-        let liturgical_day = self.proper_of_time.create_liturgical_day_base(
-            "baptism_of_the_lord",
-            date,
-            Precedence::ProperOfTimeSolemnity_2,
-            Some(Season::ChristmasTime),
-            Color::White,
-            None,
-        );
+        let periods = self.proper_of_time.resolve_periods(vec![
+            Period::DaysFromEpiphany,
+            Period::ChristmasToPresentationOfTheLord,
+        ]);
+        let liturgical_day = self
+            .proper_of_time
+            .create_liturgical_day_base(
+                "baptism_of_the_lord",
+                date,
+                Precedence::ProperOfTimeSolemnity_2,
+                Some(Season::ChristmasTime),
+                Color::White,
+                None,
+            )
+            .with_periods(periods);
 
         Ok(liturgical_day)
     }

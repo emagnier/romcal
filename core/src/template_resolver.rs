@@ -301,14 +301,14 @@ impl TemplateResolver {
     }
 
     fn get_color_from_struct(&self, colors: &LocaleColors, color: &str) -> Option<String> {
-        match color.to_lowercase().as_str() {
-            "black" => colors.black.clone(),
-            "gold" => colors.gold.clone(),
-            "green" => colors.green.clone(),
-            "purple" => colors.purple.clone(),
-            "red" => colors.red.clone(),
-            "rose" => colors.rose.clone(),
-            "white" => colors.white.clone(),
+        match color {
+            "BLACK" => colors.black.clone(),
+            "GOLD" => colors.gold.clone(),
+            "GREEN" => colors.green.clone(),
+            "PURPLE" => colors.purple.clone(),
+            "RED" => colors.red.clone(),
+            "ROSE" => colors.rose.clone(),
+            "WHITE" => colors.white.clone(),
             _ => None,
         }
     }
@@ -327,13 +327,13 @@ impl TemplateResolver {
     }
 
     fn get_rank_from_struct(&self, ranks: &RanksMetadata, rank: &str) -> Option<String> {
-        match rank.to_lowercase().replace('_', " ").as_str() {
-            "solemnity" => ranks.solemnity.clone(),
-            "sunday" => ranks.sunday.clone(),
-            "feast" => ranks.feast.clone(),
-            "memorial" => ranks.memorial.clone(),
-            "optional memorial" => ranks.optional_memorial.clone(),
-            "weekday" => ranks.weekday.clone(),
+        match rank {
+            "SOLEMNITY" => ranks.solemnity.clone(),
+            "SUNDAY" => ranks.sunday.clone(),
+            "FEAST" => ranks.feast.clone(),
+            "MEMORIAL" => ranks.memorial.clone(),
+            "OPTIONAL_MEMORIAL" => ranks.optional_memorial.clone(),
+            "WEEKDAY" => ranks.weekday.clone(),
             _ => None,
         }
     }
@@ -352,9 +352,21 @@ impl TemplateResolver {
     }
 
     fn get_period_from_struct(&self, periods: &PeriodsMetadata, period: &str) -> Option<String> {
-        match period.to_lowercase().replace('_', " ").as_str() {
-            "epiphany" => periods.epiphany.clone(),
-            "holy week" => periods.holy_week.clone(),
+        match period {
+            "CHRISTMAS_OCTAVE" => periods.christmas_octave.clone(),
+            "DAYS_BEFORE_EPIPHANY" => periods.days_before_epiphany.clone(),
+            "DAYS_FROM_EPIPHANY" => periods.days_from_epiphany.clone(),
+            "CHRISTMAS_TO_PRESENTATION_OF_THE_LORD" => {
+                periods.christmas_to_presentation_of_the_lord.clone()
+            }
+            "PRESENTATION_OF_THE_LORD_TO_HOLY_THURSDAY" => {
+                periods.presentation_of_the_lord_to_holy_thursday.clone()
+            }
+            "HOLY_WEEK" => periods.holy_week.clone(),
+            "PASCHAL_TRIDUUM" => periods.paschal_triduum.clone(),
+            "EASTER_OCTAVE" => periods.easter_octave.clone(),
+            "EARLY_ORDINARY_TIME" => periods.early_ordinary_time.clone(),
+            "LATE_ORDINARY_TIME" => periods.late_ordinary_time.clone(),
             _ => None,
         }
     }
@@ -373,18 +385,18 @@ impl TemplateResolver {
     }
 
     fn get_cycle_from_struct(&self, cycles: &CyclesMetadata, cycle: &str) -> Option<String> {
-        match cycle.to_lowercase().replace('_', " ").as_str() {
-            "proper of time" => cycles.proper_of_time.clone(),
-            "proper of saints" => cycles.proper_of_saints.clone(),
-            "sunday year a" | "year a" => cycles.sunday_year_a.clone(),
-            "sunday year b" | "year b" => cycles.sunday_year_b.clone(),
-            "sunday year c" | "year c" => cycles.sunday_year_c.clone(),
-            "weekday year 1" | "year 1" | "cycle i" => cycles.weekday_year_1.clone(),
-            "weekday year 2" | "year 2" | "cycle ii" => cycles.weekday_year_2.clone(),
-            "psalter week 1" | "week i" => cycles.psalter_week_1.clone(),
-            "psalter week 2" | "week ii" => cycles.psalter_week_2.clone(),
-            "psalter week 3" | "week iii" => cycles.psalter_week_3.clone(),
-            "psalter week 4" | "week iv" => cycles.psalter_week_4.clone(),
+        match cycle {
+            "PROPER_OF_TIME" => cycles.proper_of_time.clone(),
+            "PROPER_OF_SAINTS" => cycles.proper_of_saints.clone(),
+            "YEAR_A" => cycles.sunday_year_a.clone(),
+            "YEAR_B" => cycles.sunday_year_b.clone(),
+            "YEAR_C" => cycles.sunday_year_c.clone(),
+            "YEAR_1" => cycles.weekday_year_1.clone(),
+            "YEAR_2" => cycles.weekday_year_2.clone(),
+            "WEEK_1" => cycles.psalter_week_1.clone(),
+            "WEEK_2" => cycles.psalter_week_2.clone(),
+            "WEEK_3" => cycles.psalter_week_3.clone(),
+            "WEEK_4" => cycles.psalter_week_4.clone(),
             _ => None,
         }
     }
@@ -407,24 +419,22 @@ impl TemplateResolver {
         seasons: &SeasonsMetadata,
         season: &str,
     ) -> Option<String> {
-        match season.to_lowercase().replace('_', " ").as_str() {
-            "advent" => seasons.advent.as_ref().and_then(|s| s.season.clone()),
-            "christmas time" | "christmastime" => seasons
+        match season {
+            "ADVENT" => seasons.advent.as_ref().and_then(|s| s.season.clone()),
+            "CHRISTMAS_TIME" => seasons
                 .christmas_time
                 .as_ref()
                 .and_then(|s| s.season.clone()),
-            "ordinary time" | "ordinarytime" => seasons
+            "ORDINARY_TIME" => seasons
                 .ordinary_time
                 .as_ref()
                 .and_then(|s| s.season.clone()),
-            "lent" => seasons.lent.as_ref().and_then(|s| s.season.clone()),
-            "paschal triduum" | "paschaltriduum" => seasons
+            "LENT" => seasons.lent.as_ref().and_then(|s| s.season.clone()),
+            "PASCHAL_TRIDUUM" => seasons
                 .paschal_triduum
                 .as_ref()
                 .and_then(|s| s.season.clone()),
-            "easter time" | "eastertime" => {
-                seasons.easter_time.as_ref().and_then(|s| s.season.clone())
-            }
+            "EASTER_TIME" => seasons.easter_time.as_ref().and_then(|s| s.season.clone()),
             _ => None,
         }
     }
@@ -552,7 +562,7 @@ impl TemplateResolver {
             .as_ref()
             .and_then(|s| s.advent.as_ref())
             .and_then(|a| self.get_advent_field(a, key))
-            .unwrap_or_else(|| self.default_advent_template(key))
+            .unwrap_or_default()
     }
 
     fn get_advent_field(&self, advent: &AdventSeason, key: &str) -> Option<String> {
@@ -562,16 +572,6 @@ impl TemplateResolver {
             "sunday" => advent.sunday.clone(),
             "privileged_weekday" => advent.privileged_weekday.clone(),
             _ => None,
-        }
-    }
-
-    fn default_advent_template(&self, key: &str) -> String {
-        match key {
-            "season" => "Advent".to_string(),
-            "weekday" => "{weekday} of the {ordinal} week of Advent".to_string(),
-            "sunday" => "{ordinal} Sunday of Advent".to_string(),
-            "privileged_weekday" => "{month} {day}".to_string(),
-            _ => String::new(),
         }
     }
 
@@ -622,7 +622,7 @@ impl TemplateResolver {
             .as_ref()
             .and_then(|s| s.christmas_time.as_ref())
             .and_then(|c| self.get_christmas_field(c, key))
-            .unwrap_or_else(|| self.default_christmas_template(key))
+            .unwrap_or_default()
     }
 
     fn get_christmas_field(&self, christmas: &ChristmasTimeSeason, key: &str) -> Option<String> {
@@ -634,20 +634,6 @@ impl TemplateResolver {
             "second_sunday_after_christmas" => christmas.second_sunday_after_christmas.clone(),
             "after_epiphany" => christmas.after_epiphany.clone(),
             _ => None,
-        }
-    }
-
-    fn default_christmas_template(&self, key: &str) -> String {
-        match key {
-            "season" => "Christmas Time".to_string(),
-            "day" => "{weekday} of Christmas Time".to_string(),
-            "octave" => "{ordinal} Day within the Octave of the Nativity of the Lord".to_string(),
-            "before_epiphany" => "{month} {day}".to_string(),
-            "second_sunday_after_christmas" => {
-                "Second Sunday after the Nativity of the Lord".to_string()
-            }
-            "after_epiphany" => "{weekday} after the Epiphany of the Lord".to_string(),
-            _ => String::new(),
         }
     }
 
@@ -694,7 +680,7 @@ impl TemplateResolver {
             .as_ref()
             .and_then(|s| s.ordinary_time.as_ref())
             .and_then(|o| self.get_ordinary_time_field(o, key))
-            .unwrap_or_else(|| self.default_ordinary_time_template(key))
+            .unwrap_or_default()
     }
 
     fn get_ordinary_time_field(&self, ordinary: &OrdinaryTimeSeason, key: &str) -> Option<String> {
@@ -703,15 +689,6 @@ impl TemplateResolver {
             "weekday" => ordinary.weekday.clone(),
             "sunday" => ordinary.sunday.clone(),
             _ => None,
-        }
-    }
-
-    fn default_ordinary_time_template(&self, key: &str) -> String {
-        match key {
-            "season" => "Ordinary Time".to_string(),
-            "weekday" => "{weekday} of the {ordinal} week of Ordinary Time".to_string(),
-            "sunday" => "{ordinal} Sunday in Ordinary Time".to_string(),
-            _ => String::new(),
         }
     }
 
@@ -776,7 +753,7 @@ impl TemplateResolver {
             .as_ref()
             .and_then(|s| s.lent.as_ref())
             .and_then(|l| self.get_lent_field(l, key))
-            .unwrap_or_else(|| self.default_lent_template(key))
+            .unwrap_or_default()
     }
 
     fn get_lent_field(&self, lent: &LentSeason, key: &str) -> Option<String> {
@@ -787,17 +764,6 @@ impl TemplateResolver {
             "day_after_ash_wed" => lent.day_after_ash_wed.clone(),
             "holy_week_day" => lent.holy_week_day.clone(),
             _ => None,
-        }
-    }
-
-    fn default_lent_template(&self, key: &str) -> String {
-        match key {
-            "season" => "Lent".to_string(),
-            "weekday" => "{weekday} of the {ordinal} week of Lent".to_string(),
-            "sunday" => "{ordinal} Sunday of Lent".to_string(),
-            "day_after_ash_wed" => "{weekday} after Ash Wednesday".to_string(),
-            "holy_week_day" => "{weekday} of Holy Week".to_string(),
-            _ => String::new(),
         }
     }
 
@@ -872,7 +838,7 @@ impl TemplateResolver {
             .as_ref()
             .and_then(|s| s.easter_time.as_ref())
             .and_then(|e| self.get_easter_time_field(e, key))
-            .unwrap_or_else(|| self.default_easter_time_template(key))
+            .unwrap_or_default()
     }
 
     fn get_easter_time_field(&self, easter: &EasterTimeSeason, key: &str) -> Option<String> {
@@ -882,16 +848,6 @@ impl TemplateResolver {
             "sunday" => easter.sunday.clone(),
             "octave" => easter.octave.clone(),
             _ => None,
-        }
-    }
-
-    fn default_easter_time_template(&self, key: &str) -> String {
-        match key {
-            "season" => "Easter Time".to_string(),
-            "weekday" => "{weekday} of the {ordinal} week of Easter".to_string(),
-            "sunday" => "{ordinal} Sunday of Easter".to_string(),
-            "octave" => "{weekday} within the Octave of Easter".to_string(),
-            _ => String::new(),
         }
     }
 }

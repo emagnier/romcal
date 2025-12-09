@@ -40,8 +40,16 @@
       }
     },
     "periods": {
-      "epiphany": "Epiphany",
-      "holy_week": "Holy Week"
+      "christmas_octave": "Christmas Octave",
+      "days_before_epiphany": "Days before Epiphany",
+      "days_from_epiphany": "Days from Epiphany",
+      "christmas_to_presentation_of_the_lord": "Christmas to Presentation of the Lord",
+      "presentation_of_the_lord_to_holy_thursday": "Presentation of the Lord to Holy Thursday",
+      "holy_week": "Holy Week",
+      "paschal_triduum": "Paschal Triduum",
+      "easter_octave": "Easter Octave",
+      "early_ordinary_time": "Early Ordinary Time",
+      "late_ordinary_time": "Late Ordinary Time"
     },
     "ranks": {
       "solemnity": "solemnity",

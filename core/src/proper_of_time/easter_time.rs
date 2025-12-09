@@ -2,10 +2,10 @@ use chrono::{DateTime, Utc};
 
 use crate::error::RomcalResult;
 use crate::liturgical_day::LiturgicalDay;
-use crate::proper_of_time::common::{enum_to_string, sort_liturgical_days_by_date, WEEKDAY_NAMES};
+use crate::proper_of_time::common::{sort_liturgical_days_by_date, WEEKDAY_NAMES};
 use crate::template_resolver::ProperOfTimeDayType;
 use crate::types::liturgical::{Color, Precedence, Season};
-use crate::types::{DateDef, DateFn, Period, PeriodInfo};
+use crate::types::{DateDef, DateFn, Period};
 
 use super::ProperOfTime;
 
@@ -110,6 +110,9 @@ impl<'a> EasterTime<'a> {
     /// Creates Easter Sunday of the Resurrection of the Lord
     fn create_easter_sunday(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
         let day_type = ProperOfTimeDayType::EasterSunday;
+        let periods = self
+            .proper_of_time
+            .resolve_periods(vec![Period::PaschalTriduum, Period::EasterOctave]);
         let liturgical_day = self
             .proper_of_time
             .create_liturgical_day_base(
@@ -120,6 +123,7 @@ impl<'a> EasterTime<'a> {
                 Color::White,
                 Some(&day_type),
             )
+            .with_periods(periods)
             .with_is_holy_day_of_obligation(true);
 
         Ok(liturgical_day)
@@ -132,14 +136,20 @@ impl<'a> EasterTime<'a> {
         date: DateTime<Utc>,
     ) -> RomcalResult<LiturgicalDay> {
         let day_type = ProperOfTimeDayType::EasterOctave { dow };
-        let liturgical_day = self.proper_of_time.create_liturgical_day_base(
-            &format!("easter_{}", WEEKDAY_NAMES[dow as usize]),
-            date,
-            Precedence::WeekdayOfEasterOctave_2,
-            Some(Season::EasterTime),
-            Color::White,
-            Some(&day_type),
-        );
+        let periods = self
+            .proper_of_time
+            .resolve_periods(vec![Period::EasterOctave]);
+        let liturgical_day = self
+            .proper_of_time
+            .create_liturgical_day_base(
+                &format!("easter_{}", WEEKDAY_NAMES[dow as usize]),
+                date,
+                Precedence::WeekdayOfEasterOctave_2,
+                Some(Season::EasterTime),
+                Color::White,
+                Some(&day_type),
+            )
+            .with_periods(periods);
 
         Ok(liturgical_day)
     }
@@ -147,6 +157,9 @@ impl<'a> EasterTime<'a> {
     /// Creates Divine Mercy Sunday (Second Sunday of Easter)
     fn create_divine_mercy_sunday(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
         // Entity-based day, fullname comes from entity resolution
+        let periods = self
+            .proper_of_time
+            .resolve_periods(vec![Period::EasterOctave]);
         let mut liturgical_day = self
             .proper_of_time
             .create_liturgical_day_base(
@@ -157,11 +170,8 @@ impl<'a> EasterTime<'a> {
                 Color::White,
                 None,
             )
-            .with_is_holy_day_of_obligation(true)
-            .with_periods(vec![PeriodInfo {
-                key: Period::EasterOctave,
-                name: enum_to_string(&Period::EasterOctave),
-            }]);
+            .with_periods(periods)
+            .with_is_holy_day_of_obligation(true);
 
         // Override date definition with specific function
         liturgical_day.date_def = DateDef::DateFunction {

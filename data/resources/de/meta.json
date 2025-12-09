@@ -40,8 +40,16 @@
       }
     },
     "periods": {
-      "epiphany": "Epiphanie",
-      "holy_week": "Karwoche"
+      "christmas_octave": "Weihnachtsoktav",
+      "days_before_epiphany": "Tage vor Epiphanie",
+      "days_from_epiphany": "Tage nach Epiphanie",
+      "christmas_to_presentation_of_the_lord": "Von Weihnachten bis Darstellung des Herrn",
+      "presentation_of_the_lord_to_holy_thursday": "Von Darstellung des Herrn bis Gründonnerstag",
+      "holy_week": "Karwoche",
+      "paschal_triduum": "Österliches Triduum",
+      "easter_octave": "Osteroktav",
+      "early_ordinary_time": "Jahreskreis (erste Hälfte)",
+      "late_ordinary_time": "Jahreskreis (zweite Hälfte)"
     },
     "ranks": {
       "solemnity": "Hochfest",

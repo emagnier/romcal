@@ -159,10 +159,26 @@ pub struct EasterTimeSeason {
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 pub struct PeriodsMetadata {
-    /// Epiphany period name
-    pub epiphany: Option<String>,
+    /// Christmas Octave period name
+    pub christmas_octave: Option<String>,
+    /// Days before Epiphany period name
+    pub days_before_epiphany: Option<String>,
+    /// Days from Epiphany period name
+    pub days_from_epiphany: Option<String>,
+    /// Christmas to Presentation of the Lord period name
+    pub christmas_to_presentation_of_the_lord: Option<String>,
+    /// Presentation of the Lord to Holy Thursday period name
+    pub presentation_of_the_lord_to_holy_thursday: Option<String>,
     /// Holy Week period name
     pub holy_week: Option<String>,
+    /// Paschal Triduum period name
+    pub paschal_triduum: Option<String>,
+    /// Easter Octave period name
+    pub easter_octave: Option<String>,
+    /// Early Ordinary Time period name
+    pub early_ordinary_time: Option<String>,
+    /// Late Ordinary Time period name
+    pub late_ordinary_time: Option<String>,
 }
 
 /// Liturgical rank names in the locale language.

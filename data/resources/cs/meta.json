@@ -40,8 +40,16 @@
       }
     },
     "periods": {
-      "epiphany": "Zjevení Páně",
-      "holy_week": "Svatý týden"
+      "christmas_octave": "Oktáv Narození Páně",
+      "days_before_epiphany": "Dny před Zjevením Páně",
+      "days_from_epiphany": "Dny po Zjevení Páně",
+      "christmas_to_presentation_of_the_lord": "Od Narození Páně do Uvedení Páně do chrámu",
+      "presentation_of_the_lord_to_holy_thursday": "Od Uvedení Páně do chrámu do Zeleného čtvrtka",
+      "holy_week": "Svatý týden",
+      "paschal_triduum": "Velikonoční triduum",
+      "easter_octave": "Velikonoční oktáv",
+      "early_ordinary_time": "Mezidobí (začátek)",
+      "late_ordinary_time": "Mezidobí (konec)"
     },
     "ranks": {
       "solemnity": "slavnost",

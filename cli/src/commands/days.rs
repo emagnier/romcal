@@ -220,12 +220,11 @@ fn format_yaml_output(yaml: &str) -> String {
         // Check if this is a date key (no leading space, ends with :)
         let is_date_key = !line.starts_with(' ') && line.ends_with(':');
 
-        // Add newline before date keys
-        if is_date_key && !is_first_line {
-            result.push(String::new());
-        }
-        // Add newline before array entries (starts with "  - "), but not the first one after a date
-        else if line.starts_with("  - ") && !is_first_line && !just_saw_date_key {
+        // Check if this is an array entry (but not the first one after a date key)
+        let is_array_entry = line.starts_with("  - ") && !just_saw_date_key;
+
+        // Add newline before date keys or array entries (except first line)
+        if !is_first_line && (is_date_key || is_array_entry) {
             result.push(String::new());
         }
 

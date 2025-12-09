@@ -1561,8 +1561,36 @@
       "description": "Liturgical period names in the locale language.",
       "type": "object",
       "properties": {
-        "epiphany": {
-          "description": "Epiphany period name",
+        "christmas_octave": {
+          "description": "Christmas Octave period name",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "days_before_epiphany": {
+          "description": "Days before Epiphany period name",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "days_from_epiphany": {
+          "description": "Days from Epiphany period name",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "christmas_to_presentation_of_the_lord": {
+          "description": "Christmas to Presentation of the Lord period name",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "presentation_of_the_lord_to_holy_thursday": {
+          "description": "Presentation of the Lord to Holy Thursday period name",
           "type": [
             "string",
             "null"
@@ -1570,6 +1598,34 @@
         },
         "holy_week": {
           "description": "Holy Week period name",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "paschal_triduum": {
+          "description": "Paschal Triduum period name",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "easter_octave": {
+          "description": "Easter Octave period name",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "early_ordinary_time": {
+          "description": "Early Ordinary Time period name",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "late_ordinary_time": {
+          "description": "Late Ordinary Time period name",
           "type": [
             "string",
             "null"
@@ -4033,8 +4089,36 @@
           "description": "Liturgical period names in the locale language.",
           "type": "object",
           "properties": {
-            "epiphany": {
-              "description": "Epiphany period name",
+            "christmas_octave": {
+              "description": "Christmas Octave period name",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "days_before_epiphany": {
+              "description": "Days before Epiphany period name",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "days_from_epiphany": {
+              "description": "Days from Epiphany period name",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "christmas_to_presentation_of_the_lord": {
+              "description": "Christmas to Presentation of the Lord period name",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "presentation_of_the_lord_to_holy_thursday": {
+              "description": "Presentation of the Lord to Holy Thursday period name",
               "type": [
                 "string",
                 "null"
@@ -4042,6 +4126,34 @@
             },
             "holy_week": {
               "description": "Holy Week period name",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "paschal_triduum": {
+              "description": "Paschal Triduum period name",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "easter_octave": {
+              "description": "Easter Octave period name",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "early_ordinary_time": {
+              "description": "Early Ordinary Time period name",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "late_ordinary_time": {
+              "description": "Late Ordinary Time period name",
               "type": [
                 "string",
                 "null"

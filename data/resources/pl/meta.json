@@ -40,8 +40,16 @@
       }
     },
     "periods": {
-      "epiphany": "Objawienie Pańskie",
-      "holy_week": "Wielki Tydzień"
+      "christmas_octave": "Oktawa Bożego Narodzenia",
+      "days_before_epiphany": "Dni przed Objawieniem Pańskim",
+      "days_from_epiphany": "Dni po Objawieniu Pańskim",
+      "christmas_to_presentation_of_the_lord": "Od Bożego Narodzenia do Ofiarowania Pańskiego",
+      "presentation_of_the_lord_to_holy_thursday": "Od Ofiarowania Pańskiego do Wielkiego Czwartku",
+      "holy_week": "Wielki Tydzień",
+      "paschal_triduum": "Triduum Paschalne",
+      "easter_octave": "Oktawa Wielkanocna",
+      "early_ordinary_time": "Okres Zwykły (początek)",
+      "late_ordinary_time": "Okres Zwykły (koniec)"
     },
     "ranks": {
       "solemnity": "uroczystość",
