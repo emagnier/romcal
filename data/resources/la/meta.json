@@ -5,38 +5,38 @@
     "seasons": {
       "advent": {
         "season": "Adventus",
-        "weekday": "$t(weekdays:{{dow}}, capitalize), hebdomada $t(ordinals:{{week}}, { \"context\": \"feminine\" }) Adventus",
-        "sunday": "Dominica $t(ordinals:{{week}}, { \"context\": \"feminine\" }) Adventus",
-        "privileged_weekday": "Dia {{day}} $t(months:11)"
+        "weekday": "{weekday}, hebdomada {ordinal_feminine} Adventus",
+        "sunday": "Dominica {ordinal_feminine} Adventus",
+        "privileged_weekday": "Dia {day} {month}"
       },
       "christmas_time": {
         "season": "Nativitatis",
-        "day": "$t(weekdays:{{dow}}, capitalize) temporis Nativitatis",
-        "octave": "De die {{count}} infra octavam Nativitatis",
+        "day": "{weekday} temporis Nativitatis",
+        "octave": "De die {count} infra octavam Nativitatis",
         "second_sunday_after_christmas": "Dominica secunda post Nativitatem",
-        "before_epiphany": "Die {{day}} $t(months:0)",
-        "after_epiphany": "$t(weekdays:{{dow}}, capitalize) post Epiphaniam"
+        "before_epiphany": "Die {day} {month}",
+        "after_epiphany": "{weekday} post Epiphaniam"
       },
       "ordinary_time": {
         "season": "Per annum",
-        "weekday": "$t(weekdays:{{dow}}, capitalize), hebdomada $t(ordinals:{{week}}, { \"context\": \"feminine\" }) per annum",
-        "sunday": "Dominica $t(ordinals:{{week}}, { \"context\": \"feminine\" }) per annum"
+        "weekday": "{weekday}, hebdomada {ordinal_feminine} per annum",
+        "sunday": "Dominica {ordinal_feminine} per annum"
       },
       "lent": {
         "season": "Quadragesimæ",
-        "weekday": "$t(weekdays:{{dow}}, capitalize), hebdomada $t(ordinals:{{week}}, { \"context\": \"feminine\" }) Quadragesimæ",
-        "sunday": "Dominica $t(ordinals:{{week}}, { \"context\": \"feminine\" }) Quadragesimæ",
-        "day_after_ash_wed": "$t(weekdays:{{dow}}, capitalize) post Cineres",
-        "holy_week_day": "$t(weekdays:{{dow}}, capitalize) Hebdomadæ Sanctæ"
+        "weekday": "{weekday}, hebdomada {ordinal_feminine} Quadragesimæ",
+        "sunday": "Dominica {ordinal_feminine} Quadragesimæ",
+        "day_after_ash_wed": "{weekday} post Cineres",
+        "holy_week_day": "{weekday} Hebdomadæ Sanctæ"
       },
       "paschal_triduum": {
         "season": "Triduum paschale"
       },
       "easter_time": {
         "season": "Paschæ",
-        "weekday": "$t(weekdays:{{dow}}, capitalize), hebdomada $t(ordinals:{{week}}, { \"context\": \"feminine\" }) temporis paschalis",
-        "sunday": "Dominica $t(ordinals:{{week}}, { \"context\": \"feminine\" }) Paschæ",
-        "octave": "De die $t(weekdays:{{dow}}, capitalize) infra octavam Paschæ"
+        "weekday": "{weekday}, hebdomada {ordinal_feminine} temporis paschalis",
+        "sunday": "Dominica {ordinal_feminine} Paschæ",
+        "octave": "De die {weekday} infra octavam Paschæ"
       }
     },
     "periods": {
@@ -51,7 +51,19 @@
       "optional_memorial": "memoria ad libitum",
       "weekday": "feria"
     },
-    "cycles": {},
+    "cycles": {
+      "proper_of_time": "Proprium de Tempore",
+      "proper_of_saints": "Proprium de Sanctis",
+      "sunday_year_a": "Annus A",
+      "sunday_year_b": "Annus B",
+      "sunday_year_c": "Annus C",
+      "weekday_year_1": "Cyclus I",
+      "weekday_year_2": "Cyclus II",
+      "psalter_week_1": "Hebdomada I Psalterii",
+      "psalter_week_2": "Hebdomada II Psalterii",
+      "psalter_week_3": "Hebdomada III Psalterii",
+      "psalter_week_4": "Hebdomada IV Psalterii"
+    },
     "weekdays": {
       "0": "dominica",
       "1": "feria secunda",
@@ -84,7 +96,8 @@
       "rose": "rosaceus",
       "white": "albus"
     },
-    "ordinals": {
+    "ordinal_format": "letters",
+    "ordinals_letters": {
       "1_masculine": "primus",
       "1_feminine": "prima",
       "2_masculine": "secundus",
@@ -151,8 +164,44 @@
       "32_feminine": "trigesima secunda",
       "33_masculine": "trigesimus tertius",
       "33_feminine": "trigesima tertia",
-      "34_masculine": "trigesimus quartrus",
-      "34_feminine": "trigesima quartra"
+      "34_masculine": "trigesimus quartus",
+      "34_feminine": "trigesima quarta"
+    },
+    "ordinals_numeric": {
+      "1": "I",
+      "2": "II",
+      "3": "III",
+      "4": "IV",
+      "5": "V",
+      "6": "VI",
+      "7": "VII",
+      "8": "VIII",
+      "9": "IX",
+      "10": "X",
+      "11": "XI",
+      "12": "XII",
+      "13": "XIII",
+      "14": "XIV",
+      "15": "XV",
+      "16": "XVI",
+      "17": "XVII",
+      "18": "XVIII",
+      "19": "XIX",
+      "20": "XX",
+      "21": "XXI",
+      "22": "XXII",
+      "23": "XXIII",
+      "24": "XXIV",
+      "25": "XXV",
+      "26": "XXVI",
+      "27": "XXVII",
+      "28": "XXVIII",
+      "29": "XXIX",
+      "30": "XXX",
+      "31": "XXXI",
+      "32": "XXXII",
+      "33": "XXXIII",
+      "34": "XXXIV"
     }
   }
 }

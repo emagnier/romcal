@@ -979,13 +979,13 @@ impl Calendar {
     /// - Holy Thursday (two liturgical days on the same date)
     /// - Optional memorials
     /// - allowSimilarRankItems flag
-    fn apply_precedence_rules(&self, days: &mut Vec<LiturgicalDay>) -> Vec<LiturgicalDay> {
+    fn apply_precedence_rules(&self, days: &mut [LiturgicalDay]) -> Vec<LiturgicalDay> {
         if days.is_empty() {
             return Vec::new();
         }
 
         if days.len() == 1 {
-            return days.clone();
+            return days.to_owned();
         }
 
         // Sort by precedence (lower enum variant = higher precedence)

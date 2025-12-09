@@ -5,38 +5,38 @@
     "seasons": {
       "advent": {
         "season": "Doba adventní",
-        "weekday": "$t(weekdays:{{dow}}, capitalize) po {{week}}. neděli adventní",
-        "sunday": "{{week}}. neděle adventní",
-        "privileged_weekday": "{{day}}. $t(months:11)"
+        "weekday": "{weekday} po {week}. neděli adventní",
+        "sunday": "{week}. neděle adventní",
+        "privileged_weekday": "{day}. {month}"
       },
       "christmas_time": {
         "season": "Doba vánoční",
-        "day": "$t(weekdays:{{dow}}, capitalize) po oktávu Narození Páně",
-        "octave": "{{count}}. den v oktávu Narození Páně",
+        "day": "{weekday} po oktávu Narození Páně",
+        "octave": "{count}. den v oktávu Narození Páně",
         "second_sunday_after_christmas": "Druhá neděle po Narození Páně",
-        "before_epiphany": "{{day}}. $t(months:0)",
-        "after_epiphany": "$t(weekdays:{{dow}}, capitalize) po Zjevení Páně"
+        "before_epiphany": "{day}. {month}",
+        "after_epiphany": "{weekday} po Zjevení Páně"
       },
       "ordinary_time": {
         "season": "Liturgické mezidobí",
-        "weekday": "$t(weekdays:{{dow}}, capitalize) {{week}}. týdne v mezidobí",
-        "sunday": "{{week}}. neděle v mezidobí"
+        "weekday": "{weekday} {week}. týdne v mezidobí",
+        "sunday": "{week}. neděle v mezidobí"
       },
       "lent": {
         "season": "Doba postní",
-        "weekday": "$t(weekdays:{{dow}}, capitalize) po {{week}}. neděli postní",
-        "sunday": "{{week}}. neděle postní",
-        "day_after_ash_wed": "$t(weekdays:{{dow}}, capitalize) po Popeleční středě",
-        "holy_week_day": "$t(weekdays:{{dow}}, capitalize) Svatého týdne"
+        "weekday": "{weekday} po {week}. neděli postní",
+        "sunday": "{week}. neděle postní",
+        "day_after_ash_wed": "{weekday} po Popeleční středě",
+        "holy_week_day": "{weekday} Svatého týdne"
       },
       "paschal_triduum": {
         "season": "Velikonoční triduum"
       },
       "easter_time": {
         "season": "Doba velikonoční",
-        "weekday": "$t(weekdays:{{dow}}, capitalize) po {{week}}. neděli velikonoční",
-        "sunday": "{{week}}. neděle velikonoční",
-        "octave": "$t(weekdays:{{dow}}, capitalize) v oktávu velikonočním"
+        "weekday": "{weekday} po {week}. neděli velikonoční",
+        "sunday": "{week}. neděle velikonoční",
+        "octave": "{weekday} v oktávu velikonočním"
       }
     },
     "periods": {
@@ -51,7 +51,19 @@
       "optional_memorial": "nezávazná památka",
       "weekday": "ferie"
     },
-    "cycles": {},
+    "cycles": {
+      "proper_of_time": "Proprium de Tempore",
+      "proper_of_saints": "Proprium de Sanctis",
+      "sunday_year_a": "Rok A",
+      "sunday_year_b": "Rok B",
+      "sunday_year_c": "Rok C",
+      "weekday_year_1": "Cyklus I",
+      "weekday_year_2": "Cyklus II",
+      "psalter_week_1": "I. týden žaltáře",
+      "psalter_week_2": "II. týden žaltáře",
+      "psalter_week_3": "III. týden žaltáře",
+      "psalter_week_4": "IV. týden žaltáře"
+    },
     "weekdays": {
       "0": "neděle",
       "1": "pondělí",
@@ -84,6 +96,7 @@
       "rose": "růžová",
       "white": "bílá"
     },
-    "ordinals": {}
+    "ordinals_letters": {},
+    "ordinals_numeric": {}
   }
 }

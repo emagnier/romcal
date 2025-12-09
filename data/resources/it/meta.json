@@ -4,39 +4,39 @@
   "metadata": {
     "seasons": {
       "advent": {
-        "season": "Tempo du Avvento",
-        "weekday": "$t(weekdays:{{dow}}, capitalize) della {{week, romanize}} settimana di Avvento",
-        "sunday": "{{week, romanize}} domenica di Avvento",
-        "privileged_weekday": "{{day}} $t(months:11)"
+        "season": "Tempo di Avvento",
+        "weekday": "{weekday} della {ordinal_feminine} settimana di Avvento",
+        "sunday": "{ordinal_feminine} domenica di Avvento",
+        "privileged_weekday": "{day} {month}"
       },
       "christmas_time": {
         "season": "Tempo di Natale",
-        "day": "$t(weekdays:{{dow}}, capitalize) di Natale",
-        "octave": "{{count}}º giorno fra l’Ottava di Natale",
+        "day": "{weekday} di Natale",
+        "octave": "{ordinal} giorno fra l'Ottava di Natale",
         "second_sunday_after_christmas": "II domenica dopo Natale",
-        "before_epiphany": "{{day}} $t(months:0)",
-        "after_epiphany": "$t(weekdays:{{dow}}, capitalize) dopo l’Epifania"
+        "before_epiphany": "{day} {month}",
+        "after_epiphany": "{weekday} dopo l'Epifania"
       },
       "ordinary_time": {
         "season": "Tempo Ordinario",
-        "weekday": "$t(weekdays:{{dow}}, capitalize) della {{week, romanize}} settimana del Tempo Ordinario",
-        "sunday": "{{week, romanize}} domenica del Tempo Ordinario"
+        "weekday": "{weekday} della {ordinal_feminine} settimana del Tempo Ordinario",
+        "sunday": "{ordinal_feminine} domenica del Tempo Ordinario"
       },
       "lent": {
         "season": "Tempo di Quaresima",
-        "weekday": "$t(weekdays:{{dow}}, capitalize) della {{week, romanize}} settimana di Quaresima",
-        "sunday": "{{week, romanize}} domenica di Quaresima",
-        "day_after_ash_wed": "$t(weekdays:{{dow}}, capitalize) dopo le Ceneri",
-        "holy_week_day": "$t(weekdays:{{dow}}, capitalize) della Settimana Santa"
+        "weekday": "{weekday} della {ordinal_feminine} settimana di Quaresima",
+        "sunday": "{ordinal_feminine} domenica di Quaresima",
+        "day_after_ash_wed": "{weekday} dopo le Ceneri",
+        "holy_week_day": "{weekday} della Settimana Santa"
       },
       "paschal_triduum": {
         "season": "Triduo Pasquale"
       },
       "easter_time": {
         "season": "Tempo di Pasqua",
-        "weekday": "$t(weekdays:{{dow}}, capitalize) della {{week, romanize}} settimana di Pasqua",
-        "sunday": "{{week, romanize}} domenica di Pasqua",
-        "octave": "$t(weekdays:{{dow}}, capitalize) fra l’Ottava di Pasqua"
+        "weekday": "{weekday} della {ordinal_feminine} settimana di Pasqua",
+        "sunday": "{ordinal_feminine} domenica di Pasqua",
+        "octave": "{weekday} fra l'Ottava di Pasqua"
       }
     },
     "periods": {
@@ -96,7 +96,7 @@
       "rose": "rosa",
       "white": "bianca"
     },
-    "ordinals": {
+    "ordinals_letters": {
       "1": "primo",
       "2": "secondo",
       "3": "terzo",
@@ -115,7 +115,7 @@
       "16": "sedicesimo",
       "17": "diciassettesimo",
       "18": "diciottesimo",
-      "19": "diciannoveesimo",
+      "19": "diciannovesimo",
       "20": "ventesimo",
       "21": "ventunesimo",
       "22": "ventiduesimo",
@@ -127,7 +127,7 @@
       "28": "ventottesimo",
       "29": "ventinovesimo",
       "30": "trentesimo",
-      "31": "trentuno",
+      "31": "trentunesimo",
       "32": "trentaduesimo",
       "33": "trentatreesimo",
       "34": "trentaquattresimo",
@@ -149,7 +149,7 @@
       "16_feminine": "sedicesima",
       "17_feminine": "diciassettesima",
       "18_feminine": "diciottesima",
-      "19_feminine": "diciannoveesima",
+      "19_feminine": "diciannovesima",
       "20_feminine": "ventesima",
       "21_feminine": "ventunesima",
       "22_feminine": "ventiduesima",
@@ -161,10 +161,80 @@
       "28_feminine": "ventottesima",
       "29_feminine": "ventinovesima",
       "30_feminine": "trentesima",
-      "31_feminine": "trentuna",
+      "31_feminine": "trentunesima",
       "32_feminine": "trentaduesima",
       "33_feminine": "trentatreesima",
       "34_feminine": "trentaquattresima"
+    },
+    "ordinals_numeric": {
+      "1": "1º",
+      "2": "2º",
+      "3": "3º",
+      "4": "4º",
+      "5": "5º",
+      "6": "6º",
+      "7": "7º",
+      "8": "8º",
+      "9": "9º",
+      "10": "10º",
+      "11": "11º",
+      "12": "12º",
+      "13": "13º",
+      "14": "14º",
+      "15": "15º",
+      "16": "16º",
+      "17": "17º",
+      "18": "18º",
+      "19": "19º",
+      "20": "20º",
+      "21": "21º",
+      "22": "22º",
+      "23": "23º",
+      "24": "24º",
+      "25": "25º",
+      "26": "26º",
+      "27": "27º",
+      "28": "28º",
+      "29": "29º",
+      "30": "30º",
+      "31": "31º",
+      "32": "32º",
+      "33": "33º",
+      "34": "34º",
+      "1_feminine": "1ª",
+      "2_feminine": "2ª",
+      "3_feminine": "3ª",
+      "4_feminine": "4ª",
+      "5_feminine": "5ª",
+      "6_feminine": "6ª",
+      "7_feminine": "7ª",
+      "8_feminine": "8ª",
+      "9_feminine": "9ª",
+      "10_feminine": "10ª",
+      "11_feminine": "11ª",
+      "12_feminine": "12ª",
+      "13_feminine": "13ª",
+      "14_feminine": "14ª",
+      "15_feminine": "15ª",
+      "16_feminine": "16ª",
+      "17_feminine": "17ª",
+      "18_feminine": "18ª",
+      "19_feminine": "19ª",
+      "20_feminine": "20ª",
+      "21_feminine": "21ª",
+      "22_feminine": "22ª",
+      "23_feminine": "23ª",
+      "24_feminine": "24ª",
+      "25_feminine": "25ª",
+      "26_feminine": "26ª",
+      "27_feminine": "27ª",
+      "28_feminine": "28ª",
+      "29_feminine": "29ª",
+      "30_feminine": "30ª",
+      "31_feminine": "31ª",
+      "32_feminine": "32ª",
+      "33_feminine": "33ª",
+      "34_feminine": "34ª"
     }
   }
 }

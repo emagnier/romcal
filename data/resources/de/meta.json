@@ -5,38 +5,38 @@
     "seasons": {
       "advent": {
         "season": "Advent",
-        "weekday": "$t(weekdays:{{dow}}, capitalize) der $t(ordinals:{{week}}) Adventswoche",
-        "sunday": "$t(ordinals:{{week}}, capitalize) Advent",
-        "privileged_weekday": "$t(months:11, capitalize) {{day}}"
+        "weekday": "{weekday} der {ordinal} Adventswoche",
+        "sunday": "{ordinal} Advent",
+        "privileged_weekday": "{month} {day}"
       },
       "christmas_time": {
         "season": "Weihnachten",
-        "day": "$t(weekdays:{{dow}}, capitalize) of Christmas Time",
-        "octave": "$t(ordinals:{{count}}, capitalize) Tag der Weihnachtsoktav",
+        "day": "{weekday} der Weihnachtszeit",
+        "octave": "{ordinal} Tag der Weihnachtsoktav",
         "second_sunday_after_christmas": "2. Sonntag nach Weihnachten",
-        "before_epiphany": "$t(months:0, capitalize) {{day}}",
-        "after_epiphany": "$t(weekdays:{{dow}}, capitalize) nach Erscheinung des Herrn"
+        "before_epiphany": "{month} {day}",
+        "after_epiphany": "{weekday} nach Erscheinung des Herrn"
       },
       "ordinary_time": {
         "season": "Zeit im Jahreskreis",
-        "weekday": "$t(weekdays:{{dow}}, capitalize) der $t(ordinals:{{week}}) Woche im Jahreskreis",
-        "sunday": "$t(ordinals:{{week}}, capitalize) Sonntag im Jahreskreis"
+        "weekday": "{weekday} der {ordinal} Woche im Jahreskreis",
+        "sunday": "{ordinal} Sonntag im Jahreskreis"
       },
       "lent": {
         "season": "Fastenzeit",
-        "weekday": "$t(weekdays:{{dow}}, capitalize) der $t(ordinals:{{week}}) Fastenwoche",
-        "sunday": "$t(ordinals:{{week}}, capitalize) Fastensonntag",
-        "day_after_ash_wed": "$t(weekdays:{{dow}}, capitalize) nach Aschermittwoch",
-        "holy_week_day": "$t(weekdays:{{dow}}, capitalize) der Karwoche"
+        "weekday": "{weekday} der {ordinal} Fastenwoche",
+        "sunday": "{ordinal} Fastensonntag",
+        "day_after_ash_wed": "{weekday} nach Aschermittwoch",
+        "holy_week_day": "{weekday} der Karwoche"
       },
       "paschal_triduum": {
         "season": "Drei Österlichen Tage"
       },
       "easter_time": {
         "season": "Osterzeit",
-        "weekday": "$t(weekdays:{{dow}}, capitalize) der $t(ordinals:{{week}}) Osterwoche",
-        "sunday": "$t(ordinals:{{week}}, capitalize) Sonntag der Osterzeit",
-        "octave": "$t(weekdays:{{dow}}, capitalize) der Osteroktav"
+        "weekday": "{weekday} der {ordinal} Osterwoche",
+        "sunday": "{ordinal} Sonntag der Osterzeit",
+        "octave": "{weekday} der Osteroktav"
       }
     },
     "periods": {
@@ -52,8 +52,8 @@
       "weekday": "Wochentag"
     },
     "cycles": {
-      "proper_of_time": "Proper of Time",
-      "proper_of_saints": "Proper of Saints",
+      "proper_of_time": "Proprium de Tempore",
+      "proper_of_saints": "Proprium de Sanctis",
       "sunday_year_a": "Lesejahr A",
       "sunday_year_b": "Lesejahr B",
       "sunday_year_c": "Lesejahr C",
@@ -96,7 +96,8 @@
       "rose": "rosa",
       "white": "weiß"
     },
-    "ordinals": {
+    "ordinals_letters": {},
+    "ordinals_numeric": {
       "1": "1.",
       "2": "2.",
       "3": "3.",
@@ -126,7 +127,7 @@
       "27": "27.",
       "28": "28.",
       "29": "29.",
-      "30": "30",
+      "30": "30.",
       "31": "31.",
       "32": "32.",
       "33": "33.",

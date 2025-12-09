@@ -141,8 +141,8 @@ impl TitlesDef {
         match self {
             TitlesDef::Titles(titles) => titles.is_empty(),
             TitlesDef::CompoundTitle(ct) => {
-                ct.append.as_ref().map_or(true, |v| v.is_empty())
-                    && ct.prepend.as_ref().map_or(true, |v| v.is_empty())
+                ct.append.as_ref().is_none_or(|v| v.is_empty())
+                    && ct.prepend.as_ref().is_none_or(|v| v.is_empty())
             }
         }
     }

@@ -25,6 +25,7 @@ pub mod optimize;
 pub mod preset;
 pub mod proper_of_time;
 pub mod resources;
+pub mod template_resolver;
 pub mod types;
 
 pub use calendar::{Calendar, LiturgicalCalendar};
@@ -37,6 +38,7 @@ pub use liturgical_day::*;
 pub use preset::{Preset, PresetPartial};
 pub use proper_of_time::ProperOfTime;
 pub use resources::*;
+pub use template_resolver::{Gender, ProperOfTimeDayType, TemplateResolver};
 pub use types::entity::SaintCount;
 pub use types::entity::{Entity, EntityId};
 pub use types::liturgical::Season;

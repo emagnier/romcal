@@ -10,7 +10,14 @@ type PropertySet = HashSet<String>;
 
 // Constants for metadata properties
 const METADATA_PROPERTIES: &[&str] = &[
-    "ordinals", "weekdays", "months", "colors", "periods", "ranks", "cycles",
+    "ordinals_letters",
+    "ordinals_numeric",
+    "weekdays",
+    "months",
+    "colors",
+    "periods",
+    "ranks",
+    "cycles",
 ];
 const SEASONS_PROPERTIES: &[&str] = &[
     "advent",
@@ -284,13 +291,14 @@ fn deduplicate_first_level_metadata(
     defined_properties: &mut PropertySet,
 ) {
     let first_level_props = [
-        (METADATA_PROPERTIES[0], metadata.ordinals.is_some()),
-        (METADATA_PROPERTIES[1], metadata.weekdays.is_some()),
-        (METADATA_PROPERTIES[2], metadata.months.is_some()),
-        (METADATA_PROPERTIES[3], metadata.colors.is_some()),
-        (METADATA_PROPERTIES[4], metadata.periods.is_some()),
-        (METADATA_PROPERTIES[5], metadata.ranks.is_some()),
-        (METADATA_PROPERTIES[6], metadata.cycles.is_some()),
+        (METADATA_PROPERTIES[0], metadata.ordinals_letters.is_some()),
+        (METADATA_PROPERTIES[1], metadata.ordinals_numeric.is_some()),
+        (METADATA_PROPERTIES[2], metadata.weekdays.is_some()),
+        (METADATA_PROPERTIES[3], metadata.months.is_some()),
+        (METADATA_PROPERTIES[4], metadata.colors.is_some()),
+        (METADATA_PROPERTIES[5], metadata.periods.is_some()),
+        (METADATA_PROPERTIES[6], metadata.ranks.is_some()),
+        (METADATA_PROPERTIES[7], metadata.cycles.is_some()),
     ];
 
     for (prop_name, is_defined) in first_level_props {
@@ -298,7 +306,8 @@ fn deduplicate_first_level_metadata(
             if defined_properties.contains(prop_name) {
                 // Remove property already defined in more specific locale
                 match prop_name {
-                    "ordinals" => metadata.ordinals = None,
+                    "ordinals_letters" => metadata.ordinals_letters = None,
+                    "ordinals_numeric" => metadata.ordinals_numeric = None,
                     "weekdays" => metadata.weekdays = None,
                     "months" => metadata.months = None,
                     "colors" => metadata.colors = None,

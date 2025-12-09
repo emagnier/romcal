@@ -1,8 +1,9 @@
-use chrono::{DateTime, Utc};
+use chrono::{DateTime, Datelike, Utc};
 
 use crate::error::RomcalResult;
 use crate::liturgical_day::LiturgicalDay;
 use crate::proper_of_time::common::{enum_to_string, sort_liturgical_days_by_date, WEEKDAY_NAMES};
+use crate::template_resolver::ProperOfTimeDayType;
 use crate::types::liturgical::{Color, ColorInfo, Precedence, Season};
 
 use super::ProperOfTime;
@@ -83,6 +84,7 @@ impl<'a> Advent<'a> {
 
     /// Creates an Advent Sunday
     fn create_advent_sunday(&self, week: u8, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
+        let day_type = ProperOfTimeDayType::AdventSunday { week };
         let mut liturgical_day = self
             .proper_of_time
             .create_liturgical_day_base(
@@ -91,6 +93,7 @@ impl<'a> Advent<'a> {
                 Precedence::PrivilegedSunday_2,
                 Some(Season::Advent),
                 Color::Purple,
+                Some(&day_type),
             )
             .with_is_holy_day_of_obligation(true);
 
@@ -118,12 +121,14 @@ impl<'a> Advent<'a> {
         dow: u8,
         date: DateTime<Utc>,
     ) -> RomcalResult<LiturgicalDay> {
+        let day_type = ProperOfTimeDayType::AdventWeekday { week, dow };
         let liturgical_day = self.proper_of_time.create_liturgical_day_base(
             &format!("advent_{}_{}", week, WEEKDAY_NAMES[dow as usize]),
             date,
             Precedence::Weekday_13,
             Some(Season::Advent),
             Color::Purple,
+            Some(&day_type),
         );
 
         Ok(liturgical_day)
@@ -135,12 +140,15 @@ impl<'a> Advent<'a> {
         day: u8,
         date: DateTime<Utc>,
     ) -> RomcalResult<LiturgicalDay> {
+        let dow = date.weekday().num_days_from_sunday() as u8;
+        let day_type = ProperOfTimeDayType::AdventPrivilegedWeekday { day, dow };
         let liturgical_day = self.proper_of_time.create_liturgical_day_base(
             &format!("advent_december_{}", day),
             date,
             Precedence::PrivilegedWeekday_9,
             Some(Season::Advent),
             Color::Purple,
+            Some(&day_type),
         );
 
         Ok(liturgical_day)

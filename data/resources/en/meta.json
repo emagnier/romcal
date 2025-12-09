@@ -5,38 +5,38 @@
     "seasons": {
       "advent": {
         "season": "Advent",
-        "weekday": "$t(weekdays:{{dow}}, capitalize) of the $t(ordinals:{{week}}) week of Advent",
-        "sunday": "$t(ordinals:{{week}}, capitalize) Sunday of Advent",
-        "privileged_weekday": "$t(months:11, capitalize) {{day}}"
+        "weekday": "{weekday} of the {ordinal} week of Advent",
+        "sunday": "{ordinal} Sunday of Advent",
+        "privileged_weekday": "{month} {day}"
       },
       "christmas_time": {
         "season": "Christmas Time",
-        "day": "$t(weekdays:{{dow}}, capitalize) of Christmas Time",
-        "octave": "$t(ordinals:{{count}}, capitalize) Day within the Octave of the Nativity of the Lord",
+        "day": "{weekday} of Christmas Time",
+        "octave": "{ordinal} Day within the Octave of the Nativity of the Lord",
         "second_sunday_after_christmas": "Second Sunday after the Nativity of the Lord",
-        "before_epiphany": "$t(months:0, capitalize) {{day}}",
-        "after_epiphany": "$t(weekdays:{{dow}}, capitalize) after the Epiphany of the Lord"
+        "before_epiphany": "{month} {day}",
+        "after_epiphany": "{weekday} after the Epiphany of the Lord"
       },
       "ordinary_time": {
         "season": "Ordinary Time",
-        "weekday": "$t(weekdays:{{dow}}, capitalize) of the $t(ordinals:{{week}}) week of Ordinary Time",
-        "sunday": "$t(ordinals:{{week}}, capitalize) Sunday in Ordinary Time"
+        "weekday": "{weekday} of the {ordinal} week of Ordinary Time",
+        "sunday": "{ordinal} Sunday in Ordinary Time"
       },
       "lent": {
         "season": "Lent",
-        "weekday": "$t(weekdays:{{dow}}, capitalize) of the $t(ordinals:{{week}}) week of Lent",
-        "sunday": "$t(ordinals:{{week}}, capitalize) Sunday of Lent",
-        "day_after_ash_wed": "$t(weekdays:{{dow}}, capitalize) after Ash Wednesday",
-        "holy_week_day": "$t(weekdays:{{dow}}, capitalize) of Holy Week"
+        "weekday": "{weekday} of the {ordinal} week of Lent",
+        "sunday": "{ordinal} Sunday of Lent",
+        "day_after_ash_wed": "{weekday} after Ash Wednesday",
+        "holy_week_day": "{weekday} of Holy Week"
       },
       "paschal_triduum": {
         "season": "Paschal Triduum"
       },
       "easter_time": {
         "season": "Easter Time",
-        "weekday": "$t(weekdays:{{dow}}, capitalize) of the $t(ordinals:{{week}}) week of Easter",
-        "sunday": "$t(ordinals:{{week}}, capitalize) Sunday of Easter",
-        "octave": "$t(weekdays:{{dow}}, capitalize) within the Octave of Easter"
+        "weekday": "{weekday} of the {ordinal} week of Easter",
+        "sunday": "{ordinal} Sunday of Easter",
+        "octave": "{weekday} within the Octave of Easter"
       }
     },
     "periods": {
@@ -96,7 +96,8 @@
       "rose": "rose",
       "white": "white"
     },
-    "ordinals": {
+    "ordinal_format": "letters",
+    "ordinals_letters": {
       "1": "first",
       "2": "second",
       "3": "third",
@@ -131,6 +132,42 @@
       "32": "thirty-second",
       "33": "thirty-third",
       "34": "thirty-fourth"
+    },
+    "ordinals_numeric": {
+      "1": "1st",
+      "2": "2nd",
+      "3": "3rd",
+      "4": "4th",
+      "5": "5th",
+      "6": "6th",
+      "7": "7th",
+      "8": "8th",
+      "9": "9th",
+      "10": "10th",
+      "11": "11th",
+      "12": "12th",
+      "13": "13th",
+      "14": "14th",
+      "15": "15th",
+      "16": "16th",
+      "17": "17th",
+      "18": "18th",
+      "19": "19th",
+      "20": "20th",
+      "21": "21st",
+      "22": "22nd",
+      "23": "23rd",
+      "24": "24th",
+      "25": "25th",
+      "26": "26th",
+      "27": "27th",
+      "28": "28th",
+      "29": "29th",
+      "30": "30th",
+      "31": "31st",
+      "32": "32nd",
+      "33": "33rd",
+      "34": "34th"
     }
   }
 }

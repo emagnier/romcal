@@ -3,6 +3,7 @@ use chrono::{DateTime, Utc};
 use crate::error::RomcalResult;
 use crate::liturgical_day::LiturgicalDay;
 use crate::proper_of_time::common::{sort_liturgical_days_by_date, WEEKDAY_NAMES};
+use crate::template_resolver::ProperOfTimeDayType;
 use crate::types::liturgical::{Color, Precedence, Season};
 
 use super::ProperOfTime;
@@ -83,12 +84,14 @@ impl<'a> Lent<'a> {
 
     /// Creates Ash Wednesday
     fn create_ash_wednesday(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
+        // Entity-based day, fullname comes from entity resolution
         let liturgical_day = self.proper_of_time.create_liturgical_day_base(
             "ash_wednesday",
             date,
             Precedence::AshWednesday_2,
             Some(Season::Lent),
             Color::Purple,
+            None,
         );
 
         Ok(liturgical_day)
@@ -100,12 +103,14 @@ impl<'a> Lent<'a> {
         dow: u8,
         date: DateTime<Utc>,
     ) -> RomcalResult<LiturgicalDay> {
+        let day_type = ProperOfTimeDayType::DayAfterAshWednesday { dow };
         let liturgical_day = self.proper_of_time.create_liturgical_day_base(
             &format!("{}_after_ash_wednesday", WEEKDAY_NAMES[dow as usize]),
             date,
             Precedence::PrivilegedWeekday_9,
             Some(Season::Lent),
             Color::Purple,
+            Some(&day_type),
         );
 
         Ok(liturgical_day)
@@ -118,6 +123,14 @@ impl<'a> Lent<'a> {
         dow: u8,
         date: DateTime<Utc>,
     ) -> RomcalResult<LiturgicalDay> {
+        let day_type = if dow == 0 {
+            ProperOfTimeDayType::LentSunday { week: week as u8 }
+        } else {
+            ProperOfTimeDayType::LentWeekday {
+                week: week as u8,
+                dow,
+            }
+        };
         let liturgical_day = self.proper_of_time.create_liturgical_day_base(
             &format!("lent_{}_{}", week, WEEKDAY_NAMES[dow as usize]),
             date,
@@ -132,6 +145,7 @@ impl<'a> Lent<'a> {
             } else {
                 Color::Purple
             },
+            Some(&day_type),
         );
 
         Ok(liturgical_day)
@@ -139,6 +153,7 @@ impl<'a> Lent<'a> {
 
     /// Creates Palm Sunday of the Passion of the Lord
     fn create_palm_sunday(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
+        // Entity-based day, fullname comes from entity resolution
         let liturgical_day = self
             .proper_of_time
             .create_liturgical_day_base(
@@ -147,6 +162,7 @@ impl<'a> Lent<'a> {
                 Precedence::PrivilegedSunday_2,
                 Some(Season::Lent),
                 Color::Red,
+                None,
             )
             .with_is_holy_day_of_obligation(true);
 
@@ -159,12 +175,14 @@ impl<'a> Lent<'a> {
         dow: u8,
         date: DateTime<Utc>,
     ) -> RomcalResult<LiturgicalDay> {
+        let day_type = ProperOfTimeDayType::HolyWeekDay { dow };
         let liturgical_day = self.proper_of_time.create_liturgical_day_base(
             &format!("holy_{}", WEEKDAY_NAMES[dow as usize]),
             date,
             Precedence::PrivilegedWeekday_9,
             Some(Season::Lent),
             Color::Purple,
+            Some(&day_type),
         );
 
         Ok(liturgical_day)

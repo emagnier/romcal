@@ -5,38 +5,38 @@
     "seasons": {
       "advent": {
         "season": "Adwent",
-        "weekday": "$t(weekdays:{{dow}}, capitalize) {{week}} tygodnia Adwentu",
-        "sunday": "{{week}} Niedziela Adwentu",
-        "privileged_weekday": "{{day}} $t(months:11)"
+        "weekday": "{weekday} {week} tygodnia Adwentu",
+        "sunday": "{week} Niedziela Adwentu",
+        "privileged_weekday": "{day} {month}"
       },
       "christmas_time": {
         "season": "Narodzenie Pańskie",
-        "day": "$t(weekdays:{{dow}}, capitalize) okresu Bożego Narodzenia",
-        "octave": "{{count}} dzień w oktawie Narodzenia Pańskiego",
+        "day": "{weekday} okresu Bożego Narodzenia",
+        "octave": "{count} dzień w oktawie Narodzenia Pańskiego",
         "second_sunday_after_christmas": "2 Niedziela po Narodzeniu Pańskim",
-        "before_epiphany": "{{day}} $t(months:0)",
-        "after_epiphany": "$t(weekdays:{{dow}}, capitalize) po Objawieniu Pańskim"
+        "before_epiphany": "{day} {month}",
+        "after_epiphany": "{weekday} po Objawieniu Pańskim"
       },
       "ordinary_time": {
         "season": "Okres Zwykły",
-        "weekday": "$t(weekdays:{{dow}}, capitalize) {{week}} tygodnia zwykłego",
-        "sunday": "{{week}} Niedziela zwykła"
+        "weekday": "{weekday} {week} tygodnia zwykłego",
+        "sunday": "{week} Niedziela zwykła"
       },
       "lent": {
         "season": "Wielki Post",
-        "weekday": "$t(weekdays:{{dow}}, capitalize) {{week}} tygodnia Wielkiego Postu",
-        "sunday": "{{week}} Niedziela Wielkiego Postu",
-        "day_after_ash_wed": "$t(weekdays:{{dow}}, capitalize) po Popielcu",
-        "holy_week_day": "$t(weekdays:{{dow}}, capitalize) Wielkiego Tygodnia"
+        "weekday": "{weekday} {week} tygodnia Wielkiego Postu",
+        "sunday": "{week} Niedziela Wielkiego Postu",
+        "day_after_ash_wed": "{weekday} po Popielcu",
+        "holy_week_day": "{weekday} Wielkiego Tygodnia"
       },
       "paschal_triduum": {
         "season": "Triduum Paschalne"
       },
       "easter_time": {
         "season": "Wielkanoc",
-        "weekday": "$t(weekdays:{{dow}}, capitalize) {{week}} tygodnia Wielkanocy",
-        "sunday": "{{week}} Niedziela Wielkanocy",
-        "octave": "$t(weekdays:{{dow}}, capitalize) w oktawie Wielkanocy"
+        "weekday": "{weekday} {week} tygodnia Wielkanocy",
+        "sunday": "{week} Niedziela Wielkanocy",
+        "octave": "{weekday} w oktawie Wielkanocy"
       }
     },
     "periods": {
@@ -51,7 +51,19 @@
       "optional_memorial": "wspomnienie dowolne",
       "weekday": "dzień powszedni"
     },
-    "cycles": {},
+    "cycles": {
+      "proper_of_time": "Proprium de Tempore",
+      "proper_of_saints": "Proprium de Sanctis",
+      "sunday_year_a": "Rok A",
+      "sunday_year_b": "Rok B",
+      "sunday_year_c": "Rok C",
+      "weekday_year_1": "Cykl I",
+      "weekday_year_2": "Cykl II",
+      "psalter_week_1": "I Tydzień Psałterza",
+      "psalter_week_2": "II Tydzień Psałterza",
+      "psalter_week_3": "III Tydzień Psałterza",
+      "psalter_week_4": "IV Tydzień Psałterza"
+    },
     "weekdays": {
       "0": "niedziela",
       "1": "poniedziałek",
@@ -84,6 +96,7 @@
       "rose": "różowy",
       "white": "biały"
     },
-    "ordinals": {}
+    "ordinals_letters": {},
+    "ordinals_numeric": {}
   }
 }

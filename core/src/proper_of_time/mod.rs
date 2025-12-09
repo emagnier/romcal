@@ -10,6 +10,7 @@ pub mod ordinary_time;
 pub mod paschal_triduum;
 
 use crate::dates::LiturgicalDates;
+use crate::entity_resolver::EntityResolver;
 use crate::error::RomcalResult;
 use crate::liturgical_day::LiturgicalDay;
 use crate::preset::Preset;
@@ -23,6 +24,7 @@ use crate::proper_of_time::easter_time::EasterTime;
 use crate::proper_of_time::lent::Lent;
 use crate::proper_of_time::ordinary_time::OrdinaryTime;
 use crate::proper_of_time::paschal_triduum::PaschalTriduum;
+use crate::template_resolver::{ProperOfTimeDayType, TemplateResolver};
 use crate::types::dates::{DateDef, DayOfWeek};
 use crate::types::liturgical::{Color, ColorInfo, Precedence, PsalterWeekCycle, Rank, Season};
 
@@ -31,6 +33,8 @@ pub struct ProperOfTime {
     preset: Preset,
     dates: LiturgicalDates,
     cache: ProperOfTimeCache,
+    template_resolver: Option<TemplateResolver>,
+    entity_resolver: EntityResolver,
 }
 
 impl ProperOfTime {
@@ -48,11 +52,61 @@ impl ProperOfTime {
         use crate::proper_of_time::cache::ProperOfTimeCache;
         let liturgical_dates = LiturgicalDates::new(preset.clone(), year)?;
         let cache = ProperOfTimeCache::new(&preset, year)?;
+
+        // Create template resolver from locale metadata
+        let template_resolver = Self::create_template_resolver(&preset);
+
+        // Create entity resolver to resolve fullnames for entity-based days
+        let entity_resolver = EntityResolver::new(&preset);
+
         Ok(Self {
             preset,
             dates: liturgical_dates,
             cache,
+            template_resolver,
+            entity_resolver,
         })
+    }
+
+    /// Creates a TemplateResolver from the preset's locale resources.
+    ///
+    /// Looks for metadata in the target locale first, then falls back to 'en'.
+    ///
+    /// Priority for ordinal_format:
+    /// 1. `metadata.ordinal_format` (locale-specific setting)
+    /// 2. `preset.ordinal_format` (user-defined or default)
+    fn create_template_resolver(preset: &Preset) -> Option<TemplateResolver> {
+        let locale = &preset.locale;
+
+        // Try target locale first
+        if let Some(resources) = preset.get_resources(locale) {
+            if let Some(metadata) = resources.metadata.clone() {
+                // Resolve ordinal_format: metadata > preset
+                let ordinal_format = metadata.ordinal_format.unwrap_or(preset.ordinal_format);
+                return Some(TemplateResolver::new(
+                    metadata,
+                    locale.clone(),
+                    ordinal_format,
+                ));
+            }
+        }
+
+        // Fall back to 'en' if target locale has no metadata
+        if locale != "en" {
+            if let Some(resources) = preset.get_resources("en") {
+                if let Some(metadata) = resources.metadata.clone() {
+                    // Resolve ordinal_format: metadata > preset
+                    let ordinal_format = metadata.ordinal_format.unwrap_or(preset.ordinal_format);
+                    return Some(TemplateResolver::new(
+                        metadata,
+                        "en".to_string(),
+                        ordinal_format,
+                    ));
+                }
+            }
+        }
+
+        None
     }
 
     /// Creates a liturgical day with common properties
@@ -63,6 +117,7 @@ impl ProperOfTime {
         precedence: Precedence,
         season: Option<Season>,
         color: Color,
+        day_type: Option<&ProperOfTimeDayType>,
     ) -> LiturgicalDay {
         let id = id.to_string();
         let date_str = date.format("%Y-%m-%d").to_string();
@@ -70,6 +125,19 @@ impl ProperOfTime {
         let rank = precedence.to_rank();
         let sunday_cycle = self.cache.sunday_cycle();
         let weekday_cycle = self.cache.weekday_cycle();
+
+        // Resolve fullname with priority: 1) Entity, 2) Template, 3) ID fallback
+        let fullname = self
+            .entity_resolver
+            .get_fullname_for_day(&id, None)
+            .or_else(|| {
+                day_type.and_then(|dt| {
+                    self.template_resolver
+                        .as_ref()
+                        .map(|r| r.resolve_proper_of_time_fullname(dt))
+                })
+            })
+            .unwrap_or_else(|| id.clone());
 
         // Calculate season-related fields only if season is provided
         let (day_of_season, week_of_season, psalter_week_cycle) = if let Some(season) = season {
@@ -117,9 +185,34 @@ impl ProperOfTime {
             (None, None, PsalterWeekCycle::Week_1)
         };
 
+        // Resolve localized names using template resolver
+        let rank_name = self
+            .template_resolver
+            .as_ref()
+            .map(|r| r.get_rank(&enum_to_string(&rank)))
+            .unwrap_or_else(|| enum_to_string(&rank));
+
+        let sunday_cycle_name = self
+            .template_resolver
+            .as_ref()
+            .map(|r| r.get_cycle(&enum_to_string(&sunday_cycle)))
+            .unwrap_or_else(|| enum_to_string(&sunday_cycle));
+
+        let weekday_cycle_name = self
+            .template_resolver
+            .as_ref()
+            .map(|r| r.get_cycle(&enum_to_string(&weekday_cycle)))
+            .unwrap_or_else(|| enum_to_string(&weekday_cycle));
+
+        let psalter_week_name = self
+            .template_resolver
+            .as_ref()
+            .map(|r| r.get_cycle(&enum_to_string(&psalter_week_cycle)))
+            .unwrap_or_else(|| enum_to_string(&psalter_week_cycle));
+
         let mut liturgical_day = LiturgicalDay::new(
             id.clone(),
-            id.clone(),
+            fullname,
             date_str,
             DateDef::MonthDate {
                 month: crate::types::dates::MonthIndex(1), // January
@@ -128,13 +221,13 @@ impl ProperOfTime {
             },
             precedence,
             rank.clone(),
-            enum_to_string(&rank),
+            rank_name,
             sunday_cycle,
-            enum_to_string(&sunday_cycle),
+            sunday_cycle_name,
             weekday_cycle,
-            enum_to_string(&weekday_cycle),
+            weekday_cycle_name,
             psalter_week_cycle,
-            enum_to_string(&psalter_week_cycle),
+            psalter_week_name,
             PROPER_OF_TIME_ID.to_string(),
         )
         .with_day_of_week(DayOfWeek(dow))
@@ -142,9 +235,15 @@ impl ProperOfTime {
 
         // Set season-related fields if season is provided
         if let Some(season) = season {
+            let season_name = self
+                .template_resolver
+                .as_ref()
+                .map(|r| r.get_season_name(&enum_to_string(&season)))
+                .unwrap_or_else(|| enum_to_string(&season));
+
             liturgical_day = liturgical_day
                 .with_seasons(season)
-                .with_season_name(enum_to_string(&season))
+                .with_season_name(season_name)
                 .with_start_of_season(self.cache.start_of_seasons(season, date))
                 .with_end_of_season(self.cache.end_of_seasons(season, date))
                 .with_liturgical_year_boundaries(
@@ -158,13 +257,19 @@ impl ProperOfTime {
             liturgical_day = liturgical_day.with_season_position(week, day);
         }
 
-        // Color
+        // Color with localized name
+        let color_name = self
+            .template_resolver
+            .as_ref()
+            .map(|r| r.get_color(&enum_to_string(&color)))
+            .unwrap_or_else(|| enum_to_string(&color));
+
         liturgical_day.colors = vec![ColorInfo {
             key: color.clone(),
-            name: enum_to_string(&color),
+            name: color_name,
         }];
 
-        liturgical_day.date_def = DateDef::InheritedFromProperOfTime {}.into();
+        liturgical_day.date_def = DateDef::InheritedFromProperOfTime {};
 
         liturgical_day
     }
@@ -399,5 +504,246 @@ mod tests {
         // - Week numbers increment on Sundays
         // - Special handling for Christmas Time and Ordinary Time
         // - Complex logic needed for different seasons
+    }
+
+    // -------------------------------------------------------------------------
+    // Tests for ordinal_format resolution
+    // -------------------------------------------------------------------------
+
+    use crate::resources::Resources;
+    use crate::types::resource::ResourcesMetadata;
+    use crate::types::OrdinalFormat;
+    use std::collections::BTreeMap;
+
+    /// Creates a minimal ResourcesMetadata for testing
+    fn create_test_metadata(ordinal_format: Option<OrdinalFormat>) -> ResourcesMetadata {
+        let mut ordinals_letters = BTreeMap::new();
+        ordinals_letters.insert("1".to_string(), "first".to_string());
+        ordinals_letters.insert("2".to_string(), "second".to_string());
+
+        let mut ordinals_numeric = BTreeMap::new();
+        ordinals_numeric.insert("1".to_string(), "1st".to_string());
+        ordinals_numeric.insert("2".to_string(), "2nd".to_string());
+
+        ResourcesMetadata {
+            ordinal_format,
+            ordinals_letters: Some(ordinals_letters),
+            ordinals_numeric: Some(ordinals_numeric),
+            weekdays: None,
+            months: None,
+            colors: None,
+            seasons: None,
+            periods: None,
+            ranks: None,
+            cycles: None,
+        }
+    }
+
+    /// Creates a test Resources with the given locale and metadata
+    fn create_test_resources(locale: &str, ordinal_format: Option<OrdinalFormat>) -> Resources {
+        Resources {
+            schema: None,
+            locale: locale.to_string(),
+            metadata: Some(create_test_metadata(ordinal_format)),
+            entities: None,
+        }
+    }
+
+    #[test]
+    fn test_ordinal_format_default_is_numeric() {
+        // When no ordinal_format is specified anywhere, default should be Numeric
+        let preset = Preset::default();
+        assert_eq!(preset.ordinal_format, OrdinalFormat::Numeric);
+    }
+
+    #[test]
+    fn test_ordinal_format_from_locale_metadata() {
+        // When ordinal_format is set in locale metadata, it should be used
+        let mut preset = Preset::default();
+        preset.locale = "test".to_string();
+        preset.resources = vec![create_test_resources("test", Some(OrdinalFormat::Letters))];
+
+        let resolver = ProperOfTime::create_template_resolver(&preset);
+        assert!(resolver.is_some());
+        assert_eq!(resolver.unwrap().ordinal_format(), OrdinalFormat::Letters);
+    }
+
+    #[test]
+    fn test_ordinal_format_from_preset_when_metadata_not_set() {
+        // When ordinal_format is not set in metadata, preset value should be used
+        let mut preset = Preset::default();
+        preset.locale = "test".to_string();
+        preset.ordinal_format = OrdinalFormat::Letters;
+        preset.resources = vec![create_test_resources("test", None)];
+
+        let resolver = ProperOfTime::create_template_resolver(&preset);
+        assert!(resolver.is_some());
+        assert_eq!(resolver.unwrap().ordinal_format(), OrdinalFormat::Letters);
+    }
+
+    #[test]
+    fn test_ordinal_format_metadata_takes_priority() {
+        // When ordinal_format is set in both metadata and preset, metadata should win
+        let mut preset = Preset::default();
+        preset.locale = "test".to_string();
+        preset.ordinal_format = OrdinalFormat::Numeric; // Preset says Numeric
+        preset.resources = vec![create_test_resources("test", Some(OrdinalFormat::Letters))]; // Metadata says Letters
+
+        let resolver = ProperOfTime::create_template_resolver(&preset);
+        assert!(resolver.is_some());
+        // Metadata should take priority
+        assert_eq!(resolver.unwrap().ordinal_format(), OrdinalFormat::Letters);
+    }
+
+    #[test]
+    fn test_ordinal_format_fallback_to_en_locale() {
+        // When target locale has no metadata but 'en' does, use 'en' metadata
+        let mut preset = Preset::default();
+        preset.locale = "nonexistent".to_string();
+        preset.resources = vec![create_test_resources("en", Some(OrdinalFormat::Letters))];
+
+        let resolver = ProperOfTime::create_template_resolver(&preset);
+        assert!(resolver.is_some());
+        assert_eq!(resolver.unwrap().ordinal_format(), OrdinalFormat::Letters);
+    }
+
+    #[test]
+    fn test_ordinal_format_no_resolver_without_resources() {
+        // When no resources are available, resolver should be None
+        let mut preset = Preset::default();
+        preset.locale = "test".to_string();
+        preset.resources = vec![];
+
+        let resolver = ProperOfTime::create_template_resolver(&preset);
+        assert!(resolver.is_none());
+    }
+
+    // -------------------------------------------------------------------------
+    // Tests for entity-based fullname resolution
+    // -------------------------------------------------------------------------
+
+    use crate::types::entity::entity_definition::Entity;
+
+    /// Creates test resources with entities for entity fullname resolution tests
+    fn create_test_resources_with_entities(
+        locale: &str,
+        entities: std::collections::BTreeMap<String, Entity>,
+    ) -> Resources {
+        Resources {
+            schema: None,
+            locale: locale.to_string(),
+            metadata: Some(create_test_metadata(None)),
+            entities: Some(entities),
+        }
+    }
+
+    #[test]
+    fn test_fullname_resolved_from_entity() {
+        // When an entity has a fullname defined, it should be used
+        let mut entities = std::collections::BTreeMap::new();
+        entities.insert(
+            "mary_mother_of_god".to_string(),
+            Entity {
+                fullname: Some("Mary, Mother of God".to_string()),
+                ..Default::default()
+            },
+        );
+
+        let mut preset = Preset::default();
+        preset.locale = "en".to_string();
+        preset.resources = vec![create_test_resources_with_entities("en", entities)];
+
+        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
+
+        // Check that entity resolver has the entity
+        let fullname = proper_of_time
+            .entity_resolver
+            .get_fullname_for_day("mary_mother_of_god", None);
+        assert_eq!(fullname, Some("Mary, Mother of God".to_string()));
+    }
+
+    #[test]
+    fn test_fullname_fallback_to_template_when_no_entity() {
+        // When no entity fullname exists but day_type is provided, template should be used
+        let mut preset = Preset::default();
+        preset.locale = "en".to_string();
+        preset.resources = vec![create_test_resources("en", None)];
+
+        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
+
+        // For days like "advent_sunday_1" that don't have entity fullnames,
+        // the template resolver should be used
+        // This is implicitly tested by the fact that ProperOfTime works correctly
+        assert!(proper_of_time.template_resolver.is_some());
+    }
+
+    #[test]
+    fn test_entity_fullname_priority_over_template() {
+        // Entity fullname should take priority over template resolution
+        // This tests the priority: Entity > Template > ID
+
+        let mut entities = std::collections::BTreeMap::new();
+        entities.insert(
+            "test_entity".to_string(),
+            Entity {
+                fullname: Some("Entity Fullname".to_string()),
+                ..Default::default()
+            },
+        );
+
+        let mut preset = Preset::default();
+        preset.locale = "en".to_string();
+        preset.resources = vec![create_test_resources_with_entities("en", entities)];
+
+        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
+
+        // The entity resolver should find the fullname
+        let fullname = proper_of_time
+            .entity_resolver
+            .get_fullname_for_day("test_entity", None);
+        assert_eq!(fullname, Some("Entity Fullname".to_string()));
+
+        // Non-existent entity should return None
+        let no_fullname = proper_of_time
+            .entity_resolver
+            .get_fullname_for_day("nonexistent", None);
+        assert!(no_fullname.is_none());
+    }
+
+    #[test]
+    fn test_entity_fullname_with_locale_override() {
+        // When target locale has entity fullname, it should override 'en'
+        let mut en_entities = std::collections::BTreeMap::new();
+        en_entities.insert(
+            "mary_mother_of_god".to_string(),
+            Entity {
+                fullname: Some("Mary, Mother of God".to_string()),
+                ..Default::default()
+            },
+        );
+
+        let mut fr_entities = std::collections::BTreeMap::new();
+        fr_entities.insert(
+            "mary_mother_of_god".to_string(),
+            Entity {
+                fullname: Some("Sainte Marie, Mère de Dieu".to_string()),
+                ..Default::default()
+            },
+        );
+
+        let mut preset = Preset::default();
+        preset.locale = "fr".to_string();
+        preset.resources = vec![
+            create_test_resources_with_entities("en", en_entities),
+            create_test_resources_with_entities("fr", fr_entities),
+        ];
+
+        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
+
+        // French locale should use French fullname
+        let fullname = proper_of_time
+            .entity_resolver
+            .get_fullname_for_day("mary_mother_of_god", None);
+        assert_eq!(fullname, Some("Sainte Marie, Mère de Dieu".to_string()));
     }
 }

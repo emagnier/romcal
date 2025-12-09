@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 use crate::resources::Resources;
 use crate::{
     calendar_definition::CalendarDefinition,
-    types::{CalendarContext, EasterCalculationType},
+    types::{CalendarContext, EasterCalculationType, OrdinalFormat},
 };
 
 // Default configuration constants
@@ -14,6 +14,7 @@ const DEFAULT_CONTEXT: CalendarContext = CalendarContext::Gregorian;
 const DEFAULT_EPIPHANY_ON_SUNDAY: bool = false;
 const DEFAULT_CORPUS_CHRISTI_ON_SUNDAY: bool = true;
 const DEFAULT_ASCENSION_ON_SUNDAY: bool = false;
+const DEFAULT_ORDINAL_FORMAT: OrdinalFormat = OrdinalFormat::Numeric;
 
 /// Partial preset for romcal
 #[derive(Debug, Clone, Serialize, Deserialize, Default)]
@@ -32,6 +33,8 @@ pub struct PresetPartial {
     pub ascension_on_sunday: Option<bool>,
     /// Corpus Christi is celebrated on a Sunday
     pub corpus_christi_on_sunday: Option<bool>,
+    /// Format for displaying ordinal numbers (letters or numeric)
+    pub ordinal_format: Option<OrdinalFormat>,
     /// Array of calendar definitions
     pub calendar_definitions: Option<Vec<CalendarDefinition>>,
     /// Array of resources definitions
@@ -55,6 +58,8 @@ pub struct Preset {
     pub corpus_christi_on_sunday: bool,
     /// Easter calculation type
     pub easter_calculation_type: EasterCalculationType,
+    /// Format for displaying ordinal numbers (letters or numeric)
+    pub ordinal_format: OrdinalFormat,
     /// Array of calendar definitions
     pub calendar_definitions: Vec<CalendarDefinition>,
     /// Array of resources definitions
@@ -71,6 +76,7 @@ impl Default for Preset {
             epiphany_on_sunday: DEFAULT_EPIPHANY_ON_SUNDAY,
             corpus_christi_on_sunday: DEFAULT_CORPUS_CHRISTI_ON_SUNDAY,
             ascension_on_sunday: DEFAULT_ASCENSION_ON_SUNDAY,
+            ordinal_format: DEFAULT_ORDINAL_FORMAT,
             calendar_definitions: Vec::new(),
             resources: Vec::new(),
         }
@@ -79,12 +85,28 @@ impl Default for Preset {
 
 impl Preset {
     /// Creates a new preset with default values applied to any None fields
+    ///
+    /// Priority for ordinal_format:
+    /// 1. Value from PresetPartial (highest priority)
+    /// 2. Value from ResourcesMetadata of the target locale
+    /// 3. Default value (Numeric)
     pub fn new(config: PresetPartial) -> Self {
+        let calendar_definitions = config.calendar_definitions.unwrap_or_default();
+        let resources = config.resources.unwrap_or_default();
+        let locale = config.locale.as_deref().unwrap_or(DEFAULT_LOCALE);
+
+        // Get ordinal_format from locale's ResourcesMetadata if not set in PresetPartial
+        let ordinal_format_from_locale = resources
+            .iter()
+            .find(|res| res.locale == locale)
+            .and_then(|res| res.metadata.as_ref())
+            .and_then(|meta| meta.ordinal_format);
+
         Self {
             calendar: config
                 .calendar
                 .unwrap_or_else(|| DEFAULT_CALENDAR.to_string()),
-            locale: config.locale.unwrap_or_else(|| DEFAULT_LOCALE.to_string()),
+            locale: locale.to_string(),
             context: config.context.unwrap_or(DEFAULT_CONTEXT),
             easter_calculation_type: config
                 .easter_calculation_type
@@ -98,8 +120,12 @@ impl Preset {
             corpus_christi_on_sunday: config
                 .corpus_christi_on_sunday
                 .unwrap_or(DEFAULT_CORPUS_CHRISTI_ON_SUNDAY),
-            calendar_definitions: config.calendar_definitions.unwrap_or_default(),
-            resources: config.resources.unwrap_or_default(),
+            ordinal_format: config
+                .ordinal_format
+                .or(ordinal_format_from_locale)
+                .unwrap_or(DEFAULT_ORDINAL_FORMAT),
+            calendar_definitions,
+            resources,
         }
     }
 

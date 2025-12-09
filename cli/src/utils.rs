@@ -407,11 +407,13 @@ mod tests {
         use romcal_core::types::resource::*;
 
         let metadata1 = ResourcesMetadata {
-            ordinals: Some({
+            ordinal_format: None,
+            ordinals_letters: Some({
                 let mut map = BTreeMap::new();
                 map.insert("1st".to_string(), "premier".to_string());
                 map
             }),
+            ordinals_numeric: None,
             weekdays: None,
             months: None,
             colors: None,
@@ -422,11 +424,13 @@ mod tests {
         };
 
         let metadata2 = ResourcesMetadata {
-            ordinals: Some({
+            ordinal_format: None,
+            ordinals_letters: Some({
                 let mut map = BTreeMap::new();
                 map.insert("2nd".to_string(), "deuxième".to_string());
                 map
             }),
+            ordinals_numeric: None,
             weekdays: Some({
                 let mut map = BTreeMap::new();
                 map.insert("monday".to_string(), "lundi".to_string());
@@ -449,14 +453,17 @@ mod tests {
         assert_eq!(result.len(), 1);
 
         let combined_metadata = result[0].metadata.as_ref().unwrap();
-        assert_eq!(combined_metadata.ordinals.as_ref().unwrap().len(), 2);
+        assert_eq!(
+            combined_metadata.ordinals_letters.as_ref().unwrap().len(),
+            2
+        );
         assert!(combined_metadata
-            .ordinals
+            .ordinals_letters
             .as_ref()
             .unwrap()
             .contains_key("1st"));
         assert!(combined_metadata
-            .ordinals
+            .ordinals_letters
             .as_ref()
             .unwrap()
             .contains_key("2nd"));
@@ -514,11 +521,13 @@ mod tests {
         use romcal_core::types::resource::*;
 
         let metadata1 = ResourcesMetadata {
-            ordinals: Some({
+            ordinal_format: None,
+            ordinals_letters: Some({
                 let mut map = BTreeMap::new();
                 map.insert("1st".to_string(), "premier".to_string());
                 map
             }),
+            ordinals_numeric: None,
             weekdays: Some({
                 let mut map = BTreeMap::new();
                 map.insert("monday".to_string(), "lundi".to_string());
@@ -534,11 +543,13 @@ mod tests {
 
         // Second metadata with null values that should not override the first
         let metadata2 = ResourcesMetadata {
-            ordinals: Some({
+            ordinal_format: None,
+            ordinals_letters: Some({
                 let mut map = BTreeMap::new();
                 map.insert("2nd".to_string(), "deuxième".to_string());
                 map
             }),
+            ordinals_numeric: None,
             weekdays: None, // This null should not override the existing weekdays
             months: Some({
                 let mut map = BTreeMap::new();
@@ -562,15 +573,18 @@ mod tests {
 
         let combined_metadata = result[0].metadata.as_ref().unwrap();
 
-        // ordinals should have both values
-        assert_eq!(combined_metadata.ordinals.as_ref().unwrap().len(), 2);
+        // ordinals_letters should have both values
+        assert_eq!(
+            combined_metadata.ordinals_letters.as_ref().unwrap().len(),
+            2
+        );
         assert!(combined_metadata
-            .ordinals
+            .ordinals_letters
             .as_ref()
             .unwrap()
             .contains_key("1st"));
         assert!(combined_metadata
-            .ordinals
+            .ordinals_letters
             .as_ref()
             .unwrap()
             .contains_key("2nd"));

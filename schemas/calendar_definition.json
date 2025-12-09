@@ -440,6 +440,11 @@
             "last_day_of_week_in_month"
           ],
           "additionalProperties": false
+        },
+        {
+          "description": "Inherited from the proper of time",
+          "type": "object",
+          "additionalProperties": false
         }
       ]
     },

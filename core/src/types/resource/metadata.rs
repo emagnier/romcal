@@ -3,13 +3,19 @@ use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 
+use crate::types::OrdinalFormat;
+
 /// Metadata for localized resources.
 /// Contains all the localized strings and configurations for a specific locale.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 pub struct ResourcesMetadata {
-    /// Ordinal numbers (1st, 2nd, 3rd, etc.) in the locale language
-    pub ordinals: Option<BTreeMap<String, String>>,
+    /// Format for displaying ordinal numbers (defaults to Numeric if not specified)
+    pub ordinal_format: Option<OrdinalFormat>,
+    /// Ordinal numbers as words (first, second, third, etc.) in the locale language
+    pub ordinals_letters: Option<BTreeMap<String, String>>,
+    /// Ordinal numbers as numeric with suffix (1st, 2nd, 3rd, etc.) in the locale language
+    pub ordinals_numeric: Option<BTreeMap<String, String>>,
     /// Weekday names (Sunday, Monday, etc.) in the locale language
     pub weekdays: Option<BTreeMap<String, String>>,
     /// Month names (January, February, etc.) in the locale language
@@ -212,13 +218,20 @@ mod tests {
 
     #[test]
     fn test_serialize_btreemap_alphabetically() {
-        let mut ordinals = BTreeMap::new();
-        ordinals.insert("3rd".to_string(), "troisième".to_string());
-        ordinals.insert("1st".to_string(), "premier".to_string());
-        ordinals.insert("2nd".to_string(), "deuxième".to_string());
+        let mut ordinals_letters = BTreeMap::new();
+        ordinals_letters.insert("3".to_string(), "troisième".to_string());
+        ordinals_letters.insert("1".to_string(), "premier".to_string());
+        ordinals_letters.insert("2".to_string(), "deuxième".to_string());
+
+        let mut ordinals_numeric = BTreeMap::new();
+        ordinals_numeric.insert("3".to_string(), "3e".to_string());
+        ordinals_numeric.insert("1".to_string(), "1er".to_string());
+        ordinals_numeric.insert("2".to_string(), "2e".to_string());
 
         let metadata = ResourcesMetadata {
-            ordinals: Some(ordinals),
+            ordinal_format: None,
+            ordinals_letters: Some(ordinals_letters),
+            ordinals_numeric: Some(ordinals_numeric),
             weekdays: None,
             months: None,
             colors: None,
@@ -230,15 +243,15 @@ mod tests {
 
         let json = serde_json::to_string_pretty(&metadata).unwrap();
 
-        // Verify that keys are in alphabetical order
-        assert!(json.contains("\"1st\""));
-        assert!(json.contains("\"2nd\""));
-        assert!(json.contains("\"3rd\""));
+        // Verify that ordinals_letters keys are in alphabetical order
+        assert!(json.contains("\"1\": \"premier\""));
+        assert!(json.contains("\"2\": \"deuxième\""));
+        assert!(json.contains("\"3\": \"troisième\""));
 
-        // Verify order by checking key positions
-        let first_pos = json.find("\"1st\"").unwrap();
-        let second_pos = json.find("\"2nd\"").unwrap();
-        let third_pos = json.find("\"3rd\"").unwrap();
+        // Verify order by checking key positions in ordinals_letters
+        let first_pos = json.find("\"1\": \"premier\"").unwrap();
+        let second_pos = json.find("\"2\": \"deuxième\"").unwrap();
+        let third_pos = json.find("\"3\": \"troisième\"").unwrap();
 
         assert!(first_pos < second_pos);
         assert!(second_pos < third_pos);

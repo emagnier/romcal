@@ -100,6 +100,7 @@ impl PartialRomcalConfig {
             epiphany_on_sunday: self.epiphany_on_sunday,
             corpus_christi_on_sunday: self.corpus_christi_on_sunday,
             ascension_on_sunday: self.ascension_on_sunday,
+            ordinal_format: None,
             calendar_definitions: None,
             resources: None,
         };

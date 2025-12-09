@@ -406,6 +406,11 @@
             "last_day_of_week_in_month"
           ],
           "additionalProperties": false
+        },
+        {
+          "description": "Inherited from the proper of time",
+          "type": "object",
+          "additionalProperties": false
         }
       ]
     },
@@ -1096,8 +1101,29 @@
       "description": "Metadata for localized resources.\nContains all the localized strings and configurations for a specific locale.",
       "type": "object",
       "properties": {
-        "ordinals": {
-          "description": "Ordinal numbers (1st, 2nd, 3rd, etc.) in the locale language",
+        "ordinal_format": {
+          "description": "Format for displaying ordinal numbers (defaults to Numeric if not specified)",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/OrdinalFormat"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ordinals_letters": {
+          "description": "Ordinal numbers as words (first, second, third, etc.) in the locale language",
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "ordinals_numeric": {
+          "description": "Ordinal numbers as numeric with suffix (1st, 2nd, 3rd, etc.) in the locale language",
           "type": [
             "object",
             "null"
@@ -1183,6 +1209,21 @@
         }
       },
       "additionalProperties": false
+    },
+    "OrdinalFormat": {
+      "description": "Format for displaying ordinal numbers.\n\n- `Letters`: Display ordinals as words (e.g., \"first\", \"second\", \"premier\", \"deuxième\")\n- `Numeric`: Display ordinals as numbers with suffixes (e.g., \"1st\", \"2nd\", \"1er\", \"2e\")",
+      "oneOf": [
+        {
+          "description": "Ordinals displayed as words",
+          "type": "string",
+          "const": "letters"
+        },
+        {
+          "description": "Ordinals displayed as numbers with suffixes (default)",
+          "type": "string",
+          "const": "numeric"
+        }
+      ]
     },
     "LocaleColors": {
       "description": "Liturgical color names in the locale language.\nProvides localized names for each liturgical color.",
@@ -1673,6 +1714,13 @@
     "Entity": {
       "type": "object",
       "properties": {
+        "id": {
+          "description": "The unique identifier of the entity",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
         "type": {
           "description": "The type of the entity.\n@default EntityType.Person",
           "anyOf": [
@@ -1682,14 +1730,16 @@
             {
               "type": "null"
             }
-          ]
+          ],
+          "default": "PERSON"
         },
         "fullname": {
           "description": "The full name of the entity.",
           "type": [
             "string",
             "null"
-          ]
+          ],
+          "writeOnly": true
         },
         "name": {
           "description": "The short name of the entity, without the canonization level and titles.",
@@ -1856,7 +1906,8 @@
           ],
           "items": {
             "type": "string"
-          }
+          },
+          "writeOnly": true
         }
       },
       "additionalProperties": false
@@ -2239,12 +2290,12 @@
         {
           "description": "Year 1 (Cycle I)",
           "type": "string",
-          "const": "YEAR1"
+          "const": "YEAR_1"
         },
         {
           "description": "Year 2 (Cycle II)",
           "type": "string",
-          "const": "YEAR2"
+          "const": "YEAR_2"
         }
       ]
     },
@@ -2254,24 +2305,133 @@
         {
           "description": "Week 1",
           "type": "string",
-          "const": "WEEK1"
+          "const": "WEEK_1"
         },
         {
           "description": "Week 2",
           "type": "string",
-          "const": "WEEK2"
+          "const": "WEEK_2"
         },
         {
           "description": "Week 3",
           "type": "string",
-          "const": "WEEK3"
+          "const": "WEEK_3"
         },
         {
           "description": "Week 4",
           "type": "string",
-          "const": "WEEK4"
+          "const": "WEEK_4"
         }
       ]
+    },
+    "ParentOverride": {
+      "description": "Represents the differences between a liturgical day definition and its parent definition.\nThis is a lightweight structure that only contains fields that can be overridden.",
+      "type": "object",
+      "properties": {
+        "from_calendar_id": {
+          "description": "The ID of the calendar from which this override originates",
+          "type": "string"
+        },
+        "date_def": {
+          "description": "The date definition if it was changed",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/DateDef"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "date_exceptions": {
+          "description": "The date exceptions if they were changed",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/DateDefException"
+          }
+        },
+        "precedence": {
+          "description": "The precedence if it was changed",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Precedence"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "rank": {
+          "description": "The rank if it was changed",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Rank"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "colors": {
+          "description": "The colors if they were changed",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/ColorInfo"
+          }
+        },
+        "titles": {
+          "description": "The titles if they were changed",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/TitlesDef"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "commons_def": {
+          "description": "The commons definition if it was changed",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/CommonDefinition"
+          }
+        },
+        "is_holy_day_of_obligation": {
+          "description": "The is_holy_day_of_obligation flag if it was changed",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "is_optional": {
+          "description": "The is_optional flag if it was changed",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "allow_similar_rank_items": {
+          "description": "The allow_similar_rank_items flag if it was changed",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "from_calendar_id"
+      ],
+      "additionalProperties": false
     },
     "CalendarDefinition": {
       "definitions": {
@@ -2667,6 +2827,11 @@
                 "month",
                 "last_day_of_week_in_month"
               ],
+              "additionalProperties": false
+            },
+            {
+              "description": "Inherited from the proper of time",
+              "type": "object",
               "additionalProperties": false
             }
           ]
@@ -3408,8 +3573,29 @@
           "description": "Metadata for localized resources.\nContains all the localized strings and configurations for a specific locale.",
           "type": "object",
           "properties": {
-            "ordinals": {
-              "description": "Ordinal numbers (1st, 2nd, 3rd, etc.) in the locale language",
+            "ordinal_format": {
+              "description": "Format for displaying ordinal numbers (defaults to Numeric if not specified)",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/OrdinalFormat"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "ordinals_letters": {
+              "description": "Ordinal numbers as words (first, second, third, etc.) in the locale language",
+              "type": [
+                "object",
+                "null"
+              ],
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "ordinals_numeric": {
+              "description": "Ordinal numbers as numeric with suffix (1st, 2nd, 3rd, etc.) in the locale language",
               "type": [
                 "object",
                 "null"
@@ -3495,6 +3681,21 @@
             }
           },
           "additionalProperties": false
+        },
+        "OrdinalFormat": {
+          "description": "Format for displaying ordinal numbers.\n\n- `Letters`: Display ordinals as words (e.g., \"first\", \"second\", \"premier\", \"deuxième\")\n- `Numeric`: Display ordinals as numbers with suffixes (e.g., \"1st\", \"2nd\", \"1er\", \"2e\")",
+          "oneOf": [
+            {
+              "description": "Ordinals displayed as words",
+              "type": "string",
+              "const": "letters"
+            },
+            {
+              "description": "Ordinals displayed as numbers with suffixes (default)",
+              "type": "string",
+              "const": "numeric"
+            }
+          ]
         },
         "LocaleColors": {
           "description": "Liturgical color names in the locale language.\nProvides localized names for each liturgical color.",
@@ -3985,6 +4186,13 @@
         "Entity": {
           "type": "object",
           "properties": {
+            "id": {
+              "description": "The unique identifier of the entity",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
             "type": {
               "description": "The type of the entity.\n@default EntityType.Person",
               "anyOf": [
@@ -3994,14 +4202,16 @@
                 {
                   "type": "null"
                 }
-              ]
+              ],
+              "default": "PERSON"
             },
             "fullname": {
               "description": "The full name of the entity.",
               "type": [
                 "string",
                 "null"
-              ]
+              ],
+              "writeOnly": true
             },
             "name": {
               "description": "The short name of the entity, without the canonization level and titles.",
@@ -4168,7 +4378,8 @@
               ],
               "items": {
                 "type": "string"
-              }
+              },
+              "writeOnly": true
             }
           },
           "additionalProperties": false
@@ -4552,6 +4763,11 @@
                 "month",
                 "last_day_of_week_in_month"
               ],
+              "additionalProperties": false
+            },
+            {
+              "description": "Inherited from the proper of time",
+              "type": "object",
               "additionalProperties": false
             }
           ]
@@ -5111,6 +5327,13 @@
         "Entity": {
           "type": "object",
           "properties": {
+            "id": {
+              "description": "The unique identifier of the entity",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
             "type": {
               "description": "The type of the entity.\n@default EntityType.Person",
               "anyOf": [
@@ -5120,14 +5343,16 @@
                 {
                   "type": "null"
                 }
-              ]
+              ],
+              "default": "PERSON"
             },
             "fullname": {
               "description": "The full name of the entity.",
               "type": [
                 "string",
                 "null"
-              ]
+              ],
+              "writeOnly": true
             },
             "name": {
               "description": "The short name of the entity, without the canonization level and titles.",
@@ -5294,7 +5519,8 @@
               ],
               "items": {
                 "type": "string"
-              }
+              },
+              "writeOnly": true
             }
           },
           "additionalProperties": false
@@ -5472,12 +5698,12 @@
             {
               "description": "Year 1 (Cycle I)",
               "type": "string",
-              "const": "YEAR1"
+              "const": "YEAR_1"
             },
             {
               "description": "Year 2 (Cycle II)",
               "type": "string",
-              "const": "YEAR2"
+              "const": "YEAR_2"
             }
           ]
         },
@@ -5487,23 +5713,161 @@
             {
               "description": "Week 1",
               "type": "string",
-              "const": "WEEK1"
+              "const": "WEEK_1"
             },
             {
               "description": "Week 2",
               "type": "string",
-              "const": "WEEK2"
+              "const": "WEEK_2"
             },
             {
               "description": "Week 3",
               "type": "string",
-              "const": "WEEK3"
+              "const": "WEEK_3"
             },
             {
               "description": "Week 4",
               "type": "string",
-              "const": "WEEK4"
+              "const": "WEEK_4"
             }
+          ]
+        },
+        "ParentOverride": {
+          "description": "Represents the differences between a liturgical day definition and its parent definition.\nThis is a lightweight structure that only contains fields that can be overridden.",
+          "type": "object",
+          "properties": {
+            "from_calendar_id": {
+              "description": "The ID of the calendar from which this override originates",
+              "type": "string"
+            },
+            "date_def": {
+              "description": "The date definition if it was changed",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/DateDef"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "date_exceptions": {
+              "description": "The date exceptions if they were changed",
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "$ref": "#/definitions/DateDefException"
+              }
+            },
+            "precedence": {
+              "description": "The precedence if it was changed",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/Precedence"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "rank": {
+              "description": "The rank if it was changed",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/Rank"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "colors": {
+              "description": "The colors if they were changed",
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "$ref": "#/definitions/ColorInfo"
+              }
+            },
+            "titles": {
+              "description": "The titles if they were changed",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/TitlesDef"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "commons_def": {
+              "description": "The commons definition if it was changed",
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "$ref": "#/definitions/CommonDefinition"
+              }
+            },
+            "is_holy_day_of_obligation": {
+              "description": "The is_holy_day_of_obligation flag if it was changed",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "is_optional": {
+              "description": "The is_optional flag if it was changed",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "allow_similar_rank_items": {
+              "description": "The allow_similar_rank_items flag if it was changed",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "from_calendar_id"
+          ],
+          "additionalProperties": false
+        },
+        "CommonDefinition": {
+          "description": "Common definition for simplified categorization.\nProvides a simplified version of the Common enum for easier classification.",
+          "type": "string",
+          "enum": [
+            "NONE",
+            "DEDICATION_ANNIVERSARY__INSIDE",
+            "DEDICATION_ANNIVERSARY__OUTSIDE",
+            "BLESSED_VIRGIN_MARY",
+            "MARTYRS",
+            "MISSIONARY_MARTYRS",
+            "VIRGIN_MARTYRS",
+            "WOMAN_MARTYRS",
+            "PASTORS",
+            "POPES",
+            "BISHOPS",
+            "FOUNDERS",
+            "MISSIONARIES",
+            "DOCTORS_OF_THE_CHURCH",
+            "VIRGINS",
+            "SAINTS",
+            "ABBOTS",
+            "MONKS",
+            "NUNS",
+            "RELIGIOUS",
+            "MERCY_WORKERS",
+            "EDUCATORS",
+            "HOLY_WOMEN"
           ]
         }
       },
@@ -5688,10 +6052,10 @@
           "type": "string"
         },
         "parent_overrides": {
-          "description": "Contains the differences between this liturgical day and its parent definitions.\nEach element in the array represents the diff between two successive overrides in the inheritance chain.",
+          "description": "Contains the differences between this liturgical day and its parent definitions.\nEach element in the array represents the diff from a parent calendar definition.\nThe array is ordered from most general (e.g., general_roman) to most specific.",
           "type": "array",
           "items": {
-            "$ref": "#"
+            "$ref": "#/definitions/ParentOverride"
           }
         }
       },

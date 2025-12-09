@@ -5,38 +5,38 @@
     "seasons": {
       "advent": {
         "season": "Adventné obdobie",
-        "weekday": "$t(weekdays:{{dow}}, capitalize) po {{week}}. adventnej nedeli",
-        "sunday": "{{week}}. adventná nedeľa",
-        "privileged_weekday": "{{day}} $t(months:11)"
+        "weekday": "{weekday} po {week}. adventnej nedeli",
+        "sunday": "{week}. adventná nedeľa",
+        "privileged_weekday": "{day} {month}"
       },
       "christmas_time": {
         "season": "Vianočné obdobie",
-        "day": "$t(weekdays:{{dow}}, capitalize) vo Vianočnom období",
-        "octave": "{{count}}. deň v oktáve narodenia Pána",
+        "day": "{weekday} vo Vianočnom období",
+        "octave": "{count}. deň v oktáve narodenia Pána",
         "second_sunday_after_christmas": "Druhá nedeľa po narodení Pána",
-        "before_epiphany": "{{day}}. $t(months:0) vo vianočnom období",
-        "after_epiphany": "$t(weekdays:{{dow}}, capitalize) po Zjavení Pána"
+        "before_epiphany": "{day}. {month} vo vianočnom období",
+        "after_epiphany": "{weekday} po Zjavení Pána"
       },
       "ordinary_time": {
         "season": "Cezročné obdobie",
-        "weekday": "$t(weekdays:{{dow}}, capitalize) {{week}}. týždňa v Cezročnom období",
-        "sunday": "{{week}}. nedeľa v Cezročnom období"
+        "weekday": "{weekday} {week}. týždňa v Cezročnom období",
+        "sunday": "{week}. nedeľa v Cezročnom období"
       },
       "lent": {
         "season": "Pôstne obdobie",
-        "weekday": "$t(weekdays:{{dow}}, capitalize) po {{week}}. pôstnej nedeli",
-        "sunday": "{{week}}. pôstna nedeľa",
-        "day_after_ash_wed": "$t(weekdays:{{dow}}, capitalize) po Popolcovej strede",
-        "holy_week_day": "$t(weekdays:{{dow}}, capitalize) Svätého týždňa"
+        "weekday": "{weekday} po {week}. pôstnej nedeli",
+        "sunday": "{week}. pôstna nedeľa",
+        "day_after_ash_wed": "{weekday} po Popolcovej strede",
+        "holy_week_day": "{weekday} Svätého týždňa"
       },
       "paschal_triduum": {
         "season": "Veľkonočné trojdnie"
       },
       "easter_time": {
         "season": "Veľkonočné obdobie",
-        "weekday": "$t(weekdays:{{dow}}, capitalize) po {{week}}. veľkonočnej nedeli",
-        "sunday": "{{week}}. veľkonočná nedeľa",
-        "octave": "Veľkonočný $t(weekdays:{{dow}}, capitalize)"
+        "weekday": "{weekday} po {week}. veľkonočnej nedeli",
+        "sunday": "{week}. veľkonočná nedeľa",
+        "octave": "Veľkonočný {weekday}"
       }
     },
     "periods": {
@@ -96,7 +96,8 @@
       "rose": "ružová",
       "white": "biela"
     },
-    "ordinals": {
+    "ordinals_letters": {
+      "1": "prvý",
       "2": "druhý",
       "3": "tretí",
       "4": "štvrtý",
@@ -107,7 +108,7 @@
       "9": "deviaty",
       "10": "desiaty",
       "11": "jedenásty",
-      "12": "dvanácty",
+      "12": "dvanásty",
       "13": "trinásty",
       "14": "štrnásty",
       "15": "pätnásty",
@@ -132,6 +133,42 @@
       "34": "tridsiaty štvrtý",
       "1_masculine": "prvý",
       "1_feminine": "prvá"
+    },
+    "ordinals_numeric": {
+      "1": "1.",
+      "2": "2.",
+      "3": "3.",
+      "4": "4.",
+      "5": "5.",
+      "6": "6.",
+      "7": "7.",
+      "8": "8.",
+      "9": "9.",
+      "10": "10.",
+      "11": "11.",
+      "12": "12.",
+      "13": "13.",
+      "14": "14.",
+      "15": "15.",
+      "16": "16.",
+      "17": "17.",
+      "18": "18.",
+      "19": "19.",
+      "20": "20.",
+      "21": "21.",
+      "22": "22.",
+      "23": "23.",
+      "24": "24.",
+      "25": "25.",
+      "26": "26.",
+      "27": "27.",
+      "28": "28.",
+      "29": "29.",
+      "30": "30.",
+      "31": "31.",
+      "32": "32.",
+      "33": "33.",
+      "34": "34."
     }
   }
 }

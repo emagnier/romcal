@@ -5,38 +5,38 @@
     "seasons": {
       "advent": {
         "season": "திருவருகைக்காலம்",
-        "weekday": "$t(weekdays:{{dow}}) - $t(ordinals:{{week}}) திருவருகைக்கால வாரநாள்",
-        "sunday": "$t(ordinals:{{week}}) திருவருகைக்கால ஞாயிறு",
-        "privileged_weekday": "$t(months:11) {{day}}"
+        "weekday": "{weekday} - {ordinal} திருவருகைக்கால வாரநாள்",
+        "sunday": "{ordinal} திருவருகைக்கால ஞாயிறு",
+        "privileged_weekday": "{month} {day}"
       },
       "christmas_time": {
         "season": "கிறிஸ்து பிறப்பு காலம்",
-        "day": "$t(weekdays:{{dow}}) கிறிஸ்து பிறப்பு காலம்",
-        "octave": "{{count}}ஆம் நாள் கிறிஸ்து பிறப்பின் எண்கிழமை",
+        "day": "{weekday} கிறிஸ்து பிறப்பு காலம்",
+        "octave": "{count}ஆம் நாள் கிறிஸ்து பிறப்பின் எண்கிழமை",
         "second_sunday_after_christmas": "கிறிஸ்து பிறப்பிற்குப் பின் இரண்டாம் ஞாயிறு",
-        "before_epiphany": "திருக்காட்சிக்கு முன் - $t(months:0) {{day}}",
-        "after_epiphany": "திருக்காட்சிக்கு பின் $t(weekdays:{{dow}})"
+        "before_epiphany": "திருக்காட்சிக்கு முன் - {month} {day}",
+        "after_epiphany": "திருக்காட்சிக்கு பின் {weekday}"
       },
       "ordinary_time": {
         "season": "பொதுக்காலம்",
-        "weekday": "$t(weekdays:{{dow}}) - $t(ordinals:{{week}}) பொதுக்கால வாரநாள்",
-        "sunday": "$t(ordinals:{{week}}) பொதுக்கால ஞாயிறு"
+        "weekday": "{weekday} - {ordinal} பொதுக்கால வாரநாள்",
+        "sunday": "{ordinal} பொதுக்கால ஞாயிறு"
       },
       "lent": {
         "season": "தவக்காலம்",
-        "weekday": "$t(weekdays:{{dow}}) - $t(ordinals:{{week}}) தவக்கால வாரநாள்",
-        "sunday": "$t(ordinals:{{week}}) தவக்கால ஞாயிறு",
-        "day_after_ash_wed": "$t(weekdays:{{dow}}) விபூதி புதனுக்குப் பின்",
-        "holy_week_day": "$t(weekdays:{{dow}}) - புனித வாரம்"
+        "weekday": "{weekday} - {ordinal} தவக்கால வாரநாள்",
+        "sunday": "{ordinal} தவக்கால ஞாயிறு",
+        "day_after_ash_wed": "{weekday} விபூதி புதனுக்குப் பின்",
+        "holy_week_day": "{weekday} - புனித வாரம்"
       },
       "paschal_triduum": {
         "season": "பாஸ்காவின் மூன்று புனித நாட்கள்"
       },
       "easter_time": {
         "season": "பாஸ்காக்காலம்",
-        "weekday": "$t(weekdays:{{dow}}) - $t(ordinals:{{week}}) பாஸ்காக்காலம் வாரநாள்",
-        "sunday": "$t(ordinals:{{week}}) பாஸ்காகாலம் ஞாயிறு",
-        "octave": "$t(weekdays:{{dow}}) பாஸ்கா எண்கிழமை"
+        "weekday": "{weekday} - {ordinal} பாஸ்காக்காலம் வாரநாள்",
+        "sunday": "{ordinal} பாஸ்காகாலம் ஞாயிறு",
+        "octave": "{weekday} பாஸ்கா எண்கிழமை"
       }
     },
     "periods": {
@@ -52,7 +52,7 @@
       "weekday": "வாரநாள்"
     },
     "cycles": {
-      "proper_of_time": "காலத்தின் சிறப்ப",
+      "proper_of_time": "காலத்தின் சிறப்பு",
       "proper_of_saints": "புனிதர்களின் சிறப்பு",
       "sunday_year_a": "முதலாம் ஆண்டு",
       "sunday_year_b": "இரண்டாம் ஆண்டு",
@@ -96,7 +96,7 @@
       "rose": "ரோஸ்",
       "white": "வெள்ளை"
     },
-    "ordinals": {
+    "ordinals_letters": {
       "1": "முதலாம்",
       "2": "இரண்டாம்",
       "3": "மூன்றாம்",
@@ -131,6 +131,42 @@
       "32": "முப்பத்தி இரண்டாம்",
       "33": "முப்பத்தி மூன்றாம்",
       "34": "முப்பத்தி நான்காம்"
+    },
+    "ordinals_numeric": {
+      "1": "1ஆம்",
+      "2": "2ஆம்",
+      "3": "3ஆம்",
+      "4": "4ஆம்",
+      "5": "5ஆம்",
+      "6": "6ஆம்",
+      "7": "7ஆம்",
+      "8": "8ஆம்",
+      "9": "9ஆம்",
+      "10": "10ஆம்",
+      "11": "11ஆம்",
+      "12": "12ஆம்",
+      "13": "13ஆம்",
+      "14": "14ஆம்",
+      "15": "15ஆம்",
+      "16": "16ஆம்",
+      "17": "17ஆம்",
+      "18": "18ஆம்",
+      "19": "19ஆம்",
+      "20": "20ஆம்",
+      "21": "21ஆம்",
+      "22": "22ஆம்",
+      "23": "23ஆம்",
+      "24": "24ஆம்",
+      "25": "25ஆம்",
+      "26": "26ஆம்",
+      "27": "27ஆம்",
+      "28": "28ஆம்",
+      "29": "29ஆம்",
+      "30": "30ஆம்",
+      "31": "31ஆம்",
+      "32": "32ஆம்",
+      "33": "33ஆம்",
+      "34": "34ஆம்"
     }
   }
 }

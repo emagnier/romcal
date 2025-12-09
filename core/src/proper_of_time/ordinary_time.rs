@@ -3,6 +3,7 @@ use chrono::{DateTime, Datelike, Utc};
 use crate::error::RomcalResult;
 use crate::liturgical_day::LiturgicalDay;
 use crate::proper_of_time::common::{sort_liturgical_days_by_date, WEEKDAY_NAMES};
+use crate::template_resolver::ProperOfTimeDayType;
 use crate::types::liturgical::{Color, Precedence, Season};
 
 use super::ProperOfTime;
@@ -202,6 +203,11 @@ impl<'a> OrdinaryTime<'a> {
         dow: u8,
         date: DateTime<Utc>,
     ) -> RomcalResult<LiturgicalDay> {
+        let day_type = if dow == 0 {
+            ProperOfTimeDayType::OrdinaryTimeSunday { week }
+        } else {
+            ProperOfTimeDayType::OrdinaryTimeWeekday { week, dow }
+        };
         let liturgical_day = self.proper_of_time.create_liturgical_day_base(
             &format!("ordinary_time_{}_{}", week, WEEKDAY_NAMES[dow as usize]),
             date,
@@ -212,6 +218,7 @@ impl<'a> OrdinaryTime<'a> {
             },
             Some(Season::OrdinaryTime),
             Color::Green,
+            Some(&day_type),
         );
 
         Ok(liturgical_day)
@@ -219,12 +226,14 @@ impl<'a> OrdinaryTime<'a> {
 
     /// Creates the Sunday of the Word of God (3rd week of Ordinary Time)
     fn create_sunday_of_the_word_of_god(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
+        // Entity-based day, fullname comes from entity resolution
         let liturgical_day = self.proper_of_time.create_liturgical_day_base(
             "sunday_of_the_word_of_god",
             date,
             Precedence::UnprivilegedSunday_6,
             Some(Season::OrdinaryTime),
             Color::Green,
+            None,
         );
 
         Ok(liturgical_day)
@@ -232,12 +241,14 @@ impl<'a> OrdinaryTime<'a> {
 
     /// Creates the Most Holy Trinity (Trinity Sunday)
     fn create_most_holy_trinity(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
+        // Entity-based day, fullname comes from entity resolution
         let liturgical_day = self.proper_of_time.create_liturgical_day_base(
             "most_holy_trinity",
             date,
             Precedence::GeneralSolemnity_3,
             Some(Season::OrdinaryTime),
             Color::White,
+            None,
         );
 
         Ok(liturgical_day)
@@ -248,12 +259,14 @@ impl<'a> OrdinaryTime<'a> {
         &self,
         date: DateTime<Utc>,
     ) -> RomcalResult<LiturgicalDay> {
+        // Entity-based day, fullname comes from entity resolution
         let liturgical_day = self.proper_of_time.create_liturgical_day_base(
             "most_holy_body_and_blood_of_christ",
             date,
             Precedence::GeneralSolemnity_3,
             Some(Season::OrdinaryTime),
             Color::White,
+            None,
         );
 
         Ok(liturgical_day)
@@ -264,12 +277,14 @@ impl<'a> OrdinaryTime<'a> {
         &self,
         date: DateTime<Utc>,
     ) -> RomcalResult<LiturgicalDay> {
+        // Entity-based day, fullname comes from entity resolution
         let liturgical_day = self.proper_of_time.create_liturgical_day_base(
             "most_sacred_heart_of_jesus",
             date,
             Precedence::GeneralSolemnity_3,
             Some(Season::OrdinaryTime),
             Color::White,
+            None,
         );
 
         Ok(liturgical_day)
@@ -280,12 +295,14 @@ impl<'a> OrdinaryTime<'a> {
         &self,
         date: DateTime<Utc>,
     ) -> RomcalResult<LiturgicalDay> {
+        // Entity-based day, fullname comes from entity resolution
         let liturgical_day = self.proper_of_time.create_liturgical_day_base(
             "our_lord_jesus_christ_king_of_the_universe",
             date,
             Precedence::GeneralSolemnity_3,
             Some(Season::OrdinaryTime),
             Color::White,
+            None,
         );
 
         Ok(liturgical_day)

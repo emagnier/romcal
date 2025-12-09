@@ -45,8 +45,29 @@
       "description": "Metadata for localized resources.\nContains all the localized strings and configurations for a specific locale.",
       "type": "object",
       "properties": {
-        "ordinals": {
-          "description": "Ordinal numbers (1st, 2nd, 3rd, etc.) in the locale language",
+        "ordinal_format": {
+          "description": "Format for displaying ordinal numbers (defaults to Numeric if not specified)",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/OrdinalFormat"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ordinals_letters": {
+          "description": "Ordinal numbers as words (first, second, third, etc.) in the locale language",
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "ordinals_numeric": {
+          "description": "Ordinal numbers as numeric with suffix (1st, 2nd, 3rd, etc.) in the locale language",
           "type": [
             "object",
             "null"
@@ -132,6 +153,21 @@
         }
       },
       "additionalProperties": false
+    },
+    "OrdinalFormat": {
+      "description": "Format for displaying ordinal numbers.\n\n- `Letters`: Display ordinals as words (e.g., \"first\", \"second\", \"premier\", \"deuxième\")\n- `Numeric`: Display ordinals as numbers with suffixes (e.g., \"1st\", \"2nd\", \"1er\", \"2e\")",
+      "oneOf": [
+        {
+          "description": "Ordinals displayed as words",
+          "type": "string",
+          "const": "letters"
+        },
+        {
+          "description": "Ordinals displayed as numbers with suffixes (default)",
+          "type": "string",
+          "const": "numeric"
+        }
+      ]
     },
     "LocaleColors": {
       "description": "Liturgical color names in the locale language.\nProvides localized names for each liturgical color.",
@@ -622,6 +658,13 @@
     "Entity": {
       "type": "object",
       "properties": {
+        "id": {
+          "description": "The unique identifier of the entity",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
         "type": {
           "description": "The type of the entity.\n@default EntityType.Person",
           "anyOf": [
@@ -631,14 +674,16 @@
             {
               "type": "null"
             }
-          ]
+          ],
+          "default": "PERSON"
         },
         "fullname": {
           "description": "The full name of the entity.",
           "type": [
             "string",
             "null"
-          ]
+          ],
+          "writeOnly": true
         },
         "name": {
           "description": "The short name of the entity, without the canonization level and titles.",
@@ -805,7 +850,8 @@
           ],
           "items": {
             "type": "string"
-          }
+          },
+          "writeOnly": true
         }
       },
       "additionalProperties": false

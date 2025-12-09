@@ -9,6 +9,7 @@
     "weekdays": {},
     "months": {},
     "colors": {},
-    "ordinals": {}
+    "ordinals_letters": {},
+    "ordinals_numeric": {}
   }
 }

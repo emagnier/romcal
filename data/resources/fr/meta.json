@@ -4,39 +4,39 @@
   "metadata": {
     "seasons": {
       "advent": {
-        "season": "Temps de l’Avent",
-        "weekday": "$t(weekdays:{{dow}}, capitalize) de la $t(ordinals:{{week}}, { \"context\": \"feminine\" }) semaine de l’Avent",
-        "sunday": "$t(ordinals:{{week}}, capitalize) dimanche de l’Avent",
-        "privileged_weekday": "{{day}} $t(months:11)"
+        "season": "Temps de l'Avent",
+        "weekday": "{weekday} de la {ordinal_feminine} semaine de l'Avent",
+        "sunday": "{ordinal} dimanche de l'Avent",
+        "privileged_weekday": "{day} {month}"
       },
       "christmas_time": {
         "season": "Temps de Noël",
-        "day": "$t(weekdays:{{dow}}, capitalize) dans le Temps de Noël",
-        "octave": "{{count}}ᵉ jour dans l’Octave de la Nativité",
+        "day": "{weekday} dans le Temps de Noël",
+        "octave": "{count}ᵉ jour dans l'Octave de la Nativité",
         "second_sunday_after_christmas": "Deuxième dimanche après la Nativité",
-        "before_epiphany": "{{day}} $t(months:0)",
-        "after_epiphany": "$t(weekdays:{{dow}}, capitalize) après l’Épiphanie"
+        "before_epiphany": "{day} {month}",
+        "after_epiphany": "{weekday} après l'Épiphanie"
       },
       "ordinary_time": {
         "season": "Temps Ordinaire",
-        "weekday": "$t(weekdays:{{dow}}, capitalize) de la $t(ordinals:{{week}}, { \"context\": \"feminine\" }) semaine du Temps Ordinaire",
-        "sunday": "$t(ordinals:{{week}}, capitalize) $t(weekdays:0) du Temps Ordinaire"
+        "weekday": "{weekday} de la {ordinal_feminine} semaine du Temps Ordinaire",
+        "sunday": "{ordinal} dimanche du Temps Ordinaire"
       },
       "lent": {
         "season": "Temps du Carême",
-        "weekday": "$t(weekdays:{{dow}}, capitalize) de la $t(ordinals:{{week}}, { \"context\": \"feminine\" }) semaine de Carême",
-        "sunday": "$t(ordinals:{{week}}, capitalize) dimanche de Carême",
-        "day_after_ash_wed": "$t(weekdays:{{dow}}, capitalize) après les Cendres",
-        "holy_week_day": "$t(weekdays:{{dow}}, capitalize) Saint"
+        "weekday": "{weekday} de la {ordinal_feminine} semaine de Carême",
+        "sunday": "{ordinal} dimanche de Carême",
+        "day_after_ash_wed": "{weekday} après les Cendres",
+        "holy_week_day": "{weekday} Saint"
       },
       "paschal_triduum": {
         "season": "Triduum Pascal"
       },
       "easter_time": {
         "season": "Temps Pascal",
-        "weekday": "$t(weekdays:{{dow}}, capitalize) de la $t(ordinals:{{week}}, { \"context\": \"feminine\" }) semaine de Pâques",
-        "sunday": "$t(ordinals:{{week}}, capitalize) dimanche de Pâques",
-        "octave": "$t(weekdays:{{dow}}, capitalize) dans l’Octave de Pâques"
+        "weekday": "{weekday} de la {ordinal_feminine} semaine de Pâques",
+        "sunday": "{ordinal} dimanche de Pâques",
+        "octave": "{weekday} dans l'Octave de Pâques"
       }
     },
     "periods": {
@@ -96,7 +96,7 @@
       "rose": "rose",
       "white": "blanc"
     },
-    "ordinals": {
+    "ordinals_letters": {
       "1": "premier",
       "2": "deuxième",
       "3": "troisième",
@@ -117,7 +117,7 @@
       "18": "dix-huitième",
       "19": "dix-neuvième",
       "20": "vingtième",
-      "21": "vingt et unième",
+      "21": "vingt-et-unième",
       "22": "vingt-deuxième",
       "23": "vingt-troisième",
       "24": "vingt-quatrième",
@@ -127,11 +127,48 @@
       "28": "vingt-huitième",
       "29": "vingt-neuvième",
       "30": "trentième",
-      "31": "trente et unième",
+      "31": "trente-et-unième",
       "32": "trente-deuxième",
       "33": "trente-troisième",
       "34": "trente-quatrième",
       "1_feminine": "première"
+    },
+    "ordinals_numeric": {
+      "1": "1ᵉʳ",
+      "2": "2ᵉ",
+      "3": "3ᵉ",
+      "4": "4ᵉ",
+      "5": "5ᵉ",
+      "6": "6ᵉ",
+      "7": "7ᵉ",
+      "8": "8ᵉ",
+      "9": "9ᵉ",
+      "10": "10ᵉ",
+      "11": "11ᵉ",
+      "12": "12ᵉ",
+      "13": "13ᵉ",
+      "14": "14ᵉ",
+      "15": "15ᵉ",
+      "16": "16ᵉ",
+      "17": "17ᵉ",
+      "18": "18ᵉ",
+      "19": "19ᵉ",
+      "20": "20ᵉ",
+      "21": "21ᵉ",
+      "22": "22ᵉ",
+      "23": "23ᵉ",
+      "24": "24ᵉ",
+      "25": "25ᵉ",
+      "26": "26ᵉ",
+      "27": "27ᵉ",
+      "28": "28ᵉ",
+      "29": "29ᵉ",
+      "30": "30ᵉ",
+      "31": "31ᵉ",
+      "32": "32ᵉ",
+      "33": "33ᵉ",
+      "34": "34ᵉ",
+      "1_feminine": "1ʳᵉ"
     }
   }
 }
