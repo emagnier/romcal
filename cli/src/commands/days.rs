@@ -91,7 +91,8 @@ pub fn handle(
             let yaml_output = serde_saphyr::to_string(&output_data).map_err(|e| {
                 RomcalCliError::config_error(format!("Failed to serialize to YAML: {}", e))
             })?;
-            println!("{}", yaml_output);
+            let formatted = format_yaml_output(&yaml_output);
+            print!("{}", formatted);
         }
         OutputFormat::Json => {
             let json_output = serde_json::to_string_pretty(&output_data).map_err(|e| {
@@ -196,6 +197,45 @@ fn convert_to_csv(
     String::from_utf8(csv_data).map_err(|e| {
         RomcalCliError::config_error(format!("Failed to convert CSV to string: {}", e))
     })
+}
+
+/// Format YAML output for better readability
+///
+/// This function:
+/// 1. Removes existing empty lines
+/// 2. Adds a newline before date keys (root level, no leading space)
+/// 3. Adds a newline before array entries (lines starting with "  - "), except the first entry
+/// 4. Ensures a single trailing newline
+fn format_yaml_output(yaml: &str) -> String {
+    let mut result = Vec::new();
+    let mut is_first_line = true;
+    let mut just_saw_date_key = false;
+
+    for line in yaml.lines() {
+        // Skip empty lines
+        if line.trim().is_empty() {
+            continue;
+        }
+
+        // Check if this is a date key (no leading space, ends with :)
+        let is_date_key = !line.starts_with(' ') && line.ends_with(':');
+
+        // Add newline before date keys
+        if is_date_key && !is_first_line {
+            result.push(String::new());
+        }
+        // Add newline before array entries (starts with "  - "), but not the first one after a date
+        else if line.starts_with("  - ") && !is_first_line && !just_saw_date_key {
+            result.push(String::new());
+        }
+
+        result.push(line.to_string());
+        is_first_line = false;
+        just_saw_date_key = is_date_key;
+    }
+
+    // Join with newlines and add single trailing newline
+    result.join("\n") + "\n"
 }
 
 /// Convert filtered liturgical days to lines format
