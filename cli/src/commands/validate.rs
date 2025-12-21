@@ -54,14 +54,11 @@ pub fn handle(
     let all_files = utils::collect_json_files(file_paths)?;
 
     // Remove duplicates while preserving order
-    let mut unique_files = Vec::new();
-    for file in all_files {
-        if !unique_files.contains(&file) {
-            unique_files.push(file);
-        }
-    }
-
-    let files = unique_files;
+    let mut seen = std::collections::HashSet::new();
+    let files: Vec<_> = all_files
+        .into_iter()
+        .filter(|f| seen.insert(f.clone()))
+        .collect();
 
     // Parse the embedded JSON schema
     let schema_json: Value = serde_json::from_str(schema_content)?;

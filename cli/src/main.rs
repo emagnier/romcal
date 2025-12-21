@@ -64,7 +64,7 @@ struct PresetArgs {
 }
 
 impl PresetArgs {
-    fn to_preset(self) -> Result<Preset, RomcalCliError> {
+    fn into_preset(self) -> Result<Preset, RomcalCliError> {
         let definitions = if !self.calendar_definitions.is_empty() {
             utils::collect_json_file_paths(&self.calendar_definitions)?
         } else {
@@ -260,7 +260,7 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
             debug,
         } => {
             debug.init();
-            dates::handle(&date_name, year, output.format.into(), preset.to_preset()?)
+            dates::handle(&date_name, year, output.format.into(), preset.into_preset()?)
         }
         Commands::Days {
             year,
@@ -272,7 +272,7 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
             debug.init();
             let converted_filter =
                 filter.map(|filters| filters.into_iter().map(|wrapper| wrapper.0).collect());
-            days::handle(year, converted_filter, preset.to_preset()?, output.format.into())
+            days::handle(year, converted_filter, preset.into_preset()?, output.format.into())
         }
         Commands::List { element, output } => match element {
             ListCommand::Calendars { tree } => list::handle_calendars(output.format.into(), tree),
@@ -284,11 +284,11 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
             debug,
         } => {
             debug.init();
-            show_preset::handle(output.format.into(), preset.to_preset()?)
+            show_preset::handle(output.format.into(), preset.into_preset()?)
         }
         Commands::OptimizePreset { out, preset, debug } => {
             debug.init();
-            optimize_preset::handle(preset.to_preset()?, out)
+            optimize_preset::handle(preset.into_preset()?, out)
         }
         Commands::Validate { validation_type } => match validation_type {
             ValidationCommand::Definitions { file_paths } => {
