@@ -5,6 +5,7 @@ use std::path::{Path, PathBuf};
 
 /// Configuration file structure
 #[derive(Debug, Default, Deserialize)]
+#[serde(deny_unknown_fields)]
 pub struct Config {
     pub calendar: Option<String>,
     pub locale: Option<String>,
