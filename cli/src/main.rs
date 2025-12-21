@@ -1,9 +1,11 @@
 use clap::{Args, Parser, Subcommand};
 use colored::*;
 use romcal_core::{CalendarContext, EasterCalculationType, Preset};
+use std::path::PathBuf;
 use std::process;
 
 mod commands;
+mod config;
 mod enums;
 mod error;
 mod preset;
@@ -17,25 +19,34 @@ use commands::optimize_preset;
 use commands::show_preset;
 use error::RomcalCliError;
 
+use crate::config::Config;
 use crate::enums::liturgical_day_filter::LiturgicalDayFilterWrapper;
 use crate::enums::{
     CliCalendarContext, CliEasterCalculationType, CliOutputFormat, ValidationType,
 };
 use crate::preset::create_preset;
 
+/// Config file flag
+#[derive(Args, Clone, Default)]
+struct ConfigArgs {
+    /// Path to config file (default: .romcal.toml or ~/.config/romcal/config.toml)
+    #[arg(long = "config", short = 'C', global = true)]
+    config_path: Option<PathBuf>,
+}
+
 /// Preset-related flags
-#[derive(Args, Clone)]
+#[derive(Args, Clone, Default)]
 struct PresetArgs {
     /// Calendar name to use (e.g., france, united_states)
-    #[arg(short = 'c', long, default_value = "general_roman")]
+    #[arg(short = 'c', long)]
     calendar: Option<String>,
 
     /// Locale name to use (e.g., en, fr, es)
-    #[arg(short = 'l', long, default_value = "en")]
+    #[arg(short = 'l', long)]
     locale: Option<String>,
 
     /// Calendar context
-    #[arg(short = 't', long, value_enum, default_value = "gregorian")]
+    #[arg(short = 't', long, value_enum)]
     context: Option<CliCalendarContext>,
 
     /// Easter calculation type
@@ -43,15 +54,15 @@ struct PresetArgs {
     easter_calculation_type: Option<CliEasterCalculationType>,
 
     /// Celebrate Epiphany on Sunday
-    #[arg(long, action = clap::ArgAction::SetTrue)]
+    #[arg(long)]
     epiphany_on_sunday: bool,
 
     /// Celebrate Ascension on Sunday
-    #[arg(long, action = clap::ArgAction::SetTrue)]
+    #[arg(long)]
     ascension_on_sunday: bool,
 
     /// Celebrate Corpus Christi on Sunday
-    #[arg(long, action = clap::ArgAction::SetTrue)]
+    #[arg(long)]
     corpus_christi_on_sunday: bool,
 
     /// Paths to calendar definition JSON files (supports glob patterns)
@@ -64,7 +75,42 @@ struct PresetArgs {
 }
 
 impl PresetArgs {
-    fn into_preset(self) -> Result<Preset, RomcalCliError> {
+    /// Merge CLI args with config, CLI takes priority
+    fn into_preset(self, config: &Config) -> Result<Preset, RomcalCliError> {
+        // CLI args take priority over config
+        let calendar = self.calendar.as_deref().or(config.calendar.as_deref());
+        let locale = self.locale.as_deref().or(config.locale.as_deref());
+
+        let context = self.context.map(CalendarContext::from).or_else(|| {
+            config.context.as_ref().and_then(|s| match s.as_str() {
+                "gregorian" => Some(CalendarContext::Gregorian),
+                "liturgical" => Some(CalendarContext::Liturgical),
+                _ => None,
+            })
+        });
+
+        let easter_calc = self
+            .easter_calculation_type
+            .map(EasterCalculationType::from)
+            .or_else(|| {
+                config
+                    .easter_calculation_type
+                    .as_ref()
+                    .and_then(|s| match s.as_str() {
+                        "gregorian" => Some(EasterCalculationType::Gregorian),
+                        "julian" => Some(EasterCalculationType::Julian),
+                        _ => None,
+                    })
+            });
+
+        // For booleans: CLI true overrides, otherwise use config
+        let epiphany_on_sunday = self.epiphany_on_sunday
+            || config.epiphany_on_sunday.unwrap_or(false);
+        let ascension_on_sunday = self.ascension_on_sunday
+            || config.ascension_on_sunday.unwrap_or(false);
+        let corpus_christi_on_sunday = self.corpus_christi_on_sunday
+            || config.corpus_christi_on_sunday.unwrap_or(false);
+
         let definitions = if !self.calendar_definitions.is_empty() {
             utils::collect_json_file_paths(&self.calendar_definitions)?
         } else {
@@ -75,14 +121,15 @@ impl PresetArgs {
         } else {
             Vec::new()
         };
+
         create_preset(
-            self.calendar.as_deref(),
-            self.locale.as_deref(),
-            self.context.map(CalendarContext::from),
-            self.easter_calculation_type.map(EasterCalculationType::from),
-            Some(self.epiphany_on_sunday),
-            Some(self.ascension_on_sunday),
-            Some(self.corpus_christi_on_sunday),
+            calendar,
+            locale,
+            context,
+            easter_calc,
+            Some(epiphany_on_sunday),
+            Some(ascension_on_sunday),
+            Some(corpus_christi_on_sunday),
             &definitions,
             &resources,
         )
@@ -90,11 +137,30 @@ impl PresetArgs {
 }
 
 /// Output format flag
-#[derive(Args, Clone)]
+#[derive(Args, Clone, Default)]
 struct OutputArgs {
     /// Output format
-    #[arg(short = 'f', long, value_enum, default_value = "yaml")]
-    format: CliOutputFormat,
+    #[arg(short = 'f', long, value_enum)]
+    format: Option<CliOutputFormat>,
+}
+
+impl OutputArgs {
+    /// Get format, with config fallback and default
+    fn get_format(self, config: &Config) -> CliOutputFormat {
+        self.format.unwrap_or_else(|| {
+            config
+                .format
+                .as_ref()
+                .and_then(|s| match s.as_str() {
+                    "yaml" => Some(CliOutputFormat::Yaml),
+                    "json" => Some(CliOutputFormat::Json),
+                    "csv" => Some(CliOutputFormat::Csv),
+                    "lines" => Some(CliOutputFormat::Lines),
+                    _ => None,
+                })
+                .unwrap_or(CliOutputFormat::Yaml)
+        })
+    }
 }
 
 /// Debug flag
@@ -126,6 +192,9 @@ impl DebugArgs {
 struct Cli {
     #[command(subcommand)]
     command: Commands,
+
+    #[command(flatten)]
+    config: ConfigArgs,
 }
 
 #[derive(Subcommand)]
@@ -251,6 +320,9 @@ fn main() {
 
 /// Execute the CLI command with the provided configuration
 fn run(cli: Cli) -> Result<(), RomcalCliError> {
+    // Load config file
+    let config = Config::load(cli.config.config_path.as_deref())?;
+
     match cli.command {
         Commands::Dates {
             date_name,
@@ -260,7 +332,12 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
             debug,
         } => {
             debug.init();
-            dates::handle(&date_name, year, output.format.into(), preset.into_preset()?)
+            dates::handle(
+                &date_name,
+                year,
+                output.get_format(&config).into(),
+                preset.into_preset(&config)?,
+            )
         }
         Commands::Days {
             year,
@@ -272,11 +349,20 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
             debug.init();
             let converted_filter =
                 filter.map(|filters| filters.into_iter().map(|wrapper| wrapper.0).collect());
-            days::handle(year, converted_filter, preset.into_preset()?, output.format.into())
+            days::handle(
+                year,
+                converted_filter,
+                preset.into_preset(&config)?,
+                output.get_format(&config).into(),
+            )
         }
         Commands::List { element, output } => match element {
-            ListCommand::Calendars { tree } => list::handle_calendars(output.format.into(), tree),
-            ListCommand::Locales { tree } => list::handle_locales(output.format.into(), tree),
+            ListCommand::Calendars { tree } => {
+                list::handle_calendars(output.get_format(&config).into(), tree)
+            }
+            ListCommand::Locales { tree } => {
+                list::handle_locales(output.get_format(&config).into(), tree)
+            }
         },
         Commands::Preset {
             preset,
@@ -284,11 +370,11 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
             debug,
         } => {
             debug.init();
-            show_preset::handle(output.format.into(), preset.into_preset()?)
+            show_preset::handle(output.get_format(&config).into(), preset.into_preset(&config)?)
         }
         Commands::OptimizePreset { out, preset, debug } => {
             debug.init();
-            optimize_preset::handle(preset.into_preset()?, out)
+            optimize_preset::handle(preset.into_preset(&config)?, out)
         }
         Commands::Validate { validation_type } => match validation_type {
             ValidationCommand::Definitions { file_paths } => {

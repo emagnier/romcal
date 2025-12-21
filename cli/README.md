@@ -40,6 +40,45 @@ After building, the CLI binary is located at:
 ./target/release/romcal list-locales
 ```
 
+## Configuration
+
+Romcal CLI supports configuration files to set default options. Configuration is loaded from (in priority order):
+
+1. **CLI flags** (highest priority)
+2. **Custom config file** via `--config` / `-C` flag
+3. **Project config** `.romcal.toml` in current directory
+4. **User config**:
+   - Linux/macOS: `~/.config/romcal/config.toml`
+   - Windows: `%APPDATA%\romcal\config.toml`
+
+### Example Configuration
+
+```toml
+# .romcal.toml
+calendar = "france"
+locale = "fr"
+format = "yaml"
+context = "gregorian"
+easter_calculation_type = "gregorian"
+epiphany_on_sunday = true
+ascension_on_sunday = false
+corpus_christi_on_sunday = true
+```
+
+### Using Config Files
+
+```bash
+# Uses .romcal.toml in current directory (if exists)
+romcal days 2025
+
+# Use a specific config file
+romcal --config ./parish-config.toml days 2025
+romcal -C ~/configs/france.toml dates easter_sunday
+
+# CLI flags override config values
+romcal days 2025 --locale en  # Uses fr from config, but en from CLI
+```
+
 ## Quick Start
 
 ```bash
@@ -194,6 +233,7 @@ romcal validate definitions "data/definitions/**/*.json"
 
 These options are available for all commands:
 
+- `-C, --config <PATH>` - Path to config file (default: .romcal.toml or ~/.config/romcal/config.toml)
 - `-D, --debug` - Show debug information
 - `-f, --format <FORMAT>` - Output format (json, csv, yaml, lines) [default: yaml]
 - `-c, --calendar <CALENDAR>` - Calendar name to use [default: general_roman]
