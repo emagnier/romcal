@@ -7,17 +7,17 @@
 use chrono::{Datelike, Duration, NaiveDate, Weekday};
 use std::collections::{BTreeMap, HashMap, HashSet};
 
+use crate::CalendarDefinition;
 use crate::dates::LiturgicalDates;
 use crate::entity_resolver::EntityResolver;
 use crate::error::{RomcalError, RomcalResult};
 use crate::liturgical_day::{LiturgicalDay, ParentOverride};
 use crate::preset::Preset;
-use crate::proper_of_time::common::PROPER_OF_TIME_ID;
 use crate::proper_of_time::ProperOfTime;
+use crate::proper_of_time::common::PROPER_OF_TIME_ID;
 use crate::types::calendar::{DayDefinition, DayId};
 use crate::types::dates::{DateDef, DateDefException, DateDefExceptions, ExceptionCondition};
 use crate::types::liturgical::{Color, ColorInfo, Precedence, Rank, Season};
-use crate::CalendarDefinition;
 
 /// Type alias for the liturgical calendar output
 /// Maps date strings (YYYY-MM-DD) to vectors of LiturgicalDay objects
@@ -168,11 +168,11 @@ impl Calendar {
 
         // Always start with general_roman as the base calendar (most general)
         // It should be processed first, even if not explicitly in parent chain
-        if let Some(general_roman) = preset.get_calendar_definition("general_roman") {
-            if !visited_ids.contains("general_roman") {
-                hierarchy.push(general_roman.clone());
-                visited_ids.insert("general_roman".to_string());
-            }
+        if let Some(general_roman) = preset.get_calendar_definition("general_roman")
+            && !visited_ids.contains("general_roman")
+        {
+            hierarchy.push(general_roman.clone());
+            visited_ids.insert("general_roman".to_string());
         }
 
         // Then process the target calendar and its parent chain
@@ -232,16 +232,15 @@ impl Calendar {
                 }
 
                 // Validation 2: Prevent dropping elements from Proper of Time
-                if let Some(existing_days) = by_ids.get(day_id) {
-                    if existing_days
+                if let Some(existing_days) = by_ids.get(day_id)
+                    && existing_days
                         .iter()
                         .any(|d| d.from_calendar_id == PROPER_OF_TIME_ID)
-                    {
-                        return Err(RomcalError::ValidationError(format!(
-                            "In the '{}' calendar, you can't drop a LiturgicalDay from the Proper of Time: '{}'.",
-                            calendar_def.id, day_id
-                        )));
-                    }
+                {
+                    return Err(RomcalError::ValidationError(format!(
+                        "In the '{}' calendar, you can't drop a LiturgicalDay from the Proper of Time: '{}'.",
+                        calendar_def.id, day_id
+                    )));
                 }
 
                 // Remove this day from all dates
@@ -261,24 +260,22 @@ impl Calendar {
             // Build effective DayDefinition with inherited properties for date calculation
             // This ensures date_def is inherited before build_date is called
             let mut effective_day_def = day_def.clone();
-            if effective_day_def.date_def.is_none() {
-                if let Some(existing) = existing_day {
-                    effective_day_def.date_def = Some(existing.date_def.clone());
-                }
+            if effective_day_def.date_def.is_none()
+                && let Some(existing) = existing_day
+            {
+                effective_day_def.date_def = Some(existing.date_def.clone());
             }
             // Also inherit date_exceptions if not defined
-            if effective_day_def.date_exceptions.is_none() {
-                if let Some(existing) = existing_day {
-                    if !existing.date_exceptions.is_empty() {
-                        use crate::types::dates::DateDefExceptions;
-                        effective_day_def.date_exceptions =
-                            Some(if existing.date_exceptions.len() == 1 {
-                                DateDefExceptions::Single(existing.date_exceptions[0].clone())
-                            } else {
-                                DateDefExceptions::Multiple(existing.date_exceptions.clone())
-                            });
-                    }
-                }
+            if effective_day_def.date_exceptions.is_none()
+                && let Some(existing) = existing_day
+                && !existing.date_exceptions.is_empty()
+            {
+                use crate::types::dates::DateDefExceptions;
+                effective_day_def.date_exceptions = Some(if existing.date_exceptions.len() == 1 {
+                    DateDefExceptions::Single(existing.date_exceptions[0].clone())
+                } else {
+                    DateDefExceptions::Multiple(existing.date_exceptions.clone())
+                });
             }
 
             // Calculate the date for this day definition using effective_day_def
@@ -353,13 +350,12 @@ impl Calendar {
         if let Some(day_ids) = dates_index.get(date_str) {
             // Find the first day from Proper of Time
             for day_id in day_ids {
-                if let Some(days) = by_ids.get(day_id) {
-                    if let Some(proper_day) = days
+                if let Some(days) = by_ids.get(day_id)
+                    && let Some(proper_day) = days
                         .iter()
                         .find(|d| d.from_calendar_id == PROPER_OF_TIME_ID && d.date == date_str)
-                    {
-                        return Some(proper_day);
-                    }
+                {
+                    return Some(proper_day);
                 }
             }
         }
@@ -1059,10 +1055,10 @@ impl Calendar {
         if (highest_allows_optional || highest_is_optional) && !optional_memorials.is_empty() {
             let mut ordered: Vec<LiturgicalDay> = Vec::new();
 
-            if let Some(weekday) = weekday_13.clone() {
-                if !ordered.iter().any(|d| d.id == weekday.id) {
-                    ordered.push(weekday);
-                }
+            if let Some(weekday) = weekday_13.clone()
+                && !ordered.iter().any(|d| d.id == weekday.id)
+            {
+                ordered.push(weekday);
             }
 
             if highest.precedence != Precedence::Weekday_13

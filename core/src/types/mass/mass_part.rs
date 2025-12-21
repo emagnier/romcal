@@ -157,7 +157,9 @@ impl MassPart {
 #[cfg(feature = "schema-gen")]
 pub fn get_mass_part_description(part: &MassPart) -> &'static str {
     match part {
-        MassPart::MessianicEntry => "Messianic entry reading (during the procession with palms, before the Mass of the Passion)",
+        MassPart::MessianicEntry => {
+            "Messianic entry reading (during the procession with palms, before the Mass of the Passion)"
+        }
         MassPart::EntranceAntiphon => "Entrance Antiphon - opening chant of the Mass",
         MassPart::Collect => "Collect - opening prayer of the Mass",
         MassPart::Reading1 => "Reading 1 - first reading (usually from the Old Testament)",
@@ -179,7 +181,9 @@ pub fn get_mass_part_description(part: &MassPart) -> &'static str {
         MassPart::Sequence => "Sequence - special chant on certain feasts",
         MassPart::Alleluia => "Alleluia - acclamation before the Gospel",
         MassPart::Gospel => "Gospel - reading from the Gospels",
-        MassPart::PrayerOverTheOfferings => "Prayer over the Offerings - prayer during the offertory",
+        MassPart::PrayerOverTheOfferings => {
+            "Prayer over the Offerings - prayer during the offertory"
+        }
         MassPart::Preface => "Preface - introduction to the Eucharistic Prayer",
         MassPart::CommunionAntiphon => "Communion Antiphon - chant during communion",
         MassPart::PrayerAfterCommunion => "Prayer after Communion - concluding prayer",

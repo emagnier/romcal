@@ -138,11 +138,11 @@ fn build_tree_recursive(
     let mut node = CalendarTreeNode::new(current.id.clone());
 
     for calendar in all_calendars {
-        if let Some(last_parent) = calendar.parent_calendar_ids.last() {
-            if last_parent == &current.id {
-                let child_node = build_tree_recursive(calendar, all_calendars, _calendar_map);
-                node.add_child(child_node);
-            }
+        if let Some(last_parent) = calendar.parent_calendar_ids.last()
+            && last_parent == &current.id
+        {
+            let child_node = build_tree_recursive(calendar, all_calendars, _calendar_map);
+            node.add_child(child_node);
         }
     }
 

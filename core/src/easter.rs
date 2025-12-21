@@ -1,4 +1,4 @@
-use crate::error::{validate_year, RomcalError, RomcalResult};
+use crate::error::{RomcalError, RomcalResult, validate_year};
 use chrono::{DateTime, Datelike, NaiveDate, Utc};
 
 /// Easter date

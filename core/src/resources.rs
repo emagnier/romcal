@@ -3,9 +3,9 @@ use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 
+use crate::types::EntityId;
 use crate::types::entity::{CanonizationLevel, Entity};
 use crate::types::resource::ResourcesMetadata;
-use crate::types::EntityId;
 
 /// Locale code of the resources, in BCP-47 IETF tag format
 pub type LocaleId = String;

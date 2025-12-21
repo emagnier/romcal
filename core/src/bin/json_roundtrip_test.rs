@@ -34,10 +34,10 @@ fn json_values_equal(a: &Value, b: &Value) -> bool {
 
             // Compare values of non-null keys
             for key in &a_keys {
-                if let (Some(value_a), Some(value_b)) = (a.get(*key), b.get(*key)) {
-                    if !json_values_equal(value_a, value_b) {
-                        return false;
-                    }
+                if let (Some(value_a), Some(value_b)) = (a.get(*key), b.get(*key))
+                    && !json_values_equal(value_a, value_b)
+                {
+                    return false;
                 }
             }
             true

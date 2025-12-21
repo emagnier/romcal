@@ -197,18 +197,18 @@ fn build_priority_locales(
     // 2. Add all parent locales in hierarchy order (most specific to most general)
     let parent_locales = get_all_parent_locales(target_locale);
     for parent in parent_locales {
-        if parent != target_locale {
-            if let Some(parent_locale_actual) = available_locales.get(&parent.to_lowercase()) {
-                priority_locales.push(parent_locale_actual.clone());
-            }
+        if parent != target_locale
+            && let Some(parent_locale_actual) = available_locales.get(&parent.to_lowercase())
+        {
+            priority_locales.push(parent_locale_actual.clone());
         }
     }
 
     // 3. Always include "en" last (most general fallback)
-    if let Some(en_locale) = available_locales.get("en") {
-        if !priority_locales.contains(en_locale) {
-            priority_locales.push(en_locale.clone());
-        }
+    if let Some(en_locale) = available_locales.get("en")
+        && !priority_locales.contains(en_locale)
+    {
+        priority_locales.push(en_locale.clone());
     }
 
     priority_locales

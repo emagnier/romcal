@@ -3,11 +3,11 @@
 //! This module provides functionality to resolve localized templates
 //! for liturgical days using a simple `{variable}` substitution pattern.
 
+use crate::types::OrdinalFormat;
 use crate::types::resource::{
     AdventSeason, ChristmasTimeSeason, CyclesMetadata, EasterTimeSeason, LentSeason, LocaleColors,
     OrdinaryTimeSeason, PeriodsMetadata, RanksMetadata, ResourcesMetadata, SeasonsMetadata,
 };
-use crate::types::OrdinalFormat;
 use std::collections::BTreeMap;
 
 /// Gender for grammatical agreement in translations.
@@ -198,12 +198,12 @@ impl TemplateResolver {
         let ordinals = ordinals?;
 
         // Try gender-specific key first
-        if let Some(g) = gender {
-            if g != Gender::Default {
-                let key_with_gender = format!("{}{}", num, g.suffix());
-                if let Some(value) = ordinals.get(&key_with_gender) {
-                    return Some(value.clone());
-                }
+        if let Some(g) = gender
+            && g != Gender::Default
+        {
+            let key_with_gender = format!("{}{}", num, g.suffix());
+            if let Some(value) = ordinals.get(&key_with_gender) {
+                return Some(value.clone());
             }
         }
 

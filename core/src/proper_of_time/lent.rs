@@ -2,7 +2,7 @@ use chrono::{DateTime, Utc};
 
 use crate::error::RomcalResult;
 use crate::liturgical_day::LiturgicalDay;
-use crate::proper_of_time::common::{sort_liturgical_days_by_date, WEEKDAY_NAMES};
+use crate::proper_of_time::common::{WEEKDAY_NAMES, sort_liturgical_days_by_date};
 use crate::template_resolver::ProperOfTimeDayType;
 use crate::types::liturgical::{Color, Period, Precedence, Season};
 
@@ -222,7 +222,7 @@ impl<'a> Lent<'a> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::{preset::PresetPartial, Preset};
+    use crate::{Preset, preset::PresetPartial};
 
     #[test]
     fn test_lent_generation() {

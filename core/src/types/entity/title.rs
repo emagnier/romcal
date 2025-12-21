@@ -225,16 +225,20 @@ mod tests {
         assert!(TitlesDef::Titles(vec![]).is_empty());
         assert!(!TitlesDef::Titles(vec![Title::Martyr]).is_empty());
 
-        assert!(TitlesDef::CompoundTitle(CompoundTitle {
-            append: None,
-            prepend: None
-        })
-        .is_empty());
+        assert!(
+            TitlesDef::CompoundTitle(CompoundTitle {
+                append: None,
+                prepend: None
+            })
+            .is_empty()
+        );
 
-        assert!(!TitlesDef::CompoundTitle(CompoundTitle {
-            append: Some(vec![Title::Bishop]),
-            prepend: None
-        })
-        .is_empty());
+        assert!(
+            !TitlesDef::CompoundTitle(CompoundTitle {
+                append: Some(vec![Title::Bishop]),
+                prepend: None
+            })
+            .is_empty()
+        );
     }
 }

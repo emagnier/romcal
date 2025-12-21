@@ -32,7 +32,7 @@ pub use calendar::{Calendar, LiturgicalCalendar};
 pub use calendar_definition::*;
 pub use dates::LiturgicalDates;
 pub use entity_resolver::EntityResolver;
-pub use error::{validate_range, validate_year, RomcalError, RomcalResult, Validate};
+pub use error::{RomcalError, RomcalResult, Validate, validate_range, validate_year};
 pub use generated_constants::{CALENDAR_IDS, LOCALE_CODES};
 pub use liturgical_day::*;
 pub use preset::{Preset, PresetPartial};

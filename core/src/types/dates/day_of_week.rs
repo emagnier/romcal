@@ -37,7 +37,7 @@ impl DayOfWeek {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use serde_test::{assert_de_tokens, assert_de_tokens_error, Token};
+    use serde_test::{Token, assert_de_tokens, assert_de_tokens_error};
 
     #[test]
     fn test_serialize() {

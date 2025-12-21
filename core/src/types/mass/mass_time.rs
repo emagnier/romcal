@@ -33,15 +33,27 @@ pub enum MassTime {
 #[cfg(feature = "schema-gen")]
 pub fn get_mass_time_description(time: &MassTime) -> &'static str {
     match time {
-        MassTime::EasterVigil => "Easter Vigil - the most important Mass of the liturgical year, celebrated on Holy Saturday night",
-        MassTime::PreviousEveningMass => "Previous Evening Mass - Mass celebrated the evening before a major feast",
+        MassTime::EasterVigil => {
+            "Easter Vigil - the most important Mass of the liturgical year, celebrated on Holy Saturday night"
+        }
+        MassTime::PreviousEveningMass => {
+            "Previous Evening Mass - Mass celebrated the evening before a major feast"
+        }
         MassTime::NightMass => "Night Mass - Mass celebrated during the night hours",
-        MassTime::MassAtDawn => "Mass at Dawn - Mass celebrated at dawn, particularly on Easter Sunday",
+        MassTime::MassAtDawn => {
+            "Mass at Dawn - Mass celebrated at dawn, particularly on Easter Sunday"
+        }
         MassTime::MorningMass => "Morning Mass - Mass celebrated in the morning",
-        MassTime::MassOfThePassion => "Mass of the Passion - Mass focusing on Christ's passion, beginning with the procession with palms",
-        MassTime::CelebrationOfThePassion => "Celebration of the Passion - special celebration of Christ's passion",
+        MassTime::MassOfThePassion => {
+            "Mass of the Passion - Mass focusing on Christ's passion, beginning with the procession with palms"
+        }
+        MassTime::CelebrationOfThePassion => {
+            "Celebration of the Passion - special celebration of Christ's passion"
+        }
         MassTime::DayMass => "Day Mass - regular Mass celebrated during the day",
-        MassTime::ChrismMass => "Chrism Mass - Mass where holy oils are blessed, typically on Holy Thursday morning",
+        MassTime::ChrismMass => {
+            "Chrism Mass - Mass where holy oils are blessed, typically on Holy Thursday morning"
+        }
         MassTime::EveningMass => "Evening Mass - Mass celebrated in the evening",
     }
 }

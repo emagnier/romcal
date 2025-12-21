@@ -2,7 +2,7 @@ use chrono::{DateTime, Datelike, Utc};
 
 use crate::error::RomcalResult;
 use crate::liturgical_day::LiturgicalDay;
-use crate::proper_of_time::common::{enum_to_string, sort_liturgical_days_by_date, WEEKDAY_NAMES};
+use crate::proper_of_time::common::{WEEKDAY_NAMES, enum_to_string, sort_liturgical_days_by_date};
 use crate::template_resolver::ProperOfTimeDayType;
 use crate::types::liturgical::{Color, ColorInfo, Precedence, Season};
 
@@ -158,7 +158,7 @@ impl<'a> Advent<'a> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::{preset::PresetPartial, Preset};
+    use crate::{Preset, preset::PresetPartial};
 
     #[test]
     fn test_advent_generation() {

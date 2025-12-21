@@ -6,7 +6,7 @@ authors = ["Étienne Magnier <etienne.magnier@gmail.com>"]
 description = "Command-line interface for calculating Catholic liturgical dates and calendars"
 license = "Apache-2.0"
 repository = "https://github.com/romcal/romcal"
-keywords = ["liturgical", "calendar", "catholic", "cli"]
+keywords = ["liturgical", "calendar", "catholic", "christian", "easter"]
 categories = ["command-line-utilities", "date-and-time"]
 
 [[bin]]

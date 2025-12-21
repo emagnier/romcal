@@ -18,7 +18,7 @@ use crate::proper_of_time::advent::Advent;
 use crate::proper_of_time::cache::ProperOfTimeCache;
 use crate::proper_of_time::christmas_time::ChristmasTime;
 use crate::proper_of_time::common::{
-    enum_to_string, sort_liturgical_days_by_date, PROPER_OF_TIME_ID,
+    PROPER_OF_TIME_ID, enum_to_string, sort_liturgical_days_by_date,
 };
 use crate::proper_of_time::easter_time::EasterTime;
 use crate::proper_of_time::lent::Lent;
@@ -81,31 +81,30 @@ impl ProperOfTime {
         let locale = &preset.locale;
 
         // Try target locale first
-        if let Some(resources) = preset.get_resources(locale) {
-            if let Some(metadata) = resources.metadata.clone() {
-                // Resolve ordinal_format: metadata > preset
-                let ordinal_format = metadata.ordinal_format.unwrap_or(preset.ordinal_format);
-                return Some(TemplateResolver::new(
-                    metadata,
-                    locale.clone(),
-                    ordinal_format,
-                ));
-            }
+        if let Some(resources) = preset.get_resources(locale)
+            && let Some(metadata) = resources.metadata.clone()
+        {
+            // Resolve ordinal_format: metadata > preset
+            let ordinal_format = metadata.ordinal_format.unwrap_or(preset.ordinal_format);
+            return Some(TemplateResolver::new(
+                metadata,
+                locale.clone(),
+                ordinal_format,
+            ));
         }
 
         // Fall back to 'en' if target locale has no metadata
-        if locale != "en" {
-            if let Some(resources) = preset.get_resources("en") {
-                if let Some(metadata) = resources.metadata.clone() {
-                    // Resolve ordinal_format: metadata > preset
-                    let ordinal_format = metadata.ordinal_format.unwrap_or(preset.ordinal_format);
-                    return Some(TemplateResolver::new(
-                        metadata,
-                        "en".to_string(),
-                        ordinal_format,
-                    ));
-                }
-            }
+        if locale != "en"
+            && let Some(resources) = preset.get_resources("en")
+            && let Some(metadata) = resources.metadata.clone()
+        {
+            // Resolve ordinal_format: metadata > preset
+            let ordinal_format = metadata.ordinal_format.unwrap_or(preset.ordinal_format);
+            return Some(TemplateResolver::new(
+                metadata,
+                "en".to_string(),
+                ordinal_format,
+            ));
         }
 
         None
@@ -369,13 +368,9 @@ mod tests {
         let actual_duplicates = original_count - unique_count;
 
         assert_eq!(
-            actual_duplicates,
-            expected_duplicates,
+            actual_duplicates, expected_duplicates,
             "Expected {} duplicate date (Holy Thursday), but found {} duplicates. Original: {}, Unique: {}",
-            expected_duplicates,
-            actual_duplicates,
-            original_count,
-            unique_count
+            expected_duplicates, actual_duplicates, original_count, unique_count
         );
 
         // Additional check: verify that only Holy Thursday has duplicate dates
@@ -408,9 +403,11 @@ mod tests {
         let holy_thursday_days = duplicate_dates[0].1;
         assert_eq!(holy_thursday_days.len(), 2);
         assert!(holy_thursday_days.iter().any(|d| d.id == "holy_thursday"));
-        assert!(holy_thursday_days
-            .iter()
-            .any(|d| d.id == "thursday_of_the_lords_supper"));
+        assert!(
+            holy_thursday_days
+                .iter()
+                .any(|d| d.id == "thursday_of_the_lords_supper")
+        );
     }
 
     #[test]
@@ -441,13 +438,9 @@ mod tests {
         let actual_duplicates = original_count - unique_count;
 
         assert_eq!(
-            actual_duplicates,
-            expected_duplicates,
+            actual_duplicates, expected_duplicates,
             "Expected {} duplicate date (Holy Thursday), but found {} duplicates (liturgical context). Original: {}, Unique: {}",
-            expected_duplicates,
-            actual_duplicates,
-            original_count,
-            unique_count
+            expected_duplicates, actual_duplicates, original_count, unique_count
         );
     }
 
@@ -532,8 +525,8 @@ mod tests {
     // -------------------------------------------------------------------------
 
     use crate::resources::Resources;
-    use crate::types::resource::ResourcesMetadata;
     use crate::types::OrdinalFormat;
+    use crate::types::resource::ResourcesMetadata;
     use std::collections::BTreeMap;
 
     /// Creates a minimal ResourcesMetadata for testing

@@ -113,35 +113,32 @@ fn collect_calendar_infos_recursively(dir: &str, infos: &mut Vec<CalendarInfo>) 
                 if let Some(dir_str) = path.to_str() {
                     collect_calendar_infos_recursively(dir_str, infos);
                 }
-            } else if let Some(name) = path.file_name().and_then(|n| n.to_str()) {
-                if name.ends_with(".json") {
-                    if let Ok(content) = fs::read_to_string(&path) {
-                        if let Ok(json) = serde_json::from_str::<serde_json::Value>(&content) {
-                            if let Some(id) = json.get("id").and_then(|v| v.as_str()) {
-                                let mut parent_calendar_ids = json
-                                    .get("parent_calendar_ids")
-                                    .and_then(|v| v.as_array())
-                                    .map(|arr| {
-                                        arr.iter()
-                                            .filter_map(|v| v.as_str())
-                                            .map(|s| s.to_string())
-                                            .collect::<Vec<String>>()
-                                    })
-                                    .unwrap_or_default();
+            } else if let Some(name) = path.file_name().and_then(|n| n.to_str())
+                && name.ends_with(".json")
+                && let Ok(content) = fs::read_to_string(&path)
+                && let Ok(json) = serde_json::from_str::<serde_json::Value>(&content)
+                && let Some(id) = json.get("id").and_then(|v| v.as_str())
+            {
+                let mut parent_calendar_ids = json
+                    .get("parent_calendar_ids")
+                    .and_then(|v| v.as_array())
+                    .map(|arr| {
+                        arr.iter()
+                            .filter_map(|v| v.as_str())
+                            .map(|s| s.to_string())
+                            .collect::<Vec<String>>()
+                    })
+                    .unwrap_or_default();
 
-                                // Add "general_roman" as first parent systematically, except if the current calendar is already general_roman
-                                if id != "general_roman" {
-                                    parent_calendar_ids.insert(0, "general_roman".to_string());
-                                }
-
-                                infos.push(CalendarInfo {
-                                    id: id.to_string(),
-                                    parent_calendar_ids,
-                                });
-                            }
-                        }
-                    }
+                // Add "general_roman" as first parent systematically, except if the current calendar is already general_roman
+                if id != "general_roman" {
+                    parent_calendar_ids.insert(0, "general_roman".to_string());
                 }
+
+                infos.push(CalendarInfo {
+                    id: id.to_string(),
+                    parent_calendar_ids,
+                });
             }
         }
     }
@@ -156,16 +153,13 @@ fn collect_locale_codes_recursively(dir: &str, locales: &mut HashSet<String>) {
                 if let Some(dir_str) = path.to_str() {
                     collect_locale_codes_recursively(dir_str, locales);
                 }
-            } else if let Some(name) = path.file_name().and_then(|n| n.to_str()) {
-                if name.ends_with(".json") {
-                    if let Ok(content) = fs::read_to_string(&path) {
-                        if let Ok(json) = serde_json::from_str::<serde_json::Value>(&content) {
-                            if let Some(locale) = json.get("locale").and_then(|v| v.as_str()) {
-                                locales.insert(locale.to_string());
-                            }
-                        }
-                    }
-                }
+            } else if let Some(name) = path.file_name().and_then(|n| n.to_str())
+                && name.ends_with(".json")
+                && let Ok(content) = fs::read_to_string(&path)
+                && let Ok(json) = serde_json::from_str::<serde_json::Value>(&content)
+                && let Some(locale) = json.get("locale").and_then(|v| v.as_str())
+            {
+                locales.insert(locale.to_string());
             }
         }
     }

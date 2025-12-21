@@ -2,10 +2,10 @@ use chrono::{DateTime, Datelike, Duration, NaiveDate, Utc, Weekday};
 use std::collections::HashMap;
 
 use super::easter::{calculate_gregorian_easter_date, calculate_julian_easter_date_to_gregorian};
-use crate::error::{validate_year, RomcalResult};
+use crate::error::{RomcalResult, validate_year};
 use crate::preset::Preset;
-use crate::types::liturgical::Season;
 use crate::types::EasterCalculationType;
+use crate::types::liturgical::Season;
 
 /// Main structure for liturgical date calculations
 pub struct LiturgicalDates {
@@ -1068,12 +1068,16 @@ mod tests {
         assert!(weekday.is_some());
 
         // Test invalid parameters
-        assert!(dates
-            .get_weekday_within_octave_of_christmas_date(0, None)
-            .is_none()); // Invalid day
-        assert!(dates
-            .get_weekday_within_octave_of_christmas_date(9, None)
-            .is_none()); // Invalid day
+        assert!(
+            dates
+                .get_weekday_within_octave_of_christmas_date(0, None)
+                .is_none()
+        ); // Invalid day
+        assert!(
+            dates
+                .get_weekday_within_octave_of_christmas_date(9, None)
+                .is_none()
+        ); // Invalid day
     }
 
     #[test]
@@ -1164,7 +1168,7 @@ mod tests {
 
         // Test valid day of week
         let weekday = dates.get_weekday_after_epiphany_date(1, None); // Monday
-                                                                      // May or may not exist depending on the year
+        // May or may not exist depending on the year
         if weekday.is_some() {
             assert_eq!(weekday.unwrap().weekday().num_days_from_sunday() as u8, 1);
         }

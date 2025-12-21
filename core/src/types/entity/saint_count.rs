@@ -136,7 +136,7 @@ impl<'de> Deserialize<'de> for SaintCount {
 mod tests {
     use super::*;
     use serde_test::{
-        assert_de_tokens, assert_de_tokens_error, assert_ser_tokens, assert_tokens, Token,
+        Token, assert_de_tokens, assert_de_tokens_error, assert_ser_tokens, assert_tokens,
     };
 
     #[test]

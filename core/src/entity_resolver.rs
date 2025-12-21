@@ -58,41 +58,41 @@ impl EntityResolver {
         let mut merged_entities: BTreeMap<EntityId, Entity> = BTreeMap::new();
 
         // Step 1: Load all entities from 'en' (default locale)
-        if let Some(en_resources) = preset.get_resources("en") {
-            if let Some(en_entities) = &en_resources.entities {
-                for (id, mut entity) in en_entities.clone() {
-                    // Assign the ID
-                    entity.id = Some(id.clone());
-                    // Ensure type is set to Person if not defined
-                    if entity.r#type.is_none() {
-                        use crate::types::entity::EntityType;
-                        entity.r#type = Some(EntityType::Person);
-                    }
-                    merged_entities.insert(id, entity);
+        if let Some(en_resources) = preset.get_resources("en")
+            && let Some(en_entities) = &en_resources.entities
+        {
+            for (id, mut entity) in en_entities.clone() {
+                // Assign the ID
+                entity.id = Some(id.clone());
+                // Ensure type is set to Person if not defined
+                if entity.r#type.is_none() {
+                    use crate::types::entity::EntityType;
+                    entity.r#type = Some(EntityType::Person);
                 }
+                merged_entities.insert(id, entity);
             }
         }
 
         // Step 2: If target locale is not 'en', merge with target locale
         if preset.locale != "en" {
-            if let Some(target_resources) = preset.get_resources(&preset.locale) {
-                if let Some(target_entities) = &target_resources.entities {
-                    for (id, target_entity) in target_entities {
-                        if let Some(base_entity) = merged_entities.get_mut(id) {
-                            // Merge: target properties override base
-                            Self::merge_entity(base_entity, target_entity);
-                        } else {
-                            // New entity from target locale
-                            let mut entity = target_entity.clone();
-                            // Assign the ID
-                            entity.id = Some(id.clone());
-                            // Ensure type is set to Person if not defined
-                            if entity.r#type.is_none() {
-                                use crate::types::entity::EntityType;
-                                entity.r#type = Some(EntityType::Person);
-                            }
-                            merged_entities.insert(id.clone(), entity);
+            if let Some(target_resources) = preset.get_resources(&preset.locale)
+                && let Some(target_entities) = &target_resources.entities
+            {
+                for (id, target_entity) in target_entities {
+                    if let Some(base_entity) = merged_entities.get_mut(id) {
+                        // Merge: target properties override base
+                        Self::merge_entity(base_entity, target_entity);
+                    } else {
+                        // New entity from target locale
+                        let mut entity = target_entity.clone();
+                        // Assign the ID
+                        entity.id = Some(id.clone());
+                        // Ensure type is set to Person if not defined
+                        if entity.r#type.is_none() {
+                            use crate::types::entity::EntityType;
+                            entity.r#type = Some(EntityType::Person);
                         }
+                        merged_entities.insert(id.clone(), entity);
                     }
                 }
             }
@@ -124,24 +124,23 @@ impl EntityResolver {
             let parent_locale = &locale[..hyphen_pos];
 
             // Don't process if parent is 'en' (already handled)
-            if parent_locale != "en" {
-                if let Some(parent_resources) = preset.get_resources(parent_locale) {
-                    if let Some(parent_entities) = &parent_resources.entities {
-                        for (id, parent_entity) in parent_entities {
-                            if let Some(base_entity) = merged_entities.get_mut(id) {
-                                Self::merge_entity(base_entity, parent_entity);
-                            } else {
-                                let mut entity = parent_entity.clone();
-                                // Assign the ID
-                                entity.id = Some(id.clone());
-                                // Ensure type is set to Person if not defined
-                                if entity.r#type.is_none() {
-                                    use crate::types::entity::EntityType;
-                                    entity.r#type = Some(EntityType::Person);
-                                }
-                                merged_entities.insert(id.clone(), entity);
-                            }
+            if parent_locale != "en"
+                && let Some(parent_resources) = preset.get_resources(parent_locale)
+                && let Some(parent_entities) = &parent_resources.entities
+            {
+                for (id, parent_entity) in parent_entities {
+                    if let Some(base_entity) = merged_entities.get_mut(id) {
+                        Self::merge_entity(base_entity, parent_entity);
+                    } else {
+                        let mut entity = parent_entity.clone();
+                        // Assign the ID
+                        entity.id = Some(id.clone());
+                        // Ensure type is set to Person if not defined
+                        if entity.r#type.is_none() {
+                            use crate::types::entity::EntityType;
+                            entity.r#type = Some(EntityType::Person);
                         }
+                        merged_entities.insert(id.clone(), entity);
                     }
                 }
             }
