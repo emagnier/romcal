@@ -22,7 +22,7 @@ romcal list calendars
 
 ### Requirements
 
-- [Rust](https://rustup.rs/) 1.70 or later
+- [Rust](https://rustup.rs/) 1.85 or later
 
 ### From Source
 
