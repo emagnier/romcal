@@ -7,6 +7,7 @@ use serde::{Deserialize, Serialize};
 use serde_json;
 use serde_saphyr;
 use std::collections::BTreeMap;
+use colored::Colorize;
 
 /// Filtered liturgical day with only selected properties
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -297,7 +298,7 @@ fn convert_to_lines(
 
     for (date, days) in data {
         // Add date header for this group
-        lines.push(format!("\x1b[1m{}\x1b[0m", date)); // \x1b[1m = bold, \x1b[0m = reset
+        lines.push(date.bold().to_string());
 
         for day in days {
             // Get all available fields for this day in the order they appear
@@ -340,8 +341,7 @@ fn convert_to_lines(
                     serde_json::Value::Object(_) => value.to_string(),
                 };
 
-                // Make keys and equals sign dim using ANSI escape codes
-                let dim_key_equals = format!("\x1b[2m{}={}\x1b[0m", key, ""); // \x1b[2m = dim, \x1b[0m = reset
+                let dim_key_equals = format!("{}=", key.dimmed());
                 let field_entry = format!("{}{}", dim_key_equals, field_value);
                 let max_width = field_widths
                     .get(key)
