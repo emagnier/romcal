@@ -44,10 +44,10 @@ impl Config {
         }
 
         // Try user config
-        if let Some(user_config) = Self::user_config_path() {
-            if user_config.exists() {
-                return Self::load_from_file(&user_config);
-            }
+        if let Some(user_config) = Self::user_config_path()
+            && user_config.exists()
+        {
+            return Self::load_from_file(&user_config);
         }
 
         // No config found, return defaults

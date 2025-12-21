@@ -453,21 +453,27 @@ mod tests {
             combined_metadata.ordinals_letters.as_ref().unwrap().len(),
             2
         );
-        assert!(combined_metadata
-            .ordinals_letters
-            .as_ref()
-            .unwrap()
-            .contains_key("1st"));
-        assert!(combined_metadata
-            .ordinals_letters
-            .as_ref()
-            .unwrap()
-            .contains_key("2nd"));
-        assert!(combined_metadata
-            .weekdays
-            .as_ref()
-            .unwrap()
-            .contains_key("monday"));
+        assert!(
+            combined_metadata
+                .ordinals_letters
+                .as_ref()
+                .unwrap()
+                .contains_key("1st")
+        );
+        assert!(
+            combined_metadata
+                .ordinals_letters
+                .as_ref()
+                .unwrap()
+                .contains_key("2nd")
+        );
+        assert!(
+            combined_metadata
+                .weekdays
+                .as_ref()
+                .unwrap()
+                .contains_key("monday")
+        );
     }
 
     #[test]
@@ -574,31 +580,39 @@ mod tests {
             combined_metadata.ordinals_letters.as_ref().unwrap().len(),
             2
         );
-        assert!(combined_metadata
-            .ordinals_letters
-            .as_ref()
-            .unwrap()
-            .contains_key("1st"));
-        assert!(combined_metadata
-            .ordinals_letters
-            .as_ref()
-            .unwrap()
-            .contains_key("2nd"));
+        assert!(
+            combined_metadata
+                .ordinals_letters
+                .as_ref()
+                .unwrap()
+                .contains_key("1st")
+        );
+        assert!(
+            combined_metadata
+                .ordinals_letters
+                .as_ref()
+                .unwrap()
+                .contains_key("2nd")
+        );
 
         // weekdays should still have the original value (not overridden by null)
-        assert!(combined_metadata
-            .weekdays
-            .as_ref()
-            .unwrap()
-            .contains_key("monday"));
+        assert!(
+            combined_metadata
+                .weekdays
+                .as_ref()
+                .unwrap()
+                .contains_key("monday")
+        );
         assert_eq!(combined_metadata.weekdays.as_ref().unwrap().len(), 1);
 
         // months should have the new value
-        assert!(combined_metadata
-            .months
-            .as_ref()
-            .unwrap()
-            .contains_key("january"));
+        assert!(
+            combined_metadata
+                .months
+                .as_ref()
+                .unwrap()
+                .contains_key("january")
+        );
         assert_eq!(combined_metadata.months.as_ref().unwrap().len(), 1);
     }
 }

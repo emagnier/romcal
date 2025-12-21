@@ -1,5 +1,5 @@
 use clap::{Args, CommandFactory, Parser, Subcommand};
-use clap_complete::{generate, Shell};
+use clap_complete::{Shell, generate};
 use colored::*;
 use romcal_core::{CalendarContext, EasterCalculationType, Preset};
 use std::io;
@@ -22,9 +22,7 @@ use error::RomcalCliError;
 
 use crate::config::Config;
 use crate::enums::liturgical_day_filter::LiturgicalDayFilterWrapper;
-use crate::enums::{
-    CliCalendarContext, CliEasterCalculationType, CliOutputFormat, ValidationType,
-};
+use crate::enums::{CliCalendarContext, CliEasterCalculationType, CliOutputFormat, ValidationType};
 use crate::preset::create_preset;
 
 /// Config file flag
@@ -105,12 +103,12 @@ impl PresetArgs {
             });
 
         // For booleans: CLI true overrides, otherwise use config
-        let epiphany_on_sunday = self.epiphany_on_sunday
-            || config.epiphany_on_sunday.unwrap_or(false);
-        let ascension_on_sunday = self.ascension_on_sunday
-            || config.ascension_on_sunday.unwrap_or(false);
-        let corpus_christi_on_sunday = self.corpus_christi_on_sunday
-            || config.corpus_christi_on_sunday.unwrap_or(false);
+        let epiphany_on_sunday =
+            self.epiphany_on_sunday || config.epiphany_on_sunday.unwrap_or(false);
+        let ascension_on_sunday =
+            self.ascension_on_sunday || config.ascension_on_sunday.unwrap_or(false);
+        let corpus_christi_on_sunday =
+            self.corpus_christi_on_sunday || config.corpus_christi_on_sunday.unwrap_or(false);
 
         let definitions = if !self.calendar_definitions.is_empty() {
             utils::collect_json_file_paths(&self.calendar_definitions)?
@@ -376,7 +374,10 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
             debug,
         } => {
             debug.init();
-            show_preset::handle(output.get_format(&config).into(), preset.into_preset(&config)?)
+            show_preset::handle(
+                output.get_format(&config).into(),
+                preset.into_preset(&config)?,
+            )
         }
         Commands::OptimizePreset { out, preset, debug } => {
             debug.init();

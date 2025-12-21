@@ -1,6 +1,6 @@
 use crate::error::RomcalCliError;
 use crate::utils;
-use jsonschema::{validator_for, ValidationError};
+use jsonschema::{ValidationError, validator_for};
 use serde_json::Value;
 use std::fs;
 
@@ -102,7 +102,7 @@ pub fn handle(
 
             let error_messages: Vec<String> = validation_errors
                 .iter()
-                .map(|e| format!("{}: {}", e.instance_path, e))
+                .map(|e| format!("{}: {}", e.instance_path(), e))
                 .collect();
 
             errors.push((

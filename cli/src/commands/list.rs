@@ -1,6 +1,6 @@
 use crate::{enums::OutputFormat, error::RomcalCliError};
-use romcal_core::{generated_constants::CALENDAR_TREE_JSON, CALENDAR_IDS};
-use romcal_core::{generated_constants::LOCALE_TREE_JSON, LOCALE_CODES};
+use romcal_core::{CALENDAR_IDS, generated_constants::CALENDAR_TREE_JSON};
+use romcal_core::{LOCALE_CODES, generated_constants::LOCALE_TREE_JSON};
 use serde_json::{self, Value};
 use serde_saphyr;
 
@@ -47,7 +47,11 @@ pub fn handle_locales(output_format: OutputFormat, tree: bool) -> Result<(), Rom
 }
 
 /// Print tree data as JSON or YAML
-fn print_tree_structured(json_str: &str, format: OutputFormat, name: &str) -> Result<(), RomcalCliError> {
+fn print_tree_structured(
+    json_str: &str,
+    format: OutputFormat,
+    name: &str,
+) -> Result<(), RomcalCliError> {
     let tree: Value = serde_json::from_str(json_str)?;
     match format {
         OutputFormat::Json => println!("{}", serde_json::to_string_pretty(&tree)?),
@@ -57,7 +61,7 @@ fn print_tree_structured(json_str: &str, format: OutputFormat, name: &str) -> Re
             })?;
             print!("{}", yaml);
         }
-        _ => unreachable!()
+        _ => unreachable!(),
     }
     Ok(())
 }
@@ -68,8 +72,14 @@ fn display_calendar_tree(format: OutputFormat) -> Result<(), RomcalCliError> {
         OutputFormat::Json | OutputFormat::Yaml => {
             print_tree_structured(CALENDAR_TREE_JSON, format, "calendar tree")
         }
-        OutputFormat::Csv => { display_calendar_as_csv(); Ok(()) }
-        OutputFormat::Lines => { display_calendar_as_lines(); Ok(()) }
+        OutputFormat::Csv => {
+            display_calendar_as_csv();
+            Ok(())
+        }
+        OutputFormat::Lines => {
+            display_calendar_as_lines();
+            Ok(())
+        }
     }
 }
 
@@ -79,8 +89,14 @@ fn display_locale_tree(format: OutputFormat) -> Result<(), RomcalCliError> {
         OutputFormat::Json | OutputFormat::Yaml => {
             print_tree_structured(LOCALE_TREE_JSON, format, "locale tree")
         }
-        OutputFormat::Csv => { display_locale_as_csv(); Ok(()) }
-        OutputFormat::Lines => { display_locale_as_lines(); Ok(()) }
+        OutputFormat::Csv => {
+            display_locale_as_csv();
+            Ok(())
+        }
+        OutputFormat::Lines => {
+            display_locale_as_lines();
+            Ok(())
+        }
     }
 }
 

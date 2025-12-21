@@ -1,10 +1,10 @@
 [package]
 name = "romcal-cli"
 version = "4.0.0"
-edition = "2021"
-authors = ["Romcal Contributors"]
-description = "Interface en ligne de commande pour Romcal - Calculateur de calendrier liturgique"
-license = "MIT"
+edition = "2024"
+authors = ["Étienne Magnier <etienne.magnier@gmail.com>"]
+description = "Command-line interface for calculating Catholic liturgical dates and calendars"
+license = "Apache-2.0"
 repository = "https://github.com/romcal/romcal"
 keywords = ["liturgical", "calendar", "catholic", "cli"]
 categories = ["command-line-utilities", "date-and-time"]
@@ -15,22 +15,22 @@ path = "src/main.rs"
 
 [dependencies]
 romcal-core = { path = "../core" }
-clap = { version = "4.4", features = ["derive", "color"] }
-clap_complete = "4.4"
+clap = { version = "4.5", features = ["derive", "color"] }
+clap_complete = "4.5"
 thiserror = "2.0"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
-serde-saphyr = "0.0.10"
-csv = "1.3"
+serde-saphyr = "0.0.11"
+csv = "1.4"
 chrono = { version = "0.4", features = ["serde"] }
 colored = "3.0"
 log = "0.4"
 env_logger = "0.11"
-jsonschema = { version = "0.33", default-features = false }
+jsonschema = { version = "0.37", default-features = false }
 glob = "0.3"
-toml = "0.8"
-dirs = "5.0"
+toml = "0.9"
+dirs = "6.0"
 
 [dev-dependencies]
 assert_cmd = "2.0"
-predicates = "3.0"
+predicates = "3.1"
