@@ -46,78 +46,42 @@ pub fn handle_locales(output_format: OutputFormat, tree: bool) -> Result<(), Rom
     }
 }
 
-/// Display the calendar tree structure.
-///
-/// This function parses the calendar tree JSON and displays it in a hierarchical format.
-/// The tree shows the relationships between different calendars, with regions containing
-/// countries, and countries containing their sub-regions.
-fn display_calendar_tree(format: OutputFormat) -> Result<(), RomcalCliError> {
+/// Print tree data as JSON or YAML
+fn print_tree_structured(json_str: &str, format: OutputFormat, name: &str) -> Result<(), RomcalCliError> {
+    let tree: Value = serde_json::from_str(json_str)?;
     match format {
-        OutputFormat::Json => {
-            // Output pretty-printed JSON
-            let tree: Value = serde_json::from_str(CALENDAR_TREE_JSON)?;
-            let pretty_json = serde_json::to_string_pretty(&tree)?;
-            println!("{}", pretty_json);
-        }
+        OutputFormat::Json => println!("{}", serde_json::to_string_pretty(&tree)?),
         OutputFormat::Yaml => {
-            // Parse JSON and convert to YAML
-            let tree: Value = serde_json::from_str(CALENDAR_TREE_JSON)?;
             let yaml = serde_saphyr::to_string(&tree).map_err(|e| {
-                RomcalCliError::config_error(format!(
-                    "Failed to serialize calendar tree to YAML: {}",
-                    e
-                ))
+                RomcalCliError::config_error(format!("Failed to serialize {} to YAML: {}", name, e))
             })?;
             print!("{}", yaml);
         }
-        OutputFormat::Csv => {
-            // Display as CSV Parent-Child format
-            display_calendar_as_csv();
-        }
-        OutputFormat::Lines => {
-            // Display as formatted tree
-            display_calendar_as_lines();
-        }
+        _ => unreachable!()
     }
-
     Ok(())
 }
 
-/// Display the locale tree structure.
-///
-/// This function parses the locale tree JSON and displays it in a hierarchical format.
-/// The tree shows the relationships between different locales, with base languages containing
-/// their specific variants (e.g., en containing en-gb, en-ie).
+/// Display the calendar tree structure
+fn display_calendar_tree(format: OutputFormat) -> Result<(), RomcalCliError> {
+    match format {
+        OutputFormat::Json | OutputFormat::Yaml => {
+            print_tree_structured(CALENDAR_TREE_JSON, format, "calendar tree")
+        }
+        OutputFormat::Csv => { display_calendar_as_csv(); Ok(()) }
+        OutputFormat::Lines => { display_calendar_as_lines(); Ok(()) }
+    }
+}
+
+/// Display the locale tree structure
 fn display_locale_tree(format: OutputFormat) -> Result<(), RomcalCliError> {
     match format {
-        OutputFormat::Json => {
-            // Output pretty-printed JSON
-            let tree: Value = serde_json::from_str(LOCALE_TREE_JSON)?;
-            let pretty_json = serde_json::to_string_pretty(&tree)?;
-            println!("{}", pretty_json);
+        OutputFormat::Json | OutputFormat::Yaml => {
+            print_tree_structured(LOCALE_TREE_JSON, format, "locale tree")
         }
-        OutputFormat::Yaml => {
-            // Parse JSON and convert to YAML
-            let tree: Value = serde_json::from_str(LOCALE_TREE_JSON)?;
-            let yaml = serde_saphyr::to_string(&tree).map_err(|e| {
-                RomcalCliError::config_error(format!(
-                    "Failed to serialize locale tree to YAML: {}",
-                    e
-                ))
-            })?;
-            print!("{}", yaml);
-        }
-        OutputFormat::Csv => {
-            // Display as CSV Parent-Child format
-            display_locale_as_csv();
-        }
-        OutputFormat::Lines => {
-            // Display as formatted tree
-            display_locale_as_lines();
-        }
+        OutputFormat::Csv => { display_locale_as_csv(); Ok(()) }
+        OutputFormat::Lines => { display_locale_as_lines(); Ok(()) }
     }
-
-    Ok(())
 }
 
 /// Display the calendar tree as lines.
