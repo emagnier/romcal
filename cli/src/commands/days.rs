@@ -123,16 +123,15 @@ fn convert_to_csv(
 
     let mut wtr = Writer::from_writer(Vec::new());
 
-    // Get all unique field names from all records
-    let mut field_names: Vec<String> = data
+    // Get all unique field names from all records, preserving order of appearance
+    let mut seen = std::collections::HashSet::new();
+    let field_names: Vec<String> = data
         .values()
         .flatten()
         .flat_map(|day| day.fields.keys())
+        .filter(|k| seen.insert((*k).clone()))
         .cloned()
-        .collect::<std::collections::HashSet<_>>()
-        .into_iter()
         .collect();
-    field_names.sort();
 
     // Add "date" as the first column only if it's not already in the field names
     let header = if field_names.contains(&"date".to_string()) {
