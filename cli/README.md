@@ -40,6 +40,31 @@ After building, the CLI binary is located at:
 ./target/release/romcal list-locales
 ```
 
+## Shell Completion
+
+Romcal CLI can generate completion scripts for your shell:
+
+```bash
+# Bash
+romcal completions bash > ~/.bash_completion.d/romcal
+# or add to ~/.bashrc:
+# eval "$(romcal completions bash)"
+
+# Zsh
+romcal completions zsh > ~/.zfunc/_romcal
+# Make sure ~/.zfunc is in your fpath (add to ~/.zshrc):
+# fpath=(~/.zfunc $fpath)
+# autoload -Uz compinit && compinit
+
+# Fish
+romcal completions fish > ~/.config/fish/completions/romcal.fish
+
+# PowerShell
+romcal completions powershell >> $PROFILE
+```
+
+Supported shells: `bash`, `zsh`, `fish`, `powershell`, `elvish`
+
 ## Configuration
 
 Romcal CLI supports configuration files to set default options. Configuration is loaded from (in priority order):
@@ -226,6 +251,7 @@ romcal validate definitions "data/definitions/**/*.json"
 | `preset`              | Show current preset information             |
 | `optimize-preset`     | Optimize preset and generate JSON bundle    |
 | `validate`            | Validate JSON files against schemas         |
+| `completions`         | Generate shell completion scripts           |
 
 ## Options
 

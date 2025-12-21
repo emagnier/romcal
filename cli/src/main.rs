@@ -1,6 +1,8 @@
-use clap::{Args, Parser, Subcommand};
+use clap::{Args, CommandFactory, Parser, Subcommand};
+use clap_complete::{generate, Shell};
 use colored::*;
 use romcal_core::{CalendarContext, EasterCalculationType, Preset};
+use std::io;
 use std::path::PathBuf;
 use std::process;
 
@@ -272,6 +274,12 @@ enum Commands {
         #[command(subcommand)]
         validation_type: ValidationCommand,
     },
+    /// Generate shell completion scripts
+    Completions {
+        /// Shell to generate completions for
+        #[arg(value_enum)]
+        shell: Shell,
+    },
 }
 
 #[derive(Subcommand)]
@@ -384,5 +392,9 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
                 commands::validate::handle(ValidationType::Resources, &file_paths)
             }
         },
+        Commands::Completions { shell } => {
+            generate(shell, &mut Cli::command(), "romcal", &mut io::stdout());
+            Ok(())
+        }
     }
 }
