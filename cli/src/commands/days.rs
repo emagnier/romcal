@@ -1,13 +1,13 @@
 use crate::enums::{LiturgicalDayFilter, OutputFormat};
 use crate::error::RomcalCliError;
 use crate::utils::current_year;
+use colored::Colorize;
 use csv::Writer;
 use romcal_core::Preset;
 use serde::{Deserialize, Serialize};
 use serde_json;
 use serde_saphyr;
 use std::collections::BTreeMap;
-use colored::Colorize;
 
 /// Filtered liturgical day with only selected properties
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -24,11 +24,8 @@ pub fn handle(
     output_format: OutputFormat,
 ) -> Result<(), RomcalCliError> {
     let year = year.unwrap_or_else(current_year);
-
-    // Generate liturgical calendar
     let calendar = preset.generate_calendar(year)?;
 
-    // Apply filters if specified, keeping the date -> array structure
     let output_data: BTreeMap<String, Vec<FilteredLiturgicalDay>> = if let Some(filters) = filters {
         calendar
             .into_iter()
@@ -36,7 +33,7 @@ pub fn handle(
                 let filtered_days: Vec<FilteredLiturgicalDay> = days
                     .into_iter()
                     .map(|day| {
-                        // Convert to JSON first to preserve field order
+                        // Convert to JSON to preserve field order and enable dynamic filtering
                         let day_json = serde_json::to_value(&day).map_err(|e| {
                             RomcalCliError::config_error(format!("Failed to serialize day: {}", e))
                         })?;
@@ -86,7 +83,6 @@ pub fn handle(
             .collect::<Result<BTreeMap<String, Vec<FilteredLiturgicalDay>>, RomcalCliError>>()?
     };
 
-    // Output the result in the specified format
     match output_format {
         OutputFormat::Yaml => {
             let yaml_output = serde_saphyr::to_string(&output_data).map_err(|e| {

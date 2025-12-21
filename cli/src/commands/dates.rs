@@ -117,16 +117,9 @@ pub fn handle(
 
     validate_year(year)?;
 
-    // Get the date calculation method
     let date_method = validate_and_get_date_method(name)?;
-
-    // Create liturgical dates instance
     let dates = LiturgicalDates::new(preset, year)?;
-
-    // Calculate the requested date
     let date_result = date_method(&dates, None);
-
-    // Output the result - only the date in YYYY-MM-DD format
     let date_string = date_result.format("%Y-%m-%d").to_string();
     output_format.print(&date_string)?;
 

@@ -4,7 +4,7 @@ use jsonschema::{validator_for, ValidationError};
 use serde_json::Value;
 use std::fs;
 
-// Include schemas at compile time
+// Schemas are embedded at compile time for portability (no external files needed)
 const CALENDAR_DEFINITION_SCHEMA: &str = include_str!("../../../schemas/calendar_definition.json");
 const RESOURCES_DEFINITION_SCHEMA: &str = include_str!("../../../schemas/resources.json");
 
@@ -33,7 +33,6 @@ pub fn handle(
 ) -> Result<(), RomcalCliError> {
     let validation_type = ValidationType::from(validation_type);
 
-    // Get schema content based on validation type
     let schema_content = match validation_type {
         ValidationType::Definitions => CALENDAR_DEFINITION_SCHEMA,
         ValidationType::Resources => RESOURCES_DEFINITION_SCHEMA,
@@ -50,17 +49,15 @@ pub fn handle(
     );
     println!();
 
-    // Collect files from all inputs
     let all_files = utils::collect_json_files(file_paths)?;
 
-    // Remove duplicates while preserving order
+    // Deduplicate while preserving order
     let mut seen = std::collections::HashSet::new();
     let files: Vec<_> = all_files
         .into_iter()
         .filter(|f| seen.insert(f.clone()))
         .collect();
 
-    // Parse the embedded JSON schema
     let schema_json: Value = serde_json::from_str(schema_content)?;
     let compiled_schema = validator_for(&schema_json)
         .map_err(|e| RomcalCliError::SchemaValidationError(Box::new(e)))?;
@@ -70,11 +67,9 @@ pub fn handle(
     let mut invalid_files = 0;
     let mut errors: Vec<(String, String)> = Vec::new();
 
-    // Process all collected files
     for file_path in files {
         total_files += 1;
 
-        // Read and parse the JSON file
         let file_content = match fs::read_to_string(&file_path) {
             Ok(content) => content,
             Err(e) => {
@@ -93,7 +88,6 @@ pub fn handle(
             }
         };
 
-        // Validate against the schema
         let validation_result = compiled_schema.validate(&json_data);
 
         if validation_result.is_ok() {

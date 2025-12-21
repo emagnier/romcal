@@ -13,7 +13,6 @@ mod error;
 mod preset;
 mod utils;
 
-// Import command modules
 use commands::dates;
 use commands::days;
 use commands::list;
@@ -328,7 +327,6 @@ fn main() {
 
 /// Execute the CLI command with the provided configuration
 fn run(cli: Cli) -> Result<(), RomcalCliError> {
-    // Load config file
     let config = Config::load(cli.config.config_path.as_deref())?;
 
     match cli.command {

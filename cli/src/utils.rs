@@ -35,7 +35,6 @@ fn try_add_valid_json_file(files: &mut Vec<std::path::PathBuf>, path: std::path:
 pub fn read_json_file(file_path: &str) -> Result<serde_json::Value, RomcalCliError> {
     let path = Path::new(file_path);
 
-    // Check if file exists
     if !path.exists() {
         return Err(RomcalCliError::config_error(format!(
             "File does not exist: {}",
@@ -43,7 +42,6 @@ pub fn read_json_file(file_path: &str) -> Result<serde_json::Value, RomcalCliErr
         )));
     }
 
-    // Check if it's a file (not a directory)
     if !path.is_file() {
         return Err(RomcalCliError::config_error(format!(
             "Path is not a file: {}",
@@ -51,7 +49,6 @@ pub fn read_json_file(file_path: &str) -> Result<serde_json::Value, RomcalCliErr
         )));
     }
 
-    // Check if it has a .json extension (case insensitive)
     if !is_json_file(path) {
         return Err(RomcalCliError::config_error(format!(
             "File is not a JSON file: {}",
@@ -59,7 +56,6 @@ pub fn read_json_file(file_path: &str) -> Result<serde_json::Value, RomcalCliErr
         )));
     }
 
-    // Read and parse the JSON file
     let content = std::fs::read_to_string(file_path).map_err(|e| {
         RomcalCliError::config_error(format!("Failed to read file '{}': {}", file_path, e))
     })?;
@@ -272,9 +268,9 @@ pub fn combine_resources_by_locale(
 }
 
 /// Merge two JSON values recursively
-/// - For objects: merge properties, with source taking precedence (ignoring null values)
-/// - For arrays: concatenate them
-/// - For primitives: source takes precedence (ignoring null values)
+/// - Objects: deep merge, source overwrites target (except null values)
+/// - Arrays: concatenate (not replace)
+/// - Primitives: source wins (except null values preserve target)
 fn merge_json_values(target: &mut serde_json::Value, source: serde_json::Value) {
     match (target, source) {
         (serde_json::Value::Object(target_map), serde_json::Value::Object(source_map)) => {
