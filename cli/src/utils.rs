@@ -247,7 +247,7 @@ pub fn combine_resources_by_locale(
                 // Convert to JSON, merge, then convert back
                 let mut target_json = to_value(target_metadata)?;
                 let source_json = to_value(source_metadata)?;
-                merge_json_values(&mut target_json, &source_json);
+                merge_json_values(&mut target_json, source_json);
                 let merged_metadata: romcal_core::types::resource::ResourcesMetadata =
                     from_value(target_json)?;
 
@@ -275,7 +275,7 @@ pub fn combine_resources_by_locale(
 /// - For objects: merge properties, with source taking precedence (ignoring null values)
 /// - For arrays: concatenate them
 /// - For primitives: source takes precedence (ignoring null values)
-fn merge_json_values(target: &mut serde_json::Value, source: &serde_json::Value) {
+fn merge_json_values(target: &mut serde_json::Value, source: serde_json::Value) {
     match (target, source) {
         (serde_json::Value::Object(target_map), serde_json::Value::Object(source_map)) => {
             for (key, source_value) in source_map {
@@ -284,24 +284,24 @@ fn merge_json_values(target: &mut serde_json::Value, source: &serde_json::Value)
                     continue;
                 }
 
-                match target_map.get_mut(key) {
+                match target_map.get_mut(&key) {
                     Some(target_value) => {
                         merge_json_values(target_value, source_value);
                     }
                     None => {
-                        target_map.insert(key.clone(), source_value.clone());
+                        target_map.insert(key, source_value);
                     }
                 }
             }
         }
         (serde_json::Value::Array(target_array), serde_json::Value::Array(source_array)) => {
             // Concatenate arrays instead of replacing
-            target_array.extend(source_array.iter().cloned());
+            target_array.extend(source_array);
         }
         (target_value, source_value) => {
             // Skip null values - don't let them override existing values
             if !source_value.is_null() {
-                *target_value = source_value.clone();
+                *target_value = source_value;
             }
         }
     }
