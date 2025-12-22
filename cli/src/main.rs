@@ -16,12 +16,14 @@ mod utils;
 use commands::dates;
 use commands::days;
 use commands::list;
+use commands::masses;
 use commands::optimize_preset;
 use commands::show_preset;
 use error::RomcalCliError;
 
 use crate::config::Config;
 use crate::enums::liturgical_day_filter::LiturgicalDayFilterWrapper;
+use crate::enums::mass_context_filter::MassContextFilterWrapper;
 use crate::enums::{CliCalendarContext, CliEasterCalculationType, CliOutputFormat, ValidationType};
 use crate::preset::create_romcal;
 
@@ -235,6 +237,25 @@ enum Commands {
         #[command(flatten)]
         debug: DebugArgs,
     },
+    /// Generate mass-centric calendar (organized by civil date and mass time)
+    Masses {
+        /// Year for mass calendar generation (default: current year)
+        year: Option<i32>,
+
+        /// Filter to show only specific properties of mass contexts
+        /// Can be specified multiple times to include multiple properties
+        #[arg(long, value_delimiter = ',')]
+        filter: Option<Vec<MassContextFilterWrapper>>,
+
+        #[command(flatten)]
+        preset: PresetArgs,
+
+        #[command(flatten)]
+        output: OutputArgs,
+
+        #[command(flatten)]
+        debug: DebugArgs,
+    },
     /// List various romcal elements
     List {
         #[command(subcommand)]
@@ -354,6 +375,23 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
             let converted_filter =
                 filter.map(|filters| filters.into_iter().map(|wrapper| wrapper.0).collect());
             days::handle(
+                year,
+                converted_filter,
+                preset.into_romcal(&config)?,
+                output.get_format(&config).into(),
+            )
+        }
+        Commands::Masses {
+            year,
+            filter,
+            preset,
+            output,
+            debug,
+        } => {
+            debug.init();
+            let converted_filter =
+                filter.map(|filters| filters.into_iter().map(|wrapper| wrapper.0).collect());
+            masses::handle(
                 year,
                 converted_filter,
                 preset.into_romcal(&config)?,
