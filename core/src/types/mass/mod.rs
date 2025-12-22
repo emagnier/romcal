@@ -1,3 +1,8 @@
+//! Mass-related types for liturgical celebrations.
+//!
+//! This module provides types for representing Mass celebrations, including
+//! readings, prayers, antiphons, and the structure of the Mass itself.
+
 pub mod acclamation;
 pub mod bible_book;
 pub mod common;

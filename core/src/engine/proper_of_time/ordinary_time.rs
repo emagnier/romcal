@@ -1,3 +1,9 @@
+//! Ordinary Time generation.
+//!
+//! This module generates liturgical days for Ordinary Time,
+//! covering both early (after Baptism of the Lord) and late
+//! (after Pentecost) periods.
+
 use chrono::{DateTime, Datelike, Utc};
 
 use super::utils::{WEEKDAY_NAMES, sort_liturgical_days_by_date};

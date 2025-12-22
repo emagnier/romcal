@@ -1,3 +1,8 @@
+//! Christmas Time generation.
+//!
+//! This module generates liturgical days for Christmas Time,
+//! from December 25 to the Baptism of the Lord.
+
 use chrono::{DateTime, Utc};
 
 use super::utils::{WEEKDAY_NAMES, sort_liturgical_days_by_date};

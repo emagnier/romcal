@@ -1,3 +1,9 @@
+//! Proper of Time generation for the liturgical calendar.
+//!
+//! This module generates the temporal cycle of the liturgical year,
+//! including Advent, Christmas Time, Ordinary Time, Lent, Paschal Triduum,
+//! and Easter Time.
+
 use chrono::{DateTime, Datelike, Utc};
 
 pub mod advent;

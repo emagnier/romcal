@@ -1,3 +1,8 @@
+//! Liturgical date calculations.
+//!
+//! This module provides utilities for calculating dates of movable feasts
+//! and fixed celebrations in the liturgical calendar.
+
 use chrono::{DateTime, Datelike, Duration, NaiveDate, Utc, Weekday};
 use std::collections::HashMap;
 

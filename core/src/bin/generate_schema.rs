@@ -1,3 +1,8 @@
+//! JSON Schema generator for Romcal types.
+//!
+//! This binary generates JSON schemas for the main Romcal types,
+//! enabling type validation and code generation for TypeScript and Python.
+
 use romcal_core::{CalendarDefinition, LiturgicalDay, Resources};
 use schemars::schema_for;
 use serde_json::Value;

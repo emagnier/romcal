@@ -1,3 +1,8 @@
+//! Lent season generation.
+//!
+//! This module generates liturgical days for the Lenten season,
+//! from Ash Wednesday to Holy Saturday (excluding Paschal Triduum).
+
 use chrono::{DateTime, Utc};
 
 use super::utils::{WEEKDAY_NAMES, sort_liturgical_days_by_date};

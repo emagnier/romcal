@@ -1,3 +1,8 @@
+//! Calendar types and definitions for liturgical calendars.
+//!
+//! This module provides types for representing calendar hierarchies,
+//! jurisdictions, and day definitions used in particular calendars.
+
 pub mod calendar_jurisdiction;
 pub mod calendar_metadata;
 pub mod calendar_type;

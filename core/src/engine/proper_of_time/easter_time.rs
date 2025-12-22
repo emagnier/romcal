@@ -1,3 +1,8 @@
+//! Easter Time generation.
+//!
+//! This module generates liturgical days for the Easter season,
+//! from Easter Monday to Pentecost Sunday.
+
 use chrono::{DateTime, Utc};
 
 use super::utils::{WEEKDAY_NAMES, sort_liturgical_days_by_date};

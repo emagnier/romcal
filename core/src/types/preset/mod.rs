@@ -1,3 +1,8 @@
+//! Preset configuration types for the Romcal library.
+//!
+//! This module provides types for configuring calendar generation,
+//! including Easter calculation methods, calendar contexts, and formatting options.
+
 pub mod calendar_context;
 pub mod easter_calculation_type;
 pub mod ordinal_format;

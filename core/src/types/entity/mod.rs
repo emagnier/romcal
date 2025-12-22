@@ -1,3 +1,8 @@
+//! Entity types for saints, blessed, and other liturgical entities.
+//!
+//! This module provides types for representing persons, places, and events
+//! in the liturgical calendar, including their titles, dates, and canonization status.
+
 pub mod canonization_level;
 pub mod entity_definition;
 pub mod entity_override;

@@ -1,3 +1,8 @@
+//! Paschal Triduum generation.
+//!
+//! This module generates liturgical days for the Paschal Triduum,
+//! from Holy Thursday evening to Easter Sunday.
+
 use chrono::{DateTime, Utc};
 
 use super::utils::sort_liturgical_days_by_date;

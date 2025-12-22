@@ -1,6 +1,11 @@
+//! Utility functions for Proper of Time generation.
+//!
+//! This module provides helper functions and constants used across
+//! all season generators.
+
 use crate::engine::liturgical_day::LiturgicalDay;
 
-/// Calendar ID for the Proper of Time
+/// Calendar ID for the Proper of Time.
 pub const PROPER_OF_TIME_ID: &str = "proper_of_time";
 
 /// Weekday names for liturgical day generation

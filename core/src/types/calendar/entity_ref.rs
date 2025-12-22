@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::types::EntityOverride;
 
-// Type alias
+/// Resource identifier for referencing entities in the catalog.
 pub type ResourceId = String;
 
 /// A reference to an entity in the entity catalog.

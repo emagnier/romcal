@@ -3,7 +3,10 @@ use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 use strum::EnumIter;
 
-/// The context of the calendar
+/// Calendar year context for date boundaries.
+///
+/// Determines how the calendar year is structured and which dates are included
+/// in a given year's calendar output.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, EnumIter)]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]

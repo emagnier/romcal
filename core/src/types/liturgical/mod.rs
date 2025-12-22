@@ -1,3 +1,8 @@
+//! Liturgical types for seasons, ranks, colors, and cycles.
+//!
+//! This module provides types representing the liturgical structure of the Church year,
+//! including seasons, precedence levels, ranks, colors, and lectionary cycles.
+
 pub mod color;
 pub mod cycles;
 pub mod period;

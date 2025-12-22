@@ -1,3 +1,8 @@
+//! Core Romcal configuration and instance management.
+//!
+//! This module provides the main `Romcal` struct and `Preset` configuration
+//! for initializing and customizing liturgical calendar generation.
+
 use serde::{Deserialize, Serialize};
 
 use crate::engine::calendar_definition::CalendarDefinition;

@@ -1,3 +1,8 @@
+//! Cache for Proper of Time date calculations.
+//!
+//! This module provides a cache for season start/end dates and liturgical
+//! year boundaries to avoid repeated calculations during calendar generation.
+
 use chrono::DateTime;
 use chrono::Datelike;
 use chrono::Utc;

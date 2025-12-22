@@ -1,7 +1,7 @@
-// Data tree builder utilities
+// Data tree builder utilities.
 //
 // This module provides shared structs and functions for building hierarchical data trees
-// (calendars and locales) for both build.rs and tests
+// (calendars and locales) for both build.rs and tests.
 
 use std::collections::HashMap;
 

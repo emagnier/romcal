@@ -1,3 +1,8 @@
+//! Advent season generation.
+//!
+//! This module generates liturgical days for the Advent season,
+//! from the first Sunday of Advent to December 24.
+
 use chrono::{DateTime, Datelike, Utc};
 
 use super::utils::{WEEKDAY_NAMES, enum_to_string, sort_liturgical_days_by_date};

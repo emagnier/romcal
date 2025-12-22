@@ -19,7 +19,8 @@ pub struct Entity {
     pub id: Option<EntityId>,
 
     /// The type of the entity.
-    /// @default EntityType.Person
+    ///
+    /// Defaults to `EntityType::Person`.
     #[serde(
         default = "default_entity_type",
         skip_serializing_if = "Option::is_none"
@@ -111,8 +112,7 @@ pub struct Entity {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub sources: Option<Vec<String>>,
 
-    /// Internal notes
-    /// @private
+    /// Internal notes (not serialized).
     #[serde(skip_serializing)]
     pub _todo: Option<Vec<String>>,
 }

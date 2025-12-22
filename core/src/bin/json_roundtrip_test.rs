@@ -1,3 +1,8 @@
+//! JSON round-trip test utility.
+//!
+//! This binary validates that JSON files can be deserialized into Rust types
+//! and reserialized without data loss, ensuring type compatibility.
+
 use romcal_core::{CalendarDefinition, Resources};
 use serde_json::{self, Value};
 use std::fs;
