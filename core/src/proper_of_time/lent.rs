@@ -222,12 +222,12 @@ impl<'a> Lent<'a> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::{Preset, preset::PresetPartial};
+    use crate::{Romcal, preset::Preset};
 
     #[test]
     fn test_lent_generation() {
-        let preset = Preset::default();
-        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
+        let romcal = Romcal::default();
+        let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
         let lent = Lent::new(&proper_of_time);
         let lent_days = lent.generate().unwrap();
 
@@ -261,11 +261,11 @@ mod tests {
 
     #[test]
     fn test_liturgical_year_lent() {
-        let preset = Preset::new(PresetPartial {
+        let romcal = Romcal::new(Preset {
             context: Some(crate::CalendarContext::Liturgical),
-            ..PresetPartial::default()
+            ..Preset::default()
         });
-        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
+        let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
         let lent = Lent::new(&proper_of_time);
 
         let days = lent.generate().unwrap();

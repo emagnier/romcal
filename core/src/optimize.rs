@@ -1,7 +1,7 @@
 use serde_json::Value;
 use std::collections::{HashMap, HashSet};
 
-use crate::{CalendarDefinition, Preset, Resources, RomcalError, RomcalResult};
+use crate::{CalendarDefinition, Resources, Romcal, RomcalError, RomcalResult};
 
 // Type aliases for clarity
 type LocaleMap = HashMap<String, String>;
@@ -29,24 +29,24 @@ const SEASONS_PROPERTIES: &[&str] = &[
 ];
 
 /// Create a JSON bundle of the current configuration
-/// This method serializes the Preset to JSON format
+/// This method serializes the Romcal config to JSON format
 /// and removes null values and empty objects from the output.
 ///
 /// Only includes calendar_definitions that are:
-/// 1. The main calendar (Preset.calendar)
+/// 1. The main calendar (Romcal.calendar)
 /// 2. Parent calendars of the main calendar
 /// 3. The general_roman calendar
-pub fn optimize(preset: &Preset) -> RomcalResult<String> {
+pub fn optimize(romcal: &Romcal) -> RomcalResult<String> {
     // Validate that all calendar IDs are unique
-    validate_unique_calendar_ids(&preset.calendar_definitions)?;
+    validate_unique_calendar_ids(&romcal.calendar_definitions)?;
 
     // Validate that all resource locales are unique
-    validate_unique_resource_locales(&preset.resources)?;
+    validate_unique_resource_locales(&romcal.resources)?;
 
     // Create a filtered version of the config with only relevant calendar_definitions and resources
-    let mut filtered_config = preset.clone();
-    filtered_config.calendar_definitions = filter_calendar_definitions(preset)?;
-    filtered_config.resources = filter_resources(preset, &filtered_config.calendar_definitions)?;
+    let mut filtered_config = romcal.clone();
+    filtered_config.calendar_definitions = filter_calendar_definitions(romcal)?;
+    filtered_config.resources = filter_resources(romcal, &filtered_config.calendar_definitions)?;
 
     let value = serde_json::to_value(&filtered_config)
         .map_err(|e| RomcalError::ValidationError(format!("JSON serialization error: {}", e)))?;
@@ -89,18 +89,18 @@ fn validate_unique_resource_locales(resources: &[Resources]) -> RomcalResult<()>
     Ok(())
 }
 
-/// Filter resources to keep only the required locales based on the preset
+/// Filter resources to keep only the required locales based on the romcal config
 /// Returns resources with hierarchical deduplication: most specific to most general
 /// Entities defined in more specific locales are removed from parent locales
 /// Only includes entities that are referenced in calendar day_definitions
 fn filter_resources(
-    preset: &Preset,
+    romcal: &Romcal,
     filtered_calendars: &[CalendarDefinition],
 ) -> RomcalResult<Vec<Resources>> {
-    let target_locale = &preset.locale;
+    let target_locale = &romcal.locale;
 
     // Build locale maps for efficient lookups
-    let (available_locales, resources_by_locale) = build_locale_maps(preset);
+    let (available_locales, resources_by_locale) = build_locale_maps(romcal);
 
     // Validate target locale exists
     let exact_locale = validate_target_locale(target_locale, &available_locales)?;
@@ -145,14 +145,14 @@ fn collect_used_entity_ids(calendar_definitions: &[CalendarDefinition]) -> Entit
 }
 
 /// Build locale maps for efficient lookups
-fn build_locale_maps(preset: &Preset) -> (LocaleMap, HashMap<&str, &Resources>) {
-    let available_locales: LocaleMap = preset
+fn build_locale_maps(romcal: &Romcal) -> (LocaleMap, HashMap<&str, &Resources>) {
+    let available_locales: LocaleMap = romcal
         .resources
         .iter()
         .map(|resource| (resource.locale.to_lowercase(), resource.locale.clone()))
         .collect();
 
-    let resources_by_locale: HashMap<&str, &Resources> = preset
+    let resources_by_locale: HashMap<&str, &Resources> = romcal
         .resources
         .iter()
         .map(|resource| (resource.locale.as_str(), resource))
@@ -394,16 +394,16 @@ fn get_all_parent_locales(locale: &str) -> Vec<String> {
 ///
 /// Returns them ordered according to the priority in keep_ids
 /// Returns an error if the main calendar is not found
-fn filter_calendar_definitions(preset: &Preset) -> RomcalResult<Vec<CalendarDefinition>> {
+fn filter_calendar_definitions(romcal: &Romcal) -> RomcalResult<Vec<CalendarDefinition>> {
     // Find the main calendar and its parents
-    let main_calendar = preset
+    let main_calendar = romcal
         .calendar_definitions
         .iter()
-        .find(|cal| cal.id == preset.calendar)
+        .find(|cal| cal.id == romcal.calendar)
         .ok_or_else(|| {
             RomcalError::ValidationError(format!(
                 "Main calendar '{}' not found in calendar_definitions",
-                preset.calendar
+                romcal.calendar
             ))
         })?;
 
@@ -437,7 +437,7 @@ fn filter_calendar_definitions(preset: &Preset) -> RomcalResult<Vec<CalendarDefi
     }
 
     // Validate that all required calendars exist
-    let available_ids: EntityIdSet = preset
+    let available_ids: EntityIdSet = romcal
         .calendar_definitions
         .iter()
         .map(|cal| cal.id.clone())
@@ -466,7 +466,7 @@ fn filter_calendar_definitions(preset: &Preset) -> RomcalResult<Vec<CalendarDefi
     // Filter and order calendar_definitions according to required_ids order
     let mut result = Vec::new();
     for id in required_ids {
-        if let Some(calendar_def) = preset.calendar_definitions.iter().find(|cal| cal.id == id) {
+        if let Some(calendar_def) = romcal.calendar_definitions.iter().find(|cal| cal.id == id) {
             result.push(calendar_def.clone());
         }
     }

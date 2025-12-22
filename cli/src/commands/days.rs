@@ -3,7 +3,7 @@ use crate::error::RomcalCliError;
 use crate::utils::current_year;
 use colored::Colorize;
 use csv::Writer;
-use romcal_core::Preset;
+use romcal_core::Romcal;
 use serde::{Deserialize, Serialize};
 use serde_json;
 use serde_saphyr;
@@ -20,11 +20,11 @@ pub struct FilteredLiturgicalDay {
 pub fn handle(
     year: Option<i32>,
     filters: Option<Vec<LiturgicalDayFilter>>,
-    preset: Preset,
+    romcal: Romcal,
     output_format: OutputFormat,
 ) -> Result<(), RomcalCliError> {
     let year = year.unwrap_or_else(current_year);
-    let calendar = preset.generate_calendar(year)?;
+    let calendar = romcal.generate_calendar(year)?;
 
     let output_data: BTreeMap<String, Vec<FilteredLiturgicalDay>> = if let Some(filters) = filters {
         calendar

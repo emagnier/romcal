@@ -79,7 +79,7 @@ impl<'a> ChristmasTime<'a> {
 
         // Use cached values
         let christmas_year =
-            if self.proper_of_time.preset.context == crate::CalendarContext::Liturgical {
+            if self.proper_of_time.romcal.context == crate::CalendarContext::Liturgical {
                 self.proper_of_time.cache.christmas_year() + 1
             } else {
                 self.proper_of_time.cache.christmas_year()
@@ -390,12 +390,12 @@ impl<'a> ChristmasTime<'a> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::preset::{Preset, PresetPartial};
+    use crate::preset::{Preset, Romcal};
 
     #[test]
     fn test_early_christmas_time_generation() {
-        let preset = Preset::default();
-        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
+        let romcal = Romcal::default();
+        let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
         let christmas_time = ChristmasTime::new(&proper_of_time);
         let christmas_days = christmas_time.generate_early().unwrap();
 
@@ -426,11 +426,11 @@ mod tests {
 
     #[test]
     fn test_liturgical_year_early_christmas_time() {
-        let preset = Preset::new(PresetPartial {
+        let romcal = Romcal::new(Preset {
             context: Some(crate::CalendarContext::Liturgical),
-            ..PresetPartial::default()
+            ..Preset::default()
         });
-        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
+        let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
         let christmas_time = ChristmasTime::new(&proper_of_time);
         // For liturgical year 2026, Christmas is in 2025
         let christmas_days = christmas_time.generate_early().unwrap();
@@ -447,8 +447,8 @@ mod tests {
 
     #[test]
     fn test_late_christmas_time_generation() {
-        let preset = Preset::default();
-        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
+        let romcal = Romcal::default();
+        let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
         let christmas_time = ChristmasTime::new(&proper_of_time);
         let christmas_days = christmas_time.generate_late().unwrap();
 
@@ -480,11 +480,11 @@ mod tests {
 
     #[test]
     fn test_liturgical_year_late_christmas_time() {
-        let preset = Preset::new(PresetPartial {
+        let romcal = Romcal::new(Preset {
             context: Some(crate::CalendarContext::Liturgical),
-            ..PresetPartial::default()
+            ..Preset::default()
         });
-        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
+        let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
         let christmas_time = ChristmasTime::new(&proper_of_time);
 
         let days = christmas_time.generate_late().unwrap();

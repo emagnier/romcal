@@ -1,7 +1,7 @@
 use clap::{Args, CommandFactory, Parser, Subcommand};
 use clap_complete::{Shell, generate};
 use colored::*;
-use romcal_core::{CalendarContext, EasterCalculationType, Preset};
+use romcal_core::{CalendarContext, EasterCalculationType, Romcal};
 use std::io;
 use std::path::PathBuf;
 use std::process;
@@ -23,7 +23,7 @@ use error::RomcalCliError;
 use crate::config::Config;
 use crate::enums::liturgical_day_filter::LiturgicalDayFilterWrapper;
 use crate::enums::{CliCalendarContext, CliEasterCalculationType, CliOutputFormat, ValidationType};
-use crate::preset::create_preset;
+use crate::preset::create_romcal;
 
 /// Config file flag
 #[derive(Args, Clone, Default)]
@@ -75,7 +75,7 @@ struct PresetArgs {
 
 impl PresetArgs {
     /// Merge CLI args with config, CLI takes priority
-    fn into_preset(self, config: &Config) -> Result<Preset, RomcalCliError> {
+    fn into_romcal(self, config: &Config) -> Result<Romcal, RomcalCliError> {
         // CLI args take priority over config
         let calendar = self.calendar.as_deref().or(config.calendar.as_deref());
         let locale = self.locale.as_deref().or(config.locale.as_deref());
@@ -121,7 +121,7 @@ impl PresetArgs {
             Vec::new()
         };
 
-        create_preset(
+        create_romcal(
             calendar,
             locale,
             context,
@@ -340,7 +340,7 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
                 &date_name,
                 year,
                 output.get_format(&config).into(),
-                preset.into_preset(&config)?,
+                preset.into_romcal(&config)?,
             )
         }
         Commands::Days {
@@ -356,7 +356,7 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
             days::handle(
                 year,
                 converted_filter,
-                preset.into_preset(&config)?,
+                preset.into_romcal(&config)?,
                 output.get_format(&config).into(),
             )
         }
@@ -376,12 +376,12 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
             debug.init();
             show_preset::handle(
                 output.get_format(&config).into(),
-                preset.into_preset(&config)?,
+                preset.into_romcal(&config)?,
             )
         }
         Commands::OptimizePreset { out, preset, debug } => {
             debug.init();
-            optimize_preset::handle(preset.into_preset(&config)?, out)
+            optimize_preset::handle(preset.into_romcal(&config)?, out)
         }
         Commands::Validate { validation_type } => match validation_type {
             ValidationCommand::Definitions { file_paths } => {

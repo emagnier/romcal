@@ -2,7 +2,7 @@ use crate::enums::OutputFormat;
 use crate::error::RomcalCliError;
 use crate::utils::{current_year, validate_year};
 use romcal_core::LiturgicalDates;
-use romcal_core::Preset;
+use romcal_core::Romcal;
 
 /// Type alias for date calculation methods
 type DateMethod = fn(&LiturgicalDates, Option<i32>) -> chrono::DateTime<chrono::Utc>;
@@ -111,14 +111,14 @@ pub fn handle(
     name: &str,
     year: Option<i32>,
     output_format: OutputFormat,
-    preset: Preset,
+    romcal: Romcal,
 ) -> Result<(), RomcalCliError> {
     let year = year.unwrap_or_else(current_year);
 
     validate_year(year)?;
 
     let date_method = validate_and_get_date_method(name)?;
-    let dates = LiturgicalDates::new(preset, year)?;
+    let dates = LiturgicalDates::new(romcal, year)?;
     let date_result = date_method(&dates, None);
     let date_string = date_result.format("%Y-%m-%d").to_string();
     output_format.print(&date_string)?;

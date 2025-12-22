@@ -6,7 +6,7 @@
 
 use std::collections::BTreeMap;
 
-use crate::preset::Preset;
+use crate::preset::Romcal;
 use crate::types::calendar::day_definition::DayDefinition;
 use crate::types::calendar::entity_pointer::EntityPointer;
 use crate::types::entity::entity_definition::{Entity, EntityId};
@@ -26,18 +26,18 @@ pub struct EntityResolver {
 }
 
 impl EntityResolver {
-    /// Creates a new EntityResolver from a Preset.
+    /// Creates a new EntityResolver from a Romcal instance.
     ///
     /// This constructor merges 'en' (default locale) with the target locale
-    /// specified in the preset. Properties from the target locale override
+    /// specified in the romcal config. Properties from the target locale override
     /// those from 'en'.
     ///
     /// # Arguments
     ///
-    /// * `preset` - The preset containing resources and locale configuration
-    pub fn new(preset: &Preset) -> Self {
-        let locale = preset.locale.clone();
-        let entities = Self::merge_locale_resources(preset);
+    /// * `romcal` - The romcal instance containing resources and locale configuration
+    pub fn new(romcal: &Romcal) -> Self {
+        let locale = romcal.locale.clone();
+        let entities = Self::merge_locale_resources(romcal);
 
         Self { entities, locale }
     }
@@ -54,11 +54,11 @@ impl EntityResolver {
     /// 2. For each entity in the target locale:
     ///    - If exists in 'en': merge properties (target overrides 'en')
     ///    - If doesn't exist: add as new entity
-    fn merge_locale_resources(preset: &Preset) -> BTreeMap<EntityId, Entity> {
+    fn merge_locale_resources(romcal: &Romcal) -> BTreeMap<EntityId, Entity> {
         let mut merged_entities: BTreeMap<EntityId, Entity> = BTreeMap::new();
 
         // Step 1: Load all entities from 'en' (default locale)
-        if let Some(en_resources) = preset.get_resources("en")
+        if let Some(en_resources) = romcal.get_resources("en")
             && let Some(en_entities) = &en_resources.entities
         {
             for (id, mut entity) in en_entities.clone() {
@@ -74,8 +74,8 @@ impl EntityResolver {
         }
 
         // Step 2: If target locale is not 'en', merge with target locale
-        if preset.locale != "en" {
-            if let Some(target_resources) = preset.get_resources(&preset.locale)
+        if romcal.locale != "en" {
+            if let Some(target_resources) = romcal.get_resources(&romcal.locale)
                 && let Some(target_entities) = &target_resources.entities
             {
                 for (id, target_entity) in target_entities {
@@ -98,7 +98,7 @@ impl EntityResolver {
             }
 
             // Also check for locale variants (e.g., 'fr-fr' inherits from 'fr')
-            Self::merge_locale_hierarchy(preset, &mut merged_entities);
+            Self::merge_locale_hierarchy(romcal, &mut merged_entities);
         }
 
         // Ensure all entities have IDs and types set
@@ -116,8 +116,8 @@ impl EntityResolver {
     }
 
     /// Merges entities from locale hierarchy (e.g., 'fr-fr' inherits from 'fr')
-    fn merge_locale_hierarchy(preset: &Preset, merged_entities: &mut BTreeMap<EntityId, Entity>) {
-        let locale = &preset.locale;
+    fn merge_locale_hierarchy(romcal: &Romcal, merged_entities: &mut BTreeMap<EntityId, Entity>) {
+        let locale = &romcal.locale;
 
         // Check if locale has a parent (e.g., 'fr-fr' -> 'fr')
         if let Some(hyphen_pos) = locale.find('-') {
@@ -125,7 +125,7 @@ impl EntityResolver {
 
             // Don't process if parent is 'en' (already handled)
             if parent_locale != "en"
-                && let Some(parent_resources) = preset.get_resources(parent_locale)
+                && let Some(parent_resources) = romcal.get_resources(parent_locale)
                 && let Some(parent_entities) = &parent_resources.entities
             {
                 for (id, parent_entity) in parent_entities {
@@ -415,7 +415,7 @@ impl EntityResolver {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::preset::PresetPartial;
+    use crate::preset::Preset;
     use crate::resources::Resources;
     use crate::types::entity::entity_override::EntityOverride;
     use crate::types::entity::title::CompoundTitle;
@@ -437,22 +437,22 @@ mod tests {
 
     #[test]
     fn test_entity_resolver_creation() {
-        let preset = Preset::default();
-        let resolver = EntityResolver::new(&preset);
+        let romcal = Romcal::default();
+        let resolver = EntityResolver::new(&romcal);
 
         assert_eq!(resolver.locale(), "en");
     }
 
     #[test]
     fn test_resolve_entity_pointer_resource_id() {
-        let mut preset = Preset::default();
+        let mut romcal = Romcal::default();
 
         // Add test entity
         let entity = create_test_entity("Test Saint", vec![Title::Martyr]);
         let resources = create_test_resources("en", vec![("test_saint", entity)]);
-        preset.add_resources(resources);
+        romcal.add_resources(resources);
 
-        let resolver = EntityResolver::new(&preset);
+        let resolver = EntityResolver::new(&romcal);
 
         // Test resolving by ResourceId
         let pointer = EntityPointer::ResourceId("test_saint".to_string());
@@ -464,8 +464,8 @@ mod tests {
 
     #[test]
     fn test_resolve_entity_pointer_not_found() {
-        let preset = Preset::default();
-        let resolver = EntityResolver::new(&preset);
+        let romcal = Romcal::default();
+        let resolver = EntityResolver::new(&romcal);
 
         // Test resolving non-existent entity
         let pointer = EntityPointer::ResourceId("non_existent".to_string());
@@ -477,14 +477,14 @@ mod tests {
 
     #[test]
     fn test_resolve_entity_pointer_override() {
-        let mut preset = Preset::default();
+        let mut romcal = Romcal::default();
 
         // Add base entity
         let entity = create_test_entity("Test Saint", vec![Title::Martyr]);
         let resources = create_test_resources("en", vec![("test_saint", entity)]);
-        preset.add_resources(resources);
+        romcal.add_resources(resources);
 
-        let resolver = EntityResolver::new(&preset);
+        let resolver = EntityResolver::new(&romcal);
 
         // Test resolving with override
         let pointer = EntityPointer::Override(EntityOverride {
@@ -502,14 +502,14 @@ mod tests {
 
     #[test]
     fn test_resolve_entity_pointer_compound_titles() {
-        let mut preset = Preset::default();
+        let mut romcal = Romcal::default();
 
         // Add base entity
         let entity = create_test_entity("Test Saint", vec![Title::Martyr]);
         let resources = create_test_resources("en", vec![("test_saint", entity)]);
-        preset.add_resources(resources);
+        romcal.add_resources(resources);
 
-        let resolver = EntityResolver::new(&preset);
+        let resolver = EntityResolver::new(&romcal);
 
         // Test with compound title
         let pointer = EntityPointer::Override(EntityOverride {
@@ -532,7 +532,7 @@ mod tests {
 
     #[test]
     fn test_resolve_entities_for_day_with_pointers() {
-        let mut preset = Preset::default();
+        let mut romcal = Romcal::default();
 
         // Add test entities
         let entity1 = create_test_entity("Saint Peter", vec![Title::Apostle]);
@@ -541,9 +541,9 @@ mod tests {
             "en",
             vec![("peter_apostle", entity1), ("paul_apostle", entity2)],
         );
-        preset.add_resources(resources);
+        romcal.add_resources(resources);
 
-        let resolver = EntityResolver::new(&preset);
+        let resolver = EntityResolver::new(&romcal);
 
         // Create day definition with entities
         let day_def = DayDefinition {
@@ -574,14 +574,14 @@ mod tests {
 
     #[test]
     fn test_resolve_entities_for_day_fallback() {
-        let mut preset = Preset::default();
+        let mut romcal = Romcal::default();
 
         // Add entity with same ID as day_id
         let entity = create_test_entity("Test Saint", vec![Title::Martyr]);
         let resources = create_test_resources("en", vec![("test_day_id", entity)]);
-        preset.add_resources(resources);
+        romcal.add_resources(resources);
 
-        let resolver = EntityResolver::new(&preset);
+        let resolver = EntityResolver::new(&romcal);
 
         // Create day definition without entities (should fallback to day_id)
         let day_def = DayDefinition {
@@ -608,8 +608,8 @@ mod tests {
 
     #[test]
     fn test_resolve_entities_for_day_no_fallback() {
-        let preset = Preset::default();
-        let resolver = EntityResolver::new(&preset);
+        let romcal = Romcal::default();
+        let resolver = EntityResolver::new(&romcal);
 
         // Create day definition without entities and no matching entity
         let day_def = DayDefinition {
@@ -635,8 +635,8 @@ mod tests {
 
     #[test]
     fn test_combine_titles() {
-        let preset = Preset::default();
-        let resolver = EntityResolver::new(&preset);
+        let romcal = Romcal::default();
+        let resolver = EntityResolver::new(&romcal);
 
         let entities = vec![
             create_test_entity("Saint 1", vec![Title::Martyr, Title::Bishop]),
@@ -659,8 +659,8 @@ mod tests {
 
     #[test]
     fn test_combine_titles_respects_hide_titles() {
-        let preset = Preset::default();
-        let resolver = EntityResolver::new(&preset);
+        let romcal = Romcal::default();
+        let resolver = EntityResolver::new(&romcal);
 
         let mut hidden_entity = create_test_entity("Hidden", vec![Title::Pope]);
         hidden_entity.hide_titles = Some(true);
@@ -685,24 +685,24 @@ mod tests {
 
     #[test]
     fn test_locale_merge() {
-        let mut preset = Preset::new(PresetPartial {
+        let mut romcal = Romcal::new(Preset {
             locale: Some("fr".to_string()),
-            ..PresetPartial::default()
+            ..Preset::default()
         });
 
         // Add English entity
         let en_entity = create_test_entity("Test Saint (EN)", vec![Title::Martyr]);
         let en_resources = create_test_resources("en", vec![("test_saint", en_entity)]);
-        preset.add_resources(en_resources);
+        romcal.add_resources(en_resources);
 
         // Add French entity with translated name
         let mut fr_entity = Entity::new();
         fr_entity.name = Some("Saint Test (FR)".to_string());
         // Note: titles not set in FR, should inherit from EN
         let fr_resources = create_test_resources("fr", vec![("test_saint", fr_entity)]);
-        preset.add_resources(fr_resources);
+        romcal.add_resources(fr_resources);
 
-        let resolver = EntityResolver::new(&preset);
+        let resolver = EntityResolver::new(&romcal);
 
         let entity = resolver.resolve_entity("test_saint").unwrap();
 

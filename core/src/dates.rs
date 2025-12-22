@@ -3,13 +3,13 @@ use std::collections::HashMap;
 
 use super::easter::{calculate_gregorian_easter_date, calculate_julian_easter_date_to_gregorian};
 use crate::error::{RomcalResult, validate_year};
-use crate::preset::Preset;
+use crate::preset::Romcal;
 use crate::types::EasterCalculationType;
 use crate::types::liturgical::Season;
 
 /// Main structure for liturgical date calculations
 pub struct LiturgicalDates {
-    config: Preset,
+    romcal: Romcal,
     year: i32,
     is_liturgical_year: bool,
 }
@@ -20,11 +20,11 @@ impl LiturgicalDates {
     /// # Errors
     ///
     /// Returns `RomcalError::InvalidYear` if the year is before 1583
-    pub fn new(config: Preset, year: i32) -> RomcalResult<Self> {
+    pub fn new(romcal: Romcal, year: i32) -> RomcalResult<Self> {
         validate_year(year, 1583)?;
-        let is_liturgical_year = config.context == crate::CalendarContext::Liturgical;
+        let is_liturgical_year = romcal.context == crate::CalendarContext::Liturgical;
         Ok(Self {
-            config,
+            romcal,
             year,
             is_liturgical_year,
         })
@@ -301,7 +301,7 @@ impl LiturgicalDates {
     pub fn second_sunday_after_christmas(&self, year: Option<i32>) -> Option<DateTime<Utc>> {
         let year = year.unwrap_or(self.year);
 
-        if self.config.epiphany_on_sunday {
+        if self.romcal.epiphany_on_sunday {
             return None;
         }
 
@@ -363,7 +363,7 @@ impl LiturgicalDates {
         let first_day = Self::get_utc_date(year, 1, 1);
         let mut date = Self::get_utc_date(year, 1, 6);
 
-        if self.config.epiphany_on_sunday {
+        if self.romcal.epiphany_on_sunday {
             match first_day.weekday() {
                 Weekday::Sat => {
                     // If the first day of the year is a Saturday, Mary Mother of God is on that day
@@ -512,7 +512,7 @@ impl LiturgicalDates {
     pub fn get_easter_sunday_date(&self, year: Option<i32>) -> RomcalResult<DateTime<Utc>> {
         let year = year.unwrap_or(self.year);
 
-        let easter_date = match self.config.easter_calculation_type {
+        let easter_date = match self.romcal.easter_calculation_type {
             EasterCalculationType::Gregorian => calculate_gregorian_easter_date(year)?,
             EasterCalculationType::Julian => calculate_julian_easter_date_to_gregorian(year)?,
         };
@@ -602,7 +602,7 @@ impl LiturgicalDates {
     /// Gets the date of Ascension
     pub fn get_ascension_date(&self, year: Option<i32>) -> DateTime<Utc> {
         let year = year.unwrap_or(self.year);
-        if self.config.ascension_on_sunday {
+        if self.romcal.ascension_on_sunday {
             // Ascension on the 7th Sunday of Easter (42 days after Easter)
             Self::add_days(self.get_easter_sunday_date_unwrap(Some(year)), 42)
         } else {
@@ -782,7 +782,7 @@ impl LiturgicalDates {
     /// Gets the date of Corpus Christi
     pub fn get_corpus_christi_date(&self, year: Option<i32>) -> DateTime<Utc> {
         let year = year.unwrap_or(self.year);
-        if self.config.corpus_christi_on_sunday {
+        if self.romcal.corpus_christi_on_sunday {
             // Corpus Christi on Sunday (63 days after Easter)
             Self::add_days(self.get_easter_sunday_date_unwrap(Some(year)), 63)
         } else {
@@ -922,13 +922,13 @@ impl LiturgicalDates {
 
 #[cfg(test)]
 mod tests {
-    use crate::preset::PresetPartial;
+    use crate::preset::Preset;
 
     use super::*;
 
     #[test]
     fn test_liturgical_dates_creation() {
-        let config = Preset::default();
+        let config = Romcal::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
 
         assert_eq!(dates.year, 2024);
@@ -937,9 +937,9 @@ mod tests {
 
     #[test]
     fn test_liturgical_year_creation() {
-        let config = Preset::new(PresetPartial {
+        let config = Romcal::new(Preset {
             context: Some(crate::CalendarContext::Liturgical),
-            ..PresetPartial::default()
+            ..Preset::default()
         });
         let dates = LiturgicalDates::new(config, 2024).unwrap();
 
@@ -949,7 +949,7 @@ mod tests {
 
     #[test]
     fn test_christmas_calculation() {
-        let config = Preset::default();
+        let config = Romcal::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
         let christmas = dates.get_christmas_date(None);
 
@@ -960,7 +960,7 @@ mod tests {
 
     #[test]
     fn test_easter_calculation() {
-        let config = Preset::default();
+        let config = Romcal::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
         let easter = dates.get_easter_sunday_date_unwrap(None);
 
@@ -972,7 +972,7 @@ mod tests {
 
     #[test]
     fn test_ash_wednesday_calculation() {
-        let config = Preset::default();
+        let config = Romcal::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
         let ash_wednesday = dates.get_ash_wednesday_date(None);
 
@@ -997,7 +997,7 @@ mod tests {
 
     #[test]
     fn test_unprivileged_weekday_of_advent() {
-        let config = Preset::default();
+        let config = Romcal::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
 
         // Test valid weekday
@@ -1013,7 +1013,7 @@ mod tests {
 
     #[test]
     fn test_privileged_weekday_of_advent() {
-        let config = Preset::default();
+        let config = Romcal::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
 
         // Test valid day
@@ -1027,7 +1027,7 @@ mod tests {
 
     #[test]
     fn test_sunday_of_advent() {
-        let config = Preset::default();
+        let config = Romcal::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
 
         // Test valid week
@@ -1042,7 +1042,7 @@ mod tests {
 
     #[test]
     fn test_all_dates_in_octave_of_christmas() {
-        let config = Preset::default();
+        let config = Romcal::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
         let octave_dates = dates.all_dates_in_octave_of_christmas(None);
 
@@ -1060,7 +1060,7 @@ mod tests {
 
     #[test]
     fn test_weekday_within_octave_of_christmas() {
-        let config = Preset::default();
+        let config = Romcal::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
 
         // Test valid day of octave
@@ -1082,7 +1082,7 @@ mod tests {
 
     #[test]
     fn test_all_dates_of_christmas_time() {
-        let config = Preset::default();
+        let config = Romcal::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
         let christmas_time_dates = dates.get_all_dates_of_christmas_time(None);
 
@@ -1096,7 +1096,7 @@ mod tests {
 
     #[test]
     fn test_epiphany() {
-        let config = Preset::default();
+        let config = Romcal::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
         let epiphany = dates.get_epiphany_date(None);
 
@@ -1107,7 +1107,7 @@ mod tests {
 
     #[test]
     fn test_all_dates_before_epiphany() {
-        let config = Preset::default();
+        let config = Romcal::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
         let dates_before = dates.all_dates_before_epiphany(None);
 
@@ -1119,7 +1119,7 @@ mod tests {
 
     #[test]
     fn test_weekday_before_epiphany() {
-        let config = Preset::default();
+        let config = Romcal::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
 
         // Test valid day
@@ -1136,7 +1136,7 @@ mod tests {
 
     #[test]
     fn test_weekday_before_epiphany_ignores_sundays() {
-        let config = Preset::default();
+        let config = Romcal::default();
         let dates = LiturgicalDates::new(config, 2026).unwrap();
 
         // Get all weekdays before epiphany for 2026
@@ -1163,7 +1163,7 @@ mod tests {
 
     #[test]
     fn test_weekday_after_epiphany() {
-        let config = Preset::default();
+        let config = Romcal::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
 
         // Test valid day of week
@@ -1180,7 +1180,7 @@ mod tests {
 
     #[test]
     fn test_invalid_year_creation() {
-        let config = Preset::default();
+        let config = Romcal::default();
 
         // Test invalid year
         assert!(LiturgicalDates::new(config.clone(), 1500).is_err());
@@ -1193,7 +1193,7 @@ mod tests {
 
     #[test]
     fn test_easter_error_handling() {
-        let config = Preset::default();
+        let config = Romcal::default();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
 
         // Test valid year

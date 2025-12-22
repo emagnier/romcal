@@ -5,10 +5,10 @@
 //! ## Quick Start
 //!
 //! ```rust
-//! use romcal_core::{Preset, LiturgicalDates};
+//! use romcal_core::{Romcal, LiturgicalDates};
 //!
-//! let preset = Preset::default();
-//! let dates = LiturgicalDates::new(preset, 2024).unwrap();
+//! let romcal = Romcal::default();
+//! let dates = LiturgicalDates::new(romcal, 2024).unwrap();
 //! let easter = dates.get_easter_sunday_date_unwrap(None);
 //! ```
 
@@ -35,7 +35,7 @@ pub use entity_resolver::EntityResolver;
 pub use error::{RomcalError, RomcalResult, Validate, validate_range, validate_year};
 pub use generated_constants::{CALENDAR_IDS, LOCALE_CODES};
 pub use liturgical_day::*;
-pub use preset::{Preset, PresetPartial};
+pub use preset::{Preset, Romcal};
 pub use proper_of_time::ProperOfTime;
 pub use resources::*;
 pub use template_resolver::{Gender, ProperOfTimeDayType, TemplateResolver};

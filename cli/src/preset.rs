@@ -2,11 +2,11 @@ use crate::error::RomcalCliError;
 use crate::utils::{
     combine_resources_by_locale, parse_calendar_definition_files, parse_resource_files,
 };
-use romcal_core::{CalendarContext, EasterCalculationType, Preset};
+use romcal_core::{CalendarContext, EasterCalculationType, Romcal};
 
-/// Create a romcal preset from CLI parameters
+/// Create a romcal instance from CLI parameters
 #[allow(clippy::too_many_arguments)]
-pub fn create_preset(
+pub fn create_romcal(
     calendar: Option<&str>,
     locale: Option<&str>,
     context: Option<CalendarContext>,
@@ -16,43 +16,43 @@ pub fn create_preset(
     corpus_christi_on_sunday: Option<bool>,
     calendar_definitions: &[String],
     resources: &[String],
-) -> Result<Preset, RomcalCliError> {
-    // Start with default preset from core
-    let mut preset = Preset::default();
+) -> Result<Romcal, RomcalCliError> {
+    // Start with default romcal from core
+    let mut romcal = Romcal::default();
 
     // Override with CLI-provided values if specified
     if let Some(cal) = calendar {
-        preset.calendar = cal.to_string();
+        romcal.calendar = cal.to_string();
     }
     if let Some(loc) = locale {
-        preset.locale = loc.to_string();
+        romcal.locale = loc.to_string();
     }
     if let Some(c) = context {
-        preset.context = c;
+        romcal.context = c;
     }
     if let Some(easter_type) = easter_calculation_type {
-        preset.easter_calculation_type = easter_type;
+        romcal.easter_calculation_type = easter_type;
     }
     if let Some(epiphany) = epiphany_on_sunday {
-        preset.epiphany_on_sunday = epiphany;
+        romcal.epiphany_on_sunday = epiphany;
     }
     if let Some(ascension) = ascension_on_sunday {
-        preset.ascension_on_sunday = ascension;
+        romcal.ascension_on_sunday = ascension;
     }
     if let Some(corpus_christi) = corpus_christi_on_sunday {
-        preset.corpus_christi_on_sunday = corpus_christi;
+        romcal.corpus_christi_on_sunday = corpus_christi;
     }
 
     // Load custom calendar definitions and resources if provided
     if !calendar_definitions.is_empty() {
-        preset.calendar_definitions = parse_calendar_definition_files(calendar_definitions)?;
+        romcal.calendar_definitions = parse_calendar_definition_files(calendar_definitions)?;
     }
     if !resources.is_empty() {
         let parsed_resources = parse_resource_files(resources)?;
-        preset.resources = combine_resources_by_locale(parsed_resources)?;
+        romcal.resources = combine_resources_by_locale(parsed_resources)?;
     }
 
-    Ok(preset)
+    Ok(romcal)
 }
 
 #[cfg(test)]

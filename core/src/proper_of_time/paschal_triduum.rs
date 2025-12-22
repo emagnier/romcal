@@ -132,12 +132,12 @@ impl<'a> PaschalTriduum<'a> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::preset::{Preset, PresetPartial};
+    use crate::preset::{Preset, Romcal};
 
     #[test]
     fn test_paschal_triduum_generation() {
-        let preset = Preset::default();
-        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
+        let romcal = Romcal::default();
+        let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
         let paschal_triduum = PaschalTriduum::new(&proper_of_time);
 
         let days = paschal_triduum.generate().unwrap();
@@ -162,11 +162,11 @@ mod tests {
 
     #[test]
     fn test_liturgical_year_paschal_triduum() {
-        let preset = Preset::new(PresetPartial {
+        let romcal = Romcal::new(Preset {
             context: Some(crate::CalendarContext::Liturgical),
-            ..PresetPartial::default()
+            ..Preset::default()
         });
-        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
+        let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
         let paschal_triduum = PaschalTriduum::new(&proper_of_time);
 
         let days = paschal_triduum.generate().unwrap();

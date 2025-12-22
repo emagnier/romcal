@@ -366,14 +366,14 @@ impl<'a> OrdinaryTime<'a> {
 mod tests {
     use super::*;
     use crate::{
-        preset::{Preset, PresetPartial},
+        preset::{Preset, Romcal},
         types::Rank,
     };
 
     #[test]
     fn test_early_ordinary_time_generation() {
-        let preset = Preset::default();
-        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
+        let romcal = Romcal::default();
+        let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
         let ordinary_time = OrdinaryTime::new(&proper_of_time);
 
         let days = ordinary_time.generate_early().unwrap();
@@ -406,11 +406,11 @@ mod tests {
     fn test_early_ordinary_time_first_week_incomplete_baptism_sunday() {
         // Test with epiphany_on_sunday = false so Baptism of the Lord falls on Sunday
         // This means early Ordinary Time starts on Monday (no Sunday in first week)
-        let preset = Preset::new(PresetPartial {
+        let romcal = Romcal::new(Preset {
             epiphany_on_sunday: Some(false),
-            ..PresetPartial::default()
+            ..Preset::default()
         });
-        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
+        let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
         let ordinary_time = OrdinaryTime::new(&proper_of_time);
 
         let days = ordinary_time.generate_early().unwrap();
@@ -432,11 +432,11 @@ mod tests {
     fn test_early_ordinary_time_first_week_incomplete_baptism_monday() {
         // Test with epiphany_on_sunday = true so Baptism of the Lord falls on Monday
         // This means early Ordinary Time starts on Tuesday (no Sunday, no Monday in first week)
-        let preset = Preset::new(PresetPartial {
+        let romcal = Romcal::new(Preset {
             epiphany_on_sunday: Some(true),
-            ..PresetPartial::default()
+            ..Preset::default()
         });
-        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
+        let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
         let ordinary_time = OrdinaryTime::new(&proper_of_time);
 
         let days = ordinary_time.generate_early().unwrap();
@@ -456,8 +456,8 @@ mod tests {
 
     #[test]
     fn test_late_ordinary_time_generation() {
-        let preset = Preset::default();
-        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
+        let romcal = Romcal::default();
+        let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
         let ordinary_time = OrdinaryTime::new(&proper_of_time);
 
         let days = ordinary_time.generate_late().unwrap();
@@ -513,8 +513,8 @@ mod tests {
 
     #[test]
     fn test_late_ordinary_time_first_week_incomplete() {
-        let preset = Preset::default();
-        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
+        let romcal = Romcal::default();
+        let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
         let ordinary_time = OrdinaryTime::new(&proper_of_time);
 
         let days = ordinary_time.generate_late().unwrap();
@@ -536,8 +536,8 @@ mod tests {
     fn test_late_ordinary_time_34th_week_christ_king() {
         // Test that the last week of late Ordinary Time is always the 34th week
         // and that the Sunday of this week is Christ the King
-        let preset = Preset::default();
-        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
+        let romcal = Romcal::default();
+        let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
         let ordinary_time = OrdinaryTime::new(&proper_of_time);
 
         let days = ordinary_time.generate_late().unwrap();

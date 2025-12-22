@@ -12,7 +12,7 @@ use crate::dates::LiturgicalDates;
 use crate::entity_resolver::EntityResolver;
 use crate::error::{RomcalError, RomcalResult};
 use crate::liturgical_day::{LiturgicalDay, ParentOverride};
-use crate::preset::Preset;
+use crate::preset::Romcal;
 use crate::proper_of_time::ProperOfTime;
 use crate::proper_of_time::common::PROPER_OF_TIME_ID;
 use crate::types::calendar::{DayDefinition, DayId};
@@ -26,8 +26,8 @@ pub type LiturgicalCalendar = BTreeMap<String, Vec<LiturgicalDay>>;
 /// Calendar generator that combines Proper of Time with particular calendars
 /// and applies precedence rules according to UNLY #49.
 pub struct Calendar {
-    /// The preset configuration
-    preset: Preset,
+    /// The romcal configuration
+    romcal: Romcal,
     /// The liturgical dates calculator
     dates: LiturgicalDates,
     /// The liturgical year (e.g., 2026 for liturgical year 2025-2026)
@@ -57,16 +57,16 @@ impl Calendar {
     ///
     /// # Arguments
     ///
-    /// * `preset` - Calendar configuration
+    /// * `romcal` - Romcal configuration
     /// * `year` - Liturgical year (e.g., 2026 for liturgical year 2025-2026)
     ///
     /// # Errors
     ///
     /// Returns an error if the year is invalid
-    pub fn new(preset: Preset, year: i32) -> RomcalResult<Self> {
-        let dates = LiturgicalDates::new(preset.clone(), year)?;
+    pub fn new(romcal: Romcal, year: i32) -> RomcalResult<Self> {
+        let dates = LiturgicalDates::new(romcal.clone(), year)?;
 
-        let (calendar_hierarchy, calendar_priority) = Self::resolve_calendar_hierarchy(&preset);
+        let (calendar_hierarchy, calendar_priority) = Self::resolve_calendar_hierarchy(&romcal);
 
         // Calculate liturgical year boundaries
         // Start: First Sunday of Advent (previous calendar year)
@@ -78,10 +78,10 @@ impl Calendar {
             - Duration::days(1);
 
         // Create entity resolver with locale-merged resources
-        let entity_resolver = EntityResolver::new(&preset);
+        let entity_resolver = EntityResolver::new(&romcal);
 
         Ok(Self {
-            preset,
+            romcal,
             dates,
             year,
             start_of_year,
@@ -135,7 +135,7 @@ impl Calendar {
         let mut dates_index: BTreeMap<String, Vec<String>> = BTreeMap::new();
 
         // Step 1: Generate Proper of Time days
-        let proper_of_time = ProperOfTime::new(self.preset.clone(), self.year)?;
+        let proper_of_time = ProperOfTime::new(self.romcal.clone(), self.year)?;
         let proper_days = proper_of_time.generate_all()?;
 
         // Index Proper of Time days
@@ -161,14 +161,14 @@ impl Calendar {
 
     /// Resolves the calendar hierarchy from root to target (general to specific)
     fn resolve_calendar_hierarchy(
-        preset: &Preset,
+        romcal: &Romcal,
     ) -> (Vec<CalendarDefinition>, HashMap<String, usize>) {
         let mut hierarchy = Vec::new();
         let mut visited_ids = HashSet::new();
 
         // Always start with general_roman as the base calendar (most general)
         // It should be processed first, even if not explicitly in parent chain
-        if let Some(general_roman) = preset.get_calendar_definition("general_roman")
+        if let Some(general_roman) = romcal.get_calendar_definition("general_roman")
             && !visited_ids.contains("general_roman")
         {
             hierarchy.push(general_roman.clone());
@@ -176,8 +176,8 @@ impl Calendar {
         }
 
         // Then process the target calendar and its parent chain
-        if let Some(target) = preset.get_calendar_definition(&preset.calendar) {
-            Self::collect_calendar_hierarchy(preset, target, &mut hierarchy, &mut visited_ids);
+        if let Some(target) = romcal.get_calendar_definition(&romcal.calendar) {
+            Self::collect_calendar_hierarchy(romcal, target, &mut hierarchy, &mut visited_ids);
         }
 
         // Post-order DFS produces the correct order (general → specific), no reverse needed
@@ -192,7 +192,7 @@ impl Calendar {
 
     /// Recursively collects calendar definitions in hierarchy
     fn collect_calendar_hierarchy(
-        preset: &Preset,
+        romcal: &Romcal,
         calendar: &CalendarDefinition,
         hierarchy: &mut Vec<CalendarDefinition>,
         visited: &mut HashSet<String>,
@@ -204,8 +204,8 @@ impl Calendar {
 
         // Process parent calendars FIRST (post-order DFS)
         for parent_id in &calendar.parent_calendar_ids {
-            if let Some(parent) = preset.get_calendar_definition(parent_id) {
-                Self::collect_calendar_hierarchy(preset, parent, hierarchy, visited);
+            if let Some(parent) = romcal.get_calendar_definition(parent_id) {
+                Self::collect_calendar_hierarchy(romcal, parent, hierarchy, visited);
             }
         }
 
@@ -1164,8 +1164,8 @@ mod tests {
 
     #[test]
     fn test_calendar_creation() {
-        let preset = Preset::default();
-        let calendar = Calendar::new(preset, 2026).unwrap();
+        let romcal = Romcal::default();
+        let calendar = Calendar::new(romcal, 2026).unwrap();
 
         assert_eq!(calendar.year, 2026);
         // Liturgical year 2026 starts on November 30, 2025 (First Sunday of Advent)
@@ -1198,8 +1198,8 @@ mod tests {
 
     #[test]
     fn test_precedence_comparison() {
-        let preset = Preset::default();
-        let calendar = Calendar::new(preset, 2026).unwrap();
+        let romcal = Romcal::default();
+        let calendar = Calendar::new(romcal, 2026).unwrap();
 
         // Create mock days with different precedences
         use crate::types::liturgical::{PsalterWeekCycle, SundayCycle, WeekdayCycle};
@@ -1255,8 +1255,8 @@ mod tests {
 
     #[test]
     fn test_calculate_month_date() {
-        let preset = Preset::default();
-        let calendar = Calendar::new(preset, 2026).unwrap();
+        let romcal = Romcal::default();
+        let calendar = Calendar::new(romcal, 2026).unwrap();
 
         // Test simple month/date
         let date_def = DateDef::MonthDate {
@@ -1284,8 +1284,8 @@ mod tests {
 
     #[test]
     fn test_calculate_date_function() {
-        let preset = Preset::default();
-        let calendar = Calendar::new(preset, 2026).unwrap();
+        let romcal = Romcal::default();
+        let calendar = Calendar::new(romcal, 2026).unwrap();
 
         // Test Easter Sunday
         use crate::types::dates::DateFn;
@@ -1311,8 +1311,8 @@ mod tests {
 
     #[test]
     fn test_calculate_weekday_of_month() {
-        let preset = Preset::default();
-        let calendar = Calendar::new(preset, 2026).unwrap();
+        let romcal = Romcal::default();
+        let calendar = Calendar::new(romcal, 2026).unwrap();
 
         // Test 3rd Sunday of September (e.g., for Catechetical Sunday)
         let date_def = DateDef::WeekdayOfMonth {
@@ -1330,8 +1330,8 @@ mod tests {
 
     #[test]
     fn test_calculate_last_weekday_of_month() {
-        let preset = Preset::default();
-        let calendar = Calendar::new(preset, 2026).unwrap();
+        let romcal = Romcal::default();
+        let calendar = Calendar::new(romcal, 2026).unwrap();
 
         // Test last Sunday of November (Christ the King region)
         let date_def = DateDef::LastWeekdayOfMonth {
@@ -1349,8 +1349,8 @@ mod tests {
 
     #[test]
     fn test_generate_calendar_basic() {
-        let preset = Preset::default();
-        let calendar = Calendar::new(preset, 2026).unwrap();
+        let romcal = Romcal::default();
+        let calendar = Calendar::new(romcal, 2026).unwrap();
 
         let result = calendar.generate();
         assert!(result.is_ok());
@@ -1417,8 +1417,8 @@ mod tests {
 
     #[test]
     fn test_apply_precedence_rules_single_day() {
-        let preset = Preset::default();
-        let calendar = Calendar::new(preset, 2026).unwrap();
+        let romcal = Romcal::default();
+        let calendar = Calendar::new(romcal, 2026).unwrap();
 
         use crate::types::liturgical::{PsalterWeekCycle, SundayCycle, WeekdayCycle};
 
@@ -1450,8 +1450,8 @@ mod tests {
 
     #[test]
     fn test_apply_precedence_rules_multiple_days() {
-        let preset = Preset::default();
-        let calendar = Calendar::new(preset, 2026).unwrap();
+        let romcal = Romcal::default();
+        let calendar = Calendar::new(romcal, 2026).unwrap();
 
         use crate::types::liturgical::{PsalterWeekCycle, SundayCycle, WeekdayCycle};
 
@@ -1510,8 +1510,8 @@ mod tests {
         use crate::types::liturgical::{PsalterWeekCycle, SundayCycle, WeekdayCycle};
         use std::collections::HashMap;
 
-        let preset = Preset::default();
-        let mut calendar = Calendar::new(preset, 2026).unwrap();
+        let romcal = Romcal::default();
+        let mut calendar = Calendar::new(romcal, 2026).unwrap();
 
         // Simulate a hierarchy: general_roman (0) < france (1) < france__angers (2)
         calendar.calendar_priority = HashMap::from([
@@ -1593,8 +1593,8 @@ mod tests {
 
     #[test]
     fn test_proper_of_time_end_of_season_not_null() {
-        let preset = Preset::default();
-        let calendar = Calendar::new(preset, 2026).unwrap();
+        let romcal = Romcal::default();
+        let calendar = Calendar::new(romcal, 2026).unwrap();
         let result = calendar.generate().unwrap();
 
         // Check that all days from Proper of Time have end_of_season defined

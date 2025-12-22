@@ -74,7 +74,7 @@ impl<'a> EasterTime<'a> {
                 .proper_of_time
                 .dates
                 .get_ascension_date(Some(easter_year));
-            let is_ascension_day = if self.proper_of_time.preset.ascension_on_sunday {
+            let is_ascension_day = if self.proper_of_time.romcal.ascension_on_sunday {
                 week == 7 && dow == 0 // 7th week, Sunday
             } else {
                 week == 6 && dow == 4 // 6th week, Thursday
@@ -244,12 +244,12 @@ impl<'a> EasterTime<'a> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::preset::{Preset, PresetPartial};
+    use crate::preset::{Preset, Romcal};
 
     #[test]
     fn test_easter_time_generation() {
-        let preset = Preset::default();
-        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
+        let romcal = Romcal::default();
+        let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
         let easter_time = EasterTime::new(&proper_of_time);
 
         let days = easter_time.generate().unwrap();
@@ -292,11 +292,11 @@ mod tests {
 
     #[test]
     fn test_liturgical_year_easter_time() {
-        let preset = Preset::new(PresetPartial {
+        let romcal = Romcal::new(Preset {
             context: Some(crate::CalendarContext::Liturgical),
-            ..PresetPartial::default()
+            ..Preset::default()
         });
-        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
+        let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
         let easter_time = EasterTime::new(&proper_of_time);
 
         let days = easter_time.generate().unwrap();

@@ -4,13 +4,13 @@ use chrono::Utc;
 
 use crate::dates::LiturgicalDates;
 use crate::error::RomcalResult;
-use crate::preset::Preset;
+use crate::preset::Romcal;
 use crate::types::liturgical::{Season, SundayCycle, WeekdayCycle};
 use crate::types::{CalendarContext, EasterCalculationType};
 
-/// Key for caching season data based on preset configuration and year
+/// Key for caching season data based on romcal configuration and year
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct PresetCacheKey {
+pub struct RomcalCacheKey {
     context: CalendarContext,
     easter_calculation_type: EasterCalculationType,
     epiphany_on_sunday: bool,
@@ -19,24 +19,24 @@ pub struct PresetCacheKey {
     year: i32,
 }
 
-impl From<(&Preset, i32)> for PresetCacheKey {
-    fn from((preset, year): (&Preset, i32)) -> Self {
+impl From<(&Romcal, i32)> for RomcalCacheKey {
+    fn from((romcal, year): (&Romcal, i32)) -> Self {
         Self {
-            context: preset.context,
-            easter_calculation_type: preset.easter_calculation_type,
-            epiphany_on_sunday: preset.epiphany_on_sunday,
-            ascension_on_sunday: preset.ascension_on_sunday,
-            corpus_christi_on_sunday: preset.corpus_christi_on_sunday,
+            context: romcal.context,
+            easter_calculation_type: romcal.easter_calculation_type,
+            epiphany_on_sunday: romcal.epiphany_on_sunday,
+            ascension_on_sunday: romcal.ascension_on_sunday,
+            corpus_christi_on_sunday: romcal.corpus_christi_on_sunday,
             year,
         }
     }
 }
 
 /// Cache for season start dates and liturgical years
-/// Valid only for a specific preset configuration and year
+/// Valid only for a specific romcal configuration and year
 #[derive(Debug, Clone)]
 pub struct ProperOfTimeCache {
-    key: PresetCacheKey,
+    key: RomcalCacheKey,
     // Liturgical years
     advent_year: i32,
     christmas_year: i32,
@@ -82,18 +82,18 @@ pub struct ProperOfTimeCache {
 }
 
 impl ProperOfTimeCache {
-    /// Create a new season cache for the given preset and year
-    pub fn new(preset: &Preset, year: i32) -> RomcalResult<Self> {
-        let key = PresetCacheKey::from((preset, year));
-        let dates = LiturgicalDates::new(preset.clone(), year)?;
+    /// Create a new season cache for the given romcal config and year
+    pub fn new(romcal: &Romcal, year: i32) -> RomcalResult<Self> {
+        let key = RomcalCacheKey::from((romcal, year));
+        let dates = LiturgicalDates::new(romcal.clone(), year)?;
 
         // Calculate liturgical years
-        let advent_year = if preset.context == CalendarContext::Liturgical {
+        let advent_year = if romcal.context == CalendarContext::Liturgical {
             year - 1
         } else {
             year
         };
-        let christmas_year = if preset.context == CalendarContext::Liturgical {
+        let christmas_year = if romcal.context == CalendarContext::Liturgical {
             year - 1
         } else {
             year
@@ -132,7 +132,7 @@ impl ProperOfTimeCache {
 
         let christmas_start = dates.get_christmas_date(Some(christmas_year));
 
-        let christmas_start_from_new_year = if preset.context == CalendarContext::Liturgical {
+        let christmas_start_from_new_year = if romcal.context == CalendarContext::Liturgical {
             christmas_start
         } else {
             dates.get_christmas_date(Some(christmas_year - 1))
@@ -157,7 +157,7 @@ impl ProperOfTimeCache {
 
         // Christmas Time ends on the day of the Baptism of the Lord
         let christmas_end = dates.get_baptism_of_the_lord_date(Some(christmas_year + 1));
-        let christmas_end_from_new_year = if preset.context == CalendarContext::Liturgical {
+        let christmas_end_from_new_year = if romcal.context == CalendarContext::Liturgical {
             christmas_end
         } else {
             dates.get_baptism_of_the_lord_date(Some(christmas_year))
@@ -215,9 +215,9 @@ impl ProperOfTimeCache {
         })
     }
 
-    /// Check if this cache is valid for the given preset and year
-    pub fn is_valid_for(&self, preset: &Preset, year: i32) -> bool {
-        self.key == PresetCacheKey::from((preset, year))
+    /// Check if this cache is valid for the given romcal config and year
+    pub fn is_valid_for(&self, romcal: &Romcal, year: i32) -> bool {
+        self.key == RomcalCacheKey::from((romcal, year))
     }
 
     // Getters for liturgical years

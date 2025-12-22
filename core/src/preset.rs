@@ -16,9 +16,9 @@ const DEFAULT_CORPUS_CHRISTI_ON_SUNDAY: bool = true;
 const DEFAULT_ASCENSION_ON_SUNDAY: bool = false;
 const DEFAULT_ORDINAL_FORMAT: OrdinalFormat = OrdinalFormat::Numeric;
 
-/// Partial preset for romcal
+/// Configuration for romcal
 #[derive(Debug, Clone, Serialize, Deserialize, Default)]
-pub struct PresetPartial {
+pub struct Preset {
     /// Calendar type (e.g., 'general_roman', 'france', 'united_states')
     pub calendar: Option<String>,
     /// Locale (e.g., 'en', 'fr', 'es')
@@ -41,9 +41,9 @@ pub struct PresetPartial {
     pub resources: Option<Vec<Resources>>,
 }
 
-/// Complete preset for romcal
+/// Main romcal instance for generating liturgical calendars
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct Preset {
+pub struct Romcal {
     /// Calendar type (e.g., 'general_roman', 'france', 'united_states')
     pub calendar: String,
     /// Locale (e.g., 'en', 'fr', 'es')
@@ -66,7 +66,7 @@ pub struct Preset {
     pub resources: Vec<Resources>,
 }
 
-impl Default for Preset {
+impl Default for Romcal {
     fn default() -> Self {
         Self {
             calendar: DEFAULT_CALENDAR.to_string(),
@@ -83,19 +83,19 @@ impl Default for Preset {
     }
 }
 
-impl Preset {
-    /// Creates a new preset with default values applied to any None fields
+impl Romcal {
+    /// Creates a new Romcal instance with default values applied to any None fields
     ///
     /// Priority for ordinal_format:
-    /// 1. Value from PresetPartial (highest priority)
+    /// 1. Value from Preset (highest priority)
     /// 2. Value from ResourcesMetadata of the target locale
     /// 3. Default value (Numeric)
-    pub fn new(config: PresetPartial) -> Self {
+    pub fn new(config: Preset) -> Self {
         let calendar_definitions = config.calendar_definitions.unwrap_or_default();
         let resources = config.resources.unwrap_or_default();
         let locale = config.locale.as_deref().unwrap_or(DEFAULT_LOCALE);
 
-        // Get ordinal_format from locale's ResourcesMetadata if not set in PresetPartial
+        // Get ordinal_format from locale's ResourcesMetadata if not set in Preset
         let ordinal_format_from_locale = resources
             .iter()
             .find(|res| res.locale == locale)

@@ -13,7 +13,7 @@ use crate::dates::LiturgicalDates;
 use crate::entity_resolver::EntityResolver;
 use crate::error::RomcalResult;
 use crate::liturgical_day::LiturgicalDay;
-use crate::preset::Preset;
+use crate::preset::Romcal;
 use crate::proper_of_time::advent::Advent;
 use crate::proper_of_time::cache::ProperOfTimeCache;
 use crate::proper_of_time::christmas_time::ChristmasTime;
@@ -32,7 +32,7 @@ use crate::types::liturgical::{
 
 /// Structure for generating liturgical days of the Proper of Time
 pub struct ProperOfTime {
-    preset: Preset,
+    romcal: Romcal,
     dates: LiturgicalDates,
     cache: ProperOfTimeCache,
     template_resolver: Option<TemplateResolver>,
@@ -44,25 +44,25 @@ impl ProperOfTime {
     ///
     /// # Arguments
     ///
-    /// * `preset` - Calendar preset
+    /// * `romcal` - Romcal instance
     /// * `year` - Liturgical year
     ///
     /// # Errors
     ///
     /// Returns an error if the year is invalid
-    pub fn new(preset: Preset, year: i32) -> RomcalResult<Self> {
+    pub fn new(romcal: Romcal, year: i32) -> RomcalResult<Self> {
         use crate::proper_of_time::cache::ProperOfTimeCache;
-        let liturgical_dates = LiturgicalDates::new(preset.clone(), year)?;
-        let cache = ProperOfTimeCache::new(&preset, year)?;
+        let liturgical_dates = LiturgicalDates::new(romcal.clone(), year)?;
+        let cache = ProperOfTimeCache::new(&romcal, year)?;
 
         // Create template resolver from locale metadata
-        let template_resolver = Self::create_template_resolver(&preset);
+        let template_resolver = Self::create_template_resolver(&romcal);
 
         // Create entity resolver to resolve fullnames for entity-based days
-        let entity_resolver = EntityResolver::new(&preset);
+        let entity_resolver = EntityResolver::new(&romcal);
 
         Ok(Self {
-            preset,
+            romcal,
             dates: liturgical_dates,
             cache,
             template_resolver,
@@ -70,22 +70,22 @@ impl ProperOfTime {
         })
     }
 
-    /// Creates a TemplateResolver from the preset's locale resources.
+    /// Creates a TemplateResolver from the romcal's locale resources.
     ///
     /// Looks for metadata in the target locale first, then falls back to 'en'.
     ///
     /// Priority for ordinal_format:
     /// 1. `metadata.ordinal_format` (locale-specific setting)
-    /// 2. `preset.ordinal_format` (user-defined or default)
-    fn create_template_resolver(preset: &Preset) -> Option<TemplateResolver> {
-        let locale = &preset.locale;
+    /// 2. `romcal.ordinal_format` (user-defined or default)
+    fn create_template_resolver(romcal: &Romcal) -> Option<TemplateResolver> {
+        let locale = &romcal.locale;
 
         // Try target locale first
-        if let Some(resources) = preset.get_resources(locale)
+        if let Some(resources) = romcal.get_resources(locale)
             && let Some(metadata) = resources.metadata.clone()
         {
-            // Resolve ordinal_format: metadata > preset
-            let ordinal_format = metadata.ordinal_format.unwrap_or(preset.ordinal_format);
+            // Resolve ordinal_format: metadata > romcal
+            let ordinal_format = metadata.ordinal_format.unwrap_or(romcal.ordinal_format);
             return Some(TemplateResolver::new(
                 metadata,
                 locale.clone(),
@@ -95,11 +95,11 @@ impl ProperOfTime {
 
         // Fall back to 'en' if target locale has no metadata
         if locale != "en"
-            && let Some(resources) = preset.get_resources("en")
+            && let Some(resources) = romcal.get_resources("en")
             && let Some(metadata) = resources.metadata.clone()
         {
-            // Resolve ordinal_format: metadata > preset
-            let ordinal_format = metadata.ordinal_format.unwrap_or(preset.ordinal_format);
+            // Resolve ordinal_format: metadata > romcal
+            let ordinal_format = metadata.ordinal_format.unwrap_or(romcal.ordinal_format);
             return Some(TemplateResolver::new(
                 metadata,
                 "en".to_string(),
@@ -305,7 +305,7 @@ impl ProperOfTime {
         let paschal_triduum = PaschalTriduum::new(self);
         let easter_time = EasterTime::new(self);
 
-        if self.preset.context == crate::CalendarContext::Liturgical {
+        if self.romcal.context == crate::CalendarContext::Liturgical {
             days.extend(advent.generate()?);
             days.extend(christmas_time.generate_early()?);
         }
@@ -317,7 +317,7 @@ impl ProperOfTime {
         days.extend(easter_time.generate()?);
         days.extend(ordinary_time.generate_late()?);
 
-        if self.preset.context == crate::CalendarContext::Gregorian {
+        if self.romcal.context == crate::CalendarContext::Gregorian {
             days.extend(advent.generate()?);
             days.extend(christmas_time.generate_early()?);
         }
@@ -332,12 +332,12 @@ impl ProperOfTime {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::preset::PresetPartial;
+    use crate::preset::Preset;
 
     #[test]
     fn test_proper_of_time_creation() {
-        let preset = Preset::default();
-        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
+        let romcal = Romcal::default();
+        let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
 
         assert_eq!(proper_of_time.cache.advent_year(), 2026);
         assert_eq!(proper_of_time.cache.easter_year(), 2026);
@@ -345,8 +345,8 @@ mod tests {
 
     #[test]
     fn test_no_duplicate_dates() {
-        let preset = Preset::default();
-        let all_days = preset.proper_of_time(2026).unwrap();
+        let romcal = Romcal::default();
+        let all_days = romcal.proper_of_time(2026).unwrap();
 
         // Check that we have generated days
         assert!(!all_days.is_empty());
@@ -412,11 +412,11 @@ mod tests {
 
     #[test]
     fn test_no_duplicate_dates_liturgical_context() {
-        let preset = Preset::new(PresetPartial {
+        let romcal = Romcal::new(Preset {
             context: Some(crate::CalendarContext::Liturgical),
-            ..PresetPartial::default()
+            ..Preset::default()
         });
-        let all_days = preset.proper_of_time(2026).unwrap();
+        let all_days = romcal.proper_of_time(2026).unwrap();
 
         // Check that we have generated days
         assert!(!all_days.is_empty());
@@ -446,8 +446,8 @@ mod tests {
 
     #[test]
     fn test_sort_liturgical_days_by_date() {
-        let preset = Preset::default();
-        let mut all_days = preset.proper_of_time(2026).unwrap();
+        let romcal = Romcal::default();
+        let mut all_days = romcal.proper_of_time(2026).unwrap();
 
         // Shuffle the days to test sorting
         all_days.reverse();
@@ -472,10 +472,10 @@ mod tests {
 
     #[test]
     fn test_calendar_continuity() {
-        let preset = Preset::default();
+        let romcal = Romcal::default();
 
         // Get all liturgical days
-        let mut days = preset.proper_of_time(2026).unwrap();
+        let mut days = romcal.proper_of_time(2026).unwrap();
 
         // Sort by date
         sort_liturgical_days_by_date(&mut days);
@@ -566,44 +566,44 @@ mod tests {
     #[test]
     fn test_ordinal_format_default_is_numeric() {
         // When no ordinal_format is specified anywhere, default should be Numeric
-        let preset = Preset::default();
-        assert_eq!(preset.ordinal_format, OrdinalFormat::Numeric);
+        let romcal = Romcal::default();
+        assert_eq!(romcal.ordinal_format, OrdinalFormat::Numeric);
     }
 
     #[test]
     fn test_ordinal_format_from_locale_metadata() {
         // When ordinal_format is set in locale metadata, it should be used
-        let mut preset = Preset::default();
-        preset.locale = "test".to_string();
-        preset.resources = vec![create_test_resources("test", Some(OrdinalFormat::Letters))];
+        let mut romcal = Romcal::default();
+        romcal.locale = "test".to_string();
+        romcal.resources = vec![create_test_resources("test", Some(OrdinalFormat::Letters))];
 
-        let resolver = ProperOfTime::create_template_resolver(&preset);
+        let resolver = ProperOfTime::create_template_resolver(&romcal);
         assert!(resolver.is_some());
         assert_eq!(resolver.unwrap().ordinal_format(), OrdinalFormat::Letters);
     }
 
     #[test]
-    fn test_ordinal_format_from_preset_when_metadata_not_set() {
-        // When ordinal_format is not set in metadata, preset value should be used
-        let mut preset = Preset::default();
-        preset.locale = "test".to_string();
-        preset.ordinal_format = OrdinalFormat::Letters;
-        preset.resources = vec![create_test_resources("test", None)];
+    fn test_ordinal_format_from_romcal_when_metadata_not_set() {
+        // When ordinal_format is not set in metadata, romcal value should be used
+        let mut romcal = Romcal::default();
+        romcal.locale = "test".to_string();
+        romcal.ordinal_format = OrdinalFormat::Letters;
+        romcal.resources = vec![create_test_resources("test", None)];
 
-        let resolver = ProperOfTime::create_template_resolver(&preset);
+        let resolver = ProperOfTime::create_template_resolver(&romcal);
         assert!(resolver.is_some());
         assert_eq!(resolver.unwrap().ordinal_format(), OrdinalFormat::Letters);
     }
 
     #[test]
     fn test_ordinal_format_metadata_takes_priority() {
-        // When ordinal_format is set in both metadata and preset, metadata should win
-        let mut preset = Preset::default();
-        preset.locale = "test".to_string();
-        preset.ordinal_format = OrdinalFormat::Numeric; // Preset says Numeric
-        preset.resources = vec![create_test_resources("test", Some(OrdinalFormat::Letters))]; // Metadata says Letters
+        // When ordinal_format is set in both metadata and romcal, metadata should win
+        let mut romcal = Romcal::default();
+        romcal.locale = "test".to_string();
+        romcal.ordinal_format = OrdinalFormat::Numeric; // Romcal says Numeric
+        romcal.resources = vec![create_test_resources("test", Some(OrdinalFormat::Letters))]; // Metadata says Letters
 
-        let resolver = ProperOfTime::create_template_resolver(&preset);
+        let resolver = ProperOfTime::create_template_resolver(&romcal);
         assert!(resolver.is_some());
         // Metadata should take priority
         assert_eq!(resolver.unwrap().ordinal_format(), OrdinalFormat::Letters);
@@ -612,11 +612,11 @@ mod tests {
     #[test]
     fn test_ordinal_format_fallback_to_en_locale() {
         // When target locale has no metadata but 'en' does, use 'en' metadata
-        let mut preset = Preset::default();
-        preset.locale = "nonexistent".to_string();
-        preset.resources = vec![create_test_resources("en", Some(OrdinalFormat::Letters))];
+        let mut romcal = Romcal::default();
+        romcal.locale = "nonexistent".to_string();
+        romcal.resources = vec![create_test_resources("en", Some(OrdinalFormat::Letters))];
 
-        let resolver = ProperOfTime::create_template_resolver(&preset);
+        let resolver = ProperOfTime::create_template_resolver(&romcal);
         assert!(resolver.is_some());
         assert_eq!(resolver.unwrap().ordinal_format(), OrdinalFormat::Letters);
     }
@@ -624,11 +624,11 @@ mod tests {
     #[test]
     fn test_ordinal_format_no_resolver_without_resources() {
         // When no resources are available, resolver should be None
-        let mut preset = Preset::default();
-        preset.locale = "test".to_string();
-        preset.resources = vec![];
+        let mut romcal = Romcal::default();
+        romcal.locale = "test".to_string();
+        romcal.resources = vec![];
 
-        let resolver = ProperOfTime::create_template_resolver(&preset);
+        let resolver = ProperOfTime::create_template_resolver(&romcal);
         assert!(resolver.is_none());
     }
 
@@ -663,11 +663,11 @@ mod tests {
             },
         );
 
-        let mut preset = Preset::default();
-        preset.locale = "en".to_string();
-        preset.resources = vec![create_test_resources_with_entities("en", entities)];
+        let mut romcal = Romcal::default();
+        romcal.locale = "en".to_string();
+        romcal.resources = vec![create_test_resources_with_entities("en", entities)];
 
-        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
+        let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
 
         // Check that entity resolver has the entity
         let fullname = proper_of_time
@@ -679,11 +679,11 @@ mod tests {
     #[test]
     fn test_fullname_fallback_to_template_when_no_entity() {
         // When no entity fullname exists but day_type is provided, template should be used
-        let mut preset = Preset::default();
-        preset.locale = "en".to_string();
-        preset.resources = vec![create_test_resources("en", None)];
+        let mut romcal = Romcal::default();
+        romcal.locale = "en".to_string();
+        romcal.resources = vec![create_test_resources("en", None)];
 
-        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
+        let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
 
         // For days like "advent_sunday_1" that don't have entity fullnames,
         // the template resolver should be used
@@ -705,11 +705,11 @@ mod tests {
             },
         );
 
-        let mut preset = Preset::default();
-        preset.locale = "en".to_string();
-        preset.resources = vec![create_test_resources_with_entities("en", entities)];
+        let mut romcal = Romcal::default();
+        romcal.locale = "en".to_string();
+        romcal.resources = vec![create_test_resources_with_entities("en", entities)];
 
-        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
+        let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
 
         // The entity resolver should find the fullname
         let fullname = proper_of_time
@@ -745,14 +745,14 @@ mod tests {
             },
         );
 
-        let mut preset = Preset::default();
-        preset.locale = "fr".to_string();
-        preset.resources = vec![
+        let mut romcal = Romcal::default();
+        romcal.locale = "fr".to_string();
+        romcal.resources = vec![
             create_test_resources_with_entities("en", en_entities),
             create_test_resources_with_entities("fr", fr_entities),
         ];
 
-        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
+        let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
 
         // French locale should use French fullname
         let fullname = proper_of_time

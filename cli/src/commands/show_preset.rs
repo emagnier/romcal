@@ -1,6 +1,6 @@
 use crate::enums::OutputFormat;
 use crate::error::RomcalCliError;
-use romcal_core::Preset;
+use romcal_core::Romcal;
 use serde_json;
 use serde_saphyr;
 
@@ -17,24 +17,24 @@ struct PresetDisplayData {
 }
 
 impl PresetDisplayData {
-    /// Create from preset
-    fn from_preset(preset: &romcal_core::Preset) -> Self {
+    /// Create from romcal instance
+    fn from_romcal(romcal: &romcal_core::Romcal) -> Self {
         Self {
-            locale: preset.locale.clone(),
-            calendar: preset.calendar.clone(),
-            context: match preset.context {
+            locale: romcal.locale.clone(),
+            calendar: romcal.calendar.clone(),
+            context: match romcal.context {
                 romcal_core::CalendarContext::Gregorian => "gregorian",
                 romcal_core::CalendarContext::Liturgical => "liturgical",
             }
             .to_string(),
-            easter_calculation_type: match preset.easter_calculation_type {
+            easter_calculation_type: match romcal.easter_calculation_type {
                 romcal_core::EasterCalculationType::Gregorian => "gregorian",
                 romcal_core::EasterCalculationType::Julian => "julian",
             }
             .to_string(),
-            epiphany_on_sunday: preset.epiphany_on_sunday,
-            ascension_on_sunday: preset.ascension_on_sunday,
-            corpus_christi_on_sunday: preset.corpus_christi_on_sunday,
+            epiphany_on_sunday: romcal.epiphany_on_sunday,
+            ascension_on_sunday: romcal.ascension_on_sunday,
+            corpus_christi_on_sunday: romcal.corpus_christi_on_sunday,
         }
     }
 
@@ -53,9 +53,9 @@ impl PresetDisplayData {
 }
 
 /// Handle configuration display command
-pub fn handle(output_format: OutputFormat, preset: Preset) -> Result<(), RomcalCliError> {
+pub fn handle(output_format: OutputFormat, romcal: Romcal) -> Result<(), RomcalCliError> {
     // Create display data
-    let preset_data = PresetDisplayData::from_preset(&preset);
+    let preset_data = PresetDisplayData::from_romcal(&romcal);
 
     // Output based on format
     match output_format {

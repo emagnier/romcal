@@ -1,10 +1,10 @@
 use crate::error::RomcalCliError;
-use romcal_core::Preset;
+use romcal_core::Romcal;
 
 /// Handle optimize preset command
-pub fn handle(preset: Preset, output_file: Option<String>) -> Result<(), RomcalCliError> {
+pub fn handle(romcal: Romcal, output_file: Option<String>) -> Result<(), RomcalCliError> {
     // Optimize the preset
-    let optimized_preset = preset.optimize()?;
+    let optimized_preset = romcal.optimize()?;
 
     // Output the optimized preset
     match output_file {

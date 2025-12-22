@@ -158,12 +158,12 @@ impl<'a> Advent<'a> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::{Preset, preset::PresetPartial};
+    use crate::{Romcal, preset::Preset};
 
     #[test]
     fn test_advent_generation() {
-        let preset = Preset::default();
-        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
+        let romcal = Romcal::default();
+        let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
         let advent = Advent::new(&proper_of_time);
         let advent_days = advent.generate().unwrap();
 
@@ -180,11 +180,11 @@ mod tests {
 
     #[test]
     fn test_liturgical_year_advent() {
-        let preset = Preset::new(PresetPartial {
+        let romcal = Romcal::new(Preset {
             context: Some(crate::CalendarContext::Liturgical),
-            ..PresetPartial::default()
+            ..Preset::default()
         });
-        let proper_of_time = ProperOfTime::new(preset, 2026).unwrap();
+        let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
         let advent = Advent::new(&proper_of_time);
         // For liturgical year 2026, Advent begins in 2025
         let advent_days = advent.generate().unwrap();

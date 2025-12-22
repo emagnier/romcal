@@ -1,4 +1,4 @@
-use romcal_core::preset::{Preset, PresetPartial};
+use romcal_core::preset::{Preset, Romcal as RomcalCore};
 use romcal_core::types::{CalendarContext, EasterCalculationType};
 use serde::{Deserialize, Serialize};
 use wasm_bindgen::prelude::*;
@@ -7,7 +7,7 @@ use wasm_bindgen::prelude::*;
 #[wasm_bindgen]
 #[derive(Debug, Clone, Serialize, Deserialize, Default)]
 pub struct RomcalConfig {
-    inner: Preset,
+    inner: RomcalCore,
 }
 
 /// Partial configuration structure for builder pattern
@@ -92,7 +92,7 @@ impl PartialRomcalConfig {
             _ => Some(CalendarContext::Gregorian),
         };
 
-        let config = PresetPartial {
+        let preset = Preset {
             calendar: self.calendar.clone(),
             locale: self.locale.clone(),
             easter_calculation_type: easter_type,
@@ -106,7 +106,7 @@ impl PartialRomcalConfig {
         };
 
         RomcalConfig {
-            inner: Preset::new(config),
+            inner: RomcalCore::new(preset),
         }
     }
 }
