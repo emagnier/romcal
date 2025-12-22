@@ -4,7 +4,7 @@ use chrono::Utc;
 
 use crate::dates::LiturgicalDates;
 use crate::error::RomcalResult;
-use crate::preset::Romcal;
+use crate::romcal::Romcal;
 use crate::types::liturgical::{Season, SundayCycle, WeekdayCycle};
 use crate::types::{CalendarContext, EasterCalculationType};
 

@@ -366,7 +366,7 @@ impl<'a> OrdinaryTime<'a> {
 mod tests {
     use super::*;
     use crate::{
-        preset::{Preset, Romcal},
+        romcal::{Preset, Romcal},
         types::Rank,
     };
 

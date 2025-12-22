@@ -13,7 +13,6 @@ use crate::dates::LiturgicalDates;
 use crate::entity_resolver::EntityResolver;
 use crate::error::RomcalResult;
 use crate::liturgical_day::LiturgicalDay;
-use crate::preset::Romcal;
 use crate::proper_of_time::advent::Advent;
 use crate::proper_of_time::cache::ProperOfTimeCache;
 use crate::proper_of_time::christmas_time::ChristmasTime;
@@ -24,6 +23,7 @@ use crate::proper_of_time::easter_time::EasterTime;
 use crate::proper_of_time::lent::Lent;
 use crate::proper_of_time::ordinary_time::OrdinaryTime;
 use crate::proper_of_time::paschal_triduum::PaschalTriduum;
+use crate::romcal::Romcal;
 use crate::template_resolver::{ProperOfTimeDayType, TemplateResolver};
 use crate::types::dates::{DateDef, DayOfWeek};
 use crate::types::liturgical::{
@@ -332,7 +332,7 @@ impl ProperOfTime {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::preset::Preset;
+    use crate::romcal::Preset;
 
     #[test]
     fn test_proper_of_time_creation() {

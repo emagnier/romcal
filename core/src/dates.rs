@@ -3,7 +3,7 @@ use std::collections::HashMap;
 
 use super::easter::{calculate_gregorian_easter_date, calculate_julian_easter_date_to_gregorian};
 use crate::error::{RomcalResult, validate_year};
-use crate::preset::Romcal;
+use crate::romcal::Romcal;
 use crate::types::EasterCalculationType;
 use crate::types::liturgical::Season;
 
@@ -922,7 +922,7 @@ impl LiturgicalDates {
 
 #[cfg(test)]
 mod tests {
-    use crate::preset::Preset;
+    use crate::romcal::Preset;
 
     use super::*;
 

@@ -397,7 +397,7 @@ impl<'a> ChristmasTime<'a> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::preset::{Preset, Romcal};
+    use crate::romcal::{Preset, Romcal};
 
     #[test]
     fn test_early_christmas_time_generation() {

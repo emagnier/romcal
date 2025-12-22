@@ -136,7 +136,7 @@ impl<'a> PaschalTriduum<'a> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::preset::{Preset, Romcal};
+    use crate::romcal::{Preset, Romcal};
 
     #[test]
     fn test_paschal_triduum_generation() {

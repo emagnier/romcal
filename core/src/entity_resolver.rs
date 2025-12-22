@@ -6,7 +6,7 @@
 
 use std::collections::BTreeMap;
 
-use crate::preset::Romcal;
+use crate::romcal::Romcal;
 use crate::types::calendar::day_definition::DayDefinition;
 use crate::types::calendar::entity_pointer::EntityPointer;
 use crate::types::entity::entity_definition::{Entity, EntityId};
@@ -415,8 +415,8 @@ impl EntityResolver {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::preset::Preset;
     use crate::resources::Resources;
+    use crate::romcal::Preset;
     use crate::types::entity::entity_override::EntityOverride;
     use crate::types::entity::title::CompoundTitle;
 

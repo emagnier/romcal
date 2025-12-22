@@ -224,7 +224,7 @@ impl<'a> Lent<'a> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::{Romcal, preset::Preset};
+    use crate::{Romcal, romcal::Preset};
 
     #[test]
     fn test_lent_generation() {

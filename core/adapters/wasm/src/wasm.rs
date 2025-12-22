@@ -1,4 +1,4 @@
-use romcal_core::preset::{Preset, Romcal as RomcalCore};
+use romcal_core::romcal::{Preset, Romcal as RomcalCore};
 use romcal_core::types::{CalendarContext, EasterCalculationType};
 use serde::{Deserialize, Serialize};
 use wasm_bindgen::prelude::*;

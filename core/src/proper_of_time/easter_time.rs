@@ -255,7 +255,7 @@ impl<'a> EasterTime<'a> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::preset::{Preset, Romcal};
+    use crate::romcal::{Preset, Romcal};
 
     #[test]
     fn test_easter_time_generation() {
