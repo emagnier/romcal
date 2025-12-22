@@ -38,22 +38,22 @@ fn test_dates_json_format() {
 }
 
 // ============================================================================
-// days command tests
+// calendar command tests
 // ============================================================================
 
 #[test]
-fn test_days_generates_output() {
+fn test_calendar_generates_output() {
     romcal()
-        .args(["days", "2025"])
+        .args(["calendar", "2025"])
         .assert()
         .success()
         .stdout(predicate::str::contains("id:"));
 }
 
 #[test]
-fn test_days_with_filter() {
+fn test_calendar_with_filter() {
     romcal()
-        .args(["days", "2025", "--filter", "id,date"])
+        .args(["calendar", "2025", "--filter", "id,date"])
         .assert()
         .success()
         .stdout(predicate::str::contains("id:"))

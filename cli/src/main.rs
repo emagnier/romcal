@@ -13,8 +13,8 @@ mod error;
 mod preset;
 mod utils;
 
+use commands::calendar;
 use commands::dates;
-use commands::days;
 use commands::list;
 use commands::masses;
 use commands::optimize_preset;
@@ -217,9 +217,9 @@ enum Commands {
         #[command(flatten)]
         debug: DebugArgs,
     },
-    /// Generate liturgical days for the Proper of Time
-    Days {
-        /// Year for liturgical days generation (default: current year)
+    /// Generate liturgical calendar (organized by liturgical date)
+    Calendar {
+        /// Year for calendar generation (default: current year)
         year: Option<i32>,
 
         /// Filter to show only specific properties (supports dot notation for nested fields)
@@ -363,7 +363,7 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
                 preset.into_romcal(&config)?,
             )
         }
-        Commands::Days {
+        Commands::Calendar {
             year,
             filter,
             preset,
@@ -371,7 +371,7 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
             debug,
         } => {
             debug.init();
-            days::handle(
+            calendar::handle(
                 year,
                 filter,
                 preset.into_romcal(&config)?,
