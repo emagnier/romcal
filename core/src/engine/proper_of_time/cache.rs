@@ -2,7 +2,7 @@ use chrono::DateTime;
 use chrono::Datelike;
 use chrono::Utc;
 
-use crate::dates::LiturgicalDates;
+use crate::engine::dates::LiturgicalDates;
 use crate::error::RomcalResult;
 use crate::romcal::Romcal;
 use crate::types::liturgical::{Season, SundayCycle, WeekdayCycle};

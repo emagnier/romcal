@@ -116,7 +116,7 @@ fn filter_resources(
 }
 
 /// Collect all entity IDs that are referenced in calendar day_definitions
-/// Includes both day_definition IDs and EntityPointer references
+/// Includes both day_definition IDs and EntityRef references
 fn collect_used_entity_ids(calendar_definitions: &[CalendarDefinition]) -> EntityIdSet {
     let mut used_entity_ids = EntityIdSet::new();
 
@@ -125,14 +125,14 @@ fn collect_used_entity_ids(calendar_definitions: &[CalendarDefinition]) -> Entit
             // Add the day_definition ID itself as a potential entity reference
             used_entity_ids.insert(day_id.clone());
 
-            // Also check EntityPointer elements in the day_definition
+            // Also check EntityRef elements in the day_definition
             if let Some(entities) = &day_def.entities {
                 for entity_pointer in entities {
                     match entity_pointer {
-                        crate::types::calendar::EntityPointer::ResourceId(id) => {
+                        crate::types::calendar::EntityRef::ResourceId(id) => {
                             used_entity_ids.insert(id.clone());
                         }
-                        crate::types::calendar::EntityPointer::Override(entity_override) => {
+                        crate::types::calendar::EntityRef::Override(entity_override) => {
                             used_entity_ids.insert(entity_override.id.clone());
                         }
                     }
@@ -512,9 +512,7 @@ fn remove_null_and_empty_values(value: Value) -> Value {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::types::calendar::{
-        CalendarJurisdiction, CalendarType, DayDefinition, EntityPointer,
-    };
+    use crate::types::calendar::{CalendarJurisdiction, CalendarType, DayDefinition, EntityRef};
     use crate::types::entity::EntityOverride;
     use crate::types::entity::EntityType;
 
@@ -542,8 +540,8 @@ mod tests {
                         is_optional: None,
                         custom_locale_id: None,
                         entities: Some(vec![
-                            EntityPointer::ResourceId("john_the_baptist".to_string()),
-                            EntityPointer::Override(EntityOverride {
+                            EntityRef::ResourceId("john_the_baptist".to_string()),
+                            EntityRef::Override(EntityOverride {
                                 id: "john_the_evangelist".to_string(),
                                 titles: None,
                                 hide_titles: None,

@@ -142,7 +142,7 @@
       ]
     },
     "ParticularConfig": {
-      "description": "Configuration options specific to this calendar.\nThese settings can override or extend the default Romcal configuration or any parent calendar\nconfiguration.",
+      "description": "Configuration options for \"particular\" (local/diocesan) calendars.\n\nIn liturgical terminology, a \"particular\" calendar is one that applies to a specific\nregion, diocese, or religious community, as opposed to the General Roman Calendar\nwhich applies universally.\n\nThese settings can override or extend the default Romcal configuration or any parent\ncalendar configuration.",
       "type": "object",
       "properties": {
         "epiphany_on_sunday": {
@@ -278,7 +278,7 @@
             "null"
           ],
           "items": {
-            "$ref": "#/definitions/EntityPointer"
+            "$ref": "#/definitions/EntityRef"
           }
         },
         "titles": {
@@ -680,8 +680,8 @@
         "HOLY_WOMEN"
       ]
     },
-    "EntityPointer": {
-      "description": "A pointer to an entity in the entity catalog.\nCan either reference an existing entity by ID or define a custom entity with additional properties.",
+    "EntityRef": {
+      "description": "A reference to an entity in the entity catalog.\nCan either reference an existing entity by ID or define a custom entity with additional properties.",
       "anyOf": [
         {
           "description": "Reference to an existing entity by its ID",

@@ -3,8 +3,8 @@ use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
 use crate::types::{
-    Color, CommonDefinition, DateDef, DateDefExceptions, EntityPointer, MassesDefinitions,
-    Precedence, TitlesDef,
+    Color, CommonDefinition, DateDef, DateDefExceptions, EntityRef, MassesDefinitions, Precedence,
+    TitlesDef,
 };
 
 /// Locale identifier for internationalization
@@ -64,7 +64,7 @@ pub struct DayDefinition {
     /// The custom locale ID for this date definition in this calendar
     pub custom_locale_id: Option<LocaleId>,
     /// The entities (Saints, Blessed, or Places) linked from the Entity catalog
-    pub entities: Option<Vec<EntityPointer>>,
+    pub entities: Option<Vec<EntityRef>>,
     /// The combined titles of all entities linked to this date definition
     pub titles: Option<TitlesDef>,
     /// If this liturgical day must be removed from this calendar and from all parent calendars

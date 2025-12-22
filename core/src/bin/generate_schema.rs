@@ -1,6 +1,4 @@
-use romcal_core::calendar_definition::*;
-use romcal_core::liturgical_day::*;
-use romcal_core::resources::*;
+use romcal_core::{CalendarDefinition, LiturgicalDay, Resources};
 use schemars::schema_for;
 use serde_json::Value;
 use std::fs;

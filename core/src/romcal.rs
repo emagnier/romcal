@@ -1,10 +1,8 @@
 use serde::{Deserialize, Serialize};
 
-use crate::resources::Resources;
-use crate::{
-    calendar_definition::CalendarDefinition,
-    types::{CalendarContext, EasterCalculationType, OrdinalFormat},
-};
+use crate::engine::calendar_definition::CalendarDefinition;
+use crate::engine::resources::Resources;
+use crate::types::{CalendarContext, EasterCalculationType, OrdinalFormat};
 
 // Default configuration constants
 const DEFAULT_CALENDAR: &str = "general_roman";
@@ -169,7 +167,7 @@ impl Romcal {
     /// This method serializes the Preset to JSON format
     /// and removes null values and empty objects from the output
     pub fn optimize(&self) -> Result<String, serde_json::Error> {
-        crate::optimize::optimize(self)
+        crate::engine::optimize::optimize(self)
             .map_err(|e| serde_json::Error::io(std::io::Error::other(e.to_string())))
     }
 
@@ -187,7 +185,7 @@ impl Romcal {
     ///
     /// Returns an error if the year is invalid or if there's a calculation error
     pub fn proper_of_time(&self, year: i32) -> crate::RomcalResult<Vec<crate::LiturgicalDay>> {
-        crate::proper_of_time::ProperOfTime::new(self.clone(), year)?.generate_all()
+        crate::engine::proper_of_time::ProperOfTime::new(self.clone(), year)?.generate_all()
     }
 
     /// Generate the complete liturgical calendar for a given liturgical year
@@ -209,8 +207,8 @@ impl Romcal {
     pub fn generate_liturgical_calendar(
         &self,
         year: i32,
-    ) -> crate::RomcalResult<crate::calendar::LiturgicalCalendar> {
-        crate::calendar::Calendar::new(self.clone(), year)?.generate()
+    ) -> crate::RomcalResult<crate::engine::calendar::LiturgicalCalendar> {
+        crate::engine::calendar::Calendar::new(self.clone(), year)?.generate()
     }
 
     /// Generate a mass-centric view of the liturgical calendar for a given year
@@ -234,6 +232,6 @@ impl Romcal {
         &self,
         year: i32,
     ) -> crate::RomcalResult<crate::types::mass::MassCalendar> {
-        crate::calendar::Calendar::new(self.clone(), year)?.generate_mass_calendar()
+        crate::engine::calendar::Calendar::new(self.clone(), year)?.generate_mass_calendar()
     }
 }

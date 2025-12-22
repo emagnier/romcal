@@ -2,7 +2,7 @@
 //!
 //! These tests verify the generation of the 4 constants with multiple levels
 
-include!("../src/data_tree_builder.rs");
+include!("../src/engine/data_tree_builder.rs");
 
 #[test]
 fn test_calendar_tree_generation() {

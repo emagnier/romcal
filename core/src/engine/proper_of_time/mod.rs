@@ -3,28 +3,26 @@ use chrono::{DateTime, Datelike, Utc};
 pub mod advent;
 pub mod cache;
 pub mod christmas_time;
-pub mod common;
 pub mod easter_time;
 pub mod lent;
 pub mod ordinary_time;
 pub mod paschal_triduum;
+pub mod utils;
 
-use crate::dates::LiturgicalDates;
-use crate::entity_resolver::EntityResolver;
+use self::advent::Advent;
+use self::cache::ProperOfTimeCache;
+use self::christmas_time::ChristmasTime;
+use self::easter_time::EasterTime;
+use self::lent::Lent;
+use self::ordinary_time::OrdinaryTime;
+use self::paschal_triduum::PaschalTriduum;
+use self::utils::{PROPER_OF_TIME_ID, enum_to_string, sort_liturgical_days_by_date};
+use crate::engine::dates::LiturgicalDates;
+use crate::engine::entity_resolver::EntityResolver;
+use crate::engine::liturgical_day::LiturgicalDay;
+use crate::engine::template_resolver::{ProperOfTimeDayType, TemplateResolver};
 use crate::error::RomcalResult;
-use crate::liturgical_day::LiturgicalDay;
-use crate::proper_of_time::advent::Advent;
-use crate::proper_of_time::cache::ProperOfTimeCache;
-use crate::proper_of_time::christmas_time::ChristmasTime;
-use crate::proper_of_time::common::{
-    PROPER_OF_TIME_ID, enum_to_string, sort_liturgical_days_by_date,
-};
-use crate::proper_of_time::easter_time::EasterTime;
-use crate::proper_of_time::lent::Lent;
-use crate::proper_of_time::ordinary_time::OrdinaryTime;
-use crate::proper_of_time::paschal_triduum::PaschalTriduum;
 use crate::romcal::Romcal;
-use crate::template_resolver::{ProperOfTimeDayType, TemplateResolver};
 use crate::types::dates::{DateDef, DayOfWeek};
 use crate::types::liturgical::{
     Color, ColorInfo, Period, PeriodInfo, Precedence, PsalterWeekCycle, Rank, Season,
@@ -51,7 +49,7 @@ impl ProperOfTime {
     ///
     /// Returns an error if the year is invalid
     pub fn new(romcal: Romcal, year: i32) -> RomcalResult<Self> {
-        use crate::proper_of_time::cache::ProperOfTimeCache;
+        use self::cache::ProperOfTimeCache;
         let liturgical_dates = LiturgicalDates::new(romcal.clone(), year)?;
         let cache = ProperOfTimeCache::new(&romcal, year)?;
 
@@ -524,7 +522,7 @@ mod tests {
     // Tests for ordinal_format resolution
     // -------------------------------------------------------------------------
 
-    use crate::resources::Resources;
+    use crate::engine::resources::Resources;
     use crate::types::OrdinalFormat;
     use crate::types::resource::ResourcesMetadata;
     use std::collections::BTreeMap;

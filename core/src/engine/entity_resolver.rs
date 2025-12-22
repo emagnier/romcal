@@ -8,7 +8,7 @@ use std::collections::BTreeMap;
 
 use crate::romcal::Romcal;
 use crate::types::calendar::day_definition::DayDefinition;
-use crate::types::calendar::entity_pointer::EntityPointer;
+use crate::types::calendar::entity_ref::EntityRef;
 use crate::types::entity::entity_definition::{Entity, EntityId};
 use crate::types::entity::title::{Title, TitlesDef};
 
@@ -224,13 +224,13 @@ impl EntityResolver {
         self.entities.get(id)
     }
 
-    /// Resolves an EntityPointer to a full Entity.
+    /// Resolves an EntityRef to a full Entity.
     ///
     /// For ResourceId: looks up the entity by ID, creates empty entity if not found.
     /// For Override: looks up base entity and applies overrides.
-    pub fn resolve_entity_pointer(&self, pointer: &EntityPointer) -> Entity {
+    pub fn resolve_entity_pointer(&self, pointer: &EntityRef) -> Entity {
         match pointer {
-            EntityPointer::ResourceId(id) => {
+            EntityRef::ResourceId(id) => {
                 // Look up entity by ID, create empty with ID if not found
                 let mut entity = self
                     .entities
@@ -249,7 +249,7 @@ impl EntityResolver {
 
                 entity
             }
-            EntityPointer::Override(override_def) => {
+            EntityRef::Override(override_def) => {
                 // Look up base entity
                 let mut entity = self
                     .entities
@@ -323,7 +323,7 @@ impl EntityResolver {
     /// Resolves all entities for a day definition.
     ///
     /// Resolution strategy:
-    /// 1. If day_def.entities is defined: resolve each EntityPointer
+    /// 1. If day_def.entities is defined: resolve each EntityRef
     /// 2. Otherwise (fallback): look for entity with id == day_id
     ///    - If found: return that entity
     ///    - If not found: return empty Vec
@@ -415,7 +415,7 @@ impl EntityResolver {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::resources::Resources;
+    use crate::engine::resources::Resources;
     use crate::romcal::Preset;
     use crate::types::entity::entity_override::EntityOverride;
     use crate::types::entity::title::CompoundTitle;
@@ -455,7 +455,7 @@ mod tests {
         let resolver = EntityResolver::new(&romcal);
 
         // Test resolving by ResourceId
-        let pointer = EntityPointer::ResourceId("test_saint".to_string());
+        let pointer = EntityRef::ResourceId("test_saint".to_string());
         let resolved = resolver.resolve_entity_pointer(&pointer);
 
         assert_eq!(resolved.name, Some("Test Saint".to_string()));
@@ -468,7 +468,7 @@ mod tests {
         let resolver = EntityResolver::new(&romcal);
 
         // Test resolving non-existent entity
-        let pointer = EntityPointer::ResourceId("non_existent".to_string());
+        let pointer = EntityRef::ResourceId("non_existent".to_string());
         let resolved = resolver.resolve_entity_pointer(&pointer);
 
         // Should create empty entity with ID as name
@@ -487,7 +487,7 @@ mod tests {
         let resolver = EntityResolver::new(&romcal);
 
         // Test resolving with override
-        let pointer = EntityPointer::Override(EntityOverride {
+        let pointer = EntityRef::Override(EntityOverride {
             id: "test_saint".to_string(),
             titles: Some(TitlesDef::Titles(vec![Title::Bishop, Title::Martyr])),
             hide_titles: Some(false),
@@ -512,7 +512,7 @@ mod tests {
         let resolver = EntityResolver::new(&romcal);
 
         // Test with compound title
-        let pointer = EntityPointer::Override(EntityOverride {
+        let pointer = EntityRef::Override(EntityOverride {
             id: "test_saint".to_string(),
             titles: Some(TitlesDef::CompoundTitle(CompoundTitle {
                 prepend: Some(vec![Title::Bishop]),
@@ -556,8 +556,8 @@ mod tests {
             is_optional: None,
             custom_locale_id: None,
             entities: Some(vec![
-                EntityPointer::ResourceId("peter_apostle".to_string()),
-                EntityPointer::ResourceId("paul_apostle".to_string()),
+                EntityRef::ResourceId("peter_apostle".to_string()),
+                EntityRef::ResourceId("paul_apostle".to_string()),
             ]),
             titles: None,
             drop: None,

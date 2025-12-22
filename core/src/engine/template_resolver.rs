@@ -10,9 +10,10 @@ use crate::types::resource::{
 };
 use std::collections::BTreeMap;
 
-/// Gender for grammatical agreement in translations.
+/// Grammatical gender for agreement in translations.
+/// Used for name templates (e.g., "Saint" vs "Sainte" in French).
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum Gender {
+pub enum GrammaticalGender {
     /// Default/neutral form (no suffix)
     Default,
     /// Masculine form (_masculine suffix)
@@ -23,14 +24,14 @@ pub enum Gender {
     Neuter,
 }
 
-impl Gender {
+impl GrammaticalGender {
     /// Returns the suffix to append to keys for this gender.
     pub fn suffix(&self) -> &'static str {
         match self {
-            Gender::Default => "",
-            Gender::Masculine => "_masculine",
-            Gender::Feminine => "_feminine",
-            Gender::Neuter => "_neuter",
+            GrammaticalGender::Default => "",
+            GrammaticalGender::Masculine => "_masculine",
+            GrammaticalGender::Feminine => "_feminine",
+            GrammaticalGender::Neuter => "_neuter",
         }
     }
 }
@@ -161,7 +162,7 @@ impl TemplateResolver {
     ///
     /// * `num` - The ordinal number (1, 2, 3, etc.)
     /// * `gender` - Optional grammatical gender for agreement
-    pub fn get_ordinal(&self, num: u32, gender: Option<Gender>) -> String {
+    pub fn get_ordinal(&self, num: u32, gender: Option<GrammaticalGender>) -> String {
         let (primary, fallback) = match self.ordinal_format {
             OrdinalFormat::Letters => (
                 self.metadata.ordinals_letters.as_ref(),
@@ -192,14 +193,14 @@ impl TemplateResolver {
     fn try_get_ordinal_from_map(
         &self,
         num: u32,
-        gender: Option<Gender>,
+        gender: Option<GrammaticalGender>,
         ordinals: Option<&BTreeMap<String, String>>,
     ) -> Option<String> {
         let ordinals = ordinals?;
 
         // Try gender-specific key first
         if let Some(g) = gender
-            && g != Gender::Default
+            && g != GrammaticalGender::Default
         {
             let key_with_gender = format!("{}{}", num, g.suffix());
             if let Some(value) = ordinals.get(&key_with_gender) {
@@ -508,8 +509,8 @@ impl TemplateResolver {
 
     fn resolve_advent_sunday(&self, week: u8) -> String {
         let template = self.get_advent_template("sunday");
-        let ordinal = self.get_ordinal(week as u32, Some(Gender::Default));
-        let ordinal_feminine = self.get_ordinal(week as u32, Some(Gender::Feminine));
+        let ordinal = self.get_ordinal(week as u32, Some(GrammaticalGender::Default));
+        let ordinal_feminine = self.get_ordinal(week as u32, Some(GrammaticalGender::Feminine));
         let weekday = self.get_weekday_capitalized(0);
         self.resolve(
             &template,
@@ -524,7 +525,7 @@ impl TemplateResolver {
 
     fn resolve_advent_weekday(&self, week: u8, dow: u8) -> String {
         let template = self.get_advent_template("weekday");
-        let ordinal = self.get_ordinal(week as u32, Some(Gender::Feminine));
+        let ordinal = self.get_ordinal(week as u32, Some(GrammaticalGender::Feminine));
         let weekday = self.get_weekday_capitalized(dow);
         self.resolve(
             &template,
@@ -534,7 +535,7 @@ impl TemplateResolver {
                 ("ordinal", &ordinal),
                 (
                     "ordinal_feminine",
-                    &self.get_ordinal(week as u32, Some(Gender::Feminine)),
+                    &self.get_ordinal(week as u32, Some(GrammaticalGender::Feminine)),
                 ),
                 ("weekday", &weekday),
             ],
@@ -581,7 +582,7 @@ impl TemplateResolver {
 
     fn resolve_christmas_octave(&self, count: u8) -> String {
         let template = self.get_christmas_template("octave");
-        let ordinal = self.get_ordinal(count as u32, Some(Gender::Default));
+        let ordinal = self.get_ordinal(count as u32, Some(GrammaticalGender::Default));
         self.resolve(
             &template,
             &[("count", &count.to_string()), ("ordinal", &ordinal)],
@@ -643,8 +644,8 @@ impl TemplateResolver {
 
     fn resolve_ordinary_time_sunday(&self, week: u8) -> String {
         let template = self.get_ordinary_time_template("sunday");
-        let ordinal = self.get_ordinal(week as u32, Some(Gender::Default));
-        let ordinal_feminine = self.get_ordinal(week as u32, Some(Gender::Feminine));
+        let ordinal = self.get_ordinal(week as u32, Some(GrammaticalGender::Default));
+        let ordinal_feminine = self.get_ordinal(week as u32, Some(GrammaticalGender::Feminine));
         self.resolve(
             &template,
             &[
@@ -657,7 +658,7 @@ impl TemplateResolver {
 
     fn resolve_ordinary_time_weekday(&self, week: u8, dow: u8) -> String {
         let template = self.get_ordinary_time_template("weekday");
-        let ordinal = self.get_ordinal(week as u32, Some(Gender::Feminine));
+        let ordinal = self.get_ordinal(week as u32, Some(GrammaticalGender::Feminine));
         let weekday = self.get_weekday_capitalized(dow);
         self.resolve(
             &template,
@@ -667,7 +668,7 @@ impl TemplateResolver {
                 ("ordinal", &ordinal),
                 (
                     "ordinal_feminine",
-                    &self.get_ordinal(week as u32, Some(Gender::Feminine)),
+                    &self.get_ordinal(week as u32, Some(GrammaticalGender::Feminine)),
                 ),
                 ("weekday", &weekday),
             ],
@@ -698,8 +699,8 @@ impl TemplateResolver {
 
     fn resolve_lent_sunday(&self, week: u8) -> String {
         let template = self.get_lent_template("sunday");
-        let ordinal = self.get_ordinal(week as u32, Some(Gender::Default));
-        let ordinal_feminine = self.get_ordinal(week as u32, Some(Gender::Feminine));
+        let ordinal = self.get_ordinal(week as u32, Some(GrammaticalGender::Default));
+        let ordinal_feminine = self.get_ordinal(week as u32, Some(GrammaticalGender::Feminine));
         self.resolve(
             &template,
             &[
@@ -712,7 +713,7 @@ impl TemplateResolver {
 
     fn resolve_lent_weekday(&self, week: u8, dow: u8) -> String {
         let template = self.get_lent_template("weekday");
-        let ordinal = self.get_ordinal(week as u32, Some(Gender::Feminine));
+        let ordinal = self.get_ordinal(week as u32, Some(GrammaticalGender::Feminine));
         let weekday = self.get_weekday_capitalized(dow);
         self.resolve(
             &template,
@@ -722,7 +723,7 @@ impl TemplateResolver {
                 ("ordinal", &ordinal),
                 (
                     "ordinal_feminine",
-                    &self.get_ordinal(week as u32, Some(Gender::Feminine)),
+                    &self.get_ordinal(week as u32, Some(GrammaticalGender::Feminine)),
                 ),
                 ("weekday", &weekday),
             ],
@@ -801,8 +802,8 @@ impl TemplateResolver {
 
     fn resolve_easter_time_sunday(&self, week: u8) -> String {
         let template = self.get_easter_time_template("sunday");
-        let ordinal = self.get_ordinal(week as u32, Some(Gender::Default));
-        let ordinal_feminine = self.get_ordinal(week as u32, Some(Gender::Feminine));
+        let ordinal = self.get_ordinal(week as u32, Some(GrammaticalGender::Default));
+        let ordinal_feminine = self.get_ordinal(week as u32, Some(GrammaticalGender::Feminine));
         self.resolve(
             &template,
             &[
@@ -815,7 +816,7 @@ impl TemplateResolver {
 
     fn resolve_easter_time_weekday(&self, week: u8, dow: u8) -> String {
         let template = self.get_easter_time_template("weekday");
-        let ordinal = self.get_ordinal(week as u32, Some(Gender::Feminine));
+        let ordinal = self.get_ordinal(week as u32, Some(GrammaticalGender::Feminine));
         let weekday = self.get_weekday_capitalized(dow);
         self.resolve(
             &template,
@@ -825,7 +826,7 @@ impl TemplateResolver {
                 ("ordinal", &ordinal),
                 (
                     "ordinal_feminine",
-                    &self.get_ordinal(week as u32, Some(Gender::Feminine)),
+                    &self.get_ordinal(week as u32, Some(GrammaticalGender::Feminine)),
                 ),
                 ("weekday", &weekday),
             ],
@@ -899,10 +900,10 @@ mod tests {
 
     #[test]
     fn test_gender_suffix() {
-        assert_eq!(Gender::Default.suffix(), "");
-        assert_eq!(Gender::Masculine.suffix(), "_masculine");
-        assert_eq!(Gender::Feminine.suffix(), "_feminine");
-        assert_eq!(Gender::Neuter.suffix(), "_neuter");
+        assert_eq!(GrammaticalGender::Default.suffix(), "");
+        assert_eq!(GrammaticalGender::Masculine.suffix(), "_masculine");
+        assert_eq!(GrammaticalGender::Feminine.suffix(), "_feminine");
+        assert_eq!(GrammaticalGender::Neuter.suffix(), "_neuter");
     }
 
     #[test]
@@ -927,11 +928,20 @@ mod tests {
         let resolver = TemplateResolver::new(metadata, "fr".to_string(), OrdinalFormat::Letters);
 
         // Default should return "first"
-        assert_eq!(resolver.get_ordinal(1, Some(Gender::Default)), "first");
+        assert_eq!(
+            resolver.get_ordinal(1, Some(GrammaticalGender::Default)),
+            "first"
+        );
         // Feminine should return "première"
-        assert_eq!(resolver.get_ordinal(1, Some(Gender::Feminine)), "première");
+        assert_eq!(
+            resolver.get_ordinal(1, Some(GrammaticalGender::Feminine)),
+            "première"
+        );
         // Masculine falls back to default "first" (no _masculine key)
-        assert_eq!(resolver.get_ordinal(1, Some(Gender::Masculine)), "first");
+        assert_eq!(
+            resolver.get_ordinal(1, Some(GrammaticalGender::Masculine)),
+            "first"
+        );
         // Non-existent ordinal falls back to number
         assert_eq!(resolver.get_ordinal(99, None), "99");
     }
@@ -958,9 +968,15 @@ mod tests {
         let resolver = TemplateResolver::new(metadata, "fr".to_string(), OrdinalFormat::Numeric);
 
         // Default should return "1er"
-        assert_eq!(resolver.get_ordinal(1, Some(Gender::Default)), "1er");
+        assert_eq!(
+            resolver.get_ordinal(1, Some(GrammaticalGender::Default)),
+            "1er"
+        );
         // Feminine should return "1re"
-        assert_eq!(resolver.get_ordinal(1, Some(Gender::Feminine)), "1re");
+        assert_eq!(
+            resolver.get_ordinal(1, Some(GrammaticalGender::Feminine)),
+            "1re"
+        );
         // Non-existent ordinal falls back to number
         assert_eq!(resolver.get_ordinal(99, None), "99");
     }

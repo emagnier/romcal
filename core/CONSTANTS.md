@@ -47,7 +47,10 @@ fn main() {
 
 - `build.rs` - Build script that runs the generation
 - `scripts/generate_constants.sh` - Shell script that extracts data from JSON files
-- `src/generated_constants.rs` - Generated constants file (auto-generated, do not edit)
+- `src/generated/` - Auto-generated constants (do not edit)
+  - `calendar_ids.rs` - Calendar IDs and tree structure
+  - `locale_ids.rs` - Locale codes and tree structure
+  - `mod.rs` - Module exports
 - `src/lib.rs` - Exports the constants for public use
 
 ## Regenerating Constants

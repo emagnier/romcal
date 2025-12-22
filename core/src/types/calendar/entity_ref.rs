@@ -7,12 +7,12 @@ use crate::types::EntityOverride;
 // Type alias
 pub type ResourceId = String;
 
-/// A pointer to an entity in the entity catalog.
+/// A reference to an entity in the entity catalog.
 /// Can either reference an existing entity by ID or define a custom entity with additional properties.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[serde(untagged)]
-pub enum EntityPointer {
+pub enum EntityRef {
     /// Reference to an existing entity by its ID
     ResourceId(ResourceId),
     /// Custom entity definition with additional properties specific to a liturgical day

@@ -1,4 +1,4 @@
-use crate::liturgical_day::LiturgicalDay;
+use crate::engine::liturgical_day::LiturgicalDay;
 
 /// Calendar ID for the Proper of Time
 pub const PROPER_OF_TIME_ID: &str = "proper_of_time";

@@ -12,33 +12,24 @@
 //! let easter = dates.get_easter_sunday_date_unwrap(None);
 //! ```
 
-pub mod calendar;
-pub mod calendar_definition;
-pub mod data_tree_builder;
-pub mod dates;
-pub mod easter;
-pub mod entity_resolver;
+pub mod engine;
 pub mod error;
-pub mod generated_constants;
-pub mod liturgical_day;
-pub mod optimize;
-pub mod proper_of_time;
-pub mod resources;
+pub mod generated;
 pub mod romcal;
-pub mod template_resolver;
 pub mod types;
 
-pub use calendar::{Calendar, LiturgicalCalendar};
-pub use calendar_definition::*;
-pub use dates::LiturgicalDates;
-pub use entity_resolver::EntityResolver;
+pub use engine::calendar::{Calendar, LiturgicalCalendar};
+pub use engine::calendar_definition::*;
+pub use engine::dates::LiturgicalDates;
+pub use engine::entity_resolver::EntityResolver;
+pub use engine::liturgical_day::*;
+pub use engine::proper_of_time::ProperOfTime;
+pub use engine::resources::*;
+pub use engine::template_resolver::{GrammaticalGender, ProperOfTimeDayType, TemplateResolver};
 pub use error::{RomcalError, RomcalResult, Validate, validate_range, validate_year};
-pub use generated_constants::{CALENDAR_IDS, LOCALE_CODES};
-pub use liturgical_day::*;
-pub use proper_of_time::ProperOfTime;
-pub use resources::*;
+pub use generated::calendar_ids::CALENDAR_IDS;
+pub use generated::locale_ids::LOCALE_CODES;
 pub use romcal::{Preset, Romcal};
-pub use template_resolver::{Gender, ProperOfTimeDayType, TemplateResolver};
 pub use types::entity::SaintCount;
 pub use types::entity::{Entity, EntityId};
 pub use types::liturgical::Season;

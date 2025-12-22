@@ -4,9 +4,14 @@ use serde::{Deserialize, Serialize};
 
 use crate::types::EasterCalculationType;
 
-/// Configuration options specific to this calendar.
-/// These settings can override or extend the default Romcal configuration or any parent calendar
-/// configuration.
+/// Configuration options for "particular" (local/diocesan) calendars.
+///
+/// In liturgical terminology, a "particular" calendar is one that applies to a specific
+/// region, diocese, or religious community, as opposed to the General Roman Calendar
+/// which applies universally.
+///
+/// These settings can override or extend the default Romcal configuration or any parent
+/// calendar configuration.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 pub struct ParticularConfig {

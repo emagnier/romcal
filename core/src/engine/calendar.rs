@@ -7,13 +7,13 @@
 use chrono::{Datelike, Duration, NaiveDate, Weekday};
 use std::collections::{BTreeMap, HashMap, HashSet};
 
-use crate::CalendarDefinition;
-use crate::dates::LiturgicalDates;
-use crate::entity_resolver::EntityResolver;
+use super::calendar_definition::CalendarDefinition;
+use super::dates::LiturgicalDates;
+use super::entity_resolver::EntityResolver;
+use super::liturgical_day::{LiturgicalDay, ParentOverride};
+use super::proper_of_time::ProperOfTime;
+use super::proper_of_time::utils::PROPER_OF_TIME_ID;
 use crate::error::{RomcalError, RomcalResult};
-use crate::liturgical_day::{LiturgicalDay, ParentOverride};
-use crate::proper_of_time::ProperOfTime;
-use crate::proper_of_time::common::PROPER_OF_TIME_ID;
 use crate::romcal::Romcal;
 use crate::types::calendar::{DayDefinition, DayId};
 use crate::types::dates::{DateDef, DateDefException, DateDefExceptions, ExceptionCondition};
@@ -45,8 +45,11 @@ pub struct Calendar {
     entity_resolver: EntityResolver,
 }
 
-/// Internal structure to hold built calendar data
-struct BuiltData {
+/// Internal state during calendar building.
+///
+/// Holds the intermediate data structures used while constructing
+/// the liturgical calendar from various calendar definitions.
+struct CalendarBuildState {
     /// Map of day IDs to their LiturgicalDay instances
     by_ids: BTreeMap<String, Vec<LiturgicalDay>>,
     /// Map of date strings to day IDs for that date
@@ -216,7 +219,7 @@ impl Calendar {
     }
 
     /// Builds dates data from all calendar sources
-    fn build_dates_data(&self) -> RomcalResult<BuiltData> {
+    fn build_dates_data(&self) -> RomcalResult<CalendarBuildState> {
         let mut by_ids: BTreeMap<String, Vec<LiturgicalDay>> = BTreeMap::new();
         let mut dates_index: BTreeMap<String, Vec<String>> = BTreeMap::new();
 
@@ -239,7 +242,7 @@ impl Calendar {
             self.process_calendar_definition(calendar_def, &mut by_ids, &mut dates_index)?;
         }
 
-        Ok(BuiltData {
+        Ok(CalendarBuildState {
             by_ids,
             dates_index,
         })
@@ -485,7 +488,7 @@ impl Calendar {
                 // This is already set in create_liturgical_day_from_definition
             } else if liturgical_day.titles.contains_martyr() {
                 // Martyrs get red color
-                use crate::proper_of_time::common::enum_to_string;
+                use super::proper_of_time::utils::enum_to_string;
                 liturgical_day.colors = vec![ColorInfo {
                     key: Color::Red,
                     name: enum_to_string(&Color::Red),
@@ -855,7 +858,7 @@ impl Calendar {
 
         // Get cycles from cache (we'd need to access proper_of_time cache here)
         // For now, use defaults - in full implementation, this would be calculated
-        use crate::proper_of_time::common::enum_to_string;
+        use super::proper_of_time::utils::enum_to_string;
         use crate::types::liturgical::{PsalterWeekCycle, SundayCycle, WeekdayCycle};
 
         let sunday_cycle = SundayCycle::from_year(self.year);
@@ -1717,7 +1720,7 @@ mod tests {
 
     #[test]
     fn test_parent_override_structure() {
-        use crate::liturgical_day::ParentOverride;
+        use crate::engine::liturgical_day::ParentOverride;
 
         // Test that ParentOverride can be created and checked for changes
         let mut override_empty = ParentOverride::new("test_calendar".to_string());

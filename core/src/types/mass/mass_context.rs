@@ -11,11 +11,11 @@ use schemars::JsonSchema;
 use serde::{Deserialize, Serialize, Serializer};
 
 use super::MassTime;
-use crate::Season;
-use crate::calendar_definition::CalendarId;
-use crate::liturgical_day::{LiturgicalDay, LiturgicalDayId};
+use crate::engine::calendar_definition::CalendarId;
+use crate::engine::liturgical_day::{LiturgicalDay, LiturgicalDayId};
 use crate::types::dates::DayOfWeek;
 use crate::types::entity::{Entity, TitlesDef};
+use crate::types::liturgical::Season;
 use crate::types::{
     ColorInfo, CommonInfo, PeriodInfo, Precedence, PsalterWeekCycle, Rank, SundayCycle,
     WeekdayCycle,

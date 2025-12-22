@@ -1,9 +1,9 @@
 use chrono::{DateTime, Utc};
 
+use super::utils::sort_liturgical_days_by_date;
+use crate::engine::liturgical_day::LiturgicalDay;
+use crate::engine::template_resolver::ProperOfTimeDayType;
 use crate::error::RomcalResult;
-use crate::liturgical_day::LiturgicalDay;
-use crate::proper_of_time::common::sort_liturgical_days_by_date;
-use crate::template_resolver::ProperOfTimeDayType;
 use crate::types::liturgical::{Color, Period, Precedence, Season};
 use crate::types::mass::{MassInfo, MassTime};
 
