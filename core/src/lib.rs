@@ -42,5 +42,5 @@ pub use template_resolver::{Gender, ProperOfTimeDayType, TemplateResolver};
 pub use types::entity::SaintCount;
 pub use types::entity::{Entity, EntityId};
 pub use types::liturgical::Season;
-pub use types::mass::{MassInfo, MassTime};
+pub use types::mass::{CelebrationSummary, MassCalendar, MassContext, MassInfo, MassTime};
 pub use types::{CalendarContext, EasterCalculationType};

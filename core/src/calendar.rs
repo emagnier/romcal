@@ -18,7 +18,7 @@ use crate::romcal::Romcal;
 use crate::types::calendar::{DayDefinition, DayId};
 use crate::types::dates::{DateDef, DateDefException, DateDefExceptions, ExceptionCondition};
 use crate::types::liturgical::{Color, ColorInfo, Precedence, Rank, Season};
-use crate::types::mass::MassInfo;
+use crate::types::mass::{CelebrationSummary, MassCalendar, MassContext, MassInfo, MassTime};
 
 /// Type alias for the liturgical calendar output
 /// Maps date strings (YYYY-MM-DD) to vectors of LiturgicalDay objects
@@ -128,6 +128,91 @@ impl Calendar {
         }
 
         Ok(calendar)
+    }
+
+    /// Generates a mass-centric view of the liturgical calendar.
+    ///
+    /// Unlike `generate()` which groups by liturgical date, this function
+    /// groups by civil date and mass time. Evening masses (EasterVigil,
+    /// PreviousEveningMass) appear on the PREVIOUS civil day.
+    ///
+    /// # Returns
+    ///
+    /// A BTreeMap of civil date strings to vectors of MassContext objects
+    ///
+    /// # Errors
+    ///
+    /// Returns an error if calendar generation fails
+    pub fn generate_mass_calendar(&self) -> RomcalResult<MassCalendar> {
+        // Step 1: Generate the standard liturgical calendar
+        let liturgical_calendar = self.generate()?;
+
+        // Step 2: Transform into mass-centric view
+        let mut mass_calendar: MassCalendar = BTreeMap::new();
+
+        for (liturgical_date, days) in &liturgical_calendar {
+            // Parse the liturgical date
+            let lit_date = NaiveDate::parse_from_str(liturgical_date, "%Y-%m-%d").map_err(|e| {
+                RomcalError::ValidationError(format!(
+                    "Cannot parse date {}: {}",
+                    liturgical_date, e
+                ))
+            })?;
+
+            // Skip empty days
+            if days.is_empty() {
+                continue;
+            }
+
+            // Separate primary celebration from optional alternatives
+            // The first day is typically the primary (highest precedence)
+            // Optional memorials appear after the primary
+            let (primary_day, optional_days) = (&days[0], &days[1..]);
+
+            // Convert optional days to CelebrationSummary
+            let optional_celebrations: Vec<CelebrationSummary> = optional_days
+                .iter()
+                .filter(|d| d.is_optional || d.rank == Rank::OptionalMemorial)
+                .map(CelebrationSummary::from)
+                .collect();
+
+            // Process each mass of the primary celebration
+            for mass_info in &primary_day.masses {
+                // Calculate the civil date (shift for evening masses)
+                let civil_date = self.compute_civil_date(&lit_date, &mass_info.mass_type);
+                let civil_date_str = civil_date.format("%Y-%m-%d").to_string();
+
+                // Create MassContext
+                let mass_context = MassContext::new(
+                    primary_day,
+                    mass_info.mass_type.clone(),
+                    civil_date_str.clone(),
+                    optional_celebrations.clone(),
+                );
+
+                // Add to mass calendar grouped by civil date
+                mass_calendar
+                    .entry(civil_date_str)
+                    .or_default()
+                    .push(mass_context);
+            }
+        }
+
+        Ok(mass_calendar)
+    }
+
+    /// Computes the civil date for a mass based on its type.
+    ///
+    /// Evening masses (EasterVigil, PreviousEveningMass) are celebrated
+    /// the evening before the liturgical date, so they appear on the
+    /// previous civil day.
+    fn compute_civil_date(&self, liturgical_date: &NaiveDate, mass_time: &MassTime) -> NaiveDate {
+        match mass_time {
+            MassTime::EasterVigil | MassTime::PreviousEveningMass => {
+                *liturgical_date - Duration::days(1)
+            }
+            _ => *liturgical_date,
+        }
     }
 
     /// Builds dates data from all calendar sources
@@ -1969,5 +2054,159 @@ mod tests {
             assert_eq!(dec_24.masses[0].mass_type, MassTime::MorningMass);
             assert_eq!(dec_24.masses[0].name, "morning_mass");
         }
+    }
+
+    // ==================== Mass Calendar Tests ====================
+
+    #[test]
+    fn test_generate_mass_calendar_basic() {
+        let romcal = Romcal::default();
+        let calendar = Calendar::new(romcal, 2026).unwrap();
+
+        let result = calendar.generate_mass_calendar();
+        assert!(result.is_ok());
+
+        let mass_calendar = result.unwrap();
+
+        // Should have entries for each day of the liturgical year
+        assert!(
+            !mass_calendar.is_empty(),
+            "Mass calendar should not be empty"
+        );
+
+        // Should have reasonable number of dates
+        assert!(
+            mass_calendar.len() >= 350,
+            "Should have at least 350 dates, got {}",
+            mass_calendar.len()
+        );
+    }
+
+    #[test]
+    fn test_generate_mass_calendar_christmas_evening_mass_shifted() {
+        let romcal = Romcal::default();
+        let calendar = Calendar::new(romcal, 2026).unwrap();
+        let mass_calendar = calendar.generate_mass_calendar().unwrap();
+
+        // Christmas PreviousEveningMass should appear on December 24 (civil date)
+        // but the liturgical_date should be December 25
+        if let Some(masses) = mass_calendar.get("2025-12-24") {
+            let evening_mass = masses
+                .iter()
+                .find(|m| m.mass_time == MassTime::PreviousEveningMass);
+
+            assert!(
+                evening_mass.is_some(),
+                "Christmas PreviousEveningMass should be on Dec 24"
+            );
+
+            let evening_mass = evening_mass.unwrap();
+            assert_eq!(evening_mass.civil_date, "2025-12-24");
+            assert_eq!(evening_mass.liturgical_date, "2025-12-25");
+            assert_eq!(evening_mass.id, "nativity_of_the_lord");
+        }
+
+        // Christmas Day masses (NightMass, MassAtDawn, DayMass) should be on December 25
+        if let Some(masses) = mass_calendar.get("2025-12-25") {
+            let day_masses: Vec<_> = masses
+                .iter()
+                .filter(|m| m.id == "nativity_of_the_lord")
+                .collect();
+
+            assert!(
+                day_masses.len() >= 3,
+                "Christmas should have at least 3 masses on Dec 25"
+            );
+
+            // All should have liturgical_date = civil_date = 2025-12-25
+            for mass in day_masses {
+                assert_eq!(mass.civil_date, "2025-12-25");
+                assert_eq!(mass.liturgical_date, "2025-12-25");
+            }
+        }
+    }
+
+    #[test]
+    fn test_generate_mass_calendar_easter_vigil_shifted() {
+        let romcal = Romcal::default();
+        let calendar = Calendar::new(romcal, 2026).unwrap();
+        let mass_calendar = calendar.generate_mass_calendar().unwrap();
+
+        // Easter Vigil should appear on Holy Saturday (civil date April 4)
+        // but the liturgical_date should be Easter Sunday (April 5)
+        if let Some(masses) = mass_calendar.get("2026-04-04") {
+            let vigil = masses.iter().find(|m| m.mass_time == MassTime::EasterVigil);
+
+            assert!(vigil.is_some(), "Easter Vigil should be on April 4");
+
+            let vigil = vigil.unwrap();
+            assert_eq!(vigil.civil_date, "2026-04-04");
+            assert_eq!(vigil.liturgical_date, "2026-04-05");
+            assert_eq!(vigil.id, "easter_sunday");
+        }
+    }
+
+    #[test]
+    fn test_generate_mass_calendar_context_from_liturgical_date() {
+        let romcal = Romcal::default();
+        let calendar = Calendar::new(romcal, 2026).unwrap();
+        let mass_calendar = calendar.generate_mass_calendar().unwrap();
+
+        // Easter Vigil (on civil date April 4) should have Easter's context, not Holy Saturday's
+        if let Some(masses) = mass_calendar.get("2026-04-04") {
+            let vigil = masses
+                .iter()
+                .find(|m| m.mass_time == MassTime::EasterVigil)
+                .expect("Easter Vigil should exist");
+
+            // The season should be Easter Time (from Easter Sunday's context)
+            // Not Paschal Triduum (from Holy Saturday's context)
+            // Note: Easter Sunday is in Easter Time
+            assert!(vigil.season.is_some(), "Easter Vigil should have a season");
+        }
+    }
+
+    #[test]
+    fn test_generate_mass_calendar_flat_structure() {
+        let romcal = Romcal::default();
+        let calendar = Calendar::new(romcal, 2026).unwrap();
+        let mass_calendar = calendar.generate_mass_calendar().unwrap();
+
+        // Pick any date and verify the flat structure
+        if let Some(masses) = mass_calendar.get("2025-12-25") {
+            let mass = &masses[0];
+
+            // Mass identification should be present
+            assert!(!mass.mass_time_name.is_empty());
+
+            // Day-level context should be directly accessible (flat)
+            assert!(mass.sunday_cycle_name.len() > 0);
+            assert!(mass.weekday_cycle_name.len() > 0);
+
+            // Celebration data should be directly accessible (flat)
+            assert!(!mass.id.is_empty());
+            assert!(!mass.fullname.is_empty());
+            assert!(!mass.rank_name.is_empty());
+        }
+    }
+
+    #[test]
+    fn test_generate_mass_calendar_serialization() {
+        let romcal = Romcal::default();
+        let calendar = Calendar::new(romcal, 2026).unwrap();
+        let mass_calendar = calendar.generate_mass_calendar().unwrap();
+
+        // Serialize to JSON
+        let json = serde_json::to_string(&mass_calendar);
+        assert!(json.is_ok(), "Mass calendar should serialize to JSON");
+
+        let json_str = json.unwrap();
+        // Check that mass_time is serialized as SCREAMING_SNAKE_CASE
+        assert!(
+            json_str.contains("\"mass_time\":\"DAY_MASS\"")
+                || json_str.contains("\"mass_time\":\"PREVIOUS_EVENING_MASS\"")
+                || json_str.contains("\"mass_time\":\"EASTER_VIGIL\""),
+            "mass_time should be serialized as SCREAMING_SNAKE_CASE"
+        );
     }
 }

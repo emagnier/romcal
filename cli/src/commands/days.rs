@@ -24,7 +24,7 @@ pub fn handle(
     output_format: OutputFormat,
 ) -> Result<(), RomcalCliError> {
     let year = year.unwrap_or_else(current_year);
-    let calendar = romcal.generate_calendar(year)?;
+    let calendar = romcal.generate_liturgical_calendar(year)?;
 
     let output_data: BTreeMap<String, Vec<FilteredLiturgicalDay>> = if let Some(filters) = filters {
         calendar

@@ -206,10 +206,34 @@ impl Romcal {
     /// # Errors
     ///
     /// Returns an error if the year is invalid or if there's a calculation error
-    pub fn generate_calendar(
+    pub fn generate_liturgical_calendar(
         &self,
         year: i32,
     ) -> crate::RomcalResult<crate::calendar::LiturgicalCalendar> {
         crate::calendar::Calendar::new(self.clone(), year)?.generate()
+    }
+
+    /// Generate a mass-centric view of the liturgical calendar for a given year
+    ///
+    /// Unlike `generate_liturgical_calendar()` which groups by liturgical date,
+    /// this method groups by civil date and mass time. Evening masses
+    /// (EasterVigil, PreviousEveningMass) appear on the PREVIOUS civil day.
+    ///
+    /// # Arguments
+    ///
+    /// * `year` - The liturgical year (e.g., 2026 for liturgical year 2025-2026)
+    ///
+    /// # Returns
+    ///
+    /// A BTreeMap of civil date strings (YYYY-MM-DD) to vectors of MassContext objects
+    ///
+    /// # Errors
+    ///
+    /// Returns an error if the year is invalid or if there's a calculation error
+    pub fn generate_mass_calendar(
+        &self,
+        year: i32,
+    ) -> crate::RomcalResult<crate::types::mass::MassCalendar> {
+        crate::calendar::Calendar::new(self.clone(), year)?.generate_mass_calendar()
     }
 }
