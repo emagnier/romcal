@@ -5,6 +5,7 @@ use crate::liturgical_day::LiturgicalDay;
 use crate::proper_of_time::common::sort_liturgical_days_by_date;
 use crate::template_resolver::ProperOfTimeDayType;
 use crate::types::liturgical::{Color, Period, Precedence, Season};
+use crate::types::mass::{MassInfo, MassTime};
 
 use super::ProperOfTime;
 
@@ -81,7 +82,8 @@ impl<'a> PaschalTriduum<'a> {
                 Color::White,
                 Some(&day_type),
             )
-            .with_periods(periods);
+            .with_periods(periods)
+            .with_masses(vec![MassInfo::new(MassTime::EveningMassOfTheLordsSupper)]);
 
         Ok(liturgical_day)
     }
@@ -102,7 +104,8 @@ impl<'a> PaschalTriduum<'a> {
                 Color::Red,
                 Some(&day_type),
             )
-            .with_periods(periods);
+            .with_periods(periods)
+            .with_masses(vec![MassInfo::new(MassTime::CelebrationOfThePassion)]);
 
         Ok(liturgical_day)
     }
@@ -123,7 +126,8 @@ impl<'a> PaschalTriduum<'a> {
                 Color::White, // Using White as default, can be overridden if needed
                 Some(&day_type),
             )
-            .with_periods(periods);
+            .with_periods(periods)
+            .with_masses(MassInfo::none()); // Aliturgical day - no mass
 
         Ok(liturgical_day)
     }

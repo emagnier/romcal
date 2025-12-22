@@ -928,7 +928,11 @@
         "date_fn": "NATIVITY_OF_JOHN_THE_BAPTIST"
       },
       "commons_def": "NONE",
-      "colors": "WHITE"
+      "colors": "WHITE",
+      "masses": {
+        "previous_evening_mass": {},
+        "day_mass": {}
+      }
     },
     "cyril_of_alexandria_bishop": {
       "precedence": "OPTIONAL_MEMORIAL_12",
@@ -961,7 +965,11 @@
       "entities": [
         "peter_apostle",
         "paul_apostle"
-      ]
+      ],
+      "masses": {
+        "previous_evening_mass": {},
+        "day_mass": {}
+      }
     },
     "first_martyrs_of_the_holy_roman_church": {
       "precedence": "OPTIONAL_MEMORIAL_12",

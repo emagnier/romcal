@@ -18,6 +18,7 @@ use crate::proper_of_time::common::PROPER_OF_TIME_ID;
 use crate::types::calendar::{DayDefinition, DayId};
 use crate::types::dates::{DateDef, DateDefException, DateDefExceptions, ExceptionCondition};
 use crate::types::liturgical::{Color, ColorInfo, Precedence, Rank, Season};
+use crate::types::mass::MassInfo;
 
 /// Type alias for the liturgical calendar output
 /// Maps date strings (YYYY-MM-DD) to vectors of LiturgicalDay objects
@@ -888,6 +889,23 @@ impl Calendar {
             }
         }
 
+        // Set masses from DayDefinition.masses if defined, otherwise keep default
+        if let Some(masses_def) = &day_def.masses {
+            // Extract mass types from MassesDefinitions keys
+            let masses: Vec<MassInfo> = masses_def
+                .keys()
+                .map(|mt| MassInfo::new(mt.clone()))
+                .collect();
+            if !masses.is_empty() {
+                liturgical_day.masses = masses;
+            }
+        } else if let Some(existing) = existing_day {
+            // Inherit masses from existing day if not defined
+            if !existing.masses.is_empty() {
+                liturgical_day.masses = existing.masses.clone();
+            }
+        }
+
         // Calculate and store parent overrides (diff from parent definitions)
         let parent_overrides =
             self.compute_parent_overrides(day_id, day_def, calendar_def, by_ids)?;
@@ -1643,5 +1661,313 @@ mod tests {
         // Test ProtoMartyrOfOceania
         let proto_martyr_titles = TitlesDef::Titles(vec![Title::ProtoMartyrOfOceania]);
         assert!(proto_martyr_titles.contains_martyr());
+    }
+
+    #[test]
+    fn test_masses_default_is_day_mass() {
+        use crate::types::mass::MassTime;
+
+        let romcal = Romcal::default();
+        let calendar = Calendar::new(romcal, 2026).unwrap();
+        let result = calendar.generate().unwrap();
+
+        // Regular weekday should have default DayMass
+        // Pick a regular Advent weekday
+        if let Some(days) = result.get("2025-12-01") {
+            let day = &days[0];
+            assert_eq!(day.masses.len(), 1);
+            assert_eq!(day.masses[0].mass_type, MassTime::DayMass);
+            assert_eq!(day.masses[0].name, "day_mass");
+        }
+    }
+
+    #[test]
+    fn test_masses_easter_sunday() {
+        use crate::types::mass::MassTime;
+
+        let romcal = Romcal::default();
+        let calendar = Calendar::new(romcal, 2026).unwrap();
+        let result = calendar.generate().unwrap();
+
+        // Easter Sunday 2026 is April 5
+        if let Some(days) = result.get("2026-04-05") {
+            let easter = days.iter().find(|d| d.id == "easter_sunday").unwrap();
+            assert_eq!(easter.masses.len(), 2);
+            assert!(
+                easter
+                    .masses
+                    .iter()
+                    .any(|m| m.mass_type == MassTime::EasterVigil)
+            );
+            assert!(
+                easter
+                    .masses
+                    .iter()
+                    .any(|m| m.mass_type == MassTime::DayMass)
+            );
+        }
+    }
+
+    #[test]
+    fn test_masses_holy_saturday_is_aliturgical() {
+        let romcal = Romcal::default();
+        let calendar = Calendar::new(romcal, 2026).unwrap();
+        let result = calendar.generate().unwrap();
+
+        // Holy Saturday 2026 is April 4
+        if let Some(days) = result.get("2026-04-04") {
+            let holy_saturday = days.iter().find(|d| d.id == "holy_saturday").unwrap();
+            // Holy Saturday is aliturgical - no masses
+            assert!(
+                holy_saturday.masses.is_empty(),
+                "Holy Saturday should have no masses (aliturgical day)"
+            );
+        }
+    }
+
+    #[test]
+    fn test_masses_nativity_of_the_lord() {
+        use crate::types::mass::MassTime;
+
+        let romcal = Romcal::default();
+        let calendar = Calendar::new(romcal, 2026).unwrap();
+        let result = calendar.generate().unwrap();
+
+        // Christmas is December 25
+        if let Some(days) = result.get("2025-12-25") {
+            let christmas = days
+                .iter()
+                .find(|d| d.id == "nativity_of_the_lord")
+                .unwrap();
+            // Christmas has 4 masses
+            assert_eq!(christmas.masses.len(), 4);
+            assert!(
+                christmas
+                    .masses
+                    .iter()
+                    .any(|m| m.mass_type == MassTime::PreviousEveningMass)
+            );
+            assert!(
+                christmas
+                    .masses
+                    .iter()
+                    .any(|m| m.mass_type == MassTime::NightMass)
+            );
+            assert!(
+                christmas
+                    .masses
+                    .iter()
+                    .any(|m| m.mass_type == MassTime::MassAtDawn)
+            );
+            assert!(
+                christmas
+                    .masses
+                    .iter()
+                    .any(|m| m.mass_type == MassTime::DayMass)
+            );
+        }
+    }
+
+    #[test]
+    fn test_masses_from_calendar_definition() {
+        use crate::types::CalendarMetadata;
+        use crate::types::calendar::{CalendarJurisdiction, CalendarType, DayDefinition};
+        use crate::types::mass::{MassCycleDefinition, MassTime, MassesDefinitions};
+
+        // Create a test calendar definition with masses
+        let mut day_def = DayDefinition {
+            date_def: Some(DateDef::MonthDate {
+                month: crate::types::dates::MonthIndex(7),
+                date: 15,
+                day_offset: None,
+            }),
+            precedence: Some(Precedence::GeneralSolemnity_3),
+            masses: None,
+            date_exceptions: None,
+            commons_def: None,
+            is_holy_day_of_obligation: None,
+            allow_similar_rank_items: None,
+            is_optional: None,
+            custom_locale_id: None,
+            entities: None,
+            titles: None,
+            drop: None,
+            colors: None,
+        };
+
+        // Add masses to the definition
+        let mut masses_def = MassesDefinitions::new();
+        masses_def.insert(MassTime::PreviousEveningMass, MassCycleDefinition::new());
+        masses_def.insert(MassTime::DayMass, MassCycleDefinition::new());
+        day_def.masses = Some(masses_def);
+
+        // Create a calendar definition with this day
+        let calendar_def = CalendarDefinition {
+            schema: None,
+            id: "test_calendar".to_string(),
+            metadata: CalendarMetadata {
+                r#type: CalendarType::GeneralRoman,
+                jurisdiction: CalendarJurisdiction::Ecclesiastical,
+            },
+            particular_config: None,
+            parent_calendar_ids: vec![],
+            days_definitions: std::collections::BTreeMap::from([(
+                "test_solemnity".to_string(),
+                day_def,
+            )]),
+        };
+
+        // Create romcal with this calendar definition
+        let mut romcal = Romcal::default();
+        romcal.calendar = "test_calendar".to_string();
+        romcal.calendar_definitions.push(calendar_def);
+
+        let calendar = Calendar::new(romcal, 2026).unwrap();
+        let result = calendar.generate().unwrap();
+
+        // Check July 15
+        let days = result.get("2026-07-15").expect("2026-07-15 should exist");
+        let test_day = days
+            .iter()
+            .find(|d| d.id == "test_solemnity")
+            .expect("test_solemnity should be on July 15");
+
+        // Should have PreviousEveningMass and DayMass from calendar definition
+        assert_eq!(test_day.masses.len(), 2);
+        assert!(
+            test_day
+                .masses
+                .iter()
+                .any(|m| m.mass_type == MassTime::PreviousEveningMass),
+            "test_solemnity should have PreviousEveningMass"
+        );
+        assert!(
+            test_day
+                .masses
+                .iter()
+                .any(|m| m.mass_type == MassTime::DayMass),
+            "test_solemnity should have DayMass"
+        );
+    }
+
+    #[test]
+    fn test_masses_pentecost_sunday() {
+        use crate::types::mass::MassTime;
+
+        let romcal = Romcal::default();
+        let calendar = Calendar::new(romcal, 2026).unwrap();
+        let result = calendar.generate().unwrap();
+
+        // Pentecost 2026 is May 24
+        if let Some(days) = result.get("2026-05-24") {
+            let pentecost = days
+                .iter()
+                .find(|d| d.id == "pentecost_sunday")
+                .expect("pentecost_sunday should exist");
+            assert_eq!(pentecost.masses.len(), 2);
+            assert!(
+                pentecost
+                    .masses
+                    .iter()
+                    .any(|m| m.mass_type == MassTime::PreviousEveningMass),
+                "Pentecost should have PreviousEveningMass"
+            );
+            assert!(
+                pentecost
+                    .masses
+                    .iter()
+                    .any(|m| m.mass_type == MassTime::DayMass),
+                "Pentecost should have DayMass"
+            );
+        }
+    }
+
+    #[test]
+    fn test_masses_palm_sunday() {
+        use crate::types::mass::MassTime;
+
+        let romcal = Romcal::default();
+        let calendar = Calendar::new(romcal, 2026).unwrap();
+        let result = calendar.generate().unwrap();
+
+        // Palm Sunday 2026 is March 29
+        if let Some(days) = result.get("2026-03-29") {
+            let palm_sunday = days
+                .iter()
+                .find(|d| d.id == "palm_sunday_of_the_passion_of_the_lord")
+                .expect("palm_sunday should exist");
+            assert_eq!(palm_sunday.masses.len(), 1);
+            assert_eq!(palm_sunday.masses[0].mass_type, MassTime::MassOfThePassion);
+            assert_eq!(palm_sunday.masses[0].name, "mass_of_the_passion");
+        }
+    }
+
+    #[test]
+    fn test_masses_good_friday() {
+        use crate::types::mass::MassTime;
+
+        let romcal = Romcal::default();
+        let calendar = Calendar::new(romcal, 2026).unwrap();
+        let result = calendar.generate().unwrap();
+
+        // Good Friday 2026 is April 3
+        if let Some(days) = result.get("2026-04-03") {
+            let good_friday = days
+                .iter()
+                .find(|d| d.id == "friday_of_the_passion_of_the_lord")
+                .expect("good_friday should exist");
+            assert_eq!(good_friday.masses.len(), 1);
+            assert_eq!(
+                good_friday.masses[0].mass_type,
+                MassTime::CelebrationOfThePassion
+            );
+            assert_eq!(good_friday.masses[0].name, "celebration_of_the_passion");
+        }
+    }
+
+    #[test]
+    fn test_masses_holy_thursday() {
+        use crate::types::mass::MassTime;
+
+        let romcal = Romcal::default();
+        let calendar = Calendar::new(romcal, 2026).unwrap();
+        let result = calendar.generate().unwrap();
+
+        // Holy Thursday 2026 is April 2
+        if let Some(days) = result.get("2026-04-02") {
+            let holy_thursday = days
+                .iter()
+                .find(|d| d.id == "thursday_of_the_lords_supper")
+                .expect("holy_thursday should exist");
+            assert_eq!(holy_thursday.masses.len(), 1);
+            assert_eq!(
+                holy_thursday.masses[0].mass_type,
+                MassTime::EveningMassOfTheLordsSupper
+            );
+            assert_eq!(
+                holy_thursday.masses[0].name,
+                "evening_mass_of_the_lords_supper"
+            );
+        }
+    }
+
+    #[test]
+    fn test_masses_december_24() {
+        use crate::types::mass::MassTime;
+
+        let romcal = Romcal::default();
+        let calendar = Calendar::new(romcal, 2026).unwrap();
+        let result = calendar.generate().unwrap();
+
+        // December 24, 2025 (in liturgical year 2026)
+        if let Some(days) = result.get("2025-12-24") {
+            let dec_24 = days
+                .iter()
+                .find(|d| d.id == "advent_december_24")
+                .expect("advent_december_24 should exist");
+            assert_eq!(dec_24.masses.len(), 1);
+            assert_eq!(dec_24.masses[0].mass_type, MassTime::MorningMass);
+            assert_eq!(dec_24.masses[0].name, "morning_mass");
+        }
     }
 }

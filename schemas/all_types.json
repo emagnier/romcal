@@ -908,8 +908,8 @@
           "description": "Easter Vigil - the most important Mass of the liturgical year, celebrated on Holy Saturday night",
           "$ref": "#/definitions/MassCycleDefinition"
         },
-        "evening_mass": {
-          "description": "Evening Mass - Mass celebrated in the evening",
+        "evening_mass_of_the_lords_supper": {
+          "description": "Evening Mass of the Lord's Supper - Mass celebrated on Holy Thursday evening",
           "$ref": "#/definitions/MassCycleDefinition"
         },
         "mass_at_dawn": {
@@ -2320,6 +2320,80 @@
       ],
       "additionalProperties": false
     },
+    "MassInfo": {
+      "description": "Information about a mass celebration for a liturgical day.\nContains the type of mass and its localized name.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "The type of mass (e.g., DayMass, EasterVigil, etc.)\nSerialized as SCREAMING_SNAKE_CASE (e.g., \"DAY_MASS\")",
+          "$ref": "#/definitions/MassTime"
+        },
+        "name": {
+          "description": "The localized name of the mass type (translation key in snake_case)",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "MassTime": {
+      "description": "Times of Mass celebrations in the liturgical calendar.\nDifferent Masses are celebrated at various times and occasions throughout the liturgical year.",
+      "oneOf": [
+        {
+          "description": "Easter Vigil - the most important Mass of the liturgical year, celebrated on Holy Saturday night",
+          "type": "string",
+          "const": "easter_vigil"
+        },
+        {
+          "description": "Previous Evening Mass - Mass celebrated the evening before a major feast",
+          "type": "string",
+          "const": "previous_evening_mass"
+        },
+        {
+          "description": "Night Mass - Mass celebrated during the night hours",
+          "type": "string",
+          "const": "night_mass"
+        },
+        {
+          "description": "Mass at Dawn - Mass celebrated at dawn, particularly on Easter Sunday",
+          "type": "string",
+          "const": "mass_at_dawn"
+        },
+        {
+          "description": "Morning Mass - Mass celebrated in the morning",
+          "type": "string",
+          "const": "morning_mass"
+        },
+        {
+          "description": "Mass of the Passion - Mass focusing on Christ's passion, beginning with the procession with palms",
+          "type": "string",
+          "const": "mass_of_the_passion"
+        },
+        {
+          "description": "Celebration of the Passion - special celebration of Christ's passion",
+          "type": "string",
+          "const": "celebration_of_the_passion"
+        },
+        {
+          "description": "Day Mass - regular Mass celebrated during the day",
+          "type": "string",
+          "const": "day_mass"
+        },
+        {
+          "description": "Chrism Mass - Mass where holy oils are blessed, typically on Holy Thursday morning",
+          "type": "string",
+          "const": "chrism_mass"
+        },
+        {
+          "description": "Evening Mass of the Lord's Supper - Mass celebrated on Holy Thursday evening",
+          "type": "string",
+          "const": "evening_mass_of_the_lords_supper"
+        }
+      ]
+    },
     "SundayCycle": {
       "description": "A three-year cycle for Sunday Mass readings (and some solemnities), designated by A, B, or C.\nEach cycle begins on the First Sunday of Advent of the previous civil year and ends on Saturday\nafter the Christ the King Solemnity. The cycles follow each other in alphabetical order.\nC year is always divisible by 3, A has remainder of 1, and B remainder of 2.",
       "oneOf": [
@@ -3386,8 +3460,8 @@
               "description": "Easter Vigil - the most important Mass of the liturgical year, celebrated on Holy Saturday night",
               "$ref": "#/definitions/MassCycleDefinition"
             },
-            "evening_mass": {
-              "description": "Evening Mass - Mass celebrated in the evening",
+            "evening_mass_of_the_lords_supper": {
+              "description": "Evening Mass of the Lord's Supper - Mass celebrated on Holy Thursday evening",
               "$ref": "#/definitions/MassCycleDefinition"
             },
             "mass_at_dawn": {
@@ -5320,6 +5394,80 @@
             }
           ]
         },
+        "MassInfo": {
+          "description": "Information about a mass celebration for a liturgical day.\nContains the type of mass and its localized name.",
+          "type": "object",
+          "properties": {
+            "type": {
+              "description": "The type of mass (e.g., DayMass, EasterVigil, etc.)\nSerialized as SCREAMING_SNAKE_CASE (e.g., \"DAY_MASS\")",
+              "$ref": "#/definitions/MassTime"
+            },
+            "name": {
+              "description": "The localized name of the mass type (translation key in snake_case)",
+              "type": "string"
+            }
+          },
+          "required": [
+            "type",
+            "name"
+          ],
+          "additionalProperties": false
+        },
+        "MassTime": {
+          "description": "Times of Mass celebrations in the liturgical calendar.\nDifferent Masses are celebrated at various times and occasions throughout the liturgical year.",
+          "oneOf": [
+            {
+              "description": "Easter Vigil - the most important Mass of the liturgical year, celebrated on Holy Saturday night",
+              "type": "string",
+              "const": "easter_vigil"
+            },
+            {
+              "description": "Previous Evening Mass - Mass celebrated the evening before a major feast",
+              "type": "string",
+              "const": "previous_evening_mass"
+            },
+            {
+              "description": "Night Mass - Mass celebrated during the night hours",
+              "type": "string",
+              "const": "night_mass"
+            },
+            {
+              "description": "Mass at Dawn - Mass celebrated at dawn, particularly on Easter Sunday",
+              "type": "string",
+              "const": "mass_at_dawn"
+            },
+            {
+              "description": "Morning Mass - Mass celebrated in the morning",
+              "type": "string",
+              "const": "morning_mass"
+            },
+            {
+              "description": "Mass of the Passion - Mass focusing on Christ's passion, beginning with the procession with palms",
+              "type": "string",
+              "const": "mass_of_the_passion"
+            },
+            {
+              "description": "Celebration of the Passion - special celebration of Christ's passion",
+              "type": "string",
+              "const": "celebration_of_the_passion"
+            },
+            {
+              "description": "Day Mass - regular Mass celebrated during the day",
+              "type": "string",
+              "const": "day_mass"
+            },
+            {
+              "description": "Chrism Mass - Mass where holy oils are blessed, typically on Holy Thursday morning",
+              "type": "string",
+              "const": "chrism_mass"
+            },
+            {
+              "description": "Evening Mass of the Lord's Supper - Mass celebrated on Holy Thursday evening",
+              "type": "string",
+              "const": "evening_mass_of_the_lords_supper"
+            }
+          ]
+        },
         "TitlesDef": {
           "description": "Title definition that can be either a simple list or a compound definition.\nSupports both direct title lists and compound title operations.",
           "anyOf": [
@@ -6073,6 +6221,13 @@
             "$ref": "#/definitions/ColorInfo"
           }
         },
+        "masses": {
+          "description": "The masses celebrated on this liturgical day.\nMost days have a single DayMass, but some have multiple masses\n(e.g., Christmas: PreviousEveningMass, NightMass, MassAtDawn, DayMass).\nAliturgical days like Holy Saturday have an empty list.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MassInfo"
+          }
+        },
         "titles": {
           "description": "The titles for this liturgical day.",
           "$ref": "#/definitions/TitlesDef"
@@ -6186,6 +6341,7 @@
         "periods",
         "commons",
         "colors",
+        "masses",
         "titles",
         "entities",
         "day_of_week",

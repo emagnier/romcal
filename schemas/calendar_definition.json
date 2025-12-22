@@ -942,8 +942,8 @@
           "description": "Easter Vigil - the most important Mass of the liturgical year, celebrated on Holy Saturday night",
           "$ref": "#/definitions/MassCycleDefinition"
         },
-        "evening_mass": {
-          "description": "Evening Mass - Mass celebrated in the evening",
+        "evening_mass_of_the_lords_supper": {
+          "description": "Evening Mass of the Lord's Supper - Mass celebrated on Holy Thursday evening",
           "$ref": "#/definitions/MassCycleDefinition"
         },
         "mass_at_dawn": {

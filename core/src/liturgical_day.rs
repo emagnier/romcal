@@ -4,6 +4,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::types::dates::{DateDef, DateDefException, DayOfWeek};
 use crate::types::entity::{Entity, TitlesDef};
+use crate::types::mass::MassInfo;
 use crate::types::{
     ColorInfo, CommonDefinition, CommonInfo, PeriodInfo, Precedence, PsalterWeekCycle, Rank,
     SundayCycle, WeekdayCycle,
@@ -150,6 +151,12 @@ pub struct LiturgicalDay {
     /// The liturgical colors for this liturgical day.
     pub colors: Vec<ColorInfo>, // Use Enum Color
 
+    /// The masses celebrated on this liturgical day.
+    /// Most days have a single DayMass, but some have multiple masses
+    /// (e.g., Christmas: PreviousEveningMass, NightMass, MassAtDawn, DayMass).
+    /// Aliturgical days like Holy Saturday have an empty list.
+    pub masses: Vec<MassInfo>,
+
     /// The titles for this liturgical day.
     pub titles: TitlesDef, // Use Enum Title
 
@@ -265,6 +272,7 @@ impl LiturgicalDay {
             periods: Vec::new(),
             commons: Vec::new(),
             colors: Vec::new(),
+            masses: MassInfo::default_day_mass(),
             titles: TitlesDef::Titles(Vec::new()),
             entities: Vec::new(),
             week_of_season: None,
@@ -331,6 +339,12 @@ impl LiturgicalDay {
     /// Sets the liturgical colors for this liturgical day.
     pub fn with_colors(mut self, colors: Vec<ColorInfo>) -> Self {
         self.colors = colors;
+        self
+    }
+
+    /// Sets the masses for this liturgical day.
+    pub fn with_masses(mut self, masses: Vec<MassInfo>) -> Self {
+        self.masses = masses;
         self
     }
 

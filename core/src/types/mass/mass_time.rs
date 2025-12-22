@@ -25,8 +25,8 @@ pub enum MassTime {
     DayMass,
     /// Chrism Mass - Mass where holy oils are blessed, typically on Holy Thursday morning
     ChrismMass,
-    /// Evening Mass - Mass celebrated in the evening
-    EveningMass,
+    /// Evening Mass of the Lord's Supper - Mass celebrated on Holy Thursday evening
+    EveningMassOfTheLordsSupper,
 }
 
 // Schema generation functions (only compiled when feature "schema-gen" is enabled)
@@ -54,7 +54,9 @@ pub fn get_mass_time_description(time: &MassTime) -> &'static str {
         MassTime::ChrismMass => {
             "Chrism Mass - Mass where holy oils are blessed, typically on Holy Thursday morning"
         }
-        MassTime::EveningMass => "Evening Mass - Mass celebrated in the evening",
+        MassTime::EveningMassOfTheLordsSupper => {
+            "Evening Mass of the Lord's Supper - Mass celebrated on Holy Thursday evening"
+        }
     }
 }
 
@@ -77,7 +79,7 @@ mod tests {
         assert_eq!(variants[6], MassTime::CelebrationOfThePassion);
         assert_eq!(variants[7], MassTime::DayMass);
         assert_eq!(variants[8], MassTime::ChrismMass);
-        assert_eq!(variants[9], MassTime::EveningMass);
+        assert_eq!(variants[9], MassTime::EveningMassOfTheLordsSupper);
 
         // Verify that we have all variants
         assert_eq!(variants.len(), 10);

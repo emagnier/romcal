@@ -5,6 +5,7 @@ use crate::liturgical_day::LiturgicalDay;
 use crate::proper_of_time::common::{WEEKDAY_NAMES, sort_liturgical_days_by_date};
 use crate::template_resolver::ProperOfTimeDayType;
 use crate::types::liturgical::{Color, Precedence, Season};
+use crate::types::mass::{MassInfo, MassTime};
 use crate::types::{DateDef, DateFn, Period};
 
 use super::ProperOfTime;
@@ -124,7 +125,11 @@ impl<'a> EasterTime<'a> {
                 Some(&day_type),
             )
             .with_periods(periods)
-            .with_is_holy_day_of_obligation(true);
+            .with_is_holy_day_of_obligation(true)
+            .with_masses(vec![
+                MassInfo::new(MassTime::EasterVigil),
+                MassInfo::new(MassTime::DayMass),
+            ]);
 
         Ok(liturgical_day)
     }
@@ -228,14 +233,20 @@ impl<'a> EasterTime<'a> {
     /// Creates Pentecost Sunday
     fn create_pentecost_sunday(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
         // Entity-based day, fullname comes from entity resolution
-        let liturgical_day = self.proper_of_time.create_liturgical_day_base(
-            "pentecost_sunday",
-            date,
-            Precedence::ProperOfTimeSolemnity_2,
-            Some(Season::EasterTime),
-            Color::Red,
-            None,
-        );
+        let liturgical_day = self
+            .proper_of_time
+            .create_liturgical_day_base(
+                "pentecost_sunday",
+                date,
+                Precedence::ProperOfTimeSolemnity_2,
+                Some(Season::EasterTime),
+                Color::Red,
+                None,
+            )
+            .with_masses(vec![
+                MassInfo::new(MassTime::PreviousEveningMass),
+                MassInfo::new(MassTime::DayMass),
+            ]);
 
         Ok(liturgical_day)
     }

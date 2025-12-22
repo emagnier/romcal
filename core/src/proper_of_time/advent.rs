@@ -5,6 +5,7 @@ use crate::liturgical_day::LiturgicalDay;
 use crate::proper_of_time::common::{WEEKDAY_NAMES, enum_to_string, sort_liturgical_days_by_date};
 use crate::template_resolver::ProperOfTimeDayType;
 use crate::types::liturgical::{Color, ColorInfo, Precedence, Season};
+use crate::types::mass::{MassInfo, MassTime};
 
 use super::ProperOfTime;
 
@@ -142,7 +143,7 @@ impl<'a> Advent<'a> {
     ) -> RomcalResult<LiturgicalDay> {
         let dow = date.weekday().num_days_from_sunday() as u8;
         let day_type = ProperOfTimeDayType::AdventPrivilegedWeekday { day, dow };
-        let liturgical_day = self.proper_of_time.create_liturgical_day_base(
+        let mut liturgical_day = self.proper_of_time.create_liturgical_day_base(
             &format!("advent_december_{}", day),
             date,
             Precedence::PrivilegedWeekday_9,
@@ -150,6 +151,11 @@ impl<'a> Advent<'a> {
             Color::Purple,
             Some(&day_type),
         );
+
+        // December 24 only has a morning mass (evening is Christmas Eve)
+        if day == 24 {
+            liturgical_day = liturgical_day.with_masses(vec![MassInfo::new(MassTime::MorningMass)]);
+        }
 
         Ok(liturgical_day)
     }

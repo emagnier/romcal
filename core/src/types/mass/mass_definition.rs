@@ -311,6 +311,11 @@ impl MassesDefinitions {
     pub fn contains_key(&self, key: &MassTime) -> bool {
         self.0.contains_key(key)
     }
+
+    /// Returns an iterator over the keys (MassTime variants)
+    pub fn keys(&self) -> impl Iterator<Item = &MassTime> {
+        self.0.keys()
+    }
 }
 
 impl Default for MassesDefinitions {
@@ -451,7 +456,7 @@ mod tests {
         evening_invariant.insert(MassPart::Psalm, "Ps 104:1-2".to_string());
         evening_invariant.insert(MassPart::Gospel, "Jn 1:1-5".to_string());
         evening_mass.insert(LiturgicalCycle::Invariant, evening_invariant);
-        masses.insert(MassTime::EveningMass, evening_mass);
+        masses.insert(MassTime::EveningMassOfTheLordsSupper, evening_mass);
 
         // Serialize to JSON
         let json = serde_json::to_string_pretty(&masses).unwrap();
@@ -460,7 +465,7 @@ mod tests {
 
         // Verify JSON structure
         assert!(json.contains("\"day_mass\""));
-        assert!(json.contains("\"evening_mass\""));
+        assert!(json.contains("\"evening_mass_of_the_lords_supper\""));
         assert!(json.contains("\"invariant\""));
         assert!(json.contains("\"year_a\""));
         assert!(json.contains("\"year_b\""));
@@ -473,7 +478,7 @@ mod tests {
         let deserialized: MassesDefinitions = serde_json::from_str(&json).unwrap();
         assert_eq!(deserialized.len(), 2);
         assert!(deserialized.contains_key(&MassTime::DayMass));
-        assert!(deserialized.contains_key(&MassTime::EveningMass));
+        assert!(deserialized.contains_key(&MassTime::EveningMassOfTheLordsSupper));
 
         // Verify day mass structure
         let day_mass_content = deserialized.get(&MassTime::DayMass).unwrap();
