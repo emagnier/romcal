@@ -9,10 +9,13 @@ A command-line interface for calculating Catholic liturgical dates and generatin
 romcal dates easter_sunday 2025
 
 # Generate liturgical calendar for current year
-romcal days
+romcal calendar
 
 # Generate calendar with specific locale and calendar
-romcal days 2025 --calendar france --locale fr
+romcal calendar 2025 --calendar france --locale fr
+
+# Generate mass-centric calendar
+romcal masses 2025 --filter civil_date,id,fullname
 
 # List available calendars
 romcal list calendars
@@ -47,17 +50,18 @@ After building, the binary is located at:
 
 ## Commands
 
-| Command                        | Description                             |
-| ------------------------------ | --------------------------------------- |
-| `dates <DATE_NAME> [YEAR]`     | Calculate a specific liturgical date    |
-| `days [YEAR]`                  | Generate all liturgical days for a year |
-| `list calendars [--tree]`      | List available calendars                |
-| `list locales [--tree]`        | List available locales                  |
-| `preset`                       | Display current configuration           |
-| `optimize-preset`              | Generate optimized JSON bundle          |
-| `validate definitions <FILES>` | Validate calendar definition files      |
-| `validate resources <FILES>`   | Validate resource files                 |
-| `completions <SHELL>`          | Generate shell completion scripts       |
+| Command                        | Description                                           |
+| ------------------------------ | ----------------------------------------------------- |
+| `dates <DATE_NAME> [YEAR]`     | Calculate a specific liturgical date                  |
+| `calendar [YEAR]`              | Generate liturgical calendar (by liturgical date)     |
+| `masses [YEAR]`                | Generate mass-centric calendar (by civil date + mass) |
+| `list calendars [--tree]`      | List available calendars                              |
+| `list locales [--tree]`        | List available locales                                |
+| `preset`                       | Display current configuration                         |
+| `optimize-preset`              | Generate optimized JSON bundle                        |
+| `validate definitions <FILES>` | Validate calendar definition files                    |
+| `validate resources <FILES>`   | Validate resource files                               |
+| `completions <SHELL>`          | Generate shell completion scripts                     |
 
 ### dates
 
@@ -73,18 +77,18 @@ romcal dates easter_sunday 2025 --easter-calc julian
 
 `mary_mother_of_the_church`, `epiphany_sunday`, `presentation_of_the_lord`, `annunciation`, `palm_sunday`, `easter_sunday`, `divine_mercy_sunday`, `ascension`, `pentecost_sunday`, `corpus_christi_sunday`, `immaculate_heart_of_mary`, `nativity_of_john_the_baptist`, `peter_and_paul_apostles`, `transfiguration`, `assumption`, `exaltation_of_the_holy_cross`, `all_saints`, `immaculate_conception_of_mary`
 
-### days
+### calendar
 
-Generate liturgical days for an entire year.
+Generate liturgical calendar organized by liturgical date.
 
 ```bash
-romcal days 2025
-romcal days 2025 --filter id,fullname,date
-romcal days 2025 --context liturgical --locale fr
-romcal days 2025 -f json > calendar.json
+romcal calendar 2025
+romcal calendar 2025 --filter id,fullname,date
+romcal calendar 2025 --context liturgical --locale fr
+romcal calendar 2025 -f json > calendar.json
 ```
 
-**Filter options:**
+**Filter options** (supports dot notation for nested fields like `colors.key`):
 
 | Category   | Filters                                                                                           |
 | ---------- | ------------------------------------------------------------------------------------------------- |
@@ -96,6 +100,28 @@ romcal days 2025 -f json > calendar.json
 | Boundaries | `start_of_season`, `end_of_season`, `start_of_liturgical_year`, `end_of_liturgical_year`          |
 | Metadata   | `commons`, `titles`, `entities`, `is_holy_day_of_obligation`, `is_optional`                       |
 | Advanced   | `date_def`, `date_exceptions`, `from_calendar_id`, `allow_similar_rank_items`, `parent_overrides` |
+
+### masses
+
+Generate mass-centric calendar organized by civil date and mass time. Useful for planning liturgical celebrations.
+
+```bash
+romcal masses 2025
+romcal masses 2025 --filter civil_date,id,fullname,rank
+romcal masses 2025 --filter optional_celebrations.id,optional_celebrations.rank
+romcal masses 2025 -f json > masses.json
+```
+
+**Key fields:**
+
+| Field                   | Description                                      |
+| ----------------------- | ------------------------------------------------ |
+| `mass_time`             | Type of mass (DAY_MASS, VIGIL_MASS, etc.)        |
+| `civil_date`            | Civil calendar date                              |
+| `liturgical_date`       | Liturgical calendar date                         |
+| `optional_celebrations` | Alternative celebrations available for this mass |
+
+Nested fields can be filtered with dot notation: `optional_celebrations.id`, `colors.key`
 
 ### list
 
@@ -127,7 +153,7 @@ romcal validate resources "data/resources/**/*.json"
 
 ### Preset Options
 
-Available on `dates`, `days`, `preset`, and `optimize-preset` commands:
+Available on `dates`, `calendar`, `masses`, `preset`, and `optimize-preset` commands:
 
 ```
 -c, --calendar <NAME>           Calendar to use (default: general_roman)
@@ -184,10 +210,11 @@ corpus_christi_on_sunday = true
 
 ```bash
 # JSON for API consumption
-romcal days 2025 -f json > calendar.json
+romcal calendar 2025 -f json > calendar.json
+romcal masses 2025 -f json > masses.json
 
 # CSV for spreadsheet
-romcal days 2025 --filter id,fullname,date -f csv > calendar.csv
+romcal calendar 2025 --filter id,fullname,date -f csv > calendar.csv
 
 # Lines for shell scripting
 romcal list locales -f lines | while read locale; do
