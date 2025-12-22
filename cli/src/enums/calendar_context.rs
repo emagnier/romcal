@@ -5,7 +5,7 @@ use romcal_core::CalendarContext;
 /// Defines the temporal scope for calendar calculations and date ranges.
 #[derive(ValueEnum, Clone, Debug)]
 pub enum CliCalendarContext {
-    /// Civil year (January 1 to December 31)
+    /// Gregorian year (January 1 to December 31)
     Gregorian,
     /// Liturgical year (first Sunday of Advent to the day before the first Sunday of Advent of the next year)
     Liturgical,
