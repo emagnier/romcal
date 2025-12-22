@@ -22,8 +22,7 @@ use commands::show_preset;
 use error::RomcalCliError;
 
 use crate::config::Config;
-use crate::enums::liturgical_day_filter::LiturgicalDayFilterWrapper;
-use crate::enums::mass_context_filter::MassContextFilterWrapper;
+use crate::enums::FieldPath;
 use crate::enums::{CliCalendarContext, CliEasterCalculationType, CliOutputFormat, ValidationType};
 use crate::preset::create_romcal;
 
@@ -223,10 +222,10 @@ enum Commands {
         /// Year for liturgical days generation (default: current year)
         year: Option<i32>,
 
-        /// Filter to show only specific properties of liturgical days
-        /// Can be specified multiple times to include multiple properties
+        /// Filter to show only specific properties (supports dot notation for nested fields)
+        /// Examples: id, fullname, colors.key, entities.name
         #[arg(long, value_delimiter = ',')]
-        filter: Option<Vec<LiturgicalDayFilterWrapper>>,
+        filter: Option<Vec<FieldPath>>,
 
         #[command(flatten)]
         preset: PresetArgs,
@@ -242,10 +241,10 @@ enum Commands {
         /// Year for mass calendar generation (default: current year)
         year: Option<i32>,
 
-        /// Filter to show only specific properties of mass contexts
-        /// Can be specified multiple times to include multiple properties
+        /// Filter to show only specific properties (supports dot notation for nested fields)
+        /// Examples: mass_time, civil_date, optional_celebrations.id
         #[arg(long, value_delimiter = ',')]
-        filter: Option<Vec<MassContextFilterWrapper>>,
+        filter: Option<Vec<FieldPath>>,
 
         #[command(flatten)]
         preset: PresetArgs,
@@ -372,11 +371,9 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
             debug,
         } => {
             debug.init();
-            let converted_filter =
-                filter.map(|filters| filters.into_iter().map(|wrapper| wrapper.0).collect());
             days::handle(
                 year,
-                converted_filter,
+                filter,
                 preset.into_romcal(&config)?,
                 output.get_format(&config).into(),
             )
@@ -389,11 +386,9 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
             debug,
         } => {
             debug.init();
-            let converted_filter =
-                filter.map(|filters| filters.into_iter().map(|wrapper| wrapper.0).collect());
             masses::handle(
                 year,
-                converted_filter,
+                filter,
                 preset.into_romcal(&config)?,
                 output.get_format(&config).into(),
             )

@@ -1,4 +1,4 @@
-use crate::enums::{LiturgicalDayFilter, OutputFormat};
+use crate::enums::{FieldPath, OutputFormat, extract_filtered};
 use crate::error::RomcalCliError;
 use crate::utils::current_year;
 use colored::Colorize;
@@ -19,14 +19,15 @@ pub struct FilteredLiturgicalDay {
 /// Handle days command
 pub fn handle(
     year: Option<i32>,
-    filters: Option<Vec<LiturgicalDayFilter>>,
+    filters: Option<Vec<FieldPath>>,
     romcal: Romcal,
     output_format: OutputFormat,
 ) -> Result<(), RomcalCliError> {
     let year = year.unwrap_or_else(current_year);
     let calendar = romcal.generate_liturgical_calendar(year)?;
 
-    let output_data: BTreeMap<String, Vec<FilteredLiturgicalDay>> = if let Some(filters) = filters {
+    let output_data: BTreeMap<String, Vec<FilteredLiturgicalDay>> = if let Some(filters) = &filters
+    {
         calendar
             .into_iter()
             .map(|(date, days)| {
@@ -38,16 +39,8 @@ pub fn handle(
                             RomcalCliError::config_error(format!("Failed to serialize day: {}", e))
                         })?;
 
-                        let mut fields = serde_json::Map::new();
-                        if let serde_json::Value::Object(obj) = day_json {
-                            // Extract only the requested fields
-                            for filter in &filters {
-                                let field_name = filter.field_name();
-                                if let Some(value) = obj.get(field_name) {
-                                    fields.insert(field_name.to_string(), value.clone());
-                                }
-                            }
-                        }
+                        // Extract filtered fields (groups by root and merges nested selections)
+                        let fields = extract_filtered(&day_json, filters);
 
                         Ok(FilteredLiturgicalDay { fields })
                     })
