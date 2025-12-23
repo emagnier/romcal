@@ -244,6 +244,17 @@ impl Romcal {
             .map(|calendar| serde_json::to_string(&calendar).unwrap_or_default())
             .map_err(|e| JsValue::from_str(&e.to_string()))
     }
+
+    /// Get a liturgical date by its ID for a given year
+    ///
+    /// Returns date in YYYY-MM-DD format
+    #[wasm_bindgen(js_name = "getDate")]
+    pub fn get_date(&self, id: &str, year: i32) -> Result<String, JsValue> {
+        self.config
+            .inner
+            .get_date(id, year)
+            .map_err(|e| JsValue::from_str(&e.to_string()))
+    }
 }
 
 /// Create a new Romcal instance (default configuration)

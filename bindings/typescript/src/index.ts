@@ -249,6 +249,15 @@ export interface Romcal {
    * @returns A map of civil dates (YYYY-MM-DD) to mass contexts
    */
   generateMassCalendar(year: number): Promise<MassCalendar>
+
+  /**
+   * Get a liturgical date by its ID for a given year.
+   *
+   * @param id - Date ID (e.g., "easter_sunday", "christmas")
+   * @param year - The year
+   * @returns Date in YYYY-MM-DD format
+   */
+  getDate(id: string, year: number): Promise<string>
 }
 
 // ============================================================================
@@ -285,6 +294,14 @@ function createInstance(wasmInstance: wasm.Romcal): Romcal {
         return JSON.parse(json) as MassCalendar
       } catch (error) {
         throw new RomcalError(`Failed to generate mass calendar for year ${year}: ${error}`)
+      }
+    },
+
+    async getDate(id: string, year: number): Promise<string> {
+      try {
+        return wasmInstance.getDate(id, year)
+      } catch (error) {
+        throw new RomcalError(`Failed to get date '${id}' for year ${year}: ${error}`)
       }
     },
   }

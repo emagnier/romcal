@@ -20,6 +20,8 @@ pub enum RomcalError {
     DateConversionError,
     /// Validation error
     ValidationError(String),
+    /// Unknown date name
+    InvalidDateName(String),
 }
 
 impl fmt::Display for RomcalError {
@@ -46,6 +48,9 @@ impl fmt::Display for RomcalError {
             }
             RomcalError::ValidationError(msg) => {
                 write!(f, "Validation error: {}", msg)
+            }
+            RomcalError::InvalidDateName(name) => {
+                write!(f, "Unknown date name: {}", name)
             }
         }
     }

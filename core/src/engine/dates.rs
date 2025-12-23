@@ -897,6 +897,61 @@ impl LiturgicalDates {
         seasons
     }
 
+    /// Gets a liturgical date by its ID
+    ///
+    /// Returns `Some(date)` for known date IDs, `None` for unknown IDs.
+    /// This is used internally by `Romcal::get_date()` for fast date calculation.
+    pub fn get_date_by_id(&self, id: &str) -> Option<DateTime<Utc>> {
+        match id {
+            // Easter and related
+            "easter_sunday" => self.get_easter_sunday_date(None).ok(),
+            "palm_sunday" => Some(self.get_palm_sunday_date(None)),
+            "ash_wednesday" => Some(self.get_ash_wednesday_date(None)),
+            "holy_thursday" => Some(self.get_holy_thursday_date(None)),
+            "good_friday" => Some(self.get_good_friday_date(None)),
+            "holy_saturday" => Some(self.get_holy_saturday_date(None)),
+            "divine_mercy_sunday" => Some(self.get_divine_mercy_sunday_date(None)),
+            "ascension" => Some(self.get_ascension_date(None)),
+            "pentecost_sunday" => Some(self.get_pentecost_sunday_date(None)),
+            "trinity_sunday" => Some(self.get_trinity_sunday_date(None)),
+            "corpus_christi_sunday" => Some(self.get_corpus_christi_date(None)),
+            "most_sacred_heart_of_jesus" => Some(self.get_most_sacred_heart_of_jesus_date(None)),
+            "immaculate_heart_of_mary" => Some(self.get_immaculate_heart_of_mary_date(None)),
+            "mary_mother_of_the_church" => Some(self.get_mary_mother_of_the_church_date(None)),
+
+            // Christmas and related
+            "christmas" => Some(self.get_christmas_date(None)),
+            "holy_family" => Some(self.get_holy_family_date(None)),
+            "epiphany_sunday" => Some(self.get_epiphany_date(None)),
+            "baptism_of_the_lord" => Some(self.get_baptism_of_the_lord_date(None)),
+
+            // Advent
+            "first_sunday_of_advent" => Some(self.get_first_sunday_of_advent_date(None)),
+            "christ_the_king_sunday" => Some(self.get_christ_the_king_sunday_date(None)),
+
+            // Fixed feasts
+            "mary_mother_of_god" => Some(self.get_mary_mother_of_god_date(None)),
+            "presentation_of_the_lord" => Some(self.get_presentation_of_the_lord_date(None)),
+            "annunciation" => Some(self.get_annunciation_date(None)),
+            "nativity_of_john_the_baptist" => {
+                Some(self.get_nativity_of_john_the_baptist_date(None))
+            }
+            "peter_and_paul_apostles" => Some(self.get_peter_and_paul_apostles_date(None)),
+            "transfiguration" => Some(self.get_transfiguration_date(None)),
+            "assumption" => Some(self.get_assumption_date(None)),
+            "exaltation_of_the_holy_cross" => {
+                Some(self.get_exaltation_of_the_holy_cross_date(None))
+            }
+            "all_saints" => Some(self.get_all_saints_date(None)),
+            "immaculate_conception_of_mary" => {
+                Some(self.get_immaculate_conception_of_mary_date(None))
+            }
+
+            // Unknown ID
+            _ => None,
+        }
+    }
+
     /// Gets the end of seasons for a given year
     pub fn get_end_of_seasons_dates(&self, year: Option<i32>) -> HashMap<Season, DateTime<Utc>> {
         let year = year.unwrap_or(self.year);

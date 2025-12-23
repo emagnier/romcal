@@ -65,17 +65,16 @@ After building, the binary is located at:
 
 ### date
 
-Calculate a specific liturgical date. Returns date in `YYYY-MM-DD` format.
+Calculate a specific liturgical date by its ID. Returns date in `YYYY-MM-DD` format.
 
 ```bash
 romcal date easter_sunday 2025
 romcal date pentecost_sunday          # Uses current year
 romcal date easter_sunday 2025 --easter-calc julian
+romcal date ordinary_time_5_monday 2025
 ```
 
-**Available dates:**
-
-`mary_mother_of_the_church`, `epiphany_sunday`, `presentation_of_the_lord`, `annunciation`, `palm_sunday`, `easter_sunday`, `divine_mercy_sunday`, `ascension`, `pentecost_sunday`, `corpus_christi_sunday`, `immaculate_heart_of_mary`, `nativity_of_john_the_baptist`, `peter_and_paul_apostles`, `transfiguration`, `assumption`, `exaltation_of_the_holy_cross`, `all_saints`, `immaculate_conception_of_mary`
+Any date ID from the liturgical calendar can be used (e.g., `easter_sunday`, `christmas`, `ordinary_time_5_monday`).
 
 ### calendar
 

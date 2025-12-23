@@ -6,7 +6,9 @@
 use serde::{Deserialize, Serialize};
 
 use crate::engine::calendar_definition::CalendarDefinition;
+use crate::engine::dates::LiturgicalDates;
 use crate::engine::resources::Resources;
+use crate::error::RomcalError;
 use crate::types::{CalendarContext, EasterCalculationType, OrdinalFormat};
 
 // Default configuration constants
@@ -221,5 +223,111 @@ impl Romcal {
         year: i32,
     ) -> crate::RomcalResult<crate::types::mass::MassCalendar> {
         crate::engine::calendar::Calendar::new(self.clone(), year)?.generate_mass_calendar()
+    }
+
+    /// Get a liturgical date by its ID for a given year
+    ///
+    /// # Arguments
+    ///
+    /// * `id` - The date ID (e.g., "easter_sunday", "christmas")
+    /// * `year` - The year
+    ///
+    /// # Returns
+    ///
+    /// Date in YYYY-MM-DD format
+    ///
+    /// # Errors
+    ///
+    /// Returns `RomcalError::InvalidDateName` if the date ID is not found
+    pub fn get_date(&self, id: &str, year: i32) -> crate::RomcalResult<String> {
+        let dates = LiturgicalDates::new(self.clone(), year)?;
+
+        // 1. Try direct calculation for known dates
+        if let Some(date) = dates.get_date_by_id(id) {
+            return Ok(date.format("%Y-%m-%d").to_string());
+        }
+
+        // 2. Generate calendar and search by ID
+        let calendar = self.generate_liturgical_calendar(year)?;
+        for (date, days) in &calendar {
+            for day in days {
+                if day.id == id {
+                    return Ok(date.clone());
+                }
+            }
+        }
+
+        // 3. Not found
+        Err(RomcalError::InvalidDateName(id.to_string()))
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn create_test_romcal() -> Romcal {
+        Romcal::default()
+    }
+
+    #[test]
+    fn test_get_date_easter_sunday() {
+        let romcal = create_test_romcal();
+        let result = romcal.get_date("easter_sunday", 2026);
+        assert!(result.is_ok());
+        assert_eq!(result.unwrap(), "2026-04-05");
+    }
+
+    #[test]
+    fn test_get_date_christmas() {
+        let romcal = create_test_romcal();
+        let result = romcal.get_date("christmas", 2026);
+        assert!(result.is_ok());
+        assert_eq!(result.unwrap(), "2026-12-25");
+    }
+
+    #[test]
+    fn test_get_date_pentecost() {
+        let romcal = create_test_romcal();
+        let result = romcal.get_date("pentecost_sunday", 2026);
+        assert!(result.is_ok());
+        assert_eq!(result.unwrap(), "2026-05-24");
+    }
+
+    #[test]
+    fn test_get_date_ash_wednesday() {
+        let romcal = create_test_romcal();
+        let result = romcal.get_date("ash_wednesday", 2026);
+        assert!(result.is_ok());
+        assert_eq!(result.unwrap(), "2026-02-18");
+    }
+
+    #[test]
+    fn test_get_date_invalid_name() {
+        let romcal = create_test_romcal();
+        let result = romcal.get_date("invalid_date_name", 2026);
+        assert!(result.is_err());
+        match result {
+            Err(RomcalError::InvalidDateName(name)) => {
+                assert_eq!(name, "invalid_date_name");
+            }
+            _ => panic!("Expected InvalidDateName error"),
+        }
+    }
+
+    #[test]
+    fn test_get_date_from_calendar_fallback() {
+        let romcal = create_test_romcal();
+        // This date is not in direct calculation, requires calendar generation
+        let result = romcal.get_date("ordinary_time_5_monday", 2026);
+        assert!(result.is_ok());
+    }
+
+    #[test]
+    fn test_get_date_first_sunday_of_advent() {
+        let romcal = create_test_romcal();
+        let result = romcal.get_date("first_sunday_of_advent", 2026);
+        assert!(result.is_ok());
+        assert_eq!(result.unwrap(), "2026-11-29");
     }
 }

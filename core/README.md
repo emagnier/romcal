@@ -16,13 +16,17 @@ romcal-core = "4.0"
 ## Quick Start
 
 ```rust
-use romcal_core::{Romcal, LiturgicalDates};
+use romcal_core::Romcal;
 
 fn main() -> romcal_core::RomcalResult<()> {
     // Create a default configuration
     let romcal = Romcal::default();
 
-    // Generate the liturgical calendar for year 2026 (liturgical year 2025-2026)
+    // Get a specific liturgical date
+    let easter = romcal.get_date("easter_sunday", 2026)?;
+    println!("Easter 2026: {}", easter);  // 2026-04-05
+
+    // Generate the liturgical calendar for year 2026
     let calendar = romcal.generate_liturgical_calendar(2026)?;
 
     // Access a specific date
@@ -109,40 +113,29 @@ let preset = Preset {
 let romcal = Romcal::new(preset);
 ```
 
-## Calculating Liturgical Dates
+## Getting a Liturgical Date by ID
 
-Use `LiturgicalDates` to calculate specific liturgical dates without generating a full calendar:
+The `get_date` method calculates a liturgical date by its ID:
 
 ```rust
-use romcal_core::{Romcal, LiturgicalDates};
+use romcal_core::Romcal;
 
 let romcal = Romcal::default();
-let dates = LiturgicalDates::new(romcal, 2024)?;
 
-// Easter and related dates
-let easter = dates.get_easter_sunday_date_unwrap(None);
-let ash_wednesday = dates.get_ash_wednesday_date(None);
-let palm_sunday = dates.get_palm_sunday_date(None);
-let good_friday = dates.get_good_friday_date(None);
-let pentecost = dates.get_pentecost_sunday_date(None);
-let ascension = dates.get_ascension_date(None);
+// Easter-related dates
+let easter = romcal.get_date("easter_sunday", 2026)?;       // 2026-04-05
+let ash_wed = romcal.get_date("ash_wednesday", 2026)?;      // 2026-02-18
+let pentecost = romcal.get_date("pentecost_sunday", 2026)?; // 2026-05-24
 
 // Fixed feasts
-let christmas = dates.get_christmas_date(None);
-let epiphany = dates.get_epiphany_date(None);
-let assumption = dates.get_assumption_date(None);
-let all_saints = dates.get_all_saints_date(None);
+let christmas = romcal.get_date("christmas", 2026)?;        // 2026-12-25
+let all_saints = romcal.get_date("all_saints", 2026)?;      // 2026-11-01
 
-// Season dates
-let advent_dates = dates.get_all_dates_of_advent(None);
-let lent_dates = dates.get_all_dates_of_lent(None);
-let easter_dates = dates.get_all_dates_of_easter_time(None);
-let ordinary_time_dates = dates.get_all_dates_of_ordinary_time(None);
-
-// Season boundaries
-let season_starts = dates.get_start_of_seasons_dates(None);
-let season_ends = dates.get_end_of_seasons_dates(None);
+// Any date from the calendar
+let monday = romcal.get_date("ordinary_time_5_monday", 2026)?;
 ```
+
+Any date ID from the liturgical calendar can be used (e.g., `easter_sunday`, `christmas`, `ordinary_time_5_monday`).
 
 ## Generating a Liturgical Calendar
 
@@ -427,6 +420,7 @@ fn generate_calendar() -> RomcalResult<()> {
 | `InvalidConfig`           | Invalid configuration provided        |
 | `DateConversionError`     | Error converting between date formats |
 | `ValidationError(String)` | Validation failed with message        |
+| `InvalidDateName(String)` | Unknown date ID passed to `get_date`  |
 
 ## Development
 
