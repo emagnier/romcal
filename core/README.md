@@ -10,7 +10,7 @@ Add to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-romcal-core = "0.1"
+romcal-core = "4.0"
 ```
 
 ## Quick Start
