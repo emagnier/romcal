@@ -7,7 +7,7 @@
  */
 export type AllTypes = {
     $schema?:          null | string;
-    days_definitions?: DayDefinition[];
+    days_definitions?: { [key: string]: DayDefinition };
     /**
      * The unique identifier of the liturgical day
      */
@@ -23,7 +23,7 @@ export type AllTypes = {
      *
      * The entities (Saints, Blessed, or Places) linked to this liturgical day.
      */
-    entities?: Entity[] | null;
+    entities?: Entities;
     /**
      * Locale code of the resources, in BCP-47 IETF tag format
      */
@@ -59,7 +59,7 @@ export type AllTypes = {
     /**
      * The day number within the current liturgical season.
      */
-    day_of_season?: number;
+    day_of_season?: number | null;
     /**
      * The day of the week for this liturgical day.
      * Returns a number from 0 (Sunday) to 6 (Saturday).
@@ -73,7 +73,7 @@ export type AllTypes = {
     /**
      * The last day of the current liturgical season for this liturgical day.
      */
-    end_of_season?: string;
+    end_of_season?: null | string;
     /**
      * The ID of the calendar where this liturgical day is defined.
      * Indicates the source calendar in the inheritance chain.
@@ -93,16 +93,23 @@ export type AllTypes = {
      */
     is_optional?: boolean;
     /**
+     * The masses celebrated on this liturgical day.
+     * Most days have a single DayMass, but some have multiple masses
+     * (e.g., Christmas: PreviousEveningMass, NightMass, MassAtDawn, DayMass).
+     * Aliturgical days like Holy Saturday have an empty list.
+     */
+    masses?: MassInfo[];
+    /**
      * The nth occurrence of this day of the week within the current month.
      * For example, the 3rd Sunday of the month would have nth_day_of_week_in_month = 3.
      */
     nth_day_of_week_in_month?: number;
     /**
      * Contains the differences between this liturgical day and its parent definitions.
-     * Each element in the array represents the diff between two successive overrides in the
-     * inheritance chain.
+     * Each element in the array represents the diff from a parent calendar definition.
+     * The array is ordered from most general (e.g., general_roman) to most specific.
      */
-    parent_overrides?: AllTypes[];
+    parent_overrides?: ParentOverride[];
     /**
      * The liturgical periods to which this liturgical day belongs.
      */
@@ -114,7 +121,11 @@ export type AllTypes = {
     /**
      * The psalter week cycle to which this liturgical day belongs.
      */
-    psalter_week?: PsalterWeekCycleInfo;
+    psalter_week?: PsalterWeekCycle;
+    /**
+     * The localized name of the psalter week cycle to which this liturgical day belongs.
+     */
+    psalter_week_name?: string;
     /**
      * The liturgical rank for this liturgical day.
      */
@@ -126,7 +137,11 @@ export type AllTypes = {
     /**
      * The liturgical seasons to which this liturgical day belongs.
      */
-    seasons?: SeasonInfo[];
+    season?: Season | null;
+    /**
+     * The liturgical season name.
+     */
+    season_name?: null | string;
     /**
      * The first day of the current liturgical year for this liturgical day,
      * i.e. the first Sunday of Advent.
@@ -135,11 +150,15 @@ export type AllTypes = {
     /**
      * The first day of the current liturgical season for this liturgical day.
      */
-    start_of_season?: string;
+    start_of_season?: null | string;
     /**
      * The Sunday cycle to which this liturgical day belongs.
      */
-    sunday_cycle?: SundayCycleInfo;
+    sunday_cycle?: SundayCycle;
+    /**
+     * The localized name of the Sunday cycle to which this liturgical day belongs.
+     */
+    sunday_cycle_name?: string;
     /**
      * The titles for this liturgical day.
      */
@@ -149,11 +168,15 @@ export type AllTypes = {
      * Starts from `1`, except in the seasons of lent,
      * the week of Ash Wednesday to the next Saturday is counted as `0`.
      */
-    week_of_season?: number;
+    week_of_season?: number | null;
     /**
      * The weekday cycle to which this liturgical day belongs.
      */
-    weekday_cycle?: WeekdayCycleInfo;
+    weekday_cycle?: WeekdayCycle;
+    /**
+     * The localized name of the weekday cycle to which this liturgical day belongs.
+     */
+    weekday_cycle_name?: string;
 }
 
 /**
@@ -220,6 +243,74 @@ export type CommonInfo = {
  *
  * Common prayers and readings for different categories of saints and celebrations.
  * Provides standardized liturgical texts for various types of commemorations.
+ *
+ * No common.
+ *
+ * Dedication anniversary (in the Church that was Dedicated).
+ *
+ * Dedication anniversary (outside the Church that was Dedicated).
+ *
+ * Common of the Blessed Virgin Mary (Ordinary Time).
+ *
+ * Common of the Blessed Virgin Mary (Advent).
+ *
+ * Common of the Blessed Virgin Mary (Christmas Time).
+ *
+ * Common of the Blessed Virgin Mary (Easter Time).
+ *
+ * Common of Several Martyrs (outside Easter).
+ *
+ * Common of One Martyr (outside Easter).
+ *
+ * Common of Several Martyrs (Easter Time).
+ *
+ * Common of One Martyr (Easter Time).
+ *
+ * Common for Several Missionary Martyrs.
+ *
+ * Common for One Missionary Martyr.
+ *
+ * Common for Virgin Martyrs.
+ *
+ * Common for Holy Woman Martyrs.
+ *
+ * Common for a Pope or for a Bishop
+ *
+ * Common for a Bishop
+ *
+ * Common for Several Pastors
+ *
+ * Common for One Pastor
+ *
+ * Common for one Founder
+ *
+ * Common for several Founders
+ *
+ * Common for Missionaries
+ *
+ * Common for Doctors of the Church.
+ *
+ * Common for Several Virgins
+ *
+ * Common for One Virgin
+ *
+ * Common for Several Holy Men and Women
+ *
+ * Common for One Holy Man or Woman
+ *
+ * Common for an Abbot
+ *
+ * Common for a Monk
+ *
+ * Common for a Nun
+ *
+ * Common for Religious
+ *
+ * Common for Those Who Practiced Works of Mercy
+ *
+ * Common for Educators
+ *
+ * Common for Holy Women
  */
 export enum Common {
     BlessedVirginMaryAdvent = "BLESSED_VIRGIN_MARY__ADVENT",
@@ -279,6 +370,8 @@ export enum Common {
  * Nth weekday of a specific month
  *
  * Last weekday of a specific month
+ *
+ * Inherited from the proper of time
  */
 export type DateDef = {
     /**
@@ -315,7 +408,43 @@ export type DateDef = {
  * The date function to calculate the base date
  *
  * Date function for calculating liturgical dates.
- * Represents movable feasts and special celebrations that require calculation.
+ *
+ * Represents movable feasts and special celebrations that require calculation
+ * based on Easter or other variable dates.
+ *
+ * Monday after Pentecost.
+ *
+ * Sunday between January 2 and 8 (or January 6 if not transferred).
+ *
+ * February 2 (Candlemas).
+ *
+ * March 25 (may be transferred if in Holy Week or Easter Octave).
+ *
+ * Sunday before Easter.
+ *
+ * First Sunday after the Paschal Full Moon.
+ *
+ * Second Sunday of Easter.
+ *
+ * Saturday after the Second Sunday after Pentecost.
+ *
+ * Seventh Sunday after Easter.
+ *
+ * Thursday or Sunday after Trinity Sunday.
+ *
+ * June 24.
+ *
+ * June 29.
+ *
+ * August 6.
+ *
+ * August 15.
+ *
+ * September 14.
+ *
+ * November 1.
+ *
+ * December 8.
  */
 export enum DateFn {
     AllSaints = "ALL_SAINTS",
@@ -369,6 +498,8 @@ export type DateDefException = {
  * Nth weekday of a specific month
  *
  * Last weekday of a specific month
+ *
+ * Inherited from the proper of time
  *
  * Date definition with offset
  *
@@ -455,8 +586,10 @@ export type DayDefinition = {
      */
     allow_similar_rank_items?: boolean | null;
     /**
-     * The liturgical color(s) of the liturgical day
-     * @deprecated
+     * The liturgical color(s) of the liturgical day.
+     *
+     * **Deprecated:** Rely on the `titles` field of entities instead to determine the
+     * liturgical color(s).
      */
     colors?: ColorsUnion;
     /**
@@ -466,7 +599,7 @@ export type DayDefinition = {
      * Blessed
      * Virgin Mary.
      */
-    commons_def?: CommonsDef;
+    commons_def?: CommonsDefUnion;
     /**
      * The custom locale ID for this date definition in this calendar
      */
@@ -487,11 +620,7 @@ export type DayDefinition = {
     /**
      * The entities (Saints, Blessed, or Places) linked from the Entity catalog
      */
-    entities?: EntityPointer[] | null;
-    /**
-     * The unique identifier of the day definition
-     */
-    id: string;
+    entities?: EntityRef[] | null;
     /**
      * Holy days of obligation are days on which the faithful are expected to attend Mass
      * and engage in rest from work and recreation
@@ -511,6 +640,10 @@ export type DayDefinition = {
      */
     is_optional?: boolean | null;
     /**
+     * The masses definitions for this liturgical day
+     */
+    masses?: MassesDefinitions | null;
+    /**
      * The precedence type of the liturgical day
      */
     precedence?: Precedence | null;
@@ -521,8 +654,10 @@ export type DayDefinition = {
 }
 
 /**
- * The liturgical color(s) of the liturgical day
- * @deprecated
+ * The liturgical color(s) of the liturgical day.
+ *
+ * **Deprecated:** Rely on the `titles` field of entities instead to determine the
+ * liturgical color(s).
  */
 export type ColorsUnion = Color[] | Color | null;
 
@@ -533,11 +668,57 @@ export type ColorsUnion = Color[] | Color | null;
  * Blessed
  * Virgin Mary.
  */
-export type CommonsDef = CommonDefinition[] | CommonDefinition | null;
+export type CommonsDefUnion = CommonDefinition[] | CommonDefinition | null;
 
 /**
  * Common definition for simplified categorization.
  * Provides a simplified version of the Common enum for easier classification.
+ *
+ * No common.
+ *
+ * Dedication anniversary (in the Church that was Dedicated).
+ *
+ * Dedication anniversary (outside the Church that was Dedicated).
+ *
+ * Common of the Blessed Virgin Mary.
+ *
+ * Common for Martyrs.
+ *
+ * Common for Missionary Martyrs.
+ *
+ * Common for Virgin Martyrs.
+ *
+ * Common for Holy Woman Martyrs.
+ *
+ * Common for Pastors.
+ *
+ * Common for Popes.
+ *
+ * Common for Bishops.
+ *
+ * Common for Founders.
+ *
+ * Common for Missionaries.
+ *
+ * Common for Doctors of the Church.
+ *
+ * Common for Virgins.
+ *
+ * Common for Holy Men and Women.
+ *
+ * Common for Abbots.
+ *
+ * Common for Monks.
+ *
+ * Common for Nuns.
+ *
+ * Common for Religious.
+ *
+ * Common for Those Who Practiced Works of Mercy.
+ *
+ * Common for Educators.
+ *
+ * Common for Holy Women.
  */
 export enum CommonDefinition {
     Abbots = "ABBOTS",
@@ -573,6 +754,8 @@ export enum CommonDefinition {
  * Nth weekday of a specific month
  *
  * Last weekday of a specific month
+ *
+ * Inherited from the proper of time
  */
 export type DateDefClass = {
     /**
@@ -611,11 +794,11 @@ export type DateDefClass = {
 export type DateDefExceptions = DateDefException[] | DateDefException | null;
 
 /**
- * A pointer to an entity in the entity catalog.
+ * A reference to an entity in the entity catalog.
  * Can either reference an existing entity by ID or define a custom entity with additional
  * properties.
  */
-export type EntityPointer = EntityOverride | string;
+export type EntityRef = EntityOverride | string;
 
 /**
  * Custom entity definition with additional properties specific to a liturgical day
@@ -747,6 +930,317 @@ export type CompoundTitle = {
 }
 
 /**
+ * All mass definitions for a liturgical day
+ */
+export type MassesDefinitions = {
+    /**
+     * Celebration of the Passion - special celebration of Christ's passion
+     */
+    celebration_of_the_passion?: MassCycleDefinition;
+    /**
+     * Chrism Mass - Mass where holy oils are blessed, typically on Holy Thursday morning
+     */
+    chrism_mass?: MassCycleDefinition;
+    /**
+     * Day Mass - regular Mass celebrated during the day
+     */
+    day_mass?: MassCycleDefinition;
+    /**
+     * Easter Vigil - the most important Mass of the liturgical year, celebrated on Holy
+     * Saturday night
+     */
+    easter_vigil?: MassCycleDefinition;
+    /**
+     * Evening Mass of the Lord's Supper - Mass celebrated on Holy Thursday evening
+     */
+    evening_mass_of_the_lords_supper?: MassCycleDefinition;
+    /**
+     * Mass at Dawn - Mass celebrated at dawn, particularly on Easter Sunday
+     */
+    mass_at_dawn?: MassCycleDefinition;
+    /**
+     * Mass of the Passion - Mass focusing on Christ's passion, beginning with the procession
+     * with palms
+     */
+    mass_of_the_passion?: MassCycleDefinition;
+    /**
+     * Morning Mass - Mass celebrated in the morning
+     */
+    morning_mass?: MassCycleDefinition;
+    /**
+     * Night Mass - Mass celebrated during the night hours
+     */
+    night_mass?: MassCycleDefinition;
+    /**
+     * Previous Evening Mass - Mass celebrated the evening before a major feast
+     */
+    previous_evening_mass?: MassCycleDefinition;
+}
+
+/**
+ * Celebration of the Passion - special celebration of Christ's passion
+ *
+ * Mass contents for a specific mass time, organized by liturgical cycle
+ *
+ * Chrism Mass - Mass where holy oils are blessed, typically on Holy Thursday morning
+ *
+ * Day Mass - regular Mass celebrated during the day
+ *
+ * Easter Vigil - the most important Mass of the liturgical year, celebrated on Holy
+ * Saturday night
+ *
+ * Evening Mass of the Lord's Supper - Mass celebrated on Holy Thursday evening
+ *
+ * Mass at Dawn - Mass celebrated at dawn, particularly on Easter Sunday
+ *
+ * Mass of the Passion - Mass focusing on Christ's passion, beginning with the procession
+ * with palms
+ *
+ * Morning Mass - Mass celebrated in the morning
+ *
+ * Night Mass - Mass celebrated during the night hours
+ *
+ * Previous Evening Mass - Mass celebrated the evening before a major feast
+ */
+export type MassCycleDefinition = {
+    /**
+     * Invariant content that applies to all cycles
+     */
+    invariant?: MassContent;
+    /**
+     * Year 1 of the weekday cycle (Cycle I)
+     */
+    year_1?: MassContent;
+    /**
+     * Year 2 of the weekday cycle (Cycle II)
+     */
+    year_2?: MassContent;
+    /**
+     * Year A of the Sunday cycle
+     */
+    year_a?: MassContent;
+    /**
+     * Combined years A and B of the Sunday cycle
+     */
+    year_a_b?: MassContent;
+    /**
+     * Combined years A and C of the Sunday cycle
+     */
+    year_a_c?: MassContent;
+    /**
+     * Year B of the Sunday cycle
+     */
+    year_b?: MassContent;
+    /**
+     * Combined years B and C of the Sunday cycle
+     */
+    year_b_c?: MassContent;
+    /**
+     * Year C of the Sunday cycle
+     */
+    year_c?: MassContent;
+}
+
+/**
+ * Invariant content that applies to all cycles
+ *
+ * Content of a mass for a specific liturgical cycle
+ * Maps mass parts (readings, psalms, prayers, antiphons, etc.) to their texts
+ *
+ * Year 1 of the weekday cycle (Cycle I)
+ *
+ * Year 2 of the weekday cycle (Cycle II)
+ *
+ * Year A of the Sunday cycle
+ *
+ * Combined years A and B of the Sunday cycle
+ *
+ * Combined years A and C of the Sunday cycle
+ *
+ * Year B of the Sunday cycle
+ *
+ * Combined years B and C of the Sunday cycle
+ *
+ * Year C of the Sunday cycle
+ */
+export type MassContent = {
+    /**
+     * Alleluia - acclamation before the Gospel
+     */
+    alleluia?: string;
+    /**
+     * Canticle - biblical canticle
+     */
+    canticle?: string;
+    /**
+     * Collect - opening prayer of the Mass
+     */
+    collect?: string;
+    /**
+     * Communion Antiphon - chant during communion
+     */
+    communion_antiphon?: string;
+    /**
+     * Canticle 3 (Easter Vigil)
+     */
+    easter_vigil_canticle_3?: string;
+    /**
+     * Canticle 5 (Easter Vigil)
+     */
+    easter_vigil_canticle_5?: string;
+    /**
+     * Epistle - reading from the epistles (Easter Vigil)
+     */
+    easter_vigil_epistle?: string;
+    /**
+     * Psalm 2 (Easter Vigil)
+     */
+    easter_vigil_psalm_2?: string;
+    /**
+     * Psalm 4 (Easter Vigil)
+     */
+    easter_vigil_psalm_4?: string;
+    /**
+     * Psalm 6 (Easter Vigil)
+     */
+    easter_vigil_psalm_6?: string;
+    /**
+     * Psalm 7 (Easter Vigil)
+     */
+    easter_vigil_psalm_7?: string;
+    /**
+     * Reading 3 - third reading (Easter Vigil)
+     */
+    easter_vigil_reading_3?: string;
+    /**
+     * Reading 4 - fourth reading (Easter Vigil)
+     */
+    easter_vigil_reading_4?: string;
+    /**
+     * Reading 5 - fifth reading (Easter Vigil)
+     */
+    easter_vigil_reading_5?: string;
+    /**
+     * Reading 6 - sixth reading (Easter Vigil)
+     */
+    easter_vigil_reading_6?: string;
+    /**
+     * Reading 7 - seventh reading (Easter Vigil)
+     */
+    easter_vigil_reading_7?: string;
+    /**
+     * Entrance Antiphon - opening chant of the Mass
+     */
+    entrance_antiphon?: string;
+    /**
+     * Gospel - reading from the Gospels
+     */
+    gospel?: string;
+    /**
+     * Messianic entry reading (during the procession with palms, before the Mass of the Passion)
+     */
+    messianic_entry?: string;
+    /**
+     * Prayer after Communion - concluding prayer
+     */
+    prayer_after_communion?: string;
+    /**
+     * Prayer over the Offerings - prayer during the offertory
+     */
+    prayer_over_the_offerings?: string;
+    /**
+     * Prayer over the People - blessing over the congregation
+     */
+    prayer_over_the_people?: string;
+    /**
+     * Preface - introduction to the Eucharistic Prayer
+     */
+    preface?: string;
+    /**
+     * Psalm - responsorial psalm
+     */
+    psalm?: string;
+    /**
+     * Reading 1 - first reading (usually from the Old Testament)
+     */
+    reading_1?: string;
+    /**
+     * Reading 2 - second reading (usually from the New Testament)
+     */
+    reading_2?: string;
+    /**
+     * Sequence - special chant on certain feasts
+     */
+    sequence?: string;
+    /**
+     * Solemn Blessing - special blessing on certain occasions
+     */
+    solemn_blessing?: string;
+}
+
+/**
+ * 1 - The Paschal Triduum of the Passion and Resurrection of the Lord.
+ *
+ * 2 - The Nativity of the Lord, the Epiphany, the Ascension, or Pentecost.
+ *
+ * 2 - A Sunday of Advent, Lent, or Easter.
+ *
+ * 2 - Ash Wednesday.
+ *
+ * 2 - A weekday of Holy Week from Monday up to and including Thursday.
+ *
+ * 2 - A day within the Octave of Easter.
+ *
+ * 3 - A Solemnity inscribed in the General Calendar, whether of the Lord, of the Blessed
+ * Virgin Mary, or of a Saint.
+ *
+ * 3 - The Commemoration of All the Faithful Departed.
+ *
+ * 4a - A proper Solemnity of the principal Patron of the place, city, or state.
+ *
+ * 4b - The Solemnity of the dedication and of the anniversary of the dedication of the own
+ * church.
+ *
+ * 4c - The solemnity of the title of the own church.
+ *
+ * 4d - A Solemnity either of the Title or of the Founder or of the principal Patron of an
+ * Order or Congregation.
+ *
+ * 5 - A Feast of the Lord inscribed in the General Calendar.
+ *
+ * 6 - A Sunday of Christmas Time or a Sunday in Ordinary Time.
+ *
+ * 7 - A Feast of the Blessed Virgin Mary or of a Saint in the General Calendar.
+ *
+ * 8a - The Proper Feast of the principal Patron of the diocese.
+ *
+ * 8b - The Proper Feast of the anniversary of the dedication of the cathedral church.
+ *
+ * 8c - The Proper Feast of the principal Patron of a region or province, or a country, or
+ * of a wider territory.
+ *
+ * 8d - The Proper Feast of the Title, Founder, or principal Patron of an Order or
+ * Congregation.
+ *
+ * 8e - Other Feast, proper to an individual church.
+ *
+ * 8f - Other Proper Feast inscribed in the Calendar of each diocese or Order or
+ * Congregation.
+ *
+ * 9 - Privileged Weekday.
+ *
+ * 10 - Obligatory Memorials in the General Calendar.
+ *
+ * 11a - Proper Obligatory Memorial of a secondary Patron of the place, diocese, region, or
+ * religious province.
+ *
+ * 11b - Other Proper Obligatory Memorial inscribed in the Calendar of each diocese, or
+ * Order or congregation.
+ *
+ * 12 - Optional Memorial.
+ *
+ * 13 - Weekday.
+ *
  * Liturgical precedence levels for determining which celebration takes priority.
  * Defines the hierarchical order of liturgical celebrations according to UNLY norms.
  *
@@ -782,10 +1276,11 @@ export enum Precedence {
     WeekdayOfHolyWeek2 = "WEEKDAY_OF_HOLY_WEEK_2",
 }
 
+export type Entities = Entity[] | { [key: string]: Entity } | null;
+
 export type Entity = {
     /**
-     * Internal notes
-     * @private
+     * Internal notes (not serialized).
      */
     _todo?: string[] | null;
     /**
@@ -861,7 +1356,7 @@ export type Entity = {
     /**
      * The unique identifier of the entity
      */
-    id: string;
+    id?: null | string;
     /**
      * The short name of the entity, without the canonization level and titles.
      */
@@ -880,7 +1375,8 @@ export type Entity = {
     titles?: Title[] | null;
     /**
      * The type of the entity.
-     * @default EntityType.Person
+     *
+     * Defaults to `EntityType::Person`.
      */
     type?: EntityType | null;
 }
@@ -951,6 +1447,65 @@ export enum EntityType {
 }
 
 /**
+ * Information about a mass celebration for a liturgical day.
+ * Contains the type of mass and its localized name.
+ */
+export type MassInfo = {
+    /**
+     * The localized name of the mass type (translation key in snake_case)
+     */
+    name: string;
+    /**
+     * The type of mass (e.g., DayMass, EasterVigil, etc.)
+     * Serialized as SCREAMING_SNAKE_CASE (e.g., "DAY_MASS")
+     */
+    type: MassTime;
+}
+
+/**
+ * The type of mass (e.g., DayMass, EasterVigil, etc.)
+ * Serialized as SCREAMING_SNAKE_CASE (e.g., "DAY_MASS")
+ *
+ * Times of Mass celebrations in the liturgical calendar.
+ * Different Masses are celebrated at various times and occasions throughout the liturgical
+ * year.
+ *
+ * Easter Vigil - the most important Mass of the liturgical year, celebrated on Holy
+ * Saturday night
+ *
+ * Previous Evening Mass - Mass celebrated the evening before a major feast
+ *
+ * Night Mass - Mass celebrated during the night hours
+ *
+ * Mass at Dawn - Mass celebrated at dawn, particularly on Easter Sunday
+ *
+ * Morning Mass - Mass celebrated in the morning
+ *
+ * Mass of the Passion - Mass focusing on Christ's passion, beginning with the procession
+ * with palms
+ *
+ * Celebration of the Passion - special celebration of Christ's passion
+ *
+ * Day Mass - regular Mass celebrated during the day
+ *
+ * Chrism Mass - Mass where holy oils are blessed, typically on Holy Thursday morning
+ *
+ * Evening Mass of the Lord's Supper - Mass celebrated on Holy Thursday evening
+ */
+export enum MassTime {
+    CelebrationOfThePassion = "celebration_of_the_passion",
+    ChrismMass = "chrism_mass",
+    DayMass = "day_mass",
+    EasterVigil = "easter_vigil",
+    EveningMassOfTheLordsSupper = "evening_mass_of_the_lords_supper",
+    MassAtDawn = "mass_at_dawn",
+    MassOfThePassion = "mass_of_the_passion",
+    MorningMass = "morning_mass",
+    NightMass = "night_mass",
+    PreviousEveningMass = "previous_evening_mass",
+}
+
+/**
  * Metadata for a calendar.
  * Contains essential information about the calendar's type and jurisdiction.
  *
@@ -979,9 +1534,17 @@ export type ResourcesMetadata = {
      */
     months?: { [key: string]: string } | null;
     /**
-     * Ordinal numbers (1st, 2nd, 3rd, etc.) in the locale language
+     * Format for displaying ordinal numbers (defaults to Numeric if not specified)
      */
-    ordinals?: { [key: string]: string } | null;
+    ordinal_format?: OrdinalFormat | null;
+    /**
+     * Ordinal numbers as words (first, second, third, etc.) in the locale language
+     */
+    ordinals_letters?: { [key: string]: string } | null;
+    /**
+     * Ordinal numbers as numeric with suffix (1st, 2nd, 3rd, etc.) in the locale language
+     */
+    ordinals_numeric?: { [key: string]: string } | null;
     /**
      * Liturgical period names in the locale language
      */
@@ -1101,17 +1664,59 @@ export enum CalendarJurisdiction {
 }
 
 /**
+ * Ordinals displayed as words
+ *
+ * Ordinals displayed as numbers with suffixes (default)
+ */
+export enum OrdinalFormat {
+    Letters = "letters",
+    Numeric = "numeric",
+}
+
+/**
  * Liturgical period names in the locale language.
  */
 export type PeriodsMetadata = {
     /**
-     * Epiphany period name
+     * Christmas Octave period name
      */
-    epiphany?: null | string;
+    christmas_octave?: null | string;
+    /**
+     * Christmas to Presentation of the Lord period name
+     */
+    christmas_to_presentation_of_the_lord?: null | string;
+    /**
+     * Days before Epiphany period name
+     */
+    days_before_epiphany?: null | string;
+    /**
+     * Days from Epiphany period name
+     */
+    days_from_epiphany?: null | string;
+    /**
+     * Early Ordinary Time period name
+     */
+    early_ordinary_time?: null | string;
+    /**
+     * Easter Octave period name
+     */
+    easter_octave?: null | string;
     /**
      * Holy Week period name
      */
     holy_week?: null | string;
+    /**
+     * Late Ordinary Time period name
+     */
+    late_ordinary_time?: null | string;
+    /**
+     * Paschal Triduum period name
+     */
+    paschal_triduum?: null | string;
+    /**
+     * Presentation of the Lord to Holy Thursday period name
+     */
+    presentation_of_the_lord_to_holy_thursday?: null | string;
 }
 
 /**
@@ -1347,10 +1952,131 @@ export enum CalendarType {
 }
 
 /**
- * Configuration options specific to this calendar.
+ * Represents the differences between a liturgical day definition and its parent definition.
+ * This is a lightweight structure that only contains fields that can be overridden.
+ */
+export type ParentOverride = {
+    /**
+     * The allow_similar_rank_items flag if it was changed
+     */
+    allow_similar_rank_items?: boolean | null;
+    /**
+     * The colors if they were changed
+     */
+    colors?: ColorInfo[] | null;
+    /**
+     * The commons definition if it was changed
+     */
+    commons_def?: CommonDefinition[] | null;
+    /**
+     * The date definition if it was changed
+     */
+    date_def?: DateDefClass | null;
+    /**
+     * The date exceptions if they were changed
+     */
+    date_exceptions?: DateDefException[] | null;
+    /**
+     * The ID of the calendar from which this override originates
+     */
+    from_calendar_id: string;
+    /**
+     * The is_holy_day_of_obligation flag if it was changed
+     */
+    is_holy_day_of_obligation?: boolean | null;
+    /**
+     * The is_optional flag if it was changed
+     */
+    is_optional?: boolean | null;
+    /**
+     * The precedence if it was changed
+     */
+    precedence?: Precedence | null;
+    /**
+     * The rank if it was changed
+     */
+    rank?: Rank | null;
+    /**
+     * The titles if they were changed
+     */
+    titles?: TitlesUnion;
+}
+
+/**
+ * Solemnities are counted among the most important days, whose celebration
+ * begins with First Vespers (Evening Prayer I) on the preceding day. Some Solemnities
+ * are also endowed with their own Vigil Mass, which is to be used on the evening of the
+ * preceding day, if an evening Mass is celebrated. (UNLY #11)
+ *
+ * On the first day of each week, which is known as the Day of the Lord or the Lord's
+ * Day, the Church, by an apostolic tradition that draws its origin from the very day of
+ * the Resurrection of Christ, celebrates the Paschal Mystery. Hence, Sunday must be
+ * considered the primordial feast day. (UNLY #4)
+ *
+ * Feasts are celebrated within the limits of the natural day; accordingly they have
+ * no First Vespers (Evening Prayer I), except in the case of Feasts of the Lord that fall
+ * on a Sunday in Ordinary Time or in Christmas Time and which replace the Sunday
+ * Office. (UNLY #13)
+ *
+ * **Obligatory memorials** are liturgical commemorations of saints, events, or aspects of
+ * the
+ * faith. Their observance is mandatory and integrated into the celebration of the occurring
+ * weekday, following the liturgical norms outlined in the General Instruction of the Roman
+ * Missal
+ * and the Liturgy of the Hours.
+ * When an **obligatory memorial** falls on a weekday during the liturgical season of Lent
+ * or a
+ * privileged weekday of Advent, it must only be celebrated as an **optional memorial**, as
+ * Lent
+ * and Advent have their own specific liturgical observances that take precedence.
+ *
+ * **Optional memorials** are liturgical commemorations of saints, events, or aspects of the
+ * faith, but they are not obligatory.
+ * Their observance is integrated into the celebration of the occurring weekday, adhering to
+ * the
+ * liturgical norms provided in the General Instruction of the Roman Missal and the Liturgy
+ * of
+ * the Hours.
+ * In cases where multiple **optional memorials** are designated on the same day in the
+ * liturgical
+ * calendar, only one of them may be celebrated, and the others must be omitted (UNLY #14).
+ * This allows for some flexibility in choosing which optional memorial to commemorate when
+ * multiple options are available.
+ *
+ * The days of the week that follow Sunday are called weekdays; however, they are
+ * celebrated differently according to the importance of each.
+ *
+ * a. Ash Wednesday and the weekdays of Holy Week, from Monday up to and including
+ * Thursday, take precedence over all other celebrations.
+ * b. The weekdays of Advent from 17 December up to and including 24 December
+ * and all the weekdays of Lent have precedence over Obligatory Memorials.
+ * c. Other weekdays give way to all Solemnities and Feasts and are combined with
+ * Memorials.
+ *
+ * (UNLY #16)
+ *
+ * Liturgical rank indicating the importance and celebration style of a liturgical day
+ *
+ * The liturgical rank for this liturgical day.
+ */
+export enum Rank {
+    Feast = "FEAST",
+    Memorial = "MEMORIAL",
+    OptionalMemorial = "OPTIONAL_MEMORIAL",
+    Solemnity = "SOLEMNITY",
+    Sunday = "SUNDAY",
+    Weekday = "WEEKDAY",
+}
+
+/**
+ * Configuration options for "particular" (local/diocesan) calendars.
+ *
+ * In liturgical terminology, a "particular" calendar is one that applies to a specific
+ * region, diocese, or religious community, as opposed to the General Roman Calendar
+ * which applies universally.
+ *
  * These settings can override or extend the default Romcal configuration or any parent
- * calendar
- * configuration.
+ * calendar configuration.
  */
 export type ParticularConfig = {
     /**
@@ -1414,6 +2140,9 @@ export type PeriodInfo = {
  *
  * Holy Week (Palm Sunday to Holy Saturday)
  *
+ * Paschal Triduum (start from the Thursday of the Lord's Supper to the Easter Sunday
+ * Vespers)
+ *
  * The eight days following Easter Sunday
  *
  * Early Ordinary Time (after the Presentation of the Lord to the day before Ash Wednesday)
@@ -1429,27 +2158,12 @@ export enum Period {
     EasterOctave = "EASTER_OCTAVE",
     HolyWeek = "HOLY_WEEK",
     LateOrdinaryTime = "LATE_ORDINARY_TIME",
+    PaschalTriduum = "PASCHAL_TRIDUUM",
     PresentationOfTheLordToHolyThursday = "PRESENTATION_OF_THE_LORD_TO_HOLY_THURSDAY",
 }
 
 /**
  * The psalter week cycle to which this liturgical day belongs.
- *
- * Psalter week cycle information with localized name.
- */
-export type PsalterWeekCycleInfo = {
-    /**
-     * The psalter week cycle key
-     */
-    key: PsalterWeekCycle;
-    /**
-     * The localized name of the psalter week cycle
-     */
-    name: string;
-}
-
-/**
- * The psalter week cycle key
  *
  * [GILH §133] The four-week cycle of the psalter is coordinated with the liturgical year in
  * such a way that
@@ -1467,98 +2181,13 @@ export type PsalterWeekCycleInfo = {
  * Week 4
  */
 export enum PsalterWeekCycle {
-    Week1 = "WEEK1",
-    Week2 = "WEEK2",
-    Week3 = "WEEK3",
-    Week4 = "WEEK4",
+    Week1 = "WEEK_1",
+    Week2 = "WEEK_2",
+    Week3 = "WEEK_3",
+    Week4 = "WEEK_4",
 }
 
 /**
- * The liturgical rank for this liturgical day.
- *
- * Liturgical rank indicating the importance and celebration style of a liturgical day
- *
- * Solemnities are counted among the most important days, whose celebration
- * begins with First Vespers (Evening Prayer I) on the preceding day. Some Solemnities
- * are also endowed with their own Vigil Mass, which is to be used on the evening of the
- * preceding day, if an evening Mass is celebrated. (UNLY #11)
- *
- * On the first day of each week, which is known as the Day of the Lord or the Lord's
- * Day, the Church, by an apostolic tradition that draws its origin from the very day of
- * the Resurrection of Christ, celebrates the Paschal Mystery. Hence, Sunday must be
- * considered the primordial feast day. (UNLY #4)
- *
- * Feasts are celebrated within the limits of the natural day; accordingly they have
- * no First Vespers (Evening Prayer I), except in the case of Feasts of the Lord that fall
- * on a Sunday in Ordinary Time or in Christmas Time and which replace the Sunday
- * Office. (UNLY #13)
- *
- * **Obligatory memorials** are liturgical commemorations of saints, events, or aspects of
- * the
- * faith. Their observance is mandatory and integrated into the celebration of the occurring
- * weekday, following the liturgical norms outlined in the General Instruction of the Roman
- * Missal
- * and the Liturgy of the Hours.
- * When an **obligatory memorial** falls on a weekday during the liturgical season of Lent
- * or a
- * privileged weekday of Advent, it must only be celebrated as an **optional memorial**, as
- * Lent
- * and Advent have their own specific liturgical observances that take precedence.
- *
- * **Optional memorials** are liturgical commemorations of saints, events, or aspects of the
- * faith, but they are not obligatory.
- * Their observance is integrated into the celebration of the occurring weekday, adhering to
- * the
- * liturgical norms provided in the General Instruction of the Roman Missal and the Liturgy
- * of
- * the Hours.
- * In cases where multiple **optional memorials** are designated on the same day in the
- * liturgical
- * calendar, only one of them may be celebrated, and the others must be omitted (UNLY #14).
- * This allows for some flexibility in choosing which optional memorial to commemorate when
- * multiple options are available.
- *
- * The days of the week that follow Sunday are called weekdays; however, they are
- * celebrated differently according to the importance of each.
- *
- * a. Ash Wednesday and the weekdays of Holy Week, from Monday up to and including
- * Thursday, take precedence over all other celebrations.
- * b. The weekdays of Advent from 17 December up to and including 24 December
- * and all the weekdays of Lent have precedence over Obligatory Memorials.
- * c. Other weekdays give way to all Solemnities and Feasts and are combined with
- * Memorials.
- *
- * (UNLY #16)
- */
-export enum Rank {
-    Feast = "FEAST",
-    Memorial = "MEMORIAL",
-    OptionalMemorial = "OPTIONAL_MEMORIAL",
-    Solemnity = "SOLEMNITY",
-    Sunday = "SUNDAY",
-    Weekday = "WEEKDAY",
-}
-
-/**
- * Liturgical season information with localized name.
- */
-export type SeasonInfo = {
-    /**
-     * The season key
-     */
-    key: Season;
-    /**
-     * The localized name of the season
-     */
-    name: string;
-}
-
-/**
- * The season key
- *
- * Liturgical seasons of the Church year.
- * Represents the major periods that structure the liturgical calendar.
- *
  * Advent
  *
  * Christmas Time
@@ -1582,22 +2211,6 @@ export enum Season {
 
 /**
  * The Sunday cycle to which this liturgical day belongs.
- *
- * Sunday cycle information with localized name.
- */
-export type SundayCycleInfo = {
-    /**
-     * The Sunday cycle key
-     */
-    key: SundayCycle;
-    /**
-     * The localized name of the Sunday cycle
-     */
-    name: string;
-}
-
-/**
- * The Sunday cycle key
  *
  * A three-year cycle for Sunday Mass readings (and some solemnities), designated by A, B,
  * or C.
@@ -1629,22 +2242,6 @@ export type TitlesDef = Title[] | CompoundTitle;
 /**
  * The weekday cycle to which this liturgical day belongs.
  *
- * Weekday cycle information with localized name.
- */
-export type WeekdayCycleInfo = {
-    /**
-     * The weekday cycle key
-     */
-    key: WeekdayCycle;
-    /**
-     * The localized name of the weekday cycle
-     */
-    name: string;
-}
-
-/**
- * The weekday cycle key
- *
  * A two-year cycle for the weekday Mass readings (also called Cycle I and Cycle II).
  * Odd-numbered years are the Cycle I (year 1); even-numbered ones are the Cycle II (year
  * 2).
@@ -1654,6 +2251,6 @@ export type WeekdayCycleInfo = {
  * Year 2 (Cycle II)
  */
 export enum WeekdayCycle {
-    Year1 = "YEAR1",
-    Year2 = "YEAR2",
+    Year1 = "YEAR_1",
+    Year2 = "YEAR_2",
 }

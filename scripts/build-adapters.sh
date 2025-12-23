@@ -37,8 +37,9 @@ build_wasm_adapter() {
     echo "🔨 Building WASM adapter..."
     cd "$PROJECT_ROOT/core/adapters/wasm"
 
-    # Build with wasm-pack
-    wasm-pack build --target nodejs --out-dir ../../../bindings/typescript/pkg
+    # Build with wasm-pack using 'web' target for universal compatibility
+    # The 'web' target generates an init() function that works in all environments
+    wasm-pack build --target web --out-dir ../../../bindings/typescript/pkg
 
     echo "✅ WASM adapter built successfully!"
     echo "📦 Output location: bindings/typescript/pkg/"

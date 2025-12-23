@@ -1,14 +1,13 @@
 [package]
 name = "romcal-core-wasm"
 version = "4.0.0"
-edition = "2021"
-description = "WASM adapter for romcal-core"
-authors = ["romcal contributors"]
-license = "MIT"
+edition = "2024"
+authors = ["Étienne Magnier <etienne.magnier@gmail.com>"]
+description = "WebAssembly bindings for romcal-core liturgical calendar library"
+license = "Apache-2.0"
 repository = "https://github.com/romcal/romcal"
-homepage = "https://romcal.netlify.app"
-keywords = ["liturgical", "calendar", "catholic", "wasm"]
-categories = ["date-and-time", "web-programming"]
+keywords = ["liturgical", "calendar", "catholic", "wasm", "webassembly"]
+categories = ["date-and-time", "wasm", "web-programming"]
 
 [lib]
 crate-type = ["cdylib"]

@@ -181,7 +181,7 @@
       "additionalProperties": false
     },
     "EasterCalculationType": {
-      "description": "The type of Easter calculation",
+      "description": "Easter date calculation method.\n\nDetermines which algorithm to use for calculating the date of Easter Sunday,\nwhich is the basis for most movable feasts in the liturgical calendar.",
       "oneOf": [
         {
           "description": "Gregorian calculation (default)",
@@ -300,7 +300,7 @@
           ]
         },
         "colors": {
-          "description": "The liturgical color(s) of the liturgical day\n@deprecated",
+          "description": "The liturgical color(s) of the liturgical day.\n\n**Deprecated:** Rely on the `titles` field of entities instead to determine the liturgical color(s).",
           "anyOf": [
             {
               "$ref": "#/definitions/ColorsDef"
@@ -456,26 +456,93 @@
       "maximum": 255
     },
     "DateFn": {
-      "description": "Date function for calculating liturgical dates.\nRepresents movable feasts and special celebrations that require calculation.",
-      "type": "string",
-      "enum": [
-        "MARY_MOTHER_OF_THE_CHURCH",
-        "EPIPHANY_SUNDAY",
-        "PRESENTATION_OF_THE_LORD",
-        "ANNUNCIATION",
-        "PALM_SUNDAY",
-        "EASTER_SUNDAY",
-        "DIVINE_MERCY_SUNDAY",
-        "IMMACULATE_HEART_OF_MARY",
-        "PENTECOST_SUNDAY",
-        "CORPUS_CHRISTI_SUNDAY",
-        "NATIVITY_OF_JOHN_THE_BAPTIST",
-        "PETER_AND_PAUL_APOSTLES",
-        "TRANSFIGURATION",
-        "ASSUMPTION",
-        "EXALTATION_OF_THE_HOLY_CROSS",
-        "ALL_SAINTS",
-        "IMMACULATE_CONCEPTION_OF_MARY"
+      "description": "Date function for calculating liturgical dates.\n\nRepresents movable feasts and special celebrations that require calculation\nbased on Easter or other variable dates.",
+      "oneOf": [
+        {
+          "description": "Monday after Pentecost.",
+          "type": "string",
+          "const": "MARY_MOTHER_OF_THE_CHURCH"
+        },
+        {
+          "description": "Sunday between January 2 and 8 (or January 6 if not transferred).",
+          "type": "string",
+          "const": "EPIPHANY_SUNDAY"
+        },
+        {
+          "description": "February 2 (Candlemas).",
+          "type": "string",
+          "const": "PRESENTATION_OF_THE_LORD"
+        },
+        {
+          "description": "March 25 (may be transferred if in Holy Week or Easter Octave).",
+          "type": "string",
+          "const": "ANNUNCIATION"
+        },
+        {
+          "description": "Sunday before Easter.",
+          "type": "string",
+          "const": "PALM_SUNDAY"
+        },
+        {
+          "description": "First Sunday after the Paschal Full Moon.",
+          "type": "string",
+          "const": "EASTER_SUNDAY"
+        },
+        {
+          "description": "Second Sunday of Easter.",
+          "type": "string",
+          "const": "DIVINE_MERCY_SUNDAY"
+        },
+        {
+          "description": "Saturday after the Second Sunday after Pentecost.",
+          "type": "string",
+          "const": "IMMACULATE_HEART_OF_MARY"
+        },
+        {
+          "description": "Seventh Sunday after Easter.",
+          "type": "string",
+          "const": "PENTECOST_SUNDAY"
+        },
+        {
+          "description": "Thursday or Sunday after Trinity Sunday.",
+          "type": "string",
+          "const": "CORPUS_CHRISTI_SUNDAY"
+        },
+        {
+          "description": "June 24.",
+          "type": "string",
+          "const": "NATIVITY_OF_JOHN_THE_BAPTIST"
+        },
+        {
+          "description": "June 29.",
+          "type": "string",
+          "const": "PETER_AND_PAUL_APOSTLES"
+        },
+        {
+          "description": "August 6.",
+          "type": "string",
+          "const": "TRANSFIGURATION"
+        },
+        {
+          "description": "August 15.",
+          "type": "string",
+          "const": "ASSUMPTION"
+        },
+        {
+          "description": "September 14.",
+          "type": "string",
+          "const": "EXALTATION_OF_THE_HOLY_CROSS"
+        },
+        {
+          "description": "November 1.",
+          "type": "string",
+          "const": "ALL_SAINTS"
+        },
+        {
+          "description": "December 8.",
+          "type": "string",
+          "const": "IMMACULATE_CONCEPTION_OF_MARY"
+        }
       ]
     },
     "DayOfWeek": {
@@ -607,35 +674,142 @@
     },
     "Precedence": {
       "description": "Liturgical precedence levels for determining which celebration takes priority.\nDefines the hierarchical order of liturgical celebrations according to UNLY norms.",
-      "type": "string",
-      "enum": [
-        "TRIDUUM_1",
-        "PROPER_OF_TIME_SOLEMNITY_2",
-        "PRIVILEGED_SUNDAY_2",
-        "ASH_WEDNESDAY_2",
-        "WEEKDAY_OF_HOLY_WEEK_2",
-        "WEEKDAY_OF_EASTER_OCTAVE_2",
-        "GENERAL_SOLEMNITY_3",
-        "COMMEMORATION_OF_ALL_THE_FAITHFUL_DEPARTED_3",
-        "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A",
-        "PROPER_SOLEMNITY__DEDICATION_OF_THE_OWN_CHURCH_4B",
-        "PROPER_SOLEMNITY__TITLE_OF_THE_OWN_CHURCH_4C",
-        "PROPER_SOLEMNITY__TITLE_OR_FOUNDER_OR_PRIMARY_PATRON_OF_A_RELIGIOUS_ORG_4D",
-        "GENERAL_LORD_FEAST_5",
-        "UNPRIVILEGED_SUNDAY_6",
-        "GENERAL_FEAST_7",
-        "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_DIOCESE_8A",
-        "PROPER_FEAST__DEDICATION_OF_THE_CATHEDRAL_CHURCH_8B",
-        "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C",
-        "PROPER_FEAST__TITLE_OR_FOUNDER_OR_PRIMARY_PATRON_OF_A_RELIGIOUS_ORG_8D",
-        "PROPER_FEAST__TO_AN_INDIVIDUAL_CHURCH_8E",
-        "PROPER_FEAST_8F",
-        "PRIVILEGED_WEEKDAY_9",
-        "GENERAL_MEMORIAL_10",
-        "PROPER_MEMORIAL__SECOND_PATRON_11A",
-        "PROPER_MEMORIAL_11B",
-        "OPTIONAL_MEMORIAL_12",
-        "WEEKDAY_13"
+      "oneOf": [
+        {
+          "description": "1 - The Paschal Triduum of the Passion and Resurrection of the Lord.",
+          "type": "string",
+          "const": "TRIDUUM_1"
+        },
+        {
+          "description": "2 - The Nativity of the Lord, the Epiphany, the Ascension, or Pentecost.",
+          "type": "string",
+          "const": "PROPER_OF_TIME_SOLEMNITY_2"
+        },
+        {
+          "description": "2 - A Sunday of Advent, Lent, or Easter.",
+          "type": "string",
+          "const": "PRIVILEGED_SUNDAY_2"
+        },
+        {
+          "description": "2 - Ash Wednesday.",
+          "type": "string",
+          "const": "ASH_WEDNESDAY_2"
+        },
+        {
+          "description": "2 - A weekday of Holy Week from Monday up to and including Thursday.",
+          "type": "string",
+          "const": "WEEKDAY_OF_HOLY_WEEK_2"
+        },
+        {
+          "description": "2 - A day within the Octave of Easter.",
+          "type": "string",
+          "const": "WEEKDAY_OF_EASTER_OCTAVE_2"
+        },
+        {
+          "description": "3 - A Solemnity inscribed in the General Calendar, whether of the Lord, of the Blessed Virgin Mary, or of a Saint.",
+          "type": "string",
+          "const": "GENERAL_SOLEMNITY_3"
+        },
+        {
+          "description": "3 - The Commemoration of All the Faithful Departed.",
+          "type": "string",
+          "const": "COMMEMORATION_OF_ALL_THE_FAITHFUL_DEPARTED_3"
+        },
+        {
+          "description": "4a - A proper Solemnity of the principal Patron of the place, city, or state.",
+          "type": "string",
+          "const": "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A"
+        },
+        {
+          "description": "4b - The Solemnity of the dedication and of the anniversary of the dedication of the own church.",
+          "type": "string",
+          "const": "PROPER_SOLEMNITY__DEDICATION_OF_THE_OWN_CHURCH_4B"
+        },
+        {
+          "description": "4c - The solemnity of the title of the own church.",
+          "type": "string",
+          "const": "PROPER_SOLEMNITY__TITLE_OF_THE_OWN_CHURCH_4C"
+        },
+        {
+          "description": "4d - A Solemnity either of the Title or of the Founder or of the principal Patron of an Order or Congregation.",
+          "type": "string",
+          "const": "PROPER_SOLEMNITY__TITLE_OR_FOUNDER_OR_PRIMARY_PATRON_OF_A_RELIGIOUS_ORG_4D"
+        },
+        {
+          "description": "5 - A Feast of the Lord inscribed in the General Calendar.",
+          "type": "string",
+          "const": "GENERAL_LORD_FEAST_5"
+        },
+        {
+          "description": "6 - A Sunday of Christmas Time or a Sunday in Ordinary Time.",
+          "type": "string",
+          "const": "UNPRIVILEGED_SUNDAY_6"
+        },
+        {
+          "description": "7 - A Feast of the Blessed Virgin Mary or of a Saint in the General Calendar.",
+          "type": "string",
+          "const": "GENERAL_FEAST_7"
+        },
+        {
+          "description": "8a - The Proper Feast of the principal Patron of the diocese.",
+          "type": "string",
+          "const": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_DIOCESE_8A"
+        },
+        {
+          "description": "8b - The Proper Feast of the anniversary of the dedication of the cathedral church.",
+          "type": "string",
+          "const": "PROPER_FEAST__DEDICATION_OF_THE_CATHEDRAL_CHURCH_8B"
+        },
+        {
+          "description": "8c - The Proper Feast of the principal Patron of a region or province, or a country, or of a wider territory.",
+          "type": "string",
+          "const": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C"
+        },
+        {
+          "description": "8d - The Proper Feast of the Title, Founder, or principal Patron of an Order or Congregation.",
+          "type": "string",
+          "const": "PROPER_FEAST__TITLE_OR_FOUNDER_OR_PRIMARY_PATRON_OF_A_RELIGIOUS_ORG_8D"
+        },
+        {
+          "description": "8e - Other Feast, proper to an individual church.",
+          "type": "string",
+          "const": "PROPER_FEAST__TO_AN_INDIVIDUAL_CHURCH_8E"
+        },
+        {
+          "description": "8f - Other Proper Feast inscribed in the Calendar of each diocese or Order or Congregation.",
+          "type": "string",
+          "const": "PROPER_FEAST_8F"
+        },
+        {
+          "description": "9 - Privileged Weekday.",
+          "type": "string",
+          "const": "PRIVILEGED_WEEKDAY_9"
+        },
+        {
+          "description": "10 - Obligatory Memorials in the General Calendar.",
+          "type": "string",
+          "const": "GENERAL_MEMORIAL_10"
+        },
+        {
+          "description": "11a - Proper Obligatory Memorial of a secondary Patron of the place, diocese, region, or religious province.",
+          "type": "string",
+          "const": "PROPER_MEMORIAL__SECOND_PATRON_11A"
+        },
+        {
+          "description": "11b - Other Proper Obligatory Memorial inscribed in the Calendar of each diocese, or Order or congregation.",
+          "type": "string",
+          "const": "PROPER_MEMORIAL_11B"
+        },
+        {
+          "description": "12 - Optional Memorial.",
+          "type": "string",
+          "const": "OPTIONAL_MEMORIAL_12"
+        },
+        {
+          "description": "13 - Weekday.",
+          "type": "string",
+          "const": "WEEKDAY_13"
+        }
       ]
     },
     "CommonsDef": {
@@ -653,31 +827,122 @@
     },
     "CommonDefinition": {
       "description": "Common definition for simplified categorization.\nProvides a simplified version of the Common enum for easier classification.",
-      "type": "string",
-      "enum": [
-        "NONE",
-        "DEDICATION_ANNIVERSARY__INSIDE",
-        "DEDICATION_ANNIVERSARY__OUTSIDE",
-        "BLESSED_VIRGIN_MARY",
-        "MARTYRS",
-        "MISSIONARY_MARTYRS",
-        "VIRGIN_MARTYRS",
-        "WOMAN_MARTYRS",
-        "PASTORS",
-        "POPES",
-        "BISHOPS",
-        "FOUNDERS",
-        "MISSIONARIES",
-        "DOCTORS_OF_THE_CHURCH",
-        "VIRGINS",
-        "SAINTS",
-        "ABBOTS",
-        "MONKS",
-        "NUNS",
-        "RELIGIOUS",
-        "MERCY_WORKERS",
-        "EDUCATORS",
-        "HOLY_WOMEN"
+      "oneOf": [
+        {
+          "description": "No common.",
+          "type": "string",
+          "const": "NONE"
+        },
+        {
+          "description": "Dedication anniversary (in the Church that was Dedicated).",
+          "type": "string",
+          "const": "DEDICATION_ANNIVERSARY__INSIDE"
+        },
+        {
+          "description": "Dedication anniversary (outside the Church that was Dedicated).",
+          "type": "string",
+          "const": "DEDICATION_ANNIVERSARY__OUTSIDE"
+        },
+        {
+          "description": "Common of the Blessed Virgin Mary.",
+          "type": "string",
+          "const": "BLESSED_VIRGIN_MARY"
+        },
+        {
+          "description": "Common for Martyrs.",
+          "type": "string",
+          "const": "MARTYRS"
+        },
+        {
+          "description": "Common for Missionary Martyrs.",
+          "type": "string",
+          "const": "MISSIONARY_MARTYRS"
+        },
+        {
+          "description": "Common for Virgin Martyrs.",
+          "type": "string",
+          "const": "VIRGIN_MARTYRS"
+        },
+        {
+          "description": "Common for Holy Woman Martyrs.",
+          "type": "string",
+          "const": "WOMAN_MARTYRS"
+        },
+        {
+          "description": "Common for Pastors.",
+          "type": "string",
+          "const": "PASTORS"
+        },
+        {
+          "description": "Common for Popes.",
+          "type": "string",
+          "const": "POPES"
+        },
+        {
+          "description": "Common for Bishops.",
+          "type": "string",
+          "const": "BISHOPS"
+        },
+        {
+          "description": "Common for Founders.",
+          "type": "string",
+          "const": "FOUNDERS"
+        },
+        {
+          "description": "Common for Missionaries.",
+          "type": "string",
+          "const": "MISSIONARIES"
+        },
+        {
+          "description": "Common for Doctors of the Church.",
+          "type": "string",
+          "const": "DOCTORS_OF_THE_CHURCH"
+        },
+        {
+          "description": "Common for Virgins.",
+          "type": "string",
+          "const": "VIRGINS"
+        },
+        {
+          "description": "Common for Holy Men and Women.",
+          "type": "string",
+          "const": "SAINTS"
+        },
+        {
+          "description": "Common for Abbots.",
+          "type": "string",
+          "const": "ABBOTS"
+        },
+        {
+          "description": "Common for Monks.",
+          "type": "string",
+          "const": "MONKS"
+        },
+        {
+          "description": "Common for Nuns.",
+          "type": "string",
+          "const": "NUNS"
+        },
+        {
+          "description": "Common for Religious.",
+          "type": "string",
+          "const": "RELIGIOUS"
+        },
+        {
+          "description": "Common for Those Who Practiced Works of Mercy.",
+          "type": "string",
+          "const": "MERCY_WORKERS"
+        },
+        {
+          "description": "Common for Educators.",
+          "type": "string",
+          "const": "EDUCATORS"
+        },
+        {
+          "description": "Common for Holy Women.",
+          "type": "string",
+          "const": "HOLY_WOMEN"
+        }
       ]
     },
     "EntityRef": {

@@ -2,7 +2,7 @@
 name = "romcal-tools"
 version = "4.0.0"
 edition = "2021"
-authors = ["Romcal Contributors"]
+authors = ["Étienne Magnier <etienne.magnier@gmail.com>"]
 description = "Development tools for Romcal"
 
 [[bin]]

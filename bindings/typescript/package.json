@@ -1,33 +1,79 @@
 {
   "name": "romcal",
   "version": "4.0.0",
-  "description": "Liturgical Calendar Library - WASM bindings",
+  "description": "Liturgical calendar library for calculating Catholic liturgical dates and calendars",
   "type": "module",
-  "main": "dist/src/index.js",
-  "types": "dist/src/types.d.ts",
-  "scripts": {
-    "build": "../../scripts/build-adapters.sh wasm && npm run build:ts",
-    "build:ts": "tsc && cp -r pkg dist/",
-    "build:wasm": "wasm-pack build --target nodejs --out-dir pkg",
-    "build-web": "wasm-pack build --target web --out-dir pkg",
-    "build-bundler": "wasm-pack build --target bundler --out-dir pkg",
-    "generate-types": "quicktype --src ../../schemas/all_types.json --src-lang schema --lang typescript --top-level AllTypes --out src/types.ts --explicit-unions --no-combine-classes --just-types --prefer-types",
-    "test": "npx tsx test.ts",
-    "test:compiled": "npm run build && node dist/test.js"
+  "main": "./dist/romcal.js",
+  "module": "./dist/romcal.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/romcal.js",
+      "default": "./dist/romcal.umd.js"
+    }
   },
+  "sideEffects": false,
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "files": [
+    "dist",
+    "pkg"
+  ],
   "keywords": [
     "liturgical",
     "calendar",
     "catholic",
+    "christian",
+    "easter",
     "romcal",
     "wasm"
   ],
-  "author": "Romcal Contributors",
+  "author": {
+    "name": "Étienne Magnier",
+    "email": "etienne.magnier@gmail.com",
+    "url": "https://github.com/emagnier"
+  },
+  "contributors": [
+    {
+      "name": "Julian Pereira",
+      "email": "bleushade@gmail.com",
+      "url": "https://github.com/pejulian"
+    },
+    {
+      "name": "Tukusej's Sirs",
+      "email": "tukusejssirs@protonmail.com",
+      "url": "https://github.com/tukusejssirs"
+    },
+    {
+      "name": "Matej Voboril",
+      "email": "tobiah@pm.me",
+      "url": "https://github.com/TobiTenno"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/romcal/romcal"
+  },
+  "homepage": "https://romcal.js.org",
+  "bugs": {
+    "url": "https://github.com/romcal/romcal/issues"
+  },
+  "scripts": {
+    "build": "../../scripts/build-adapters.sh wasm && npm run build:vite",
+    "build:vite": "vite build",
+    "build:wasm": "../../scripts/build-adapters.sh wasm",
+    "generate-types": "quicktype --src ../../schemas/all_types.json --src-lang schema --lang typescript --top-level AllTypes --out src/types.ts --explicit-unions --no-combine-classes --just-types --prefer-types",
+    "test": "npx tsx test.ts"
+  },
   "devDependencies": {
     "@types/node": "^24.3.1",
     "quicktype": "^23.2.6",
     "tsx": "^4.20.5",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "vite": "^7.3.0",
+    "vite-plugin-dts": "^4.5.4"
   },
-  "license": "MIT"
+  "license": "Apache-2.0"
 }

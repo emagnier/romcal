@@ -1,3 +1,5 @@
+use romcal_core::engine::calendar_definition::CalendarDefinition;
+use romcal_core::engine::resources::Resources;
 use romcal_core::romcal::{Preset, Romcal as RomcalCore};
 use romcal_core::types::{CalendarContext, EasterCalculationType};
 use serde::{Deserialize, Serialize};
@@ -28,6 +30,10 @@ pub struct PartialRomcalConfig {
     ascension_on_sunday: Option<bool>,
     /// Corpus Christi is celebrated on a Sunday
     corpus_christi_on_sunday: Option<bool>,
+    /// Calendar definitions as JSON string
+    calendar_definitions_json: Option<String>,
+    /// Resources as JSON string
+    resources_json: Option<String>,
 }
 
 #[wasm_bindgen]
@@ -80,6 +86,18 @@ impl PartialRomcalConfig {
         self.context = context;
     }
 
+    /// Set calendar definitions from JSON string
+    #[wasm_bindgen]
+    pub fn set_calendar_definitions(&mut self, json: Option<String>) {
+        self.calendar_definitions_json = json;
+    }
+
+    /// Set resources from JSON string
+    #[wasm_bindgen]
+    pub fn set_resources(&mut self, json: Option<String>) {
+        self.resources_json = json;
+    }
+
     /// Build the configuration with defaults
     pub fn build(&self) -> RomcalConfig {
         let easter_type = match self.easter_calculation_type.as_deref() {
@@ -92,6 +110,18 @@ impl PartialRomcalConfig {
             _ => Some(CalendarContext::Gregorian),
         };
 
+        // Parse calendar definitions from JSON
+        let calendar_definitions: Option<Vec<CalendarDefinition>> = self
+            .calendar_definitions_json
+            .as_ref()
+            .and_then(|json| serde_json::from_str(json).ok());
+
+        // Parse resources from JSON
+        let resources: Option<Vec<Resources>> = self
+            .resources_json
+            .as_ref()
+            .and_then(|json| serde_json::from_str(json).ok());
+
         let preset = Preset {
             calendar: self.calendar.clone(),
             locale: self.locale.clone(),
@@ -101,8 +131,8 @@ impl PartialRomcalConfig {
             corpus_christi_on_sunday: self.corpus_christi_on_sunday,
             ascension_on_sunday: self.ascension_on_sunday,
             ordinal_format: None,
-            calendar_definitions: None,
-            resources: None,
+            calendar_definitions,
+            resources,
         };
 
         RomcalConfig {
@@ -187,6 +217,32 @@ impl Romcal {
     #[wasm_bindgen(getter)]
     pub fn config(&self) -> RomcalConfig {
         self.config.clone()
+    }
+
+    /// Generate the complete liturgical calendar for a given liturgical year
+    ///
+    /// Returns a JSON string representing BTreeMap<String, Vec<LiturgicalDay>>
+    /// where keys are dates in YYYY-MM-DD format
+    #[wasm_bindgen(js_name = "generateLiturgicalCalendar")]
+    pub fn generate_liturgical_calendar(&self, year: i32) -> Result<String, JsValue> {
+        self.config
+            .inner
+            .generate_liturgical_calendar(year)
+            .map(|calendar| serde_json::to_string(&calendar).unwrap_or_default())
+            .map_err(|e| JsValue::from_str(&e.to_string()))
+    }
+
+    /// Generate a mass-centric view of the liturgical calendar for a given year
+    ///
+    /// Returns a JSON string representing BTreeMap<String, Vec<MassContext>>
+    /// where keys are civil dates in YYYY-MM-DD format
+    #[wasm_bindgen(js_name = "generateMassCalendar")]
+    pub fn generate_mass_calendar(&self, year: i32) -> Result<String, JsValue> {
+        self.config
+            .inner
+            .generate_mass_calendar(year)
+            .map(|calendar| serde_json::to_string(&calendar).unwrap_or_default())
+            .map_err(|e| JsValue::from_str(&e.to_string()))
     }
 }
 

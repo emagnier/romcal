@@ -722,7 +722,7 @@
           ]
         },
         "type": {
-          "description": "The type of the entity.\n@default EntityType.Person",
+          "description": "The type of the entity.\n\nDefaults to `EntityType::Person`.",
           "anyOf": [
             {
               "$ref": "#/definitions/EntityType"
@@ -899,7 +899,7 @@
           }
         },
         "_todo": {
-          "description": "Internal notes\n@private",
+          "description": "Internal notes (not serialized).",
           "type": [
             "array",
             "null"
