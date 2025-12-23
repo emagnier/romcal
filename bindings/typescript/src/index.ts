@@ -9,6 +9,7 @@ import type {
   AllTypes,
   ColorInfo,
   CommonInfo,
+  EasterCalculationType,
   Entity,
   MassTime,
   PeriodInfo,
@@ -20,6 +21,13 @@ import type {
   TitlesDef,
   WeekdayCycle,
 } from './types.js'
+
+/**
+ * Calendar context type.
+ * - GREGORIAN: Calendar organized by Gregorian year (Jan 1 - Dec 31)
+ * - LITURGICAL: Calendar organized by liturgical year (First Sunday of Advent - Saturday before next Advent)
+ */
+export type CalendarContext = 'GREGORIAN' | 'LITURGICAL'
 
 // Initialize the WASM module
 let wasmInitialized = false
@@ -187,8 +195,8 @@ export interface RomcalConfigInterface {
   epiphanyOnSunday: boolean
   corpusChristiOnSunday: boolean
   ascensionOnSunday: boolean
-  easterCalculationType: string
-  context: string
+  easterCalculationType: EasterCalculationType
+  context: CalendarContext
 }
 
 /**
@@ -200,8 +208,8 @@ export interface PartialRomcalConfigInterface {
   epiphanyOnSunday?: boolean
   corpusChristiOnSunday?: boolean
   ascensionOnSunday?: boolean
-  easterCalculationType?: string
-  context?: string
+  easterCalculationType?: EasterCalculationType
+  context?: CalendarContext
   calendarDefinitions?: CalendarDefinition[]
   resources?: ResourcesDefinition[]
 }
@@ -275,8 +283,8 @@ function createInstance(wasmInstance: wasm.Romcal): Romcal {
       epiphanyOnSunday: wasmInstance.config.epiphany_on_sunday,
       corpusChristiOnSunday: wasmInstance.config.corpus_christi_on_sunday,
       ascensionOnSunday: wasmInstance.config.ascension_on_sunday,
-      easterCalculationType: wasmInstance.config.easter_calculation_type,
-      context: wasmInstance.config.context,
+      easterCalculationType: wasmInstance.config.easter_calculation_type as EasterCalculationType,
+      context: wasmInstance.config.context as CalendarContext,
     },
 
     async generateLiturgicalCalendar(year: number): Promise<LiturgicalCalendar> {
