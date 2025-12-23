@@ -1,4 +1,12 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, beforeAll } from 'vitest'
+
+declare global {
+  interface Window {
+    Romcal: {
+      createRomcal: () => Promise<any>
+    }
+  }
+}
 
 describe('Browser ESM bundle', () => {
   it('should load romcal and create an instance', async () => {
@@ -28,5 +36,41 @@ describe('Browser ESM bundle', () => {
     const easter = await romcal.getDate('easter_sunday', 2026)
 
     expect(easter).toBe('2026-04-05')
+  })
+})
+
+describe('Browser UMD bundle (script tag)', () => {
+  beforeAll(async () => {
+    // Inject the UMD script into the page (like a real browser would)
+    await new Promise<void>((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = '/dist/romcal.umd.js'
+      script.onload = () => resolve()
+      script.onerror = () => reject(new Error('Failed to load UMD script'))
+      document.head.appendChild(script)
+    })
+  })
+
+  it('should expose Romcal global variable', () => {
+    expect(window.Romcal).toBeDefined()
+  })
+
+  it('should have createRomcal function', () => {
+    expect(typeof window.Romcal.createRomcal).toBe('function')
+  })
+
+  it('should create an instance via global', async () => {
+    const romcal = await window.Romcal.createRomcal()
+
+    expect(romcal.config).toBeDefined()
+    expect(romcal.config.calendar).toBe('general_roman')
+  })
+
+  it('should generate a liturgical calendar via global', async () => {
+    const romcal = await window.Romcal.createRomcal()
+    const calendar = await romcal.generateLiturgicalCalendar(2026)
+
+    expect(calendar['2026-04-05']).toBeDefined()
+    expect(calendar['2026-04-05'][0].id).toBe('easter_sunday')
   })
 })
