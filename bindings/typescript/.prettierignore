@@ -1,0 +1,5 @@
+dist/
+pkg/
+node_modules/
+src/types.ts
+*.wasm

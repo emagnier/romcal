@@ -24,22 +24,22 @@ npm run build-bundler
 ## Usage
 
 ```typescript
-import { romcal } from 'romcal';
+import { romcal } from 'romcal'
 
 // Default configuration
-const calendar1 = await romcal();
+const calendar1 = await romcal()
 
-console.log(calendar1.config.calendar); // 'general_roman'
-console.log(calendar1.config.locale); // 'en'
-console.log(calendar1.config.epiphanyOnSunday); // false
-console.log(calendar1.config.corpusChristiOnSunday); // false
-console.log(calendar1.config.ascensionOnSunday); // false
-console.log(calendar1.config.easterCalculationType); // 'GREGORIAN'
+console.log(calendar1.config.calendar) // 'general_roman'
+console.log(calendar1.config.locale) // 'en'
+console.log(calendar1.config.epiphanyOnSunday) // false
+console.log(calendar1.config.corpusChristiOnSunday) // false
+console.log(calendar1.config.ascensionOnSunday) // false
+console.log(calendar1.config.easterCalculationType) // 'GREGORIAN'
 
 // Custom configuration
-const calendar2 = await romcal('france', 'fr');
-console.log(calendar2.config.calendar); // 'france'
-console.log(calendar2.config.locale); // 'fr'
+const calendar2 = await romcal('france', 'fr')
+console.log(calendar2.config.calendar) // 'france'
+console.log(calendar2.config.locale) // 'fr'
 ```
 
 ## Testing
