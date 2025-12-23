@@ -350,7 +350,10 @@ mod tests {
     #[test]
     fn test_no_duplicate_dates() {
         let romcal = Romcal::default();
-        let all_days = romcal.proper_of_time(2026).unwrap();
+        let all_days = ProperOfTime::new(romcal, 2026)
+            .unwrap()
+            .generate_all()
+            .unwrap();
 
         // Check that we have generated days
         assert!(!all_days.is_empty());
@@ -420,7 +423,10 @@ mod tests {
             context: Some(crate::CalendarContext::Liturgical),
             ..Preset::default()
         });
-        let all_days = romcal.proper_of_time(2026).unwrap();
+        let all_days = ProperOfTime::new(romcal, 2026)
+            .unwrap()
+            .generate_all()
+            .unwrap();
 
         // Check that we have generated days
         assert!(!all_days.is_empty());
@@ -451,7 +457,10 @@ mod tests {
     #[test]
     fn test_sort_liturgical_days_by_date() {
         let romcal = Romcal::default();
-        let mut all_days = romcal.proper_of_time(2026).unwrap();
+        let mut all_days = ProperOfTime::new(romcal, 2026)
+            .unwrap()
+            .generate_all()
+            .unwrap();
 
         // Shuffle the days to test sorting
         all_days.reverse();
@@ -479,7 +488,10 @@ mod tests {
         let romcal = Romcal::default();
 
         // Get all liturgical days
-        let mut days = romcal.proper_of_time(2026).unwrap();
+        let mut days = ProperOfTime::new(romcal, 2026)
+            .unwrap()
+            .generate_all()
+            .unwrap();
 
         // Sort by date
         sort_liturgical_days_by_date(&mut days);
