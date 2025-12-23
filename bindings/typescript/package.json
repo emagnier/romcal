@@ -71,8 +71,8 @@
   "devDependencies": {
     "@types/node": "^24.3.1",
     "quicktype": "^23.2.6",
-    "tsx": "^4.20.5",
-    "typescript": "^5.9.2",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
     "vite": "^7.3.0",
     "vite-plugin-dts": "^4.5.4",
     "vitest": "^4.0.16"
