@@ -255,7 +255,7 @@ enum Commands {
         #[command(flatten)]
         debug: DebugArgs,
     },
-    /// List various romcal elements
+    /// List available calendars and locales
     List {
         #[command(subcommand)]
         element: ListCommand,
@@ -274,7 +274,7 @@ enum Commands {
         #[command(flatten)]
         debug: DebugArgs,
     },
-    /// Optimize the current preset and generate a JSON bundle
+    /// Generate optimized JSON bundle
     OptimizePreset {
         /// Output file path (if not specified, prints to stdout)
         #[arg(short, long)]
