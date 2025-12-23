@@ -276,10 +276,6 @@ enum Commands {
     },
     /// Bundle required data (definitions + resources) for the current preset
     Bundle {
-        /// Output file path (if not specified, prints to stdout)
-        #[arg(short, long)]
-        out: Option<String>,
-
         #[command(flatten)]
         preset: PresetArgs,
 
@@ -412,9 +408,9 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
                 preset.into_romcal(&config)?,
             )
         }
-        Commands::Bundle { out, preset, debug } => {
+        Commands::Bundle { preset, debug } => {
             debug.init();
-            bundle::handle(preset.into_romcal(&config)?, out)
+            bundle::handle(preset.into_romcal(&config)?)
         }
         Commands::Validate { validation_type } => match validation_type {
             ValidationCommand::Definitions { file_paths } => {

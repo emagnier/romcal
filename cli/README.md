@@ -132,6 +132,15 @@ romcal list locales                # List all locales
 romcal list locales -f json        # Output as JSON
 ```
 
+### bundle
+
+Generate an optimized JSON bundle containing only the calendar definitions and resources required for the current preset configuration.
+
+```bash
+romcal bundle > bundle.json
+romcal bundle --calendar france --locale fr > france-fr.json
+```
+
 ### validate
 
 Validate JSON files against Romcal schemas.
