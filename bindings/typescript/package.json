@@ -65,7 +65,8 @@
     "build:vite": "vite build",
     "build:wasm": "wasm-pack build ../../core/adapters/wasm --target web --out-dir ../../../bindings/typescript/pkg",
     "generate-types": "quicktype --src ../../schemas/all_types.json --src-lang schema --lang typescript --top-level AllTypes --out src/types.ts --explicit-unions --no-combine-classes --just-types --prefer-types",
-    "test": "tsx test.ts"
+    "test": "vitest",
+    "test:run": "vitest run"
   },
   "devDependencies": {
     "@types/node": "^24.3.1",
@@ -73,7 +74,8 @@
     "tsx": "^4.20.5",
     "typescript": "^5.9.2",
     "vite": "^7.3.0",
-    "vite-plugin-dts": "^4.5.4"
+    "vite-plugin-dts": "^4.5.4",
+    "vitest": "^4.0.16"
   },
   "license": "Apache-2.0"
 }
