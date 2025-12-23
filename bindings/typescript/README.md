@@ -1,6 +1,6 @@
 # Romcal (TypeScript)
 
-A TypeScript/JavaScript library for calculating Catholic liturgical dates and generating liturgical calendars.
+A TypeScript/JavaScript library for calculating Catholic liturgical dates and generating liturgical calendars. Works in Node.js and browsers via WebAssembly.
 
 For the Rust library, see [romcal-core](../../core/). For command-line usage, see the [CLI documentation](../../cli/).
 
@@ -40,10 +40,10 @@ if (christmas) {
 import { createRomcal } from 'romcal'
 
 // With calendar and locale
-const romcal = await createRomcal('france', 'fr')
+const romcal1 = await createRomcal('france', 'fr')
 
 // With full configuration
-const romcal = await createRomcal({
+const romcal2 = await createRomcal({
   calendar: 'france',
   locale: 'fr',
   context: 'LITURGICAL',
@@ -69,7 +69,7 @@ const romcal = await createRomcal({
 
 ### Loading Calendar Data
 
-For calendar generation, you need to load calendar definitions and resources:
+Without loading data, only the Proper of Time is available. To include the General Roman Calendar, particular calendars, and localized names, load calendar definitions and resources:
 
 ```typescript
 import { createRomcal, CalendarDefinition, ResourcesDefinition } from 'romcal'
@@ -106,13 +106,13 @@ Creates a new Romcal instance.
 
 ```typescript
 // Default configuration
-const romcal = await createRomcal()
+const romcal1 = await createRomcal()
 
 // With calendar and locale
-const romcal = await createRomcal('france', 'fr')
+const romcal2 = await createRomcal('france', 'fr')
 
 // With partial configuration
-const romcal = await createRomcal({
+const romcal3 = await createRomcal({
   calendar: 'france',
   locale: 'fr',
   epiphanyOnSunday: true,
@@ -175,129 +175,9 @@ console.log(romcal.config.easterCalculationType) // "GREGORIAN"
 console.log(romcal.config.context) // "GREGORIAN"
 ```
 
-### Exported Types
-
-```typescript
-import type {
-  // Main types
-  Romcal,
-  LiturgicalCalendar, // Record<string, LiturgicalDay[]>
-  LiturgicalDay, // AllTypes from generated types
-  MassCalendar, // Record<string, MassContext[]>
-  MassContext,
-
-  // Configuration
-  RomcalConfigInterface,
-  PartialRomcalConfigInterface,
-  CalendarDefinition,
-  ResourcesDefinition,
-  CalendarContext, // 'GREGORIAN' | 'LITURGICAL'
-
-  // Enums and types from generated types
-  EasterCalculationType,
-  Season,
-  Rank,
-  Precedence,
-  MassTime,
-  SundayCycle,
-  WeekdayCycle,
-  PsalterWeekCycle,
-  ColorInfo,
-  Entity,
-
-  // Error handling
-  RomcalError,
-} from 'romcal'
-```
-
 ## Key Types
 
-### Seasons
-
-| Season           | Description                                     |
-| ---------------- | ----------------------------------------------- |
-| `ADVENT`         | Four weeks before Christmas                     |
-| `CHRISTMAS_TIME` | Christmas to Baptism of the Lord                |
-| `LENT`           | Ash Wednesday to Holy Thursday                  |
-| `EASTER_TIME`    | Easter Sunday to Pentecost (50 days)            |
-| `ORDINARY_TIME`  | Two periods: after Epiphany and after Pentecost |
-
-### Ranks
-
-| Rank                | Description                                         |
-| ------------------- | --------------------------------------------------- |
-| `SOLEMNITY`         | Most important days; begins at First Vespers        |
-| `SUNDAY`            | The Lord's Day; the primordial feast day            |
-| `FEAST`             | Celebrated within the natural day; no First Vespers |
-| `MEMORIAL`          | Obligatory commemoration                            |
-| `OPTIONAL_MEMORIAL` | Non-obligatory commemoration                        |
-| `WEEKDAY`           | Ordinary weekdays                                   |
-
-### Precedence
-
-Precedence levels determine which celebration takes priority (GNLY #49):
-
-| Level | Description                                                             |
-| ----- | ----------------------------------------------------------------------- |
-| 1     | Paschal Triduum                                                         |
-| 2     | Nativity, Epiphany, Ascension, Pentecost; Sundays of Advent/Lent/Easter |
-| 3     | Solemnities in the General Calendar; All Souls                          |
-| 4     | Proper Solemnities (patron, dedication, title, founder)                 |
-| 5     | Feasts of the Lord in the General Calendar                              |
-| 6     | Sundays of Christmas Time and Ordinary Time                             |
-| 7     | Feasts of Mary and Saints in the General Calendar                       |
-| 8     | Proper Feasts (diocese, region, religious order)                        |
-| 9     | Privileged weekdays (Advent Dec 17-24, Lent)                            |
-| 10    | Obligatory Memorials in the General Calendar                            |
-| 11    | Proper Obligatory Memorials                                             |
-| 12    | Optional Memorials                                                      |
-| 13    | Weekdays                                                                |
-
-### Liturgical Colors
-
-| Color    | Usage                                                             |
-| -------- | ----------------------------------------------------------------- |
-| `WHITE`  | Christmas, Easter, feasts of the Lord, Mary, Saints (non-martyrs) |
-| `RED`    | Martyrs, Pentecost, Palm Sunday, Good Friday                      |
-| `PURPLE` | Advent, Lent                                                      |
-| `GREEN`  | Ordinary Time                                                     |
-| `ROSE`   | Gaudete Sunday (3rd Advent), Laetare Sunday (4th Lent)            |
-| `GOLD`   | Solemn celebrations (alternative to white)                        |
-| `BLACK`  | Funerals, All Souls (optional)                                    |
-
-### Cycles
-
-**Sunday Cycle** (`SundayCycle`): Three-year cycle for Sunday readings.
-
-| Cycle    | Years (examples)    | Gospel focus |
-| -------- | ------------------- | ------------ |
-| `YEAR_A` | 2023, 2026, 2029... | Matthew      |
-| `YEAR_B` | 2024, 2027, 2030... | Mark         |
-| `YEAR_C` | 2025, 2028, 2031... | Luke         |
-
-**Weekday Cycle** (`WeekdayCycle`): Two-year cycle for weekday readings.
-
-| Cycle    | Years                            |
-| -------- | -------------------------------- |
-| `YEAR_1` | Odd years (2025, 2027, 2029...)  |
-| `YEAR_2` | Even years (2024, 2026, 2028...) |
-
-**Psalter Week** (`PsalterWeekCycle`): Four-week cycle for the Liturgy of the Hours.
-
-### Mass Times
-
-| MassTime                           | Description                                               |
-| ---------------------------------- | --------------------------------------------------------- |
-| `EASTER_VIGIL`                     | Easter Vigil on Holy Saturday night                       |
-| `PREVIOUS_EVENING_MASS`            | Mass the evening before a major feast                     |
-| `NIGHT_MASS`                       | Night Mass of the Nativity of the Lord (Christmas)        |
-| `MASS_AT_DAWN`                     | Mass at Dawn of the Nativity of the Lord (Christmas)      |
-| `MORNING_MASS`                     | Morning Mass on December 24                               |
-| `MASS_OF_THE_PASSION`              | Palm Sunday Mass with procession                          |
-| `CELEBRATION_OF_THE_PASSION`       | Good Friday celebration                                   |
-| `DAY_MASS`                         | Regular daytime Mass                                      |
-| `CHRISM_MASS`                      | Chrism Mass (typically Tuesday or Wednesday of Holy Week) |
-| `EVENING_MASS_OF_THE_LORDS_SUPPER` | Holy Thursday evening                                     |
+For detailed documentation on liturgical types (seasons, ranks, precedence, colors, cycles, mass times), see the [romcal-core documentation](../../core/README.md#key-types).
 
 ## Error Handling
 
@@ -356,7 +236,8 @@ bindings/typescript/
 │   └── types.ts      # Generated types from JSON schema
 ├── test/             # Vitest tests
 ├── examples/
-│   └── node.ts       # Node.js usage example
+│   ├── node.ts       # Node.js usage example
+│   └── browser.html  # Browser usage example
 ├── pkg/              # WASM output (generated by wasm-pack)
 ├── dist/             # Build output (generated by Vite)
 ├── vite.config.ts    # Vite configuration
