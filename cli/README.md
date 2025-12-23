@@ -265,8 +265,8 @@ cargo test -p romcal-cli
 ## Related
 
 - [romcal](https://github.com/romcal/romcal) - Main Romcal project
-- [romcal-core](../core/) - Core library
+- [romcal-core](../core/) - Core Rust library
 
 ## License
 
-Apache-2.0
+Apache License 2.0. See [LICENSE](../LICENSE) for details.
