@@ -184,10 +184,10 @@ impl DebugArgs {
 #[derive(Parser)]
 #[command(
     name = "romcal",
-    about = "A CLI for Catholic liturgical calendars.",
+    about = "A CLI for calculating Catholic liturgical dates and generating calendars.",
     version = "4.0.0",
-    long_about = "Romcal CLI calculates liturgical dates and generates Catholic calendars, \
-                  including Easter, Christmas, liturgical seasons, and complete liturgical years."
+    long_about = "Calculate liturgical dates and generate liturgical or mass-centric calendars, \
+                  with support for multiple locales and regional calendars."
 )]
 struct Cli {
     #[command(subcommand)]

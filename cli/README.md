@@ -1,6 +1,6 @@
 # Romcal CLI
 
-A command-line interface for calculating Catholic liturgical dates and generating liturgical calendars.
+A CLI for calculating Catholic liturgical dates and generating calendars.
 
 ## Quick Start
 
