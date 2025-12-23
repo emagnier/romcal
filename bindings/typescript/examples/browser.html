@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Romcal - Browser Example</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      line-height: 1.6;
+    }
+    h1 { color: #333; }
+    pre {
+      background: #f5f5f5;
+      padding: 1rem;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+    .date { font-weight: bold; color: #0066cc; }
+    .celebration { margin-left: 1rem; }
+    #output { white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <h1>Romcal - Browser Example</h1>
+  <p>This example demonstrates using romcal directly in the browser via UMD bundle.</p>
+
+  <h2>Liturgical Calendar for Easter Week 2026</h2>
+  <div id="output">Loading...</div>
+
+  <!-- Load romcal UMD bundle -->
+  <script src="../dist/romcal.umd.js"></script>
+
+  <script>
+    (async function() {
+      const output = document.getElementById('output');
+
+      try {
+        // Access romcal from the global Romcal object
+        const { romcal } = Romcal;
+
+        // Create a romcal instance with default configuration
+        const r = await romcal();
+
+        console.log('Romcal config:', r.config);
+
+        // Generate the liturgical calendar for 2026
+        const calendar = await r.generateLiturgicalCalendar(2026);
+
+        // Display Easter week (April 5-12, 2026)
+        const easterWeekDates = [
+          '2026-04-05', // Easter Sunday
+          '2026-04-06', // Easter Monday
+          '2026-04-07',
+          '2026-04-08',
+          '2026-04-09',
+          '2026-04-10',
+          '2026-04-11',
+          '2026-04-12', // Second Sunday of Easter
+        ];
+
+        let html = '';
+        for (const date of easterWeekDates) {
+          const days = calendar[date];
+          if (days && days.length > 0) {
+            const day = days[0];
+            html += `<div class="date">${date}</div>`;
+            html += `<div class="celebration">`;
+            html += `  ${day.fullname || day.id}\n`;
+            html += `  Rank: ${day.rank}\n`;
+            html += `  Season: ${day.season}\n`;
+            html += `</div>\n`;
+          }
+        }
+
+        output.innerHTML = html;
+
+      } catch (error) {
+        output.textContent = 'Error: ' + error.message;
+        console.error(error);
+      }
+    })();
+  </script>
+</body>
+</html>
