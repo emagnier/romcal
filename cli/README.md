@@ -6,7 +6,7 @@ A command-line interface for calculating Catholic liturgical dates and generatin
 
 ```bash
 # Get Easter date for 2025
-romcal dates easter_sunday 2025
+romcal date easter_sunday 2025
 
 # Generate liturgical calendar for current year
 romcal calendar
@@ -38,7 +38,7 @@ cd romcal
 cargo install --path cli
 
 # Or run directly
-cargo run -p romcal-cli -- dates easter_sunday 2025
+cargo run -p romcal-cli -- date easter_sunday 2025
 ```
 
 ### Binary Location
@@ -52,7 +52,7 @@ After building, the binary is located at:
 
 | Command                        | Description                                           |
 | ------------------------------ | ----------------------------------------------------- |
-| `dates <DATE_NAME> [YEAR]`     | Calculate a specific liturgical date                  |
+| `date <DATE_NAME> [YEAR]`      | Calculate a specific liturgical date                  |
 | `calendar [YEAR]`              | Generate liturgical calendar (by liturgical date)     |
 | `masses [YEAR]`                | Generate mass-centric calendar (by civil date + mass) |
 | `list calendars [--tree]`      | List available calendars                              |
@@ -63,14 +63,14 @@ After building, the binary is located at:
 | `validate resources <FILES>`   | Validate resource files                               |
 | `completions <SHELL>`          | Generate shell completion scripts                     |
 
-### dates
+### date
 
-Calculate specific liturgical dates. Returns date in `YYYY-MM-DD` format.
+Calculate a specific liturgical date. Returns date in `YYYY-MM-DD` format.
 
 ```bash
-romcal dates easter_sunday 2025
-romcal dates pentecost_sunday          # Uses current year
-romcal dates easter_sunday 2025 --easter-calc julian
+romcal date easter_sunday 2025
+romcal date pentecost_sunday          # Uses current year
+romcal date easter_sunday 2025 --easter-calc julian
 ```
 
 **Available dates:**
@@ -153,7 +153,7 @@ romcal validate resources "data/resources/**/*.json"
 
 ### Preset Options
 
-Available on `dates`, `calendar`, `masses`, `preset`, and `optimize-preset` commands:
+Available on `date`, `calendar`, `masses`, `preset`, and `optimize-preset` commands:
 
 ```
 -c, --calendar <NAME>           Calendar to use (default: general_roman)

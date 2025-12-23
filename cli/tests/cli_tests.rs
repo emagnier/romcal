@@ -7,31 +7,31 @@ fn romcal() -> Command {
 }
 
 // ============================================================================
-// dates command tests
+// date command tests
 // ============================================================================
 
 #[test]
-fn test_dates_easter_2025() {
+fn test_date_easter_2025() {
     romcal()
-        .args(["dates", "easter_sunday", "2025"])
+        .args(["date", "easter_sunday", "2025"])
         .assert()
         .success()
         .stdout(predicate::str::contains("2025-04-20"));
 }
 
 #[test]
-fn test_dates_all_saints_2025() {
+fn test_date_all_saints_2025() {
     romcal()
-        .args(["dates", "all_saints", "2025"])
+        .args(["date", "all_saints", "2025"])
         .assert()
         .success()
         .stdout(predicate::str::contains("2025-11-01"));
 }
 
 #[test]
-fn test_dates_json_format() {
+fn test_date_json_format() {
     romcal()
-        .args(["dates", "easter_sunday", "2025", "-f", "json"])
+        .args(["date", "easter_sunday", "2025", "-f", "json"])
         .assert()
         .success()
         .stdout(predicate::str::contains("\"2025-04-20\""));
@@ -161,7 +161,7 @@ fn test_invalid_command() {
 #[test]
 fn test_invalid_date_name() {
     romcal()
-        .args(["dates", "invalid_date", "2025"])
+        .args(["date", "invalid_date", "2025"])
         .assert()
         .failure();
 }
@@ -169,7 +169,7 @@ fn test_invalid_date_name() {
 #[test]
 fn test_invalid_format() {
     romcal()
-        .args(["dates", "easter_sunday", "2025", "-f", "invalid"])
+        .args(["date", "easter_sunday", "2025", "-f", "invalid"])
         .assert()
         .failure();
 }

@@ -14,7 +14,7 @@ mod preset;
 mod utils;
 
 use commands::calendar;
-use commands::dates;
+use commands::date;
 use commands::list;
 use commands::masses;
 use commands::optimize_preset;
@@ -199,8 +199,8 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum Commands {
-    /// Calculate liturgical dates
-    Dates {
+    /// Calculate a liturgical date
+    Date {
         /// Type of liturgical date to calculate
         /// Available types: easter_sunday, palm_sunday, ash_wednesday, etc.
         date_name: String,
@@ -348,7 +348,7 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
     let config = Config::load(cli.config.config_path.as_deref())?;
 
     match cli.command {
-        Commands::Dates {
+        Commands::Date {
             date_name,
             year,
             preset,
@@ -356,7 +356,7 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
             debug,
         } => {
             debug.init();
-            dates::handle(
+            date::handle(
                 &date_name,
                 year,
                 output.get_format(&config).into(),
