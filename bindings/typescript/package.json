@@ -67,11 +67,14 @@
     "generate-types": "quicktype --src ../../schemas/all_types.json --src-lang schema --lang typescript --top-level AllTypes --out src/types.ts --explicit-unions --no-combine-classes --just-types --prefer-types",
     "test": "vitest",
     "test:run": "vitest run",
+    "test:browser": "vitest run --project browser",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
   "devDependencies": {
     "@types/node": "^24.3.1",
+    "@vitest/browser": "^4.0.16",
+    "@vitest/browser-playwright": "^4.0.16",
     "prettier": "^3.7.4",
     "quicktype": "^23.2.6",
     "tsx": "^4.21.0",
