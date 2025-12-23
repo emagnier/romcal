@@ -13,11 +13,11 @@ mod error;
 mod preset;
 mod utils;
 
+use commands::bundle;
 use commands::calendar;
 use commands::date;
 use commands::list;
 use commands::masses;
-use commands::optimize_preset;
 use commands::show_preset;
 use error::RomcalCliError;
 
@@ -274,8 +274,8 @@ enum Commands {
         #[command(flatten)]
         debug: DebugArgs,
     },
-    /// Generate optimized JSON bundle
-    OptimizePreset {
+    /// Bundle required data (definitions + resources) for the current preset
+    Bundle {
         /// Output file path (if not specified, prints to stdout)
         #[arg(short, long)]
         out: Option<String>,
@@ -412,9 +412,9 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
                 preset.into_romcal(&config)?,
             )
         }
-        Commands::OptimizePreset { out, preset, debug } => {
+        Commands::Bundle { out, preset, debug } => {
             debug.init();
-            optimize_preset::handle(preset.into_romcal(&config)?, out)
+            bundle::handle(preset.into_romcal(&config)?, out)
         }
         Commands::Validate { validation_type } => match validation_type {
             ValidationCommand::Definitions { file_paths } => {

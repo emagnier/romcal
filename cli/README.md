@@ -58,7 +58,7 @@ After building, the binary is located at:
 | `list calendars [--tree]`      | List available calendars                              |
 | `list locales [--tree]`        | List available locales                                |
 | `preset`                       | Display current configuration                         |
-| `optimize-preset`              | Generate optimized JSON bundle                        |
+| `bundle`                       | Bundle required data (definitions + resources)        |
 | `validate definitions <FILES>` | Validate calendar definition files                    |
 | `validate resources <FILES>`   | Validate resource files                               |
 | `completions <SHELL>`          | Generate shell completion scripts                     |
@@ -153,7 +153,7 @@ romcal validate resources "data/resources/**/*.json"
 
 ### Preset Options
 
-Available on `date`, `calendar`, `masses`, `preset`, and `optimize-preset` commands:
+Available on `date`, `calendar`, `masses`, `preset`, and `bundle` commands:
 
 ```
 -c, --calendar <NAME>           Calendar to use (default: general_roman)
