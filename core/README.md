@@ -368,7 +368,7 @@ Cycles determine which readings and psalms are used in the liturgy.
 | `Week_3` | Week 3 of the psalter              |
 | `Week_4` | Week 4 of the psalter, then repeat |
 
-### Mass Types
+### Mass Times
 
 `MassTime` variants:
 
