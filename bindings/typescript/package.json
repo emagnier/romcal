@@ -61,7 +61,7 @@
     "url": "https://github.com/romcal/romcal/issues"
   },
   "scripts": {
-    "build": "npm run build:wasm && npm run build:vite",
+    "build": "npm run build:wasm && npm run generate-types && npm run build:vite",
     "build:vite": "vite build",
     "build:wasm": "wasm-pack build ../../core/adapters/wasm --target web --out-dir ../../../bindings/typescript/pkg",
     "generate-types": "quicktype --src ../../schemas/all_types.json --src-lang schema --lang typescript --top-level AllTypes --out src/types.ts --explicit-unions --no-combine-classes --just-types --prefer-types",
