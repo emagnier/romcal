@@ -3,7 +3,11 @@
 //! This binary generates JSON schemas for the main Romcal types,
 //! enabling type validation and code generation for TypeScript and Python.
 
-use romcal_core::{CalendarDefinition, LiturgicalDay, Resources};
+use romcal_core::{
+    Acclamation, BibleBook, CalendarContext, CalendarDefinition, CelebrationSummary,
+    DateDefWithOffset, DayOfWeek, LiturgicalCycle, LiturgicalDay, MassContext, MassPart,
+    MonthIndex, Resources, SaintCount, SundayCycleCombined,
+};
 use schemars::schema_for;
 use serde_json::Value;
 use std::fs;
@@ -181,31 +185,13 @@ fn merge_definitions_into_types_schema(types_schema: &mut Value, schema_values: 
     }
 }
 
-/// Add main types to the schema definitions
-fn add_main_types_to_schema(
-    types_schema: &mut Value,
-    calendar_value: &mut Value,
-    resources_value: &mut Value,
-    liturgical_day_value: &mut Value,
-) {
+/// Add a type to the schema definitions
+fn add_type_to_schema(types_schema: &mut Value, type_value: &mut Value, type_name: &str) {
     if let Some(types_definitions) = types_schema.get_mut("definitions") {
         if let Some(definitions_obj) = types_definitions.as_object_mut() {
-            // Add CalendarDefinition (it's the root type, not in definitions)
-            if let Some(calendar_obj) = calendar_value.as_object_mut() {
-                calendar_obj.remove("$schema");
-                definitions_obj.insert("CalendarDefinition".to_string(), calendar_value.clone());
-            }
-
-            // Add Resources (it's the root type, not in definitions)
-            if let Some(resources_obj) = resources_value.as_object_mut() {
-                resources_obj.remove("$schema");
-                definitions_obj.insert("Resources".to_string(), resources_value.clone());
-            }
-
-            // Add LiturgicalDay (it's the root type, not in definitions)
-            if let Some(liturgical_day_obj) = liturgical_day_value.as_object_mut() {
-                liturgical_day_obj.remove("$schema");
-                definitions_obj.insert("LiturgicalDay".to_string(), liturgical_day_value.clone());
+            if let Some(type_obj) = type_value.as_object_mut() {
+                type_obj.remove("$schema");
+                definitions_obj.insert(type_name.to_string(), type_value.clone());
             }
         }
     }
@@ -213,42 +199,143 @@ fn add_main_types_to_schema(
 
 /// Generate a schema specifically for TypeScript and Pydantic generation
 fn generate_types_schema(config: &SchemaConfig) -> Result<(), SchemaGenerationError> {
-    // Create a schema that combines all main types as a union
+    // Create a schema with a wrapper object that references all types as properties
+    // This forces Quicktype to generate each type separately without merging
     let mut types_schema = serde_json::json!({
         "$schema": "http://json-schema.org/draft-07/schema#",
-        "title": "RomcalTypes",
-        "oneOf": [
-            { "$ref": "#/definitions/CalendarDefinition" },
-            { "$ref": "#/definitions/Resources" },
-            { "$ref": "#/definitions/LiturgicalDay" }
-        ],
+        "title": "AllTypes",
+        "type": "object",
+        "properties": {
+            "liturgicalDay": { "$ref": "#/definitions/LiturgicalDay" },
+            "calendarDefinition": { "$ref": "#/definitions/CalendarDefinition" },
+            "resources": { "$ref": "#/definitions/Resources" },
+            "massContext": { "$ref": "#/definitions/MassContext" },
+            "celebrationSummary": { "$ref": "#/definitions/CelebrationSummary" },
+            "calendarContext": { "$ref": "#/definitions/CalendarContext" },
+            "sundayCycleCombined": { "$ref": "#/definitions/SundayCycleCombined" },
+            "monthIndex": { "$ref": "#/definitions/MonthIndex" },
+            "dayOfWeek": { "$ref": "#/definitions/DayOfWeek" },
+            "dateDefWithOffset": { "$ref": "#/definitions/DateDefWithOffset" },
+            "liturgicalCycle": { "$ref": "#/definitions/LiturgicalCycle" },
+            "acclamation": { "$ref": "#/definitions/Acclamation" },
+            "bibleBook": { "$ref": "#/definitions/BibleBook" },
+            "massPart": { "$ref": "#/definitions/MassPart" },
+            "saintCount": { "$ref": "#/definitions/SaintCount" }
+        },
         "definitions": {}
     });
 
-    // Generate schemas for all major types and convert to values
+    // Generate schemas for all types and convert to values
     let mut calendar_value = serde_json::to_value(schema_for!(CalendarDefinition))
         .map_err(|e| SchemaGenerationError::Serialization(e.to_string()))?;
     let mut resources_value = serde_json::to_value(schema_for!(Resources))
         .map_err(|e| SchemaGenerationError::Serialization(e.to_string()))?;
     let mut liturgical_day_value = serde_json::to_value(schema_for!(LiturgicalDay))
         .map_err(|e| SchemaGenerationError::Serialization(e.to_string()))?;
+    let mut mass_context_value = serde_json::to_value(schema_for!(MassContext))
+        .map_err(|e| SchemaGenerationError::Serialization(e.to_string()))?;
+    let mut celebration_summary_value = serde_json::to_value(schema_for!(CelebrationSummary))
+        .map_err(|e| SchemaGenerationError::Serialization(e.to_string()))?;
+    let mut calendar_context_value = serde_json::to_value(schema_for!(CalendarContext))
+        .map_err(|e| SchemaGenerationError::Serialization(e.to_string()))?;
+    let mut sunday_cycle_combined_value = serde_json::to_value(schema_for!(SundayCycleCombined))
+        .map_err(|e| SchemaGenerationError::Serialization(e.to_string()))?;
+    let mut month_index_value = serde_json::to_value(schema_for!(MonthIndex))
+        .map_err(|e| SchemaGenerationError::Serialization(e.to_string()))?;
+    let mut day_of_week_value = serde_json::to_value(schema_for!(DayOfWeek))
+        .map_err(|e| SchemaGenerationError::Serialization(e.to_string()))?;
+    let mut date_def_with_offset_value = serde_json::to_value(schema_for!(DateDefWithOffset))
+        .map_err(|e| SchemaGenerationError::Serialization(e.to_string()))?;
+    let mut liturgical_cycle_value = serde_json::to_value(schema_for!(LiturgicalCycle))
+        .map_err(|e| SchemaGenerationError::Serialization(e.to_string()))?;
+    let mut acclamation_value = serde_json::to_value(schema_for!(Acclamation))
+        .map_err(|e| SchemaGenerationError::Serialization(e.to_string()))?;
+    let mut bible_book_value = serde_json::to_value(schema_for!(BibleBook))
+        .map_err(|e| SchemaGenerationError::Serialization(e.to_string()))?;
+    let mut mass_part_value = serde_json::to_value(schema_for!(MassPart))
+        .map_err(|e| SchemaGenerationError::Serialization(e.to_string()))?;
+    let mut saint_count_value = serde_json::to_value(schema_for!(SaintCount))
+        .map_err(|e| SchemaGenerationError::Serialization(e.to_string()))?;
 
     // Apply standard fixes to all schemas
     apply_standard_fixes(&mut calendar_value, config);
     apply_standard_fixes(&mut resources_value, config);
     apply_standard_fixes(&mut liturgical_day_value, config);
+    apply_standard_fixes(&mut mass_context_value, config);
+    apply_standard_fixes(&mut celebration_summary_value, config);
+    apply_standard_fixes(&mut calendar_context_value, config);
+    apply_standard_fixes(&mut sunday_cycle_combined_value, config);
+    apply_standard_fixes(&mut month_index_value, config);
+    apply_standard_fixes(&mut day_of_week_value, config);
+    apply_standard_fixes(&mut date_def_with_offset_value, config);
+    apply_standard_fixes(&mut liturgical_cycle_value, config);
+    apply_standard_fixes(&mut acclamation_value, config);
+    apply_standard_fixes(&mut bible_book_value, config);
+    apply_standard_fixes(&mut mass_part_value, config);
+    apply_standard_fixes(&mut saint_count_value, config);
 
     // Extract definitions from all schemas
-    let schema_refs: Vec<&Value> = vec![&calendar_value, &resources_value, &liturgical_day_value];
+    let schema_refs: Vec<&Value> = vec![
+        &calendar_value,
+        &resources_value,
+        &liturgical_day_value,
+        &mass_context_value,
+        &celebration_summary_value,
+        &calendar_context_value,
+        &sunday_cycle_combined_value,
+        &month_index_value,
+        &day_of_week_value,
+        &date_def_with_offset_value,
+        &liturgical_cycle_value,
+        &acclamation_value,
+        &bible_book_value,
+        &mass_part_value,
+        &saint_count_value,
+    ];
     merge_definitions_into_types_schema(&mut types_schema, &schema_refs);
 
-    // Add the main types as well
-    add_main_types_to_schema(
+    // Add the main types to definitions
+    add_type_to_schema(&mut types_schema, &mut calendar_value, "CalendarDefinition");
+    add_type_to_schema(&mut types_schema, &mut resources_value, "Resources");
+    add_type_to_schema(
         &mut types_schema,
-        &mut calendar_value,
-        &mut resources_value,
         &mut liturgical_day_value,
+        "LiturgicalDay",
     );
+    add_type_to_schema(&mut types_schema, &mut mass_context_value, "MassContext");
+    add_type_to_schema(
+        &mut types_schema,
+        &mut celebration_summary_value,
+        "CelebrationSummary",
+    );
+    add_type_to_schema(
+        &mut types_schema,
+        &mut calendar_context_value,
+        "CalendarContext",
+    );
+
+    // Add additional types to definitions
+    add_type_to_schema(
+        &mut types_schema,
+        &mut sunday_cycle_combined_value,
+        "SundayCycleCombined",
+    );
+    add_type_to_schema(&mut types_schema, &mut month_index_value, "MonthIndex");
+    add_type_to_schema(&mut types_schema, &mut day_of_week_value, "DayOfWeek");
+    add_type_to_schema(
+        &mut types_schema,
+        &mut date_def_with_offset_value,
+        "DateDefWithOffset",
+    );
+    add_type_to_schema(
+        &mut types_schema,
+        &mut liturgical_cycle_value,
+        "LiturgicalCycle",
+    );
+    add_type_to_schema(&mut types_schema, &mut acclamation_value, "Acclamation");
+    add_type_to_schema(&mut types_schema, &mut bible_book_value, "BibleBook");
+    add_type_to_schema(&mut types_schema, &mut mass_part_value, "MassPart");
+    add_type_to_schema(&mut types_schema, &mut saint_count_value, "SaintCount");
 
     // Write the types schema
     let schema_json = serde_json::to_string_pretty(&types_schema)

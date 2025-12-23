@@ -1,577 +1,297 @@
+export type AllTypes = {
+    acclamation?:         Acclamation;
+    bibleBook?:           BibleBook;
+    calendarContext?:     CalendarContext;
+    calendarDefinition?:  CalendarDefinition;
+    celebrationSummary?:  CelebrationSummary;
+    dateDefWithOffset?:   DateDefWithOffset;
+    dayOfWeek?:           number;
+    liturgicalCycle?:     LiturgicalCycle;
+    liturgicalDay?:       LiturgicalDay;
+    massContext?:         MassContext;
+    massPart?:            MassPart;
+    monthIndex?:          number;
+    resources?:           Resources;
+    saintCount?:          SaintCountUnion;
+    sundayCycleCombined?: SundayCycleCombined;
+    [property: string]: any;
+}
+
+/**
+ * Acclamations used in liturgical celebrations.
+ * Acclamations are short liturgical responses or exclamations used during Mass.
+ *
+ * Alleluia - joyful acclamation used outside of Lent
+ *
+ * Lent - acclamation used during Lenten season
+ *
+ * Mixed - combination of different acclamation types
+ *
+ * None - no acclamation
+ */
+export enum Acclamation {
+    Alleluia = "ALLELUIA",
+    Lent = "LENT",
+    Mixed = "MIXED",
+    None = "NONE",
+}
+
+/**
+ * Books of the Bible using OSIS (Open Scripture Information Standard) identifiers.
+ * OSIS provides standardized abbreviations for biblical books used in liturgical and
+ * biblical applications.
+ *
+ * Genesis
+ *
+ * Exodus
+ *
+ * Leviticus
+ *
+ * Numbers
+ *
+ * Deuteronomy
+ *
+ * Joshua
+ *
+ * Judges
+ *
+ * Ruth
+ *
+ * 1 Samuel
+ *
+ * 2 Samuel
+ *
+ * 1 Kings
+ *
+ * 2 Kings
+ *
+ * 1 Chronicles
+ *
+ * 2 Chronicles
+ *
+ * Ezra
+ *
+ * Nehemiah
+ *
+ * Tobit
+ *
+ * Judith
+ *
+ * Esther
+ *
+ * 1 Maccabees
+ *
+ * 2 Maccabees
+ *
+ * Job
+ *
+ * Psalms
+ *
+ * Proverbs
+ *
+ * Ecclesiastes (Qohelet)
+ *
+ * Song of Solomon (Canticle of Canticles)
+ *
+ * Wisdom of Solomon
+ *
+ * Sirach (Ecclesiasticus)
+ *
+ * Isaiah
+ *
+ * Jeremiah
+ *
+ * Lamentations
+ *
+ * Baruch
+ *
+ * Letter of Jeremiah
+ *
+ * Ezekiel
+ *
+ * Daniel
+ *
+ * Hosea
+ *
+ * Joel
+ *
+ * Amos
+ *
+ * Obadiah
+ *
+ * Jonah
+ *
+ * Micah
+ *
+ * Nahum
+ *
+ * Habakkuk
+ *
+ * Zephaniah
+ *
+ * Haggai
+ *
+ * Zechariah
+ *
+ * Malachi
+ *
+ * Matthew
+ *
+ * Mark
+ *
+ * Luke
+ *
+ * John
+ *
+ * Acts
+ *
+ * Romans
+ *
+ * 1 Corinthians
+ *
+ * 2 Corinthians
+ *
+ * Galatians
+ *
+ * Ephesians
+ *
+ * Philippians
+ *
+ * Colossians
+ *
+ * 1 Thessalonians
+ *
+ * 2 Thessalonians
+ *
+ * 1 Timothy
+ *
+ * 2 Timothy
+ *
+ * Titus
+ *
+ * Philemon
+ *
+ * Hebrews
+ *
+ * James
+ *
+ * 1 Peter
+ *
+ * 2 Peter
+ *
+ * 1 John
+ *
+ * 2 John
+ *
+ * 3 John
+ *
+ * Jude
+ *
+ * Revelation
+ */
+export enum BibleBook {
+    Acts = "Acts",
+    Amos = "Amos",
+    Bar = "Bar",
+    Col = "Col",
+    Dan = "Dan",
+    Deut = "Deut",
+    Eccl = "Eccl",
+    EpJer = "EpJer",
+    Eph = "Eph",
+    Esth = "Esth",
+    Exod = "Exod",
+    Ezek = "Ezek",
+    Ezra = "Ezra",
+    Gal = "Gal",
+    Gen = "Gen",
+    Hab = "Hab",
+    Hag = "Hag",
+    Heb = "Heb",
+    Hos = "Hos",
+    ISA = "Isa",
+    Jas = "Jas",
+    Jdt = "Jdt",
+    Jer = "Jer",
+    Job = "Job",
+    Joel = "Joel",
+    John = "John",
+    Jonah = "Jonah",
+    Josh = "Josh",
+    Jude = "Jude",
+    Judg = "Judg",
+    Lam = "Lam",
+    Lev = "Lev",
+    Luke = "Luke",
+    Mal = "Mal",
+    Mark = "Mark",
+    Matt = "Matt",
+    Mic = "Mic",
+    Nah = "Nah",
+    Neh = "Neh",
+    Num = "Num",
+    Obad = "Obad",
+    PS = "Ps",
+    Phil = "Phil",
+    Phlm = "Phlm",
+    Prov = "Prov",
+    ROM = "Rom",
+    Rev = "Rev",
+    Ruth = "Ruth",
+    Sir = "Sir",
+    Song = "Song",
+    The1Chr = "1Chr",
+    The1Cor = "1Cor",
+    The1John = "1John",
+    The1Kgs = "1Kgs",
+    The1Macc = "1Macc",
+    The1Pet = "1Pet",
+    The1Sam = "1Sam",
+    The1Thess = "1Thess",
+    The1Tim = "1Tim",
+    The2Chr = "2Chr",
+    The2Cor = "2Cor",
+    The2John = "2John",
+    The2Kgs = "2Kgs",
+    The2Macc = "2Macc",
+    The2Pet = "2Pet",
+    The2Sam = "2Sam",
+    The2Thess = "2Thess",
+    The2Tim = "2Tim",
+    The3John = "3John",
+    Titus = "Titus",
+    Tob = "Tob",
+    Wis = "Wis",
+    Zech = "Zech",
+    Zeph = "Zeph",
+}
+
+/**
+ * Calendar year context for date boundaries.
+ *
+ * Determines how the calendar year is structured and which dates are included
+ * in a given year's calendar output.
+ *
+ * Gregorian year (January 1 to December 31)
+ *
+ * Liturgical year (first Sunday of Advent to the day before the first Sunday of Advent of
+ * the next year)
+ */
+export enum CalendarContext {
+    Gregorian = "GREGORIAN",
+    Liturgical = "LITURGICAL",
+}
+
 /**
  * Calendar definition
- *
- * Resources definition
- *
- * A single day in the liturgical calendar with computed values and inheritance information.
  */
-export type AllTypes = {
-    $schema?:          null | string;
-    days_definitions?: { [key: string]: DayDefinition };
-    /**
-     * The unique identifier of the liturgical day
-     */
-    id?: string;
-    /**
-     * Metadata of the resources
-     */
-    metadata?:            ResourcesMetadata | null;
-    parent_calendar_ids?: string[];
-    particular_config?:   ParticularConfig | null;
-    /**
-     * Entities of the resources: a person, a place, an event, etc.
-     *
-     * The entities (Saints, Blessed, or Places) linked to this liturgical day.
-     */
-    entities?: Entities;
-    /**
-     * Locale code of the resources, in BCP-47 IETF tag format
-     */
-    locale?: string;
-    /**
-     * Allows similar items with the same rank and same or lower precedence
-     * to coexist without this liturgical day overwriting them.
-     */
-    allow_similar_rank_items?: boolean;
-    /**
-     * The liturgical colors for this liturgical day.
-     */
-    colors?: ColorInfo[];
-    /**
-     * The common prayers, readings, and chants used for celebrating saints or
-     * feasts that belong to a specific category, such as martyrs, virgins, pastors, or the
-     * Blessed
-     * Virgin Mary.
-     */
-    commons?: CommonInfo[];
-    /**
-     * The computed date of the liturgical day.
-     */
-    date?: string;
-    /**
-     * The date definition for this liturgical day.
-     */
-    date_def?: DateDef;
-    /**
-     * The date definition exceptions for this liturgical day.
-     */
-    date_exceptions?: DateDefException[];
-    /**
-     * The day number within the current liturgical season.
-     */
-    day_of_season?: number | null;
-    /**
-     * The day of the week for this liturgical day.
-     * Returns a number from 0 (Sunday) to 6 (Saturday).
-     */
-    day_of_week?: number;
-    /**
-     * The last day of the current liturgical year for this liturgical day,
-     * i.e. the last Saturday of Ordinary Time, in the 34th week.
-     */
-    end_of_liturgical_year?: string;
-    /**
-     * The last day of the current liturgical season for this liturgical day.
-     */
-    end_of_season?: null | string;
-    /**
-     * The ID of the calendar where this liturgical day is defined.
-     * Indicates the source calendar in the inheritance chain.
-     */
-    from_calendar_id?: string;
-    /**
-     * The full name of the liturgical day
-     */
-    fullname?: string;
-    /**
-     * Holy days of obligation are days on which the faithful are expected to attend Mass,
-     * and engage in rest from work and recreation.
-     */
-    is_holy_day_of_obligation?: boolean;
-    /**
-     * Indicates if this liturgical day is optional within a specific liturgical calendar.
-     */
-    is_optional?: boolean;
-    /**
-     * The masses celebrated on this liturgical day.
-     * Most days have a single DayMass, but some have multiple masses
-     * (e.g., Christmas: PreviousEveningMass, NightMass, MassAtDawn, DayMass).
-     * Aliturgical days like Holy Saturday have an empty list.
-     */
-    masses?: MassInfo[];
-    /**
-     * The nth occurrence of this day of the week within the current month.
-     * For example, the 3rd Sunday of the month would have nth_day_of_week_in_month = 3.
-     */
-    nth_day_of_week_in_month?: number;
-    /**
-     * Contains the differences between this liturgical day and its parent definitions.
-     * Each element in the array represents the diff from a parent calendar definition.
-     * The array is ordered from most general (e.g., general_roman) to most specific.
-     */
-    parent_overrides?: ParentOverride[];
-    /**
-     * The liturgical periods to which this liturgical day belongs.
-     */
-    periods?: PeriodInfo[];
-    /**
-     * The liturgical precedence for this liturgical day.
-     */
-    precedence?: Precedence;
-    /**
-     * The psalter week cycle to which this liturgical day belongs.
-     */
-    psalter_week?: PsalterWeekCycle;
-    /**
-     * The localized name of the psalter week cycle to which this liturgical day belongs.
-     */
-    psalter_week_name?: string;
-    /**
-     * The liturgical rank for this liturgical day.
-     */
-    rank?: Rank;
-    /**
-     * The localized liturgical rank for this liturgical day.
-     */
-    rank_name?: string;
-    /**
-     * The liturgical seasons to which this liturgical day belongs.
-     */
-    season?: Season | null;
-    /**
-     * The liturgical season name.
-     */
-    season_name?: null | string;
-    /**
-     * The first day of the current liturgical year for this liturgical day,
-     * i.e. the first Sunday of Advent.
-     */
-    start_of_liturgical_year?: string;
-    /**
-     * The first day of the current liturgical season for this liturgical day.
-     */
-    start_of_season?: null | string;
-    /**
-     * The Sunday cycle to which this liturgical day belongs.
-     */
-    sunday_cycle?: SundayCycle;
-    /**
-     * The localized name of the Sunday cycle to which this liturgical day belongs.
-     */
-    sunday_cycle_name?: string;
-    /**
-     * The titles for this liturgical day.
-     */
-    titles?: TitlesDef;
-    /**
-     * The week number of the current liturgical season.
-     * Starts from `1`, except in the seasons of lent,
-     * the week of Ash Wednesday to the next Saturday is counted as `0`.
-     */
-    week_of_season?: number | null;
-    /**
-     * The weekday cycle to which this liturgical day belongs.
-     */
-    weekday_cycle?: WeekdayCycle;
-    /**
-     * The localized name of the weekday cycle to which this liturgical day belongs.
-     */
-    weekday_cycle_name?: string;
-}
-
-/**
- * Liturgical color information with localized name.
- */
-export type ColorInfo = {
-    /**
-     * The color key
-     */
-    key: Color;
-    /**
-     * The localized name of the color
-     */
-    name: string;
-}
-
-/**
- * Liturgical colors used in the celebration of Mass and other liturgical services.
- * Each color has specific liturgical significance and is used during particular seasons or
- * celebrations.
- *
- * The color key
- *
- * Red - used for martyrs, Pentecost, and Palm Sunday
- *
- * Rose - used on Gaudete Sunday (3rd Advent) and Laetare Sunday (4th Lent)
- *
- * Purple - used during Advent and Lent
- *
- * Green - used during Ordinary Time
- *
- * White - used for Christmas, Easter, and most feasts
- *
- * Gold - used for solemn celebrations and special occasions
- *
- * Black - used for funerals and All Souls' Day
- */
-export enum Color {
-    Black = "BLACK",
-    Gold = "GOLD",
-    Green = "GREEN",
-    Purple = "PURPLE",
-    Red = "RED",
-    Rose = "ROSE",
-    White = "WHITE",
-}
-
-/**
- * Liturgical common information with localized name.
- */
-export type CommonInfo = {
-    /**
-     * The common key
-     */
-    key: Common;
-    /**
-     * The localized name of the common
-     */
-    name: string;
-}
-
-/**
- * The common key
- *
- * Common prayers and readings for different categories of saints and celebrations.
- * Provides standardized liturgical texts for various types of commemorations.
- *
- * No common.
- *
- * Dedication anniversary (in the Church that was Dedicated).
- *
- * Dedication anniversary (outside the Church that was Dedicated).
- *
- * Common of the Blessed Virgin Mary (Ordinary Time).
- *
- * Common of the Blessed Virgin Mary (Advent).
- *
- * Common of the Blessed Virgin Mary (Christmas Time).
- *
- * Common of the Blessed Virgin Mary (Easter Time).
- *
- * Common of Several Martyrs (outside Easter).
- *
- * Common of One Martyr (outside Easter).
- *
- * Common of Several Martyrs (Easter Time).
- *
- * Common of One Martyr (Easter Time).
- *
- * Common for Several Missionary Martyrs.
- *
- * Common for One Missionary Martyr.
- *
- * Common for Virgin Martyrs.
- *
- * Common for Holy Woman Martyrs.
- *
- * Common for a Pope or for a Bishop
- *
- * Common for a Bishop
- *
- * Common for Several Pastors
- *
- * Common for One Pastor
- *
- * Common for one Founder
- *
- * Common for several Founders
- *
- * Common for Missionaries
- *
- * Common for Doctors of the Church.
- *
- * Common for Several Virgins
- *
- * Common for One Virgin
- *
- * Common for Several Holy Men and Women
- *
- * Common for One Holy Man or Woman
- *
- * Common for an Abbot
- *
- * Common for a Monk
- *
- * Common for a Nun
- *
- * Common for Religious
- *
- * Common for Those Who Practiced Works of Mercy
- *
- * Common for Educators
- *
- * Common for Holy Women
- */
-export enum Common {
-    BlessedVirginMaryAdvent = "BLESSED_VIRGIN_MARY__ADVENT",
-    BlessedVirginMaryChristmas = "BLESSED_VIRGIN_MARY__CHRISTMAS",
-    BlessedVirginMaryEaster = "BLESSED_VIRGIN_MARY__EASTER",
-    BlessedVirginMaryOrdinaryTime = "BLESSED_VIRGIN_MARY__ORDINARY_TIME",
-    DedicationAnniversaryInside = "DEDICATION_ANNIVERSARY__INSIDE",
-    DedicationAnniversaryOutside = "DEDICATION_ANNIVERSARY__OUTSIDE",
-    DoctorsOfTheChurch = "DOCTORS_OF_THE_CHURCH",
-    MartyrsEasterOne = "MARTYRS__EASTER__ONE",
-    MartyrsEasterSeveral = "MARTYRS__EASTER__SEVERAL",
-    MartyrsMissionaryOne = "MARTYRS__MISSIONARY__ONE",
-    MartyrsMissionarySeveral = "MARTYRS__MISSIONARY__SEVERAL",
-    MartyrsOutsideEasterOne = "MARTYRS__OUTSIDE_EASTER__ONE",
-    MartyrsOutsideEasterSeveral = "MARTYRS__OUTSIDE_EASTER__SEVERAL",
-    MartyrsVirgin = "MARTYRS__VIRGIN",
-    MartyrsWoman = "MARTYRS__WOMAN",
-    None = "NONE",
-    PastorsBishop = "PASTORS__BISHOP",
-    PastorsFounderOne = "PASTORS__FOUNDER__ONE",
-    PastorsFounderSeveral = "PASTORS__FOUNDER__SEVERAL",
-    PastorsMissionary = "PASTORS__MISSIONARY",
-    PastorsOne = "PASTORS__ONE",
-    PastorsPopeOrBishop = "PASTORS__POPE_OR_BISHOP",
-    PastorsSeveral = "PASTORS__SEVERAL",
-    SaintMonk = "SAINT__MONK",
-    SaintsAbbot = "SAINTS__ABBOT",
-    SaintsAllOne = "SAINTS__ALL__ONE",
-    SaintsAllSeveral = "SAINTS__ALL__SEVERAL",
-    SaintsEducators = "SAINTS__EDUCATORS",
-    SaintsHolyWomen = "SAINTS__HOLY_WOMEN",
-    SaintsMercyWorks = "SAINTS__MERCY_WORKS",
-    SaintsNun = "SAINTS__NUN",
-    SaintsReligious = "SAINTS__RELIGIOUS",
-    VirginsOne = "VIRGINS__ONE",
-    VirginsSeveral = "VIRGINS__SEVERAL",
-}
-
-/**
- * Date definition supporting various date calculation methods.
- * Provides flexible ways to specify liturgical dates using different approaches.
- *
- * Regular date definition
- *
- * The start date of the range
- *
- * The end date of the range
- *
- * The date to compare against
- *
- * The date definition for this liturgical day.
- *
- * Simple month/day specification
- *
- * Date function calculation (Easter, Epiphany, etc.)
- *
- * Nth weekday of a specific month
- *
- * Last weekday of a specific month
- *
- * Inherited from the proper of time
- */
-export type DateDef = {
-    /**
-     * The day of the month (1-31)
-     */
-    date?: number;
-    /**
-     * Optional day offset for adjustments
-     */
-    day_offset?: number | null;
-    /**
-     * The month (1-12)
-     */
-    month?: number;
-    /**
-     * The date function to calculate the base date
-     */
-    date_fn?: DateFn;
-    /**
-     * The day of the week (0=Sunday, 1=Monday, etc.)
-     */
-    day_of_week?: number;
-    /**
-     * Which occurrence of the weekday (1st, 2nd, 3rd, etc.)
-     */
-    nth_week_in_month?: number;
-    /**
-     * The day of the week to find the last occurrence of
-     */
-    last_day_of_week_in_month?: number;
-}
-
-/**
- * The date function to calculate the base date
- *
- * Date function for calculating liturgical dates.
- *
- * Represents movable feasts and special celebrations that require calculation
- * based on Easter or other variable dates.
- *
- * Monday after Pentecost.
- *
- * Sunday between January 2 and 8 (or January 6 if not transferred).
- *
- * February 2 (Candlemas).
- *
- * March 25 (may be transferred if in Holy Week or Easter Octave).
- *
- * Sunday before Easter.
- *
- * First Sunday after the Paschal Full Moon.
- *
- * Second Sunday of Easter.
- *
- * Saturday after the Second Sunday after Pentecost.
- *
- * Seventh Sunday after Easter.
- *
- * Thursday or Sunday after Trinity Sunday.
- *
- * June 24.
- *
- * June 29.
- *
- * August 6.
- *
- * August 15.
- *
- * September 14.
- *
- * November 1.
- *
- * December 8.
- */
-export enum DateFn {
-    AllSaints = "ALL_SAINTS",
-    Annunciation = "ANNUNCIATION",
-    Assumption = "ASSUMPTION",
-    CorpusChristiSunday = "CORPUS_CHRISTI_SUNDAY",
-    DivineMercySunday = "DIVINE_MERCY_SUNDAY",
-    EasterSunday = "EASTER_SUNDAY",
-    EpiphanySunday = "EPIPHANY_SUNDAY",
-    ExaltationOfTheHolyCross = "EXALTATION_OF_THE_HOLY_CROSS",
-    ImmaculateConceptionOfMary = "IMMACULATE_CONCEPTION_OF_MARY",
-    ImmaculateHeartOfMary = "IMMACULATE_HEART_OF_MARY",
-    MaryMotherOfTheChurch = "MARY_MOTHER_OF_THE_CHURCH",
-    NativityOfJohnTheBaptist = "NATIVITY_OF_JOHN_THE_BAPTIST",
-    PalmSunday = "PALM_SUNDAY",
-    PentecostSunday = "PENTECOST_SUNDAY",
-    PeterAndPaulApostles = "PETER_AND_PAUL_APOSTLES",
-    PresentationOfTheLord = "PRESENTATION_OF_THE_LORD",
-    Transfiguration = "TRANSFIGURATION",
-}
-
-/**
- * Single date exception
- *
- * The liturgical day date exception.
- * Represents a condition and the date to set when that condition is met.
- *
- * Multiple date exceptions
- */
-export type DateDefException = {
-    /**
-     * The date to set when the condition is met
-     */
-    then: DateDefExtended;
-    /**
-     * The condition that triggers the exception
-     */
-    when: ExceptionCondition;
-}
-
-/**
- * The date to set when the condition is met
- *
- * Extended date definition supporting both regular dates and offset dates.
- * Provides flexibility for date calculations with optional adjustments.
- *
- * Simple month/day specification
- *
- * Date function calculation (Easter, Epiphany, etc.)
- *
- * Nth weekday of a specific month
- *
- * Last weekday of a specific month
- *
- * Inherited from the proper of time
- *
- * Date definition with offset
- *
- * Date definition with offset for adjustments.
- * Used when a date needs to be shifted by a specific number of days.
- */
-export type DateDefExtended = {
-    /**
-     * The day of the month (1-31)
-     */
-    date?: number;
-    /**
-     * Optional day offset for adjustments
-     *
-     * The number of days to offset the date
-     */
-    day_offset?: number | null;
-    /**
-     * The month (1-12)
-     */
-    month?: number;
-    /**
-     * The date function to calculate the base date
-     */
-    date_fn?: DateFn;
-    /**
-     * The day of the week (0=Sunday, 1=Monday, etc.)
-     */
-    day_of_week?: number;
-    /**
-     * Which occurrence of the weekday (1st, 2nd, 3rd, etc.)
-     */
-    nth_week_in_month?: number;
-    /**
-     * The day of the week to find the last occurrence of
-     */
-    last_day_of_week_in_month?: number;
-}
-
-/**
- * The condition that triggers the exception
- *
- * Exception conditions that can trigger a date change.
- * Defines various conditions under which a date exception applies.
- *
- * If the date is between two specified dates
- *
- * If the date is the same as another specified date
- *
- * If the date falls on a specific day of the week
- */
-export type ExceptionCondition = {
-    /**
-     * The start date of the range
-     */
-    from?: DateDef;
-    /**
-     * Whether the range is inclusive of the start date and the end date
-     */
-    inclusive?: boolean;
-    /**
-     * The end date of the range
-     */
-    to?: DateDef;
-    /**
-     * The date to compare against
-     */
-    date?: DateDef;
-    /**
-     * The day of the week to match
-     */
-    day_of_week?: number;
+export type CalendarDefinition = {
+    $schema?:            null | string;
+    days_definitions:    { [key: string]: DayDefinition };
+    id:                  string;
+    metadata:            CalendarMetadata;
+    parent_calendar_ids: string[];
+    particular_config?:  ParticularConfig | null;
 }
 
 /**
@@ -660,6 +380,37 @@ export type DayDefinition = {
  * liturgical color(s).
  */
 export type ColorsUnion = Color[] | Color | null;
+
+/**
+ * Liturgical colors used in the celebration of Mass and other liturgical services.
+ * Each color has specific liturgical significance and is used during particular seasons or
+ * celebrations.
+ *
+ * The color key
+ *
+ * Red - used for martyrs, Pentecost, and Palm Sunday
+ *
+ * Rose - used on Gaudete Sunday (3rd Advent) and Laetare Sunday (4th Lent)
+ *
+ * Purple - used during Advent and Lent
+ *
+ * Green - used during Ordinary Time
+ *
+ * White - used for Christmas, Easter, and most feasts
+ *
+ * Gold - used for solemn celebrations and special occasions
+ *
+ * Black - used for funerals and All Souls' Day
+ */
+export enum Color {
+    Black = "BLACK",
+    Gold = "GOLD",
+    Green = "GREEN",
+    Purple = "PURPLE",
+    Red = "RED",
+    Rose = "ROSE",
+    White = "WHITE",
+}
 
 /**
  * The **Common** refers to a set of prayers, readings, and chants used for celebrating
@@ -789,9 +540,234 @@ export type DateDefClass = {
 }
 
 /**
+ * The date function to calculate the base date
+ *
+ * Date function for calculating liturgical dates.
+ *
+ * Represents movable feasts and special celebrations that require calculation
+ * based on Easter or other variable dates.
+ *
+ * Monday after Pentecost.
+ *
+ * Sunday between January 2 and 8 (or January 6 if not transferred).
+ *
+ * February 2 (Candlemas).
+ *
+ * March 25 (may be transferred if in Holy Week or Easter Octave).
+ *
+ * Sunday before Easter.
+ *
+ * First Sunday after the Paschal Full Moon.
+ *
+ * Second Sunday of Easter.
+ *
+ * Saturday after the Second Sunday after Pentecost.
+ *
+ * Seventh Sunday after Easter.
+ *
+ * Thursday or Sunday after Trinity Sunday.
+ *
+ * June 24.
+ *
+ * June 29.
+ *
+ * August 6.
+ *
+ * August 15.
+ *
+ * September 14.
+ *
+ * November 1.
+ *
+ * December 8.
+ */
+export enum DateFn {
+    AllSaints = "ALL_SAINTS",
+    Annunciation = "ANNUNCIATION",
+    Assumption = "ASSUMPTION",
+    CorpusChristiSunday = "CORPUS_CHRISTI_SUNDAY",
+    DivineMercySunday = "DIVINE_MERCY_SUNDAY",
+    EasterSunday = "EASTER_SUNDAY",
+    EpiphanySunday = "EPIPHANY_SUNDAY",
+    ExaltationOfTheHolyCross = "EXALTATION_OF_THE_HOLY_CROSS",
+    ImmaculateConceptionOfMary = "IMMACULATE_CONCEPTION_OF_MARY",
+    ImmaculateHeartOfMary = "IMMACULATE_HEART_OF_MARY",
+    MaryMotherOfTheChurch = "MARY_MOTHER_OF_THE_CHURCH",
+    NativityOfJohnTheBaptist = "NATIVITY_OF_JOHN_THE_BAPTIST",
+    PalmSunday = "PALM_SUNDAY",
+    PentecostSunday = "PENTECOST_SUNDAY",
+    PeterAndPaulApostles = "PETER_AND_PAUL_APOSTLES",
+    PresentationOfTheLord = "PRESENTATION_OF_THE_LORD",
+    Transfiguration = "TRANSFIGURATION",
+}
+
+/**
  * The date definition exceptions (overrides for specific circumstances)
  */
 export type DateDefExceptions = DateDefException[] | DateDefException | null;
+
+/**
+ * Single date exception
+ *
+ * The liturgical day date exception.
+ * Represents a condition and the date to set when that condition is met.
+ *
+ * Multiple date exceptions
+ */
+export type DateDefException = {
+    /**
+     * The date to set when the condition is met
+     */
+    then: DateDefExtended;
+    /**
+     * The condition that triggers the exception
+     */
+    when: ExceptionCondition;
+}
+
+/**
+ * The date to set when the condition is met
+ *
+ * Extended date definition supporting both regular dates and offset dates.
+ * Provides flexibility for date calculations with optional adjustments.
+ *
+ * Simple month/day specification
+ *
+ * Date function calculation (Easter, Epiphany, etc.)
+ *
+ * Nth weekday of a specific month
+ *
+ * Last weekday of a specific month
+ *
+ * Inherited from the proper of time
+ *
+ * Date definition with offset
+ *
+ * Date definition with offset for adjustments.
+ * Used when a date needs to be shifted by a specific number of days.
+ */
+export type DateDefExtended = {
+    /**
+     * The day of the month (1-31)
+     */
+    date?: number;
+    /**
+     * Optional day offset for adjustments
+     *
+     * The number of days to offset the date
+     */
+    day_offset?: number | null;
+    /**
+     * The month (1-12)
+     */
+    month?: number;
+    /**
+     * The date function to calculate the base date
+     */
+    date_fn?: DateFn;
+    /**
+     * The day of the week (0=Sunday, 1=Monday, etc.)
+     */
+    day_of_week?: number;
+    /**
+     * Which occurrence of the weekday (1st, 2nd, 3rd, etc.)
+     */
+    nth_week_in_month?: number;
+    /**
+     * The day of the week to find the last occurrence of
+     */
+    last_day_of_week_in_month?: number;
+}
+
+/**
+ * The condition that triggers the exception
+ *
+ * Exception conditions that can trigger a date change.
+ * Defines various conditions under which a date exception applies.
+ *
+ * If the date is between two specified dates
+ *
+ * If the date is the same as another specified date
+ *
+ * If the date falls on a specific day of the week
+ */
+export type ExceptionCondition = {
+    /**
+     * The start date of the range
+     */
+    from?: DateDef;
+    /**
+     * Whether the range is inclusive of the start date and the end date
+     */
+    inclusive?: boolean;
+    /**
+     * The end date of the range
+     */
+    to?: DateDef;
+    /**
+     * The date to compare against
+     */
+    date?: DateDef;
+    /**
+     * The day of the week to match
+     */
+    day_of_week?: number;
+}
+
+/**
+ * Date definition supporting various date calculation methods.
+ * Provides flexible ways to specify liturgical dates using different approaches.
+ *
+ * Regular date definition
+ *
+ * The start date of the range
+ *
+ * The end date of the range
+ *
+ * The date to compare against
+ *
+ * The date definition for this liturgical day.
+ *
+ * Simple month/day specification
+ *
+ * Date function calculation (Easter, Epiphany, etc.)
+ *
+ * Nth weekday of a specific month
+ *
+ * Last weekday of a specific month
+ *
+ * Inherited from the proper of time
+ */
+export type DateDef = {
+    /**
+     * The day of the month (1-31)
+     */
+    date?: number;
+    /**
+     * Optional day offset for adjustments
+     */
+    day_offset?: number | null;
+    /**
+     * The month (1-12)
+     */
+    month?: number;
+    /**
+     * The date function to calculate the base date
+     */
+    date_fn?: DateFn;
+    /**
+     * The day of the week (0=Sunday, 1=Monday, etc.)
+     */
+    day_of_week?: number;
+    /**
+     * Which occurrence of the weekday (1st, 2nd, 3rd, etc.)
+     */
+    nth_week_in_month?: number;
+    /**
+     * The day of the week to find the last occurrence of
+     */
+    last_day_of_week_in_month?: number;
+}
 
 /**
  * A reference to an entity in the entity catalog.
@@ -811,7 +787,7 @@ export type EntityOverride = {
     /**
      * The number of persons this entity represents (useful for groups of martyrs or saints)
      */
-    count?: CountUnion;
+    count?: SaintCountUnion;
     /**
      * Whether to hide titles when displaying this entity (useful when titles are already
      * included in the entity name)
@@ -827,9 +803,9 @@ export type EntityOverride = {
     titles?: TitlesUnion;
 }
 
-export type CountUnion = CountEnum | number | null;
+export type SaintCountUnion = SaintCountEnum | number | null;
 
-export enum CountEnum {
+export enum SaintCountEnum {
     Many = "MANY",
 }
 
@@ -1244,7 +1220,11 @@ export type MassContent = {
  * Liturgical precedence levels for determining which celebration takes priority.
  * Defines the hierarchical order of liturgical celebrations according to UNLY norms.
  *
+ * The liturgical precedence for this liturgical day
+ *
  * The liturgical precedence for this liturgical day.
+ *
+ * The liturgical precedence
  */
 export enum Precedence {
     AshWednesday2 = "ASH_WEDNESDAY_2",
@@ -1276,7 +1256,310 @@ export enum Precedence {
     WeekdayOfHolyWeek2 = "WEEKDAY_OF_HOLY_WEEK_2",
 }
 
-export type Entities = Entity[] | { [key: string]: Entity } | null;
+/**
+ * Metadata for a calendar.
+ * Contains essential information about the calendar's type and jurisdiction.
+ */
+export type CalendarMetadata = {
+    /**
+     * The jurisdiction of the calendar
+     */
+    jurisdiction: CalendarJurisdiction;
+    /**
+     * The type of the calendar
+     */
+    type: CalendarType;
+}
+
+/**
+ * The jurisdiction of the calendar
+ *
+ * The jurisdiction of the calendar.
+ * Determines whether the calendar follows ecclesiastical or civil authority.
+ *
+ * Calendar under ecclesiastical authority (Church)
+ *
+ * Calendar under civil authority (State)
+ */
+export enum CalendarJurisdiction {
+    Civil = "CIVIL",
+    Ecclesiastical = "ECCLESIASTICAL",
+}
+
+/**
+ * The type of the calendar
+ *
+ * The type of the calendar.
+ * Defines the scope and authority level of the liturgical calendar.
+ *
+ * General Roman Calendar (universal)
+ *
+ * Regional calendar (multiple countries)
+ *
+ * National calendar (single country)
+ *
+ * Archdiocesan calendar
+ *
+ * Diocesan calendar
+ *
+ * City calendar
+ *
+ * Parish calendar
+ *
+ * General religious community calendar
+ *
+ * Regional religious community calendar
+ *
+ * Local religious community calendar
+ *
+ * Other specialized calendar
+ */
+export enum CalendarType {
+    Archdiocese = "ARCHDIOCESE",
+    City = "CITY",
+    Country = "COUNTRY",
+    Diocese = "DIOCESE",
+    GeneralCommunity = "GENERAL_COMMUNITY",
+    GeneralRoman = "GENERAL_ROMAN",
+    LocalCommunity = "LOCAL_COMMUNITY",
+    Other = "OTHER",
+    Parish = "PARISH",
+    Region = "REGION",
+    RegionalCommunity = "REGIONAL_COMMUNITY",
+}
+
+/**
+ * Configuration options for "particular" (local/diocesan) calendars.
+ *
+ * In liturgical terminology, a "particular" calendar is one that applies to a specific
+ * region, diocese, or religious community, as opposed to the General Roman Calendar
+ * which applies universally.
+ *
+ * These settings can override or extend the default Romcal configuration or any parent
+ * calendar configuration.
+ */
+export type ParticularConfig = {
+    /**
+     * Ascension is celebrated on a Sunday
+     */
+    ascension_on_sunday?: boolean | null;
+    /**
+     * Corpus Christi is celebrated on a Sunday
+     */
+    corpus_christi_on_sunday?: boolean | null;
+    /**
+     * The type of Easter calculation
+     */
+    easter_calculation_type?: EasterCalculationType | null;
+    /**
+     * Epiphany is celebrated on a Sunday
+     */
+    epiphany_on_sunday?: boolean | null;
+}
+
+/**
+ * Gregorian calculation (default)
+ *
+ * Julian calculation converted to Gregorian
+ */
+export enum EasterCalculationType {
+    Gregorian = "GREGORIAN",
+    Julian = "JULIAN",
+}
+
+/**
+ * Summary of a celebration for use in optional celebrations list.
+ * Contains the essential fields from a LiturgicalDay that identify a celebration.
+ */
+export type CelebrationSummary = {
+    /**
+     * The liturgical colors for this liturgical day
+     */
+    colors: ColorInfo[];
+    /**
+     * The common prayers/readings used for this celebration
+     */
+    commons: CommonInfo[];
+    /**
+     * The entities (Saints, Blessed, or Places) linked to this liturgical day
+     */
+    entities: Entity[];
+    /**
+     * The ID of the calendar where this liturgical day is defined
+     */
+    from_calendar_id: string;
+    /**
+     * The full name of the liturgical day
+     */
+    fullname: string;
+    /**
+     * The unique identifier of the liturgical day
+     */
+    id: string;
+    /**
+     * Holy days of obligation
+     */
+    is_holy_day_of_obligation: boolean;
+    /**
+     * Indicates if this liturgical day is optional
+     */
+    is_optional: boolean;
+    /**
+     * The liturgical precedence for this liturgical day
+     */
+    precedence: Precedence;
+    /**
+     * The liturgical rank for this liturgical day
+     */
+    rank: Rank;
+    /**
+     * The localized liturgical rank for this liturgical day
+     */
+    rank_name: string;
+    /**
+     * The titles for this liturgical day
+     */
+    titles: TitlesDef;
+}
+
+/**
+ * Liturgical color information with localized name.
+ */
+export type ColorInfo = {
+    /**
+     * The color key
+     */
+    key: Color;
+    /**
+     * The localized name of the color
+     */
+    name: string;
+}
+
+/**
+ * Liturgical common information with localized name.
+ */
+export type CommonInfo = {
+    /**
+     * The common key
+     */
+    key: Common;
+    /**
+     * The localized name of the common
+     */
+    name: string;
+}
+
+/**
+ * The common key
+ *
+ * Common prayers and readings for different categories of saints and celebrations.
+ * Provides standardized liturgical texts for various types of commemorations.
+ *
+ * No common.
+ *
+ * Dedication anniversary (in the Church that was Dedicated).
+ *
+ * Dedication anniversary (outside the Church that was Dedicated).
+ *
+ * Common of the Blessed Virgin Mary (Ordinary Time).
+ *
+ * Common of the Blessed Virgin Mary (Advent).
+ *
+ * Common of the Blessed Virgin Mary (Christmas Time).
+ *
+ * Common of the Blessed Virgin Mary (Easter Time).
+ *
+ * Common of Several Martyrs (outside Easter).
+ *
+ * Common of One Martyr (outside Easter).
+ *
+ * Common of Several Martyrs (Easter Time).
+ *
+ * Common of One Martyr (Easter Time).
+ *
+ * Common for Several Missionary Martyrs.
+ *
+ * Common for One Missionary Martyr.
+ *
+ * Common for Virgin Martyrs.
+ *
+ * Common for Holy Woman Martyrs.
+ *
+ * Common for a Pope or for a Bishop
+ *
+ * Common for a Bishop
+ *
+ * Common for Several Pastors
+ *
+ * Common for One Pastor
+ *
+ * Common for one Founder
+ *
+ * Common for several Founders
+ *
+ * Common for Missionaries
+ *
+ * Common for Doctors of the Church.
+ *
+ * Common for Several Virgins
+ *
+ * Common for One Virgin
+ *
+ * Common for Several Holy Men and Women
+ *
+ * Common for One Holy Man or Woman
+ *
+ * Common for an Abbot
+ *
+ * Common for a Monk
+ *
+ * Common for a Nun
+ *
+ * Common for Religious
+ *
+ * Common for Those Who Practiced Works of Mercy
+ *
+ * Common for Educators
+ *
+ * Common for Holy Women
+ */
+export enum Common {
+    BlessedVirginMaryAdvent = "BLESSED_VIRGIN_MARY__ADVENT",
+    BlessedVirginMaryChristmas = "BLESSED_VIRGIN_MARY__CHRISTMAS",
+    BlessedVirginMaryEaster = "BLESSED_VIRGIN_MARY__EASTER",
+    BlessedVirginMaryOrdinaryTime = "BLESSED_VIRGIN_MARY__ORDINARY_TIME",
+    DedicationAnniversaryInside = "DEDICATION_ANNIVERSARY__INSIDE",
+    DedicationAnniversaryOutside = "DEDICATION_ANNIVERSARY__OUTSIDE",
+    DoctorsOfTheChurch = "DOCTORS_OF_THE_CHURCH",
+    MartyrsEasterOne = "MARTYRS__EASTER__ONE",
+    MartyrsEasterSeveral = "MARTYRS__EASTER__SEVERAL",
+    MartyrsMissionaryOne = "MARTYRS__MISSIONARY__ONE",
+    MartyrsMissionarySeveral = "MARTYRS__MISSIONARY__SEVERAL",
+    MartyrsOutsideEasterOne = "MARTYRS__OUTSIDE_EASTER__ONE",
+    MartyrsOutsideEasterSeveral = "MARTYRS__OUTSIDE_EASTER__SEVERAL",
+    MartyrsVirgin = "MARTYRS__VIRGIN",
+    MartyrsWoman = "MARTYRS__WOMAN",
+    None = "NONE",
+    PastorsBishop = "PASTORS__BISHOP",
+    PastorsFounderOne = "PASTORS__FOUNDER__ONE",
+    PastorsFounderSeveral = "PASTORS__FOUNDER__SEVERAL",
+    PastorsMissionary = "PASTORS__MISSIONARY",
+    PastorsOne = "PASTORS__ONE",
+    PastorsPopeOrBishop = "PASTORS__POPE_OR_BISHOP",
+    PastorsSeveral = "PASTORS__SEVERAL",
+    SaintMonk = "SAINT__MONK",
+    SaintsAbbot = "SAINTS__ABBOT",
+    SaintsAllOne = "SAINTS__ALL__ONE",
+    SaintsAllSeveral = "SAINTS__ALL__SEVERAL",
+    SaintsEducators = "SAINTS__EDUCATORS",
+    SaintsHolyWomen = "SAINTS__HOLY_WOMEN",
+    SaintsMercyWorks = "SAINTS__MERCY_WORKS",
+    SaintsNun = "SAINTS__NUN",
+    SaintsReligious = "SAINTS__RELIGIOUS",
+    VirginsOne = "VIRGINS__ONE",
+    VirginsSeveral = "VIRGINS__SEVERAL",
+}
 
 export type Entity = {
     /**
@@ -1291,7 +1574,7 @@ export type Entity = {
      * Number of person that this definition represent.
      * It could be set as 'many' if the number is not defined.
      */
-    count?: CountUnion;
+    count?: SaintCountUnion;
     /**
      * Date of Beatification, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD'
      * format),
@@ -1447,6 +1730,296 @@ export enum EntityType {
 }
 
 /**
+ * The liturgical rank for this liturgical day
+ *
+ * Liturgical rank indicating the importance and celebration style of a liturgical day
+ *
+ * The liturgical rank for this liturgical day.
+ *
+ * The liturgical rank
+ *
+ * Solemnities are counted among the most important days, whose celebration
+ * begins with First Vespers (Evening Prayer I) on the preceding day. Some Solemnities
+ * are also endowed with their own Vigil Mass, which is to be used on the evening of the
+ * preceding day, if an evening Mass is celebrated. (UNLY #11)
+ *
+ * On the first day of each week, which is known as the Day of the Lord or the Lord's
+ * Day, the Church, by an apostolic tradition that draws its origin from the very day of
+ * the Resurrection of Christ, celebrates the Paschal Mystery. Hence, Sunday must be
+ * considered the primordial feast day. (UNLY #4)
+ *
+ * Feasts are celebrated within the limits of the natural day; accordingly they have
+ * no First Vespers (Evening Prayer I), except in the case of Feasts of the Lord that fall
+ * on a Sunday in Ordinary Time or in Christmas Time and which replace the Sunday
+ * Office. (UNLY #13)
+ *
+ * **Obligatory memorials** are liturgical commemorations of saints, events, or aspects of
+ * the
+ * faith. Their observance is mandatory and integrated into the celebration of the occurring
+ * weekday, following the liturgical norms outlined in the General Instruction of the Roman
+ * Missal
+ * and the Liturgy of the Hours.
+ * When an **obligatory memorial** falls on a weekday during the liturgical season of Lent
+ * or a
+ * privileged weekday of Advent, it must only be celebrated as an **optional memorial**, as
+ * Lent
+ * and Advent have their own specific liturgical observances that take precedence.
+ *
+ * **Optional memorials** are liturgical commemorations of saints, events, or aspects of the
+ * faith, but they are not obligatory.
+ * Their observance is integrated into the celebration of the occurring weekday, adhering to
+ * the
+ * liturgical norms provided in the General Instruction of the Roman Missal and the Liturgy
+ * of
+ * the Hours.
+ * In cases where multiple **optional memorials** are designated on the same day in the
+ * liturgical
+ * calendar, only one of them may be celebrated, and the others must be omitted (UNLY #14).
+ * This allows for some flexibility in choosing which optional memorial to commemorate when
+ * multiple options are available.
+ *
+ * The days of the week that follow Sunday are called weekdays; however, they are
+ * celebrated differently according to the importance of each.
+ *
+ * a. Ash Wednesday and the weekdays of Holy Week, from Monday up to and including
+ * Thursday, take precedence over all other celebrations.
+ * b. The weekdays of Advent from 17 December up to and including 24 December
+ * and all the weekdays of Lent have precedence over Obligatory Memorials.
+ * c. Other weekdays give way to all Solemnities and Feasts and are combined with
+ * Memorials.
+ *
+ * (UNLY #16)
+ */
+export enum Rank {
+    Feast = "FEAST",
+    Memorial = "MEMORIAL",
+    OptionalMemorial = "OPTIONAL_MEMORIAL",
+    Solemnity = "SOLEMNITY",
+    Sunday = "SUNDAY",
+    Weekday = "WEEKDAY",
+}
+
+/**
+ * Title definition that can be either a simple list or a compound definition.
+ * Supports both direct title lists and compound title operations.
+ *
+ * The titles for this liturgical day
+ *
+ * The titles for this liturgical day.
+ */
+export type TitlesDef = Title[] | CompoundTitle;
+
+/**
+ * Date definition with offset
+ *
+ * Date definition with offset for adjustments.
+ * Used when a date needs to be shifted by a specific number of days.
+ */
+export type DateDefWithOffset = {
+    /**
+     * The number of days to offset the date
+     */
+    day_offset: number;
+}
+
+/**
+ * Liturgical cycle for lectionary readings
+ * Includes both actual cycles (Year A, B, C, etc.) and invariant content
+ *
+ * Invariant content that applies to all cycles
+ *
+ * Year A of the Sunday cycle
+ *
+ * Year B of the Sunday cycle
+ *
+ * Year C of the Sunday cycle
+ *
+ * Combined years A and B of the Sunday cycle
+ *
+ * Combined years A and C of the Sunday cycle
+ *
+ * Combined years B and C of the Sunday cycle
+ *
+ * Year 1 of the weekday cycle (Cycle I)
+ *
+ * Year 2 of the weekday cycle (Cycle II)
+ */
+export enum LiturgicalCycle {
+    Invariant = "invariant",
+    Year1 = "year_1",
+    Year2 = "year_2",
+    YearA = "year_a",
+    YearAB = "year_a_b",
+    YearAC = "year_a_c",
+    YearB = "year_b",
+    YearBC = "year_b_c",
+    YearC = "year_c",
+}
+
+/**
+ * A single day in the liturgical calendar with computed values and inheritance information.
+ */
+export type LiturgicalDay = {
+    /**
+     * Allows similar items with the same rank and same or lower precedence
+     * to coexist without this liturgical day overwriting them.
+     */
+    allow_similar_rank_items: boolean;
+    /**
+     * The liturgical colors for this liturgical day.
+     */
+    colors: ColorInfo[];
+    /**
+     * The common prayers, readings, and chants used for celebrating saints or
+     * feasts that belong to a specific category, such as martyrs, virgins, pastors, or the
+     * Blessed
+     * Virgin Mary.
+     */
+    commons: CommonInfo[];
+    /**
+     * The computed date of the liturgical day.
+     */
+    date: string;
+    /**
+     * The date definition for this liturgical day.
+     */
+    date_def: DateDef;
+    /**
+     * The date definition exceptions for this liturgical day.
+     */
+    date_exceptions: DateDefException[];
+    /**
+     * The day number within the current liturgical season.
+     */
+    day_of_season?: number | null;
+    /**
+     * The day of the week for this liturgical day.
+     * Returns a number from 0 (Sunday) to 6 (Saturday).
+     */
+    day_of_week: number;
+    /**
+     * The last day of the current liturgical year for this liturgical day,
+     * i.e. the last Saturday of Ordinary Time, in the 34th week.
+     */
+    end_of_liturgical_year: string;
+    /**
+     * The last day of the current liturgical season for this liturgical day.
+     */
+    end_of_season?: null | string;
+    /**
+     * The entities (Saints, Blessed, or Places) linked to this liturgical day.
+     */
+    entities: Entity[];
+    /**
+     * The ID of the calendar where this liturgical day is defined.
+     * Indicates the source calendar in the inheritance chain.
+     */
+    from_calendar_id: string;
+    /**
+     * The full name of the liturgical day
+     */
+    fullname: string;
+    /**
+     * The unique identifier of the liturgical day
+     */
+    id: string;
+    /**
+     * Holy days of obligation are days on which the faithful are expected to attend Mass,
+     * and engage in rest from work and recreation.
+     */
+    is_holy_day_of_obligation: boolean;
+    /**
+     * Indicates if this liturgical day is optional within a specific liturgical calendar.
+     */
+    is_optional: boolean;
+    /**
+     * The masses celebrated on this liturgical day.
+     * Most days have a single DayMass, but some have multiple masses
+     * (e.g., Christmas: PreviousEveningMass, NightMass, MassAtDawn, DayMass).
+     * Aliturgical days like Holy Saturday have an empty list.
+     */
+    masses: MassInfo[];
+    /**
+     * The nth occurrence of this day of the week within the current month.
+     * For example, the 3rd Sunday of the month would have nth_day_of_week_in_month = 3.
+     */
+    nth_day_of_week_in_month: number;
+    /**
+     * Contains the differences between this liturgical day and its parent definitions.
+     * Each element in the array represents the diff from a parent calendar definition.
+     * The array is ordered from most general (e.g., general_roman) to most specific.
+     */
+    parent_overrides: ParentOverride[];
+    /**
+     * The liturgical periods to which this liturgical day belongs.
+     */
+    periods: PeriodInfo[];
+    /**
+     * The liturgical precedence for this liturgical day.
+     */
+    precedence: Precedence;
+    /**
+     * The psalter week cycle to which this liturgical day belongs.
+     */
+    psalter_week: PsalterWeekCycle;
+    /**
+     * The localized name of the psalter week cycle to which this liturgical day belongs.
+     */
+    psalter_week_name: string;
+    /**
+     * The liturgical rank for this liturgical day.
+     */
+    rank: Rank;
+    /**
+     * The localized liturgical rank for this liturgical day.
+     */
+    rank_name: string;
+    /**
+     * The liturgical seasons to which this liturgical day belongs.
+     */
+    season?: Season | null;
+    /**
+     * The liturgical season name.
+     */
+    season_name?: null | string;
+    /**
+     * The first day of the current liturgical year for this liturgical day,
+     * i.e. the first Sunday of Advent.
+     */
+    start_of_liturgical_year: string;
+    /**
+     * The first day of the current liturgical season for this liturgical day.
+     */
+    start_of_season?: null | string;
+    /**
+     * The Sunday cycle to which this liturgical day belongs.
+     */
+    sunday_cycle: SundayCycle;
+    /**
+     * The localized name of the Sunday cycle to which this liturgical day belongs.
+     */
+    sunday_cycle_name: string;
+    /**
+     * The titles for this liturgical day.
+     */
+    titles: TitlesDef;
+    /**
+     * The week number of the current liturgical season.
+     * Starts from `1`, except in the seasons of lent,
+     * the week of Ash Wednesday to the next Saturday is counted as `0`.
+     */
+    week_of_season?: number | null;
+    /**
+     * The weekday cycle to which this liturgical day belongs.
+     */
+    weekday_cycle: WeekdayCycle;
+    /**
+     * The localized name of the weekday cycle to which this liturgical day belongs.
+     */
+    weekday_cycle_name: string;
+}
+
+/**
  * Information about a mass celebration for a liturgical day.
  * Contains the type of mass and its localized name.
  */
@@ -1506,21 +2079,471 @@ export enum MassTime {
 }
 
 /**
- * Metadata for a calendar.
- * Contains essential information about the calendar's type and jurisdiction.
+ * Represents the differences between a liturgical day definition and its parent definition.
+ * This is a lightweight structure that only contains fields that can be overridden.
+ */
+export type ParentOverride = {
+    /**
+     * The allow_similar_rank_items flag if it was changed
+     */
+    allow_similar_rank_items?: boolean | null;
+    /**
+     * The colors if they were changed
+     */
+    colors?: ColorInfo[] | null;
+    /**
+     * The commons definition if it was changed
+     */
+    commons_def?: CommonDefinition[] | null;
+    /**
+     * The date definition if it was changed
+     */
+    date_def?: DateDefClass | null;
+    /**
+     * The date exceptions if they were changed
+     */
+    date_exceptions?: DateDefException[] | null;
+    /**
+     * The ID of the calendar from which this override originates
+     */
+    from_calendar_id: string;
+    /**
+     * The is_holy_day_of_obligation flag if it was changed
+     */
+    is_holy_day_of_obligation?: boolean | null;
+    /**
+     * The is_optional flag if it was changed
+     */
+    is_optional?: boolean | null;
+    /**
+     * The precedence if it was changed
+     */
+    precedence?: Precedence | null;
+    /**
+     * The rank if it was changed
+     */
+    rank?: Rank | null;
+    /**
+     * The titles if they were changed
+     */
+    titles?: TitlesUnion;
+}
+
+/**
+ * Liturgical period information with localized name.
+ */
+export type PeriodInfo = {
+    /**
+     * The period key
+     */
+    key: Period;
+    /**
+     * The localized name of the period
+     */
+    name: string;
+}
+
+/**
+ * The period key
  *
+ * Specific periods within liturgical seasons.
+ * Defines sub-periods that have special liturgical characteristics or rules.
+ *
+ * The eight days following Christmas (December 25 - January 1)
+ *
+ * Days before Epiphany (January 2 to the day before Epiphany)
+ *
+ * Days from Epiphany to the Presentation (January 6 to the day before the Presentation of
+ * the Lord)
+ *
+ * Period from Christmas to the Presentation of the Lord
+ *
+ * Period from the Presentation to Holy Thursday
+ *
+ * Holy Week (Palm Sunday to Holy Saturday)
+ *
+ * Paschal Triduum (start from the Thursday of the Lord's Supper to the Easter Sunday
+ * Vespers)
+ *
+ * The eight days following Easter Sunday
+ *
+ * Early Ordinary Time (after the Presentation of the Lord to the day before Ash Wednesday)
+ *
+ * Late Ordinary Time (after Pentecost to the day before the First Sunday of Advent)
+ */
+export enum Period {
+    ChristmasOctave = "CHRISTMAS_OCTAVE",
+    ChristmasToPresentationOfTheLord = "CHRISTMAS_TO_PRESENTATION_OF_THE_LORD",
+    DaysBeforeEpiphany = "DAYS_BEFORE_EPIPHANY",
+    DaysFromEpiphany = "DAYS_FROM_EPIPHANY",
+    EarlyOrdinaryTime = "EARLY_ORDINARY_TIME",
+    EasterOctave = "EASTER_OCTAVE",
+    HolyWeek = "HOLY_WEEK",
+    LateOrdinaryTime = "LATE_ORDINARY_TIME",
+    PaschalTriduum = "PASCHAL_TRIDUUM",
+    PresentationOfTheLordToHolyThursday = "PRESENTATION_OF_THE_LORD_TO_HOLY_THURSDAY",
+}
+
+/**
+ * The psalter week cycle to which this liturgical day belongs.
+ *
+ * [GILH §133] The four-week cycle of the psalter is coordinated with the liturgical year in
+ * such a way that
+ * on the First Sunday of Advent, the First Sunday in Ordinary Time, the First Sunday of
+ * Lent,
+ * and Easter Sunday the cycle is always begun again with Week 1 (others being omitted when
+ * necessary).
+ *
+ * The psalter week cycle (Week 1-4)
+ *
+ * Week 1
+ *
+ * Week 2
+ *
+ * Week 3
+ *
+ * Week 4
+ */
+export enum PsalterWeekCycle {
+    Week1 = "WEEK_1",
+    Week2 = "WEEK_2",
+    Week3 = "WEEK_3",
+    Week4 = "WEEK_4",
+}
+
+/**
+ * Advent
+ *
+ * Christmas Time
+ *
+ * Lent
+ *
+ * Paschal Triduum
+ *
+ * Easter Time
+ *
+ * Ordinary Time
+ */
+export enum Season {
+    Advent = "ADVENT",
+    ChristmasTime = "CHRISTMAS_TIME",
+    EasterTime = "EASTER_TIME",
+    Lent = "LENT",
+    OrdinaryTime = "ORDINARY_TIME",
+    PaschalTriduum = "PASCHAL_TRIDUUM",
+}
+
+/**
+ * The Sunday cycle to which this liturgical day belongs.
+ *
+ * A three-year cycle for Sunday Mass readings (and some solemnities), designated by A, B,
+ * or C.
+ * Each cycle begins on the First Sunday of Advent of the previous civil year and ends on
+ * Saturday
+ * after the Christ the King Solemnity. The cycles follow each other in alphabetical order.
+ * C year is always divisible by 3, A has remainder of 1, and B remainder of 2.
+ *
+ * The Sunday cycle (Year A, B, or C)
+ *
+ * Year A
+ *
+ * Year B
+ *
+ * Year C
+ */
+export enum SundayCycle {
+    YearA = "YEAR_A",
+    YearB = "YEAR_B",
+    YearC = "YEAR_C",
+}
+
+/**
+ * The weekday cycle to which this liturgical day belongs.
+ *
+ * A two-year cycle for the weekday Mass readings (also called Cycle I and Cycle II).
+ * Odd-numbered years are the Cycle I (year 1); even-numbered ones are the Cycle II (year
+ * 2).
+ *
+ * The weekday cycle (Year 1 or 2)
+ *
+ * Year 1 (Cycle I)
+ *
+ * Year 2 (Cycle II)
+ */
+export enum WeekdayCycle {
+    Year1 = "YEAR_1",
+    Year2 = "YEAR_2",
+}
+
+/**
+ * A flat structure representing a single mass with its full liturgical context.
+ *
+ * This is the main type for the mass-centric calendar view. It contains:
+ * - Mass identification (type, name, civil/liturgical dates)
+ * - Day-level context (season, cycles, periods)
+ * - Primary celebration data (flattened from LiturgicalDay)
+ * - Optional alternative celebrations
+ *
+ * For evening masses (Easter Vigil, Previous Evening Mass), the `civil_date`
+ * is shifted to the previous day while `liturgical_date` remains the original
+ * liturgical celebration date.
+ */
+export type MassContext = {
+    /**
+     * The civil calendar date when this mass is celebrated (YYYY-MM-DD).
+     * For evening masses (EasterVigil, PreviousEveningMass), this is the day
+     * BEFORE the liturgical date.
+     */
+    civil_date: string;
+    /**
+     * The liturgical colors
+     */
+    colors: ColorInfo[];
+    /**
+     * The common prayers/readings used
+     */
+    commons: CommonInfo[];
+    /**
+     * The day number within the liturgical season
+     */
+    day_of_season?: number | null;
+    /**
+     * The day of the week (0=Sunday to 6=Saturday)
+     */
+    day_of_week: number;
+    /**
+     * The last day of the liturgical year
+     */
+    end_of_liturgical_year: string;
+    /**
+     * The last day of the current liturgical season
+     */
+    end_of_season?: null | string;
+    /**
+     * The entities (Saints, Blessed, or Places) linked to this day
+     */
+    entities: Entity[];
+    /**
+     * The ID of the calendar where this liturgical day is defined
+     */
+    from_calendar_id: string;
+    /**
+     * The full name of the liturgical day
+     */
+    fullname: string;
+    /**
+     * The unique identifier of the liturgical day
+     */
+    id: string;
+    /**
+     * Whether this is a holy day of obligation
+     */
+    is_holy_day_of_obligation: boolean;
+    /**
+     * Whether this liturgical day is optional
+     */
+    is_optional: boolean;
+    /**
+     * The liturgical date this mass belongs to (YYYY-MM-DD).
+     * This is the "theological" date of the celebration.
+     */
+    liturgical_date: string;
+    /**
+     * The type of mass (e.g., DayMass, EasterVigil, etc.)
+     * Serialized as SCREAMING_SNAKE_CASE (e.g., "DAY_MASS")
+     */
+    mass_time: MassTime;
+    /**
+     * The localized name of the mass time (translation key in snake_case)
+     */
+    mass_time_name: string;
+    /**
+     * Optional alternative celebrations (e.g., optional memorials)
+     * that can be celebrated instead of the primary celebration.
+     */
+    optional_celebrations: CelebrationSummary[];
+    /**
+     * The liturgical periods this day belongs to
+     */
+    periods: PeriodInfo[];
+    /**
+     * The liturgical precedence
+     */
+    precedence: Precedence;
+    /**
+     * The psalter week cycle (Week 1-4)
+     */
+    psalter_week: PsalterWeekCycle;
+    /**
+     * The localized psalter week name
+     */
+    psalter_week_name: string;
+    /**
+     * The liturgical rank
+     */
+    rank: Rank;
+    /**
+     * The localized liturgical rank name
+     */
+    rank_name: string;
+    /**
+     * The liturgical season
+     */
+    season?: Season | null;
+    /**
+     * The localized season name
+     */
+    season_name?: null | string;
+    /**
+     * The first day of the liturgical year (first Sunday of Advent)
+     */
+    start_of_liturgical_year: string;
+    /**
+     * The first day of the current liturgical season
+     */
+    start_of_season?: null | string;
+    /**
+     * The Sunday cycle (Year A, B, or C)
+     */
+    sunday_cycle: SundayCycle;
+    /**
+     * The localized Sunday cycle name
+     */
+    sunday_cycle_name: string;
+    /**
+     * The titles for this liturgical day
+     */
+    titles: TitlesDef;
+    /**
+     * The week number within the liturgical season
+     */
+    week_of_season?: number | null;
+    /**
+     * The weekday cycle (Year 1 or 2)
+     */
+    weekday_cycle: WeekdayCycle;
+    /**
+     * The localized weekday cycle name
+     */
+    weekday_cycle_name: string;
+}
+
+/**
+ * Parts that make up the Mass celebration.
+ * Each part represents a specific element of the liturgical celebration.
+ *
+ * Messianic entry reading (during the procession with palms, before the Mass of the
+ * Passion)
+ *
+ * Entrance Antiphon - opening chant of the Mass
+ *
+ * Collect - opening prayer of the Mass
+ *
+ * Reading 1 - first reading (usually from the Old Testament)
+ *
+ * Psalm - responsorial psalm
+ *
+ * Canticle - biblical canticle
+ *
+ * Reading 2 - second reading (usually from the New Testament)
+ *
+ * Psalm (Easter Vigil)
+ *
+ * Reading 3 - third reading (Easter Vigil)
+ *
+ * Canticle 3 (Easter Vigil)
+ *
+ * Reading 4 - fourth reading (Easter Vigil)
+ *
+ * Psalm 4 (Easter Vigil)
+ *
+ * Reading 5 - fifth reading (Easter Vigil)
+ *
+ * Canticle 5 (Easter Vigil)
+ *
+ * Reading 6 - sixth reading (Easter Vigil)
+ *
+ * Psalm 6 (Easter Vigil)
+ *
+ * Reading 7 - seventh reading (Easter Vigil)
+ *
+ * Psalm 7 (Easter Vigil)
+ *
+ * Epistle - reading from the epistles (Easter Vigil)
+ *
+ * Sequence - special chant on certain feasts
+ *
+ * Alleluia - acclamation before the Gospel
+ *
+ * Gospel - reading from the Gospels
+ *
+ * Prayer over the Offerings - prayer during the offertory
+ *
+ * Preface - introduction to the Eucharistic Prayer
+ *
+ * Communion Antiphon - chant during communion
+ *
+ * Prayer after Communion - concluding prayer
+ *
+ * Solemn Blessing - special blessing on certain occasions
+ *
+ * Prayer over the People - blessing over the congregation
+ */
+export enum MassPart {
+    Alleluia = "alleluia",
+    Canticle = "canticle",
+    Collect = "collect",
+    CommunionAntiphon = "communion_antiphon",
+    EasterVigilCanticle3 = "easter_vigil_canticle_3",
+    EasterVigilCanticle5 = "easter_vigil_canticle_5",
+    EasterVigilEpistle = "easter_vigil_epistle",
+    EasterVigilPsalm2 = "easter_vigil_psalm_2",
+    EasterVigilPsalm4 = "easter_vigil_psalm_4",
+    EasterVigilPsalm6 = "easter_vigil_psalm_6",
+    EasterVigilPsalm7 = "easter_vigil_psalm_7",
+    EasterVigilReading3 = "easter_vigil_reading_3",
+    EasterVigilReading4 = "easter_vigil_reading_4",
+    EasterVigilReading5 = "easter_vigil_reading_5",
+    EasterVigilReading6 = "easter_vigil_reading_6",
+    EasterVigilReading7 = "easter_vigil_reading_7",
+    EntranceAntiphon = "entrance_antiphon",
+    Gospel = "gospel",
+    MessianicEntry = "messianic_entry",
+    PrayerAfterCommunion = "prayer_after_communion",
+    PrayerOverTheOfferings = "prayer_over_the_offerings",
+    PrayerOverThePeople = "prayer_over_the_people",
+    Preface = "preface",
+    Psalm = "psalm",
+    Reading1 = "reading_1",
+    Reading2 = "reading_2",
+    Sequence = "sequence",
+    SolemnBlessing = "solemn_blessing",
+}
+
+/**
+ * Resources definition
+ */
+export type Resources = {
+    $schema?: null | string;
+    /**
+     * Entities of the resources: a person, a place, an event, etc.
+     */
+    entities?: { [key: string]: Entity } | null;
+    /**
+     * Locale code of the resources, in BCP-47 IETF tag format
+     */
+    locale: string;
+    /**
+     * Metadata of the resources
+     */
+    metadata?: ResourcesMetadata | null;
+}
+
+/**
  * Metadata for localized resources.
  * Contains all the localized strings and configurations for a specific locale.
  */
 export type ResourcesMetadata = {
-    /**
-     * The jurisdiction of the calendar
-     */
-    jurisdiction?: CalendarJurisdiction;
-    /**
-     * The type of the calendar
-     */
-    type?: CalendarType;
     /**
      * Liturgical color names in the locale language
      */
@@ -1646,21 +2669,6 @@ export type CyclesMetadata = {
      * Weekday Year 2 cycle name
      */
     weekday_year_2?: null | string;
-}
-
-/**
- * The jurisdiction of the calendar
- *
- * The jurisdiction of the calendar.
- * Determines whether the calendar follows ecclesiastical or civil authority.
- *
- * Calendar under ecclesiastical authority (Church)
- *
- * Calendar under civil authority (State)
- */
-export enum CalendarJurisdiction {
-    Civil = "CIVIL",
-    Ecclesiastical = "ECCLESIASTICAL",
 }
 
 /**
@@ -1910,347 +2918,18 @@ export type PaschalTriduumSeason = {
 }
 
 /**
- * The type of the calendar
+ * Combined Sunday cycle for cases where readings can apply to multiple years.
+ * This allows for flexible configuration where the same readings can be used
+ * across different combinations of Sunday cycles.
  *
- * The type of the calendar.
- * Defines the scope and authority level of the liturgical calendar.
+ * Years A and B combined
  *
- * General Roman Calendar (universal)
+ * Years A and C combined
  *
- * Regional calendar (multiple countries)
- *
- * National calendar (single country)
- *
- * Archdiocesan calendar
- *
- * Diocesan calendar
- *
- * City calendar
- *
- * Parish calendar
- *
- * General religious community calendar
- *
- * Regional religious community calendar
- *
- * Local religious community calendar
- *
- * Other specialized calendar
+ * Years B and C combined
  */
-export enum CalendarType {
-    Archdiocese = "ARCHDIOCESE",
-    City = "CITY",
-    Country = "COUNTRY",
-    Diocese = "DIOCESE",
-    GeneralCommunity = "GENERAL_COMMUNITY",
-    GeneralRoman = "GENERAL_ROMAN",
-    LocalCommunity = "LOCAL_COMMUNITY",
-    Other = "OTHER",
-    Parish = "PARISH",
-    Region = "REGION",
-    RegionalCommunity = "REGIONAL_COMMUNITY",
-}
-
-/**
- * Represents the differences between a liturgical day definition and its parent definition.
- * This is a lightweight structure that only contains fields that can be overridden.
- */
-export type ParentOverride = {
-    /**
-     * The allow_similar_rank_items flag if it was changed
-     */
-    allow_similar_rank_items?: boolean | null;
-    /**
-     * The colors if they were changed
-     */
-    colors?: ColorInfo[] | null;
-    /**
-     * The commons definition if it was changed
-     */
-    commons_def?: CommonDefinition[] | null;
-    /**
-     * The date definition if it was changed
-     */
-    date_def?: DateDefClass | null;
-    /**
-     * The date exceptions if they were changed
-     */
-    date_exceptions?: DateDefException[] | null;
-    /**
-     * The ID of the calendar from which this override originates
-     */
-    from_calendar_id: string;
-    /**
-     * The is_holy_day_of_obligation flag if it was changed
-     */
-    is_holy_day_of_obligation?: boolean | null;
-    /**
-     * The is_optional flag if it was changed
-     */
-    is_optional?: boolean | null;
-    /**
-     * The precedence if it was changed
-     */
-    precedence?: Precedence | null;
-    /**
-     * The rank if it was changed
-     */
-    rank?: Rank | null;
-    /**
-     * The titles if they were changed
-     */
-    titles?: TitlesUnion;
-}
-
-/**
- * Solemnities are counted among the most important days, whose celebration
- * begins with First Vespers (Evening Prayer I) on the preceding day. Some Solemnities
- * are also endowed with their own Vigil Mass, which is to be used on the evening of the
- * preceding day, if an evening Mass is celebrated. (UNLY #11)
- *
- * On the first day of each week, which is known as the Day of the Lord or the Lord's
- * Day, the Church, by an apostolic tradition that draws its origin from the very day of
- * the Resurrection of Christ, celebrates the Paschal Mystery. Hence, Sunday must be
- * considered the primordial feast day. (UNLY #4)
- *
- * Feasts are celebrated within the limits of the natural day; accordingly they have
- * no First Vespers (Evening Prayer I), except in the case of Feasts of the Lord that fall
- * on a Sunday in Ordinary Time or in Christmas Time and which replace the Sunday
- * Office. (UNLY #13)
- *
- * **Obligatory memorials** are liturgical commemorations of saints, events, or aspects of
- * the
- * faith. Their observance is mandatory and integrated into the celebration of the occurring
- * weekday, following the liturgical norms outlined in the General Instruction of the Roman
- * Missal
- * and the Liturgy of the Hours.
- * When an **obligatory memorial** falls on a weekday during the liturgical season of Lent
- * or a
- * privileged weekday of Advent, it must only be celebrated as an **optional memorial**, as
- * Lent
- * and Advent have their own specific liturgical observances that take precedence.
- *
- * **Optional memorials** are liturgical commemorations of saints, events, or aspects of the
- * faith, but they are not obligatory.
- * Their observance is integrated into the celebration of the occurring weekday, adhering to
- * the
- * liturgical norms provided in the General Instruction of the Roman Missal and the Liturgy
- * of
- * the Hours.
- * In cases where multiple **optional memorials** are designated on the same day in the
- * liturgical
- * calendar, only one of them may be celebrated, and the others must be omitted (UNLY #14).
- * This allows for some flexibility in choosing which optional memorial to commemorate when
- * multiple options are available.
- *
- * The days of the week that follow Sunday are called weekdays; however, they are
- * celebrated differently according to the importance of each.
- *
- * a. Ash Wednesday and the weekdays of Holy Week, from Monday up to and including
- * Thursday, take precedence over all other celebrations.
- * b. The weekdays of Advent from 17 December up to and including 24 December
- * and all the weekdays of Lent have precedence over Obligatory Memorials.
- * c. Other weekdays give way to all Solemnities and Feasts and are combined with
- * Memorials.
- *
- * (UNLY #16)
- *
- * Liturgical rank indicating the importance and celebration style of a liturgical day
- *
- * The liturgical rank for this liturgical day.
- */
-export enum Rank {
-    Feast = "FEAST",
-    Memorial = "MEMORIAL",
-    OptionalMemorial = "OPTIONAL_MEMORIAL",
-    Solemnity = "SOLEMNITY",
-    Sunday = "SUNDAY",
-    Weekday = "WEEKDAY",
-}
-
-/**
- * Configuration options for "particular" (local/diocesan) calendars.
- *
- * In liturgical terminology, a "particular" calendar is one that applies to a specific
- * region, diocese, or religious community, as opposed to the General Roman Calendar
- * which applies universally.
- *
- * These settings can override or extend the default Romcal configuration or any parent
- * calendar configuration.
- */
-export type ParticularConfig = {
-    /**
-     * Ascension is celebrated on a Sunday
-     */
-    ascension_on_sunday?: boolean | null;
-    /**
-     * Corpus Christi is celebrated on a Sunday
-     */
-    corpus_christi_on_sunday?: boolean | null;
-    /**
-     * The type of Easter calculation
-     */
-    easter_calculation_type?: EasterCalculationType | null;
-    /**
-     * Epiphany is celebrated on a Sunday
-     */
-    epiphany_on_sunday?: boolean | null;
-}
-
-/**
- * Gregorian calculation (default)
- *
- * Julian calculation converted to Gregorian
- */
-export enum EasterCalculationType {
-    Gregorian = "GREGORIAN",
-    Julian = "JULIAN",
-}
-
-/**
- * Liturgical period information with localized name.
- */
-export type PeriodInfo = {
-    /**
-     * The period key
-     */
-    key: Period;
-    /**
-     * The localized name of the period
-     */
-    name: string;
-}
-
-/**
- * The period key
- *
- * Specific periods within liturgical seasons.
- * Defines sub-periods that have special liturgical characteristics or rules.
- *
- * The eight days following Christmas (December 25 - January 1)
- *
- * Days before Epiphany (January 2 to the day before Epiphany)
- *
- * Days from Epiphany to the Presentation (January 6 to the day before the Presentation of
- * the Lord)
- *
- * Period from Christmas to the Presentation of the Lord
- *
- * Period from the Presentation to Holy Thursday
- *
- * Holy Week (Palm Sunday to Holy Saturday)
- *
- * Paschal Triduum (start from the Thursday of the Lord's Supper to the Easter Sunday
- * Vespers)
- *
- * The eight days following Easter Sunday
- *
- * Early Ordinary Time (after the Presentation of the Lord to the day before Ash Wednesday)
- *
- * Late Ordinary Time (after Pentecost to the day before the First Sunday of Advent)
- */
-export enum Period {
-    ChristmasOctave = "CHRISTMAS_OCTAVE",
-    ChristmasToPresentationOfTheLord = "CHRISTMAS_TO_PRESENTATION_OF_THE_LORD",
-    DaysBeforeEpiphany = "DAYS_BEFORE_EPIPHANY",
-    DaysFromEpiphany = "DAYS_FROM_EPIPHANY",
-    EarlyOrdinaryTime = "EARLY_ORDINARY_TIME",
-    EasterOctave = "EASTER_OCTAVE",
-    HolyWeek = "HOLY_WEEK",
-    LateOrdinaryTime = "LATE_ORDINARY_TIME",
-    PaschalTriduum = "PASCHAL_TRIDUUM",
-    PresentationOfTheLordToHolyThursday = "PRESENTATION_OF_THE_LORD_TO_HOLY_THURSDAY",
-}
-
-/**
- * The psalter week cycle to which this liturgical day belongs.
- *
- * [GILH §133] The four-week cycle of the psalter is coordinated with the liturgical year in
- * such a way that
- * on the First Sunday of Advent, the First Sunday in Ordinary Time, the First Sunday of
- * Lent,
- * and Easter Sunday the cycle is always begun again with Week 1 (others being omitted when
- * necessary).
- *
- * Week 1
- *
- * Week 2
- *
- * Week 3
- *
- * Week 4
- */
-export enum PsalterWeekCycle {
-    Week1 = "WEEK_1",
-    Week2 = "WEEK_2",
-    Week3 = "WEEK_3",
-    Week4 = "WEEK_4",
-}
-
-/**
- * Advent
- *
- * Christmas Time
- *
- * Lent
- *
- * Paschal Triduum
- *
- * Easter Time
- *
- * Ordinary Time
- */
-export enum Season {
-    Advent = "ADVENT",
-    ChristmasTime = "CHRISTMAS_TIME",
-    EasterTime = "EASTER_TIME",
-    Lent = "LENT",
-    OrdinaryTime = "ORDINARY_TIME",
-    PaschalTriduum = "PASCHAL_TRIDUUM",
-}
-
-/**
- * The Sunday cycle to which this liturgical day belongs.
- *
- * A three-year cycle for Sunday Mass readings (and some solemnities), designated by A, B,
- * or C.
- * Each cycle begins on the First Sunday of Advent of the previous civil year and ends on
- * Saturday
- * after the Christ the King Solemnity. The cycles follow each other in alphabetical order.
- * C year is always divisible by 3, A has remainder of 1, and B remainder of 2.
- *
- * Year A
- *
- * Year B
- *
- * Year C
- */
-export enum SundayCycle {
-    YearA = "YEAR_A",
-    YearB = "YEAR_B",
-    YearC = "YEAR_C",
-}
-
-/**
- * Title definition that can be either a simple list or a compound definition.
- * Supports both direct title lists and compound title operations.
- *
- * The titles for this liturgical day.
- */
-export type TitlesDef = Title[] | CompoundTitle;
-
-/**
- * The weekday cycle to which this liturgical day belongs.
- *
- * A two-year cycle for the weekday Mass readings (also called Cycle I and Cycle II).
- * Odd-numbered years are the Cycle I (year 1); even-numbered ones are the Cycle II (year
- * 2).
- *
- * Year 1 (Cycle I)
- *
- * Year 2 (Cycle II)
- */
-export enum WeekdayCycle {
-    Year1 = "YEAR_1",
-    Year2 = "YEAR_2",
+export enum SundayCycleCombined {
+    YearAB = "YEAR_A_B",
+    YearAC = "YEAR_A_C",
+    YearBC = "YEAR_B_C",
 }

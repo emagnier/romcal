@@ -6,28 +6,13 @@ export * from './types.js'
 
 // Import specific types we need
 import type {
-  AllTypes,
-  ColorInfo,
-  CommonInfo,
+  CalendarContext,
+  CalendarDefinition,
   EasterCalculationType,
-  Entity,
-  MassTime,
-  PeriodInfo,
-  Precedence,
-  PsalterWeekCycle,
-  Rank,
-  Season,
-  SundayCycle,
-  TitlesDef,
-  WeekdayCycle,
+  LiturgicalDay,
+  MassContext,
+  Resources,
 } from './types.js'
-
-/**
- * Calendar context type.
- * - GREGORIAN: Calendar organized by Gregorian year (Jan 1 - Dec 31)
- * - LITURGICAL: Calendar organized by liturgical year (First Sunday of Advent - Saturday before next Advent)
- */
-export type CalendarContext = 'GREGORIAN' | 'LITURGICAL'
 
 // Initialize the WASM module
 let wasmInitialized = false
@@ -75,14 +60,8 @@ async function initWasm(): Promise<void> {
 }
 
 // ============================================================================
-// Type Definitions
+// Type Aliases (for convenience)
 // ============================================================================
-
-/**
- * A single day in the liturgical calendar.
- * Uses AllTypes from the generated types as it covers all liturgical day fields.
- */
-export type LiturgicalDay = AllTypes
 
 /**
  * The liturgical calendar: a map of dates (YYYY-MM-DD) to liturgical days.
@@ -90,97 +69,9 @@ export type LiturgicalDay = AllTypes
 export type LiturgicalCalendar = Record<string, LiturgicalDay[]>
 
 /**
- * Summary of a celebration for optional celebrations list.
- */
-export interface CelebrationSummary {
-  id: string
-  fullname: string
-  precedence: Precedence
-  rank: Rank
-  rank_name: string
-  colors: ColorInfo[]
-  commons: CommonInfo[]
-  entities: Entity[]
-  titles: TitlesDef
-  is_holy_day_of_obligation: boolean
-  is_optional: boolean
-  from_calendar_id: string
-}
-
-/**
- * A mass context representing a single mass with its full liturgical context.
- */
-export interface MassContext {
-  // Mass identification
-  mass_time: MassTime
-  mass_time_name: string
-  civil_date: string
-  liturgical_date: string
-
-  // Day-level context
-  season?: Season | null
-  season_name?: string | null
-  sunday_cycle: SundayCycle
-  sunday_cycle_name: string
-  weekday_cycle: WeekdayCycle
-  weekday_cycle_name: string
-  psalter_week: PsalterWeekCycle
-  psalter_week_name: string
-  week_of_season?: number | null
-  day_of_season?: number | null
-  day_of_week: number
-  periods: PeriodInfo[]
-  start_of_season?: string | null
-  end_of_season?: string | null
-  start_of_liturgical_year: string
-  end_of_liturgical_year: string
-
-  // Primary celebration
-  id: string
-  fullname: string
-  precedence: Precedence
-  rank: Rank
-  rank_name: string
-  colors: ColorInfo[]
-  commons: CommonInfo[]
-  entities: Entity[]
-  titles: TitlesDef
-  is_holy_day_of_obligation: boolean
-  is_optional: boolean
-  from_calendar_id: string
-
-  // Alternative celebrations
-  optional_celebrations: CelebrationSummary[]
-}
-
-/**
  * The mass calendar: a map of civil dates (YYYY-MM-DD) to mass contexts.
  */
 export type MassCalendar = Record<string, MassContext[]>
-
-/**
- * Calendar definition type (for custom calendars).
- */
-export interface CalendarDefinition {
-  id: string
-  metadata?: {
-    type?: string
-    jurisdiction?: string
-    [key: string]: unknown
-  } | null
-  parent_calendar_ids?: string[]
-  days_definitions?: Record<string, unknown>
-  particular_config?: unknown | null
-}
-
-/**
- * Resources definition type (for custom locales).
- */
-export interface ResourcesDefinition {
-  locale: string
-  metadata?: unknown | null
-  entities?: unknown | null
-}
 
 // ============================================================================
 // Configuration Interfaces
@@ -211,7 +102,7 @@ export interface PartialRomcalConfigInterface {
   easterCalculationType?: EasterCalculationType
   context?: CalendarContext
   calendarDefinitions?: CalendarDefinition[]
-  resources?: ResourcesDefinition[]
+  resources?: Resources[]
 }
 
 // ============================================================================

@@ -35,3 +35,8 @@ pub use types::entity::{Entity, EntityId};
 pub use types::liturgical::Season;
 pub use types::mass::{CelebrationSummary, MassCalendar, MassContext, MassInfo, MassTime};
 pub use types::{CalendarContext, EasterCalculationType};
+
+// Additional types for schema generation
+pub use types::dates::{DateDefWithOffset, DayOfWeek, MonthIndex};
+pub use types::liturgical::SundayCycleCombined;
+pub use types::mass::{Acclamation, BibleBook, LiturgicalCycle, MassPart};

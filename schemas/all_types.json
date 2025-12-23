@@ -1,17 +1,54 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "RomcalTypes",
-  "oneOf": [
-    {
+  "title": "AllTypes",
+  "type": "object",
+  "properties": {
+    "liturgicalDay": {
+      "$ref": "#/definitions/LiturgicalDay"
+    },
+    "calendarDefinition": {
       "$ref": "#/definitions/CalendarDefinition"
     },
-    {
+    "resources": {
       "$ref": "#/definitions/Resources"
     },
-    {
-      "$ref": "#/definitions/LiturgicalDay"
+    "massContext": {
+      "$ref": "#/definitions/MassContext"
+    },
+    "celebrationSummary": {
+      "$ref": "#/definitions/CelebrationSummary"
+    },
+    "calendarContext": {
+      "$ref": "#/definitions/CalendarContext"
+    },
+    "sundayCycleCombined": {
+      "$ref": "#/definitions/SundayCycleCombined"
+    },
+    "monthIndex": {
+      "$ref": "#/definitions/MonthIndex"
+    },
+    "dayOfWeek": {
+      "$ref": "#/definitions/DayOfWeek"
+    },
+    "dateDefWithOffset": {
+      "$ref": "#/definitions/DateDefWithOffset"
+    },
+    "liturgicalCycle": {
+      "$ref": "#/definitions/LiturgicalCycle"
+    },
+    "acclamation": {
+      "$ref": "#/definitions/Acclamation"
+    },
+    "bibleBook": {
+      "$ref": "#/definitions/BibleBook"
+    },
+    "massPart": {
+      "$ref": "#/definitions/MassPart"
+    },
+    "saintCount": {
+      "$ref": "#/definitions/SaintCount"
     }
-  ],
+  },
   "definitions": {
     "CalendarMetadata": {
       "description": "Metadata for a calendar.\nContains essential information about the calendar's type and jurisdiction.",
@@ -415,11 +452,12 @@
       ]
     },
     "MonthIndex": {
+      "maximum": 255,
+      "title": "MonthIndex",
       "description": "Month index (1-12) with automatic validation\n\nThis type ensures that only valid month values are accepted during\ndeserialization. The value 1 represents January, 2 represents February, etc.",
       "type": "integer",
       "format": "uint8",
-      "minimum": 0,
-      "maximum": 255
+      "minimum": 0
     },
     "DateFn": {
       "description": "Date function for calculating liturgical dates.\n\nRepresents movable feasts and special celebrations that require calculation\nbased on Easter or other variable dates.",
@@ -512,11 +550,12 @@
       ]
     },
     "DayOfWeek": {
+      "maximum": 255,
+      "title": "DayOfWeek",
       "description": "Day of week (0-6, where 0=Sunday) with automatic validation\n\nThis type ensures that only valid day-of-week values are accepted during\ndeserialization. The value 0 represents Sunday, 1 represents Monday, etc.",
       "type": "integer",
       "format": "uint8",
-      "minimum": 0,
-      "maximum": 255
+      "minimum": 0
     },
     "DateDefExceptions": {
       "description": "Date exceptions that can be either a single exception or multiple exceptions.\nSupports both simple single exceptions and complex multiple exception scenarios.",
@@ -624,6 +663,8 @@
       ]
     },
     "DateDefWithOffset": {
+      "additionalProperties": false,
+      "title": "DateDefWithOffset",
       "description": "Date definition with offset for adjustments.\nUsed when a date needs to be shifted by a specific number of days.",
       "type": "object",
       "properties": {
@@ -635,8 +676,7 @@
       },
       "required": [
         "day_offset"
-      ],
-      "additionalProperties": false
+      ]
     },
     "Precedence": {
       "description": "Liturgical precedence levels for determining which celebration takes priority.\nDefines the hierarchical order of liturgical celebrations according to UNLY norms.",
@@ -1084,7 +1124,6 @@
       "additionalProperties": false
     },
     "SaintCount": {
-      "description": "Represents the number of saints for an entity or a group of entities.\n\nCan be either a specific number (u32) or \"MANY\" to indicate\nan indeterminate number of saints.\n\n# Serialization\n- `Number(n)` serializes as integer `n`\n- `Many` serializes as string `\"MANY\"`\n\n# Deserialization\n- Integers are converted to `Number(u32)`\n- String `\"MANY\"` is converted to `Many`\n- All other types generate an error",
       "anyOf": [
         {
           "type": "integer",
@@ -1098,7 +1137,9 @@
         {
           "type": "null"
         }
-      ]
+      ],
+      "title": "SaintCount",
+      "description": "Represents the number of saints for an entity or a group of entities.\n\nCan be either a specific number (u32) or \"MANY\" to indicate\nan indeterminate number of saints.\n\n# Serialization\n- `Number(n)` serializes as integer `n`\n- `Many` serializes as string `\"MANY\"`\n\n# Deserialization\n- Integers are converted to `Number(u32)`\n- String `\"MANY\"` is converted to `Many`\n- All other types generate an error"
     },
     "ColorsDef": {
       "anyOf": [
@@ -2959,6 +3000,979 @@
         }
       },
       "required": [
+        "from_calendar_id"
+      ],
+      "additionalProperties": false
+    },
+    "CelebrationSummary": {
+      "definitions": {
+        "Precedence": {
+          "description": "Liturgical precedence levels for determining which celebration takes priority.\nDefines the hierarchical order of liturgical celebrations according to UNLY norms.",
+          "oneOf": [
+            {
+              "description": "1 - The Paschal Triduum of the Passion and Resurrection of the Lord.",
+              "type": "string",
+              "const": "TRIDUUM_1"
+            },
+            {
+              "description": "2 - The Nativity of the Lord, the Epiphany, the Ascension, or Pentecost.",
+              "type": "string",
+              "const": "PROPER_OF_TIME_SOLEMNITY_2"
+            },
+            {
+              "description": "2 - A Sunday of Advent, Lent, or Easter.",
+              "type": "string",
+              "const": "PRIVILEGED_SUNDAY_2"
+            },
+            {
+              "description": "2 - Ash Wednesday.",
+              "type": "string",
+              "const": "ASH_WEDNESDAY_2"
+            },
+            {
+              "description": "2 - A weekday of Holy Week from Monday up to and including Thursday.",
+              "type": "string",
+              "const": "WEEKDAY_OF_HOLY_WEEK_2"
+            },
+            {
+              "description": "2 - A day within the Octave of Easter.",
+              "type": "string",
+              "const": "WEEKDAY_OF_EASTER_OCTAVE_2"
+            },
+            {
+              "description": "3 - A Solemnity inscribed in the General Calendar, whether of the Lord, of the Blessed Virgin Mary, or of a Saint.",
+              "type": "string",
+              "const": "GENERAL_SOLEMNITY_3"
+            },
+            {
+              "description": "3 - The Commemoration of All the Faithful Departed.",
+              "type": "string",
+              "const": "COMMEMORATION_OF_ALL_THE_FAITHFUL_DEPARTED_3"
+            },
+            {
+              "description": "4a - A proper Solemnity of the principal Patron of the place, city, or state.",
+              "type": "string",
+              "const": "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A"
+            },
+            {
+              "description": "4b - The Solemnity of the dedication and of the anniversary of the dedication of the own church.",
+              "type": "string",
+              "const": "PROPER_SOLEMNITY__DEDICATION_OF_THE_OWN_CHURCH_4B"
+            },
+            {
+              "description": "4c - The solemnity of the title of the own church.",
+              "type": "string",
+              "const": "PROPER_SOLEMNITY__TITLE_OF_THE_OWN_CHURCH_4C"
+            },
+            {
+              "description": "4d - A Solemnity either of the Title or of the Founder or of the principal Patron of an Order or Congregation.",
+              "type": "string",
+              "const": "PROPER_SOLEMNITY__TITLE_OR_FOUNDER_OR_PRIMARY_PATRON_OF_A_RELIGIOUS_ORG_4D"
+            },
+            {
+              "description": "5 - A Feast of the Lord inscribed in the General Calendar.",
+              "type": "string",
+              "const": "GENERAL_LORD_FEAST_5"
+            },
+            {
+              "description": "6 - A Sunday of Christmas Time or a Sunday in Ordinary Time.",
+              "type": "string",
+              "const": "UNPRIVILEGED_SUNDAY_6"
+            },
+            {
+              "description": "7 - A Feast of the Blessed Virgin Mary or of a Saint in the General Calendar.",
+              "type": "string",
+              "const": "GENERAL_FEAST_7"
+            },
+            {
+              "description": "8a - The Proper Feast of the principal Patron of the diocese.",
+              "type": "string",
+              "const": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_DIOCESE_8A"
+            },
+            {
+              "description": "8b - The Proper Feast of the anniversary of the dedication of the cathedral church.",
+              "type": "string",
+              "const": "PROPER_FEAST__DEDICATION_OF_THE_CATHEDRAL_CHURCH_8B"
+            },
+            {
+              "description": "8c - The Proper Feast of the principal Patron of a region or province, or a country, or of a wider territory.",
+              "type": "string",
+              "const": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C"
+            },
+            {
+              "description": "8d - The Proper Feast of the Title, Founder, or principal Patron of an Order or Congregation.",
+              "type": "string",
+              "const": "PROPER_FEAST__TITLE_OR_FOUNDER_OR_PRIMARY_PATRON_OF_A_RELIGIOUS_ORG_8D"
+            },
+            {
+              "description": "8e - Other Feast, proper to an individual church.",
+              "type": "string",
+              "const": "PROPER_FEAST__TO_AN_INDIVIDUAL_CHURCH_8E"
+            },
+            {
+              "description": "8f - Other Proper Feast inscribed in the Calendar of each diocese or Order or Congregation.",
+              "type": "string",
+              "const": "PROPER_FEAST_8F"
+            },
+            {
+              "description": "9 - Privileged Weekday.",
+              "type": "string",
+              "const": "PRIVILEGED_WEEKDAY_9"
+            },
+            {
+              "description": "10 - Obligatory Memorials in the General Calendar.",
+              "type": "string",
+              "const": "GENERAL_MEMORIAL_10"
+            },
+            {
+              "description": "11a - Proper Obligatory Memorial of a secondary Patron of the place, diocese, region, or religious province.",
+              "type": "string",
+              "const": "PROPER_MEMORIAL__SECOND_PATRON_11A"
+            },
+            {
+              "description": "11b - Other Proper Obligatory Memorial inscribed in the Calendar of each diocese, or Order or congregation.",
+              "type": "string",
+              "const": "PROPER_MEMORIAL_11B"
+            },
+            {
+              "description": "12 - Optional Memorial.",
+              "type": "string",
+              "const": "OPTIONAL_MEMORIAL_12"
+            },
+            {
+              "description": "13 - Weekday.",
+              "type": "string",
+              "const": "WEEKDAY_13"
+            }
+          ]
+        },
+        "Rank": {
+          "description": "Liturgical rank indicating the importance and celebration style of a liturgical day",
+          "oneOf": [
+            {
+              "description": "Solemnities are counted among the most important days, whose celebration\nbegins with First Vespers (Evening Prayer I) on the preceding day. Some Solemnities\nare also endowed with their own Vigil Mass, which is to be used on the evening of the\npreceding day, if an evening Mass is celebrated. (UNLY #11)",
+              "type": "string",
+              "const": "SOLEMNITY"
+            },
+            {
+              "description": "On the first day of each week, which is known as the Day of the Lord or the Lord's\nDay, the Church, by an apostolic tradition that draws its origin from the very day of\nthe Resurrection of Christ, celebrates the Paschal Mystery. Hence, Sunday must be\nconsidered the primordial feast day. (UNLY #4)",
+              "type": "string",
+              "const": "SUNDAY"
+            },
+            {
+              "description": "Feasts are celebrated within the limits of the natural day; accordingly they have\nno First Vespers (Evening Prayer I), except in the case of Feasts of the Lord that fall\non a Sunday in Ordinary Time or in Christmas Time and which replace the Sunday\nOffice. (UNLY #13)",
+              "type": "string",
+              "const": "FEAST"
+            },
+            {
+              "description": "**Obligatory memorials** are liturgical commemorations of saints, events, or aspects of the\nfaith. Their observance is mandatory and integrated into the celebration of the occurring\nweekday, following the liturgical norms outlined in the General Instruction of the Roman Missal\nand the Liturgy of the Hours.\nWhen an **obligatory memorial** falls on a weekday during the liturgical season of Lent or a\nprivileged weekday of Advent, it must only be celebrated as an **optional memorial**, as Lent\nand Advent have their own specific liturgical observances that take precedence.",
+              "type": "string",
+              "const": "MEMORIAL"
+            },
+            {
+              "description": "**Optional memorials** are liturgical commemorations of saints, events, or aspects of the\nfaith, but they are not obligatory.\nTheir observance is integrated into the celebration of the occurring weekday, adhering to the\nliturgical norms provided in the General Instruction of the Roman Missal and the Liturgy of\nthe Hours.\nIn cases where multiple **optional memorials** are designated on the same day in the liturgical\ncalendar, only one of them may be celebrated, and the others must be omitted (UNLY #14).\nThis allows for some flexibility in choosing which optional memorial to commemorate when\nmultiple options are available.",
+              "type": "string",
+              "const": "OPTIONAL_MEMORIAL"
+            },
+            {
+              "description": "The days of the week that follow Sunday are called weekdays; however, they are\ncelebrated differently according to the importance of each.\n\na. Ash Wednesday and the weekdays of Holy Week, from Monday up to and including\n   Thursday, take precedence over all other celebrations.\nb. The weekdays of Advent from 17 December up to and including 24 December\n   and all the weekdays of Lent have precedence over Obligatory Memorials.\nc. Other weekdays give way to all Solemnities and Feasts and are combined with\n   Memorials.\n\n (UNLY #16)",
+              "type": "string",
+              "const": "WEEKDAY"
+            }
+          ]
+        },
+        "ColorInfo": {
+          "description": "Liturgical color information with localized name.",
+          "type": "object",
+          "properties": {
+            "key": {
+              "description": "The color key",
+              "$ref": "#/definitions/Color"
+            },
+            "name": {
+              "description": "The localized name of the color",
+              "type": "string"
+            }
+          },
+          "required": [
+            "key",
+            "name"
+          ],
+          "additionalProperties": false
+        },
+        "Color": {
+          "description": "Liturgical colors used in the celebration of Mass and other liturgical services.\nEach color has specific liturgical significance and is used during particular seasons or celebrations.",
+          "oneOf": [
+            {
+              "description": "Red - used for martyrs, Pentecost, and Palm Sunday",
+              "type": "string",
+              "const": "RED"
+            },
+            {
+              "description": "Rose - used on Gaudete Sunday (3rd Advent) and Laetare Sunday (4th Lent)",
+              "type": "string",
+              "const": "ROSE"
+            },
+            {
+              "description": "Purple - used during Advent and Lent",
+              "type": "string",
+              "const": "PURPLE"
+            },
+            {
+              "description": "Green - used during Ordinary Time",
+              "type": "string",
+              "const": "GREEN"
+            },
+            {
+              "description": "White - used for Christmas, Easter, and most feasts",
+              "type": "string",
+              "const": "WHITE"
+            },
+            {
+              "description": "Gold - used for solemn celebrations and special occasions",
+              "type": "string",
+              "const": "GOLD"
+            },
+            {
+              "description": "Black - used for funerals and All Souls' Day",
+              "type": "string",
+              "const": "BLACK"
+            }
+          ]
+        },
+        "CommonInfo": {
+          "description": "Liturgical common information with localized name.",
+          "type": "object",
+          "properties": {
+            "key": {
+              "description": "The common key",
+              "$ref": "#/definitions/Common"
+            },
+            "name": {
+              "description": "The localized name of the common",
+              "type": "string"
+            }
+          },
+          "required": [
+            "key",
+            "name"
+          ],
+          "additionalProperties": false
+        },
+        "Common": {
+          "description": "Common prayers and readings for different categories of saints and celebrations.\nProvides standardized liturgical texts for various types of commemorations.",
+          "oneOf": [
+            {
+              "description": "No common.",
+              "type": "string",
+              "const": "NONE"
+            },
+            {
+              "description": "Dedication anniversary (in the Church that was Dedicated).",
+              "type": "string",
+              "const": "DEDICATION_ANNIVERSARY__INSIDE"
+            },
+            {
+              "description": "Dedication anniversary (outside the Church that was Dedicated).",
+              "type": "string",
+              "const": "DEDICATION_ANNIVERSARY__OUTSIDE"
+            },
+            {
+              "description": "Common of the Blessed Virgin Mary (Ordinary Time).",
+              "type": "string",
+              "const": "BLESSED_VIRGIN_MARY__ORDINARY_TIME"
+            },
+            {
+              "description": "Common of the Blessed Virgin Mary (Advent).",
+              "type": "string",
+              "const": "BLESSED_VIRGIN_MARY__ADVENT"
+            },
+            {
+              "description": "Common of the Blessed Virgin Mary (Christmas Time).",
+              "type": "string",
+              "const": "BLESSED_VIRGIN_MARY__CHRISTMAS"
+            },
+            {
+              "description": "Common of the Blessed Virgin Mary (Easter Time).",
+              "type": "string",
+              "const": "BLESSED_VIRGIN_MARY__EASTER"
+            },
+            {
+              "description": "Common of Several Martyrs (outside Easter).",
+              "type": "string",
+              "const": "MARTYRS__OUTSIDE_EASTER__SEVERAL"
+            },
+            {
+              "description": "Common of One Martyr (outside Easter).",
+              "type": "string",
+              "const": "MARTYRS__OUTSIDE_EASTER__ONE"
+            },
+            {
+              "description": "Common of Several Martyrs (Easter Time).",
+              "type": "string",
+              "const": "MARTYRS__EASTER__SEVERAL"
+            },
+            {
+              "description": "Common of One Martyr (Easter Time).",
+              "type": "string",
+              "const": "MARTYRS__EASTER__ONE"
+            },
+            {
+              "description": "Common for Several Missionary Martyrs.",
+              "type": "string",
+              "const": "MARTYRS__MISSIONARY__SEVERAL"
+            },
+            {
+              "description": "Common for One Missionary Martyr.",
+              "type": "string",
+              "const": "MARTYRS__MISSIONARY__ONE"
+            },
+            {
+              "description": "Common for Virgin Martyrs.",
+              "type": "string",
+              "const": "MARTYRS__VIRGIN"
+            },
+            {
+              "description": "Common for Holy Woman Martyrs.",
+              "type": "string",
+              "const": "MARTYRS__WOMAN"
+            },
+            {
+              "description": "Common for a Pope or for a Bishop",
+              "type": "string",
+              "const": "PASTORS__POPE_OR_BISHOP"
+            },
+            {
+              "description": "Common for a Bishop",
+              "type": "string",
+              "const": "PASTORS__BISHOP"
+            },
+            {
+              "description": "Common for Several Pastors",
+              "type": "string",
+              "const": "PASTORS__SEVERAL"
+            },
+            {
+              "description": "Common for One Pastor",
+              "type": "string",
+              "const": "PASTORS__ONE"
+            },
+            {
+              "description": "Common for one Founder",
+              "type": "string",
+              "const": "PASTORS__FOUNDER__ONE"
+            },
+            {
+              "description": "Common for several Founders",
+              "type": "string",
+              "const": "PASTORS__FOUNDER__SEVERAL"
+            },
+            {
+              "description": "Common for Missionaries",
+              "type": "string",
+              "const": "PASTORS__MISSIONARY"
+            },
+            {
+              "description": "Common for Doctors of the Church.",
+              "type": "string",
+              "const": "DOCTORS_OF_THE_CHURCH"
+            },
+            {
+              "description": "Common for Several Virgins",
+              "type": "string",
+              "const": "VIRGINS__SEVERAL"
+            },
+            {
+              "description": "Common for One Virgin",
+              "type": "string",
+              "const": "VIRGINS__ONE"
+            },
+            {
+              "description": "Common for Several Holy Men and Women",
+              "type": "string",
+              "const": "SAINTS__ALL__SEVERAL"
+            },
+            {
+              "description": "Common for One Holy Man or Woman",
+              "type": "string",
+              "const": "SAINTS__ALL__ONE"
+            },
+            {
+              "description": "Common for an Abbot",
+              "type": "string",
+              "const": "SAINTS__ABBOT"
+            },
+            {
+              "description": "Common for a Monk",
+              "type": "string",
+              "const": "SAINT__MONK"
+            },
+            {
+              "description": "Common for a Nun",
+              "type": "string",
+              "const": "SAINTS__NUN"
+            },
+            {
+              "description": "Common for Religious",
+              "type": "string",
+              "const": "SAINTS__RELIGIOUS"
+            },
+            {
+              "description": "Common for Those Who Practiced Works of Mercy",
+              "type": "string",
+              "const": "SAINTS__MERCY_WORKS"
+            },
+            {
+              "description": "Common for Educators",
+              "type": "string",
+              "const": "SAINTS__EDUCATORS"
+            },
+            {
+              "description": "Common for Holy Women",
+              "type": "string",
+              "const": "SAINTS__HOLY_WOMEN"
+            }
+          ]
+        },
+        "Entity": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "description": "The unique identifier of the entity",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "type": {
+              "description": "The type of the entity.\n\nDefaults to `EntityType::Person`.",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/EntityType"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": "PERSON"
+            },
+            "fullname": {
+              "description": "The full name of the entity.",
+              "type": [
+                "string",
+                "null"
+              ],
+              "writeOnly": true
+            },
+            "name": {
+              "description": "The short name of the entity, without the canonization level and titles.",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "canonization_level": {
+              "description": "The canonization level of a person.",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/CanonizationLevel"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "date_of_canonization": {
+              "description": "Date of Canonization, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century.",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SaintDateDef"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "date_of_canonization_is_approximative": {
+              "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "date_of_beatification": {
+              "description": "Date of Beatification, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century.",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SaintDateDef"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "date_of_beatification_is_approximative": {
+              "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "hide_canonization_level": {
+              "description": "Specify if the canonization level should not be displayed.\nIt's generally the case when the canonization are already included in the name.",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "titles": {
+              "description": "Titles of the Saint or the Blessed",
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "$ref": "#/definitions/Title"
+              }
+            },
+            "sex": {
+              "description": "Determine if the Saint or the Blessed is a male or a female.",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/Sex"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "hide_titles": {
+              "description": "Specify if the titles should not be displayed.\nIt's generally the case when titles are already included in the name.",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "date_of_dedication": {
+              "description": "Date of Dedication of a church, basilica, or cathedral (or other place of worship),\nas a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century.",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SaintDateDef"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "date_of_birth": {
+              "description": "Date of Birth, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century.",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SaintDateDef"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "date_of_birth_is_approximative": {
+              "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "date_of_death": {
+              "description": "Date of Death, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century.",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SaintDateDef"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "date_of_death_is_approximative": {
+              "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "count": {
+              "description": "Number of person that this definition represent.\nIt could be set as 'many' if the number is not defined.",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SaintCount"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "sources": {
+              "description": "Sources for the information about this entity",
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "string"
+              }
+            },
+            "_todo": {
+              "description": "Internal notes (not serialized).",
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "string"
+              },
+              "writeOnly": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "EntityType": {
+          "description": "The type of entity in the liturgical calendar.\nDefines whether the entity represents a person, place, or event.",
+          "oneOf": [
+            {
+              "description": "A person (saint, blessed, or other individual)",
+              "type": "string",
+              "const": "PERSON"
+            },
+            {
+              "description": "A place (shrine, city, or geographical location)",
+              "type": "string",
+              "const": "PLACE"
+            },
+            {
+              "description": "An event (historical or liturgical occurrence)",
+              "type": "string",
+              "const": "EVENT"
+            }
+          ]
+        },
+        "CanonizationLevel": {
+          "description": "Canonization level indicating the official recognition status of a person.\nDefines whether someone is beatified (Blessed) or canonized (Saint).",
+          "oneOf": [
+            {
+              "description": "Beatified person (Blessed) - first step toward sainthood",
+              "type": "string",
+              "const": "BLESSED"
+            },
+            {
+              "description": "Canonized person (Saint) - fully recognized as a saint",
+              "type": "string",
+              "const": "SAINT"
+            }
+          ]
+        },
+        "SaintDateDef": {
+          "description": "Saint date definition supporting various date specifications.\nAllows single dates, date ranges, multiple alternatives, or century specifications.",
+          "anyOf": [
+            {
+              "description": "Single date specification",
+              "$ref": "#/definitions/SaintDate"
+            },
+            {
+              "description": "Date range between two dates",
+              "type": "object",
+              "properties": {
+                "between": {
+                  "description": "The date range (start and end dates)",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/SaintDate"
+                  },
+                  "minItems": 2,
+                  "maxItems": 2
+                }
+              },
+              "required": [
+                "between"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "description": "Multiple alternative dates (any one of them)",
+              "type": "object",
+              "properties": {
+                "or": {
+                  "description": "The list of alternative dates",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/SaintDate"
+                  }
+                }
+              },
+              "required": [
+                "or"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "description": "Century specification (e.g., 12 for 12th century)",
+              "type": "object",
+              "properties": {
+                "century": {
+                  "description": "The century number",
+                  "type": "integer",
+                  "format": "uint32",
+                  "minimum": 0
+                }
+              },
+              "required": [
+                "century"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "SaintDate": {
+          "description": "Saint date representation with different precision levels.\nSupports year-only, year-month, or full date specifications.",
+          "anyOf": [
+            {
+              "description": "Year only (e.g., 1234)",
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0
+            },
+            {
+              "description": "Year and month in \"YYYY-MM\" format (e.g., \"1234-05\")",
+              "type": "string"
+            },
+            {
+              "description": "Full date in \"YYYY-MM-DD\" format (e.g., \"1234-05-15\")",
+              "type": "string"
+            }
+          ]
+        },
+        "Title": {
+          "description": "Titles and patronages associated with saints and blessed.\nRepresents the various ecclesiastical titles and patronages that can be assigned to entities.",
+          "type": "string",
+          "enum": [
+            "ABBESS",
+            "ABBOT",
+            "APOSTLE",
+            "ARCHANGEL",
+            "BISHOP",
+            "DEACON",
+            "DOCTOR_OF_THE_CHURCH",
+            "EMPRESS",
+            "EVANGELIST",
+            "FIRST_BISHOP",
+            "HERMIT",
+            "KING",
+            "MARTYR",
+            "MISSIONARY",
+            "MONK",
+            "MOTHER_AND_QUEEN_OF_CHILE",
+            "PARENTS_OF_THE_BLESSED_VIRGIN_MARY",
+            "POPE",
+            "PATRIARCH",
+            "PILGRIM",
+            "PRIEST",
+            "PROPHET",
+            "PROTO_MARTYR_OF_OCEANIA",
+            "QUEEN",
+            "QUEEN_OF_POLAND",
+            "RELIGIOUS",
+            "SLAVIC_MISSIONARY",
+            "SPOUSE_OF_THE_BLESSED_VIRGIN_MARY",
+            "THE_FIRST_MARTYR",
+            "VIRGIN",
+            "COPATRON_OF_EUROPE",
+            "COPATRON_OF_IRELAND",
+            "COPATRON_OF_CANADA",
+            "COPATRONESS_OF_EUROPE",
+            "COPATRONESS_OF_FRANCE",
+            "COPATRONESS_OF_IRELAND",
+            "COPATRONESS_OF_ITALY_AND_EUROPE",
+            "COPATRONESS_OF_THE_PHILIPPINES",
+            "PATRON_OF_CANADA",
+            "PATRON_OF_ENGLAND",
+            "PATRON_OF_EUROPE",
+            "PATRON_OF_FRANCE",
+            "PATRON_OF_IRELAND",
+            "PATRON_OF_ITALY",
+            "PATRON_OF_OCEANIA",
+            "PATRON_OF_POLAND",
+            "PATRON_OF_RUSSIA",
+            "PATRON_OF_SCOTLAND",
+            "PATRON_OF_SPAIN",
+            "PATRON_OF_THE_CZECH_NATION",
+            "PATRON_OF_THE_DIOCESE",
+            "PATRON_OF_WALES",
+            "PATRONESS_OF_ALSACE",
+            "PATRONESS_OF_ARGENTINA",
+            "PATRONESS_OF_BRAZIL",
+            "PATRONESS_OF_HUNGARY",
+            "PATRONESS_OF_PUERTO_RICO",
+            "PATRONESS_OF_SLOVAKIA",
+            "PATRONESS_OF_THE_AMERICAS",
+            "PATRONESS_OF_THE_PHILIPPINES",
+            "PATRONESS_OF_THE_PROVINCE_OF_QUEBEC",
+            "PATRONESS_OF_THE_USA",
+            "PATRON_OF_THE_CLERGY_OF_THE_ARCHDIOCESE_OF_LYON",
+            "PATRON_OF_THE_CITY_OF_LYON",
+            "PATRONESS_OF_COSTA_RICA",
+            "PRINCIPAL_PATRON_OF_THE_DIOCESE",
+            "SECOND_PATRON_OF_THE_DIOCESE"
+          ]
+        },
+        "Sex": {
+          "description": "Sex of a person.",
+          "oneOf": [
+            {
+              "description": "Male person",
+              "type": "string",
+              "const": "MALE"
+            },
+            {
+              "description": "Female person",
+              "type": "string",
+              "const": "FEMALE"
+            }
+          ]
+        },
+        "SaintCount": {
+          "description": "Represents the number of saints for an entity or a group of entities.\n\nCan be either a specific number (u32) or \"MANY\" to indicate\nan indeterminate number of saints.\n\n# Serialization\n- `Number(n)` serializes as integer `n`\n- `Many` serializes as string `\"MANY\"`\n\n# Deserialization\n- Integers are converted to `Number(u32)`\n- String `\"MANY\"` is converted to `Many`\n- All other types generate an error",
+          "anyOf": [
+            {
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0
+            },
+            {
+              "type": "string",
+              "const": "MANY"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "TitlesDef": {
+          "description": "Title definition that can be either a simple list or a compound definition.\nSupports both direct title lists and compound title operations.",
+          "anyOf": [
+            {
+              "description": "Simple list of titles",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Title"
+              }
+            },
+            {
+              "description": "Compound title definition with append/prepend operations",
+              "$ref": "#/definitions/CompoundTitle"
+            }
+          ]
+        },
+        "CompoundTitle": {
+          "description": "Compound title definition for combining multiple titles.\nAllows adding titles to the beginning or end of an existing title list.",
+          "type": "object",
+          "properties": {
+            "append": {
+              "description": "The title(s) to add to the end of the existing list of title(s)",
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "$ref": "#/definitions/Title"
+              }
+            },
+            "prepend": {
+              "description": "The title(s) to add to the beginning of the existing list of title(s)",
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "$ref": "#/definitions/Title"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "title": "CelebrationSummary",
+      "description": "Summary of a celebration for use in optional celebrations list.\nContains the essential fields from a LiturgicalDay that identify a celebration.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The unique identifier of the liturgical day",
+          "type": "string"
+        },
+        "fullname": {
+          "description": "The full name of the liturgical day",
+          "type": "string"
+        },
+        "precedence": {
+          "description": "The liturgical precedence for this liturgical day",
+          "$ref": "#/definitions/Precedence"
+        },
+        "rank": {
+          "description": "The liturgical rank for this liturgical day",
+          "$ref": "#/definitions/Rank"
+        },
+        "rank_name": {
+          "description": "The localized liturgical rank for this liturgical day",
+          "type": "string"
+        },
+        "colors": {
+          "description": "The liturgical colors for this liturgical day",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ColorInfo"
+          }
+        },
+        "commons": {
+          "description": "The common prayers/readings used for this celebration",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CommonInfo"
+          }
+        },
+        "entities": {
+          "description": "The entities (Saints, Blessed, or Places) linked to this liturgical day",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Entity"
+          }
+        },
+        "titles": {
+          "description": "The titles for this liturgical day",
+          "$ref": "#/definitions/TitlesDef"
+        },
+        "is_holy_day_of_obligation": {
+          "description": "Holy days of obligation",
+          "type": "boolean"
+        },
+        "is_optional": {
+          "description": "Indicates if this liturgical day is optional",
+          "type": "boolean"
+        },
+        "from_calendar_id": {
+          "description": "The ID of the calendar where this liturgical day is defined",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "fullname",
+        "precedence",
+        "rank",
+        "rank_name",
+        "colors",
+        "commons",
+        "entities",
+        "titles",
+        "is_holy_day_of_obligation",
+        "is_optional",
         "from_calendar_id"
       ],
       "additionalProperties": false
@@ -7423,6 +8437,2055 @@
         "parent_overrides"
       ],
       "additionalProperties": false
+    },
+    "MassContext": {
+      "definitions": {
+        "MassTime": {
+          "description": "Times of Mass celebrations in the liturgical calendar.\nDifferent Masses are celebrated at various times and occasions throughout the liturgical year.",
+          "oneOf": [
+            {
+              "description": "Easter Vigil - the most important Mass of the liturgical year, celebrated on Holy Saturday night",
+              "type": "string",
+              "const": "easter_vigil"
+            },
+            {
+              "description": "Previous Evening Mass - Mass celebrated the evening before a major feast",
+              "type": "string",
+              "const": "previous_evening_mass"
+            },
+            {
+              "description": "Night Mass - Mass celebrated during the night hours",
+              "type": "string",
+              "const": "night_mass"
+            },
+            {
+              "description": "Mass at Dawn - Mass celebrated at dawn, particularly on Easter Sunday",
+              "type": "string",
+              "const": "mass_at_dawn"
+            },
+            {
+              "description": "Morning Mass - Mass celebrated in the morning",
+              "type": "string",
+              "const": "morning_mass"
+            },
+            {
+              "description": "Mass of the Passion - Mass focusing on Christ's passion, beginning with the procession with palms",
+              "type": "string",
+              "const": "mass_of_the_passion"
+            },
+            {
+              "description": "Celebration of the Passion - special celebration of Christ's passion",
+              "type": "string",
+              "const": "celebration_of_the_passion"
+            },
+            {
+              "description": "Day Mass - regular Mass celebrated during the day",
+              "type": "string",
+              "const": "day_mass"
+            },
+            {
+              "description": "Chrism Mass - Mass where holy oils are blessed, typically on Holy Thursday morning",
+              "type": "string",
+              "const": "chrism_mass"
+            },
+            {
+              "description": "Evening Mass of the Lord's Supper - Mass celebrated on Holy Thursday evening",
+              "type": "string",
+              "const": "evening_mass_of_the_lords_supper"
+            }
+          ]
+        },
+        "Season": {
+          "description": "Liturgical seasons of the Church year.\nRepresents the major periods that structure the liturgical calendar.",
+          "oneOf": [
+            {
+              "description": "Advent",
+              "type": "string",
+              "const": "ADVENT"
+            },
+            {
+              "description": "Christmas Time",
+              "type": "string",
+              "const": "CHRISTMAS_TIME"
+            },
+            {
+              "description": "Lent",
+              "type": "string",
+              "const": "LENT"
+            },
+            {
+              "description": "Paschal Triduum",
+              "type": "string",
+              "const": "PASCHAL_TRIDUUM"
+            },
+            {
+              "description": "Easter Time",
+              "type": "string",
+              "const": "EASTER_TIME"
+            },
+            {
+              "description": "Ordinary Time",
+              "type": "string",
+              "const": "ORDINARY_TIME"
+            }
+          ]
+        },
+        "SundayCycle": {
+          "description": "A three-year cycle for Sunday Mass readings (and some solemnities), designated by A, B, or C.\nEach cycle begins on the First Sunday of Advent of the previous civil year and ends on Saturday\nafter the Christ the King Solemnity. The cycles follow each other in alphabetical order.\nC year is always divisible by 3, A has remainder of 1, and B remainder of 2.",
+          "oneOf": [
+            {
+              "description": "Year A",
+              "type": "string",
+              "const": "YEAR_A"
+            },
+            {
+              "description": "Year B",
+              "type": "string",
+              "const": "YEAR_B"
+            },
+            {
+              "description": "Year C",
+              "type": "string",
+              "const": "YEAR_C"
+            }
+          ]
+        },
+        "WeekdayCycle": {
+          "description": "A two-year cycle for the weekday Mass readings (also called Cycle I and Cycle II).\nOdd-numbered years are the Cycle I (year 1); even-numbered ones are the Cycle II (year 2).",
+          "oneOf": [
+            {
+              "description": "Year 1 (Cycle I)",
+              "type": "string",
+              "const": "YEAR_1"
+            },
+            {
+              "description": "Year 2 (Cycle II)",
+              "type": "string",
+              "const": "YEAR_2"
+            }
+          ]
+        },
+        "PsalterWeekCycle": {
+          "description": "[GILH §133] The four-week cycle of the psalter is coordinated with the liturgical year in such a way that\non the First Sunday of Advent, the First Sunday in Ordinary Time, the First Sunday of Lent,\nand Easter Sunday the cycle is always begun again with Week 1 (others being omitted when necessary).",
+          "oneOf": [
+            {
+              "description": "Week 1",
+              "type": "string",
+              "const": "WEEK_1"
+            },
+            {
+              "description": "Week 2",
+              "type": "string",
+              "const": "WEEK_2"
+            },
+            {
+              "description": "Week 3",
+              "type": "string",
+              "const": "WEEK_3"
+            },
+            {
+              "description": "Week 4",
+              "type": "string",
+              "const": "WEEK_4"
+            }
+          ]
+        },
+        "DayOfWeek": {
+          "description": "Day of week (0-6, where 0=Sunday) with automatic validation\n\nThis type ensures that only valid day-of-week values are accepted during\ndeserialization. The value 0 represents Sunday, 1 represents Monday, etc.",
+          "type": "integer",
+          "format": "uint8",
+          "minimum": 0,
+          "maximum": 255
+        },
+        "PeriodInfo": {
+          "description": "Liturgical period information with localized name.",
+          "type": "object",
+          "properties": {
+            "key": {
+              "description": "The period key",
+              "$ref": "#/definitions/Period"
+            },
+            "name": {
+              "description": "The localized name of the period",
+              "type": "string"
+            }
+          },
+          "required": [
+            "key",
+            "name"
+          ],
+          "additionalProperties": false
+        },
+        "Period": {
+          "description": "Specific periods within liturgical seasons.\nDefines sub-periods that have special liturgical characteristics or rules.",
+          "oneOf": [
+            {
+              "description": "The eight days following Christmas (December 25 - January 1)",
+              "type": "string",
+              "const": "CHRISTMAS_OCTAVE"
+            },
+            {
+              "description": "Days before Epiphany (January 2 to the day before Epiphany)",
+              "type": "string",
+              "const": "DAYS_BEFORE_EPIPHANY"
+            },
+            {
+              "description": "Days from Epiphany to the Presentation (January 6 to the day before the Presentation of the Lord)",
+              "type": "string",
+              "const": "DAYS_FROM_EPIPHANY"
+            },
+            {
+              "description": "Period from Christmas to the Presentation of the Lord",
+              "type": "string",
+              "const": "CHRISTMAS_TO_PRESENTATION_OF_THE_LORD"
+            },
+            {
+              "description": "Period from the Presentation to Holy Thursday",
+              "type": "string",
+              "const": "PRESENTATION_OF_THE_LORD_TO_HOLY_THURSDAY"
+            },
+            {
+              "description": "Holy Week (Palm Sunday to Holy Saturday)",
+              "type": "string",
+              "const": "HOLY_WEEK"
+            },
+            {
+              "description": "Paschal Triduum (start from the Thursday of the Lord's Supper to the Easter Sunday Vespers)",
+              "type": "string",
+              "const": "PASCHAL_TRIDUUM"
+            },
+            {
+              "description": "The eight days following Easter Sunday",
+              "type": "string",
+              "const": "EASTER_OCTAVE"
+            },
+            {
+              "description": "Early Ordinary Time (after the Presentation of the Lord to the day before Ash Wednesday)",
+              "type": "string",
+              "const": "EARLY_ORDINARY_TIME"
+            },
+            {
+              "description": "Late Ordinary Time (after Pentecost to the day before the First Sunday of Advent)",
+              "type": "string",
+              "const": "LATE_ORDINARY_TIME"
+            }
+          ]
+        },
+        "Precedence": {
+          "description": "Liturgical precedence levels for determining which celebration takes priority.\nDefines the hierarchical order of liturgical celebrations according to UNLY norms.",
+          "oneOf": [
+            {
+              "description": "1 - The Paschal Triduum of the Passion and Resurrection of the Lord.",
+              "type": "string",
+              "const": "TRIDUUM_1"
+            },
+            {
+              "description": "2 - The Nativity of the Lord, the Epiphany, the Ascension, or Pentecost.",
+              "type": "string",
+              "const": "PROPER_OF_TIME_SOLEMNITY_2"
+            },
+            {
+              "description": "2 - A Sunday of Advent, Lent, or Easter.",
+              "type": "string",
+              "const": "PRIVILEGED_SUNDAY_2"
+            },
+            {
+              "description": "2 - Ash Wednesday.",
+              "type": "string",
+              "const": "ASH_WEDNESDAY_2"
+            },
+            {
+              "description": "2 - A weekday of Holy Week from Monday up to and including Thursday.",
+              "type": "string",
+              "const": "WEEKDAY_OF_HOLY_WEEK_2"
+            },
+            {
+              "description": "2 - A day within the Octave of Easter.",
+              "type": "string",
+              "const": "WEEKDAY_OF_EASTER_OCTAVE_2"
+            },
+            {
+              "description": "3 - A Solemnity inscribed in the General Calendar, whether of the Lord, of the Blessed Virgin Mary, or of a Saint.",
+              "type": "string",
+              "const": "GENERAL_SOLEMNITY_3"
+            },
+            {
+              "description": "3 - The Commemoration of All the Faithful Departed.",
+              "type": "string",
+              "const": "COMMEMORATION_OF_ALL_THE_FAITHFUL_DEPARTED_3"
+            },
+            {
+              "description": "4a - A proper Solemnity of the principal Patron of the place, city, or state.",
+              "type": "string",
+              "const": "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A"
+            },
+            {
+              "description": "4b - The Solemnity of the dedication and of the anniversary of the dedication of the own church.",
+              "type": "string",
+              "const": "PROPER_SOLEMNITY__DEDICATION_OF_THE_OWN_CHURCH_4B"
+            },
+            {
+              "description": "4c - The solemnity of the title of the own church.",
+              "type": "string",
+              "const": "PROPER_SOLEMNITY__TITLE_OF_THE_OWN_CHURCH_4C"
+            },
+            {
+              "description": "4d - A Solemnity either of the Title or of the Founder or of the principal Patron of an Order or Congregation.",
+              "type": "string",
+              "const": "PROPER_SOLEMNITY__TITLE_OR_FOUNDER_OR_PRIMARY_PATRON_OF_A_RELIGIOUS_ORG_4D"
+            },
+            {
+              "description": "5 - A Feast of the Lord inscribed in the General Calendar.",
+              "type": "string",
+              "const": "GENERAL_LORD_FEAST_5"
+            },
+            {
+              "description": "6 - A Sunday of Christmas Time or a Sunday in Ordinary Time.",
+              "type": "string",
+              "const": "UNPRIVILEGED_SUNDAY_6"
+            },
+            {
+              "description": "7 - A Feast of the Blessed Virgin Mary or of a Saint in the General Calendar.",
+              "type": "string",
+              "const": "GENERAL_FEAST_7"
+            },
+            {
+              "description": "8a - The Proper Feast of the principal Patron of the diocese.",
+              "type": "string",
+              "const": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_DIOCESE_8A"
+            },
+            {
+              "description": "8b - The Proper Feast of the anniversary of the dedication of the cathedral church.",
+              "type": "string",
+              "const": "PROPER_FEAST__DEDICATION_OF_THE_CATHEDRAL_CHURCH_8B"
+            },
+            {
+              "description": "8c - The Proper Feast of the principal Patron of a region or province, or a country, or of a wider territory.",
+              "type": "string",
+              "const": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C"
+            },
+            {
+              "description": "8d - The Proper Feast of the Title, Founder, or principal Patron of an Order or Congregation.",
+              "type": "string",
+              "const": "PROPER_FEAST__TITLE_OR_FOUNDER_OR_PRIMARY_PATRON_OF_A_RELIGIOUS_ORG_8D"
+            },
+            {
+              "description": "8e - Other Feast, proper to an individual church.",
+              "type": "string",
+              "const": "PROPER_FEAST__TO_AN_INDIVIDUAL_CHURCH_8E"
+            },
+            {
+              "description": "8f - Other Proper Feast inscribed in the Calendar of each diocese or Order or Congregation.",
+              "type": "string",
+              "const": "PROPER_FEAST_8F"
+            },
+            {
+              "description": "9 - Privileged Weekday.",
+              "type": "string",
+              "const": "PRIVILEGED_WEEKDAY_9"
+            },
+            {
+              "description": "10 - Obligatory Memorials in the General Calendar.",
+              "type": "string",
+              "const": "GENERAL_MEMORIAL_10"
+            },
+            {
+              "description": "11a - Proper Obligatory Memorial of a secondary Patron of the place, diocese, region, or religious province.",
+              "type": "string",
+              "const": "PROPER_MEMORIAL__SECOND_PATRON_11A"
+            },
+            {
+              "description": "11b - Other Proper Obligatory Memorial inscribed in the Calendar of each diocese, or Order or congregation.",
+              "type": "string",
+              "const": "PROPER_MEMORIAL_11B"
+            },
+            {
+              "description": "12 - Optional Memorial.",
+              "type": "string",
+              "const": "OPTIONAL_MEMORIAL_12"
+            },
+            {
+              "description": "13 - Weekday.",
+              "type": "string",
+              "const": "WEEKDAY_13"
+            }
+          ]
+        },
+        "Rank": {
+          "description": "Liturgical rank indicating the importance and celebration style of a liturgical day",
+          "oneOf": [
+            {
+              "description": "Solemnities are counted among the most important days, whose celebration\nbegins with First Vespers (Evening Prayer I) on the preceding day. Some Solemnities\nare also endowed with their own Vigil Mass, which is to be used on the evening of the\npreceding day, if an evening Mass is celebrated. (UNLY #11)",
+              "type": "string",
+              "const": "SOLEMNITY"
+            },
+            {
+              "description": "On the first day of each week, which is known as the Day of the Lord or the Lord's\nDay, the Church, by an apostolic tradition that draws its origin from the very day of\nthe Resurrection of Christ, celebrates the Paschal Mystery. Hence, Sunday must be\nconsidered the primordial feast day. (UNLY #4)",
+              "type": "string",
+              "const": "SUNDAY"
+            },
+            {
+              "description": "Feasts are celebrated within the limits of the natural day; accordingly they have\nno First Vespers (Evening Prayer I), except in the case of Feasts of the Lord that fall\non a Sunday in Ordinary Time or in Christmas Time and which replace the Sunday\nOffice. (UNLY #13)",
+              "type": "string",
+              "const": "FEAST"
+            },
+            {
+              "description": "**Obligatory memorials** are liturgical commemorations of saints, events, or aspects of the\nfaith. Their observance is mandatory and integrated into the celebration of the occurring\nweekday, following the liturgical norms outlined in the General Instruction of the Roman Missal\nand the Liturgy of the Hours.\nWhen an **obligatory memorial** falls on a weekday during the liturgical season of Lent or a\nprivileged weekday of Advent, it must only be celebrated as an **optional memorial**, as Lent\nand Advent have their own specific liturgical observances that take precedence.",
+              "type": "string",
+              "const": "MEMORIAL"
+            },
+            {
+              "description": "**Optional memorials** are liturgical commemorations of saints, events, or aspects of the\nfaith, but they are not obligatory.\nTheir observance is integrated into the celebration of the occurring weekday, adhering to the\nliturgical norms provided in the General Instruction of the Roman Missal and the Liturgy of\nthe Hours.\nIn cases where multiple **optional memorials** are designated on the same day in the liturgical\ncalendar, only one of them may be celebrated, and the others must be omitted (UNLY #14).\nThis allows for some flexibility in choosing which optional memorial to commemorate when\nmultiple options are available.",
+              "type": "string",
+              "const": "OPTIONAL_MEMORIAL"
+            },
+            {
+              "description": "The days of the week that follow Sunday are called weekdays; however, they are\ncelebrated differently according to the importance of each.\n\na. Ash Wednesday and the weekdays of Holy Week, from Monday up to and including\n   Thursday, take precedence over all other celebrations.\nb. The weekdays of Advent from 17 December up to and including 24 December\n   and all the weekdays of Lent have precedence over Obligatory Memorials.\nc. Other weekdays give way to all Solemnities and Feasts and are combined with\n   Memorials.\n\n (UNLY #16)",
+              "type": "string",
+              "const": "WEEKDAY"
+            }
+          ]
+        },
+        "ColorInfo": {
+          "description": "Liturgical color information with localized name.",
+          "type": "object",
+          "properties": {
+            "key": {
+              "description": "The color key",
+              "$ref": "#/definitions/Color"
+            },
+            "name": {
+              "description": "The localized name of the color",
+              "type": "string"
+            }
+          },
+          "required": [
+            "key",
+            "name"
+          ],
+          "additionalProperties": false
+        },
+        "Color": {
+          "description": "Liturgical colors used in the celebration of Mass and other liturgical services.\nEach color has specific liturgical significance and is used during particular seasons or celebrations.",
+          "oneOf": [
+            {
+              "description": "Red - used for martyrs, Pentecost, and Palm Sunday",
+              "type": "string",
+              "const": "RED"
+            },
+            {
+              "description": "Rose - used on Gaudete Sunday (3rd Advent) and Laetare Sunday (4th Lent)",
+              "type": "string",
+              "const": "ROSE"
+            },
+            {
+              "description": "Purple - used during Advent and Lent",
+              "type": "string",
+              "const": "PURPLE"
+            },
+            {
+              "description": "Green - used during Ordinary Time",
+              "type": "string",
+              "const": "GREEN"
+            },
+            {
+              "description": "White - used for Christmas, Easter, and most feasts",
+              "type": "string",
+              "const": "WHITE"
+            },
+            {
+              "description": "Gold - used for solemn celebrations and special occasions",
+              "type": "string",
+              "const": "GOLD"
+            },
+            {
+              "description": "Black - used for funerals and All Souls' Day",
+              "type": "string",
+              "const": "BLACK"
+            }
+          ]
+        },
+        "CommonInfo": {
+          "description": "Liturgical common information with localized name.",
+          "type": "object",
+          "properties": {
+            "key": {
+              "description": "The common key",
+              "$ref": "#/definitions/Common"
+            },
+            "name": {
+              "description": "The localized name of the common",
+              "type": "string"
+            }
+          },
+          "required": [
+            "key",
+            "name"
+          ],
+          "additionalProperties": false
+        },
+        "Common": {
+          "description": "Common prayers and readings for different categories of saints and celebrations.\nProvides standardized liturgical texts for various types of commemorations.",
+          "oneOf": [
+            {
+              "description": "No common.",
+              "type": "string",
+              "const": "NONE"
+            },
+            {
+              "description": "Dedication anniversary (in the Church that was Dedicated).",
+              "type": "string",
+              "const": "DEDICATION_ANNIVERSARY__INSIDE"
+            },
+            {
+              "description": "Dedication anniversary (outside the Church that was Dedicated).",
+              "type": "string",
+              "const": "DEDICATION_ANNIVERSARY__OUTSIDE"
+            },
+            {
+              "description": "Common of the Blessed Virgin Mary (Ordinary Time).",
+              "type": "string",
+              "const": "BLESSED_VIRGIN_MARY__ORDINARY_TIME"
+            },
+            {
+              "description": "Common of the Blessed Virgin Mary (Advent).",
+              "type": "string",
+              "const": "BLESSED_VIRGIN_MARY__ADVENT"
+            },
+            {
+              "description": "Common of the Blessed Virgin Mary (Christmas Time).",
+              "type": "string",
+              "const": "BLESSED_VIRGIN_MARY__CHRISTMAS"
+            },
+            {
+              "description": "Common of the Blessed Virgin Mary (Easter Time).",
+              "type": "string",
+              "const": "BLESSED_VIRGIN_MARY__EASTER"
+            },
+            {
+              "description": "Common of Several Martyrs (outside Easter).",
+              "type": "string",
+              "const": "MARTYRS__OUTSIDE_EASTER__SEVERAL"
+            },
+            {
+              "description": "Common of One Martyr (outside Easter).",
+              "type": "string",
+              "const": "MARTYRS__OUTSIDE_EASTER__ONE"
+            },
+            {
+              "description": "Common of Several Martyrs (Easter Time).",
+              "type": "string",
+              "const": "MARTYRS__EASTER__SEVERAL"
+            },
+            {
+              "description": "Common of One Martyr (Easter Time).",
+              "type": "string",
+              "const": "MARTYRS__EASTER__ONE"
+            },
+            {
+              "description": "Common for Several Missionary Martyrs.",
+              "type": "string",
+              "const": "MARTYRS__MISSIONARY__SEVERAL"
+            },
+            {
+              "description": "Common for One Missionary Martyr.",
+              "type": "string",
+              "const": "MARTYRS__MISSIONARY__ONE"
+            },
+            {
+              "description": "Common for Virgin Martyrs.",
+              "type": "string",
+              "const": "MARTYRS__VIRGIN"
+            },
+            {
+              "description": "Common for Holy Woman Martyrs.",
+              "type": "string",
+              "const": "MARTYRS__WOMAN"
+            },
+            {
+              "description": "Common for a Pope or for a Bishop",
+              "type": "string",
+              "const": "PASTORS__POPE_OR_BISHOP"
+            },
+            {
+              "description": "Common for a Bishop",
+              "type": "string",
+              "const": "PASTORS__BISHOP"
+            },
+            {
+              "description": "Common for Several Pastors",
+              "type": "string",
+              "const": "PASTORS__SEVERAL"
+            },
+            {
+              "description": "Common for One Pastor",
+              "type": "string",
+              "const": "PASTORS__ONE"
+            },
+            {
+              "description": "Common for one Founder",
+              "type": "string",
+              "const": "PASTORS__FOUNDER__ONE"
+            },
+            {
+              "description": "Common for several Founders",
+              "type": "string",
+              "const": "PASTORS__FOUNDER__SEVERAL"
+            },
+            {
+              "description": "Common for Missionaries",
+              "type": "string",
+              "const": "PASTORS__MISSIONARY"
+            },
+            {
+              "description": "Common for Doctors of the Church.",
+              "type": "string",
+              "const": "DOCTORS_OF_THE_CHURCH"
+            },
+            {
+              "description": "Common for Several Virgins",
+              "type": "string",
+              "const": "VIRGINS__SEVERAL"
+            },
+            {
+              "description": "Common for One Virgin",
+              "type": "string",
+              "const": "VIRGINS__ONE"
+            },
+            {
+              "description": "Common for Several Holy Men and Women",
+              "type": "string",
+              "const": "SAINTS__ALL__SEVERAL"
+            },
+            {
+              "description": "Common for One Holy Man or Woman",
+              "type": "string",
+              "const": "SAINTS__ALL__ONE"
+            },
+            {
+              "description": "Common for an Abbot",
+              "type": "string",
+              "const": "SAINTS__ABBOT"
+            },
+            {
+              "description": "Common for a Monk",
+              "type": "string",
+              "const": "SAINT__MONK"
+            },
+            {
+              "description": "Common for a Nun",
+              "type": "string",
+              "const": "SAINTS__NUN"
+            },
+            {
+              "description": "Common for Religious",
+              "type": "string",
+              "const": "SAINTS__RELIGIOUS"
+            },
+            {
+              "description": "Common for Those Who Practiced Works of Mercy",
+              "type": "string",
+              "const": "SAINTS__MERCY_WORKS"
+            },
+            {
+              "description": "Common for Educators",
+              "type": "string",
+              "const": "SAINTS__EDUCATORS"
+            },
+            {
+              "description": "Common for Holy Women",
+              "type": "string",
+              "const": "SAINTS__HOLY_WOMEN"
+            }
+          ]
+        },
+        "Entity": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "description": "The unique identifier of the entity",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "type": {
+              "description": "The type of the entity.\n\nDefaults to `EntityType::Person`.",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/EntityType"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": "PERSON"
+            },
+            "fullname": {
+              "description": "The full name of the entity.",
+              "type": [
+                "string",
+                "null"
+              ],
+              "writeOnly": true
+            },
+            "name": {
+              "description": "The short name of the entity, without the canonization level and titles.",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "canonization_level": {
+              "description": "The canonization level of a person.",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/CanonizationLevel"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "date_of_canonization": {
+              "description": "Date of Canonization, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century.",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SaintDateDef"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "date_of_canonization_is_approximative": {
+              "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "date_of_beatification": {
+              "description": "Date of Beatification, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century.",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SaintDateDef"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "date_of_beatification_is_approximative": {
+              "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "hide_canonization_level": {
+              "description": "Specify if the canonization level should not be displayed.\nIt's generally the case when the canonization are already included in the name.",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "titles": {
+              "description": "Titles of the Saint or the Blessed",
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "$ref": "#/definitions/Title"
+              }
+            },
+            "sex": {
+              "description": "Determine if the Saint or the Blessed is a male or a female.",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/Sex"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "hide_titles": {
+              "description": "Specify if the titles should not be displayed.\nIt's generally the case when titles are already included in the name.",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "date_of_dedication": {
+              "description": "Date of Dedication of a church, basilica, or cathedral (or other place of worship),\nas a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century.",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SaintDateDef"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "date_of_birth": {
+              "description": "Date of Birth, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century.",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SaintDateDef"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "date_of_birth_is_approximative": {
+              "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "date_of_death": {
+              "description": "Date of Death, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century.",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SaintDateDef"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "date_of_death_is_approximative": {
+              "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "count": {
+              "description": "Number of person that this definition represent.\nIt could be set as 'many' if the number is not defined.",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SaintCount"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "sources": {
+              "description": "Sources for the information about this entity",
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "string"
+              }
+            },
+            "_todo": {
+              "description": "Internal notes (not serialized).",
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "string"
+              },
+              "writeOnly": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "EntityType": {
+          "description": "The type of entity in the liturgical calendar.\nDefines whether the entity represents a person, place, or event.",
+          "oneOf": [
+            {
+              "description": "A person (saint, blessed, or other individual)",
+              "type": "string",
+              "const": "PERSON"
+            },
+            {
+              "description": "A place (shrine, city, or geographical location)",
+              "type": "string",
+              "const": "PLACE"
+            },
+            {
+              "description": "An event (historical or liturgical occurrence)",
+              "type": "string",
+              "const": "EVENT"
+            }
+          ]
+        },
+        "CanonizationLevel": {
+          "description": "Canonization level indicating the official recognition status of a person.\nDefines whether someone is beatified (Blessed) or canonized (Saint).",
+          "oneOf": [
+            {
+              "description": "Beatified person (Blessed) - first step toward sainthood",
+              "type": "string",
+              "const": "BLESSED"
+            },
+            {
+              "description": "Canonized person (Saint) - fully recognized as a saint",
+              "type": "string",
+              "const": "SAINT"
+            }
+          ]
+        },
+        "SaintDateDef": {
+          "description": "Saint date definition supporting various date specifications.\nAllows single dates, date ranges, multiple alternatives, or century specifications.",
+          "anyOf": [
+            {
+              "description": "Single date specification",
+              "$ref": "#/definitions/SaintDate"
+            },
+            {
+              "description": "Date range between two dates",
+              "type": "object",
+              "properties": {
+                "between": {
+                  "description": "The date range (start and end dates)",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/SaintDate"
+                  },
+                  "minItems": 2,
+                  "maxItems": 2
+                }
+              },
+              "required": [
+                "between"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "description": "Multiple alternative dates (any one of them)",
+              "type": "object",
+              "properties": {
+                "or": {
+                  "description": "The list of alternative dates",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/SaintDate"
+                  }
+                }
+              },
+              "required": [
+                "or"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "description": "Century specification (e.g., 12 for 12th century)",
+              "type": "object",
+              "properties": {
+                "century": {
+                  "description": "The century number",
+                  "type": "integer",
+                  "format": "uint32",
+                  "minimum": 0
+                }
+              },
+              "required": [
+                "century"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "SaintDate": {
+          "description": "Saint date representation with different precision levels.\nSupports year-only, year-month, or full date specifications.",
+          "anyOf": [
+            {
+              "description": "Year only (e.g., 1234)",
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0
+            },
+            {
+              "description": "Year and month in \"YYYY-MM\" format (e.g., \"1234-05\")",
+              "type": "string"
+            },
+            {
+              "description": "Full date in \"YYYY-MM-DD\" format (e.g., \"1234-05-15\")",
+              "type": "string"
+            }
+          ]
+        },
+        "Title": {
+          "description": "Titles and patronages associated with saints and blessed.\nRepresents the various ecclesiastical titles and patronages that can be assigned to entities.",
+          "type": "string",
+          "enum": [
+            "ABBESS",
+            "ABBOT",
+            "APOSTLE",
+            "ARCHANGEL",
+            "BISHOP",
+            "DEACON",
+            "DOCTOR_OF_THE_CHURCH",
+            "EMPRESS",
+            "EVANGELIST",
+            "FIRST_BISHOP",
+            "HERMIT",
+            "KING",
+            "MARTYR",
+            "MISSIONARY",
+            "MONK",
+            "MOTHER_AND_QUEEN_OF_CHILE",
+            "PARENTS_OF_THE_BLESSED_VIRGIN_MARY",
+            "POPE",
+            "PATRIARCH",
+            "PILGRIM",
+            "PRIEST",
+            "PROPHET",
+            "PROTO_MARTYR_OF_OCEANIA",
+            "QUEEN",
+            "QUEEN_OF_POLAND",
+            "RELIGIOUS",
+            "SLAVIC_MISSIONARY",
+            "SPOUSE_OF_THE_BLESSED_VIRGIN_MARY",
+            "THE_FIRST_MARTYR",
+            "VIRGIN",
+            "COPATRON_OF_EUROPE",
+            "COPATRON_OF_IRELAND",
+            "COPATRON_OF_CANADA",
+            "COPATRONESS_OF_EUROPE",
+            "COPATRONESS_OF_FRANCE",
+            "COPATRONESS_OF_IRELAND",
+            "COPATRONESS_OF_ITALY_AND_EUROPE",
+            "COPATRONESS_OF_THE_PHILIPPINES",
+            "PATRON_OF_CANADA",
+            "PATRON_OF_ENGLAND",
+            "PATRON_OF_EUROPE",
+            "PATRON_OF_FRANCE",
+            "PATRON_OF_IRELAND",
+            "PATRON_OF_ITALY",
+            "PATRON_OF_OCEANIA",
+            "PATRON_OF_POLAND",
+            "PATRON_OF_RUSSIA",
+            "PATRON_OF_SCOTLAND",
+            "PATRON_OF_SPAIN",
+            "PATRON_OF_THE_CZECH_NATION",
+            "PATRON_OF_THE_DIOCESE",
+            "PATRON_OF_WALES",
+            "PATRONESS_OF_ALSACE",
+            "PATRONESS_OF_ARGENTINA",
+            "PATRONESS_OF_BRAZIL",
+            "PATRONESS_OF_HUNGARY",
+            "PATRONESS_OF_PUERTO_RICO",
+            "PATRONESS_OF_SLOVAKIA",
+            "PATRONESS_OF_THE_AMERICAS",
+            "PATRONESS_OF_THE_PHILIPPINES",
+            "PATRONESS_OF_THE_PROVINCE_OF_QUEBEC",
+            "PATRONESS_OF_THE_USA",
+            "PATRON_OF_THE_CLERGY_OF_THE_ARCHDIOCESE_OF_LYON",
+            "PATRON_OF_THE_CITY_OF_LYON",
+            "PATRONESS_OF_COSTA_RICA",
+            "PRINCIPAL_PATRON_OF_THE_DIOCESE",
+            "SECOND_PATRON_OF_THE_DIOCESE"
+          ]
+        },
+        "Sex": {
+          "description": "Sex of a person.",
+          "oneOf": [
+            {
+              "description": "Male person",
+              "type": "string",
+              "const": "MALE"
+            },
+            {
+              "description": "Female person",
+              "type": "string",
+              "const": "FEMALE"
+            }
+          ]
+        },
+        "SaintCount": {
+          "description": "Represents the number of saints for an entity or a group of entities.\n\nCan be either a specific number (u32) or \"MANY\" to indicate\nan indeterminate number of saints.\n\n# Serialization\n- `Number(n)` serializes as integer `n`\n- `Many` serializes as string `\"MANY\"`\n\n# Deserialization\n- Integers are converted to `Number(u32)`\n- String `\"MANY\"` is converted to `Many`\n- All other types generate an error",
+          "anyOf": [
+            {
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 0
+            },
+            {
+              "type": "string",
+              "const": "MANY"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "TitlesDef": {
+          "description": "Title definition that can be either a simple list or a compound definition.\nSupports both direct title lists and compound title operations.",
+          "anyOf": [
+            {
+              "description": "Simple list of titles",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Title"
+              }
+            },
+            {
+              "description": "Compound title definition with append/prepend operations",
+              "$ref": "#/definitions/CompoundTitle"
+            }
+          ]
+        },
+        "CompoundTitle": {
+          "description": "Compound title definition for combining multiple titles.\nAllows adding titles to the beginning or end of an existing title list.",
+          "type": "object",
+          "properties": {
+            "append": {
+              "description": "The title(s) to add to the end of the existing list of title(s)",
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "$ref": "#/definitions/Title"
+              }
+            },
+            "prepend": {
+              "description": "The title(s) to add to the beginning of the existing list of title(s)",
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "$ref": "#/definitions/Title"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "CelebrationSummary": {
+          "description": "Summary of a celebration for use in optional celebrations list.\nContains the essential fields from a LiturgicalDay that identify a celebration.",
+          "type": "object",
+          "properties": {
+            "id": {
+              "description": "The unique identifier of the liturgical day",
+              "type": "string"
+            },
+            "fullname": {
+              "description": "The full name of the liturgical day",
+              "type": "string"
+            },
+            "precedence": {
+              "description": "The liturgical precedence for this liturgical day",
+              "$ref": "#/definitions/Precedence"
+            },
+            "rank": {
+              "description": "The liturgical rank for this liturgical day",
+              "$ref": "#/definitions/Rank"
+            },
+            "rank_name": {
+              "description": "The localized liturgical rank for this liturgical day",
+              "type": "string"
+            },
+            "colors": {
+              "description": "The liturgical colors for this liturgical day",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ColorInfo"
+              }
+            },
+            "commons": {
+              "description": "The common prayers/readings used for this celebration",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CommonInfo"
+              }
+            },
+            "entities": {
+              "description": "The entities (Saints, Blessed, or Places) linked to this liturgical day",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Entity"
+              }
+            },
+            "titles": {
+              "description": "The titles for this liturgical day",
+              "$ref": "#/definitions/TitlesDef"
+            },
+            "is_holy_day_of_obligation": {
+              "description": "Holy days of obligation",
+              "type": "boolean"
+            },
+            "is_optional": {
+              "description": "Indicates if this liturgical day is optional",
+              "type": "boolean"
+            },
+            "from_calendar_id": {
+              "description": "The ID of the calendar where this liturgical day is defined",
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "fullname",
+            "precedence",
+            "rank",
+            "rank_name",
+            "colors",
+            "commons",
+            "entities",
+            "titles",
+            "is_holy_day_of_obligation",
+            "is_optional",
+            "from_calendar_id"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "title": "MassContext",
+      "description": "A flat structure representing a single mass with its full liturgical context.\n\nThis is the main type for the mass-centric calendar view. It contains:\n- Mass identification (type, name, civil/liturgical dates)\n- Day-level context (season, cycles, periods)\n- Primary celebration data (flattened from LiturgicalDay)\n- Optional alternative celebrations\n\nFor evening masses (Easter Vigil, Previous Evening Mass), the `civil_date`\nis shifted to the previous day while `liturgical_date` remains the original\nliturgical celebration date.",
+      "type": "object",
+      "properties": {
+        "mass_time": {
+          "description": "The type of mass (e.g., DayMass, EasterVigil, etc.)\nSerialized as SCREAMING_SNAKE_CASE (e.g., \"DAY_MASS\")",
+          "$ref": "#/definitions/MassTime"
+        },
+        "mass_time_name": {
+          "description": "The localized name of the mass time (translation key in snake_case)",
+          "type": "string"
+        },
+        "civil_date": {
+          "description": "The civil calendar date when this mass is celebrated (YYYY-MM-DD).\nFor evening masses (EasterVigil, PreviousEveningMass), this is the day\nBEFORE the liturgical date.",
+          "type": "string"
+        },
+        "liturgical_date": {
+          "description": "The liturgical date this mass belongs to (YYYY-MM-DD).\nThis is the \"theological\" date of the celebration.",
+          "type": "string"
+        },
+        "season": {
+          "description": "The liturgical season",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Season"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "season_name": {
+          "description": "The localized season name",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sunday_cycle": {
+          "description": "The Sunday cycle (Year A, B, or C)",
+          "$ref": "#/definitions/SundayCycle"
+        },
+        "sunday_cycle_name": {
+          "description": "The localized Sunday cycle name",
+          "type": "string"
+        },
+        "weekday_cycle": {
+          "description": "The weekday cycle (Year 1 or 2)",
+          "$ref": "#/definitions/WeekdayCycle"
+        },
+        "weekday_cycle_name": {
+          "description": "The localized weekday cycle name",
+          "type": "string"
+        },
+        "psalter_week": {
+          "description": "The psalter week cycle (Week 1-4)",
+          "$ref": "#/definitions/PsalterWeekCycle"
+        },
+        "psalter_week_name": {
+          "description": "The localized psalter week name",
+          "type": "string"
+        },
+        "week_of_season": {
+          "description": "The week number within the liturgical season",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "uint32",
+          "minimum": 0
+        },
+        "day_of_season": {
+          "description": "The day number within the liturgical season",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "uint32",
+          "minimum": 0
+        },
+        "day_of_week": {
+          "description": "The day of the week (0=Sunday to 6=Saturday)",
+          "$ref": "#/definitions/DayOfWeek"
+        },
+        "periods": {
+          "description": "The liturgical periods this day belongs to",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PeriodInfo"
+          }
+        },
+        "start_of_season": {
+          "description": "The first day of the current liturgical season",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "end_of_season": {
+          "description": "The last day of the current liturgical season",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "start_of_liturgical_year": {
+          "description": "The first day of the liturgical year (first Sunday of Advent)",
+          "type": "string"
+        },
+        "end_of_liturgical_year": {
+          "description": "The last day of the liturgical year",
+          "type": "string"
+        },
+        "id": {
+          "description": "The unique identifier of the liturgical day",
+          "type": "string"
+        },
+        "fullname": {
+          "description": "The full name of the liturgical day",
+          "type": "string"
+        },
+        "precedence": {
+          "description": "The liturgical precedence",
+          "$ref": "#/definitions/Precedence"
+        },
+        "rank": {
+          "description": "The liturgical rank",
+          "$ref": "#/definitions/Rank"
+        },
+        "rank_name": {
+          "description": "The localized liturgical rank name",
+          "type": "string"
+        },
+        "colors": {
+          "description": "The liturgical colors",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ColorInfo"
+          }
+        },
+        "commons": {
+          "description": "The common prayers/readings used",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CommonInfo"
+          }
+        },
+        "entities": {
+          "description": "The entities (Saints, Blessed, or Places) linked to this day",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Entity"
+          }
+        },
+        "titles": {
+          "description": "The titles for this liturgical day",
+          "$ref": "#/definitions/TitlesDef"
+        },
+        "is_holy_day_of_obligation": {
+          "description": "Whether this is a holy day of obligation",
+          "type": "boolean"
+        },
+        "is_optional": {
+          "description": "Whether this liturgical day is optional",
+          "type": "boolean"
+        },
+        "from_calendar_id": {
+          "description": "The ID of the calendar where this liturgical day is defined",
+          "type": "string"
+        },
+        "optional_celebrations": {
+          "description": "Optional alternative celebrations (e.g., optional memorials)\nthat can be celebrated instead of the primary celebration.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CelebrationSummary"
+          }
+        }
+      },
+      "required": [
+        "mass_time",
+        "mass_time_name",
+        "civil_date",
+        "liturgical_date",
+        "sunday_cycle",
+        "sunday_cycle_name",
+        "weekday_cycle",
+        "weekday_cycle_name",
+        "psalter_week",
+        "psalter_week_name",
+        "day_of_week",
+        "periods",
+        "start_of_liturgical_year",
+        "end_of_liturgical_year",
+        "id",
+        "fullname",
+        "precedence",
+        "rank",
+        "rank_name",
+        "colors",
+        "commons",
+        "entities",
+        "titles",
+        "is_holy_day_of_obligation",
+        "is_optional",
+        "from_calendar_id",
+        "optional_celebrations"
+      ],
+      "additionalProperties": false
+    },
+    "CalendarContext": {
+      "oneOf": [
+        {
+          "description": "Gregorian year (January 1 to December 31)",
+          "type": "string",
+          "const": "GREGORIAN"
+        },
+        {
+          "description": "Liturgical year (first Sunday of Advent to the day before the first Sunday of Advent of the next year)",
+          "type": "string",
+          "const": "LITURGICAL"
+        }
+      ],
+      "title": "CalendarContext",
+      "description": "Calendar year context for date boundaries.\n\nDetermines how the calendar year is structured and which dates are included\nin a given year's calendar output."
+    },
+    "SundayCycleCombined": {
+      "oneOf": [
+        {
+          "description": "Years A and B combined",
+          "type": "string",
+          "const": "YEAR_A_B"
+        },
+        {
+          "description": "Years A and C combined",
+          "type": "string",
+          "const": "YEAR_A_C"
+        },
+        {
+          "description": "Years B and C combined",
+          "type": "string",
+          "const": "YEAR_B_C"
+        }
+      ],
+      "title": "SundayCycleCombined",
+      "description": "Combined Sunday cycle for cases where readings can apply to multiple years.\nThis allows for flexible configuration where the same readings can be used\nacross different combinations of Sunday cycles."
+    },
+    "LiturgicalCycle": {
+      "oneOf": [
+        {
+          "description": "Invariant content that applies to all cycles",
+          "type": "string",
+          "const": "invariant"
+        },
+        {
+          "description": "Year A of the Sunday cycle",
+          "type": "string",
+          "const": "year_a"
+        },
+        {
+          "description": "Year B of the Sunday cycle",
+          "type": "string",
+          "const": "year_b"
+        },
+        {
+          "description": "Year C of the Sunday cycle",
+          "type": "string",
+          "const": "year_c"
+        },
+        {
+          "description": "Combined years A and B of the Sunday cycle",
+          "type": "string",
+          "const": "year_a_b"
+        },
+        {
+          "description": "Combined years A and C of the Sunday cycle",
+          "type": "string",
+          "const": "year_a_c"
+        },
+        {
+          "description": "Combined years B and C of the Sunday cycle",
+          "type": "string",
+          "const": "year_b_c"
+        },
+        {
+          "description": "Year 1 of the weekday cycle (Cycle I)",
+          "type": "string",
+          "const": "year_1"
+        },
+        {
+          "description": "Year 2 of the weekday cycle (Cycle II)",
+          "type": "string",
+          "const": "year_2"
+        }
+      ],
+      "title": "LiturgicalCycle",
+      "description": "Liturgical cycle for lectionary readings\nIncludes both actual cycles (Year A, B, C, etc.) and invariant content"
+    },
+    "Acclamation": {
+      "oneOf": [
+        {
+          "description": "Alleluia - joyful acclamation used outside of Lent",
+          "type": "string",
+          "const": "ALLELUIA"
+        },
+        {
+          "description": "Lent - acclamation used during Lenten season",
+          "type": "string",
+          "const": "LENT"
+        },
+        {
+          "description": "Mixed - combination of different acclamation types",
+          "type": "string",
+          "const": "MIXED"
+        },
+        {
+          "description": "None - no acclamation",
+          "type": "string",
+          "const": "NONE"
+        }
+      ],
+      "title": "Acclamation",
+      "description": "Acclamations used in liturgical celebrations.\nAcclamations are short liturgical responses or exclamations used during Mass."
+    },
+    "BibleBook": {
+      "oneOf": [
+        {
+          "description": "Genesis",
+          "type": "string",
+          "const": "Gen"
+        },
+        {
+          "description": "Exodus",
+          "type": "string",
+          "const": "Exod"
+        },
+        {
+          "description": "Leviticus",
+          "type": "string",
+          "const": "Lev"
+        },
+        {
+          "description": "Numbers",
+          "type": "string",
+          "const": "Num"
+        },
+        {
+          "description": "Deuteronomy",
+          "type": "string",
+          "const": "Deut"
+        },
+        {
+          "description": "Joshua",
+          "type": "string",
+          "const": "Josh"
+        },
+        {
+          "description": "Judges",
+          "type": "string",
+          "const": "Judg"
+        },
+        {
+          "description": "Ruth",
+          "type": "string",
+          "const": "Ruth"
+        },
+        {
+          "description": "1 Samuel",
+          "type": "string",
+          "const": "1Sam"
+        },
+        {
+          "description": "2 Samuel",
+          "type": "string",
+          "const": "2Sam"
+        },
+        {
+          "description": "1 Kings",
+          "type": "string",
+          "const": "1Kgs"
+        },
+        {
+          "description": "2 Kings",
+          "type": "string",
+          "const": "2Kgs"
+        },
+        {
+          "description": "1 Chronicles",
+          "type": "string",
+          "const": "1Chr"
+        },
+        {
+          "description": "2 Chronicles",
+          "type": "string",
+          "const": "2Chr"
+        },
+        {
+          "description": "Ezra",
+          "type": "string",
+          "const": "Ezra"
+        },
+        {
+          "description": "Nehemiah",
+          "type": "string",
+          "const": "Neh"
+        },
+        {
+          "description": "Tobit",
+          "type": "string",
+          "const": "Tob"
+        },
+        {
+          "description": "Judith",
+          "type": "string",
+          "const": "Jdt"
+        },
+        {
+          "description": "Esther",
+          "type": "string",
+          "const": "Esth"
+        },
+        {
+          "description": "1 Maccabees",
+          "type": "string",
+          "const": "1Macc"
+        },
+        {
+          "description": "2 Maccabees",
+          "type": "string",
+          "const": "2Macc"
+        },
+        {
+          "description": "Job",
+          "type": "string",
+          "const": "Job"
+        },
+        {
+          "description": "Psalms",
+          "type": "string",
+          "const": "Ps"
+        },
+        {
+          "description": "Proverbs",
+          "type": "string",
+          "const": "Prov"
+        },
+        {
+          "description": "Ecclesiastes (Qohelet)",
+          "type": "string",
+          "const": "Eccl"
+        },
+        {
+          "description": "Song of Solomon (Canticle of Canticles)",
+          "type": "string",
+          "const": "Song"
+        },
+        {
+          "description": "Wisdom of Solomon",
+          "type": "string",
+          "const": "Wis"
+        },
+        {
+          "description": "Sirach (Ecclesiasticus)",
+          "type": "string",
+          "const": "Sir"
+        },
+        {
+          "description": "Isaiah",
+          "type": "string",
+          "const": "Isa"
+        },
+        {
+          "description": "Jeremiah",
+          "type": "string",
+          "const": "Jer"
+        },
+        {
+          "description": "Lamentations",
+          "type": "string",
+          "const": "Lam"
+        },
+        {
+          "description": "Baruch",
+          "type": "string",
+          "const": "Bar"
+        },
+        {
+          "description": "Letter of Jeremiah",
+          "type": "string",
+          "const": "EpJer"
+        },
+        {
+          "description": "Ezekiel",
+          "type": "string",
+          "const": "Ezek"
+        },
+        {
+          "description": "Daniel",
+          "type": "string",
+          "const": "Dan"
+        },
+        {
+          "description": "Hosea",
+          "type": "string",
+          "const": "Hos"
+        },
+        {
+          "description": "Joel",
+          "type": "string",
+          "const": "Joel"
+        },
+        {
+          "description": "Amos",
+          "type": "string",
+          "const": "Amos"
+        },
+        {
+          "description": "Obadiah",
+          "type": "string",
+          "const": "Obad"
+        },
+        {
+          "description": "Jonah",
+          "type": "string",
+          "const": "Jonah"
+        },
+        {
+          "description": "Micah",
+          "type": "string",
+          "const": "Mic"
+        },
+        {
+          "description": "Nahum",
+          "type": "string",
+          "const": "Nah"
+        },
+        {
+          "description": "Habakkuk",
+          "type": "string",
+          "const": "Hab"
+        },
+        {
+          "description": "Zephaniah",
+          "type": "string",
+          "const": "Zeph"
+        },
+        {
+          "description": "Haggai",
+          "type": "string",
+          "const": "Hag"
+        },
+        {
+          "description": "Zechariah",
+          "type": "string",
+          "const": "Zech"
+        },
+        {
+          "description": "Malachi",
+          "type": "string",
+          "const": "Mal"
+        },
+        {
+          "description": "Matthew",
+          "type": "string",
+          "const": "Matt"
+        },
+        {
+          "description": "Mark",
+          "type": "string",
+          "const": "Mark"
+        },
+        {
+          "description": "Luke",
+          "type": "string",
+          "const": "Luke"
+        },
+        {
+          "description": "John",
+          "type": "string",
+          "const": "John"
+        },
+        {
+          "description": "Acts",
+          "type": "string",
+          "const": "Acts"
+        },
+        {
+          "description": "Romans",
+          "type": "string",
+          "const": "Rom"
+        },
+        {
+          "description": "1 Corinthians",
+          "type": "string",
+          "const": "1Cor"
+        },
+        {
+          "description": "2 Corinthians",
+          "type": "string",
+          "const": "2Cor"
+        },
+        {
+          "description": "Galatians",
+          "type": "string",
+          "const": "Gal"
+        },
+        {
+          "description": "Ephesians",
+          "type": "string",
+          "const": "Eph"
+        },
+        {
+          "description": "Philippians",
+          "type": "string",
+          "const": "Phil"
+        },
+        {
+          "description": "Colossians",
+          "type": "string",
+          "const": "Col"
+        },
+        {
+          "description": "1 Thessalonians",
+          "type": "string",
+          "const": "1Thess"
+        },
+        {
+          "description": "2 Thessalonians",
+          "type": "string",
+          "const": "2Thess"
+        },
+        {
+          "description": "1 Timothy",
+          "type": "string",
+          "const": "1Tim"
+        },
+        {
+          "description": "2 Timothy",
+          "type": "string",
+          "const": "2Tim"
+        },
+        {
+          "description": "Titus",
+          "type": "string",
+          "const": "Titus"
+        },
+        {
+          "description": "Philemon",
+          "type": "string",
+          "const": "Phlm"
+        },
+        {
+          "description": "Hebrews",
+          "type": "string",
+          "const": "Heb"
+        },
+        {
+          "description": "James",
+          "type": "string",
+          "const": "Jas"
+        },
+        {
+          "description": "1 Peter",
+          "type": "string",
+          "const": "1Pet"
+        },
+        {
+          "description": "2 Peter",
+          "type": "string",
+          "const": "2Pet"
+        },
+        {
+          "description": "1 John",
+          "type": "string",
+          "const": "1John"
+        },
+        {
+          "description": "2 John",
+          "type": "string",
+          "const": "2John"
+        },
+        {
+          "description": "3 John",
+          "type": "string",
+          "const": "3John"
+        },
+        {
+          "description": "Jude",
+          "type": "string",
+          "const": "Jude"
+        },
+        {
+          "description": "Revelation",
+          "type": "string",
+          "const": "Rev"
+        }
+      ],
+      "title": "BibleBook",
+      "description": "Books of the Bible using OSIS (Open Scripture Information Standard) identifiers.\nOSIS provides standardized abbreviations for biblical books used in liturgical and biblical applications."
+    },
+    "MassPart": {
+      "oneOf": [
+        {
+          "description": "Messianic entry reading (during the procession with palms, before the Mass of the Passion)",
+          "type": "string",
+          "const": "messianic_entry"
+        },
+        {
+          "description": "Entrance Antiphon - opening chant of the Mass",
+          "type": "string",
+          "const": "entrance_antiphon"
+        },
+        {
+          "description": "Collect - opening prayer of the Mass",
+          "type": "string",
+          "const": "collect"
+        },
+        {
+          "description": "Reading 1 - first reading (usually from the Old Testament)",
+          "type": "string",
+          "const": "reading_1"
+        },
+        {
+          "description": "Psalm - responsorial psalm",
+          "type": "string",
+          "const": "psalm"
+        },
+        {
+          "description": "Canticle - biblical canticle",
+          "type": "string",
+          "const": "canticle"
+        },
+        {
+          "description": "Reading 2 - second reading (usually from the New Testament)",
+          "type": "string",
+          "const": "reading_2"
+        },
+        {
+          "description": "Psalm (Easter Vigil)",
+          "type": "string",
+          "const": "easter_vigil_psalm_2"
+        },
+        {
+          "description": "Reading 3 - third reading (Easter Vigil)",
+          "type": "string",
+          "const": "easter_vigil_reading_3"
+        },
+        {
+          "description": "Canticle 3 (Easter Vigil)",
+          "type": "string",
+          "const": "easter_vigil_canticle_3"
+        },
+        {
+          "description": "Reading 4 - fourth reading (Easter Vigil)",
+          "type": "string",
+          "const": "easter_vigil_reading_4"
+        },
+        {
+          "description": "Psalm 4 (Easter Vigil)",
+          "type": "string",
+          "const": "easter_vigil_psalm_4"
+        },
+        {
+          "description": "Reading 5 - fifth reading (Easter Vigil)",
+          "type": "string",
+          "const": "easter_vigil_reading_5"
+        },
+        {
+          "description": "Canticle 5 (Easter Vigil)",
+          "type": "string",
+          "const": "easter_vigil_canticle_5"
+        },
+        {
+          "description": "Reading 6 - sixth reading (Easter Vigil)",
+          "type": "string",
+          "const": "easter_vigil_reading_6"
+        },
+        {
+          "description": "Psalm 6 (Easter Vigil)",
+          "type": "string",
+          "const": "easter_vigil_psalm_6"
+        },
+        {
+          "description": "Reading 7 - seventh reading (Easter Vigil)",
+          "type": "string",
+          "const": "easter_vigil_reading_7"
+        },
+        {
+          "description": "Psalm 7 (Easter Vigil)",
+          "type": "string",
+          "const": "easter_vigil_psalm_7"
+        },
+        {
+          "description": "Epistle - reading from the epistles (Easter Vigil)",
+          "type": "string",
+          "const": "easter_vigil_epistle"
+        },
+        {
+          "description": "Sequence - special chant on certain feasts",
+          "type": "string",
+          "const": "sequence"
+        },
+        {
+          "description": "Alleluia - acclamation before the Gospel",
+          "type": "string",
+          "const": "alleluia"
+        },
+        {
+          "description": "Gospel - reading from the Gospels",
+          "type": "string",
+          "const": "gospel"
+        },
+        {
+          "description": "Prayer over the Offerings - prayer during the offertory",
+          "type": "string",
+          "const": "prayer_over_the_offerings"
+        },
+        {
+          "description": "Preface - introduction to the Eucharistic Prayer",
+          "type": "string",
+          "const": "preface"
+        },
+        {
+          "description": "Communion Antiphon - chant during communion",
+          "type": "string",
+          "const": "communion_antiphon"
+        },
+        {
+          "description": "Prayer after Communion - concluding prayer",
+          "type": "string",
+          "const": "prayer_after_communion"
+        },
+        {
+          "description": "Solemn Blessing - special blessing on certain occasions",
+          "type": "string",
+          "const": "solemn_blessing"
+        },
+        {
+          "description": "Prayer over the People - blessing over the congregation",
+          "type": "string",
+          "const": "prayer_over_the_people"
+        }
+      ],
+      "title": "MassPart",
+      "description": "Parts that make up the Mass celebration.\nEach part represents a specific element of the liturgical celebration."
     }
   }
 }
