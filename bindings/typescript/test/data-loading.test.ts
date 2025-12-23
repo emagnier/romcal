@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeAll } from 'vitest';
-import { romcal, CalendarDefinition, ResourcesDefinition, RomcalInstance } from '../src/index.js';
+import { createRomcal, CalendarDefinition, ResourcesDefinition, Romcal } from '../src/index.js';
 import { loadAllCalendarDefinitions, loadAllResources } from './fixtures.js';
 
 describe('data loading from /data folder', () => {
@@ -28,14 +28,14 @@ describe('data loading from /data folder', () => {
 });
 
 describe('French calendar with loaded data', () => {
-  let r: RomcalInstance;
+  let romcal: Romcal;
   let calendarDefinitions: CalendarDefinition[];
   let resources: ResourcesDefinition[];
 
   beforeAll(async () => {
     calendarDefinitions = await loadAllCalendarDefinitions();
     resources = await loadAllResources();
-    r = await romcal({
+    romcal = await createRomcal({
       calendar: 'france',
       locale: 'fr',
       calendarDefinitions,
@@ -44,7 +44,7 @@ describe('French calendar with loaded data', () => {
   });
 
   it('should generate liturgical calendar with French locale', async () => {
-    const calendar = await r.generateLiturgicalCalendar(2026);
+    const calendar = await romcal.generateLiturgicalCalendar(2026);
 
     const easter = calendar['2026-04-05'];
     expect(easter).toBeDefined();
@@ -54,7 +54,7 @@ describe('French calendar with loaded data', () => {
   });
 
   it('should include French saints', async () => {
-    const calendar = await r.generateLiturgicalCalendar(2026);
+    const calendar = await romcal.generateLiturgicalCalendar(2026);
 
     // Saint Jean-Marie Vianney - August 4
     const vianney = calendar['2026-08-04'];
@@ -66,7 +66,7 @@ describe('French calendar with loaded data', () => {
   });
 
   it('should generate mass calendar with French locale', async () => {
-    const massCalendar = await r.generateMassCalendar(2026);
+    const massCalendar = await romcal.generateMassCalendar(2026);
 
     // Default context is GREGORIAN, so Christmas 2026 is in the calendar
     const christmas = massCalendar['2026-12-25'];
@@ -81,14 +81,14 @@ describe('French calendar with loaded data', () => {
 });
 
 describe('English calendar with loaded data', () => {
-  let r: RomcalInstance;
+  let romcal: Romcal;
   let calendarDefinitions: CalendarDefinition[];
   let resources: ResourcesDefinition[];
 
   beforeAll(async () => {
     calendarDefinitions = await loadAllCalendarDefinitions();
     resources = await loadAllResources();
-    r = await romcal({
+    romcal = await createRomcal({
       calendar: 'general_roman',
       locale: 'en',
       calendarDefinitions,
@@ -97,7 +97,7 @@ describe('English calendar with loaded data', () => {
   });
 
   it('should generate liturgical calendar with English locale', async () => {
-    const calendar = await r.generateLiturgicalCalendar(2026);
+    const calendar = await romcal.generateLiturgicalCalendar(2026);
 
     const easter = calendar['2026-04-05'];
     expect(easter).toBeDefined();

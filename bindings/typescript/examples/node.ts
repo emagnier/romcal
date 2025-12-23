@@ -3,13 +3,13 @@
  *
  * This example demonstrates:
  * - Loading calendar definitions and resources from the data folder
- * - Creating a romcal instance with custom configuration
+ * - Creating a Romcal instance with custom configuration
  * - Generating liturgical and mass calendars
  *
  * Run with: npx tsx examples/node.ts
  */
 
-import { romcal, CalendarDefinition, ResourcesDefinition } from '../src/index.js';
+import { createRomcal, CalendarDefinition, ResourcesDefinition } from '../src/index.js';
 import { glob, readFile } from 'node:fs/promises';
 import { dirname, basename, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -100,18 +100,18 @@ async function main() {
 
   // Create a French calendar instance
   console.log('Creating French calendar instance...');
-  const fr = await romcal({
+  const romcal = await createRomcal({
     calendar: 'france',
     locale: 'fr',
     calendarDefinitions,
     resources,
   });
-  console.log(`  Calendar: ${fr.config.calendar}`);
-  console.log(`  Locale: ${fr.config.locale}\n`);
+  console.log(`  Calendar: ${romcal.config.calendar}`);
+  console.log(`  Locale: ${romcal.config.locale}\n`);
 
   // Generate liturgical calendar for 2026
   console.log('Generating liturgical calendar for 2026...');
-  const liturgicalCalendar = await fr.generateLiturgicalCalendar(2026);
+  const liturgicalCalendar = await romcal.generateLiturgicalCalendar(2026);
   const dates = Object.keys(liturgicalCalendar);
   console.log(`  Total dates: ${dates.length}`);
   console.log(`  First date: ${dates[0]}`);
@@ -156,7 +156,7 @@ async function main() {
 
   // Generate mass calendar
   console.log('Generating mass calendar for 2026...');
-  const massCalendar = await fr.generateMassCalendar(2026);
+  const massCalendar = await romcal.generateMassCalendar(2026);
 
   // Show Christmas masses
   const christmasMasses = massCalendar['2025-12-25'];

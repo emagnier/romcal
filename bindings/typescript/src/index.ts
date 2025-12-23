@@ -225,10 +225,10 @@ export class RomcalError extends Error {
 // ============================================================================
 
 /**
- * Romcal instance interface with calendar generation methods.
+ * A Romcal instance with calendar generation methods.
  */
-export interface RomcalInstance {
-  /** The configuration of this romcal instance */
+export interface Romcal {
+  /** The configuration of this Romcal instance */
   config: RomcalConfigInterface;
 
   /**
@@ -256,9 +256,9 @@ export interface RomcalInstance {
 // ============================================================================
 
 /**
- * Creates a RomcalInstance from a WASM Romcal instance.
+ * Creates a Romcal instance from a WASM Romcal instance.
  */
-function createRomcalInstance(wasmInstance: wasm.Romcal): RomcalInstance {
+function createInstance(wasmInstance: wasm.Romcal): Romcal {
   return {
     config: {
       calendar: wasmInstance.config.calendar,
@@ -295,51 +295,51 @@ function createRomcalInstance(wasmInstance: wasm.Romcal): RomcalInstance {
 // ============================================================================
 
 /**
- * Create a new romcal instance with default configuration.
+ * Create a new Romcal instance with default configuration.
  */
-export async function romcal(): Promise<RomcalInstance>;
+export async function createRomcal(): Promise<Romcal>;
 
 /**
- * Create a new romcal instance with calendar and locale.
+ * Create a new Romcal instance with calendar and locale.
  */
-export async function romcal(calendar: string, locale: string): Promise<RomcalInstance>;
+export async function createRomcal(calendar: string, locale: string): Promise<Romcal>;
 
 /**
- * Create a new romcal instance with full configuration.
+ * Create a new Romcal instance with full configuration.
  */
-export async function romcal(config: RomcalConfigInterface): Promise<RomcalInstance>;
+export async function createRomcal(config: RomcalConfigInterface): Promise<Romcal>;
 
 /**
- * Create a new romcal instance with partial configuration.
+ * Create a new Romcal instance with partial configuration.
  */
-export async function romcal(config: PartialRomcalConfigInterface): Promise<RomcalInstance>;
+export async function createRomcal(config: PartialRomcalConfigInterface): Promise<Romcal>;
 
 /**
- * Create a new romcal instance.
+ * Create a new Romcal instance.
  *
  * @example
  * ```typescript
  * // Default configuration
- * const r = await romcal();
+ * const romcal = await createRomcal();
  *
  * // With calendar and locale
- * const r = await romcal('france', 'fr');
+ * const romcal = await createRomcal('france', 'fr');
  *
  * // With partial configuration
- * const r = await romcal({
+ * const romcal = await createRomcal({
  *   calendar: 'france',
  *   locale: 'fr',
  *   epiphanyOnSunday: true,
  * });
  *
  * // Generate calendar
- * const calendar = await r.generateLiturgicalCalendar(2026);
+ * const calendar = await romcal.generateLiturgicalCalendar(2026);
  * ```
  */
-export async function romcal(
+export async function createRomcal(
   calendarOrConfig?: string | RomcalConfigInterface | PartialRomcalConfigInterface,
   locale?: string
-): Promise<RomcalInstance> {
+): Promise<Romcal> {
   await initWasm();
 
   let instance: wasm.Romcal;
@@ -396,5 +396,5 @@ export async function romcal(
     instance = wasm.romcal();
   }
 
-  return createRomcalInstance(instance);
+  return createInstance(instance);
 }

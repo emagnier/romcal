@@ -1,22 +1,22 @@
 import { describe, it, expect, beforeAll } from 'vitest';
-import { romcal, RomcalError, RomcalInstance, LiturgicalCalendar, MassCalendar } from '../src/index.js';
+import { createRomcal, RomcalError, Romcal, LiturgicalCalendar, MassCalendar } from '../src/index.js';
 import { loadAllCalendarDefinitions, loadAllResources } from './fixtures.js';
 
 describe('Gregorian year calendar (default)', () => {
-  let r: RomcalInstance;
+  let romcal: Romcal;
   let calendar: LiturgicalCalendar;
 
   beforeAll(async () => {
     const calendarDefinitions = await loadAllCalendarDefinitions();
     const resources = await loadAllResources();
-    r = await romcal({
+    romcal = await createRomcal({
       calendar: 'general_roman',
       locale: 'en',
       calendarDefinitions,
       resources,
       // context: 'GREGORIAN' is the default
     });
-    calendar = await r.generateLiturgicalCalendar(2026);
+    calendar = await romcal.generateLiturgicalCalendar(2026);
   });
 
   it('should generate a full Gregorian year', async () => {
@@ -65,20 +65,20 @@ describe('Gregorian year calendar (default)', () => {
 });
 
 describe('Liturgical year calendar', () => {
-  let r: RomcalInstance;
+  let romcal: Romcal;
   let calendar: LiturgicalCalendar;
 
   beforeAll(async () => {
     const calendarDefinitions = await loadAllCalendarDefinitions();
     const resources = await loadAllResources();
-    r = await romcal({
+    romcal = await createRomcal({
       calendar: 'general_roman',
       locale: 'en',
       context: 'LITURGICAL',
       calendarDefinitions,
       resources,
     });
-    calendar = await r.generateLiturgicalCalendar(2026);
+    calendar = await romcal.generateLiturgicalCalendar(2026);
   });
 
   it('should generate a full liturgical year', async () => {
@@ -106,19 +106,19 @@ describe('Liturgical year calendar', () => {
 });
 
 describe('Mass calendar (Gregorian year)', () => {
-  let r: RomcalInstance;
+  let romcal: Romcal;
   let massCalendar: MassCalendar;
 
   beforeAll(async () => {
     const calendarDefinitions = await loadAllCalendarDefinitions();
     const resources = await loadAllResources();
-    r = await romcal({
+    romcal = await createRomcal({
       calendar: 'general_roman',
       locale: 'en',
       calendarDefinitions,
       resources,
     });
-    massCalendar = await r.generateMassCalendar(2026);
+    massCalendar = await romcal.generateMassCalendar(2026);
   });
 
   it('should generate mass calendar', async () => {
@@ -176,20 +176,20 @@ describe('Mass calendar (Gregorian year)', () => {
 });
 
 describe('Mass calendar (Liturgical year)', () => {
-  let r: RomcalInstance;
+  let romcal: Romcal;
   let massCalendar: MassCalendar;
 
   beforeAll(async () => {
     const calendarDefinitions = await loadAllCalendarDefinitions();
     const resources = await loadAllResources();
-    r = await romcal({
+    romcal = await createRomcal({
       calendar: 'general_roman',
       locale: 'en',
       context: 'LITURGICAL',
       calendarDefinitions,
       resources,
     });
-    massCalendar = await r.generateMassCalendar(2026);
+    massCalendar = await romcal.generateMassCalendar(2026);
   });
 
   it('should include Christmas 2025 masses', async () => {
@@ -209,13 +209,13 @@ describe('French calendar', () => {
   it('should generate French locale calendar', async () => {
     const calendarDefinitions = await loadAllCalendarDefinitions();
     const resources = await loadAllResources();
-    const r = await romcal({
+    const romcal = await createRomcal({
       calendar: 'france',
       locale: 'fr',
       calendarDefinitions,
       resources,
     });
-    const calendar = await r.generateLiturgicalCalendar(2026);
+    const calendar = await romcal.generateLiturgicalCalendar(2026);
 
     const easter = calendar['2026-04-05'];
     expect(easter).toBeDefined();
@@ -225,16 +225,16 @@ describe('French calendar', () => {
 
 describe('error handling', () => {
   it('should throw RomcalError for invalid year', async () => {
-    const r = await romcal();
+    const romcal = await createRomcal();
 
-    await expect(r.generateLiturgicalCalendar(1500)).rejects.toThrow(RomcalError);
+    await expect(romcal.generateLiturgicalCalendar(1500)).rejects.toThrow(RomcalError);
   });
 
   it('should include error message for invalid year', async () => {
-    const r = await romcal();
+    const romcal = await createRomcal();
 
     try {
-      await r.generateLiturgicalCalendar(1500);
+      await romcal.generateLiturgicalCalendar(1500);
       expect.fail('Should have thrown an error');
     } catch (error) {
       expect(error).toBeInstanceOf(RomcalError);
