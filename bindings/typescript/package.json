@@ -56,16 +56,16 @@
     "type": "git",
     "url": "https://github.com/romcal/romcal"
   },
-  "homepage": "https://romcal.js.org",
+  "homepage": "https://romcal.dev",
   "bugs": {
     "url": "https://github.com/romcal/romcal/issues"
   },
   "scripts": {
-    "build": "../../scripts/build-adapters.sh wasm && npm run build:vite",
+    "build": "npm run build:wasm && npm run build:vite",
     "build:vite": "vite build",
-    "build:wasm": "../../scripts/build-adapters.sh wasm",
+    "build:wasm": "wasm-pack build ../../core/adapters/wasm --target web --out-dir ../../../bindings/typescript/pkg",
     "generate-types": "quicktype --src ../../schemas/all_types.json --src-lang schema --lang typescript --top-level AllTypes --out src/types.ts --explicit-unions --no-combine-classes --just-types --prefer-types",
-    "test": "npx tsx test.ts"
+    "test": "tsx test.ts"
   },
   "devDependencies": {
     "@types/node": "^24.3.1",

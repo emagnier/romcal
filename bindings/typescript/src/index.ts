@@ -29,11 +29,7 @@ let initPromise: Promise<void> | null = null;
  * Detect if running in Node.js environment
  */
 function isNode(): boolean {
-  return (
-    typeof process !== 'undefined' &&
-    process.versions != null &&
-    process.versions.node != null
-  );
+  return typeof process !== 'undefined' && process.versions != null && process.versions.node != null;
 }
 
 /**
@@ -51,9 +47,9 @@ async function initWasm(): Promise<void> {
   initPromise = (async () => {
     if (isNode()) {
       // Node.js: read the .wasm file and pass bytes
-      const { readFileSync } = await import('fs');
-      const { fileURLToPath } = await import('url');
-      const { dirname, join } = await import('path');
+      const { readFileSync } = await import('node:fs');
+      const { fileURLToPath } = await import('node:url');
+      const { dirname, join } = await import('node:path');
 
       const __filename = fileURLToPath(import.meta.url);
       const __dirname = dirname(__filename);
@@ -279,9 +275,7 @@ function createRomcalInstance(wasmInstance: wasm.Romcal): RomcalInstance {
         const json = wasmInstance.generateLiturgicalCalendar(year);
         return JSON.parse(json) as LiturgicalCalendar;
       } catch (error) {
-        throw new RomcalError(
-          `Failed to generate liturgical calendar for year ${year}: ${error}`
-        );
+        throw new RomcalError(`Failed to generate liturgical calendar for year ${year}: ${error}`);
       }
     },
 
@@ -290,9 +284,7 @@ function createRomcalInstance(wasmInstance: wasm.Romcal): RomcalInstance {
         const json = wasmInstance.generateMassCalendar(year);
         return JSON.parse(json) as MassCalendar;
       } catch (error) {
-        throw new RomcalError(
-          `Failed to generate mass calendar for year ${year}: ${error}`
-        );
+        throw new RomcalError(`Failed to generate mass calendar for year ${year}: ${error}`);
       }
     },
   };
