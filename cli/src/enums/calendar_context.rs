@@ -1,5 +1,5 @@
 use clap::ValueEnum;
-use romcal_core::CalendarContext;
+use romcal::CalendarContext;
 
 /// Calendar context for CLI.
 /// Defines the temporal scope for calendar calculations and date ranges.

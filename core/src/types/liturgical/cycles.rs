@@ -89,7 +89,7 @@ impl SundayCycle {
     /// # Examples
     ///
     /// ```rust
-    /// use romcal_core::types::liturgical::cycles::SundayCycle;
+    /// use romcal::types::liturgical::cycles::SundayCycle;
     ///
     /// assert_eq!(SundayCycle::from_year(2023), SundayCycle::YearA); // 2023 % 3 = 1
     /// assert_eq!(SundayCycle::from_year(2024), SundayCycle::YearB); // 2024 % 3 = 2
@@ -123,7 +123,7 @@ impl WeekdayCycle {
     /// # Examples
     ///
     /// ```rust
-    /// use romcal_core::types::liturgical::cycles::WeekdayCycle;
+    /// use romcal::types::liturgical::cycles::WeekdayCycle;
     ///
     /// assert_eq!(WeekdayCycle::from_year(2023), WeekdayCycle::Year_1); // odd year
     /// assert_eq!(WeekdayCycle::from_year(2024), WeekdayCycle::Year_2); // even year
@@ -162,7 +162,7 @@ impl PsalterWeekCycle {
     /// # Examples
     ///
     /// ```rust
-    /// use romcal_core::types::liturgical::cycles::PsalterWeekCycle;
+    /// use romcal::types::liturgical::cycles::PsalterWeekCycle;
     ///
     /// // Normal case: week 1 of Advent
     /// assert_eq!(PsalterWeekCycle::from_week(1, false, false), PsalterWeekCycle::Week_1);

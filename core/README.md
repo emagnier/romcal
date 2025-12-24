@@ -10,15 +10,15 @@ Add to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-romcal-core = "4.0"
+romcal = "4.0"
 ```
 
 ## Quick Start
 
 ```rust
-use romcal_core::Romcal;
+use romcal::Romcal;
 
-fn main() -> romcal_core::RomcalResult<()> {
+fn main() -> romcal::RomcalResult<()> {
     // Create a default configuration
     let romcal = Romcal::default();
 
@@ -47,7 +47,7 @@ fn main() -> romcal_core::RomcalResult<()> {
 `Preset` is a configuration builder with optional fields. Use `Romcal::new(preset)` to create an instance:
 
 ```rust
-use romcal_core::{Preset, Romcal, CalendarContext, EasterCalculationType};
+use romcal::{Preset, Romcal, CalendarContext, EasterCalculationType};
 
 let preset = Preset {
     calendar: Some("france".to_string()),
@@ -78,7 +78,7 @@ let romcal = Romcal::new(preset);
 ### Available Calendars and Locales
 
 ```rust
-use romcal_core::{CALENDAR_IDS, LOCALE_CODES};
+use romcal::{CALENDAR_IDS, LOCALE_CODES};
 
 // List all available calendar IDs
 for id in CALENDAR_IDS {
@@ -96,7 +96,7 @@ for code in LOCALE_CODES {
 For calendar generation, you need to load calendar definitions and resources:
 
 ```rust
-use romcal_core::{Preset, Romcal};
+use romcal::{Preset, Romcal};
 
 // Load from JSON files or embedded data
 let calendar_definitions = load_calendar_definitions(); // Your loading logic
@@ -118,7 +118,7 @@ let romcal = Romcal::new(preset);
 The `get_date` method calculates a liturgical date by its ID:
 
 ```rust
-use romcal_core::Romcal;
+use romcal::Romcal;
 
 let romcal = Romcal::default();
 
@@ -142,7 +142,7 @@ Any date ID from the liturgical calendar can be used (e.g., `easter_sunday`, `ch
 Generate a complete liturgical calendar with all celebrations:
 
 ```rust
-use romcal_core::Romcal;
+use romcal::Romcal;
 
 let romcal = Romcal::default();
 
@@ -185,7 +185,7 @@ Each `LiturgicalDay` contains:
 The mass-centric calendar organizes by civil date and mass time, useful for scheduling:
 
 ```rust
-use romcal_core::Romcal;
+use romcal::Romcal;
 
 let romcal = Romcal::default();
 let mass_calendar = romcal.generate_mass_calendar(2026)?;
@@ -243,7 +243,7 @@ Each `MassContext` is a flat structure containing:
 Generate a minimal JSON bundle for deployment (useful for web/mobile apps):
 
 ```rust
-use romcal_core::{Preset, Romcal};
+use romcal::{Preset, Romcal};
 
 let preset = Preset {
     calendar: Some("france".to_string()),
@@ -390,7 +390,7 @@ Cycles determine which readings and psalms are used in the liturgy.
 All fallible operations return `RomcalResult<T>`, which is an alias for `Result<T, RomcalError>`.
 
 ```rust
-use romcal_core::{Romcal, RomcalResult, RomcalError};
+use romcal::{Romcal, RomcalResult, RomcalError};
 
 fn generate_calendar() -> RomcalResult<()> {
     let romcal = Romcal::default();
@@ -426,13 +426,13 @@ fn generate_calendar() -> RomcalResult<()> {
 
 ```bash
 # Run tests
-cargo test -p romcal-core
+cargo test -p romcal
 
 # Run quality checks
 ./scripts/check-core.sh
 
 # Build release
-cargo build -p romcal-core --release
+cargo build -p romcal --release
 ```
 
 ## Related

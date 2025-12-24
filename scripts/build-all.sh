@@ -43,7 +43,7 @@ fi
 echo "🎉 Entire project build completed successfully!"
 echo ""
 echo "📦 Build outputs:"
-echo "   - Core library: target/release/libromcal_core.rlib"
+echo "   - Core library: target/release/libromcal.rlib"
 echo "   - Core tools: target/release/generate-schema"
 echo "   - WASM: bindings/typescript/pkg/"
 echo "   - CLI: target/release/romcal"

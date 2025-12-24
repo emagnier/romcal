@@ -1,6 +1,6 @@
 use crate::enums::OutputFormat;
 use crate::error::RomcalCliError;
-use romcal_core::Romcal;
+use romcal::Romcal;
 use serde_json;
 use serde_saphyr;
 
@@ -18,18 +18,18 @@ struct PresetDisplayData {
 
 impl PresetDisplayData {
     /// Create from romcal instance
-    fn from_romcal(romcal: &romcal_core::Romcal) -> Self {
+    fn from_romcal(romcal: &romcal::Romcal) -> Self {
         Self {
             locale: romcal.locale.clone(),
             calendar: romcal.calendar.clone(),
             context: match romcal.context {
-                romcal_core::CalendarContext::Gregorian => "gregorian",
-                romcal_core::CalendarContext::Liturgical => "liturgical",
+                romcal::CalendarContext::Gregorian => "gregorian",
+                romcal::CalendarContext::Liturgical => "liturgical",
             }
             .to_string(),
             easter_calculation_type: match romcal.easter_calculation_type {
-                romcal_core::EasterCalculationType::Gregorian => "gregorian",
-                romcal_core::EasterCalculationType::Julian => "julian",
+                romcal::EasterCalculationType::Gregorian => "gregorian",
+                romcal::EasterCalculationType::Julian => "julian",
             }
             .to_string(),
             epiphany_on_sunday: romcal.epiphany_on_sunday,

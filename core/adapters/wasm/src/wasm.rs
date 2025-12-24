@@ -1,7 +1,7 @@
-use romcal_core::engine::calendar_definition::CalendarDefinition;
-use romcal_core::engine::resources::Resources;
-use romcal_core::romcal::{Preset, Romcal as RomcalCore};
-use romcal_core::types::{CalendarContext, EasterCalculationType};
+use romcal::engine::calendar_definition::CalendarDefinition;
+use romcal::engine::resources::Resources;
+use romcal::romcal::{Preset, Romcal as RomcalCore};
+use romcal::types::{CalendarContext, EasterCalculationType};
 use serde::{Deserialize, Serialize};
 use wasm_bindgen::prelude::*;
 

@@ -1,7 +1,7 @@
 use crate::enums::OutputFormat;
 use crate::error::RomcalCliError;
 use crate::utils::{current_year, validate_year};
-use romcal_core::Romcal;
+use romcal::Romcal;
 
 /// Handle date command
 pub fn handle(

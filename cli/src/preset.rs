@@ -2,7 +2,7 @@ use crate::error::RomcalCliError;
 use crate::utils::{
     combine_resources_by_locale, parse_calendar_definition_files, parse_resource_files,
 };
-use romcal_core::{CalendarContext, EasterCalculationType, Romcal};
+use romcal::{CalendarContext, EasterCalculationType, Romcal};
 
 /// Create a romcal instance from CLI parameters
 #[allow(clippy::too_many_arguments)]

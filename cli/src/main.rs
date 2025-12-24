@@ -1,7 +1,7 @@
 use clap::{Args, CommandFactory, Parser, Subcommand};
 use clap_complete::{Shell, generate};
 use colored::*;
-use romcal_core::{CalendarContext, EasterCalculationType, Romcal};
+use romcal::{CalendarContext, EasterCalculationType, Romcal};
 use std::io;
 use std::path::PathBuf;
 use std::process;

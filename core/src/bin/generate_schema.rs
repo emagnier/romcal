@@ -3,7 +3,7 @@
 //! This binary generates JSON schemas for the main Romcal types,
 //! enabling type validation and code generation for TypeScript and Python.
 
-use romcal_core::{
+use romcal::{
     Acclamation, BibleBook, CalendarContext, CalendarDefinition, CelebrationSummary,
     DateDefWithOffset, DayOfWeek, LiturgicalCycle, LiturgicalDay, MassContext, MassPart,
     MonthIndex, Resources, SaintCount, SundayCycleCombined,

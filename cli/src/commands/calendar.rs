@@ -3,7 +3,7 @@ use crate::error::RomcalCliError;
 use crate::utils::current_year;
 use colored::Colorize;
 use csv::Writer;
-use romcal_core::Romcal;
+use romcal::Romcal;
 use serde::{Deserialize, Serialize};
 use serde_json;
 use serde_saphyr;

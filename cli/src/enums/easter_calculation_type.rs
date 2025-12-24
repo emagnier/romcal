@@ -1,5 +1,5 @@
 use clap::ValueEnum;
-use romcal_core::EasterCalculationType;
+use romcal::EasterCalculationType;
 
 /// Easter calculation type for CLI.
 /// Defines the algorithm used to calculate the date of Easter.

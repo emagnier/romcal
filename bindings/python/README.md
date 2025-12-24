@@ -2,7 +2,7 @@
 
 A Python library for calculating Catholic liturgical dates and generating liturgical calendars. Powered by Rust via UniFFI bindings.
 
-For the Rust library, see [romcal-core](../../core/). For command-line usage, see the [CLI documentation](../../cli/).
+For the Rust library, see [romcal](../../core/). For command-line usage, see the [CLI documentation](../../cli/).
 
 ## Installation
 
@@ -216,7 +216,7 @@ print(romcal.context)                  # "GREGORIAN"
 
 ## Key Types
 
-For detailed documentation on liturgical types (seasons, ranks, precedence, colors, cycles, mass times), see the [romcal-core documentation](../../core/README.md#key-types).
+For detailed documentation on liturgical types (seasons, ranks, precedence, colors, cycles, mass times), see the [romcal documentation](../../core/README.md#key-types).
 
 ## Error Handling
 
@@ -312,7 +312,7 @@ python examples/basic_usage.py
 ## Related
 
 - [romcal](https://github.com/romcal/romcal) - Main Romcal project
-- [romcal-core](../../core/) - Core Rust library
+- [romcal](../../core/) - Core Rust library
 - [romcal-cli](../../cli/) - Command-line interface
 - [romcal (TypeScript)](../typescript/) - TypeScript/JavaScript binding
 

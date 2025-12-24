@@ -273,7 +273,7 @@ cargo test -p romcal-cli
 ## Related
 
 - [romcal](https://github.com/romcal/romcal) - Main Romcal project
-- [romcal-core](../core/) - Core Rust library
+- [romcal](../core/) - Core Rust library
 - [romcal (TypeScript)](../bindings/typescript/) - TypeScript/JavaScript binding
 - [romcal (Python)](../bindings/python/) - Python binding
 

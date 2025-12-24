@@ -2,7 +2,7 @@
 
 A TypeScript/JavaScript library for calculating Catholic liturgical dates and generating liturgical calendars. Works in Node.js and browsers via WebAssembly.
 
-For the Rust library, see [romcal-core](../../core/). For command-line usage, see the [CLI documentation](../../cli/).
+For the Rust library, see [romcal](../../core/). For command-line usage, see the [CLI documentation](../../cli/).
 
 ## Installation
 
@@ -177,7 +177,7 @@ console.log(romcal.config.context) // "GREGORIAN"
 
 ## Key Types
 
-For detailed documentation on liturgical types (seasons, ranks, precedence, colors, cycles, mass times), see the [romcal-core documentation](../../core/README.md#key-types).
+For detailed documentation on liturgical types (seasons, ranks, precedence, colors, cycles, mass times), see the [romcal documentation](../../core/README.md#key-types).
 
 ## Error Handling
 
@@ -258,7 +258,7 @@ open examples/browser.html
 ## Related
 
 - [romcal](https://github.com/romcal/romcal) - Main Romcal project
-- [romcal-core](../../core/) - Core Rust library
+- [romcal](../../core/) - Core Rust library
 - [romcal-cli](../../cli/) - Command-line interface
 - [romcal (Python)](../python/) - Python binding
 

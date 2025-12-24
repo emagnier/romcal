@@ -94,7 +94,7 @@ impl Precedence {
     /// # Examples
     ///
     /// ```rust
-    /// use romcal_core::types::liturgical::{Precedence, Rank};
+    /// use romcal::types::liturgical::{Precedence, Rank};
     ///
     /// let precedence = Precedence::Triduum_1;
     /// let rank = precedence.to_rank();

@@ -1,6 +1,6 @@
 # Romcal Bindings
 
-This directory contains platform-specific bindings for the romcal-core library.
+This directory contains platform-specific bindings for the romcal library.
 
 ## 📁 Structure
 
@@ -88,7 +88,7 @@ Each binding directory contains its own package configuration:
 
 ```
 
-romcal-core (Rust)
+romcal (Rust)
 ↓
 core/adapters/[platform] (Rust)
 ↓

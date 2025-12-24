@@ -20,7 +20,7 @@ pub enum RomcalCliError {
     YamlError(#[from] serde_saphyr::Error),
 
     #[error("Romcal error: {0}")]
-    RomcalError(#[from] romcal_core::RomcalError),
+    RomcalError(#[from] romcal::RomcalError),
 
     #[error("JSON schema validation error: {0}")]
     SchemaValidationError(#[from] Box<jsonschema::ValidationError<'static>>),

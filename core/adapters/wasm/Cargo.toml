@@ -1,9 +1,9 @@
 [package]
-name = "romcal-core-wasm"
+name = "romcal-wasm"
 version = "4.0.0-beta.1"
 edition = "2024"
 authors = ["Étienne Magnier <etienne.magnier@gmail.com>"]
-description = "WebAssembly bindings for romcal-core liturgical calendar library"
+description = "WebAssembly bindings for romcal liturgical calendar library"
 license = "Apache-2.0"
 repository = "https://github.com/romcal/romcal"
 keywords = ["liturgical", "calendar", "catholic", "wasm", "webassembly"]
@@ -13,7 +13,7 @@ categories = ["date-and-time", "wasm", "web-programming"]
 crate-type = ["cdylib"]
 
 [dependencies]
-romcal-core = { path = "../../" }
+romcal = { path = "../../" }
 serde = { workspace = true }
 serde_json = { workspace = true }
 wasm-bindgen = { workspace = true }

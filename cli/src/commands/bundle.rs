@@ -1,5 +1,5 @@
 use crate::error::RomcalCliError;
-use romcal_core::Romcal;
+use romcal::Romcal;
 
 /// Handle bundle command
 pub fn handle(romcal: Romcal) -> Result<(), RomcalCliError> {

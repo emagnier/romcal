@@ -1,7 +1,7 @@
-use romcal_core::engine::calendar_definition::CalendarDefinition;
-use romcal_core::engine::resources::Resources;
-use romcal_core::romcal::{Preset, Romcal as RomcalCore};
-use romcal_core::types::{CalendarContext, EasterCalculationType};
+use romcal::engine::calendar_definition::CalendarDefinition;
+use romcal::engine::resources::Resources;
+use romcal::romcal::{Preset, Romcal as RomcalCore};
+use romcal::types::{CalendarContext, EasterCalculationType};
 use serde::de::DeserializeOwned;
 use std::sync::Arc;
 
@@ -36,9 +36,9 @@ pub enum RomcalError {
     CalculationError(String),
 }
 
-impl From<romcal_core::error::RomcalError> for RomcalError {
-    fn from(err: romcal_core::error::RomcalError) -> Self {
-        use romcal_core::error::RomcalError as CoreError;
+impl From<romcal::error::RomcalError> for RomcalError {
+    fn from(err: romcal::error::RomcalError) -> Self {
+        use romcal::error::RomcalError as CoreError;
         match err {
             CoreError::InvalidYear(y) => RomcalError::InvalidYear(format!(
                 "{} (must be >= 1583 for the Gregorian calendar)",

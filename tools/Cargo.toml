@@ -10,7 +10,7 @@ name = "validate-json"
 path = "src/validate_json.rs"
 
 [dependencies]
-romcal-core = { path = "../core" }
+romcal = { path = "../core" }
 jsonschema = { version = "0.33", default-features = false }
 serde_json = { version = "1.0", features = ["std"] }
 walkdir = "2.5"

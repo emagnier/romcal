@@ -143,14 +143,14 @@ pub fn collect_json_file_paths(patterns: &[String]) -> Result<Vec<String>, Romca
 /// Parse calendar definition files and return a Vec of CalendarDefinition
 pub fn parse_calendar_definition_files(
     file_paths: &[String],
-) -> Result<Vec<romcal_core::CalendarDefinition>, RomcalCliError> {
+) -> Result<Vec<romcal::CalendarDefinition>, RomcalCliError> {
     let mut calendar_definitions = Vec::new();
 
     for file_path in file_paths {
         let json_value = read_json_file(file_path)?;
 
         // Deserialize JSON value to CalendarDefinition
-        let calendar_def: romcal_core::CalendarDefinition = serde_json::from_value(json_value)?;
+        let calendar_def: romcal::CalendarDefinition = serde_json::from_value(json_value)?;
 
         calendar_definitions.push(calendar_def);
     }
@@ -161,14 +161,14 @@ pub fn parse_calendar_definition_files(
 /// Parse resource files and return a Vec of Resources
 pub fn parse_resource_files(
     file_paths: &[String],
-) -> Result<Vec<romcal_core::Resources>, RomcalCliError> {
+) -> Result<Vec<romcal::Resources>, RomcalCliError> {
     let mut resource_definitions = Vec::new();
 
     for file_path in file_paths {
         let json_value = read_json_file(file_path)?;
 
         // Deserialize JSON value to Resources
-        let resource_def: romcal_core::Resources = serde_json::from_value(json_value)?;
+        let resource_def: romcal::Resources = serde_json::from_value(json_value)?;
 
         resource_definitions.push(resource_def);
     }
@@ -185,10 +185,10 @@ pub fn current_year() -> i32 {
     chrono::Utc::now().year()
 }
 
-/// Validate a year using romcal_core's validation function
+/// Validate a year using romcal's validation function
 pub fn validate_year(year: i32) -> Result<(), RomcalCliError> {
-    romcal_core::validate_year(year, 1583).map_err(|e| match e {
-        romcal_core::RomcalError::InvalidYear(year) => RomcalCliError::invalid_year(year),
+    romcal::validate_year(year, 1583).map_err(|e| match e {
+        romcal::RomcalError::InvalidYear(year) => RomcalCliError::invalid_year(year),
         _ => RomcalCliError::config_error(format!("Year validation error: {}", e)),
     })
 }
@@ -202,12 +202,12 @@ pub fn validate_year(year: i32) -> Result<(), RomcalCliError> {
 /// - Deep merge of metadata properties
 /// - Concatenation of entities arrays
 pub fn combine_resources_by_locale(
-    resources: Vec<romcal_core::Resources>,
-) -> Result<Vec<romcal_core::Resources>, RomcalCliError> {
+    resources: Vec<romcal::Resources>,
+) -> Result<Vec<romcal::Resources>, RomcalCliError> {
     use serde_json::{from_value, to_value};
     use std::collections::HashMap;
 
-    let mut grouped_by_locale: HashMap<String, Vec<romcal_core::Resources>> = HashMap::new();
+    let mut grouped_by_locale: HashMap<String, Vec<romcal::Resources>> = HashMap::new();
 
     // Group resources by locale
     for resource in resources {
@@ -244,7 +244,7 @@ pub fn combine_resources_by_locale(
                 let mut target_json = to_value(target_metadata)?;
                 let source_json = to_value(source_metadata)?;
                 merge_json_values(&mut target_json, source_json);
-                let merged_metadata: romcal_core::types::resource::ResourcesMetadata =
+                let merged_metadata: romcal::types::resource::ResourcesMetadata =
                     from_value(target_json)?;
 
                 combined.metadata = Some(merged_metadata);
@@ -308,15 +308,13 @@ mod tests {
     use super::*;
     use std::collections::BTreeMap;
 
-    fn create_test_entity(_id: &str, name: &str) -> romcal_core::Entity {
-        let mut entity = romcal_core::Entity::new();
+    fn create_test_entity(_id: &str, name: &str) -> romcal::Entity {
+        let mut entity = romcal::Entity::new();
         entity.name = Some(name.to_string());
         entity
     }
 
-    fn create_test_entities_map(
-        entities: Vec<(&str, &str)>,
-    ) -> BTreeMap<String, romcal_core::Entity> {
+    fn create_test_entities_map(entities: Vec<(&str, &str)>) -> BTreeMap<String, romcal::Entity> {
         let mut map = BTreeMap::new();
         for (id, name) in entities {
             map.insert(id.to_string(), create_test_entity(id, name));
@@ -326,19 +324,19 @@ mod tests {
 
     fn create_test_resources_definition(
         locale: &str,
-        entities: BTreeMap<String, romcal_core::Entity>,
-    ) -> romcal_core::Resources {
-        let mut resources = romcal_core::Resources::new(locale.to_string());
+        entities: BTreeMap<String, romcal::Entity>,
+    ) -> romcal::Resources {
+        let mut resources = romcal::Resources::new(locale.to_string());
         resources.entities = Some(entities);
         resources
     }
 
     fn create_test_resources_definition_with_metadata(
         locale: &str,
-        entities: BTreeMap<String, romcal_core::Entity>,
-        metadata: romcal_core::types::resource::ResourcesMetadata,
-    ) -> romcal_core::Resources {
-        let mut resources = romcal_core::Resources::new(locale.to_string());
+        entities: BTreeMap<String, romcal::Entity>,
+        metadata: romcal::types::resource::ResourcesMetadata,
+    ) -> romcal::Resources {
+        let mut resources = romcal::Resources::new(locale.to_string());
         resources.entities = Some(entities);
         resources.metadata = Some(metadata);
         resources
@@ -400,7 +398,7 @@ mod tests {
 
     #[test]
     fn test_combine_resources_by_locale_metadata_merge() {
-        use romcal_core::types::resource::*;
+        use romcal::types::resource::*;
 
         let metadata1 = ResourcesMetadata {
             ordinal_format: None,
@@ -520,7 +518,7 @@ mod tests {
 
     #[test]
     fn test_combine_resources_by_locale_ignore_null_values() {
-        use romcal_core::types::resource::*;
+        use romcal::types::resource::*;
 
         let metadata1 = ResourcesMetadata {
             ordinal_format: None,

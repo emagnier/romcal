@@ -1,6 +1,6 @@
 # Romcal Core Adapters
 
-This directory contains platform-specific adapters for the romcal-core library.
+This directory contains platform-specific adapters for the romcal library.
 
 ## Structure
 
@@ -30,7 +30,7 @@ wasm-pack build --target web --out-dir pkg
 
 Each adapter is a separate Rust crate that:
 
-- Depends on `romcal-core` as a library
+- Depends on `romcal` as a library
 - Provides platform-specific bindings
 - Maintains the same API surface as the core
 - Can be built and distributed independently

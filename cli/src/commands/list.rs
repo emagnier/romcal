@@ -1,6 +1,6 @@
 use crate::{enums::OutputFormat, error::RomcalCliError};
-use romcal_core::generated::calendar_ids::{CALENDAR_IDS, CALENDAR_TREE_JSON};
-use romcal_core::generated::locale_ids::{LOCALE_CODES, LOCALE_TREE_JSON};
+use romcal::generated::calendar_ids::{CALENDAR_IDS, CALENDAR_TREE_JSON};
+use romcal::generated::locale_ids::{LOCALE_CODES, LOCALE_TREE_JSON};
 use serde_json::{self, Value};
 use serde_saphyr;
 
