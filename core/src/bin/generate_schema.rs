@@ -221,7 +221,8 @@ fn generate_rust_schema_constants(config: &SchemaConfig) -> Result<(), SchemaGen
     // Generate Rust source file
     let mut rust_content = String::new();
     rust_content.push_str("//! Auto-generated JSON schema constants - Do not modify manually\n");
-    rust_content.push_str("//! Regenerate with: cargo run --bin generate-schema --features schema-gen\n\n");
+    rust_content
+        .push_str("//! Regenerate with: cargo run --bin generate-schema --features schema-gen\n\n");
     rust_content.push_str("/// JSON Schema for CalendarDefinition validation\n");
     rust_content.push_str("pub const CALENDAR_DEFINITION_SCHEMA: &str = r##\"");
     rust_content.push_str(&calendar_json);
