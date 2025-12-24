@@ -8,6 +8,7 @@ license = "Apache-2.0"
 repository = "https://github.com/romcal/romcal"
 keywords = ["liturgical", "calendar", "catholic", "wasm", "webassembly"]
 categories = ["date-and-time", "wasm", "web-programming"]
+publish = false
 
 [lib]
 crate-type = ["cdylib"]

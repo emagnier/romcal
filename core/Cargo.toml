@@ -6,6 +6,8 @@ authors = ["Étienne Magnier <etienne.magnier@gmail.com>"]
 description = "Core Rust library for calculating Catholic liturgical dates and calendars"
 license = "Apache-2.0"
 repository = "https://github.com/romcal/romcal"
+homepage = "https://github.com/romcal/romcal"
+readme = "README.md"
 keywords = ["liturgical", "calendar", "catholic", "christian", "easter"]
 categories = ["date-and-time"]
 

@@ -197,7 +197,14 @@ fn format_generated_file(file_path: &str) {
 }
 
 fn main() {
-    generate_constants();
-    println!("cargo:rerun-if-changed={}", CALENDARS_DIR);
-    println!("cargo:rerun-if-changed={}", RESOURCES_DIR);
+    // Only regenerate constants if data directories exist (development environment).
+    // When building from crates.io, these directories won't exist, but the generated
+    // files are already included in the package.
+    if std::path::Path::new(CALENDARS_DIR).exists()
+        && std::path::Path::new(RESOURCES_DIR).exists()
+    {
+        generate_constants();
+        println!("cargo:rerun-if-changed={}", CALENDARS_DIR);
+        println!("cargo:rerun-if-changed={}", RESOURCES_DIR);
+    }
 }
