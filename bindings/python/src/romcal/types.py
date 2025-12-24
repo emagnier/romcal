@@ -59,13 +59,13 @@ def from_dict(f: Callable[[Any], T], x: Any) -> Dict[str, T]:
 class Acclamation(Enum):
     """Acclamations used in liturgical celebrations.
     Acclamations are short liturgical responses or exclamations used during Mass.
-
+    
     Alleluia - joyful acclamation used outside of Lent
-
+    
     Lent - acclamation used during Lenten season
-
+    
     Mixed - combination of different acclamation types
-
+    
     None - no acclamation
     """
     ALLELUIA = "ALLELUIA"
@@ -78,153 +78,153 @@ class BibleBook(Enum):
     """Books of the Bible using OSIS (Open Scripture Information Standard) identifiers.
     OSIS provides standardized abbreviations for biblical books used in liturgical and
     biblical applications.
-
+    
     Genesis
-
+    
     Exodus
-
+    
     Leviticus
-
+    
     Numbers
-
+    
     Deuteronomy
-
+    
     Joshua
-
+    
     Judges
-
+    
     Ruth
-
+    
     1 Samuel
-
+    
     2 Samuel
-
+    
     1 Kings
-
+    
     2 Kings
-
+    
     1 Chronicles
-
+    
     2 Chronicles
-
+    
     Ezra
-
+    
     Nehemiah
-
+    
     Tobit
-
+    
     Judith
-
+    
     Esther
-
+    
     1 Maccabees
-
+    
     2 Maccabees
-
+    
     Job
-
+    
     Psalms
-
+    
     Proverbs
-
+    
     Ecclesiastes (Qohelet)
-
+    
     Song of Solomon (Canticle of Canticles)
-
+    
     Wisdom of Solomon
-
+    
     Sirach (Ecclesiasticus)
-
+    
     Isaiah
-
+    
     Jeremiah
-
+    
     Lamentations
-
+    
     Baruch
-
+    
     Letter of Jeremiah
-
+    
     Ezekiel
-
+    
     Daniel
-
+    
     Hosea
-
+    
     Joel
-
+    
     Amos
-
+    
     Obadiah
-
+    
     Jonah
-
+    
     Micah
-
+    
     Nahum
-
+    
     Habakkuk
-
+    
     Zephaniah
-
+    
     Haggai
-
+    
     Zechariah
-
+    
     Malachi
-
+    
     Matthew
-
+    
     Mark
-
+    
     Luke
-
+    
     John
-
+    
     Acts
-
+    
     Romans
-
+    
     1 Corinthians
-
+    
     2 Corinthians
-
+    
     Galatians
-
+    
     Ephesians
-
+    
     Philippians
-
+    
     Colossians
-
+    
     1 Thessalonians
-
+    
     2 Thessalonians
-
+    
     1 Timothy
-
+    
     2 Timothy
-
+    
     Titus
-
+    
     Philemon
-
+    
     Hebrews
-
+    
     James
-
+    
     1 Peter
-
+    
     2 Peter
-
+    
     1 John
-
+    
     2 John
-
+    
     3 John
-
+    
     Jude
-
+    
     Revelation
     """
     ACTS = "Acts"
@@ -305,12 +305,12 @@ class BibleBook(Enum):
 
 class CalendarContext(Enum):
     """Calendar year context for date boundaries.
-
+    
     Determines how the calendar year is structured and which dates are included
     in a given year's calendar output.
-
+    
     Gregorian year (January 1 to December 31)
-
+    
     Liturgical year (first Sunday of Advent to the day before the first Sunday of Advent of
     the next year)
     """
@@ -322,21 +322,21 @@ class Color(Enum):
     """Liturgical colors used in the celebration of Mass and other liturgical services.
     Each color has specific liturgical significance and is used during particular seasons or
     celebrations.
-
+    
     The color key
-
+    
     Red - used for martyrs, Pentecost, and Palm Sunday
-
+    
     Rose - used on Gaudete Sunday (3rd Advent) and Laetare Sunday (4th Lent)
-
+    
     Purple - used during Advent and Lent
-
+    
     Green - used during Ordinary Time
-
+    
     White - used for Christmas, Easter, and most feasts
-
+    
     Gold - used for solemn celebrations and special occasions
-
+    
     Black - used for funerals and All Souls' Day
     """
     BLACK = "BLACK"
@@ -351,51 +351,51 @@ class Color(Enum):
 class CommonDefinition(Enum):
     """Common definition for simplified categorization.
     Provides a simplified version of the Common enum for easier classification.
-
+    
     No common.
-
+    
     Dedication anniversary (in the Church that was Dedicated).
-
+    
     Dedication anniversary (outside the Church that was Dedicated).
-
+    
     Common of the Blessed Virgin Mary.
-
+    
     Common for Martyrs.
-
+    
     Common for Missionary Martyrs.
-
+    
     Common for Virgin Martyrs.
-
+    
     Common for Holy Woman Martyrs.
-
+    
     Common for Pastors.
-
+    
     Common for Popes.
-
+    
     Common for Bishops.
-
+    
     Common for Founders.
-
+    
     Common for Missionaries.
-
+    
     Common for Doctors of the Church.
-
+    
     Common for Virgins.
-
+    
     Common for Holy Men and Women.
-
+    
     Common for Abbots.
-
+    
     Common for Monks.
-
+    
     Common for Nuns.
-
+    
     Common for Religious.
-
+    
     Common for Those Who Practiced Works of Mercy.
-
+    
     Common for Educators.
-
+    
     Common for Holy Women.
     """
     ABBOTS = "ABBOTS"
@@ -425,44 +425,44 @@ class CommonDefinition(Enum):
 
 class DateFn(Enum):
     """The date function to calculate the base date
-
+    
     Date function for calculating liturgical dates.
-
+    
     Represents movable feasts and special celebrations that require calculation
     based on Easter or other variable dates.
-
+    
     Monday after Pentecost.
-
+    
     Sunday between January 2 and 8 (or January 6 if not transferred).
-
+    
     February 2 (Candlemas).
-
+    
     March 25 (may be transferred if in Holy Week or Easter Octave).
-
+    
     Sunday before Easter.
-
+    
     First Sunday after the Paschal Full Moon.
-
+    
     Second Sunday of Easter.
-
+    
     Saturday after the Second Sunday after Pentecost.
-
+    
     Seventh Sunday after Easter.
-
+    
     Thursday or Sunday after Trinity Sunday.
-
+    
     June 24.
-
+    
     June 29.
-
+    
     August 6.
-
+    
     August 15.
-
+    
     September 14.
-
+    
     November 1.
-
+    
     December 8.
     """
     ALL_SAINTS = "ALL_SAINTS"
@@ -486,13 +486,13 @@ class DateFn(Enum):
 
 class DateDefClass(BaseModel):
     """Simple month/day specification
-
+    
     Date function calculation (Easter, Epiphany, etc.)
-
+    
     Nth weekday of a specific month
-
+    
     Last weekday of a specific month
-
+    
     Inherited from the proper of time
     """
     date: Optional[int] = None
@@ -549,22 +549,22 @@ class DateDefClass(BaseModel):
 
 class DateDefExtended(BaseModel):
     """The date to set when the condition is met
-
+    
     Extended date definition supporting both regular dates and offset dates.
     Provides flexibility for date calculations with optional adjustments.
-
+    
     Simple month/day specification
-
+    
     Date function calculation (Easter, Epiphany, etc.)
-
+    
     Nth weekday of a specific month
-
+    
     Last weekday of a specific month
-
+    
     Inherited from the proper of time
-
+    
     Date definition with offset
-
+    
     Date definition with offset for adjustments.
     Used when a date needs to be shifted by a specific number of days.
     """
@@ -573,7 +573,7 @@ class DateDefExtended(BaseModel):
 
     day_offset: Optional[int] = None
     """Optional day offset for adjustments
-
+    
     The number of days to offset the date
     """
     month: Optional[int] = None
@@ -625,25 +625,25 @@ class DateDefExtended(BaseModel):
 class DateDef(BaseModel):
     """Date definition supporting various date calculation methods.
     Provides flexible ways to specify liturgical dates using different approaches.
-
+    
     Regular date definition
-
+    
     The start date of the range
-
+    
     The end date of the range
-
+    
     The date to compare against
-
+    
     The date definition for this liturgical day.
-
+    
     Simple month/day specification
-
+    
     Date function calculation (Easter, Epiphany, etc.)
-
+    
     Nth weekday of a specific month
-
+    
     Last weekday of a specific month
-
+    
     Inherited from the proper of time
     """
     date: Optional[int] = None
@@ -700,14 +700,14 @@ class DateDef(BaseModel):
 
 class ExceptionCondition(BaseModel):
     """The condition that triggers the exception
-
+    
     Exception conditions that can trigger a date change.
     Defines various conditions under which a date exception applies.
-
+    
     If the date is between two specified dates
-
+    
     If the date is the same as another specified date
-
+    
     If the date falls on a specific day of the week
     """
     exception_condition_from: Optional[DateDef] = None
@@ -752,10 +752,10 @@ class ExceptionCondition(BaseModel):
 
 class DateDefException(BaseModel):
     """Single date exception
-
+    
     The liturgical day date exception.
     Represents a condition and the date to set when that condition is met.
-
+    
     Multiple date exceptions
     """
     then: DateDefExtended
@@ -784,7 +784,7 @@ class SaintCountEnum(Enum):
 
 class Title(Enum):
     """Simple list of titles
-
+    
     Titles and patronages associated with saints and blessed.
     Represents the various ecclesiastical titles and patronages that can be assigned to
     entities.
@@ -860,7 +860,7 @@ class Title(Enum):
 
 class CompoundTitle(BaseModel):
     """Compound title definition with append/prepend operations
-
+    
     Compound title definition for combining multiple titles.
     Allows adding titles to the beginning or end of an existing title list.
     """
@@ -888,7 +888,7 @@ class CompoundTitle(BaseModel):
 
 class EntityOverride(BaseModel):
     """Custom entity definition with additional properties specific to a liturgical day
-
+    
     Custom entity definition that extends or overrides properties from the entity catalog.
     Used when a liturgical day needs specific entity properties that differ from the base
     entity.
@@ -929,24 +929,24 @@ class EntityOverride(BaseModel):
 
 class MassContent(BaseModel):
     """Invariant content that applies to all cycles
-
+    
     Content of a mass for a specific liturgical cycle
     Maps mass parts (readings, psalms, prayers, antiphons, etc.) to their texts
-
+    
     Year 1 of the weekday cycle (Cycle I)
-
+    
     Year 2 of the weekday cycle (Cycle II)
-
+    
     Year A of the Sunday cycle
-
+    
     Combined years A and B of the Sunday cycle
-
+    
     Combined years A and C of the Sunday cycle
-
+    
     Year B of the Sunday cycle
-
+    
     Combined years B and C of the Sunday cycle
-
+    
     Year C of the Sunday cycle
     """
     alleluia: Optional[str] = None
@@ -1129,27 +1129,27 @@ class MassContent(BaseModel):
 
 class MassCycleDefinition(BaseModel):
     """Celebration of the Passion - special celebration of Christ's passion
-
+    
     Mass contents for a specific mass time, organized by liturgical cycle
-
+    
     Chrism Mass - Mass where holy oils are blessed, typically on Holy Thursday morning
-
+    
     Day Mass - regular Mass celebrated during the day
-
+    
     Easter Vigil - the most important Mass of the liturgical year, celebrated on Holy
     Saturday night
-
+    
     Evening Mass of the Lord's Supper - Mass celebrated on Holy Thursday evening
-
+    
     Mass at Dawn - Mass celebrated at dawn, particularly on Easter Sunday
-
+    
     Mass of the Passion - Mass focusing on Christ's passion, beginning with the procession
     with palms
-
+    
     Morning Mass - Mass celebrated in the morning
-
+    
     Night Mass - Mass celebrated during the night hours
-
+    
     Previous Evening Mass - Mass celebrated the evening before a major feast
     """
     invariant: Optional[MassContent] = None
@@ -1293,74 +1293,74 @@ class MassesDefinitions(BaseModel):
 
 class Precedence(Enum):
     """1 - The Paschal Triduum of the Passion and Resurrection of the Lord.
-
+    
     2 - The Nativity of the Lord, the Epiphany, the Ascension, or Pentecost.
-
+    
     2 - A Sunday of Advent, Lent, or Easter.
-
+    
     2 - Ash Wednesday.
-
+    
     2 - A weekday of Holy Week from Monday up to and including Thursday.
-
+    
     2 - A day within the Octave of Easter.
-
+    
     3 - A Solemnity inscribed in the General Calendar, whether of the Lord, of the Blessed
     Virgin Mary, or of a Saint.
-
+    
     3 - The Commemoration of All the Faithful Departed.
-
+    
     4a - A proper Solemnity of the principal Patron of the place, city, or state.
-
+    
     4b - The Solemnity of the dedication and of the anniversary of the dedication of the own
     church.
-
+    
     4c - The solemnity of the title of the own church.
-
+    
     4d - A Solemnity either of the Title or of the Founder or of the principal Patron of an
     Order or Congregation.
-
+    
     5 - A Feast of the Lord inscribed in the General Calendar.
-
+    
     6 - A Sunday of Christmas Time or a Sunday in Ordinary Time.
-
+    
     7 - A Feast of the Blessed Virgin Mary or of a Saint in the General Calendar.
-
+    
     8a - The Proper Feast of the principal Patron of the diocese.
-
+    
     8b - The Proper Feast of the anniversary of the dedication of the cathedral church.
-
+    
     8c - The Proper Feast of the principal Patron of a region or province, or a country, or
     of a wider territory.
-
+    
     8d - The Proper Feast of the Title, Founder, or principal Patron of an Order or
     Congregation.
-
+    
     8e - Other Feast, proper to an individual church.
-
+    
     8f - Other Proper Feast inscribed in the Calendar of each diocese or Order or
     Congregation.
-
+    
     9 - Privileged Weekday.
-
+    
     10 - Obligatory Memorials in the General Calendar.
-
+    
     11a - Proper Obligatory Memorial of a secondary Patron of the place, diocese, region, or
     religious province.
-
+    
     11b - Other Proper Obligatory Memorial inscribed in the Calendar of each diocese, or
     Order or congregation.
-
+    
     12 - Optional Memorial.
-
+    
     13 - Weekday.
-
+    
     Liturgical precedence levels for determining which celebration takes priority.
     Defines the hierarchical order of liturgical celebrations according to UNLY norms.
-
+    
     The liturgical precedence for this liturgical day
-
+    
     The liturgical precedence for this liturgical day.
-
+    
     The liturgical precedence
     """
     ASH_WEDNESDAY_2 = "ASH_WEDNESDAY_2"
@@ -1403,7 +1403,7 @@ class DayDefinition(BaseModel):
     """
     colors: Optional[Union[List[Color], Color]] = None
     """The liturgical color(s) of the liturgical day.
-
+    
     **Deprecated:** Rely on the `titles` field of entities instead to determine the
     liturgical color(s).
     """
@@ -1436,12 +1436,12 @@ class DayDefinition(BaseModel):
     """
     is_optional: Optional[bool] = None
     """Specify if this liturgical day is optional within a specific liturgical calendar
-
+    
     UNLY #14:
     Memorials are either obligatory or optional; their observance is integrated into
     the celebration of the occurring weekday in accordance with the norms set forth in the
     General Instruction of the Roman Missal and of the Liturgy of the Hours
-
+    
     Note: also used for the dedication of consecrated churches, which is an optional
     solemnity
     that should not overwrite the default weekday.
@@ -1506,12 +1506,12 @@ class DayDefinition(BaseModel):
 
 class CalendarJurisdiction(Enum):
     """The jurisdiction of the calendar
-
+    
     The jurisdiction of the calendar.
     Determines whether the calendar follows ecclesiastical or civil authority.
-
+    
     Calendar under ecclesiastical authority (Church)
-
+    
     Calendar under civil authority (State)
     """
     CIVIL = "CIVIL"
@@ -1520,30 +1520,30 @@ class CalendarJurisdiction(Enum):
 
 class CalendarType(Enum):
     """The type of the calendar
-
+    
     The type of the calendar.
     Defines the scope and authority level of the liturgical calendar.
-
+    
     General Roman Calendar (universal)
-
+    
     Regional calendar (multiple countries)
-
+    
     National calendar (single country)
-
+    
     Archdiocesan calendar
-
+    
     Diocesan calendar
-
+    
     City calendar
-
+    
     Parish calendar
-
+    
     General religious community calendar
-
+    
     Regional religious community calendar
-
+    
     Local religious community calendar
-
+    
     Other specialized calendar
     """
     ARCHDIOCESE = "ARCHDIOCESE"
@@ -1585,7 +1585,7 @@ class CalendarMetadata(BaseModel):
 
 class EasterCalculationType(Enum):
     """Gregorian calculation (default)
-
+    
     Julian calculation converted to Gregorian
     """
     GREGORIAN = "GREGORIAN"
@@ -1594,11 +1594,11 @@ class EasterCalculationType(Enum):
 
 class ParticularConfig(BaseModel):
     """Configuration options for "particular" (local/diocesan) calendars.
-
+    
     In liturgical terminology, a "particular" calendar is one that applies to a specific
     region, diocese, or religious community, as opposed to the General Roman Calendar
     which applies universally.
-
+    
     These settings can override or extend the default Romcal configuration or any parent
     calendar configuration.
     """
@@ -1695,76 +1695,76 @@ class ColorInfo(BaseModel):
 
 class Common(Enum):
     """The common key
-
+    
     Common prayers and readings for different categories of saints and celebrations.
     Provides standardized liturgical texts for various types of commemorations.
-
+    
     No common.
-
+    
     Dedication anniversary (in the Church that was Dedicated).
-
+    
     Dedication anniversary (outside the Church that was Dedicated).
-
+    
     Common of the Blessed Virgin Mary (Ordinary Time).
-
+    
     Common of the Blessed Virgin Mary (Advent).
-
+    
     Common of the Blessed Virgin Mary (Christmas Time).
-
+    
     Common of the Blessed Virgin Mary (Easter Time).
-
+    
     Common of Several Martyrs (outside Easter).
-
+    
     Common of One Martyr (outside Easter).
-
+    
     Common of Several Martyrs (Easter Time).
-
+    
     Common of One Martyr (Easter Time).
-
+    
     Common for Several Missionary Martyrs.
-
+    
     Common for One Missionary Martyr.
-
+    
     Common for Virgin Martyrs.
-
+    
     Common for Holy Woman Martyrs.
-
+    
     Common for a Pope or for a Bishop
-
+    
     Common for a Bishop
-
+    
     Common for Several Pastors
-
+    
     Common for One Pastor
-
+    
     Common for one Founder
-
+    
     Common for several Founders
-
+    
     Common for Missionaries
-
+    
     Common for Doctors of the Church.
-
+    
     Common for Several Virgins
-
+    
     Common for One Virgin
-
+    
     Common for Several Holy Men and Women
-
+    
     Common for One Holy Man or Woman
-
+    
     Common for an Abbot
-
+    
     Common for a Monk
-
+    
     Common for a Nun
-
+    
     Common for Religious
-
+    
     Common for Those Who Practiced Works of Mercy
-
+    
     Common for Educators
-
+    
     Common for Holy Women
     """
     BLESSED_VIRGIN_MARY_ADVENT = "BLESSED_VIRGIN_MARY__ADVENT"
@@ -1828,7 +1828,7 @@ class CommonInfo(BaseModel):
 
 class CanonizationLevel(Enum):
     """Beatified person (Blessed) - first step toward sainthood
-
+    
     Canonized person (Saint) - fully recognized as a saint
     """
     BLESSED = "BLESSED"
@@ -1837,9 +1837,9 @@ class CanonizationLevel(Enum):
 
 class SaintDateDef(BaseModel):
     """Date range between two dates
-
+    
     Multiple alternative dates (any one of them)
-
+    
     Century specification (e.g., 12 for 12th century)
     """
     between: Optional[List[Union[int, str]]] = None
@@ -1872,7 +1872,7 @@ class SaintDateDef(BaseModel):
 
 class Sex(Enum):
     """Male person
-
+    
     Female person
     """
     FEMALE = "FEMALE"
@@ -1881,9 +1881,9 @@ class Sex(Enum):
 
 class EntityType(Enum):
     """A person (saint, blessed, or other individual)
-
+    
     A place (shrine, city, or geographical location)
-
+    
     An event (historical or liturgical occurrence)
     """
     EVENT = "EVENT"
@@ -1968,7 +1968,7 @@ class Entity(BaseModel):
 
     type: Optional[EntityType] = None
     """The type of the entity.
-
+    
     Defaults to `EntityType::Person`.
     """
 
@@ -2047,28 +2047,28 @@ class Entity(BaseModel):
 
 class Rank(Enum):
     """The liturgical rank for this liturgical day
-
+    
     Liturgical rank indicating the importance and celebration style of a liturgical day
-
+    
     The liturgical rank for this liturgical day.
-
+    
     The liturgical rank
-
+    
     Solemnities are counted among the most important days, whose celebration
     begins with First Vespers (Evening Prayer I) on the preceding day. Some Solemnities
     are also endowed with their own Vigil Mass, which is to be used on the evening of the
     preceding day, if an evening Mass is celebrated. (UNLY #11)
-
+    
     On the first day of each week, which is known as the Day of the Lord or the Lord's
     Day, the Church, by an apostolic tradition that draws its origin from the very day of
     the Resurrection of Christ, celebrates the Paschal Mystery. Hence, Sunday must be
     considered the primordial feast day. (UNLY #4)
-
+    
     Feasts are celebrated within the limits of the natural day; accordingly they have
     no First Vespers (Evening Prayer I), except in the case of Feasts of the Lord that fall
     on a Sunday in Ordinary Time or in Christmas Time and which replace the Sunday
     Office. (UNLY #13)
-
+    
     **Obligatory memorials** are liturgical commemorations of saints, events, or aspects of
     the
     faith. Their observance is mandatory and integrated into the celebration of the occurring
@@ -2080,7 +2080,7 @@ class Rank(Enum):
     privileged weekday of Advent, it must only be celebrated as an **optional memorial**, as
     Lent
     and Advent have their own specific liturgical observances that take precedence.
-
+    
     **Optional memorials** are liturgical commemorations of saints, events, or aspects of the
     faith, but they are not obligatory.
     Their observance is integrated into the celebration of the occurring weekday, adhering to
@@ -2093,17 +2093,17 @@ class Rank(Enum):
     calendar, only one of them may be celebrated, and the others must be omitted (UNLY #14).
     This allows for some flexibility in choosing which optional memorial to commemorate when
     multiple options are available.
-
+    
     The days of the week that follow Sunday are called weekdays; however, they are
     celebrated differently according to the importance of each.
-
+    
     a. Ash Wednesday and the weekdays of Holy Week, from Monday up to and including
     Thursday, take precedence over all other celebrations.
     b. The weekdays of Advent from 17 December up to and including 24 December
     and all the weekdays of Lent have precedence over Obligatory Memorials.
     c. Other weekdays give way to all Solemnities and Feasts and are combined with
     Memorials.
-
+    
     (UNLY #16)
     """
     FEAST = "FEAST"
@@ -2190,7 +2190,7 @@ class CelebrationSummary(BaseModel):
 
 class DateDefWithOffset(BaseModel):
     """Date definition with offset
-
+    
     Date definition with offset for adjustments.
     Used when a date needs to be shifted by a specific number of days.
     """
@@ -2212,23 +2212,23 @@ class DateDefWithOffset(BaseModel):
 class LiturgicalCycle(Enum):
     """Liturgical cycle for lectionary readings
     Includes both actual cycles (Year A, B, C, etc.) and invariant content
-
+    
     Invariant content that applies to all cycles
-
+    
     Year A of the Sunday cycle
-
+    
     Year B of the Sunday cycle
-
+    
     Year C of the Sunday cycle
-
+    
     Combined years A and B of the Sunday cycle
-
+    
     Combined years A and C of the Sunday cycle
-
+    
     Combined years B and C of the Sunday cycle
-
+    
     Year 1 of the weekday cycle (Cycle I)
-
+    
     Year 2 of the weekday cycle (Cycle II)
     """
     INVARIANT = "invariant"
@@ -2245,31 +2245,31 @@ class LiturgicalCycle(Enum):
 class MassTime(Enum):
     """The type of mass (e.g., DayMass, EasterVigil, etc.)
     Serialized as SCREAMING_SNAKE_CASE (e.g., "DAY_MASS")
-
+    
     Times of Mass celebrations in the liturgical calendar.
     Different Masses are celebrated at various times and occasions throughout the liturgical
     year.
-
+    
     Easter Vigil - the most important Mass of the liturgical year, celebrated on Holy
     Saturday night
-
+    
     Previous Evening Mass - Mass celebrated the evening before a major feast
-
+    
     Night Mass - Mass celebrated during the night hours
-
+    
     Mass at Dawn - Mass celebrated at dawn, particularly on Easter Sunday
-
+    
     Morning Mass - Mass celebrated in the morning
-
+    
     Mass of the Passion - Mass focusing on Christ's passion, beginning with the procession
     with palms
-
+    
     Celebration of the Passion - special celebration of Christ's passion
-
+    
     Day Mass - regular Mass celebrated during the day
-
+    
     Chrism Mass - Mass where holy oils are blessed, typically on Holy Thursday morning
-
+    
     Evening Mass of the Lord's Supper - Mass celebrated on Holy Thursday evening
     """
     CELEBRATION_OF_THE_PASSION = "celebration_of_the_passion"
@@ -2391,30 +2391,30 @@ class ParentOverride(BaseModel):
 
 class Period(Enum):
     """The period key
-
+    
     Specific periods within liturgical seasons.
     Defines sub-periods that have special liturgical characteristics or rules.
-
+    
     The eight days following Christmas (December 25 - January 1)
-
+    
     Days before Epiphany (January 2 to the day before Epiphany)
-
+    
     Days from Epiphany to the Presentation (January 6 to the day before the Presentation of
     the Lord)
-
+    
     Period from Christmas to the Presentation of the Lord
-
+    
     Period from the Presentation to Holy Thursday
-
+    
     Holy Week (Palm Sunday to Holy Saturday)
-
+    
     Paschal Triduum (start from the Thursday of the Lord's Supper to the Easter Sunday
     Vespers)
-
+    
     The eight days following Easter Sunday
-
+    
     Early Ordinary Time (after the Presentation of the Lord to the day before Ash Wednesday)
-
+    
     Late Ordinary Time (after Pentecost to the day before the First Sunday of Advent)
     """
     CHRISTMAS_OCTAVE = "CHRISTMAS_OCTAVE"
@@ -2454,22 +2454,22 @@ class PeriodInfo(BaseModel):
 
 class PsalterWeekCycle(Enum):
     """The psalter week cycle to which this liturgical day belongs.
-
+    
     [GILH §133] The four-week cycle of the psalter is coordinated with the liturgical year in
     such a way that
     on the First Sunday of Advent, the First Sunday in Ordinary Time, the First Sunday of
     Lent,
     and Easter Sunday the cycle is always begun again with Week 1 (others being omitted when
     necessary).
-
+    
     The psalter week cycle (Week 1-4)
-
+    
     Week 1
-
+    
     Week 2
-
+    
     Week 3
-
+    
     Week 4
     """
     WEEK_1 = "WEEK_1"
@@ -2480,15 +2480,15 @@ class PsalterWeekCycle(Enum):
 
 class Season(Enum):
     """Advent
-
+    
     Christmas Time
-
+    
     Lent
-
+    
     Paschal Triduum
-
+    
     Easter Time
-
+    
     Ordinary Time
     """
     ADVENT = "ADVENT"
@@ -2501,20 +2501,20 @@ class Season(Enum):
 
 class SundayCycle(Enum):
     """The Sunday cycle to which this liturgical day belongs.
-
+    
     A three-year cycle for Sunday Mass readings (and some solemnities), designated by A, B,
     or C.
     Each cycle begins on the First Sunday of Advent of the previous civil year and ends on
     Saturday
     after the Christ the King Solemnity. The cycles follow each other in alphabetical order.
     C year is always divisible by 3, A has remainder of 1, and B remainder of 2.
-
+    
     The Sunday cycle (Year A, B, or C)
-
+    
     Year A
-
+    
     Year B
-
+    
     Year C
     """
     YEAR_A = "YEAR_A"
@@ -2524,15 +2524,15 @@ class SundayCycle(Enum):
 
 class WeekdayCycle(Enum):
     """The weekday cycle to which this liturgical day belongs.
-
+    
     A two-year cycle for the weekday Mass readings (also called Cycle I and Cycle II).
     Odd-numbered years are the Cycle I (year 1); even-numbered ones are the Cycle II (year
     2).
-
+    
     The weekday cycle (Year 1 or 2)
-
+    
     Year 1 (Cycle I)
-
+    
     Year 2 (Cycle II)
     """
     YEAR_1 = "YEAR_1"
@@ -2753,13 +2753,13 @@ class LiturgicalDay(BaseModel):
 
 class MassContext(BaseModel):
     """A flat structure representing a single mass with its full liturgical context.
-
+    
     This is the main type for the mass-centric calendar view. It contains:
     - Mass identification (type, name, civil/liturgical dates)
     - Day-level context (season, cycles, periods)
     - Primary celebration data (flattened from LiturgicalDay)
     - Optional alternative celebrations
-
+    
     For evening masses (Easter Vigil, Previous Evening Mass), the `civil_date`
     is shifted to the previous day while `liturgical_date` remains the original
     liturgical celebration date.
@@ -2953,62 +2953,62 @@ class MassContext(BaseModel):
 class MassPart(Enum):
     """Parts that make up the Mass celebration.
     Each part represents a specific element of the liturgical celebration.
-
+    
     Messianic entry reading (during the procession with palms, before the Mass of the
     Passion)
-
+    
     Entrance Antiphon - opening chant of the Mass
-
+    
     Collect - opening prayer of the Mass
-
+    
     Reading 1 - first reading (usually from the Old Testament)
-
+    
     Psalm - responsorial psalm
-
+    
     Canticle - biblical canticle
-
+    
     Reading 2 - second reading (usually from the New Testament)
-
+    
     Psalm (Easter Vigil)
-
+    
     Reading 3 - third reading (Easter Vigil)
-
+    
     Canticle 3 (Easter Vigil)
-
+    
     Reading 4 - fourth reading (Easter Vigil)
-
+    
     Psalm 4 (Easter Vigil)
-
+    
     Reading 5 - fifth reading (Easter Vigil)
-
+    
     Canticle 5 (Easter Vigil)
-
+    
     Reading 6 - sixth reading (Easter Vigil)
-
+    
     Psalm 6 (Easter Vigil)
-
+    
     Reading 7 - seventh reading (Easter Vigil)
-
+    
     Psalm 7 (Easter Vigil)
-
+    
     Epistle - reading from the epistles (Easter Vigil)
-
+    
     Sequence - special chant on certain feasts
-
+    
     Alleluia - acclamation before the Gospel
-
+    
     Gospel - reading from the Gospels
-
+    
     Prayer over the Offerings - prayer during the offertory
-
+    
     Preface - introduction to the Eucharistic Prayer
-
+    
     Communion Antiphon - chant during communion
-
+    
     Prayer after Communion - concluding prayer
-
+    
     Solemn Blessing - special blessing on certain occasions
-
+    
     Prayer over the People - blessing over the congregation
     """
     ALLELUIA = "alleluia"
@@ -3178,7 +3178,7 @@ class CyclesMetadata(BaseModel):
 
 class OrdinalFormat(Enum):
     """Ordinals displayed as words
-
+    
     Ordinals displayed as numbers with suffixes (default)
     """
     LETTERS = "letters"
@@ -3686,11 +3686,11 @@ class SundayCycleCombined(Enum):
     """Combined Sunday cycle for cases where readings can apply to multiple years.
     This allows for flexible configuration where the same readings can be used
     across different combinations of Sunday cycles.
-
+    
     Years A and B combined
-
+    
     Years A and C combined
-
+    
     Years B and C combined
     """
     YEAR_A_B = "YEAR_A_B"

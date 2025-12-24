@@ -2,7 +2,7 @@
 
 import pytest
 
-from romcal import Romcal, RomcalError
+from romcal import CalendarContext, Romcal, RomcalError
 
 
 class TestGregorianYearCalendar:
@@ -74,7 +74,7 @@ class TestLiturgicalYearCalendar:
         self.romcal = Romcal(
             calendar="general_roman",
             locale="en",
-            context="LITURGICAL",
+            context=CalendarContext.LITURGICAL,
             calendar_definitions_json=calendar_definitions_json,
             resources_json=resources_json,
         )
@@ -180,7 +180,7 @@ class TestMassCalendarLiturgicalYear:
         self.romcal = Romcal(
             calendar="general_roman",
             locale="en",
-            context="LITURGICAL",
+            context=CalendarContext.LITURGICAL,
             calendar_definitions_json=calendar_definitions_json,
             resources_json=resources_json,
         )

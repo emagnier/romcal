@@ -92,7 +92,7 @@ class Romcal:
         ascension_on_sunday: Whether Ascension is celebrated on Sunday.
             Defaults to False.
         corpus_christi_on_sunday: Whether Corpus Christi is celebrated on Sunday.
-            Defaults to False.
+            Defaults to True.
         easter_calculation_type: Easter calculation method.
             Defaults to EasterCalculationType.GREGORIAN.
         context: Calendar context.
@@ -111,7 +111,7 @@ class Romcal:
         *,
         epiphany_on_sunday: bool = False,
         ascension_on_sunday: bool = False,
-        corpus_christi_on_sunday: bool = False,
+        corpus_christi_on_sunday: bool = True,
         easter_calculation_type: EasterCalculationType = EasterCalculationType.GREGORIAN,
         context: CalendarContext = CalendarContext.GREGORIAN,
         calendar_definitions_json: str | None = None,

@@ -1,6 +1,6 @@
 """Tests for Romcal configuration (equivalent to config.test.ts)."""
 
-from romcal import Romcal
+from romcal import CalendarContext, EasterCalculationType, Romcal
 
 
 class TestRomcalConfiguration:
@@ -15,8 +15,8 @@ class TestRomcalConfiguration:
         assert romcal.epiphany_on_sunday is False
         assert romcal.corpus_christi_on_sunday is True
         assert romcal.ascension_on_sunday is False
-        assert romcal.easter_calculation_type == "GREGORIAN"
-        assert romcal.context == "GREGORIAN"
+        assert romcal.easter_calculation_type == EasterCalculationType.GREGORIAN
+        assert romcal.context == CalendarContext.GREGORIAN
 
     def test_should_accept_calendar_and_locale_as_arguments(self) -> None:
         """Should accept calendar and locale as arguments."""

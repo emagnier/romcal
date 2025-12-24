@@ -91,7 +91,7 @@ strict = true
 [tool.taskipy.tasks]
 build = "maturin build --release"
 develop = "maturin develop"
-generate-types = "quicktype --src ../../schemas/all_types.json --src-lang schema --lang py --python-version 3.10 --pydantic-base-model --out src/romcal/types.py"
+generate-types = "quicktype --src ../../schemas/all_types.json --src-lang schema --lang py --python-version 3.7 --pydantic-base-model --out src/romcal/types.py"
 test = "pytest tests/ -v"
 test-run = "pytest tests/"
 format = "ruff format ."

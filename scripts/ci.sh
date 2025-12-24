@@ -87,9 +87,19 @@ run_script "validate-resources.sh" "🔟 Validating resource files"
 # Step 11: JSON roundtrip tests
 run_script "check-json-roundtrip.sh" "1️⃣1️⃣ Testing JSON roundtrip integrity"
 
-# Step 12: Integration tests (if they exist)
+# Step 12: Build and test TypeScript bindings
+if [ -d "$PROJECT_ROOT/bindings/typescript" ]; then
+    run_step "1️⃣2️⃣ Building and testing TypeScript bindings" "cd '$PROJECT_ROOT/bindings/typescript' && npm ci && npm run build && npm run format:check && npm run test:run"
+fi
+
+# Step 13: Build and test Python bindings
+if [ -d "$PROJECT_ROOT/bindings/python" ]; then
+    run_step "1️⃣3️⃣ Building and testing Python bindings" "cd $PROJECT_ROOT/bindings/python && uv venv --quiet --allow-existing && uv pip install --quiet maturin pytest ruff && uv run maturin develop && $PROJECT_ROOT/bindings/typescript/node_modules/.bin/quicktype --src $PROJECT_ROOT/schemas/all_types.json --src-lang schema --lang py --python-version 3.7 --pydantic-base-model --out src/romcal/types.py && uv run ruff format --check . && uv run ruff check . && uv run pytest tests/"
+fi
+
+# Step 14: Integration tests (if they exist)
 if [ -d "$PROJECT_ROOT/tests" ]; then
-    run_step "1️⃣2️⃣ Running integration tests" "cd '$PROJECT_ROOT' && cargo test --release"
+    run_step "1️⃣4️⃣ Running integration tests" "cd '$PROJECT_ROOT' && cargo test --release"
 fi
 
 # Calculate total duration
@@ -106,10 +116,12 @@ echo "   ✅ Core module built and checked"
 echo "   ✅ All adapters built and checked"
 echo "   ✅ CLI module built and checked"
 echo "   ✅ JSON schemas generated"
+echo "   ✅ Tools built and checked"
 echo "   ✅ Calendar files validated"
 echo "   ✅ Resource files validated"
 echo "   ✅ JSON roundtrip integrity verified"
-echo "   ✅ Tools built and checked"
+echo "   ✅ TypeScript bindings built and tested"
+echo "   ✅ Python bindings built and tested"
 echo "   ✅ All quality checks passed"
 echo ""
 echo "⏱️ Total duration: ${HOURS}h ${MINUTES}m ${SECONDS}s"
