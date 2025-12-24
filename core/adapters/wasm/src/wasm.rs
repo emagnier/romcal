@@ -182,13 +182,13 @@ impl RomcalConfig {
     /// Get easter calculation type
     #[wasm_bindgen(getter)]
     pub fn easter_calculation_type(&self) -> String {
-        self.inner.easter_calculation_type_to_wasm()
+        self.inner.easter_calculation_type.to_string()
     }
 
     /// Get calendar context
     #[wasm_bindgen(getter)]
     pub fn context(&self) -> String {
-        self.inner.context_to_wasm()
+        self.inner.context.to_string()
     }
 
     /// Get the full config as a JSON string

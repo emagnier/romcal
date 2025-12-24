@@ -1,0 +1,25 @@
+[package]
+name = "romcal-uniffi"
+version = "4.0.0"
+edition = "2024"
+authors = ["Étienne Magnier <etienne.magnier@gmail.com>"]
+description = "UniFFI bindings for romcal-core liturgical calendar library"
+license = "Apache-2.0"
+repository = "https://github.com/romcal/romcal"
+keywords = ["liturgical", "calendar", "catholic", "uniffi", "ffi"]
+categories = ["date-and-time"]
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "romcal_uniffi"
+
+[[bin]]
+name = "uniffi-bindgen"
+path = "uniffi-bindgen.rs"
+
+[dependencies]
+romcal-core = { path = "../../" }
+uniffi = { version = "0.28", features = ["cli"] }
+thiserror = "2.0"
+serde = { workspace = true }
+serde_json = { workspace = true }

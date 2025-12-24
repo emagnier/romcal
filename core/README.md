@@ -439,6 +439,8 @@ cargo build -p romcal-core --release
 
 - [romcal](https://github.com/romcal/romcal) - Main Romcal project
 - [romcal-cli](../cli/) - Command-line interface
+- [romcal (TypeScript)](../bindings/typescript/) - TypeScript/JavaScript binding
+- [romcal (Python)](../bindings/python/) - Python binding
 
 ## License
 

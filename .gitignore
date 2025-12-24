@@ -111,3 +111,53 @@ _*.yaml
 
 # Dependencies documentation
 _docs/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Python virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Python testing
+.pytest_cache/
+.tox/
+.nox/
+htmlcov/
+.coverage
+.coverage.*
+nosetests.xml
+coverage.xml
+*.cover
+
+# Python type checking
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Python packaging
+*.manifest
+*.spec
+
+# Maturin / PyO3
+*.pyd

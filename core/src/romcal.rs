@@ -134,22 +134,6 @@ impl Romcal {
         }
     }
 
-    /// Converts calendar context to WASM string
-    pub fn context_to_wasm(&self) -> String {
-        match self.context {
-            CalendarContext::Gregorian => "GREGORIAN".to_string(),
-            CalendarContext::Liturgical => "LITURGICAL".to_string(),
-        }
-    }
-
-    /// Converts easter calculation type to WASM string
-    pub fn easter_calculation_type_to_wasm(&self) -> String {
-        match self.easter_calculation_type {
-            EasterCalculationType::Gregorian => "GREGORIAN".to_string(),
-            EasterCalculationType::Julian => "JULIAN".to_string(),
-        }
-    }
-
     /// Get a calendar definition by ID
     pub fn get_calendar_definition(&self, id: &str) -> Option<&CalendarDefinition> {
         self.calendar_definitions.iter().find(|def| def.id == id)

@@ -260,6 +260,7 @@ open examples/browser.html
 - [romcal](https://github.com/romcal/romcal) - Main Romcal project
 - [romcal-core](../../core/) - Core Rust library
 - [romcal-cli](../../cli/) - Command-line interface
+- [romcal (Python)](../python/) - Python binding
 
 ## License
 
