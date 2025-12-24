@@ -1,4 +1,4 @@
-# Romcal (TypeScript)
+# Romcal
 
 A TypeScript/JavaScript library for calculating Catholic liturgical dates and generating liturgical calendars. Works in Node.js and browsers via WebAssembly.
 

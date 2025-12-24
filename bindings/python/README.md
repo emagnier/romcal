@@ -1,4 +1,4 @@
-# Romcal (Python)
+# Romcal
 
 A Python library for calculating Catholic liturgical dates and generating liturgical calendars. Powered by Rust via UniFFI bindings.
 

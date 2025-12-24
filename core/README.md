@@ -1,4 +1,4 @@
-# romcal
+# Romcal
 
 A Rust library for calculating Catholic liturgical dates and generating liturgical calendars.
 
