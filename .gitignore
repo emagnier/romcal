@@ -161,3 +161,4 @@ dmypy.json
 
 # Maturin / PyO3
 *.pyd
+bindings/python/src/romcal/_uniffi/
