@@ -1,6 +1,6 @@
 [package]
 name = "romcal-tools"
-version = "4.0.0-beta.1"
+version = "4.0.0-beta.2"
 edition = "2021"
 authors = ["Étienne Magnier <etienne.magnier@gmail.com>"]
 description = "Development tools for Romcal"

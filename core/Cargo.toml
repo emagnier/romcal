@@ -1,12 +1,12 @@
 [package]
 name = "romcal"
-version = "4.0.0-beta.1"
+version = "4.0.0-beta.2"
 edition = "2024"
 authors = ["Étienne Magnier <etienne.magnier@gmail.com>"]
 description = "Core Rust library for calculating Catholic liturgical dates and calendars"
 license = "Apache-2.0"
-repository = "https://github.com/romcal/romcal"
-homepage = "https://github.com/romcal/romcal"
+repository = "https://github.com/emagnier/romcal"
+homepage = "https://github.com/emagnier/romcal"
 readme = "README.md"
 keywords = ["liturgical", "calendar", "catholic", "christian", "easter"]
 categories = ["date-and-time"]

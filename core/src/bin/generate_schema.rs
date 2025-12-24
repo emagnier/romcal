@@ -197,6 +197,51 @@ fn add_type_to_schema(types_schema: &mut Value, type_value: &mut Value, type_nam
     }
 }
 
+/// Generate Rust constants file with embedded schemas for the romcal library
+fn generate_rust_schema_constants(config: &SchemaConfig) -> Result<(), SchemaGenerationError> {
+    // Generate schemas for the two types needed by romcal-cli
+    let calendar_schema = schema_for!(CalendarDefinition);
+    let resources_schema = schema_for!(Resources);
+
+    let mut calendar_value = serde_json::to_value(&calendar_schema)
+        .map_err(|e| SchemaGenerationError::Serialization(e.to_string()))?;
+    let mut resources_value = serde_json::to_value(&resources_schema)
+        .map_err(|e| SchemaGenerationError::Serialization(e.to_string()))?;
+
+    // Apply standard fixes
+    apply_standard_fixes(&mut calendar_value, config);
+    apply_standard_fixes(&mut resources_value, config);
+
+    // Convert to pretty JSON strings
+    let calendar_json = serde_json::to_string_pretty(&calendar_value)
+        .map_err(|e| SchemaGenerationError::Serialization(e.to_string()))?;
+    let resources_json = serde_json::to_string_pretty(&resources_value)
+        .map_err(|e| SchemaGenerationError::Serialization(e.to_string()))?;
+
+    // Generate Rust source file
+    let mut rust_content = String::new();
+    rust_content.push_str("//! Auto-generated JSON schema constants - Do not modify manually\n");
+    rust_content.push_str("//! Regenerate with: cargo run --bin generate-schema --features schema-gen\n\n");
+    rust_content.push_str("/// JSON Schema for CalendarDefinition validation\n");
+    rust_content.push_str("pub const CALENDAR_DEFINITION_SCHEMA: &str = r##\"");
+    rust_content.push_str(&calendar_json);
+    rust_content.push_str("\"##;\n\n");
+    rust_content.push_str("/// JSON Schema for Resources validation\n");
+    rust_content.push_str("pub const RESOURCES_SCHEMA: &str = r##\"");
+    rust_content.push_str(&resources_json);
+    rust_content.push_str("\"##;\n");
+
+    // Write to src/generated/schemas.rs
+    let file_path = PathBuf::from("src/generated/schemas.rs");
+    fs::write(&file_path, rust_content).map_err(|source| SchemaGenerationError::FileWrite {
+        path: file_path.clone(),
+        source,
+    })?;
+
+    println!("✅ src/generated/schemas.rs exported (Rust constants for romcal lib)");
+    Ok(())
+}
+
 /// Generate a schema specifically for TypeScript and Pydantic generation
 fn generate_types_schema(config: &SchemaConfig) -> Result<(), SchemaGenerationError> {
     // Create a schema with a wrapper object that references all types as properties
@@ -374,8 +419,12 @@ fn main() -> Result<(), SchemaGenerationError> {
     // Generate types schema for TypeScript and Pydantic generation
     generate_types_schema(&config)?;
 
-    println!("\n🎉 All JSON schemas have been generated successfully!");
-    println!("📁 Destination directory: {}", config.output_dir.display());
+    // Generate Rust constants for romcal library
+    generate_rust_schema_constants(&config)?;
+
+    println!("\n🎉 All schemas have been generated successfully!");
+    println!("📁 JSON schemas: {}", config.output_dir.display());
+    println!("📁 Rust constants: src/generated/schemas.rs");
     Ok(())
 }
 

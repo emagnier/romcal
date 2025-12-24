@@ -1,12 +1,9 @@
 use crate::error::RomcalCliError;
 use crate::utils;
 use jsonschema::{ValidationError, validator_for};
+use romcal::schemas::{CALENDAR_DEFINITION_SCHEMA, RESOURCES_SCHEMA};
 use serde_json::Value;
 use std::fs;
-
-// Schemas are embedded at compile time for portability (no external files needed)
-const CALENDAR_DEFINITION_SCHEMA: &str = include_str!("../../../schemas/calendar_definition.json");
-const RESOURCES_DEFINITION_SCHEMA: &str = include_str!("../../../schemas/resources.json");
 
 /// Type of validation to perform
 #[derive(Clone, Debug)]
@@ -35,7 +32,7 @@ pub fn handle(
 
     let schema_content = match validation_type {
         ValidationType::Definitions => CALENDAR_DEFINITION_SCHEMA,
-        ValidationType::Resources => RESOURCES_DEFINITION_SCHEMA,
+        ValidationType::Resources => RESOURCES_SCHEMA,
     };
 
     println!("🔍 Validating JSON files...");
