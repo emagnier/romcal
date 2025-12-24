@@ -4,7 +4,7 @@ build-backend = "maturin"
 
 [project]
 name = "romcal"
-version = "4.0.0"
+version = "4.0.0-beta.1"
 description = "Liturgical calendar library for calculating Catholic liturgical dates and calendars"
 readme = "README.md"
 license = { text = "Apache-2.0" }

@@ -1,6 +1,6 @@
 [package]
 name = "romcal-cli"
-version = "4.0.0"
+version = "4.0.0-beta.1"
 edition = "2024"
 authors = ["Étienne Magnier <etienne.magnier@gmail.com>"]
 description = "A CLI for calculating Catholic liturgical dates and generating calendars"

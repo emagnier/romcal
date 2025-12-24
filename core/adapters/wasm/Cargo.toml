@@ -1,6 +1,6 @@
 [package]
 name = "romcal-core-wasm"
-version = "4.0.0"
+version = "4.0.0-beta.1"
 edition = "2024"
 authors = ["Étienne Magnier <etienne.magnier@gmail.com>"]
 description = "WebAssembly bindings for romcal-core liturgical calendar library"

@@ -38,7 +38,7 @@ from .types import (
 if TYPE_CHECKING:
     from ._uniffi import romcal_uniffi as _core
 
-__version__ = "4.0.0"
+__version__ = "4.0.0-beta.1"
 __all__ = [
     "CalendarContext",
     "CalendarDefinition",
