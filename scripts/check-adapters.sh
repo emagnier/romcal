@@ -15,7 +15,7 @@ echo ""
 # Function to check a specific adapter
 check_adapter() {
     local adapter_name=$1
-    local adapter_path="$PROJECT_ROOT/core/adapters/$adapter_name"
+    local adapter_path="$PROJECT_ROOT/bindings/$adapter_name"
 
     if [ ! -d "$adapter_path" ]; then
         echo "❌ Adapter '$adapter_name' not found at $adapter_path"
@@ -49,12 +49,12 @@ else
     echo "🔍 Discovering available adapters..."
 
     # Check WASM adapter
-    if [ -d "$PROJECT_ROOT/core/adapters/wasm" ]; then
+    if [ -d "$PROJECT_ROOT/bindings/wasm" ]; then
         check_adapter "wasm"
     fi
 
     # Check other adapters (when they exist)
-    for adapter_dir in "$PROJECT_ROOT/core/adapters"/*; do
+    for adapter_dir in "$PROJECT_ROOT/bindings"/*; do
         if [ -d "$adapter_dir" ] && [ "$(basename "$adapter_dir")" != "wasm" ]; then
             adapter_name=$(basename "$adapter_dir")
             check_adapter "$adapter_name"

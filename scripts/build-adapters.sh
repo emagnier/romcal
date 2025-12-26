@@ -15,7 +15,7 @@ echo ""
 # Function to build a specific adapter
 build_adapter() {
     local adapter_name=$1
-    local adapter_path="$PROJECT_ROOT/core/adapters/$adapter_name"
+    local adapter_path="$PROJECT_ROOT/bindings/$adapter_name"
 
     if [ ! -d "$adapter_path" ]; then
         echo "❌ Adapter '$adapter_name' not found at $adapter_path"
@@ -35,11 +35,11 @@ build_adapter() {
 # Function to build WASM adapter with special handling
 build_wasm_adapter() {
     echo "🔨 Building WASM adapter..."
-    cd "$PROJECT_ROOT/core/adapters/wasm"
+    cd "$PROJECT_ROOT/bindings/wasm"
 
     # Build with wasm-pack using 'web' target for universal compatibility
     # The 'web' target generates an init() function that works in all environments
-    wasm-pack build --target web --out-dir ../../../bindings/typescript/pkg
+    wasm-pack build --target web --out-dir ../typescript/pkg
 
     echo "✅ WASM adapter built successfully!"
     echo "📦 Output location: bindings/typescript/pkg/"
@@ -58,12 +58,12 @@ else
     echo "🔍 Discovering available adapters..."
 
     # Build WASM adapter
-    if [ -d "$PROJECT_ROOT/core/adapters/wasm" ]; then
+    if [ -d "$PROJECT_ROOT/bindings/wasm" ]; then
         build_wasm_adapter
     fi
 
     # Build other adapters (when they exist)
-    for adapter_dir in "$PROJECT_ROOT/core/adapters"/*; do
+    for adapter_dir in "$PROJECT_ROOT/bindings"/*; do
         if [ -d "$adapter_dir" ] && [ "$(basename "$adapter_dir")" != "wasm" ]; then
             adapter_name=$(basename "$adapter_dir")
             build_adapter "$adapter_name"

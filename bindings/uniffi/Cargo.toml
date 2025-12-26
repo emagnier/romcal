@@ -19,7 +19,7 @@ name = "uniffi-bindgen"
 path = "uniffi-bindgen.rs"
 
 [dependencies]
-romcal = { path = "../../" }
+romcal = { path = "../../core" }
 uniffi = { version = "0.28", features = ["cli"] }
 thiserror = "2.0"
 serde = { workspace = true }

@@ -36,7 +36,7 @@ Documentation = "https://github.com/emagnier/romcal#readme"
 
 [tool.maturin]
 bindings = "uniffi"
-manifest-path = "../../core/adapters/uniffi/Cargo.toml"
+manifest-path = "../uniffi/Cargo.toml"
 python-source = "src"
 module-name = "romcal._uniffi"
 

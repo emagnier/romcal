@@ -1,5 +1,5 @@
 [workspace]
-members = ["core", "core/adapters/wasm", "core/adapters/uniffi", "tools", "cli"]
+members = ["core", "bindings/wasm", "bindings/uniffi", "tools", "cli"]
 resolver = "3"
 
 [workspace.dependencies]

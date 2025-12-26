@@ -18,7 +18,7 @@ bindings/
 
 ### WebAssembly (WASM)
 
-The WASM bindings are generated from the `core/adapters/wasm` module.
+The WASM bindings are generated from the `bindings/wasm` module.
 
 **Build:**
 
@@ -60,7 +60,7 @@ Python bindings will be generated using PyO3.
 
 ### Adding New Bindings
 
-1. Create adapter in `core/adapters/[platform]/`
+1. Create adapter in `bindings/[platform]/`
 2. Add build logic to `scripts/build-adapters.sh`
 3. Update this README
 4. Test the build process
@@ -88,15 +88,13 @@ Each binding directory contains its own package configuration:
 
 ```
 
-romcal (Rust)
+romcal (Rust core library)
 ↓
-core/adapters/[platform] (Rust)
-↓
-bindings/[platform] (Generated)
+bindings/[platform] (Platform adapters + generated code)
 ↓
 Platform-specific package
 
 ```
 
-The core library provides the business logic, adapters provide platform-specific bindings, and the bindings directory contains the final packages ready for distribution.
+The core library provides the business logic, and the bindings directory contains platform-specific adapters and the final packages ready for distribution.
 ```
