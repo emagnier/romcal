@@ -1,0 +1,4 @@
+module CRomcalFFI {
+    header "../RomcalFFI/romcal_uniffiFFI.h"
+    export *
+}
