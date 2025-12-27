@@ -1,4 +1,3 @@
-#!/usr/bin/env swift
 /// Romcal - Basic Usage Example
 ///
 /// This example demonstrates:
@@ -7,7 +6,7 @@
 /// - Creating a Romcal instance with loaded data
 /// - Generating calendars with translated names
 ///
-/// Build and run with:
+/// Build and run from the bindings/swift directory:
 ///   make example
 /// Or manually:
 ///   swift run BasicUsage
@@ -17,11 +16,13 @@ import Romcal
 
 /// Get the data directory path
 func getDataDir() -> URL {
-    // Navigate from Examples to the data directory
-    let currentDir = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
-    return currentDir
+    // Navigate from the source file location to the data directory
+    let sourceFile = URL(fileURLWithPath: #file)
+    return sourceFile
+        .deletingLastPathComponent()  // Examples
         .deletingLastPathComponent()  // swift
         .deletingLastPathComponent()  // bindings
+        .deletingLastPathComponent()  // project root
         .appendingPathComponent("data")
 }
 

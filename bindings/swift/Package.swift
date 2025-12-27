@@ -48,5 +48,12 @@ let package = Package(
             dependencies: ["Romcal"],
             path: "Tests/RomcalTests"
         ),
+        // Examples
+        .executableTarget(
+            name: "BasicUsage",
+            dependencies: ["Romcal"],
+            path: "Examples",
+            sources: ["BasicUsage.swift"]
+        ),
     ]
 )

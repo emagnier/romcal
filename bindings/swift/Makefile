@@ -103,4 +103,4 @@ lint:
 # Run the basic usage example
 example: build
 	@echo "Running basic usage example..."
-	cd Examples && swift run BasicUsage
+	swift run BasicUsage
