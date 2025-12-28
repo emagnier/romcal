@@ -4,11 +4,12 @@ Language bindings for the romcal liturgical calendar library.
 
 ## Packages
 
-| Directory                  | Description                         |
-| -------------------------- | ----------------------------------- |
-| [typescript/](typescript/) | TypeScript/JavaScript package (npm) |
-| [python/](python/)         | Python package (PyPI)               |
-| [swift/](swift/)           | Swift package (Swift PM)            |
+| Directory                  | Description                           |
+| -------------------------- | ------------------------------------- |
+| [typescript/](typescript/) | TypeScript/JavaScript package (npm)   |
+| [python/](python/)         | Python package (PyPI)                 |
+| [swift/](swift/)           | Swift package (Swift PM)              |
+| [kotlin/](kotlin/)         | Kotlin types (Maven/Gradle)           |
 
 ## Adapters
 

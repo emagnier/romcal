@@ -1,6 +1,9 @@
 #[cfg(feature = "schema-gen")]
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
+#[cfg(feature = "ts-bindings")]
+use ts_rs::TS;
+use typeshare::typeshare;
 
 use crate::types::SaintCount;
 use crate::types::TitlesDef;
@@ -9,6 +12,9 @@ use crate::types::TitlesDef;
 /// Used when a liturgical day needs specific entity properties that differ from the base entity.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
+#[cfg_attr(feature = "ts-bindings", derive(TS))]
+#[cfg_attr(feature = "ts-bindings", ts(export))]
+#[typeshare(swift = "Equatable, Hashable, Sendable")]
 pub struct EntityOverride {
     /// The ID of the entity item (must reference an existing entity in the catalog)
     pub id: String,

@@ -1,6 +1,9 @@
 #[cfg(feature = "schema-gen")]
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
+#[cfg(feature = "ts-bindings")]
+use ts_rs::TS;
+use typeshare::typeshare;
 
 use crate::types::EasterCalculationType;
 
@@ -14,6 +17,9 @@ use crate::types::EasterCalculationType;
 /// calendar configuration.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
+#[cfg_attr(feature = "ts-bindings", derive(TS))]
+#[cfg_attr(feature = "ts-bindings", ts(export))]
+#[typeshare(swift = "Equatable, Hashable, Sendable")]
 pub struct ParticularConfig {
     /// Epiphany is celebrated on a Sunday
     pub epiphany_on_sunday: Option<bool>,

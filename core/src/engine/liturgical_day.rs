@@ -1,6 +1,9 @@
 #[cfg(feature = "schema-gen")]
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
+#[cfg(feature = "ts-bindings")]
+use ts_rs::TS;
+use typeshare::typeshare;
 
 use crate::types::dates::{DateDef, DateDefException, DayOfWeek};
 use crate::types::entity::{Entity, TitlesDef};
@@ -12,12 +15,16 @@ use crate::types::{
 use crate::{CalendarId, Season};
 
 /// Unique identifier for a liturgical day
+#[typeshare]
 pub type LiturgicalDayId = String;
 
 /// Represents the differences between a liturgical day definition and its parent definition.
 /// This is a lightweight structure that only contains fields that can be overridden.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
+#[cfg_attr(feature = "ts-bindings", derive(TS))]
+#[cfg_attr(feature = "ts-bindings", ts(export))]
+#[typeshare(swift = "Equatable, Hashable, Sendable")]
 pub struct ParentOverride {
     /// The ID of the calendar from which this override originates
     pub from_calendar_id: CalendarId,
@@ -99,6 +106,9 @@ impl ParentOverride {
 /// A single day in the liturgical calendar with computed values and inheritance information.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
+#[cfg_attr(feature = "ts-bindings", derive(TS))]
+#[cfg_attr(feature = "ts-bindings", ts(export))]
+#[typeshare(swift = "Equatable, Hashable, Sendable")]
 pub struct LiturgicalDay {
     /// The unique identifier of the liturgical day
     pub id: LiturgicalDayId,

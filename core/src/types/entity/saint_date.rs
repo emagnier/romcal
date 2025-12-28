@@ -1,11 +1,15 @@
 #[cfg(feature = "schema-gen")]
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
+#[cfg(feature = "ts-bindings")]
+use ts_rs::TS;
 
 /// Saint date representation with different precision levels.
 /// Supports year-only, year-month, or full date specifications.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
+#[cfg_attr(feature = "ts-bindings", derive(TS))]
+#[cfg_attr(feature = "ts-bindings", ts(export))]
 #[serde(untagged)]
 pub enum SaintDate {
     /// Year only (e.g., 1234)
@@ -20,6 +24,8 @@ pub enum SaintDate {
 /// Allows single dates, date ranges, multiple alternatives, or century specifications.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
+#[cfg_attr(feature = "ts-bindings", derive(TS))]
+#[cfg_attr(feature = "ts-bindings", ts(export))]
 #[serde(untagged)]
 pub enum SaintDateDef {
     /// Single date specification

@@ -1,6 +1,9 @@
 #[cfg(feature = "schema-gen")]
 use schemars::JsonSchema;
 use serde::{Deserialize, Deserializer, Serialize};
+#[cfg(feature = "ts-bindings")]
+use ts_rs::TS;
+use typeshare::typeshare;
 
 /// Day of week (0-6, where 0=Sunday) with automatic validation
 ///
@@ -8,6 +11,9 @@ use serde::{Deserialize, Deserializer, Serialize};
 /// deserialization. The value 0 represents Sunday, 1 represents Monday, etc.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
+#[cfg_attr(feature = "ts-bindings", derive(TS))]
+#[cfg_attr(feature = "ts-bindings", ts(export))]
+#[typeshare(swift = "Equatable, Hashable, Sendable")]
 pub struct DayOfWeek(pub u8);
 
 impl<'de> Deserialize<'de> for DayOfWeek {

@@ -1,6 +1,8 @@
 #[cfg(feature = "schema-gen")]
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
+#[cfg(feature = "ts-bindings")]
+use ts_rs::TS;
 
 use crate::types::{DateFn, DayOfWeek, MonthIndex};
 
@@ -8,6 +10,8 @@ use crate::types::{DateFn, DayOfWeek, MonthIndex};
 /// Provides flexible ways to specify liturgical dates using different approaches.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
+#[cfg_attr(feature = "ts-bindings", derive(TS))]
+#[cfg_attr(feature = "ts-bindings", ts(export))]
 #[serde(untagged)]
 pub enum DateDef {
     /// Simple month/day specification
@@ -58,6 +62,8 @@ pub enum DateDef {
 /// Used when a date needs to be shifted by a specific number of days.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
+#[cfg_attr(feature = "ts-bindings", derive(TS))]
+#[cfg_attr(feature = "ts-bindings", ts(export))]
 pub struct DateDefWithOffset {
     /// The number of days to offset the date
     pub day_offset: i32,
@@ -67,6 +73,8 @@ pub struct DateDefWithOffset {
 /// Provides flexibility for date calculations with optional adjustments.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
+#[cfg_attr(feature = "ts-bindings", derive(TS))]
+#[cfg_attr(feature = "ts-bindings", ts(export))]
 #[serde(untagged)]
 pub enum DateDefExtended {
     /// Regular date definition
@@ -79,6 +87,8 @@ pub enum DateDefExtended {
 /// Represents a condition and the date to set when that condition is met.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
+#[cfg_attr(feature = "ts-bindings", derive(TS))]
+#[cfg_attr(feature = "ts-bindings", ts(export))]
 pub struct DateDefException {
     /// The condition that triggers the exception
     pub when: ExceptionCondition,
@@ -90,6 +100,8 @@ pub struct DateDefException {
 /// Defines various conditions under which a date exception applies.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
+#[cfg_attr(feature = "ts-bindings", derive(TS))]
+#[cfg_attr(feature = "ts-bindings", ts(export))]
 #[serde(untagged)]
 pub enum ExceptionCondition {
     /// If the date is between two specified dates
@@ -117,6 +129,8 @@ pub enum ExceptionCondition {
 /// Supports both simple single exceptions and complex multiple exception scenarios.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
+#[cfg_attr(feature = "ts-bindings", derive(TS))]
+#[cfg_attr(feature = "ts-bindings", ts(export))]
 #[serde(untagged)]
 pub enum DateDefExceptions {
     /// Single date exception

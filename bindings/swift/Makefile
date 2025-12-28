@@ -13,7 +13,7 @@ help:
 	@echo "  make build           - Build the Swift package (requires Rust build first)"
 	@echo "  make build-rust      - Build the Rust UniFFI library (release mode)"
 	@echo "  make generate-bindings - Generate Swift bindings from UniFFI"
-	@echo "  make generate-types  - Generate Swift types from JSON schema using Quicktype"
+	@echo "  make generate-types  - Generate Swift types with Typeshare"
 	@echo "  make test            - Run tests"
 	@echo "  make test-verbose    - Run tests with verbose output"
 	@echo "  make clean           - Clean build artifacts"
@@ -38,20 +38,12 @@ generate-bindings: build-rust
 	@echo "Patching Swift bindings for CRomcalFFI import..."
 	@sed -i '' 's/#if canImport(romcal_uniffiFFI)/#if canImport(CRomcalFFI)\nimport CRomcalFFI\n#elseif canImport(romcal_uniffiFFI)/' Sources/RomcalFFI/romcal_uniffi.swift
 
-# Generate Swift types from JSON schema
+# Generate Swift types with Typeshare
+# TypesCompat.swift provides BTreeMap, AnyCodable, and type aliases for untagged enums
 generate-types:
-	@echo "Generating Swift types with Quicktype..."
-	cd ../typescript && npx quicktype \
-		--src ../../schemas/all_types.json \
-		--src-lang schema \
-		--lang swift \
-		--out ../swift/Sources/Romcal/Types.swift \
-		--just-types \
-		--struct-or-class struct \
-		--access-level public \
-		--swift-5-support \
-		--sendable \
-		--protocol hashable
+	@echo "Generating Swift types with Typeshare..."
+	cd ../.. && typeshare --config-file typeshare.toml ./core/src --lang=swift --output-file=bindings/swift/Sources/Romcal/Types.swift
+	@echo "Swift types generated (TypesCompat.swift provides compatibility types)"
 
 # Build Swift package
 build: generate-bindings generate-types

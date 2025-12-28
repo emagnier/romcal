@@ -217,7 +217,7 @@ npm run build
 # Individual build steps
 npm run build:wasm      # Compile Rust → WASM (via wasm-pack)
 npm run build:vite      # Bundle TypeScript (via Vite)
-npm run generate-types  # Generate types from JSON schema (via quicktype)
+npm run generate-types  # Generate types from Rust (via ts-rs)
 ```
 
 ### Testing
@@ -233,7 +233,11 @@ npm run test:run  # Run tests once
 bindings/typescript/
 ├── src/
 │   ├── index.ts      # Main entry point, API wrapper
-│   └── types.ts      # Generated types from JSON schema
+│   └── types/        # Generated types from Rust (via ts-rs)
+│       ├── index.ts  # Barrel file re-exporting all types
+│       ├── LiturgicalDay.ts
+│       ├── Rank.ts
+│       └── ...       # ~70 type files
 ├── test/             # Vitest tests
 ├── examples/
 │   ├── node.ts       # Node.js usage example
@@ -254,6 +258,16 @@ npx tsx examples/node.ts
 # Browser example (open in browser after build)
 open examples/browser.html
 ```
+
+## Regenerating Types
+
+If you modify Rust types in `core/src/`, you need to regenerate the TypeScript types:
+
+```bash
+npm run generate-types
+```
+
+This uses [ts-rs](https://github.com/Aleph-Alpha/ts-rs) to generate types from Rust sources.
 
 ## Related
 

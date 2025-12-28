@@ -309,6 +309,16 @@ bindings/python/
 python examples/basic_usage.py
 ```
 
+## Regenerating Types
+
+If you modify Rust types in `core/src/`, you need to regenerate `types.py`:
+
+```bash
+uv run task generate-types
+```
+
+This uses [datamodel-codegen](https://github.com/koxudaxi/datamodel-code-generator) to generate Pydantic models from JSON schema.
+
 ## Related
 
 - [romcal](https://github.com/romcal/romcal) - Main Romcal project

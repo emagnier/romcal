@@ -1,0 +1,61 @@
+plugins {
+    kotlin("jvm") version "2.1.0"
+    kotlin("plugin.serialization") version "2.1.0"
+    `maven-publish`
+}
+
+group = "dev.romcal"
+version = "4.0.0-beta.3"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+
+    testImplementation(kotlin("test"))
+}
+
+tasks.test {
+    useJUnitPlatform()
+}
+
+kotlin {
+    jvmToolchain(21)
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            from(components["java"])
+
+            pom {
+                name.set("Romcal Types")
+                description.set("Liturgical calendar types for romcal")
+                url.set("https://romcal.dev")
+
+                licenses {
+                    license {
+                        name.set("Apache License, Version 2.0")
+                        url.set("https://www.apache.org/licenses/LICENSE-2.0")
+                    }
+                }
+
+                developers {
+                    developer {
+                        id.set("emagnier")
+                        name.set("Étienne Magnier")
+                        email.set("etienne.magnier@gmail.com")
+                    }
+                }
+
+                scm {
+                    connection.set("scm:git:git://github.com/romcal/romcal.git")
+                    developerConnection.set("scm:git:ssh://github.com/romcal/romcal.git")
+                    url.set("https://github.com/romcal/romcal")
+                }
+            }
+        }
+    }
+}

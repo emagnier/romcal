@@ -4,6 +4,9 @@ use crate::types::mass::mass_definition::LiturgicalCycle;
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 use strum::EnumIter;
+#[cfg(feature = "ts-bindings")]
+use ts_rs::TS;
+use typeshare::typeshare;
 
 /// A three-year cycle for Sunday Mass readings (and some solemnities), designated by A, B, or C.
 /// Each cycle begins on the First Sunday of Advent of the previous civil year and ends on Saturday
@@ -11,6 +14,9 @@ use strum::EnumIter;
 /// C year is always divisible by 3, A has remainder of 1, and B remainder of 2.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, EnumIter)]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
+#[cfg_attr(feature = "ts-bindings", derive(TS))]
+#[cfg_attr(feature = "ts-bindings", ts(export))]
+#[typeshare(swift = "Equatable, Hashable, Sendable")]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum SundayCycle {
     /// Year A
@@ -26,6 +32,9 @@ pub enum SundayCycle {
 /// across different combinations of Sunday cycles.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, EnumIter)]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
+#[cfg_attr(feature = "ts-bindings", derive(TS))]
+#[cfg_attr(feature = "ts-bindings", ts(export))]
+#[typeshare(swift = "Equatable, Hashable, Sendable")]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum SundayCycleCombined {
     /// Years A and B combined
@@ -40,6 +49,9 @@ pub enum SundayCycleCombined {
 /// Odd-numbered years are the Cycle I (year 1); even-numbered ones are the Cycle II (year 2).
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, EnumIter)]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
+#[cfg_attr(feature = "ts-bindings", derive(TS))]
+#[cfg_attr(feature = "ts-bindings", ts(export))]
+#[typeshare(swift = "Equatable, Hashable, Sendable")]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 #[allow(non_camel_case_types)] // Intentionally using Year_1/Year_2 to produce YEAR_1/YEAR_2 in JSON
 pub enum WeekdayCycle {
@@ -54,6 +66,9 @@ pub enum WeekdayCycle {
 /// and Easter Sunday the cycle is always begun again with Week 1 (others being omitted when necessary).
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, EnumIter)]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
+#[cfg_attr(feature = "ts-bindings", derive(TS))]
+#[cfg_attr(feature = "ts-bindings", ts(export))]
+#[typeshare(swift = "Equatable, Hashable, Sendable")]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 #[allow(non_camel_case_types)] // Intentionally using Week_1/Week_2/etc. to produce WEEK_1/WEEK_2/etc. in JSON
 pub enum PsalterWeekCycle {

@@ -1,8 +1,8 @@
 // Import the WASM module
 import init, * as wasm from '../pkg/romcal_core_wasm.js'
 
-// Re-export types from types.ts
-export * from './types.js'
+// Re-export types from types/
+export * from './types/index.js'
 
 // Import specific types we need
 import type {
@@ -12,7 +12,7 @@ import type {
   LiturgicalDay,
   MassContext,
   Resources,
-} from './types.js'
+} from './types/index.js'
 
 // Initialize the WASM module
 let wasmInitialized = false

@@ -248,19 +248,29 @@ Error types:
 
 - [Swift](https://swift.org/) 5.9 or later
 - [Rust](https://rustup.rs/) 1.85 or later
-- [Node.js](https://nodejs.org/) (for Quicktype type generation)
 
 ### Setup
 
 ```bash
-cd bindings/swift
-
-# Build everything
-make build
-
 # Install optional tools
 brew install swift-format  # For code formatting
 brew install swiftlint     # For linting
+
+# Build everything
+cd bindings/swift
+make build
+```
+
+### Regenerating Types
+
+If you modify Rust types in `core/src/`, you need to regenerate `Types.swift`:
+
+```bash
+# Install Typeshare CLI (one-time setup)
+cargo install typeshare-cli
+
+# Regenerate types
+make generate-types
 ```
 
 ### Available Make Targets
@@ -270,7 +280,7 @@ make help            # Show all available targets
 make build           # Build everything (Rust + bindings + Swift)
 make build-rust      # Build Rust UniFFI library
 make generate-bindings # Generate Swift bindings from UniFFI
-make generate-types  # Generate Swift types with Quicktype
+make generate-types  # Generate Swift types with Typeshare
 make test            # Run tests
 make test-verbose    # Run tests with verbose output
 make clean           # Clean build artifacts

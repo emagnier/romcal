@@ -54,18 +54,18 @@ if [ $# -eq 1 ]; then
         build_adapter "$1"
     fi
 else
-    # Build all available adapters
+    # Build all available Rust adapters
     echo "🔍 Discovering available adapters..."
 
-    # Build WASM adapter
+    # Build WASM adapter first (special handling with wasm-pack)
     if [ -d "$PROJECT_ROOT/bindings/wasm" ]; then
         build_wasm_adapter
     fi
 
-    # Build other adapters (when they exist)
+    # Build other Rust adapters (those with Cargo.toml, excluding wasm)
     for adapter_dir in "$PROJECT_ROOT/bindings"/*; do
-        if [ -d "$adapter_dir" ] && [ "$(basename "$adapter_dir")" != "wasm" ]; then
-            adapter_name=$(basename "$adapter_dir")
+        adapter_name=$(basename "$adapter_dir")
+        if [ -d "$adapter_dir" ] && [ -f "$adapter_dir/Cargo.toml" ] && [ "$adapter_name" != "wasm" ]; then
             build_adapter "$adapter_name"
         fi
     done

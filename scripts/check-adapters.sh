@@ -45,17 +45,11 @@ check_adapter() {
 if [ $# -eq 1 ]; then
     check_adapter "$1"
 else
-    # Check all available adapters
-    echo "🔍 Discovering available adapters..."
+    # Check all available Rust adapters (those with Cargo.toml)
+    echo "🔍 Discovering available Rust adapters..."
 
-    # Check WASM adapter
-    if [ -d "$PROJECT_ROOT/bindings/wasm" ]; then
-        check_adapter "wasm"
-    fi
-
-    # Check other adapters (when they exist)
     for adapter_dir in "$PROJECT_ROOT/bindings"/*; do
-        if [ -d "$adapter_dir" ] && [ "$(basename "$adapter_dir")" != "wasm" ]; then
+        if [ -d "$adapter_dir" ] && [ -f "$adapter_dir/Cargo.toml" ]; then
             adapter_name=$(basename "$adapter_dir")
             check_adapter "$adapter_name"
         fi

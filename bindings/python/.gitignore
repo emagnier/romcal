@@ -1,0 +1,12 @@
+# Virtual environment
+.venv/
+
+# Build artifacts
+target/
+*.so
+*.pyd
+
+# Python cache
+__pycache__/
+*.pyc
+.pytest_cache/

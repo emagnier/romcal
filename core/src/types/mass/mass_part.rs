@@ -1,10 +1,16 @@
 use serde::{Deserialize, Serialize};
 use strum::EnumIter;
+#[cfg(feature = "ts-bindings")]
+use ts_rs::TS;
+use typeshare::typeshare;
 
 /// Parts that make up the Mass celebration.
 /// Each part represents a specific element of the liturgical celebration.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, EnumIter, PartialOrd, Ord)]
 #[cfg_attr(feature = "schema-gen", derive(schemars::JsonSchema))]
+#[cfg_attr(feature = "ts-bindings", derive(TS))]
+#[cfg_attr(feature = "ts-bindings", ts(export))]
+#[typeshare(swift = "Equatable, Hashable, Sendable")]
 #[serde(rename_all = "snake_case")]
 pub enum MassPart {
     /// Messianic entry reading (during the procession with palms, before the Mass of the Passion)

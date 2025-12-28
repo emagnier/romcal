@@ -1,6 +1,8 @@
 #[cfg(feature = "schema-gen")]
 use schemars::{JsonSchema, Schema, SchemaGenerator};
 use serde::{Deserialize, Deserializer, Serialize, Serializer};
+#[cfg(feature = "ts-bindings")]
+use ts_rs::TS;
 
 // ============================================================================
 // Schema generation function (only compiled when feature "schema-gen" is enabled)
@@ -45,6 +47,8 @@ fn saint_count_schema(_gen: &mut SchemaGenerator) -> Schema {
 #[derive(Debug, Clone, PartialEq, Eq)]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "schema-gen", schemars(schema_with = "saint_count_schema"))]
+#[cfg_attr(feature = "ts-bindings", derive(TS))]
+#[cfg_attr(feature = "ts-bindings", ts(export))]
 pub enum SaintCount {
     /// Specific number of saints
     Number(u32),

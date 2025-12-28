@@ -1,4 +1,7 @@
 use serde::{Deserialize, Serialize, Serializer};
+#[cfg(feature = "ts-bindings")]
+use ts_rs::TS;
+use typeshare::typeshare;
 
 use super::MassTime;
 
@@ -6,6 +9,9 @@ use super::MassTime;
 /// Contains the type of mass and its localized name.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[cfg_attr(feature = "schema-gen", derive(schemars::JsonSchema))]
+#[cfg_attr(feature = "ts-bindings", derive(TS))]
+#[cfg_attr(feature = "ts-bindings", ts(export))]
+#[typeshare(swift = "Equatable, Hashable, Sendable")]
 pub struct MassInfo {
     /// The type of mass (e.g., DayMass, EasterVigil, etc.)
     /// Serialized as SCREAMING_SNAKE_CASE (e.g., "DAY_MASS")
