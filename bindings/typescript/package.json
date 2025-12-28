@@ -61,7 +61,7 @@
     "url": "https://github.com/romcal/romcal/issues"
   },
   "scripts": {
-    "build": "npm run build:wasm && npm run generate-types && npm run build:vite",
+    "build": "npm run build:wasm && npm run build:vite",
     "build:vite": "vite build",
     "build:wasm": "wasm-pack build ../wasm --target web --out-dir ../typescript/pkg",
     "generate-types": "cd ../../core && TS_RS_EXPORT_DIR=../bindings/typescript/src/types cargo test --features ts-bindings --quiet && cd ../bindings/typescript && npm run generate-types:fix-imports && echo 'TypeScript types generated in src/types/'",
