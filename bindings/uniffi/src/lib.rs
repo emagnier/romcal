@@ -200,3 +200,9 @@ impl Romcal {
         self.inner.get_date(id, year).map_err(RomcalError::from)
     }
 }
+
+/// Get the romcal library version
+#[uniffi::export]
+pub fn version() -> String {
+    romcal::VERSION.to_string()
+}

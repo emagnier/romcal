@@ -185,7 +185,7 @@ impl DebugArgs {
 #[command(
     name = "romcal",
     about = "A CLI for calculating Catholic liturgical dates and generating calendars.",
-    version = "4.0.0",
+    version = romcal::VERSION,
     long_about = "Calculate liturgical dates and generate liturgical or mass-centric calendars, \
                   with support for multiple locales and regional calendars."
 )]

@@ -307,3 +307,9 @@ pub fn romcal_with_config_object(config: &PartialRomcalConfig) -> Result<Romcal,
         config: config.build()?,
     })
 }
+
+/// Get the romcal library version
+#[wasm_bindgen]
+pub fn version() -> String {
+    romcal::VERSION.to_string()
+}

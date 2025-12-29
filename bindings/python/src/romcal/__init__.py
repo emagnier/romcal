@@ -38,14 +38,30 @@ from .types import (
 if TYPE_CHECKING:
     from ._uniffi import romcal_uniffi as _core
 
-__version__ = "4.0.0-beta.1"
 __all__ = [
     "CalendarContext",
     "CalendarDefinition",
     "EasterCalculationType",
     "Romcal",
     "RomcalError",
+    "get_version",
 ]
+
+
+def get_version() -> str:
+    """Get the romcal library version.
+
+    Returns:
+        The version string (e.g., "4.0.0-beta.3").
+    """
+    return _get_core().version()
+
+
+def __getattr__(name: str) -> str:
+    """Lazy load __version__ from the FFI module."""
+    if name == "__version__":
+        return get_version()
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
 
 
 class RomcalError(Exception):

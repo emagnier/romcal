@@ -77,6 +77,11 @@ public enum RomcalCalendarContext: String, Sendable {
 public final class RomcalCalendar {
     private let inner: Romcal
 
+    /// The version of the romcal library.
+    public static var version: String {
+        RomcalFFI.version()
+    }
+
     /// Create a new RomcalCalendar instance with the specified configuration.
     ///
     /// - Parameters:

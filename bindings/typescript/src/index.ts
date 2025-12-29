@@ -322,3 +322,13 @@ export async function createRomcal(
     throw new RomcalError(message, { cause: error })
   }
 }
+
+/**
+ * Get the romcal library version.
+ *
+ * @returns The version string (e.g., "4.0.0-beta.3")
+ */
+export async function getVersion(): Promise<string> {
+  await initWasm()
+  return wasm.version()
+}

@@ -18,6 +18,9 @@ pub mod generated;
 pub mod romcal;
 pub mod types;
 
+/// The version of the romcal library.
+pub const VERSION: &str = env!("CARGO_PKG_VERSION");
+
 pub use engine::calendar::{Calendar, LiturgicalCalendar};
 pub use engine::calendar_definition::*;
 pub use engine::dates::LiturgicalDates;
