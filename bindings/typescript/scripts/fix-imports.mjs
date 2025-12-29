@@ -8,6 +8,9 @@
  *
  * This script scans all generated type files, detects missing imports,
  * and adds them automatically.
+ *
+ * IMPORTANT: Only analyzes actual type definitions, ignoring JSDoc comments
+ * to avoid false positives from type names mentioned in documentation.
  */
 
 import { readFileSync, writeFileSync, readdirSync } from "fs";
@@ -16,6 +19,18 @@ import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const TYPES_DIR = join(__dirname, "..", "src", "types");
+
+/**
+ * Strip all comments from TypeScript content.
+ * Removes both single-line (//) and multi-line comments (including JSDoc).
+ */
+function stripComments(content) {
+  // Remove multi-line comments (including JSDoc /** ... */)
+  let result = content.replace(/\/\*[\s\S]*?\*\//g, "");
+  // Remove single-line comments
+  result = result.replace(/\/\/.*$/gm, "");
+  return result;
+}
 
 // Built-in TypeScript types that should not be imported
 const BUILTIN_TYPES = new Set([
@@ -71,11 +86,14 @@ for (const file of readdirSync(TYPES_DIR)) {
     )
   );
 
+  // Strip comments to avoid detecting type names in JSDoc
+  const contentWithoutComments = stripComments(content);
+
   // Find all PascalCase identifiers that could be type references
   const typePattern = /\b([A-Z][a-zA-Z0-9]*)\b/g;
   const usedTypes = new Set();
 
-  for (const match of content.matchAll(typePattern)) {
+  for (const match of contentWithoutComments.matchAll(typePattern)) {
     const typeName = match[1];
     // Skip if:
     // - It's the current file's type (self-reference in export)
