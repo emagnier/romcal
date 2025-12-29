@@ -91,7 +91,7 @@ strict = true
 [tool.taskipy.tasks]
 build = "maturin build --release"
 develop = "maturin develop"
-generate-types = "datamodel-codegen --input ../../schemas/all_types.json --output src/romcal/types.py --target-python-version 3.10 --use-standard-collections --output-model-type pydantic_v2.BaseModel --field-constraints --use-annotated --base-class pydantic.BaseModel --enum-field-as-literal one --disable-timestamp"
+generate-types = "datamodel-codegen --input ../../schemas/all_types.json --output src/romcal/types.py --target-python-version 3.10 --use-standard-collections --output-model-type pydantic_v2.BaseModel --field-constraints --use-annotated --base-class pydantic.BaseModel --enum-field-as-literal one --disable-timestamp --use-schema-description --use-field-description"
 test = "pytest tests/ -v"
 test-run = "pytest tests/"
 format = "ruff format ."

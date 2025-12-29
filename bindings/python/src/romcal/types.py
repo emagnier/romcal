@@ -10,6 +10,11 @@ from pydantic import BaseModel, ConfigDict, Field, RootModel
 
 
 class CalendarType(Enum):
+    """
+    The type of the calendar.
+    Defines the scope and authority level of the liturgical calendar.
+    """
+
     GENERAL_ROMAN = 'GENERAL_ROMAN'
     REGION = 'REGION'
     COUNTRY = 'COUNTRY'
@@ -24,28 +29,45 @@ class CalendarType(Enum):
 
 
 class CalendarJurisdiction(Enum):
+    """
+    The jurisdiction of the calendar.
+    Determines whether the calendar follows ecclesiastical or civil authority.
+    """
+
     ECCLESIASTICAL = 'ECCLESIASTICAL'
     CIVIL = 'CIVIL'
 
 
 class EasterCalculationType(Enum):
+    """
+    Easter date calculation method.
+
+    Determines which algorithm to use for calculating the date of Easter Sunday,
+    which is the basis for most movable feasts in the liturgical calendar.
+    """
+
     GREGORIAN = 'GREGORIAN'
     JULIAN = 'JULIAN'
 
 
 class MonthIndex(RootModel[int]):
-    root: Annotated[
-        int,
-        Field(
-            description='Month index (1-12) with automatic validation\n\nThis type ensures that only valid month values are accepted during\ndeserialization. The value 1 represents January, 2 represents February, etc.',
-            ge=0,
-            le=255,
-            title='MonthIndex',
-        ),
-    ]
+    root: Annotated[int, Field(ge=0, le=255, title='MonthIndex')]
+    """
+    Month index (1-12) with automatic validation
+
+    This type ensures that only valid month values are accepted during
+    deserialization. The value 1 represents January, 2 represents February, etc.
+    """
 
 
 class DateFn(Enum):
+    """
+    Date function for calculating liturgical dates.
+
+    Represents movable feasts and special celebrations that require calculation
+    based on Easter or other variable dates.
+    """
+
     MARY_MOTHER_OF_THE_CHURCH = 'MARY_MOTHER_OF_THE_CHURCH'
     EPIPHANY_SUNDAY = 'EPIPHANY_SUNDAY'
     PRESENTATION_OF_THE_LORD = 'PRESENTATION_OF_THE_LORD'
@@ -66,34 +88,50 @@ class DateFn(Enum):
 
 
 class DayOfWeek(RootModel[int]):
-    root: Annotated[
-        int,
-        Field(
-            description='Day of week (0-6, where 0=Sunday) with automatic validation\n\nThis type ensures that only valid day-of-week values are accepted during\ndeserialization. The value 0 represents Sunday, 1 represents Monday, etc.',
-            ge=0,
-            le=255,
-            title='DayOfWeek',
-        ),
-    ]
+    root: Annotated[int, Field(ge=0, le=255, title='DayOfWeek')]
+    """
+    Day of week (0-6, where 0=Sunday) with automatic validation
+
+    This type ensures that only valid day-of-week values are accepted during
+    deserialization. The value 0 represents Sunday, 1 represents Monday, etc.
+    """
 
 
 class ExceptionCondition3(BaseModel):
+    """
+    If the date falls on a specific day of the week
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    day_of_week: Annotated[DayOfWeek, Field(description='The day of the week to match')]
+    day_of_week: DayOfWeek
+    """
+    The day of the week to match
+    """
 
 
 class DateDefWithOffset(BaseModel):
+    """
+    Date definition with offset for adjustments.
+    Used when a date needs to be shifted by a specific number of days.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    day_offset: Annotated[
-        int, Field(description='The number of days to offset the date')
-    ]
+    day_offset: int
+    """
+    The number of days to offset the date
+    """
 
 
 class Precedence(Enum):
+    """
+    Liturgical precedence levels for determining which celebration takes priority.
+    Defines the hierarchical order of liturgical celebrations according to UNLY norms.
+    """
+
     TRIDUUM_1 = 'TRIDUUM_1'
     PROPER_OF_TIME_SOLEMNITY_2 = 'PROPER_OF_TIME_SOLEMNITY_2'
     PRIVILEGED_SUNDAY_2 = 'PRIVILEGED_SUNDAY_2'
@@ -142,6 +180,11 @@ class Precedence(Enum):
 
 
 class CommonDefinition(Enum):
+    """
+    Common definition for simplified categorization.
+    Provides a simplified version of the Common enum for easier classification.
+    """
+
     NONE = 'NONE'
     DEDICATION_ANNIVERSARY__INSIDE = 'DEDICATION_ANNIVERSARY__INSIDE'
     DEDICATION_ANNIVERSARY__OUTSIDE = 'DEDICATION_ANNIVERSARY__OUTSIDE'
@@ -168,6 +211,11 @@ class CommonDefinition(Enum):
 
 
 class Title(Enum):
+    """
+    Titles and patronages associated with saints and blessed.
+    Represents the various ecclesiastical titles and patronages that can be assigned to entities.
+    """
+
     ABBESS = 'ABBESS'
     ABBOT = 'ABBOT'
     APOSTLE = 'APOSTLE'
@@ -240,45 +288,68 @@ class Title(Enum):
 
 
 class CompoundTitle(BaseModel):
+    """
+    Compound title definition for combining multiple titles.
+    Allows adding titles to the beginning or end of an existing title list.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    append: Annotated[
-        list[Title] | None,
-        Field(
-            description='The title(s) to add to the end of the existing list of title(s)'
-        ),
-    ] = None
-    prepend: Annotated[
-        list[Title] | None,
-        Field(
-            description='The title(s) to add to the beginning of the existing list of title(s)'
-        ),
-    ] = None
+    append: list[Title] | None = None
+    """
+    The title(s) to add to the end of the existing list of title(s)
+    """
+    prepend: list[Title] | None = None
+    """
+    The title(s) to add to the beginning of the existing list of title(s)
+    """
 
 
 class SaintCount1(RootModel[int]):
-    root: Annotated[
-        int,
-        Field(
-            description='Represents the number of saints for an entity or a group of entities.\n\nCan be either a specific number (u32) or "MANY" to indicate\nan indeterminate number of saints.\n\n# Serialization\n- `Number(n)` serializes as integer `n`\n- `Many` serializes as string `"MANY"`\n\n# Deserialization\n- Integers are converted to `Number(u32)`\n- String `"MANY"` is converted to `Many`\n- All other types generate an error',
-            ge=0,
-            title='SaintCount',
-        ),
-    ]
+    root: Annotated[int, Field(ge=0, title='SaintCount')]
+    """
+    Represents the number of saints for an entity or a group of entities.
+
+    Can be either a specific number (u32) or "MANY" to indicate
+    an indeterminate number of saints.
+
+    # Serialization
+    - `Number(n)` serializes as integer `n`
+    - `Many` serializes as string `"MANY"`
+
+    # Deserialization
+    - Integers are converted to `Number(u32)`
+    - String `"MANY"` is converted to `Many`
+    - All other types generate an error
+    """
 
 
 class SaintCount(RootModel[SaintCount1 | str | None]):
-    root: Annotated[
-        SaintCount1 | str | None,
-        Field(
-            description='Represents the number of saints for an entity or a group of entities.\n\nCan be either a specific number (u32) or "MANY" to indicate\nan indeterminate number of saints.\n\n# Serialization\n- `Number(n)` serializes as integer `n`\n- `Many` serializes as string `"MANY"`\n\n# Deserialization\n- Integers are converted to `Number(u32)`\n- String `"MANY"` is converted to `Many`\n- All other types generate an error',
-            title='SaintCount',
-        ),
-    ]
+    root: Annotated[SaintCount1 | str | None, Field(title='SaintCount')]
+    """
+    Represents the number of saints for an entity or a group of entities.
+
+    Can be either a specific number (u32) or "MANY" to indicate
+    an indeterminate number of saints.
+
+    # Serialization
+    - `Number(n)` serializes as integer `n`
+    - `Many` serializes as string `"MANY"`
+
+    # Deserialization
+    - Integers are converted to `Number(u32)`
+    - String `"MANY"` is converted to `Many`
+    - All other types generate an error
+    """
 
 
 class Color(Enum):
+    """
+    Liturgical colors used in the celebration of Mass and other liturgical services.
+    Each color has specific liturgical significance and is used during particular seasons or celebrations.
+    """
+
     RED = 'RED'
     ROSE = 'ROSE'
     PURPLE = 'PURPLE'
@@ -289,368 +360,534 @@ class Color(Enum):
 
 
 class MassContent(BaseModel):
+    """
+    Content of a mass for a specific liturgical cycle
+    Maps mass parts (readings, psalms, prayers, antiphons, etc.) to their texts
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    alleluia: Annotated[
-        str | None, Field(description='Alleluia - acclamation before the Gospel')
-    ] = None
-    canticle: Annotated[
-        str | None, Field(description='Canticle - biblical canticle')
-    ] = None
-    collect: Annotated[
-        str | None, Field(description='Collect - opening prayer of the Mass')
-    ] = None
-    communion_antiphon: Annotated[
-        str | None, Field(description='Communion Antiphon - chant during communion')
-    ] = None
-    easter_vigil_canticle_3: Annotated[
-        str | None, Field(description='Canticle 3 (Easter Vigil)')
-    ] = None
-    easter_vigil_canticle_5: Annotated[
-        str | None, Field(description='Canticle 5 (Easter Vigil)')
-    ] = None
-    easter_vigil_epistle: Annotated[
-        str | None,
-        Field(description='Epistle - reading from the epistles (Easter Vigil)'),
-    ] = None
-    easter_vigil_psalm_2: Annotated[
-        str | None, Field(description='Psalm 2 (Easter Vigil)')
-    ] = None
-    easter_vigil_psalm_4: Annotated[
-        str | None, Field(description='Psalm 4 (Easter Vigil)')
-    ] = None
-    easter_vigil_psalm_6: Annotated[
-        str | None, Field(description='Psalm 6 (Easter Vigil)')
-    ] = None
-    easter_vigil_psalm_7: Annotated[
-        str | None, Field(description='Psalm 7 (Easter Vigil)')
-    ] = None
-    easter_vigil_reading_3: Annotated[
-        str | None, Field(description='Reading 3 - third reading (Easter Vigil)')
-    ] = None
-    easter_vigil_reading_4: Annotated[
-        str | None, Field(description='Reading 4 - fourth reading (Easter Vigil)')
-    ] = None
-    easter_vigil_reading_5: Annotated[
-        str | None, Field(description='Reading 5 - fifth reading (Easter Vigil)')
-    ] = None
-    easter_vigil_reading_6: Annotated[
-        str | None, Field(description='Reading 6 - sixth reading (Easter Vigil)')
-    ] = None
-    easter_vigil_reading_7: Annotated[
-        str | None, Field(description='Reading 7 - seventh reading (Easter Vigil)')
-    ] = None
-    entrance_antiphon: Annotated[
-        str | None, Field(description='Entrance Antiphon - opening chant of the Mass')
-    ] = None
-    gospel: Annotated[
-        str | None, Field(description='Gospel - reading from the Gospels')
-    ] = None
-    messianic_entry: Annotated[
-        str | None,
-        Field(
-            description='Messianic entry reading (during the procession with palms, before the Mass of the Passion)'
-        ),
-    ] = None
-    prayer_after_communion: Annotated[
-        str | None, Field(description='Prayer after Communion - concluding prayer')
-    ] = None
-    prayer_over_the_offerings: Annotated[
-        str | None,
-        Field(description='Prayer over the Offerings - prayer during the offertory'),
-    ] = None
-    prayer_over_the_people: Annotated[
-        str | None,
-        Field(description='Prayer over the People - blessing over the congregation'),
-    ] = None
-    preface: Annotated[
-        str | None,
-        Field(description='Preface - introduction to the Eucharistic Prayer'),
-    ] = None
-    psalm: Annotated[str | None, Field(description='Psalm - responsorial psalm')] = None
-    reading_1: Annotated[
-        str | None,
-        Field(description='Reading 1 - first reading (usually from the Old Testament)'),
-    ] = None
-    reading_2: Annotated[
-        str | None,
-        Field(
-            description='Reading 2 - second reading (usually from the New Testament)'
-        ),
-    ] = None
-    sequence: Annotated[
-        str | None, Field(description='Sequence - special chant on certain feasts')
-    ] = None
-    solemn_blessing: Annotated[
-        str | None,
-        Field(description='Solemn Blessing - special blessing on certain occasions'),
-    ] = None
+    alleluia: str | None = None
+    """
+    Alleluia - acclamation before the Gospel
+    """
+    canticle: str | None = None
+    """
+    Canticle - biblical canticle
+    """
+    collect: str | None = None
+    """
+    Collect - opening prayer of the Mass
+    """
+    communion_antiphon: str | None = None
+    """
+    Communion Antiphon - chant during communion
+    """
+    easter_vigil_canticle_3: str | None = None
+    """
+    Canticle 3 (Easter Vigil)
+    """
+    easter_vigil_canticle_5: str | None = None
+    """
+    Canticle 5 (Easter Vigil)
+    """
+    easter_vigil_epistle: str | None = None
+    """
+    Epistle - reading from the epistles (Easter Vigil)
+    """
+    easter_vigil_psalm_2: str | None = None
+    """
+    Psalm 2 (Easter Vigil)
+    """
+    easter_vigil_psalm_4: str | None = None
+    """
+    Psalm 4 (Easter Vigil)
+    """
+    easter_vigil_psalm_6: str | None = None
+    """
+    Psalm 6 (Easter Vigil)
+    """
+    easter_vigil_psalm_7: str | None = None
+    """
+    Psalm 7 (Easter Vigil)
+    """
+    easter_vigil_reading_3: str | None = None
+    """
+    Reading 3 - third reading (Easter Vigil)
+    """
+    easter_vigil_reading_4: str | None = None
+    """
+    Reading 4 - fourth reading (Easter Vigil)
+    """
+    easter_vigil_reading_5: str | None = None
+    """
+    Reading 5 - fifth reading (Easter Vigil)
+    """
+    easter_vigil_reading_6: str | None = None
+    """
+    Reading 6 - sixth reading (Easter Vigil)
+    """
+    easter_vigil_reading_7: str | None = None
+    """
+    Reading 7 - seventh reading (Easter Vigil)
+    """
+    entrance_antiphon: str | None = None
+    """
+    Entrance Antiphon - opening chant of the Mass
+    """
+    gospel: str | None = None
+    """
+    Gospel - reading from the Gospels
+    """
+    messianic_entry: str | None = None
+    """
+    Messianic entry reading (during the procession with palms, before the Mass of the Passion)
+    """
+    prayer_after_communion: str | None = None
+    """
+    Prayer after Communion - concluding prayer
+    """
+    prayer_over_the_offerings: str | None = None
+    """
+    Prayer over the Offerings - prayer during the offertory
+    """
+    prayer_over_the_people: str | None = None
+    """
+    Prayer over the People - blessing over the congregation
+    """
+    preface: str | None = None
+    """
+    Preface - introduction to the Eucharistic Prayer
+    """
+    psalm: str | None = None
+    """
+    Psalm - responsorial psalm
+    """
+    reading_1: str | None = None
+    """
+    Reading 1 - first reading (usually from the Old Testament)
+    """
+    reading_2: str | None = None
+    """
+    Reading 2 - second reading (usually from the New Testament)
+    """
+    sequence: str | None = None
+    """
+    Sequence - special chant on certain feasts
+    """
+    solemn_blessing: str | None = None
+    """
+    Solemn Blessing - special blessing on certain occasions
+    """
 
 
 class OrdinalFormat(Enum):
+    """
+    Format for displaying ordinal numbers.
+
+    - `Letters`: Display ordinals as words (e.g., "first", "second", "premier", "deuxième")
+    - `Numeric`: Display ordinals as numbers with suffixes (e.g., "1st", "2nd", "1er", "2e")
+    """
+
     letters = 'letters'
     numeric = 'numeric'
 
 
 class LocaleColors(BaseModel):
+    """
+    Liturgical color names in the locale language.
+    Provides localized names for each liturgical color.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    black: Annotated[
-        str | None, Field(description='Black color name in the locale language')
-    ] = None
-    gold: Annotated[
-        str | None, Field(description='Gold color name in the locale language')
-    ] = None
-    green: Annotated[
-        str | None, Field(description='Green color name in the locale language')
-    ] = None
-    purple: Annotated[
-        str | None, Field(description='Purple color name in the locale language')
-    ] = None
-    red: Annotated[
-        str | None, Field(description='Red color name in the locale language')
-    ] = None
-    rose: Annotated[
-        str | None, Field(description='Rose color name in the locale language')
-    ] = None
-    white: Annotated[
-        str | None, Field(description='White color name in the locale language')
-    ] = None
+    black: str | None = None
+    """
+    Black color name in the locale language
+    """
+    gold: str | None = None
+    """
+    Gold color name in the locale language
+    """
+    green: str | None = None
+    """
+    Green color name in the locale language
+    """
+    purple: str | None = None
+    """
+    Purple color name in the locale language
+    """
+    red: str | None = None
+    """
+    Red color name in the locale language
+    """
+    rose: str | None = None
+    """
+    Rose color name in the locale language
+    """
+    white: str | None = None
+    """
+    White color name in the locale language
+    """
 
 
 class AdventSeason(BaseModel):
+    """
+    Advent season localized names and descriptions.
+    Provides specific terminology for the Advent season in the locale language.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    season: Annotated[
-        str | None, Field(description='General season name for Advent')
-    ] = None
-    weekday: Annotated[
-        str | None, Field(description='Weekday terminology during Advent')
-    ] = None
-    sunday: Annotated[
-        str | None, Field(description='Sunday terminology during Advent')
-    ] = None
-    privileged_weekday: Annotated[
-        str | None, Field(description='Privileged weekday terminology during Advent')
-    ] = None
+    season: str | None = None
+    """
+    General season name for Advent
+    """
+    weekday: str | None = None
+    """
+    Weekday terminology during Advent
+    """
+    sunday: str | None = None
+    """
+    Sunday terminology during Advent
+    """
+    privileged_weekday: str | None = None
+    """
+    Privileged weekday terminology during Advent
+    """
 
 
 class ChristmasTimeSeason(BaseModel):
+    """
+    Christmas Time season localized names and descriptions.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    season: Annotated[
-        str | None, Field(description='General season name for Christmas Time')
-    ] = None
-    day: Annotated[
-        str | None, Field(description='Day terminology during Christmas Time')
-    ] = None
-    octave: Annotated[
-        str | None, Field(description='Octave terminology during Christmas Time')
-    ] = None
-    before_epiphany: Annotated[
-        str | None, Field(description='Before Epiphany terminology')
-    ] = None
-    second_sunday_after_christmas: Annotated[
-        str | None, Field(description='Second Sunday after Christmas terminology')
-    ] = None
-    after_epiphany: Annotated[
-        str | None, Field(description='After Epiphany terminology')
-    ] = None
+    season: str | None = None
+    """
+    General season name for Christmas Time
+    """
+    day: str | None = None
+    """
+    Day terminology during Christmas Time
+    """
+    octave: str | None = None
+    """
+    Octave terminology during Christmas Time
+    """
+    before_epiphany: str | None = None
+    """
+    Before Epiphany terminology
+    """
+    second_sunday_after_christmas: str | None = None
+    """
+    Second Sunday after Christmas terminology
+    """
+    after_epiphany: str | None = None
+    """
+    After Epiphany terminology
+    """
 
 
 class OrdinaryTimeSeason(BaseModel):
+    """
+    Ordinary Time season localized names and descriptions.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    season: Annotated[
-        str | None, Field(description='General season name for Ordinary Time')
-    ] = None
-    weekday: Annotated[
-        str | None, Field(description='Weekday terminology during Ordinary Time')
-    ] = None
-    sunday: Annotated[
-        str | None, Field(description='Sunday terminology during Ordinary Time')
-    ] = None
+    season: str | None = None
+    """
+    General season name for Ordinary Time
+    """
+    weekday: str | None = None
+    """
+    Weekday terminology during Ordinary Time
+    """
+    sunday: str | None = None
+    """
+    Sunday terminology during Ordinary Time
+    """
 
 
 class LentSeason(BaseModel):
+    """
+    Lent season localized names and descriptions.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    season: Annotated[str | None, Field(description='General season name for Lent')] = (
-        None
-    )
-    weekday: Annotated[
-        str | None, Field(description='Weekday terminology during Lent')
-    ] = None
-    sunday: Annotated[
-        str | None, Field(description='Sunday terminology during Lent')
-    ] = None
-    day_after_ash_wed: Annotated[
-        str | None, Field(description='Day after Ash Wednesday terminology')
-    ] = None
-    holy_week_day: Annotated[
-        str | None, Field(description='Holy Week day terminology')
-    ] = None
+    season: str | None = None
+    """
+    General season name for Lent
+    """
+    weekday: str | None = None
+    """
+    Weekday terminology during Lent
+    """
+    sunday: str | None = None
+    """
+    Sunday terminology during Lent
+    """
+    day_after_ash_wed: str | None = None
+    """
+    Day after Ash Wednesday terminology
+    """
+    holy_week_day: str | None = None
+    """
+    Holy Week day terminology
+    """
 
 
 class PaschalTriduumSeason(BaseModel):
+    """
+    Paschal Triduum season localized names and descriptions.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    season: Annotated[
-        str | None, Field(description='General season name for Paschal Triduum')
-    ] = None
+    season: str | None = None
+    """
+    General season name for Paschal Triduum
+    """
 
 
 class EasterTimeSeason(BaseModel):
+    """
+    Easter Time season localized names and descriptions.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    season: Annotated[
-        str | None, Field(description='General season name for Easter Time')
-    ] = None
-    weekday: Annotated[
-        str | None, Field(description='Weekday terminology during Easter Time')
-    ] = None
-    sunday: Annotated[
-        str | None, Field(description='Sunday terminology during Easter Time')
-    ] = None
-    octave: Annotated[
-        str | None, Field(description='Octave terminology during Easter Time')
-    ] = None
+    season: str | None = None
+    """
+    General season name for Easter Time
+    """
+    weekday: str | None = None
+    """
+    Weekday terminology during Easter Time
+    """
+    sunday: str | None = None
+    """
+    Sunday terminology during Easter Time
+    """
+    octave: str | None = None
+    """
+    Octave terminology during Easter Time
+    """
 
 
 class PeriodsMetadata(BaseModel):
+    """
+    Liturgical period names in the locale language.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    christmas_octave: Annotated[
-        str | None, Field(description='Christmas Octave period name')
-    ] = None
-    days_before_epiphany: Annotated[
-        str | None, Field(description='Days before Epiphany period name')
-    ] = None
-    days_from_epiphany: Annotated[
-        str | None, Field(description='Days from Epiphany period name')
-    ] = None
-    christmas_to_presentation_of_the_lord: Annotated[
-        str | None,
-        Field(description='Christmas to Presentation of the Lord period name'),
-    ] = None
-    presentation_of_the_lord_to_holy_thursday: Annotated[
-        str | None,
-        Field(description='Presentation of the Lord to Holy Thursday period name'),
-    ] = None
-    holy_week: Annotated[str | None, Field(description='Holy Week period name')] = None
-    paschal_triduum: Annotated[
-        str | None, Field(description='Paschal Triduum period name')
-    ] = None
-    easter_octave: Annotated[
-        str | None, Field(description='Easter Octave period name')
-    ] = None
-    early_ordinary_time: Annotated[
-        str | None, Field(description='Early Ordinary Time period name')
-    ] = None
-    late_ordinary_time: Annotated[
-        str | None, Field(description='Late Ordinary Time period name')
-    ] = None
+    christmas_octave: str | None = None
+    """
+    Christmas Octave period name
+    """
+    days_before_epiphany: str | None = None
+    """
+    Days before Epiphany period name
+    """
+    days_from_epiphany: str | None = None
+    """
+    Days from Epiphany period name
+    """
+    christmas_to_presentation_of_the_lord: str | None = None
+    """
+    Christmas to Presentation of the Lord period name
+    """
+    presentation_of_the_lord_to_holy_thursday: str | None = None
+    """
+    Presentation of the Lord to Holy Thursday period name
+    """
+    holy_week: str | None = None
+    """
+    Holy Week period name
+    """
+    paschal_triduum: str | None = None
+    """
+    Paschal Triduum period name
+    """
+    easter_octave: str | None = None
+    """
+    Easter Octave period name
+    """
+    early_ordinary_time: str | None = None
+    """
+    Early Ordinary Time period name
+    """
+    late_ordinary_time: str | None = None
+    """
+    Late Ordinary Time period name
+    """
 
 
 class RanksMetadata(BaseModel):
+    """
+    Liturgical rank names in the locale language.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    solemnity: Annotated[str | None, Field(description='Solemnity rank name')] = None
-    sunday: Annotated[str | None, Field(description='Sunday rank name')] = None
-    feast: Annotated[str | None, Field(description='Feast rank name')] = None
-    memorial: Annotated[str | None, Field(description='Memorial rank name')] = None
-    optional_memorial: Annotated[
-        str | None, Field(description='Optional memorial rank name')
-    ] = None
-    weekday: Annotated[str | None, Field(description='Weekday rank name')] = None
+    solemnity: str | None = None
+    """
+    Solemnity rank name
+    """
+    sunday: str | None = None
+    """
+    Sunday rank name
+    """
+    feast: str | None = None
+    """
+    Feast rank name
+    """
+    memorial: str | None = None
+    """
+    Memorial rank name
+    """
+    optional_memorial: str | None = None
+    """
+    Optional memorial rank name
+    """
+    weekday: str | None = None
+    """
+    Weekday rank name
+    """
 
 
 class CyclesMetadata(BaseModel):
+    """
+    Liturgical cycle names in the locale language.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    proper_of_time: Annotated[
-        str | None, Field(description='Proper of Time cycle name')
-    ] = None
-    proper_of_saints: Annotated[
-        str | None, Field(description='Proper of Saints cycle name')
-    ] = None
-    sunday_year_a: Annotated[
-        str | None, Field(description='Sunday Year A cycle name')
-    ] = None
-    sunday_year_b: Annotated[
-        str | None, Field(description='Sunday Year B cycle name')
-    ] = None
-    sunday_year_c: Annotated[
-        str | None, Field(description='Sunday Year C cycle name')
-    ] = None
-    weekday_year_1: Annotated[
-        str | None, Field(description='Weekday Year 1 cycle name')
-    ] = None
-    weekday_year_2: Annotated[
-        str | None, Field(description='Weekday Year 2 cycle name')
-    ] = None
-    psalter_week_1: Annotated[
-        str | None, Field(description='Psalter Week 1 cycle name')
-    ] = None
-    psalter_week_2: Annotated[
-        str | None, Field(description='Psalter Week 2 cycle name')
-    ] = None
-    psalter_week_3: Annotated[
-        str | None, Field(description='Psalter Week 3 cycle name')
-    ] = None
-    psalter_week_4: Annotated[
-        str | None, Field(description='Psalter Week 4 cycle name')
-    ] = None
+    proper_of_time: str | None = None
+    """
+    Proper of Time cycle name
+    """
+    proper_of_saints: str | None = None
+    """
+    Proper of Saints cycle name
+    """
+    sunday_year_a: str | None = None
+    """
+    Sunday Year A cycle name
+    """
+    sunday_year_b: str | None = None
+    """
+    Sunday Year B cycle name
+    """
+    sunday_year_c: str | None = None
+    """
+    Sunday Year C cycle name
+    """
+    weekday_year_1: str | None = None
+    """
+    Weekday Year 1 cycle name
+    """
+    weekday_year_2: str | None = None
+    """
+    Weekday Year 2 cycle name
+    """
+    psalter_week_1: str | None = None
+    """
+    Psalter Week 1 cycle name
+    """
+    psalter_week_2: str | None = None
+    """
+    Psalter Week 2 cycle name
+    """
+    psalter_week_3: str | None = None
+    """
+    Psalter Week 3 cycle name
+    """
+    psalter_week_4: str | None = None
+    """
+    Psalter Week 4 cycle name
+    """
 
 
 class EntityType(Enum):
+    """
+    The type of entity in the liturgical calendar.
+    Defines whether the entity represents a person, place, or event.
+    """
+
     PERSON = 'PERSON'
     PLACE = 'PLACE'
     EVENT = 'EVENT'
 
 
 class CanonizationLevel(Enum):
+    """
+    Canonization level indicating the official recognition status of a person.
+    Defines whether someone is beatified (Blessed) or canonized (Saint).
+    """
+
     BLESSED = 'BLESSED'
     SAINT = 'SAINT'
 
 
 class SaintDateDef3(BaseModel):
+    """
+    Century specification (e.g., 12 for 12th century)
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    century: Annotated[int, Field(description='The century number', ge=0)]
+    century: Annotated[int, Field(ge=0)]
+    """
+    The century number
+    """
 
 
 class SaintDate1(RootModel[int]):
-    root: Annotated[int, Field(description='Year only (e.g., 1234)', ge=0)]
+    root: Annotated[int, Field(ge=0)]
+    """
+    Year only (e.g., 1234)
+    """
 
 
 class SaintDate(RootModel[SaintDate1 | str]):
-    root: Annotated[
-        SaintDate1 | str,
-        Field(
-            description='Saint date representation with different precision levels.\nSupports year-only, year-month, or full date specifications.'
-        ),
-    ]
+    root: SaintDate1 | str
+    """
+    Saint date representation with different precision levels.
+    Supports year-only, year-month, or full date specifications.
+    """
 
 
 class Sex(Enum):
+    """
+    Sex of a person.
+    """
+
     MALE = 'MALE'
     FEMALE = 'FEMALE'
 
 
 class Rank(Enum):
+    """
+    Liturgical rank indicating the importance and celebration style of a liturgical day
+    """
+
     SOLEMNITY = 'SOLEMNITY'
     SUNDAY = 'SUNDAY'
     FEAST = 'FEAST'
@@ -660,6 +897,11 @@ class Rank(Enum):
 
 
 class Season(Enum):
+    """
+    Liturgical seasons of the Church year.
+    Represents the major periods that structure the liturgical calendar.
+    """
+
     ADVENT = 'ADVENT'
     CHRISTMAS_TIME = 'CHRISTMAS_TIME'
     LENT = 'LENT'
@@ -669,6 +911,11 @@ class Season(Enum):
 
 
 class Period(Enum):
+    """
+    Specific periods within liturgical seasons.
+    Defines sub-periods that have special liturgical characteristics or rules.
+    """
+
     CHRISTMAS_OCTAVE = 'CHRISTMAS_OCTAVE'
     DAYS_BEFORE_EPIPHANY = 'DAYS_BEFORE_EPIPHANY'
     DAYS_FROM_EPIPHANY = 'DAYS_FROM_EPIPHANY'
@@ -684,6 +931,11 @@ class Period(Enum):
 
 
 class Common(Enum):
+    """
+    Common prayers and readings for different categories of saints and celebrations.
+    Provides standardized liturgical texts for various types of commemorations.
+    """
+
     NONE = 'NONE'
     DEDICATION_ANNIVERSARY__INSIDE = 'DEDICATION_ANNIVERSARY__INSIDE'
     DEDICATION_ANNIVERSARY__OUTSIDE = 'DEDICATION_ANNIVERSARY__OUTSIDE'
@@ -721,14 +973,29 @@ class Common(Enum):
 
 
 class ColorInfo(BaseModel):
+    """
+    Liturgical color information with localized name.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    key: Annotated[Color, Field(description='The color key')]
-    name: Annotated[str, Field(description='The localized name of the color')]
+    key: Color
+    """
+    The color key
+    """
+    name: str
+    """
+    The localized name of the color
+    """
 
 
 class MassTime(Enum):
+    """
+    Times of Mass celebrations in the liturgical calendar.
+    Different Masses are celebrated at various times and occasions throughout the liturgical year.
+    """
+
     easter_vigil = 'easter_vigil'
     previous_evening_mass = 'previous_evening_mass'
     night_mass = 'night_mass'
@@ -742,17 +1009,35 @@ class MassTime(Enum):
 
 
 class SundayCycle(Enum):
+    """
+    A three-year cycle for Sunday Mass readings (and some solemnities), designated by A, B, or C.
+    Each cycle begins on the First Sunday of Advent of the previous civil year and ends on Saturday
+    after the Christ the King Solemnity. The cycles follow each other in alphabetical order.
+    C year is always divisible by 3, A has remainder of 1, and B remainder of 2.
+    """
+
     YEAR_A = 'YEAR_A'
     YEAR_B = 'YEAR_B'
     YEAR_C = 'YEAR_C'
 
 
 class WeekdayCycle(Enum):
+    """
+    A two-year cycle for the weekday Mass readings (also called Cycle I and Cycle II).
+    Odd-numbered years are the Cycle I (year 1); even-numbered ones are the Cycle II (year 2).
+    """
+
     YEAR_1 = 'YEAR_1'
     YEAR_2 = 'YEAR_2'
 
 
 class PsalterWeekCycle(Enum):
+    """
+    [GILH §133] The four-week cycle of the psalter is coordinated with the liturgical year in such a way that
+    on the First Sunday of Advent, the First Sunday in Ordinary Time, the First Sunday of Lent,
+    and Easter Sunday the cycle is always begun again with Week 1 (others being omitted when necessary).
+    """
+
     WEEK_1 = 'WEEK_1'
     WEEK_2 = 'WEEK_2'
     WEEK_3 = 'WEEK_3'
@@ -760,17 +1045,35 @@ class PsalterWeekCycle(Enum):
 
 
 class CalendarContext(Enum):
+    """
+    Calendar year context for date boundaries.
+
+    Determines how the calendar year is structured and which dates are included
+    in a given year's calendar output.
+    """
+
     GREGORIAN = 'GREGORIAN'
     LITURGICAL = 'LITURGICAL'
 
 
 class SundayCycleCombined(Enum):
+    """
+    Combined Sunday cycle for cases where readings can apply to multiple years.
+    This allows for flexible configuration where the same readings can be used
+    across different combinations of Sunday cycles.
+    """
+
     YEAR_A_B = 'YEAR_A_B'
     YEAR_A_C = 'YEAR_A_C'
     YEAR_B_C = 'YEAR_B_C'
 
 
 class LiturgicalCycle(Enum):
+    """
+    Liturgical cycle for lectionary readings
+    Includes both actual cycles (Year A, B, C, etc.) and invariant content
+    """
+
     invariant = 'invariant'
     year_a = 'year_a'
     year_b = 'year_b'
@@ -783,6 +1086,11 @@ class LiturgicalCycle(Enum):
 
 
 class Acclamation(Enum):
+    """
+    Acclamations used in liturgical celebrations.
+    Acclamations are short liturgical responses or exclamations used during Mass.
+    """
+
     ALLELUIA = 'ALLELUIA'
     LENT = 'LENT'
     MIXED = 'MIXED'
@@ -790,6 +1098,11 @@ class Acclamation(Enum):
 
 
 class BibleBook(Enum):
+    """
+    Books of the Bible using OSIS (Open Scripture Information Standard) identifiers.
+    OSIS provides standardized abbreviations for biblical books used in liturgical and biblical applications.
+    """
+
     Gen = 'Gen'
     Exod = 'Exod'
     Lev = 'Lev'
@@ -867,6 +1180,11 @@ class BibleBook(Enum):
 
 
 class MassPart(Enum):
+    """
+    Parts that make up the Mass celebration.
+    Each part represents a specific element of the liturgical celebration.
+    """
+
     messianic_entry = 'messianic_entry'
     entrance_antiphon = 'entrance_antiphon'
     collect = 'collect'
@@ -898,142 +1216,205 @@ class MassPart(Enum):
 
 
 class CalendarMetadata(BaseModel):
+    """
+    Metadata for a calendar.
+    Contains essential information about the calendar's type and jurisdiction.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    type: Annotated[CalendarType, Field(description='The type of the calendar')]
-    jurisdiction: Annotated[
-        CalendarJurisdiction, Field(description='The jurisdiction of the calendar')
-    ]
+    type: CalendarType
+    """
+    The type of the calendar
+    """
+    jurisdiction: CalendarJurisdiction
+    """
+    The jurisdiction of the calendar
+    """
 
 
 class ParticularConfig(BaseModel):
+    """
+    Configuration options for "particular" (local/diocesan) calendars.
+
+    In liturgical terminology, a "particular" calendar is one that applies to a specific
+    region, diocese, or religious community, as opposed to the General Roman Calendar
+    which applies universally.
+
+    These settings can override or extend the default Romcal configuration or any parent
+    calendar configuration.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    epiphany_on_sunday: Annotated[
-        bool | None, Field(description='Epiphany is celebrated on a Sunday')
-    ] = None
-    ascension_on_sunday: Annotated[
-        bool | None, Field(description='Ascension is celebrated on a Sunday')
-    ] = None
-    corpus_christi_on_sunday: Annotated[
-        bool | None, Field(description='Corpus Christi is celebrated on a Sunday')
-    ] = None
-    easter_calculation_type: Annotated[
-        EasterCalculationType | None,
-        Field(description='The type of Easter calculation'),
-    ] = None
+    epiphany_on_sunday: bool | None = None
+    """
+    Epiphany is celebrated on a Sunday
+    """
+    ascension_on_sunday: bool | None = None
+    """
+    Ascension is celebrated on a Sunday
+    """
+    corpus_christi_on_sunday: bool | None = None
+    """
+    Corpus Christi is celebrated on a Sunday
+    """
+    easter_calculation_type: EasterCalculationType | None = None
+    """
+    The type of Easter calculation
+    """
 
 
 class DateDef1(BaseModel):
+    """
+    Simple month/day specification
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    month: Annotated[MonthIndex, Field(description='The month (1-12)')]
-    date: Annotated[int, Field(description='The day of the month (1-31)', ge=0, le=255)]
-    day_offset: Annotated[
-        int | None, Field(description='Optional day offset for adjustments')
-    ] = None
+    month: MonthIndex
+    """
+    The month (1-12)
+    """
+    date: Annotated[int, Field(ge=0, le=255)]
+    """
+    The day of the month (1-31)
+    """
+    day_offset: int | None = None
+    """
+    Optional day offset for adjustments
+    """
 
 
 class DateDef2(BaseModel):
+    """
+    Date function calculation (Easter, Epiphany, etc.)
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    date_fn: Annotated[
-        DateFn, Field(description='The date function to calculate the base date')
-    ]
-    day_offset: Annotated[
-        int | None, Field(description='Optional day offset for adjustments')
-    ] = None
+    date_fn: DateFn
+    """
+    The date function to calculate the base date
+    """
+    day_offset: int | None = None
+    """
+    Optional day offset for adjustments
+    """
 
 
 class DateDef3(BaseModel):
+    """
+    Nth weekday of a specific month
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    month: Annotated[MonthIndex, Field(description='The month (1-12)')]
-    day_of_week: Annotated[
-        DayOfWeek, Field(description='The day of the week (0=Sunday, 1=Monday, etc.)')
-    ]
-    nth_week_in_month: Annotated[
-        int,
-        Field(
-            description='Which occurrence of the weekday (1st, 2nd, 3rd, etc.)',
-            ge=0,
-            le=255,
-        ),
-    ]
-    day_offset: Annotated[
-        int | None, Field(description='Optional day offset for adjustments')
-    ] = None
+    month: MonthIndex
+    """
+    The month (1-12)
+    """
+    day_of_week: DayOfWeek
+    """
+    The day of the week (0=Sunday, 1=Monday, etc.)
+    """
+    nth_week_in_month: Annotated[int, Field(ge=0, le=255)]
+    """
+    Which occurrence of the weekday (1st, 2nd, 3rd, etc.)
+    """
+    day_offset: int | None = None
+    """
+    Optional day offset for adjustments
+    """
 
 
 class DateDef4(BaseModel):
+    """
+    Last weekday of a specific month
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    month: Annotated[MonthIndex, Field(description='The month (1-12)')]
-    last_day_of_week_in_month: Annotated[
-        DayOfWeek,
-        Field(description='The day of the week to find the last occurrence of'),
-    ]
-    day_offset: Annotated[
-        int | None, Field(description='Optional day offset for adjustments')
-    ] = None
+    month: MonthIndex
+    """
+    The month (1-12)
+    """
+    last_day_of_week_in_month: DayOfWeek
+    """
+    The day of the week to find the last occurrence of
+    """
+    day_offset: int | None = None
+    """
+    Optional day offset for adjustments
+    """
 
 
 class DateDef(RootModel[DateDef1 | DateDef2 | DateDef3 | DateDef4 | dict[str, Any]]):
-    root: Annotated[
-        DateDef1 | DateDef2 | DateDef3 | DateDef4 | dict[str, Any],
-        Field(
-            description='Date definition supporting various date calculation methods.\nProvides flexible ways to specify liturgical dates using different approaches.'
-        ),
-    ]
+    root: DateDef1 | DateDef2 | DateDef3 | DateDef4 | dict[str, Any]
+    """
+    Date definition supporting various date calculation methods.
+    Provides flexible ways to specify liturgical dates using different approaches.
+    """
 
 
 class ExceptionCondition1(BaseModel):
+    """
+    If the date is between two specified dates
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    from_: Annotated[
-        DateDef, Field(alias='from', description='The start date of the range')
-    ]
-    to: Annotated[DateDef, Field(description='The end date of the range')]
-    inclusive: Annotated[
-        bool,
-        Field(
-            description='Whether the range is inclusive of the start date and the end date'
-        ),
-    ]
+    from_: Annotated[DateDef, Field(alias='from')]
+    """
+    The start date of the range
+    """
+    to: DateDef
+    """
+    The end date of the range
+    """
+    inclusive: bool
+    """
+    Whether the range is inclusive of the start date and the end date
+    """
 
 
 class ExceptionCondition2(BaseModel):
+    """
+    If the date is the same as another specified date
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    date: Annotated[DateDef, Field(description='The date to compare against')]
+    date: DateDef
+    """
+    The date to compare against
+    """
 
 
 class ExceptionCondition(
     RootModel[ExceptionCondition1 | ExceptionCondition2 | ExceptionCondition3]
 ):
-    root: Annotated[
-        ExceptionCondition1 | ExceptionCondition2 | ExceptionCondition3,
-        Field(
-            description='Exception conditions that can trigger a date change.\nDefines various conditions under which a date exception applies.'
-        ),
-    ]
+    root: ExceptionCondition1 | ExceptionCondition2 | ExceptionCondition3
+    """
+    Exception conditions that can trigger a date change.
+    Defines various conditions under which a date exception applies.
+    """
 
 
 class DateDefExtended(RootModel[DateDef | DateDefWithOffset]):
-    root: Annotated[
-        DateDef | DateDefWithOffset,
-        Field(
-            description='Extended date definition supporting both regular dates and offset dates.\nProvides flexibility for date calculations with optional adjustments.'
-        ),
-    ]
+    root: DateDef | DateDefWithOffset
+    """
+    Extended date definition supporting both regular dates and offset dates.
+    Provides flexibility for date calculations with optional adjustments.
+    """
 
 
 class CommonsDef(RootModel[CommonDefinition | list[CommonDefinition]]):
@@ -1041,12 +1422,11 @@ class CommonsDef(RootModel[CommonDefinition | list[CommonDefinition]]):
 
 
 class TitlesDef(RootModel[list[Title] | CompoundTitle]):
-    root: Annotated[
-        list[Title] | CompoundTitle,
-        Field(
-            description='Title definition that can be either a simple list or a compound definition.\nSupports both direct title lists and compound title operations.'
-        ),
-    ]
+    root: list[Title] | CompoundTitle
+    """
+    Title definition that can be either a simple list or a compound definition.
+    Supports both direct title lists and compound title operations.
+    """
 
 
 class ColorsDef(RootModel[Color | list[Color]]):
@@ -1054,916 +1434,992 @@ class ColorsDef(RootModel[Color | list[Color]]):
 
 
 class MassCycleDefinition(BaseModel):
+    """
+    Mass contents for a specific mass time, organized by liturgical cycle
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    invariant: Annotated[
-        MassContent | None,
-        Field(description='Invariant content that applies to all cycles'),
-    ] = None
-    year_1: Annotated[
-        MassContent | None, Field(description='Year 1 of the weekday cycle (Cycle I)')
-    ] = None
-    year_2: Annotated[
-        MassContent | None, Field(description='Year 2 of the weekday cycle (Cycle II)')
-    ] = None
-    year_a: Annotated[
-        MassContent | None, Field(description='Year A of the Sunday cycle')
-    ] = None
-    year_a_b: Annotated[
-        MassContent | None,
-        Field(description='Combined years A and B of the Sunday cycle'),
-    ] = None
-    year_a_c: Annotated[
-        MassContent | None,
-        Field(description='Combined years A and C of the Sunday cycle'),
-    ] = None
-    year_b: Annotated[
-        MassContent | None, Field(description='Year B of the Sunday cycle')
-    ] = None
-    year_b_c: Annotated[
-        MassContent | None,
-        Field(description='Combined years B and C of the Sunday cycle'),
-    ] = None
-    year_c: Annotated[
-        MassContent | None, Field(description='Year C of the Sunday cycle')
-    ] = None
+    invariant: MassContent | None = None
+    """
+    Invariant content that applies to all cycles
+    """
+    year_1: MassContent | None = None
+    """
+    Year 1 of the weekday cycle (Cycle I)
+    """
+    year_2: MassContent | None = None
+    """
+    Year 2 of the weekday cycle (Cycle II)
+    """
+    year_a: MassContent | None = None
+    """
+    Year A of the Sunday cycle
+    """
+    year_a_b: MassContent | None = None
+    """
+    Combined years A and B of the Sunday cycle
+    """
+    year_a_c: MassContent | None = None
+    """
+    Combined years A and C of the Sunday cycle
+    """
+    year_b: MassContent | None = None
+    """
+    Year B of the Sunday cycle
+    """
+    year_b_c: MassContent | None = None
+    """
+    Combined years B and C of the Sunday cycle
+    """
+    year_c: MassContent | None = None
+    """
+    Year C of the Sunday cycle
+    """
 
 
 class SeasonsMetadata(BaseModel):
+    """
+    Liturgical season names and descriptions in the locale language.
+    Provides localized names for each liturgical season and their components.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    advent: Annotated[
-        AdventSeason | None, Field(description='Advent season names and descriptions')
-    ] = None
-    christmas_time: Annotated[
-        ChristmasTimeSeason | None,
-        Field(description='Christmas Time season names and descriptions'),
-    ] = None
-    ordinary_time: Annotated[
-        OrdinaryTimeSeason | None,
-        Field(description='Ordinary Time season names and descriptions'),
-    ] = None
-    lent: Annotated[
-        LentSeason | None, Field(description='Lent season names and descriptions')
-    ] = None
-    paschal_triduum: Annotated[
-        PaschalTriduumSeason | None,
-        Field(description='Paschal Triduum season names and descriptions'),
-    ] = None
-    easter_time: Annotated[
-        EasterTimeSeason | None,
-        Field(description='Easter Time season names and descriptions'),
-    ] = None
+    advent: AdventSeason | None = None
+    """
+    Advent season names and descriptions
+    """
+    christmas_time: ChristmasTimeSeason | None = None
+    """
+    Christmas Time season names and descriptions
+    """
+    ordinary_time: OrdinaryTimeSeason | None = None
+    """
+    Ordinary Time season names and descriptions
+    """
+    lent: LentSeason | None = None
+    """
+    Lent season names and descriptions
+    """
+    paschal_triduum: PaschalTriduumSeason | None = None
+    """
+    Paschal Triduum season names and descriptions
+    """
+    easter_time: EasterTimeSeason | None = None
+    """
+    Easter Time season names and descriptions
+    """
 
 
 class SaintDateDef1(BaseModel):
+    """
+    Date range between two dates
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    between: Annotated[
-        list[SaintDate],
-        Field(
-            description='The date range (start and end dates)',
-            max_length=2,
-            min_length=2,
-        ),
-    ]
+    between: Annotated[list[SaintDate], Field(max_length=2, min_length=2)]
+    """
+    The date range (start and end dates)
+    """
 
 
 class SaintDateDef2(BaseModel):
+    """
+    Multiple alternative dates (any one of them)
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    or_: Annotated[
-        list[SaintDate], Field(alias='or', description='The list of alternative dates')
-    ]
+    or_: Annotated[list[SaintDate], Field(alias='or')]
+    """
+    The list of alternative dates
+    """
 
 
 class SaintDateDef(
     RootModel[SaintDate | SaintDateDef1 | SaintDateDef2 | SaintDateDef3]
 ):
-    root: Annotated[
-        SaintDate | SaintDateDef1 | SaintDateDef2 | SaintDateDef3,
-        Field(
-            description='Saint date definition supporting various date specifications.\nAllows single dates, date ranges, multiple alternatives, or century specifications.'
-        ),
-    ]
+    root: SaintDate | SaintDateDef1 | SaintDateDef2 | SaintDateDef3
+    """
+    Saint date definition supporting various date specifications.
+    Allows single dates, date ranges, multiple alternatives, or century specifications.
+    """
 
 
 class PeriodInfo(BaseModel):
+    """
+    Liturgical period information with localized name.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    key: Annotated[Period, Field(description='The period key')]
-    name: Annotated[str, Field(description='The localized name of the period')]
+    key: Period
+    """
+    The period key
+    """
+    name: str
+    """
+    The localized name of the period
+    """
 
 
 class CommonInfo(BaseModel):
+    """
+    Liturgical common information with localized name.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    key: Annotated[Common, Field(description='The common key')]
-    name: Annotated[str, Field(description='The localized name of the common')]
+    key: Common
+    """
+    The common key
+    """
+    name: str
+    """
+    The localized name of the common
+    """
 
 
 class MassInfo(BaseModel):
+    """
+    Information about a mass celebration for a liturgical day.
+    Contains the type of mass and its localized name.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    type: Annotated[
-        MassTime,
-        Field(
-            description='The type of mass (e.g., DayMass, EasterVigil, etc.)\nSerialized as SCREAMING_SNAKE_CASE (e.g., "DAY_MASS")'
-        ),
-    ]
-    name: Annotated[
-        str,
-        Field(
-            description='The localized name of the mass type (translation key in snake_case)'
-        ),
-    ]
+    type: MassTime
+    """
+    The type of mass (e.g., DayMass, EasterVigil, etc.)
+    Serialized as SCREAMING_SNAKE_CASE (e.g., "DAY_MASS")
+    """
+    name: str
+    """
+    The localized name of the mass type (translation key in snake_case)
+    """
 
 
 class DateDefException(BaseModel):
+    """
+    The liturgical day date exception.
+    Represents a condition and the date to set when that condition is met.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    when: Annotated[
-        ExceptionCondition,
-        Field(description='The condition that triggers the exception'),
-    ]
-    then: Annotated[
-        DateDefExtended, Field(description='The date to set when the condition is met')
-    ]
+    when: ExceptionCondition
+    """
+    The condition that triggers the exception
+    """
+    then: DateDefExtended
+    """
+    The date to set when the condition is met
+    """
 
 
 class EntityOverride(BaseModel):
+    """
+    Custom entity definition that extends or overrides properties from the entity catalog.
+    Used when a liturgical day needs specific entity properties that differ from the base entity.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    id: Annotated[
-        str,
-        Field(
-            description='The ID of the entity item (must reference an existing entity in the catalog)'
-        ),
-    ]
-    titles: Annotated[
-        TitlesDef | None,
-        Field(
-            description='The custom titles for this entity in the context of this liturgical day'
-        ),
-    ] = None
-    hide_titles: Annotated[
-        bool | None,
-        Field(
-            description='Whether to hide titles when displaying this entity (useful when titles are already included in the entity name)'
-        ),
-    ] = None
-    count: Annotated[
-        SaintCount | None,
-        Field(
-            description='The number of persons this entity represents (useful for groups of martyrs or saints)'
-        ),
-    ] = None
+    id: str
+    """
+    The ID of the entity item (must reference an existing entity in the catalog)
+    """
+    titles: TitlesDef | None = None
+    """
+    The custom titles for this entity in the context of this liturgical day
+    """
+    hide_titles: bool | None = None
+    """
+    Whether to hide titles when displaying this entity (useful when titles are already included in the entity name)
+    """
+    count: SaintCount | None = None
+    """
+    The number of persons this entity represents (useful for groups of martyrs or saints)
+    """
 
 
 class MassesDefinitions(BaseModel):
+    """
+    All mass definitions for a liturgical day
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    celebration_of_the_passion: Annotated[
-        MassCycleDefinition | None,
-        Field(
-            description="Celebration of the Passion - special celebration of Christ's passion"
-        ),
-    ] = None
-    chrism_mass: Annotated[
-        MassCycleDefinition | None,
-        Field(
-            description='Chrism Mass - Mass where holy oils are blessed, typically on Holy Thursday morning'
-        ),
-    ] = None
-    day_mass: Annotated[
-        MassCycleDefinition | None,
-        Field(description='Day Mass - regular Mass celebrated during the day'),
-    ] = None
-    easter_vigil: Annotated[
-        MassCycleDefinition | None,
-        Field(
-            description='Easter Vigil - the most important Mass of the liturgical year, celebrated on Holy Saturday night'
-        ),
-    ] = None
-    evening_mass_of_the_lords_supper: Annotated[
-        MassCycleDefinition | None,
-        Field(
-            description="Evening Mass of the Lord's Supper - Mass celebrated on Holy Thursday evening"
-        ),
-    ] = None
-    mass_at_dawn: Annotated[
-        MassCycleDefinition | None,
-        Field(
-            description='Mass at Dawn - Mass celebrated at dawn, particularly on Easter Sunday'
-        ),
-    ] = None
-    mass_of_the_passion: Annotated[
-        MassCycleDefinition | None,
-        Field(
-            description="Mass of the Passion - Mass focusing on Christ's passion, beginning with the procession with palms"
-        ),
-    ] = None
-    morning_mass: Annotated[
-        MassCycleDefinition | None,
-        Field(description='Morning Mass - Mass celebrated in the morning'),
-    ] = None
-    night_mass: Annotated[
-        MassCycleDefinition | None,
-        Field(description='Night Mass - Mass celebrated during the night hours'),
-    ] = None
-    previous_evening_mass: Annotated[
-        MassCycleDefinition | None,
-        Field(
-            description='Previous Evening Mass - Mass celebrated the evening before a major feast'
-        ),
-    ] = None
+    celebration_of_the_passion: MassCycleDefinition | None = None
+    """
+    Celebration of the Passion - special celebration of Christ's passion
+    """
+    chrism_mass: MassCycleDefinition | None = None
+    """
+    Chrism Mass - Mass where holy oils are blessed, typically on Holy Thursday morning
+    """
+    day_mass: MassCycleDefinition | None = None
+    """
+    Day Mass - regular Mass celebrated during the day
+    """
+    easter_vigil: MassCycleDefinition | None = None
+    """
+    Easter Vigil - the most important Mass of the liturgical year, celebrated on Holy Saturday night
+    """
+    evening_mass_of_the_lords_supper: MassCycleDefinition | None = None
+    """
+    Evening Mass of the Lord's Supper - Mass celebrated on Holy Thursday evening
+    """
+    mass_at_dawn: MassCycleDefinition | None = None
+    """
+    Mass at Dawn - Mass celebrated at dawn, particularly on Easter Sunday
+    """
+    mass_of_the_passion: MassCycleDefinition | None = None
+    """
+    Mass of the Passion - Mass focusing on Christ's passion, beginning with the procession with palms
+    """
+    morning_mass: MassCycleDefinition | None = None
+    """
+    Morning Mass - Mass celebrated in the morning
+    """
+    night_mass: MassCycleDefinition | None = None
+    """
+    Night Mass - Mass celebrated during the night hours
+    """
+    previous_evening_mass: MassCycleDefinition | None = None
+    """
+    Previous Evening Mass - Mass celebrated the evening before a major feast
+    """
 
 
 class ResourcesMetadata(BaseModel):
+    """
+    Metadata for localized resources.
+    Contains all the localized strings and configurations for a specific locale.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    ordinal_format: Annotated[
-        OrdinalFormat | None,
-        Field(
-            description='Format for displaying ordinal numbers (defaults to Numeric if not specified)'
-        ),
-    ] = None
-    ordinals_letters: Annotated[
-        dict[str, Any] | None,
-        Field(
-            description='Ordinal numbers as words (first, second, third, etc.) in the locale language'
-        ),
-    ] = None
-    ordinals_numeric: Annotated[
-        dict[str, Any] | None,
-        Field(
-            description='Ordinal numbers as numeric with suffix (1st, 2nd, 3rd, etc.) in the locale language'
-        ),
-    ] = None
-    weekdays: Annotated[
-        dict[str, Any] | None,
-        Field(
-            description='Weekday names (Sunday, Monday, etc.) in the locale language'
-        ),
-    ] = None
-    months: Annotated[
-        dict[str, Any] | None,
-        Field(
-            description='Month names (January, February, etc.) in the locale language'
-        ),
-    ] = None
-    colors: Annotated[
-        LocaleColors | None,
-        Field(description='Liturgical color names in the locale language'),
-    ] = None
-    seasons: Annotated[
-        SeasonsMetadata | None,
-        Field(
-            description='Liturgical season names and descriptions in the locale language'
-        ),
-    ] = None
-    periods: Annotated[
-        PeriodsMetadata | None,
-        Field(description='Liturgical period names in the locale language'),
-    ] = None
-    ranks: Annotated[
-        RanksMetadata | None,
-        Field(description='Liturgical rank names in the locale language'),
-    ] = None
-    cycles: Annotated[
-        CyclesMetadata | None,
-        Field(description='Liturgical cycle names in the locale language'),
-    ] = None
+    ordinal_format: OrdinalFormat | None = None
+    """
+    Format for displaying ordinal numbers (defaults to Numeric if not specified)
+    """
+    ordinals_letters: dict[str, Any] | None = None
+    """
+    Ordinal numbers as words (first, second, third, etc.) in the locale language
+    """
+    ordinals_numeric: dict[str, Any] | None = None
+    """
+    Ordinal numbers as numeric with suffix (1st, 2nd, 3rd, etc.) in the locale language
+    """
+    weekdays: dict[str, Any] | None = None
+    """
+    Weekday names (Sunday, Monday, etc.) in the locale language
+    """
+    months: dict[str, Any] | None = None
+    """
+    Month names (January, February, etc.) in the locale language
+    """
+    colors: LocaleColors | None = None
+    """
+    Liturgical color names in the locale language
+    """
+    seasons: SeasonsMetadata | None = None
+    """
+    Liturgical season names and descriptions in the locale language
+    """
+    periods: PeriodsMetadata | None = None
+    """
+    Liturgical period names in the locale language
+    """
+    ranks: RanksMetadata | None = None
+    """
+    Liturgical rank names in the locale language
+    """
+    cycles: CyclesMetadata | None = None
+    """
+    Liturgical cycle names in the locale language
+    """
 
 
 class Entity(BaseModel):
     model_config = ConfigDict(
         extra='forbid',
     )
-    id: Annotated[
-        str | None, Field(description='The unique identifier of the entity')
-    ] = None
-    type: Annotated[
-        EntityType | None,
-        Field(
-            description='The type of the entity.\n\nDefaults to `EntityType::Person`.'
-        ),
-    ] = 'PERSON'
-    fullname: Annotated[
-        str | None, Field(description='The full name of the entity.')
-    ] = None
-    name: Annotated[
-        str | None,
-        Field(
-            description='The short name of the entity, without the canonization level and titles.'
-        ),
-    ] = None
-    canonization_level: Annotated[
-        CanonizationLevel | None,
-        Field(description='The canonization level of a person.'),
-    ] = None
-    date_of_canonization: Annotated[
-        SaintDateDef | None,
-        Field(
-            description="Date of Canonization, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century."
-        ),
-    ] = None
-    date_of_canonization_is_approximative: Annotated[
-        bool | None,
-        Field(
-            description="Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'."
-        ),
-    ] = None
-    date_of_beatification: Annotated[
-        SaintDateDef | None,
-        Field(
-            description="Date of Beatification, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century."
-        ),
-    ] = None
-    date_of_beatification_is_approximative: Annotated[
-        bool | None,
-        Field(
-            description="Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'."
-        ),
-    ] = None
-    hide_canonization_level: Annotated[
-        bool | None,
-        Field(
-            description="Specify if the canonization level should not be displayed.\nIt's generally the case when the canonization are already included in the name."
-        ),
-    ] = None
-    titles: Annotated[
-        list[Title] | None, Field(description='Titles of the Saint or the Blessed')
-    ] = None
-    sex: Annotated[
-        Sex | None,
-        Field(
-            description='Determine if the Saint or the Blessed is a male or a female.'
-        ),
-    ] = None
-    hide_titles: Annotated[
-        bool | None,
-        Field(
-            description="Specify if the titles should not be displayed.\nIt's generally the case when titles are already included in the name."
-        ),
-    ] = None
-    date_of_dedication: Annotated[
-        SaintDateDef | None,
-        Field(
-            description="Date of Dedication of a church, basilica, or cathedral (or other place of worship),\nas a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century."
-        ),
-    ] = None
-    date_of_birth: Annotated[
-        SaintDateDef | None,
-        Field(
-            description="Date of Birth, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century."
-        ),
-    ] = None
-    date_of_birth_is_approximative: Annotated[
-        bool | None,
-        Field(
-            description="Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'."
-        ),
-    ] = None
-    date_of_death: Annotated[
-        SaintDateDef | None,
-        Field(
-            description="Date of Death, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century."
-        ),
-    ] = None
-    date_of_death_is_approximative: Annotated[
-        bool | None,
-        Field(
-            description="Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'."
-        ),
-    ] = None
-    count: Annotated[
-        SaintCount | None,
-        Field(
-            description="Number of person that this definition represent.\nIt could be set as 'many' if the number is not defined."
-        ),
-    ] = None
-    sources: Annotated[
-        list[str] | None,
-        Field(description='Sources for the information about this entity'),
-    ] = None
-    field_todo: Annotated[
-        list[str] | None,
-        Field(alias='_todo', description='Internal notes (not serialized).'),
-    ] = None
+    id: str | None = None
+    """
+    The unique identifier of the entity
+    """
+    type: EntityType | None = 'PERSON'
+    """
+    The type of the entity.
+
+    Defaults to `EntityType::Person`.
+    """
+    fullname: str | None = None
+    """
+    The full name of the entity.
+    """
+    name: str | None = None
+    """
+    The short name of the entity, without the canonization level and titles.
+    """
+    canonization_level: CanonizationLevel | None = None
+    """
+    The canonization level of a person.
+    """
+    date_of_canonization: SaintDateDef | None = None
+    """
+    Date of Canonization, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),
+    or an object describing date range, multiple possible date, or a century.
+    """
+    date_of_canonization_is_approximative: bool | None = None
+    """
+    Specify whether an approximate indicator should be added, when the date is displayed.
+    For example in English: 'c. 201'.
+    """
+    date_of_beatification: SaintDateDef | None = None
+    """
+    Date of Beatification, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),
+    or an object describing date range, multiple possible date, or a century.
+    """
+    date_of_beatification_is_approximative: bool | None = None
+    """
+    Specify whether an approximate indicator should be added, when the date is displayed.
+    For example in English: 'c. 201'.
+    """
+    hide_canonization_level: bool | None = None
+    """
+    Specify if the canonization level should not be displayed.
+    It's generally the case when the canonization are already included in the name.
+    """
+    titles: list[Title] | None = None
+    """
+    Titles of the Saint or the Blessed
+    """
+    sex: Sex | None = None
+    """
+    Determine if the Saint or the Blessed is a male or a female.
+    """
+    hide_titles: bool | None = None
+    """
+    Specify if the titles should not be displayed.
+    It's generally the case when titles are already included in the name.
+    """
+    date_of_dedication: SaintDateDef | None = None
+    """
+    Date of Dedication of a church, basilica, or cathedral (or other place of worship),
+    as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),
+    or an object describing date range, multiple possible date, or a century.
+    """
+    date_of_birth: SaintDateDef | None = None
+    """
+    Date of Birth, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),
+    or an object describing date range, multiple possible date, or a century.
+    """
+    date_of_birth_is_approximative: bool | None = None
+    """
+    Specify whether an approximate indicator should be added, when the date is displayed.
+    For example in English: 'c. 201'.
+    """
+    date_of_death: SaintDateDef | None = None
+    """
+    Date of Death, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),
+    or an object describing date range, multiple possible date, or a century.
+    """
+    date_of_death_is_approximative: bool | None = None
+    """
+    Specify whether an approximate indicator should be added, when the date is displayed.
+    For example in English: 'c. 201'.
+    """
+    count: SaintCount | None = None
+    """
+    Number of person that this definition represent.
+    It could be set as 'many' if the number is not defined.
+    """
+    sources: list[str] | None = None
+    """
+    Sources for the information about this entity
+    """
+    field_todo: Annotated[list[str] | None, Field(alias='_todo')] = None
+    """
+    Internal notes (not serialized).
+    """
 
 
 class ParentOverride(BaseModel):
+    """
+    Represents the differences between a liturgical day definition and its parent definition.
+    This is a lightweight structure that only contains fields that can be overridden.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    from_calendar_id: Annotated[
-        str,
-        Field(description='The ID of the calendar from which this override originates'),
-    ]
-    date_def: Annotated[
-        DateDef | None, Field(description='The date definition if it was changed')
-    ] = None
-    date_exceptions: Annotated[
-        list[DateDefException] | None,
-        Field(description='The date exceptions if they were changed'),
-    ] = None
-    precedence: Annotated[
-        Precedence | None, Field(description='The precedence if it was changed')
-    ] = None
-    rank: Annotated[Rank | None, Field(description='The rank if it was changed')] = None
-    colors: Annotated[
-        list[ColorInfo] | None, Field(description='The colors if they were changed')
-    ] = None
-    titles: Annotated[
-        TitlesDef | None, Field(description='The titles if they were changed')
-    ] = None
-    commons_def: Annotated[
-        list[CommonDefinition] | None,
-        Field(description='The commons definition if it was changed'),
-    ] = None
-    is_holy_day_of_obligation: Annotated[
-        bool | None,
-        Field(description='The is_holy_day_of_obligation flag if it was changed'),
-    ] = None
-    is_optional: Annotated[
-        bool | None, Field(description='The is_optional flag if it was changed')
-    ] = None
-    allow_similar_rank_items: Annotated[
-        bool | None,
-        Field(description='The allow_similar_rank_items flag if it was changed'),
-    ] = None
+    from_calendar_id: str
+    """
+    The ID of the calendar from which this override originates
+    """
+    date_def: DateDef | None = None
+    """
+    The date definition if it was changed
+    """
+    date_exceptions: list[DateDefException] | None = None
+    """
+    The date exceptions if they were changed
+    """
+    precedence: Precedence | None = None
+    """
+    The precedence if it was changed
+    """
+    rank: Rank | None = None
+    """
+    The rank if it was changed
+    """
+    colors: list[ColorInfo] | None = None
+    """
+    The colors if they were changed
+    """
+    titles: TitlesDef | None = None
+    """
+    The titles if they were changed
+    """
+    commons_def: list[CommonDefinition] | None = None
+    """
+    The commons definition if it was changed
+    """
+    is_holy_day_of_obligation: bool | None = None
+    """
+    The is_holy_day_of_obligation flag if it was changed
+    """
+    is_optional: bool | None = None
+    """
+    The is_optional flag if it was changed
+    """
+    allow_similar_rank_items: bool | None = None
+    """
+    The allow_similar_rank_items flag if it was changed
+    """
 
 
 class CelebrationSummary(BaseModel):
+    """
+    Summary of a celebration for use in optional celebrations list.
+    Contains the essential fields from a LiturgicalDay that identify a celebration.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    id: Annotated[str, Field(description='The unique identifier of the liturgical day')]
-    fullname: Annotated[str, Field(description='The full name of the liturgical day')]
-    precedence: Annotated[
-        Precedence,
-        Field(description='The liturgical precedence for this liturgical day'),
-    ]
-    rank: Annotated[
-        Rank, Field(description='The liturgical rank for this liturgical day')
-    ]
-    rank_name: Annotated[
-        str, Field(description='The localized liturgical rank for this liturgical day')
-    ]
-    colors: Annotated[
-        list[ColorInfo],
-        Field(description='The liturgical colors for this liturgical day'),
-    ]
-    commons: Annotated[
-        list[CommonInfo],
-        Field(description='The common prayers/readings used for this celebration'),
-    ]
-    entities: Annotated[
-        list[Entity],
-        Field(
-            description='The entities (Saints, Blessed, or Places) linked to this liturgical day'
-        ),
-    ]
-    titles: Annotated[
-        TitlesDef, Field(description='The titles for this liturgical day')
-    ]
-    is_holy_day_of_obligation: Annotated[
-        bool, Field(description='Holy days of obligation')
-    ]
-    is_optional: Annotated[
-        bool, Field(description='Indicates if this liturgical day is optional')
-    ]
-    from_calendar_id: Annotated[
-        str,
-        Field(
-            description='The ID of the calendar where this liturgical day is defined'
-        ),
-    ]
+    id: str
+    """
+    The unique identifier of the liturgical day
+    """
+    fullname: str
+    """
+    The full name of the liturgical day
+    """
+    precedence: Precedence
+    """
+    The liturgical precedence for this liturgical day
+    """
+    rank: Rank
+    """
+    The liturgical rank for this liturgical day
+    """
+    rank_name: str
+    """
+    The localized liturgical rank for this liturgical day
+    """
+    colors: list[ColorInfo]
+    """
+    The liturgical colors for this liturgical day
+    """
+    commons: list[CommonInfo]
+    """
+    The common prayers/readings used for this celebration
+    """
+    entities: list[Entity]
+    """
+    The entities (Saints, Blessed, or Places) linked to this liturgical day
+    """
+    titles: TitlesDef
+    """
+    The titles for this liturgical day
+    """
+    is_holy_day_of_obligation: bool
+    """
+    Holy days of obligation
+    """
+    is_optional: bool
+    """
+    Indicates if this liturgical day is optional
+    """
+    from_calendar_id: str
+    """
+    The ID of the calendar where this liturgical day is defined
+    """
 
 
 class Resources(BaseModel):
+    """
+    Resources definition
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
     field_schema: Annotated[str | None, Field(alias='$schema')] = None
-    locale: Annotated[
-        str,
-        Field(description='Locale code of the resources, in BCP-47 IETF tag format'),
-    ]
-    metadata: Annotated[
-        ResourcesMetadata | None, Field(description='Metadata of the resources')
-    ] = None
-    entities: Annotated[
-        dict[str, Any] | None,
-        Field(
-            description='Entities of the resources: a person, a place, an event, etc.'
-        ),
-    ] = None
+    locale: str
+    """
+    Locale code of the resources, in BCP-47 IETF tag format
+    """
+    metadata: ResourcesMetadata | None = None
+    """
+    Metadata of the resources
+    """
+    entities: dict[str, Any] | None = None
+    """
+    Entities of the resources: a person, a place, an event, etc.
+    """
 
 
 class LiturgicalDay(BaseModel):
+    """
+    A single day in the liturgical calendar with computed values and inheritance information.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    id: Annotated[str, Field(description='The unique identifier of the liturgical day')]
-    fullname: Annotated[str, Field(description='The full name of the liturgical day')]
-    date: Annotated[str, Field(description='The computed date of the liturgical day.')]
-    date_def: Annotated[
-        DateDef, Field(description='The date definition for this liturgical day.')
-    ]
-    date_exceptions: Annotated[
-        list[DateDefException],
-        Field(description='The date definition exceptions for this liturgical day.'),
-    ]
-    precedence: Annotated[
-        Precedence,
-        Field(description='The liturgical precedence for this liturgical day.'),
-    ]
-    rank: Annotated[
-        Rank, Field(description='The liturgical rank for this liturgical day.')
-    ]
-    rank_name: Annotated[
-        str, Field(description='The localized liturgical rank for this liturgical day.')
-    ]
-    allow_similar_rank_items: Annotated[
-        bool,
-        Field(
-            description='Allows similar items with the same rank and same or lower precedence\nto coexist without this liturgical day overwriting them.'
-        ),
-    ]
-    is_holy_day_of_obligation: Annotated[
-        bool,
-        Field(
-            description='Holy days of obligation are days on which the faithful are expected to attend Mass,\nand engage in rest from work and recreation.'
-        ),
-    ]
-    is_optional: Annotated[
-        bool,
-        Field(
-            description='Indicates if this liturgical day is optional within a specific liturgical calendar.'
-        ),
-    ]
-    season: Annotated[
-        Season | None,
-        Field(
-            description='The liturgical seasons to which this liturgical day belongs.'
-        ),
-    ] = None
-    season_name: Annotated[
-        str | None, Field(description='The liturgical season name.')
-    ] = None
-    periods: Annotated[
-        list[PeriodInfo],
-        Field(
-            description='The liturgical periods to which this liturgical day belongs.'
-        ),
-    ]
-    commons: Annotated[
-        list[CommonInfo],
-        Field(
-            description='The common prayers, readings, and chants used for celebrating saints or\nfeasts that belong to a specific category, such as martyrs, virgins, pastors, or the Blessed\nVirgin Mary.'
-        ),
-    ]
-    colors: Annotated[
-        list[ColorInfo],
-        Field(description='The liturgical colors for this liturgical day.'),
-    ]
-    masses: Annotated[
-        list[MassInfo],
-        Field(
-            description='The masses celebrated on this liturgical day.\nMost days have a single DayMass, but some have multiple masses\n(e.g., Christmas: PreviousEveningMass, NightMass, MassAtDawn, DayMass).\nAliturgical days like Holy Saturday have an empty list.'
-        ),
-    ]
-    titles: Annotated[
-        TitlesDef, Field(description='The titles for this liturgical day.')
-    ]
-    entities: Annotated[
-        list[Entity],
-        Field(
-            description='The entities (Saints, Blessed, or Places) linked to this liturgical day.'
-        ),
-    ]
-    week_of_season: Annotated[
-        int | None,
-        Field(
-            description='The week number of the current liturgical season.\nStarts from `1`, except in the seasons of lent,\nthe week of Ash Wednesday to the next Saturday is counted as `0`.',
-            ge=0,
-        ),
-    ] = None
-    day_of_season: Annotated[
-        int | None,
-        Field(description='The day number within the current liturgical season.', ge=0),
-    ] = None
-    day_of_week: Annotated[
-        DayOfWeek,
-        Field(
-            description='The day of the week for this liturgical day.\nReturns a number from 0 (Sunday) to 6 (Saturday).'
-        ),
-    ]
-    nth_day_of_week_in_month: Annotated[
-        int,
-        Field(
-            description='The nth occurrence of this day of the week within the current month.\nFor example, the 3rd Sunday of the month would have nth_day_of_week_in_month = 3.',
-            ge=0,
-            le=255,
-        ),
-    ]
-    start_of_season: Annotated[
-        str | None,
-        Field(
-            description='The first day of the current liturgical season for this liturgical day.'
-        ),
-    ] = None
-    end_of_season: Annotated[
-        str | None,
-        Field(
-            description='The last day of the current liturgical season for this liturgical day.'
-        ),
-    ] = None
-    start_of_liturgical_year: Annotated[
-        str,
-        Field(
-            description='The first day of the current liturgical year for this liturgical day,\ni.e. the first Sunday of Advent.'
-        ),
-    ]
-    end_of_liturgical_year: Annotated[
-        str,
-        Field(
-            description='The last day of the current liturgical year for this liturgical day,\ni.e. the last Saturday of Ordinary Time, in the 34th week.'
-        ),
-    ]
-    sunday_cycle: Annotated[
-        SundayCycle,
-        Field(description='The Sunday cycle to which this liturgical day belongs.'),
-    ]
-    sunday_cycle_name: Annotated[
-        str,
-        Field(
-            description='The localized name of the Sunday cycle to which this liturgical day belongs.'
-        ),
-    ]
-    weekday_cycle: Annotated[
-        WeekdayCycle,
-        Field(description='The weekday cycle to which this liturgical day belongs.'),
-    ]
-    weekday_cycle_name: Annotated[
-        str,
-        Field(
-            description='The localized name of the weekday cycle to which this liturgical day belongs.'
-        ),
-    ]
-    psalter_week: Annotated[
-        PsalterWeekCycle,
-        Field(
-            description='The psalter week cycle to which this liturgical day belongs.'
-        ),
-    ]
-    psalter_week_name: Annotated[
-        str,
-        Field(
-            description='The localized name of the psalter week cycle to which this liturgical day belongs.'
-        ),
-    ]
-    from_calendar_id: Annotated[
-        str,
-        Field(
-            description='The ID of the calendar where this liturgical day is defined.\nIndicates the source calendar in the inheritance chain.'
-        ),
-    ]
-    parent_overrides: Annotated[
-        list[ParentOverride],
-        Field(
-            description='Contains the differences between this liturgical day and its parent definitions.\nEach element in the array represents the diff from a parent calendar definition.\nThe array is ordered from most general (e.g., general_roman) to most specific.'
-        ),
-    ]
+    id: str
+    """
+    The unique identifier of the liturgical day
+    """
+    fullname: str
+    """
+    The full name of the liturgical day
+    """
+    date: str
+    """
+    The computed date of the liturgical day.
+    """
+    date_def: DateDef
+    """
+    The date definition for this liturgical day.
+    """
+    date_exceptions: list[DateDefException]
+    """
+    The date definition exceptions for this liturgical day.
+    """
+    precedence: Precedence
+    """
+    The liturgical precedence for this liturgical day.
+    """
+    rank: Rank
+    """
+    The liturgical rank for this liturgical day.
+    """
+    rank_name: str
+    """
+    The localized liturgical rank for this liturgical day.
+    """
+    allow_similar_rank_items: bool
+    """
+    Allows similar items with the same rank and same or lower precedence
+    to coexist without this liturgical day overwriting them.
+    """
+    is_holy_day_of_obligation: bool
+    """
+    Holy days of obligation are days on which the faithful are expected to attend Mass,
+    and engage in rest from work and recreation.
+    """
+    is_optional: bool
+    """
+    Indicates if this liturgical day is optional within a specific liturgical calendar.
+    """
+    season: Season | None = None
+    """
+    The liturgical seasons to which this liturgical day belongs.
+    """
+    season_name: str | None = None
+    """
+    The liturgical season name.
+    """
+    periods: list[PeriodInfo]
+    """
+    The liturgical periods to which this liturgical day belongs.
+    """
+    commons: list[CommonInfo]
+    """
+    The common prayers, readings, and chants used for celebrating saints or
+    feasts that belong to a specific category, such as martyrs, virgins, pastors, or the Blessed
+    Virgin Mary.
+    """
+    colors: list[ColorInfo]
+    """
+    The liturgical colors for this liturgical day.
+    """
+    masses: list[MassInfo]
+    """
+    The masses celebrated on this liturgical day.
+    Most days have a single DayMass, but some have multiple masses
+    (e.g., Christmas: PreviousEveningMass, NightMass, MassAtDawn, DayMass).
+    Aliturgical days like Holy Saturday have an empty list.
+    """
+    titles: TitlesDef
+    """
+    The titles for this liturgical day.
+    """
+    entities: list[Entity]
+    """
+    The entities (Saints, Blessed, or Places) linked to this liturgical day.
+    """
+    week_of_season: Annotated[int | None, Field(ge=0)] = None
+    """
+    The week number of the current liturgical season.
+    Starts from `1`, except in the seasons of lent,
+    the week of Ash Wednesday to the next Saturday is counted as `0`.
+    """
+    day_of_season: Annotated[int | None, Field(ge=0)] = None
+    """
+    The day number within the current liturgical season.
+    """
+    day_of_week: DayOfWeek
+    """
+    The day of the week for this liturgical day.
+    Returns a number from 0 (Sunday) to 6 (Saturday).
+    """
+    nth_day_of_week_in_month: Annotated[int, Field(ge=0, le=255)]
+    """
+    The nth occurrence of this day of the week within the current month.
+    For example, the 3rd Sunday of the month would have nth_day_of_week_in_month = 3.
+    """
+    start_of_season: str | None = None
+    """
+    The first day of the current liturgical season for this liturgical day.
+    """
+    end_of_season: str | None = None
+    """
+    The last day of the current liturgical season for this liturgical day.
+    """
+    start_of_liturgical_year: str
+    """
+    The first day of the current liturgical year for this liturgical day,
+    i.e. the first Sunday of Advent.
+    """
+    end_of_liturgical_year: str
+    """
+    The last day of the current liturgical year for this liturgical day,
+    i.e. the last Saturday of Ordinary Time, in the 34th week.
+    """
+    sunday_cycle: SundayCycle
+    """
+    The Sunday cycle to which this liturgical day belongs.
+    """
+    sunday_cycle_name: str
+    """
+    The localized name of the Sunday cycle to which this liturgical day belongs.
+    """
+    weekday_cycle: WeekdayCycle
+    """
+    The weekday cycle to which this liturgical day belongs.
+    """
+    weekday_cycle_name: str
+    """
+    The localized name of the weekday cycle to which this liturgical day belongs.
+    """
+    psalter_week: PsalterWeekCycle
+    """
+    The psalter week cycle to which this liturgical day belongs.
+    """
+    psalter_week_name: str
+    """
+    The localized name of the psalter week cycle to which this liturgical day belongs.
+    """
+    from_calendar_id: str
+    """
+    The ID of the calendar where this liturgical day is defined.
+    Indicates the source calendar in the inheritance chain.
+    """
+    parent_overrides: list[ParentOverride]
+    """
+    Contains the differences between this liturgical day and its parent definitions.
+    Each element in the array represents the diff from a parent calendar definition.
+    The array is ordered from most general (e.g., general_roman) to most specific.
+    """
 
 
 class MassContext(BaseModel):
+    """
+    A flat structure representing a single mass with its full liturgical context.
+
+    This is the main type for the mass-centric calendar view. It contains:
+    - Mass identification (type, name, civil/liturgical dates)
+    - Day-level context (season, cycles, periods)
+    - Primary celebration data (flattened from LiturgicalDay)
+    - Optional alternative celebrations
+
+    For evening masses (Easter Vigil, Previous Evening Mass), the `civil_date`
+    is shifted to the previous day while `liturgical_date` remains the original
+    liturgical celebration date.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    mass_time: Annotated[
-        MassTime,
-        Field(
-            description='The type of mass (e.g., DayMass, EasterVigil, etc.)\nSerialized as SCREAMING_SNAKE_CASE (e.g., "DAY_MASS")'
-        ),
-    ]
-    mass_time_name: Annotated[
-        str,
-        Field(
-            description='The localized name of the mass time (translation key in snake_case)'
-        ),
-    ]
-    civil_date: Annotated[
-        str,
-        Field(
-            description='The civil calendar date when this mass is celebrated (YYYY-MM-DD).\nFor evening masses (EasterVigil, PreviousEveningMass), this is the day\nBEFORE the liturgical date.'
-        ),
-    ]
-    liturgical_date: Annotated[
-        str,
-        Field(
-            description='The liturgical date this mass belongs to (YYYY-MM-DD).\nThis is the "theological" date of the celebration.'
-        ),
-    ]
-    season: Annotated[Season | None, Field(description='The liturgical season')] = None
-    season_name: Annotated[
-        str | None, Field(description='The localized season name')
-    ] = None
-    sunday_cycle: Annotated[
-        SundayCycle, Field(description='The Sunday cycle (Year A, B, or C)')
-    ]
-    sunday_cycle_name: Annotated[
-        str, Field(description='The localized Sunday cycle name')
-    ]
-    weekday_cycle: Annotated[
-        WeekdayCycle, Field(description='The weekday cycle (Year 1 or 2)')
-    ]
-    weekday_cycle_name: Annotated[
-        str, Field(description='The localized weekday cycle name')
-    ]
-    psalter_week: Annotated[
-        PsalterWeekCycle, Field(description='The psalter week cycle (Week 1-4)')
-    ]
-    psalter_week_name: Annotated[
-        str, Field(description='The localized psalter week name')
-    ]
-    week_of_season: Annotated[
-        int | None,
-        Field(description='The week number within the liturgical season', ge=0),
-    ] = None
-    day_of_season: Annotated[
-        int | None,
-        Field(description='The day number within the liturgical season', ge=0),
-    ] = None
-    day_of_week: Annotated[
-        DayOfWeek, Field(description='The day of the week (0=Sunday to 6=Saturday)')
-    ]
-    periods: Annotated[
-        list[PeriodInfo],
-        Field(description='The liturgical periods this day belongs to'),
-    ]
-    start_of_season: Annotated[
-        str | None, Field(description='The first day of the current liturgical season')
-    ] = None
-    end_of_season: Annotated[
-        str | None, Field(description='The last day of the current liturgical season')
-    ] = None
-    start_of_liturgical_year: Annotated[
-        str,
-        Field(
-            description='The first day of the liturgical year (first Sunday of Advent)'
-        ),
-    ]
-    end_of_liturgical_year: Annotated[
-        str, Field(description='The last day of the liturgical year')
-    ]
-    id: Annotated[str, Field(description='The unique identifier of the liturgical day')]
-    fullname: Annotated[str, Field(description='The full name of the liturgical day')]
-    precedence: Annotated[Precedence, Field(description='The liturgical precedence')]
-    rank: Annotated[Rank, Field(description='The liturgical rank')]
-    rank_name: Annotated[str, Field(description='The localized liturgical rank name')]
-    colors: Annotated[list[ColorInfo], Field(description='The liturgical colors')]
-    commons: Annotated[
-        list[CommonInfo], Field(description='The common prayers/readings used')
-    ]
-    entities: Annotated[
-        list[Entity],
-        Field(
-            description='The entities (Saints, Blessed, or Places) linked to this day'
-        ),
-    ]
-    titles: Annotated[
-        TitlesDef, Field(description='The titles for this liturgical day')
-    ]
-    is_holy_day_of_obligation: Annotated[
-        bool, Field(description='Whether this is a holy day of obligation')
-    ]
-    is_optional: Annotated[
-        bool, Field(description='Whether this liturgical day is optional')
-    ]
-    from_calendar_id: Annotated[
-        str,
-        Field(
-            description='The ID of the calendar where this liturgical day is defined'
-        ),
-    ]
-    optional_celebrations: Annotated[
-        list[CelebrationSummary],
-        Field(
-            description='Optional alternative celebrations (e.g., optional memorials)\nthat can be celebrated instead of the primary celebration.'
-        ),
-    ]
+    mass_time: MassTime
+    """
+    The type of mass (e.g., DayMass, EasterVigil, etc.)
+    Serialized as SCREAMING_SNAKE_CASE (e.g., "DAY_MASS")
+    """
+    mass_time_name: str
+    """
+    The localized name of the mass time (translation key in snake_case)
+    """
+    civil_date: str
+    """
+    The civil calendar date when this mass is celebrated (YYYY-MM-DD).
+    For evening masses (EasterVigil, PreviousEveningMass), this is the day
+    BEFORE the liturgical date.
+    """
+    liturgical_date: str
+    """
+    The liturgical date this mass belongs to (YYYY-MM-DD).
+    This is the "theological" date of the celebration.
+    """
+    season: Season | None = None
+    """
+    The liturgical season
+    """
+    season_name: str | None = None
+    """
+    The localized season name
+    """
+    sunday_cycle: SundayCycle
+    """
+    The Sunday cycle (Year A, B, or C)
+    """
+    sunday_cycle_name: str
+    """
+    The localized Sunday cycle name
+    """
+    weekday_cycle: WeekdayCycle
+    """
+    The weekday cycle (Year 1 or 2)
+    """
+    weekday_cycle_name: str
+    """
+    The localized weekday cycle name
+    """
+    psalter_week: PsalterWeekCycle
+    """
+    The psalter week cycle (Week 1-4)
+    """
+    psalter_week_name: str
+    """
+    The localized psalter week name
+    """
+    week_of_season: Annotated[int | None, Field(ge=0)] = None
+    """
+    The week number within the liturgical season
+    """
+    day_of_season: Annotated[int | None, Field(ge=0)] = None
+    """
+    The day number within the liturgical season
+    """
+    day_of_week: DayOfWeek
+    """
+    The day of the week (0=Sunday to 6=Saturday)
+    """
+    periods: list[PeriodInfo]
+    """
+    The liturgical periods this day belongs to
+    """
+    start_of_season: str | None = None
+    """
+    The first day of the current liturgical season
+    """
+    end_of_season: str | None = None
+    """
+    The last day of the current liturgical season
+    """
+    start_of_liturgical_year: str
+    """
+    The first day of the liturgical year (first Sunday of Advent)
+    """
+    end_of_liturgical_year: str
+    """
+    The last day of the liturgical year
+    """
+    id: str
+    """
+    The unique identifier of the liturgical day
+    """
+    fullname: str
+    """
+    The full name of the liturgical day
+    """
+    precedence: Precedence
+    """
+    The liturgical precedence
+    """
+    rank: Rank
+    """
+    The liturgical rank
+    """
+    rank_name: str
+    """
+    The localized liturgical rank name
+    """
+    colors: list[ColorInfo]
+    """
+    The liturgical colors
+    """
+    commons: list[CommonInfo]
+    """
+    The common prayers/readings used
+    """
+    entities: list[Entity]
+    """
+    The entities (Saints, Blessed, or Places) linked to this day
+    """
+    titles: TitlesDef
+    """
+    The titles for this liturgical day
+    """
+    is_holy_day_of_obligation: bool
+    """
+    Whether this is a holy day of obligation
+    """
+    is_optional: bool
+    """
+    Whether this liturgical day is optional
+    """
+    from_calendar_id: str
+    """
+    The ID of the calendar where this liturgical day is defined
+    """
+    optional_celebrations: list[CelebrationSummary]
+    """
+    Optional alternative celebrations (e.g., optional memorials)
+    that can be celebrated instead of the primary celebration.
+    """
 
 
 class DateDefExceptions(RootModel[DateDefException | list[DateDefException]]):
-    root: Annotated[
-        DateDefException | list[DateDefException],
-        Field(
-            description='Date exceptions that can be either a single exception or multiple exceptions.\nSupports both simple single exceptions and complex multiple exception scenarios.'
-        ),
-    ]
+    root: DateDefException | list[DateDefException]
+    """
+    Date exceptions that can be either a single exception or multiple exceptions.
+    Supports both simple single exceptions and complex multiple exception scenarios.
+    """
 
 
 class EntityRef(RootModel[str | EntityOverride]):
-    root: Annotated[
-        str | EntityOverride,
-        Field(
-            description='A reference to an entity in the entity catalog.\nCan either reference an existing entity by ID or define a custom entity with additional properties.'
-        ),
-    ]
+    root: str | EntityOverride
+    """
+    A reference to an entity in the entity catalog.
+    Can either reference an existing entity by ID or define a custom entity with additional properties.
+    """
 
 
 class DayDefinition(BaseModel):
+    """
+    Definition of a liturgical day with all its properties and configurations.
+    It represents a complete liturgical day definition that can be used
+    to generate calendar entries with proper precedence, colors, and entity associations.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
-    date_def: Annotated[
-        DateDef | None, Field(description='The date definition for this liturgical day')
-    ] = None
-    date_exceptions: Annotated[
-        DateDefExceptions | None,
-        Field(
-            description='The date definition exceptions (overrides for specific circumstances)'
-        ),
-    ] = None
-    precedence: Annotated[
-        Precedence | None,
-        Field(description='The precedence type of the liturgical day'),
-    ] = None
-    commons_def: Annotated[
-        CommonsDef | None,
-        Field(
-            description='The **Common** refers to a set of prayers, readings, and chants used for celebrating saints or\nfeasts that belong to a specific category, such as martyrs, virgins, pastors, or the Blessed\nVirgin Mary.'
-        ),
-    ] = None
-    is_holy_day_of_obligation: Annotated[
-        bool | None,
-        Field(
-            description='Holy days of obligation are days on which the faithful are expected to attend Mass\nand engage in rest from work and recreation'
-        ),
-    ] = None
-    allow_similar_rank_items: Annotated[
-        bool | None,
-        Field(
-            description='Allow similar items that have the same rank and the same or lower precedence\nto coexist with this liturgical day without being overwritten'
-        ),
-    ] = None
-    is_optional: Annotated[
-        bool | None,
-        Field(
-            description='Specify if this liturgical day is optional within a specific liturgical calendar\n\nUNLY #14:\nMemorials are either obligatory or optional; their observance is integrated into\nthe celebration of the occurring weekday in accordance with the norms set forth in the\nGeneral Instruction of the Roman Missal and of the Liturgy of the Hours\n\nNote: also used for the dedication of consecrated churches, which is an optional solemnity\nthat should not overwrite the default weekday.'
-        ),
-    ] = None
-    custom_locale_id: Annotated[
-        str | None,
-        Field(
-            description='The custom locale ID for this date definition in this calendar'
-        ),
-    ] = None
-    entities: Annotated[
-        list[EntityRef] | None,
-        Field(
-            description='The entities (Saints, Blessed, or Places) linked from the Entity catalog'
-        ),
-    ] = None
-    titles: Annotated[
-        TitlesDef | None,
-        Field(
-            description='The combined titles of all entities linked to this date definition'
-        ),
-    ] = None
-    drop: Annotated[
-        bool | None,
-        Field(
-            description='If this liturgical day must be removed from this calendar and from all parent calendars\nin the final calendar generated by romcal'
-        ),
-    ] = None
-    colors: Annotated[
-        ColorsDef | None,
-        Field(
-            description='The liturgical color(s) of the liturgical day.\n\n**Deprecated:** Rely on the `titles` field of entities instead to determine the liturgical color(s).'
-        ),
-    ] = None
-    masses: Annotated[
-        MassesDefinitions | None,
-        Field(description='The masses definitions for this liturgical day'),
-    ] = None
+    date_def: DateDef | None = None
+    """
+    The date definition for this liturgical day
+    """
+    date_exceptions: DateDefExceptions | None = None
+    """
+    The date definition exceptions (overrides for specific circumstances)
+    """
+    precedence: Precedence | None = None
+    """
+    The precedence type of the liturgical day
+    """
+    commons_def: CommonsDef | None = None
+    """
+    The **Common** refers to a set of prayers, readings, and chants used for celebrating saints or
+    feasts that belong to a specific category, such as martyrs, virgins, pastors, or the Blessed
+    Virgin Mary.
+    """
+    is_holy_day_of_obligation: bool | None = None
+    """
+    Holy days of obligation are days on which the faithful are expected to attend Mass
+    and engage in rest from work and recreation
+    """
+    allow_similar_rank_items: bool | None = None
+    """
+    Allow similar items that have the same rank and the same or lower precedence
+    to coexist with this liturgical day without being overwritten
+    """
+    is_optional: bool | None = None
+    """
+    Specify if this liturgical day is optional within a specific liturgical calendar
+
+    UNLY #14:
+    Memorials are either obligatory or optional; their observance is integrated into
+    the celebration of the occurring weekday in accordance with the norms set forth in the
+    General Instruction of the Roman Missal and of the Liturgy of the Hours
+
+    Note: also used for the dedication of consecrated churches, which is an optional solemnity
+    that should not overwrite the default weekday.
+    """
+    custom_locale_id: str | None = None
+    """
+    The custom locale ID for this date definition in this calendar
+    """
+    entities: list[EntityRef] | None = None
+    """
+    The entities (Saints, Blessed, or Places) linked from the Entity catalog
+    """
+    titles: TitlesDef | None = None
+    """
+    The combined titles of all entities linked to this date definition
+    """
+    drop: bool | None = None
+    """
+    If this liturgical day must be removed from this calendar and from all parent calendars
+    in the final calendar generated by romcal
+    """
+    colors: ColorsDef | None = None
+    """
+    The liturgical color(s) of the liturgical day.
+
+    **Deprecated:** Rely on the `titles` field of entities instead to determine the liturgical color(s).
+    """
+    masses: MassesDefinitions | None = None
+    """
+    The masses definitions for this liturgical day
+    """
 
 
 class CalendarDefinition(BaseModel):
+    """
+    Calendar definition
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
