@@ -18,15 +18,15 @@ export default defineConfig({
       fileName: (format) => `romcal.${format === 'es' ? 'js' : 'umd.js'}`,
     },
     outDir: 'dist',
-    emptyDirBeforeWrite: true,
+    emptyOutDir: true,
     sourcemap: true,
     rollupOptions: {
-      external: ['fs', 'path', 'url'],
+      external: ['node:fs', 'node:path', 'node:url'],
       output: {
         globals: {
-          fs: 'fs',
-          path: 'path',
-          url: 'url',
+          'node:fs': 'fs',
+          'node:path': 'path',
+          'node:url': 'url',
         },
       },
     },
