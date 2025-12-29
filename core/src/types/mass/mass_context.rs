@@ -137,10 +137,12 @@ pub struct MassContext {
     // === Day-level context (from the liturgical date) ===
     /// The liturgical season
     #[serde(skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "ts-bindings", ts(optional))]
     pub season: Option<Season>,
 
     /// The localized season name
     #[serde(skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "ts-bindings", ts(optional))]
     pub season_name: Option<String>,
 
     /// The Sunday cycle (Year A, B, or C)
@@ -163,10 +165,12 @@ pub struct MassContext {
 
     /// The week number within the liturgical season
     #[serde(skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "ts-bindings", ts(optional))]
     pub week_of_season: Option<u32>,
 
     /// The day number within the liturgical season
     #[serde(skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "ts-bindings", ts(optional))]
     pub day_of_season: Option<u32>,
 
     /// The day of the week (0=Sunday to 6=Saturday)
@@ -177,10 +181,12 @@ pub struct MassContext {
 
     /// The first day of the current liturgical season
     #[serde(skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "ts-bindings", ts(optional))]
     pub start_of_season: Option<String>,
 
     /// The last day of the current liturgical season
     #[serde(skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "ts-bindings", ts(optional))]
     pub end_of_season: Option<String>,
 
     /// The first day of the liturgical year (first Sunday of Advent)

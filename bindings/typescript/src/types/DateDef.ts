@@ -20,7 +20,7 @@ export type DateDef =
       /**
        * Optional day offset for adjustments
        */
-      day_offset: number | null
+      day_offset?: number
     }
   | {
       /**
@@ -30,7 +30,7 @@ export type DateDef =
       /**
        * Optional day offset for adjustments
        */
-      day_offset: number | null
+      day_offset?: number
     }
   | {
       /**
@@ -48,7 +48,7 @@ export type DateDef =
       /**
        * Optional day offset for adjustments
        */
-      day_offset: number | null
+      day_offset?: number
     }
   | {
       /**
@@ -62,6 +62,6 @@ export type DateDef =
       /**
        * Optional day offset for adjustments
        */
-      day_offset: number | null
+      day_offset?: number
     }
   | Record<string, never>

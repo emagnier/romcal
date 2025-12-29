@@ -51,11 +51,11 @@ export type MassContext = {
   /**
    * The liturgical season
    */
-  season: Season | null
+  season?: Season
   /**
    * The localized season name
    */
-  season_name: string | null
+  season_name?: string
   /**
    * The Sunday cycle (Year A, B, or C)
    */
@@ -83,11 +83,11 @@ export type MassContext = {
   /**
    * The week number within the liturgical season
    */
-  week_of_season: number | null
+  week_of_season?: number
   /**
    * The day number within the liturgical season
    */
-  day_of_season: number | null
+  day_of_season?: number
   /**
    * The day of the week (0=Sunday to 6=Saturday)
    */
@@ -99,11 +99,11 @@ export type MassContext = {
   /**
    * The first day of the current liturgical season
    */
-  start_of_season: string | null
+  start_of_season?: string
   /**
    * The last day of the current liturgical season
    */
-  end_of_season: string | null
+  end_of_season?: string
   /**
    * The first day of the liturgical year (first Sunday of Advent)
    */

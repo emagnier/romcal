@@ -19,41 +19,41 @@ export type ParentOverride = {
   /**
    * The date definition if it was changed
    */
-  date_def: DateDef | null
+  date_def?: DateDef
   /**
    * The date exceptions if they were changed
    */
-  date_exceptions: Array<DateDefException> | null
+  date_exceptions?: Array<DateDefException>
   /**
    * The precedence if it was changed
    */
-  precedence: Precedence | null
+  precedence?: Precedence
   /**
    * The rank if it was changed
    */
-  rank: Rank | null
+  rank?: Rank
   /**
    * The colors if they were changed
    */
-  colors: Array<ColorInfo> | null
+  colors?: Array<ColorInfo>
   /**
    * The titles if they were changed
    */
-  titles: TitlesDef | null
+  titles?: TitlesDef
   /**
    * The commons definition if it was changed
    */
-  commons_def: Array<CommonDefinition> | null
+  commons_def?: Array<CommonDefinition>
   /**
    * The is_holy_day_of_obligation flag if it was changed
    */
-  is_holy_day_of_obligation: boolean | null
+  is_holy_day_of_obligation?: boolean
   /**
    * The is_optional flag if it was changed
    */
-  is_optional: boolean | null
+  is_optional?: boolean
   /**
    * The allow_similar_rank_items flag if it was changed
    */
-  allow_similar_rank_items: boolean | null
+  allow_similar_rank_items?: boolean
 }

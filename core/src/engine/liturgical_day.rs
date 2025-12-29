@@ -31,42 +31,52 @@ pub struct ParentOverride {
 
     /// The date definition if it was changed
     #[serde(skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "ts-bindings", ts(optional))]
     pub date_def: Option<DateDef>,
 
     /// The date exceptions if they were changed
     #[serde(skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "ts-bindings", ts(optional))]
     pub date_exceptions: Option<Vec<DateDefException>>,
 
     /// The precedence if it was changed
     #[serde(skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "ts-bindings", ts(optional))]
     pub precedence: Option<Precedence>,
 
     /// The rank if it was changed
     #[serde(skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "ts-bindings", ts(optional))]
     pub rank: Option<Rank>,
 
     /// The colors if they were changed
     #[serde(skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "ts-bindings", ts(optional))]
     pub colors: Option<Vec<ColorInfo>>,
 
     /// The titles if they were changed
     #[serde(skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "ts-bindings", ts(optional))]
     pub titles: Option<TitlesDef>,
 
     /// The commons definition if it was changed
     #[serde(skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "ts-bindings", ts(optional))]
     pub commons_def: Option<Vec<CommonDefinition>>,
 
     /// The is_holy_day_of_obligation flag if it was changed
     #[serde(skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "ts-bindings", ts(optional))]
     pub is_holy_day_of_obligation: Option<bool>,
 
     /// The is_optional flag if it was changed
     #[serde(skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "ts-bindings", ts(optional))]
     pub is_optional: Option<bool>,
 
     /// The allow_similar_rank_items flag if it was changed
     #[serde(skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "ts-bindings", ts(optional))]
     pub allow_similar_rank_items: Option<bool>,
 }
 

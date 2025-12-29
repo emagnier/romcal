@@ -10,100 +10,96 @@ export type Entity = {
   /**
    * The unique identifier of the entity
    */
-  id: string | null
+  id?: string
   /**
    * The type of the entity.
    *
    * Defaults to `EntityType::Person`.
    */
-  type: EntityType | null
+  type?: EntityType
   /**
    * The full name of the entity.
    */
-  fullname: string | null
+  fullname?: string
   /**
    * The short name of the entity, without the canonization level and titles.
    */
-  name: string | null
+  name?: string
   /**
    * The canonization level of a person.
    */
-  canonization_level: CanonizationLevel | null
+  canonization_level?: CanonizationLevel
   /**
    * Date of Canonization, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),
    * or an object describing date range, multiple possible date, or a century.
    */
-  date_of_canonization: SaintDateDef | null
+  date_of_canonization?: SaintDateDef
   /**
    * Specify whether an approximate indicator should be added, when the date is displayed.
    * For example in English: 'c. 201'.
    */
-  date_of_canonization_is_approximative: boolean | null
+  date_of_canonization_is_approximative?: boolean
   /**
    * Date of Beatification, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),
    * or an object describing date range, multiple possible date, or a century.
    */
-  date_of_beatification: SaintDateDef | null
+  date_of_beatification?: SaintDateDef
   /**
    * Specify whether an approximate indicator should be added, when the date is displayed.
    * For example in English: 'c. 201'.
    */
-  date_of_beatification_is_approximative: boolean | null
+  date_of_beatification_is_approximative?: boolean
   /**
    * Specify if the canonization level should not be displayed.
    * It's generally the case when the canonization are already included in the name.
    */
-  hide_canonization_level: boolean | null
+  hide_canonization_level?: boolean
   /**
    * Titles of the Saint or the Blessed
    */
-  titles: Array<Title> | null
+  titles?: Array<Title>
   /**
    * Determine if the Saint or the Blessed is a male or a female.
    */
-  sex: Sex | null
+  sex?: Sex
   /**
    * Specify if the titles should not be displayed.
    * It's generally the case when titles are already included in the name.
    */
-  hide_titles: boolean | null
+  hide_titles?: boolean
   /**
    * Date of Dedication of a church, basilica, or cathedral (or other place of worship),
    * as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),
    * or an object describing date range, multiple possible date, or a century.
    */
-  date_of_dedication: SaintDateDef | null
+  date_of_dedication?: SaintDateDef
   /**
    * Date of Birth, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),
    * or an object describing date range, multiple possible date, or a century.
    */
-  date_of_birth: SaintDateDef | null
+  date_of_birth?: SaintDateDef
   /**
    * Specify whether an approximate indicator should be added, when the date is displayed.
    * For example in English: 'c. 201'.
    */
-  date_of_birth_is_approximative: boolean | null
+  date_of_birth_is_approximative?: boolean
   /**
    * Date of Death, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),
    * or an object describing date range, multiple possible date, or a century.
    */
-  date_of_death: SaintDateDef | null
+  date_of_death?: SaintDateDef
   /**
    * Specify whether an approximate indicator should be added, when the date is displayed.
    * For example in English: 'c. 201'.
    */
-  date_of_death_is_approximative: boolean | null
+  date_of_death_is_approximative?: boolean
   /**
    * Number of person that this definition represent.
    * It could be set as 'many' if the number is not defined.
    */
-  count: SaintCount | null
+  count?: SaintCount
   /**
    * Sources for the information about this entity
    */
-  sources: Array<string> | null
-  /**
-   * Internal notes (not serialized).
-   */
-  _todo: Array<string> | null
+  sources?: Array<string>
 }

@@ -22,6 +22,7 @@ pub enum DateDef {
         date: u8,
         /// Optional day offset for adjustments
         #[serde(skip_serializing_if = "Option::is_none")]
+        #[cfg_attr(feature = "ts-bindings", ts(optional))]
         day_offset: Option<i32>,
     },
     /// Date function calculation (Easter, Epiphany, etc.)
@@ -30,6 +31,7 @@ pub enum DateDef {
         date_fn: DateFn,
         /// Optional day offset for adjustments
         #[serde(skip_serializing_if = "Option::is_none")]
+        #[cfg_attr(feature = "ts-bindings", ts(optional))]
         day_offset: Option<i32>,
     },
     /// Nth weekday of a specific month
@@ -42,6 +44,7 @@ pub enum DateDef {
         nth_week_in_month: u8,
         /// Optional day offset for adjustments
         #[serde(skip_serializing_if = "Option::is_none")]
+        #[cfg_attr(feature = "ts-bindings", ts(optional))]
         day_offset: Option<i32>,
     },
     /// Last weekday of a specific month
@@ -52,6 +55,7 @@ pub enum DateDef {
         last_day_of_week_in_month: DayOfWeek,
         /// Optional day offset for adjustments
         #[serde(skip_serializing_if = "Option::is_none")]
+        #[cfg_attr(feature = "ts-bindings", ts(optional))]
         day_offset: Option<i32>,
     },
     /// Inherited from the proper of time
