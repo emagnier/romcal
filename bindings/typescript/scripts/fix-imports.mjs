@@ -6,115 +6,62 @@
  * ts-rs doesn't generate imports for types referenced in custom type overrides
  * (e.g., `#[ts(type = "Record<LiturgicalCycle, MassContent>")]`).
  *
- * This script scans all generated type files, detects missing imports,
- * and adds them automatically.
- *
- * IMPORTANT: Only analyzes actual type definitions, ignoring JSDoc comments
- * to avoid false positives from type names mentioned in documentation.
+ * This script uses TypeScript's compiler (tsc) to detect missing type references
+ * and automatically adds the required imports. It runs in a loop to handle
+ * dependency chains where fixing one file reveals errors in another.
  */
 
-import { readFileSync, writeFileSync, readdirSync } from "fs";
+import { execSync } from "child_process";
+import { readFileSync, writeFileSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const TYPES_DIR = join(__dirname, "..", "src", "types");
+const ROOT_DIR = join(__dirname, "..");
+const TYPES_DIR = join(ROOT_DIR, "src", "types");
 
-/**
- * Strip all comments from TypeScript content.
- * Removes both single-line (//) and multi-line comments (including JSDoc).
- */
-function stripComments(content) {
-  // Remove multi-line comments (including JSDoc /** ... */)
-  let result = content.replace(/\/\*[\s\S]*?\*\//g, "");
-  // Remove single-line comments
-  result = result.replace(/\/\/.*$/gm, "");
-  return result;
-}
+// Parse TypeScript "Cannot find name" errors:
+// - TS2304: Cannot find name 'X'.
+// - TS2552: Cannot find name 'X'. Did you mean 'Y'?
+const errorPattern =
+  /src\/types\/(\w+)\.ts\(\d+,\d+\): error TS2(?:304|552): Cannot find name '(\w+)'/g;
 
-// Built-in TypeScript types that should not be imported
-const BUILTIN_TYPES = new Set([
-  "Record",
-  "Partial",
-  "Required",
-  "Readonly",
-  "Pick",
-  "Omit",
-  "Exclude",
-  "Extract",
-  "NonNullable",
-  "Parameters",
-  "ReturnType",
-  "Array",
-  "Map",
-  "Set",
-  "Promise",
-  "Date",
-  "RegExp",
-  "Error",
-  "String",
-  "Number",
-  "Boolean",
-  "Object",
-  "Function",
-  "Symbol",
-  "BigInt",
-]);
+let totalFixed = 0;
+let iteration = 0;
+const maxIterations = 10; // Safety limit
 
-// Build a map of known types from generated files
-const knownTypes = new Map();
-for (const file of readdirSync(TYPES_DIR)) {
-  if (!file.endsWith(".ts") || file === "index.ts") continue;
-  const typeName = file.replace(".ts", "");
-  knownTypes.set(typeName, file);
-}
+while (iteration < maxIterations) {
+  iteration++;
 
-let fixedCount = 0;
+  // Run tsc and capture errors
+  const output = execSync("npx tsc --noEmit 2>&1 || true", {
+    encoding: "utf-8",
+    cwd: ROOT_DIR,
+  });
 
-// Process each generated file
-for (const file of readdirSync(TYPES_DIR)) {
-  if (!file.endsWith(".ts") || file === "index.ts") continue;
+  // Collect errors by file
+  const fixes = new Map(); // fileName -> Set of types to import
 
-  const filePath = join(TYPES_DIR, file);
-  const currentTypeName = file.replace(".ts", "");
-  let content = readFileSync(filePath, "utf-8");
-
-  // Find existing imports (with or without .js extension)
-  const existingImports = new Set(
-    [...content.matchAll(/import\s+(?:type\s+)?.*from\s+["']\.\/(\w+)(?:\.js)?["']/g)].map(
-      (m) => m[1]
-    )
-  );
-
-  // Strip comments to avoid detecting type names in JSDoc
-  const contentWithoutComments = stripComments(content);
-
-  // Find all PascalCase identifiers that could be type references
-  const typePattern = /\b([A-Z][a-zA-Z0-9]*)\b/g;
-  const usedTypes = new Set();
-
-  for (const match of contentWithoutComments.matchAll(typePattern)) {
-    const typeName = match[1];
-    // Skip if:
-    // - It's the current file's type (self-reference in export)
-    // - It's a built-in TypeScript type
-    // - It's already imported
-    // - It's not a known generated type
-    if (
-      typeName === currentTypeName ||
-      BUILTIN_TYPES.has(typeName) ||
-      existingImports.has(typeName) ||
-      !knownTypes.has(typeName)
-    ) {
-      continue;
+  for (const match of output.matchAll(errorPattern)) {
+    const [, fileName, typeName] = match;
+    if (!fixes.has(fileName)) {
+      fixes.set(fileName, new Set());
     }
-    usedTypes.add(typeName);
+    fixes.get(fileName).add(typeName);
   }
 
-  // Add missing imports
-  if (usedTypes.size > 0) {
-    const sortedTypes = [...usedTypes].sort();
-    const imports = sortedTypes
+  // No more errors to fix
+  if (fixes.size === 0) {
+    break;
+  }
+
+  // Apply fixes
+  for (const [fileName, types] of fixes) {
+    const filePath = join(TYPES_DIR, `${fileName}.ts`);
+    let content = readFileSync(filePath, "utf-8");
+
+    const imports = [...types]
+      .sort()
       .map((t) => `import type { ${t} } from "./${t}.js";`)
       .join("\n");
 
@@ -131,13 +78,13 @@ for (const file of readdirSync(TYPES_DIR)) {
     }
 
     writeFileSync(filePath, content);
-    console.log(`Fixed imports in ${file}: ${sortedTypes.join(", ")}`);
-    fixedCount++;
+    console.log(`Fixed imports in ${fileName}.ts: ${[...types].join(", ")}`);
+    totalFixed++;
   }
 }
 
-if (fixedCount > 0) {
-  console.log(`\nFixed ${fixedCount} file(s) with missing imports.`);
+if (totalFixed > 0) {
+  console.log(`\nFixed ${totalFixed} file(s) with missing imports.`);
 } else {
   console.log("All imports are correct.");
 }
