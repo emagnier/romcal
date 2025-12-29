@@ -134,6 +134,19 @@ class Romcal:
         except core.RomcalError as e:
             raise RomcalError(str(e)) from e
 
+    def __repr__(self) -> str:
+        """Return a string representation for debugging."""
+        return (
+            f"Romcal("
+            f"calendar={self.calendar!r}, "
+            f"locale={self.locale!r}, "
+            f"context={self.context.name}, "
+            f"easter_calculation_type={self.easter_calculation_type.name}, "
+            f"epiphany_on_sunday={self.epiphany_on_sunday}, "
+            f"ascension_on_sunday={self.ascension_on_sunday}, "
+            f"corpus_christi_on_sunday={self.corpus_christi_on_sunday})"
+        )
+
     @property
     def calendar(self) -> str:
         """Get the calendar type."""
