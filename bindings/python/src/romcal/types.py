@@ -15,17 +15,17 @@ class CalendarType(Enum):
     Defines the scope and authority level of the liturgical calendar.
     """
 
-    GENERAL_ROMAN = 'GENERAL_ROMAN'
-    REGION = 'REGION'
-    COUNTRY = 'COUNTRY'
-    ARCHDIOCESE = 'ARCHDIOCESE'
-    DIOCESE = 'DIOCESE'
-    CITY = 'CITY'
-    PARISH = 'PARISH'
-    GENERAL_COMMUNITY = 'GENERAL_COMMUNITY'
-    REGIONAL_COMMUNITY = 'REGIONAL_COMMUNITY'
-    LOCAL_COMMUNITY = 'LOCAL_COMMUNITY'
-    OTHER = 'OTHER'
+    GENERAL_ROMAN = "GENERAL_ROMAN"
+    REGION = "REGION"
+    COUNTRY = "COUNTRY"
+    ARCHDIOCESE = "ARCHDIOCESE"
+    DIOCESE = "DIOCESE"
+    CITY = "CITY"
+    PARISH = "PARISH"
+    GENERAL_COMMUNITY = "GENERAL_COMMUNITY"
+    REGIONAL_COMMUNITY = "REGIONAL_COMMUNITY"
+    LOCAL_COMMUNITY = "LOCAL_COMMUNITY"
+    OTHER = "OTHER"
 
 
 class CalendarJurisdiction(Enum):
@@ -34,8 +34,8 @@ class CalendarJurisdiction(Enum):
     Determines whether the calendar follows ecclesiastical or civil authority.
     """
 
-    ECCLESIASTICAL = 'ECCLESIASTICAL'
-    CIVIL = 'CIVIL'
+    ECCLESIASTICAL = "ECCLESIASTICAL"
+    CIVIL = "CIVIL"
 
 
 class EasterCalculationType(Enum):
@@ -46,12 +46,12 @@ class EasterCalculationType(Enum):
     which is the basis for most movable feasts in the liturgical calendar.
     """
 
-    GREGORIAN = 'GREGORIAN'
-    JULIAN = 'JULIAN'
+    GREGORIAN = "GREGORIAN"
+    JULIAN = "JULIAN"
 
 
 class MonthIndex(RootModel[int]):
-    root: Annotated[int, Field(ge=0, le=255, title='MonthIndex')]
+    root: Annotated[int, Field(ge=0, le=255, title="MonthIndex")]
     """
     Month index (1-12) with automatic validation
 
@@ -68,27 +68,27 @@ class DateFn(Enum):
     based on Easter or other variable dates.
     """
 
-    MARY_MOTHER_OF_THE_CHURCH = 'MARY_MOTHER_OF_THE_CHURCH'
-    EPIPHANY_SUNDAY = 'EPIPHANY_SUNDAY'
-    PRESENTATION_OF_THE_LORD = 'PRESENTATION_OF_THE_LORD'
-    ANNUNCIATION = 'ANNUNCIATION'
-    PALM_SUNDAY = 'PALM_SUNDAY'
-    EASTER_SUNDAY = 'EASTER_SUNDAY'
-    DIVINE_MERCY_SUNDAY = 'DIVINE_MERCY_SUNDAY'
-    IMMACULATE_HEART_OF_MARY = 'IMMACULATE_HEART_OF_MARY'
-    PENTECOST_SUNDAY = 'PENTECOST_SUNDAY'
-    CORPUS_CHRISTI_SUNDAY = 'CORPUS_CHRISTI_SUNDAY'
-    NATIVITY_OF_JOHN_THE_BAPTIST = 'NATIVITY_OF_JOHN_THE_BAPTIST'
-    PETER_AND_PAUL_APOSTLES = 'PETER_AND_PAUL_APOSTLES'
-    TRANSFIGURATION = 'TRANSFIGURATION'
-    ASSUMPTION = 'ASSUMPTION'
-    EXALTATION_OF_THE_HOLY_CROSS = 'EXALTATION_OF_THE_HOLY_CROSS'
-    ALL_SAINTS = 'ALL_SAINTS'
-    IMMACULATE_CONCEPTION_OF_MARY = 'IMMACULATE_CONCEPTION_OF_MARY'
+    MARY_MOTHER_OF_THE_CHURCH = "MARY_MOTHER_OF_THE_CHURCH"
+    EPIPHANY_SUNDAY = "EPIPHANY_SUNDAY"
+    PRESENTATION_OF_THE_LORD = "PRESENTATION_OF_THE_LORD"
+    ANNUNCIATION = "ANNUNCIATION"
+    PALM_SUNDAY = "PALM_SUNDAY"
+    EASTER_SUNDAY = "EASTER_SUNDAY"
+    DIVINE_MERCY_SUNDAY = "DIVINE_MERCY_SUNDAY"
+    IMMACULATE_HEART_OF_MARY = "IMMACULATE_HEART_OF_MARY"
+    PENTECOST_SUNDAY = "PENTECOST_SUNDAY"
+    CORPUS_CHRISTI_SUNDAY = "CORPUS_CHRISTI_SUNDAY"
+    NATIVITY_OF_JOHN_THE_BAPTIST = "NATIVITY_OF_JOHN_THE_BAPTIST"
+    PETER_AND_PAUL_APOSTLES = "PETER_AND_PAUL_APOSTLES"
+    TRANSFIGURATION = "TRANSFIGURATION"
+    ASSUMPTION = "ASSUMPTION"
+    EXALTATION_OF_THE_HOLY_CROSS = "EXALTATION_OF_THE_HOLY_CROSS"
+    ALL_SAINTS = "ALL_SAINTS"
+    IMMACULATE_CONCEPTION_OF_MARY = "IMMACULATE_CONCEPTION_OF_MARY"
 
 
 class DayOfWeek(RootModel[int]):
-    root: Annotated[int, Field(ge=0, le=255, title='DayOfWeek')]
+    root: Annotated[int, Field(ge=0, le=255, title="DayOfWeek")]
     """
     Day of week (0-6, where 0=Sunday) with automatic validation
 
@@ -103,7 +103,7 @@ class ExceptionCondition3(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     day_of_week: DayOfWeek
     """
@@ -118,7 +118,7 @@ class DateDefWithOffset(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     day_offset: int
     """
@@ -132,51 +132,43 @@ class Precedence(Enum):
     Defines the hierarchical order of liturgical celebrations according to UNLY norms.
     """
 
-    TRIDUUM_1 = 'TRIDUUM_1'
-    PROPER_OF_TIME_SOLEMNITY_2 = 'PROPER_OF_TIME_SOLEMNITY_2'
-    PRIVILEGED_SUNDAY_2 = 'PRIVILEGED_SUNDAY_2'
-    ASH_WEDNESDAY_2 = 'ASH_WEDNESDAY_2'
-    WEEKDAY_OF_HOLY_WEEK_2 = 'WEEKDAY_OF_HOLY_WEEK_2'
-    WEEKDAY_OF_EASTER_OCTAVE_2 = 'WEEKDAY_OF_EASTER_OCTAVE_2'
-    GENERAL_SOLEMNITY_3 = 'GENERAL_SOLEMNITY_3'
-    COMMEMORATION_OF_ALL_THE_FAITHFUL_DEPARTED_3 = (
-        'COMMEMORATION_OF_ALL_THE_FAITHFUL_DEPARTED_3'
-    )
-    PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A = 'PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A'
+    TRIDUUM_1 = "TRIDUUM_1"
+    PROPER_OF_TIME_SOLEMNITY_2 = "PROPER_OF_TIME_SOLEMNITY_2"
+    PRIVILEGED_SUNDAY_2 = "PRIVILEGED_SUNDAY_2"
+    ASH_WEDNESDAY_2 = "ASH_WEDNESDAY_2"
+    WEEKDAY_OF_HOLY_WEEK_2 = "WEEKDAY_OF_HOLY_WEEK_2"
+    WEEKDAY_OF_EASTER_OCTAVE_2 = "WEEKDAY_OF_EASTER_OCTAVE_2"
+    GENERAL_SOLEMNITY_3 = "GENERAL_SOLEMNITY_3"
+    COMMEMORATION_OF_ALL_THE_FAITHFUL_DEPARTED_3 = "COMMEMORATION_OF_ALL_THE_FAITHFUL_DEPARTED_3"
+    PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A = "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A"
     PROPER_SOLEMNITY__DEDICATION_OF_THE_OWN_CHURCH_4B = (
-        'PROPER_SOLEMNITY__DEDICATION_OF_THE_OWN_CHURCH_4B'
+        "PROPER_SOLEMNITY__DEDICATION_OF_THE_OWN_CHURCH_4B"
     )
-    PROPER_SOLEMNITY__TITLE_OF_THE_OWN_CHURCH_4C = (
-        'PROPER_SOLEMNITY__TITLE_OF_THE_OWN_CHURCH_4C'
-    )
+    PROPER_SOLEMNITY__TITLE_OF_THE_OWN_CHURCH_4C = "PROPER_SOLEMNITY__TITLE_OF_THE_OWN_CHURCH_4C"
     PROPER_SOLEMNITY__TITLE_OR_FOUNDER_OR_PRIMARY_PATRON_OF_A_RELIGIOUS_ORG_4D = (
-        'PROPER_SOLEMNITY__TITLE_OR_FOUNDER_OR_PRIMARY_PATRON_OF_A_RELIGIOUS_ORG_4D'
+        "PROPER_SOLEMNITY__TITLE_OR_FOUNDER_OR_PRIMARY_PATRON_OF_A_RELIGIOUS_ORG_4D"
     )
-    GENERAL_LORD_FEAST_5 = 'GENERAL_LORD_FEAST_5'
-    UNPRIVILEGED_SUNDAY_6 = 'UNPRIVILEGED_SUNDAY_6'
-    GENERAL_FEAST_7 = 'GENERAL_FEAST_7'
+    GENERAL_LORD_FEAST_5 = "GENERAL_LORD_FEAST_5"
+    UNPRIVILEGED_SUNDAY_6 = "UNPRIVILEGED_SUNDAY_6"
+    GENERAL_FEAST_7 = "GENERAL_FEAST_7"
     PROPER_FEAST__PRINCIPAL_PATRON_OF_A_DIOCESE_8A = (
-        'PROPER_FEAST__PRINCIPAL_PATRON_OF_A_DIOCESE_8A'
+        "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_DIOCESE_8A"
     )
     PROPER_FEAST__DEDICATION_OF_THE_CATHEDRAL_CHURCH_8B = (
-        'PROPER_FEAST__DEDICATION_OF_THE_CATHEDRAL_CHURCH_8B'
+        "PROPER_FEAST__DEDICATION_OF_THE_CATHEDRAL_CHURCH_8B"
     )
-    PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C = (
-        'PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C'
-    )
+    PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C = "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C"
     PROPER_FEAST__TITLE_OR_FOUNDER_OR_PRIMARY_PATRON_OF_A_RELIGIOUS_ORG_8D = (
-        'PROPER_FEAST__TITLE_OR_FOUNDER_OR_PRIMARY_PATRON_OF_A_RELIGIOUS_ORG_8D'
+        "PROPER_FEAST__TITLE_OR_FOUNDER_OR_PRIMARY_PATRON_OF_A_RELIGIOUS_ORG_8D"
     )
-    PROPER_FEAST__TO_AN_INDIVIDUAL_CHURCH_8E = (
-        'PROPER_FEAST__TO_AN_INDIVIDUAL_CHURCH_8E'
-    )
-    PROPER_FEAST_8F = 'PROPER_FEAST_8F'
-    PRIVILEGED_WEEKDAY_9 = 'PRIVILEGED_WEEKDAY_9'
-    GENERAL_MEMORIAL_10 = 'GENERAL_MEMORIAL_10'
-    PROPER_MEMORIAL__SECOND_PATRON_11A = 'PROPER_MEMORIAL__SECOND_PATRON_11A'
-    PROPER_MEMORIAL_11B = 'PROPER_MEMORIAL_11B'
-    OPTIONAL_MEMORIAL_12 = 'OPTIONAL_MEMORIAL_12'
-    WEEKDAY_13 = 'WEEKDAY_13'
+    PROPER_FEAST__TO_AN_INDIVIDUAL_CHURCH_8E = "PROPER_FEAST__TO_AN_INDIVIDUAL_CHURCH_8E"
+    PROPER_FEAST_8F = "PROPER_FEAST_8F"
+    PRIVILEGED_WEEKDAY_9 = "PRIVILEGED_WEEKDAY_9"
+    GENERAL_MEMORIAL_10 = "GENERAL_MEMORIAL_10"
+    PROPER_MEMORIAL__SECOND_PATRON_11A = "PROPER_MEMORIAL__SECOND_PATRON_11A"
+    PROPER_MEMORIAL_11B = "PROPER_MEMORIAL_11B"
+    OPTIONAL_MEMORIAL_12 = "OPTIONAL_MEMORIAL_12"
+    WEEKDAY_13 = "WEEKDAY_13"
 
 
 class CommonDefinition(Enum):
@@ -185,29 +177,29 @@ class CommonDefinition(Enum):
     Provides a simplified version of the Common enum for easier classification.
     """
 
-    NONE = 'NONE'
-    DEDICATION_ANNIVERSARY__INSIDE = 'DEDICATION_ANNIVERSARY__INSIDE'
-    DEDICATION_ANNIVERSARY__OUTSIDE = 'DEDICATION_ANNIVERSARY__OUTSIDE'
-    BLESSED_VIRGIN_MARY = 'BLESSED_VIRGIN_MARY'
-    MARTYRS = 'MARTYRS'
-    MISSIONARY_MARTYRS = 'MISSIONARY_MARTYRS'
-    VIRGIN_MARTYRS = 'VIRGIN_MARTYRS'
-    WOMAN_MARTYRS = 'WOMAN_MARTYRS'
-    PASTORS = 'PASTORS'
-    POPES = 'POPES'
-    BISHOPS = 'BISHOPS'
-    FOUNDERS = 'FOUNDERS'
-    MISSIONARIES = 'MISSIONARIES'
-    DOCTORS_OF_THE_CHURCH = 'DOCTORS_OF_THE_CHURCH'
-    VIRGINS = 'VIRGINS'
-    SAINTS = 'SAINTS'
-    ABBOTS = 'ABBOTS'
-    MONKS = 'MONKS'
-    NUNS = 'NUNS'
-    RELIGIOUS = 'RELIGIOUS'
-    MERCY_WORKERS = 'MERCY_WORKERS'
-    EDUCATORS = 'EDUCATORS'
-    HOLY_WOMEN = 'HOLY_WOMEN'
+    NONE = "NONE"
+    DEDICATION_ANNIVERSARY__INSIDE = "DEDICATION_ANNIVERSARY__INSIDE"
+    DEDICATION_ANNIVERSARY__OUTSIDE = "DEDICATION_ANNIVERSARY__OUTSIDE"
+    BLESSED_VIRGIN_MARY = "BLESSED_VIRGIN_MARY"
+    MARTYRS = "MARTYRS"
+    MISSIONARY_MARTYRS = "MISSIONARY_MARTYRS"
+    VIRGIN_MARTYRS = "VIRGIN_MARTYRS"
+    WOMAN_MARTYRS = "WOMAN_MARTYRS"
+    PASTORS = "PASTORS"
+    POPES = "POPES"
+    BISHOPS = "BISHOPS"
+    FOUNDERS = "FOUNDERS"
+    MISSIONARIES = "MISSIONARIES"
+    DOCTORS_OF_THE_CHURCH = "DOCTORS_OF_THE_CHURCH"
+    VIRGINS = "VIRGINS"
+    SAINTS = "SAINTS"
+    ABBOTS = "ABBOTS"
+    MONKS = "MONKS"
+    NUNS = "NUNS"
+    RELIGIOUS = "RELIGIOUS"
+    MERCY_WORKERS = "MERCY_WORKERS"
+    EDUCATORS = "EDUCATORS"
+    HOLY_WOMEN = "HOLY_WOMEN"
 
 
 class Title(Enum):
@@ -216,75 +208,75 @@ class Title(Enum):
     Represents the various ecclesiastical titles and patronages that can be assigned to entities.
     """
 
-    ABBESS = 'ABBESS'
-    ABBOT = 'ABBOT'
-    APOSTLE = 'APOSTLE'
-    ARCHANGEL = 'ARCHANGEL'
-    BISHOP = 'BISHOP'
-    DEACON = 'DEACON'
-    DOCTOR_OF_THE_CHURCH = 'DOCTOR_OF_THE_CHURCH'
-    EMPRESS = 'EMPRESS'
-    EVANGELIST = 'EVANGELIST'
-    FIRST_BISHOP = 'FIRST_BISHOP'
-    HERMIT = 'HERMIT'
-    KING = 'KING'
-    MARTYR = 'MARTYR'
-    MISSIONARY = 'MISSIONARY'
-    MONK = 'MONK'
-    MOTHER_AND_QUEEN_OF_CHILE = 'MOTHER_AND_QUEEN_OF_CHILE'
-    PARENTS_OF_THE_BLESSED_VIRGIN_MARY = 'PARENTS_OF_THE_BLESSED_VIRGIN_MARY'
-    POPE = 'POPE'
-    PATRIARCH = 'PATRIARCH'
-    PILGRIM = 'PILGRIM'
-    PRIEST = 'PRIEST'
-    PROPHET = 'PROPHET'
-    PROTO_MARTYR_OF_OCEANIA = 'PROTO_MARTYR_OF_OCEANIA'
-    QUEEN = 'QUEEN'
-    QUEEN_OF_POLAND = 'QUEEN_OF_POLAND'
-    RELIGIOUS = 'RELIGIOUS'
-    SLAVIC_MISSIONARY = 'SLAVIC_MISSIONARY'
-    SPOUSE_OF_THE_BLESSED_VIRGIN_MARY = 'SPOUSE_OF_THE_BLESSED_VIRGIN_MARY'
-    THE_FIRST_MARTYR = 'THE_FIRST_MARTYR'
-    VIRGIN = 'VIRGIN'
-    COPATRON_OF_EUROPE = 'COPATRON_OF_EUROPE'
-    COPATRON_OF_IRELAND = 'COPATRON_OF_IRELAND'
-    COPATRON_OF_CANADA = 'COPATRON_OF_CANADA'
-    COPATRONESS_OF_EUROPE = 'COPATRONESS_OF_EUROPE'
-    COPATRONESS_OF_FRANCE = 'COPATRONESS_OF_FRANCE'
-    COPATRONESS_OF_IRELAND = 'COPATRONESS_OF_IRELAND'
-    COPATRONESS_OF_ITALY_AND_EUROPE = 'COPATRONESS_OF_ITALY_AND_EUROPE'
-    COPATRONESS_OF_THE_PHILIPPINES = 'COPATRONESS_OF_THE_PHILIPPINES'
-    PATRON_OF_CANADA = 'PATRON_OF_CANADA'
-    PATRON_OF_ENGLAND = 'PATRON_OF_ENGLAND'
-    PATRON_OF_EUROPE = 'PATRON_OF_EUROPE'
-    PATRON_OF_FRANCE = 'PATRON_OF_FRANCE'
-    PATRON_OF_IRELAND = 'PATRON_OF_IRELAND'
-    PATRON_OF_ITALY = 'PATRON_OF_ITALY'
-    PATRON_OF_OCEANIA = 'PATRON_OF_OCEANIA'
-    PATRON_OF_POLAND = 'PATRON_OF_POLAND'
-    PATRON_OF_RUSSIA = 'PATRON_OF_RUSSIA'
-    PATRON_OF_SCOTLAND = 'PATRON_OF_SCOTLAND'
-    PATRON_OF_SPAIN = 'PATRON_OF_SPAIN'
-    PATRON_OF_THE_CZECH_NATION = 'PATRON_OF_THE_CZECH_NATION'
-    PATRON_OF_THE_DIOCESE = 'PATRON_OF_THE_DIOCESE'
-    PATRON_OF_WALES = 'PATRON_OF_WALES'
-    PATRONESS_OF_ALSACE = 'PATRONESS_OF_ALSACE'
-    PATRONESS_OF_ARGENTINA = 'PATRONESS_OF_ARGENTINA'
-    PATRONESS_OF_BRAZIL = 'PATRONESS_OF_BRAZIL'
-    PATRONESS_OF_HUNGARY = 'PATRONESS_OF_HUNGARY'
-    PATRONESS_OF_PUERTO_RICO = 'PATRONESS_OF_PUERTO_RICO'
-    PATRONESS_OF_SLOVAKIA = 'PATRONESS_OF_SLOVAKIA'
-    PATRONESS_OF_THE_AMERICAS = 'PATRONESS_OF_THE_AMERICAS'
-    PATRONESS_OF_THE_PHILIPPINES = 'PATRONESS_OF_THE_PHILIPPINES'
-    PATRONESS_OF_THE_PROVINCE_OF_QUEBEC = 'PATRONESS_OF_THE_PROVINCE_OF_QUEBEC'
-    PATRONESS_OF_THE_USA = 'PATRONESS_OF_THE_USA'
+    ABBESS = "ABBESS"
+    ABBOT = "ABBOT"
+    APOSTLE = "APOSTLE"
+    ARCHANGEL = "ARCHANGEL"
+    BISHOP = "BISHOP"
+    DEACON = "DEACON"
+    DOCTOR_OF_THE_CHURCH = "DOCTOR_OF_THE_CHURCH"
+    EMPRESS = "EMPRESS"
+    EVANGELIST = "EVANGELIST"
+    FIRST_BISHOP = "FIRST_BISHOP"
+    HERMIT = "HERMIT"
+    KING = "KING"
+    MARTYR = "MARTYR"
+    MISSIONARY = "MISSIONARY"
+    MONK = "MONK"
+    MOTHER_AND_QUEEN_OF_CHILE = "MOTHER_AND_QUEEN_OF_CHILE"
+    PARENTS_OF_THE_BLESSED_VIRGIN_MARY = "PARENTS_OF_THE_BLESSED_VIRGIN_MARY"
+    POPE = "POPE"
+    PATRIARCH = "PATRIARCH"
+    PILGRIM = "PILGRIM"
+    PRIEST = "PRIEST"
+    PROPHET = "PROPHET"
+    PROTO_MARTYR_OF_OCEANIA = "PROTO_MARTYR_OF_OCEANIA"
+    QUEEN = "QUEEN"
+    QUEEN_OF_POLAND = "QUEEN_OF_POLAND"
+    RELIGIOUS = "RELIGIOUS"
+    SLAVIC_MISSIONARY = "SLAVIC_MISSIONARY"
+    SPOUSE_OF_THE_BLESSED_VIRGIN_MARY = "SPOUSE_OF_THE_BLESSED_VIRGIN_MARY"
+    THE_FIRST_MARTYR = "THE_FIRST_MARTYR"
+    VIRGIN = "VIRGIN"
+    COPATRON_OF_EUROPE = "COPATRON_OF_EUROPE"
+    COPATRON_OF_IRELAND = "COPATRON_OF_IRELAND"
+    COPATRON_OF_CANADA = "COPATRON_OF_CANADA"
+    COPATRONESS_OF_EUROPE = "COPATRONESS_OF_EUROPE"
+    COPATRONESS_OF_FRANCE = "COPATRONESS_OF_FRANCE"
+    COPATRONESS_OF_IRELAND = "COPATRONESS_OF_IRELAND"
+    COPATRONESS_OF_ITALY_AND_EUROPE = "COPATRONESS_OF_ITALY_AND_EUROPE"
+    COPATRONESS_OF_THE_PHILIPPINES = "COPATRONESS_OF_THE_PHILIPPINES"
+    PATRON_OF_CANADA = "PATRON_OF_CANADA"
+    PATRON_OF_ENGLAND = "PATRON_OF_ENGLAND"
+    PATRON_OF_EUROPE = "PATRON_OF_EUROPE"
+    PATRON_OF_FRANCE = "PATRON_OF_FRANCE"
+    PATRON_OF_IRELAND = "PATRON_OF_IRELAND"
+    PATRON_OF_ITALY = "PATRON_OF_ITALY"
+    PATRON_OF_OCEANIA = "PATRON_OF_OCEANIA"
+    PATRON_OF_POLAND = "PATRON_OF_POLAND"
+    PATRON_OF_RUSSIA = "PATRON_OF_RUSSIA"
+    PATRON_OF_SCOTLAND = "PATRON_OF_SCOTLAND"
+    PATRON_OF_SPAIN = "PATRON_OF_SPAIN"
+    PATRON_OF_THE_CZECH_NATION = "PATRON_OF_THE_CZECH_NATION"
+    PATRON_OF_THE_DIOCESE = "PATRON_OF_THE_DIOCESE"
+    PATRON_OF_WALES = "PATRON_OF_WALES"
+    PATRONESS_OF_ALSACE = "PATRONESS_OF_ALSACE"
+    PATRONESS_OF_ARGENTINA = "PATRONESS_OF_ARGENTINA"
+    PATRONESS_OF_BRAZIL = "PATRONESS_OF_BRAZIL"
+    PATRONESS_OF_HUNGARY = "PATRONESS_OF_HUNGARY"
+    PATRONESS_OF_PUERTO_RICO = "PATRONESS_OF_PUERTO_RICO"
+    PATRONESS_OF_SLOVAKIA = "PATRONESS_OF_SLOVAKIA"
+    PATRONESS_OF_THE_AMERICAS = "PATRONESS_OF_THE_AMERICAS"
+    PATRONESS_OF_THE_PHILIPPINES = "PATRONESS_OF_THE_PHILIPPINES"
+    PATRONESS_OF_THE_PROVINCE_OF_QUEBEC = "PATRONESS_OF_THE_PROVINCE_OF_QUEBEC"
+    PATRONESS_OF_THE_USA = "PATRONESS_OF_THE_USA"
     PATRON_OF_THE_CLERGY_OF_THE_ARCHDIOCESE_OF_LYON = (
-        'PATRON_OF_THE_CLERGY_OF_THE_ARCHDIOCESE_OF_LYON'
+        "PATRON_OF_THE_CLERGY_OF_THE_ARCHDIOCESE_OF_LYON"
     )
-    PATRON_OF_THE_CITY_OF_LYON = 'PATRON_OF_THE_CITY_OF_LYON'
-    PATRONESS_OF_COSTA_RICA = 'PATRONESS_OF_COSTA_RICA'
-    PRINCIPAL_PATRON_OF_THE_DIOCESE = 'PRINCIPAL_PATRON_OF_THE_DIOCESE'
-    SECOND_PATRON_OF_THE_DIOCESE = 'SECOND_PATRON_OF_THE_DIOCESE'
+    PATRON_OF_THE_CITY_OF_LYON = "PATRON_OF_THE_CITY_OF_LYON"
+    PATRONESS_OF_COSTA_RICA = "PATRONESS_OF_COSTA_RICA"
+    PRINCIPAL_PATRON_OF_THE_DIOCESE = "PRINCIPAL_PATRON_OF_THE_DIOCESE"
+    SECOND_PATRON_OF_THE_DIOCESE = "SECOND_PATRON_OF_THE_DIOCESE"
 
 
 class CompoundTitle(BaseModel):
@@ -294,7 +286,7 @@ class CompoundTitle(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     append: list[Title] | None = None
     """
@@ -307,7 +299,7 @@ class CompoundTitle(BaseModel):
 
 
 class SaintCount1(RootModel[int]):
-    root: Annotated[int, Field(ge=0, title='SaintCount')]
+    root: Annotated[int, Field(ge=0, title="SaintCount")]
     """
     Represents the number of saints for an entity or a group of entities.
 
@@ -326,7 +318,7 @@ class SaintCount1(RootModel[int]):
 
 
 class SaintCount(RootModel[SaintCount1 | str | None]):
-    root: Annotated[SaintCount1 | str | None, Field(title='SaintCount')]
+    root: Annotated[SaintCount1 | str | None, Field(title="SaintCount")]
     """
     Represents the number of saints for an entity or a group of entities.
 
@@ -350,13 +342,13 @@ class Color(Enum):
     Each color has specific liturgical significance and is used during particular seasons or celebrations.
     """
 
-    RED = 'RED'
-    ROSE = 'ROSE'
-    PURPLE = 'PURPLE'
-    GREEN = 'GREEN'
-    WHITE = 'WHITE'
-    GOLD = 'GOLD'
-    BLACK = 'BLACK'
+    RED = "RED"
+    ROSE = "ROSE"
+    PURPLE = "PURPLE"
+    GREEN = "GREEN"
+    WHITE = "WHITE"
+    GOLD = "GOLD"
+    BLACK = "BLACK"
 
 
 class MassContent(BaseModel):
@@ -366,7 +358,7 @@ class MassContent(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     alleluia: str | None = None
     """
@@ -490,8 +482,8 @@ class OrdinalFormat(Enum):
     - `Numeric`: Display ordinals as numbers with suffixes (e.g., "1st", "2nd", "1er", "2e")
     """
 
-    letters = 'letters'
-    numeric = 'numeric'
+    letters = "letters"
+    numeric = "numeric"
 
 
 class LocaleColors(BaseModel):
@@ -501,7 +493,7 @@ class LocaleColors(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     black: str | None = None
     """
@@ -540,7 +532,7 @@ class AdventSeason(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     season: str | None = None
     """
@@ -566,7 +558,7 @@ class ChristmasTimeSeason(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     season: str | None = None
     """
@@ -600,7 +592,7 @@ class OrdinaryTimeSeason(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     season: str | None = None
     """
@@ -622,7 +614,7 @@ class LentSeason(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     season: str | None = None
     """
@@ -652,7 +644,7 @@ class PaschalTriduumSeason(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     season: str | None = None
     """
@@ -666,7 +658,7 @@ class EasterTimeSeason(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     season: str | None = None
     """
@@ -692,7 +684,7 @@ class PeriodsMetadata(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     christmas_octave: str | None = None
     """
@@ -742,7 +734,7 @@ class RanksMetadata(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     solemnity: str | None = None
     """
@@ -776,7 +768,7 @@ class CyclesMetadata(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     proper_of_time: str | None = None
     """
@@ -830,9 +822,9 @@ class EntityType(Enum):
     Defines whether the entity represents a person, place, or event.
     """
 
-    PERSON = 'PERSON'
-    PLACE = 'PLACE'
-    EVENT = 'EVENT'
+    PERSON = "PERSON"
+    PLACE = "PLACE"
+    EVENT = "EVENT"
 
 
 class CanonizationLevel(Enum):
@@ -841,8 +833,8 @@ class CanonizationLevel(Enum):
     Defines whether someone is beatified (Blessed) or canonized (Saint).
     """
 
-    BLESSED = 'BLESSED'
-    SAINT = 'SAINT'
+    BLESSED = "BLESSED"
+    SAINT = "SAINT"
 
 
 class SaintDateDef3(BaseModel):
@@ -851,7 +843,7 @@ class SaintDateDef3(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     century: Annotated[int, Field(ge=0)]
     """
@@ -879,8 +871,8 @@ class Sex(Enum):
     Sex of a person.
     """
 
-    MALE = 'MALE'
-    FEMALE = 'FEMALE'
+    MALE = "MALE"
+    FEMALE = "FEMALE"
 
 
 class Rank(Enum):
@@ -888,12 +880,12 @@ class Rank(Enum):
     Liturgical rank indicating the importance and celebration style of a liturgical day
     """
 
-    SOLEMNITY = 'SOLEMNITY'
-    SUNDAY = 'SUNDAY'
-    FEAST = 'FEAST'
-    MEMORIAL = 'MEMORIAL'
-    OPTIONAL_MEMORIAL = 'OPTIONAL_MEMORIAL'
-    WEEKDAY = 'WEEKDAY'
+    SOLEMNITY = "SOLEMNITY"
+    SUNDAY = "SUNDAY"
+    FEAST = "FEAST"
+    MEMORIAL = "MEMORIAL"
+    OPTIONAL_MEMORIAL = "OPTIONAL_MEMORIAL"
+    WEEKDAY = "WEEKDAY"
 
 
 class Season(Enum):
@@ -902,12 +894,12 @@ class Season(Enum):
     Represents the major periods that structure the liturgical calendar.
     """
 
-    ADVENT = 'ADVENT'
-    CHRISTMAS_TIME = 'CHRISTMAS_TIME'
-    LENT = 'LENT'
-    PASCHAL_TRIDUUM = 'PASCHAL_TRIDUUM'
-    EASTER_TIME = 'EASTER_TIME'
-    ORDINARY_TIME = 'ORDINARY_TIME'
+    ADVENT = "ADVENT"
+    CHRISTMAS_TIME = "CHRISTMAS_TIME"
+    LENT = "LENT"
+    PASCHAL_TRIDUUM = "PASCHAL_TRIDUUM"
+    EASTER_TIME = "EASTER_TIME"
+    ORDINARY_TIME = "ORDINARY_TIME"
 
 
 class Period(Enum):
@@ -916,18 +908,16 @@ class Period(Enum):
     Defines sub-periods that have special liturgical characteristics or rules.
     """
 
-    CHRISTMAS_OCTAVE = 'CHRISTMAS_OCTAVE'
-    DAYS_BEFORE_EPIPHANY = 'DAYS_BEFORE_EPIPHANY'
-    DAYS_FROM_EPIPHANY = 'DAYS_FROM_EPIPHANY'
-    CHRISTMAS_TO_PRESENTATION_OF_THE_LORD = 'CHRISTMAS_TO_PRESENTATION_OF_THE_LORD'
-    PRESENTATION_OF_THE_LORD_TO_HOLY_THURSDAY = (
-        'PRESENTATION_OF_THE_LORD_TO_HOLY_THURSDAY'
-    )
-    HOLY_WEEK = 'HOLY_WEEK'
-    PASCHAL_TRIDUUM = 'PASCHAL_TRIDUUM'
-    EASTER_OCTAVE = 'EASTER_OCTAVE'
-    EARLY_ORDINARY_TIME = 'EARLY_ORDINARY_TIME'
-    LATE_ORDINARY_TIME = 'LATE_ORDINARY_TIME'
+    CHRISTMAS_OCTAVE = "CHRISTMAS_OCTAVE"
+    DAYS_BEFORE_EPIPHANY = "DAYS_BEFORE_EPIPHANY"
+    DAYS_FROM_EPIPHANY = "DAYS_FROM_EPIPHANY"
+    CHRISTMAS_TO_PRESENTATION_OF_THE_LORD = "CHRISTMAS_TO_PRESENTATION_OF_THE_LORD"
+    PRESENTATION_OF_THE_LORD_TO_HOLY_THURSDAY = "PRESENTATION_OF_THE_LORD_TO_HOLY_THURSDAY"
+    HOLY_WEEK = "HOLY_WEEK"
+    PASCHAL_TRIDUUM = "PASCHAL_TRIDUUM"
+    EASTER_OCTAVE = "EASTER_OCTAVE"
+    EARLY_ORDINARY_TIME = "EARLY_ORDINARY_TIME"
+    LATE_ORDINARY_TIME = "LATE_ORDINARY_TIME"
 
 
 class Common(Enum):
@@ -936,40 +926,40 @@ class Common(Enum):
     Provides standardized liturgical texts for various types of commemorations.
     """
 
-    NONE = 'NONE'
-    DEDICATION_ANNIVERSARY__INSIDE = 'DEDICATION_ANNIVERSARY__INSIDE'
-    DEDICATION_ANNIVERSARY__OUTSIDE = 'DEDICATION_ANNIVERSARY__OUTSIDE'
-    BLESSED_VIRGIN_MARY__ORDINARY_TIME = 'BLESSED_VIRGIN_MARY__ORDINARY_TIME'
-    BLESSED_VIRGIN_MARY__ADVENT = 'BLESSED_VIRGIN_MARY__ADVENT'
-    BLESSED_VIRGIN_MARY__CHRISTMAS = 'BLESSED_VIRGIN_MARY__CHRISTMAS'
-    BLESSED_VIRGIN_MARY__EASTER = 'BLESSED_VIRGIN_MARY__EASTER'
-    MARTYRS__OUTSIDE_EASTER__SEVERAL = 'MARTYRS__OUTSIDE_EASTER__SEVERAL'
-    MARTYRS__OUTSIDE_EASTER__ONE = 'MARTYRS__OUTSIDE_EASTER__ONE'
-    MARTYRS__EASTER__SEVERAL = 'MARTYRS__EASTER__SEVERAL'
-    MARTYRS__EASTER__ONE = 'MARTYRS__EASTER__ONE'
-    MARTYRS__MISSIONARY__SEVERAL = 'MARTYRS__MISSIONARY__SEVERAL'
-    MARTYRS__MISSIONARY__ONE = 'MARTYRS__MISSIONARY__ONE'
-    MARTYRS__VIRGIN = 'MARTYRS__VIRGIN'
-    MARTYRS__WOMAN = 'MARTYRS__WOMAN'
-    PASTORS__POPE_OR_BISHOP = 'PASTORS__POPE_OR_BISHOP'
-    PASTORS__BISHOP = 'PASTORS__BISHOP'
-    PASTORS__SEVERAL = 'PASTORS__SEVERAL'
-    PASTORS__ONE = 'PASTORS__ONE'
-    PASTORS__FOUNDER__ONE = 'PASTORS__FOUNDER__ONE'
-    PASTORS__FOUNDER__SEVERAL = 'PASTORS__FOUNDER__SEVERAL'
-    PASTORS__MISSIONARY = 'PASTORS__MISSIONARY'
-    DOCTORS_OF_THE_CHURCH = 'DOCTORS_OF_THE_CHURCH'
-    VIRGINS__SEVERAL = 'VIRGINS__SEVERAL'
-    VIRGINS__ONE = 'VIRGINS__ONE'
-    SAINTS__ALL__SEVERAL = 'SAINTS__ALL__SEVERAL'
-    SAINTS__ALL__ONE = 'SAINTS__ALL__ONE'
-    SAINTS__ABBOT = 'SAINTS__ABBOT'
-    SAINT__MONK = 'SAINT__MONK'
-    SAINTS__NUN = 'SAINTS__NUN'
-    SAINTS__RELIGIOUS = 'SAINTS__RELIGIOUS'
-    SAINTS__MERCY_WORKS = 'SAINTS__MERCY_WORKS'
-    SAINTS__EDUCATORS = 'SAINTS__EDUCATORS'
-    SAINTS__HOLY_WOMEN = 'SAINTS__HOLY_WOMEN'
+    NONE = "NONE"
+    DEDICATION_ANNIVERSARY__INSIDE = "DEDICATION_ANNIVERSARY__INSIDE"
+    DEDICATION_ANNIVERSARY__OUTSIDE = "DEDICATION_ANNIVERSARY__OUTSIDE"
+    BLESSED_VIRGIN_MARY__ORDINARY_TIME = "BLESSED_VIRGIN_MARY__ORDINARY_TIME"
+    BLESSED_VIRGIN_MARY__ADVENT = "BLESSED_VIRGIN_MARY__ADVENT"
+    BLESSED_VIRGIN_MARY__CHRISTMAS = "BLESSED_VIRGIN_MARY__CHRISTMAS"
+    BLESSED_VIRGIN_MARY__EASTER = "BLESSED_VIRGIN_MARY__EASTER"
+    MARTYRS__OUTSIDE_EASTER__SEVERAL = "MARTYRS__OUTSIDE_EASTER__SEVERAL"
+    MARTYRS__OUTSIDE_EASTER__ONE = "MARTYRS__OUTSIDE_EASTER__ONE"
+    MARTYRS__EASTER__SEVERAL = "MARTYRS__EASTER__SEVERAL"
+    MARTYRS__EASTER__ONE = "MARTYRS__EASTER__ONE"
+    MARTYRS__MISSIONARY__SEVERAL = "MARTYRS__MISSIONARY__SEVERAL"
+    MARTYRS__MISSIONARY__ONE = "MARTYRS__MISSIONARY__ONE"
+    MARTYRS__VIRGIN = "MARTYRS__VIRGIN"
+    MARTYRS__WOMAN = "MARTYRS__WOMAN"
+    PASTORS__POPE_OR_BISHOP = "PASTORS__POPE_OR_BISHOP"
+    PASTORS__BISHOP = "PASTORS__BISHOP"
+    PASTORS__SEVERAL = "PASTORS__SEVERAL"
+    PASTORS__ONE = "PASTORS__ONE"
+    PASTORS__FOUNDER__ONE = "PASTORS__FOUNDER__ONE"
+    PASTORS__FOUNDER__SEVERAL = "PASTORS__FOUNDER__SEVERAL"
+    PASTORS__MISSIONARY = "PASTORS__MISSIONARY"
+    DOCTORS_OF_THE_CHURCH = "DOCTORS_OF_THE_CHURCH"
+    VIRGINS__SEVERAL = "VIRGINS__SEVERAL"
+    VIRGINS__ONE = "VIRGINS__ONE"
+    SAINTS__ALL__SEVERAL = "SAINTS__ALL__SEVERAL"
+    SAINTS__ALL__ONE = "SAINTS__ALL__ONE"
+    SAINTS__ABBOT = "SAINTS__ABBOT"
+    SAINT__MONK = "SAINT__MONK"
+    SAINTS__NUN = "SAINTS__NUN"
+    SAINTS__RELIGIOUS = "SAINTS__RELIGIOUS"
+    SAINTS__MERCY_WORKS = "SAINTS__MERCY_WORKS"
+    SAINTS__EDUCATORS = "SAINTS__EDUCATORS"
+    SAINTS__HOLY_WOMEN = "SAINTS__HOLY_WOMEN"
 
 
 class ColorInfo(BaseModel):
@@ -978,7 +968,7 @@ class ColorInfo(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     key: Color
     """
@@ -996,16 +986,16 @@ class MassTime(Enum):
     Different Masses are celebrated at various times and occasions throughout the liturgical year.
     """
 
-    easter_vigil = 'easter_vigil'
-    previous_evening_mass = 'previous_evening_mass'
-    night_mass = 'night_mass'
-    mass_at_dawn = 'mass_at_dawn'
-    morning_mass = 'morning_mass'
-    mass_of_the_passion = 'mass_of_the_passion'
-    celebration_of_the_passion = 'celebration_of_the_passion'
-    day_mass = 'day_mass'
-    chrism_mass = 'chrism_mass'
-    evening_mass_of_the_lords_supper = 'evening_mass_of_the_lords_supper'
+    easter_vigil = "easter_vigil"
+    previous_evening_mass = "previous_evening_mass"
+    night_mass = "night_mass"
+    mass_at_dawn = "mass_at_dawn"
+    morning_mass = "morning_mass"
+    mass_of_the_passion = "mass_of_the_passion"
+    celebration_of_the_passion = "celebration_of_the_passion"
+    day_mass = "day_mass"
+    chrism_mass = "chrism_mass"
+    evening_mass_of_the_lords_supper = "evening_mass_of_the_lords_supper"
 
 
 class SundayCycle(Enum):
@@ -1016,9 +1006,9 @@ class SundayCycle(Enum):
     C year is always divisible by 3, A has remainder of 1, and B remainder of 2.
     """
 
-    YEAR_A = 'YEAR_A'
-    YEAR_B = 'YEAR_B'
-    YEAR_C = 'YEAR_C'
+    YEAR_A = "YEAR_A"
+    YEAR_B = "YEAR_B"
+    YEAR_C = "YEAR_C"
 
 
 class WeekdayCycle(Enum):
@@ -1027,8 +1017,8 @@ class WeekdayCycle(Enum):
     Odd-numbered years are the Cycle I (year 1); even-numbered ones are the Cycle II (year 2).
     """
 
-    YEAR_1 = 'YEAR_1'
-    YEAR_2 = 'YEAR_2'
+    YEAR_1 = "YEAR_1"
+    YEAR_2 = "YEAR_2"
 
 
 class PsalterWeekCycle(Enum):
@@ -1038,10 +1028,10 @@ class PsalterWeekCycle(Enum):
     and Easter Sunday the cycle is always begun again with Week 1 (others being omitted when necessary).
     """
 
-    WEEK_1 = 'WEEK_1'
-    WEEK_2 = 'WEEK_2'
-    WEEK_3 = 'WEEK_3'
-    WEEK_4 = 'WEEK_4'
+    WEEK_1 = "WEEK_1"
+    WEEK_2 = "WEEK_2"
+    WEEK_3 = "WEEK_3"
+    WEEK_4 = "WEEK_4"
 
 
 class CalendarContext(Enum):
@@ -1052,8 +1042,8 @@ class CalendarContext(Enum):
     in a given year's calendar output.
     """
 
-    GREGORIAN = 'GREGORIAN'
-    LITURGICAL = 'LITURGICAL'
+    GREGORIAN = "GREGORIAN"
+    LITURGICAL = "LITURGICAL"
 
 
 class SundayCycleCombined(Enum):
@@ -1063,9 +1053,9 @@ class SundayCycleCombined(Enum):
     across different combinations of Sunday cycles.
     """
 
-    YEAR_A_B = 'YEAR_A_B'
-    YEAR_A_C = 'YEAR_A_C'
-    YEAR_B_C = 'YEAR_B_C'
+    YEAR_A_B = "YEAR_A_B"
+    YEAR_A_C = "YEAR_A_C"
+    YEAR_B_C = "YEAR_B_C"
 
 
 class LiturgicalCycle(Enum):
@@ -1074,15 +1064,15 @@ class LiturgicalCycle(Enum):
     Includes both actual cycles (Year A, B, C, etc.) and invariant content
     """
 
-    invariant = 'invariant'
-    year_a = 'year_a'
-    year_b = 'year_b'
-    year_c = 'year_c'
-    year_a_b = 'year_a_b'
-    year_a_c = 'year_a_c'
-    year_b_c = 'year_b_c'
-    year_1 = 'year_1'
-    year_2 = 'year_2'
+    invariant = "invariant"
+    year_a = "year_a"
+    year_b = "year_b"
+    year_c = "year_c"
+    year_a_b = "year_a_b"
+    year_a_c = "year_a_c"
+    year_b_c = "year_b_c"
+    year_1 = "year_1"
+    year_2 = "year_2"
 
 
 class Acclamation(Enum):
@@ -1091,10 +1081,10 @@ class Acclamation(Enum):
     Acclamations are short liturgical responses or exclamations used during Mass.
     """
 
-    ALLELUIA = 'ALLELUIA'
-    LENT = 'LENT'
-    MIXED = 'MIXED'
-    NONE = 'NONE'
+    ALLELUIA = "ALLELUIA"
+    LENT = "LENT"
+    MIXED = "MIXED"
+    NONE = "NONE"
 
 
 class BibleBook(Enum):
@@ -1103,80 +1093,80 @@ class BibleBook(Enum):
     OSIS provides standardized abbreviations for biblical books used in liturgical and biblical applications.
     """
 
-    Gen = 'Gen'
-    Exod = 'Exod'
-    Lev = 'Lev'
-    Num = 'Num'
-    Deut = 'Deut'
-    Josh = 'Josh'
-    Judg = 'Judg'
-    Ruth = 'Ruth'
-    field_1Sam = '1Sam'
-    field_2Sam = '2Sam'
-    field_1Kgs = '1Kgs'
-    field_2Kgs = '2Kgs'
-    field_1Chr = '1Chr'
-    field_2Chr = '2Chr'
-    Ezra = 'Ezra'
-    Neh = 'Neh'
-    Tob = 'Tob'
-    Jdt = 'Jdt'
-    Esth = 'Esth'
-    field_1Macc = '1Macc'
-    field_2Macc = '2Macc'
-    Job = 'Job'
-    Ps = 'Ps'
-    Prov = 'Prov'
-    Eccl = 'Eccl'
-    Song = 'Song'
-    Wis = 'Wis'
-    Sir = 'Sir'
-    Isa = 'Isa'
-    Jer = 'Jer'
-    Lam = 'Lam'
-    Bar = 'Bar'
-    EpJer = 'EpJer'
-    Ezek = 'Ezek'
-    Dan = 'Dan'
-    Hos = 'Hos'
-    Joel = 'Joel'
-    Amos = 'Amos'
-    Obad = 'Obad'
-    Jonah = 'Jonah'
-    Mic = 'Mic'
-    Nah = 'Nah'
-    Hab = 'Hab'
-    Zeph = 'Zeph'
-    Hag = 'Hag'
-    Zech = 'Zech'
-    Mal = 'Mal'
-    Matt = 'Matt'
-    Mark = 'Mark'
-    Luke = 'Luke'
-    John = 'John'
-    Acts = 'Acts'
-    Rom = 'Rom'
-    field_1Cor = '1Cor'
-    field_2Cor = '2Cor'
-    Gal = 'Gal'
-    Eph = 'Eph'
-    Phil = 'Phil'
-    Col = 'Col'
-    field_1Thess = '1Thess'
-    field_2Thess = '2Thess'
-    field_1Tim = '1Tim'
-    field_2Tim = '2Tim'
-    Titus = 'Titus'
-    Phlm = 'Phlm'
-    Heb = 'Heb'
-    Jas = 'Jas'
-    field_1Pet = '1Pet'
-    field_2Pet = '2Pet'
-    field_1John = '1John'
-    field_2John = '2John'
-    field_3John = '3John'
-    Jude = 'Jude'
-    Rev = 'Rev'
+    Gen = "Gen"
+    Exod = "Exod"
+    Lev = "Lev"
+    Num = "Num"
+    Deut = "Deut"
+    Josh = "Josh"
+    Judg = "Judg"
+    Ruth = "Ruth"
+    field_1Sam = "1Sam"
+    field_2Sam = "2Sam"
+    field_1Kgs = "1Kgs"
+    field_2Kgs = "2Kgs"
+    field_1Chr = "1Chr"
+    field_2Chr = "2Chr"
+    Ezra = "Ezra"
+    Neh = "Neh"
+    Tob = "Tob"
+    Jdt = "Jdt"
+    Esth = "Esth"
+    field_1Macc = "1Macc"
+    field_2Macc = "2Macc"
+    Job = "Job"
+    Ps = "Ps"
+    Prov = "Prov"
+    Eccl = "Eccl"
+    Song = "Song"
+    Wis = "Wis"
+    Sir = "Sir"
+    Isa = "Isa"
+    Jer = "Jer"
+    Lam = "Lam"
+    Bar = "Bar"
+    EpJer = "EpJer"
+    Ezek = "Ezek"
+    Dan = "Dan"
+    Hos = "Hos"
+    Joel = "Joel"
+    Amos = "Amos"
+    Obad = "Obad"
+    Jonah = "Jonah"
+    Mic = "Mic"
+    Nah = "Nah"
+    Hab = "Hab"
+    Zeph = "Zeph"
+    Hag = "Hag"
+    Zech = "Zech"
+    Mal = "Mal"
+    Matt = "Matt"
+    Mark = "Mark"
+    Luke = "Luke"
+    John = "John"
+    Acts = "Acts"
+    Rom = "Rom"
+    field_1Cor = "1Cor"
+    field_2Cor = "2Cor"
+    Gal = "Gal"
+    Eph = "Eph"
+    Phil = "Phil"
+    Col = "Col"
+    field_1Thess = "1Thess"
+    field_2Thess = "2Thess"
+    field_1Tim = "1Tim"
+    field_2Tim = "2Tim"
+    Titus = "Titus"
+    Phlm = "Phlm"
+    Heb = "Heb"
+    Jas = "Jas"
+    field_1Pet = "1Pet"
+    field_2Pet = "2Pet"
+    field_1John = "1John"
+    field_2John = "2John"
+    field_3John = "3John"
+    Jude = "Jude"
+    Rev = "Rev"
 
 
 class MassPart(Enum):
@@ -1185,34 +1175,34 @@ class MassPart(Enum):
     Each part represents a specific element of the liturgical celebration.
     """
 
-    messianic_entry = 'messianic_entry'
-    entrance_antiphon = 'entrance_antiphon'
-    collect = 'collect'
-    reading_1 = 'reading_1'
-    psalm = 'psalm'
-    canticle = 'canticle'
-    reading_2 = 'reading_2'
-    easter_vigil_psalm_2 = 'easter_vigil_psalm_2'
-    easter_vigil_reading_3 = 'easter_vigil_reading_3'
-    easter_vigil_canticle_3 = 'easter_vigil_canticle_3'
-    easter_vigil_reading_4 = 'easter_vigil_reading_4'
-    easter_vigil_psalm_4 = 'easter_vigil_psalm_4'
-    easter_vigil_reading_5 = 'easter_vigil_reading_5'
-    easter_vigil_canticle_5 = 'easter_vigil_canticle_5'
-    easter_vigil_reading_6 = 'easter_vigil_reading_6'
-    easter_vigil_psalm_6 = 'easter_vigil_psalm_6'
-    easter_vigil_reading_7 = 'easter_vigil_reading_7'
-    easter_vigil_psalm_7 = 'easter_vigil_psalm_7'
-    easter_vigil_epistle = 'easter_vigil_epistle'
-    sequence = 'sequence'
-    alleluia = 'alleluia'
-    gospel = 'gospel'
-    prayer_over_the_offerings = 'prayer_over_the_offerings'
-    preface = 'preface'
-    communion_antiphon = 'communion_antiphon'
-    prayer_after_communion = 'prayer_after_communion'
-    solemn_blessing = 'solemn_blessing'
-    prayer_over_the_people = 'prayer_over_the_people'
+    messianic_entry = "messianic_entry"
+    entrance_antiphon = "entrance_antiphon"
+    collect = "collect"
+    reading_1 = "reading_1"
+    psalm = "psalm"
+    canticle = "canticle"
+    reading_2 = "reading_2"
+    easter_vigil_psalm_2 = "easter_vigil_psalm_2"
+    easter_vigil_reading_3 = "easter_vigil_reading_3"
+    easter_vigil_canticle_3 = "easter_vigil_canticle_3"
+    easter_vigil_reading_4 = "easter_vigil_reading_4"
+    easter_vigil_psalm_4 = "easter_vigil_psalm_4"
+    easter_vigil_reading_5 = "easter_vigil_reading_5"
+    easter_vigil_canticle_5 = "easter_vigil_canticle_5"
+    easter_vigil_reading_6 = "easter_vigil_reading_6"
+    easter_vigil_psalm_6 = "easter_vigil_psalm_6"
+    easter_vigil_reading_7 = "easter_vigil_reading_7"
+    easter_vigil_psalm_7 = "easter_vigil_psalm_7"
+    easter_vigil_epistle = "easter_vigil_epistle"
+    sequence = "sequence"
+    alleluia = "alleluia"
+    gospel = "gospel"
+    prayer_over_the_offerings = "prayer_over_the_offerings"
+    preface = "preface"
+    communion_antiphon = "communion_antiphon"
+    prayer_after_communion = "prayer_after_communion"
+    solemn_blessing = "solemn_blessing"
+    prayer_over_the_people = "prayer_over_the_people"
 
 
 class CalendarMetadata(BaseModel):
@@ -1222,7 +1212,7 @@ class CalendarMetadata(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     type: CalendarType
     """
@@ -1247,7 +1237,7 @@ class ParticularConfig(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     epiphany_on_sunday: bool | None = None
     """
@@ -1273,7 +1263,7 @@ class DateDef1(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     month: MonthIndex
     """
@@ -1295,7 +1285,7 @@ class DateDef2(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     date_fn: DateFn
     """
@@ -1313,7 +1303,7 @@ class DateDef3(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     month: MonthIndex
     """
@@ -1339,7 +1329,7 @@ class DateDef4(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     month: MonthIndex
     """
@@ -1369,9 +1359,9 @@ class ExceptionCondition1(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
-    from_: Annotated[DateDef, Field(alias='from')]
+    from_: Annotated[DateDef, Field(alias="from")]
     """
     The start date of the range
     """
@@ -1391,7 +1381,7 @@ class ExceptionCondition2(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     date: DateDef
     """
@@ -1439,7 +1429,7 @@ class MassCycleDefinition(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     invariant: MassContent | None = None
     """
@@ -1486,7 +1476,7 @@ class SeasonsMetadata(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     advent: AdventSeason | None = None
     """
@@ -1520,7 +1510,7 @@ class SaintDateDef1(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     between: Annotated[list[SaintDate], Field(max_length=2, min_length=2)]
     """
@@ -1534,17 +1524,15 @@ class SaintDateDef2(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
-    or_: Annotated[list[SaintDate], Field(alias='or')]
+    or_: Annotated[list[SaintDate], Field(alias="or")]
     """
     The list of alternative dates
     """
 
 
-class SaintDateDef(
-    RootModel[SaintDate | SaintDateDef1 | SaintDateDef2 | SaintDateDef3]
-):
+class SaintDateDef(RootModel[SaintDate | SaintDateDef1 | SaintDateDef2 | SaintDateDef3]):
     root: SaintDate | SaintDateDef1 | SaintDateDef2 | SaintDateDef3
     """
     Saint date definition supporting various date specifications.
@@ -1558,7 +1546,7 @@ class PeriodInfo(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     key: Period
     """
@@ -1576,7 +1564,7 @@ class CommonInfo(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     key: Common
     """
@@ -1595,7 +1583,7 @@ class MassInfo(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     type: MassTime
     """
@@ -1615,7 +1603,7 @@ class DateDefException(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     when: ExceptionCondition
     """
@@ -1634,7 +1622,7 @@ class EntityOverride(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     id: str
     """
@@ -1660,7 +1648,7 @@ class MassesDefinitions(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     celebration_of_the_passion: MassCycleDefinition | None = None
     """
@@ -1711,7 +1699,7 @@ class ResourcesMetadata(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     ordinal_format: OrdinalFormat | None = None
     """
@@ -1757,13 +1745,13 @@ class ResourcesMetadata(BaseModel):
 
 class Entity(BaseModel):
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     id: str | None = None
     """
     The unique identifier of the entity
     """
-    type: EntityType | None = 'PERSON'
+    type: EntityType | None = "PERSON"
     """
     The type of the entity.
 
@@ -1854,7 +1842,7 @@ class Entity(BaseModel):
     """
     Sources for the information about this entity
     """
-    field_todo: Annotated[list[str] | None, Field(alias='_todo')] = None
+    field_todo: Annotated[list[str] | None, Field(alias="_todo")] = None
     """
     Internal notes (not serialized).
     """
@@ -1867,7 +1855,7 @@ class ParentOverride(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     from_calendar_id: str
     """
@@ -1922,7 +1910,7 @@ class CelebrationSummary(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     id: str
     """
@@ -1980,9 +1968,9 @@ class Resources(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
-    field_schema: Annotated[str | None, Field(alias='$schema')] = None
+    field_schema: Annotated[str | None, Field(alias="$schema")] = None
     locale: str
     """
     Locale code of the resources, in BCP-47 IETF tag format
@@ -2003,7 +1991,7 @@ class LiturgicalDay(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     id: str
     """
@@ -2179,7 +2167,7 @@ class MassContext(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     mass_time: MassTime
     """
@@ -2344,7 +2332,7 @@ class DayDefinition(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
     date_def: DateDef | None = None
     """
@@ -2421,9 +2409,9 @@ class CalendarDefinition(BaseModel):
     """
 
     model_config = ConfigDict(
-        extra='forbid',
+        extra="forbid",
     )
-    field_schema: Annotated[str | None, Field(alias='$schema')] = None
+    field_schema: Annotated[str | None, Field(alias="$schema")] = None
     id: str
     metadata: CalendarMetadata
     particular_config: ParticularConfig | None = None
