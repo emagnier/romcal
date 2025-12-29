@@ -188,7 +188,7 @@ pub fn current_year() -> i32 {
 /// Validate a year using romcal's validation function
 pub fn validate_year(year: i32) -> Result<(), RomcalCliError> {
     romcal::validate_year(year, 1583).map_err(|e| match e {
-        romcal::RomcalError::InvalidYear(year) => RomcalCliError::invalid_year(year),
+        romcal::RomcalError::InvalidYear(year, _) => RomcalCliError::invalid_year(year),
         _ => RomcalCliError::config_error(format!("Year validation error: {}", e)),
     })
 }

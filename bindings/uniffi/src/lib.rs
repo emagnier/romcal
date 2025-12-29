@@ -40,10 +40,7 @@ impl From<romcal::error::RomcalError> for RomcalError {
     fn from(err: romcal::error::RomcalError) -> Self {
         use romcal::error::RomcalError as CoreError;
         match err {
-            CoreError::InvalidYear(y) => RomcalError::InvalidYear(format!(
-                "{} (must be >= 1583 for the Gregorian calendar)",
-                y
-            )),
+            CoreError::InvalidYear(_, _) => RomcalError::InvalidYear(err.to_string()),
             CoreError::InvalidDateName(name) => RomcalError::NotFound(name),
             CoreError::InvalidConfig => {
                 RomcalError::InvalidConfig("Invalid configuration".to_string())

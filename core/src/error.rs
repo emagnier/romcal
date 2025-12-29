@@ -5,11 +5,14 @@
 
 use std::fmt;
 
+/// Maximum year supported for calculations
+pub const MAX_YEAR: i32 = 9999;
+
 /// Main errors of the Romcal library
 #[derive(Debug, Clone, PartialEq)]
 pub enum RomcalError {
-    /// Invalid year for calculations
-    InvalidYear(i32),
+    /// Invalid year for calculations (year, min_year)
+    InvalidYear(i32, i32),
     /// Invalid date
     InvalidDate,
     /// Liturgical calculation error
@@ -27,11 +30,11 @@ pub enum RomcalError {
 impl fmt::Display for RomcalError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
-            RomcalError::InvalidYear(year) => {
+            RomcalError::InvalidYear(year, min_year) => {
                 write!(
                     f,
-                    "Invalid year: {} (must be >= 1583 for the Gregorian calendar)",
-                    year
+                    "Invalid year: {} (must be between {} and {})",
+                    year, min_year, MAX_YEAR
                 )
             }
             RomcalError::InvalidDate => {
@@ -68,8 +71,8 @@ pub trait Validate {
 
 /// Validation of years
 pub fn validate_year(year: i32, min_year: i32) -> RomcalResult<()> {
-    if year < min_year || year > 9999 {
-        Err(RomcalError::InvalidYear(year))
+    if year < min_year || year > MAX_YEAR {
+        Err(RomcalError::InvalidYear(year, min_year))
     } else {
         Ok(())
     }
@@ -93,17 +96,34 @@ mod tests {
 
     #[test]
     fn test_error_display() {
-        let error = RomcalError::InvalidYear(1500);
+        // Test with Gregorian min year
+        let error = RomcalError::InvalidYear(1500, 1583);
         assert_eq!(
             error.to_string(),
-            "Invalid year: 1500 (must be >= 1583 for the Gregorian calendar)"
+            "Invalid year: 1500 (must be between 1583 and 9999)"
+        );
+
+        // Test with Julian min year
+        let error = RomcalError::InvalidYear(300, 326);
+        assert_eq!(
+            error.to_string(),
+            "Invalid year: 300 (must be between 326 and 9999)"
         );
     }
 
     #[test]
     fn test_validate_year() {
+        // Valid years
+        assert!(validate_year(1583, 1583).is_ok());
         assert!(validate_year(2024, 1583).is_ok());
+        assert!(validate_year(9999, 1583).is_ok());
+
+        // Invalid years (below min)
         assert!(validate_year(1500, 1583).is_err());
+        assert!(validate_year(1582, 1583).is_err());
+
+        // Invalid years (above max)
+        assert!(validate_year(10000, 1583).is_err());
     }
 
     #[test]

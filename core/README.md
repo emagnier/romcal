@@ -398,8 +398,8 @@ fn generate_calendar() -> RomcalResult<()> {
     // This will fail: year must be >= 1583 (Gregorian calendar adoption)
     match romcal.generate_liturgical_calendar(1500) {
         Ok(calendar) => { /* use calendar */ }
-        Err(RomcalError::InvalidYear(year)) => {
-            eprintln!("Invalid year: {}", year);
+        Err(RomcalError::InvalidYear(year, min_year)) => {
+            eprintln!("Invalid year: {} (min: {})", year, min_year);
         }
         Err(e) => {
             eprintln!("Error: {}", e);
@@ -414,7 +414,7 @@ fn generate_calendar() -> RomcalResult<()> {
 
 | Error                     | Description                           |
 | ------------------------- | ------------------------------------- |
-| `InvalidYear(i32)`        | Year is before 1583 or after 9999     |
+| `InvalidYear(i32, i32)`   | Year is before min_year or after 9999 |
 | `InvalidDate`             | Invalid date encountered              |
 | `CalculationError`        | Error during liturgical calculations  |
 | `InvalidConfig`           | Invalid configuration provided        |
