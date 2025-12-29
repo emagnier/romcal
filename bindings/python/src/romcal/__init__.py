@@ -61,7 +61,8 @@ def __getattr__(name: str) -> str:
     """Lazy load __version__ from the FFI module."""
     if name == "__version__":
         return get_version()
-    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
+    msg = f"module {__name__!r} has no attribute {name!r}"
+    raise AttributeError(msg)
 
 
 class RomcalError(Exception):
