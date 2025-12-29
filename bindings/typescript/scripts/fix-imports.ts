@@ -1,4 +1,5 @@
-#!/usr/bin/env node
+#!/usr/bin/env tsx
+/// <reference types="node" />
 
 /**
  * Post-processing script for ts-rs generated TypeScript files.
@@ -40,14 +41,14 @@ while (iteration < maxIterations) {
   })
 
   // Collect errors by file
-  const fixes = new Map() // fileName -> Set of types to import
+  const fixes = new Map<string, Set<string>>()
 
   for (const match of output.matchAll(errorPattern)) {
     const [, fileName, typeName] = match
     if (!fixes.has(fileName)) {
       fixes.set(fileName, new Set())
     }
-    fixes.get(fileName).add(typeName)
+    fixes.get(fileName)!.add(typeName)
   }
 
   // No more errors to fix
