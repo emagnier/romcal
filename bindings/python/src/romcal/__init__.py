@@ -47,26 +47,9 @@ __all__ = [
     "RomcalError",
 ]
 
-# Minimum year for Gregorian calendar calculations
-MIN_YEAR = 1583
-
 
 class RomcalError(Exception):
     """Exception raised for Romcal errors."""
-
-
-def _validate_year(year: int) -> None:
-    """Validate that the year is valid for Gregorian calendar calculations.
-
-    Args:
-        year: The year to validate.
-
-    Raises:
-        RomcalError: If the year is less than 1583.
-    """
-    if year < MIN_YEAR:
-        msg = f"Year must be >= {MIN_YEAR} for the Gregorian calendar, got {year}"
-        raise RomcalError(msg)
 
 
 def _get_core() -> _core:
@@ -189,7 +172,6 @@ class Romcal:
             >>> for day in christmas_days:
             ...     print(f"{day['id']}: {day['rank']}")
         """
-        _validate_year(year)
         core = _get_core()
         try:
             return json.loads(self._inner.generate_liturgical_calendar(year))
@@ -219,7 +201,6 @@ class Romcal:
             >>> masses = r.mass_calendar(2025)
             >>> christmas_masses = masses.get("2025-12-25", [])
         """
-        _validate_year(year)
         core = _get_core()
         try:
             return json.loads(self._inner.generate_mass_calendar(year))
@@ -247,7 +228,6 @@ class Romcal:
             >>> easter = r.get_date("easter", 2025)
             >>> print(easter)  # '2025-04-20'
         """
-        _validate_year(year)
         core = _get_core()
         try:
             return self._inner.get_date(celebration_id, year)

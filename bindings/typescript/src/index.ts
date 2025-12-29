@@ -119,19 +119,6 @@ export class RomcalError extends Error {
   }
 }
 
-/** Minimum year for Gregorian calendar calculations */
-const MIN_YEAR = 1583
-
-/**
- * Validates that the year is valid for Gregorian calendar calculations.
- * @throws RomcalError if the year is less than 1583.
- */
-function validateYear(year: number): void {
-  if (year < MIN_YEAR) {
-    throw new RomcalError(`Year must be >= ${MIN_YEAR} for the Gregorian calendar, got ${year}`)
-  }
-}
-
 // ============================================================================
 // Romcal Instance
 // ============================================================================
@@ -192,33 +179,31 @@ function createInstance(wasmInstance: wasm.Romcal): Romcal {
     },
 
     async generateLiturgicalCalendar(year: number): Promise<LiturgicalCalendar> {
-      validateYear(year)
       try {
         const json = wasmInstance.generateLiturgicalCalendar(year)
         return JSON.parse(json) as LiturgicalCalendar
       } catch (error) {
-        throw new RomcalError(`Failed to generate liturgical calendar for year ${year}`, {
-          cause: error,
-        })
+        const message = error instanceof Error ? error.message : String(error)
+        throw new RomcalError(message, { cause: error })
       }
     },
 
     async generateMassCalendar(year: number): Promise<MassCalendar> {
-      validateYear(year)
       try {
         const json = wasmInstance.generateMassCalendar(year)
         return JSON.parse(json) as MassCalendar
       } catch (error) {
-        throw new RomcalError(`Failed to generate mass calendar for year ${year}`, { cause: error })
+        const message = error instanceof Error ? error.message : String(error)
+        throw new RomcalError(message, { cause: error })
       }
     },
 
     async getDate(id: string, year: number): Promise<string> {
-      validateYear(year)
       try {
         return wasmInstance.getDate(id, year)
       } catch (error) {
-        throw new RomcalError(`Failed to get date '${id}' for year ${year}`, { cause: error })
+        const message = error instanceof Error ? error.message : String(error)
+        throw new RomcalError(message, { cause: error })
       }
     },
   }

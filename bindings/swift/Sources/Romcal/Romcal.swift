@@ -29,9 +29,6 @@
 import Foundation
 @preconcurrency import RomcalFFI
 
-/// Minimum year for Gregorian calendar calculations
-public let MIN_YEAR: Int32 = 1583
-
 /// Error type for Romcal operations
 public enum RomcalError: Error, LocalizedError {
     case invalidYear(String)
@@ -163,7 +160,6 @@ public final class RomcalCalendar {
     /// - Returns: A dictionary mapping date strings (YYYY-MM-DD) to arrays of liturgical day dictionaries.
     /// - Throws: `RomcalError` if the year is invalid or calendar generation fails.
     public func liturgicalCalendar(year: Int32) throws -> [String: [[String: Any]]] {
-        try validateYear(year)
         do {
             let json = try inner.generateLiturgicalCalendar(year: year)
             return try parseCalendarJson(json)
@@ -181,7 +177,6 @@ public final class RomcalCalendar {
     /// - Returns: A dictionary mapping date strings (YYYY-MM-DD) to arrays of mass context dictionaries.
     /// - Throws: `RomcalError` if the year is invalid or calendar generation fails.
     public func massCalendar(year: Int32) throws -> [String: [[String: Any]]] {
-        try validateYear(year)
         do {
             let json = try inner.generateMassCalendar(year: year)
             return try parseCalendarJson(json)
@@ -198,7 +193,6 @@ public final class RomcalCalendar {
     /// - Returns: The date in YYYY-MM-DD format.
     /// - Throws: `RomcalError` if the celebration is not found or the year is invalid.
     public func getDate(celebrationId: String, year: Int32) throws -> String {
-        try validateYear(year)
         do {
             return try inner.getDate(id: celebrationId, year: year)
         } catch let error as RomcalFFI.RomcalError {
@@ -207,14 +201,6 @@ public final class RomcalCalendar {
     }
 
     // MARK: - Private helpers
-
-    private func validateYear(_ year: Int32) throws {
-        if year < MIN_YEAR {
-            throw RomcalError.invalidYear(
-                "Year must be >= \(MIN_YEAR) for the Gregorian calendar, got \(year)"
-            )
-        }
-    }
 
     private func parseCalendarJson(_ json: String) throws -> [String: [[String: Any]]] {
         guard let data = json.data(using: .utf8) else {
