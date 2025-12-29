@@ -201,7 +201,7 @@ try {
 
 ### Requirements
 
-- [Node.js](https://nodejs.org/) 24.0 or later
+- [Node.js](https://nodejs.org/) 22.0 or later
 - [Rust](https://rustup.rs/) 1.85 or later (for WASM compilation)
 - [wasm-pack](https://rustwasm.github.io/wasm-pack/) (for WASM compilation)
 
