@@ -257,7 +257,7 @@ class TestErrorHandling:
         try:
             romcal.liturgical_calendar(1500)
             pytest.fail("Should have raised RomcalError")
-        except RomcalError as e:
+        except RomcalError as _e:
             # The cause should be set (either from FFI or from validation)
             # For year validation, there's no underlying cause
             # but for FFI errors, there should be
