@@ -263,4 +263,13 @@ final class ErrorHandlingTests: XCTestCase {
             XCTAssertTrue(error is RomcalError)
         }
     }
+
+    func testShouldIncludeValidationMessageFor1583() throws {
+        let romcal = try RomcalCalendar()
+
+        XCTAssertThrowsError(try romcal.liturgicalCalendar(year: 1500)) { error in
+            let description = (error as? RomcalError)?.errorDescription ?? ""
+            XCTAssertTrue(description.contains("1583"), "Error message should mention 1583 as the minimum year")
+        }
+    }
 }
