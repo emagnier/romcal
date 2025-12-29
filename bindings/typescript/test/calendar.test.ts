@@ -247,4 +247,27 @@ describe('error handling', () => {
       expect((error as RomcalError).message).toContain('1500')
     }
   })
+
+  it('should accept year 1583 (first valid Gregorian year)', async () => {
+    const romcal = await createRomcal()
+    const calendar = await romcal.generateLiturgicalCalendar(1583)
+    expect(Object.keys(calendar).length).toBeGreaterThan(0)
+  })
+
+  it('should reject year 1582 (before Gregorian calendar)', async () => {
+    const romcal = await createRomcal()
+    await expect(romcal.generateLiturgicalCalendar(1582)).rejects.toThrow(RomcalError)
+  })
+
+  it('should preserve error cause chain', async () => {
+    const romcal = await createRomcal()
+
+    try {
+      await romcal.generateLiturgicalCalendar(1500)
+      expect.fail('Should have thrown an error')
+    } catch (error) {
+      expect(error).toBeInstanceOf(RomcalError)
+      expect((error as RomcalError).cause).toBeDefined()
+    }
+  })
 })

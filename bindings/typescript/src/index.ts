@@ -113,8 +113,8 @@ export interface PartialRomcalConfigInterface {
  * Error class for romcal-specific errors.
  */
 export class RomcalError extends Error {
-  constructor(message: string) {
-    super(message)
+  constructor(message: string, options?: ErrorOptions) {
+    super(message, options)
     this.name = 'RomcalError'
   }
 }
@@ -183,7 +183,9 @@ function createInstance(wasmInstance: wasm.Romcal): Romcal {
         const json = wasmInstance.generateLiturgicalCalendar(year)
         return JSON.parse(json) as LiturgicalCalendar
       } catch (error) {
-        throw new RomcalError(`Failed to generate liturgical calendar for year ${year}: ${error}`)
+        throw new RomcalError(`Failed to generate liturgical calendar for year ${year}`, {
+          cause: error,
+        })
       }
     },
 
@@ -192,7 +194,7 @@ function createInstance(wasmInstance: wasm.Romcal): Romcal {
         const json = wasmInstance.generateMassCalendar(year)
         return JSON.parse(json) as MassCalendar
       } catch (error) {
-        throw new RomcalError(`Failed to generate mass calendar for year ${year}: ${error}`)
+        throw new RomcalError(`Failed to generate mass calendar for year ${year}`, { cause: error })
       }
     },
 
@@ -200,7 +202,7 @@ function createInstance(wasmInstance: wasm.Romcal): Romcal {
       try {
         return wasmInstance.getDate(id, year)
       } catch (error) {
-        throw new RomcalError(`Failed to get date '${id}' for year ${year}: ${error}`)
+        throw new RomcalError(`Failed to get date '${id}' for year ${year}`, { cause: error })
       }
     },
   }
