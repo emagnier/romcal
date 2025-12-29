@@ -10,6 +10,11 @@ from pydantic import BaseModel, ConfigDict, Field, RootModel
 
 
 class CalendarType(Enum):
+    """
+    The type of the calendar.
+    Defines the scope and authority level of the liturgical calendar.
+    """
+
     GENERAL_ROMAN = 'GENERAL_ROMAN'
     REGION = 'REGION'
     COUNTRY = 'COUNTRY'
@@ -24,11 +29,23 @@ class CalendarType(Enum):
 
 
 class CalendarJurisdiction(Enum):
+    """
+    The jurisdiction of the calendar.
+    Determines whether the calendar follows ecclesiastical or civil authority.
+    """
+
     ECCLESIASTICAL = 'ECCLESIASTICAL'
     CIVIL = 'CIVIL'
 
 
 class EasterCalculationType(Enum):
+    """
+    Easter date calculation method.
+
+    Determines which algorithm to use for calculating the date of Easter Sunday,
+    which is the basis for most movable feasts in the liturgical calendar.
+    """
+
     GREGORIAN = 'GREGORIAN'
     JULIAN = 'JULIAN'
 
@@ -46,6 +63,13 @@ class MonthIndex(RootModel[int]):
 
 
 class DateFn(Enum):
+    """
+    Date function for calculating liturgical dates.
+
+    Represents movable feasts and special celebrations that require calculation
+    based on Easter or other variable dates.
+    """
+
     MARY_MOTHER_OF_THE_CHURCH = 'MARY_MOTHER_OF_THE_CHURCH'
     EPIPHANY_SUNDAY = 'EPIPHANY_SUNDAY'
     PRESENTATION_OF_THE_LORD = 'PRESENTATION_OF_THE_LORD'
@@ -78,6 +102,10 @@ class DayOfWeek(RootModel[int]):
 
 
 class ExceptionCondition3(BaseModel):
+    """
+    If the date falls on a specific day of the week
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -85,6 +113,11 @@ class ExceptionCondition3(BaseModel):
 
 
 class DateDefWithOffset(BaseModel):
+    """
+    Date definition with offset for adjustments.
+    Used when a date needs to be shifted by a specific number of days.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -94,6 +127,11 @@ class DateDefWithOffset(BaseModel):
 
 
 class Precedence(Enum):
+    """
+    Liturgical precedence levels for determining which celebration takes priority.
+    Defines the hierarchical order of liturgical celebrations according to UNLY norms.
+    """
+
     TRIDUUM_1 = 'TRIDUUM_1'
     PROPER_OF_TIME_SOLEMNITY_2 = 'PROPER_OF_TIME_SOLEMNITY_2'
     PRIVILEGED_SUNDAY_2 = 'PRIVILEGED_SUNDAY_2'
@@ -142,6 +180,11 @@ class Precedence(Enum):
 
 
 class CommonDefinition(Enum):
+    """
+    Common definition for simplified categorization.
+    Provides a simplified version of the Common enum for easier classification.
+    """
+
     NONE = 'NONE'
     DEDICATION_ANNIVERSARY__INSIDE = 'DEDICATION_ANNIVERSARY__INSIDE'
     DEDICATION_ANNIVERSARY__OUTSIDE = 'DEDICATION_ANNIVERSARY__OUTSIDE'
@@ -168,6 +211,11 @@ class CommonDefinition(Enum):
 
 
 class Title(Enum):
+    """
+    Titles and patronages associated with saints and blessed.
+    Represents the various ecclesiastical titles and patronages that can be assigned to entities.
+    """
+
     ABBESS = 'ABBESS'
     ABBOT = 'ABBOT'
     APOSTLE = 'APOSTLE'
@@ -240,6 +288,11 @@ class Title(Enum):
 
 
 class CompoundTitle(BaseModel):
+    """
+    Compound title definition for combining multiple titles.
+    Allows adding titles to the beginning or end of an existing title list.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -279,6 +332,11 @@ class SaintCount(RootModel[SaintCount1 | str | None]):
 
 
 class Color(Enum):
+    """
+    Liturgical colors used in the celebration of Mass and other liturgical services.
+    Each color has specific liturgical significance and is used during particular seasons or celebrations.
+    """
+
     RED = 'RED'
     ROSE = 'ROSE'
     PURPLE = 'PURPLE'
@@ -289,6 +347,11 @@ class Color(Enum):
 
 
 class MassContent(BaseModel):
+    """
+    Content of a mass for a specific liturgical cycle
+    Maps mass parts (readings, psalms, prayers, antiphons, etc.) to their texts
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -389,11 +452,23 @@ class MassContent(BaseModel):
 
 
 class OrdinalFormat(Enum):
+    """
+    Format for displaying ordinal numbers.
+
+    - `Letters`: Display ordinals as words (e.g., "first", "second", "premier", "deuxième")
+    - `Numeric`: Display ordinals as numbers with suffixes (e.g., "1st", "2nd", "1er", "2e")
+    """
+
     letters = 'letters'
     numeric = 'numeric'
 
 
 class LocaleColors(BaseModel):
+    """
+    Liturgical color names in the locale language.
+    Provides localized names for each liturgical color.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -421,6 +496,11 @@ class LocaleColors(BaseModel):
 
 
 class AdventSeason(BaseModel):
+    """
+    Advent season localized names and descriptions.
+    Provides specific terminology for the Advent season in the locale language.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -439,6 +519,10 @@ class AdventSeason(BaseModel):
 
 
 class ChristmasTimeSeason(BaseModel):
+    """
+    Christmas Time season localized names and descriptions.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -463,6 +547,10 @@ class ChristmasTimeSeason(BaseModel):
 
 
 class OrdinaryTimeSeason(BaseModel):
+    """
+    Ordinary Time season localized names and descriptions.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -478,6 +566,10 @@ class OrdinaryTimeSeason(BaseModel):
 
 
 class LentSeason(BaseModel):
+    """
+    Lent season localized names and descriptions.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -499,6 +591,10 @@ class LentSeason(BaseModel):
 
 
 class PaschalTriduumSeason(BaseModel):
+    """
+    Paschal Triduum season localized names and descriptions.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -508,6 +604,10 @@ class PaschalTriduumSeason(BaseModel):
 
 
 class EasterTimeSeason(BaseModel):
+    """
+    Easter Time season localized names and descriptions.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -526,6 +626,10 @@ class EasterTimeSeason(BaseModel):
 
 
 class PeriodsMetadata(BaseModel):
+    """
+    Liturgical period names in the locale language.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -562,6 +666,10 @@ class PeriodsMetadata(BaseModel):
 
 
 class RanksMetadata(BaseModel):
+    """
+    Liturgical rank names in the locale language.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -576,6 +684,10 @@ class RanksMetadata(BaseModel):
 
 
 class CyclesMetadata(BaseModel):
+    """
+    Liturgical cycle names in the locale language.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -615,17 +727,31 @@ class CyclesMetadata(BaseModel):
 
 
 class EntityType(Enum):
+    """
+    The type of entity in the liturgical calendar.
+    Defines whether the entity represents a person, place, or event.
+    """
+
     PERSON = 'PERSON'
     PLACE = 'PLACE'
     EVENT = 'EVENT'
 
 
 class CanonizationLevel(Enum):
+    """
+    Canonization level indicating the official recognition status of a person.
+    Defines whether someone is beatified (Blessed) or canonized (Saint).
+    """
+
     BLESSED = 'BLESSED'
     SAINT = 'SAINT'
 
 
 class SaintDateDef3(BaseModel):
+    """
+    Century specification (e.g., 12 for 12th century)
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -646,11 +772,19 @@ class SaintDate(RootModel[SaintDate1 | str]):
 
 
 class Sex(Enum):
+    """
+    Sex of a person.
+    """
+
     MALE = 'MALE'
     FEMALE = 'FEMALE'
 
 
 class Rank(Enum):
+    """
+    Liturgical rank indicating the importance and celebration style of a liturgical day
+    """
+
     SOLEMNITY = 'SOLEMNITY'
     SUNDAY = 'SUNDAY'
     FEAST = 'FEAST'
@@ -660,6 +794,11 @@ class Rank(Enum):
 
 
 class Season(Enum):
+    """
+    Liturgical seasons of the Church year.
+    Represents the major periods that structure the liturgical calendar.
+    """
+
     ADVENT = 'ADVENT'
     CHRISTMAS_TIME = 'CHRISTMAS_TIME'
     LENT = 'LENT'
@@ -669,6 +808,11 @@ class Season(Enum):
 
 
 class Period(Enum):
+    """
+    Specific periods within liturgical seasons.
+    Defines sub-periods that have special liturgical characteristics or rules.
+    """
+
     CHRISTMAS_OCTAVE = 'CHRISTMAS_OCTAVE'
     DAYS_BEFORE_EPIPHANY = 'DAYS_BEFORE_EPIPHANY'
     DAYS_FROM_EPIPHANY = 'DAYS_FROM_EPIPHANY'
@@ -684,6 +828,11 @@ class Period(Enum):
 
 
 class Common(Enum):
+    """
+    Common prayers and readings for different categories of saints and celebrations.
+    Provides standardized liturgical texts for various types of commemorations.
+    """
+
     NONE = 'NONE'
     DEDICATION_ANNIVERSARY__INSIDE = 'DEDICATION_ANNIVERSARY__INSIDE'
     DEDICATION_ANNIVERSARY__OUTSIDE = 'DEDICATION_ANNIVERSARY__OUTSIDE'
@@ -721,6 +870,10 @@ class Common(Enum):
 
 
 class ColorInfo(BaseModel):
+    """
+    Liturgical color information with localized name.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -729,6 +882,11 @@ class ColorInfo(BaseModel):
 
 
 class MassTime(Enum):
+    """
+    Times of Mass celebrations in the liturgical calendar.
+    Different Masses are celebrated at various times and occasions throughout the liturgical year.
+    """
+
     easter_vigil = 'easter_vigil'
     previous_evening_mass = 'previous_evening_mass'
     night_mass = 'night_mass'
@@ -742,17 +900,35 @@ class MassTime(Enum):
 
 
 class SundayCycle(Enum):
+    """
+    A three-year cycle for Sunday Mass readings (and some solemnities), designated by A, B, or C.
+    Each cycle begins on the First Sunday of Advent of the previous civil year and ends on Saturday
+    after the Christ the King Solemnity. The cycles follow each other in alphabetical order.
+    C year is always divisible by 3, A has remainder of 1, and B remainder of 2.
+    """
+
     YEAR_A = 'YEAR_A'
     YEAR_B = 'YEAR_B'
     YEAR_C = 'YEAR_C'
 
 
 class WeekdayCycle(Enum):
+    """
+    A two-year cycle for the weekday Mass readings (also called Cycle I and Cycle II).
+    Odd-numbered years are the Cycle I (year 1); even-numbered ones are the Cycle II (year 2).
+    """
+
     YEAR_1 = 'YEAR_1'
     YEAR_2 = 'YEAR_2'
 
 
 class PsalterWeekCycle(Enum):
+    """
+    [GILH §133] The four-week cycle of the psalter is coordinated with the liturgical year in such a way that
+    on the First Sunday of Advent, the First Sunday in Ordinary Time, the First Sunday of Lent,
+    and Easter Sunday the cycle is always begun again with Week 1 (others being omitted when necessary).
+    """
+
     WEEK_1 = 'WEEK_1'
     WEEK_2 = 'WEEK_2'
     WEEK_3 = 'WEEK_3'
@@ -760,17 +936,35 @@ class PsalterWeekCycle(Enum):
 
 
 class CalendarContext(Enum):
+    """
+    Calendar year context for date boundaries.
+
+    Determines how the calendar year is structured and which dates are included
+    in a given year's calendar output.
+    """
+
     GREGORIAN = 'GREGORIAN'
     LITURGICAL = 'LITURGICAL'
 
 
 class SundayCycleCombined(Enum):
+    """
+    Combined Sunday cycle for cases where readings can apply to multiple years.
+    This allows for flexible configuration where the same readings can be used
+    across different combinations of Sunday cycles.
+    """
+
     YEAR_A_B = 'YEAR_A_B'
     YEAR_A_C = 'YEAR_A_C'
     YEAR_B_C = 'YEAR_B_C'
 
 
 class LiturgicalCycle(Enum):
+    """
+    Liturgical cycle for lectionary readings
+    Includes both actual cycles (Year A, B, C, etc.) and invariant content
+    """
+
     invariant = 'invariant'
     year_a = 'year_a'
     year_b = 'year_b'
@@ -783,6 +977,11 @@ class LiturgicalCycle(Enum):
 
 
 class Acclamation(Enum):
+    """
+    Acclamations used in liturgical celebrations.
+    Acclamations are short liturgical responses or exclamations used during Mass.
+    """
+
     ALLELUIA = 'ALLELUIA'
     LENT = 'LENT'
     MIXED = 'MIXED'
@@ -790,6 +989,11 @@ class Acclamation(Enum):
 
 
 class BibleBook(Enum):
+    """
+    Books of the Bible using OSIS (Open Scripture Information Standard) identifiers.
+    OSIS provides standardized abbreviations for biblical books used in liturgical and biblical applications.
+    """
+
     Gen = 'Gen'
     Exod = 'Exod'
     Lev = 'Lev'
@@ -867,6 +1071,11 @@ class BibleBook(Enum):
 
 
 class MassPart(Enum):
+    """
+    Parts that make up the Mass celebration.
+    Each part represents a specific element of the liturgical celebration.
+    """
+
     messianic_entry = 'messianic_entry'
     entrance_antiphon = 'entrance_antiphon'
     collect = 'collect'
@@ -898,6 +1107,11 @@ class MassPart(Enum):
 
 
 class CalendarMetadata(BaseModel):
+    """
+    Metadata for a calendar.
+    Contains essential information about the calendar's type and jurisdiction.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -908,6 +1122,17 @@ class CalendarMetadata(BaseModel):
 
 
 class ParticularConfig(BaseModel):
+    """
+    Configuration options for "particular" (local/diocesan) calendars.
+
+    In liturgical terminology, a "particular" calendar is one that applies to a specific
+    region, diocese, or religious community, as opposed to the General Roman Calendar
+    which applies universally.
+
+    These settings can override or extend the default Romcal configuration or any parent
+    calendar configuration.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -927,6 +1152,10 @@ class ParticularConfig(BaseModel):
 
 
 class DateDef1(BaseModel):
+    """
+    Simple month/day specification
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -938,6 +1167,10 @@ class DateDef1(BaseModel):
 
 
 class DateDef2(BaseModel):
+    """
+    Date function calculation (Easter, Epiphany, etc.)
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -950,6 +1183,10 @@ class DateDef2(BaseModel):
 
 
 class DateDef3(BaseModel):
+    """
+    Nth weekday of a specific month
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -971,6 +1208,10 @@ class DateDef3(BaseModel):
 
 
 class DateDef4(BaseModel):
+    """
+    Last weekday of a specific month
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -994,6 +1235,10 @@ class DateDef(RootModel[DateDef1 | DateDef2 | DateDef3 | DateDef4 | dict[str, An
 
 
 class ExceptionCondition1(BaseModel):
+    """
+    If the date is between two specified dates
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -1010,6 +1255,10 @@ class ExceptionCondition1(BaseModel):
 
 
 class ExceptionCondition2(BaseModel):
+    """
+    If the date is the same as another specified date
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -1054,6 +1303,10 @@ class ColorsDef(RootModel[Color | list[Color]]):
 
 
 class MassCycleDefinition(BaseModel):
+    """
+    Mass contents for a specific mass time, organized by liturgical cycle
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -1091,6 +1344,11 @@ class MassCycleDefinition(BaseModel):
 
 
 class SeasonsMetadata(BaseModel):
+    """
+    Liturgical season names and descriptions in the locale language.
+    Provides localized names for each liturgical season and their components.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -1119,6 +1377,10 @@ class SeasonsMetadata(BaseModel):
 
 
 class SaintDateDef1(BaseModel):
+    """
+    Date range between two dates
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -1133,6 +1395,10 @@ class SaintDateDef1(BaseModel):
 
 
 class SaintDateDef2(BaseModel):
+    """
+    Multiple alternative dates (any one of them)
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -1153,6 +1419,10 @@ class SaintDateDef(
 
 
 class PeriodInfo(BaseModel):
+    """
+    Liturgical period information with localized name.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -1161,6 +1431,10 @@ class PeriodInfo(BaseModel):
 
 
 class CommonInfo(BaseModel):
+    """
+    Liturgical common information with localized name.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -1169,6 +1443,11 @@ class CommonInfo(BaseModel):
 
 
 class MassInfo(BaseModel):
+    """
+    Information about a mass celebration for a liturgical day.
+    Contains the type of mass and its localized name.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -1187,6 +1466,11 @@ class MassInfo(BaseModel):
 
 
 class DateDefException(BaseModel):
+    """
+    The liturgical day date exception.
+    Represents a condition and the date to set when that condition is met.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -1200,6 +1484,11 @@ class DateDefException(BaseModel):
 
 
 class EntityOverride(BaseModel):
+    """
+    Custom entity definition that extends or overrides properties from the entity catalog.
+    Used when a liturgical day needs specific entity properties that differ from the base entity.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -1230,6 +1519,10 @@ class EntityOverride(BaseModel):
 
 
 class MassesDefinitions(BaseModel):
+    """
+    All mass definitions for a liturgical day
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -1290,6 +1583,11 @@ class MassesDefinitions(BaseModel):
 
 
 class ResourcesMetadata(BaseModel):
+    """
+    Metadata for localized resources.
+    Contains all the localized strings and configurations for a specific locale.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -1465,6 +1763,11 @@ class Entity(BaseModel):
 
 
 class ParentOverride(BaseModel):
+    """
+    Represents the differences between a liturgical day definition and its parent definition.
+    This is a lightweight structure that only contains fields that can be overridden.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -1507,6 +1810,11 @@ class ParentOverride(BaseModel):
 
 
 class CelebrationSummary(BaseModel):
+    """
+    Summary of a celebration for use in optional celebrations list.
+    Contains the essential fields from a LiturgicalDay that identify a celebration.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -1554,6 +1862,10 @@ class CelebrationSummary(BaseModel):
 
 
 class Resources(BaseModel):
+    """
+    Resources definition
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -1574,6 +1886,10 @@ class Resources(BaseModel):
 
 
 class LiturgicalDay(BaseModel):
+    """
+    A single day in the liturgical calendar with computed values and inheritance information.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -1751,6 +2067,20 @@ class LiturgicalDay(BaseModel):
 
 
 class MassContext(BaseModel):
+    """
+    A flat structure representing a single mass with its full liturgical context.
+
+    This is the main type for the mass-centric calendar view. It contains:
+    - Mass identification (type, name, civil/liturgical dates)
+    - Day-level context (season, cycles, periods)
+    - Primary celebration data (flattened from LiturgicalDay)
+    - Optional alternative celebrations
+
+    For evening masses (Easter Vigil, Previous Evening Mass), the `civil_date`
+    is shifted to the previous day while `liturgical_date` remains the original
+    liturgical celebration date.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -1887,6 +2217,12 @@ class EntityRef(RootModel[str | EntityOverride]):
 
 
 class DayDefinition(BaseModel):
+    """
+    Definition of a liturgical day with all its properties and configurations.
+    It represents a complete liturgical day definition that can be used
+    to generate calendar entries with proper precedence, colors, and entity associations.
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
@@ -1964,6 +2300,10 @@ class DayDefinition(BaseModel):
 
 
 class CalendarDefinition(BaseModel):
+    """
+    Calendar definition
+    """
+
     model_config = ConfigDict(
         extra='forbid',
     )
