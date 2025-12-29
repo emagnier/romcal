@@ -42,7 +42,7 @@ if christmas:
 ### Using Keyword Arguments
 
 ```python
-from romcal import Romcal
+from romcal import CalendarContext, Romcal
 
 # With calendar and locale
 romcal1 = Romcal(calendar="france", locale="fr")
@@ -51,7 +51,7 @@ romcal1 = Romcal(calendar="france", locale="fr")
 romcal2 = Romcal(
     calendar="france",
     locale="fr",
-    context="LITURGICAL",
+    context=CalendarContext.LITURGICAL,
     epiphany_on_sunday=True,
     ascension_on_sunday=True,
     corpus_christi_on_sunday=True,
@@ -60,17 +60,17 @@ romcal2 = Romcal(
 
 ### Configuration Options
 
-| Option                      | Type   | Default           | Description                                               |
-| --------------------------- | ------ | ----------------- | --------------------------------------------------------- |
-| `calendar`                  | `str`  | `"general_roman"` | Calendar ID (e.g., `"france"`, `"united_states"`)         |
-| `locale`                    | `str`  | `"en"`            | Locale code (e.g., `"fr"`, `"es"`)                        |
-| `context`                   | `str`  | `"GREGORIAN"`     | `"GREGORIAN"` (Jan-Dec) or `"LITURGICAL"` (Advent-Advent) |
-| `epiphany_on_sunday`        | `bool` | `False`           | Celebrate Epiphany on Sunday (Jan 2-8) instead of Jan 6   |
-| `ascension_on_sunday`       | `bool` | `False`           | Celebrate Ascension on Sunday instead of Thursday         |
-| `corpus_christi_on_sunday`  | `bool` | `True`            | Celebrate Corpus Christi on Sunday instead of Thursday    |
-| `easter_calculation_type`   | `str`  | `"GREGORIAN"`     | `"GREGORIAN"` or `"JULIAN"` Easter calculation            |
-| `calendar_definitions_json` | `str`  | `None`            | JSON string of calendar definitions                       |
-| `resources_json`            | `str`  | `None`            | JSON string of locale resources                           |
+| Option                      | Type                    | Default           | Description                                             |
+| --------------------------- | ----------------------- | ----------------- | ------------------------------------------------------- |
+| `calendar`                  | `str`                   | `"general_roman"` | Calendar ID (e.g., `"france"`, `"united_states"`)       |
+| `locale`                    | `str`                   | `"en"`            | Locale code (e.g., `"fr"`, `"es"`)                      |
+| `context`                   | `CalendarContext`       | `GREGORIAN`       | `GREGORIAN` (Jan-Dec) or `LITURGICAL` (Advent-Advent)   |
+| `epiphany_on_sunday`        | `bool`                  | `False`           | Celebrate Epiphany on Sunday (Jan 2-8) instead of Jan 6 |
+| `ascension_on_sunday`       | `bool`                  | `False`           | Celebrate Ascension on Sunday instead of Thursday       |
+| `corpus_christi_on_sunday`  | `bool`                  | `True`            | Celebrate Corpus Christi on Sunday instead of Thursday  |
+| `easter_calculation_type`   | `EasterCalculationType` | `GREGORIAN`       | `GREGORIAN` or `JULIAN` Easter calculation              |
+| `calendar_definitions_json` | `str`                   | `None`            | JSON string of calendar definitions                     |
+| `resources_json`            | `str`                   | `None`            | JSON string of locale resources                         |
 
 ### Loading Calendar Data
 
