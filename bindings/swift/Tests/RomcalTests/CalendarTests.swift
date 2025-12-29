@@ -237,7 +237,7 @@ final class ErrorHandlingTests: XCTestCase {
         let romcal = try RomcalCalendar()
 
         XCTAssertThrowsError(try romcal.liturgicalCalendar(year: 1500)) { error in
-            XCTAssertTrue(error is RomcalCalendarError)
+            XCTAssertTrue(error is RomcalError)
         }
     }
 
@@ -245,8 +245,22 @@ final class ErrorHandlingTests: XCTestCase {
         let romcal = try RomcalCalendar()
 
         XCTAssertThrowsError(try romcal.liturgicalCalendar(year: 1500)) { error in
-            let description = (error as? RomcalCalendarError)?.errorDescription ?? ""
+            let description = (error as? RomcalError)?.errorDescription ?? ""
             XCTAssertTrue(description.contains("1500"))
+        }
+    }
+
+    func testShouldAcceptYear1583() throws {
+        let romcal = try RomcalCalendar()
+        let calendar = try romcal.liturgicalCalendar(year: 1583)
+        XCTAssertGreaterThan(calendar.count, 0)
+    }
+
+    func testShouldRejectYear1582() throws {
+        let romcal = try RomcalCalendar()
+
+        XCTAssertThrowsError(try romcal.liturgicalCalendar(year: 1582)) { error in
+            XCTAssertTrue(error is RomcalError)
         }
     }
 }

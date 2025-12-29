@@ -113,9 +113,22 @@ export interface PartialRomcalConfigInterface {
  * Error class for romcal-specific errors.
  */
 export class RomcalError extends Error {
-  constructor(message: string, options?: ErrorOptions) {
+  constructor(message: string, options?: { cause?: unknown }) {
     super(message, options)
     this.name = 'RomcalError'
+  }
+}
+
+/** Minimum year for Gregorian calendar calculations */
+const MIN_YEAR = 1583
+
+/**
+ * Validates that the year is valid for Gregorian calendar calculations.
+ * @throws RomcalError if the year is less than 1583.
+ */
+function validateYear(year: number): void {
+  if (year < MIN_YEAR) {
+    throw new RomcalError(`Year must be >= ${MIN_YEAR} for the Gregorian calendar, got ${year}`)
   }
 }
 
@@ -179,6 +192,7 @@ function createInstance(wasmInstance: wasm.Romcal): Romcal {
     },
 
     async generateLiturgicalCalendar(year: number): Promise<LiturgicalCalendar> {
+      validateYear(year)
       try {
         const json = wasmInstance.generateLiturgicalCalendar(year)
         return JSON.parse(json) as LiturgicalCalendar
@@ -190,6 +204,7 @@ function createInstance(wasmInstance: wasm.Romcal): Romcal {
     },
 
     async generateMassCalendar(year: number): Promise<MassCalendar> {
+      validateYear(year)
       try {
         const json = wasmInstance.generateMassCalendar(year)
         return JSON.parse(json) as MassCalendar
@@ -199,6 +214,7 @@ function createInstance(wasmInstance: wasm.Romcal): Romcal {
     },
 
     async getDate(id: string, year: number): Promise<string> {
+      validateYear(year)
       try {
         return wasmInstance.getDate(id, year)
       } catch (error) {

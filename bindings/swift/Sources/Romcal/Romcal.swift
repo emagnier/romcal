@@ -27,13 +27,13 @@
 /// ```
 
 import Foundation
-@preconcurrency @_exported import RomcalFFI
+@preconcurrency import RomcalFFI
 
 /// Minimum year for Gregorian calendar calculations
 public let MIN_YEAR: Int32 = 1583
 
 /// Error type for Romcal operations
-public enum RomcalCalendarError: Error, LocalizedError {
+public enum RomcalError: Error, LocalizedError {
     case invalidYear(String)
     case invalidConfig(String)
     case notFound(String)
@@ -50,7 +50,7 @@ public enum RomcalCalendarError: Error, LocalizedError {
         }
     }
 
-    init(from error: RomcalError) {
+    init(from error: RomcalFFI.RomcalError) {
         switch error {
         case .InvalidYear(let msg): self = .invalidYear(msg)
         case .InvalidConfig(let msg): self = .invalidConfig(msg)
@@ -92,7 +92,7 @@ public final class RomcalCalendar {
     ///   - context: Calendar context. Defaults to .gregorian.
     ///   - calendarDefinitionsJson: Calendar definitions as JSON string (optional).
     ///   - resourcesJson: Resources/translations as JSON string (optional).
-    /// - Throws: `RomcalCalendarError` if configuration is invalid.
+    /// - Throws: `RomcalError` if configuration is invalid.
     public init(
         calendar: String = "general_roman",
         locale: String = "en",
@@ -104,7 +104,7 @@ public final class RomcalCalendar {
         calendarDefinitionsJson: String? = nil,
         resourcesJson: String? = nil
     ) throws {
-        let config = RomcalConfig(
+        let config = RomcalFFI.RomcalConfig(
             calendar: calendar,
             locale: locale,
             epiphanyOnSunday: epiphanyOnSunday,
@@ -116,9 +116,9 @@ public final class RomcalCalendar {
             resourcesJson: resourcesJson
         )
         do {
-            self.inner = try Romcal(config: config)
-        } catch let error as RomcalError {
-            throw RomcalCalendarError(from: error)
+            self.inner = try RomcalFFI.Romcal(config: config)
+        } catch let error as RomcalFFI.RomcalError {
+            throw RomcalError(from: error)
         }
     }
 
@@ -161,14 +161,14 @@ public final class RomcalCalendar {
     ///
     /// - Parameter year: The liturgical year to generate (e.g., 2025).
     /// - Returns: A dictionary mapping date strings (YYYY-MM-DD) to arrays of liturgical day dictionaries.
-    /// - Throws: `RomcalCalendarError` if the year is invalid or calendar generation fails.
+    /// - Throws: `RomcalError` if the year is invalid or calendar generation fails.
     public func liturgicalCalendar(year: Int32) throws -> [String: [[String: Any]]] {
         try validateYear(year)
         do {
             let json = try inner.generateLiturgicalCalendar(year: year)
             return try parseCalendarJson(json)
-        } catch let error as RomcalError {
-            throw RomcalCalendarError(from: error)
+        } catch let error as RomcalFFI.RomcalError {
+            throw RomcalError(from: error)
         }
     }
 
@@ -179,14 +179,14 @@ public final class RomcalCalendar {
     ///
     /// - Parameter year: The year to generate (e.g., 2025).
     /// - Returns: A dictionary mapping date strings (YYYY-MM-DD) to arrays of mass context dictionaries.
-    /// - Throws: `RomcalCalendarError` if the year is invalid or calendar generation fails.
+    /// - Throws: `RomcalError` if the year is invalid or calendar generation fails.
     public func massCalendar(year: Int32) throws -> [String: [[String: Any]]] {
         try validateYear(year)
         do {
             let json = try inner.generateMassCalendar(year: year)
             return try parseCalendarJson(json)
-        } catch let error as RomcalError {
-            throw RomcalCalendarError(from: error)
+        } catch let error as RomcalFFI.RomcalError {
+            throw RomcalError(from: error)
         }
     }
 
@@ -196,13 +196,13 @@ public final class RomcalCalendar {
     ///   - celebrationId: The unique identifier of the celebration (e.g., "christmas", "easter").
     ///   - year: The year to look up.
     /// - Returns: The date in YYYY-MM-DD format.
-    /// - Throws: `RomcalCalendarError` if the celebration is not found or the year is invalid.
+    /// - Throws: `RomcalError` if the celebration is not found or the year is invalid.
     public func getDate(celebrationId: String, year: Int32) throws -> String {
         try validateYear(year)
         do {
             return try inner.getDate(id: celebrationId, year: year)
-        } catch let error as RomcalError {
-            throw RomcalCalendarError(from: error)
+        } catch let error as RomcalFFI.RomcalError {
+            throw RomcalError(from: error)
         }
     }
 
@@ -210,7 +210,7 @@ public final class RomcalCalendar {
 
     private func validateYear(_ year: Int32) throws {
         if year < MIN_YEAR {
-            throw RomcalCalendarError.invalidYear(
+            throw RomcalError.invalidYear(
                 "Year must be >= \(MIN_YEAR) for the Gregorian calendar, got \(year)"
             )
         }
@@ -218,10 +218,10 @@ public final class RomcalCalendar {
 
     private func parseCalendarJson(_ json: String) throws -> [String: [[String: Any]]] {
         guard let data = json.data(using: .utf8) else {
-            throw RomcalCalendarError.parseError("Failed to convert JSON string to data")
+            throw RomcalError.parseError("Failed to convert JSON string to data")
         }
         guard let result = try JSONSerialization.jsonObject(with: data) as? [String: [[String: Any]]] else {
-            throw RomcalCalendarError.parseError("Failed to parse calendar JSON")
+            throw RomcalError.parseError("Failed to parse calendar JSON")
         }
         return result
     }
