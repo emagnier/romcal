@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { createRomcal } from '../src/index.js'
+import { createRomcal, RomcalError } from '../src/index.js'
 
 describe('Romcal configuration', () => {
   it('should use default configuration', async () => {
@@ -35,5 +35,21 @@ describe('Romcal configuration', () => {
     expect(romcal.config.ascensionOnSunday).toBe(true)
     // Default values preserved
     expect(romcal.config.corpusChristiOnSunday).toBe(true)
+  })
+
+  it('should throw RomcalError for invalid easter calculation type', async () => {
+    await expect(createRomcal({ easterCalculationType: 'INVALID' as never })).rejects.toThrow(
+      RomcalError,
+    )
+    await expect(createRomcal({ easterCalculationType: 'INVALID' as never })).rejects.toThrow(
+      "Invalid easter_calculation_type: 'INVALID'",
+    )
+  })
+
+  it('should throw RomcalError for invalid context', async () => {
+    await expect(createRomcal({ context: 'INVALID' as never })).rejects.toThrow(RomcalError)
+    await expect(createRomcal({ context: 'INVALID' as never })).rejects.toThrow(
+      "Invalid context: 'INVALID'",
+    )
   })
 })

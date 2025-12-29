@@ -1,5 +1,5 @@
 // Import the WASM module
-import init, * as wasm from '../pkg/romcal_core_wasm.js'
+import init, * as wasm from '../pkg/romcal_wasm.js'
 
 // Re-export types from types/
 export * from './types/index.js'
@@ -46,7 +46,7 @@ async function initWasm(): Promise<void> {
 
       const __filename = fileURLToPath(import.meta.url)
       const __dirname = dirname(__filename)
-      const wasmPath = join(__dirname, '..', 'pkg', 'romcal_core_wasm_bg.wasm')
+      const wasmPath = join(__dirname, '..', 'pkg', 'romcal_wasm_bg.wasm')
       const wasmBytes = readFileSync(wasmPath)
       await init({ module_or_path: wasmBytes })
     } else {
@@ -261,59 +261,64 @@ export async function createRomcal(
 ): Promise<Romcal> {
   await initWasm()
 
-  let instance: wasm.Romcal
+  try {
+    let instance: wasm.Romcal
 
-  // Handle different parameter combinations
-  if (typeof calendarOrConfig === 'object' && calendarOrConfig !== null) {
-    const config = calendarOrConfig as PartialRomcalConfigInterface
+    // Handle different parameter combinations
+    if (typeof calendarOrConfig === 'object' && calendarOrConfig !== null) {
+      const config = calendarOrConfig as PartialRomcalConfigInterface
 
-    // Create a partial config object and let Rust handle the defaults
-    const partialConfig = new wasm.PartialRomcalConfig()
+      // Create a partial config object and let Rust handle the defaults
+      const partialConfig = new wasm.PartialRomcalConfig()
 
-    if (config.calendar !== undefined) {
-      partialConfig.set_calendar(config.calendar)
-    }
-    if (config.locale !== undefined) {
-      partialConfig.set_locale(config.locale)
-    }
-    if (config.epiphanyOnSunday !== undefined) {
-      partialConfig.set_epiphany_on_sunday(config.epiphanyOnSunday)
-    }
-    if (config.corpusChristiOnSunday !== undefined) {
-      partialConfig.set_corpus_christi_on_sunday(config.corpusChristiOnSunday)
-    }
-    if (config.ascensionOnSunday !== undefined) {
-      partialConfig.set_ascension_on_sunday(config.ascensionOnSunday)
-    }
-    if (config.easterCalculationType !== undefined) {
-      partialConfig.set_easter_calculation_type(config.easterCalculationType)
-    }
-    if (config.context !== undefined) {
-      partialConfig.set_context(config.context)
-    }
-    if (config.calendarDefinitions !== undefined) {
-      partialConfig.set_calendar_definitions(JSON.stringify(config.calendarDefinitions))
-    }
-    if (config.resources !== undefined) {
-      partialConfig.set_resources(JSON.stringify(config.resources))
+      if (config.calendar !== undefined) {
+        partialConfig.set_calendar(config.calendar)
+      }
+      if (config.locale !== undefined) {
+        partialConfig.set_locale(config.locale)
+      }
+      if (config.epiphanyOnSunday !== undefined) {
+        partialConfig.set_epiphany_on_sunday(config.epiphanyOnSunday)
+      }
+      if (config.corpusChristiOnSunday !== undefined) {
+        partialConfig.set_corpus_christi_on_sunday(config.corpusChristiOnSunday)
+      }
+      if (config.ascensionOnSunday !== undefined) {
+        partialConfig.set_ascension_on_sunday(config.ascensionOnSunday)
+      }
+      if (config.easterCalculationType !== undefined) {
+        partialConfig.set_easter_calculation_type(config.easterCalculationType)
+      }
+      if (config.context !== undefined) {
+        partialConfig.set_context(config.context)
+      }
+      if (config.calendarDefinitions !== undefined) {
+        partialConfig.set_calendar_definitions(JSON.stringify(config.calendarDefinitions))
+      }
+      if (config.resources !== undefined) {
+        partialConfig.set_resources(JSON.stringify(config.resources))
+      }
+
+      instance = wasm.romcal_with_config_object(partialConfig)
+    } else if (typeof calendarOrConfig === 'string' && locale) {
+      // Calendar and locale strings provided
+      instance = wasm.romcal_with_partial_config(
+        calendarOrConfig,
+        locale,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+      )
+    } else {
+      // No parameters - use default configuration
+      instance = wasm.romcal()
     }
 
-    instance = wasm.romcal_with_config_object(partialConfig)
-  } else if (typeof calendarOrConfig === 'string' && locale) {
-    // Calendar and locale strings provided
-    instance = wasm.romcal_with_partial_config(
-      calendarOrConfig,
-      locale,
-      undefined,
-      undefined,
-      undefined,
-      undefined,
-      undefined,
-    )
-  } else {
-    // No parameters - use default configuration
-    instance = wasm.romcal()
+    return createInstance(instance)
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error)
+    throw new RomcalError(message, { cause: error })
   }
-
-  return createInstance(instance)
 }

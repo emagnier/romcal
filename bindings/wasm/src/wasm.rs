@@ -99,15 +99,27 @@ impl PartialRomcalConfig {
     }
 
     /// Build the configuration with defaults
-    pub fn build(&self) -> RomcalConfig {
+    pub fn build(&self) -> Result<RomcalConfig, JsValue> {
         let easter_type = match self.easter_calculation_type.as_deref() {
+            Some("GREGORIAN") | None => Some(EasterCalculationType::Gregorian),
             Some("JULIAN") => Some(EasterCalculationType::Julian),
-            _ => Some(EasterCalculationType::Gregorian),
+            Some(invalid) => {
+                return Err(JsValue::from_str(&format!(
+                    "Invalid easter_calculation_type: '{}'. Expected 'GREGORIAN' or 'JULIAN'",
+                    invalid
+                )));
+            }
         };
 
         let context = match self.context.as_deref() {
+            Some("GREGORIAN") | None => Some(CalendarContext::Gregorian),
             Some("LITURGICAL") => Some(CalendarContext::Liturgical),
-            _ => Some(CalendarContext::Gregorian),
+            Some(invalid) => {
+                return Err(JsValue::from_str(&format!(
+                    "Invalid context: '{}'. Expected 'GREGORIAN' or 'LITURGICAL'",
+                    invalid
+                )));
+            }
         };
 
         // Parse calendar definitions from JSON
@@ -135,9 +147,9 @@ impl PartialRomcalConfig {
             resources,
         };
 
-        RomcalConfig {
+        Ok(RomcalConfig {
             inner: RomcalCore::new(preset),
-        }
+        })
     }
 }
 
@@ -273,7 +285,7 @@ pub fn romcal_with_partial_config(
     ascension_on_sunday: Option<bool>,
     easter_calculation_type: Option<String>,
     context: Option<String>,
-) -> Romcal {
+) -> Result<Romcal, JsValue> {
     let mut partial_config = PartialRomcalConfig::new();
     partial_config.calendar = calendar;
     partial_config.locale = locale;
@@ -283,15 +295,15 @@ pub fn romcal_with_partial_config(
     partial_config.easter_calculation_type = easter_calculation_type;
     partial_config.context = context;
 
-    Romcal {
-        config: partial_config.build(),
-    }
+    Ok(Romcal {
+        config: partial_config.build()?,
+    })
 }
 
 /// Create a new Romcal instance with a partial configuration object
 #[wasm_bindgen]
-pub fn romcal_with_config_object(config: &PartialRomcalConfig) -> Romcal {
-    Romcal {
-        config: config.build(),
-    }
+pub fn romcal_with_config_object(config: &PartialRomcalConfig) -> Result<Romcal, JsValue> {
+    Ok(Romcal {
+        config: config.build()?,
+    })
 }
