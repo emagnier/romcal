@@ -1,4 +1,4 @@
-import { CalendarDefinition, ResourcesDefinition } from '../src/index.js'
+import { CalendarDefinition, Resources } from '../src/index.js'
 import { glob, readFile } from 'node:fs/promises'
 import { dirname, basename, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -25,7 +25,7 @@ export async function loadAllCalendarDefinitions(): Promise<CalendarDefinition[]
  * Load all resources from the data folder
  * Each locale has meta.json + entities.*.json files that need to be merged
  */
-export async function loadAllResources(): Promise<ResourcesDefinition[]> {
+export async function loadAllResources(): Promise<Resources[]> {
   const resourcesDir = join(DATA_DIR, 'resources')
   const pattern = join(resourcesDir, '**/*.json')
 
@@ -41,7 +41,7 @@ export async function loadAllResources(): Promise<ResourcesDefinition[]> {
   }
 
   // Merge files for each locale
-  const resources: ResourcesDefinition[] = []
+  const resources: Resources[] = []
   for (const [locale, localeFiles] of filesByLocale) {
     let metadata: unknown = null
     const entities: Record<string, unknown> = {}

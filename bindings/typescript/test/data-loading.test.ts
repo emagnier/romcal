@@ -1,10 +1,10 @@
 import { describe, it, expect, beforeAll } from 'vitest'
-import { createRomcal, CalendarDefinition, ResourcesDefinition, Romcal } from '../src/index.js'
+import { createRomcal, CalendarDefinition, Resources, Romcal } from '../src/index.js'
 import { loadAllCalendarDefinitions, loadAllResources } from './fixtures.js'
 
 describe('data loading from /data folder', () => {
   let calendarDefinitions: CalendarDefinition[]
-  let resources: ResourcesDefinition[]
+  let resources: Resources[]
 
   beforeAll(async () => {
     calendarDefinitions = await loadAllCalendarDefinitions()
@@ -30,7 +30,7 @@ describe('data loading from /data folder', () => {
 describe('French calendar with loaded data', () => {
   let romcal: Romcal
   let calendarDefinitions: CalendarDefinition[]
-  let resources: ResourcesDefinition[]
+  let resources: Resources[]
 
   beforeAll(async () => {
     calendarDefinitions = await loadAllCalendarDefinitions()
@@ -83,7 +83,7 @@ describe('French calendar with loaded data', () => {
 describe('English calendar with loaded data', () => {
   let romcal: Romcal
   let calendarDefinitions: CalendarDefinition[]
-  let resources: ResourcesDefinition[]
+  let resources: Resources[]
 
   beforeAll(async () => {
     calendarDefinitions = await loadAllCalendarDefinitions()

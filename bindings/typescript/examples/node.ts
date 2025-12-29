@@ -9,7 +9,7 @@
  * Run with: npx tsx examples/node.ts
  */
 
-import { createRomcal, CalendarDefinition, ResourcesDefinition } from '../src/index.js'
+import { createRomcal, CalendarDefinition, Resources } from '../src/index.js'
 import { glob, readFile } from 'node:fs/promises'
 import { dirname, basename, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -40,7 +40,7 @@ async function loadAllCalendarDefinitions(): Promise<CalendarDefinition[]> {
  * Load all resources from the data folder
  * Each locale has meta.json + entities.*.json files that need to be merged
  */
-async function loadAllResources(): Promise<ResourcesDefinition[]> {
+async function loadAllResources(): Promise<Resources[]> {
   const resourcesDir = join(DATA_DIR, 'resources')
   const pattern = join(resourcesDir, '**/*.json')
 
@@ -56,7 +56,7 @@ async function loadAllResources(): Promise<ResourcesDefinition[]> {
   }
 
   // Merge files for each locale
-  const resources: ResourcesDefinition[] = []
+  const resources: Resources[] = []
   for (const [locale, localeFiles] of filesByLocale) {
     let metadata: unknown = null
     const entities: Record<string, unknown> = {}
