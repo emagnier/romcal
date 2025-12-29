@@ -1,9 +1,10 @@
 import { describe, it, expect, beforeAll } from 'vitest'
+import type { createRomcal } from '../src/index.js'
 
 declare global {
   interface Window {
     Romcal: {
-      createRomcal: () => Promise<any>
+      createRomcal: typeof createRomcal
     }
   }
 }
