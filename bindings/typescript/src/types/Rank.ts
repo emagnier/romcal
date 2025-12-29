@@ -3,4 +3,4 @@
 /**
  * Liturgical rank indicating the importance and celebration style of a liturgical day
  */
-export type Rank = "SOLEMNITY" | "SUNDAY" | "FEAST" | "MEMORIAL" | "OPTIONAL_MEMORIAL" | "WEEKDAY";
+export type Rank = 'SOLEMNITY' | 'SUNDAY' | 'FEAST' | 'MEMORIAL' | 'OPTIONAL_MEMORIAL' | 'WEEKDAY'

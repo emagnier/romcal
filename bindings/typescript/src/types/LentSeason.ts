@@ -3,24 +3,25 @@
 /**
  * Lent season localized names and descriptions.
  */
-export type LentSeason = { 
-/**
- * General season name for Lent
- */
-season: string | null, 
-/**
- * Weekday terminology during Lent
- */
-weekday: string | null, 
-/**
- * Sunday terminology during Lent
- */
-sunday: string | null, 
-/**
- * Day after Ash Wednesday terminology
- */
-day_after_ash_wed: string | null, 
-/**
- * Holy Week day terminology
- */
-holy_week_day: string | null, };
+export type LentSeason = {
+  /**
+   * General season name for Lent
+   */
+  season: string | null
+  /**
+   * Weekday terminology during Lent
+   */
+  weekday: string | null
+  /**
+   * Sunday terminology during Lent
+   */
+  sunday: string | null
+  /**
+   * Day after Ash Wednesday terminology
+   */
+  day_after_ash_wed: string | null
+  /**
+   * Holy Week day terminology
+   */
+  holy_week_day: string | null
+}

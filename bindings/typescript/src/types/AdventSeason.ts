@@ -4,20 +4,21 @@
  * Advent season localized names and descriptions.
  * Provides specific terminology for the Advent season in the locale language.
  */
-export type AdventSeason = { 
-/**
- * General season name for Advent
- */
-season: string | null, 
-/**
- * Weekday terminology during Advent
- */
-weekday: string | null, 
-/**
- * Sunday terminology during Advent
- */
-sunday: string | null, 
-/**
- * Privileged weekday terminology during Advent
- */
-privileged_weekday: string | null, };
+export type AdventSeason = {
+  /**
+   * General season name for Advent
+   */
+  season: string | null
+  /**
+   * Weekday terminology during Advent
+   */
+  weekday: string | null
+  /**
+   * Sunday terminology during Advent
+   */
+  sunday: string | null
+  /**
+   * Privileged weekday terminology during Advent
+   */
+  privileged_weekday: string | null
+}

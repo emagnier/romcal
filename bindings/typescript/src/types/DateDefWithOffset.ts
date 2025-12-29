@@ -4,8 +4,9 @@
  * Date definition with offset for adjustments.
  * Used when a date needs to be shifted by a specific number of days.
  */
-export type DateDefWithOffset = { 
-/**
- * The number of days to offset the date
- */
-day_offset: number, };
+export type DateDefWithOffset = {
+  /**
+   * The number of days to offset the date
+   */
+  day_offset: number
+}

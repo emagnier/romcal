@@ -15,4 +15,4 @@
  * - String `"MANY"` is converted to `Many`
  * - All other types generate an error
  */
-export type SaintCount = { "Number": number } | { "Many": string };
+export type SaintCount = { Number: number } | { Many: string }

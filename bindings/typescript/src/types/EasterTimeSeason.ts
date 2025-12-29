@@ -3,20 +3,21 @@
 /**
  * Easter Time season localized names and descriptions.
  */
-export type EasterTimeSeason = { 
-/**
- * General season name for Easter Time
- */
-season: string | null, 
-/**
- * Weekday terminology during Easter Time
- */
-weekday: string | null, 
-/**
- * Sunday terminology during Easter Time
- */
-sunday: string | null, 
-/**
- * Octave terminology during Easter Time
- */
-octave: string | null, };
+export type EasterTimeSeason = {
+  /**
+   * General season name for Easter Time
+   */
+  season: string | null
+  /**
+   * Weekday terminology during Easter Time
+   */
+  weekday: string | null
+  /**
+   * Sunday terminology during Easter Time
+   */
+  sunday: string | null
+  /**
+   * Octave terminology during Easter Time
+   */
+  octave: string | null
+}

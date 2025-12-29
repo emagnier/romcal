@@ -5,4 +5,4 @@
  * on the First Sunday of Advent, the First Sunday in Ordinary Time, the First Sunday of Lent,
  * and Easter Sunday the cycle is always begun again with Week 1 (others being omitted when necessary).
  */
-export type PsalterWeekCycle = "WEEK_1" | "WEEK_2" | "WEEK_3" | "WEEK_4";
+export type PsalterWeekCycle = 'WEEK_1' | 'WEEK_2' | 'WEEK_3' | 'WEEK_4'

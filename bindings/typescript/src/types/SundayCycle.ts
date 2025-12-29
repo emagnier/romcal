@@ -6,4 +6,4 @@
  * after the Christ the King Solemnity. The cycles follow each other in alphabetical order.
  * C year is always divisible by 3, A has remainder of 1, and B remainder of 2.
  */
-export type SundayCycle = "YEAR_A" | "YEAR_B" | "YEAR_C";
+export type SundayCycle = 'YEAR_A' | 'YEAR_B' | 'YEAR_C'

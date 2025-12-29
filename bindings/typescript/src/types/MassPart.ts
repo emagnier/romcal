@@ -4,4 +4,32 @@
  * Parts that make up the Mass celebration.
  * Each part represents a specific element of the liturgical celebration.
  */
-export type MassPart = "messianic_entry" | "entrance_antiphon" | "collect" | "reading_1" | "psalm" | "canticle" | "reading_2" | "easter_vigil_psalm_2" | "easter_vigil_reading_3" | "easter_vigil_canticle_3" | "easter_vigil_reading_4" | "easter_vigil_psalm_4" | "easter_vigil_reading_5" | "easter_vigil_canticle_5" | "easter_vigil_reading_6" | "easter_vigil_psalm_6" | "easter_vigil_reading_7" | "easter_vigil_psalm_7" | "easter_vigil_epistle" | "sequence" | "alleluia" | "gospel" | "prayer_over_the_offerings" | "preface" | "communion_antiphon" | "prayer_after_communion" | "solemn_blessing" | "prayer_over_the_people";
+export type MassPart =
+  | 'messianic_entry'
+  | 'entrance_antiphon'
+  | 'collect'
+  | 'reading_1'
+  | 'psalm'
+  | 'canticle'
+  | 'reading_2'
+  | 'easter_vigil_psalm_2'
+  | 'easter_vigil_reading_3'
+  | 'easter_vigil_canticle_3'
+  | 'easter_vigil_reading_4'
+  | 'easter_vigil_psalm_4'
+  | 'easter_vigil_reading_5'
+  | 'easter_vigil_canticle_5'
+  | 'easter_vigil_reading_6'
+  | 'easter_vigil_psalm_6'
+  | 'easter_vigil_reading_7'
+  | 'easter_vigil_psalm_7'
+  | 'easter_vigil_epistle'
+  | 'sequence'
+  | 'alleluia'
+  | 'gospel'
+  | 'prayer_over_the_offerings'
+  | 'preface'
+  | 'communion_antiphon'
+  | 'prayer_after_communion'
+  | 'solemn_blessing'
+  | 'prayer_over_the_people'

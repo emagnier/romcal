@@ -6,4 +6,4 @@
  * This type ensures that only valid day-of-week values are accepted during
  * deserialization. The value 0 represents Sunday, 1 represents Monday, etc.
  */
-export type DayOfWeek = number;
+export type DayOfWeek = number

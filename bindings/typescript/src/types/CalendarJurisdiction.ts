@@ -4,4 +4,4 @@
  * The jurisdiction of the calendar.
  * Determines whether the calendar follows ecclesiastical or civil authority.
  */
-export type CalendarJurisdiction = "ECCLESIASTICAL" | "CIVIL";
+export type CalendarJurisdiction = 'ECCLESIASTICAL' | 'CIVIL'

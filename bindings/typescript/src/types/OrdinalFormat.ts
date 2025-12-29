@@ -6,4 +6,4 @@
  * - `Letters`: Display ordinals as words (e.g., "first", "second", "premier", "deuxième")
  * - `Numeric`: Display ordinals as numbers with suffixes (e.g., "1st", "2nd", "1er", "2e")
  */
-export type OrdinalFormat = "letters" | "numeric";
+export type OrdinalFormat = 'letters' | 'numeric'

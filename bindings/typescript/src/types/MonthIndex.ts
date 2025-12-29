@@ -6,4 +6,4 @@
  * This type ensures that only valid month values are accepted during
  * deserialization. The value 1 represents January, 2 represents February, etc.
  */
-export type MonthIndex = number;
+export type MonthIndex = number

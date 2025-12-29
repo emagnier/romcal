@@ -4,4 +4,4 @@
  * Content of a mass for a specific liturgical cycle
  * Maps mass parts (readings, psalms, prayers, antiphons, etc.) to their texts
  */
-export type MassContent = Record<string, string>;
+export type MassContent = Record<string, string>

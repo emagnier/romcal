@@ -3,28 +3,29 @@
 /**
  * Liturgical rank names in the locale language.
  */
-export type RanksMetadata = { 
-/**
- * Solemnity rank name
- */
-solemnity: string | null, 
-/**
- * Sunday rank name
- */
-sunday: string | null, 
-/**
- * Feast rank name
- */
-feast: string | null, 
-/**
- * Memorial rank name
- */
-memorial: string | null, 
-/**
- * Optional memorial rank name
- */
-optional_memorial: string | null, 
-/**
- * Weekday rank name
- */
-weekday: string | null, };
+export type RanksMetadata = {
+  /**
+   * Solemnity rank name
+   */
+  solemnity: string | null
+  /**
+   * Sunday rank name
+   */
+  sunday: string | null
+  /**
+   * Feast rank name
+   */
+  feast: string | null
+  /**
+   * Memorial rank name
+   */
+  memorial: string | null
+  /**
+   * Optional memorial rank name
+   */
+  optional_memorial: string | null
+  /**
+   * Weekday rank name
+   */
+  weekday: string | null
+}

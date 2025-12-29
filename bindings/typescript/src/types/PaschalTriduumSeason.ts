@@ -3,8 +3,9 @@
 /**
  * Paschal Triduum season localized names and descriptions.
  */
-export type PaschalTriduumSeason = { 
-/**
- * General season name for Paschal Triduum
- */
-season: string | null, };
+export type PaschalTriduumSeason = {
+  /**
+   * General season name for Paschal Triduum
+   */
+  season: string | null
+}

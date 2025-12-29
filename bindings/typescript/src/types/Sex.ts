@@ -3,4 +3,4 @@
 /**
  * Sex of a person.
  */
-export type Sex = "MALE" | "FEMALE";
+export type Sex = 'MALE' | 'FEMALE'

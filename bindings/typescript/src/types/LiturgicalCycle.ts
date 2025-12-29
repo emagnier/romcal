@@ -4,4 +4,13 @@
  * Liturgical cycle for lectionary readings
  * Includes both actual cycles (Year A, B, C, etc.) and invariant content
  */
-export type LiturgicalCycle = "invariant" | "year_a" | "year_b" | "year_c" | "year_a_b" | "year_a_c" | "year_b_c" | "year_1" | "year_2";
+export type LiturgicalCycle =
+  | 'invariant'
+  | 'year_a'
+  | 'year_b'
+  | 'year_c'
+  | 'year_a_b'
+  | 'year_a_c'
+  | 'year_b_c'
+  | 'year_1'
+  | 'year_2'

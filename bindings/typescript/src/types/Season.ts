@@ -4,4 +4,10 @@
  * Liturgical seasons of the Church year.
  * Represents the major periods that structure the liturgical calendar.
  */
-export type Season = "ADVENT" | "CHRISTMAS_TIME" | "LENT" | "PASCHAL_TRIDUUM" | "EASTER_TIME" | "ORDINARY_TIME";
+export type Season =
+  | 'ADVENT'
+  | 'CHRISTMAS_TIME'
+  | 'LENT'
+  | 'PASCHAL_TRIDUUM'
+  | 'EASTER_TIME'
+  | 'ORDINARY_TIME'

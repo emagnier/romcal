@@ -3,28 +3,29 @@
 /**
  * Christmas Time season localized names and descriptions.
  */
-export type ChristmasTimeSeason = { 
-/**
- * General season name for Christmas Time
- */
-season: string | null, 
-/**
- * Day terminology during Christmas Time
- */
-day: string | null, 
-/**
- * Octave terminology during Christmas Time
- */
-octave: string | null, 
-/**
- * Before Epiphany terminology
- */
-before_epiphany: string | null, 
-/**
- * Second Sunday after Christmas terminology
- */
-second_sunday_after_christmas: string | null, 
-/**
- * After Epiphany terminology
- */
-after_epiphany: string | null, };
+export type ChristmasTimeSeason = {
+  /**
+   * General season name for Christmas Time
+   */
+  season: string | null
+  /**
+   * Day terminology during Christmas Time
+   */
+  day: string | null
+  /**
+   * Octave terminology during Christmas Time
+   */
+  octave: string | null
+  /**
+   * Before Epiphany terminology
+   */
+  before_epiphany: string | null
+  /**
+   * Second Sunday after Christmas terminology
+   */
+  second_sunday_after_christmas: string | null
+  /**
+   * After Epiphany terminology
+   */
+  after_epiphany: string | null
+}

@@ -4,4 +4,4 @@
  * Canonization level indicating the official recognition status of a person.
  * Defines whether someone is beatified (Blessed) or canonized (Saint).
  */
-export type CanonizationLevel = "BLESSED" | "SAINT";
+export type CanonizationLevel = 'BLESSED' | 'SAINT'

@@ -4,4 +4,4 @@
  * A two-year cycle for the weekday Mass readings (also called Cycle I and Cycle II).
  * Odd-numbered years are the Cycle I (year 1); even-numbered ones are the Cycle II (year 2).
  */
-export type WeekdayCycle = "YEAR_1" | "YEAR_2";
+export type WeekdayCycle = 'YEAR_1' | 'YEAR_2'

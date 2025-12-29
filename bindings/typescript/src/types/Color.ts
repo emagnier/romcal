@@ -4,4 +4,4 @@
  * Liturgical colors used in the celebration of Mass and other liturgical services.
  * Each color has specific liturgical significance and is used during particular seasons or celebrations.
  */
-export type Color = "RED" | "ROSE" | "PURPLE" | "GREEN" | "WHITE" | "GOLD" | "BLACK";
+export type Color = 'RED' | 'ROSE' | 'PURPLE' | 'GREEN' | 'WHITE' | 'GOLD' | 'BLACK'

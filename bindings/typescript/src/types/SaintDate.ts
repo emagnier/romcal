@@ -4,4 +4,4 @@
  * Saint date representation with different precision levels.
  * Supports year-only, year-month, or full date specifications.
  */
-export type SaintDate = number | string | string;
+export type SaintDate = number | string | string

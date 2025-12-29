@@ -4,4 +4,15 @@
  * The type of the calendar.
  * Defines the scope and authority level of the liturgical calendar.
  */
-export type CalendarType = "GENERAL_ROMAN" | "REGION" | "COUNTRY" | "ARCHDIOCESE" | "DIOCESE" | "CITY" | "PARISH" | "GENERAL_COMMUNITY" | "REGIONAL_COMMUNITY" | "LOCAL_COMMUNITY" | "OTHER";
+export type CalendarType =
+  | 'GENERAL_ROMAN'
+  | 'REGION'
+  | 'COUNTRY'
+  | 'ARCHDIOCESE'
+  | 'DIOCESE'
+  | 'CITY'
+  | 'PARISH'
+  | 'GENERAL_COMMUNITY'
+  | 'REGIONAL_COMMUNITY'
+  | 'LOCAL_COMMUNITY'
+  | 'OTHER'

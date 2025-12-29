@@ -4,4 +4,27 @@
  * Common definition for simplified categorization.
  * Provides a simplified version of the Common enum for easier classification.
  */
-export type CommonDefinition = "NONE" | "DEDICATION_ANNIVERSARY__INSIDE" | "DEDICATION_ANNIVERSARY__OUTSIDE" | "BLESSED_VIRGIN_MARY" | "MARTYRS" | "MISSIONARY_MARTYRS" | "VIRGIN_MARTYRS" | "WOMAN_MARTYRS" | "PASTORS" | "POPES" | "BISHOPS" | "FOUNDERS" | "MISSIONARIES" | "DOCTORS_OF_THE_CHURCH" | "VIRGINS" | "SAINTS" | "ABBOTS" | "MONKS" | "NUNS" | "RELIGIOUS" | "MERCY_WORKERS" | "EDUCATORS" | "HOLY_WOMEN";
+export type CommonDefinition =
+  | 'NONE'
+  | 'DEDICATION_ANNIVERSARY__INSIDE'
+  | 'DEDICATION_ANNIVERSARY__OUTSIDE'
+  | 'BLESSED_VIRGIN_MARY'
+  | 'MARTYRS'
+  | 'MISSIONARY_MARTYRS'
+  | 'VIRGIN_MARTYRS'
+  | 'WOMAN_MARTYRS'
+  | 'PASTORS'
+  | 'POPES'
+  | 'BISHOPS'
+  | 'FOUNDERS'
+  | 'MISSIONARIES'
+  | 'DOCTORS_OF_THE_CHURCH'
+  | 'VIRGINS'
+  | 'SAINTS'
+  | 'ABBOTS'
+  | 'MONKS'
+  | 'NUNS'
+  | 'RELIGIOUS'
+  | 'MERCY_WORKERS'
+  | 'EDUCATORS'
+  | 'HOLY_WOMEN'
