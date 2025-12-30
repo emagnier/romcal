@@ -181,6 +181,7 @@ function createInstance(wasmInstance: wasm.Romcal): Romcal {
     async generateLiturgicalCalendar(year: number): Promise<LiturgicalCalendar> {
       try {
         const json = wasmInstance.generateLiturgicalCalendar(year)
+        // Safe cast: JSON structure is guaranteed by Rust's serde serialization
         return JSON.parse(json) as LiturgicalCalendar
       } catch (error) {
         const message = error instanceof Error ? error.message : String(error)
@@ -191,6 +192,7 @@ function createInstance(wasmInstance: wasm.Romcal): Romcal {
     async generateMassCalendar(year: number): Promise<MassCalendar> {
       try {
         const json = wasmInstance.generateMassCalendar(year)
+        // Safe cast: JSON structure is guaranteed by Rust's serde serialization
         return JSON.parse(json) as MassCalendar
       } catch (error) {
         const message = error instanceof Error ? error.message : String(error)
@@ -215,8 +217,15 @@ function createInstance(wasmInstance: wasm.Romcal): Romcal {
 
 /**
  * Create a new Romcal instance with default configuration.
+ * Defaults: calendar 'general_roman', locale 'en'.
  */
 export async function createRomcal(): Promise<Romcal>
+
+/**
+ * Create a new Romcal instance with calendar name.
+ * Locale defaults to 'en'.
+ */
+export async function createRomcal(calendar: string): Promise<Romcal>
 
 /**
  * Create a new Romcal instance with calendar and locale.
@@ -230,6 +239,7 @@ export async function createRomcal(config: RomcalConfigInterface): Promise<Romca
 
 /**
  * Create a new Romcal instance with partial configuration.
+ * Unspecified options default to: calendar 'general_roman', locale 'en'.
  */
 export async function createRomcal(config: PartialRomcalConfigInterface): Promise<Romcal>
 
@@ -300,8 +310,8 @@ export async function createRomcal(
       }
 
       instance = wasm.romcal_with_config_object(partialConfig)
-    } else if (typeof calendarOrConfig === 'string' && locale) {
-      // Calendar and locale strings provided
+    } else if (typeof calendarOrConfig === 'string') {
+      // Calendar string provided (locale is optional, defaults to 'en' in Rust)
       instance = wasm.romcal_with_partial_config(
         calendarOrConfig,
         locale,
