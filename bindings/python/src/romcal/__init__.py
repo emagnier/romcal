@@ -49,6 +49,8 @@ __all__ = [
     "Romcal",
     "RomcalError",
     "get_version",
+    "merge_calendar_definitions",
+    "merge_resource_files",
 ]
 
 
@@ -59,6 +61,58 @@ def get_version() -> str:
         The version string (e.g., "4.0.0-beta.3").
     """
     return _get_core().version()
+
+
+def merge_resource_files(locale: str, files: list[dict]) -> dict:
+    """Merge multiple resource files (meta.json + entities.*.json) into a single Resources dict.
+
+    This helper allows you to load resource files however you want and then
+    merge them into the expected structure.
+
+    Args:
+        locale: The locale code (e.g., "fr", "en")
+        files: A list of parsed JSON dicts from resource files
+
+    Returns:
+        A merged Resources dict
+
+    Example:
+        >>> import json
+        >>> with open("data/resources/fr/meta.json") as f:
+        ...     meta = json.load(f)
+        >>> with open("data/resources/fr/entities.a.json") as f:
+        ...     entities = json.load(f)
+        >>> resources = merge_resource_files("fr", [meta, entities])
+    """
+    core = _get_core()
+    files_json = [json.dumps(f) for f in files]
+    result_json = core.merge_resource_files(locale, files_json)
+    return json.loads(result_json)
+
+
+def merge_calendar_definitions(files: list[dict]) -> list[CalendarDefinition]:
+    """Merge/validate multiple calendar definition files.
+
+    This helper allows you to load calendar definition files however you want
+    and then validate them into the expected structure.
+
+    Args:
+        files: A list of parsed JSON dicts from calendar definition files
+
+    Returns:
+        A list of validated CalendarDefinition objects
+
+    Example:
+        >>> import json
+        >>> with open("data/definitions/france.json") as f:
+        ...     france = json.load(f)
+        >>> definitions = merge_calendar_definitions([france])
+    """
+    core = _get_core()
+    files_json = [json.dumps(f) for f in files]
+    result_json = core.merge_calendar_definitions(files_json)
+    raw = json.loads(result_json)
+    return [CalendarDefinition.model_validate(d) for d in raw]
 
 
 def __getattr__(name: str) -> str:

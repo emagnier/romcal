@@ -15,6 +15,7 @@
 pub mod engine;
 pub mod error;
 pub mod generated;
+pub mod helpers;
 pub mod romcal;
 pub mod types;
 
@@ -33,6 +34,7 @@ pub use error::{RomcalError, RomcalResult, Validate, validate_range, validate_ye
 pub use generated::calendar_ids::CALENDAR_IDS;
 pub use generated::locale_ids::LOCALE_CODES;
 pub use generated::schemas;
+pub use helpers::{merge_calendar_definitions, merge_resource_files};
 pub use romcal::{Preset, Romcal};
 pub use types::entity::SaintCount;
 pub use types::entity::{Entity, EntityId};

@@ -313,3 +313,38 @@ pub fn romcal_with_config_object(config: &PartialRomcalConfig) -> Result<Romcal,
 pub fn version() -> String {
     romcal::VERSION.to_string()
 }
+
+/// Merge multiple resource files (meta.json + entities.*.json) into a single Resources JSON.
+///
+/// # Arguments
+///
+/// * `locale` - The locale code (e.g., "fr", "en")
+/// * `files_json` - A JS array of JSON strings, each representing a resource file
+///
+/// # Returns
+///
+/// A JSON string representing the merged Resources object.
+#[wasm_bindgen]
+pub fn merge_resource_files(locale: &str, files_json: Vec<String>) -> Result<String, JsValue> {
+    let files_refs: Vec<&str> = files_json.iter().map(|s| s.as_str()).collect();
+    let resources = romcal::merge_resource_files(locale, files_refs)
+        .map_err(|e| JsValue::from_str(&e.to_string()))?;
+    serde_json::to_string(&resources).map_err(|e| JsValue::from_str(&e.to_string()))
+}
+
+/// Merge/validate multiple calendar definition files.
+///
+/// # Arguments
+///
+/// * `files_json` - A JS array of JSON strings, each representing a calendar definition
+///
+/// # Returns
+///
+/// A JSON string representing an array of CalendarDefinition objects.
+#[wasm_bindgen]
+pub fn merge_calendar_definitions(files_json: Vec<String>) -> Result<String, JsValue> {
+    let files_refs: Vec<&str> = files_json.iter().map(|s| s.as_str()).collect();
+    let definitions = romcal::merge_calendar_definitions(files_refs)
+        .map_err(|e| JsValue::from_str(&e.to_string()))?;
+    serde_json::to_string(&definitions).map_err(|e| JsValue::from_str(&e.to_string()))
+}

@@ -342,3 +342,60 @@ export async function getVersion(): Promise<string> {
   await initWasm()
   return wasm.version()
 }
+
+/**
+ * Merge multiple resource files (meta.json + entities.*.json) into a single Resources object.
+ *
+ * This helper allows you to load resource files however you want (fetch, import, fs, etc.)
+ * and then merge them into the expected structure.
+ *
+ * @param locale - The locale code (e.g., "fr", "en")
+ * @param files - An array of parsed JSON objects from resource files
+ * @returns A merged Resources object
+ *
+ * @example
+ * ```typescript
+ * const metaFr = await fetch('/data/resources/fr/meta.json').then(r => r.json())
+ * const entitiesFr = await fetch('/data/resources/fr/entities.a.json').then(r => r.json())
+ * const resources = await mergeResourceFiles('fr', [metaFr, entitiesFr])
+ * ```
+ */
+export async function mergeResourceFiles(locale: string, files: object[]): Promise<Resources> {
+  await initWasm()
+  try {
+    const filesJson = files.map((f) => JSON.stringify(f))
+    const resultJson = wasm.merge_resource_files(locale, filesJson)
+    return JSON.parse(resultJson) as Resources
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error)
+    throw new RomcalError(message, { cause: error })
+  }
+}
+
+/**
+ * Merge/validate multiple calendar definition files into a CalendarDefinition array.
+ *
+ * This helper allows you to load calendar definition files however you want
+ * (fetch, import, fs, etc.) and then validate them into the expected structure.
+ *
+ * @param files - An array of parsed JSON objects from calendar definition files
+ * @returns An array of validated CalendarDefinition objects
+ *
+ * @example
+ * ```typescript
+ * const franceDef = await fetch('/data/definitions/france.json').then(r => r.json())
+ * const usaDef = await fetch('/data/definitions/usa.json').then(r => r.json())
+ * const definitions = await mergeCalendarDefinitions([franceDef, usaDef])
+ * ```
+ */
+export async function mergeCalendarDefinitions(files: object[]): Promise<CalendarDefinition[]> {
+  await initWasm()
+  try {
+    const filesJson = files.map((f) => JSON.stringify(f))
+    const resultJson = wasm.merge_calendar_definitions(filesJson)
+    return JSON.parse(resultJson) as CalendarDefinition[]
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error)
+    throw new RomcalError(message, { cause: error })
+  }
+}

@@ -206,3 +206,47 @@ impl Romcal {
 pub fn version() -> String {
     romcal::VERSION.to_string()
 }
+
+/// Merge multiple resource files (meta.json + entities.*.json) into a single Resources JSON.
+///
+/// This helper allows you to load resource files however you want and then
+/// merge them into the expected structure.
+///
+/// # Arguments
+///
+/// * `locale` - The locale code (e.g., "fr", "en")
+/// * `files_json` - A list of JSON strings, each representing a resource file
+///
+/// # Returns
+///
+/// A JSON string representing the merged Resources object.
+#[uniffi::export]
+pub fn merge_resource_files(
+    locale: String,
+    files_json: Vec<String>,
+) -> Result<String, RomcalError> {
+    let files_refs: Vec<&str> = files_json.iter().map(|s| s.as_str()).collect();
+    let resources = romcal::merge_resource_files(&locale, files_refs)?;
+    serde_json::to_string(&resources)
+        .map_err(|e| RomcalError::ParseError(format!("Failed to serialize resources: {}", e)))
+}
+
+/// Merge/validate multiple calendar definition files.
+///
+/// This helper allows you to load calendar definition files however you want
+/// and then validate them into the expected structure.
+///
+/// # Arguments
+///
+/// * `files_json` - A list of JSON strings, each representing a calendar definition
+///
+/// # Returns
+///
+/// A JSON string representing an array of CalendarDefinition objects.
+#[uniffi::export]
+pub fn merge_calendar_definitions(files_json: Vec<String>) -> Result<String, RomcalError> {
+    let files_refs: Vec<&str> = files_json.iter().map(|s| s.as_str()).collect();
+    let definitions = romcal::merge_calendar_definitions(files_refs)?;
+    serde_json::to_string(&definitions)
+        .map_err(|e| RomcalError::ParseError(format!("Failed to serialize definitions: {}", e)))
+}
