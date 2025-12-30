@@ -174,7 +174,9 @@ function createInstance(wasmInstance: wasm.Romcal): Romcal {
       epiphanyOnSunday: wasmInstance.config.epiphany_on_sunday,
       corpusChristiOnSunday: wasmInstance.config.corpus_christi_on_sunday,
       ascensionOnSunday: wasmInstance.config.ascension_on_sunday,
+      // Safe cast: values are validated by Rust during Romcal instantiation
       easterCalculationType: wasmInstance.config.easter_calculation_type as EasterCalculationType,
+      // Safe cast: values are validated by Rust during Romcal instantiation
       context: wasmInstance.config.context as CalendarContext,
     },
 
