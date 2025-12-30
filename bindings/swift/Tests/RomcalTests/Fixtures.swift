@@ -41,8 +41,13 @@ func loadAllCalendarDefinitions() throws -> [[String: Any]] {
 
     // Use the JSON helper and parse to untyped data (avoids decoding issues with nested enum-keyed dicts)
     let mergedJson = try mergeCalendarDefinitionsJson(filesJson: filesJson)
-    let mergedData = mergedJson.data(using: .utf8)!
-    return try JSONSerialization.jsonObject(with: mergedData) as! [[String: Any]]
+    guard let mergedData = mergedJson.data(using: .utf8) else {
+        throw RomcalError.parseError("Failed to convert JSON string to data")
+    }
+    guard let result = try JSONSerialization.jsonObject(with: mergedData) as? [[String: Any]] else {
+        throw RomcalError.parseError("Failed to parse calendar definitions JSON")
+    }
+    return result
 }
 
 /// Load all resources from the data folder.
