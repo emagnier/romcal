@@ -65,14 +65,14 @@ const romcal2 = await createRomcal({
 | `corpusChristiOnSunday` | `boolean`               | `true`            | Celebrate Corpus Christi on Sunday instead of Thursday    |
 | `easterCalculationType` | `EasterCalculationType` | `"GREGORIAN"`     | `"GREGORIAN"` or `"JULIAN"` Easter calculation            |
 | `calendarDefinitions`   | `CalendarDefinition[]`  | `[]`              | Custom calendar definitions                               |
-| `resources`             | `ResourcesDefinition[]` | `[]`              | Custom locale resources                                   |
+| `resources`             | `Resources[]`           | `[]`              | Custom locale resources                                   |
 
 ### Loading Calendar Data
 
 Without loading data, only the Proper of Time is available. To include the General Roman Calendar, particular calendars, and localized names, load calendar definitions and resources:
 
 ```typescript
-import { createRomcal, CalendarDefinition, ResourcesDefinition } from 'romcal'
+import { createRomcal, CalendarDefinition, Resources } from 'romcal'
 import { glob, readFile } from 'node:fs/promises'
 
 // Load calendar definitions from JSON files
@@ -85,7 +85,7 @@ async function loadDefinitions(): Promise<CalendarDefinition[]> {
 }
 
 // Load resources from JSON files
-async function loadResources(): Promise<ResourcesDefinition[]> {
+async function loadResources(): Promise<Resources[]> {
   // Your loading logic here
 }
 
