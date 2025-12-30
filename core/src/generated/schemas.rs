@@ -2144,8 +2144,7 @@ pub const RESOURCES_SCHEMA: &str = r##"{
           "type": [
             "string",
             "null"
-          ],
-          "writeOnly": true
+          ]
         },
         "name": {
           "description": "The short name of the entity, without the canonization level and titles.",

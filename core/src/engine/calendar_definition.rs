@@ -19,11 +19,13 @@ pub type CalendarId = String;
 #[cfg_attr(feature = "ts-bindings", ts(export))]
 #[typeshare(swift = "Equatable, Hashable, Sendable")]
 pub struct CalendarDefinition {
-    #[serde(rename = "$schema")]
+    #[serde(rename = "$schema", skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "ts-bindings", ts(rename = "$schema"))]
     #[typeshare(skip)]
     pub schema: Option<String>,
     pub id: CalendarId,
     pub metadata: CalendarMetadata,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub particular_config: Option<ParticularConfig>,
     pub parent_calendar_ids: Vec<CalendarId>,
     pub days_definitions: BTreeMap<DayId, DayDefinition>,

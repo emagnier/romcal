@@ -220,7 +220,7 @@ public final class RomcalCalendar {
 
 // MARK: - Data Merge Helpers
 
-/// Merge multiple resource files (meta.json + entities.*.json) into a single Resources JSON string.
+/// Merge multiple resource files (meta.json + entities.*.json) into a single Resources object.
 ///
 /// This helper allows you to load resource files however you want and then
 /// merge them into the expected structure.
@@ -228,9 +228,28 @@ public final class RomcalCalendar {
 /// - Parameters:
 ///   - locale: The locale code (e.g., "fr", "en")
 ///   - filesJson: An array of JSON strings, each representing a resource file
+/// - Returns: A merged Resources object
+/// - Throws: `RomcalError` if parsing fails
+public func mergeResourceFiles(locale: String, filesJson: [String]) throws -> Resources {
+    do {
+        let json = try RomcalFFI.mergeResourceFiles(locale: locale, filesJson: filesJson)
+        guard let data = json.data(using: .utf8) else {
+            throw RomcalError.parseError("Failed to convert JSON to data")
+        }
+        return try JSONDecoder().decode(Resources.self, from: data)
+    } catch let error as RomcalFFI.RomcalError {
+        throw RomcalError(from: error)
+    }
+}
+
+/// Merge multiple resource files (meta.json + entities.*.json) into a single JSON string.
+///
+/// - Parameters:
+///   - locale: The locale code (e.g., "fr", "en")
+///   - filesJson: An array of JSON strings, each representing a resource file
 /// - Returns: A JSON string representing the merged Resources object
 /// - Throws: `RomcalError` if parsing fails
-public func mergeResourceFiles(locale: String, filesJson: [String]) throws -> String {
+public func mergeResourceFilesJson(locale: String, filesJson: [String]) throws -> String {
     do {
         return try RomcalFFI.mergeResourceFiles(locale: locale, filesJson: filesJson)
     } catch let error as RomcalFFI.RomcalError {
@@ -244,9 +263,26 @@ public func mergeResourceFiles(locale: String, filesJson: [String]) throws -> St
 /// and then validate them into the expected structure.
 ///
 /// - Parameter filesJson: An array of JSON strings, each representing a calendar definition
+/// - Returns: An array of validated CalendarDefinition objects
+/// - Throws: `RomcalError` if parsing fails
+public func mergeCalendarDefinitions(filesJson: [String]) throws -> [CalendarDefinition] {
+    do {
+        let json = try RomcalFFI.mergeCalendarDefinitions(filesJson: filesJson)
+        guard let data = json.data(using: .utf8) else {
+            throw RomcalError.parseError("Failed to convert JSON to data")
+        }
+        return try JSONDecoder().decode([CalendarDefinition].self, from: data)
+    } catch let error as RomcalFFI.RomcalError {
+        throw RomcalError(from: error)
+    }
+}
+
+/// Merge/validate multiple calendar definition files as JSON string.
+///
+/// - Parameter filesJson: An array of JSON strings, each representing a calendar definition
 /// - Returns: A JSON string representing an array of CalendarDefinition objects
 /// - Throws: `RomcalError` if parsing fails
-public func mergeCalendarDefinitions(filesJson: [String]) throws -> String {
+public func mergeCalendarDefinitionsJson(filesJson: [String]) throws -> String {
     do {
         return try RomcalFFI.mergeCalendarDefinitions(filesJson: filesJson)
     } catch let error as RomcalFFI.RomcalError {

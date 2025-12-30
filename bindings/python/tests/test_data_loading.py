@@ -1,32 +1,28 @@
 """Tests for data loading from /data folder (equivalent to data-loading.test.ts)."""
 
-from typing import Any
-
 import pytest
 
-from romcal import Romcal
+from romcal import CalendarDefinition, Resources, Romcal
 
 
 class TestDataLoadingFromDataFolder:
     """Tests for data loading from /data folder."""
 
     def test_should_load_calendar_definitions(
-        self, calendar_definitions: list[dict[str, Any]]
+        self, calendar_definitions: list[CalendarDefinition]
     ) -> None:
         """Should load calendar definitions."""
         assert len(calendar_definitions) > 0
 
-    def test_should_load_resource_locales(self, resources: list[dict[str, Any]]) -> None:
+    def test_should_load_resource_locales(self, resources: list[Resources]) -> None:
         """Should load resource locales."""
         assert len(resources) > 0
 
-    def test_should_have_locale_property_in_resources(
-        self, resources: list[dict[str, Any]]
-    ) -> None:
+    def test_should_have_locale_property_in_resources(self, resources: list[Resources]) -> None:
         """Should have locale property in resources."""
         for resource in resources:
-            assert "locale" in resource
-            assert isinstance(resource["locale"], str)
+            assert resource.locale is not None
+            assert isinstance(resource.locale, str)
 
 
 class TestFrenchCalendarWithLoadedData:

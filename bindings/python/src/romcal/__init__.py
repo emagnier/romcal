@@ -35,6 +35,7 @@ from .types import (
     EasterCalculationType,
     LiturgicalDay,
     MassContext,
+    Resources,
 )
 
 if TYPE_CHECKING:
@@ -46,6 +47,7 @@ __all__ = [
     "EasterCalculationType",
     "LiturgicalDay",
     "MassContext",
+    "Resources",
     "Romcal",
     "RomcalError",
     "get_version",
@@ -63,8 +65,8 @@ def get_version() -> str:
     return _get_core().version()
 
 
-def merge_resource_files(locale: str, files: list[dict]) -> dict:
-    """Merge multiple resource files (meta.json + entities.*.json) into a single Resources dict.
+def merge_resource_files(locale: str, files: list[dict]) -> Resources:
+    """Merge multiple resource files (meta.json + entities.*.json) into a single Resources object.
 
     This helper allows you to load resource files however you want and then
     merge them into the expected structure.
@@ -74,7 +76,7 @@ def merge_resource_files(locale: str, files: list[dict]) -> dict:
         files: A list of parsed JSON dicts from resource files
 
     Returns:
-        A merged Resources dict
+        A merged Resources object
 
     Example:
         >>> import json
@@ -87,7 +89,7 @@ def merge_resource_files(locale: str, files: list[dict]) -> dict:
     core = _get_core()
     files_json = [json.dumps(f) for f in files]
     result_json = core.merge_resource_files(locale, files_json)
-    return json.loads(result_json)
+    return Resources.model_validate(json.loads(result_json))
 
 
 def merge_calendar_definitions(files: list[dict]) -> list[CalendarDefinition]:
@@ -111,8 +113,8 @@ def merge_calendar_definitions(files: list[dict]) -> list[CalendarDefinition]:
     core = _get_core()
     files_json = [json.dumps(f) for f in files]
     result_json = core.merge_calendar_definitions(files_json)
-    raw = json.loads(result_json)
-    return [CalendarDefinition.model_validate(d) for d in raw]
+    raw_list = json.loads(result_json)
+    return [CalendarDefinition.model_validate(d) for d in raw_list]
 
 
 def __getattr__(name: str) -> str:

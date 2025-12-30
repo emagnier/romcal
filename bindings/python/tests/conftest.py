@@ -4,33 +4,39 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Any
 
 import pytest
+
+from romcal import (
+    CalendarDefinition,
+    Resources,
+    merge_calendar_definitions,
+    merge_resource_files,
+)
 
 # Data directory path (relative to this file)
 DATA_DIR = Path(__file__).parent.parent.parent.parent / "data"
 
 
-def load_all_calendar_definitions() -> list[dict[str, Any]]:
+def load_all_calendar_definitions() -> list[CalendarDefinition]:
     """Load all calendar definitions from the data folder."""
     definitions_dir = DATA_DIR / "definitions"
-    definitions: list[dict[str, Any]] = []
+    files: list[dict] = []
 
     for json_file in definitions_dir.rglob("*.json"):
-        with open(json_file) as f:
-            definitions.append(json.load(f))
+        with json_file.open() as f:
+            files.append(json.load(f))
 
-    return definitions
+    return merge_calendar_definitions(files)
 
 
-def load_all_resources() -> list[dict[str, Any]]:
+def load_all_resources() -> list[Resources]:
     """Load all resources from the data folder.
 
     Each locale has meta.json + entities.*.json files that need to be merged.
     """
     resources_dir = DATA_DIR / "resources"
-    resources: list[dict[str, Any]] = []
+    resources: list[Resources] = []
 
     # Group files by locale (parent directory name)
     files_by_locale: dict[str, list[Path]] = {}
@@ -40,50 +46,37 @@ def load_all_resources() -> list[dict[str, Any]]:
             files_by_locale[locale] = []
         files_by_locale[locale].append(json_file)
 
-    # Merge files for each locale
+    # Merge files for each locale using the helper
     for locale, locale_files in files_by_locale.items():
-        metadata: dict[str, Any] | None = None
-        entities: dict[str, Any] = {}
-
-        for file in locale_files:
-            with open(file) as f:
-                content = json.load(f)
-
-            if file.name == "meta.json":
-                metadata = content.get("metadata")
-            elif file.name.startswith("entities.") and "entities" in content:
-                entities.update(content["entities"])
-
-        resources.append(
-            {
-                "locale": locale,
-                "metadata": metadata,
-                "entities": entities if entities else None,
-            }
-        )
+        files_content = [json.load(f.open()) for f in locale_files]
+        resources.append(merge_resource_files(locale, files_content))
 
     return resources
 
 
 @pytest.fixture(scope="session")
-def calendar_definitions() -> list[dict[str, Any]]:
+def calendar_definitions() -> list[CalendarDefinition]:
     """Fixture to load all calendar definitions."""
     return load_all_calendar_definitions()
 
 
 @pytest.fixture(scope="session")
-def resources() -> list[dict[str, Any]]:
+def resources() -> list[Resources]:
     """Fixture to load all resources."""
     return load_all_resources()
 
 
 @pytest.fixture(scope="session")
-def calendar_definitions_json(calendar_definitions: list[dict[str, Any]]) -> str:
+def calendar_definitions_json(calendar_definitions: list[CalendarDefinition]) -> str:
     """Fixture to get calendar definitions as JSON string."""
-    return json.dumps(calendar_definitions)
+    return json.dumps(
+        [d.model_dump(mode="json", by_alias=True, exclude_none=True) for d in calendar_definitions]
+    )
 
 
 @pytest.fixture(scope="session")
-def resources_json(resources: list[dict[str, Any]]) -> str:
+def resources_json(resources: list[Resources]) -> str:
     """Fixture to get resources as JSON string."""
-    return json.dumps(resources)
+    return json.dumps(
+        [r.model_dump(mode="json", by_alias=True, exclude_none=True) for r in resources]
+    )

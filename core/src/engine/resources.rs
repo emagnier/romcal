@@ -21,7 +21,8 @@ pub type LocaleId = String;
 #[cfg_attr(feature = "ts-bindings", ts(export))]
 #[typeshare(swift = "Equatable, Hashable, Sendable")]
 pub struct Resources {
-    #[serde(rename = "$schema")]
+    #[serde(rename = "$schema", skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "ts-bindings", ts(rename = "$schema"))]
     #[typeshare(skip)]
     pub schema: Option<String>,
 
@@ -29,9 +30,11 @@ pub struct Resources {
     pub locale: LocaleId,
 
     /// Metadata of the resources
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub metadata: Option<ResourcesMetadata>,
 
     /// Entities of the resources: a person, a place, an event, etc.
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub entities: Option<BTreeMap<EntityId, Entity>>,
 }
 

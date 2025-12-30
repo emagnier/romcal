@@ -37,7 +37,7 @@ pub struct Entity {
     pub r#type: Option<EntityType>,
 
     /// The full name of the entity.
-    #[serde(skip_serializing)]
+    #[serde(skip_serializing_if = "Option::is_none")]
     #[cfg_attr(feature = "ts-bindings", ts(optional))]
     pub fullname: Option<String>,
 

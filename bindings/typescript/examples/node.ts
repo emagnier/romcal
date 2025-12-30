@@ -1,3 +1,5 @@
+/// <reference types="node" />
+
 /**
  * Romcal - Node.js Example
  *
@@ -9,7 +11,13 @@
  * Run with: npx tsx examples/node.ts
  */
 
-import { createRomcal, CalendarDefinition, Resources } from '../src/index.js'
+import {
+  createRomcal,
+  CalendarDefinition,
+  Resources,
+  mergeResourceFiles,
+  mergeCalendarDefinitions,
+} from '../src/index.js'
 import { glob, readFile } from 'node:fs/promises'
 import { dirname, basename, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -26,14 +34,14 @@ const DATA_DIR = join(__dirname, '../../../data')
  */
 async function loadAllCalendarDefinitions(): Promise<CalendarDefinition[]> {
   const pattern = join(DATA_DIR, 'definitions/**/*.json')
-  const definitions: CalendarDefinition[] = []
+  const files: object[] = []
 
   for await (const file of glob(pattern)) {
     const content = await readFile(file, 'utf-8')
-    definitions.push(JSON.parse(content))
+    files.push(JSON.parse(content))
   }
 
-  return definitions
+  return mergeCalendarDefinitions(files)
 }
 
 /**
@@ -55,30 +63,13 @@ async function loadAllResources(): Promise<Resources[]> {
     filesByLocale.get(locale)!.push(file)
   }
 
-  // Merge files for each locale
+  // Merge files for each locale using the helper
   const resources: Resources[] = []
   for (const [locale, localeFiles] of filesByLocale) {
-    let metadata: unknown = null
-    const entities: Record<string, unknown> = {}
-
-    for (const file of localeFiles) {
-      const content = JSON.parse(await readFile(file, 'utf-8'))
-      const fileName = basename(file)
-
-      if (fileName === 'meta.json') {
-        metadata = content.metadata
-      } else if (fileName.startsWith('entities.')) {
-        if (content.entities) {
-          Object.assign(entities, content.entities)
-        }
-      }
-    }
-
-    resources.push({
-      locale,
-      metadata,
-      entities: Object.keys(entities).length > 0 ? entities : null,
-    })
+    const filesContent = await Promise.all(
+      localeFiles.map((f) => readFile(f, 'utf-8').then((content) => JSON.parse(content))),
+    )
+    resources.push(await mergeResourceFiles(locale, filesContent))
   }
 
   return resources

@@ -22,7 +22,7 @@ final class DataLoadingTests: XCTestCase {
 
         // Check that resources have expected structure
         for resource in resources {
-            XCTAssertNotNil(resource["locale"], "Each resource should have a locale")
+            XCTAssertFalse(resource.locale.isEmpty, "Each resource should have a locale")
         }
     }
 
@@ -30,8 +30,7 @@ final class DataLoadingTests: XCTestCase {
         let resources = try loadAllResources()
 
         for resource in resources {
-            XCTAssertNotNil(resource["locale"], "Each resource should have a locale")
-            XCTAssertTrue(resource["locale"] is String, "Locale should be a string")
+            XCTAssertFalse(resource.locale.isEmpty, "Each resource should have a locale")
         }
     }
 

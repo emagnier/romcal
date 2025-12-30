@@ -3,29 +3,11 @@
 //! These helpers allow users to load data files however they want (fetch, import, fs, etc.)
 //! and then use romcal to merge them into the expected structures.
 
-use std::collections::BTreeMap;
-
-use serde::Deserialize;
+use serde_json::Value;
 
 use crate::engine::calendar_definition::CalendarDefinition;
 use crate::engine::resources::Resources;
 use crate::error::RomcalError;
-use crate::types::EntityId;
-use crate::types::entity::Entity;
-use crate::types::resource::ResourcesMetadata;
-
-/// Intermediate structure for parsing resource files.
-/// Handles both meta.json (with metadata) and entities.*.json (with entities).
-#[derive(Debug, Deserialize)]
-struct ResourceFile {
-    #[serde(rename = "$schema")]
-    #[allow(dead_code)]
-    schema: Option<String>,
-    #[allow(dead_code)]
-    locale: Option<String>,
-    metadata: Option<ResourcesMetadata>,
-    entities: Option<BTreeMap<EntityId, Entity>>,
-}
 
 /// Merge multiple resource files (meta.json + entities.*.json) into a single Resources object.
 ///
@@ -46,38 +28,31 @@ struct ResourceFile {
 /// let resources = merge_resource_files("fr", vec![meta, entities])?;
 /// ```
 pub fn merge_resource_files(locale: &str, files_json: Vec<&str>) -> Result<Resources, RomcalError> {
-    let mut metadata: Option<ResourcesMetadata> = None;
-    let mut entities: BTreeMap<EntityId, Entity> = BTreeMap::new();
+    let mut result = Resources::new(locale.to_string());
 
     for file_json in files_json {
-        let file: ResourceFile = serde_json::from_str(file_json).map_err(|e| {
+        let file: Resources = serde_json::from_str(file_json).map_err(|e| {
             RomcalError::ValidationError(format!("Failed to parse resource file: {}", e))
         })?;
 
-        // Extract metadata if present
-        if let Some(file_metadata) = file.metadata {
-            metadata = Some(file_metadata);
-        }
+        // Merge entities first (before moving metadata)
+        result.merge_entities(&file);
 
-        // Merge entities if present
-        if let Some(file_entities) = file.entities {
-            entities.extend(file_entities);
+        // Extract metadata if present
+        if file.metadata.is_some() {
+            result.metadata = file.metadata;
         }
     }
 
-    Ok(Resources {
-        schema: None,
-        locale: locale.to_string(),
-        metadata,
-        entities: if entities.is_empty() {
-            None
-        } else {
-            Some(entities)
-        },
-    })
+    Ok(result)
 }
 
-/// Merge/validate multiple calendar definition files.
+/// Parse and validate multiple calendar definition files.
+///
+/// This function validates that each JSON string is a valid calendar definition,
+/// then returns them as JSON Values to preserve the original structure.
+/// This avoids issues with asymmetric serialization (e.g., MassTime uses snake_case
+/// for input but SCREAMING_SNAKE_CASE for output).
 ///
 /// # Arguments
 ///
@@ -85,7 +60,7 @@ pub fn merge_resource_files(locale: &str, files_json: Vec<&str>) -> Result<Resou
 ///
 /// # Returns
 ///
-/// A vector of validated CalendarDefinition objects.
+/// A vector of validated JSON Values representing CalendarDefinition objects.
 ///
 /// # Example
 ///
@@ -94,16 +69,20 @@ pub fn merge_resource_files(locale: &str, files_json: Vec<&str>) -> Result<Resou
 /// let usa = r#"{"id": "usa", ...}"#;
 /// let definitions = merge_calendar_definitions(vec![france, usa])?;
 /// ```
-pub fn merge_calendar_definitions(
-    files_json: Vec<&str>,
-) -> Result<Vec<CalendarDefinition>, RomcalError> {
-    let mut definitions: Vec<CalendarDefinition> = Vec::with_capacity(files_json.len());
+pub fn merge_calendar_definitions(files_json: Vec<&str>) -> Result<Vec<Value>, RomcalError> {
+    let mut definitions: Vec<Value> = Vec::with_capacity(files_json.len());
 
     for file_json in files_json {
-        let definition: CalendarDefinition = serde_json::from_str(file_json).map_err(|e| {
+        // Validate by parsing into CalendarDefinition (discarded)
+        let _: CalendarDefinition = serde_json::from_str(file_json).map_err(|e| {
             RomcalError::ValidationError(format!("Failed to parse calendar definition: {}", e))
         })?;
-        definitions.push(definition);
+
+        // Keep the original JSON structure as Value
+        let value: Value = serde_json::from_str(file_json).map_err(|e| {
+            RomcalError::ValidationError(format!("Failed to parse calendar definition: {}", e))
+        })?;
+        definitions.push(value);
     }
 
     Ok(definitions)
