@@ -32,37 +32,33 @@ final class GregorianYearCalendarTests: XCTestCase {
     }
 
     func testShouldIncludeEaster2026OnApril5() throws {
-        let easter = calendar["2026-04-05"]
+        let easter = try XCTUnwrap(calendar["2026-04-05"])
 
-        XCTAssertNotNil(easter)
-        XCTAssertGreaterThan(easter!.count, 0)
+        XCTAssertGreaterThan(easter.count, 0)
         // Easter has the highest precedence (TRIDUUM_1)
-        XCTAssertEqual(easter![0]["precedence"] as? String, "TRIDUUM_1")
-        XCTAssertEqual(easter![0]["is_holy_day_of_obligation"] as? Bool, true)
+        XCTAssertEqual(easter[0]["precedence"] as? String, "TRIDUUM_1")
+        XCTAssertEqual(easter[0]["is_holy_day_of_obligation"] as? Bool, true)
     }
 
     func testShouldHaveCorrectEasterSeason() throws {
-        let easter = calendar["2026-04-05"]
+        let easter = try XCTUnwrap(calendar["2026-04-05"])
 
-        XCTAssertNotNil(easter)
-        XCTAssertEqual(easter![0]["fullname"] as? String, "Easter Sunday of the Resurrection of the Lord")
-        XCTAssertEqual(easter![0]["season"] as? String, "EASTER_TIME")
+        XCTAssertEqual(easter[0]["fullname"] as? String, "Easter Sunday of the Resurrection of the Lord")
+        XCTAssertEqual(easter[0]["season"] as? String, "EASTER_TIME")
     }
 
     func testShouldIncludeChristmas2026OnDecember25() throws {
-        let christmas = calendar["2026-12-25"]
+        let christmas = try XCTUnwrap(calendar["2026-12-25"])
 
-        XCTAssertNotNil(christmas)
-        XCTAssertEqual(christmas![0]["rank"] as? String, "SOLEMNITY")
+        XCTAssertEqual(christmas[0]["rank"] as? String, "SOLEMNITY")
     }
 
     func testShouldHaveNoMassesForHolySaturday() throws {
-        let holySaturday = calendar["2026-04-04"]
+        let holySaturday = try XCTUnwrap(calendar["2026-04-04"])
 
-        XCTAssertNotNil(holySaturday)
-        XCTAssertEqual(holySaturday![0]["fullname"] as? String, "Holy Saturday")
+        XCTAssertEqual(holySaturday[0]["fullname"] as? String, "Holy Saturday")
         // Holy Saturday has no masses during the day (only Easter Vigil in the evening)
-        let masses = holySaturday![0]["masses"] as? [[String: Any]]
+        let masses = holySaturday[0]["masses"] as? [[String: Any]]
         XCTAssertEqual(masses?.count ?? 0, 0)
     }
 }
@@ -102,10 +98,9 @@ final class LiturgicalYearCalendarTests: XCTestCase {
     }
 
     func testShouldIncludeChristmas2025() throws {
-        let christmas = calendar["2025-12-25"]
+        let christmas = try XCTUnwrap(calendar["2025-12-25"])
 
-        XCTAssertNotNil(christmas)
-        XCTAssertEqual(christmas![0]["rank"] as? String, "SOLEMNITY")
+        XCTAssertEqual(christmas[0]["rank"] as? String, "SOLEMNITY")
     }
 }
 
@@ -132,29 +127,26 @@ final class MassCalendarGregorianYearTests: XCTestCase {
     }
 
     func testShouldIncludeDecember24Masses() throws {
-        let dec24 = massCalendar["2026-12-24"]
-        XCTAssertNotNil(dec24)
+        let dec24 = try XCTUnwrap(massCalendar["2026-12-24"])
 
-        let massTimes = dec24!.compactMap { $0["mass_time"] as? String }
-        XCTAssertEqual(dec24!.count, 2)
+        let massTimes = dec24.compactMap { $0["mass_time"] as? String }
+        XCTAssertEqual(dec24.count, 2)
         // Morning mass (Advent weekday) + Previous evening mass (Christmas vigil)
         XCTAssertEqual(massTimes, ["MORNING_MASS", "PREVIOUS_EVENING_MASS"])
     }
 
     func testShouldIncludeMultipleChristmas2026Masses() throws {
-        let christmas = massCalendar["2026-12-25"]
-        XCTAssertNotNil(christmas)
+        let christmas = try XCTUnwrap(massCalendar["2026-12-25"])
 
-        let massTimes = christmas!.compactMap { $0["mass_time"] as? String }
-        XCTAssertEqual(christmas!.count, 3)
+        let massTimes = christmas.compactMap { $0["mass_time"] as? String }
+        XCTAssertEqual(christmas.count, 3)
         XCTAssertEqual(massTimes, ["NIGHT_MASS", "MASS_AT_DAWN", "DAY_MASS"])
     }
 
     func testShouldHaveCorrectMassTimeNames() throws {
-        let christmas = massCalendar["2026-12-25"]
-        XCTAssertNotNil(christmas)
+        let christmas = try XCTUnwrap(massCalendar["2026-12-25"])
 
-        for mass in christmas! {
+        for mass in christmas {
             XCTAssertNotNil(mass["mass_time"])
             let fullname = mass["fullname"] as? String ?? ""
             XCTAssertTrue(fullname.contains("The Nativity of the Lord"))
@@ -162,22 +154,19 @@ final class MassCalendarGregorianYearTests: XCTestCase {
     }
 
     func testShouldPlaceEasterVigilOnSaturdayEvening() throws {
-        let easterVigilDay = massCalendar["2026-04-04"]
-        XCTAssertNotNil(easterVigilDay)
+        let easterVigilDay = try XCTUnwrap(massCalendar["2026-04-04"])
 
-        let vigil = easterVigilDay!.first { ($0["mass_time"] as? String) == "EASTER_VIGIL" }
-        XCTAssertNotNil(vigil)
-        XCTAssertEqual(vigil!["liturgical_date"] as? String, "2026-04-05")
+        let vigil = try XCTUnwrap(easterVigilDay.first { ($0["mass_time"] as? String) == "EASTER_VIGIL" })
+        XCTAssertEqual(vigil["liturgical_date"] as? String, "2026-04-05")
     }
 
     func testShouldHaveMassEntryForHolySaturday() throws {
         // Holy Saturday has no masses in the liturgical day definition,
         // but the mass-centric calendar includes the Easter Vigil on this civil date
-        let holySaturday = massCalendar["2026-04-04"]
+        let holySaturday = try XCTUnwrap(massCalendar["2026-04-04"])
 
-        XCTAssertNotNil(holySaturday)
-        XCTAssertEqual(holySaturday!.count, 1)
-        XCTAssertEqual(holySaturday![0]["mass_time"] as? String, "EASTER_VIGIL")
+        XCTAssertEqual(holySaturday.count, 1)
+        XCTAssertEqual(holySaturday[0]["mass_time"] as? String, "EASTER_VIGIL")
     }
 }
 
@@ -200,12 +189,11 @@ final class MassCalendarLiturgicalYearTests: XCTestCase {
     }
 
     func testShouldIncludeChristmas2025Masses() throws {
-        let christmas = massCalendar["2025-12-25"]
+        let christmas = try XCTUnwrap(massCalendar["2025-12-25"])
 
-        XCTAssertNotNil(christmas)
-        XCTAssertGreaterThan(christmas!.count, 1)
+        XCTAssertGreaterThan(christmas.count, 1)
 
-        for mass in christmas! {
+        for mass in christmas {
             XCTAssertNotNil(mass["mass_time"])
             let fullname = mass["fullname"] as? String ?? ""
             XCTAssertTrue(fullname.contains("The Nativity of the Lord"))
@@ -226,9 +214,8 @@ final class FrenchCalendarTests: XCTestCase {
         )
         let calendar = try romcal.liturgicalCalendar(year: 2026)
 
-        let easter = calendar["2026-04-05"]
-        XCTAssertNotNil(easter)
-        XCTAssertEqual(easter![0]["fullname"] as? String, "Dimanche de Pâques - La résurrection du Seigneur")
+        let easter = try XCTUnwrap(calendar["2026-04-05"])
+        XCTAssertEqual(easter[0]["fullname"] as? String, "Dimanche de Pâques - La résurrection du Seigneur")
     }
 }
 
