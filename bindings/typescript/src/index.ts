@@ -185,7 +185,10 @@ function createInstance(wasmInstance: wasm.Romcal): Romcal {
         return JSON.parse(json) as LiturgicalCalendar
       } catch (error) {
         const message = error instanceof Error ? error.message : String(error)
-        throw new RomcalError(message, { cause: error })
+        throw new RomcalError(
+          `Failed to generate liturgical calendar for year ${year}: ${message}`,
+          { cause: error },
+        )
       }
     },
 
@@ -196,7 +199,9 @@ function createInstance(wasmInstance: wasm.Romcal): Romcal {
         return JSON.parse(json) as MassCalendar
       } catch (error) {
         const message = error instanceof Error ? error.message : String(error)
-        throw new RomcalError(message, { cause: error })
+        throw new RomcalError(`Failed to generate mass calendar for year ${year}: ${message}`, {
+          cause: error,
+        })
       }
     },
 
@@ -205,7 +210,10 @@ function createInstance(wasmInstance: wasm.Romcal): Romcal {
         return wasmInstance.getDate(id, year)
       } catch (error) {
         const message = error instanceof Error ? error.message : String(error)
-        throw new RomcalError(message, { cause: error })
+        throw new RomcalError(
+          `Failed to get date for celebration '${id}' in year ${year}: ${message}`,
+          { cause: error },
+        )
       }
     },
   }
