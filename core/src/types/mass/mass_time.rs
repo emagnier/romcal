@@ -10,7 +10,7 @@ use typeshare::typeshare;
 #[cfg_attr(feature = "schema-gen", derive(schemars::JsonSchema))]
 #[cfg_attr(feature = "schema-gen", schemars(rename_all = "SCREAMING_SNAKE_CASE"))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
-#[cfg_attr(feature = "ts-bindings", ts(export))]
+#[cfg_attr(feature = "ts-bindings", ts(export, rename_all = "SCREAMING_SNAKE_CASE"))]
 #[typeshare(swift = "Equatable, Hashable, Sendable")]
 #[serde(rename_all(serialize = "SCREAMING_SNAKE_CASE", deserialize = "snake_case"))]
 pub enum MassTime {
