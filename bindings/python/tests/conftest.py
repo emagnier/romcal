@@ -48,7 +48,10 @@ def load_all_resources() -> list[Resources]:
 
     # Merge files for each locale using the helper
     for locale, locale_files in files_by_locale.items():
-        files_content = [json.load(f.open()) for f in locale_files]
+        files_content = []
+        for locale_file in locale_files:
+            with locale_file.open() as fp:
+                files_content.append(json.load(fp))
         resources.append(merge_resource_files(locale, files_content))
 
     return resources
