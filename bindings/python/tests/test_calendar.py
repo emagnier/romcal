@@ -253,13 +253,13 @@ class TestErrorHandling:
 
     def test_should_preserve_error_cause_chain(self) -> None:
         """Should preserve error cause chain."""
+        from romcal._uniffi import romcal_uniffi as core
+
         romcal = Romcal()
 
-        try:
+        with pytest.raises(RomcalError) as exc_info:
             romcal.liturgical_calendar(1500)
-            pytest.fail("Should have raised RomcalError")
-        except RomcalError as _e:
-            # The cause should be set (either from FFI or from validation)
-            # For year validation, there's no underlying cause
-            # but for FFI errors, there should be
-            pass  # Test passes if we get here with RomcalError
+
+        # The cause should be the original FFI error
+        assert exc_info.value.__cause__ is not None
+        assert isinstance(exc_info.value.__cause__, core.RomcalError)
