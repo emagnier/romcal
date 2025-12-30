@@ -10,7 +10,7 @@ export type MassInfo = {
    * The type of mass (e.g., DayMass, EasterVigil, etc.)
    * Serialized as SCREAMING_SNAKE_CASE (e.g., "DAY_MASS")
    */
-  mass_type: MassTime
+  type: MassTime
   /**
    * The localized name of the mass type (translation key in snake_case)
    */

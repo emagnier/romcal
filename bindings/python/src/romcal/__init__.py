@@ -26,13 +26,15 @@ Example usage:
 from __future__ import annotations
 
 import json
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING
 
 # Import types from generated Pydantic models
 from .types import (
     CalendarContext,
     CalendarDefinition,
     EasterCalculationType,
+    LiturgicalDay,
+    MassContext,
 )
 
 if TYPE_CHECKING:
@@ -42,6 +44,8 @@ __all__ = [
     "CalendarContext",
     "CalendarDefinition",
     "EasterCalculationType",
+    "LiturgicalDay",
+    "MassContext",
     "Romcal",
     "RomcalError",
     "get_version",
@@ -182,14 +186,14 @@ class Romcal:
         """Get the calendar context."""
         return CalendarContext(self._inner.get_context())
 
-    def liturgical_calendar(self, year: int) -> dict[str, list[dict[str, Any]]]:
+    def liturgical_calendar(self, year: int) -> dict[str, list[LiturgicalDay]]:
         """Generate the complete liturgical calendar for a given liturgical year.
 
         Args:
             year: The liturgical year to generate (e.g., 2025).
 
         Returns:
-            A dict mapping date strings (YYYY-MM-DD) to lists of liturgical day dicts.
+            A dict mapping date strings (YYYY-MM-DD) to lists of LiturgicalDay objects.
             Each date may have multiple liturgical days due to optional memorials.
 
         Raises:
@@ -200,18 +204,21 @@ class Romcal:
             >>> calendar = r.liturgical_calendar(2025)
             >>> christmas_days = calendar.get("2025-12-25", [])
             >>> for day in christmas_days:
-            ...     print(f"{day['id']}: {day['rank']}")
+            ...     print(f"{day.id}: {day.rank}")
         """
         core = _get_core()
         try:
-            return json.loads(self._inner.generate_liturgical_calendar(year))
+            raw = json.loads(self._inner.generate_liturgical_calendar(year))
+            return {
+                date: [LiturgicalDay.model_validate(d) for d in days] for date, days in raw.items()
+            }
         except core.RomcalError as e:
             raise RomcalError(str(e)) from e
         except json.JSONDecodeError as e:
             msg = f"Failed to parse calendar JSON: {e}"
             raise RomcalError(msg) from e
 
-    def mass_calendar(self, year: int) -> dict[str, list[dict[str, Any]]]:
+    def mass_calendar(self, year: int) -> dict[str, list[MassContext]]:
         """Generate a mass-centric view of the liturgical calendar for a given year.
 
         This provides Mass-specific information including readings, prayers,
@@ -221,7 +228,7 @@ class Romcal:
             year: The year to generate (e.g., 2025).
 
         Returns:
-            A dict mapping date strings (YYYY-MM-DD) to lists of mass context dicts.
+            A dict mapping date strings (YYYY-MM-DD) to lists of MassContext objects.
 
         Raises:
             RomcalError: If the year is invalid or calendar generation fails.
@@ -233,7 +240,11 @@ class Romcal:
         """
         core = _get_core()
         try:
-            return json.loads(self._inner.generate_mass_calendar(year))
+            raw = json.loads(self._inner.generate_mass_calendar(year))
+            return {
+                date: [MassContext.model_validate(m) for m in masses]
+                for date, masses in raw.items()
+            }
         except core.RomcalError as e:
             raise RomcalError(str(e)) from e
         except json.JSONDecodeError as e:

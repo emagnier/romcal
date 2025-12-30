@@ -946,35 +946,35 @@ data class PeriodInfo (
 @Serializable
 enum class MassTime(val string: String) {
 	/// Easter Vigil - the most important Mass of the liturgical year, celebrated on Holy Saturday night
-	@SerialName("easter_vigil")
-	EasterVigil("easter_vigil"),
+	@SerialName("EasterVigil")
+	EasterVigil("EasterVigil"),
 	/// Previous Evening Mass - Mass celebrated the evening before a major feast
-	@SerialName("previous_evening_mass")
-	PreviousEveningMass("previous_evening_mass"),
+	@SerialName("PreviousEveningMass")
+	PreviousEveningMass("PreviousEveningMass"),
 	/// Night Mass - Mass celebrated during the night hours
-	@SerialName("night_mass")
-	NightMass("night_mass"),
+	@SerialName("NightMass")
+	NightMass("NightMass"),
 	/// Mass at Dawn - Mass celebrated at dawn, particularly on Easter Sunday
-	@SerialName("mass_at_dawn")
-	MassAtDawn("mass_at_dawn"),
+	@SerialName("MassAtDawn")
+	MassAtDawn("MassAtDawn"),
 	/// Morning Mass - Mass celebrated in the morning
-	@SerialName("morning_mass")
-	MorningMass("morning_mass"),
+	@SerialName("MorningMass")
+	MorningMass("MorningMass"),
 	/// Mass of the Passion - Mass focusing on Christ's passion, beginning with the procession with palms
-	@SerialName("mass_of_the_passion")
-	MassOfThePassion("mass_of_the_passion"),
+	@SerialName("MassOfThePassion")
+	MassOfThePassion("MassOfThePassion"),
 	/// Celebration of the Passion - special celebration of Christ's passion
-	@SerialName("celebration_of_the_passion")
-	CelebrationOfThePassion("celebration_of_the_passion"),
+	@SerialName("CelebrationOfThePassion")
+	CelebrationOfThePassion("CelebrationOfThePassion"),
 	/// Day Mass - regular Mass celebrated during the day
-	@SerialName("day_mass")
-	DayMass("day_mass"),
+	@SerialName("DayMass")
+	DayMass("DayMass"),
 	/// Chrism Mass - Mass where holy oils are blessed, typically on Holy Thursday morning
-	@SerialName("chrism_mass")
-	ChrismMass("chrism_mass"),
+	@SerialName("ChrismMass")
+	ChrismMass("ChrismMass"),
 	/// Evening Mass of the Lord's Supper - Mass celebrated on Holy Thursday evening
-	@SerialName("evening_mass_of_the_lords_supper")
-	EveningMassOfTheLordsSupper("evening_mass_of_the_lords_supper"),
+	@SerialName("EveningMassOfTheLordsSupper")
+	EveningMassOfTheLordsSupper("EveningMassOfTheLordsSupper"),
 }
 
 /// Information about a mass celebration for a liturgical day.

@@ -986,16 +986,16 @@ class MassTime(Enum):
     Different Masses are celebrated at various times and occasions throughout the liturgical year.
     """
 
-    easter_vigil = "easter_vigil"
-    previous_evening_mass = "previous_evening_mass"
-    night_mass = "night_mass"
-    mass_at_dawn = "mass_at_dawn"
-    morning_mass = "morning_mass"
-    mass_of_the_passion = "mass_of_the_passion"
-    celebration_of_the_passion = "celebration_of_the_passion"
-    day_mass = "day_mass"
-    chrism_mass = "chrism_mass"
-    evening_mass_of_the_lords_supper = "evening_mass_of_the_lords_supper"
+    EASTER_VIGIL = "EASTER_VIGIL"
+    PREVIOUS_EVENING_MASS = "PREVIOUS_EVENING_MASS"
+    NIGHT_MASS = "NIGHT_MASS"
+    MASS_AT_DAWN = "MASS_AT_DAWN"
+    MORNING_MASS = "MORNING_MASS"
+    MASS_OF_THE_PASSION = "MASS_OF_THE_PASSION"
+    CELEBRATION_OF_THE_PASSION = "CELEBRATION_OF_THE_PASSION"
+    DAY_MASS = "DAY_MASS"
+    CHRISM_MASS = "CHRISM_MASS"
+    EVENING_MASS_OF_THE_LORDS_SUPPER = "EVENING_MASS_OF_THE_LORDS_SUPPER"
 
 
 class SundayCycle(Enum):

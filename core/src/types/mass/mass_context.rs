@@ -8,7 +8,7 @@ use std::collections::BTreeMap;
 
 #[cfg(feature = "schema-gen")]
 use schemars::JsonSchema;
-use serde::{Deserialize, Serialize, Serializer};
+use serde::{Deserialize, Serialize};
 #[cfg(feature = "ts-bindings")]
 use ts_rs::TS;
 use typeshare::typeshare;
@@ -81,24 +81,6 @@ impl From<&LiturgicalDay> for CelebrationSummary {
     }
 }
 
-/// Serializes MassTime to SCREAMING_SNAKE_CASE (e.g., DayMass -> "DAY_MASS")
-fn serialize_mass_time_uppercase<S>(mass_time: &MassTime, serializer: S) -> Result<S::Ok, S::Error>
-where
-    S: Serializer,
-{
-    let snake_case = mass_time_to_key(mass_time);
-    let screaming_snake_case = snake_case.to_uppercase();
-    serializer.serialize_str(&screaming_snake_case)
-}
-
-/// Converts a MassTime enum variant to its snake_case key.
-fn mass_time_to_key(mass_time: &MassTime) -> String {
-    serde_json::to_string(mass_time)
-        .unwrap_or_default()
-        .trim_matches('"')
-        .to_string()
-}
-
 /// A flat structure representing a single mass with its full liturgical context.
 ///
 /// This is the main type for the mass-centric calendar view. It contains:
@@ -119,7 +101,6 @@ pub struct MassContext {
     // === Mass identification ===
     /// The type of mass (e.g., DayMass, EasterVigil, etc.)
     /// Serialized as SCREAMING_SNAKE_CASE (e.g., "DAY_MASS")
-    #[serde(serialize_with = "serialize_mass_time_uppercase")]
     pub mass_time: MassTime,
 
     /// The localized name of the mass time (translation key in snake_case)
@@ -254,7 +235,7 @@ impl MassContext {
     ) -> Self {
         Self {
             // Mass identification
-            mass_time_name: mass_time_to_key(&mass_time),
+            mass_time_name: mass_time.to_snake_case_key().to_string(),
             mass_time,
             civil_date,
             liturgical_date: day.date.clone(),

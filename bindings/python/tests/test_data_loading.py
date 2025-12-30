@@ -48,9 +48,9 @@ class TestFrenchCalendarWithLoadedData:
 
         easter = calendar.get("2026-04-05")
         assert easter is not None
-        assert easter[0]["fullname"] is not None
-        assert easter[0]["rank_name"] is not None
-        assert easter[0]["season_name"] is not None
+        assert easter[0].fullname is not None
+        assert easter[0].rank_name is not None
+        assert easter[0].season_name is not None
 
     def test_should_include_french_saints(self) -> None:
         """Should include French saints."""
@@ -60,9 +60,9 @@ class TestFrenchCalendarWithLoadedData:
         vianney = calendar.get("2026-08-04")
         assert vianney is not None
 
-        saint_day = next((d for d in vianney if "vianney" in d.get("id", "")), None)
+        saint_day = next((d for d in vianney if "vianney" in d.id), None)
         assert saint_day is not None
-        assert saint_day["fullname"] is not None
+        assert saint_day.fullname is not None
 
     def test_should_generate_mass_calendar_with_french_locale(self) -> None:
         """Should generate mass calendar with French locale."""
@@ -74,8 +74,8 @@ class TestFrenchCalendarWithLoadedData:
         assert len(christmas) > 0
 
         for mass in christmas:
-            assert mass["mass_time_name"] is not None
-            assert mass["fullname"] is not None
+            assert mass.mass_time_name is not None
+            assert mass.fullname is not None
 
 
 class TestEnglishCalendarWithLoadedData:
@@ -97,6 +97,6 @@ class TestEnglishCalendarWithLoadedData:
 
         easter = calendar.get("2026-04-05")
         assert easter is not None
-        assert easter[0]["fullname"] is not None
-        assert easter[0]["rank_name"] is not None
-        assert easter[0]["season_name"] is not None
+        assert easter[0].fullname is not None
+        assert easter[0].rank_name is not None
+        assert easter[0].season_name is not None

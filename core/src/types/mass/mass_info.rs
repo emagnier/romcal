@@ -1,4 +1,4 @@
-use serde::{Deserialize, Serialize, Serializer};
+use serde::{Deserialize, Serialize};
 #[cfg(feature = "ts-bindings")]
 use ts_rs::TS;
 use typeshare::typeshare;
@@ -15,20 +15,10 @@ use super::MassTime;
 pub struct MassInfo {
     /// The type of mass (e.g., DayMass, EasterVigil, etc.)
     /// Serialized as SCREAMING_SNAKE_CASE (e.g., "DAY_MASS")
-    #[serde(rename = "type", serialize_with = "serialize_mass_type_uppercase")]
+    #[serde(rename = "type")]
     pub mass_type: MassTime,
     /// The localized name of the mass type (translation key in snake_case)
     pub name: String,
-}
-
-/// Serializes MassTime to SCREAMING_SNAKE_CASE (e.g., DayMass -> "DAY_MASS")
-fn serialize_mass_type_uppercase<S>(mass_type: &MassTime, serializer: S) -> Result<S::Ok, S::Error>
-where
-    S: Serializer,
-{
-    let snake_case = mass_type_to_key(mass_type);
-    let screaming_snake_case = snake_case.to_uppercase();
-    serializer.serialize_str(&screaming_snake_case)
 }
 
 impl MassInfo {
@@ -36,7 +26,7 @@ impl MassInfo {
     /// The name is generated from the MassTime enum variant (snake_case).
     pub fn new(mass_type: MassTime) -> Self {
         Self {
-            name: mass_type_to_key(&mass_type),
+            name: mass_type.to_snake_case_key().to_string(),
             mass_type,
         }
     }
@@ -50,16 +40,6 @@ impl MassInfo {
     pub fn none() -> Vec<Self> {
         vec![]
     }
-}
-
-/// Converts a MassTime enum variant to its snake_case key.
-/// Example: MassTime::DayMass -> "day_mass"
-fn mass_type_to_key(mass_type: &MassTime) -> String {
-    // MassTime uses #[serde(rename_all = "snake_case")], so we can serialize to get the key
-    serde_json::to_string(mass_type)
-        .unwrap_or_default()
-        .trim_matches('"')
-        .to_string()
 }
 
 #[cfg(test)]
@@ -101,31 +81,5 @@ mod tests {
         assert!(json.contains("\"type\":\"DAY_MASS\""));
         // name remains in snake_case (translation key)
         assert!(json.contains("\"name\":\"day_mass\""));
-    }
-
-    #[test]
-    fn test_mass_type_to_key() {
-        assert_eq!(mass_type_to_key(&MassTime::DayMass), "day_mass");
-        assert_eq!(mass_type_to_key(&MassTime::EasterVigil), "easter_vigil");
-        assert_eq!(
-            mass_type_to_key(&MassTime::PreviousEveningMass),
-            "previous_evening_mass"
-        );
-        assert_eq!(mass_type_to_key(&MassTime::NightMass), "night_mass");
-        assert_eq!(mass_type_to_key(&MassTime::MassAtDawn), "mass_at_dawn");
-        assert_eq!(mass_type_to_key(&MassTime::MorningMass), "morning_mass");
-        assert_eq!(
-            mass_type_to_key(&MassTime::MassOfThePassion),
-            "mass_of_the_passion"
-        );
-        assert_eq!(
-            mass_type_to_key(&MassTime::CelebrationOfThePassion),
-            "celebration_of_the_passion"
-        );
-        assert_eq!(mass_type_to_key(&MassTime::ChrismMass), "chrism_mass");
-        assert_eq!(
-            mass_type_to_key(&MassTime::EveningMassOfTheLordsSupper),
-            "evening_mass_of_the_lords_supper"
-        );
     }
 }

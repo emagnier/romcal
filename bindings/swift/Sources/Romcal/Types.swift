@@ -881,25 +881,25 @@ public struct PeriodInfo: Codable, Equatable, Hashable, Sendable {
 /// Different Masses are celebrated at various times and occasions throughout the liturgical year.
 public enum MassTime: String, Codable, Equatable, Hashable, Sendable {
 	/// Easter Vigil - the most important Mass of the liturgical year, celebrated on Holy Saturday night
-	case easterVigil = "easter_vigil"
+	case easterVigil = "EasterVigil"
 	/// Previous Evening Mass - Mass celebrated the evening before a major feast
-	case previousEveningMass = "previous_evening_mass"
+	case previousEveningMass = "PreviousEveningMass"
 	/// Night Mass - Mass celebrated during the night hours
-	case nightMass = "night_mass"
+	case nightMass = "NightMass"
 	/// Mass at Dawn - Mass celebrated at dawn, particularly on Easter Sunday
-	case massAtDawn = "mass_at_dawn"
+	case massAtDawn = "MassAtDawn"
 	/// Morning Mass - Mass celebrated in the morning
-	case morningMass = "morning_mass"
+	case morningMass = "MorningMass"
 	/// Mass of the Passion - Mass focusing on Christ's passion, beginning with the procession with palms
-	case massOfThePassion = "mass_of_the_passion"
+	case massOfThePassion = "MassOfThePassion"
 	/// Celebration of the Passion - special celebration of Christ's passion
-	case celebrationOfThePassion = "celebration_of_the_passion"
+	case celebrationOfThePassion = "CelebrationOfThePassion"
 	/// Day Mass - regular Mass celebrated during the day
-	case dayMass = "day_mass"
+	case dayMass = "DayMass"
 	/// Chrism Mass - Mass where holy oils are blessed, typically on Holy Thursday morning
-	case chrismMass = "chrism_mass"
+	case chrismMass = "ChrismMass"
 	/// Evening Mass of the Lord's Supper - Mass celebrated on Holy Thursday evening
-	case eveningMassOfTheLordsSupper = "evening_mass_of_the_lords_supper"
+	case eveningMassOfTheLordsSupper = "EveningMassOfTheLordsSupper"
 }
 
 /// Information about a mass celebration for a liturgical day.
