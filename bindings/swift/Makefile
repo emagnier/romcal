@@ -43,7 +43,9 @@ generate-bindings: build-rust
 generate-types:
 	@echo "Generating Swift types with Typeshare..."
 	cd ../.. && typeshare --config-file typeshare.toml ./core/src --lang=swift --output-file=bindings/swift/Sources/Romcal/Types.swift
-	@echo "Swift types generated (TypesCompat.swift provides compatibility types)"
+	@echo "Formatting generated Types.swift..."
+	swift format format --in-place Sources/Romcal/Types.swift
+	@echo "Swift types generated and formatted"
 
 # Build Swift package
 build: generate-bindings generate-types
@@ -74,23 +76,21 @@ clean:
 	rm -f Sources/RomcalFFI/romcal_uniffiFFI.h
 	rm -f Sources/RomcalFFI/romcal_uniffiFFI.modulemap
 
-# Format Swift code (requires swift-format)
+# Format Swift code (excludes generated files: RomcalFFI/, Types.swift)
 format:
 	@echo "Formatting Swift code..."
-	@if command -v swift-format > /dev/null; then \
-		swift-format --in-place --recursive Sources Tests Examples; \
-	else \
-		echo "swift-format not found. Install with: brew install swift-format"; \
-	fi
+	swift format format --in-place \
+		Sources/Romcal/Romcal.swift \
+		Sources/Romcal/TypesCompat.swift \
+		--recursive Tests Examples
 
-# Lint Swift code (requires SwiftLint)
+# Lint Swift code (excludes generated files: RomcalFFI/, Types.swift)
 lint:
 	@echo "Linting Swift code..."
-	@if command -v swiftlint > /dev/null; then \
-		swiftlint Sources Tests Examples; \
-	else \
-		echo "SwiftLint not found. Install with: brew install swiftlint"; \
-	fi
+	swift format lint \
+		Sources/Romcal/Romcal.swift \
+		Sources/Romcal/TypesCompat.swift \
+		--recursive Tests Examples
 
 # Run the basic usage example
 example: build
