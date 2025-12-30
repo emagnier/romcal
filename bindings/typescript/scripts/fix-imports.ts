@@ -61,7 +61,14 @@ while (iteration < maxIterations) {
     const filePath = join(TYPES_DIR, `${fileName}.ts`)
     let content = readFileSync(filePath, 'utf-8')
 
-    const imports = [...types]
+    // Filter out types that already have an import
+    const missingTypes = [...types].filter((t) => !content.includes(`from "./${t}.js"`))
+
+    if (missingTypes.length === 0) {
+      continue
+    }
+
+    const imports = missingTypes
       .sort()
       .map((t) => `import type { ${t} } from "./${t}.js";`)
       .join('\n')
