@@ -65,7 +65,8 @@ class TypesTest {
 
     @Test
     fun `MassInfo should deserialize correctly`() {
-        val jsonString = """{"type": "day_mass", "name": "Day Mass"}"""
+        // Note: Typeshare generates SerialName with PascalCase format
+        val jsonString = """{"type": "DayMass", "name": "Day Mass"}"""
         val massInfo = json.decodeFromString<MassInfo>(jsonString)
         assertEquals(MassTime.DayMass, massInfo.type)
         assertEquals("Day Mass", massInfo.name)

@@ -12,13 +12,19 @@ repositories {
 }
 
 dependencies {
+    // JSON serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+
+    // JNA for UniFFI native library loading
+    implementation("net.java.dev.jna:jna:5.15.0")
 
     testImplementation(kotlin("test"))
 }
 
 tasks.test {
     useJUnitPlatform()
+    // Set library path for native libraries during tests
+    systemProperty("jna.library.path", "${projectDir}/src/main/resources")
 }
 
 kotlin {
