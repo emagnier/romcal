@@ -159,20 +159,20 @@ Romcal().use { romcal ->
 
 ### Romcal
 
-| Method | Description |
-|--------|-------------|
-| `liturgicalCalendar(year: Int)` | Generate the liturgical calendar for a year |
-| `massCalendar(year: Int)` | Generate a mass-centric view of the calendar |
-| `getDate(celebrationId: String, year: Int)` | Get the date of a specific celebration |
-| `close()` | Release resources (use `.use {}` block for automatic cleanup) |
+| Method                                      | Description                                                   |
+| ------------------------------------------- | ------------------------------------------------------------- |
+| `liturgicalCalendar(year: Int)`             | Generate the liturgical calendar for a year                   |
+| `massCalendar(year: Int)`                   | Generate a mass-centric view of the calendar                  |
+| `getDate(celebrationId: String, year: Int)` | Get the date of a specific celebration                        |
+| `close()`                                   | Release resources (use `.use {}` block for automatic cleanup) |
 
 ### Companion Object
 
-| Property/Method | Description |
-|-----------------|-------------|
-| `version` | Get the romcal library version |
+| Property/Method                             | Description                       |
+| ------------------------------------------- | --------------------------------- |
+| `version`                                   | Get the romcal library version    |
 | `mergeResourceFilesJson(locale, filesJson)` | Merge resource files for a locale |
-| `mergeCalendarDefinitionsJson(filesJson)` | Merge calendar definition files |
+| `mergeCalendarDefinitionsJson(filesJson)`   | Merge calendar definition files   |
 
 ## Project Structure
 
@@ -192,14 +192,14 @@ bindings/kotlin/
 
 ## Build Targets
 
-| Target | Description |
-|--------|-------------|
-| `make build` | Build everything (Rust + bindings + Kotlin) |
-| `make build-rust` | Build Rust UniFFI library |
-| `make generate-bindings` | Generate Kotlin bindings from UniFFI |
-| `make generate-types` | Regenerate types with Typeshare |
-| `make test` | Run tests |
-| `make clean` | Clean build artifacts |
+| Target                   | Description                                 |
+| ------------------------ | ------------------------------------------- |
+| `make build`             | Build everything (Rust + bindings + Kotlin) |
+| `make build-rust`        | Build Rust UniFFI library                   |
+| `make generate-bindings` | Generate Kotlin bindings from UniFFI        |
+| `make generate-types`    | Regenerate types with Typeshare             |
+| `make test`              | Run tests                                   |
+| `make clean`             | Clean build artifacts                       |
 
 ## Notes on Types
 

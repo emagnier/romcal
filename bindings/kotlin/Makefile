@@ -1,7 +1,7 @@
 # Romcal Kotlin Binding Makefile
 # Provides common tasks for building the Kotlin binding with UniFFI
 
-.PHONY: all build build-rust generate-bindings generate-types copy-native-lib test clean help
+.PHONY: all build build-rust generate-bindings generate-types copy-native-lib test clean help format lint
 
 # Detect OS for library extension and resource directory
 UNAME_S := $(shell uname -s)
@@ -34,6 +34,8 @@ help:
 	@echo "  make generate-bindings - Generate Kotlin bindings from UniFFI"
 	@echo "  make generate-types    - Generate Kotlin types with Typeshare"
 	@echo "  make copy-native-lib   - Copy native library to resources"
+	@echo "  make format            - Format Kotlin code with ktlint"
+	@echo "  make lint              - Check Kotlin code style with ktlint"
 	@echo "  make test              - Run tests"
 	@echo "  make clean             - Clean build artifacts"
 	@echo "  make all               - Build everything (default)"
@@ -64,7 +66,9 @@ generate-types:
 	@echo "Generating Kotlin types with Typeshare..."
 	cd ../.. && typeshare --config-file typeshare.toml ./core/src --lang=kotlin \
 		--output-file=bindings/kotlin/src/main/kotlin/com/romcal/types/Types.kt
-	@echo "Kotlin types generated (TypesCompat.kt provides compatibility types)"
+	@echo "Formatting generated types..."
+	./gradlew ktlintFormat -q
+	@echo "Kotlin types generated and formatted (TypesCompat.kt provides compatibility types)"
 
 # Build Kotlin package
 build: generate-bindings generate-types copy-native-lib
@@ -84,3 +88,13 @@ clean:
 	rm -rf src/main/resources/darwin-*/
 	rm -rf src/main/resources/linux-*/
 	rm -rf src/main/resources/win32-*/
+
+# Format Kotlin code with ktlint
+format:
+	@echo "Formatting Kotlin code..."
+	./gradlew ktlintFormat
+
+# Check Kotlin code style with ktlint
+lint:
+	@echo "Checking Kotlin code style..."
+	./gradlew ktlintCheck
