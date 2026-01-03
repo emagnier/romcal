@@ -1,0 +1,6 @@
+# Archive - ignore build artifacts
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+.eslintcache

@@ -2,10 +2,6 @@
 logs
 /.log*
 *.log
-npm-debug.log*
-
-# Dependencies
-node_modules/
 
 # Coverage
 coverage/
@@ -13,9 +9,6 @@ coverage/
 # Transpiled files
 dist/
 tmp/
-
-# TypeScript build info
-*.tsbuildinfo
 
 # Act (run GitHub Actions locally)
 *.event
@@ -34,12 +27,6 @@ tmp/
 .cursor/
 .claude/
 .copilot/
-
-# Optional npm cache directory
-.npm
-
-# Optional eslint cache
-.eslintcache
 
 # Rust
 target/
@@ -67,11 +54,6 @@ test-results/
 # Rust IDE files
 .rust-analyzer/
 rust-project.json
-
-# WASM build artifacts
-/pkg/
-*.wasm.map
-.wasm-pack/
 
 # Vim
 *.swp
@@ -111,54 +93,3 @@ _*.yaml
 
 # Dependencies documentation
 _docs/
-
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-build/
-develop-eggs/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
-
-# Python virtual environments
-.venv/
-venv/
-ENV/
-env/
-
-# Python testing
-.pytest_cache/
-.tox/
-.nox/
-htmlcov/
-.coverage
-.coverage.*
-nosetests.xml
-coverage.xml
-*.cover
-
-# Python type checking
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Python packaging
-*.manifest
-*.spec
-
-# Maturin / PyO3
-*.pyd
-bindings/python/src/romcal/_uniffi/

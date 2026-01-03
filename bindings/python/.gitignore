@@ -1,12 +1,55 @@
-# Virtual environment
-.venv/
-
 # Build artifacts
+build/
+dist/
 target/
 *.so
 *.pyd
 
-# Python cache
+# Python bytecode
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+.Python
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Testing
 .pytest_cache/
+.tox/
+.nox/
+htmlcov/
+.coverage
+.coverage.*
+nosetests.xml
+coverage.xml
+*.cover
+
+# Type checking
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Linting
+.ruff_cache/
+
+# Packaging
+*.egg-info/
+*.egg
+.eggs/
+eggs/
+develop-eggs/
+.installed.cfg
+MANIFEST
+sdist/
+wheels/
+lib/
+lib64/
+parts/
+var/
+
+# Maturin / UniFFI
+src/romcal/_uniffi/
