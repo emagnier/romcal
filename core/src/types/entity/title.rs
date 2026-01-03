@@ -4,7 +4,6 @@ use serde::{Deserialize, Serialize};
 use strum::EnumIter;
 #[cfg(feature = "ts-bindings")]
 use ts_rs::TS;
-use typeshare::typeshare;
 
 /// Titles and patronages associated with saints and blessed.
 /// Represents the various ecclesiastical titles and patronages that can be assigned to entities.
@@ -12,7 +11,6 @@ use typeshare::typeshare;
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum Title {
     // Original Title variants
@@ -93,7 +91,6 @@ pub enum Title {
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 pub struct CompoundTitle {
     /// The title(s) to add to the end of the existing list of title(s)
     pub append: Option<Vec<Title>>,

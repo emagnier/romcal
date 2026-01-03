@@ -4,7 +4,6 @@ use serde::{Deserialize, Serialize};
 use strum::EnumIter;
 #[cfg(feature = "ts-bindings")]
 use ts_rs::TS;
-use typeshare::typeshare;
 
 /// Liturgical colors used in the celebration of Mass and other liturgical services.
 /// Each color has specific liturgical significance and is used during particular seasons or celebrations.
@@ -12,7 +11,6 @@ use typeshare::typeshare;
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum Color {
     /// Red - used for martyrs, Pentecost, and Palm Sunday
@@ -36,7 +34,6 @@ pub enum Color {
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 pub struct ColorInfo {
     /// The color key
     pub key: Color,

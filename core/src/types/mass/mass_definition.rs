@@ -14,7 +14,6 @@ use strum::EnumIter;
 use strum::IntoEnumIterator;
 #[cfg(feature = "ts-bindings")]
 use ts_rs::TS;
-use typeshare::typeshare;
 
 /// Liturgical cycle for lectionary readings
 /// Includes both actual cycles (Year A, B, C, etc.) and invariant content
@@ -24,7 +23,6 @@ use typeshare::typeshare;
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 #[serde(rename_all = "snake_case")]
 pub enum LiturgicalCycle {
     /// Invariant content that applies to all cycles
@@ -157,7 +155,6 @@ fn masses_definitions_schema(_gen: &mut SchemaGenerator) -> Schema {
 #[cfg_attr(feature = "schema-gen", schemars(schema_with = "mass_content_schema"))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export, type = "Record<string, string>"))]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 pub struct MassContent(BTreeMap<MassPart, String>);
 
 impl Serialize for MassContent {
@@ -222,7 +219,6 @@ impl Default for MassContent {
     feature = "ts-bindings",
     ts(export, type = "Record<LiturgicalCycle, MassContent>")
 )]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 pub struct MassCycleDefinition(BTreeMap<LiturgicalCycle, MassContent>);
 
 impl Serialize for MassCycleDefinition {
@@ -287,7 +283,6 @@ impl Default for MassCycleDefinition {
     feature = "ts-bindings",
     ts(export, type = "Record<MassTime, MassCycleDefinition>")
 )]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 pub struct MassesDefinitions(BTreeMap<MassTime, MassCycleDefinition>);
 
 impl Serialize for MassesDefinitions {

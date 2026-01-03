@@ -4,7 +4,6 @@ use serde::{Deserialize, Serialize};
 use strum::EnumIter;
 #[cfg(feature = "ts-bindings")]
 use ts_rs::TS;
-use typeshare::typeshare;
 
 /// Specific periods within liturgical seasons.
 /// Defines sub-periods that have special liturgical characteristics or rules.
@@ -12,7 +11,6 @@ use typeshare::typeshare;
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum Period {
     /// The eight days following Christmas (December 25 - January 1)
@@ -42,7 +40,6 @@ pub enum Period {
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 pub struct PeriodInfo {
     /// The period key
     pub key: Period,

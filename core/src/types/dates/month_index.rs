@@ -3,7 +3,6 @@ use schemars::JsonSchema;
 use serde::{Deserialize, Deserializer, Serialize};
 #[cfg(feature = "ts-bindings")]
 use ts_rs::TS;
-use typeshare::typeshare;
 
 /// Month index (1-12) with automatic validation
 ///
@@ -13,7 +12,6 @@ use typeshare::typeshare;
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 pub struct MonthIndex(pub u8);
 
 impl<'de> Deserialize<'de> for MonthIndex {

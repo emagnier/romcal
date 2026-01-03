@@ -33,7 +33,7 @@ These schemas enable:
 
 ## Community Bindings
 
-In addition to the 4 officially supported bindings (TypeScript, Python, Swift, Kotlin), these JSON Schemas are available for creating community bindings in other languages (Go, Java, C#, Dart, etc.) using standard JSON Schema tooling.
+These JSON Schemas are available for creating community bindings in other languages (Swift, Kotlin, Dart, Go, Java, C#, etc.) using standard JSON Schema tooling. Official bindings are available for TypeScript and Python.
 
 ## Schema Structure
 

@@ -4,12 +4,10 @@ use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 #[cfg(feature = "ts-bindings")]
 use ts_rs::TS;
-use typeshare::typeshare;
 
 use crate::types::{CalendarMetadata, DayDefinition, DayId, ParticularConfig};
 
 /// Unique identifier for a calendar
-#[typeshare]
 pub type CalendarId = String;
 
 /// Calendar definition
@@ -17,11 +15,9 @@ pub type CalendarId = String;
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 pub struct CalendarDefinition {
     #[serde(rename = "$schema", skip_serializing_if = "Option::is_none")]
     #[cfg_attr(feature = "ts-bindings", ts(rename = "$schema"))]
-    #[typeshare(skip)]
     pub schema: Option<String>,
     pub id: CalendarId,
     pub metadata: CalendarMetadata,

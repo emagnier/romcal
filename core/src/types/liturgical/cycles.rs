@@ -6,7 +6,6 @@ use serde::{Deserialize, Serialize};
 use strum::EnumIter;
 #[cfg(feature = "ts-bindings")]
 use ts_rs::TS;
-use typeshare::typeshare;
 
 /// A three-year cycle for Sunday Mass readings (and some solemnities), designated by A, B, or C.
 /// Each cycle begins on the First Sunday of Advent of the previous civil year and ends on Saturday
@@ -16,7 +15,6 @@ use typeshare::typeshare;
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum SundayCycle {
     /// Year A
@@ -34,7 +32,6 @@ pub enum SundayCycle {
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum SundayCycleCombined {
     /// Years A and B combined
@@ -51,7 +48,6 @@ pub enum SundayCycleCombined {
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 #[allow(non_camel_case_types)] // Intentionally using Year_1/Year_2 to produce YEAR_1/YEAR_2 in JSON
 pub enum WeekdayCycle {
@@ -68,7 +64,6 @@ pub enum WeekdayCycle {
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 #[allow(non_camel_case_types)] // Intentionally using Week_1/Week_2/etc. to produce WEEK_1/WEEK_2/etc. in JSON
 pub enum PsalterWeekCycle {

@@ -4,7 +4,6 @@ use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 #[cfg(feature = "ts-bindings")]
 use ts_rs::TS;
-use typeshare::typeshare;
 
 use crate::types::OrdinalFormat;
 
@@ -14,7 +13,6 @@ use crate::types::OrdinalFormat;
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 pub struct ResourcesMetadata {
     /// Format for displaying ordinal numbers (defaults to Numeric if not specified)
     pub ordinal_format: Option<OrdinalFormat>,
@@ -44,7 +42,6 @@ pub struct ResourcesMetadata {
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 pub struct LocaleColors {
     /// Black color name in the locale language
     pub black: Option<String>,
@@ -68,7 +65,6 @@ pub struct LocaleColors {
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 pub struct SeasonsMetadata {
     /// Advent season names and descriptions
     pub advent: Option<AdventSeason>,
@@ -90,7 +86,6 @@ pub struct SeasonsMetadata {
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 pub struct AdventSeason {
     /// General season name for Advent
     pub season: Option<String>,
@@ -107,7 +102,6 @@ pub struct AdventSeason {
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 pub struct ChristmasTimeSeason {
     /// General season name for Christmas Time
     pub season: Option<String>,
@@ -128,7 +122,6 @@ pub struct ChristmasTimeSeason {
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 pub struct OrdinaryTimeSeason {
     /// General season name for Ordinary Time
     pub season: Option<String>,
@@ -143,7 +136,6 @@ pub struct OrdinaryTimeSeason {
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 pub struct LentSeason {
     /// General season name for Lent
     pub season: Option<String>,
@@ -162,7 +154,6 @@ pub struct LentSeason {
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 pub struct PaschalTriduumSeason {
     /// General season name for Paschal Triduum
     pub season: Option<String>,
@@ -173,7 +164,6 @@ pub struct PaschalTriduumSeason {
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 pub struct EasterTimeSeason {
     /// General season name for Easter Time
     pub season: Option<String>,
@@ -190,7 +180,6 @@ pub struct EasterTimeSeason {
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 pub struct PeriodsMetadata {
     /// Christmas Octave period name
     pub christmas_octave: Option<String>,
@@ -219,7 +208,6 @@ pub struct PeriodsMetadata {
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 pub struct RanksMetadata {
     /// Solemnity rank name
     pub solemnity: Option<String>,
@@ -240,7 +228,6 @@ pub struct RanksMetadata {
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 pub struct CyclesMetadata {
     /// Proper of Time cycle name
     pub proper_of_time: Option<String>,

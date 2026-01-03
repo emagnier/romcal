@@ -11,7 +11,6 @@ use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 #[cfg(feature = "ts-bindings")]
 use ts_rs::TS;
-use typeshare::typeshare;
 
 use super::MassTime;
 use crate::engine::calendar_definition::CalendarId;
@@ -34,7 +33,6 @@ pub type MassCalendar = BTreeMap<String, Vec<MassContext>>;
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 pub struct CelebrationSummary {
     /// The unique identifier of the liturgical day
     pub id: LiturgicalDayId,
@@ -96,7 +94,6 @@ impl From<&LiturgicalDay> for CelebrationSummary {
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 pub struct MassContext {
     // === Mass identification ===
     /// The type of mass (e.g., DayMass, EasterVigil, etc.)

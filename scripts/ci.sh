@@ -97,17 +97,12 @@ if [ -d "$PROJECT_ROOT/bindings/python" ]; then
     run_step "1️⃣3️⃣ Building and testing Python bindings" "cd $PROJECT_ROOT/bindings/python && uv venv --quiet --allow-existing && uv pip install --quiet -e '.[dev]' && uv run maturin develop && uv run task generate-types && uv run ruff format --check . && uv run ruff check . && uv run pytest tests/"
 fi
 
-# Step 14: Build and test Swift bindings
-if [ -d "$PROJECT_ROOT/bindings/swift" ]; then
-    run_step "1️⃣4️⃣ Building and testing Swift bindings" "cd '$PROJECT_ROOT/bindings/swift' && make build && swift test"
-fi
+# Step 14: Check types synchronization
+run_script "check-types-sync.sh" "1️⃣4️⃣ Checking types synchronization"
 
-# Step 15: Check types synchronization
-run_script "check-types-sync.sh" "1️⃣5️⃣ Checking types synchronization"
-
-# Step 16: Integration tests (if they exist)
+# Step 15: Integration tests (if they exist)
 if [ -d "$PROJECT_ROOT/tests" ]; then
-    run_step "1️⃣6️⃣ Running integration tests" "cd '$PROJECT_ROOT' && cargo test --release"
+    run_step "1️⃣5️⃣ Running integration tests" "cd '$PROJECT_ROOT' && cargo test --release"
 fi
 
 # Calculate total duration
@@ -130,7 +125,6 @@ echo "   ✅ Resource files validated"
 echo "   ✅ JSON roundtrip integrity verified"
 echo "   ✅ TypeScript bindings built and tested"
 echo "   ✅ Python bindings built and tested"
-echo "   ✅ Swift bindings built and tested"
 echo "   ✅ Generated types synchronized"
 echo "   ✅ All quality checks passed"
 echo ""

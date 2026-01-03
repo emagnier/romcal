@@ -5,7 +5,6 @@ use serde::{Deserialize, Serialize};
 use strum::EnumIter;
 #[cfg(feature = "ts-bindings")]
 use ts_rs::TS;
-use typeshare::typeshare;
 
 /// Liturgical precedence levels for determining which celebration takes priority.
 /// Defines the hierarchical order of liturgical celebrations according to UNLY norms.
@@ -13,7 +12,6 @@ use typeshare::typeshare;
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 #[allow(non_camel_case_types)]
 pub enum Precedence {

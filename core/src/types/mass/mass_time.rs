@@ -2,7 +2,6 @@ use serde::{Deserialize, Serialize};
 use strum::EnumIter;
 #[cfg(feature = "ts-bindings")]
 use ts_rs::TS;
-use typeshare::typeshare;
 
 /// Times of Mass celebrations in the liturgical calendar.
 /// Different Masses are celebrated at various times and occasions throughout the liturgical year.
@@ -14,7 +13,6 @@ use typeshare::typeshare;
     feature = "ts-bindings",
     ts(export, rename_all = "SCREAMING_SNAKE_CASE")
 )]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 #[serde(rename_all(serialize = "SCREAMING_SNAKE_CASE", deserialize = "snake_case"))]
 pub enum MassTime {
     /// Easter Vigil - the most important Mass of the liturgical year, celebrated on Holy Saturday night

@@ -47,7 +47,9 @@ Written in Rust, Romcal delivers exceptional performance with strong typing, JSO
 - **Rust crate**: Core library via [crates.io](https://crates.io/)
 - **CLI**: Command-line interface for terminal usage and automation
 - **JavaScript/TypeScript**: [npm package](https://www.npmjs.com/package/romcal) with WASM bindings and tree-shaking support
-- **Python**: [PyPI package](https://pypi.org/project/romcal/) with PyO3 bindings and Pydantic models
+- **Python**: [PyPI package](https://pypi.org/project/romcal/) with native bindings and Pydantic models
+
+Community bindings for other languages (Swift, Kotlin, Dart, etc.) can be generated using [UniFFI](https://mozilla.github.io/uniffi-rs/) or the published JSON schemas.
 
 Perfect for building liturgical applications across platforms.
 

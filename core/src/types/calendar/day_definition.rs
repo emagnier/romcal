@@ -3,7 +3,6 @@ use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 #[cfg(feature = "ts-bindings")]
 use ts_rs::TS;
-use typeshare::typeshare;
 
 use crate::types::{
     Color, CommonDefinition, DateDef, DateDefExceptions, EntityRef, MassesDefinitions, Precedence,
@@ -11,7 +10,6 @@ use crate::types::{
 };
 
 /// Locale identifier for internationalization
-/// Note: #[typeshare] is on the LocaleId in engine/resources.rs
 pub type LocaleId = String;
 
 /// Macro to generate SingleOrMultiple types for handling both single values and arrays
@@ -21,7 +19,6 @@ macro_rules! single_or_multiple {
         #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
         #[cfg_attr(feature = "ts-bindings", derive(TS))]
         #[cfg_attr(feature = "ts-bindings", ts(export))]
-        #[typeshare(swift = "Equatable, Hashable, Sendable")]
         #[serde(untagged)]
         pub enum $name {
             Single($type),
@@ -34,7 +31,6 @@ single_or_multiple!(CommonsDef, CommonDefinition);
 single_or_multiple!(ColorsDef, Color);
 
 /// Unique identifier for a day definition
-#[typeshare]
 pub type DayId = String;
 
 /// Definition of a liturgical day with all its properties and configurations.
@@ -44,7 +40,6 @@ pub type DayId = String;
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 pub struct DayDefinition {
     /// The date definition for this liturgical day
     #[serde(skip_serializing_if = "Option::is_none")]

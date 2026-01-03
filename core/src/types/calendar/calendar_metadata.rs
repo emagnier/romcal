@@ -3,7 +3,6 @@ use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 #[cfg(feature = "ts-bindings")]
 use ts_rs::TS;
-use typeshare::typeshare;
 
 use crate::types::{CalendarJurisdiction, CalendarType};
 
@@ -13,7 +12,6 @@ use crate::types::{CalendarJurisdiction, CalendarType};
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 pub struct CalendarMetadata {
     /// The type of the calendar
     pub r#type: CalendarType,

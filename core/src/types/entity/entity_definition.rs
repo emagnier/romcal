@@ -3,12 +3,10 @@ use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 #[cfg(feature = "ts-bindings")]
 use ts_rs::TS;
-use typeshare::typeshare;
 
 use super::{CanonizationLevel, EntityType, SaintCount, SaintDateDef, Sex, Title};
 
 /// The unique identifier of the entity
-#[typeshare]
 pub type EntityId = String;
 
 fn default_entity_type() -> Option<EntityType> {
@@ -19,7 +17,6 @@ fn default_entity_type() -> Option<EntityType> {
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 pub struct Entity {
     /// The unique identifier of the entity
     #[serde(skip_serializing_if = "Option::is_none")]

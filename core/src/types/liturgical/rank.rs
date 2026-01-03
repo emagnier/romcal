@@ -4,14 +4,12 @@ use serde::{Deserialize, Serialize};
 use strum::EnumIter;
 #[cfg(feature = "ts-bindings")]
 use ts_rs::TS;
-use typeshare::typeshare;
 
 /// Liturgical rank indicating the importance and celebration style of a liturgical day
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, EnumIter)]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum Rank {
     /// Solemnities are counted among the most important days, whose celebration

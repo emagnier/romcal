@@ -4,14 +4,12 @@ use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 #[cfg(feature = "ts-bindings")]
 use ts_rs::TS;
-use typeshare::typeshare;
 
 use crate::types::EntityId;
 use crate::types::entity::{CanonizationLevel, Entity};
 use crate::types::resource::ResourcesMetadata;
 
 /// Locale code of the resources, in BCP-47 IETF tag format
-#[typeshare]
 pub type LocaleId = String;
 
 /// Resources definition
@@ -19,11 +17,9 @@ pub type LocaleId = String;
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[typeshare(swift = "Equatable, Hashable, Sendable")]
 pub struct Resources {
     #[serde(rename = "$schema", skip_serializing_if = "Option::is_none")]
     #[cfg_attr(feature = "ts-bindings", ts(rename = "$schema"))]
-    #[typeshare(skip)]
     pub schema: Option<String>,
 
     /// Locale code of the resources, in BCP-47 IETF tag format
