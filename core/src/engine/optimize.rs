@@ -1,164 +1,236 @@
+//! Optimize and bundle Romcal configuration for distribution.
+//!
+//! This module provides functionality to create optimized JSON bundles from
+//! a Romcal configuration. The optimization process:
+//!
+//! 1. **Filters calendar definitions** to include only the main calendar,
+//!    its parent calendars, and the `general_roman` fallback
+//!
+//! 2. **Filters resources** to include only locales in the hierarchy
+//!    (e.g., for `fr-ca`: includes `fr-ca`, `fr`, and `en`)
+//!
+//! 3. **Deduplicates at property level** so parent locales only contain
+//!    properties missing in child locales (diff-based approach)
+//!
+//! 4. **Removes empty values** (null, empty objects) from the JSON output
+//!
+//! # Example
+//!
+//! For a locale hierarchy `fr-ca → fr → en`, after optimization:
+//! - `fr-ca`: Contains the final values for translated properties
+//! - `fr`: Contains only properties not defined in `fr-ca`
+//! - `en`: Contains only properties not defined in `fr-ca` or `fr`
+
 use serde_json::Value;
 use std::collections::{HashMap, HashSet};
 
 use crate::entity_resolution::locale::get_all_parent_locales;
 use crate::types::entity::EntityDefinition;
+use crate::types::resource::{
+    AdventSeason, ChristmasTimeSeason, CyclesMetadata, EasterTimeSeason, LentSeason, LocaleColors,
+    OrdinaryTimeSeason, PaschalTriduumSeason, PeriodsMetadata, RanksMetadata, ResourcesMetadata,
+    SeasonsMetadata,
+};
 use crate::{CalendarDefinition, Resources, Romcal, RomcalError, RomcalResult};
 
-// Type aliases for clarity
+// ============================================================================
+// Type Aliases
+// ============================================================================
+
+/// Maps lowercase locale to original case (for case-insensitive lookup).
 type LocaleMap = HashMap<String, String>;
-type EntityIdSet = HashSet<String>;
+
+/// Set of IDs (entities, calendars, etc.).
+type IdSet = HashSet<String>;
+
+/// Set of property names for tracking defined properties during deduplication.
 type PropertySet = HashSet<String>;
 
-/// Create a JSON bundle of the current configuration
-/// This method serializes the Romcal config to JSON format
-/// and removes null values and empty objects from the output.
-///
-/// Only includes calendar_definitions that are:
-/// 1. The main calendar (Romcal.calendar)
-/// 2. Parent calendars of the main calendar
-/// 3. The general_roman calendar
-pub fn optimize(romcal: &Romcal) -> RomcalResult<String> {
-    // Validate that all calendar IDs are unique
-    validate_unique_calendar_ids(&romcal.calendar_definitions)?;
+/// Maps entity ID to its set of defined properties across locales.
+type EntityPropertiesMap = HashMap<String, PropertySet>;
 
-    // Validate that all resource locales are unique
+// ============================================================================
+// Main Entry Point
+// ============================================================================
+
+/// Create an optimized JSON bundle of the Romcal configuration.
+///
+/// This function filters and deduplicates the configuration to create a minimal
+/// bundle suitable for distribution. The output contains:
+///
+/// - Only calendar definitions in the hierarchy (general_roman → parents → main)
+/// - Only resources for locales in the hierarchy (en → parent → specific)
+/// - Property-level deduplication across locale hierarchy
+/// - No null values or empty objects
+///
+/// # Arguments
+///
+/// * `romcal` - The Romcal configuration to optimize
+///
+/// # Returns
+///
+/// A pretty-printed JSON string of the optimized configuration.
+///
+/// # Errors
+///
+/// Returns an error if:
+/// - Duplicate calendar IDs or locales are found
+/// - Required calendars or locales are missing
+/// - JSON serialization fails
+pub fn optimize(romcal: &Romcal) -> RomcalResult<String> {
+    // Validate uniqueness constraints
+    validate_unique_calendar_ids(&romcal.calendar_definitions)?;
     validate_unique_resource_locales(&romcal.resources)?;
 
-    // Create a filtered version of the config with only relevant calendar_definitions and resources
+    // Filter to relevant calendars and resources
     let mut filtered_config = romcal.clone();
     filtered_config.calendar_definitions = filter_calendar_definitions(romcal)?;
     filtered_config.resources = filter_resources(romcal, &filtered_config.calendar_definitions)?;
 
-    // Reverse resources order for output: general → specific (e.g., [en, fr, fr-ca])
-    // This provides a more intuitive reading order
+    // Reverse for intuitive output order: general → specific
+    // Calendars: [general_roman, europe, france]
+    filtered_config.calendar_definitions.reverse();
+    // Resources: [en, fr, fr-ca]
     filtered_config.resources.reverse();
 
+    // Serialize and clean
     let value = serde_json::to_value(&filtered_config)
         .map_err(|e| RomcalError::ValidationError(format!("JSON serialization error: {}", e)))?;
     let cleaned_value = remove_null_and_empty_values(value);
+
     serde_json::to_string_pretty(&cleaned_value)
         .map_err(|e| RomcalError::ValidationError(format!("JSON formatting error: {}", e)))
 }
 
-/// Validate that all calendar definitions have unique IDs
-/// Returns an error if duplicate calendar IDs are found
+// ============================================================================
+// Validation Functions
+// ============================================================================
+
+/// Validate that all calendar definitions have unique IDs.
 fn validate_unique_calendar_ids(calendar_definitions: &[CalendarDefinition]) -> RomcalResult<()> {
-    let mut seen_ids = EntityIdSet::new();
-
-    for calendar_def in calendar_definitions {
-        if !seen_ids.insert(calendar_def.id.clone()) {
+    let mut seen = IdSet::new();
+    for cal in calendar_definitions {
+        if !seen.insert(cal.id.clone()) {
             return Err(RomcalError::ValidationError(format!(
-                "Duplicate calendar ID '{}' found in calendar_definitions. Each calendar must have a unique ID.",
-                calendar_def.id
+                "Duplicate calendar ID '{}' found. Each calendar must have a unique ID.",
+                cal.id
             )));
         }
     }
-
     Ok(())
 }
 
-/// Validate that all resource definitions have unique locales
-/// Returns an error if duplicate locales are found
+/// Validate that all resource definitions have unique locales.
 fn validate_unique_resource_locales(resources: &[Resources]) -> RomcalResult<()> {
-    let mut seen_locales = EntityIdSet::new();
-
-    for resource in resources {
-        if !seen_locales.insert(resource.locale.clone()) {
+    let mut seen = IdSet::new();
+    for res in resources {
+        if !seen.insert(res.locale.clone()) {
             return Err(RomcalError::ValidationError(format!(
-                "Duplicate locale '{}' found in resources. Each resource must have a unique locale.",
-                resource.locale
+                "Duplicate locale '{}' found. Each resource must have a unique locale.",
+                res.locale
+            )));
+        }
+    }
+    Ok(())
+}
+
+// ============================================================================
+// Calendar Filtering
+// ============================================================================
+
+/// Filter calendar definitions to include only the hierarchy chain.
+///
+/// Keeps: main calendar → parent calendars → general_roman (fallback).
+/// Returns calendars ordered from most specific to most general.
+fn filter_calendar_definitions(romcal: &Romcal) -> RomcalResult<Vec<CalendarDefinition>> {
+    // Find the main calendar
+    let main_calendar = romcal
+        .calendar_definitions
+        .iter()
+        .find(|cal| cal.id == romcal.calendar)
+        .ok_or_else(|| {
+            RomcalError::ValidationError(format!(
+                "Main calendar '{}' not found in calendar_definitions",
+                romcal.calendar
+            ))
+        })?;
+
+    // Check for circular reference
+    if main_calendar
+        .parent_calendar_ids
+        .contains(&main_calendar.id)
+    {
+        return Err(RomcalError::ValidationError(format!(
+            "Calendar '{}' cannot be its own parent (circular reference)",
+            main_calendar.id
+        )));
+    }
+
+    // Build required IDs list: main → parents → general_roman (specific → general)
+    // optimize() reverses to: general_roman → parents → main (general → specific)
+    let mut required_ids = vec![main_calendar.id.clone()];
+    for parent_id in &main_calendar.parent_calendar_ids {
+        if !required_ids.contains(parent_id) {
+            required_ids.push(parent_id.clone());
+        }
+    }
+    if !required_ids.contains(&"general_roman".to_string()) {
+        required_ids.push("general_roman".to_string());
+    }
+
+    // Validate all required calendars exist
+    let available: IdSet = romcal
+        .calendar_definitions
+        .iter()
+        .map(|c| c.id.clone())
+        .collect();
+    for id in &required_ids {
+        if !available.contains(id) {
+            return Err(RomcalError::ValidationError(format!(
+                "Required calendar '{}' not found in calendar_definitions",
+                id
             )));
         }
     }
 
-    Ok(())
+    // Collect in order
+    Ok(required_ids
+        .iter()
+        .filter_map(|id| {
+            romcal
+                .calendar_definitions
+                .iter()
+                .find(|c| &c.id == id)
+                .cloned()
+        })
+        .collect())
 }
 
-/// Filter resources to keep only the required locales based on the romcal config
-/// Returns resources with hierarchical deduplication: most specific to most general
-/// Entities defined in more specific locales are removed from parent locales
-/// Only includes entities that are referenced in calendar day_definitions
+// ============================================================================
+// Resource Filtering
+// ============================================================================
+
+/// Filter resources to include only the locale hierarchy with property-level deduplication.
+///
+/// For locale `fr-ca`, keeps: `fr-ca` → `fr` → `en` (fallback).
+/// Applies property-level deduplication so parent locales only contain
+/// properties not defined in child locales.
 fn filter_resources(
     romcal: &Romcal,
     filtered_calendars: &[CalendarDefinition],
 ) -> RomcalResult<Vec<Resources>> {
     let target_locale = &romcal.locale;
 
-    // Build locale maps for efficient lookups
+    // Build lookup maps
     let (available_locales, resources_by_locale) = build_locale_maps(romcal);
 
     // Validate target locale exists
-    let exact_locale = validate_target_locale(target_locale, &available_locales)?;
-
-    // Collect used entity IDs
-    let used_entity_ids = collect_used_entity_ids(filtered_calendars);
-
-    // Build priority list of locales (most specific to most general)
-    let priority_locales = build_priority_locales(target_locale, &available_locales, &exact_locale);
-
-    // Apply hierarchical deduplication with entity filtering
-    apply_hierarchical_deduplication(priority_locales, &resources_by_locale, &used_entity_ids)
-}
-
-/// Collect all entity IDs that are referenced in calendar day_definitions
-/// Includes both day_definition IDs and EntityRef references
-fn collect_used_entity_ids(calendar_definitions: &[CalendarDefinition]) -> EntityIdSet {
-    let mut used_entity_ids = EntityIdSet::new();
-
-    for calendar_def in calendar_definitions {
-        for (day_id, day_def) in &calendar_def.days_definitions {
-            // Add the day_definition ID itself as a potential entity reference
-            used_entity_ids.insert(day_id.clone());
-
-            // Also check EntityRef elements in the day_definition
-            if let Some(entities) = &day_def.entities {
-                for entity_pointer in entities {
-                    match entity_pointer {
-                        crate::types::calendar::EntityRef::ResourceId(id) => {
-                            used_entity_ids.insert(id.clone());
-                        }
-                        crate::types::calendar::EntityRef::Override(entity_override) => {
-                            used_entity_ids.insert(entity_override.id.clone());
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    used_entity_ids
-}
-
-/// Build locale maps for efficient lookups
-fn build_locale_maps(romcal: &Romcal) -> (LocaleMap, HashMap<&str, &Resources>) {
-    let available_locales: LocaleMap = romcal
-        .resources
-        .iter()
-        .map(|resource| (resource.locale.to_lowercase(), resource.locale.clone()))
-        .collect();
-
-    let resources_by_locale: HashMap<&str, &Resources> = romcal
-        .resources
-        .iter()
-        .map(|resource| (resource.locale.as_str(), resource))
-        .collect();
-
-    (available_locales, resources_by_locale)
-}
-
-/// Validate that the target locale exists in available resources
-fn validate_target_locale(
-    target_locale: &str,
-    available_locales: &LocaleMap,
-) -> RomcalResult<String> {
-    let target_locale_lower = target_locale.to_lowercase();
-    available_locales
-        .get(&target_locale_lower)
+    let exact_locale = available_locales
+        .get(&target_locale.to_lowercase())
         .cloned()
         .ok_or_else(|| {
             RomcalError::ValidationError(format!(
-                "Target locale '{}' not found in resources. Available locales: {}",
+                "Locale '{}' not found. Available: {}",
                 target_locale,
                 available_locales
                     .values()
@@ -166,76 +238,126 @@ fn validate_target_locale(
                     .collect::<Vec<_>>()
                     .join(", ")
             ))
-        })
+        })?;
+
+    // Collect entity IDs used in calendar definitions
+    let used_entity_ids = collect_used_entity_ids(filtered_calendars);
+
+    // Build locale priority: specific → general → en
+    let priority_locales = build_priority_locales(target_locale, &available_locales, &exact_locale);
+
+    // Apply hierarchical deduplication
+    apply_hierarchical_deduplication(priority_locales, &resources_by_locale, &used_entity_ids)
 }
 
-/// Build priority list of locales from most specific to most general
+/// Build maps for efficient locale lookups.
+fn build_locale_maps(romcal: &Romcal) -> (LocaleMap, HashMap<&str, &Resources>) {
+    let available_locales: LocaleMap = romcal
+        .resources
+        .iter()
+        .map(|r| (r.locale.to_lowercase(), r.locale.clone()))
+        .collect();
+
+    let resources_by_locale: HashMap<&str, &Resources> = romcal
+        .resources
+        .iter()
+        .map(|r| (r.locale.as_str(), r))
+        .collect();
+
+    (available_locales, resources_by_locale)
+}
+
+/// Build priority list of locales from most specific to most general.
 fn build_priority_locales(
     target_locale: &str,
     available_locales: &LocaleMap,
     exact_locale: &str,
 ) -> Vec<String> {
-    let mut priority_locales = Vec::new();
+    let mut locales = vec![exact_locale.to_string()];
 
-    // 1. Add the exact target locale first (most specific)
-    priority_locales.push(exact_locale.to_string());
-
-    // 2. Add all parent locales in hierarchy order (most specific to most general)
-    let parent_locales = get_all_parent_locales(target_locale);
-    for parent in parent_locales {
+    // Add parent locales in hierarchy order
+    for parent in get_all_parent_locales(target_locale) {
         if parent != target_locale
-            && let Some(parent_locale_actual) = available_locales.get(&parent.to_lowercase())
+            && let Some(actual) = available_locales.get(&parent.to_lowercase())
         {
-            priority_locales.push(parent_locale_actual.clone());
+            locales.push(actual.clone());
         }
     }
 
-    // 3. Always include "en" last (most general fallback)
-    if let Some(en_locale) = available_locales.get("en")
-        && !priority_locales.contains(en_locale)
+    // Always include "en" as fallback
+    if let Some(en) = available_locales.get("en")
+        && !locales.contains(en)
     {
-        priority_locales.push(en_locale.clone());
+        locales.push(en.clone());
     }
 
-    priority_locales
+    locales
 }
 
-/// Apply hierarchical deduplication to resources with entity filtering.
+/// Collect all entity IDs referenced in calendar day definitions.
+fn collect_used_entity_ids(calendars: &[CalendarDefinition]) -> IdSet {
+    let mut ids = IdSet::new();
+
+    for cal in calendars {
+        for (day_id, day_def) in &cal.days_definitions {
+            // Day definition ID is itself a potential entity reference
+            ids.insert(day_id.clone());
+
+            // Collect entity references
+            if let Some(entities) = &day_def.entities {
+                for entity_ref in entities {
+                    match entity_ref {
+                        crate::types::calendar::EntityRef::ResourceId(id) => {
+                            ids.insert(id.clone());
+                        }
+                        crate::types::calendar::EntityRef::Override(o) => {
+                            ids.insert(o.id.clone());
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    ids
+}
+
+/// Apply hierarchical deduplication to resources.
+///
 /// Resources are processed from most specific to most general locale.
 /// Property-level deduplication ensures parent locales only contain
 /// properties that are missing in their child locales.
 fn apply_hierarchical_deduplication(
     priority_locales: Vec<String>,
     resources_by_locale: &HashMap<&str, &Resources>,
-    used_entity_ids: &EntityIdSet,
+    used_entity_ids: &IdSet,
 ) -> RomcalResult<Vec<Resources>> {
     // Build filtered resources list (specific → general)
-    let mut result: Vec<Resources> = priority_locales
+    let mut resources: Vec<Resources> = priority_locales
         .iter()
         .filter_map(|locale| {
-            resources_by_locale.get(locale.as_str()).map(|resource| {
-                let mut filtered_resource = (*resource).clone();
-                // Filter entities to only include those used in calendar day_definitions
-                filter_entities_by_usage(&mut filtered_resource, used_entity_ids);
-                filtered_resource
+            resources_by_locale.get(locale.as_str()).map(|r| {
+                let mut filtered = (*r).clone();
+                filter_entities_by_usage(&mut filtered, used_entity_ids);
+                filtered
             })
         })
         .collect();
 
-    // Apply property-level deduplication across all resources
-    deduplicate_entity_properties(&mut result);
-    deduplicate_metadata_properties(&mut result);
+    // Apply property-level deduplication
+    deduplicate_entity_properties(&mut resources);
+    deduplicate_metadata_properties(&mut resources);
 
-    // Remove entities that became empty after deduplication
-    remove_empty_entities(&mut result);
+    // Clean up empty entities
+    remove_empty_entities(&mut resources);
 
-    Ok(result)
+    Ok(resources)
 }
 
-/// Filter entities to only include those that are used in calendar day_definitions
-fn filter_entities_by_usage(resource: &mut Resources, used_entity_ids: &EntityIdSet) {
+/// Filter entities to only include those referenced in calendar definitions.
+fn filter_entities_by_usage(resource: &mut Resources, used_ids: &IdSet) {
     if let Some(entities) = &mut resource.entities {
-        entities.retain(|id, _entity| used_entity_ids.contains(id));
+        entities.retain(|id, _| used_ids.contains(id));
     }
 }
 
@@ -243,32 +365,32 @@ fn filter_entities_by_usage(resource: &mut Resources, used_entity_ids: &EntityId
 // Entity Property-Level Deduplication
 // ============================================================================
 
-/// Type alias for tracking defined properties per entity
-type EntityPropertiesMap = HashMap<String, PropertySet>;
-
-/// Deduplicate entity properties across locales (most specific to most general).
-/// If a property exists in a more specific locale, remove it from parent locales.
-/// Resources must be ordered from most specific to most general.
+/// Deduplicate entity properties across locales.
+///
+/// For each entity, if a property exists in a more specific locale,
+/// it is removed from parent locales. Resources must be ordered
+/// from most specific to most general.
 fn deduplicate_entity_properties(resources: &mut [Resources]) {
-    // Track defined properties per entity: entity_id -> set of property names
     let mut defined_props: EntityPropertiesMap = HashMap::new();
 
     for resource in resources.iter_mut() {
         if let Some(entities) = &mut resource.entities {
-            for (entity_id, entity_def) in entities.iter_mut() {
+            for (entity_id, entity) in entities.iter_mut() {
                 let props = defined_props.entry(entity_id.clone()).or_default();
-                deduplicate_single_entity(entity_def, props);
+                deduplicate_single_entity(entity, props);
             }
         }
     }
 }
 
 /// Deduplicate properties of a single entity.
+///
 /// For each property: if already defined in a more specific locale, set to None;
-/// otherwise if Some, mark as defined.
+/// otherwise if Some, mark as defined for parent locales.
 fn deduplicate_single_entity(entity: &mut EntityDefinition, defined: &mut PropertySet) {
-    // Macro to deduplicate a single property
-    macro_rules! dedup_prop {
+    /// Macro to deduplicate a single Option field.
+    /// If already defined → set to None. If Some → mark as defined.
+    macro_rules! dedup {
         ($field:ident) => {
             if defined.contains(stringify!($field)) {
                 entity.$field = None;
@@ -278,48 +400,58 @@ fn deduplicate_single_entity(entity: &mut EntityDefinition, defined: &mut Proper
         };
     }
 
-    dedup_prop!(r#type);
-    dedup_prop!(fullname);
-    dedup_prop!(name);
-    dedup_prop!(canonization_level);
-    dedup_prop!(date_of_canonization);
-    dedup_prop!(date_of_canonization_is_approximative);
-    dedup_prop!(date_of_beatification);
-    dedup_prop!(date_of_beatification_is_approximative);
-    dedup_prop!(hide_canonization_level);
-    dedup_prop!(titles);
-    dedup_prop!(sex);
-    dedup_prop!(hide_titles);
-    dedup_prop!(date_of_dedication);
-    dedup_prop!(date_of_birth);
-    dedup_prop!(date_of_birth_is_approximative);
-    dedup_prop!(date_of_death);
-    dedup_prop!(date_of_death_is_approximative);
-    dedup_prop!(count);
-    dedup_prop!(sources);
+    dedup!(r#type);
+    dedup!(fullname);
+    dedup!(name);
+    dedup!(canonization_level);
+    dedup!(date_of_canonization);
+    dedup!(date_of_canonization_is_approximative);
+    dedup!(date_of_beatification);
+    dedup!(date_of_beatification_is_approximative);
+    dedup!(hide_canonization_level);
+    dedup!(titles);
+    dedup!(sex);
+    dedup!(hide_titles);
+    dedup!(date_of_dedication);
+    dedup!(date_of_birth);
+    dedup!(date_of_birth_is_approximative);
+    dedup!(date_of_death);
+    dedup!(date_of_death_is_approximative);
+    dedup!(count);
+    dedup!(sources);
 }
 
-/// Check if an entity has all properties set to None (empty after deduplication)
+/// Check if an entity has all properties set to None.
 fn is_entity_empty(entity: &EntityDefinition) -> bool {
-    entity.r#type.is_none()
-        && entity.fullname.is_none()
-        && entity.name.is_none()
-        && entity.canonization_level.is_none()
-        && entity.date_of_canonization.is_none()
-        && entity.date_of_canonization_is_approximative.is_none()
-        && entity.date_of_beatification.is_none()
-        && entity.date_of_beatification_is_approximative.is_none()
-        && entity.hide_canonization_level.is_none()
-        && entity.titles.is_none()
-        && entity.sex.is_none()
-        && entity.hide_titles.is_none()
-        && entity.date_of_dedication.is_none()
-        && entity.date_of_birth.is_none()
-        && entity.date_of_birth_is_approximative.is_none()
-        && entity.date_of_death.is_none()
-        && entity.date_of_death_is_approximative.is_none()
-        && entity.count.is_none()
-        && entity.sources.is_none()
+    /// Macro to check if a field is None.
+    macro_rules! is_none {
+        ($($field:ident),+) => {
+            $(entity.$field.is_none())&&+
+        };
+    }
+
+    // Note: _todo is excluded as it's internal metadata (not serialized)
+    is_none!(
+        r#type,
+        fullname,
+        name,
+        canonization_level,
+        date_of_canonization,
+        date_of_canonization_is_approximative,
+        date_of_beatification,
+        date_of_beatification_is_approximative,
+        hide_canonization_level,
+        titles,
+        sex,
+        hide_titles,
+        date_of_dedication,
+        date_of_birth,
+        date_of_birth_is_approximative,
+        date_of_death,
+        date_of_death_is_approximative,
+        count,
+        sources
+    )
 }
 
 /// Remove entities where all properties are None after deduplication.
@@ -335,44 +467,40 @@ fn remove_empty_entities(resources: &mut [Resources]) {
 // Metadata Property-Level Deduplication
 // ============================================================================
 
-use crate::types::resource::{
-    AdventSeason, ChristmasTimeSeason, CyclesMetadata, EasterTimeSeason, LentSeason, LocaleColors,
-    OrdinaryTimeSeason, PaschalTriduumSeason, PeriodsMetadata, RanksMetadata, ResourcesMetadata,
-    SeasonsMetadata,
-};
-
-/// Deduplicate metadata properties across locales (most specific to most general).
-/// Uses hierarchical property keys (e.g., "seasons.advent.season") for tracking.
+/// Deduplicate metadata properties across locales.
+///
+/// Uses hierarchical property keys (e.g., `seasons.advent.season`) for tracking.
+/// Nested structures are recursively deduplicated.
 fn deduplicate_metadata_properties(resources: &mut [Resources]) {
-    let mut defined_props = PropertySet::new();
+    let mut defined = PropertySet::new();
 
     for resource in resources.iter_mut() {
         if let Some(metadata) = &mut resource.metadata {
-            deduplicate_single_metadata(metadata, &mut defined_props);
+            deduplicate_single_metadata(metadata, &mut defined);
         }
     }
 }
 
 /// Deduplicate properties of a single metadata object.
 fn deduplicate_single_metadata(metadata: &mut ResourcesMetadata, defined: &mut PropertySet) {
-    // Macro for simple Option properties
-    macro_rules! dedup_prop {
-        ($field:ident, $key:expr) => {
-            if defined.contains($key) {
+    /// Macro for simple Option properties at metadata level.
+    macro_rules! dedup {
+        ($field:ident) => {
+            if defined.contains(stringify!($field)) {
                 metadata.$field = None;
             } else if metadata.$field.is_some() {
-                defined.insert($key.to_string());
+                defined.insert(stringify!($field).to_string());
             }
         };
     }
 
-    dedup_prop!(ordinal_format, "ordinal_format");
-    dedup_prop!(ordinals_letters, "ordinals_letters");
-    dedup_prop!(ordinals_numeric, "ordinals_numeric");
-    dedup_prop!(weekdays, "weekdays");
-    dedup_prop!(months, "months");
+    dedup!(ordinal_format);
+    dedup!(ordinals_letters);
+    dedup!(ordinals_numeric);
+    dedup!(weekdays);
+    dedup!(months);
 
-    // Nested structures - deduplicate at property level
+    // Nested structures
     deduplicate_colors(&mut metadata.colors, defined);
     deduplicate_seasons(&mut metadata.seasons, defined);
     deduplicate_periods(&mut metadata.periods, defined);
@@ -380,40 +508,160 @@ fn deduplicate_single_metadata(metadata: &mut ResourcesMetadata, defined: &mut P
     deduplicate_cycles(&mut metadata.cycles, defined);
 }
 
-fn deduplicate_colors(colors: &mut Option<LocaleColors>, defined: &mut PropertySet) {
-    if let Some(c) = colors {
-        macro_rules! dedup {
-            ($field:ident) => {
-                let key = concat!("colors.", stringify!($field));
-                if defined.contains(key) {
-                    c.$field = None;
-                } else if c.$field.is_some() {
-                    defined.insert(key.to_string());
-                }
-            };
-        }
-        dedup!(black);
-        dedup!(gold);
-        dedup!(green);
-        dedup!(purple);
-        dedup!(red);
-        dedup!(rose);
-        dedup!(white);
+// ============================================================================
+// Nested Metadata Deduplication Helpers
+// ============================================================================
 
-        // Remove colors if empty
-        if c.black.is_none()
-            && c.gold.is_none()
-            && c.green.is_none()
-            && c.purple.is_none()
-            && c.red.is_none()
-            && c.rose.is_none()
-            && c.white.is_none()
-        {
-            *colors = None;
+/// Macro to generate deduplication functions for nested metadata structs.
+///
+/// This macro generates a function that:
+/// 1. Deduplicates each field using a prefixed key
+/// 2. Sets the entire struct to None if all fields become None
+macro_rules! impl_nested_dedup {
+    (
+        $fn_name:ident,
+        $struct_type:ty,
+        $prefix:literal,
+        $($field:ident),+
+    ) => {
+        fn $fn_name(opt: &mut Option<$struct_type>, defined: &mut PropertySet) {
+            if let Some(s) = opt {
+                $(
+                    let key = concat!($prefix, ".", stringify!($field));
+                    if defined.contains(key) {
+                        s.$field = None;
+                    } else if s.$field.is_some() {
+                        defined.insert(key.to_string());
+                    }
+                )+
+
+                // Remove struct if all fields are None
+                if true $(&& s.$field.is_none())+ {
+                    *opt = None;
+                }
+            }
         }
-    }
+    };
 }
 
+impl_nested_dedup!(
+    deduplicate_colors,
+    LocaleColors,
+    "colors",
+    black,
+    gold,
+    green,
+    purple,
+    red,
+    rose,
+    white
+);
+
+impl_nested_dedup!(
+    deduplicate_advent,
+    AdventSeason,
+    "seasons.advent",
+    season,
+    weekday,
+    sunday,
+    privileged_weekday
+);
+
+impl_nested_dedup!(
+    deduplicate_christmas_time,
+    ChristmasTimeSeason,
+    "seasons.christmas_time",
+    season,
+    day,
+    octave,
+    before_epiphany,
+    second_sunday_after_christmas,
+    after_epiphany
+);
+
+impl_nested_dedup!(
+    deduplicate_ordinary_time,
+    OrdinaryTimeSeason,
+    "seasons.ordinary_time",
+    season,
+    weekday,
+    sunday
+);
+
+impl_nested_dedup!(
+    deduplicate_lent,
+    LentSeason,
+    "seasons.lent",
+    season,
+    weekday,
+    sunday,
+    day_after_ash_wed,
+    holy_week_day
+);
+
+impl_nested_dedup!(
+    deduplicate_paschal_triduum,
+    PaschalTriduumSeason,
+    "seasons.paschal_triduum",
+    season
+);
+
+impl_nested_dedup!(
+    deduplicate_easter_time,
+    EasterTimeSeason,
+    "seasons.easter_time",
+    season,
+    weekday,
+    sunday,
+    octave
+);
+
+impl_nested_dedup!(
+    deduplicate_periods,
+    PeriodsMetadata,
+    "periods",
+    christmas_octave,
+    days_before_epiphany,
+    days_from_epiphany,
+    christmas_to_presentation_of_the_lord,
+    presentation_of_the_lord_to_holy_thursday,
+    holy_week,
+    paschal_triduum,
+    easter_octave,
+    early_ordinary_time,
+    late_ordinary_time
+);
+
+impl_nested_dedup!(
+    deduplicate_ranks,
+    RanksMetadata,
+    "ranks",
+    solemnity,
+    sunday,
+    feast,
+    memorial,
+    optional_memorial,
+    weekday
+);
+
+impl_nested_dedup!(
+    deduplicate_cycles,
+    CyclesMetadata,
+    "cycles",
+    proper_of_time,
+    proper_of_saints,
+    sunday_year_a,
+    sunday_year_b,
+    sunday_year_c,
+    weekday_year_1,
+    weekday_year_2,
+    psalter_week_1,
+    psalter_week_2,
+    psalter_week_3,
+    psalter_week_4
+);
+
+/// Deduplicate seasons metadata (container for all season types).
 fn deduplicate_seasons(seasons: &mut Option<SeasonsMetadata>, defined: &mut PropertySet) {
     if let Some(s) = seasons {
         deduplicate_advent(&mut s.advent, defined);
@@ -423,7 +671,7 @@ fn deduplicate_seasons(seasons: &mut Option<SeasonsMetadata>, defined: &mut Prop
         deduplicate_paschal_triduum(&mut s.paschal_triduum, defined);
         deduplicate_easter_time(&mut s.easter_time, defined);
 
-        // Remove seasons if empty
+        // Remove seasons if all are None
         if s.advent.is_none()
             && s.christmas_time.is_none()
             && s.ordinary_time.is_none()
@@ -436,377 +684,25 @@ fn deduplicate_seasons(seasons: &mut Option<SeasonsMetadata>, defined: &mut Prop
     }
 }
 
-fn deduplicate_advent(advent: &mut Option<AdventSeason>, defined: &mut PropertySet) {
-    if let Some(a) = advent {
-        macro_rules! dedup {
-            ($field:ident) => {
-                let key = concat!("seasons.advent.", stringify!($field));
-                if defined.contains(key) {
-                    a.$field = None;
-                } else if a.$field.is_some() {
-                    defined.insert(key.to_string());
-                }
-            };
-        }
-        dedup!(season);
-        dedup!(weekday);
-        dedup!(sunday);
-        dedup!(privileged_weekday);
+// ============================================================================
+// JSON Cleaning
+// ============================================================================
 
-        if a.season.is_none()
-            && a.weekday.is_none()
-            && a.sunday.is_none()
-            && a.privileged_weekday.is_none()
-        {
-            *advent = None;
-        }
-    }
-}
-
-fn deduplicate_christmas_time(
-    christmas: &mut Option<ChristmasTimeSeason>,
-    defined: &mut PropertySet,
-) {
-    if let Some(c) = christmas {
-        macro_rules! dedup {
-            ($field:ident) => {
-                let key = concat!("seasons.christmas_time.", stringify!($field));
-                if defined.contains(key) {
-                    c.$field = None;
-                } else if c.$field.is_some() {
-                    defined.insert(key.to_string());
-                }
-            };
-        }
-        dedup!(season);
-        dedup!(day);
-        dedup!(octave);
-        dedup!(before_epiphany);
-        dedup!(second_sunday_after_christmas);
-        dedup!(after_epiphany);
-
-        if c.season.is_none()
-            && c.day.is_none()
-            && c.octave.is_none()
-            && c.before_epiphany.is_none()
-            && c.second_sunday_after_christmas.is_none()
-            && c.after_epiphany.is_none()
-        {
-            *christmas = None;
-        }
-    }
-}
-
-fn deduplicate_ordinary_time(ordinary: &mut Option<OrdinaryTimeSeason>, defined: &mut PropertySet) {
-    if let Some(o) = ordinary {
-        macro_rules! dedup {
-            ($field:ident) => {
-                let key = concat!("seasons.ordinary_time.", stringify!($field));
-                if defined.contains(key) {
-                    o.$field = None;
-                } else if o.$field.is_some() {
-                    defined.insert(key.to_string());
-                }
-            };
-        }
-        dedup!(season);
-        dedup!(weekday);
-        dedup!(sunday);
-
-        if o.season.is_none() && o.weekday.is_none() && o.sunday.is_none() {
-            *ordinary = None;
-        }
-    }
-}
-
-fn deduplicate_lent(lent: &mut Option<LentSeason>, defined: &mut PropertySet) {
-    if let Some(l) = lent {
-        macro_rules! dedup {
-            ($field:ident) => {
-                let key = concat!("seasons.lent.", stringify!($field));
-                if defined.contains(key) {
-                    l.$field = None;
-                } else if l.$field.is_some() {
-                    defined.insert(key.to_string());
-                }
-            };
-        }
-        dedup!(season);
-        dedup!(weekday);
-        dedup!(sunday);
-        dedup!(day_after_ash_wed);
-        dedup!(holy_week_day);
-
-        if l.season.is_none()
-            && l.weekday.is_none()
-            && l.sunday.is_none()
-            && l.day_after_ash_wed.is_none()
-            && l.holy_week_day.is_none()
-        {
-            *lent = None;
-        }
-    }
-}
-
-fn deduplicate_paschal_triduum(
-    triduum: &mut Option<PaschalTriduumSeason>,
-    defined: &mut PropertySet,
-) {
-    if let Some(t) = triduum {
-        let key = "seasons.paschal_triduum.season";
-        if defined.contains(key) {
-            t.season = None;
-        } else if t.season.is_some() {
-            defined.insert(key.to_string());
-        }
-
-        if t.season.is_none() {
-            *triduum = None;
-        }
-    }
-}
-
-fn deduplicate_easter_time(easter: &mut Option<EasterTimeSeason>, defined: &mut PropertySet) {
-    if let Some(e) = easter {
-        macro_rules! dedup {
-            ($field:ident) => {
-                let key = concat!("seasons.easter_time.", stringify!($field));
-                if defined.contains(key) {
-                    e.$field = None;
-                } else if e.$field.is_some() {
-                    defined.insert(key.to_string());
-                }
-            };
-        }
-        dedup!(season);
-        dedup!(weekday);
-        dedup!(sunday);
-        dedup!(octave);
-
-        if e.season.is_none() && e.weekday.is_none() && e.sunday.is_none() && e.octave.is_none() {
-            *easter = None;
-        }
-    }
-}
-
-fn deduplicate_periods(periods: &mut Option<PeriodsMetadata>, defined: &mut PropertySet) {
-    if let Some(p) = periods {
-        macro_rules! dedup {
-            ($field:ident) => {
-                let key = concat!("periods.", stringify!($field));
-                if defined.contains(key) {
-                    p.$field = None;
-                } else if p.$field.is_some() {
-                    defined.insert(key.to_string());
-                }
-            };
-        }
-        dedup!(christmas_octave);
-        dedup!(days_before_epiphany);
-        dedup!(days_from_epiphany);
-        dedup!(christmas_to_presentation_of_the_lord);
-        dedup!(presentation_of_the_lord_to_holy_thursday);
-        dedup!(holy_week);
-        dedup!(paschal_triduum);
-        dedup!(easter_octave);
-        dedup!(early_ordinary_time);
-        dedup!(late_ordinary_time);
-
-        if p.christmas_octave.is_none()
-            && p.days_before_epiphany.is_none()
-            && p.days_from_epiphany.is_none()
-            && p.christmas_to_presentation_of_the_lord.is_none()
-            && p.presentation_of_the_lord_to_holy_thursday.is_none()
-            && p.holy_week.is_none()
-            && p.paschal_triduum.is_none()
-            && p.easter_octave.is_none()
-            && p.early_ordinary_time.is_none()
-            && p.late_ordinary_time.is_none()
-        {
-            *periods = None;
-        }
-    }
-}
-
-fn deduplicate_ranks(ranks: &mut Option<RanksMetadata>, defined: &mut PropertySet) {
-    if let Some(r) = ranks {
-        macro_rules! dedup {
-            ($field:ident) => {
-                let key = concat!("ranks.", stringify!($field));
-                if defined.contains(key) {
-                    r.$field = None;
-                } else if r.$field.is_some() {
-                    defined.insert(key.to_string());
-                }
-            };
-        }
-        dedup!(solemnity);
-        dedup!(sunday);
-        dedup!(feast);
-        dedup!(memorial);
-        dedup!(optional_memorial);
-        dedup!(weekday);
-
-        if r.solemnity.is_none()
-            && r.sunday.is_none()
-            && r.feast.is_none()
-            && r.memorial.is_none()
-            && r.optional_memorial.is_none()
-            && r.weekday.is_none()
-        {
-            *ranks = None;
-        }
-    }
-}
-
-fn deduplicate_cycles(cycles: &mut Option<CyclesMetadata>, defined: &mut PropertySet) {
-    if let Some(c) = cycles {
-        macro_rules! dedup {
-            ($field:ident) => {
-                let key = concat!("cycles.", stringify!($field));
-                if defined.contains(key) {
-                    c.$field = None;
-                } else if c.$field.is_some() {
-                    defined.insert(key.to_string());
-                }
-            };
-        }
-        dedup!(proper_of_time);
-        dedup!(proper_of_saints);
-        dedup!(sunday_year_a);
-        dedup!(sunday_year_b);
-        dedup!(sunday_year_c);
-        dedup!(weekday_year_1);
-        dedup!(weekday_year_2);
-        dedup!(psalter_week_1);
-        dedup!(psalter_week_2);
-        dedup!(psalter_week_3);
-        dedup!(psalter_week_4);
-
-        if c.proper_of_time.is_none()
-            && c.proper_of_saints.is_none()
-            && c.sunday_year_a.is_none()
-            && c.sunday_year_b.is_none()
-            && c.sunday_year_c.is_none()
-            && c.weekday_year_1.is_none()
-            && c.weekday_year_2.is_none()
-            && c.psalter_week_1.is_none()
-            && c.psalter_week_2.is_none()
-            && c.psalter_week_3.is_none()
-            && c.psalter_week_4.is_none()
-        {
-            *cycles = None;
-        }
-    }
-}
-
-/// Filter calendar_definitions to keep only:
-/// 1. The main calendar (config.calendar)
-/// 2. Parent calendars of the main calendar
-/// 3. The general_roman calendar
-///
-/// Returns them ordered according to the priority in keep_ids
-/// Returns an error if the main calendar is not found
-fn filter_calendar_definitions(romcal: &Romcal) -> RomcalResult<Vec<CalendarDefinition>> {
-    // Find the main calendar and its parents
-    let main_calendar = romcal
-        .calendar_definitions
-        .iter()
-        .find(|cal| cal.id == romcal.calendar)
-        .ok_or_else(|| {
-            RomcalError::ValidationError(format!(
-                "Main calendar '{}' not found in calendar_definitions",
-                romcal.calendar
-            ))
-        })?;
-
-    // Collect all required calendar IDs (most specific to most general)
-    let mut required_ids = Vec::new();
-
-    // Add main calendar first (most specific)
-    required_ids.push(main_calendar.id.clone());
-
-    // Add parent calendars (from most specific to most general)
-    for parent_id in main_calendar.parent_calendar_ids.iter().rev() {
-        if !required_ids.contains(parent_id) {
-            required_ids.push(parent_id.clone());
-        }
-    }
-
-    // Add general_roman last (most general fallback)
-    if !required_ids.contains(&"general_roman".to_string()) {
-        required_ids.push("general_roman".to_string());
-    }
-
-    // Validate that the main calendar is not in its own parent list (circular reference)
-    if main_calendar
-        .parent_calendar_ids
-        .contains(&main_calendar.id)
-    {
-        return Err(RomcalError::ValidationError(format!(
-            "Main calendar '{}' cannot be its own parent (circular reference detected)",
-            main_calendar.id
-        )));
-    }
-
-    // Validate that all required calendars exist
-    let available_ids: EntityIdSet = romcal
-        .calendar_definitions
-        .iter()
-        .map(|cal| cal.id.clone())
-        .collect();
-
-    for required_id in &required_ids {
-        if !available_ids.contains(required_id) {
-            return Err(RomcalError::ValidationError(format!(
-                "Required calendar '{}' not found in calendar_definitions",
-                required_id
-            )));
-        }
-    }
-
-    // Validate that the main calendar is the first in the hierarchy (most specific)
-    if required_ids.len() > 1 {
-        let first_id = required_ids.first().unwrap();
-        if first_id != &main_calendar.id {
-            return Err(RomcalError::ValidationError(format!(
-                "Main calendar '{}' must be the first in the hierarchy, but found '{}' at the beginning",
-                main_calendar.id, first_id
-            )));
-        }
-    }
-
-    // Filter and order calendar_definitions according to required_ids order
-    let mut result = Vec::new();
-    for id in required_ids {
-        if let Some(calendar_def) = romcal.calendar_definitions.iter().find(|cal| cal.id == id) {
-            result.push(calendar_def.clone());
-        }
-    }
-
-    Ok(result)
-}
-
-/// Recursively removes null values, empty objects, and $schema properties from a JSON Value
+/// Recursively remove null values, empty objects, and `$schema` properties.
 fn remove_null_and_empty_values(value: Value) -> Value {
     match value {
         Value::Object(map) => {
-            let mut cleaned_map = serde_json::Map::new();
-            for (key, val) in map {
-                // Skip $schema properties
-                if key == "$schema" {
-                    continue;
-                }
-                let cleaned_val = remove_null_and_empty_values(val);
-                if !cleaned_val.is_null() {
-                    cleaned_map.insert(key, cleaned_val);
-                }
-            }
-            // Return null if the object is empty after cleaning, so it gets filtered out
-            if cleaned_map.is_empty() {
+            let cleaned: serde_json::Map<String, Value> = map
+                .into_iter()
+                .filter(|(k, _)| k != "$schema")
+                .map(|(k, v)| (k, remove_null_and_empty_values(v)))
+                .filter(|(_, v)| !v.is_null())
+                .collect();
+
+            if cleaned.is_empty() {
                 Value::Null
             } else {
-                Value::Object(cleaned_map)
+                Value::Object(cleaned)
             }
         }
         Value::Array(arr) => {
@@ -817,252 +713,42 @@ fn remove_null_and_empty_values(value: Value) -> Value {
                 .collect();
             Value::Array(cleaned)
         }
-        Value::Null => Value::Null, // This value will be filtered by parent calls
         other => other,
     }
 }
+
+// ============================================================================
+// Tests
+// ============================================================================
 
 #[cfg(test)]
 mod tests {
     use super::*;
     use crate::types::calendar::{CalendarJurisdiction, CalendarType, DayDefinition, EntityRef};
-    use crate::types::entity::EntityOverride;
-    use crate::types::entity::EntityType;
+    use crate::types::entity::{EntityOverride, EntityType};
 
-    fn create_test_calendar_definition() -> CalendarDefinition {
-        CalendarDefinition {
-            schema: None,
-            id: "test_calendar".to_string(),
-            metadata: crate::types::CalendarMetadata {
-                jurisdiction: CalendarJurisdiction::Ecclesiastical,
-                r#type: CalendarType::Diocese,
-            },
-            particular_config: None,
-            parent_calendar_ids: vec![],
-            days_definitions: {
-                let mut map = std::collections::BTreeMap::new();
-                map.insert(
-                    "saint_john".to_string(),
-                    DayDefinition {
-                        date_def: None,
-                        date_exceptions: None,
-                        precedence: None,
-                        commons_def: None,
-                        is_holy_day_of_obligation: None,
-                        allow_similar_rank_items: None,
-                        is_optional: None,
-                        custom_locale_id: None,
-                        entities: Some(vec![
-                            EntityRef::ResourceId("john_the_baptist".to_string()),
-                            EntityRef::Override(EntityOverride {
-                                id: "john_the_evangelist".to_string(),
-                                titles: None,
-                                hide_titles: None,
-                                count: None,
-                            }),
-                        ]),
-                        titles: None,
-                        drop: None,
-                        colors: None,
-                        masses: None,
-                    },
-                );
-                map.insert(
-                    "saint_peter".to_string(),
-                    DayDefinition {
-                        date_def: None,
-                        date_exceptions: None,
-                        precedence: None,
-                        commons_def: None,
-                        is_holy_day_of_obligation: None,
-                        allow_similar_rank_items: None,
-                        is_optional: None,
-                        custom_locale_id: None,
-                        entities: None,
-                        titles: None,
-                        drop: None,
-                        colors: None,
-                        masses: None,
-                    },
-                );
-                map
-            },
-        }
-    }
+    // ------------------------------------------------------------------------
+    // Test Helpers
+    // ------------------------------------------------------------------------
 
-    fn create_test_resources() -> Resources {
-        use crate::types::entity::EntityDefinition;
-
-        let mut entities = std::collections::BTreeMap::new();
-
-        entities.insert(
-            "john_the_baptist".to_string(),
-            EntityDefinition {
-                r#type: Some(EntityType::Person),
-                fullname: Some("John the Baptist".to_string()),
-                name: Some("John".to_string()),
-                ..Default::default()
-            },
-        );
-
-        entities.insert(
-            "john_the_evangelist".to_string(),
-            EntityDefinition {
-                r#type: Some(EntityType::Person),
-                fullname: Some("John the Evangelist".to_string()),
-                name: Some("John".to_string()),
-                ..Default::default()
-            },
-        );
-
-        entities.insert(
-            "unused_entity".to_string(),
-            EntityDefinition {
-                r#type: Some(EntityType::Person),
-                fullname: Some("Unused Entity".to_string()),
-                name: Some("Unused".to_string()),
-                ..Default::default()
-            },
-        );
-
-        Resources {
-            schema: None,
-            locale: "en".to_string(),
-            metadata: None,
-            entities: Some(entities),
-        }
-    }
-
-    #[test]
-    fn test_collect_used_entity_ids() {
-        let calendar_definitions = vec![create_test_calendar_definition()];
-        let used_entity_ids = collect_used_entity_ids(&calendar_definitions);
-
-        // Should include day_definition IDs
-        assert!(used_entity_ids.contains("saint_john"));
-        assert!(used_entity_ids.contains("saint_peter"));
-
-        // Should include ResourceId references
-        assert!(used_entity_ids.contains("john_the_baptist"));
-
-        // Should include Override entity IDs
-        assert!(used_entity_ids.contains("john_the_evangelist"));
-
-        // Should not include entities not referenced
-        assert!(!used_entity_ids.contains("unused_entity"));
-    }
-
-    #[test]
-    fn test_collect_used_entity_ids_empty_entities() {
-        let calendar_definitions = vec![CalendarDefinition {
-            schema: None,
-            id: "test_calendar".to_string(),
-            metadata: crate::types::CalendarMetadata {
-                jurisdiction: CalendarJurisdiction::Ecclesiastical,
-                r#type: CalendarType::Diocese,
-            },
-            particular_config: None,
-            parent_calendar_ids: vec![],
-            days_definitions: {
-                let mut map = std::collections::BTreeMap::new();
-                map.insert(
-                    "saint_mary".to_string(),
-                    DayDefinition {
-                        date_def: None,
-                        date_exceptions: None,
-                        precedence: None,
-                        commons_def: None,
-                        is_holy_day_of_obligation: None,
-                        allow_similar_rank_items: None,
-                        is_optional: None,
-                        custom_locale_id: None,
-                        entities: None, // No entities
-                        titles: None,
-                        drop: None,
-                        colors: None,
-                        masses: None,
-                    },
-                );
-                map
-            },
-        }];
-
-        let used_entity_ids = collect_used_entity_ids(&calendar_definitions);
-
-        // Should only include the day_definition ID
-        assert!(used_entity_ids.contains("saint_mary"));
-        assert_eq!(used_entity_ids.len(), 1);
-    }
-
-    #[test]
-    fn test_filter_entities_by_usage() {
-        let mut resources = create_test_resources();
-        let used_entity_ids: EntityIdSet = ["john_the_baptist", "john_the_evangelist"]
-            .iter()
-            .map(|s| s.to_string())
-            .collect();
-
-        filter_entities_by_usage(&mut resources, &used_entity_ids);
-
-        let entities = resources.entities.unwrap();
-        assert_eq!(entities.len(), 2);
-
-        let entity_ids: Vec<String> = entities.keys().cloned().collect();
-        assert!(entity_ids.contains(&"john_the_baptist".to_string()));
-        assert!(entity_ids.contains(&"john_the_evangelist".to_string()));
-        assert!(!entity_ids.contains(&"unused_entity".to_string()));
-    }
-
-    #[test]
-    fn test_filter_entities_by_usage_empty_used_ids() {
-        let mut resources = create_test_resources();
-        let used_entity_ids = EntityIdSet::new();
-
-        filter_entities_by_usage(&mut resources, &used_entity_ids);
-
-        let entities = resources.entities.unwrap();
-        assert_eq!(entities.len(), 0);
-    }
-
-    #[test]
-    fn test_filter_entities_by_usage_no_entities() {
-        let mut resources = Resources {
-            schema: None,
-            locale: "en".to_string(),
-            metadata: None,
-            entities: None,
-        };
-        let used_entity_ids: EntityIdSet = ["some_entity"].iter().map(|s| s.to_string()).collect();
-
-        // Should not panic when entities is None
-        filter_entities_by_usage(&mut resources, &used_entity_ids);
-        assert!(resources.entities.is_none());
-    }
-
-    // ========================================================================
-    // Property-Level Deduplication Tests
-    // ========================================================================
-
-    fn create_entity(
+    /// Create a test entity with specified properties.
+    fn entity(
         name: Option<&str>,
         fullname: Option<&str>,
         entity_type: Option<EntityType>,
     ) -> EntityDefinition {
         EntityDefinition {
-            name: name.map(|s| s.to_string()),
-            fullname: fullname.map(|s| s.to_string()),
+            name: name.map(String::from),
+            fullname: fullname.map(String::from),
             r#type: entity_type,
             ..Default::default()
         }
     }
 
-    fn create_resources_with_entity(
-        locale: &str,
-        entity_id: &str,
-        entity: EntityDefinition,
-    ) -> Resources {
+    /// Create a Resources with a single entity.
+    fn resources_with_entity(locale: &str, entity_id: &str, e: EntityDefinition) -> Resources {
         let mut entities = std::collections::BTreeMap::new();
-        entities.insert(entity_id.to_string(), entity);
+        entities.insert(entity_id.to_string(), e);
         Resources {
             schema: None,
             locale: locale.to_string(),
@@ -1071,24 +757,174 @@ mod tests {
         }
     }
 
+    /// Create a Resources with metadata.
+    fn resources_with_metadata(locale: &str, metadata: ResourcesMetadata) -> Resources {
+        Resources {
+            schema: None,
+            locale: locale.to_string(),
+            metadata: Some(metadata),
+            entities: None,
+        }
+    }
+
+    /// Create a minimal calendar definition.
+    fn calendar_def(id: &str, parents: Vec<&str>) -> CalendarDefinition {
+        CalendarDefinition {
+            schema: None,
+            id: id.to_string(),
+            metadata: crate::types::CalendarMetadata {
+                jurisdiction: CalendarJurisdiction::Ecclesiastical,
+                r#type: CalendarType::Diocese,
+            },
+            particular_config: None,
+            parent_calendar_ids: parents.into_iter().map(String::from).collect(),
+            days_definitions: std::collections::BTreeMap::new(),
+        }
+    }
+
+    /// Create an empty ResourcesMetadata.
+    fn empty_metadata() -> ResourcesMetadata {
+        ResourcesMetadata::default()
+    }
+
+    // ------------------------------------------------------------------------
+    // Calendar Filtering Tests
+    // ------------------------------------------------------------------------
+
     #[test]
-    fn test_deduplicate_entity_properties() {
-        // Setup: 3 locales with the same entity, different properties
-        // Order: most specific → most general (fr-ca, fr, en)
+    fn test_filter_calendar_definitions_hierarchy() {
+        let romcal = Romcal {
+            calendar: "france".to_string(),
+            locale: "fr".to_string(),
+            calendar_definitions: vec![
+                calendar_def("general_roman", vec![]),
+                calendar_def("europe", vec!["general_roman"]),
+                calendar_def("france", vec!["europe", "general_roman"]),
+                calendar_def("unrelated", vec!["general_roman"]),
+            ],
+            ..Default::default()
+        };
+
+        // filter_calendar_definitions returns specific → general
+        // optimize() reverses to general → specific for output
+        let result = filter_calendar_definitions(&romcal).unwrap();
+
+        assert_eq!(result.len(), 3);
+        assert_eq!(result[0].id, "france"); // most specific
+        assert_eq!(result[1].id, "europe"); // parent
+        assert_eq!(result[2].id, "general_roman"); // fallback
+    }
+
+    #[test]
+    fn test_filter_calendar_definitions_missing_calendar() {
+        let romcal = Romcal {
+            calendar: "nonexistent".to_string(),
+            locale: "en".to_string(),
+            calendar_definitions: vec![calendar_def("general_roman", vec![])],
+            ..Default::default()
+        };
+
+        let result = filter_calendar_definitions(&romcal);
+        assert!(result.is_err());
+    }
+
+    #[test]
+    fn test_filter_calendar_definitions_circular_reference() {
+        let romcal = Romcal {
+            calendar: "circular".to_string(),
+            locale: "en".to_string(),
+            calendar_definitions: vec![
+                calendar_def("general_roman", vec![]),
+                CalendarDefinition {
+                    parent_calendar_ids: vec!["circular".to_string()],
+                    ..calendar_def("circular", vec![])
+                },
+            ],
+            ..Default::default()
+        };
+
+        let result = filter_calendar_definitions(&romcal);
+        assert!(result.is_err());
+    }
+
+    // ------------------------------------------------------------------------
+    // Entity Collection Tests
+    // ------------------------------------------------------------------------
+
+    #[test]
+    fn test_collect_used_entity_ids() {
+        let mut days = std::collections::BTreeMap::new();
+        days.insert(
+            "saint_john".to_string(),
+            DayDefinition {
+                entities: Some(vec![
+                    EntityRef::ResourceId("john_baptist".to_string()),
+                    EntityRef::Override(EntityOverride {
+                        id: "john_evangelist".to_string(),
+                        titles: None,
+                        hide_titles: None,
+                        count: None,
+                    }),
+                ]),
+                ..Default::default()
+            },
+        );
+        days.insert("saint_peter".to_string(), DayDefinition::default());
+
+        let cal = CalendarDefinition {
+            days_definitions: days,
+            ..calendar_def("test", vec![])
+        };
+
+        let ids = collect_used_entity_ids(&[cal]);
+
+        assert!(ids.contains("saint_john"));
+        assert!(ids.contains("saint_peter"));
+        assert!(ids.contains("john_baptist"));
+        assert!(ids.contains("john_evangelist"));
+        assert!(!ids.contains("unused"));
+    }
+
+    #[test]
+    fn test_filter_entities_by_usage() {
+        let mut res = Resources {
+            schema: None,
+            locale: "en".to_string(),
+            metadata: None,
+            entities: Some({
+                let mut m = std::collections::BTreeMap::new();
+                m.insert("used".to_string(), entity(Some("Used"), None, None));
+                m.insert("unused".to_string(), entity(Some("Unused"), None, None));
+                m
+            }),
+        };
+
+        let used: IdSet = ["used"].iter().map(|s| s.to_string()).collect();
+        filter_entities_by_usage(&mut res, &used);
+
+        let entities = res.entities.unwrap();
+        assert_eq!(entities.len(), 1);
+        assert!(entities.contains_key("used"));
+    }
+
+    // ------------------------------------------------------------------------
+    // Entity Property Deduplication Tests
+    // ------------------------------------------------------------------------
+
+    #[test]
+    fn test_deduplicate_entity_properties_hierarchy() {
+        // fr-ca (specific) → fr (parent) → en (fallback)
         let mut resources = vec![
-            // fr-ca (most specific) - only name
-            create_resources_with_entity("fr-ca", "john", create_entity(Some("Jean"), None, None)),
-            // fr - name + fullname
-            create_resources_with_entity(
+            resources_with_entity("fr-ca", "john", entity(Some("Jean"), None, None)),
+            resources_with_entity(
                 "fr",
                 "john",
-                create_entity(Some("Jean"), Some("Jean le Baptiste"), None),
+                entity(Some("Jean"), Some("Jean le Baptiste"), None),
             ),
-            // en (most general) - name + fullname + type
-            create_resources_with_entity(
+            resources_with_entity(
                 "en",
                 "john",
-                create_entity(
+                entity(
                     Some("John"),
                     Some("John the Baptist"),
                     Some(EntityType::Person),
@@ -1101,95 +937,100 @@ mod tests {
         // fr-ca: keeps name (most specific)
         let fr_ca = resources[0].entities.as_ref().unwrap().get("john").unwrap();
         assert!(fr_ca.name.is_some());
-        assert!(fr_ca.fullname.is_none()); // not defined in fr-ca
-        assert!(fr_ca.r#type.is_none()); // not defined in fr-ca
+        assert!(fr_ca.fullname.is_none());
+        assert!(fr_ca.r#type.is_none());
 
-        // fr: name removed (exists in fr-ca), keeps fullname
+        // fr: name removed (in fr-ca), keeps fullname
         let fr = resources[1].entities.as_ref().unwrap().get("john").unwrap();
-        assert!(fr.name.is_none()); // removed because fr-ca has it
-        assert!(fr.fullname.is_some()); // first to define fullname
-        assert!(fr.r#type.is_none()); // not defined in fr
+        assert!(fr.name.is_none());
+        assert!(fr.fullname.is_some());
+        assert!(fr.r#type.is_none());
 
-        // en: name and fullname removed, keeps type
+        // en: name & fullname removed, keeps type
         let en = resources[2].entities.as_ref().unwrap().get("john").unwrap();
-        assert!(en.name.is_none()); // removed because fr-ca has it
-        assert!(en.fullname.is_none()); // removed because fr has it
-        assert!(en.r#type.is_some()); // first (and only) to define type
+        assert!(en.name.is_none());
+        assert!(en.fullname.is_none());
+        assert!(en.r#type.is_some());
     }
 
     #[test]
     fn test_remove_empty_entities_after_dedup() {
-        // Setup: en has only properties that fr also has → en entity becomes empty
         let mut resources = vec![
-            // fr (more specific) - only name
-            create_resources_with_entity("fr", "john", create_entity(Some("Jean"), None, None)),
-            // en (more general) - only name (same property as fr)
-            create_resources_with_entity("en", "john", create_entity(Some("John"), None, None)),
+            resources_with_entity("fr", "john", entity(Some("Jean"), None, None)),
+            resources_with_entity("en", "john", entity(Some("John"), None, None)),
         ];
 
         deduplicate_entity_properties(&mut resources);
         remove_empty_entities(&mut resources);
 
-        // fr: keeps john (has name)
+        // fr: keeps john
         assert!(resources[0].entities.as_ref().unwrap().contains_key("john"));
 
-        // en: john removed (all properties were deduplicated)
+        // en: john removed (became empty)
         assert!(!resources[1].entities.as_ref().unwrap().contains_key("john"));
     }
 
     #[test]
-    fn test_deduplicate_metadata_properties() {
-        use crate::types::resource::ResourcesMetadata;
+    fn test_is_entity_empty() {
+        // Create empty entity using helper (sets all to None via Default)
+        let mut empty = entity(None, None, None);
+        // Ensure all properties are None
+        empty.canonization_level = None;
+        empty.date_of_canonization = None;
+        empty.date_of_canonization_is_approximative = None;
+        empty.date_of_beatification = None;
+        empty.date_of_beatification_is_approximative = None;
+        empty.hide_canonization_level = None;
+        empty.titles = None;
+        empty.sex = None;
+        empty.hide_titles = None;
+        empty.date_of_dedication = None;
+        empty.date_of_birth = None;
+        empty.date_of_birth_is_approximative = None;
+        empty.date_of_death = None;
+        empty.date_of_death_is_approximative = None;
+        empty.count = None;
+        empty.sources = None;
+        assert!(is_entity_empty(&empty));
 
+        let with_name = entity(Some("John"), None, None);
+        assert!(!is_entity_empty(&with_name));
+    }
+
+    // ------------------------------------------------------------------------
+    // Metadata Property Deduplication Tests
+    // ------------------------------------------------------------------------
+
+    #[test]
+    fn test_deduplicate_metadata_properties() {
         let mut resources = vec![
-            // fr (more specific) - has weekdays
-            Resources {
-                schema: None,
-                locale: "fr".to_string(),
-                metadata: Some(ResourcesMetadata {
+            resources_with_metadata(
+                "fr",
+                ResourcesMetadata {
                     weekdays: Some({
-                        let mut map = std::collections::BTreeMap::new();
-                        map.insert("0".to_string(), "dimanche".to_string());
-                        map
+                        let mut m = std::collections::BTreeMap::new();
+                        m.insert("0".to_string(), "dimanche".to_string());
+                        m
                     }),
-                    months: None,
-                    ordinal_format: None,
-                    ordinals_letters: None,
-                    ordinals_numeric: None,
-                    colors: None,
-                    seasons: None,
-                    periods: None,
-                    ranks: None,
-                    cycles: None,
-                }),
-                entities: None,
-            },
-            // en (more general) - has weekdays + months
-            Resources {
-                schema: None,
-                locale: "en".to_string(),
-                metadata: Some(ResourcesMetadata {
+                    ..empty_metadata()
+                },
+            ),
+            resources_with_metadata(
+                "en",
+                ResourcesMetadata {
                     weekdays: Some({
-                        let mut map = std::collections::BTreeMap::new();
-                        map.insert("0".to_string(), "Sunday".to_string());
-                        map
+                        let mut m = std::collections::BTreeMap::new();
+                        m.insert("0".to_string(), "Sunday".to_string());
+                        m
                     }),
                     months: Some({
-                        let mut map = std::collections::BTreeMap::new();
-                        map.insert("1".to_string(), "January".to_string());
-                        map
+                        let mut m = std::collections::BTreeMap::new();
+                        m.insert("1".to_string(), "January".to_string());
+                        m
                     }),
-                    ordinal_format: None,
-                    ordinals_letters: None,
-                    ordinals_numeric: None,
-                    colors: None,
-                    seasons: None,
-                    periods: None,
-                    ranks: None,
-                    cycles: None,
-                }),
-                entities: None,
-            },
+                    ..empty_metadata()
+                },
+            ),
         ];
 
         deduplicate_metadata_properties(&mut resources);
@@ -1197,21 +1038,17 @@ mod tests {
         // fr: keeps weekdays
         assert!(resources[0].metadata.as_ref().unwrap().weekdays.is_some());
 
-        // en: weekdays removed (exists in fr), keeps months
+        // en: weekdays removed, keeps months
         assert!(resources[1].metadata.as_ref().unwrap().weekdays.is_none());
         assert!(resources[1].metadata.as_ref().unwrap().months.is_some());
     }
 
     #[test]
     fn test_deduplicate_nested_seasons() {
-        use crate::types::resource::{AdventSeason, ResourcesMetadata, SeasonsMetadata};
-
         let mut resources = vec![
-            // fr (more specific) - has advent.season
-            Resources {
-                schema: None,
-                locale: "fr".to_string(),
-                metadata: Some(ResourcesMetadata {
+            resources_with_metadata(
+                "fr",
+                ResourcesMetadata {
                     seasons: Some(SeasonsMetadata {
                         advent: Some(AdventSeason {
                             season: Some("Avent".to_string()),
@@ -1225,23 +1062,12 @@ mod tests {
                         paschal_triduum: None,
                         easter_time: None,
                     }),
-                    weekdays: None,
-                    months: None,
-                    ordinal_format: None,
-                    ordinals_letters: None,
-                    ordinals_numeric: None,
-                    colors: None,
-                    periods: None,
-                    ranks: None,
-                    cycles: None,
-                }),
-                entities: None,
-            },
-            // en (more general) - has advent.season + advent.weekday
-            Resources {
-                schema: None,
-                locale: "en".to_string(),
-                metadata: Some(ResourcesMetadata {
+                    ..empty_metadata()
+                },
+            ),
+            resources_with_metadata(
+                "en",
+                ResourcesMetadata {
                     seasons: Some(SeasonsMetadata {
                         advent: Some(AdventSeason {
                             season: Some("Advent".to_string()),
@@ -1255,18 +1081,9 @@ mod tests {
                         paschal_triduum: None,
                         easter_time: None,
                     }),
-                    weekdays: None,
-                    months: None,
-                    ordinal_format: None,
-                    ordinals_letters: None,
-                    ordinals_numeric: None,
-                    colors: None,
-                    periods: None,
-                    ranks: None,
-                    cycles: None,
-                }),
-                entities: None,
-            },
+                    ..empty_metadata()
+                },
+            ),
         ];
 
         deduplicate_metadata_properties(&mut resources);
@@ -1299,77 +1116,39 @@ mod tests {
         assert!(en_advent.weekday.is_some());
     }
 
-    #[test]
-    fn test_is_entity_empty() {
-        // Empty entity (all properties None)
-        let empty = EntityDefinition {
-            r#type: None,
-            fullname: None,
-            name: None,
-            canonization_level: None,
-            date_of_canonization: None,
-            date_of_canonization_is_approximative: None,
-            date_of_beatification: None,
-            date_of_beatification_is_approximative: None,
-            hide_canonization_level: None,
-            titles: None,
-            sex: None,
-            hide_titles: None,
-            date_of_dedication: None,
-            date_of_birth: None,
-            date_of_birth_is_approximative: None,
-            date_of_death: None,
-            date_of_death_is_approximative: None,
-            count: None,
-            sources: None,
-            _todo: None,
-        };
-        assert!(is_entity_empty(&empty));
-
-        // Entity with one property
-        let with_name = create_entity(Some("John"), None, None);
-        assert!(!is_entity_empty(&with_name));
-
-        // Entity with type only
-        let with_type = create_entity(None, None, Some(EntityType::Person));
-        assert!(!is_entity_empty(&with_type));
-    }
+    // ------------------------------------------------------------------------
+    // Independent Entities Test
+    // ------------------------------------------------------------------------
 
     #[test]
-    fn test_deduplicate_entity_independent_entities() {
-        // Two different entities should not affect each other
+    fn test_deduplicate_independent_entities() {
         let mut resources = vec![
-            // fr: has john and peter
             Resources {
                 schema: None,
                 locale: "fr".to_string(),
                 metadata: None,
                 entities: Some({
-                    let mut map = std::collections::BTreeMap::new();
-                    map.insert("john".to_string(), create_entity(Some("Jean"), None, None));
-                    map.insert(
-                        "peter".to_string(),
-                        create_entity(Some("Pierre"), None, None),
-                    );
-                    map
+                    let mut m = std::collections::BTreeMap::new();
+                    m.insert("john".to_string(), entity(Some("Jean"), None, None));
+                    m.insert("peter".to_string(), entity(Some("Pierre"), None, None));
+                    m
                 }),
             },
-            // en: has john and peter with same properties
             Resources {
                 schema: None,
                 locale: "en".to_string(),
                 metadata: None,
                 entities: Some({
-                    let mut map = std::collections::BTreeMap::new();
-                    map.insert(
+                    let mut m = std::collections::BTreeMap::new();
+                    m.insert(
                         "john".to_string(),
-                        create_entity(Some("John"), Some("John the Baptist"), None),
+                        entity(Some("John"), Some("John the Baptist"), None),
                     );
-                    map.insert(
+                    m.insert(
                         "peter".to_string(),
-                        create_entity(Some("Peter"), Some("Peter the Apostle"), None),
+                        entity(Some("Peter"), Some("Peter the Apostle"), None),
                     );
-                    map
+                    m
                 }),
             },
         ];
@@ -1377,15 +1156,15 @@ mod tests {
         deduplicate_entity_properties(&mut resources);
 
         // fr: both keep name
-        let fr_entities = resources[0].entities.as_ref().unwrap();
-        assert!(fr_entities.get("john").unwrap().name.is_some());
-        assert!(fr_entities.get("peter").unwrap().name.is_some());
+        let fr = resources[0].entities.as_ref().unwrap();
+        assert!(fr.get("john").unwrap().name.is_some());
+        assert!(fr.get("peter").unwrap().name.is_some());
 
         // en: both lose name, keep fullname
-        let en_entities = resources[1].entities.as_ref().unwrap();
-        assert!(en_entities.get("john").unwrap().name.is_none());
-        assert!(en_entities.get("john").unwrap().fullname.is_some());
-        assert!(en_entities.get("peter").unwrap().name.is_none());
-        assert!(en_entities.get("peter").unwrap().fullname.is_some());
+        let en = resources[1].entities.as_ref().unwrap();
+        assert!(en.get("john").unwrap().name.is_none());
+        assert!(en.get("john").unwrap().fullname.is_some());
+        assert!(en.get("peter").unwrap().name.is_none());
+        assert!(en.get("peter").unwrap().fullname.is_some());
     }
 }

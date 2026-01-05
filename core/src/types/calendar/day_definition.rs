@@ -36,7 +36,7 @@ pub type DayId = String;
 /// Definition of a liturgical day with all its properties and configurations.
 /// It represents a complete liturgical day definition that can be used
 /// to generate calendar entries with proper precedence, colors, and entity associations.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, Default)]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
