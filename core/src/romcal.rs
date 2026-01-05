@@ -224,18 +224,18 @@ impl Romcal {
     /// The entity if found, or `None` if not found.
     pub fn get_entity(&self, id: &str) -> Option<Entity> {
         // First, try the current locale
-        if let Some(resources) = self.get_resources(&self.locale) {
-            if let Some(entity) = resources.get_entity(id) {
-                return Some(entity.clone());
-            }
+        if let Some(resources) = self.get_resources(&self.locale)
+            && let Some(entity) = resources.get_entity(id)
+        {
+            return Some(entity.clone());
         }
 
         // Fall back to other locales
         for resources in &self.resources {
-            if resources.locale != self.locale {
-                if let Some(entity) = resources.get_entity(id) {
-                    return Some(entity.clone());
-                }
+            if resources.locale != self.locale
+                && let Some(entity) = resources.get_entity(id)
+            {
+                return Some(entity.clone());
             }
         }
 

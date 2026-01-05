@@ -106,8 +106,9 @@ impl EntityQuery {
             .entity_type
             .as_ref()
             .map(|s| {
-                s.parse::<EntityType>()
-                    .map_err(|_| RomcalError::InvalidConfig(format!("Invalid entity_type: '{}'", s)))
+                s.parse::<EntityType>().map_err(|_| {
+                    RomcalError::InvalidConfig(format!("Invalid entity_type: '{}'", s))
+                })
             })
             .transpose()?;
 

@@ -24,10 +24,10 @@ use commands::show_preset;
 use error::RomcalCliError;
 
 use crate::config::Config;
-use crate::enums::{CliCalendarContext, CliEasterCalculationType, CliOutputFormat, ValidationType};
 use crate::enums::FieldPath;
-use romcal::types::entity::{CanonizationLevel, EntityType, Sex, Title};
+use crate::enums::{CliCalendarContext, CliEasterCalculationType, CliOutputFormat, ValidationType};
 use crate::preset::create_romcal;
+use romcal::types::entity::{CanonizationLevel, EntityType, Sex, Title};
 
 /// Config file flag
 #[derive(Args, Clone, Default)]

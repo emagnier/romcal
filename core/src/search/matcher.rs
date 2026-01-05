@@ -104,10 +104,10 @@ impl EntityMatcher {
         let search_text = query.text.as_ref().unwrap();
 
         // Check for exact ID match first
-        if let Some(id) = &entity.id {
-            if id.eq_ignore_ascii_case(search_text) {
-                return Some(EntitySearchResult::exact_id(entity.clone()));
-            }
+        if let Some(id) = &entity.id
+            && id.eq_ignore_ascii_case(search_text)
+        {
+            return Some(EntitySearchResult::exact_id(entity.clone()));
         }
 
         // Perform fuzzy matching on text fields
@@ -117,31 +117,31 @@ impl EntityMatcher {
     /// Check if entity matches all query filters.
     fn matches_filters(&self, entity: &Entity, query: &EntityQuery) -> bool {
         // Filter by entity type
-        if let Some(ref query_type) = query.entity_type {
-            if entity.r#type.as_ref() != Some(query_type) {
-                return false;
-            }
+        if let Some(ref query_type) = query.entity_type
+            && entity.r#type.as_ref() != Some(query_type)
+        {
+            return false;
         }
 
         // Filter by canonization level
-        if let Some(ref query_level) = query.canonization_level {
-            if entity.canonization_level.as_ref() != Some(query_level) {
-                return false;
-            }
+        if let Some(ref query_level) = query.canonization_level
+            && entity.canonization_level.as_ref() != Some(query_level)
+        {
+            return false;
         }
 
         // Filter by sex
-        if let Some(ref query_sex) = query.sex {
-            if entity.sex.as_ref() != Some(query_sex) {
-                return false;
-            }
+        if let Some(ref query_sex) = query.sex
+            && entity.sex.as_ref() != Some(query_sex)
+        {
+            return false;
         }
 
         // Filter by titles (must have at least one matching title)
-        if let Some(ref query_titles) = query.titles {
-            if !self.has_matching_title(entity, query_titles) {
-                return false;
-            }
+        if let Some(ref query_titles) = query.titles
+            && !self.has_matching_title(entity, query_titles)
+        {
+            return false;
         }
 
         true

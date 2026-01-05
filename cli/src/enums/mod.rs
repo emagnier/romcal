@@ -6,6 +6,6 @@ pub mod validation_type;
 
 pub use calendar_context::CliCalendarContext;
 pub use easter_calculation_type::CliEasterCalculationType;
-pub use field_path::{extract_filtered, FieldPath};
+pub use field_path::{FieldPath, extract_filtered};
 pub use output_format::{CliOutputFormat, OutputFormat};
 pub use validation_type::ValidationType;

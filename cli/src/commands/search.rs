@@ -2,9 +2,9 @@
 
 use crate::enums::OutputFormat;
 use crate::error::RomcalCliError;
+use romcal::Romcal;
 use romcal::search::EntityQuery;
 use romcal::types::entity::{CanonizationLevel, EntityType, Sex, Title};
-use romcal::Romcal;
 
 /// Search options from CLI arguments.
 pub struct SearchOptions {

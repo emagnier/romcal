@@ -56,7 +56,11 @@ pub fn handle(id: &str, output_format: OutputFormat, romcal: Romcal) -> Result<(
         }
         OutputFormat::Lines => {
             // Lines: ID/Name  Fullname
-            let id = entity.id.as_deref().or(entity.name.as_deref()).unwrap_or("-");
+            let id = entity
+                .id
+                .as_deref()
+                .or(entity.name.as_deref())
+                .unwrap_or("-");
             let fullname = entity.fullname.as_deref().unwrap_or("");
             println!("{}  {}", id, fullname);
         }
