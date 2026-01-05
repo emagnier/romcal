@@ -311,6 +311,7 @@ mod tests {
         let results = matcher.search(entities.iter(), &query);
 
         assert!(!results.is_empty());
+        assert_eq!(results[0].match_type, MatchType::Fuzzy);
         assert!(results[0].score > 0.7); // Should find a reasonable match
     }
 
@@ -352,6 +353,7 @@ mod tests {
         };
         let results = matcher.search(entities.iter(), &query);
         assert_eq!(results.len(), 1);
+        assert_eq!(results[0].match_type, MatchType::FilterOnly);
 
         // Should not match Blessed
         let query = EntityQuery {
@@ -374,6 +376,7 @@ mod tests {
         };
         let results = matcher.search(entities.iter(), &query);
         assert_eq!(results.len(), 1);
+        assert_eq!(results[0].match_type, MatchType::FilterOnly);
 
         // Should not match Female
         let query = EntityQuery {
@@ -407,6 +410,7 @@ mod tests {
         };
         let results = matcher.search(entities.iter(), &query);
         assert_eq!(results.len(), 1);
+        assert_eq!(results[0].match_type, MatchType::FilterOnly);
         assert_eq!(results[0].entity.id.as_deref(), Some("benedict"));
 
         // Filter Abbots and Bishops
@@ -441,6 +445,9 @@ mod tests {
 
         let results = matcher.search(entities.iter(), &query);
         assert_eq!(results.len(), 2);
+        // Text search with filters should be Fuzzy, not FilterOnly
+        assert_eq!(results[0].match_type, MatchType::Fuzzy);
+        assert_eq!(results[1].match_type, MatchType::Fuzzy);
     }
 
     #[test]
@@ -457,6 +464,10 @@ mod tests {
 
         let results = matcher.search(entities.iter(), &query);
         assert_eq!(results.len(), 5);
+        // No text search, only limit → FilterOnly
+        for result in &results {
+            assert_eq!(result.match_type, MatchType::FilterOnly);
+        }
     }
 
     #[test]
