@@ -2,32 +2,13 @@ use serde_json::Value;
 use std::collections::{HashMap, HashSet};
 
 use crate::entity_resolution::locale::get_all_parent_locales;
+use crate::types::entity::EntityDefinition;
 use crate::{CalendarDefinition, Resources, Romcal, RomcalError, RomcalResult};
 
 // Type aliases for clarity
 type LocaleMap = HashMap<String, String>;
 type EntityIdSet = HashSet<String>;
 type PropertySet = HashSet<String>;
-
-// Constants for metadata properties
-const METADATA_PROPERTIES: &[&str] = &[
-    "ordinals_letters",
-    "ordinals_numeric",
-    "weekdays",
-    "months",
-    "colors",
-    "periods",
-    "ranks",
-    "cycles",
-];
-const SEASONS_PROPERTIES: &[&str] = &[
-    "advent",
-    "christmas_time",
-    "ordinary_time",
-    "lent",
-    "paschal_triduum",
-    "easter_time",
-];
 
 /// Create a JSON bundle of the current configuration
 /// This method serializes the Romcal config to JSON format
@@ -48,6 +29,10 @@ pub fn optimize(romcal: &Romcal) -> RomcalResult<String> {
     let mut filtered_config = romcal.clone();
     filtered_config.calendar_definitions = filter_calendar_definitions(romcal)?;
     filtered_config.resources = filter_resources(romcal, &filtered_config.calendar_definitions)?;
+
+    // Reverse resources order for output: general → specific (e.g., [en, fr, fr-ca])
+    // This provides a more intuitive reading order
+    filtered_config.resources.reverse();
 
     let value = serde_json::to_value(&filtered_config)
         .map_err(|e| RomcalError::ValidationError(format!("JSON serialization error: {}", e)))?;
@@ -215,37 +200,34 @@ fn build_priority_locales(
     priority_locales
 }
 
-/// Apply hierarchical deduplication to resources with entity filtering
+/// Apply hierarchical deduplication to resources with entity filtering.
+/// Resources are processed from most specific to most general locale.
+/// Property-level deduplication ensures parent locales only contain
+/// properties that are missing in their child locales.
 fn apply_hierarchical_deduplication(
     priority_locales: Vec<String>,
     resources_by_locale: &HashMap<&str, &Resources>,
     used_entity_ids: &EntityIdSet,
 ) -> RomcalResult<Vec<Resources>> {
-    let mut result = Vec::new();
-    let mut defined_entity_ids = EntityIdSet::new();
-    let mut defined_metadata_properties = PropertySet::new();
-    let mut defined_seasons_properties = PropertySet::new();
+    // Build filtered resources list (specific → general)
+    let mut result: Vec<Resources> = priority_locales
+        .iter()
+        .filter_map(|locale| {
+            resources_by_locale.get(locale.as_str()).map(|resource| {
+                let mut filtered_resource = (*resource).clone();
+                // Filter entities to only include those used in calendar day_definitions
+                filter_entities_by_usage(&mut filtered_resource, used_entity_ids);
+                filtered_resource
+            })
+        })
+        .collect();
 
-    for locale in priority_locales {
-        if let Some(resource) = resources_by_locale.get(locale.as_str()) {
-            let mut filtered_resource = (*resource).clone();
+    // Apply property-level deduplication across all resources
+    deduplicate_entity_properties(&mut result);
+    deduplicate_metadata_properties(&mut result);
 
-            // Filter entities to only include those used in calendar day_definitions
-            filter_entities_by_usage(&mut filtered_resource, used_entity_ids);
-
-            // Deduplicate entities
-            deduplicate_entities(&mut filtered_resource, &mut defined_entity_ids);
-
-            // Deduplicate metadata
-            deduplicate_metadata(
-                &mut filtered_resource,
-                &mut defined_metadata_properties,
-                &mut defined_seasons_properties,
-            );
-
-            result.push(filtered_resource);
-        }
-    }
+    // Remove entities that became empty after deduplication
+    remove_empty_entities(&mut result);
 
     Ok(result)
 }
@@ -257,116 +239,463 @@ fn filter_entities_by_usage(resource: &mut Resources, used_entity_ids: &EntityId
     }
 }
 
-/// Deduplicate entities in a resource
-fn deduplicate_entities(resource: &mut Resources, defined_entity_ids: &mut EntityIdSet) {
-    if let Some(entities) = &mut resource.entities {
-        entities.retain(|id, _entity| {
-            if defined_entity_ids.contains(id) {
-                false // Remove entity already defined in more specific locale
-            } else {
-                defined_entity_ids.insert(id.clone());
-                true // Keep entity and mark it as defined
-            }
-        });
-    }
-}
+// ============================================================================
+// Entity Property-Level Deduplication
+// ============================================================================
 
-/// Deduplicate metadata in a resource
-fn deduplicate_metadata(
-    resource: &mut Resources,
-    defined_metadata_properties: &mut PropertySet,
-    defined_seasons_properties: &mut PropertySet,
-) {
-    if let Some(metadata) = &mut resource.metadata {
-        // Deduplicate first level properties
-        deduplicate_first_level_metadata(metadata, defined_metadata_properties);
+/// Type alias for tracking defined properties per entity
+type EntityPropertiesMap = HashMap<String, PropertySet>;
 
-        // Deduplicate seasons properties
-        deduplicate_seasons_metadata(metadata, defined_seasons_properties);
-    }
-}
+/// Deduplicate entity properties across locales (most specific to most general).
+/// If a property exists in a more specific locale, remove it from parent locales.
+/// Resources must be ordered from most specific to most general.
+fn deduplicate_entity_properties(resources: &mut [Resources]) {
+    // Track defined properties per entity: entity_id -> set of property names
+    let mut defined_props: EntityPropertiesMap = HashMap::new();
 
-/// Deduplicate first level metadata properties
-fn deduplicate_first_level_metadata(
-    metadata: &mut crate::types::resource::ResourcesMetadata,
-    defined_properties: &mut PropertySet,
-) {
-    let first_level_props = [
-        (METADATA_PROPERTIES[0], metadata.ordinals_letters.is_some()),
-        (METADATA_PROPERTIES[1], metadata.ordinals_numeric.is_some()),
-        (METADATA_PROPERTIES[2], metadata.weekdays.is_some()),
-        (METADATA_PROPERTIES[3], metadata.months.is_some()),
-        (METADATA_PROPERTIES[4], metadata.colors.is_some()),
-        (METADATA_PROPERTIES[5], metadata.periods.is_some()),
-        (METADATA_PROPERTIES[6], metadata.ranks.is_some()),
-        (METADATA_PROPERTIES[7], metadata.cycles.is_some()),
-    ];
-
-    for (prop_name, is_defined) in first_level_props {
-        if is_defined {
-            if defined_properties.contains(prop_name) {
-                // Remove property already defined in more specific locale
-                match prop_name {
-                    "ordinals_letters" => metadata.ordinals_letters = None,
-                    "ordinals_numeric" => metadata.ordinals_numeric = None,
-                    "weekdays" => metadata.weekdays = None,
-                    "months" => metadata.months = None,
-                    "colors" => metadata.colors = None,
-                    "periods" => metadata.periods = None,
-                    "ranks" => metadata.ranks = None,
-                    "cycles" => metadata.cycles = None,
-                    _ => {}
-                }
-            } else {
-                defined_properties.insert(prop_name.to_string());
+    for resource in resources.iter_mut() {
+        if let Some(entities) = &mut resource.entities {
+            for (entity_id, entity_def) in entities.iter_mut() {
+                let props = defined_props.entry(entity_id.clone()).or_default();
+                deduplicate_single_entity(entity_def, props);
             }
         }
     }
 }
 
-/// Deduplicate seasons metadata properties
-fn deduplicate_seasons_metadata(
-    metadata: &mut crate::types::resource::ResourcesMetadata,
-    defined_seasons_properties: &mut PropertySet,
-) {
-    if let Some(seasons) = &mut metadata.seasons {
-        let seasons_props = [
-            (SEASONS_PROPERTIES[0], seasons.advent.is_some()),
-            (SEASONS_PROPERTIES[1], seasons.christmas_time.is_some()),
-            (SEASONS_PROPERTIES[2], seasons.ordinary_time.is_some()),
-            (SEASONS_PROPERTIES[3], seasons.lent.is_some()),
-            (SEASONS_PROPERTIES[4], seasons.paschal_triduum.is_some()),
-            (SEASONS_PROPERTIES[5], seasons.easter_time.is_some()),
-        ];
-
-        for (prop_name, is_defined) in seasons_props {
-            if is_defined {
-                if defined_seasons_properties.contains(prop_name) {
-                    // Remove season property already defined in more specific locale
-                    match prop_name {
-                        "advent" => seasons.advent = None,
-                        "christmas_time" => seasons.christmas_time = None,
-                        "ordinary_time" => seasons.ordinary_time = None,
-                        "lent" => seasons.lent = None,
-                        "paschal_triduum" => seasons.paschal_triduum = None,
-                        "easter_time" => seasons.easter_time = None,
-                        _ => {}
-                    }
-                } else {
-                    defined_seasons_properties.insert(prop_name.to_string());
-                }
+/// Deduplicate properties of a single entity.
+/// For each property: if already defined in a more specific locale, set to None;
+/// otherwise if Some, mark as defined.
+fn deduplicate_single_entity(entity: &mut EntityDefinition, defined: &mut PropertySet) {
+    // Macro to deduplicate a single property
+    macro_rules! dedup_prop {
+        ($field:ident) => {
+            if defined.contains(stringify!($field)) {
+                entity.$field = None;
+            } else if entity.$field.is_some() {
+                defined.insert(stringify!($field).to_string());
             }
-        }
+        };
+    }
 
-        // If all seasons properties are None, set seasons to None
-        if seasons.advent.is_none()
-            && seasons.christmas_time.is_none()
-            && seasons.ordinary_time.is_none()
-            && seasons.lent.is_none()
-            && seasons.paschal_triduum.is_none()
-            && seasons.easter_time.is_none()
+    dedup_prop!(r#type);
+    dedup_prop!(fullname);
+    dedup_prop!(name);
+    dedup_prop!(canonization_level);
+    dedup_prop!(date_of_canonization);
+    dedup_prop!(date_of_canonization_is_approximative);
+    dedup_prop!(date_of_beatification);
+    dedup_prop!(date_of_beatification_is_approximative);
+    dedup_prop!(hide_canonization_level);
+    dedup_prop!(titles);
+    dedup_prop!(sex);
+    dedup_prop!(hide_titles);
+    dedup_prop!(date_of_dedication);
+    dedup_prop!(date_of_birth);
+    dedup_prop!(date_of_birth_is_approximative);
+    dedup_prop!(date_of_death);
+    dedup_prop!(date_of_death_is_approximative);
+    dedup_prop!(count);
+    dedup_prop!(sources);
+}
+
+/// Check if an entity has all properties set to None (empty after deduplication)
+fn is_entity_empty(entity: &EntityDefinition) -> bool {
+    entity.r#type.is_none()
+        && entity.fullname.is_none()
+        && entity.name.is_none()
+        && entity.canonization_level.is_none()
+        && entity.date_of_canonization.is_none()
+        && entity.date_of_canonization_is_approximative.is_none()
+        && entity.date_of_beatification.is_none()
+        && entity.date_of_beatification_is_approximative.is_none()
+        && entity.hide_canonization_level.is_none()
+        && entity.titles.is_none()
+        && entity.sex.is_none()
+        && entity.hide_titles.is_none()
+        && entity.date_of_dedication.is_none()
+        && entity.date_of_birth.is_none()
+        && entity.date_of_birth_is_approximative.is_none()
+        && entity.date_of_death.is_none()
+        && entity.date_of_death_is_approximative.is_none()
+        && entity.count.is_none()
+        && entity.sources.is_none()
+}
+
+/// Remove entities where all properties are None after deduplication.
+fn remove_empty_entities(resources: &mut [Resources]) {
+    for resource in resources.iter_mut() {
+        if let Some(entities) = &mut resource.entities {
+            entities.retain(|_, entity| !is_entity_empty(entity));
+        }
+    }
+}
+
+// ============================================================================
+// Metadata Property-Level Deduplication
+// ============================================================================
+
+use crate::types::resource::{
+    AdventSeason, ChristmasTimeSeason, CyclesMetadata, EasterTimeSeason, LentSeason, LocaleColors,
+    OrdinaryTimeSeason, PaschalTriduumSeason, PeriodsMetadata, RanksMetadata, ResourcesMetadata,
+    SeasonsMetadata,
+};
+
+/// Deduplicate metadata properties across locales (most specific to most general).
+/// Uses hierarchical property keys (e.g., "seasons.advent.season") for tracking.
+fn deduplicate_metadata_properties(resources: &mut [Resources]) {
+    let mut defined_props = PropertySet::new();
+
+    for resource in resources.iter_mut() {
+        if let Some(metadata) = &mut resource.metadata {
+            deduplicate_single_metadata(metadata, &mut defined_props);
+        }
+    }
+}
+
+/// Deduplicate properties of a single metadata object.
+fn deduplicate_single_metadata(metadata: &mut ResourcesMetadata, defined: &mut PropertySet) {
+    // Macro for simple Option properties
+    macro_rules! dedup_prop {
+        ($field:ident, $key:expr) => {
+            if defined.contains($key) {
+                metadata.$field = None;
+            } else if metadata.$field.is_some() {
+                defined.insert($key.to_string());
+            }
+        };
+    }
+
+    dedup_prop!(ordinal_format, "ordinal_format");
+    dedup_prop!(ordinals_letters, "ordinals_letters");
+    dedup_prop!(ordinals_numeric, "ordinals_numeric");
+    dedup_prop!(weekdays, "weekdays");
+    dedup_prop!(months, "months");
+
+    // Nested structures - deduplicate at property level
+    deduplicate_colors(&mut metadata.colors, defined);
+    deduplicate_seasons(&mut metadata.seasons, defined);
+    deduplicate_periods(&mut metadata.periods, defined);
+    deduplicate_ranks(&mut metadata.ranks, defined);
+    deduplicate_cycles(&mut metadata.cycles, defined);
+}
+
+fn deduplicate_colors(colors: &mut Option<LocaleColors>, defined: &mut PropertySet) {
+    if let Some(c) = colors {
+        macro_rules! dedup {
+            ($field:ident) => {
+                let key = concat!("colors.", stringify!($field));
+                if defined.contains(key) {
+                    c.$field = None;
+                } else if c.$field.is_some() {
+                    defined.insert(key.to_string());
+                }
+            };
+        }
+        dedup!(black);
+        dedup!(gold);
+        dedup!(green);
+        dedup!(purple);
+        dedup!(red);
+        dedup!(rose);
+        dedup!(white);
+
+        // Remove colors if empty
+        if c.black.is_none()
+            && c.gold.is_none()
+            && c.green.is_none()
+            && c.purple.is_none()
+            && c.red.is_none()
+            && c.rose.is_none()
+            && c.white.is_none()
         {
-            metadata.seasons = None;
+            *colors = None;
+        }
+    }
+}
+
+fn deduplicate_seasons(seasons: &mut Option<SeasonsMetadata>, defined: &mut PropertySet) {
+    if let Some(s) = seasons {
+        deduplicate_advent(&mut s.advent, defined);
+        deduplicate_christmas_time(&mut s.christmas_time, defined);
+        deduplicate_ordinary_time(&mut s.ordinary_time, defined);
+        deduplicate_lent(&mut s.lent, defined);
+        deduplicate_paschal_triduum(&mut s.paschal_triduum, defined);
+        deduplicate_easter_time(&mut s.easter_time, defined);
+
+        // Remove seasons if empty
+        if s.advent.is_none()
+            && s.christmas_time.is_none()
+            && s.ordinary_time.is_none()
+            && s.lent.is_none()
+            && s.paschal_triduum.is_none()
+            && s.easter_time.is_none()
+        {
+            *seasons = None;
+        }
+    }
+}
+
+fn deduplicate_advent(advent: &mut Option<AdventSeason>, defined: &mut PropertySet) {
+    if let Some(a) = advent {
+        macro_rules! dedup {
+            ($field:ident) => {
+                let key = concat!("seasons.advent.", stringify!($field));
+                if defined.contains(key) {
+                    a.$field = None;
+                } else if a.$field.is_some() {
+                    defined.insert(key.to_string());
+                }
+            };
+        }
+        dedup!(season);
+        dedup!(weekday);
+        dedup!(sunday);
+        dedup!(privileged_weekday);
+
+        if a.season.is_none()
+            && a.weekday.is_none()
+            && a.sunday.is_none()
+            && a.privileged_weekday.is_none()
+        {
+            *advent = None;
+        }
+    }
+}
+
+fn deduplicate_christmas_time(
+    christmas: &mut Option<ChristmasTimeSeason>,
+    defined: &mut PropertySet,
+) {
+    if let Some(c) = christmas {
+        macro_rules! dedup {
+            ($field:ident) => {
+                let key = concat!("seasons.christmas_time.", stringify!($field));
+                if defined.contains(key) {
+                    c.$field = None;
+                } else if c.$field.is_some() {
+                    defined.insert(key.to_string());
+                }
+            };
+        }
+        dedup!(season);
+        dedup!(day);
+        dedup!(octave);
+        dedup!(before_epiphany);
+        dedup!(second_sunday_after_christmas);
+        dedup!(after_epiphany);
+
+        if c.season.is_none()
+            && c.day.is_none()
+            && c.octave.is_none()
+            && c.before_epiphany.is_none()
+            && c.second_sunday_after_christmas.is_none()
+            && c.after_epiphany.is_none()
+        {
+            *christmas = None;
+        }
+    }
+}
+
+fn deduplicate_ordinary_time(ordinary: &mut Option<OrdinaryTimeSeason>, defined: &mut PropertySet) {
+    if let Some(o) = ordinary {
+        macro_rules! dedup {
+            ($field:ident) => {
+                let key = concat!("seasons.ordinary_time.", stringify!($field));
+                if defined.contains(key) {
+                    o.$field = None;
+                } else if o.$field.is_some() {
+                    defined.insert(key.to_string());
+                }
+            };
+        }
+        dedup!(season);
+        dedup!(weekday);
+        dedup!(sunday);
+
+        if o.season.is_none() && o.weekday.is_none() && o.sunday.is_none() {
+            *ordinary = None;
+        }
+    }
+}
+
+fn deduplicate_lent(lent: &mut Option<LentSeason>, defined: &mut PropertySet) {
+    if let Some(l) = lent {
+        macro_rules! dedup {
+            ($field:ident) => {
+                let key = concat!("seasons.lent.", stringify!($field));
+                if defined.contains(key) {
+                    l.$field = None;
+                } else if l.$field.is_some() {
+                    defined.insert(key.to_string());
+                }
+            };
+        }
+        dedup!(season);
+        dedup!(weekday);
+        dedup!(sunday);
+        dedup!(day_after_ash_wed);
+        dedup!(holy_week_day);
+
+        if l.season.is_none()
+            && l.weekday.is_none()
+            && l.sunday.is_none()
+            && l.day_after_ash_wed.is_none()
+            && l.holy_week_day.is_none()
+        {
+            *lent = None;
+        }
+    }
+}
+
+fn deduplicate_paschal_triduum(
+    triduum: &mut Option<PaschalTriduumSeason>,
+    defined: &mut PropertySet,
+) {
+    if let Some(t) = triduum {
+        let key = "seasons.paschal_triduum.season";
+        if defined.contains(key) {
+            t.season = None;
+        } else if t.season.is_some() {
+            defined.insert(key.to_string());
+        }
+
+        if t.season.is_none() {
+            *triduum = None;
+        }
+    }
+}
+
+fn deduplicate_easter_time(easter: &mut Option<EasterTimeSeason>, defined: &mut PropertySet) {
+    if let Some(e) = easter {
+        macro_rules! dedup {
+            ($field:ident) => {
+                let key = concat!("seasons.easter_time.", stringify!($field));
+                if defined.contains(key) {
+                    e.$field = None;
+                } else if e.$field.is_some() {
+                    defined.insert(key.to_string());
+                }
+            };
+        }
+        dedup!(season);
+        dedup!(weekday);
+        dedup!(sunday);
+        dedup!(octave);
+
+        if e.season.is_none() && e.weekday.is_none() && e.sunday.is_none() && e.octave.is_none() {
+            *easter = None;
+        }
+    }
+}
+
+fn deduplicate_periods(periods: &mut Option<PeriodsMetadata>, defined: &mut PropertySet) {
+    if let Some(p) = periods {
+        macro_rules! dedup {
+            ($field:ident) => {
+                let key = concat!("periods.", stringify!($field));
+                if defined.contains(key) {
+                    p.$field = None;
+                } else if p.$field.is_some() {
+                    defined.insert(key.to_string());
+                }
+            };
+        }
+        dedup!(christmas_octave);
+        dedup!(days_before_epiphany);
+        dedup!(days_from_epiphany);
+        dedup!(christmas_to_presentation_of_the_lord);
+        dedup!(presentation_of_the_lord_to_holy_thursday);
+        dedup!(holy_week);
+        dedup!(paschal_triduum);
+        dedup!(easter_octave);
+        dedup!(early_ordinary_time);
+        dedup!(late_ordinary_time);
+
+        if p.christmas_octave.is_none()
+            && p.days_before_epiphany.is_none()
+            && p.days_from_epiphany.is_none()
+            && p.christmas_to_presentation_of_the_lord.is_none()
+            && p.presentation_of_the_lord_to_holy_thursday.is_none()
+            && p.holy_week.is_none()
+            && p.paschal_triduum.is_none()
+            && p.easter_octave.is_none()
+            && p.early_ordinary_time.is_none()
+            && p.late_ordinary_time.is_none()
+        {
+            *periods = None;
+        }
+    }
+}
+
+fn deduplicate_ranks(ranks: &mut Option<RanksMetadata>, defined: &mut PropertySet) {
+    if let Some(r) = ranks {
+        macro_rules! dedup {
+            ($field:ident) => {
+                let key = concat!("ranks.", stringify!($field));
+                if defined.contains(key) {
+                    r.$field = None;
+                } else if r.$field.is_some() {
+                    defined.insert(key.to_string());
+                }
+            };
+        }
+        dedup!(solemnity);
+        dedup!(sunday);
+        dedup!(feast);
+        dedup!(memorial);
+        dedup!(optional_memorial);
+        dedup!(weekday);
+
+        if r.solemnity.is_none()
+            && r.sunday.is_none()
+            && r.feast.is_none()
+            && r.memorial.is_none()
+            && r.optional_memorial.is_none()
+            && r.weekday.is_none()
+        {
+            *ranks = None;
+        }
+    }
+}
+
+fn deduplicate_cycles(cycles: &mut Option<CyclesMetadata>, defined: &mut PropertySet) {
+    if let Some(c) = cycles {
+        macro_rules! dedup {
+            ($field:ident) => {
+                let key = concat!("cycles.", stringify!($field));
+                if defined.contains(key) {
+                    c.$field = None;
+                } else if c.$field.is_some() {
+                    defined.insert(key.to_string());
+                }
+            };
+        }
+        dedup!(proper_of_time);
+        dedup!(proper_of_saints);
+        dedup!(sunday_year_a);
+        dedup!(sunday_year_b);
+        dedup!(sunday_year_c);
+        dedup!(weekday_year_1);
+        dedup!(weekday_year_2);
+        dedup!(psalter_week_1);
+        dedup!(psalter_week_2);
+        dedup!(psalter_week_3);
+        dedup!(psalter_week_4);
+
+        if c.proper_of_time.is_none()
+            && c.proper_of_saints.is_none()
+            && c.sunday_year_a.is_none()
+            && c.sunday_year_b.is_none()
+            && c.sunday_year_c.is_none()
+            && c.weekday_year_1.is_none()
+            && c.weekday_year_2.is_none()
+            && c.psalter_week_1.is_none()
+            && c.psalter_week_2.is_none()
+            && c.psalter_week_3.is_none()
+            && c.psalter_week_4.is_none()
+        {
+            *cycles = None;
         }
     }
 }
@@ -708,5 +1037,355 @@ mod tests {
         // Should not panic when entities is None
         filter_entities_by_usage(&mut resources, &used_entity_ids);
         assert!(resources.entities.is_none());
+    }
+
+    // ========================================================================
+    // Property-Level Deduplication Tests
+    // ========================================================================
+
+    fn create_entity(
+        name: Option<&str>,
+        fullname: Option<&str>,
+        entity_type: Option<EntityType>,
+    ) -> EntityDefinition {
+        EntityDefinition {
+            name: name.map(|s| s.to_string()),
+            fullname: fullname.map(|s| s.to_string()),
+            r#type: entity_type,
+            ..Default::default()
+        }
+    }
+
+    fn create_resources_with_entity(
+        locale: &str,
+        entity_id: &str,
+        entity: EntityDefinition,
+    ) -> Resources {
+        let mut entities = std::collections::BTreeMap::new();
+        entities.insert(entity_id.to_string(), entity);
+        Resources {
+            schema: None,
+            locale: locale.to_string(),
+            metadata: None,
+            entities: Some(entities),
+        }
+    }
+
+    #[test]
+    fn test_deduplicate_entity_properties() {
+        // Setup: 3 locales with the same entity, different properties
+        // Order: most specific → most general (fr-ca, fr, en)
+        let mut resources = vec![
+            // fr-ca (most specific) - only name
+            create_resources_with_entity("fr-ca", "john", create_entity(Some("Jean"), None, None)),
+            // fr - name + fullname
+            create_resources_with_entity(
+                "fr",
+                "john",
+                create_entity(Some("Jean"), Some("Jean le Baptiste"), None),
+            ),
+            // en (most general) - name + fullname + type
+            create_resources_with_entity(
+                "en",
+                "john",
+                create_entity(
+                    Some("John"),
+                    Some("John the Baptist"),
+                    Some(EntityType::Person),
+                ),
+            ),
+        ];
+
+        deduplicate_entity_properties(&mut resources);
+
+        // fr-ca: keeps name (most specific)
+        let fr_ca = resources[0].entities.as_ref().unwrap().get("john").unwrap();
+        assert!(fr_ca.name.is_some());
+        assert!(fr_ca.fullname.is_none()); // not defined in fr-ca
+        assert!(fr_ca.r#type.is_none()); // not defined in fr-ca
+
+        // fr: name removed (exists in fr-ca), keeps fullname
+        let fr = resources[1].entities.as_ref().unwrap().get("john").unwrap();
+        assert!(fr.name.is_none()); // removed because fr-ca has it
+        assert!(fr.fullname.is_some()); // first to define fullname
+        assert!(fr.r#type.is_none()); // not defined in fr
+
+        // en: name and fullname removed, keeps type
+        let en = resources[2].entities.as_ref().unwrap().get("john").unwrap();
+        assert!(en.name.is_none()); // removed because fr-ca has it
+        assert!(en.fullname.is_none()); // removed because fr has it
+        assert!(en.r#type.is_some()); // first (and only) to define type
+    }
+
+    #[test]
+    fn test_remove_empty_entities_after_dedup() {
+        // Setup: en has only properties that fr also has → en entity becomes empty
+        let mut resources = vec![
+            // fr (more specific) - only name
+            create_resources_with_entity("fr", "john", create_entity(Some("Jean"), None, None)),
+            // en (more general) - only name (same property as fr)
+            create_resources_with_entity("en", "john", create_entity(Some("John"), None, None)),
+        ];
+
+        deduplicate_entity_properties(&mut resources);
+        remove_empty_entities(&mut resources);
+
+        // fr: keeps john (has name)
+        assert!(resources[0].entities.as_ref().unwrap().contains_key("john"));
+
+        // en: john removed (all properties were deduplicated)
+        assert!(!resources[1].entities.as_ref().unwrap().contains_key("john"));
+    }
+
+    #[test]
+    fn test_deduplicate_metadata_properties() {
+        use crate::types::resource::ResourcesMetadata;
+
+        let mut resources = vec![
+            // fr (more specific) - has weekdays
+            Resources {
+                schema: None,
+                locale: "fr".to_string(),
+                metadata: Some(ResourcesMetadata {
+                    weekdays: Some({
+                        let mut map = std::collections::BTreeMap::new();
+                        map.insert("0".to_string(), "dimanche".to_string());
+                        map
+                    }),
+                    months: None,
+                    ordinal_format: None,
+                    ordinals_letters: None,
+                    ordinals_numeric: None,
+                    colors: None,
+                    seasons: None,
+                    periods: None,
+                    ranks: None,
+                    cycles: None,
+                }),
+                entities: None,
+            },
+            // en (more general) - has weekdays + months
+            Resources {
+                schema: None,
+                locale: "en".to_string(),
+                metadata: Some(ResourcesMetadata {
+                    weekdays: Some({
+                        let mut map = std::collections::BTreeMap::new();
+                        map.insert("0".to_string(), "Sunday".to_string());
+                        map
+                    }),
+                    months: Some({
+                        let mut map = std::collections::BTreeMap::new();
+                        map.insert("1".to_string(), "January".to_string());
+                        map
+                    }),
+                    ordinal_format: None,
+                    ordinals_letters: None,
+                    ordinals_numeric: None,
+                    colors: None,
+                    seasons: None,
+                    periods: None,
+                    ranks: None,
+                    cycles: None,
+                }),
+                entities: None,
+            },
+        ];
+
+        deduplicate_metadata_properties(&mut resources);
+
+        // fr: keeps weekdays
+        assert!(resources[0].metadata.as_ref().unwrap().weekdays.is_some());
+
+        // en: weekdays removed (exists in fr), keeps months
+        assert!(resources[1].metadata.as_ref().unwrap().weekdays.is_none());
+        assert!(resources[1].metadata.as_ref().unwrap().months.is_some());
+    }
+
+    #[test]
+    fn test_deduplicate_nested_seasons() {
+        use crate::types::resource::{AdventSeason, ResourcesMetadata, SeasonsMetadata};
+
+        let mut resources = vec![
+            // fr (more specific) - has advent.season
+            Resources {
+                schema: None,
+                locale: "fr".to_string(),
+                metadata: Some(ResourcesMetadata {
+                    seasons: Some(SeasonsMetadata {
+                        advent: Some(AdventSeason {
+                            season: Some("Avent".to_string()),
+                            weekday: None,
+                            sunday: None,
+                            privileged_weekday: None,
+                        }),
+                        christmas_time: None,
+                        ordinary_time: None,
+                        lent: None,
+                        paschal_triduum: None,
+                        easter_time: None,
+                    }),
+                    weekdays: None,
+                    months: None,
+                    ordinal_format: None,
+                    ordinals_letters: None,
+                    ordinals_numeric: None,
+                    colors: None,
+                    periods: None,
+                    ranks: None,
+                    cycles: None,
+                }),
+                entities: None,
+            },
+            // en (more general) - has advent.season + advent.weekday
+            Resources {
+                schema: None,
+                locale: "en".to_string(),
+                metadata: Some(ResourcesMetadata {
+                    seasons: Some(SeasonsMetadata {
+                        advent: Some(AdventSeason {
+                            season: Some("Advent".to_string()),
+                            weekday: Some("Weekday of Advent".to_string()),
+                            sunday: None,
+                            privileged_weekday: None,
+                        }),
+                        christmas_time: None,
+                        ordinary_time: None,
+                        lent: None,
+                        paschal_triduum: None,
+                        easter_time: None,
+                    }),
+                    weekdays: None,
+                    months: None,
+                    ordinal_format: None,
+                    ordinals_letters: None,
+                    ordinals_numeric: None,
+                    colors: None,
+                    periods: None,
+                    ranks: None,
+                    cycles: None,
+                }),
+                entities: None,
+            },
+        ];
+
+        deduplicate_metadata_properties(&mut resources);
+
+        // fr: keeps advent.season
+        let fr_advent = resources[0]
+            .metadata
+            .as_ref()
+            .unwrap()
+            .seasons
+            .as_ref()
+            .unwrap()
+            .advent
+            .as_ref()
+            .unwrap();
+        assert!(fr_advent.season.is_some());
+
+        // en: advent.season removed, keeps advent.weekday
+        let en_advent = resources[1]
+            .metadata
+            .as_ref()
+            .unwrap()
+            .seasons
+            .as_ref()
+            .unwrap()
+            .advent
+            .as_ref()
+            .unwrap();
+        assert!(en_advent.season.is_none());
+        assert!(en_advent.weekday.is_some());
+    }
+
+    #[test]
+    fn test_is_entity_empty() {
+        // Empty entity (all properties None)
+        let empty = EntityDefinition {
+            r#type: None,
+            fullname: None,
+            name: None,
+            canonization_level: None,
+            date_of_canonization: None,
+            date_of_canonization_is_approximative: None,
+            date_of_beatification: None,
+            date_of_beatification_is_approximative: None,
+            hide_canonization_level: None,
+            titles: None,
+            sex: None,
+            hide_titles: None,
+            date_of_dedication: None,
+            date_of_birth: None,
+            date_of_birth_is_approximative: None,
+            date_of_death: None,
+            date_of_death_is_approximative: None,
+            count: None,
+            sources: None,
+            _todo: None,
+        };
+        assert!(is_entity_empty(&empty));
+
+        // Entity with one property
+        let with_name = create_entity(Some("John"), None, None);
+        assert!(!is_entity_empty(&with_name));
+
+        // Entity with type only
+        let with_type = create_entity(None, None, Some(EntityType::Person));
+        assert!(!is_entity_empty(&with_type));
+    }
+
+    #[test]
+    fn test_deduplicate_entity_independent_entities() {
+        // Two different entities should not affect each other
+        let mut resources = vec![
+            // fr: has john and peter
+            Resources {
+                schema: None,
+                locale: "fr".to_string(),
+                metadata: None,
+                entities: Some({
+                    let mut map = std::collections::BTreeMap::new();
+                    map.insert("john".to_string(), create_entity(Some("Jean"), None, None));
+                    map.insert(
+                        "peter".to_string(),
+                        create_entity(Some("Pierre"), None, None),
+                    );
+                    map
+                }),
+            },
+            // en: has john and peter with same properties
+            Resources {
+                schema: None,
+                locale: "en".to_string(),
+                metadata: None,
+                entities: Some({
+                    let mut map = std::collections::BTreeMap::new();
+                    map.insert(
+                        "john".to_string(),
+                        create_entity(Some("John"), Some("John the Baptist"), None),
+                    );
+                    map.insert(
+                        "peter".to_string(),
+                        create_entity(Some("Peter"), Some("Peter the Apostle"), None),
+                    );
+                    map
+                }),
+            },
+        ];
+
+        deduplicate_entity_properties(&mut resources);
+
+        // fr: both keep name
+        let fr_entities = resources[0].entities.as_ref().unwrap();
+        assert!(fr_entities.get("john").unwrap().name.is_some());
+        assert!(fr_entities.get("peter").unwrap().name.is_some());
+
+        // en: both lose name, keep fullname
+        let en_entities = resources[1].entities.as_ref().unwrap();
+        assert!(en_entities.get("john").unwrap().name.is_none());
+        assert!(en_entities.get("john").unwrap().fullname.is_some());
+        assert!(en_entities.get("peter").unwrap().name.is_none());
+        assert!(en_entities.get("peter").unwrap().fullname.is_some());
     }
 }

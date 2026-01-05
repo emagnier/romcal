@@ -8,7 +8,7 @@ use serde::{Deserialize, Serialize};
 use crate::engine::calendar_definition::CalendarDefinition;
 use crate::engine::dates::LiturgicalDates;
 use crate::engine::resources::Resources;
-use crate::entity_resolution::{normalize_locale, EntityResolver};
+use crate::entity_resolution::{EntityResolver, normalize_locale};
 use crate::entity_search::{EntityMatcher, EntityQuery, EntitySearchResult};
 use crate::error::RomcalError;
 use crate::types::entity::Entity;

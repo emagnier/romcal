@@ -21,5 +21,7 @@ mod merge;
 mod pointer;
 mod resolver;
 
-pub use locale::{build_merge_hierarchy, get_all_parent_locales, get_parent_locale, normalize_locale};
+pub use locale::{
+    build_merge_hierarchy, get_all_parent_locales, get_parent_locale, normalize_locale,
+};
 pub use resolver::EntityResolver;
