@@ -11,6 +11,7 @@ pub mod saint_count;
 pub mod saint_date;
 pub mod sex;
 pub mod title;
+pub mod with_id;
 
 pub use canonization_level::*;
 pub use entity_definition::*;
@@ -20,3 +21,4 @@ pub use saint_count::*;
 pub use saint_date::*;
 pub use sex::*;
 pub use title::*;
+pub use with_id::*;

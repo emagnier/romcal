@@ -24,14 +24,9 @@ pub fn handle(id: &str, output_format: OutputFormat, romcal: Romcal) -> Result<(
         }
         OutputFormat::Csv => {
             // CSV: id, fullname, name, type, sex, canonizationLevel
-            let id = entity.id.as_deref().unwrap_or("");
             let fullname = entity.fullname.as_deref().unwrap_or("");
             let name = entity.name.as_deref().unwrap_or("");
-            let entity_type = entity
-                .r#type
-                .as_ref()
-                .map(|t| format!("{:?}", t).to_uppercase())
-                .unwrap_or_default();
+            let entity_type = format!("{:?}", entity.r#type).to_uppercase();
             let sex = entity
                 .sex
                 .as_ref()
@@ -46,7 +41,7 @@ pub fn handle(id: &str, output_format: OutputFormat, romcal: Romcal) -> Result<(
             println!("id,fullname,name,type,sex,canonizationLevel");
             println!(
                 "{},{},{},{},{},{}",
-                escape_csv(id),
+                escape_csv(&entity.id),
                 escape_csv(fullname),
                 escape_csv(name),
                 entity_type,
@@ -56,11 +51,11 @@ pub fn handle(id: &str, output_format: OutputFormat, romcal: Romcal) -> Result<(
         }
         OutputFormat::Lines => {
             // Lines: ID/Name  Fullname
-            let id = entity
-                .id
-                .as_deref()
-                .or(entity.name.as_deref())
-                .unwrap_or("-");
+            let id = if entity.id.is_empty() {
+                entity.name.as_deref().unwrap_or("-")
+            } else {
+                &entity.id
+            };
             let fullname = entity.fullname.as_deref().unwrap_or("");
             println!("{}  {}", id, fullname);
         }

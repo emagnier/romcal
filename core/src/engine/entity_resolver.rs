@@ -9,8 +9,8 @@ use std::collections::BTreeMap;
 use crate::romcal::Romcal;
 use crate::types::calendar::day_definition::DayDefinition;
 use crate::types::calendar::entity_ref::EntityRef;
-use crate::types::entity::entity_definition::{Entity, EntityId};
 use crate::types::entity::title::{Title, TitlesDef};
+use crate::types::entity::{Entity, EntityDefinition, EntityId};
 
 /// Resolver for entities in liturgical days.
 ///
@@ -61,15 +61,11 @@ impl EntityResolver {
         if let Some(en_resources) = romcal.get_resources("en")
             && let Some(en_entities) = &en_resources.entities
         {
-            for (id, mut entity) in en_entities.clone() {
-                // Assign the ID
-                entity.id = Some(id.clone());
-                // Ensure type is set to Person if not defined
-                if entity.r#type.is_none() {
-                    use crate::types::entity::EntityType;
-                    entity.r#type = Some(EntityType::Person);
-                }
-                merged_entities.insert(id, entity);
+            for (id, definition) in en_entities {
+                // Create Entity from (id, EntityDefinition)
+                // Entity::new() automatically defaults type to Person
+                let entity = Entity::new(id.clone(), definition.clone());
+                merged_entities.insert(id.clone(), entity);
             }
         }
 
@@ -78,20 +74,13 @@ impl EntityResolver {
             if let Some(target_resources) = romcal.get_resources(&romcal.locale)
                 && let Some(target_entities) = &target_resources.entities
             {
-                for (id, target_entity) in target_entities {
+                for (id, target_definition) in target_entities {
                     if let Some(base_entity) = merged_entities.get_mut(id) {
                         // Merge: target properties override base
-                        Self::merge_entity(base_entity, target_entity);
+                        Self::merge_entity_from_definition(base_entity, target_definition);
                     } else {
                         // New entity from target locale
-                        let mut entity = target_entity.clone();
-                        // Assign the ID
-                        entity.id = Some(id.clone());
-                        // Ensure type is set to Person if not defined
-                        if entity.r#type.is_none() {
-                            use crate::types::entity::EntityType;
-                            entity.r#type = Some(EntityType::Person);
-                        }
+                        let entity = Entity::new(id.clone(), target_definition.clone());
                         merged_entities.insert(id.clone(), entity);
                     }
                 }
@@ -99,17 +88,6 @@ impl EntityResolver {
 
             // Also check for locale variants (e.g., 'fr-fr' inherits from 'fr')
             Self::merge_locale_hierarchy(romcal, &mut merged_entities);
-        }
-
-        // Ensure all entities have IDs and types set
-        for (id, entity) in merged_entities.iter_mut() {
-            if entity.id.is_none() {
-                entity.id = Some(id.clone());
-            }
-            if entity.r#type.is_none() {
-                use crate::types::entity::EntityType;
-                entity.r#type = Some(EntityType::Person);
-            }
         }
 
         merged_entities
@@ -128,18 +106,11 @@ impl EntityResolver {
                 && let Some(parent_resources) = romcal.get_resources(parent_locale)
                 && let Some(parent_entities) = &parent_resources.entities
             {
-                for (id, parent_entity) in parent_entities {
+                for (id, parent_definition) in parent_entities {
                     if let Some(base_entity) = merged_entities.get_mut(id) {
-                        Self::merge_entity(base_entity, parent_entity);
+                        Self::merge_entity_from_definition(base_entity, parent_definition);
                     } else {
-                        let mut entity = parent_entity.clone();
-                        // Assign the ID
-                        entity.id = Some(id.clone());
-                        // Ensure type is set to Person if not defined
-                        if entity.r#type.is_none() {
-                            use crate::types::entity::EntityType;
-                            entity.r#type = Some(EntityType::Person);
-                        }
+                        let entity = Entity::new(id.clone(), parent_definition.clone());
                         merged_entities.insert(id.clone(), entity);
                     }
                 }
@@ -147,11 +118,11 @@ impl EntityResolver {
         }
     }
 
-    /// Merges properties from source entity into target entity.
+    /// Merges properties from an EntityDefinition into an existing Entity.
     /// Source properties override target properties when defined.
-    fn merge_entity(target: &mut Entity, source: &Entity) {
-        if source.r#type.is_some() {
-            target.r#type = source.r#type.clone();
+    fn merge_entity_from_definition(target: &mut Entity, source: &EntityDefinition) {
+        if let Some(t) = &source.r#type {
+            target.r#type = t.clone();
         }
         if source.fullname.is_some() {
             target.fullname = source.fullname.clone();
@@ -209,12 +180,6 @@ impl EntityResolver {
         if source.sources.is_some() {
             target.sources = source.sources.clone();
         }
-
-        // Ensure type is set to Person if not defined after merge
-        if target.r#type.is_none() {
-            use crate::types::entity::EntityType;
-            target.r#type = Some(EntityType::Person);
-        }
     }
 
     /// Resolves an entity by its ID.
@@ -232,22 +197,10 @@ impl EntityResolver {
         match pointer {
             EntityRef::ResourceId(id) => {
                 // Look up entity by ID, create empty with ID if not found
-                let mut entity = self
-                    .entities
+                self.entities
                     .get(id)
                     .cloned()
-                    .unwrap_or_else(|| Self::create_empty_entity_with_id(id));
-
-                // Assign the ID
-                entity.id = Some(id.clone());
-
-                // Ensure type is set to Person if not defined
-                if entity.r#type.is_none() {
-                    use crate::types::entity::EntityType;
-                    entity.r#type = Some(EntityType::Person);
-                }
-
-                entity
+                    .unwrap_or_else(|| Self::create_empty_entity_with_id(id))
             }
             EntityRef::Override(override_def) => {
                 // Look up base entity
@@ -257,8 +210,8 @@ impl EntityResolver {
                     .cloned()
                     .unwrap_or_else(|| Self::create_empty_entity_with_id(&override_def.id));
 
-                // Assign the ID
-                entity.id = Some(override_def.id.clone());
+                // Update the ID to match the override
+                entity.id = override_def.id.clone();
 
                 // Apply overrides
                 if let Some(titles_def) = &override_def.titles {
@@ -272,12 +225,6 @@ impl EntityResolver {
                     entity.count = Some(count.clone());
                 }
 
-                // Ensure type is set to Person if not defined
-                if entity.r#type.is_none() {
-                    use crate::types::entity::EntityType;
-                    entity.r#type = Some(EntityType::Person);
-                }
-
                 entity
             }
         }
@@ -285,9 +232,9 @@ impl EntityResolver {
 
     /// Creates an empty entity with just an ID (used as fallback when entity not found)
     fn create_empty_entity_with_id(id: &str) -> Entity {
-        let mut entity = Entity::new();
-        entity.name = Some(id.to_string());
-        entity
+        let mut definition = EntityDefinition::new();
+        definition.name = Some(id.to_string());
+        Entity::new(id.to_string(), definition)
     }
 
     /// Applies a TitlesDef to existing titles.
@@ -337,15 +284,7 @@ impl EntityResolver {
         } else {
             // Fallback: try to find entity with same ID as day_id
             if let Some(entity) = self.entities.get(day_id) {
-                let mut entity = entity.clone();
-                // Assign the ID
-                entity.id = Some(day_id.to_string());
-                // Ensure type is set to Person if not defined
-                if entity.r#type.is_none() {
-                    use crate::types::entity::EntityType;
-                    entity.r#type = Some(EntityType::Person);
-                }
-                vec![entity]
+                vec![entity.clone()]
             } else {
                 Vec::new()
             }
@@ -420,17 +359,17 @@ mod tests {
     use crate::types::entity::entity_override::EntityOverride;
     use crate::types::entity::title::CompoundTitle;
 
-    fn create_test_entity(name: &str, titles: Vec<Title>) -> Entity {
-        let mut entity = Entity::new();
-        entity.name = Some(name.to_string());
-        entity.titles = Some(titles);
-        entity
+    fn create_test_entity_def(name: &str, titles: Vec<Title>) -> EntityDefinition {
+        let mut definition = EntityDefinition::new();
+        definition.name = Some(name.to_string());
+        definition.titles = Some(titles);
+        definition
     }
 
-    fn create_test_resources(locale: &str, entities: Vec<(&str, Entity)>) -> Resources {
+    fn create_test_resources(locale: &str, entities: Vec<(&str, EntityDefinition)>) -> Resources {
         let mut resources = Resources::new(locale.to_string());
-        for (id, entity) in entities {
-            resources.add_entity(id.to_string(), entity);
+        for (id, definition) in entities {
+            resources.add_entity(id.to_string(), definition);
         }
         resources
     }
@@ -448,8 +387,8 @@ mod tests {
         let mut romcal = Romcal::default();
 
         // Add test entity
-        let entity = create_test_entity("Test Saint", vec![Title::Martyr]);
-        let resources = create_test_resources("en", vec![("test_saint", entity)]);
+        let definition = create_test_entity_def("Test Saint", vec![Title::Martyr]);
+        let resources = create_test_resources("en", vec![("test_saint", definition)]);
         romcal.add_resources(resources);
 
         let resolver = EntityResolver::new(&romcal);
@@ -480,8 +419,8 @@ mod tests {
         let mut romcal = Romcal::default();
 
         // Add base entity
-        let entity = create_test_entity("Test Saint", vec![Title::Martyr]);
-        let resources = create_test_resources("en", vec![("test_saint", entity)]);
+        let definition = create_test_entity_def("Test Saint", vec![Title::Martyr]);
+        let resources = create_test_resources("en", vec![("test_saint", definition)]);
         romcal.add_resources(resources);
 
         let resolver = EntityResolver::new(&romcal);
@@ -505,8 +444,8 @@ mod tests {
         let mut romcal = Romcal::default();
 
         // Add base entity
-        let entity = create_test_entity("Test Saint", vec![Title::Martyr]);
-        let resources = create_test_resources("en", vec![("test_saint", entity)]);
+        let definition = create_test_entity_def("Test Saint", vec![Title::Martyr]);
+        let resources = create_test_resources("en", vec![("test_saint", definition)]);
         romcal.add_resources(resources);
 
         let resolver = EntityResolver::new(&romcal);
@@ -535,11 +474,14 @@ mod tests {
         let mut romcal = Romcal::default();
 
         // Add test entities
-        let entity1 = create_test_entity("Saint Peter", vec![Title::Apostle]);
-        let entity2 = create_test_entity("Saint Paul", vec![Title::Apostle, Title::Martyr]);
+        let definition1 = create_test_entity_def("Saint Peter", vec![Title::Apostle]);
+        let definition2 = create_test_entity_def("Saint Paul", vec![Title::Apostle, Title::Martyr]);
         let resources = create_test_resources(
             "en",
-            vec![("peter_apostle", entity1), ("paul_apostle", entity2)],
+            vec![
+                ("peter_apostle", definition1),
+                ("paul_apostle", definition2),
+            ],
         );
         romcal.add_resources(resources);
 
@@ -577,8 +519,8 @@ mod tests {
         let mut romcal = Romcal::default();
 
         // Add entity with same ID as day_id
-        let entity = create_test_entity("Test Saint", vec![Title::Martyr]);
-        let resources = create_test_resources("en", vec![("test_day_id", entity)]);
+        let definition = create_test_entity_def("Test Saint", vec![Title::Martyr]);
+        let resources = create_test_resources("en", vec![("test_day_id", definition)]);
         romcal.add_resources(resources);
 
         let resolver = EntityResolver::new(&romcal);
@@ -633,14 +575,21 @@ mod tests {
         assert!(entities.is_empty());
     }
 
+    fn create_test_entity(id: &str, name: &str, titles: Vec<Title>) -> Entity {
+        let mut definition = EntityDefinition::new();
+        definition.name = Some(name.to_string());
+        definition.titles = Some(titles);
+        Entity::new(id.to_string(), definition)
+    }
+
     #[test]
     fn test_combine_titles() {
         let romcal = Romcal::default();
         let resolver = EntityResolver::new(&romcal);
 
         let entities = vec![
-            create_test_entity("Saint 1", vec![Title::Martyr, Title::Bishop]),
-            create_test_entity("Saint 2", vec![Title::Apostle, Title::Martyr]), // Martyr is duplicate
+            create_test_entity("saint_1", "Saint 1", vec![Title::Martyr, Title::Bishop]),
+            create_test_entity("saint_2", "Saint 2", vec![Title::Apostle, Title::Martyr]), // Martyr is duplicate
         ];
 
         let combined = resolver.combine_titles(&entities);
@@ -662,11 +611,11 @@ mod tests {
         let romcal = Romcal::default();
         let resolver = EntityResolver::new(&romcal);
 
-        let mut hidden_entity = create_test_entity("Hidden", vec![Title::Pope]);
+        let mut hidden_entity = create_test_entity("hidden", "Hidden", vec![Title::Pope]);
         hidden_entity.hide_titles = Some(true);
 
         let entities = vec![
-            create_test_entity("Visible", vec![Title::Martyr]),
+            create_test_entity("visible", "Visible", vec![Title::Martyr]),
             hidden_entity,
         ];
 
@@ -691,15 +640,15 @@ mod tests {
         });
 
         // Add English entity
-        let en_entity = create_test_entity("Test Saint (EN)", vec![Title::Martyr]);
-        let en_resources = create_test_resources("en", vec![("test_saint", en_entity)]);
+        let en_definition = create_test_entity_def("Test Saint (EN)", vec![Title::Martyr]);
+        let en_resources = create_test_resources("en", vec![("test_saint", en_definition)]);
         romcal.add_resources(en_resources);
 
         // Add French entity with translated name
-        let mut fr_entity = Entity::new();
-        fr_entity.name = Some("Saint Test (FR)".to_string());
+        let mut fr_definition = EntityDefinition::new();
+        fr_definition.name = Some("Saint Test (FR)".to_string());
         // Note: titles not set in FR, should inherit from EN
-        let fr_resources = create_test_resources("fr", vec![("test_saint", fr_entity)]);
+        let fr_resources = create_test_resources("fr", vec![("test_saint", fr_definition)]);
         romcal.add_resources(fr_resources);
 
         let resolver = EntityResolver::new(&romcal);

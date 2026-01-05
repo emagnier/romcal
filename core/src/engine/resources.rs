@@ -6,7 +6,7 @@ use std::collections::BTreeMap;
 use ts_rs::TS;
 
 use crate::types::EntityId;
-use crate::types::entity::{CanonizationLevel, Entity};
+use crate::types::entity::{CanonizationLevel, EntityDefinition};
 use crate::types::resource::ResourcesMetadata;
 
 /// Locale code of the resources, in BCP-47 IETF tag format
@@ -31,7 +31,7 @@ pub struct Resources {
 
     /// Entities of the resources: a person, a place, an event, etc.
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub entities: Option<BTreeMap<EntityId, Entity>>,
+    pub entities: Option<BTreeMap<EntityId, EntityDefinition>>,
 }
 
 impl Resources {
@@ -45,24 +45,24 @@ impl Resources {
         }
     }
 
-    /// Add an entity to the resources
-    pub fn add_entity(&mut self, id: EntityId, entity: Entity) {
+    /// Add an entity definition to the resources
+    pub fn add_entity(&mut self, id: EntityId, entity: EntityDefinition) {
         let entities = self.entities.get_or_insert_with(BTreeMap::new);
         entities.insert(id, entity);
     }
 
-    /// Get an entity by its ID
-    pub fn get_entity(&self, id: &str) -> Option<&Entity> {
+    /// Get an entity definition by its ID
+    pub fn get_entity(&self, id: &str) -> Option<&EntityDefinition> {
         self.entities.as_ref()?.get(id)
     }
 
-    /// Get a mutable reference to an entity by its ID
-    pub fn get_entity_mut(&mut self, id: &str) -> Option<&mut Entity> {
+    /// Get a mutable reference to an entity definition by its ID
+    pub fn get_entity_mut(&mut self, id: &str) -> Option<&mut EntityDefinition> {
         self.entities.as_mut()?.get_mut(id)
     }
 
-    /// Remove an entity by its ID
-    pub fn remove_entity(&mut self, id: &str) -> Option<Entity> {
+    /// Remove an entity definition by its ID
+    pub fn remove_entity(&mut self, id: &str) -> Option<EntityDefinition> {
         self.entities.as_mut()?.remove(id)
     }
 
@@ -122,13 +122,13 @@ impl Resources {
         }
     }
 
-    /// Get all entities as a reference to the map
-    pub fn get_entities(&self) -> Option<&BTreeMap<EntityId, Entity>> {
+    /// Get all entity definitions as a reference to the map
+    pub fn get_entities(&self) -> Option<&BTreeMap<EntityId, EntityDefinition>> {
         self.entities.as_ref()
     }
 
-    /// Get all entities as a mutable reference to the map
-    pub fn get_entities_mut(&mut self) -> Option<&mut BTreeMap<EntityId, Entity>> {
+    /// Get all entity definitions as a mutable reference to the map
+    pub fn get_entities_mut(&mut self) -> Option<&mut BTreeMap<EntityId, EntityDefinition>> {
         self.entities.as_mut()
     }
 }

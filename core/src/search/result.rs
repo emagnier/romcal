@@ -63,10 +63,15 @@ impl EntitySearchResult {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::types::entity::EntityDefinition;
+
+    fn create_test_entity() -> Entity {
+        Entity::new("test_id".to_string(), EntityDefinition::default())
+    }
 
     #[test]
     fn test_exact_id_result() {
-        let entity = Entity::default();
+        let entity = create_test_entity();
         let result = EntitySearchResult::exact_id(entity);
 
         assert_eq!(result.score, 1.0);
@@ -76,7 +81,7 @@ mod tests {
 
     #[test]
     fn test_fuzzy_result() {
-        let entity = Entity::default();
+        let entity = create_test_entity();
         let result = EntitySearchResult::fuzzy(
             entity,
             0.85,
@@ -90,7 +95,7 @@ mod tests {
 
     #[test]
     fn test_filter_only_result() {
-        let entity = Entity::default();
+        let entity = create_test_entity();
         let result = EntitySearchResult::filter_only(entity);
 
         assert_eq!(result.score, 1.0);

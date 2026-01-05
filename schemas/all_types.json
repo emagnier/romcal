@@ -2073,16 +2073,9 @@
       },
       "additionalProperties": false
     },
-    "Entity": {
+    "EntityDefinition": {
       "type": "object",
       "properties": {
-        "id": {
-          "description": "The unique identifier of the entity",
-          "type": [
-            "string",
-            "null"
-          ]
-        },
         "type": {
           "description": "The type of the entity.\n\nDefaults to `EntityType::Person`.",
           "anyOf": [
@@ -2834,6 +2827,189 @@
         }
       ]
     },
+    "Entity": {
+      "description": "An entity with a guaranteed ID.\n\nThis struct is used for entities that have been resolved from the resources,\nwhere the ID is always present (e.g., in search results, liturgical days).",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The unique identifier of the entity (required)",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the entity.",
+          "$ref": "#/definitions/EntityType"
+        },
+        "fullname": {
+          "description": "The full name of the entity.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "description": "The short name of the entity, without the canonization level and titles.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "canonization_level": {
+          "description": "The canonization level of a person.",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/CanonizationLevel"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "date_of_canonization": {
+          "description": "Date of Canonization.",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SaintDateDef"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "date_of_canonization_is_approximative": {
+          "description": "Specify whether an approximate indicator should be added for canonization date.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "date_of_beatification": {
+          "description": "Date of Beatification.",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SaintDateDef"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "date_of_beatification_is_approximative": {
+          "description": "Specify whether an approximate indicator should be added for beatification date.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "hide_canonization_level": {
+          "description": "Specify if the canonization level should not be displayed.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "titles": {
+          "description": "Titles of the Saint or the Blessed.",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Title"
+          }
+        },
+        "sex": {
+          "description": "Determine if the Saint or the Blessed is a male or a female.",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Sex"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "hide_titles": {
+          "description": "Specify if the titles should not be displayed.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "date_of_dedication": {
+          "description": "Date of Dedication of a place of worship.",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SaintDateDef"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "date_of_birth": {
+          "description": "Date of Birth.",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SaintDateDef"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "date_of_birth_is_approximative": {
+          "description": "Specify whether an approximate indicator should be added for birth date.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "date_of_death": {
+          "description": "Date of Death.",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SaintDateDef"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "date_of_death_is_approximative": {
+          "description": "Specify whether an approximate indicator should be added for death date.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "count": {
+          "description": "Number of persons that this definition represents.",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SaintCount"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sources": {
+          "description": "Sources for the information about this entity.",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "type"
+      ],
+      "additionalProperties": false
+    },
     "SundayCycle": {
       "description": "A three-year cycle for Sunday Mass readings (and some solemnities), designated by A, B, or C.\nEach cycle begins on the First Sunday of Advent of the previous civil year and ends on Saturday\nafter the Christ the King Solemnity. The cycles follow each other in alphabetical order.\nC year is always divisible by 3, A has remainder of 1, and B remainder of 2.",
       "oneOf": [
@@ -3434,26 +3610,16 @@
           ]
         },
         "Entity": {
+          "description": "An entity with a guaranteed ID.\n\nThis struct is used for entities that have been resolved from the resources,\nwhere the ID is always present (e.g., in search results, liturgical days).",
           "type": "object",
           "properties": {
             "id": {
-              "description": "The unique identifier of the entity",
-              "type": [
-                "string",
-                "null"
-              ]
+              "description": "The unique identifier of the entity (required)",
+              "type": "string"
             },
             "type": {
-              "description": "The type of the entity.\n\nDefaults to `EntityType::Person`.",
-              "anyOf": [
-                {
-                  "$ref": "#/definitions/EntityType"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "default": "PERSON"
+              "description": "The type of the entity.",
+              "$ref": "#/definitions/EntityType"
             },
             "fullname": {
               "description": "The full name of the entity.",
@@ -3481,7 +3647,7 @@
               ]
             },
             "date_of_canonization": {
-              "description": "Date of Canonization, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century.",
+              "description": "Date of Canonization.",
               "anyOf": [
                 {
                   "$ref": "#/definitions/SaintDateDef"
@@ -3492,14 +3658,14 @@
               ]
             },
             "date_of_canonization_is_approximative": {
-              "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+              "description": "Specify whether an approximate indicator should be added for canonization date.",
               "type": [
                 "boolean",
                 "null"
               ]
             },
             "date_of_beatification": {
-              "description": "Date of Beatification, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century.",
+              "description": "Date of Beatification.",
               "anyOf": [
                 {
                   "$ref": "#/definitions/SaintDateDef"
@@ -3510,21 +3676,21 @@
               ]
             },
             "date_of_beatification_is_approximative": {
-              "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+              "description": "Specify whether an approximate indicator should be added for beatification date.",
               "type": [
                 "boolean",
                 "null"
               ]
             },
             "hide_canonization_level": {
-              "description": "Specify if the canonization level should not be displayed.\nIt's generally the case when the canonization are already included in the name.",
+              "description": "Specify if the canonization level should not be displayed.",
               "type": [
                 "boolean",
                 "null"
               ]
             },
             "titles": {
-              "description": "Titles of the Saint or the Blessed",
+              "description": "Titles of the Saint or the Blessed.",
               "type": [
                 "array",
                 "null"
@@ -3545,14 +3711,14 @@
               ]
             },
             "hide_titles": {
-              "description": "Specify if the titles should not be displayed.\nIt's generally the case when titles are already included in the name.",
+              "description": "Specify if the titles should not be displayed.",
               "type": [
                 "boolean",
                 "null"
               ]
             },
             "date_of_dedication": {
-              "description": "Date of Dedication of a church, basilica, or cathedral (or other place of worship),\nas a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century.",
+              "description": "Date of Dedication of a place of worship.",
               "anyOf": [
                 {
                   "$ref": "#/definitions/SaintDateDef"
@@ -3563,7 +3729,7 @@
               ]
             },
             "date_of_birth": {
-              "description": "Date of Birth, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century.",
+              "description": "Date of Birth.",
               "anyOf": [
                 {
                   "$ref": "#/definitions/SaintDateDef"
@@ -3574,14 +3740,14 @@
               ]
             },
             "date_of_birth_is_approximative": {
-              "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+              "description": "Specify whether an approximate indicator should be added for birth date.",
               "type": [
                 "boolean",
                 "null"
               ]
             },
             "date_of_death": {
-              "description": "Date of Death, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century.",
+              "description": "Date of Death.",
               "anyOf": [
                 {
                   "$ref": "#/definitions/SaintDateDef"
@@ -3592,14 +3758,14 @@
               ]
             },
             "date_of_death_is_approximative": {
-              "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+              "description": "Specify whether an approximate indicator should be added for death date.",
               "type": [
                 "boolean",
                 "null"
               ]
             },
             "count": {
-              "description": "Number of person that this definition represent.\nIt could be set as 'many' if the number is not defined.",
+              "description": "Number of persons that this definition represents.",
               "anyOf": [
                 {
                   "$ref": "#/definitions/SaintCount"
@@ -3610,7 +3776,7 @@
               ]
             },
             "sources": {
-              "description": "Sources for the information about this entity",
+              "description": "Sources for the information about this entity.",
               "type": [
                 "array",
                 "null"
@@ -3618,19 +3784,12 @@
               "items": {
                 "type": "string"
               }
-            },
-            "_todo": {
-              "description": "Internal notes (not serialized).",
-              "type": [
-                "array",
-                "null"
-              ],
-              "items": {
-                "type": "string"
-              },
-              "writeOnly": true
             }
           },
+          "required": [
+            "id",
+            "type"
+          ],
           "additionalProperties": false
         },
         "EntityType": {
@@ -6046,16 +6205,9 @@
           },
           "additionalProperties": false
         },
-        "Entity": {
+        "EntityDefinition": {
           "type": "object",
           "properties": {
-            "id": {
-              "description": "The unique identifier of the entity",
-              "type": [
-                "string",
-                "null"
-              ]
-            },
             "type": {
               "description": "The type of the entity.\n\nDefaults to `EntityType::Person`.",
               "anyOf": [
@@ -6499,7 +6651,7 @@
             "null"
           ],
           "additionalProperties": {
-            "$ref": "#/definitions/Entity"
+            "$ref": "#/definitions/EntityDefinition"
           }
         }
       },
@@ -7570,26 +7722,16 @@
           "additionalProperties": false
         },
         "Entity": {
+          "description": "An entity with a guaranteed ID.\n\nThis struct is used for entities that have been resolved from the resources,\nwhere the ID is always present (e.g., in search results, liturgical days).",
           "type": "object",
           "properties": {
             "id": {
-              "description": "The unique identifier of the entity",
-              "type": [
-                "string",
-                "null"
-              ]
+              "description": "The unique identifier of the entity (required)",
+              "type": "string"
             },
             "type": {
-              "description": "The type of the entity.\n\nDefaults to `EntityType::Person`.",
-              "anyOf": [
-                {
-                  "$ref": "#/definitions/EntityType"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "default": "PERSON"
+              "description": "The type of the entity.",
+              "$ref": "#/definitions/EntityType"
             },
             "fullname": {
               "description": "The full name of the entity.",
@@ -7617,7 +7759,7 @@
               ]
             },
             "date_of_canonization": {
-              "description": "Date of Canonization, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century.",
+              "description": "Date of Canonization.",
               "anyOf": [
                 {
                   "$ref": "#/definitions/SaintDateDef"
@@ -7628,14 +7770,14 @@
               ]
             },
             "date_of_canonization_is_approximative": {
-              "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+              "description": "Specify whether an approximate indicator should be added for canonization date.",
               "type": [
                 "boolean",
                 "null"
               ]
             },
             "date_of_beatification": {
-              "description": "Date of Beatification, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century.",
+              "description": "Date of Beatification.",
               "anyOf": [
                 {
                   "$ref": "#/definitions/SaintDateDef"
@@ -7646,21 +7788,21 @@
               ]
             },
             "date_of_beatification_is_approximative": {
-              "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+              "description": "Specify whether an approximate indicator should be added for beatification date.",
               "type": [
                 "boolean",
                 "null"
               ]
             },
             "hide_canonization_level": {
-              "description": "Specify if the canonization level should not be displayed.\nIt's generally the case when the canonization are already included in the name.",
+              "description": "Specify if the canonization level should not be displayed.",
               "type": [
                 "boolean",
                 "null"
               ]
             },
             "titles": {
-              "description": "Titles of the Saint or the Blessed",
+              "description": "Titles of the Saint or the Blessed.",
               "type": [
                 "array",
                 "null"
@@ -7681,14 +7823,14 @@
               ]
             },
             "hide_titles": {
-              "description": "Specify if the titles should not be displayed.\nIt's generally the case when titles are already included in the name.",
+              "description": "Specify if the titles should not be displayed.",
               "type": [
                 "boolean",
                 "null"
               ]
             },
             "date_of_dedication": {
-              "description": "Date of Dedication of a church, basilica, or cathedral (or other place of worship),\nas a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century.",
+              "description": "Date of Dedication of a place of worship.",
               "anyOf": [
                 {
                   "$ref": "#/definitions/SaintDateDef"
@@ -7699,7 +7841,7 @@
               ]
             },
             "date_of_birth": {
-              "description": "Date of Birth, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century.",
+              "description": "Date of Birth.",
               "anyOf": [
                 {
                   "$ref": "#/definitions/SaintDateDef"
@@ -7710,14 +7852,14 @@
               ]
             },
             "date_of_birth_is_approximative": {
-              "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+              "description": "Specify whether an approximate indicator should be added for birth date.",
               "type": [
                 "boolean",
                 "null"
               ]
             },
             "date_of_death": {
-              "description": "Date of Death, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century.",
+              "description": "Date of Death.",
               "anyOf": [
                 {
                   "$ref": "#/definitions/SaintDateDef"
@@ -7728,14 +7870,14 @@
               ]
             },
             "date_of_death_is_approximative": {
-              "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+              "description": "Specify whether an approximate indicator should be added for death date.",
               "type": [
                 "boolean",
                 "null"
               ]
             },
             "count": {
-              "description": "Number of person that this definition represent.\nIt could be set as 'many' if the number is not defined.",
+              "description": "Number of persons that this definition represents.",
               "anyOf": [
                 {
                   "$ref": "#/definitions/SaintCount"
@@ -7746,7 +7888,7 @@
               ]
             },
             "sources": {
-              "description": "Sources for the information about this entity",
+              "description": "Sources for the information about this entity.",
               "type": [
                 "array",
                 "null"
@@ -7754,19 +7896,12 @@
               "items": {
                 "type": "string"
               }
-            },
-            "_todo": {
-              "description": "Internal notes (not serialized).",
-              "type": [
-                "array",
-                "null"
-              ],
-              "items": {
-                "type": "string"
-              },
-              "writeOnly": true
             }
           },
+          "required": [
+            "id",
+            "type"
+          ],
           "additionalProperties": false
         },
         "EntityType": {
@@ -9096,26 +9231,16 @@
           ]
         },
         "Entity": {
+          "description": "An entity with a guaranteed ID.\n\nThis struct is used for entities that have been resolved from the resources,\nwhere the ID is always present (e.g., in search results, liturgical days).",
           "type": "object",
           "properties": {
             "id": {
-              "description": "The unique identifier of the entity",
-              "type": [
-                "string",
-                "null"
-              ]
+              "description": "The unique identifier of the entity (required)",
+              "type": "string"
             },
             "type": {
-              "description": "The type of the entity.\n\nDefaults to `EntityType::Person`.",
-              "anyOf": [
-                {
-                  "$ref": "#/definitions/EntityType"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "default": "PERSON"
+              "description": "The type of the entity.",
+              "$ref": "#/definitions/EntityType"
             },
             "fullname": {
               "description": "The full name of the entity.",
@@ -9143,7 +9268,7 @@
               ]
             },
             "date_of_canonization": {
-              "description": "Date of Canonization, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century.",
+              "description": "Date of Canonization.",
               "anyOf": [
                 {
                   "$ref": "#/definitions/SaintDateDef"
@@ -9154,14 +9279,14 @@
               ]
             },
             "date_of_canonization_is_approximative": {
-              "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+              "description": "Specify whether an approximate indicator should be added for canonization date.",
               "type": [
                 "boolean",
                 "null"
               ]
             },
             "date_of_beatification": {
-              "description": "Date of Beatification, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century.",
+              "description": "Date of Beatification.",
               "anyOf": [
                 {
                   "$ref": "#/definitions/SaintDateDef"
@@ -9172,21 +9297,21 @@
               ]
             },
             "date_of_beatification_is_approximative": {
-              "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+              "description": "Specify whether an approximate indicator should be added for beatification date.",
               "type": [
                 "boolean",
                 "null"
               ]
             },
             "hide_canonization_level": {
-              "description": "Specify if the canonization level should not be displayed.\nIt's generally the case when the canonization are already included in the name.",
+              "description": "Specify if the canonization level should not be displayed.",
               "type": [
                 "boolean",
                 "null"
               ]
             },
             "titles": {
-              "description": "Titles of the Saint or the Blessed",
+              "description": "Titles of the Saint or the Blessed.",
               "type": [
                 "array",
                 "null"
@@ -9207,14 +9332,14 @@
               ]
             },
             "hide_titles": {
-              "description": "Specify if the titles should not be displayed.\nIt's generally the case when titles are already included in the name.",
+              "description": "Specify if the titles should not be displayed.",
               "type": [
                 "boolean",
                 "null"
               ]
             },
             "date_of_dedication": {
-              "description": "Date of Dedication of a church, basilica, or cathedral (or other place of worship),\nas a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century.",
+              "description": "Date of Dedication of a place of worship.",
               "anyOf": [
                 {
                   "$ref": "#/definitions/SaintDateDef"
@@ -9225,7 +9350,7 @@
               ]
             },
             "date_of_birth": {
-              "description": "Date of Birth, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century.",
+              "description": "Date of Birth.",
               "anyOf": [
                 {
                   "$ref": "#/definitions/SaintDateDef"
@@ -9236,14 +9361,14 @@
               ]
             },
             "date_of_birth_is_approximative": {
-              "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+              "description": "Specify whether an approximate indicator should be added for birth date.",
               "type": [
                 "boolean",
                 "null"
               ]
             },
             "date_of_death": {
-              "description": "Date of Death, as a Number (year), a String (in 'YYYY-MM' or 'YYYY-MM-DD' format),\nor an object describing date range, multiple possible date, or a century.",
+              "description": "Date of Death.",
               "anyOf": [
                 {
                   "$ref": "#/definitions/SaintDateDef"
@@ -9254,14 +9379,14 @@
               ]
             },
             "date_of_death_is_approximative": {
-              "description": "Specify whether an approximate indicator should be added, when the date is displayed.\nFor example in English: 'c. 201'.",
+              "description": "Specify whether an approximate indicator should be added for death date.",
               "type": [
                 "boolean",
                 "null"
               ]
             },
             "count": {
-              "description": "Number of person that this definition represent.\nIt could be set as 'many' if the number is not defined.",
+              "description": "Number of persons that this definition represents.",
               "anyOf": [
                 {
                   "$ref": "#/definitions/SaintCount"
@@ -9272,7 +9397,7 @@
               ]
             },
             "sources": {
-              "description": "Sources for the information about this entity",
+              "description": "Sources for the information about this entity.",
               "type": [
                 "array",
                 "null"
@@ -9280,19 +9405,12 @@
               "items": {
                 "type": "string"
               }
-            },
-            "_todo": {
-              "description": "Internal notes (not serialized).",
-              "type": [
-                "array",
-                "null"
-              ],
-              "items": {
-                "type": "string"
-              },
-              "writeOnly": true
             }
           },
+          "required": [
+            "id",
+            "type"
+          ],
           "additionalProperties": false
         },
         "EntityType": {

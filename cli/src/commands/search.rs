@@ -78,15 +78,9 @@ pub fn handle(
             println!("id,score,matchType,fullname,name,type,sex,canonizationLevel");
 
             for r in &results {
-                let id = r.entity.id.as_deref().unwrap_or("");
                 let fullname = r.entity.fullname.as_deref().unwrap_or("");
                 let name = r.entity.name.as_deref().unwrap_or("");
-                let entity_type = r
-                    .entity
-                    .r#type
-                    .as_ref()
-                    .map(|t| format!("{:?}", t).to_uppercase())
-                    .unwrap_or_default();
+                let entity_type = format!("{:?}", r.entity.r#type).to_uppercase();
                 let sex = r
                     .entity
                     .sex
@@ -102,7 +96,7 @@ pub fn handle(
 
                 println!(
                     "{},{:.2},{},{},{},{},{},{}",
-                    escape_csv(id),
+                    escape_csv(&r.entity.id),
                     r.score,
                     r.match_type,
                     escape_csv(fullname),
@@ -116,12 +110,11 @@ pub fn handle(
         OutputFormat::Lines => {
             // Lines: ID/Name  Score  Fullname
             for r in &results {
-                let id = r
-                    .entity
-                    .id
-                    .as_deref()
-                    .or(r.entity.name.as_deref())
-                    .unwrap_or("-");
+                let id = if r.entity.id.is_empty() {
+                    r.entity.name.as_deref().unwrap_or("-")
+                } else {
+                    &r.entity.id
+                };
                 let fullname = r.entity.fullname.as_deref().unwrap_or("");
                 println!("{}  {:.2}  {}", id, r.score, fullname);
             }

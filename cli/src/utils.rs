@@ -306,25 +306,27 @@ fn merge_json_values(target: &mut serde_json::Value, source: serde_json::Value) 
 #[cfg(test)]
 mod tests {
     use super::*;
+    use romcal::types::entity::EntityDefinition;
     use std::collections::BTreeMap;
 
-    fn create_test_entity(_id: &str, name: &str) -> romcal::Entity {
-        let mut entity = romcal::Entity::new();
-        entity.name = Some(name.to_string());
-        entity
+    fn create_test_entity_def(name: &str) -> EntityDefinition {
+        EntityDefinition {
+            name: Some(name.to_string()),
+            ..Default::default()
+        }
     }
 
-    fn create_test_entities_map(entities: Vec<(&str, &str)>) -> BTreeMap<String, romcal::Entity> {
+    fn create_test_entities_map(entities: Vec<(&str, &str)>) -> BTreeMap<String, EntityDefinition> {
         let mut map = BTreeMap::new();
         for (id, name) in entities {
-            map.insert(id.to_string(), create_test_entity(id, name));
+            map.insert(id.to_string(), create_test_entity_def(name));
         }
         map
     }
 
     fn create_test_resources_definition(
         locale: &str,
-        entities: BTreeMap<String, romcal::Entity>,
+        entities: BTreeMap<String, EntityDefinition>,
     ) -> romcal::Resources {
         let mut resources = romcal::Resources::new(locale.to_string());
         resources.entities = Some(entities);
@@ -333,7 +335,7 @@ mod tests {
 
     fn create_test_resources_definition_with_metadata(
         locale: &str,
-        entities: BTreeMap<String, romcal::Entity>,
+        entities: BTreeMap<String, EntityDefinition>,
         metadata: romcal::types::resource::ResourcesMetadata,
     ) -> romcal::Resources {
         let mut resources = romcal::Resources::new(locale.to_string());

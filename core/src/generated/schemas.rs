@@ -1438,7 +1438,7 @@ pub const RESOURCES_SCHEMA: &str = r##"{
         "null"
       ],
       "additionalProperties": {
-        "$ref": "#/definitions/Entity"
+        "$ref": "#/definitions/EntityDefinition"
       }
     }
   },
@@ -2117,16 +2117,9 @@ pub const RESOURCES_SCHEMA: &str = r##"{
       },
       "additionalProperties": false
     },
-    "Entity": {
+    "EntityDefinition": {
       "type": "object",
       "properties": {
-        "id": {
-          "description": "The unique identifier of the entity",
-          "type": [
-            "string",
-            "null"
-          ]
-        },
         "type": {
           "description": "The type of the entity.\n\nDefaults to `EntityType::Person`.",
           "anyOf": [

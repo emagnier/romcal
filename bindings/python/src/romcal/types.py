@@ -1596,6 +1596,315 @@ class MassInfo(BaseModel):
     """
 
 
+class Entity(BaseModel):
+    """
+    An entity with a guaranteed ID.
+
+    This struct is used for entities that have been resolved from the resources,
+    where the ID is always present (e.g., in search results, liturgical days).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    id: str
+    """
+    The unique identifier of the entity (required)
+    """
+    type: EntityType
+    """
+    The type of the entity.
+    """
+    fullname: str | None = None
+    """
+    The full name of the entity.
+    """
+    name: str | None = None
+    """
+    The short name of the entity, without the canonization level and titles.
+    """
+    canonization_level: CanonizationLevel | None = None
+    """
+    The canonization level of a person.
+    """
+    date_of_canonization: SaintDateDef | None = None
+    """
+    Date of Canonization.
+    """
+    date_of_canonization_is_approximative: bool | None = None
+    """
+    Specify whether an approximate indicator should be added for canonization date.
+    """
+    date_of_beatification: SaintDateDef | None = None
+    """
+    Date of Beatification.
+    """
+    date_of_beatification_is_approximative: bool | None = None
+    """
+    Specify whether an approximate indicator should be added for beatification date.
+    """
+    hide_canonization_level: bool | None = None
+    """
+    Specify if the canonization level should not be displayed.
+    """
+    titles: list[Title] | None = None
+    """
+    Titles of the Saint or the Blessed.
+    """
+    sex: Sex | None = None
+    """
+    Determine if the Saint or the Blessed is a male or a female.
+    """
+    hide_titles: bool | None = None
+    """
+    Specify if the titles should not be displayed.
+    """
+    date_of_dedication: SaintDateDef | None = None
+    """
+    Date of Dedication of a place of worship.
+    """
+    date_of_birth: SaintDateDef | None = None
+    """
+    Date of Birth.
+    """
+    date_of_birth_is_approximative: bool | None = None
+    """
+    Specify whether an approximate indicator should be added for birth date.
+    """
+    date_of_death: SaintDateDef | None = None
+    """
+    Date of Death.
+    """
+    date_of_death_is_approximative: bool | None = None
+    """
+    Specify whether an approximate indicator should be added for death date.
+    """
+    count: SaintCount | None = None
+    """
+    Number of persons that this definition represents.
+    """
+    sources: list[str] | None = None
+    """
+    Sources for the information about this entity.
+    """
+
+
+class CelebrationSummary(BaseModel):
+    """
+    Summary of a celebration for use in optional celebrations list.
+    Contains the essential fields from a LiturgicalDay that identify a celebration.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    id: str
+    """
+    The unique identifier of the liturgical day
+    """
+    fullname: str
+    """
+    The full name of the liturgical day
+    """
+    precedence: Precedence
+    """
+    The liturgical precedence for this liturgical day
+    """
+    rank: Rank
+    """
+    The liturgical rank for this liturgical day
+    """
+    rank_name: str
+    """
+    The localized liturgical rank for this liturgical day
+    """
+    colors: list[ColorInfo]
+    """
+    The liturgical colors for this liturgical day
+    """
+    commons: list[CommonInfo]
+    """
+    The common prayers/readings used for this celebration
+    """
+    entities: list[Entity]
+    """
+    The entities (Saints, Blessed, or Places) linked to this liturgical day
+    """
+    titles: TitlesDef
+    """
+    The titles for this liturgical day
+    """
+    is_holy_day_of_obligation: bool
+    """
+    Holy days of obligation
+    """
+    is_optional: bool
+    """
+    Indicates if this liturgical day is optional
+    """
+    from_calendar_id: str
+    """
+    The ID of the calendar where this liturgical day is defined
+    """
+
+
+class MassContext(BaseModel):
+    """
+    A flat structure representing a single mass with its full liturgical context.
+
+    This is the main type for the mass-centric calendar view. It contains:
+    - Mass identification (type, name, civil/liturgical dates)
+    - Day-level context (season, cycles, periods)
+    - Primary celebration data (flattened from LiturgicalDay)
+    - Optional alternative celebrations
+
+    For evening masses (Easter Vigil, Previous Evening Mass), the `civil_date`
+    is shifted to the previous day while `liturgical_date` remains the original
+    liturgical celebration date.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    mass_time: MassTime
+    """
+    The type of mass (e.g., DayMass, EasterVigil, etc.)
+    Serialized as SCREAMING_SNAKE_CASE (e.g., "DAY_MASS")
+    """
+    mass_time_name: str
+    """
+    The localized name of the mass time (translation key in snake_case)
+    """
+    civil_date: str
+    """
+    The civil calendar date when this mass is celebrated (YYYY-MM-DD).
+    For evening masses (EasterVigil, PreviousEveningMass), this is the day
+    BEFORE the liturgical date.
+    """
+    liturgical_date: str
+    """
+    The liturgical date this mass belongs to (YYYY-MM-DD).
+    This is the "theological" date of the celebration.
+    """
+    season: Season | None = None
+    """
+    The liturgical season
+    """
+    season_name: str | None = None
+    """
+    The localized season name
+    """
+    sunday_cycle: SundayCycle
+    """
+    The Sunday cycle (Year A, B, or C)
+    """
+    sunday_cycle_name: str
+    """
+    The localized Sunday cycle name
+    """
+    weekday_cycle: WeekdayCycle
+    """
+    The weekday cycle (Year 1 or 2)
+    """
+    weekday_cycle_name: str
+    """
+    The localized weekday cycle name
+    """
+    psalter_week: PsalterWeekCycle
+    """
+    The psalter week cycle (Week 1-4)
+    """
+    psalter_week_name: str
+    """
+    The localized psalter week name
+    """
+    week_of_season: Annotated[int | None, Field(ge=0)] = None
+    """
+    The week number within the liturgical season
+    """
+    day_of_season: Annotated[int | None, Field(ge=0)] = None
+    """
+    The day number within the liturgical season
+    """
+    day_of_week: DayOfWeek
+    """
+    The day of the week (0=Sunday to 6=Saturday)
+    """
+    periods: list[PeriodInfo]
+    """
+    The liturgical periods this day belongs to
+    """
+    start_of_season: str | None = None
+    """
+    The first day of the current liturgical season
+    """
+    end_of_season: str | None = None
+    """
+    The last day of the current liturgical season
+    """
+    start_of_liturgical_year: str
+    """
+    The first day of the liturgical year (first Sunday of Advent)
+    """
+    end_of_liturgical_year: str
+    """
+    The last day of the liturgical year
+    """
+    id: str
+    """
+    The unique identifier of the liturgical day
+    """
+    fullname: str
+    """
+    The full name of the liturgical day
+    """
+    precedence: Precedence
+    """
+    The liturgical precedence
+    """
+    rank: Rank
+    """
+    The liturgical rank
+    """
+    rank_name: str
+    """
+    The localized liturgical rank name
+    """
+    colors: list[ColorInfo]
+    """
+    The liturgical colors
+    """
+    commons: list[CommonInfo]
+    """
+    The common prayers/readings used
+    """
+    entities: list[Entity]
+    """
+    The entities (Saints, Blessed, or Places) linked to this day
+    """
+    titles: TitlesDef
+    """
+    The titles for this liturgical day
+    """
+    is_holy_day_of_obligation: bool
+    """
+    Whether this is a holy day of obligation
+    """
+    is_optional: bool
+    """
+    Whether this liturgical day is optional
+    """
+    from_calendar_id: str
+    """
+    The ID of the calendar where this liturgical day is defined
+    """
+    optional_celebrations: list[CelebrationSummary]
+    """
+    Optional alternative celebrations (e.g., optional memorials)
+    that can be celebrated instead of the primary celebration.
+    """
+
+
 class DateDefException(BaseModel):
     """
     The liturgical day date exception.
@@ -1743,14 +2052,10 @@ class ResourcesMetadata(BaseModel):
     """
 
 
-class Entity(BaseModel):
+class EntityDefinition(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    id: str | None = None
-    """
-    The unique identifier of the entity
-    """
     type: EntityType | None = "PERSON"
     """
     The type of the entity.
@@ -1900,65 +2205,6 @@ class ParentOverride(BaseModel):
     allow_similar_rank_items: bool | None = None
     """
     The allow_similar_rank_items flag if it was changed
-    """
-
-
-class CelebrationSummary(BaseModel):
-    """
-    Summary of a celebration for use in optional celebrations list.
-    Contains the essential fields from a LiturgicalDay that identify a celebration.
-    """
-
-    model_config = ConfigDict(
-        extra="forbid",
-    )
-    id: str
-    """
-    The unique identifier of the liturgical day
-    """
-    fullname: str
-    """
-    The full name of the liturgical day
-    """
-    precedence: Precedence
-    """
-    The liturgical precedence for this liturgical day
-    """
-    rank: Rank
-    """
-    The liturgical rank for this liturgical day
-    """
-    rank_name: str
-    """
-    The localized liturgical rank for this liturgical day
-    """
-    colors: list[ColorInfo]
-    """
-    The liturgical colors for this liturgical day
-    """
-    commons: list[CommonInfo]
-    """
-    The common prayers/readings used for this celebration
-    """
-    entities: list[Entity]
-    """
-    The entities (Saints, Blessed, or Places) linked to this liturgical day
-    """
-    titles: TitlesDef
-    """
-    The titles for this liturgical day
-    """
-    is_holy_day_of_obligation: bool
-    """
-    Holy days of obligation
-    """
-    is_optional: bool
-    """
-    Indicates if this liturgical day is optional
-    """
-    from_calendar_id: str
-    """
-    The ID of the calendar where this liturgical day is defined
     """
 
 
@@ -2148,163 +2394,6 @@ class LiturgicalDay(BaseModel):
     Contains the differences between this liturgical day and its parent definitions.
     Each element in the array represents the diff from a parent calendar definition.
     The array is ordered from most general (e.g., general_roman) to most specific.
-    """
-
-
-class MassContext(BaseModel):
-    """
-    A flat structure representing a single mass with its full liturgical context.
-
-    This is the main type for the mass-centric calendar view. It contains:
-    - Mass identification (type, name, civil/liturgical dates)
-    - Day-level context (season, cycles, periods)
-    - Primary celebration data (flattened from LiturgicalDay)
-    - Optional alternative celebrations
-
-    For evening masses (Easter Vigil, Previous Evening Mass), the `civil_date`
-    is shifted to the previous day while `liturgical_date` remains the original
-    liturgical celebration date.
-    """
-
-    model_config = ConfigDict(
-        extra="forbid",
-    )
-    mass_time: MassTime
-    """
-    The type of mass (e.g., DayMass, EasterVigil, etc.)
-    Serialized as SCREAMING_SNAKE_CASE (e.g., "DAY_MASS")
-    """
-    mass_time_name: str
-    """
-    The localized name of the mass time (translation key in snake_case)
-    """
-    civil_date: str
-    """
-    The civil calendar date when this mass is celebrated (YYYY-MM-DD).
-    For evening masses (EasterVigil, PreviousEveningMass), this is the day
-    BEFORE the liturgical date.
-    """
-    liturgical_date: str
-    """
-    The liturgical date this mass belongs to (YYYY-MM-DD).
-    This is the "theological" date of the celebration.
-    """
-    season: Season | None = None
-    """
-    The liturgical season
-    """
-    season_name: str | None = None
-    """
-    The localized season name
-    """
-    sunday_cycle: SundayCycle
-    """
-    The Sunday cycle (Year A, B, or C)
-    """
-    sunday_cycle_name: str
-    """
-    The localized Sunday cycle name
-    """
-    weekday_cycle: WeekdayCycle
-    """
-    The weekday cycle (Year 1 or 2)
-    """
-    weekday_cycle_name: str
-    """
-    The localized weekday cycle name
-    """
-    psalter_week: PsalterWeekCycle
-    """
-    The psalter week cycle (Week 1-4)
-    """
-    psalter_week_name: str
-    """
-    The localized psalter week name
-    """
-    week_of_season: Annotated[int | None, Field(ge=0)] = None
-    """
-    The week number within the liturgical season
-    """
-    day_of_season: Annotated[int | None, Field(ge=0)] = None
-    """
-    The day number within the liturgical season
-    """
-    day_of_week: DayOfWeek
-    """
-    The day of the week (0=Sunday to 6=Saturday)
-    """
-    periods: list[PeriodInfo]
-    """
-    The liturgical periods this day belongs to
-    """
-    start_of_season: str | None = None
-    """
-    The first day of the current liturgical season
-    """
-    end_of_season: str | None = None
-    """
-    The last day of the current liturgical season
-    """
-    start_of_liturgical_year: str
-    """
-    The first day of the liturgical year (first Sunday of Advent)
-    """
-    end_of_liturgical_year: str
-    """
-    The last day of the liturgical year
-    """
-    id: str
-    """
-    The unique identifier of the liturgical day
-    """
-    fullname: str
-    """
-    The full name of the liturgical day
-    """
-    precedence: Precedence
-    """
-    The liturgical precedence
-    """
-    rank: Rank
-    """
-    The liturgical rank
-    """
-    rank_name: str
-    """
-    The localized liturgical rank name
-    """
-    colors: list[ColorInfo]
-    """
-    The liturgical colors
-    """
-    commons: list[CommonInfo]
-    """
-    The common prayers/readings used
-    """
-    entities: list[Entity]
-    """
-    The entities (Saints, Blessed, or Places) linked to this day
-    """
-    titles: TitlesDef
-    """
-    The titles for this liturgical day
-    """
-    is_holy_day_of_obligation: bool
-    """
-    Whether this is a holy day of obligation
-    """
-    is_optional: bool
-    """
-    Whether this liturgical day is optional
-    """
-    from_calendar_id: str
-    """
-    The ID of the calendar where this liturgical day is defined
-    """
-    optional_celebrations: list[CelebrationSummary]
-    """
-    Optional alternative celebrations (e.g., optional memorials)
-    that can be celebrated instead of the primary celebration.
     """
 
 

@@ -652,12 +652,12 @@ mod tests {
     // Tests for entity-based fullname resolution
     // -------------------------------------------------------------------------
 
-    use crate::types::entity::entity_definition::Entity;
+    use crate::types::entity::EntityDefinition;
 
     /// Creates test resources with entities for entity fullname resolution tests
     fn create_test_resources_with_entities(
         locale: &str,
-        entities: std::collections::BTreeMap<String, Entity>,
+        entities: std::collections::BTreeMap<String, EntityDefinition>,
     ) -> Resources {
         Resources {
             schema: None,
@@ -673,7 +673,7 @@ mod tests {
         let mut entities = std::collections::BTreeMap::new();
         entities.insert(
             "mary_mother_of_god".to_string(),
-            Entity {
+            EntityDefinition {
                 fullname: Some("Mary, Mother of God".to_string()),
                 ..Default::default()
             },
@@ -715,7 +715,7 @@ mod tests {
         let mut entities = std::collections::BTreeMap::new();
         entities.insert(
             "test_entity".to_string(),
-            Entity {
+            EntityDefinition {
                 fullname: Some("Entity Fullname".to_string()),
                 ..Default::default()
             },
@@ -746,7 +746,7 @@ mod tests {
         let mut en_entities = std::collections::BTreeMap::new();
         en_entities.insert(
             "mary_mother_of_god".to_string(),
-            Entity {
+            EntityDefinition {
                 fullname: Some("Mary, Mother of God".to_string()),
                 ..Default::default()
             },
@@ -755,7 +755,7 @@ mod tests {
         let mut fr_entities = std::collections::BTreeMap::new();
         fr_entities.insert(
             "mary_mother_of_god".to_string(),
-            Entity {
+            EntityDefinition {
                 fullname: Some("Sainte Marie, Mère de Dieu".to_string()),
                 ..Default::default()
             },

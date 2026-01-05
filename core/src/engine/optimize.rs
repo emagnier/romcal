@@ -578,86 +578,37 @@ mod tests {
     }
 
     fn create_test_resources() -> Resources {
+        use crate::types::entity::EntityDefinition;
+
         let mut entities = std::collections::BTreeMap::new();
 
         entities.insert(
             "john_the_baptist".to_string(),
-            crate::types::entity::Entity {
-                id: Some("john_the_baptist".to_string()),
+            EntityDefinition {
                 r#type: Some(EntityType::Person),
                 fullname: Some("John the Baptist".to_string()),
                 name: Some("John".to_string()),
-                canonization_level: None,
-                date_of_canonization: None,
-                date_of_canonization_is_approximative: None,
-                date_of_beatification: None,
-                date_of_beatification_is_approximative: None,
-                hide_canonization_level: None,
-                titles: None,
-                sex: None,
-                hide_titles: None,
-                date_of_dedication: None,
-                date_of_birth: None,
-                date_of_birth_is_approximative: None,
-                date_of_death: None,
-                date_of_death_is_approximative: None,
-                count: None,
-                sources: None,
-                _todo: None,
+                ..Default::default()
             },
         );
 
         entities.insert(
             "john_the_evangelist".to_string(),
-            crate::types::entity::Entity {
-                id: Some("john_the_evangelist".to_string()),
+            EntityDefinition {
                 r#type: Some(EntityType::Person),
                 fullname: Some("John the Evangelist".to_string()),
                 name: Some("John".to_string()),
-                canonization_level: None,
-                date_of_canonization: None,
-                date_of_canonization_is_approximative: None,
-                date_of_beatification: None,
-                date_of_beatification_is_approximative: None,
-                hide_canonization_level: None,
-                titles: None,
-                sex: None,
-                hide_titles: None,
-                date_of_dedication: None,
-                date_of_birth: None,
-                date_of_birth_is_approximative: None,
-                date_of_death: None,
-                date_of_death_is_approximative: None,
-                count: None,
-                sources: None,
-                _todo: None,
+                ..Default::default()
             },
         );
 
         entities.insert(
             "unused_entity".to_string(),
-            crate::types::entity::Entity {
-                id: Some("unused_entity".to_string()),
+            EntityDefinition {
                 r#type: Some(EntityType::Person),
                 fullname: Some("Unused Entity".to_string()),
                 name: Some("Unused".to_string()),
-                canonization_level: None,
-                date_of_canonization: None,
-                date_of_canonization_is_approximative: None,
-                date_of_beatification: None,
-                date_of_beatification_is_approximative: None,
-                hide_canonization_level: None,
-                titles: None,
-                sex: None,
-                hide_titles: None,
-                date_of_dedication: None,
-                date_of_birth: None,
-                date_of_birth_is_approximative: None,
-                date_of_death: None,
-                date_of_death_is_approximative: None,
-                count: None,
-                sources: None,
-                _todo: None,
+                ..Default::default()
             },
         );
 

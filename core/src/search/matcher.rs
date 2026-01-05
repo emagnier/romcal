@@ -74,11 +74,7 @@ impl EntityMatcher {
             b.score
                 .partial_cmp(&a.score)
                 .unwrap_or(std::cmp::Ordering::Equal)
-                .then_with(|| {
-                    let id_a = a.entity.id.as_deref().unwrap_or("");
-                    let id_b = b.entity.id.as_deref().unwrap_or("");
-                    id_a.cmp(id_b)
-                })
+                .then_with(|| a.entity.id.cmp(&b.entity.id))
         });
 
         // Apply limit
@@ -104,9 +100,7 @@ impl EntityMatcher {
         let search_text = query.text.as_ref().unwrap();
 
         // Check for exact ID match first
-        if let Some(id) = &entity.id
-            && id.eq_ignore_ascii_case(search_text)
-        {
+        if entity.id.eq_ignore_ascii_case(search_text) {
             return Some(EntitySearchResult::exact_id(entity.clone()));
         }
 
@@ -118,7 +112,7 @@ impl EntityMatcher {
     fn matches_filters(&self, entity: &Entity, query: &EntityQuery) -> bool {
         // Filter by entity type
         if let Some(ref query_type) = query.entity_type
-            && entity.r#type.as_ref() != Some(query_type)
+            && &entity.r#type != query_type
         {
             return false;
         }
@@ -168,14 +162,12 @@ impl EntityMatcher {
         let mut matched_fields = Vec::new();
 
         // Match against ID
-        if let Some(id) = &entity.id {
-            let score = strsim::jaro_winkler(&search_normalized, &normalize(id));
-            if score > best_score {
-                best_score = score;
-            }
-            if score >= min_score {
-                matched_fields.push("id".to_string());
-            }
+        let score = strsim::jaro_winkler(&search_normalized, &normalize(&entity.id));
+        if score > best_score {
+            best_score = score;
+        }
+        if score >= min_score {
+            matched_fields.push("id".to_string());
         }
 
         // Match against fullname
@@ -218,18 +210,18 @@ impl EntityMatcher {
 mod tests {
     use super::*;
     use crate::search::MatchType;
-    use crate::types::entity::{CanonizationLevel, EntityType, Sex, Title};
+    use crate::types::entity::{CanonizationLevel, EntityDefinition, EntityType, Sex, Title};
 
     fn create_test_entity(id: &str, name: &str, fullname: &str) -> Entity {
-        Entity {
-            id: Some(id.to_string()),
+        let definition = EntityDefinition {
             name: Some(name.to_string()),
             fullname: Some(fullname.to_string()),
             r#type: Some(EntityType::Person),
             canonization_level: Some(CanonizationLevel::Saint),
             sex: Some(Sex::Male),
             ..Default::default()
-        }
+        };
+        Entity::new(id.to_string(), definition)
     }
 
     #[test]
@@ -250,7 +242,7 @@ mod tests {
         assert!(!results.is_empty());
         assert_eq!(results[0].match_type, MatchType::ExactId);
         assert_eq!(results[0].score, 1.0);
-        assert_eq!(results[0].entity.id.as_deref(), Some("francis_of_assisi"));
+        assert_eq!(&results[0].entity.id, "francis_of_assisi");
     }
 
     #[test]
@@ -319,7 +311,7 @@ mod tests {
     fn test_filter_by_entity_type() {
         let matcher = EntityMatcher::new();
         let mut entity = create_test_entity("test", "Test", "Test Entity");
-        entity.r#type = Some(EntityType::Place);
+        entity.r#type = EntityType::Place;
 
         let entities = vec![entity];
 
@@ -411,7 +403,7 @@ mod tests {
         let results = matcher.search(entities.iter(), &query);
         assert_eq!(results.len(), 1);
         assert_eq!(results[0].match_type, MatchType::FilterOnly);
-        assert_eq!(results[0].entity.id.as_deref(), Some("benedict"));
+        assert_eq!(&results[0].entity.id, "benedict");
 
         // Filter Abbots and Bishops
         let query = EntityQuery {
@@ -420,10 +412,7 @@ mod tests {
         };
         let results = matcher.search(entities.iter(), &query);
         assert_eq!(results.len(), 2);
-        let ids: Vec<&str> = results
-            .iter()
-            .filter_map(|r| r.entity.id.as_deref())
-            .collect();
+        let ids: Vec<&str> = results.iter().map(|r| r.entity.id.as_str()).collect();
         assert!(ids.contains(&"benedict"));
         assert!(ids.contains(&"augustine"));
         assert!(!ids.contains(&"stephen"));

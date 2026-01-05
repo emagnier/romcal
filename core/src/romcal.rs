@@ -225,17 +225,17 @@ impl Romcal {
     pub fn get_entity(&self, id: &str) -> Option<Entity> {
         // First, try the current locale
         if let Some(resources) = self.get_resources(&self.locale)
-            && let Some(entity) = resources.get_entity(id)
+            && let Some(definition) = resources.get_entity(id)
         {
-            return Some(entity.clone());
+            return Some(Entity::new(id.to_string(), definition.clone()));
         }
 
         // Fall back to other locales
         for resources in &self.resources {
             if resources.locale != self.locale
-                && let Some(entity) = resources.get_entity(id)
+                && let Some(definition) = resources.get_entity(id)
             {
-                return Some(entity.clone());
+                return Some(Entity::new(id.to_string(), definition.clone()));
             }
         }
 
@@ -256,14 +256,19 @@ impl Romcal {
     pub fn search_entities(&self, query: EntityQuery) -> Vec<EntitySearchResult> {
         let matcher = EntityMatcher::new();
 
-        // Get entities from the current locale
-        let entities = self
+        // Get entities from the current locale and convert to Entity
+        let entities: Vec<Entity> = self
             .get_resources(&self.locale)
             .and_then(|r| r.get_entities())
             .into_iter()
-            .flat_map(|entities| entities.values());
+            .flat_map(|entities| {
+                entities
+                    .iter()
+                    .map(|(id, def)| Entity::new(id.clone(), def.clone()))
+            })
+            .collect();
 
-        matcher.search(entities, &query)
+        matcher.search(entities.iter(), &query)
     }
 
     /// Get a liturgical date by its ID for a given year
