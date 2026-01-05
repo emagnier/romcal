@@ -13,11 +13,12 @@
 //! ```
 
 pub mod engine;
+pub mod entity_resolution;
+pub mod entity_search;
 pub mod error;
 pub mod generated;
 pub mod helpers;
 pub mod romcal;
-pub mod search;
 pub mod types;
 
 /// The version of the romcal library.
@@ -26,7 +27,7 @@ pub const VERSION: &str = env!("CARGO_PKG_VERSION");
 pub use engine::calendar::{Calendar, LiturgicalCalendar};
 pub use engine::calendar_definition::*;
 pub use engine::dates::LiturgicalDates;
-pub use engine::entity_resolver::EntityResolver;
+pub use entity_resolution::EntityResolver;
 pub use engine::liturgical_day::*;
 pub use engine::proper_of_time::ProperOfTime;
 pub use engine::resources::*;
@@ -49,4 +50,4 @@ pub use types::liturgical::SundayCycleCombined;
 pub use types::mass::{Acclamation, BibleBook, LiturgicalCycle, MassPart};
 
 // Entity search types
-pub use search::{EntityMatcher, EntityQuery, EntitySearchResult, MatchType};
+pub use entity_search::{EntityMatcher, EntityQuery, EntitySearchResult, MatchType};

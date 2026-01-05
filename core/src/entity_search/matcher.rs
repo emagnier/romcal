@@ -209,7 +209,7 @@ impl EntityMatcher {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::search::MatchType;
+    use crate::entity_search::MatchType;
     use crate::types::entity::{CanonizationLevel, EntityDefinition, EntityType, Sex, Title};
 
     fn create_test_entity(id: &str, name: &str, fullname: &str) -> Entity {

@@ -9,7 +9,7 @@ use std::collections::{BTreeMap, HashMap, HashSet};
 
 use super::calendar_definition::CalendarDefinition;
 use super::dates::LiturgicalDates;
-use super::entity_resolver::EntityResolver;
+use crate::entity_resolution::EntityResolver;
 use super::liturgical_day::{LiturgicalDay, ParentOverride};
 use super::proper_of_time::ProperOfTime;
 use super::proper_of_time::utils::PROPER_OF_TIME_ID;

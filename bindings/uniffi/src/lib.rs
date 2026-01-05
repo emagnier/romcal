@@ -1,7 +1,7 @@
 use romcal::engine::calendar_definition::CalendarDefinition;
 use romcal::engine::resources::Resources;
 use romcal::romcal::{Preset, Romcal as RomcalCore};
-use romcal::search::{EntityQuery as CoreEntityQuery, MatchType as CoreMatchType};
+use romcal::entity_search::{EntityQuery as CoreEntityQuery, MatchType as CoreMatchType};
 use romcal::types::entity::{CanonizationLevel, EntityType, Sex, Title};
 use romcal::types::{CalendarContext, EasterCalculationType};
 use serde::de::DeserializeOwned;

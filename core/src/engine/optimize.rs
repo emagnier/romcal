@@ -1,6 +1,7 @@
 use serde_json::Value;
 use std::collections::{HashMap, HashSet};
 
+use crate::entity_resolution::locale::get_all_parent_locales;
 use crate::{CalendarDefinition, Resources, Romcal, RomcalError, RomcalResult};
 
 // Type aliases for clarity
@@ -368,23 +369,6 @@ fn deduplicate_seasons_metadata(
             metadata.seasons = None;
         }
     }
-}
-
-/// Extract all parent locales from a BCP 47 locale tag in hierarchy order
-/// For example: "fr-CA-fonipa" -> ["fr", "fr-CA"]
-///              "zh-Hant-TW" -> ["zh", "zh-Hant"]
-///              "fr" -> []
-fn get_all_parent_locales(locale: &str) -> Vec<String> {
-    let parts: Vec<&str> = locale.split('-').collect();
-    let mut parents = Vec::new();
-
-    // Generate all possible parent locales by progressively removing the last part
-    for i in 1..parts.len() {
-        let parent = parts[..parts.len() - i].join("-");
-        parents.push(parent);
-    }
-
-    parents
 }
 
 /// Filter calendar_definitions to keep only:

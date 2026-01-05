@@ -3,7 +3,7 @@
 use crate::enums::OutputFormat;
 use crate::error::RomcalCliError;
 use romcal::Romcal;
-use romcal::search::EntityQuery;
+use romcal::entity_search::EntityQuery;
 use romcal::types::entity::{CanonizationLevel, EntityType, Sex, Title};
 
 /// Search options from CLI arguments.

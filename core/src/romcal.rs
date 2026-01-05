@@ -8,8 +8,9 @@ use serde::{Deserialize, Serialize};
 use crate::engine::calendar_definition::CalendarDefinition;
 use crate::engine::dates::LiturgicalDates;
 use crate::engine::resources::Resources;
+use crate::entity_resolution::{normalize_locale, EntityResolver};
+use crate::entity_search::{EntityMatcher, EntityQuery, EntitySearchResult};
 use crate::error::RomcalError;
-use crate::search::{EntityMatcher, EntityQuery, EntitySearchResult};
 use crate::types::entity::Entity;
 use crate::types::{CalendarContext, EasterCalculationType, OrdinalFormat};
 
@@ -99,8 +100,20 @@ impl Romcal {
     /// 3. Default value (Numeric)
     pub fn new(config: Preset) -> Self {
         let calendar_definitions = config.calendar_definitions.unwrap_or_default();
-        let resources = config.resources.unwrap_or_default();
-        let locale = config.locale.as_deref().unwrap_or(DEFAULT_LOCALE);
+
+        // Normalize locale to lowercase (BCP 47 is case-insensitive)
+        let locale = normalize_locale(config.locale.as_deref().unwrap_or(DEFAULT_LOCALE));
+
+        // Normalize resources locales to lowercase
+        let resources: Vec<Resources> = config
+            .resources
+            .unwrap_or_default()
+            .into_iter()
+            .map(|mut res| {
+                res.locale = normalize_locale(&res.locale);
+                res
+            })
+            .collect();
 
         // Get ordinal_format from locale's ResourcesMetadata if not set in Preset
         let ordinal_format_from_locale = resources
@@ -152,7 +165,8 @@ impl Romcal {
     }
 
     /// Add a resources definition to the configuration
-    pub fn add_resources(&mut self, resources: Resources) {
+    pub fn add_resources(&mut self, mut resources: Resources) {
+        resources.locale = normalize_locale(&resources.locale);
         self.resources.push(resources);
     }
 
@@ -222,29 +236,16 @@ impl Romcal {
     /// # Returns
     ///
     /// The entity if found, or `None` if not found.
+    ///
+    /// Uses locale fallback: en → parent locale → specific locale
     pub fn get_entity(&self, id: &str) -> Option<Entity> {
-        // First, try the current locale
-        if let Some(resources) = self.get_resources(&self.locale)
-            && let Some(definition) = resources.get_entity(id)
-        {
-            return Some(Entity::new(id.to_string(), definition.clone()));
-        }
-
-        // Fall back to other locales
-        for resources in &self.resources {
-            if resources.locale != self.locale
-                && let Some(definition) = resources.get_entity(id)
-            {
-                return Some(Entity::new(id.to_string(), definition.clone()));
-            }
-        }
-
-        None
+        let resolver = EntityResolver::new(self);
+        resolver.resolve_entity(id).cloned()
     }
 
     /// Search entities with fuzzy matching and filters.
     ///
-    /// Searches in the current locale's resources.
+    /// Searches entities merged from all locales (en → parent → specific).
     ///
     /// # Arguments
     ///
@@ -254,21 +255,9 @@ impl Romcal {
     ///
     /// A vector of search results sorted by score (highest first).
     pub fn search_entities(&self, query: EntityQuery) -> Vec<EntitySearchResult> {
+        let resolver = EntityResolver::new(self);
         let matcher = EntityMatcher::new();
-
-        // Get entities from the current locale and convert to Entity
-        let entities: Vec<Entity> = self
-            .get_resources(&self.locale)
-            .and_then(|r| r.get_entities())
-            .into_iter()
-            .flat_map(|entities| {
-                entities
-                    .iter()
-                    .map(|(id, def)| Entity::new(id.clone(), def.clone()))
-            })
-            .collect();
-
-        matcher.search(entities.iter(), &query)
+        matcher.search(resolver.get_all_entities().values(), &query)
     }
 
     /// Get a liturgical date by its ID for a given year
@@ -375,5 +364,46 @@ mod tests {
         let result = romcal.get_date("first_sunday_of_advent", 2026);
         assert!(result.is_ok());
         assert_eq!(result.unwrap(), "2026-11-29");
+    }
+
+    #[test]
+    fn test_locale_case_insensitive() {
+        // BCP 47 locales are case-insensitive
+        let romcal_lower = Romcal::new(Preset {
+            locale: Some("fr-ca".to_string()),
+            ..Default::default()
+        });
+        let romcal_upper = Romcal::new(Preset {
+            locale: Some("FR-CA".to_string()),
+            ..Default::default()
+        });
+        let romcal_mixed = Romcal::new(Preset {
+            locale: Some("Fr-Ca".to_string()),
+            ..Default::default()
+        });
+
+        // All should normalize to lowercase
+        assert_eq!(romcal_lower.locale, "fr-ca");
+        assert_eq!(romcal_upper.locale, "fr-ca");
+        assert_eq!(romcal_mixed.locale, "fr-ca");
+    }
+
+    #[test]
+    fn test_resources_locale_case_insensitive() {
+        let mut romcal = Romcal::new(Preset {
+            locale: Some("fr-CA".to_string()),
+            resources: Some(vec![Resources::new("FR-CA".to_string())]),
+            ..Default::default()
+        });
+
+        // Resource locale should be normalized
+        assert_eq!(romcal.resources[0].locale, "fr-ca");
+
+        // get_resources should find it
+        assert!(romcal.get_resources("fr-ca").is_some());
+
+        // Adding resources should also normalize
+        romcal.add_resources(Resources::new("EN-GB".to_string()));
+        assert!(romcal.get_resources("en-gb").is_some());
     }
 }
