@@ -1,5 +1,5 @@
 {
-  "$schema": "../../../schemas/resources_definition.json",
+  "$schema": "../../../schemas/resources.json",
   "locale": "fr",
   "entities": {
     "jacques_francois_lefranc_martyr_and_martyrs_of_the_revolution": {

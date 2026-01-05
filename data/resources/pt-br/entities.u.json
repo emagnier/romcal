@@ -1,5 +1,5 @@
 {
-  "$schema": "../../../schemas/resources_definition.json",
+  "$schema": "../../../schemas/resources.json",
   "locale": "pt-br",
   "entities": {
     "urban_i_pope": {

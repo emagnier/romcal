@@ -1,5 +1,5 @@
 {
-  "$schema": "../../../schemas/resources_definition.json",
+  "$schema": "../../../schemas/resources.json",
   "locale": "sk",
   "entities": {
     "yolanda_of_poland_religious": {

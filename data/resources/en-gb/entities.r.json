@@ -1,5 +1,5 @@
 {
-  "$schema": "../../../schemas/resources_definition.json",
+  "$schema": "../../../schemas/resources.json",
   "locale": "en-gb",
   "entities": {
     "raymond_of_penyafort_priest": {

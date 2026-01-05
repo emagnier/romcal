@@ -1,5 +1,5 @@
 {
-  "$schema": "../../../schemas/resources_definition.json",
+  "$schema": "../../../schemas/resources.json",
   "locale": "es",
   "entities": {
     "valerius_of_trier_bishop": {

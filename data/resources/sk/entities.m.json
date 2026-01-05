@@ -1,5 +1,5 @@
 {
-  "$schema": "../../../schemas/resources_definition.json",
+  "$schema": "../../../schemas/resources.json",
   "locale": "sk",
   "entities": {
     "mac_nissi_of_connor_bishop": {

@@ -1,5 +1,5 @@
 {
-  "$schema": "../../../schemas/resources_definition.json",
+  "$schema": "../../../schemas/resources.json",
   "locale": "it",
   "entities": {
     "palm_sunday_of_the_passion_of_the_lord": {

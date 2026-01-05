@@ -1,5 +1,5 @@
 {
-  "$schema": "../../../schemas/resources_definition.json",
+  "$schema": "../../../schemas/resources.json",
   "locale": "de",
   "entities": {
     "ignatius_de_azevedo_priest_and_companions_martyrs": {

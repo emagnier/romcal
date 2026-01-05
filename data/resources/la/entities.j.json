@@ -1,5 +1,5 @@
 {
-  "$schema": "../../../schemas/resources_definition.json",
+  "$schema": "../../../schemas/resources.json",
   "locale": "la",
   "entities": {
     "jacinta_marto_and_francisco_marto": {

@@ -1,5 +1,5 @@
 {
-  "$schema": "../../../schemas/resources_definition.json",
+  "$schema": "../../../schemas/resources.json",
   "locale": "en-gb",
   "entities": {
     "paulina_of_the_agonizing_heart_of_jesus_visintainer_virgin": {
