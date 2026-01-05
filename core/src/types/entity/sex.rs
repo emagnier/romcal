@@ -1,16 +1,17 @@
 #[cfg(feature = "schema-gen")]
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
-use strum::EnumIter;
+use strum::{EnumIter, EnumString};
 #[cfg(feature = "ts-bindings")]
 use ts_rs::TS;
 
 /// Sex of a person.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, EnumIter)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, EnumIter, EnumString)]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+#[strum(serialize_all = "SCREAMING_SNAKE_CASE")]
 pub enum Sex {
     /// Male person
     Male,
@@ -21,6 +22,7 @@ pub enum Sex {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use std::str::FromStr;
     use strum::IntoEnumIterator;
 
     #[test]
@@ -41,5 +43,12 @@ mod tests {
 
         let deserialized: Sex = serde_json::from_str(&json).unwrap();
         assert_eq!(deserialized, Sex::Male);
+    }
+
+    #[test]
+    fn test_sex_parse() {
+        assert_eq!(Sex::from_str("MALE").unwrap(), Sex::Male);
+        assert_eq!(Sex::from_str("FEMALE").unwrap(), Sex::Female);
+        assert!(Sex::from_str("INVALID").is_err());
     }
 }

@@ -1,17 +1,18 @@
 #[cfg(feature = "schema-gen")]
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
-use strum::EnumIter;
+use strum::{EnumIter, EnumString};
 #[cfg(feature = "ts-bindings")]
 use ts_rs::TS;
 
 /// Canonization level indicating the official recognition status of a person.
 /// Defines whether someone is beatified (Blessed) or canonized (Saint).
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, EnumIter)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, EnumIter, EnumString)]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+#[strum(serialize_all = "SCREAMING_SNAKE_CASE")]
 pub enum CanonizationLevel {
     /// Beatified person (Blessed) - first step toward sainthood
     Blessed,
@@ -22,6 +23,7 @@ pub enum CanonizationLevel {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use std::str::FromStr;
     use strum::IntoEnumIterator;
 
     #[test]
@@ -54,5 +56,18 @@ mod tests {
 
         let deserialized: CanonizationLevel = serde_json::from_str(&json).unwrap();
         assert_eq!(deserialized, CanonizationLevel::Blessed);
+    }
+
+    #[test]
+    fn test_canonization_level_parse() {
+        assert_eq!(
+            CanonizationLevel::from_str("SAINT").unwrap(),
+            CanonizationLevel::Saint
+        );
+        assert_eq!(
+            CanonizationLevel::from_str("BLESSED").unwrap(),
+            CanonizationLevel::Blessed
+        );
+        assert!(CanonizationLevel::from_str("INVALID").is_err());
     }
 }

@@ -1,6 +1,8 @@
 use romcal::engine::calendar_definition::CalendarDefinition;
 use romcal::engine::resources::Resources;
 use romcal::romcal::{Preset, Romcal as RomcalCore};
+use romcal::search::{EntityQuery as CoreEntityQuery, MatchType as CoreMatchType};
+use romcal::types::entity::{CanonizationLevel, EntityType, Sex, Title};
 use romcal::types::{CalendarContext, EasterCalculationType};
 use serde::de::DeserializeOwned;
 use std::sync::Arc;
@@ -52,6 +54,125 @@ impl From<romcal::error::RomcalError> for RomcalError {
         }
     }
 }
+
+// ============================================================================
+// Entity Search Types
+// ============================================================================
+
+/// Type of match that was found for a search result.
+#[derive(Debug, Clone, PartialEq, Eq, uniffi::Enum)]
+pub enum MatchType {
+    /// Exact ID match (score = 1.0)
+    ExactId,
+    /// Fuzzy match on text fields (score < 1.0)
+    Fuzzy,
+    /// Match by filters only (no text query provided)
+    FilterOnly,
+}
+
+impl From<CoreMatchType> for MatchType {
+    fn from(m: CoreMatchType) -> Self {
+        match m {
+            CoreMatchType::ExactId => MatchType::ExactId,
+            CoreMatchType::Fuzzy => MatchType::Fuzzy,
+            CoreMatchType::FilterOnly => MatchType::FilterOnly,
+        }
+    }
+}
+
+/// Query parameters for searching entities.
+#[derive(Debug, Clone, Default, uniffi::Record)]
+pub struct EntityQuery {
+    /// Fuzzy text search on id, fullname, and name fields.
+    pub text: Option<String>,
+    /// Filter by entity type ('PERSON', 'PLACE', 'EVENT').
+    pub entity_type: Option<String>,
+    /// Filter by canonization level ('SAINT', 'BLESSED').
+    pub canonization_level: Option<String>,
+    /// Filter by sex ('MALE', 'FEMALE').
+    pub sex: Option<String>,
+    /// Filter by titles (entity must have at least one).
+    pub titles: Option<Vec<String>>,
+    /// Maximum number of results (default: 20).
+    pub limit: Option<u32>,
+    /// Minimum score threshold 0.0-1.0 (default: 0.3).
+    pub min_score: Option<f64>,
+}
+
+impl EntityQuery {
+    /// Convert to core EntityQuery
+    fn to_core(&self) -> Result<CoreEntityQuery, RomcalError> {
+        let entity_type = self
+            .entity_type
+            .as_ref()
+            .map(|s| {
+                s.parse::<EntityType>()
+                    .map_err(|_| RomcalError::InvalidConfig(format!("Invalid entity_type: '{}'", s)))
+            })
+            .transpose()?;
+
+        let canonization_level = self
+            .canonization_level
+            .as_ref()
+            .map(|s| {
+                s.parse::<CanonizationLevel>().map_err(|_| {
+                    RomcalError::InvalidConfig(format!("Invalid canonization_level: '{}'", s))
+                })
+            })
+            .transpose()?;
+
+        let sex = self
+            .sex
+            .as_ref()
+            .map(|s| {
+                s.parse::<Sex>()
+                    .map_err(|_| RomcalError::InvalidConfig(format!("Invalid sex: '{}'", s)))
+            })
+            .transpose()?;
+
+        let titles = self
+            .titles
+            .as_ref()
+            .map(|titles| {
+                titles
+                    .iter()
+                    .map(|s| {
+                        serde_json::from_str::<Title>(&format!("\"{}\"", s)).map_err(|_| {
+                            RomcalError::InvalidConfig(format!("Invalid title: '{}'", s))
+                        })
+                    })
+                    .collect::<Result<Vec<Title>, RomcalError>>()
+            })
+            .transpose()?;
+
+        Ok(CoreEntityQuery {
+            text: self.text.clone(),
+            entity_type,
+            canonization_level,
+            sex,
+            titles,
+            limit: self.limit.map(|l| l as usize),
+            min_score: self.min_score,
+        })
+    }
+}
+
+/// Result of an entity search.
+#[derive(Debug, Clone, uniffi::Record)]
+pub struct EntitySearchResult {
+    /// The matched entity as JSON string.
+    pub entity_json: String,
+    /// Match score from 0.0 to 1.0.
+    pub score: f64,
+    /// Type of match that was found.
+    pub match_type: MatchType,
+    /// Names of fields that matched the query.
+    pub matched_fields: Vec<String>,
+}
+
+// ============================================================================
+// Romcal Configuration
+// ============================================================================
 
 /// Configuration for Romcal
 #[derive(Debug, Clone, Default, uniffi::Record)]
@@ -198,6 +319,41 @@ impl Romcal {
     /// Returns date in YYYY-MM-DD format
     pub fn get_date(&self, id: &str, year: i32) -> Result<String, RomcalError> {
         self.inner.get_date(id, year).map_err(RomcalError::from)
+    }
+
+    /// Get an entity by its exact ID.
+    ///
+    /// Returns the entity as a JSON string, or None if not found.
+    pub fn get_entity(&self, id: &str) -> Option<String> {
+        self.inner
+            .get_entity(id)
+            .and_then(|entity| serde_json::to_string(&entity).ok())
+    }
+
+    /// Search entities with fuzzy matching and filters.
+    ///
+    /// Returns a list of search results sorted by score (highest first).
+    pub fn search_entities(
+        &self,
+        query: EntityQuery,
+    ) -> Result<Vec<EntitySearchResult>, RomcalError> {
+        let core_query = query.to_core()?;
+        let results = self.inner.search_entities(core_query);
+
+        results
+            .into_iter()
+            .map(|r| {
+                let entity_json = serde_json::to_string(&r.entity).map_err(|e| {
+                    RomcalError::ParseError(format!("Failed to serialize entity: {}", e))
+                })?;
+                Ok(EntitySearchResult {
+                    entity_json,
+                    score: r.score,
+                    match_type: r.match_type.into(),
+                    matched_fields: r.matched_fields,
+                })
+            })
+            .collect()
     }
 }
 

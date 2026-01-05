@@ -9,6 +9,8 @@ use crate::engine::calendar_definition::CalendarDefinition;
 use crate::engine::dates::LiturgicalDates;
 use crate::engine::resources::Resources;
 use crate::error::RomcalError;
+use crate::search::{EntityMatcher, EntityQuery, EntitySearchResult};
+use crate::types::entity::Entity;
 use crate::types::{CalendarContext, EasterCalculationType, OrdinalFormat};
 
 // Default configuration constants
@@ -207,6 +209,61 @@ impl Romcal {
         year: i32,
     ) -> crate::RomcalResult<crate::types::mass::MassCalendar> {
         crate::engine::calendar::Calendar::new(self.clone(), year)?.generate_mass_calendar()
+    }
+
+    /// Get an entity by its exact ID.
+    ///
+    /// Searches in the current locale's resources first, then falls back to other locales.
+    ///
+    /// # Arguments
+    ///
+    /// * `id` - The entity ID (e.g., "francis_of_assisi")
+    ///
+    /// # Returns
+    ///
+    /// The entity if found, or `None` if not found.
+    pub fn get_entity(&self, id: &str) -> Option<Entity> {
+        // First, try the current locale
+        if let Some(resources) = self.get_resources(&self.locale) {
+            if let Some(entity) = resources.get_entity(id) {
+                return Some(entity.clone());
+            }
+        }
+
+        // Fall back to other locales
+        for resources in &self.resources {
+            if resources.locale != self.locale {
+                if let Some(entity) = resources.get_entity(id) {
+                    return Some(entity.clone());
+                }
+            }
+        }
+
+        None
+    }
+
+    /// Search entities with fuzzy matching and filters.
+    ///
+    /// Searches in the current locale's resources.
+    ///
+    /// # Arguments
+    ///
+    /// * `query` - The search query with optional text and filters
+    ///
+    /// # Returns
+    ///
+    /// A vector of search results sorted by score (highest first).
+    pub fn search_entities(&self, query: EntityQuery) -> Vec<EntitySearchResult> {
+        let matcher = EntityMatcher::new();
+
+        // Get entities from the current locale
+        let entities = self
+            .get_resources(&self.locale)
+            .and_then(|r| r.get_entities())
+            .into_iter()
+            .flat_map(|entities| entities.values());
+
+        matcher.search(entities, &query)
     }
 
     /// Get a liturgical date by its ID for a given year

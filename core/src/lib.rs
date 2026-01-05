@@ -17,6 +17,7 @@ pub mod error;
 pub mod generated;
 pub mod helpers;
 pub mod romcal;
+pub mod search;
 pub mod types;
 
 /// The version of the romcal library.
@@ -46,3 +47,6 @@ pub use types::{CalendarContext, EasterCalculationType};
 pub use types::dates::{DateDefWithOffset, DayOfWeek, MonthIndex};
 pub use types::liturgical::SundayCycleCombined;
 pub use types::mass::{Acclamation, BibleBook, LiturgicalCycle, MassPart};
+
+// Entity search types
+pub use search::{EntityMatcher, EntityQuery, EntitySearchResult, MatchType};
