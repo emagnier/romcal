@@ -41,7 +41,7 @@ pub fn handle(
         "📋 Schema: {} (embedded)",
         match validation_type {
             ValidationType::Definitions => "calendar_definition.json",
-            ValidationType::Resources => "resources.json",
+            ValidationType::Resources => "resources_definition.json",
         }
     );
     println!();

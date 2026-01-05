@@ -412,7 +412,7 @@ fn main() -> Result<(), SchemaGenerationError> {
     println!("🚀 Starting schema generation...");
 
     // Generate resources schema
-    generate_schema::<Resources>(&config, "resources.json")?;
+    generate_schema::<Resources>(&config, "resources_definition.json")?;
 
     // Generate calendar_definition.json
     generate_schema::<CalendarDefinition>(&config, "calendar_definition.json")?;

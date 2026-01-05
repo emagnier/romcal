@@ -30,7 +30,7 @@ function transformResourceFile(filePath) {
 
 		// Transform the data
 		const transformed = {
-			$schema: "../schemas/resources.json",
+			$schema: "../schemas/resources_definition.json",
 			locale: data.locale,
 		};
 

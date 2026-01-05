@@ -4,11 +4,11 @@ This directory contains JSON schemas automatically generated from Rust type defi
 
 ## Available Schemas
 
-| Schema                     | Description                                     |
-| -------------------------- | ----------------------------------------------- |
-| `all_types.json`           | Complete schema with all type definitions       |
-| `calendar_definition.json` | Schema for `CalendarDefinition` (main calendar) |
-| `resources.json`           | Schema for `Resources` (localization data)      |
+| Schema                      | Description                               |
+| --------------------------- | ----------------------------------------- |
+| `all_types.json`            | Complete schema with all type definitions |
+| `calendar_definition.json`  | Schema for `CalendarDefinition`           |
+| `resources_definition.json` | Schema for `ResourcesDefinition`          |
 
 ## Regeneration
 
