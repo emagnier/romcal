@@ -8,6 +8,7 @@ use ts_rs::TS;
 /// Canonization level indicating the official recognition status of a person.
 /// Defines whether someone is beatified (Blessed) or canonized (Saint).
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, EnumIter, EnumString)]
+#[cfg_attr(feature = "cli", derive(clap::ValueEnum))]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]

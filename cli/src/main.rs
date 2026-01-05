@@ -16,14 +16,17 @@ mod utils;
 use commands::bundle;
 use commands::calendar;
 use commands::date;
+use commands::entity;
 use commands::list;
 use commands::masses;
+use commands::search;
 use commands::show_preset;
 use error::RomcalCliError;
 
 use crate::config::Config;
-use crate::enums::FieldPath;
 use crate::enums::{CliCalendarContext, CliEasterCalculationType, CliOutputFormat, ValidationType};
+use crate::enums::FieldPath;
+use romcal::types::entity::{CanonizationLevel, EntityType, Sex, Title};
 use crate::preset::create_romcal;
 
 /// Config file flag
@@ -199,24 +202,6 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum Commands {
-    /// Calculate a liturgical date
-    Date {
-        /// Type of liturgical date to calculate
-        /// Available types: easter_sunday, palm_sunday, ash_wednesday, etc.
-        date_name: String,
-
-        /// Year for date calculations (default: current year)
-        year: Option<i32>,
-
-        #[command(flatten)]
-        preset: PresetArgs,
-
-        #[command(flatten)]
-        output: OutputArgs,
-
-        #[command(flatten)]
-        debug: DebugArgs,
-    },
     /// Generate liturgical calendar (organized by liturgical date)
     Calendar {
         /// Year for calendar generation (default: current year)
@@ -245,6 +230,76 @@ enum Commands {
         /// Examples: mass_time, civil_date, optional_celebrations.id
         #[arg(long, value_delimiter = ',')]
         filter: Option<Vec<FieldPath>>,
+
+        #[command(flatten)]
+        preset: PresetArgs,
+
+        #[command(flatten)]
+        output: OutputArgs,
+
+        #[command(flatten)]
+        debug: DebugArgs,
+    },
+    /// Calculate a liturgical date
+    Date {
+        /// Type of liturgical date to calculate
+        /// Available types: easter_sunday, palm_sunday, ash_wednesday, etc.
+        date_name: String,
+
+        /// Year for date calculations (default: current year)
+        year: Option<i32>,
+
+        #[command(flatten)]
+        preset: PresetArgs,
+
+        #[command(flatten)]
+        output: OutputArgs,
+
+        #[command(flatten)]
+        debug: DebugArgs,
+    },
+    /// Get an entity by its exact ID
+    Entity {
+        /// Entity ID (e.g., "francis_of_assisi")
+        id: String,
+
+        #[command(flatten)]
+        preset: PresetArgs,
+
+        #[command(flatten)]
+        output: OutputArgs,
+
+        #[command(flatten)]
+        debug: DebugArgs,
+    },
+    /// Search entities with fuzzy matching and filters
+    Search {
+        /// Text to search (fuzzy match on id/name/fullname)
+        text: Option<String>,
+
+        /// Filter by entity type
+        #[arg(long = "type", value_enum)]
+        entity_type: Option<EntityType>,
+
+        /// Filter by sex
+        #[arg(long, value_enum)]
+        sex: Option<Sex>,
+
+        /// Filter by canonization level
+        #[arg(long, value_enum)]
+        level: Option<CanonizationLevel>,
+
+        /// Filter by title(s) - can be repeated
+        #[arg(long, value_enum)]
+        title: Option<Vec<Title>>,
+
+        /// Maximum number of results
+        #[arg(long, default_value = "20")]
+        limit: usize,
+
+        /// Minimum score threshold (0.0-1.0)
+        #[arg(long, default_value = "0.3")]
+        min_score: f64,
 
         #[command(flatten)]
         preset: PresetArgs,
@@ -420,6 +475,46 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
                 commands::validate::handle(ValidationType::Resources, &file_paths)
             }
         },
+        Commands::Entity {
+            id,
+            preset,
+            output,
+            debug,
+        } => {
+            debug.init();
+            entity::handle(
+                &id,
+                output.get_format(&config).into(),
+                preset.into_romcal(&config)?,
+            )
+        }
+        Commands::Search {
+            text,
+            entity_type,
+            sex,
+            level,
+            title,
+            limit,
+            min_score,
+            preset,
+            output,
+            debug,
+        } => {
+            debug.init();
+            search::handle(
+                search::SearchOptions {
+                    text,
+                    entity_type,
+                    sex,
+                    level,
+                    titles: title,
+                    limit,
+                    min_score,
+                },
+                output.get_format(&config).into(),
+                preset.into_romcal(&config)?,
+            )
+        }
         Commands::Completions { shell } => {
             generate(shell, &mut Cli::command(), "romcal", &mut io::stdout());
             Ok(())

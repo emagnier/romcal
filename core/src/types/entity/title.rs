@@ -8,6 +8,8 @@ use ts_rs::TS;
 /// Titles and patronages associated with saints and blessed.
 /// Represents the various ecclesiastical titles and patronages that can be assigned to entities.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, EnumIter)]
+#[cfg_attr(feature = "cli", derive(clap::ValueEnum))]
+#[cfg_attr(feature = "cli", clap(rename_all = "SCREAMING_SNAKE_CASE"))]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]

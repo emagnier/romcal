@@ -8,6 +8,7 @@ use ts_rs::TS;
 /// The type of entity in the liturgical calendar.
 /// Defines whether the entity represents a person, place, or event.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, Default, EnumIter, EnumString)]
+#[cfg_attr(feature = "cli", derive(clap::ValueEnum))]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]

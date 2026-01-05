@@ -7,6 +7,7 @@ use ts_rs::TS;
 
 /// Sex of a person.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, EnumIter, EnumString)]
+#[cfg_attr(feature = "cli", derive(clap::ValueEnum))]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]

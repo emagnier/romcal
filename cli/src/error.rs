@@ -7,6 +7,9 @@ pub enum RomcalCliError {
     #[error("Configuration error: {0}")]
     ConfigError(String),
 
+    #[error("Not found: {0}")]
+    NotFound(String),
+
     #[error("Invalid year: {0} (must be >= 1583 and <= 9999)")]
     InvalidYear(i32),
 
@@ -29,6 +32,10 @@ pub enum RomcalCliError {
 impl RomcalCliError {
     pub fn config_error(msg: impl Into<String>) -> Self {
         Self::ConfigError(msg.into())
+    }
+
+    pub fn not_found(msg: impl Into<String>) -> Self {
+        Self::NotFound(msg.into())
     }
 
     pub fn invalid_year(year: i32) -> Self {
