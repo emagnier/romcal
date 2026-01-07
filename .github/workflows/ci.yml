@@ -306,7 +306,7 @@ jobs:
 
       - name: Build with maturin
         working-directory: bindings/python
-        run: uv run maturin develop
+        run: uvx maturin develop
 
       - name: Lint
         working-directory: bindings/python
