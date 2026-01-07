@@ -98,7 +98,7 @@ jobs:
 
       - name: Check formatting
         working-directory: bindings/python
-        run: uv run ruff format --check .
+        run: uvx ruff format --check .
 
   # ============================================================================
   # CORE (build, lint, test)
