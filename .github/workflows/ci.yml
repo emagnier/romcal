@@ -1,0 +1,460 @@
+name: CI
+
+on:
+  push:
+    branches: [dev, master, v4]
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  CARGO_TERM_COLOR: always
+  RUST_BACKTRACE: 1
+
+jobs:
+  # ============================================================================
+  # COMMITLINT (disabled for now - uncomment to enable)
+  # ============================================================================
+  # commitlint:
+  #   name: Commit Lint
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #       with:
+  #         fetch-depth: 0
+  #
+  #     - uses: actions/setup-node@v4
+  #       with:
+  #         node-version: "22"
+  #
+  #     - name: Install commitlint
+  #       run: npm install -g @commitlint/cli @commitlint/config-conventional
+  #
+  #     - name: Validate commits (push)
+  #       if: github.event_name == 'push'
+  #       run: npx commitlint --from HEAD~1 --to HEAD --verbose
+  #
+  #     - name: Validate commits (PR)
+  #       if: github.event_name == 'pull_request'
+  #       run: npx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
+
+  # ============================================================================
+  # FORMATTING CHECKS (parallel, fail fast)
+  # ============================================================================
+  format-rust:
+    name: Format (Rust)
+    runs-on: ubuntu-latest
+    # needs: [commitlint]  # Uncomment when commitlint is enabled
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt
+
+      - name: Check formatting
+        run: cargo fmt --all -- --check
+
+  format-typescript:
+    name: Format (TypeScript)
+    runs-on: ubuntu-latest
+    # needs: [commitlint]  # Uncomment when commitlint is enabled
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+          cache-dependency-path: bindings/typescript/package-lock.json
+
+      - name: Install dependencies
+        working-directory: bindings/typescript
+        run: npm ci
+
+      - name: Check formatting
+        working-directory: bindings/typescript
+        run: npm run format:check
+
+  format-python:
+    name: Format (Python)
+    runs-on: ubuntu-latest
+    # needs: [commitlint]  # Uncomment when commitlint is enabled
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Check formatting
+        working-directory: bindings/python
+        run: uv run ruff format --check .
+
+  # ============================================================================
+  # CORE (build, lint, test)
+  # ============================================================================
+  core:
+    name: Core
+    runs-on: ubuntu-latest
+    needs: [format-rust]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy
+
+      - name: Cache Cargo
+        uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: "core"
+
+      - name: Clippy
+        run: cargo clippy --package romcal --release -- -D warnings
+
+      - name: Build
+        run: cargo build --package romcal --release
+
+      - name: Test
+        run: cargo test --package romcal --release
+
+  # ============================================================================
+  # CLI (depends on core)
+  # ============================================================================
+  cli:
+    name: CLI
+    runs-on: ubuntu-latest
+    needs: [core]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy
+
+      - name: Cache Cargo
+        uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: "cli"
+
+      - name: Clippy
+        run: cargo clippy --package romcal-cli --release -- -D warnings
+
+      - name: Build
+        run: cargo build --package romcal-cli --release
+
+      - name: Test
+        run: cargo test --package romcal-cli --release
+
+  # ============================================================================
+  # WASM ADAPTER (depends on core)
+  # ============================================================================
+  wasm:
+    name: WASM
+    runs-on: ubuntu-latest
+    needs: [core]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy
+          targets: wasm32-unknown-unknown
+
+      - name: Cache Cargo
+        uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: "wasm"
+
+      - name: Install wasm-pack
+        uses: jetli/wasm-pack-action@v0.4.0
+        with:
+          version: "latest"
+
+      - name: Clippy
+        run: cargo clippy --package romcal-wasm --release -- -D warnings
+
+      - name: Format check
+        run: cargo fmt --package romcal-wasm -- --check
+
+      - name: Build WASM
+        run: wasm-pack build bindings/wasm --target web --out-dir ../typescript/pkg
+
+      - name: Test
+        run: cargo test --package romcal-wasm --release
+
+      - name: Upload WASM artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: wasm-pkg
+          path: bindings/typescript/pkg/
+          retention-days: 1
+
+  # ============================================================================
+  # UNIFFI ADAPTER (depends on core)
+  # ============================================================================
+  uniffi:
+    name: UniFFI
+    runs-on: ubuntu-latest
+    needs: [core]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy
+
+      - name: Cache Cargo
+        uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: "uniffi"
+
+      - name: Clippy
+        run: cargo clippy --package romcal-uniffi --release -- -D warnings
+
+      - name: Format check
+        run: cargo fmt --package romcal-uniffi -- --check
+
+      - name: Build
+        run: cargo build --package romcal-uniffi --release
+
+      - name: Test
+        run: cargo test --package romcal-uniffi --release
+
+  # ============================================================================
+  # TYPESCRIPT BINDINGS (depends on wasm + format-typescript)
+  # ============================================================================
+  typescript:
+    name: TypeScript
+    runs-on: ubuntu-latest
+    needs: [wasm, format-typescript]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+          cache-dependency-path: bindings/typescript/package-lock.json
+
+      - name: Download WASM artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: wasm-pkg
+          path: bindings/typescript/pkg/
+
+      - name: Install dependencies
+        working-directory: bindings/typescript
+        run: npm ci
+
+      - name: Install Playwright
+        working-directory: bindings/typescript
+        run: npx playwright install --with-deps chromium
+
+      - name: Build
+        working-directory: bindings/typescript
+        run: npm run build:vite
+
+      - name: Test (Node.js + Browser)
+        working-directory: bindings/typescript
+        run: npm run test:run
+
+  # ============================================================================
+  # PYTHON BINDINGS (depends on uniffi + format-python)
+  # ============================================================================
+  python:
+    name: Python
+    runs-on: ubuntu-latest
+    needs: [uniffi, format-python]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache Cargo
+        uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: "python"
+
+      - name: Install dependencies
+        working-directory: bindings/python
+        run: uv sync
+
+      - name: Build with maturin
+        working-directory: bindings/python
+        run: uv run maturin develop
+
+      - name: Lint
+        working-directory: bindings/python
+        run: uv run ruff check .
+
+      - name: Test
+        working-directory: bindings/python
+        run: uv run pytest tests/ -v
+
+  # ============================================================================
+  # TOOLS (depends on core)
+  # ============================================================================
+  tools:
+    name: Tools
+    runs-on: ubuntu-latest
+    needs: [core]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy
+
+      - name: Cache Cargo
+        uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: "tools"
+
+      - name: Clippy
+        run: cargo clippy --package romcal-tools --release -- -D warnings
+
+      - name: Format check
+        run: cargo fmt --package romcal-tools -- --check
+
+      - name: Build
+        run: cargo build --package romcal-tools --release
+
+      - name: Test
+        run: cargo test --package romcal-tools --release
+
+  # ============================================================================
+  # SCHEMA VALIDATION (depends on core + tools)
+  # ============================================================================
+  schemas:
+    name: Schema Validation
+    runs-on: ubuntu-latest
+    needs: [core, tools]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache Cargo
+        uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: "schemas"
+
+      - name: Generate schemas
+        run: cargo run --package romcal --release --bin generate-schema --features schema-gen
+
+      - name: Validate calendar files
+        run: cargo run --package romcal-tools --release --bin validate-json -- "data/definitions/**/*.json" "schemas/calendar_definition.json" .
+
+      - name: Validate resource files
+        run: cargo run --package romcal-tools --release --bin validate-json -- "data/resources/**/*.json" "schemas/resources.json" .
+
+      - name: JSON roundtrip test
+        run: |
+          cargo build --package romcal --release --bin json_roundtrip_test
+          ./target/release/json_roundtrip_test all
+
+  # ============================================================================
+  # TYPES SYNCHRONIZATION (depends on typescript + python)
+  # ============================================================================
+  types-sync:
+    name: Types Sync
+    runs-on: ubuntu-latest
+    needs: [typescript, python]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache Cargo
+        uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: "types-sync"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+          cache-dependency-path: bindings/typescript/package-lock.json
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Install Node dependencies
+        working-directory: bindings/typescript
+        run: npm ci
+
+      - name: Install Python dependencies
+        working-directory: bindings/python
+        run: uv sync
+
+      - name: Regenerate TypeScript types
+        working-directory: bindings/typescript
+        run: npm run generate-types
+
+      - name: Regenerate Python types
+        working-directory: bindings/python
+        run: uv run task generate-types
+
+      - name: Check for uncommitted changes
+        run: |
+          if ! git diff --exit-code bindings/typescript/src/types/ bindings/python/src/romcal/types.py; then
+            echo "ERROR: Generated types are out of sync with Rust types!"
+            echo "Please regenerate types and commit the changes."
+            exit 1
+          fi
+          echo "Generated types are in sync!"
+
+  # ============================================================================
+  # INTEGRATION TESTS (depends on all)
+  # ============================================================================
+  integration:
+    name: Integration Tests
+    runs-on: ubuntu-latest
+    needs: [cli, typescript, python, schemas, types-sync]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache Cargo
+        uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: "integration"
+
+      - name: Run workspace tests
+        run: cargo test --release --workspace
