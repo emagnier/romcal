@@ -302,15 +302,15 @@ jobs:
 
       - name: Install dependencies
         working-directory: bindings/python
-        run: uv sync
+        run: uv sync --extra dev
 
       - name: Build with maturin
         working-directory: bindings/python
-        run: uvx maturin develop
+        run: uv run maturin develop
 
       - name: Lint
         working-directory: bindings/python
-        run: uvx ruff check .
+        run: uv run ruff check .
 
       - name: Test
         working-directory: bindings/python
@@ -416,7 +416,7 @@ jobs:
 
       - name: Install Python dependencies
         working-directory: bindings/python
-        run: uv sync
+        run: uv sync --extra dev
 
       - name: Regenerate schemas
         working-directory: core
