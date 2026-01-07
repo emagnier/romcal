@@ -101,6 +101,19 @@ jobs:
         run: uvx ruff format --check .
 
   # ============================================================================
+  # VERSION SYNC CHECK (fast check, runs early)
+  # ============================================================================
+  version-sync:
+    name: Version Sync
+    runs-on: ubuntu-latest
+    # needs: [commitlint]  # Uncomment when commitlint is enabled
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check version sync
+        run: ./scripts/sync-versions.sh --check
+
+  # ============================================================================
   # CORE (build, lint, test)
   # ============================================================================
   core:
