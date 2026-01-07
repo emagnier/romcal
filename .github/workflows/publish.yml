@@ -216,10 +216,77 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   # ============================================================================
-  # PYPI (romcal Python/UniFFI)
+  # PYPI - WHEELS (multi-platform builds)
   # ============================================================================
-  pypi:
-    name: PyPI
+  pypi-wheels:
+    name: Wheel py${{ matrix.python }} / ${{ matrix.platform.target }}
+    runs-on: ${{ matrix.platform.os }}
+    needs: [prepare]
+    if: needs.prepare.outputs.publish-pypi == 'true'
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.11", "3.12", "3.13", "3.14"]
+        platform:
+          # Linux x86_64 (glibc)
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+            manylinux: auto
+          # Linux aarch64 (glibc)
+          - os: ubuntu-latest
+            target: aarch64-unknown-linux-gnu
+            manylinux: auto
+          # Linux x86_64 (musl - Alpine)
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-musl
+            manylinux: musllinux_1_2
+          # Linux aarch64 (musl - Alpine)
+          - os: ubuntu-latest
+            target: aarch64-unknown-linux-musl
+            manylinux: musllinux_1_2
+          # macOS x86_64 (Intel)
+          - os: macos-15-intel
+            target: x86_64-apple-darwin
+            manylinux: auto
+          # macOS arm64 (Apple Silicon)
+          - os: macos-latest
+            target: aarch64-apple-darwin
+            manylinux: auto
+          # Windows x86_64
+          - os: windows-latest
+            target: x86_64-pc-windows-msvc
+            manylinux: auto
+          # Windows arm64
+          - os: windows-latest
+            target: aarch64-pc-windows-msvc
+            manylinux: auto
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Build wheel
+        uses: PyO3/maturin-action@v1
+        with:
+          target: ${{ matrix.platform.target }}
+          manylinux: ${{ matrix.platform.manylinux }}
+          args: --release --out dist
+          working-directory: bindings/python
+
+      - name: Upload wheel
+        uses: actions/upload-artifact@v4
+        with:
+          name: wheels-py${{ matrix.python }}-${{ matrix.platform.target }}
+          path: bindings/python/dist/*.whl
+
+  # ============================================================================
+  # PYPI - SOURCE DISTRIBUTION
+  # ============================================================================
+  pypi-sdist:
+    name: Source Distribution
     runs-on: ubuntu-latest
     needs: [prepare]
     if: needs.prepare.outputs.publish-pypi == 'true'
@@ -231,20 +298,29 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install Rust toolchain
-        uses: dtolnay/rust-toolchain@stable
-
-      - name: Cache Cargo
-        uses: Swatinem/rust-cache@v2
-        with:
-          shared-key: "publish-pypi"
-
       - name: Setup uv
         uses: astral-sh/setup-uv@v5
 
       - name: Build source distribution
         working-directory: bindings/python
-        run: uvx maturin build --release --sdist --out dist
+        run: uvx maturin sdist --out dist
+
+      - name: Upload sdist
+        uses: actions/upload-artifact@v4
+        with:
+          name: sdist
+          path: bindings/python/dist/*.tar.gz
+
+  # ============================================================================
+  # PYPI - PUBLISH (collect all wheels + sdist)
+  # ============================================================================
+  pypi-publish:
+    name: PyPI Publish
+    runs-on: ubuntu-latest
+    needs: [prepare, pypi-wheels, pypi-sdist]
+    if: needs.prepare.outputs.publish-pypi == 'true'
+    steps:
+      - uses: actions/checkout@v4
 
       - name: Verify version matches tag
         if: startsWith(github.ref, 'refs/tags/v')
@@ -257,26 +333,43 @@ jobs:
           fi
           echo "✅ Version verified: $PKG_VERSION"
 
-      - name: Check distribution
-        working-directory: bindings/python
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: dist
+          pattern: wheels-*
+          merge-multiple: true
+
+      - name: Download sdist
+        uses: actions/download-artifact@v4
+        with:
+          name: sdist
+          path: dist
+
+      - name: List distributions
+        run: |
+          echo "📦 Distributions to publish:"
+          ls -la dist/
+          echo ""
+          echo "Total: $(ls dist/ | wc -l) files"
+
+      - name: Check distributions
         run: |
           pip install twine
           twine check dist/*
 
       - name: Publish to PyPI
         if: needs.prepare.outputs.dry-run == 'false'
-        working-directory: bindings/python
         run: |
           echo "🚀 Publishing to PyPI"
-          uvx twine upload dist/* -u __token__ -p ${{ secrets.PYPI_TOKEN }}
+          pip install twine
+          twine upload dist/* -u __token__ -p ${{ secrets.PYPI_TOKEN }}
 
       - name: Dry run summary
         if: needs.prepare.outputs.dry-run == 'true'
-        working-directory: bindings/python
         run: |
           echo "🧪 Dry run complete"
-          echo "📦 Built packages:"
-          ls -la dist/
+          echo "📦 Would publish $(ls dist/ | wc -l) files to PyPI"
 
   # ============================================================================
   # SUMMARY
@@ -284,7 +377,7 @@ jobs:
   summary:
     name: Summary
     runs-on: ubuntu-latest
-    needs: [prepare, crates, npm, pypi]
+    needs: [prepare, crates, npm, pypi-publish]
     if: always()
     steps:
       - name: Summary
@@ -315,8 +408,8 @@ jobs:
           fi
 
           if [ "${{ needs.prepare.outputs.publish-pypi }}" = "true" ]; then
-            if [ "${{ needs.pypi.result }}" = "success" ]; then
-              echo "| PyPI | ✅ Success |" >> $GITHUB_STEP_SUMMARY
+            if [ "${{ needs.pypi-publish.result }}" = "success" ]; then
+              echo "| PyPI | ✅ Success (32 wheels + sdist) |" >> $GITHUB_STEP_SUMMARY
             else
               echo "| PyPI | ❌ Failed |" >> $GITHUB_STEP_SUMMARY
             fi
