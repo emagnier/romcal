@@ -310,7 +310,7 @@ jobs:
 
       - name: Lint
         working-directory: bindings/python
-        run: uv run ruff check .
+        run: uvx ruff check .
 
       - name: Test
         working-directory: bindings/python
