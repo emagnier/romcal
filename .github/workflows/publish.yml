@@ -1,0 +1,329 @@
+name: Publish
+
+on:
+  # Manual trigger with dry-run option
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: "Dry run (no actual publish)"
+        required: true
+        default: true
+        type: boolean
+      target:
+        description: "What to publish"
+        required: true
+        default: "all"
+        type: choice
+        options:
+          - all
+          - crates
+          - npm
+          - pypi
+
+  # Trigger on version tags
+  push:
+    tags:
+      - "v*"
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  # ============================================================================
+  # PREPARE (read version, determine dry-run mode)
+  # ============================================================================
+  prepare:
+    name: Prepare
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      dry-run: ${{ steps.config.outputs.dry-run }}
+      publish-crates: ${{ steps.config.outputs.publish-crates }}
+      publish-npm: ${{ steps.config.outputs.publish-npm }}
+      publish-pypi: ${{ steps.config.outputs.publish-pypi }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read version
+        id: version
+        run: |
+          VERSION=$(cat VERSION | tr -d '[:space:]')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "📦 Version: $VERSION"
+
+      - name: Configure publish settings
+        id: config
+        run: |
+          # Determine dry-run mode
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            DRY_RUN="${{ inputs.dry-run }}"
+            TARGET="${{ inputs.target }}"
+          else
+            # For tag pushes, default to dry-run for safety
+            # Set to 'false' when ready for real releases
+            DRY_RUN="true"
+            TARGET="all"
+          fi
+
+          echo "dry-run=$DRY_RUN" >> $GITHUB_OUTPUT
+
+          # Determine what to publish
+          if [ "$TARGET" = "all" ] || [ "$TARGET" = "crates" ]; then
+            echo "publish-crates=true" >> $GITHUB_OUTPUT
+          else
+            echo "publish-crates=false" >> $GITHUB_OUTPUT
+          fi
+
+          if [ "$TARGET" = "all" ] || [ "$TARGET" = "npm" ]; then
+            echo "publish-npm=true" >> $GITHUB_OUTPUT
+          else
+            echo "publish-npm=false" >> $GITHUB_OUTPUT
+          fi
+
+          if [ "$TARGET" = "all" ] || [ "$TARGET" = "pypi" ]; then
+            echo "publish-pypi=true" >> $GITHUB_OUTPUT
+          else
+            echo "publish-pypi=false" >> $GITHUB_OUTPUT
+          fi
+
+          echo "🔧 Configuration:"
+          echo "   Dry run: $DRY_RUN"
+          echo "   Target: $TARGET"
+
+  # ============================================================================
+  # CRATES.IO (romcal, romcal-cli)
+  # ============================================================================
+  crates:
+    name: Crates.io
+    runs-on: ubuntu-latest
+    needs: [prepare]
+    if: needs.prepare.outputs.publish-crates == 'true'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache Cargo
+        uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: "publish-crates"
+
+      - name: Verify version matches tag
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          TAG_VERSION="${GITHUB_REF#refs/tags/v}"
+          FILE_VERSION=$(cat VERSION | tr -d '[:space:]')
+          if [ "$TAG_VERSION" != "$FILE_VERSION" ]; then
+            echo "❌ Tag version ($TAG_VERSION) doesn't match VERSION file ($FILE_VERSION)"
+            exit 1
+          fi
+          echo "✅ Version verified: $FILE_VERSION"
+
+      - name: Publish romcal (core)
+        run: |
+          if [ "${{ needs.prepare.outputs.dry-run }}" = "true" ]; then
+            echo "🧪 Dry run: cargo publish --package romcal"
+            cargo publish --package romcal --dry-run
+          else
+            echo "🚀 Publishing romcal to crates.io"
+            cargo publish --package romcal --token ${{ secrets.CRATES_IO_TOKEN }}
+          fi
+
+      - name: Wait for crates.io index update
+        if: needs.prepare.outputs.dry-run == 'false'
+        run: |
+          echo "⏳ Waiting 30s for crates.io index to update..."
+          sleep 30
+
+      - name: Publish romcal-cli
+        run: |
+          if [ "${{ needs.prepare.outputs.dry-run }}" = "true" ]; then
+            echo "🧪 Dry run: cargo publish --package romcal-cli"
+            cargo publish --package romcal-cli --dry-run
+          else
+            echo "🚀 Publishing romcal-cli to crates.io"
+            cargo publish --package romcal-cli --token ${{ secrets.CRATES_IO_TOKEN }}
+          fi
+
+  # ============================================================================
+  # NPM (romcal TypeScript/WASM)
+  # ============================================================================
+  npm:
+    name: npm
+    runs-on: ubuntu-latest
+    needs: [prepare]
+    if: needs.prepare.outputs.publish-npm == 'true'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+
+      - name: Cache Cargo
+        uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: "publish-npm"
+
+      - name: Install wasm-pack
+        uses: jetli/wasm-pack-action@v0.4.0
+        with:
+          version: "latest"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+          cache-dependency-path: bindings/typescript/package-lock.json
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Build WASM
+        run: wasm-pack build bindings/wasm --target web --out-dir ../typescript/pkg
+
+      - name: Install dependencies
+        working-directory: bindings/typescript
+        run: npm ci
+
+      - name: Build TypeScript
+        working-directory: bindings/typescript
+        run: npm run build:vite
+
+      - name: Verify version matches tag
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          TAG_VERSION="${GITHUB_REF#refs/tags/v}"
+          PKG_VERSION=$(node -p "require('./bindings/typescript/package.json').version")
+          if [ "$TAG_VERSION" != "$PKG_VERSION" ]; then
+            echo "❌ Tag version ($TAG_VERSION) doesn't match package.json ($PKG_VERSION)"
+            exit 1
+          fi
+          echo "✅ Version verified: $PKG_VERSION"
+
+      - name: Publish to npm
+        working-directory: bindings/typescript
+        run: |
+          if [ "${{ needs.prepare.outputs.dry-run }}" = "true" ]; then
+            echo "🧪 Dry run: npm publish"
+            npm publish --dry-run
+          else
+            echo "🚀 Publishing to npm"
+            npm publish --access public
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # ============================================================================
+  # PYPI (romcal Python/UniFFI)
+  # ============================================================================
+  pypi:
+    name: PyPI
+    runs-on: ubuntu-latest
+    needs: [prepare]
+    if: needs.prepare.outputs.publish-pypi == 'true'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache Cargo
+        uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: "publish-pypi"
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Build source distribution
+        working-directory: bindings/python
+        run: uvx maturin build --release --sdist --out dist
+
+      - name: Verify version matches tag
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          TAG_VERSION="${GITHUB_REF#refs/tags/v}"
+          PKG_VERSION=$(grep -m1 '^version = ' bindings/python/pyproject.toml | sed 's/version = "\(.*\)"/\1/')
+          if [ "$TAG_VERSION" != "$PKG_VERSION" ]; then
+            echo "❌ Tag version ($TAG_VERSION) doesn't match pyproject.toml ($PKG_VERSION)"
+            exit 1
+          fi
+          echo "✅ Version verified: $PKG_VERSION"
+
+      - name: Check distribution
+        working-directory: bindings/python
+        run: |
+          pip install twine
+          twine check dist/*
+
+      - name: Publish to PyPI
+        if: needs.prepare.outputs.dry-run == 'false'
+        working-directory: bindings/python
+        run: |
+          echo "🚀 Publishing to PyPI"
+          uvx twine upload dist/* -u __token__ -p ${{ secrets.PYPI_TOKEN }}
+
+      - name: Dry run summary
+        if: needs.prepare.outputs.dry-run == 'true'
+        working-directory: bindings/python
+        run: |
+          echo "🧪 Dry run complete"
+          echo "📦 Built packages:"
+          ls -la dist/
+
+  # ============================================================================
+  # SUMMARY
+  # ============================================================================
+  summary:
+    name: Summary
+    runs-on: ubuntu-latest
+    needs: [prepare, crates, npm, pypi]
+    if: always()
+    steps:
+      - name: Summary
+        run: |
+          echo "## Publish Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Package | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|---------|--------|" >> $GITHUB_STEP_SUMMARY
+
+          if [ "${{ needs.prepare.outputs.publish-crates }}" = "true" ]; then
+            if [ "${{ needs.crates.result }}" = "success" ]; then
+              echo "| crates.io | ✅ Success |" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "| crates.io | ❌ Failed |" >> $GITHUB_STEP_SUMMARY
+            fi
+          else
+            echo "| crates.io | ⏭️ Skipped |" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          if [ "${{ needs.prepare.outputs.publish-npm }}" = "true" ]; then
+            if [ "${{ needs.npm.result }}" = "success" ]; then
+              echo "| npm | ✅ Success |" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "| npm | ❌ Failed |" >> $GITHUB_STEP_SUMMARY
+            fi
+          else
+            echo "| npm | ⏭️ Skipped |" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          if [ "${{ needs.prepare.outputs.publish-pypi }}" = "true" ]; then
+            if [ "${{ needs.pypi.result }}" = "success" ]; then
+              echo "| PyPI | ✅ Success |" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "| PyPI | ❌ Failed |" >> $GITHUB_STEP_SUMMARY
+            fi
+          else
+            echo "| PyPI | ⏭️ Skipped |" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Version:** ${{ needs.prepare.outputs.version }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Dry run:** ${{ needs.prepare.outputs.dry-run }}" >> $GITHUB_STEP_SUMMARY
