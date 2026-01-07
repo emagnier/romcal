@@ -317,6 +317,73 @@ jobs:
         run: uv run pytest tests/ -v
 
   # ============================================================================
+  # PYTHON WHEELS (multi-platform, multi-python builds)
+  # ============================================================================
+  python-wheels:
+    name: Wheel py${{ matrix.python }} / ${{ matrix.platform.target }}
+    runs-on: ${{ matrix.platform.os }}
+    needs: [uniffi]
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.11", "3.12", "3.13", "3.14"]
+        platform:
+          # Linux x86_64 (glibc)
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+            manylinux: auto
+          # Linux aarch64 (glibc)
+          - os: ubuntu-latest
+            target: aarch64-unknown-linux-gnu
+            manylinux: auto
+          # Linux x86_64 (musl - Alpine)
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-musl
+            manylinux: musllinux_1_2
+          # Linux aarch64 (musl - Alpine)
+          - os: ubuntu-latest
+            target: aarch64-unknown-linux-musl
+            manylinux: musllinux_1_2
+          # macOS x86_64 (Intel)
+          - os: macos-13
+            target: x86_64-apple-darwin
+            manylinux: auto
+          # macOS arm64 (Apple Silicon)
+          - os: macos-latest
+            target: aarch64-apple-darwin
+            manylinux: auto
+          # Windows x86_64
+          - os: windows-latest
+            target: x86_64-pc-windows-msvc
+            manylinux: auto
+          # Windows arm64
+          - os: windows-latest
+            target: aarch64-pc-windows-msvc
+            manylinux: auto
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Build wheel
+        uses: PyO3/maturin-action@v1
+        with:
+          target: ${{ matrix.platform.target }}
+          manylinux: ${{ matrix.platform.manylinux }}
+          args: --release --out dist --manifest-path bindings/uniffi/Cargo.toml
+          working-directory: bindings/python
+
+      - name: Upload wheel
+        uses: actions/upload-artifact@v4
+        with:
+          name: wheel-py${{ matrix.python }}-${{ matrix.platform.target }}
+          path: bindings/python/dist/*.whl
+          retention-days: 7
+
+  # ============================================================================
   # TOOLS (depends on core)
   # ============================================================================
   tools:

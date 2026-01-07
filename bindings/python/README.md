@@ -16,6 +16,8 @@ Or with [uv](https://docs.astral.sh/uv/):
 uv add romcal
 ```
 
+> **Note:** Pre-built wheels are available for Python 3.11-3.14 on Linux (x86_64, aarch64, musl), macOS (Intel, Apple Silicon), and Windows (x64, ARM64). For other platforms, [Rust](https://rustup.rs/) is required to build from source.
+
 ## Quick Start
 
 ```python
@@ -237,7 +239,7 @@ except RomcalError as e:
 
 ### Requirements
 
-- [Python](https://www.python.org/) 3.10 or later
+- [Python](https://www.python.org/) 3.11 or later
 - [uv](https://docs.astral.sh/uv/) (recommended) or pip
 - [Rust](https://rustup.rs/) 1.85 or later
 
