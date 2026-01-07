@@ -378,10 +378,10 @@ jobs:
           ./target/release/json_roundtrip_test all
 
   # ============================================================================
-  # GENERATED FILES SYNC (schemas, typescript types, python types)
+  # TYPES & SCHEMAS SYNC (schemas, typescript types, python types)
   # ============================================================================
-  generated-sync:
-    name: Generated Files Sync
+  types-schemas-sync:
+    name: Types & Schemas Sync
     runs-on: ubuntu-latest
     needs: [typescript, python]
     steps:
@@ -450,7 +450,7 @@ jobs:
   integration:
     name: Integration Tests
     runs-on: ubuntu-latest
-    needs: [cli, typescript, python, schemas, generated-sync]
+    needs: [cli, typescript, python, schemas, types-schemas-sync]
     steps:
       - uses: actions/checkout@v4
 
