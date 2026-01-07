@@ -373,7 +373,7 @@ jobs:
         with:
           target: ${{ matrix.platform.target }}
           manylinux: ${{ matrix.platform.manylinux }}
-          args: --release --out dist --manifest-path bindings/uniffi/Cargo.toml
+          args: --release --out dist
           working-directory: bindings/python
 
       - name: Upload wheel
