@@ -1,36 +1,20 @@
 ---
 sidebar_position: 2
+title: General Instruction of the Roman Missal
+description: GIRM - Third Typical Edition (2002)
 ---
 
-# The General Instruction of the Roman Missal (GIRM)
-
-         General Instruction of the Roman Missal
-
-[![The Holy See](/img/pkeys.jpg)](/index.htm)
-
-![](/img/vuoto.gif)
-[![back](/img/back.jpg)](<javascript:history.go(-1)>) [![up](/img/up.jpg)](<javascript:up()>)
-
-![Search](/img/psearch_fill.jpg)
-
-![riga](/img/riga_int.jpg)
-
-![](/img/vuoto.gif)
-
-**_GENERAL INSTRUCTION OF THE ROMAN MISSAL_**
+# General Instruction of the Roman Missal (GIRM)
 
 **_INSTITUTIO GENERALIS MISSALIS ROMANI_**
 
-_Including Adaptations for the Dioceses of the United States of America_
+> The English translation of the General Instruction of the Roman Missal
+> (Third Typical Edition) © 2002, International Committee on English in the Liturgy, Inc.
+> All rights reserved.
 
-**INDEX**
+## Index
 
-**Adaptations for the Dioceses of the United States of America**
-
-> **[Decree of Confirmation](#Decree_of_Confirmation)
-> [Decree of Publication](#DECREE_OF_PUBLICATION)**
-
-**[PREAMBLE](#Preamble)**
+**[Preamble](#preamble)**
 
 > **A Witness to Unchanged Faith** (2 - 5)
 > **A Witness to Unbroken Tradition** (6 - 9)
@@ -222,66 +206,7 @@ AND BISHOPS CONFERENCES](#CHAPTER_IX)** (386-399)
 
 ---
 
-Concordat cum originali:
-
-> Msgr. James Patrick Moroney*
-> Executive Director, Secretariat for the Liturgy
-> United States Conference of Catholic Bishops*
->
-> The English translation of the _General Instruction of the Roman Missal (Third Typical Edition)_ © 2002, International Committee on English in the Liturgy, Inc. All rights reserved. No part of this document may be reproduced or transmitted in any form or by any means, electronic or mechanical, including photocopying, recording, or by any information storage and retrieval system, without permission in writing from the copyright holder.
->
-> This text is confirmed for use in the Dioceses of the United States of America. Persons from other nations should consult the local Episcopal Conference regarding the appropriate text for their nation.
-
-\* \* \*
-
-**CONGREGATION FOR DIVINE WORSHIP
-AND THE DISCIPLINE OF THE SACRAMENTS**
-
-**Decree of Confirmation**
-
-Prot. N. 2235/02/L
-
-THE UNITED STATES OF AMERICA
-
-At the request of His Excellency, the Most Reverend Wilton D. Gregory, Bishop of Belleville, President of the Conference of Bishops of the United States of America, in a letter of November 13, 2002, and in virtue of the faculties granted to this Congregation by the Supreme Pontiff JOHN PAUL II, we gladly confirm and approve the English translation of the _Institutio Generalis Missalis Romani_, excerpted from the third typical edition of the same Missal, as in the attached copy.
-
-Two copies of the printed text should be forwarded to this Congregation.
-
-All things to the contrary notwithstanding.
-
-_From the offices of the Congregation for Divine Worship and the Discipline of the Sacraments, March 17, 2003._
-
-**Francis Cardinal Arinze**
-_Prefect_
-
-**Franciscus Pius Tamburrino**
-_Archbishop-Secretary_
-
-\* \* \*
-
-**UNITED STATES CONFERENCE OF CATHOLIC BISHOPS**
-
-**DECREE OF PUBLICATION**
-
-In accord with the norms established by decree of the Sacred Congregation of Rites in Cum, nostra ætate (January 27, 1966), this edition of the _General Instruction of The Roman Missal_ is declared to be the vernacular typical edition of the _Institutio Generalis Missalis Romani, editio typica tertia_ in the dioceses of the United States of America, and is published by authority of the United States Conference of Catholic Bishops.
-
-The _General Instruction of the Roman Missal_ was canonically approved for use by the United States Conference of Catholic Bishops on November 12, 2002, and was subsequently confirmed by the Holy See by decree of the Congregation for Divine Worship and the Discipline of the Sacraments on March 17, 2003 (Prot. N. 2235/02/L).
-
-Effective immediately, this translation of the _General Instruction of the Roman Missal_ is the sole translation of the _Institutio Generalis Missalis_ Romani, editio typica tertia for use in the dioceses of the United States of America.
-
-_Given at the General Secretariat of the United States Conference of Catholic Bishops, Washington, D.C., on March 19, 2003, the Feast of Saint Joseph, Husband of the Blessed Virgin Mary._
-
-**Most Reverend Wilton D. Gregory**
-_Bishop of Belleville
-President
-United States Conference of Catholic Bishops_
-
-**Reverend Monsignor William P. Fay**
-_General Secretary_
-
----
-
-**Preamble**
+## Preamble {#preamble}
 
 1\. When he was about to celebrate with his disciples the Passover meal in which he instituted the sacrifice of his Body and Blood, Christ the Lord gave instructions that a large, furnished upper room should be prepared (Lk 22:12). The Church has always regarded this command as applying also to herself when she gives directions about the preparation of people’s hearts and minds and of the places, rites, and texts for the celebration of the Most Holy Eucharist. The current norms, prescribed in keeping with the will of the Second Vatican Ecumenical Council, and the new Missal that the Church of the Roman Rite is to use from now on in the celebration of Mass are also evidence of the great concern of the Church, of her faith, and of her unchanged love for the great mystery of the Eucharist. They likewise bear witness to the Church’s continuous and unbroken tradition, irrespective of the introduction of certain new features.
 
@@ -439,7 +364,7 @@ A common posture, to be observed by all participants, is a sign of the unity of 
 
 They should, however, sit while the readings before the Gospel and the responsorial Psalm are proclaimed and for the homily and while the Preparation of the Gifts at the Offertory is taking place; and, as circumstances allow, they may sit or kneel while the period of sacred silence after Communion is observed.
 
-In the dioceses of the United States of America, they should kneel beginning after the singing or recitation of the _Sanctus_ until after the Amen of the Eucharistic Prayer, except when prevented on occasion by reasons of health, lack of space, the large number of people present, or some other good reason. Those who do not kneel ought to make a profound bow when the priest genuflects after the consecration. The faithful kneel after the _Agnus Dei_ unless the diocesan Bishop determines otherwise.[\[53\]](#_ftn53)
+Where it is the custom to kneel from the end of the _Sanctus_ until the end of the Eucharistic Prayer and before Communion when the priest says _Ecce Agnus Dei_ (Behold the Lamb of God), it is praiseworthy to retain this practice.[\[53\]](#_ftn53)
 
 With a view to a uniformity in gestures and postures during one and the same celebration, the faithful should follow the directions which the deacon, lay minister, or priest gives according to whatever is indicated in the Missal.
 
@@ -465,7 +390,7 @@ _**The Entrance**_
 
 47\. After the people have gathered, the Entrance chant begins as the priest enters with the deacon and ministers. The purpose of this chant is to open the celebration, foster the unity of those who have been gathered, introduce their thoughts to the mystery of the liturgical season or festivity, and accompany the procession of the priest and ministers.
 
-48\. The singing at this time is done either alternately by the choir and the people or in a similar way by the cantor and the people, or entirely by the people, or by the choir alone. In the dioceses of the United States of America there are four options for the Entrance Chant: (1) the antiphon from The Roman Missal or the Psalm from the _Roman Gradual_ as set to music there or in another musical setting; (2) the seasonal antiphon and Psalm of the _Simple Gradual_; (3) a song from another collection of psalms and antiphons, approved by the Conference of Bishops or the diocesan Bishop, including psalms arranged in responsorial or metrical forms; (4) a suitable liturgical song similarly approved by the Conference of Bishops or the diocesan Bishop.[\[55\]](#_ftn55)
+48\. The singing at this time is done either alternately by the choir and the people or in a similar way by the cantor and the people, or entirely by the people, or by the choir alone. The antiphon with its Psalm may be taken from the _Graduale Romanum_ or the _Graduale Simplex_, or another chant that is suited to the sacred action, the day, or the time of year, and whose text has been approved by the Conference of Bishops.[\[55\]](#_ftn55)
 
 If there is no singing at the entrance, the antiphon in the Missal is recited either by the faithful, or by some of them, or by a lector; otherwise, it is recited by the priest himself, who may even adapt it as an introductory explanation (cf. no. 31).
 
@@ -539,7 +464,7 @@ The responsorial Psalm should correspond to each reading and should, as a rule, 
 
 It is preferable that the responsorial Psalm be sung, at least as far as the people’s response is concerned. Hence, the psalmist, or the cantor of the Psalm, sings the verses of the Psalm from the ambo or another suitable place. The entire congregation remains seated and listens but, as a rule, takes part by singing the response, except when the Psalm is sung straight through without a response. In order, however, that the people may be able to sing the Psalm response more readily, texts of some responses and Psalms have been chosen for the various seasons of the year or for the various categories of Saints. These may be used in place of the text corresponding to the reading whenever the Psalm is sung. If the Psalm cannot be sung, then it should be recited in such a way that it is particularly suited to fostering meditation on the word of God.
 
-In the dioceses of the United States of America, the following may also be sung in place of the Psalm assigned in the Lectionary for Mass: either the proper or seasonal antiphon and Psalm from the Lectionary, as found either in the _Roman Gradual_ or _Simple Gradual_ or in another musical setting; or an antiphon and Psalm from another collection of the psalms and antiphons, including psalms arranged in metrical form, providing that they have been approved by the United States Conference of Catholic Bishops or the diocesan Bishop. Songs or hymns may not be used in place of the responsorial Psalm.
+In place of the Psalm assigned in the Lectionary, there may be sung either the responsorial gradual from the _Graduale Romanum_, or the responsorial or alleluiatic Psalm from the _Graduale Simplex_, as described in these books.
 
 _**The Acclamation Before the Gospel**_
 
@@ -690,7 +615,7 @@ The priest next shows the faithful the Eucharistic Bread, holding it above the p
 
 Care should be taken that singers, too, can receive Communion with ease.
 
-87\. In the dioceses of the United States of America there are four options for the Communion chant: (1) the antiphon from The Roman Missal or the Psalm from the _Roman Gradual_ as set to music there or in another musical setting; (2) the seasonal antiphon and Psalm of the _Simple Gradual_; (3) a song from another collection of psalms and antiphons, approved by the United States Conference of Catholic Bishops or the diocesan Bishop, including psalms arranged in responsorial or metrical forms; (4) a suitable liturgical song chosen in accordance with no. 86. This is sung either by the choir alone or by the choir or cantor with the people.
+87\. For the Communion Chant, the antiphon from the _Graduale Romanum_ may be employed, with or without the Psalm, or the antiphon with the Psalm from the _Graduale Simplex_, or some other suitable chant approved by the Conference of Bishops. It is sung either by the choir alone or by the choir or cantor with the people.
 
 If there is no singing, however, the Communion antiphon found in the Missal may be recited either by the faithful, or by some of them, or by a lector. Otherwise the priest himself says it after he has received Communion and before he distributes Communion to the faithful.
 
@@ -946,7 +871,7 @@ In each of the Eucharistic Prayers, these formulas are to be modified according 
 
 If incense is used, a server incenses the host and the chalice when each is shown to the people after the consecration.
 
-151\. After the consecration when the priest has said, _[Mysterium fidei](/holy_father/paul_vi/encyclicals/documents/hf_p-vi_enc_03091965_mysterium_en.html)_ (Let us proclaim the mystery of faith), the people sing or say an acclamation using one of the prescribed formulas.
+151\. After the consecration when the priest has said, _[Mysterium fidei](https://www.vatican.va/holy_father/paul_vi/encyclicals/documents/hf_p-vi_enc_03091965_mysterium_en.html)_ (Let us proclaim the mystery of faith), the people sing or say an acclamation using one of the prescribed formulas.
 
 At the end of the Eucharistic Prayer, the priest takes the paten with the host and the chalice and elevates them both while alone singing or saying the doxology*, Per ipsum (Through him).* At the end the people make the acclamation, _Amen_. Then the priest places the paten and the chalice on the corporal.
 
@@ -956,7 +881,7 @@ At the end of the Eucharistic Prayer, the priest takes the paten with the host a
 
 154\. Then the priest, with hands extended, says aloud the prayer, _Domine Iesu Christe, qui dixisti (Lord Jesus Christ, you said)._ After this prayer is concluded, extending and then joining his hands, he gives the greeting of peace while facing the people and saying, _Pax Domini sit simper vobiscum (The peace of the Lord be with you always)._ The people answer*, Et cum spiritu tuo (And also with you).* Afterwards, when appropriate, the priest adds*, Offerte vobis pacem (Let us offer each other the sign of peace).*
 
-The priest may give the sign of peace to the ministers but always remains within the sanctuary, so as not to disturb the celebration. In the dioceses of the United States of America, for a good reason, on special occasions (for example, in the case of a funeral, a wedding, or when civic leaders are present) the priest may offer the sign of peace to a few of the faithful near the sanctuary. At the same time, in accord with the decisions of the Conference of Bishops, all offer one another a sign that expresses peace, communion, and charity. While the sign of peace is being given, one may say, _Pax Domini sit semper tecum (The peace of the Lord be with you always)_, to which the response is _Amen_.
+The priest may give the sign of peace to the ministers but always remains within the sanctuary, so as not to disturb the celebration. In accord with the decisions of the Conference of Bishops, all offer one another a sign that expresses peace, communion, and charity. While the sign of peace is being given, one may say, _Pax Domini sit semper tecum (The peace of the Lord be with you always)_, to which the response is _Amen_.
 
 155\. The priest then takes the host and breaks it over the paten. He places a small piece in the chalice, saying quietly, _Haec commixtio (May this mingling)._ Meanwhile the _Agnus Dei_ is sung or said by the choir and congregation (cf. no. 83).
 
@@ -970,7 +895,7 @@ The priest may give the sign of peace to the ministers but always remains within
 
 160\. The priest then takes the paten or ciborium and goes to the communicants, who, as a rule, approach in a procession.
 
-The faithful are not permitted to take the consecrated bread or the sacred chalice by themselves and, still less, to hand them from one to another. The norm for reception of Holy Communion in the dioceses of the United States is standing. Communicants should not be denied Holy Communion because they kneel. Rather, such instances should be addressed pastorally, by providing the faithful with proper catechesis on the reasons for this norm.
+The faithful are not permitted to take the consecrated bread or the sacred chalice by themselves and, still less, to hand them from one to another. The norms established by the Conference of Bishops should be observed concerning the posture to be adopted by the faithful receiving Communion and the sign of reverence to be shown before reception of the Sacrament.
 
 When receiving Holy Communion, the communicant bows his or her head before the Sacrament as a gesture of reverence and receives the Body of the Lord from the minister. The consecrated host may be received either on the tongue or in the hand, at the discretion of each communicant. When Holy Communion is received under both kinds, the sign of reverence is also made before receiving the Precious Blood.
 
@@ -1456,9 +1381,7 @@ They are to teach, furthermore, that the Church, in her stewardship of the Sacra
 
 3.  Members of communities at the conventual Mass or “community” Mass, along with seminarians, and all who are engaged in a retreat or are taking part in a spiritual or pastoral gathering.
 
-The diocesan Bishop may establish norms for Communion under both kinds for his own diocese, which are also to be observed in churches of religious and at celebrations with small groups. The diocesan Bishop is also given the faculty to permit Communion under both kinds whenever it may seem appropriate to the priest to whom, as its own shepherd, a community has been entrusted, provided that the faithful have been well instructed and there is no danger of profanation of the Sacrament or of the rite’s becoming difficult because of the large number of participants or some other reason.
-
-In all that pertains to Communion under both kinds, the _Norms for the Distribution and Reception of Holy Communion under Both Kinds in the Dioceses of the United States of America_ are to be followed (see nos. 27-54).
+The diocesan Bishop may establish norms for Communion under both kinds for his own diocese, which are also to be observed in churches of religious and at celebrations with small groups. The diocesan Bishop is also given the faculty to permit Communion under both kinds whenever it may seem appropriate to the priest to whom, as its own shepherd, a community has been entrusted, provided that the faithful have been well instructed and there is no danger of profanation of the Sacrament or of the rite's becoming difficult because of the large number of participants or some other reason.
 
 284\. When Communion is distributed under both kinds,
 
@@ -1527,7 +1450,7 @@ An altar is called “fixed” if it is attached to the floor so as not to be re
 
 300\. An altar whether fixed or movable is dedicated according to the rite prescribed in the Roman Pontifical; but it is permissible for a movable altar simply to be blessed.
 
-301\. In keeping with the Church’s traditional practice and the altar’s symbolism, the table of a fixed altar is to be of stone and indeed of natural stone. In the dioceses of the United States of America, however, wood which is worthy, solid, and well-crafted may be used, provided that the altar is structurally immobile. The supports or base for upholding the table, however, may be made of any sort of material, provided it is worthy and solid.
+301\. In keeping with the Church's traditional practice and the altar's symbolism, the table of a fixed altar is to be of stone and indeed of natural stone. In the judgment of the Conference of Bishops, however, another material worthy, solid, and well-crafted may be used. The supports or base for upholding the table, however, may be made of any sort of material, provided it is worthy and solid.
 
 A movable altar may be constructed of any noble and solid materials suited to liturgical use, according to the traditions and usages of the different regions.
 
@@ -1537,7 +1460,7 @@ A movable altar may be constructed of any noble and solid materials suited to li
 
 In already existing churches, however, when the old altar is positioned so that it makes the people’s participation difficult but cannot be moved without damage to its artistic value, another fixed altar, of artistic merit and duly dedicated, should be erected and sacred rites celebrated on it alone. In order not to distract the attention of the faithful from the new altar, the old altar should not be decorated in any special way.
 
-304\. Out of reverence for the celebration of the memorial of the Lord and for the banquet in which the Body and Blood of the Lord are offered on an altar where this memorial is celebrated, there should be at least one white cloth, its shape, size, and decoration in keeping with the altar’s design. When, in the dioceses of the United States of America, other cloths are used in addition to the altar cloth, then those cloths may be of other colors possessing Christian honorific or festive significance according to longstanding local usage, provided that the uppermost cloth covering the _mensa_ (i.e., the altar cloth itself) is always white in color.
+304\. Out of reverence for the celebration of the memorial of the Lord and for the banquet in which the Body and Blood of the Lord are offered on an altar where this memorial is celebrated, there should be at least one white cloth, its shape, size, and decoration in keeping with the altar's design.
 
 305\. Moderation should be observed in the decoration of the altar.
 
@@ -1637,7 +1560,7 @@ Thus, images of the Lord, the Blessed Virgin Mary, and the Saints, in accordance
 
 In this matter as well, a noble simplicity should be ensured such as is the best companion of genuine art.
 
-326\. In the choice of materials for sacred furnishings, besides those which are traditional, others are acceptable if by contemporary standards they are considered to be noble, are durable, and are well suited for sacred use. In the dioceses of the United States of America these materials may include wood, stone, or metal which are solid and appropriate to the purpose for which they are employed.
+326\. In the choice of materials for sacred furnishings, besides those which are traditional, others are acceptable if by contemporary standards they are considered to be noble, are durable, and are well suited for sacred use, in keeping with the judgment of the Conference of Bishops.
 
 **III. SACRED VESSELS**
 
@@ -1645,7 +1568,7 @@ In this matter as well, a noble simplicity should be ensured such as is the best
 
 328\. Sacred vessels are to be made from precious metal. If they are made from metal that rusts or from a metal less precious than gold, then ordinarily they should be gilded on the inside.
 
-329\. In the dioceses of the United States of America, sacred vessels may also be made from other solid materials that, according to the common estimation in each region, are precious, for example, ebony or other hard woods, provided that such materials are suited to sacred use and do not easily break or deteriorate. This applies to all vessels which hold the hosts, such as the paten, the ciborium, the pyx, the monstrance, and other things of this kind.
+329\. In the judgment of the Conference of Bishops and after approbation has been obtained from the Apostolic See, sacred vessels may also be made from other solid materials that, according to the common estimation in each region, are precious, for example, ebony or other hard woods, provided that such materials are suited to sacred use. This applies to all vessels which hold the hosts, such as the paten, the ciborium, the pyx, the monstrance, and other things of this kind.
 
 330\. As regards chalices and other vessels that are intended to serve as receptacles for the Blood of the Lord, they are to have bowls of nonabsorbent material. The base, on the other hand, may be made of other solid and worthy materials.
 
@@ -1667,7 +1590,7 @@ In this matter as well, a noble simplicity should be ensured such as is the best
 
 338\. The vestment proper to the deacon is the dalmatic, worn over the alb and stole. The dalmatic may, however, be omitted out of necessity or on account of a lesser degree of solemnity.
 
-339\. In the dioceses of the United States of America, acolytes, altar servers, lectors, and other lay ministers may wear the alb or other suitable vesture or other appropriate and dignified clothing.
+339\. In individual dioceses, acolytes, altar servers, lectors, and other lay ministers may wear the alb or other suitable vesture lawfully approved by the Conference of Bishops.
 
 340\. The stole is worn by the priest around his neck and hanging down in front. It is worn by the deacon over his left shoulder and drawn diagonally across the chest to the right side, where it is fastened.
 
@@ -1691,13 +1614,11 @@ In this matter as well, a noble simplicity should be ensured such as is the best
 
 4.  Violet or purple is used in Advent and Lent. It may also be worn in Offices and Masses for the Dead (cf. below).
 
-5.  Besides violet, white or black vestments may be worn at funeral services and at other Offices and Masses for the Dead in the dioceses of the United States of America.
+5.  Black may be used, where it is the practice, in Masses for the Dead.
 
 6.  Rose may be used, where it is the practice, on Gaudete Sunday (Third Sunday of Advent) and on Laetare Sunday (Fourth Sunday of Lent).
 
 7.  On more solemn days, sacred vestments may be used that are festive, that is, more precious, even if not of the color of the day.
-
-8.  Gold- or silver-colored vestments may be worn on more solemn occasions in the dioceses of the United States of America.
 
 347\. Ritual Masses are celebrated in their proper color, in white, or in a festive color; Masses for Various Needs, on the other hand, are celebrated in the color proper to the day or the season or in violet if they are of a penitential character, for example, in The Roman Missal, no. 31 (in Time of War or Conflict), no. 33 (in Time of Famine), or no. 38 (for the Forgiveness of Sins); Votive Masses are celebrated in the color suited to the Mass itself or even in the color proper to the day or the season.
 
@@ -1777,7 +1698,7 @@ As a result, texts spoken in the celebration are to be chosen keeping in mind bo
 
 Such a situation may arise when the same text would have to be read again within a few days, as, for example, on a Sunday and on a following weekday, or when it is feared that a certain text might create some difficulties for a particular group of the Christian faithful. Care should, however, be taken that, when choosing scriptural passages, parts of Sacred Scripture are not permanently excluded.
 
-362\. The adaptations to the _Ordo Lectionum Missae_ as contained in the _Lectionary for Mass for use in the dioceses of the United States of America_ should be carefully observed.
+362\. Adaptations to the _Ordo Lectionum Missae_ as contained in the Lectionary for Mass approved by the Conference of Bishops should be carefully observed.
 
 _**The Orations**_
 
@@ -1829,9 +1750,7 @@ _**The Chants**_
 
 373\. Masses for Various Needs or Masses for Various Circumstances are used in certain situations either as matters arise or at fixed times.
 
-Days or periods of prayer for the fruits of the earth, prayer for human rights and equality, prayer for world justice and peace, and penitential observances outside Lent are to be observed in the dioceses of the United States of America at times to be designated by the diocesan Bishop.
-
-In all the dioceses of the United States of America, January 22 (or January 23, when January 22 falls on a Sunday) shall be observed as a particular day of penance for violations to the dignity of the human person committed through acts of abortion, and of prayer for the full restoration of the legal guarantee of the right to life. The Mass “For Peace and Justice” (no. 22 of the “Masses for Various Needs”) should be celebrated with violet vestments as an appropriate liturgical observance for this day.
+Days or periods of prayer for the fruits of the earth, prayer for human rights and equality, prayer for world justice and peace, and penitential observances outside Lent may be designated by the Conference of Bishops or the diocesan Bishop.
 
 374\. In cases of serious need or pastoral advantage, at the direction of the diocesan Bishop or with his permission, an appropriate Mass may be celebrated on any day except solemnities, the Sundays of Advent, Lent, and Easter, days within the Octave of Easter, the Commemoration of All the Faithful Departed (All Souls’ Day), Ash Wednesday, and Holy Week.
 
@@ -1909,9 +1828,9 @@ Language should be used that is accommodated to the faithful of the region, but 
 
 It is, indeed, of advantage that in regions using the same language, the same translation be used whenever possible for liturgical texts, especially for biblical texts and for the Order of Mass.[\[151\]](#_ftn151)
 
-393\. Bearing in mind the important place that singing has in a celebration as a necessary or integral part of the Liturgy,[\[152\]](#_ftn152) all musical settings of the texts for the people’s responses and acclamations in the Order of Mass and for special rites that occur in the course of the liturgical year must be submitted to the Secretariat for the Liturgy of the United States Conference of Catholic Bishops for review and approval prior to publication.
+393\. Bearing in mind the important place that singing has in a celebration as a necessary or integral part of the Liturgy,[\[152\]](#_ftn152) all musical settings of the texts for the people's responses and acclamations in the Order of Mass and for special rites that occur in the course of the liturgical year must be submitted to the Conference of Bishops for review and approval prior to publication.
 
-While the organ is to be accorded pride of place, other wind, stringed, or percussion instruments may be used in liturgical services in the dioceses of the United States of America, according to longstanding local usage, provided they are truly apt for sacred use or can be rendered apt.
+While the organ is to be accorded pride of place, other wind, stringed, or percussion instruments may be admitted for use in the Liturgy according to the judgment of the Conference of Bishops, provided they are truly apt for sacred use or can be rendered apt.
 
 394\. Each diocese should have its own Calendar and Proper of Masses. For its part, the Bishops’ Conference should draw up a proper calendar for the nation or, together with other Conferences, a calendar for a wider territory, to be approved by the Apostolic See.[\[153\]](#_ftn153)
 
@@ -1947,7 +1866,7 @@ Finally, the purpose of pursuing inculturation is not in any way the creation of
 
 [\[1\]](#_ftnref1) Ecumenical Council of Trent, Session 22, _Doctrina de ss. Missae sacrificio_, 17 September 1562 : _Enchiridion Symbolorum_, H. Denzinger and A. Schönmetzer, editors (editio XXXIII, Freiburg: Herder, 1965; hereafter, Denz-Schön), 1738-1759.
 
-[\[2\]](#_ftnref2) Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 47; cf. Second Vatican Ecumenical Council, Dogmatic Constitution on the Church, _[Lumen gentium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19641121_lumen-gentium_en.html)_, nos. 3, 28; Second Vatican Ecumenical Council, Decree on the Ministry and Life of Priests, _[Presbyterorum ordinis](/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19651207_presbyterorum-ordinis_en.html)_, nos. 2, 4, 5.
+[\[2\]](#_ftnref2) Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 47; cf. Second Vatican Ecumenical Council, Dogmatic Constitution on the Church, _[Lumen gentium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19641121_lumen-gentium_en.html)_, nos. 3, 28; Second Vatican Ecumenical Council, Decree on the Ministry and Life of Priests, _[Presbyterorum ordinis](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19651207_presbyterorum-ordinis_en.html)_, nos. 2, 4, 5.
 
 [\[3\]](#_ftnref3) Evening Mass of the Lord’s Supper, prayer over the offerings. Cf. _Sacramentarium Veronense_, L. C. Mohlberg et al., editors (3rd edition, Rome, 1978), section I, no. 93.
 
@@ -1955,17 +1874,17 @@ Finally, the purpose of pursuing inculturation is not in any way the creation of
 
 [\[5\]](#_ftnref5) Cf. Eucharistic Prayer IV.
 
-[\[6\]](#_ftnref6) Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, nos. 7, 47; Decree on the Ministry and Life of Priests, _[Presbyterorum ordinis](/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19651207_presbyterorum-ordinis_en.html)_, nos. 5, 18.
+[\[6\]](#_ftnref6) Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, nos. 7, 47; Decree on the Ministry and Life of Priests, _[Presbyterorum ordinis](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19651207_presbyterorum-ordinis_en.html)_, nos. 5, 18.
 
-[\[7\]](#_ftnref7) Cf. Pius XII, Encyclical Letter _Humani generis_, 12 August 1950: _Acta Apostolicae Sedis, Commentarium Officiale_ (Vatican City; hereafter, AAS), 42 (1950), pp. 570-571; Paul VI, Encyclical Letter _[Mysterium fidei](/holy_father/paul_vi/encyclicals/documents/hf_p-vi_enc_03091965_mysterium_en.html)_, On the doctrine and worship of the Eucharist, 3 September 1965: AAS 57(1965), pp. 762-769; Paul VI, Solemn Profession of Faith, 30 June 1968, nos. 24-26: AAS 60 (1968), pp. 442-443; Sacred Congregation of Rites, Instruction _Eucharisticum mysterium_, On the worship of the Eucharist, 25 May 1967, nos. 3f, 9: AAS 59 (1967), pp. 543, 547.
+[\[7\]](#_ftnref7) Cf. Pius XII, Encyclical Letter _Humani generis_, 12 August 1950: _Acta Apostolicae Sedis, Commentarium Officiale_ (Vatican City; hereafter, AAS), 42 (1950), pp. 570-571; Paul VI, Encyclical Letter _[Mysterium fidei](https://www.vatican.va/holy_father/paul_vi/encyclicals/documents/hf_p-vi_enc_03091965_mysterium_en.html)_, On the doctrine and worship of the Eucharist, 3 September 1965: AAS 57(1965), pp. 762-769; Paul VI, Solemn Profession of Faith, 30 June 1968, nos. 24-26: AAS 60 (1968), pp. 442-443; Sacred Congregation of Rites, Instruction _Eucharisticum mysterium_, On the worship of the Eucharist, 25 May 1967, nos. 3f, 9: AAS 59 (1967), pp. 543, 547.
 
 [\[8\]](#_ftnref8) Cf. Council of Trent, session 13, _Decretum de ss. Eucharistia_, 11 October 1551: Denz-Schön, 1635-1661.
 
-[\[9\]](#_ftnref9) Cf. Second Vatican Ecumenical Council, Decree on the Ministry and Life of Priests, _[Presbyterorum ordinis](/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19651207_presbyterorum-ordinis_en.html)_, no. 2.
+[\[9\]](#_ftnref9) Cf. Second Vatican Ecumenical Council, Decree on the Ministry and Life of Priests, _[Presbyterorum ordinis](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19651207_presbyterorum-ordinis_en.html)_, no. 2.
 
-[\[10\]](#_ftnref10) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 11.
+[\[10\]](#_ftnref10) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 11.
 
-[\[11\]](#_ftnref11) Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 50.
+[\[11\]](#_ftnref11) Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 50.
 
 [\[12\]](#_ftnref12) Ecumenical Council of Trent, Session 22, _Doctrina de ss. Missae sacrificio_, 17 September 1562, chapter 8: Denz-Schön, 1749.
 
@@ -1973,167 +1892,167 @@ Finally, the purpose of pursuing inculturation is not in any way the creation of
 
 [\[14\]](#_ftnref14) Ecumenical Council of Trent, Session 22, _Doctrina de ss. Missae sacrificio_, 17 September 1562, chapter 8: Denz-Schön, 1749.
 
-[\[15\]](#_ftnref15) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 33.
+[\[15\]](#_ftnref15) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 33.
 
-[\[16\]](#_ftnref16) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 36.
+[\[16\]](#_ftnref16) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 36.
 
-[\[17\]](#_ftnref17) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 52.
+[\[17\]](#_ftnref17) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 52.
 
-[\[18\]](#_ftnref18) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 35:3.
+[\[18\]](#_ftnref18) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 35:3.
 
-[\[19\]](#_ftnref19) Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 55.
+[\[19\]](#_ftnref19) Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 55.
 
 [\[20\]](#_ftnref20) Ecumenical Council of Trent, Session 22, _Doctrina de ss. Missae sacrificio_, 17 September 1562, chapter 6: Denz-Schön, 1747.
 
-[\[21\]](#_ftnref21) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 55.
+[\[21\]](#_ftnref21) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 55.
 
-[\[22\]](#_ftnref22) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 41; Dogmatic Constitution on the Church, _[Lumen gentium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19641121_lumen-gentium_en.html)_, no. 11; Decree on the Ministry and Life of Priests, _[Presbyterorum ordinis](/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19651207_presbyterorum-ordinis_en.html)_, nos. 2, 5, 6; Decree on the Pastoral Office of Bishops, _[Christus Dominus](/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19651028_christus-dominus_en.html)_, 28 October 1965, no. 30; Second Vatican Ecumenical Council, Decree on Ecumenism, _[Unitatis redintegratio](/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19641121_unitatis-redintegratio_en.html)_, 21 November 1964, no. 15; Sacred Congregation of Rites, Instruction _Eucharisticum mysterium_, On the worship of the Eucharist, 25 May 1967, nos. 3e, 6: AAS 59 (1967), pp. 542, 544-545.
+[\[22\]](#_ftnref22) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 41; Dogmatic Constitution on the Church, _[Lumen gentium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19641121_lumen-gentium_en.html)_, no. 11; Decree on the Ministry and Life of Priests, _[Presbyterorum ordinis](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19651207_presbyterorum-ordinis_en.html)_, nos. 2, 5, 6; Decree on the Pastoral Office of Bishops, _[Christus Dominus](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19651028_christus-dominus_en.html)_, 28 October 1965, no. 30; Second Vatican Ecumenical Council, Decree on Ecumenism, _[Unitatis redintegratio](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19641121_unitatis-redintegratio_en.html)_, 21 November 1964, no. 15; Sacred Congregation of Rites, Instruction _Eucharisticum mysterium_, On the worship of the Eucharist, 25 May 1967, nos. 3e, 6: AAS 59 (1967), pp. 542, 544-545.
 
-[\[23\]](#_ftnref23) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 10.
+[\[23\]](#_ftnref23) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 10.
 
-[\[24\]](#_ftnref24) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 102.
+[\[24\]](#_ftnref24) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 102.
 
-[\[25\]](#_ftnref25) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 10; cf. Decree on the Ministry and Life of Priests, _[Presbyterorum ordinis](/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19651207_presbyterorum-ordinis_en.html)_, no. 5.
+[\[25\]](#_ftnref25) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 10; cf. Decree on the Ministry and Life of Priests, _[Presbyterorum ordinis](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19651207_presbyterorum-ordinis_en.html)_, no. 5.
 
-[\[26\]](#_ftnref26) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, nos. 14, 19, 26, 28, 30.
+[\[26\]](#_ftnref26) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, nos. 14, 19, 26, 28, 30.
 
-[\[27\]](#_ftnref27) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 47.
+[\[27\]](#_ftnref27) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 47.
 
-[\[28\]](#_ftnref28) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 14.
+[\[28\]](#_ftnref28) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 14.
 
-[\[29\]](#_ftnref29) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 41.
+[\[29\]](#_ftnref29) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 41.
 
-[\[30\]](#_ftnref30) Cf. Second Vatican Ecumenical Council, Decree on the Ministry and Life of Priests, _[Presbyterorum ordinis](/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19651207_presbyterorum-ordinis_en.html)_, no. 13; _Codex Iuris Canonici_, [can. 904](/archive/ENG1104/__P38.HTM).
+[\[30\]](#_ftnref30) Cf. Second Vatican Ecumenical Council, Decree on the Ministry and Life of Priests, _[Presbyterorum ordinis](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19651207_presbyterorum-ordinis_en.html)_, no. 13; _Codex Iuris Canonici_, [can. 904](https://www.vatican.va/archive/ENG1104/__P38.HTM).
 
-[\[31\]](#_ftnref31) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 59.
+[\[31\]](#_ftnref31) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 59.
 
 [\[32\]](#_ftnref32) Special celebrations of Mass should observe the guidelines established for them: For Masses with special groups, cf. Sacred Congregation for Divine Worship, Instruction _Actio pastoralis_, On Masses with special groups, 15 May 1969: AAS 61 (1969), pp. 806-811; for Masses with children, cf. Sacred Congregation for Divine Worship, _Directory for Masses with Children_, 1 November 1973: AAS 66 (1974), pp. 30-46; for the manner of joining the Hours of the Office with the Mass, cf. Sacred Congregation for Divine Worship, _General Instruction of the Liturgy of the Hours, editio typica_, 11 April 1971, editio typica altera, 7 April 1985, nos. 93-98; for the manner of joining certain blessings and the crowning of an image of the Blessed Virgin Mary with the Mass, cf. The Roman Ritual, _Book of Blessings, editio typica,_ 1984, Introduction, no. 28; _Order of Crowning an Image of the Blessed Virgin Mary, editio typica_, 1981, nos. 10 and 14.
 
-[\[33\]](#_ftnref33) Cf. Second Vatican Ecumenical Council, Decree on the Pastoral Office of Bishops, _[Christus Dominus](/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19651028_christus-dominus_en.html)_, no. 15; cf. also Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 41.
+[\[33\]](#_ftnref33) Cf. Second Vatican Ecumenical Council, Decree on the Pastoral Office of Bishops, _[Christus Dominus](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19651028_christus-dominus_en.html)_, no. 15; cf. also Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 41.
 
-[\[34\]](#_ftnref34) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 22.
+[\[34\]](#_ftnref34) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 22.
 
-[\[35\]](#_ftnref35) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy. _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, nos. 38, 40; Paul VI, Apostolic Constitution _Missale Romanum_.
+[\[35\]](#_ftnref35) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy. _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, nos. 38, 40; Paul VI, Apostolic Constitution _Missale Romanum_.
 
 [\[36\]](#_ftnref36) Congregation for Divine Worship and the Discipline of the Sacraments, Instruction, _Varietates legitimate_, 25 January 1994: AAS 87 (1995), pp. 288-314.
 
-[\[37\]](#_ftnref37) Cf. Second Vatican Ecumenical Council, Decree on the Ministry and Life of Priests, _[Presbyterorum ordinis](/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19651207_presbyterorum-ordinis_en.html)_, no. 5; Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 33.
+[\[37\]](#_ftnref37) Cf. Second Vatican Ecumenical Council, Decree on the Ministry and Life of Priests, _[Presbyterorum ordinis](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19651207_presbyterorum-ordinis_en.html)_, no. 5; Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 33.
 
 [\[38\]](#_ftnref38) Cf. Ecumenical Council of Trent, Session 22, _Doctrina de ss. Missae sacrificio_, 17 September 1562, chapter 1: Denz-Schön, 1740; Paul VI, Solemn Profession of Faith, 30 June 1968, no. 24: AAS 60 (1968), p. 442.
 
-[\[39\]](#_ftnref39) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 7; Paul VI, Encyclical Letter _[Mysterium fidei](/holy_father/paul_vi/encyclicals/documents/hf_p-vi_enc_03091965_mysterium_en.html)_, On the doctrine and worship of the Eucharist, 3 September 1965: AAS 57 (1965), p. 764; Sacred Congregation of Rites, Instruction _Eucharisticum mysterium_, On the worship of the Eucharist, 25 May 1967, no. 9: AAS 59 (1967), p. 547.
+[\[39\]](#_ftnref39) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 7; Paul VI, Encyclical Letter _[Mysterium fidei](https://www.vatican.va/holy_father/paul_vi/encyclicals/documents/hf_p-vi_enc_03091965_mysterium_en.html)_, On the doctrine and worship of the Eucharist, 3 September 1965: AAS 57 (1965), p. 764; Sacred Congregation of Rites, Instruction _Eucharisticum mysterium_, On the worship of the Eucharist, 25 May 1967, no. 9: AAS 59 (1967), p. 547.
 
-[\[40\]](#_ftnref40) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 56; Sacred Congregation of Rites, Instruction _Eucharisticum mysterium_, On the worship of the Eucharist, 25 May 1967, no. 3: AAS 59 (1967), p. 542.
+[\[40\]](#_ftnref40) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 56; Sacred Congregation of Rites, Instruction _Eucharisticum mysterium_, On the worship of the Eucharist, 25 May 1967, no. 3: AAS 59 (1967), p. 542.
 
-[\[41\]](#_ftnref41) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, nos. 48, 51; Second Vatican Ecumenical Council, Dogmatic Constitution on Divine Revelation, _[Dei Verbum](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19651118_dei-verbum_en.html)_, 18 November 1965, no. 21; Decree on the Ministry and Life of Priests, _[Presbyterorum ordinis](/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19651207_presbyterorum-ordinis_en.html)_, no. 4.
+[\[41\]](#_ftnref41) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, nos. 48, 51; Second Vatican Ecumenical Council, Dogmatic Constitution on Divine Revelation, _[Dei Verbum](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19651118_dei-verbum_en.html)_, 18 November 1965, no. 21; Decree on the Ministry and Life of Priests, _[Presbyterorum ordinis](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19651207_presbyterorum-ordinis_en.html)_, no. 4.
 
-[\[42\]](#_ftnref42) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, nos. 7, 33, 52.
+[\[42\]](#_ftnref42) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, nos. 7, 33, 52.
 
-[\[43\]](#_ftnref43) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 33.
+[\[43\]](#_ftnref43) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 33.
 
-[\[44\]](#_ftnref44) Cf. Sacred Congregation of Rites, Instruction _[Musicam sacram](/archive/hist_councils/ii_vatican_council/documents/vat-ii_instr_19670305_musicam-sacram_en.html)_, On music in the Liturgy, 5 March 1967 , no. 14: AAS 59 (1967), p. 304.
+[\[44\]](#_ftnref44) Cf. Sacred Congregation of Rites, Instruction _[Musicam sacram](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_instr_19670305_musicam-sacram_en.html)_, On music in the Liturgy, 5 March 1967 , no. 14: AAS 59 (1967), p. 304.
 
-[\[45\]](#_ftnref45) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, nos. 26-27; Sacred Congregation of Rites, Instruction _Eucharisticum mysterium_, On the worship of the Eucharist, 25 May 1967, no. 3d: AAS 59 (1967), p. 542.
+[\[45\]](#_ftnref45) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, nos. 26-27; Sacred Congregation of Rites, Instruction _Eucharisticum mysterium_, On the worship of the Eucharist, 25 May 1967, no. 3d: AAS 59 (1967), p. 542.
 
-[\[46\]](#_ftnref46) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 30.
+[\[46\]](#_ftnref46) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 30.
 
-[\[47\]](#_ftnref47) Cf. Sacred Congregation of Rites, Instruction _[Musicam sacram](/archive/hist_councils/ii_vatican_council/documents/vat-ii_instr_19670305_musicam-sacram_en.html)_, On music in the Liturgy, 5 March 1967, no. 16a: AAS 59 (1967), p. 305.
+[\[47\]](#_ftnref47) Cf. Sacred Congregation of Rites, Instruction _[Musicam sacram](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_instr_19670305_musicam-sacram_en.html)_, On music in the Liturgy, 5 March 1967, no. 16a: AAS 59 (1967), p. 305.
 
 [\[48\]](#_ftnref48) St. Augustine of Hippo, Sermo 336, 1: _Patrologiae cursus completus: Series latina_, J. P. Migne, editor, Paris, 1844-1855 (hereafter, PL), 38, 1472.
 
-[\[49\]](#_ftnref49) Cf. Sacred Congregation of Rites, Instruction _[Musicam sacram](/archive/hist_councils/ii_vatican_council/documents/vat-ii_instr_19670305_musicam-sacram_en.html)_, On music in the Liturgy, 5 March 1967, nos. 7, 16: AAS 59 (1967), pp. 302, 305.
+[\[49\]](#_ftnref49) Cf. Sacred Congregation of Rites, Instruction _[Musicam sacram](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_instr_19670305_musicam-sacram_en.html)_, On music in the Liturgy, 5 March 1967, nos. 7, 16: AAS 59 (1967), pp. 302, 305.
 
-[\[50\]](#_ftnref50) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 116; cf. also Sacred Congregation of Rites, Instruction _[Musicam sacram](/archive/hist_councils/ii_vatican_council/documents/vat-ii_instr_19670305_musicam-sacram_en.html)_, On music in the Liturgy, 5 March 1967, no. 30.
+[\[50\]](#_ftnref50) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 116; cf. also Sacred Congregation of Rites, Instruction _[Musicam sacram](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_instr_19670305_musicam-sacram_en.html)_, On music in the Liturgy, 5 March 1967, no. 30.
 
-[\[51\]](#_ftnref51) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 54; Sacred Congregation of Rites, Instruction _Inter Oecumenici_, On the orderly carrying out of the Constitution on the Sacred Liturgy, 26 September 1964, no. 59: AAS 56 (1964), p. 891; Sacred Congregation of Rites, Instruction _[Musicam sacram](/archive/hist_councils/ii_vatican_council/documents/vat-ii_instr_19670305_musicam-sacram_en.html)_, On music in the Liturgy, 5 March 1967, no. 47: AAS 59 (1967), p. 314.
+[\[51\]](#_ftnref51) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 54; Sacred Congregation of Rites, Instruction _Inter Oecumenici_, On the orderly carrying out of the Constitution on the Sacred Liturgy, 26 September 1964, no. 59: AAS 56 (1964), p. 891; Sacred Congregation of Rites, Instruction _[Musicam sacram](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_instr_19670305_musicam-sacram_en.html)_, On music in the Liturgy, 5 March 1967, no. 47: AAS 59 (1967), p. 314.
 
-[\[52\]](#_ftnref52) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, nos. 30, 34; cf. also Sacred Congregation of Rites, Instruction _[Musicam sacram](/archive/hist_councils/ii_vatican_council/documents/vat-ii_instr_19670305_musicam-sacram_en.html)_, On music in the Liturgy, 5 March 1967, no. 21.
+[\[52\]](#_ftnref52) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, nos. 30, 34; cf. also Sacred Congregation of Rites, Instruction _[Musicam sacram](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_instr_19670305_musicam-sacram_en.html)_, On music in the Liturgy, 5 March 1967, no. 21.
 
-[\[53\]](#_ftnref53) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 40; Congregation for Divine Worship and the Discipline of the Sacraments, Instruction _Varietates legitimae_, 25 January 1994, no. 41: AAS 87 (1995), p. 304.
+[\[53\]](#_ftnref53) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 40; Congregation for Divine Worship and the Discipline of the Sacraments, Instruction _Varietates legitimae_, 25 January 1994, no. 41: AAS 87 (1995), p. 304.
 
-[\[54\]](#_ftnref54) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 30; Sacred Congregation of Rites, Instruction _[Musicam sacram](/archive/hist_councils/ii_vatican_council/documents/vat-ii_instr_19670305_musicam-sacram_en.html)_, On music in the Liturgy, 5 March 1967, no. 17: AAS 59 (1967), p. 305.
+[\[54\]](#_ftnref54) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 30; Sacred Congregation of Rites, Instruction _[Musicam sacram](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_instr_19670305_musicam-sacram_en.html)_, On music in the Liturgy, 5 March 1967, no. 17: AAS 59 (1967), p. 305.
 
-[\[55\]](#_ftnref55) Cf. John Paul II, Apostolic Letter _[Dies Domini](/holy_father/john_paul_ii/apost_letters/documents/hf_jp-ii_apl_05071998_dies-domini_en.html)_, 31 May 1998 , no. 50: AAS 90 (1998), p. 745.
+[\[55\]](#_ftnref55) Cf. John Paul II, Apostolic Letter _[Dies Domini](https://www.vatican.va/holy_father/john_paul_ii/apost_letters/documents/hf_jp-ii_apl_05071998_dies-domini_en.html)_, 31 May 1998 , no. 50: AAS 90 (1998), p. 745.
 
 [\[56\]](#_ftnref56) Cf. The Roman Missal, Appendix II.
 
 [\[57\]](#_ftnref57) Cf. Tertullian, _Adversus Marcionem_, IV, 9: _Corpus Christianorum, Series_ _latina_, Turnhout, Belgium, 1953- (hereafter, CCSL), 1, p. 560. PL 2, 376A; Origen, _Disputatio cum Heracleida_, no. 4, 24: _Sources chrétiennes_, H. deLubac et al., editors. (Paris, 1941-), p. 62; _Statuta Concilii Hipponensis Breviata_, 21: CCSL 149, p. 39.
 
-[\[58\]](#_ftnref58) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 33.
+[\[58\]](#_ftnref58) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 33.
 
-[\[59\]](#_ftnref59) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 7.
+[\[59\]](#_ftnref59) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 7.
 
 [\[60\]](#_ftnref60) Cf. The Roman Missal, _Lectionary for Mass_, _editio typica altera_, 1981, Introduction, no. 28.
 
-[\[61\]](#_ftnref61) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 51.
+[\[61\]](#_ftnref61) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 51.
 
-[\[62\]](#_ftnref62) Cf. John Paul II, Apostolic Letter _[Vicesimus quintus annus](/holy_father/john_paul_ii/apost_letters/documents/hf_jp-ii_apl_04121988_vicesimus-quintus-annus_en.html)_, 4 December 1988, no. 13: AAS 81 (1989), p. 910.
+[\[62\]](#_ftnref62) Cf. John Paul II, Apostolic Letter _[Vicesimus quintus annus](https://www.vatican.va/holy_father/john_paul_ii/apost_letters/documents/hf_jp-ii_apl_04121988_vicesimus-quintus-annus_en.html)_, 4 December 1988, no. 13: AAS 81 (1989), p. 910.
 
-[\[63\]](#_ftnref63) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 52; _Codex Iuris Canonici_, can. 767 
+[\[63\]](#_ftnref63) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 52; _Codex Iuris Canonici_, can. 767 
 
 [\[64\]](#_ftnref64) Cf. Sacred Congregation of Rites, Instruction _Inter Oecumenici_, On the orderly carrying out of the Constitution on the Sacred Liturgy, 26 September 1964, no. 54: AAS 56 (1964), p. 890
 
-[\[65\]](#_ftnref65) Cf. _Codex Iuris Canonici_, _[can. 767§1](/archive/ENG1104/__P2J.HTM)_; Pontifical Commission for the Authentic Interpretation of the _Code of Canon Law_, response to _dubium_ regarding can. 767  1: AAS 79 (1987), p. 1249; Interdicasterial Instruction on certain questions regarding the collaboration of the non-ordained faithful in the sacred ministry of priests, _Ecclesiae de mysterio_, 15 August 1997, art. 3: AAS 89 (1997), p. 864.
+[\[65\]](#_ftnref65) Cf. _Codex Iuris Canonici_, _[can. 767§1](https://www.vatican.va/archive/ENG1104/__P2J.HTM)_; Pontifical Commission for the Authentic Interpretation of the _Code of Canon Law_, response to _dubium_ regarding can. 767  1: AAS 79 (1987), p. 1249; Interdicasterial Instruction on certain questions regarding the collaboration of the non-ordained faithful in the sacred ministry of priests, _Ecclesiae de mysterio_, 15 August 1997, art. 3: AAS 89 (1997), p. 864.
 
 [\[66\]](#_ftnref66) Cf. Sacred Congregation of Rites, Instruction _Inter Oecumenici_, On the orderly carrying out of the Constitution on the Sacred Liturgy, 26 September 1964, no. 53: AAS 56 (1964), p. 890.
 
-[\[67\]](#_ftnref67) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 53.
+[\[67\]](#_ftnref67) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 53.
 
 [\[68\]](#_ftnref68) Cf. Sacred Congregation of Rites, Instruction _Inter Oecumenici_, On the orderly carrying out of the Constitution on the Sacred Liturgy, 26 September 1964, no. 56: AAS 56 (1964), p. 890.
 
-[\[69\]](#_ftnref69) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 47; Sacred Congregation of Rites, Instruction _Eucharisticum mysterium_, On the worship of the Eucharist, 25 May 1967, no. 3a, b: AAS 59 (1967), pp. 540-541.
+[\[69\]](#_ftnref69) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 47; Sacred Congregation of Rites, Instruction _Eucharisticum mysterium_, On the worship of the Eucharist, 25 May 1967, no. 3a, b: AAS 59 (1967), pp. 540-541.
 
 [\[70\]](#_ftnref70) Cf. Sacred Congregation of Rites, Instruction _Inter Oecumenici_, On the orderly carrying out of the Constitution on the Sacred Liturgy, 26 September 1964, no. 91: AAS 56 (1964), p. 898; Sacred Congregation of Rites, Instruction _Eucharisticum mysterium_, On the worship of the Eucharist, 25 May 1967, no. 24: AAS 59 (1967), p. 554.
 
-[\[71\]](#_ftnref71) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 48; Sacred Congregation of Rites, Instruction _Eucharisticum mysterium_, On the worship of the Eucharist, 25 May 1967, no. 12: AAS 59 (1967), pp. 548-549.
+[\[71\]](#_ftnref71) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 48; Sacred Congregation of Rites, Instruction _Eucharisticum mysterium_, On the worship of the Eucharist, 25 May 1967, no. 12: AAS 59 (1967), pp. 548-549.
 
-[\[72\]](#_ftnref72) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 48; Decree on the Ministry and Life of Priests, _[Presbyterorum ordinis](/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19651207_presbyterorum-ordinis_en.html)_, no. 5; Sacred Congregation of Rites, Instruction _Eucharisticum mysterium_, On the worship of the Eucharist, 25 May 1967, no. 12: AAS 59 (1967), pp. 548-549.
+[\[72\]](#_ftnref72) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 48; Decree on the Ministry and Life of Priests, _[Presbyterorum ordinis](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19651207_presbyterorum-ordinis_en.html)_, no. 5; Sacred Congregation of Rites, Instruction _Eucharisticum mysterium_, On the worship of the Eucharist, 25 May 1967, no. 12: AAS 59 (1967), pp. 548-549.
 
 [\[73\]](#_ftnref73) Cf. Sacred Congregation of Rites, Instruction _Eucharisticum mysterium_, On the worship of the Eucharist, 25 May 1967, nos. 31, 32; Sacred Congregation for the Discipline of the Sacraments, Instruction _Immensae caritatis_, 29 January 1973, no. 2: AAS 65 (1973), pp. 267-268.
 
 [\[74\]](#_ftnref74) Cf. Sacred Congregation for the Sacraments and Divine Worship, Instruction _Inestimabile donum_, 3 April, 1980, no. 17: AAS 72 (1980), p. 338.
 
-[\[75\]](#_ftnref75) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 26.
+[\[75\]](#_ftnref75) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 26.
 
-[\[76\]](#_ftnref76) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 14.
+[\[76\]](#_ftnref76) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 14.
 
-[\[77\]](#_ftnref77) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 28.
+[\[77\]](#_ftnref77) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 28.
 
-[\[78\]](#_ftnref78) Cf. Second Vatican Ecumenical Council, Dogmatic Constitution on the Church, _[Lumen gentium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19641121_lumen-gentium_en.html)_, nos. 26, 28; Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 42.
+[\[78\]](#_ftnref78) Cf. Second Vatican Ecumenical Council, Dogmatic Constitution on the Church, _[Lumen gentium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19641121_lumen-gentium_en.html)_, nos. 26, 28; Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 42.
 
-[\[79\]](#_ftnref79) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 26.
+[\[79\]](#_ftnref79) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 26.
 
 [\[80\]](#_ftnref80) Cf. _Caeremoniale Episcoporum, editio typica_, 1984, nos. 175-186.
 
-[\[81\]](#_ftnref81) Cf. Second Vatican Ecumenical Council, Dogmatic Constitution on the Church, _[Lumen gentium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19641121_lumen-gentium_en.html)_, no. 28; Decree on the Ministry and Life of Priests, _[Presbyterorum ordinis](/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19651207_presbyterorum-ordinis_en.html)_, no. 2.
+[\[81\]](#_ftnref81) Cf. Second Vatican Ecumenical Council, Dogmatic Constitution on the Church, _[Lumen gentium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19641121_lumen-gentium_en.html)_, no. 28; Decree on the Ministry and Life of Priests, _[Presbyterorum ordinis](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19651207_presbyterorum-ordinis_en.html)_, no. 2.
 
 [\[82\]](#_ftnref82) Cf. Paul VI, Apostolic Letter _Sacrum diaconatus ordinem_, 18 June 1967: AAS 59 (1967), pp. 697-704; The Roman Pontifical, _Rites of Ordination of a Bishop, of Priests, and of Deacons, editio typica altera_, 1989, no. 173.
 
-[\[83\]](#_ftnref83) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 48; Sacred Congregation of Rites, Instruction _Eucharisticum mysterium_, On the worship of the Eucharist, 25 May 1967, no. 12: AAS 59 (1967), pp. 548-549.
+[\[83\]](#_ftnref83) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 48; Sacred Congregation of Rites, Instruction _Eucharisticum mysterium_, On the worship of the Eucharist, 25 May 1967, no. 12: AAS 59 (1967), pp. 548-549.
 
-[\[84\]](#_ftnref84) Cf. _Codex Iuris Canonici_, [can. 910](/archive/ENG1104/__P38.HTM)  2; cf. also Interdicasterial Instruction on certain questions regarding the collaboration of the non-ordained faithful in the sacred ministry of priests, _Ecclesiae de mysterio_, 15 August 1997, art. 8: AAS 89 (1997), p. 871.
+[\[84\]](#_ftnref84) Cf. _Codex Iuris Canonici_, [can. 910](https://www.vatican.va/archive/ENG1104/__P38.HTM)  2; cf. also Interdicasterial Instruction on certain questions regarding the collaboration of the non-ordained faithful in the sacred ministry of priests, _Ecclesiae de mysterio_, 15 August 1997, art. 8: AAS 89 (1997), p. 871.
 
 [\[85\]](#_ftnref85) Cf. Sacred Congregation for the Discipline of the Sacraments, Instruction _Immensae caritatis_, 29 January 1973, no. 1: AAS 65 (1973), pp. 265-266; _Codex Iuris Canonici_, can. 230  3.
 
-[\[86\]](#_ftnref86) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 24.
+[\[86\]](#_ftnref86) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 24.
 
-[\[87\]](#_ftnref87) Cf. Sacred Congregation of Rites, Instruction _[Musicam sacram](/archive/hist_councils/ii_vatican_council/documents/vat-ii_instr_19670305_musicam-sacram_en.html)_, On music in the Liturgy, 5 March 1967, no. 19: AAS 59 (1967), p. 306.
+[\[87\]](#_ftnref87) Cf. Sacred Congregation of Rites, Instruction _[Musicam sacram](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_instr_19670305_musicam-sacram_en.html)_, On music in the Liturgy, 5 March 1967, no. 19: AAS 59 (1967), p. 306.
 
-[\[88\]](#_ftnref88) Cf. Sacred Congregation of Rites, Instruction _[Musicam sacram](/archive/hist_councils/ii_vatican_council/documents/vat-ii_instr_19670305_musicam-sacram_en.html)_, On music in the Liturgy, 5 March 1967, no. 21: AAS 59 (1967), pp. 306-307.
+[\[88\]](#_ftnref88) Cf. Sacred Congregation of Rites, Instruction _[Musicam sacram](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_instr_19670305_musicam-sacram_en.html)_, On music in the Liturgy, 5 March 1967, no. 21: AAS 59 (1967), pp. 306-307.
 
 [\[89\]](#_ftnref89) Cf. Pontifical Commission for interpreting legal texts, response to _dubium_ regarding can. 230  2: AAS 86 (1994), p. 541.
 
-[\[90\]](#_ftnref90) Cf. Second Vatican Ecumenical Council, Constitution on the Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 22.
+[\[90\]](#_ftnref90) Cf. Second Vatican Ecumenical Council, Constitution on the Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 22.
 
-[\[91\]](#_ftnref91) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 41.
+[\[91\]](#_ftnref91) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 41.
 
 [\[92\]](#_ftnref92) Cf. _Caeremoniale Episcoporum, editio typica_, 1984, nos. 119-186
 
-[\[93\]](#_ftnref93) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 42; Dogmatic Constitution on the Church, _[Lumen gentium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19641121_lumen-gentium_en.html)_, no. 28; Decree on the Ministry and Life of Priests, _[Presbyterorum ordinis](/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19651207_presbyterorum-ordinis_en.html)_, no. 5; Sacred Congregation of Rites, Instruction _Eucharisticum mysterium_, On the worship of the Eucharist, 25 May 1967, no. 26: AAS 59 (1967), p. 555.
+[\[93\]](#_ftnref93) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 42; Dogmatic Constitution on the Church, _[Lumen gentium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19641121_lumen-gentium_en.html)_, no. 28; Decree on the Ministry and Life of Priests, _[Presbyterorum ordinis](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19651207_presbyterorum-ordinis_en.html)_, no. 5; Sacred Congregation of Rites, Instruction _Eucharisticum mysterium_, On the worship of the Eucharist, 25 May 1967, no. 26: AAS 59 (1967), p. 555.
 
 [\[94\]](#_ftnref94) Cf. Sacred Congregation of Rites, Instruction _Eucharisticum mysterium_, On the worship of the Eucharist, 25 May 1967, no. 47: AAS 59 (1967), p. 565.
 
-[\[95\]](#_ftnref95) Cf. Sacred Congregation of Rites, Instruction _Eucharisticum mysterium_, On the worship of the Eucharist, 25 May 1967, no. 26: AAS 59 (1967), p. 555; Sacred Congregation of Rites, Instruction _[Musicam sacram](/archive/hist_councils/ii_vatican_council/documents/vat-ii_instr_19670305_musicam-sacram_en.html)_, On music in the Liturgy, 5 March 1967, nos. 16, 27: AAS 59 (1967), pp. 305, 308.
+[\[95\]](#_ftnref95) Cf. Sacred Congregation of Rites, Instruction _Eucharisticum mysterium_, On the worship of the Eucharist, 25 May 1967, no. 26: AAS 59 (1967), p. 555; Sacred Congregation of Rites, Instruction _[Musicam sacram](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_instr_19670305_musicam-sacram_en.html)_, On music in the Liturgy, 5 March 1967, nos. 16, 27: AAS 59 (1967), pp. 305, 308.
 
 [\[96\]](#_ftnref96) Cf. Interdicasterial Instruction on certain questions regarding the collaboration of the non-ordained faithful in the sacred ministry of priests, _Ecclesiae de mysterio_, 15 August 1997, art. 6: AAS 89 (1997), p. 869.
 
@@ -2145,7 +2064,7 @@ Finally, the purpose of pursuing inculturation is not in any way the creation of
 
 [\[100\]](#_ftnref100) Paul VI, Apostolic Letter _Ministeria quaedam_, 15 August 1972: AAS 64 (1972), p. 532.
 
-[\[101\]](#_ftnref101) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 57; _Codex Iuris Canonici_, _[can. 902](/archive/ENG1104/__P38.HTM)_.
+[\[101\]](#_ftnref101) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 57; _Codex Iuris Canonici_, _[can. 902](https://www.vatican.va/archive/ENG1104/__P38.HTM)_.
 
 [\[102\]](#_ftnref102) Cf. Sacred Congregation of Rites, Instruction _Eucharisticum mysterium_, On the worship of the Eucharist, 25 May 1967, no. 47: AAS 59 (1967), p. 566.
 
@@ -2159,17 +2078,17 @@ Finally, the purpose of pursuing inculturation is not in any way the creation of
 
 [\[107\]](#_ftnref107) Cf. Council of Trent, session 21, _Doctrina de communione sub utraque specie et parvulorum_, chapter 2: Denz-Schön, 1725-1728.
 
-[\[108\]](#_ftnref108) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, nos. 122-124; Decree on the Ministry and Life of Priests, _[Presbyterorum ordinis](/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19651207_presbyterorum-ordinis_en.html)_, no. 5; Sacred Congregation of Rites, Instruction _Inter Oecumenici_, On the orderly carrying out of the Constitution on the Sacred Liturgy, 26 September 1964, no. 90: AAS 56 (1964), p. 897; Sacred Congregation of Rites, Instruction _Eucharisticum mysterium_, On the worship of the Eucharist, 25 May 1967, no. 24: AAS 59 (1967), p. 554; _Codex Iuris Canonici_, can. 932  1.
+[\[108\]](#_ftnref108) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, nos. 122-124; Decree on the Ministry and Life of Priests, _[Presbyterorum ordinis](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_decree_19651207_presbyterorum-ordinis_en.html)_, no. 5; Sacred Congregation of Rites, Instruction _Inter Oecumenici_, On the orderly carrying out of the Constitution on the Sacred Liturgy, 26 September 1964, no. 90: AAS 56 (1964), p. 897; Sacred Congregation of Rites, Instruction _Eucharisticum mysterium_, On the worship of the Eucharist, 25 May 1967, no. 24: AAS 59 (1967), p. 554; _Codex Iuris Canonici_, can. 932  1.
 
-[\[109\]](#_ftnref109) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 123.
+[\[109\]](#_ftnref109) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 123.
 
 [\[110\]](#_ftnref110) Cf. Sacred Congregation of Rites, Instruction _Eucharisticum mysterium_, On the worship of the Eucharist, 25 May 1967, no. 24: AAS 59 (1967), p. 554.
 
-[\[111\]](#_ftnref111) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, nos. 123, 129; Sacred Congregation of Rites, Instruction _Inter Oecumenici_, On the orderly carrying out of the Constitution on the Sacred Liturgy, 26 September 1964, no. 13c: AAS 56 (1964), p. 880.
+[\[111\]](#_ftnref111) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, nos. 123, 129; Sacred Congregation of Rites, Instruction _Inter Oecumenici_, On the orderly carrying out of the Constitution on the Sacred Liturgy, 26 September 1964, no. 13c: AAS 56 (1964), p. 880.
 
-[\[112\]](#_ftnref112) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 123.
+[\[112\]](#_ftnref112) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 123.
 
-[\[113\]](#_ftnref113) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 126; Sacred Congregation of Rites, Instruction _Inter Oecumenici_, On the orderly carrying out of the Constitution on the Sacred Liturgy, 26 September 1964, no. 91: AAS 56 (1964), p. 898.
+[\[113\]](#_ftnref113) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 126; Sacred Congregation of Rites, Instruction _Inter Oecumenici_, On the orderly carrying out of the Constitution on the Sacred Liturgy, 26 September 1964, no. 91: AAS 56 (1964), p. 898.
 
 [\[114\]](#_ftnref114) Cf. Sacred Congregation of Rites, Instruction _Inter Oecumenici_, On the orderly carrying out of the Constitution on the Sacred Liturgy, 26 September 1964, nos. 97-98: AAS 56 (1964), p. 899.
 
@@ -2187,9 +2106,9 @@ Finally, the purpose of pursuing inculturation is not in any way the creation of
 
 [\[121\]](#_ftnref121) Cf. Sacred Congregation of Rites, Instruction _Inter Oecumenici_, On the orderly carrying out of the Constitution on the Sacred Liturgy, 26 September 1964, no. 92: AAS 56 (1964), p. 898.
 
-[\[122\]](#_ftnref122) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 32.
+[\[122\]](#_ftnref122) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 32.
 
-[\[123\]](#_ftnref123) Cf. Sacred Congregation of Rites, Instruction _[Musicam sacram](/archive/hist_councils/ii_vatican_council/documents/vat-ii_instr_19670305_musicam-sacram_en.html)_, On music in the Liturgy, 5 March 1967, no. 23: AAS 59 (1967), p. 307.
+[\[123\]](#_ftnref123) Cf. Sacred Congregation of Rites, Instruction _[Musicam sacram](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_instr_19670305_musicam-sacram_en.html)_, On music in the Liturgy, 5 March 1967, no. 23: AAS 59 (1967), p. 307.
 
 [\[124\]](#_ftnref124) Cf. The Roman Ritual, _Book of Blessings, editio typica_, 1984, Order for the Blessing of an Organ, nos. 1052-1067.
 
@@ -2201,61 +2120,61 @@ Finally, the purpose of pursuing inculturation is not in any way the creation of
 
 [\[128\]](#_ftnref128) Cf. Sacred Congregation of Rites, Instruction _Eucharisticum mysterium_, On the worship of the Eucharist, 25 May 1967. no. 55: AAS 59 (1967), p. 569.
 
-[\[129\]](#_ftnref129) Cf. Sacred Congregation of Rites, Instruction _Eucharisticum mysterium_, On the worship of the Eucharist, 25 May 1967. no. 53: AAS 59 (1967), p. 568; The Roman Ritual, _Holy Communion and Worship of the Eucharist outside Mass, edition typica_, 1973, no. 9; _Codex Iuris Canonici,_ can. 938 §2; John Paul II, Apostolic Letter _[Dominicae Cenae](/holy_father/john_paul_ii/letters/documents/hf_jp-ii_let_24021980_dominicae-cenae_en.html),_ 24 February 1980, no. 3: AAS 72 (1980), pp. 117-119.
+[\[129\]](#_ftnref129) Cf. Sacred Congregation of Rites, Instruction _Eucharisticum mysterium_, On the worship of the Eucharist, 25 May 1967. no. 53: AAS 59 (1967), p. 568; The Roman Ritual, _Holy Communion and Worship of the Eucharist outside Mass, edition typica_, 1973, no. 9; _Codex Iuris Canonici,_ can. 938 §2; John Paul II, Apostolic Letter _[Dominicae Cenae](https://www.vatican.va/holy_father/john_paul_ii/letters/documents/hf_jp-ii_let_24021980_dominicae-cenae_en.html),_ 24 February 1980, no. 3: AAS 72 (1980), pp. 117-119.
 
-[\[130\]](#_ftnref130) Cf. _Codex Iuris Canonici_, _[can. 940](/archive/ENG1104/__P3C.HTM)_; Sacred Congregation of Rites, Instruction _Eucharisticum mysterium_, On the worship of the Eucharist, 25 May 1967. no. 57: AAS 59 (1967), p. 569; The Roman Ritual, _Holy Communion and Worship of the Eucharist outside Mass, edition typica,_ 1973, no. 11.
+[\[130\]](#_ftnref130) Cf. _Codex Iuris Canonici_, _[can. 940](https://www.vatican.va/archive/ENG1104/__P3C.HTM)_; Sacred Congregation of Rites, Instruction _Eucharisticum mysterium_, On the worship of the Eucharist, 25 May 1967. no. 57: AAS 59 (1967), p. 569; The Roman Ritual, _Holy Communion and Worship of the Eucharist outside Mass, edition typica,_ 1973, no. 11.
 
-[\[131\]](#_ftnref131) Cf. particularly in Sacred Congregation for the Sacraments, Instruction _Nullo umquam tempore,_ 28 May 1938: AAS 30 (1938), pp. 198-207; _Codex Iuris Canonici_, _[cann. 934-944](/archive/ENG1104/__P3C.HTM)_.
+[\[131\]](#_ftnref131) Cf. particularly in Sacred Congregation for the Sacraments, Instruction _Nullo umquam tempore,_ 28 May 1938: AAS 30 (1938), pp. 198-207; _Codex Iuris Canonici_, _[cann. 934-944](https://www.vatican.va/archive/ENG1104/__P3C.HTM)_.
 
-[\[132\]](#_ftnref132) Cf. Second Vatican Ecumenical Council, Constitution on the Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 8.
+[\[132\]](#_ftnref132) Cf. Second Vatican Ecumenical Council, Constitution on the Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 8.
 
 [\[133\]](#_ftnref133) Cf. The Roman Pontifical: _Order of the Dedication of a Church and an Altar, editio typica_, 1984, Chapter 4, no. 10; The Roman Ritual, _Book of Blessings, edito typica,_ 1984, Order for the Blessing of Images for Public Veneration by the Faithful, nos. 984-1031.
 
-[\[134\]](#_ftnref134) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 125.
+[\[134\]](#_ftnref134) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 125.
 
-[\[135\]](#_ftnref135) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 128.
+[\[135\]](#_ftnref135) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 128.
 
 [\[136\]](#_ftnref136) Cf. The Roman Pontifical: _Order of the Dedication of a Church and an Altar, editio typica_, 1984, Chapter 7, Order of the Blessing of a Chalice and a Paten; The Roman Ritual, _Book of Blessings, editio typica_, 1984, Order for the Blessing of Articles for Liturgical Use, nos. 1068-1084.
 
 [\[137\]](#_ftnref137) Cf. The Roman Ritual, _Book of Blessings, editio typica_, 1984, Order for the Blessing of Articles for Liturgical Use, no. 1070.
 
-[\[138\]](#_ftnref138) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 128.
+[\[138\]](#_ftnref138) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 128.
 
-[\[139\]](#_ftnref139) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 128.
+[\[139\]](#_ftnref139) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 128.
 
 [\[140\]](#_ftnref140) For blessing objects that are designed for liturgical use in churches, cf. The Roman Ritual, _Book of Blessings, editio typica_, 1984, part III.
 
-[\[141\]](#_ftnref141) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 51.
+[\[141\]](#_ftnref141) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 51.
 
 [\[142\]](#_ftnref142) The Roman Missal, _Lectionary for Mass, editio typica altera_, 1981, Introduction, no. 80.
 
 [\[143\]](#_ftnref143) The Roman Missal, _Lectionary for Mass, editio typica altera_, 1981, Introduction, no. 81.
 
-[\[144\]](#_ftnref144) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 61.
+[\[144\]](#_ftnref144) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 61.
 
-[\[145\]](#_ftnref145) Cf. Second Vatican Ecumenical Council, Dogmatic Constitution on the Church, _[Lumen gentium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19641121_lumen-gentium_en.html)_, no. 54; Paul VI, Apostolic Exhortation _[Marialis cultus](/holy_father/paul_vi/apost_exhortations/documents/hf_p-vi_exh_19740202_marialis-cultus_en.html)_, 2 February 1974, no. 9: AAS 66 (1974), pp. 122-123.
+[\[145\]](#_ftnref145) Cf. Second Vatican Ecumenical Council, Dogmatic Constitution on the Church, _[Lumen gentium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19641121_lumen-gentium_en.html)_, no. 54; Paul VI, Apostolic Exhortation _[Marialis cultus](https://www.vatican.va/holy_father/paul_vi/apost_exhortations/documents/hf_p-vi_exh_19740202_marialis-cultus_en.html)_, 2 February 1974, no. 9: AAS 66 (1974), pp. 122-123.
 
-[\[146\]](#_ftnref146) Cf. particularly _Codex Iuris Canonici,_ _[can. 1176-1185](/archive/ENG1104/__P4A.HTM)_; The Roman Ritual, _Order of Christian Funerals, edition typica,_ 1969.
+[\[146\]](#_ftnref146) Cf. particularly _Codex Iuris Canonici,_ _[can. 1176-1185](https://www.vatican.va/archive/ENG1104/__P4A.HTM)_; The Roman Ritual, _Order of Christian Funerals, edition typica,_ 1969.
 
-[\[147\]](#_ftnref147) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 14.
+[\[147\]](#_ftnref147) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 14.
 
-[\[148\]](#_ftnref148) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 41.
+[\[148\]](#_ftnref148) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 41.
 
-[\[149\]](#_ftnref149) Cf. _Codex Iuris Canonici_, _[can. 838 §3](/archive/ENG1104/__P2S.HTM)_.
+[\[149\]](#_ftnref149) Cf. _Codex Iuris Canonici_, _[can. 838 §3](https://www.vatican.va/archive/ENG1104/__P2S.HTM)_.
 
-[\[150\]](#_ftnref150) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 24.
+[\[150\]](#_ftnref150) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 24.
 
-[\[151\]](#_ftnref151) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 36 §3.
+[\[151\]](#_ftnref151) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 36 §3.
 
-[\[152\]](#_ftnref152) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 112.
+[\[152\]](#_ftnref152) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 112.
 
 [\[153\]](#_ftnref153) Cf. _General Norms for the Liturgical Year and the Calendar_, nos. 48-51, p. 99; Sacred Congregation for Divine Worship, Instruction _Calendaria particularia_, 24 June 1970, nos. 4, 8: AAS 62 (1970), pp. 652-653.
 
-[\[154\]](#_ftnref154) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 106.
+[\[154\]](#_ftnref154) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 106.
 
 [\[155\]](#_ftnref155) Cf. _General Norms for the Liturgical Year and the Calendar_, nos. 48-51, p. 99; Sacred Congregation for Divine Worship, Instruction _Calendaria particularia_, 24 June 1970, no. 38: AAS 62 (1970), p. 660.
 
-[\[156\]](#_ftnref156) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 37-40.
+[\[156\]](#_ftnref156) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 37-40.
 
 [\[157\]](#_ftnref157) Cf. Congregation for Divine Worship and the Discipline of the Sacraments, Instruction _Varietates legitimate,_ 25 January 1994, nos. 54, 62-69: AAS 87 (1995), pp. 308-309, 311-313.
 
@@ -2263,9 +2182,9 @@ Finally, the purpose of pursuing inculturation is not in any way the creation of
 
 [\[159\]](#_ftnref159) Cf. Congregation for Divine Worship and the Discipline of the Sacraments, Instruction _Varietates legitimate,_ 25 January 1994, nos. 26-27: AAS 87 (1995), pp. 298-299.
 
-[\[160\]](#_ftnref160) Cf. John Paul II, Apostolic Letter _[Vicesimus Quintus Annus](/holy_father/john_paul_ii/apost_letters/documents/hf_jp-ii_apl_04121988_vicesimus-quintus-annus_en.html),_ 4 December 1988, no. 16: AAS 81 (1989), p. 912; Congregation for Divine Worship and the Discipline of the Sacraments, Instruction _Varietates legitimate,_ 25 January 1994, nos. 2, 36: AAS 87 (1995), pp. 288, 302.
+[\[160\]](#_ftnref160) Cf. John Paul II, Apostolic Letter _[Vicesimus Quintus Annus](https://www.vatican.va/holy_father/john_paul_ii/apost_letters/documents/hf_jp-ii_apl_04121988_vicesimus-quintus-annus_en.html),_ 4 December 1988, no. 16: AAS 81 (1989), p. 912; Congregation for Divine Worship and the Discipline of the Sacraments, Instruction _Varietates legitimate,_ 25 January 1994, nos. 2, 36: AAS 87 (1995), pp. 288, 302.
 
-[\[161\]](#_ftnref161) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 23.
+[\[161\]](#_ftnref161) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 23.
 
 [\[162\]](#_ftnref162) Cf. Congregation for Divine Worship and the Discipline of the Sacraments, Instruction _Varietates legitimate,_ 25 January 1994, no. 46: AAS 87 (1995), p. 306.
 
@@ -2273,6 +2192,40 @@ Finally, the purpose of pursuing inculturation is not in any way the creation of
 
 [\[164\]](#_ftnref164) Cf. Congregation for Divine Worship and the Discipline of the Sacraments, Instruction _Varietates legitimate,_ 25 January 1994, no. 54: AAS 87 (1995), pp. 308-309.
 
-[\[165\]](#_ftnref165) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 38; Paul VI, Apostolic Constitution _Missale Romanum_, p. 14.
+[\[165\]](#_ftnref165) Cf. Second Vatican Ecumenical Council, Constitution on the Sacred Liturgy, _[Sacrosanctum Concilium](https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_en.html)_, no. 38; Paul VI, Apostolic Constitution _Missale Romanum_, p. 14.
 
-[![top](/img/top.jpg)](#top)
+---
+
+## Note on This Edition
+
+This document presents the General Instruction of the Roman Missal (Third Typical Edition, 2002)
+in its universal form, without national adaptations.
+
+This version is based on the USCCB English translation, with USA-specific adaptations removed
+and replaced with the text from the typical edition.
+
+### Adaptations Removed
+
+The following adaptations specific to the United States Conference of Catholic Bishops
+have been removed and replaced with the text from the typical edition:
+
+| Paragraph | Adaptation                                                 |
+| --------- | ---------------------------------------------------------- |
+| §43       | Kneeling posture during Eucharistic Prayer                 |
+| §48       | Four specific entrance chant options                       |
+| §61       | Responsorial psalm adaptations                             |
+| §87       | Four specific communion chant options                      |
+| §154      | Sign of peace to the faithful near the sanctuary           |
+| §160      | Standing posture for Holy Communion                        |
+| §283      | Reference to US Communion norms                            |
+| §301      | Permission for wooden altar tables                         |
+| §304      | Colored altar cloths                                       |
+| §326      | Materials for sacred furnishings                           |
+| §329      | Materials for sacred vessels                               |
+| §339      | Vestments for lay ministers                                |
+| §346      | White/black for funerals, gold/silver for solemn occasions |
+| §362      | Lectionary adaptations                                     |
+| §373      | Days of prayer designations (including January 22)         |
+| §393      | Music approval process and instruments                     |
+
+For local adaptations applicable in your region, consult your local Conference of Bishops.
