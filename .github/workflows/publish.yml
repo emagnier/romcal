@@ -91,10 +91,10 @@ jobs:
           echo "   Target: $TARGET"
 
   # ============================================================================
-  # CRATES.IO (romcal, romcal-cli)
+  # CRATES.IO - CORE (romcal)
   # ============================================================================
-  crates:
-    name: Crates.io
+  crates-core:
+    name: Crates.io (core)
     runs-on: ubuntu-latest
     needs: [prepare]
     if: needs.prepare.outputs.publish-crates == 'true'
@@ -107,7 +107,7 @@ jobs:
       - name: Cache Cargo
         uses: Swatinem/rust-cache@v2
         with:
-          shared-key: "publish-crates"
+          shared-key: "publish-crates-core"
 
       - name: Verify version matches tag
         if: startsWith(github.ref, 'refs/tags/v')
@@ -120,7 +120,7 @@ jobs:
           fi
           echo "✅ Version verified: $FILE_VERSION"
 
-      - name: Publish romcal (core)
+      - name: Publish romcal
         run: |
           if [ "${{ needs.prepare.outputs.dry-run }}" = "true" ]; then
             echo "🧪 Dry run: cargo publish --package romcal"
@@ -136,11 +136,32 @@ jobs:
           echo "⏳ Waiting 30s for crates.io index to update..."
           sleep 30
 
+  # ============================================================================
+  # CRATES.IO - CLI (romcal-cli)
+  # ============================================================================
+  crates-cli:
+    name: Crates.io (cli)
+    runs-on: ubuntu-latest
+    needs: [prepare, crates-core]
+    if: needs.prepare.outputs.publish-crates == 'true'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache Cargo
+        uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: "publish-crates-cli"
+
       - name: Publish romcal-cli
         run: |
           if [ "${{ needs.prepare.outputs.dry-run }}" = "true" ]; then
-            echo "🧪 Dry run: cargo publish --package romcal-cli"
-            cargo publish --package romcal-cli --dry-run
+            # Use cargo package for dry-run to avoid dependency check on crates.io
+            echo "🧪 Dry run: cargo package --package romcal-cli"
+            cargo package --package romcal-cli --allow-dirty
+            echo "✅ Package created successfully"
           else
             echo "🚀 Publishing romcal-cli to crates.io"
             cargo publish --package romcal-cli --token ${{ secrets.CRATES_IO_TOKEN }}
@@ -377,7 +398,7 @@ jobs:
   summary:
     name: Summary
     runs-on: ubuntu-latest
-    needs: [prepare, crates, npm, pypi-publish]
+    needs: [prepare, crates-core, crates-cli, npm, pypi-publish]
     if: always()
     steps:
       - name: Summary
@@ -388,10 +409,15 @@ jobs:
           echo "|---------|--------|" >> $GITHUB_STEP_SUMMARY
 
           if [ "${{ needs.prepare.outputs.publish-crates }}" = "true" ]; then
-            if [ "${{ needs.crates.result }}" = "success" ]; then
-              echo "| crates.io | ✅ Success |" >> $GITHUB_STEP_SUMMARY
+            if [ "${{ needs.crates-core.result }}" = "success" ]; then
+              echo "| crates.io (romcal) | ✅ Success |" >> $GITHUB_STEP_SUMMARY
             else
-              echo "| crates.io | ❌ Failed |" >> $GITHUB_STEP_SUMMARY
+              echo "| crates.io (romcal) | ❌ Failed |" >> $GITHUB_STEP_SUMMARY
+            fi
+            if [ "${{ needs.crates-cli.result }}" = "success" ]; then
+              echo "| crates.io (romcal-cli) | ✅ Success |" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "| crates.io (romcal-cli) | ❌ Failed |" >> $GITHUB_STEP_SUMMARY
             fi
           else
             echo "| crates.io | ⏭️ Skipped |" >> $GITHUB_STEP_SUMMARY
