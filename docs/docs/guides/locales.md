@@ -1,0 +1,167 @@
+---
+sidebar_position: 5
+---
+
+# Localization
+
+Romcal supports multiple languages for celebration names and other text content.
+
+## Setting the Locale
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript" default>
+
+```typescript
+import { Romcal } from 'romcal';
+
+// English (default)
+const en = new Romcal({ locale: 'en' });
+
+// French
+const fr = new Romcal({ locale: 'fr' });
+
+// Spanish
+const es = new Romcal({ locale: 'es' });
+```
+
+  </TabItem>
+  <TabItem value="py" label="Python">
+
+```python
+from romcal import Romcal
+
+# English (default)
+en = Romcal(locale="en")
+
+# French
+fr = Romcal(locale="fr")
+
+# Spanish
+es = Romcal(locale="es")
+```
+
+  </TabItem>
+  <TabItem value="rs" label="Rust">
+
+```rust
+use romcal::Romcal;
+
+// English (default)
+let en = Romcal::new().locale("en");
+
+// French
+let fr = Romcal::new().locale("fr");
+
+// Spanish
+let es = Romcal::new().locale("es");
+```
+
+  </TabItem>
+</Tabs>
+
+## Available Locales
+
+Use the CLI to list all available locales:
+
+```bash
+romcal list locales
+```
+
+Or programmatically:
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript" default>
+
+```typescript
+import { Romcal } from 'romcal';
+
+const locales = Romcal.getAvailableLocales();
+console.log(locales); // ['en', 'fr', 'es', 'it', ...]
+```
+
+  </TabItem>
+  <TabItem value="py" label="Python">
+
+```python
+from romcal import Romcal
+
+locales = Romcal.get_available_locales()
+print(locales)  # ['en', 'fr', 'es', 'it', ...]
+```
+
+  </TabItem>
+  <TabItem value="rs" label="Rust">
+
+```rust
+use romcal::Romcal;
+
+let locales = Romcal::available_locales();
+println!("{:?}", locales); // ["en", "fr", "es", "it", ...]
+```
+
+  </TabItem>
+</Tabs>
+
+## Available Calendars
+
+Use the CLI to list all available calendars:
+
+```bash
+romcal list calendars
+romcal list calendars --tree  # Show hierarchy
+```
+
+Or programmatically:
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript" default>
+
+```typescript
+import { Romcal } from 'romcal';
+
+const calendars = Romcal.getAvailableCalendars();
+console.log(calendars);
+```
+
+  </TabItem>
+  <TabItem value="py" label="Python">
+
+```python
+from romcal import Romcal
+
+calendars = Romcal.get_available_calendars()
+print(calendars)
+```
+
+  </TabItem>
+  <TabItem value="rs" label="Rust">
+
+```rust
+use romcal::Romcal;
+
+let calendars = Romcal::available_calendars();
+println!("{:?}", calendars);
+```
+
+  </TabItem>
+</Tabs>
+
+## Calendar Hierarchy
+
+Calendars follow a hierarchical structure:
+
+```
+general_roman          # Base calendar (General Roman Calendar)
+├── europe             # Regional calendar
+│   ├── france         # National calendar
+│   │   ├── france__paris      # Diocesan calendar
+│   │   └── france__lyon       # Diocesan calendar
+│   └── italy
+└── americas
+    └── united_states
+```
+
+Each calendar inherits celebrations from its parent calendars and can add or override specific celebrations.

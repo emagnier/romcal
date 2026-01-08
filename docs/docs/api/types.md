@@ -1,0 +1,228 @@
+---
+sidebar_position: 3
+---
+
+# Types
+
+Type definitions and enums used in Romcal.
+
+## LiturgicalDay
+
+Represents a single day in the liturgical calendar.
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript" default>
+
+```typescript
+interface LiturgicalDay {
+  id: string;
+  date: string;
+  fullname: string;
+  rank: Rank;
+  season: Season;
+  colors: Color[];
+  sundayCycle?: SundayCycle;
+  weekdayCycle?: WeekdayCycle;
+  psalterWeek?: PsalterWeek;
+  isHolyDayOfObligation: boolean;
+  isOptional: boolean;
+  // ... additional fields
+}
+```
+
+  </TabItem>
+  <TabItem value="py" label="Python">
+
+```python
+@dataclass
+class LiturgicalDay:
+    id: str
+    date: str
+    fullname: str
+    rank: Rank
+    season: Season
+    colors: list[Color]
+    sunday_cycle: SundayCycle | None
+    weekday_cycle: WeekdayCycle | None
+    psalter_week: PsalterWeek | None
+    is_holy_day_of_obligation: bool
+    is_optional: bool
+    # ... additional fields
+```
+
+  </TabItem>
+  <TabItem value="rs" label="Rust">
+
+```rust
+pub struct LiturgicalDay {
+    pub id: String,
+    pub date: String,
+    pub fullname: String,
+    pub rank: Rank,
+    pub season: Season,
+    pub colors: Vec<Color>,
+    pub sunday_cycle: Option<SundayCycle>,
+    pub weekday_cycle: Option<WeekdayCycle>,
+    pub psalter_week: Option<PsalterWeek>,
+    pub is_holy_day_of_obligation: bool,
+    pub is_optional: bool,
+    // ... additional fields
+}
+```
+
+  </TabItem>
+</Tabs>
+
+## Enums
+
+### Rank
+
+Liturgical rank of a celebration.
+
+| Value               | Description                            |
+| ------------------- | -------------------------------------- |
+| `SOLEMNITY`         | Highest rank (e.g., Easter, Christmas) |
+| `SUNDAY`            | Sunday celebrations                    |
+| `FEAST`             | Feasts (e.g., apostles, evangelists)   |
+| `MEMORIAL`          | Obligatory memorials                   |
+| `OPTIONAL_MEMORIAL` | Optional memorials                     |
+| `WEEKDAY`           | Ordinary weekdays                      |
+
+### Season
+
+Liturgical season.
+
+| Value             | Description               |
+| ----------------- | ------------------------- |
+| `ADVENT`          | Preparation for Christmas |
+| `CHRISTMAS`       | Christmas season          |
+| `LENT`            | Preparation for Easter    |
+| `PASCHAL_TRIDUUM` | Holy Thursday to Easter   |
+| `EASTER`          | Easter season             |
+| `ORDINARY_TIME`   | Ordinary Time             |
+
+### Color
+
+Liturgical colors for vestments.
+
+| Value    | Description                             |
+| -------- | --------------------------------------- |
+| `WHITE`  | Joy, purity (Christmas, Easter, saints) |
+| `RED`    | Holy Spirit, martyrs, Passion           |
+| `GREEN`  | Ordinary Time                           |
+| `VIOLET` | Penance (Advent, Lent)                  |
+| `ROSE`   | Gaudete/Laetare Sundays                 |
+| `BLACK`  | Funerals (optional)                     |
+| `GOLD`   | Solemn occasions (optional)             |
+
+### SundayCycle
+
+Three-year cycle for Sunday readings.
+
+| Value | Description      |
+| ----- | ---------------- |
+| `A`   | Year A (Matthew) |
+| `B`   | Year B (Mark)    |
+| `C`   | Year C (Luke)    |
+
+### WeekdayCycle
+
+Two-year cycle for weekday readings.
+
+| Value | Description          |
+| ----- | -------------------- |
+| `I`   | Year I (odd years)   |
+| `II`  | Year II (even years) |
+
+### PsalterWeek
+
+Four-week psalter cycle.
+
+| Value    | Description |
+| -------- | ----------- |
+| `WEEK_1` | Week 1      |
+| `WEEK_2` | Week 2      |
+| `WEEK_3` | Week 3      |
+| `WEEK_4` | Week 4      |
+
+## Entity
+
+Represents a liturgical entity (saint, blessed, feast).
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript" default>
+
+```typescript
+interface Entity {
+  id: string;
+  fullname: string;
+  name: string;
+  canonizationLevel?: CanonizationLevel;
+  titles?: Title[];
+  sex?: Sex;
+  dateOfDeath?: string | number;
+}
+```
+
+  </TabItem>
+  <TabItem value="py" label="Python">
+
+```python
+@dataclass
+class Entity:
+    id: str
+    fullname: str
+    name: str
+    canonization_level: CanonizationLevel | None
+    titles: list[Title] | None
+    sex: Sex | None
+    date_of_death: str | int | None
+```
+
+  </TabItem>
+  <TabItem value="rs" label="Rust">
+
+```rust
+pub struct Entity {
+    pub id: String,
+    pub fullname: String,
+    pub name: String,
+    pub canonization_level: Option<CanonizationLevel>,
+    pub titles: Option<Vec<Title>>,
+    pub sex: Option<Sex>,
+    pub date_of_death: Option<DateOfDeath>,
+}
+```
+
+  </TabItem>
+</Tabs>
+
+### CanonizationLevel
+
+| Value            | Description     |
+| ---------------- | --------------- |
+| `SAINT`          | Canonized saint |
+| `BLESSED`        | Beatified       |
+| `VENERABLE`      | Venerable       |
+| `SERVANT_OF_GOD` | Servant of God  |
+
+### Title
+
+Common titles for entities.
+
+| Value                  | Description          |
+| ---------------------- | -------------------- |
+| `POPE`                 | Pope                 |
+| `BISHOP`               | Bishop               |
+| `PRIEST`               | Priest               |
+| `DEACON`               | Deacon               |
+| `RELIGIOUS`            | Religious            |
+| `MARTYR`               | Martyr               |
+| `VIRGIN`               | Virgin               |
+| `DOCTOR_OF_THE_CHURCH` | Doctor of the Church |
+| `ABBOT`                | Abbot                |
+| `HERMIT`               | Hermit               |
+| `MISSIONARY`           | Missionary           |

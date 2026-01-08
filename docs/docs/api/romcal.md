@@ -1,0 +1,397 @@
+---
+sidebar_position: 2
+---
+
+# Romcal Class
+
+The main class for generating liturgical calendars.
+
+## Constructor
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript" default>
+
+```typescript
+const romcal = new Romcal(options?: RomcalOptions);
+```
+
+  </TabItem>
+  <TabItem value="py" label="Python">
+
+```python
+romcal = Romcal(**options)
+```
+
+  </TabItem>
+  <TabItem value="rs" label="Rust">
+
+```rust
+let romcal = Romcal::new();
+// or with builder pattern
+let romcal = Romcal::new()
+    .calendar("france")
+    .locale("fr");
+```
+
+  </TabItem>
+</Tabs>
+
+## Methods
+
+### generateCalendar
+
+Generate a liturgical calendar for a given year.
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript" default>
+
+```typescript
+generateCalendar(year: number): LiturgicalDay[]
+```
+
+  </TabItem>
+  <TabItem value="py" label="Python">
+
+```python
+def generate_calendar(self, year: int) -> list[LiturgicalDay]
+```
+
+  </TabItem>
+  <TabItem value="rs" label="Rust">
+
+```rust
+fn generate_calendar(&self, year: i32) -> Vec<LiturgicalDay>
+```
+
+  </TabItem>
+</Tabs>
+
+### generateMasses
+
+Generate a mass-centric calendar for a given year.
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript" default>
+
+```typescript
+generateMasses(year: number): Mass[]
+```
+
+  </TabItem>
+  <TabItem value="py" label="Python">
+
+```python
+def generate_masses(self, year: int) -> list[Mass]
+```
+
+  </TabItem>
+  <TabItem value="rs" label="Rust">
+
+```rust
+fn generate_masses(&self, year: i32) -> Vec<Mass>
+```
+
+  </TabItem>
+</Tabs>
+
+### getDate
+
+Get a specific liturgical date.
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript" default>
+
+```typescript
+getDate(dateId: string, year: number): string
+```
+
+  </TabItem>
+  <TabItem value="py" label="Python">
+
+```python
+def get_date(self, date_id: str, year: int) -> str
+```
+
+  </TabItem>
+  <TabItem value="rs" label="Rust">
+
+```rust
+fn get_date(&self, date_id: &str, year: i32) -> String
+```
+
+  </TabItem>
+</Tabs>
+
+### getEntity
+
+Lookup an entity by its exact ID.
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript" default>
+
+```typescript
+getEntity(entityId: string): Entity | null
+```
+
+  </TabItem>
+  <TabItem value="py" label="Python">
+
+```python
+def get_entity(self, entity_id: str) -> Entity | None
+```
+
+  </TabItem>
+  <TabItem value="rs" label="Rust">
+
+```rust
+fn get_entity(&self, entity_id: &str) -> Option<Entity>
+```
+
+  </TabItem>
+</Tabs>
+
+### searchEntities
+
+Search for entities with fuzzy matching.
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript" default>
+
+```typescript
+searchEntities(query: string, options?: SearchOptions): SearchResult[]
+```
+
+  </TabItem>
+  <TabItem value="py" label="Python">
+
+```python
+def search_entities(self, query: str, **options) -> list[SearchResult]
+```
+
+  </TabItem>
+  <TabItem value="rs" label="Rust">
+
+```rust
+fn search_entities(&self, query: &str, options: SearchOptions) -> Vec<SearchResult>
+```
+
+  </TabItem>
+</Tabs>
+
+## Static Methods
+
+### getAvailableCalendars
+
+Get a list of all available calendars.
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript" default>
+
+```typescript
+static getAvailableCalendars(): string[]
+```
+
+  </TabItem>
+  <TabItem value="py" label="Python">
+
+```python
+@staticmethod
+def get_available_calendars() -> list[str]
+```
+
+  </TabItem>
+  <TabItem value="rs" label="Rust">
+
+```rust
+fn available_calendars() -> Vec<String>
+```
+
+  </TabItem>
+</Tabs>
+
+### getAvailableLocales
+
+Get a list of all available locales.
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript" default>
+
+```typescript
+static getAvailableLocales(): string[]
+```
+
+  </TabItem>
+  <TabItem value="py" label="Python">
+
+```python
+@staticmethod
+def get_available_locales() -> list[str]
+```
+
+  </TabItem>
+  <TabItem value="rs" label="Rust">
+
+```rust
+fn available_locales() -> Vec<String>
+```
+
+  </TabItem>
+</Tabs>
+
+### mergeCalendarDefinitions
+
+Merge multiple calendar definition objects into a single combined definition. Useful for combining custom definitions with built-in calendars.
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript" default>
+
+```typescript
+static mergeCalendarDefinitions(...definitions: CalendarDefinition[]): CalendarDefinition
+```
+
+  </TabItem>
+  <TabItem value="py" label="Python">
+
+```python
+@staticmethod
+def merge_calendar_definitions(*definitions: CalendarDefinition) -> CalendarDefinition
+```
+
+  </TabItem>
+  <TabItem value="rs" label="Rust">
+
+```rust
+fn merge_calendar_definitions(definitions: &[CalendarDefinition]) -> CalendarDefinition
+```
+
+  </TabItem>
+</Tabs>
+
+**Example:**
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript" default>
+
+```typescript
+import { Romcal } from 'romcal';
+
+const customDefinitions = {
+  /* ... */
+};
+const merged = Romcal.mergeCalendarDefinitions(builtInDefs, customDefinitions);
+```
+
+  </TabItem>
+  <TabItem value="py" label="Python">
+
+```python
+from romcal import Romcal
+
+custom_definitions = { ... }
+merged = Romcal.merge_calendar_definitions(built_in_defs, custom_definitions)
+```
+
+  </TabItem>
+  <TabItem value="rs" label="Rust">
+
+```rust
+use romcal::Romcal;
+
+let merged = Romcal::merge_calendar_definitions(&[built_in_defs, custom_definitions]);
+```
+
+  </TabItem>
+</Tabs>
+
+### mergeResourceFiles
+
+Merge multiple resource files (entity translations) into a single combined resource object. Useful for adding custom translations or overriding existing ones.
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript" default>
+
+```typescript
+static mergeResourceFiles(...resources: ResourceFile[]): ResourceFile
+```
+
+  </TabItem>
+  <TabItem value="py" label="Python">
+
+```python
+@staticmethod
+def merge_resource_files(*resources: ResourceFile) -> ResourceFile
+```
+
+  </TabItem>
+  <TabItem value="rs" label="Rust">
+
+```rust
+fn merge_resource_files(resources: &[ResourceFile]) -> ResourceFile
+```
+
+  </TabItem>
+</Tabs>
+
+**Example:**
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript" default>
+
+```typescript
+import { Romcal } from 'romcal';
+
+const customResources = {
+  locale: 'en',
+  entities: {
+    my_custom_saint: {
+      fullname: 'Saint Custom Name',
+      canonization_level: 'SAINT',
+    },
+  },
+};
+const merged = Romcal.mergeResourceFiles(builtInResources, customResources);
+```
+
+  </TabItem>
+  <TabItem value="py" label="Python">
+
+```python
+from romcal import Romcal
+
+custom_resources = {
+    "locale": "en",
+    "entities": {
+        "my_custom_saint": {
+            "fullname": "Saint Custom Name",
+            "canonization_level": "SAINT",
+        },
+    },
+}
+merged = Romcal.merge_resource_files(built_in_resources, custom_resources)
+```
+
+  </TabItem>
+  <TabItem value="rs" label="Rust">
+
+```rust
+use romcal::Romcal;
+use serde_json::json;
+
+let custom_resources = json!({
+    "locale": "en",
+    "entities": {
+        "my_custom_saint": {
+            "fullname": "Saint Custom Name",
+            "canonization_level": "SAINT"
+        }
+    }
+});
+
+let merged = Romcal::merge_resource_files(&[built_in_resources, custom_resources]);
+```
+
+  </TabItem>
+</Tabs>

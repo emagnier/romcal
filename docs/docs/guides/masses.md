@@ -1,0 +1,71 @@
+---
+sidebar_position: 2
+---
+
+# Mass-Centric Calendars
+
+Generate calendars organized by civil date and mass time, useful for planning liturgical celebrations.
+
+## Overview
+
+While the standard calendar is organized by liturgical date, the mass-centric calendar groups celebrations by:
+
+- **Civil date**: The calendar date
+- **Mass time**: Day Mass, Vigil Mass, etc.
+- **Optional celebrations**: Alternative celebrations available for each mass
+
+## Basic Usage
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript" default>
+
+```typescript
+import { Romcal } from 'romcal';
+
+const romcal = new Romcal();
+const masses = romcal.generateMasses(2025);
+```
+
+  </TabItem>
+  <TabItem value="py" label="Python">
+
+```python
+from romcal import Romcal
+
+romcal = Romcal()
+masses = romcal.generate_masses(2025)
+```
+
+  </TabItem>
+  <TabItem value="rs" label="Rust">
+
+```rust
+use romcal::Romcal;
+
+let romcal = Romcal::new();
+let masses = romcal.generate_masses(2025);
+```
+
+  </TabItem>
+</Tabs>
+
+## Output Structure
+
+Each entry in the mass calendar includes:
+
+| Field                   | Description                               |
+| ----------------------- | ----------------------------------------- |
+| `civil_date`            | The civil calendar date                   |
+| `liturgical_date`       | The corresponding liturgical date         |
+| `mass_time`             | Type of mass (DAY_MASS, VIGIL_MASS, etc.) |
+| `celebration`           | The primary celebration for this mass     |
+| `optional_celebrations` | Alternative celebrations available        |
+
+## Use Cases
+
+- **Parish bulletin preparation**: Plan which masses to celebrate
+- **Priest scheduling**: Know what celebrations are available each day
+- **Liturgical planning**: Coordinate music and readings with celebrations

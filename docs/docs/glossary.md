@@ -1,0 +1,230 @@
+---
+sidebar_position: 100
+---
+
+# Glossary
+
+Definitions of terms used in Romcal and Catholic liturgy.
+
+## Abbreviations
+
+### GILH
+
+See [General Instruction of the Liturgy of the Hours](#general-instruction-of-the-liturgy-of-the-hours).
+
+### GIRM
+
+See [General Instruction of the Roman Missal](#general-instruction-of-the-roman-missal).
+
+### GNLYC
+
+See [General Norms for the Liturgical Year and the Calendar](#general-norms-for-the-liturgical-year-and-the-calendar).
+
+---
+
+## C
+
+### Celebration
+
+A liturgical or sacramental event, typically consisting of rituals, readings, prayers, and often the Eucharist (Mass), whether or not it is associated with a liturgical day.
+
+:::note
+Currently, Romcal focuses on liturgical days rather than individual celebrations. The ability to list masses and hours for a given day may be added in future versions.
+:::
+
+---
+
+## D
+
+### Divine Office
+
+See [Liturgy of the Hours](#liturgy-of-the-hours).
+
+---
+
+## G
+
+### General Instruction of the Liturgy of the Hours
+
+The General Instruction of the Liturgy of the Hours (GILH) is the document that provides the general instructions for the Liturgy of the Hours. It is an official liturgical document promulgated by the Congregation for Divine Worship.
+
+See: [GILH (English PDF)](https://www.liturgyoffice.org.uk/Resources/Rites/GILH.pdf)
+
+### General Instruction of the Roman Missal
+
+The General Instruction of the Roman Missal (GIRM) is the detailed document that provides the rubrics for the celebration of the Mass. It is an official liturgical document promulgated by the Congregation for Divine Worship.
+
+See: [GIRM (English PDF)](https://www.liturgyoffice.org.uk/Resources/GIRM/Documents/GIRM.pdf)
+
+### General Norms for the Liturgical Year and the Calendar
+
+The General Norms for the Liturgical Year and the Calendar (GNLYC) is the document that provides the general norms for the liturgical year and calendar. It defines the structure of seasons, ranks of celebrations, and precedence rules.
+
+Previously known as "Universal Norms on the Liturgical Year and General Roman Calendar" (UNLY, UNLYGRC).
+
+See: [GNLYC (English PDF)](https://www.liturgyoffice.org.uk/Resources/GIRM/Documents/GNLY.pdf)
+
+---
+
+## L
+
+### Liturgical Color
+
+The colors used in liturgical vestments and altar cloths for the celebration of Mass and other liturgical services. Colors signify the nature of the liturgical season or feast.
+
+| Color  | Usage                                                       |
+| ------ | ----------------------------------------------------------- |
+| White  | Joy, purity (Christmas, Easter, saints who are not martyrs) |
+| Red    | Holy Spirit, martyrs, Passion                               |
+| Green  | Ordinary Time                                               |
+| Violet | Penance (Advent, Lent)                                      |
+| Rose   | Gaudete Sunday, Laetare Sunday                              |
+| Black  | Funerals (optional)                                         |
+| Gold   | Solemn occasions (optional, in place of white/red/green)    |
+
+See: [GIRM §346](https://www.liturgyoffice.org.uk/Resources/GIRM/Documents/GIRM.pdf#page=63)
+
+### Liturgical Day
+
+A specific day within the Church's liturgical calendar, characterized by particular celebrations and observances. Each day is assigned a [rank](#rank), specific [liturgical colors](#liturgical-color), and various properties.
+
+A liturgical day:
+
+- Generally aligns with a Gregorian calendar day
+- May begin at First Vespers or Vigils (if observed), or at midnight
+- Ends at the beginning of the following liturgical day
+- Is identified by its Gregorian date (considering the majority of the day)
+
+In Romcal, this is the primary unit of output from `generateCalendar()`.
+
+### Liturgical Period
+
+In addition to liturgical seasons, Romcal provides metadata about specific periods:
+
+- Octaves of Christmas and Easter
+- Period before and after Epiphany
+- Holy Week
+- Period from Baptism of Christ to Presentation of Jesus
+- Period from Presentation to Holy Thursday
+
+### Liturgy of the Hours
+
+The Liturgy of the Hours (Divine Office) is a set of prayers prescribed by the Catholic Church to be recited at specific times:
+
+| Hour               | Traditional Name  | Time                               |
+| ------------------ | ----------------- | ---------------------------------- |
+| Office of Readings | Matins            | Any time                           |
+| Morning Prayer     | Lauds             | Dawn                               |
+| Daytime Prayer     | Terce, Sext, None | Mid-morning, Midday, Mid-afternoon |
+| Evening Prayer     | Vespers           | Evening                            |
+| Night Prayer       | Compline          | Before sleep                       |
+
+The structure aims to fulfill St. Paul's exhortation to "pray without ceasing" (1 Thessalonians 5:17).
+
+See: [General Instruction of the Liturgy of the Hours](#general-instruction-of-the-liturgy-of-the-hours)
+
+---
+
+## P
+
+### Precedence
+
+The principle used to determine which liturgical celebration should be observed when two or more celebrations fall on the same day. Based on the liturgical rank of celebrations.
+
+See: [GNLYC §59](https://www.liturgyoffice.org.uk/Resources/GIRM/Documents/GNLY.pdf#page=14)
+
+### Proper of Saints
+
+The Proper of Saints (Sanctoral) consists of the fixed feasts celebrated on the same date each year, including Christmas and all saints' days.
+
+### Proper of Time
+
+The Proper of Time (Temporal) consists of the moveable feasts keyed to Easter (which falls on a different Sunday every year), including Ascension, Pentecost, and related celebrations.
+
+### Psalter Week Cycle
+
+The four-week cycle of the psalter, coordinated with the liturgical year:
+
+| Event                         | Psalter Week |
+| ----------------------------- | ------------ |
+| First Sunday of Advent        | Week 1       |
+| First Sunday in Ordinary Time | Week 1       |
+| First Sunday of Lent          | Week 1       |
+| Easter Sunday                 | Week 1       |
+
+The cycle then proceeds through Weeks 2, 3, 4, and repeats.
+
+See: [GILH §133](https://www.liturgyoffice.org.uk/Resources/Rites/GILH.pdf#page=26)
+
+---
+
+## R
+
+### Rank
+
+The rank of a liturgical celebration indicates its importance in the liturgical calendar and determines how conflicts are resolved.
+
+| Rank                  | Description                                    |
+| --------------------- | ---------------------------------------------- |
+| Solemnity             | Highest rank (Easter, Christmas, major feasts) |
+| Sunday                | Sunday celebrations                            |
+| Feast                 | Secondary feasts (apostles, evangelists)       |
+| Memorial (Obligatory) | Must be observed                               |
+| Memorial (Optional)   | May be observed                                |
+| Weekday               | Ordinary weekdays                              |
+
+See: [GNLYC §3-16](https://www.liturgyoffice.org.uk/Resources/GIRM/Documents/GNLY.pdf#page=5)
+
+---
+
+## S
+
+### Sanctoral
+
+See [Proper of Saints](#proper-of-saints).
+
+### Season
+
+Liturgical seasons are periods marked by particular liturgical colors and focus:
+
+| Season          | Description                               |
+| --------------- | ----------------------------------------- |
+| Advent          | Four weeks preparing for Christmas        |
+| Christmas       | From Christmas Eve to Baptism of the Lord |
+| Lent            | Ash Wednesday to Holy Thursday            |
+| Paschal Triduum | Holy Thursday to Easter Sunday evening    |
+| Easter          | Easter Sunday to Pentecost (50 days)      |
+| Ordinary Time   | 33-34 weeks outside the above seasons     |
+
+### Sunday Cycle
+
+A three-year cycle for Sunday Mass readings (and some solemnities), designated A, B, or C.
+
+| Year | Gospel Focus | Determination                  |
+| ---- | ------------ | ------------------------------ |
+| A    | Matthew      | Gregorian year ÷ 3 remainder 1 |
+| B    | Mark         | Gregorian year ÷ 3 remainder 2 |
+| C    | Luke         | Gregorian year ÷ 3 remainder 0 |
+
+Each cycle begins on the First Sunday of Advent of the previous civil year.
+
+---
+
+## T
+
+### Temporal
+
+See [Proper of Time](#proper-of-time).
+
+---
+
+## W
+
+### Weekday Cycle
+
+A two-year cycle for weekday Mass readings:
+
+| Cycle       | Years               |
+| ----------- | ------------------- |
+| I (Year 1)  | Odd-numbered years  |
+| II (Year 2) | Even-numbered years |

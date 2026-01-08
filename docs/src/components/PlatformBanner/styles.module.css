@@ -1,0 +1,23 @@
+.platformBanner {
+  padding: 2rem 0;
+  text-align: center;
+  background: var(--ifm-color-emphasis-100);
+}
+
+.availableFor {
+  font-size: 0.875rem;
+  color: var(--ifm-color-emphasis-600);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.platforms {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.separator {
+  margin: 0 1rem;
+  color: var(--ifm-color-emphasis-400);
+}

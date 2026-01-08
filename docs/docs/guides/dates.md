@@ -1,0 +1,126 @@
+---
+sidebar_position: 4
+---
+
+# Calculating Dates
+
+Calculate specific liturgical dates without generating a full calendar.
+
+## Get a Specific Date
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript" default>
+
+```typescript
+import { Romcal } from 'romcal';
+
+const romcal = new Romcal();
+
+// Get Easter Sunday for 2025
+const easter = romcal.getDate('easter_sunday', 2025);
+console.log(easter); // "2025-04-20"
+
+// Get Pentecost Sunday
+const pentecost = romcal.getDate('pentecost_sunday', 2025);
+console.log(pentecost); // "2025-06-08"
+```
+
+  </TabItem>
+  <TabItem value="py" label="Python">
+
+```python
+from romcal import Romcal
+
+romcal = Romcal()
+
+# Get Easter Sunday for 2025
+easter = romcal.get_date("easter_sunday", 2025)
+print(easter)  # "2025-04-20"
+
+# Get Pentecost Sunday
+pentecost = romcal.get_date("pentecost_sunday", 2025)
+print(pentecost)  # "2025-06-08"
+```
+
+  </TabItem>
+  <TabItem value="rs" label="Rust">
+
+```rust
+use romcal::Romcal;
+
+let romcal = Romcal::new();
+
+// Get Easter Sunday for 2025
+let easter = romcal.get_date("easter_sunday", 2025);
+println!("{}", easter); // "2025-04-20"
+
+// Get Pentecost Sunday
+let pentecost = romcal.get_date("pentecost_sunday", 2025);
+println!("{}", pentecost); // "2025-06-08"
+```
+
+  </TabItem>
+</Tabs>
+
+## Common Date IDs
+
+| Date ID                 | Description                 |
+| ----------------------- | --------------------------- |
+| `easter_sunday`         | Easter Sunday               |
+| `pentecost_sunday`      | Pentecost Sunday            |
+| `christmas`             | Christmas Day (December 25) |
+| `ash_wednesday`         | Ash Wednesday               |
+| `palm_sunday`           | Palm Sunday                 |
+| `holy_thursday`         | Holy Thursday               |
+| `good_friday`           | Good Friday                 |
+| `ascension_of_the_lord` | Ascension of the Lord       |
+| `advent_1_sunday`       | First Sunday of Advent      |
+
+## Easter Calculation Methods
+
+Romcal supports both Gregorian and Julian Easter calculation:
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript" default>
+
+```typescript
+import { Romcal } from 'romcal';
+
+// Gregorian (Western) Easter
+const western = new Romcal({ easterCalculation: 'gregorian' });
+
+// Julian (Eastern) Easter
+const eastern = new Romcal({ easterCalculation: 'julian' });
+```
+
+  </TabItem>
+  <TabItem value="py" label="Python">
+
+```python
+from romcal import Romcal
+
+# Gregorian (Western) Easter
+western = Romcal(easter_calculation="gregorian")
+
+# Julian (Eastern) Easter
+eastern = Romcal(easter_calculation="julian")
+```
+
+  </TabItem>
+  <TabItem value="rs" label="Rust">
+
+```rust
+use romcal::Romcal;
+
+// Gregorian (Western) Easter
+let western = Romcal::new().easter_calculation("gregorian");
+
+// Julian (Eastern) Easter
+let eastern = Romcal::new().easter_calculation("julian");
+```
+
+  </TabItem>
+</Tabs>

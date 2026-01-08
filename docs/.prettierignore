@@ -1,0 +1,13 @@
+# Build output
+build/
+.docusaurus/
+
+# Dependencies
+node_modules/
+
+# Cache
+.cache/
+
+# Generated files
+*.min.js
+*.min.css

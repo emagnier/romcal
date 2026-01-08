@@ -1,0 +1,71 @@
+---
+sidebar_position: 1
+slug: /
+---
+
+# Introduction
+
+**Romcal** is a library for generating liturgical calendars of the Catholic Roman Rite. It computes liturgical dates, seasons, celebrations, and related metadata for any given year.
+
+## Features
+
+- Generate complete liturgical calendars for any year
+- Support for the General Roman Calendar and many regional/diocesan calendars
+- Multi-language support (English, French, Spanish, and more)
+- Available in multiple languages: **TypeScript/JavaScript**, **Python**, and **Rust**
+- Command-line interface (CLI) for quick lookups and scripting
+- Configurable options for regional variations (Epiphany on Sunday, Ascension on Sunday, etc.)
+
+## Use Cases
+
+- **Parish websites**: Display the liturgical calendar for your community
+- **Liturgical apps**: Build mobile or web applications for prayer and worship
+- **Research**: Study the liturgical calendar and its variations
+- **Automation**: Generate bulletins, schedules, and reports
+
+## Quick Example
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="language">
+  <TabItem value="ts" label="TypeScript" default>
+
+```typescript
+import { Romcal } from 'romcal';
+
+const calendar = new Romcal({ locale: 'en' });
+const year2025 = calendar.generateCalendar(2025);
+```
+
+  </TabItem>
+  <TabItem value="py" label="Python">
+
+```python
+from romcal import Romcal
+
+calendar = Romcal(locale="en")
+year_2025 = calendar.generate_calendar(2025)
+```
+
+  </TabItem>
+  <TabItem value="rs" label="Rust">
+
+```rust
+use romcal::Romcal;
+
+let calendar = Romcal::new().locale("en");
+let year_2025 = calendar.generate_calendar(2025);
+```
+
+  </TabItem>
+</Tabs>
+
+## Getting Help
+
+- [GitHub Issues](https://github.com/romcal/romcal/issues) - Report bugs or request features
+- [GitHub Discussions](https://github.com/romcal/romcal/discussions) - Ask questions and share ideas
+
+## License
+
+Romcal is released under the [Apache 2.0 License](https://github.com/romcal/romcal/blob/main/LICENSE).
