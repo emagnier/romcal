@@ -356,12 +356,19 @@ jobs:
           fi
           echo "✅ Version verified: $PKG_VERSION"
 
-      - name: Download all artifacts
+      - name: Download wheel artifacts
         uses: actions/download-artifact@v4
         with:
-          path: dist
+          path: artifacts
           pattern: wheels-*
-          merge-multiple: true
+          # NOTE: Do NOT use merge-multiple: true - it corrupts Windows wheels
+
+      - name: Consolidate wheels
+        run: |
+          mkdir -p dist
+          find artifacts -name "*.whl" -type f -exec mv {} dist/ \;
+          rm -rf artifacts
+          echo "📦 Consolidated $(ls dist/*.whl | wc -l) wheel files"
 
       - name: Download sdist
         uses: actions/download-artifact@v4
@@ -375,6 +382,16 @@ jobs:
           ls -la dist/
           echo ""
           echo "Total: $(ls dist/ | wc -l) files"
+
+      - name: Validate wheels
+        run: |
+          for wheel in dist/*.whl; do
+            python -m zipfile -t "$wheel" || {
+              echo "❌ Corrupted wheel: $wheel"
+              exit 1
+            }
+          done
+          echo "✅ All wheels are valid ZIP files"
 
       - name: Check distributions
         run: |
