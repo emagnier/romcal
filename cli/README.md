@@ -61,6 +61,8 @@ After building, the binary is located at:
 | `bundle`                       | Bundle required data (definitions + resources)        |
 | `validate definitions <FILES>` | Validate calendar definition files                    |
 | `validate resources <FILES>`   | Validate resource files                               |
+| `entity <ID>`                  | Lookup a single entity by its exact ID                |
+| `search [TEXT]`                | Fuzzy search for entities with filtering              |
 | `completions <SHELL>`          | Generate shell completion scripts                     |
 
 ### date
@@ -149,6 +151,63 @@ romcal validate definitions path/to/calendar.json
 romcal validate resources "data/resources/**/*.json"
 ```
 
+### entity
+
+Lookup a single entity by its exact ID. Returns entity details in the specified format.
+
+```bash
+romcal entity francis_of_assisi
+romcal entity francis_of_assisi -f json
+romcal entity our_lady_of_lourdes --locale fr
+```
+
+**Output fields (CSV/lines):**
+
+| Field               | Description                  |
+| ------------------- | ---------------------------- |
+| `id`                | Entity identifier            |
+| `fullname`          | Full display name            |
+| `name`              | Short name                   |
+| `type`              | Entity type                  |
+| `sex`               | Sex (MALE, FEMALE, etc.)     |
+| `canonizationLevel` | Canonization level           |
+
+### search
+
+Fuzzy search for entities with advanced filtering capabilities. Returns ranked results based on relevance score.
+
+```bash
+romcal search "francis"
+romcal search "saint john" --type SAINT --limit 10
+romcal search --type SAINT --sex MALE --level CANONIZED
+romcal search "mary" --title VIRGIN -f json
+```
+
+**Filter options:**
+
+| Option        | Description                                      |
+| ------------- | ------------------------------------------------ |
+| `--type`      | Filter by entity type (e.g., SAINT, BLESSED)     |
+| `--sex`       | Filter by sex (MALE, FEMALE)                     |
+| `--level`     | Filter by canonization level                     |
+| `--title`     | Filter by title(s) - can be repeated             |
+| `--limit`     | Maximum number of results (default: 20)          |
+| `--min_score` | Minimum score threshold 0.0-1.0 (default: 0.3)   |
+
+**Output fields:**
+
+| Field               | Description                    |
+| ------------------- | ------------------------------ |
+| `id`                | Entity identifier              |
+| `score`             | Relevance score (0.0-1.0)      |
+| `matchType`         | Type of match                  |
+| `matchedFields`     | Fields that matched the search |
+| `fullname`          | Full display name              |
+| `name`              | Short name                     |
+| `type`              | Entity type                    |
+| `sex`               | Sex                            |
+| `canonizationLevel` | Canonization level             |
+
 ## Options
 
 ### Global Options
@@ -161,7 +220,7 @@ romcal validate resources "data/resources/**/*.json"
 
 ### Preset Options
 
-Available on `date`, `calendar`, `masses`, `preset`, and `bundle` commands:
+Available on `date`, `calendar`, `masses`, `preset`, `bundle`, `entity`, and `search` commands:
 
 ```
 -c, --calendar <NAME>           Calendar to use (default: general_roman)
