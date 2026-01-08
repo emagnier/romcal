@@ -158,10 +158,12 @@ jobs:
       - name: Publish romcal-cli
         run: |
           if [ "${{ needs.prepare.outputs.dry-run }}" = "true" ]; then
-            # Use cargo package --no-verify to skip dependency resolution on crates.io
-            echo "🧪 Dry run: cargo package --package romcal-cli --no-verify"
-            cargo package --package romcal-cli --no-verify
-            echo "✅ Package created successfully"
+            # Skip dry-run for cli: cargo package/publish checks crates.io for the
+            # romcal dependency which isn't published yet. Build validation is
+            # already done in CI, and real publish will work after core is on crates.io.
+            echo "⏭️ Skipping romcal-cli dry-run"
+            echo "ℹ️ Reason: romcal dependency not yet on crates.io"
+            echo "ℹ️ Build validation already done in CI workflow"
           else
             echo "🚀 Publishing romcal-cli to crates.io"
             cargo publish --package romcal-cli --token ${{ secrets.CRATES_IO_TOKEN }}
