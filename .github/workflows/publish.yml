@@ -158,9 +158,9 @@ jobs:
       - name: Publish romcal-cli
         run: |
           if [ "${{ needs.prepare.outputs.dry-run }}" = "true" ]; then
-            # Use cargo package for dry-run to avoid dependency check on crates.io
-            echo "🧪 Dry run: cargo package --package romcal-cli"
-            cargo package --package romcal-cli --allow-dirty
+            # Use cargo package --no-verify to skip dependency resolution on crates.io
+            echo "🧪 Dry run: cargo package --package romcal-cli --no-verify"
+            cargo package --package romcal-cli --no-verify
             echo "✅ Package created successfully"
           else
             echo "🚀 Publishing romcal-cli to crates.io"
