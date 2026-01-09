@@ -4,7 +4,7 @@
 
 .heroBanner {
   padding: 4rem 0;
-  text-align: left;
+  text-align: center;
   position: relative;
   overflow: hidden;
   background: var(--romcal-cream);
@@ -19,7 +19,7 @@
 .buttons {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 1rem;
   margin-top: 1.5rem;
 }
