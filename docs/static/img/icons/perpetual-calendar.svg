@@ -1,0 +1,11 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Calendar base -->
+  <rect x="8" y="12" width="48" height="44" rx="4" stroke="currentColor" stroke-width="2.5" fill="none"/>
+  <!-- Calendar top bar -->
+  <path d="M8 20h48" stroke="currentColor" stroke-width="2.5"/>
+  <!-- Binding rings -->
+  <circle cx="20" cy="12" r="3" fill="currentColor"/>
+  <circle cx="44" cy="12" r="3" fill="currentColor"/>
+  <!-- Infinity symbol (perpetual) -->
+  <path d="M24 38c-4 0-6-2.5-6-6s2-6 6-6c3 0 5 2 8 6c3-4 5-6 8-6c4 0 6 2.5 6 6s-2 6-6 6c-3 0-5-2-8-6c-3 4-5 6-8 6z" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+</svg>

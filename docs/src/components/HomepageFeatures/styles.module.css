@@ -1,11 +1,22 @@
+/**
+ * Homepage Features section
+ */
+
 .features {
   display: flex;
   align-items: center;
-  padding: 2rem 0;
+  padding: 3rem 0;
   width: 100%;
+  background: var(--ifm-background-color);
 }
 
 .featureSvg {
-  height: 200px;
-  width: 200px;
+  height: 80px;
+  width: 80px;
+  color: var(--ifm-color-primary);
+}
+
+.featureTitle {
+  font-family: var(--ifm-heading-font-family);
+  margin-top: 1rem;
 }

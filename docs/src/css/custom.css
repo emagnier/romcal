@@ -1,31 +1,255 @@
 /**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
+ * Romcal Documentation Theme
+ * Elegant, modern design inspired by vatican.va
  */
 
-/* You can override the default Infima variables here. */
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap');
+
+/* ========================================
+   Light Mode (default)
+   ======================================== */
 :root {
-  /* Couleur primaire - Rouge du logo romcal (#C41E3A) */
-  --ifm-color-primary: #c41e3a;
-  --ifm-color-primary-dark: #b01b34;
-  --ifm-color-primary-darker: #a61931;
-  --ifm-color-primary-darkest: #891428;
-  --ifm-color-primary-light: #d82140;
-  --ifm-color-primary-lighter: #da2d4a;
-  --ifm-color-primary-lightest: #e04d65;
+  /* Primary colors - Logo red */
+  --ifm-color-primary: #d12613;
+  --ifm-color-primary-dark: #bc2211;
+  --ifm-color-primary-darker: #b12010;
+  --ifm-color-primary-darkest: #921a0d;
+  --ifm-color-primary-light: #e62b15;
+  --ifm-color-primary-lighter: #e83520;
+  --ifm-color-primary-lightest: #ec5746;
+
+  /* Custom palette */
+  --romcal-cream: #f4eee7;
+  --romcal-cream-light: #faf7f4;
+  --romcal-cream-dark: #e8e0d8;
+  --romcal-gold: #8b7355;
+  --romcal-gold-light: #a08b70;
+  --romcal-text: #2c2c2c;
+  --romcal-text-muted: #5c5c5c;
+
+  /* Typography */
+  --ifm-font-family-base: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --ifm-heading-font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --ifm-heading-font-weight: 600;
+  --ifm-font-weight-semibold: 500;
+
+  /* Backgrounds */
+  --ifm-background-color: #ffffff;
+  --ifm-background-surface-color: #ffffff;
+
+  /* Code */
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  /* Navbar */
+  --ifm-navbar-background-color: #ffffff;
+  --ifm-navbar-shadow: 0 1px 0 var(--romcal-cream-dark);
+  --ifm-toc-border-color: var(--romcal-cream-dark);
+  --ifm-menu-color-background-hover: var(--romcal-cream-light);
+  --ifm-menu-color-background-active: var(--romcal-cream-light);
+
+  /* Breadcrumb */
+  --ifm-breadcrumb-item-background-active: var(--romcal-cream-light);
+
+  /* Pre */
+  --ifm-pre-background: var(--romcal-cream-light);
+
+  /* Footer */
+  --ifm-footer-background-color: var(--romcal-cream);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
+/* ========================================
+   Dark Mode (pure black - NestJS inspired)
+   ======================================== */
 [data-theme='dark'] {
-  --ifm-color-primary: #e04d65;
-  --ifm-color-primary-dark: #dc3350;
-  --ifm-color-primary-darker: #da2748;
-  --ifm-color-primary-darkest: #b81d39;
-  --ifm-color-primary-light: #e4677a;
-  --ifm-color-primary-lighter: #e67382;
-  --ifm-color-primary-lightest: #ec95a1;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  /* Primary colors - Tailwind red-400 */
+  --ifm-color-primary: #f87171;
+  --ifm-color-primary-dark: #f65a5a;
+  --ifm-color-primary-darker: #f54949;
+  --ifm-color-primary-darkest: #f22222;
+  --ifm-color-primary-light: #f98888;
+  --ifm-color-primary-lighter: #fa9999;
+  --ifm-color-primary-lightest: #fcbcbc;
+
+  /* Custom palette - Pure black style (NestJS inspired) */
+  --romcal-cream: #1a1a1a;
+  --romcal-cream-light: #111111;
+  --romcal-cream-dark: #2d2d2d;
+  --romcal-gold: #c9a86c;
+  --romcal-gold-light: #d4b87a;
+  --romcal-text: #d4d4d4;
+  --romcal-text-muted: #8c8c8c;
+
+  /* Backgrounds */
+  --ifm-background-color: #1a1a1a;
+  --ifm-background-surface-color: #111111;
+
+  /* Code */
+  --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.1);
+
+  /* Navbar */
+  --ifm-navbar-background-color: #111111;
+
+  /* Footer */
+  --ifm-footer-background-color: #111111;
+}
+
+/* ========================================
+   Typography
+   ======================================== */
+
+/* Headings with Cormorant Garamond */
+h1,
+h2,
+h3,
+.hero__title,
+.markdown h1,
+.markdown h2,
+.markdown h3 {
+  font-family: var(--ifm-heading-font-family);
+  letter-spacing: -0.01em;
+}
+
+h1,
+.markdown h1 {
+  font-weight: 700;
+}
+
+h2,
+h3,
+.markdown h2,
+.markdown h3 {
+  font-weight: 600;
+}
+
+.hero__title {
+  font-weight: 700;
+  font-size: 3.5rem;
+}
+
+.hero__subtitle {
+  font-size: 1.25rem;
+  opacity: 0.9;
+}
+
+/* ========================================
+   Navbar
+   ======================================== */
+.navbar {
+  box-shadow: var(--ifm-navbar-shadow);
+}
+
+.navbar__title {
+  font-family: var(--ifm-heading-font-family);
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+/* ========================================
+   Buttons
+   ======================================== */
+
+/* Secondary button - elegant style */
+.button--secondary {
+  --ifm-button-background-color: transparent;
+  --ifm-button-border-color: var(--ifm-color-primary);
+  color: var(--ifm-color-primary);
+  border-width: 2px;
+  font-weight: 500;
+}
+
+.button--secondary:hover {
+  --ifm-button-background-color: var(--ifm-color-primary);
+  color: white;
+}
+
+/* ========================================
+   Links
+   ======================================== */
+a {
+  font-weight: 500;
+}
+
+/* ========================================
+   Footer
+   ======================================== */
+.footer {
+  border-top: 1px solid var(--romcal-cream-dark);
+}
+
+.footer__title {
+  font-family: var(--ifm-heading-font-family);
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+
+.footer__bottom {
+  font-size: 0.8rem;
+  color: var(--romcal-text-muted);
+  margin-top: 1.5rem;
+}
+
+/* ========================================
+   Homepage Features
+   ======================================== */
+section[class*='features'] h3 {
+  font-size: 1.8rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ========================================
+   Sidebar (docs)
+   ======================================== */
+.menu__link {
+  font-weight: 450;
+}
+
+.menu__link--active {
+  font-weight: 600;
+}
+
+.menu__list {
+  padding-right: 0.5px;
+}
+
+/* ========================================
+   Gold accents (subtle decorative)
+   ======================================== */
+
+/* Horizontal rules */
+hr {
+  border-color: var(--romcal-gold);
+  opacity: 0.4;
+}
+
+/* Table of contents active item */
+.table-of-contents__link--active {
+  border-left-color: var(--romcal-gold);
+}
+
+/* ========================================
+   Code blocks
+   ======================================== */
+.prism-code {
+  border-radius: 8px;
+}
+
+/* ========================================
+   Tabs
+   ======================================== */
+.tabs__item {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 0.6rem 0.8rem;
+}
+
+/* ========================================
+   Cards and surfaces
+   ======================================== */
+.card {
+  border-radius: 8px;
+  border: 1px solid var(--romcal-cream-dark);
 }

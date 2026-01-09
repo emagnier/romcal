@@ -1,23 +1,30 @@
+/**
+ * Platform Banner section
+ */
+
 .platformBanner {
-  padding: 2rem 0;
+  padding: 2.5rem 0;
   text-align: center;
-  background: var(--ifm-color-emphasis-100);
+  background: var(--romcal-cream);
+  border-top: 1px solid var(--romcal-cream-dark);
 }
 
 .availableFor {
   font-size: 0.875rem;
-  color: var(--ifm-color-emphasis-600);
-  margin-bottom: 0.5rem;
+  color: var(--romcal-text-muted);
+  margin-bottom: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  font-weight: 500;
 }
 
 .platforms {
   font-size: 1.25rem;
   font-weight: 500;
+  color: var(--romcal-text);
 }
 
 .separator {
   margin: 0 1rem;
-  color: var(--ifm-color-emphasis-400);
+  color: var(--romcal-gold);
 }

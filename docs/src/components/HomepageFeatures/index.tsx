@@ -4,16 +4,20 @@ import Link from '@docusaurus/Link';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
 
+import PerpetualCalendarIcon from '@site/static/img/icons/perpetual-calendar.svg';
+import GlobalCoverageIcon from '@site/static/img/icons/global-coverage.svg';
+import RichMetadataIcon from '@site/static/img/icons/rich-metadata.svg';
+
 type FeatureItem = {
   title: string;
   description: ReactNode;
-  emoji: string;
+  Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 };
 
 const FeatureList: FeatureItem[] = [
   {
     title: 'Perpetual Calendar',
-    emoji: '📅',
+    Icon: PerpetualCalendarIcon,
     description: (
       <>
         Calculate liturgical dates for any year, following official Church norms (
@@ -24,7 +28,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Global Coverage',
-    emoji: '🌍',
+    Icon: GlobalCoverageIcon,
     description: (
       <>
         60+ calendars for countries, dioceses, and religious communities. Available in 10+ languages with easy support
@@ -34,7 +38,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Rich Metadata',
-    emoji: '📚',
+    Icon: RichMetadataIcon,
     description: (
       <>
         Complete martyrology and entity catalog: saints, blesseds, feasts, places, and events with biographical
@@ -44,11 +48,11 @@ const FeatureList: FeatureItem[] = [
   },
 ];
 
-function Feature({ title, emoji, description }: FeatureItem) {
+function Feature({ title, Icon, description }: FeatureItem) {
   return (
     <div className={clsx('col col--4')}>
       <div className="text--center">
-        <span style={{ fontSize: '4rem' }}>{emoji}</span>
+        <Icon className={styles.featureSvg} />
       </div>
       <div className="text--center padding-horiz--md">
         <Heading as="h3">{title}</Heading>
