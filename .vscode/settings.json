@@ -1,23 +1,25 @@
 {
-  // Linters & Prettier extensions settings
+  "vitest.rootConfig": "./bindings/typescript/vitest.config.ts",
+  "vitest.vitestPackagePath": "./bindings/typescript/node_modules/vitest/package.json",
+  "python.defaultInterpreterPath": "${workspaceFolder}/bindings/python/.venv/bin/python",
   "files.trimTrailingWhitespace": true,
-  "eslint.validate": ["typescript", "json"],
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit",
-    "source.fixAll.tslint": "never"
-  },
-  "eslint.format.enable": false, // let prettier do it, it is faster and safer
-  // Jest extension settings
-  "jest.runMode": "on-demand",
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "[rust]": {
     "editor.defaultFormatter": "rust-lang.rust-analyzer"
   },
   "[toml]": {
     "editor.defaultFormatter": "tamasfe.even-better-toml"
+  },
+  "[python]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit",
+      "source.organizeImports": "explicit"
+    }
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }

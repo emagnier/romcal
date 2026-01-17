@@ -1,0 +1,49 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Generate: schemas",
+      "type": "shell",
+      "command": "./scripts/generate-schema.sh",
+      "group": "build",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "Test: JSON roundtrip",
+      "type": "shell",
+      "command": "./scripts/check-json-roundtrip.sh",
+      "group": "test",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "Validate: JSON resources",
+      "type": "shell",
+      "command": "./scripts/validate-resources.sh",
+      "group": "test",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "Validate: JSON calendars",
+      "type": "shell",
+      "command": "./scripts/validate-calendars.sh",
+      "group": "test",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    }
+  ]
+}

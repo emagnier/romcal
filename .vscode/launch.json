@@ -1,34 +1,62 @@
 {
-  // Use IntelliSense to learn about possible attributes.
-  // Hover to view descriptions of existing attributes.
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "node",
+      "type": "lldb",
       "request": "launch",
-      "name": "Jest All",
-      "program": "${workspaceFolder}/node_modules/.bin/jest",
-      "args": ["--runInBand"],
-      "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen",
-      "disableOptimisticBPs": true,
-      "windows": {
-        "program": "${workspaceFolder}/node_modules/jest/bin/jest"
-      }
+      "name": "Test: romcal (Rust lib)",
+      "cargo": {
+        "args": ["test", "--package=romcal", "--lib"]
+      },
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Test: romcal-cli (Rust)",
+      "cargo": {
+        "args": ["test", "--package=romcal-cli"]
+      },
+      "cwd": "${workspaceFolder}"
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "Jest Current File",
-      "program": "${workspaceFolder}/node_modules/.bin/jest",
-      "args": ["${fileBasenameNoExtension}", "--config", "jest.config.mjs"],
-      "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen",
-      "disableOptimisticBPs": true,
-      "windows": {
-        "program": "${workspaceFolder}/node_modules/jest/bin/jest"
-      }
+      "name": "Test: TypeScript bindings",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["vitest", "run"],
+      "cwd": "${workspaceFolder}/bindings/typescript",
+      "console": "integratedTerminal"
+    },
+    {
+      "type": "debugpy",
+      "request": "launch",
+      "name": "Test: Python bindings",
+      "python": "${workspaceFolder}/bindings/python/.venv/bin/python",
+      "module": "pytest",
+      "args": ["tests/", "-v"],
+      "cwd": "${workspaceFolder}/bindings/python",
+      "console": "integratedTerminal"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Run: validate-json (resources)",
+      "cargo": {
+        "args": ["run", "--package=romcal-tools", "--bin=validate-json", "--"]
+      },
+      "args": ["data/resources/**/*.json", "schemas/resources.json", "${workspaceFolder}"],
+      "cwd": "${workspaceFolder}/tools"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Run: validate-json (calendars)",
+      "cargo": {
+        "args": ["run", "--package=romcal-tools", "--bin=validate-json", "--"]
+      },
+      "args": ["data/definitions/**/*.json", "schemas/calendar_definition.json", "${workspaceFolder}"],
+      "cwd": "${workspaceFolder}/tools"
     }
   ]
 }
