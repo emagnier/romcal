@@ -1,0 +1,12 @@
+# Normalize line endings
+* text=auto
+
+# Exclude from GitHub language statistics
+.archive/** linguist-vendored
+website/** linguist-vendored
+scripts/** linguist-vendored
+docs/** linguist-documentation
+
+# Generated files
+Cargo.lock linguist-generated
+pnpm-lock.yaml linguist-generated
