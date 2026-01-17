@@ -35,6 +35,7 @@ const config: Config = {
       'classic',
       {
         docs: {
+          path: '../docs',
           sidebarPath: './sidebars.ts',
           editUrl: 'https://github.com/romcal/romcal/tree/main/docs/',
         },
