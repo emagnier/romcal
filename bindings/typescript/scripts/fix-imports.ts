@@ -35,7 +35,7 @@ while (iteration < maxIterations) {
   iteration++
 
   // Run tsc and capture errors
-  const output = execSync('npx tsc --noEmit 2>&1 || true', {
+  const output = execSync('pnpm exec tsc --noEmit 2>&1 || true', {
     encoding: 'utf-8',
     cwd: ROOT_DIR,
   })

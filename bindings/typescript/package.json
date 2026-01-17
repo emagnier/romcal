@@ -17,6 +17,7 @@
   "engines": {
     "node": ">=22"
   },
+  "packageManager": "pnpm@10.28.0",
   "files": [
     "dist",
     "pkg"
@@ -61,10 +62,11 @@
     "url": "https://github.com/romcal/romcal/issues"
   },
   "scripts": {
-    "build": "npm run build:wasm && npm run build:vite",
+    "preinstall": "npx only-allow pnpm",
+    "build": "pnpm build:wasm && pnpm build:vite",
     "build:vite": "vite build",
     "build:wasm": "wasm-pack build ../wasm --target web --out-dir ../typescript/pkg",
-    "generate-types": "cd ../../core && TS_RS_EXPORT_DIR=../bindings/typescript/src/types TS_RS_IMPORT_EXTENSION=.js cargo test --features ts-bindings --quiet && cd ../bindings/typescript && tsx scripts/fix-imports.ts && npx prettier --write src/types/",
+    "generate-types": "cd ../../core && TS_RS_EXPORT_DIR=../bindings/typescript/src/types TS_RS_IMPORT_EXTENSION=.js cargo test --features ts-bindings --quiet && cd ../bindings/typescript && tsx scripts/fix-imports.ts && pnpm exec prettier --write src/types/",
     "test": "vitest",
     "test:run": "vitest run",
     "test:browser": "vitest run --project browser",

@@ -202,6 +202,7 @@ try {
 ### Requirements
 
 - [Node.js](https://nodejs.org/) 22.0 or later
+- [pnpm](https://pnpm.io/) 10.0 or later
 - [Rust](https://rustup.rs/) 1.85 or later (for WASM compilation)
 - [wasm-pack](https://rustwasm.github.io/wasm-pack/) (for WASM compilation)
 
@@ -209,22 +210,22 @@ try {
 
 ```bash
 # Install dependencies
-npm install
+pnpm install
 
 # Full build (WASM + TypeScript)
-npm run build
+pnpm build
 
 # Individual build steps
-npm run build:wasm      # Compile Rust → WASM (via wasm-pack)
-npm run build:vite      # Bundle TypeScript (via Vite)
-npm run generate-types  # Generate types from Rust (via ts-rs)
+pnpm build:wasm      # Compile Rust → WASM (via wasm-pack)
+pnpm build:vite      # Bundle TypeScript (via Vite)
+pnpm generate-types  # Generate types from Rust (via ts-rs)
 ```
 
 ### Testing
 
 ```bash
-npm test          # Run tests in watch mode
-npm run test:run  # Run tests once
+pnpm test          # Run tests in watch mode
+pnpm test:run      # Run tests once
 ```
 
 ### Project Structure
@@ -253,7 +254,7 @@ bindings/typescript/
 
 ```bash
 # Node.js example
-npx tsx examples/node.ts
+pnpm tsx examples/node.ts
 
 # Browser example (open in browser after build)
 open examples/browser.html
@@ -264,7 +265,7 @@ open examples/browser.html
 If you modify Rust types in `core/src/`, you need to regenerate the TypeScript types:
 
 ```bash
-npm run generate-types
+pnpm generate-types
 ```
 
 This uses [ts-rs](https://github.com/Aleph-Alpha/ts-rs) to generate types from Rust sources.
