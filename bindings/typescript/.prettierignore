@@ -2,3 +2,4 @@ dist/
 pkg/
 node_modules/
 *.wasm
+pnpm-lock.yaml
