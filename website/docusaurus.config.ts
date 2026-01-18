@@ -76,6 +76,11 @@ const config: Config = {
           position: 'left',
         },
         {
+          to: '/editor',
+          label: 'Editor',
+          position: 'left',
+        },
+        {
           href: 'https://github.com/romcal/romcal',
           label: 'GitHub',
           position: 'right',
