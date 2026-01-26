@@ -2,7 +2,6 @@
 title: Naming Conventions
 ---
 
-# Naming Conventions
 
 Consistent naming conventions ensure the project remains organized and searchable.
 

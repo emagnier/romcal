@@ -3,7 +3,6 @@ title: Universal Norms on the Liturgical Year and the Calendar
 description: GNLY - Third Typical Edition (2002)
 ---
 
-# Universal Norms on the Liturgical Year and the Calendar (GNLY)
 
 > The English translation of the General Instruction of the Roman Missal
 > (Third Typical Edition) © 2010, International Commission on English in the Liturgy, Inc.

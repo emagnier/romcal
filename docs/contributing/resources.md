@@ -2,7 +2,6 @@
 title: Entity Resources
 ---
 
-# Entity Resources
 
 Entity resources contain the names and metadata for liturgical entities (saints, feasts, etc.) in each locale.
 

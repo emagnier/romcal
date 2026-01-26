@@ -2,7 +2,6 @@
 title: Commands Reference
 ---
 
-# Commands Reference
 
 Detailed documentation for all CLI commands.
 

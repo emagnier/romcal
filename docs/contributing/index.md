@@ -2,7 +2,6 @@
 title: Contributing
 ---
 
-# Contributing
 
 Thank you for your interest in contributing to Romcal! This guide will help you understand how to contribute to the project.
 

@@ -3,7 +3,6 @@ title: General Instruction of the Roman Missal
 description: GIRM - Third Typical Edition (2002)
 ---
 
-# General Instruction of the Roman Missal (GIRM)
 
 **_INSTITUTIO GENERALIS MISSALIS ROMANI_**
 

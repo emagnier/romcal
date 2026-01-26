@@ -2,7 +2,6 @@
 title: CLI Examples
 ---
 
-# CLI Examples
 
 Common usage patterns and examples for the Romcal CLI.
 

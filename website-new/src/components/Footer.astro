@@ -1,0 +1,37 @@
+---
+import Default from '@astrojs/starlight/components/Footer.astro';
+const currentYear = new Date().getFullYear();
+---
+
+<Default><slot /></Default>
+
+<footer class="custom-footer">
+  <p>
+    © {currentYear} Étienne Magnier and <a href="https://github.com/romcal/romcal/graphs/contributors" target="_blank" rel="noopener">contributors</a> ·
+    <a href="https://github.com/romcal/romcal/blob/main/LICENSE" target="_blank" rel="noopener">Apache 2.0</a> ·
+    Data: <a href="https://github.com/romcal/romcal/blob/main/data/LICENSE-MIT" target="_blank" rel="noopener">MIT</a>
+  </p>
+</footer>
+
+<style>
+  .custom-footer {
+    border-top: 1px solid var(--sl-color-gray-5);
+    padding: 1.5rem var(--sl-content-pad-x);
+    text-align: center;
+  }
+
+  .custom-footer p {
+    margin: 0;
+    font-size: var(--sl-text-xs);
+    color: var(--sl-color-gray-3);
+  }
+
+  .custom-footer a {
+    color: var(--sl-color-gray-2);
+    text-decoration: underline;
+  }
+
+  .custom-footer a:hover {
+    color: var(--sl-color-text-accent);
+  }
+</style>

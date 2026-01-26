@@ -2,7 +2,6 @@
 title: Calendar Definitions
 ---
 
-# Calendar Definitions
 
 Calendar definitions specify liturgical celebrations for a particular region, country, diocese, or community.
 

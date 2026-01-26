@@ -2,7 +2,6 @@
 title: Liturgical Reference
 ---
 
-# Liturgical Reference
 
 This section provides reference documentation for the official liturgical documents that define the rules implemented in Romcal.
 

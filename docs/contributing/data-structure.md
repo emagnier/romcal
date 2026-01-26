@@ -2,7 +2,6 @@
 title: Data Structure
 ---
 
-# Data Structure
 
 This page explains the organization of data files in the Romcal repository.
 

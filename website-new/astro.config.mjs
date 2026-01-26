@@ -16,8 +16,10 @@ export default defineConfig({
         baseUrl: 'https://github.com/romcal/romcal/edit/main/docs/',
       },
       customCss: ['./src/styles/custom.css'],
+      components: {
+        Footer: './src/components/Footer.astro',
+      },
       sidebar: [
-        { label: 'Introduction', slug: '' },
         { label: 'Getting Started', slug: 'getting-started' },
         {
           label: 'Guides',
@@ -61,9 +63,9 @@ export default defineConfig({
           label: 'Liturgical Reference',
           items: [
             { label: 'Overview', slug: 'reference' },
-            { label: 'GIRM', slug: 'reference/girm' },
-            { label: 'GNLY', slug: 'reference/gnly' },
-            { label: 'GILH', slug: 'reference/gilh' },
+            { label: 'GIRM — General Instruction of the Roman Missal', slug: 'reference/girm' },
+            { label: 'GNLY — Universal Norms on the Liturgical Year and the Calendar', slug: 'reference/gnly' },
+            { label: 'GILH — General Instruction of the Liturgy of the Hours', slug: 'reference/gilh' },
           ],
         },
         { label: 'Glossary', slug: 'glossary' },

@@ -3,7 +3,6 @@ title: General Instruction of the Liturgy of the Hours
 description: GILH
 ---
 
-# General Instruction of the Liturgy of the Hours (GILH)
 
 :::info TODO
 This page will contain the full text of the General Instruction of the Liturgy of the Hours.
