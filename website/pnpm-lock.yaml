@@ -11,6 +11,9 @@ importers:
       '@astrojs/starlight':
         specifier: ^0.37.4
         version: 0.37.4(astro@5.16.15(rollup@4.56.0)(typescript@5.9.3))
+      '@fontsource/crimson-text':
+        specifier: ^5.2.7
+        version: 5.2.7
       astro:
         specifier: ^5.6.1
         version: 5.16.15(rollup@4.56.0)(typescript@5.9.3)
@@ -260,6 +263,9 @@ packages:
 
   '@expressive-code/plugin-text-markers@0.41.6':
     resolution: {integrity: sha512-PBFa1wGyYzRExMDzBmAWC6/kdfG1oLn4pLpBeTfIRrALPjcGA/59HP3e7q9J0Smk4pC7U+lWkA2LHR8FYV8U7Q==}
+
+  '@fontsource/crimson-text@5.2.7':
+    resolution: {integrity: sha512-hlUb/1GdXB2xc0usGMPp6qEI7Z4kQU1FEOYvozsN+cUC/Nh4kvEVVc0kHpj8B5G0hjZzfP+UmrLYHOaNAfMK5w==}
 
   '@img/colour@1.0.0':
     resolution: {integrity: sha512-A5P/LfWGFSl6nsckYtjw9da+19jB8hkJ6ACTGcDfEJ0aE+l2n2El7dsVM7UVHZQ9s2lmYMWlrS21YLy2IR1LUw==}
@@ -2269,6 +2275,8 @@ snapshots:
   '@expressive-code/plugin-text-markers@0.41.6':
     dependencies:
       '@expressive-code/core': 0.41.6
+
+  '@fontsource/crimson-text@5.2.7': {}
 
   '@img/colour@1.0.0': {}
 

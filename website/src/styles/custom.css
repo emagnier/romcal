@@ -5,10 +5,48 @@
   --sl-color-accent-low: #4a0f08;
   --sl-color-accent: #cf2612;
   --sl-color-accent-high: #f5a89f;
+
+  /* Crimson Text for headings */
+  --sl-font-headings: 'Crimson Text', serif;
 }
 
 :root[data-theme='light'] {
   --sl-color-accent-low: #f5d0cc;
   --sl-color-accent: #cf2612;
   --sl-color-accent-high: #6b1309;
+}
+
+/* Site title (Romcal) in the header */
+.site-title {
+  font-family: 'Crimson Text', serif;
+  font-weight: 600;
+  text-transform: lowercase;
+  font-size: var(--sl-text-3xl);
+  color: var(--sl-color-text);
+  transition: color 0.2s ease;
+  gap: 0.8rem;
+  font-weight: 600;
+}
+
+.site-title:hover {
+  color: var(--sl-color-accent-high);
+}
+
+:root[data-theme='light'] .site-title:hover {
+  color: var(--sl-color-accent);
+}
+
+/* Main headings in content */
+.sl-container h1,
+.sl-markdown-content h1,
+.sl-markdown-content h2,
+.sl-markdown-content h3,
+.sl-markdown-content h4 {
+  font-family: 'Crimson Text', serif;
+  font-weight: 600;
+}
+
+.hero h1 {
+  font-family: 'Crimson Text', serif;
+  font-weight: 600;
 }

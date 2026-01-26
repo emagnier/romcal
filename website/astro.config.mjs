@@ -15,7 +15,12 @@ export default defineConfig({
       editLink: {
         baseUrl: 'https://github.com/romcal/romcal/edit/main/docs/',
       },
-      customCss: ['./src/styles/custom.css'],
+      customCss: [
+        '@fontsource/crimson-text/400.css',
+        '@fontsource/crimson-text/600.css',
+        '@fontsource/crimson-text/700.css',
+        './src/styles/custom.css',
+      ],
       components: {
         Footer: './src/components/Footer.astro',
       },
