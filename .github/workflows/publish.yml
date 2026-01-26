@@ -345,6 +345,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: [prepare, pypi-wheels, pypi-sdist]
     if: needs.prepare.outputs.publish-pypi == 'true'
+    permissions:
+      id-token: write # Required for PyPI Trusted Publishers (OIDC)
     steps:
       - uses: actions/checkout@v4
 
@@ -403,10 +405,10 @@ jobs:
 
       - name: Publish to PyPI
         if: needs.prepare.outputs.dry-run == 'false'
-        run: |
-          echo "🚀 Publishing to PyPI"
-          pip install twine
-          twine upload dist/* -u __token__ -p ${{ secrets.PYPI_TOKEN }}
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist/
+          print-hash: true
 
       - name: Dry run summary
         if: needs.prepare.outputs.dry-run == 'true'
