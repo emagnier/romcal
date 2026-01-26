@@ -1,6 +1,6 @@
 ---
 title: General Instruction of the Liturgy of the Hours
-description: GILH
+description: Divine Office structure (Lauds, Vespers, Compline), psalms, readings, hymns, and celebrations throughout the year.
 ---
 
 

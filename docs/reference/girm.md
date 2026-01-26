@@ -1,6 +1,6 @@
 ---
 title: General Instruction of the Roman Missal
-description: GIRM - Third Typical Edition (2002)
+description: Structure of the Mass, ministries, forms of celebration, church arrangement, sacred vessels and vestments, and adaptations.
 ---
 
 

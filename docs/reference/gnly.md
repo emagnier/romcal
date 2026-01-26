@@ -1,6 +1,6 @@
 ---
 title: Universal Norms on the Liturgical Year and the Calendar
-description: GNLY - Third Typical Edition (2002)
+description: Liturgical days, seasons (Advent, Christmas, Lent, Easter, Ordinary Time), calendar rules, and table of precedence.
 ---
 
 

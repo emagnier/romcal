@@ -63,9 +63,9 @@ export default defineConfig({
           label: 'Liturgical Reference',
           items: [
             { label: 'Overview', slug: 'reference' },
-            { label: 'GIRM — General Instruction of the Roman Missal', slug: 'reference/girm' },
-            { label: 'GNLY — Universal Norms on the Liturgical Year and the Calendar', slug: 'reference/gnly' },
-            { label: 'GILH — General Instruction of the Liturgy of the Hours', slug: 'reference/gilh' },
+            { label: 'General Instruction of the Roman Missal (GIRM)', slug: 'reference/girm' },
+            { label: 'Universal Norms on the Liturgical Year and the Calendar (GNLY)', slug: 'reference/gnly' },
+            { label: 'General Instruction of the Liturgy of the Hours (GILH)', slug: 'reference/gilh' },
           ],
         },
         { label: 'Glossary', slug: 'glossary' },
