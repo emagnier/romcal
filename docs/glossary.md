@@ -16,9 +16,17 @@ See [General Instruction of the Liturgy of the Hours](#general-instruction-of-th
 
 See [General Instruction of the Roman Missal](#general-instruction-of-the-roman-missal).
 
+### GNLY
+
+See [Universal Norms on the Liturgical Year and the Calendar](#universal-norms-on-the-liturgical-year-and-the-calendar).
+
 ### GNLYC
 
-See [General Norms for the Liturgical Year and the Calendar](#general-norms-for-the-liturgical-year-and-the-calendar).
+See [Universal Norms on the Liturgical Year and the Calendar](#universal-norms-on-the-liturgical-year-and-the-calendar).
+
+### UNLY
+
+See [Universal Norms on the Liturgical Year and the Calendar](#universal-norms-on-the-liturgical-year-and-the-calendar).
 
 ---
 
@@ -48,21 +56,17 @@ See [Liturgy of the Hours](#liturgy-of-the-hours).
 
 The General Instruction of the Liturgy of the Hours (GILH) is the document that provides the general instructions for the Liturgy of the Hours. It is an official liturgical document promulgated by the Congregation for Divine Worship.
 
-See: [GILH (English PDF)](https://www.liturgyoffice.org.uk/Resources/Rites/GILH.pdf)
+See: [GILH](./reference/gilh.md)
 
 ### General Instruction of the Roman Missal
 
 The General Instruction of the Roman Missal (GIRM) is the detailed document that provides the rubrics for the celebration of the Mass. It is an official liturgical document promulgated by the Congregation for Divine Worship.
 
-See: [GIRM (English PDF)](https://www.liturgyoffice.org.uk/Resources/GIRM/Documents/GIRM.pdf)
+See: [GIRM](./reference/girm.md)
 
 ### General Norms for the Liturgical Year and the Calendar
 
-The General Norms for the Liturgical Year and the Calendar (GNLYC) is the document that provides the general norms for the liturgical year and calendar. It defines the structure of seasons, ranks of celebrations, and precedence rules.
-
-Previously known as "Universal Norms on the Liturgical Year and General Roman Calendar" (UNLY, UNLYGRC).
-
-See: [GNLYC (English PDF)](https://www.liturgyoffice.org.uk/Resources/GIRM/Documents/GNLY.pdf)
+See [Universal Norms on the Liturgical Year and the Calendar](#universal-norms-on-the-liturgical-year-and-the-calendar).
 
 ---
 
@@ -82,7 +86,7 @@ The colors used in liturgical vestments and altar cloths for the celebration of 
 | Black  | Funerals (optional)                                         |
 | Gold   | Solemn occasions (optional, in place of white/red/green)    |
 
-See: [GIRM §346](https://www.liturgyoffice.org.uk/Resources/GIRM/Documents/GIRM.pdf#page=63)
+See: [GIRM §346](./reference/girm.md)
 
 ### Liturgical Day
 
@@ -131,7 +135,7 @@ See: [General Instruction of the Liturgy of the Hours](#general-instruction-of-t
 
 The principle used to determine which liturgical celebration should be observed when two or more celebrations fall on the same day. Based on the liturgical rank of celebrations.
 
-See: [GNLYC §59](https://www.liturgyoffice.org.uk/Resources/GIRM/Documents/GNLY.pdf#page=14)
+See: [GNLY §59](./reference/gnly.md#table-liturgical-days)
 
 ### Proper of Saints
 
@@ -154,7 +158,7 @@ The four-week cycle of the psalter, coordinated with the liturgical year:
 
 The cycle then proceeds through Weeks 2, 3, 4, and repeats.
 
-See: [GILH §133](https://www.liturgyoffice.org.uk/Resources/Rites/GILH.pdf#page=26)
+See: [GILH §133](./reference/gilh.md)
 
 ---
 
@@ -173,7 +177,7 @@ The rank of a liturgical celebration indicates its importance in the liturgical 
 | Memorial (Optional)   | May be observed                                |
 | Weekday               | Ordinary weekdays                              |
 
-See: [GNLYC §3-16](https://www.liturgyoffice.org.uk/Resources/GIRM/Documents/GNLY.pdf#page=5)
+See: [GNLY §3-16](./reference/gnly.md#title-i-liturgical-days)
 
 ---
 
@@ -215,6 +219,18 @@ Each cycle begins on the First Sunday of Advent of the previous civil year.
 ### Temporal
 
 See [Proper of Time](#proper-of-time).
+
+---
+
+## U
+
+### Universal Norms on the Liturgical Year and the Calendar
+
+The Universal Norms on the Liturgical Year and the Calendar (GNLY) is an official liturgical document that defines the structure of liturgical seasons, ranks of celebrations, and precedence rules.
+
+The Latin title is _Normae universales de Anno liturgico et de Calendario_. The standard abbreviation **GNLY** (or GNLYC with "C" for Calendar) comes from the original 1969 English translation which used "**General** Norms" rather than "Universal Norms". The more recent translation (Third Typical Edition, 2002/2010) uses "**Universal** Norms on the Liturgical Year and the Calendar" which is more faithful to the Latin _universales_, but the abbreviation GNLY has remained in common use and is preferred for consistency with established liturgical practice and parallel with GIRM/GILH.
+
+See: [GNLY](./reference/gnly.md)
 
 ---
 

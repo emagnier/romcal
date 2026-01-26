@@ -21,7 +21,7 @@ const FeatureList: FeatureItem[] = [
     description: (
       <>
         Calculate liturgical dates for any year, following official Church norms (
-        <Link to="/docs/reference/girm">GIRM</Link>, <Link to="/docs/reference/gnlyc">GNLYC</Link>,{' '}
+        <Link to="/docs/reference/girm">GIRM</Link>, <Link to="/docs/reference/gnly">GNLY</Link>,{' '}
         <Link to="/docs/reference/gilh">GILH</Link>). Accurate and canonical data for any application.
       </>
     ),
