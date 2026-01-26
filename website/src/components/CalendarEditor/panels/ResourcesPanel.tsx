@@ -10,12 +10,7 @@ interface ResourcesPanelProps {
 }
 
 export default function ResourcesPanel({ locale }: ResourcesPanelProps): ReactNode {
-  const {
-    entities,
-    addEntity,
-    removeEntity,
-    setActivePanel,
-  } = useEditorStore();
+  const { entities, addEntity, removeEntity, setActivePanel } = useEditorStore();
 
   const [selectedLocale, setSelectedLocale] = useState(locale || 'en');
   const [searchQuery, setSearchQuery] = useState('');
@@ -31,10 +26,11 @@ export default function ResourcesPanel({ locale }: ResourcesPanelProps): ReactNo
   const filteredEntities = useMemo(() => {
     if (!searchQuery) return entityEntries;
     const query = searchQuery.toLowerCase();
-    return entityEntries.filter(([id, entity]) =>
-      id.toLowerCase().includes(query) ||
-      entity.fullname?.toLowerCase().includes(query) ||
-      entity.name?.toLowerCase().includes(query)
+    return entityEntries.filter(
+      ([id, entity]) =>
+        id.toLowerCase().includes(query) ||
+        entity.fullname?.toLowerCase().includes(query) ||
+        entity.name?.toLowerCase().includes(query)
     );
   }, [entityEntries, searchQuery]);
 
@@ -131,9 +127,7 @@ export default function ResourcesPanel({ locale }: ResourcesPanelProps): ReactNo
             >
               {loc.name}
               {entities[loc.code] && (
-                <span style={{ marginLeft: '0.375rem', opacity: 0.7 }}>
-                  ({Object.keys(entities[loc.code]).length})
-                </span>
+                <span style={{ marginLeft: '0.375rem', opacity: 0.7 }}>({Object.keys(entities[loc.code]).length})</span>
               )}
             </button>
           ))}
@@ -175,7 +169,10 @@ export default function ResourcesPanel({ locale }: ResourcesPanelProps): ReactNo
               </button>
               <button
                 type="button"
-                onClick={() => { setShowNewEntityForm(false); setNewEntityId(''); }}
+                onClick={() => {
+                  setShowNewEntityForm(false);
+                  setNewEntityId('');
+                }}
                 style={{
                   padding: '0.5rem 1rem',
                   fontSize: '0.875rem',
@@ -212,9 +209,7 @@ export default function ResourcesPanel({ locale }: ResourcesPanelProps): ReactNo
         <div className={styles.emptyState}>
           <div className={styles.emptyStateIcon}>👤</div>
           <p className={styles.emptyStateText}>
-            {searchQuery
-              ? 'No matching entities found'
-              : `No entities defined for ${selectedLocale.toUpperCase()} yet`}
+            {searchQuery ? 'No matching entities found' : `No entities defined for ${selectedLocale.toUpperCase()} yet`}
           </p>
           {!searchQuery && (
             <button

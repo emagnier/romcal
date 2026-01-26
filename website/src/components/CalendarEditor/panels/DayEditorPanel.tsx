@@ -19,14 +19,20 @@ const PRECEDENCE_OPTIONS: { value: Precedence; label: string }[] = [
   { value: 'PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A', label: '4a - Proper Solemnity (Principal Patron)' },
   { value: 'PROPER_SOLEMNITY__DEDICATION_OF_THE_OWN_CHURCH_4B', label: '4b - Proper Solemnity (Dedication)' },
   { value: 'PROPER_SOLEMNITY__TITLE_OF_THE_OWN_CHURCH_4C', label: '4c - Proper Solemnity (Title)' },
-  { value: 'PROPER_SOLEMNITY__TITLE_OR_FOUNDER_OR_PRIMARY_PATRON_OF_A_RELIGIOUS_ORG_4D', label: '4d - Proper Solemnity (Religious Org)' },
+  {
+    value: 'PROPER_SOLEMNITY__TITLE_OR_FOUNDER_OR_PRIMARY_PATRON_OF_A_RELIGIOUS_ORG_4D',
+    label: '4d - Proper Solemnity (Religious Org)',
+  },
   { value: 'GENERAL_LORD_FEAST_5', label: "5 - General Lord's Feast" },
   { value: 'UNPRIVILEGED_SUNDAY_6', label: '6 - Unprivileged Sunday' },
   { value: 'GENERAL_FEAST_7', label: '7 - General Feast' },
   { value: 'PROPER_FEAST__PRINCIPAL_PATRON_OF_A_DIOCESE_8A', label: '8a - Proper Feast (Diocese Patron)' },
   { value: 'PROPER_FEAST__DEDICATION_OF_THE_CATHEDRAL_CHURCH_8B', label: '8b - Proper Feast (Cathedral Dedication)' },
   { value: 'PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C', label: '8c - Proper Feast (Region Patron)' },
-  { value: 'PROPER_FEAST__TITLE_OR_FOUNDER_OR_PRIMARY_PATRON_OF_A_RELIGIOUS_ORG_8D', label: '8d - Proper Feast (Religious Org)' },
+  {
+    value: 'PROPER_FEAST__TITLE_OR_FOUNDER_OR_PRIMARY_PATRON_OF_A_RELIGIOUS_ORG_8D',
+    label: '8d - Proper Feast (Religious Org)',
+  },
   { value: 'PROPER_FEAST__TO_AN_INDIVIDUAL_CHURCH_8E', label: '8e - Proper Feast (Individual Church)' },
   { value: 'PROPER_FEAST_8F', label: '8f - Proper Feast (Other)' },
   { value: 'PRIVILEGED_WEEKDAY_9', label: '9 - Privileged Weekday' },
@@ -140,12 +146,7 @@ interface DayEditorPanelProps {
 }
 
 export default function DayEditorPanel({ dayId }: DayEditorPanelProps): ReactNode {
-  const {
-    calendar,
-    updateDayDefinition,
-    renameDayDefinition,
-    setActivePanel,
-  } = useEditorStore();
+  const { calendar, updateDayDefinition, renameDayDefinition, setActivePanel } = useEditorStore();
 
   const day = calendar.days_definitions[dayId];
   const [editingId, setEditingId] = useState(false);
@@ -302,7 +303,10 @@ export default function DayEditorPanel({ dayId }: DayEditorPanelProps): ReactNod
               </button>
               <button
                 type="button"
-                onClick={() => { setEditingId(false); setNewId(dayId); }}
+                onClick={() => {
+                  setEditingId(false);
+                  setNewId(dayId);
+                }}
                 style={{
                   padding: '0.5rem 0.75rem',
                   background: 'transparent',
@@ -360,9 +364,11 @@ export default function DayEditorPanel({ dayId }: DayEditorPanelProps): ReactNod
               label="Month"
               value={String(day.date_def.month)}
               options={MONTH_OPTIONS}
-              onChange={(e) => updateDayDefinition(dayId, {
-                date_def: { ...day.date_def, month: parseInt(e.target.value) } as DateDef,
-              })}
+              onChange={(e) =>
+                updateDayDefinition(dayId, {
+                  date_def: { ...day.date_def, month: parseInt(e.target.value) } as DateDef,
+                })
+              }
             />
             <TextInput
               label="Day"
@@ -370,18 +376,22 @@ export default function DayEditorPanel({ dayId }: DayEditorPanelProps): ReactNod
               min={1}
               max={31}
               value={String(day.date_def.date)}
-              onChange={(e) => updateDayDefinition(dayId, {
-                date_def: { ...day.date_def, date: parseInt(e.target.value) || 1 } as DateDef,
-              })}
+              onChange={(e) =>
+                updateDayDefinition(dayId, {
+                  date_def: { ...day.date_def, date: parseInt(e.target.value) || 1 } as DateDef,
+                })
+              }
               className={styles.numberInput}
             />
             <TextInput
               label="Offset (days)"
               type="number"
               value={String(day.date_def.day_offset || 0)}
-              onChange={(e) => updateDayDefinition(dayId, {
-                date_def: { ...day.date_def, day_offset: parseInt(e.target.value) || 0 } as DateDef,
-              })}
+              onChange={(e) =>
+                updateDayDefinition(dayId, {
+                  date_def: { ...day.date_def, day_offset: parseInt(e.target.value) || 0 } as DateDef,
+                })
+              }
               className={styles.numberInput}
               hint="Optional"
             />
@@ -394,17 +404,24 @@ export default function DayEditorPanel({ dayId }: DayEditorPanelProps): ReactNod
               label="Movable Feast"
               value={day.date_def.date_fn}
               options={DATE_FN_OPTIONS}
-              onChange={(e) => updateDayDefinition(dayId, {
-                date_def: { date_fn: e.target.value as DateFn, day_offset: day.date_def && 'day_offset' in day.date_def ? day.date_def.day_offset : 0 },
-              })}
+              onChange={(e) =>
+                updateDayDefinition(dayId, {
+                  date_def: {
+                    date_fn: e.target.value as DateFn,
+                    day_offset: day.date_def && 'day_offset' in day.date_def ? day.date_def.day_offset : 0,
+                  },
+                })
+              }
             />
             <TextInput
               label="Offset (days)"
               type="number"
               value={String(day.date_def.day_offset || 0)}
-              onChange={(e) => updateDayDefinition(dayId, {
-                date_def: { ...day.date_def, day_offset: parseInt(e.target.value) || 0 } as DateDef,
-              })}
+              onChange={(e) =>
+                updateDayDefinition(dayId, {
+                  date_def: { ...day.date_def, day_offset: parseInt(e.target.value) || 0 } as DateDef,
+                })
+              }
               className={styles.numberInput}
               hint="e.g., +50 for 50 days after"
             />
@@ -419,26 +436,32 @@ export default function DayEditorPanel({ dayId }: DayEditorPanelProps): ReactNod
               min={1}
               max={5}
               value={String(day.date_def.nth_week_in_month)}
-              onChange={(e) => updateDayDefinition(dayId, {
-                date_def: { ...day.date_def, nth_week_in_month: parseInt(e.target.value) || 1 } as DateDef,
-              })}
+              onChange={(e) =>
+                updateDayDefinition(dayId, {
+                  date_def: { ...day.date_def, nth_week_in_month: parseInt(e.target.value) || 1 } as DateDef,
+                })
+              }
               className={styles.numberInput}
             />
             <Select
               label="Weekday"
               value={String(day.date_def.day_of_week)}
               options={WEEKDAY_OPTIONS}
-              onChange={(e) => updateDayDefinition(dayId, {
-                date_def: { ...day.date_def, day_of_week: parseInt(e.target.value) } as DateDef,
-              })}
+              onChange={(e) =>
+                updateDayDefinition(dayId, {
+                  date_def: { ...day.date_def, day_of_week: parseInt(e.target.value) } as DateDef,
+                })
+              }
             />
             <Select
               label="Month"
               value={String(day.date_def.month)}
               options={MONTH_OPTIONS}
-              onChange={(e) => updateDayDefinition(dayId, {
-                date_def: { ...day.date_def, month: parseInt(e.target.value) } as DateDef,
-              })}
+              onChange={(e) =>
+                updateDayDefinition(dayId, {
+                  date_def: { ...day.date_def, month: parseInt(e.target.value) } as DateDef,
+                })
+              }
             />
           </div>
         )}
@@ -449,17 +472,21 @@ export default function DayEditorPanel({ dayId }: DayEditorPanelProps): ReactNod
               label="Weekday"
               value={String(day.date_def.last_day_of_week_in_month)}
               options={WEEKDAY_OPTIONS}
-              onChange={(e) => updateDayDefinition(dayId, {
-                date_def: { ...day.date_def, last_day_of_week_in_month: parseInt(e.target.value) } as DateDef,
-              })}
+              onChange={(e) =>
+                updateDayDefinition(dayId, {
+                  date_def: { ...day.date_def, last_day_of_week_in_month: parseInt(e.target.value) } as DateDef,
+                })
+              }
             />
             <Select
               label="Month"
               value={String(day.date_def.month)}
               options={MONTH_OPTIONS}
-              onChange={(e) => updateDayDefinition(dayId, {
-                date_def: { ...day.date_def, month: parseInt(e.target.value) } as DateDef,
-              })}
+              onChange={(e) =>
+                updateDayDefinition(dayId, {
+                  date_def: { ...day.date_def, month: parseInt(e.target.value) } as DateDef,
+                })
+              }
             />
           </div>
         )}
@@ -473,9 +500,11 @@ export default function DayEditorPanel({ dayId }: DayEditorPanelProps): ReactNod
           label="Precedence"
           value={day.precedence || ''}
           options={[{ value: '', label: '— Select —' }, ...PRECEDENCE_OPTIONS]}
-          onChange={(e) => updateDayDefinition(dayId, {
-            precedence: e.target.value ? (e.target.value as Precedence) : null,
-          })}
+          onChange={(e) =>
+            updateDayDefinition(dayId, {
+              precedence: e.target.value ? (e.target.value as Precedence) : null,
+            })
+          }
         />
 
         <div style={{ display: 'flex', gap: '2rem', marginTop: '1rem' }}>
@@ -577,9 +606,7 @@ export default function DayEditorPanel({ dayId }: DayEditorPanelProps): ReactNod
 
       {/* Advanced Options */}
       <details className={styles.card}>
-        <summary style={{ cursor: 'pointer', fontWeight: 600 }}>
-          ⚙️ Advanced Options
-        </summary>
+        <summary style={{ cursor: 'pointer', fontWeight: 600 }}>⚙️ Advanced Options</summary>
         <div style={{ marginTop: '1rem' }}>
           <TextInput
             label="Custom Locale ID"

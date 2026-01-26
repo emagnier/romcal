@@ -6,11 +6,7 @@ import styles from '../shared/shared.module.css';
 import clsx from 'clsx';
 
 export default function ParentCalendarPanel(): ReactNode {
-  const {
-    calendar,
-    availableCalendars,
-    setParentCalendarIds,
-  } = useEditorStore();
+  const { calendar, availableCalendars, setParentCalendarIds } = useEditorStore();
 
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -21,11 +17,7 @@ export default function ParentCalendarPanel(): ReactNode {
   const filteredCalendars = useMemo(() => {
     if (!searchQuery) return availableCalendars;
     const query = searchQuery.toLowerCase();
-    return availableCalendars.filter(
-      (c) =>
-        c.id.toLowerCase().includes(query) ||
-        c.name.toLowerCase().includes(query)
-    );
+    return availableCalendars.filter((c) => c.id.toLowerCase().includes(query) || c.name.toLowerCase().includes(query));
   }, [availableCalendars, searchQuery]);
 
   const handleAddParent = (id: string) => {
@@ -60,8 +52,8 @@ export default function ParentCalendarPanel(): ReactNode {
     <div>
       <h2 className={styles.sectionTitle}>Parent Calendars</h2>
       <p style={{ color: 'var(--ifm-color-content-secondary)', marginBottom: '1.5rem' }}>
-        This calendar inherits day definitions from its parent calendars.
-        The order matters: later parents can override earlier ones.
+        This calendar inherits day definitions from its parent calendars. The order matters: later parents can override
+        earlier ones.
       </p>
 
       {/* Selected Parents */}
@@ -81,7 +73,9 @@ export default function ParentCalendarPanel(): ReactNode {
                 <li key={id} className={styles.sortableItem}>
                   <span className={styles.sortableHandle}>≡</span>
                   <div className={styles.sortableContent}>
-                    <strong>{index + 1}. {info?.name || id}</strong>
+                    <strong>
+                      {index + 1}. {info?.name || id}
+                    </strong>
                     {info && (
                       <span style={{ marginLeft: '0.5rem', opacity: 0.7, fontSize: '0.875rem' }}>
                         ({getCalendarTypeLabel(info.type)})
@@ -161,9 +155,7 @@ export default function ParentCalendarPanel(): ReactNode {
             // Search results
             <div>
               {filteredCalendars.length === 0 ? (
-                <p style={{ color: 'var(--ifm-color-content-secondary)', textAlign: 'center' }}>
-                  No calendars found
-                </p>
+                <p style={{ color: 'var(--ifm-color-content-secondary)', textAlign: 'center' }}>No calendars found</p>
               ) : (
                 filteredCalendars.map((cal) => {
                   const isSelected = calendar.parent_calendar_ids.includes(cal.id);
@@ -182,14 +174,12 @@ export default function ParentCalendarPanel(): ReactNode {
                     >
                       <div>
                         <strong>{cal.name}</strong>
-                        <span style={{ marginLeft: '0.5rem', opacity: 0.7, fontSize: '0.875rem' }}>
-                          ({cal.id})
-                        </span>
+                        <span style={{ marginLeft: '0.5rem', opacity: 0.7, fontSize: '0.875rem' }}>({cal.id})</span>
                       </div>
                       {!isSelf && (
                         <button
                           type="button"
-                          onClick={() => isSelected ? handleRemoveParent(cal.id) : handleAddParent(cal.id)}
+                          onClick={() => (isSelected ? handleRemoveParent(cal.id) : handleAddParent(cal.id))}
                           style={{
                             padding: '0.25rem 0.5rem',
                             fontSize: '0.8125rem',
@@ -240,12 +230,14 @@ export default function ParentCalendarPanel(): ReactNode {
                             {!isSelf && (
                               <button
                                 type="button"
-                                onClick={() => isSelected ? handleRemoveParent(cal.id) : handleAddParent(cal.id)}
+                                onClick={() => (isSelected ? handleRemoveParent(cal.id) : handleAddParent(cal.id))}
                                 style={{
                                   padding: '0.125rem 0.375rem',
                                   fontSize: '0.75rem',
                                   border: 'none',
-                                  background: isSelected ? 'var(--ifm-color-danger-lightest)' : 'var(--ifm-color-primary-lightest)',
+                                  background: isSelected
+                                    ? 'var(--ifm-color-danger-lightest)'
+                                    : 'var(--ifm-color-primary-lightest)',
                                   color: isSelected ? 'var(--ifm-color-danger)' : 'var(--ifm-color-primary)',
                                   borderRadius: '4px',
                                   cursor: 'pointer',

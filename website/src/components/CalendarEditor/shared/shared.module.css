@@ -39,7 +39,9 @@
   border-radius: var(--ifm-button-border-radius);
   background: var(--ifm-background-color);
   color: var(--ifm-color-content);
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .input:focus,

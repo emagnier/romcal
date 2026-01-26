@@ -55,12 +55,7 @@ interface EntityEditorPanelProps {
 }
 
 export default function EntityEditorPanel({ entityId, locale }: EntityEditorPanelProps): ReactNode {
-  const {
-    entities,
-    updateEntity,
-    renameEntity,
-    setActivePanel,
-  } = useEditorStore();
+  const { entities, updateEntity, renameEntity, setActivePanel } = useEditorStore();
 
   const entity = entities[locale]?.[entityId];
   const [editingId, setEditingId] = useState(false);
@@ -164,7 +159,10 @@ export default function EntityEditorPanel({ entityId, locale }: EntityEditorPane
               </button>
               <button
                 type="button"
-                onClick={() => { setEditingId(false); setNewId(entityId); }}
+                onClick={() => {
+                  setEditingId(false);
+                  setNewId(entityId);
+                }}
                 style={{
                   padding: '0.5rem 0.75rem',
                   background: 'transparent',
@@ -179,7 +177,14 @@ export default function EntityEditorPanel({ entityId, locale }: EntityEditorPane
           ) : (
             <h2 className={styles.sectionTitle} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               👤 {entityId}
-              <span style={{ fontSize: '0.75rem', background: 'var(--ifm-hover-overlay)', padding: '0.125rem 0.5rem', borderRadius: '4px' }}>
+              <span
+                style={{
+                  fontSize: '0.75rem',
+                  background: 'var(--ifm-hover-overlay)',
+                  padding: '0.125rem 0.5rem',
+                  borderRadius: '4px',
+                }}
+              >
                 {locale.toUpperCase()}
               </span>
               <button
@@ -242,18 +247,22 @@ export default function EntityEditorPanel({ entityId, locale }: EntityEditorPane
               name="canonizationLevel"
               value={entity.canonization_level || ''}
               options={[{ value: '', label: 'None' }, ...CANONIZATION_OPTIONS]}
-              onChange={(value) => updateEntity(locale, entityId, {
-                canonization_level: value ? (value as CanonizationLevel) : undefined,
-              })}
+              onChange={(value) =>
+                updateEntity(locale, entityId, {
+                  canonization_level: value ? (value as CanonizationLevel) : undefined,
+                })
+              }
             />
 
             <Checkbox
               label="Hide canonization level in display"
               hint="When the level is already included in the name"
               checked={entity.hide_canonization_level ?? false}
-              onChange={(e) => updateEntity(locale, entityId, {
-                hide_canonization_level: e.target.checked || undefined,
-              })}
+              onChange={(e) =>
+                updateEntity(locale, entityId, {
+                  hide_canonization_level: e.target.checked || undefined,
+                })
+              }
             />
           </>
         )}
@@ -276,9 +285,11 @@ export default function EntityEditorPanel({ entityId, locale }: EntityEditorPane
             label="Hide titles in display"
             hint="When titles are already included in the name"
             checked={entity.hide_titles ?? false}
-            onChange={(e) => updateEntity(locale, entityId, {
-              hide_titles: e.target.checked || undefined,
-            })}
+            onChange={(e) =>
+              updateEntity(locale, entityId, {
+                hide_titles: e.target.checked || undefined,
+              })
+            }
           />
         </div>
       )}
@@ -293,9 +304,11 @@ export default function EntityEditorPanel({ entityId, locale }: EntityEditorPane
             name="sex"
             value={entity.sex || ''}
             options={[{ value: '', label: 'Not specified' }, ...SEX_OPTIONS]}
-            onChange={(value) => updateEntity(locale, entityId, {
-              sex: value ? (value as Sex) : undefined,
-            })}
+            onChange={(value) =>
+              updateEntity(locale, entityId, {
+                sex: value ? (value as Sex) : undefined,
+              })
+            }
           />
 
           <TextInput
@@ -362,9 +375,11 @@ export default function EntityEditorPanel({ entityId, locale }: EntityEditorPane
                 <Checkbox
                   label="Approximate"
                   checked={entity.date_of_birth_is_approximative ?? false}
-                  onChange={(e) => updateEntity(locale, entityId, {
-                    date_of_birth_is_approximative: e.target.checked || undefined,
-                  })}
+                  onChange={(e) =>
+                    updateEntity(locale, entityId, {
+                      date_of_birth_is_approximative: e.target.checked || undefined,
+                    })
+                  }
                 />
               </div>
               <div style={{ flex: 1 }}>
@@ -384,9 +399,11 @@ export default function EntityEditorPanel({ entityId, locale }: EntityEditorPane
                 <Checkbox
                   label="Approximate"
                   checked={entity.date_of_death_is_approximative ?? false}
-                  onChange={(e) => updateEntity(locale, entityId, {
-                    date_of_death_is_approximative: e.target.checked || undefined,
-                  })}
+                  onChange={(e) =>
+                    updateEntity(locale, entityId, {
+                      date_of_death_is_approximative: e.target.checked || undefined,
+                    })
+                  }
                 />
               </div>
             </div>
@@ -401,7 +418,9 @@ export default function EntityEditorPanel({ entityId, locale }: EntityEditorPane
                     if (!val) {
                       updateEntity(locale, entityId, { date_of_beatification: undefined });
                     } else if (/^\d{4}(-\d{2})?(-\d{2})?$/.test(val)) {
-                      updateEntity(locale, entityId, { date_of_beatification: val.includes('-') ? val : parseInt(val) });
+                      updateEntity(locale, entityId, {
+                        date_of_beatification: val.includes('-') ? val : parseInt(val),
+                      });
                     }
                   }}
                   placeholder="YYYY or YYYY-MM or YYYY-MM-DD"
@@ -409,9 +428,11 @@ export default function EntityEditorPanel({ entityId, locale }: EntityEditorPane
                 <Checkbox
                   label="Approximate"
                   checked={entity.date_of_beatification_is_approximative ?? false}
-                  onChange={(e) => updateEntity(locale, entityId, {
-                    date_of_beatification_is_approximative: e.target.checked || undefined,
-                  })}
+                  onChange={(e) =>
+                    updateEntity(locale, entityId, {
+                      date_of_beatification_is_approximative: e.target.checked || undefined,
+                    })
+                  }
                 />
               </div>
               <div style={{ flex: 1 }}>
@@ -431,9 +452,11 @@ export default function EntityEditorPanel({ entityId, locale }: EntityEditorPane
                 <Checkbox
                   label="Approximate"
                   checked={entity.date_of_canonization_is_approximative ?? false}
-                  onChange={(e) => updateEntity(locale, entityId, {
-                    date_of_canonization_is_approximative: e.target.checked || undefined,
-                  })}
+                  onChange={(e) =>
+                    updateEntity(locale, entityId, {
+                      date_of_canonization_is_approximative: e.target.checked || undefined,
+                    })
+                  }
                 />
               </div>
             </div>

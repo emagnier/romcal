@@ -38,17 +38,22 @@ const PRECEDENCE_LABELS: Record<Precedence, string> = {
 
 // Month names
 const MONTHS = [
-  'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December',
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
 ];
 
 export default function DayDefinitionsPanel(): ReactNode {
-  const {
-    calendar,
-    addDayDefinition,
-    removeDayDefinition,
-    setActivePanel,
-  } = useEditorStore();
+  const { calendar, addDayDefinition, removeDayDefinition, setActivePanel } = useEditorStore();
 
   const [searchQuery, setSearchQuery] = useState('');
   const [showNewDayForm, setShowNewDayForm] = useState(false);
@@ -67,9 +72,8 @@ export default function DayDefinitionsPanel(): ReactNode {
   const filteredDays = useMemo(() => {
     if (!searchQuery) return dayEntries;
     const query = searchQuery.toLowerCase();
-    return dayEntries.filter(([id, day]) =>
-      id.toLowerCase().includes(query) ||
-      day.custom_locale_id?.toLowerCase().includes(query)
+    return dayEntries.filter(
+      ([id, day]) => id.toLowerCase().includes(query) || day.custom_locale_id?.toLowerCase().includes(query)
     );
   }, [dayEntries, searchQuery]);
 
@@ -149,7 +153,10 @@ export default function DayDefinitionsPanel(): ReactNode {
               </button>
               <button
                 type="button"
-                onClick={() => { setShowNewDayForm(false); setNewDayId(''); }}
+                onClick={() => {
+                  setShowNewDayForm(false);
+                  setNewDayId('');
+                }}
                 style={{
                   padding: '0.5rem 1rem',
                   fontSize: '0.875rem',
@@ -183,9 +190,7 @@ export default function DayDefinitionsPanel(): ReactNode {
       {filteredDays.length === 0 ? (
         <div className={styles.emptyState}>
           <div className={styles.emptyStateIcon}>📅</div>
-          <p className={styles.emptyStateText}>
-            {searchQuery ? 'No matching days found' : 'No day definitions yet'}
-          </p>
+          <p className={styles.emptyStateText}>{searchQuery ? 'No matching days found' : 'No day definitions yet'}</p>
           {!searchQuery && (
             <button
               type="button"

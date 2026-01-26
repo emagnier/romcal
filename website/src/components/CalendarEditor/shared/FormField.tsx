@@ -31,21 +31,10 @@ interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: string;
 }
 
-export function TextInput({
-  label,
-  required,
-  hint,
-  error,
-  className,
-  ...props
-}: TextInputProps): ReactNode {
+export function TextInput({ label, required, hint, error, className, ...props }: TextInputProps): ReactNode {
   return (
     <FormField label={label} required={required} hint={hint} error={error}>
-      <input
-        type="text"
-        className={clsx(styles.input, error && styles.inputError, className)}
-        {...props}
-      />
+      <input type="text" className={clsx(styles.input, error && styles.inputError, className)} {...props} />
     </FormField>
   );
 }
@@ -58,22 +47,10 @@ interface TextAreaProps extends InputHTMLAttributes<HTMLTextAreaElement> {
   rows?: number;
 }
 
-export function TextArea({
-  label,
-  required,
-  hint,
-  error,
-  className,
-  rows = 3,
-  ...props
-}: TextAreaProps): ReactNode {
+export function TextArea({ label, required, hint, error, className, rows = 3, ...props }: TextAreaProps): ReactNode {
   return (
     <FormField label={label} required={required} hint={hint} error={error}>
-      <textarea
-        className={clsx(styles.textarea, error && styles.inputError, className)}
-        rows={rows}
-        {...props}
-      />
+      <textarea className={clsx(styles.textarea, error && styles.inputError, className)} rows={rows} {...props} />
     </FormField>
   );
 }
@@ -86,21 +63,10 @@ interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   options: { value: string; label: string }[];
 }
 
-export function Select({
-  label,
-  required,
-  hint,
-  error,
-  options,
-  className,
-  ...props
-}: SelectProps): ReactNode {
+export function Select({ label, required, hint, error, options, className, ...props }: SelectProps): ReactNode {
   return (
     <FormField label={label} required={required} hint={hint} error={error}>
-      <select
-        className={clsx(styles.select, error && styles.inputError, className)}
-        {...props}
-      >
+      <select className={clsx(styles.select, error && styles.inputError, className)} {...props}>
         {options.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}
@@ -120,11 +86,7 @@ export function Checkbox({ label, hint, className, ...props }: CheckboxProps): R
   return (
     <div className={styles.checkboxField}>
       <label className={styles.checkboxLabel}>
-        <input
-          type="checkbox"
-          className={clsx(styles.checkbox, className)}
-          {...props}
-        />
+        <input type="checkbox" className={clsx(styles.checkbox, className)} {...props} />
         <span>{label}</span>
       </label>
       {hint && <p className={styles.hint}>{hint}</p>}
@@ -142,15 +104,7 @@ interface RadioGroupProps {
   hint?: string;
 }
 
-export function RadioGroup({
-  label,
-  name,
-  value,
-  options,
-  onChange,
-  required,
-  hint,
-}: RadioGroupProps): ReactNode {
+export function RadioGroup({ label, name, value, options, onChange, required, hint }: RadioGroupProps): ReactNode {
   return (
     <FormField label={label} required={required} hint={hint}>
       <div className={styles.radioGroup}>

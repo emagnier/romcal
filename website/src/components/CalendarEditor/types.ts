@@ -264,11 +264,7 @@ export type CanonizationLevel = 'BLESSED' | 'SAINT';
 export type Sex = 'MALE' | 'FEMALE';
 
 export type SaintDate = number | string;
-export type SaintDateDef =
-  | SaintDate
-  | { between: [SaintDate, SaintDate] }
-  | { or: SaintDate[] }
-  | { century: number };
+export type SaintDateDef = SaintDate | { between: [SaintDate, SaintDate] } | { or: SaintDate[] } | { century: number };
 
 export interface EntityDefinition {
   type?: EntityType;

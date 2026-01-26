@@ -297,13 +297,11 @@ export const useEditorStore = create<EditorState & EditorActions>()(
 );
 
 // Selectors
-export const selectDayCount = (state: EditorState) =>
-  Object.keys(state.calendar.days_definitions).length;
+export const selectDayCount = (state: EditorState) => Object.keys(state.calendar.days_definitions).length;
 
 export const selectEntityCount = (state: EditorState, locale: string) =>
   Object.keys(state.entities[locale] || {}).length;
 
 export const selectHasUnsavedChanges = (state: EditorState) => state.isDirty;
 
-export const selectIsFileSystemSupported = () =>
-  typeof window !== 'undefined' && 'showDirectoryPicker' in window;
+export const selectIsFileSystemSupported = () => typeof window !== 'undefined' && 'showDirectoryPicker' in window;

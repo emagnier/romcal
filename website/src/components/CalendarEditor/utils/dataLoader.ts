@@ -14,7 +14,12 @@ import type {
 // Static data for available calendars (will be populated at build time)
 // For now, we define a minimal set
 const CALENDAR_DATA: EditorCalendarInfo[] = [
-  { id: 'general_roman', name: 'General Roman Calendar', type: 'GENERAL_ROMAN', path: 'general_roman/general_roman.json' },
+  {
+    id: 'general_roman',
+    name: 'General Roman Calendar',
+    type: 'GENERAL_ROMAN',
+    path: 'general_roman/general_roman.json',
+  },
   { id: 'africa', name: 'Africa', type: 'REGION', path: 'regions/africa.json' },
   { id: 'americas', name: 'Americas', type: 'REGION', path: 'regions/americas.json' },
   { id: 'asia', name: 'Asia', type: 'REGION', path: 'regions/asia.json' },
@@ -24,25 +29,55 @@ const CALENDAR_DATA: EditorCalendarInfo[] = [
   { id: 'austria', name: 'Austria', type: 'COUNTRY', path: 'countries/austria/austria.json' },
   { id: 'belgium', name: 'Belgium', type: 'COUNTRY', path: 'countries/belgium/belgium.json' },
   { id: 'bolivia', name: 'Bolivia', type: 'COUNTRY', path: 'countries/bolivia/bolivia.json' },
-  { id: 'bosnia_herzegovina', name: 'Bosnia Herzegovina', type: 'COUNTRY', path: 'countries/bosnia_herzegovina/bosnia_herzegovina.json' },
+  {
+    id: 'bosnia_herzegovina',
+    name: 'Bosnia Herzegovina',
+    type: 'COUNTRY',
+    path: 'countries/bosnia_herzegovina/bosnia_herzegovina.json',
+  },
   { id: 'brazil', name: 'Brazil', type: 'COUNTRY', path: 'countries/brazil/brazil.json' },
   { id: 'canada', name: 'Canada', type: 'COUNTRY', path: 'countries/canada/canada.json' },
   { id: 'chile', name: 'Chile', type: 'COUNTRY', path: 'countries/chile/chile.json' },
   { id: 'china', name: 'China', type: 'COUNTRY', path: 'countries/china/china.json' },
   { id: 'costa_rica', name: 'Costa Rica', type: 'COUNTRY', path: 'countries/costa_rica/costa_rica.json' },
   { id: 'croatia', name: 'Croatia', type: 'COUNTRY', path: 'countries/croatia/croatia.json' },
-  { id: 'czech_republic', name: 'Czech Republic', type: 'COUNTRY', path: 'countries/czech_republic/czech_republic.json' },
+  {
+    id: 'czech_republic',
+    name: 'Czech Republic',
+    type: 'COUNTRY',
+    path: 'countries/czech_republic/czech_republic.json',
+  },
   { id: 'denmark', name: 'Denmark', type: 'COUNTRY', path: 'countries/denmark/denmark.json' },
   { id: 'england', name: 'England', type: 'COUNTRY', path: 'countries/england/england.json' },
   { id: 'finland', name: 'Finland', type: 'COUNTRY', path: 'countries/finland/finland.json' },
   { id: 'france', name: 'France', type: 'COUNTRY', path: 'countries/france/france.json' },
   { id: 'france__angers', name: 'France - Angers', type: 'DIOCESE', path: 'countries/france/france__angers.json' },
-  { id: 'france__coutances', name: 'France - Coutances', type: 'DIOCESE', path: 'countries/france/france__coutances.json' },
+  {
+    id: 'france__coutances',
+    name: 'France - Coutances',
+    type: 'DIOCESE',
+    path: 'countries/france/france__coutances.json',
+  },
   { id: 'france__lyon', name: 'France - Lyon', type: 'DIOCESE', path: 'countries/france/france__lyon.json' },
   { id: 'france__paris', name: 'France - Paris', type: 'DIOCESE', path: 'countries/france/france__paris.json' },
-  { id: 'france__saint_denis', name: 'France - Saint-Denis', type: 'DIOCESE', path: 'countries/france/france__saint_denis.json' },
-  { id: 'france__strasbourg', name: 'France - Strasbourg', type: 'DIOCESE', path: 'countries/france/france__strasbourg.json' },
-  { id: 'france__toulouse', name: 'France - Toulouse', type: 'DIOCESE', path: 'countries/france/france__toulouse.json' },
+  {
+    id: 'france__saint_denis',
+    name: 'France - Saint-Denis',
+    type: 'DIOCESE',
+    path: 'countries/france/france__saint_denis.json',
+  },
+  {
+    id: 'france__strasbourg',
+    name: 'France - Strasbourg',
+    type: 'DIOCESE',
+    path: 'countries/france/france__strasbourg.json',
+  },
+  {
+    id: 'france__toulouse',
+    name: 'France - Toulouse',
+    type: 'DIOCESE',
+    path: 'countries/france/france__toulouse.json',
+  },
   { id: 'germany', name: 'Germany', type: 'COUNTRY', path: 'countries/germany/germany.json' },
   { id: 'greece', name: 'Greece', type: 'COUNTRY', path: 'countries/greece/greece.json' },
   { id: 'guatemala', name: 'Guatemala', type: 'COUNTRY', path: 'countries/guatemala/guatemala.json' },
@@ -262,9 +297,7 @@ export function generateEntityId(name: string, titles?: string[]): string {
     .trim();
 
   if (titles && titles.length > 0) {
-    const titleSuffix = titles
-      .map((t) => t.toLowerCase())
-      .join('_');
+    const titleSuffix = titles.map((t) => t.toLowerCase()).join('_');
     id = `${id}_${titleSuffix}`;
   }
 
@@ -282,9 +315,7 @@ export function getEntityFileLetter(entityId: string): string {
 /**
  * Scan the repository for available calendars
  */
-export async function scanRepositoryCalendars(
-  dirHandle: FileSystemDirectoryHandle
-): Promise<EditorCalendarInfo[]> {
+export async function scanRepositoryCalendars(dirHandle: FileSystemDirectoryHandle): Promise<EditorCalendarInfo[]> {
   const calendars: EditorCalendarInfo[] = [];
 
   try {

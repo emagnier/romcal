@@ -30,12 +30,7 @@ interface MetadataPanelProps {
 }
 
 export default function MetadataPanel({ showConfig = false }: MetadataPanelProps): ReactNode {
-  const {
-    calendar,
-    updateMetadata,
-    updateParticularConfig,
-    validationErrors,
-  } = useEditorStore();
+  const { calendar, updateMetadata, updateParticularConfig, validationErrors } = useEditorStore();
 
   const handleIdChange = (value: string) => {
     // Update the calendar ID (using setCalendar would reset original)
@@ -53,8 +48,8 @@ export default function MetadataPanel({ showConfig = false }: MetadataPanelProps
       <div>
         <h2 className={styles.sectionTitle}>Particular Configuration</h2>
         <p style={{ color: 'var(--ifm-color-content-secondary)', marginBottom: '1.5rem' }}>
-          Configure how certain movable feasts are celebrated in this calendar.
-          These settings override the parent calendar configuration.
+          Configure how certain movable feasts are celebrated in this calendar. These settings override the parent
+          calendar configuration.
         </p>
 
         <div className={styles.card}>

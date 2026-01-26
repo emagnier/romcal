@@ -14,16 +14,8 @@ import styles from '../shared/shared.module.css';
 import clsx from 'clsx';
 
 export default function ExportPanel(): ReactNode {
-  const {
-    calendar,
-    entities,
-    directoryHandle,
-    isConnected,
-    isDirty,
-    setValidationErrors,
-    markAsSaved,
-    setIsLoading,
-  } = useEditorStore();
+  const { calendar, entities, directoryHandle, isConnected, isDirty, setValidationErrors, markAsSaved, setIsLoading } =
+    useEditorStore();
 
   const [showPanel, setShowPanel] = useState(false);
   const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'success' | 'error'>('idle');
@@ -43,11 +35,14 @@ export default function ExportPanel(): ReactNode {
 
     if (!validation.valid) {
       setValidationErrors(
-        validation.errors.reduce((acc, err) => {
-          if (!acc[err.path]) acc[err.path] = [];
-          acc[err.path].push(err.message);
-          return acc;
-        }, {} as Record<string, string[]>)
+        validation.errors.reduce(
+          (acc, err) => {
+            if (!acc[err.path]) acc[err.path] = [];
+            acc[err.path].push(err.message);
+            return acc;
+          },
+          {} as Record<string, string[]>
+        )
       );
       setErrorMessage('Please fix validation errors before saving');
       setSaveStatus('error');
@@ -163,13 +158,18 @@ export default function ExportPanel(): ReactNode {
                 </span>
               </div>
               {!validation.valid && (
-                <ul style={{ margin: 0, paddingLeft: '1.5rem', fontSize: '0.8125rem', color: 'var(--ifm-color-warning-darkest)' }}>
+                <ul
+                  style={{
+                    margin: 0,
+                    paddingLeft: '1.5rem',
+                    fontSize: '0.8125rem',
+                    color: 'var(--ifm-color-warning-darkest)',
+                  }}
+                >
                   {validation.errors.slice(0, 3).map((err, i) => (
                     <li key={i}>{err.message}</li>
                   ))}
-                  {validation.errors.length > 3 && (
-                    <li>...and {validation.errors.length - 3} more</li>
-                  )}
+                  {validation.errors.length > 3 && <li>...and {validation.errors.length - 3} more</li>}
                 </ul>
               )}
             </div>
@@ -184,22 +184,38 @@ export default function ExportPanel(): ReactNode {
                   {modifiedFiles.slice(0, 5).map((file, i) => (
                     <li key={i}>{file.path}</li>
                   ))}
-                  {modifiedFiles.length > 5 && (
-                    <li>...and {modifiedFiles.length - 5} more</li>
-                  )}
+                  {modifiedFiles.length > 5 && <li>...and {modifiedFiles.length - 5} more</li>}
                 </ul>
               </div>
             )}
 
             {/* Status messages */}
             {saveStatus === 'success' && (
-              <div style={{ padding: '0.5rem 0.75rem', background: 'rgba(34, 197, 94, 0.1)', color: 'rgb(22, 163, 74)', borderRadius: '4px', marginBottom: '1rem', fontSize: '0.875rem' }}>
+              <div
+                style={{
+                  padding: '0.5rem 0.75rem',
+                  background: 'rgba(34, 197, 94, 0.1)',
+                  color: 'rgb(22, 163, 74)',
+                  borderRadius: '4px',
+                  marginBottom: '1rem',
+                  fontSize: '0.875rem',
+                }}
+              >
                 ✓ {isConnected ? 'Files saved successfully!' : 'Files downloaded!'}
               </div>
             )}
 
             {saveStatus === 'error' && errorMessage && (
-              <div style={{ padding: '0.5rem 0.75rem', background: 'rgba(239, 68, 68, 0.1)', color: 'rgb(220, 38, 38)', borderRadius: '4px', marginBottom: '1rem', fontSize: '0.875rem' }}>
+              <div
+                style={{
+                  padding: '0.5rem 0.75rem',
+                  background: 'rgba(239, 68, 68, 0.1)',
+                  color: 'rgb(220, 38, 38)',
+                  borderRadius: '4px',
+                  marginBottom: '1rem',
+                  fontSize: '0.875rem',
+                }}
+              >
                 ✗ {errorMessage}
               </div>
             )}
@@ -215,7 +231,8 @@ export default function ExportPanel(): ReactNode {
                   padding: '0.625rem 1rem',
                   fontSize: '0.875rem',
                   fontWeight: 500,
-                  background: saveStatus === 'saving' ? 'var(--ifm-color-content-secondary)' : 'var(--ifm-color-primary)',
+                  background:
+                    saveStatus === 'saving' ? 'var(--ifm-color-content-secondary)' : 'var(--ifm-color-primary)',
                   color: 'white',
                   border: 'none',
                   borderRadius: 'var(--ifm-button-border-radius)',

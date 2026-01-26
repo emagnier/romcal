@@ -1,7 +1,16 @@
 import type { ReactNode } from 'react';
 import { useMemo } from 'react';
 import { useEditorStore } from '../context/useEditorStore';
-import { format, getYear, startOfYear, endOfYear, eachMonthOfInterval, eachDayOfInterval, startOfMonth, endOfMonth } from 'date-fns';
+import {
+  format,
+  getYear,
+  startOfYear,
+  endOfYear,
+  eachMonthOfInterval,
+  eachDayOfInterval,
+  startOfMonth,
+  endOfMonth,
+} from 'date-fns';
 import type { DayDefinition, DateDef, Precedence } from '../types';
 import styles from '../shared/shared.module.css';
 
@@ -77,7 +86,7 @@ export default function CalendarPreview(): ReactNode {
         id,
         date,
         name: formatDayName(id),
-        rank: dayDef.precedence ? (RANK_DISPLAY[dayDef.precedence] || 'Unknown') : 'Unknown',
+        rank: dayDef.precedence ? RANK_DISPLAY[dayDef.precedence] || 'Unknown' : 'Unknown',
         isLocal: true, // All days in this calendar are "local" (defined here)
       });
     }
@@ -101,8 +110,18 @@ export default function CalendarPreview(): ReactNode {
   }, [previewDays]);
 
   const months = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December',
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
   ];
 
   if (previewDays.length === 0) {
@@ -129,7 +148,9 @@ export default function CalendarPreview(): ReactNode {
             }}
           >
             {Array.from({ length: 10 }, (_, i) => new Date().getFullYear() - 2 + i).map((y) => (
-              <option key={y} value={y}>{y}</option>
+              <option key={y} value={y}>
+                {y}
+              </option>
             ))}
           </select>
         </div>
@@ -141,7 +162,14 @@ export default function CalendarPreview(): ReactNode {
       <div style={{ maxHeight: '250px', overflowY: 'auto' }}>
         {Array.from(daysByMonth.entries()).map(([month, days]) => (
           <div key={month} style={{ marginBottom: '1rem' }}>
-            <h4 style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--ifm-color-content-secondary)', marginBottom: '0.5rem' }}>
+            <h4
+              style={{
+                fontSize: '0.75rem',
+                fontWeight: 600,
+                color: 'var(--ifm-color-content-secondary)',
+                marginBottom: '0.5rem',
+              }}
+            >
               {months[month].toUpperCase()}
             </h4>
             {days.map((day) => (
@@ -180,7 +208,9 @@ export default function CalendarPreview(): ReactNode {
                   {day.rank}
                 </span>
                 {day.isLocal && (
-                  <span title="Defined in this calendar" style={{ fontSize: '0.75rem' }}>✨</span>
+                  <span title="Defined in this calendar" style={{ fontSize: '0.75rem' }}>
+                    ✨
+                  </span>
                 )}
               </div>
             ))}
@@ -316,7 +346,5 @@ function calculateEaster(year: number): Date {
 }
 
 function formatDayName(id: string): string {
-  return id
-    .replace(/_/g, ' ')
-    .replace(/\b\w/g, (c) => c.toUpperCase());
+  return id.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 }

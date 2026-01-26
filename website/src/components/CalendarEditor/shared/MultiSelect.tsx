@@ -29,9 +29,7 @@ export function MultiSelect<T extends string>({
   const inputRef = useRef<HTMLInputElement>(null);
 
   const filteredOptions = options.filter(
-    (option) =>
-      !values.includes(option.value) &&
-      option.label.toLowerCase().includes(inputValue.toLowerCase())
+    (option) => !values.includes(option.value) && option.label.toLowerCase().includes(inputValue.toLowerCase())
   );
 
   useEffect(() => {
@@ -85,10 +83,7 @@ export function MultiSelect<T extends string>({
         {required && <span className={styles.required}>*</span>}
       </label>
       <div className={styles.autocompleteWrapper} ref={wrapperRef}>
-        <div
-          className={styles.multiSelect}
-          onClick={() => inputRef.current?.focus()}
-        >
+        <div className={styles.multiSelect} onClick={() => inputRef.current?.focus()}>
           {values.map((value) => (
             <span key={value} className={styles.multiSelectTag}>
               {getOptionLabel(value)}
@@ -176,12 +171,14 @@ export function EntityAutocomplete({
     setInputValue(value);
   }, [value]);
 
-  const filteredEntities = entities.filter(
-    (entity) =>
-      entity.id.toLowerCase().includes(inputValue.toLowerCase()) ||
-      entity.fullname?.toLowerCase().includes(inputValue.toLowerCase()) ||
-      entity.name?.toLowerCase().includes(inputValue.toLowerCase())
-  ).slice(0, 20);
+  const filteredEntities = entities
+    .filter(
+      (entity) =>
+        entity.id.toLowerCase().includes(inputValue.toLowerCase()) ||
+        entity.fullname?.toLowerCase().includes(inputValue.toLowerCase()) ||
+        entity.name?.toLowerCase().includes(inputValue.toLowerCase())
+    )
+    .slice(0, 20);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -252,11 +249,7 @@ export function EntityAutocomplete({
                   onMouseEnter={() => setHighlightedIndex(index)}
                 >
                   <strong>{entity.id}</strong>
-                  {entity.fullname && (
-                    <span style={{ marginLeft: '0.5rem', opacity: 0.7 }}>
-                      {entity.fullname}
-                    </span>
-                  )}
+                  {entity.fullname && <span style={{ marginLeft: '0.5rem', opacity: 0.7 }}>{entity.fullname}</span>}
                 </div>
               ))
             )}

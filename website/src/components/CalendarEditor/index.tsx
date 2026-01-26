@@ -78,7 +78,9 @@ export default function CalendarEditor(): ReactNode {
       const calendars = await scanRepositoryCalendars(handle);
 
       if (calendars.length === 0) {
-        setScanError('No calendars found in this repository. Make sure you selected the romcal root folder containing data/definitions/.');
+        setScanError(
+          'No calendars found in this repository. Make sure you selected the romcal root folder containing data/definitions/.'
+        );
         setIsLoading(false);
         return;
       }
@@ -130,9 +132,7 @@ export default function CalendarEditor(): ReactNode {
   const filteredRepoCalendars = useMemo(() => {
     if (!searchQuery) return repoCalendars;
     const query = searchQuery.toLowerCase();
-    return repoCalendars.filter(
-      (c) => c.id.toLowerCase().includes(query) || c.name.toLowerCase().includes(query)
-    );
+    return repoCalendars.filter((c) => c.id.toLowerCase().includes(query) || c.name.toLowerCase().includes(query));
   }, [repoCalendars, searchQuery]);
 
   const groupedRepoCalendars = useMemo(() => {
@@ -169,11 +169,7 @@ export default function CalendarEditor(): ReactNode {
         <div className={styles.modal}>
           <div className={styles.modalHeader}>
             <h2>Select a Calendar to Edit</h2>
-            <button
-              className={styles.modalClose}
-              onClick={() => setShowCalendarPicker(false)}
-              title="Close"
-            >
+            <button className={styles.modalClose} onClick={() => setShowCalendarPicker(false)} title="Close">
               &times;
             </button>
           </div>
@@ -201,13 +197,15 @@ export default function CalendarEditor(): ReactNode {
                 if (calendars.length === 0) return null;
                 return (
                   <div key={type} style={{ marginBottom: '1.5rem' }}>
-                    <h4 style={{
-                      fontSize: '0.75rem',
-                      fontWeight: 600,
-                      color: 'var(--ifm-color-content-secondary)',
-                      textTransform: 'uppercase',
-                      marginBottom: '0.5rem',
-                    }}>
+                    <h4
+                      style={{
+                        fontSize: '0.75rem',
+                        fontWeight: 600,
+                        color: 'var(--ifm-color-content-secondary)',
+                        textTransform: 'uppercase',
+                        marginBottom: '0.5rem',
+                      }}
+                    >
                       {getCalendarTypeLabel(type as keyof typeof groupedRepoCalendars)} ({calendars.length})
                     </h4>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
@@ -235,11 +233,13 @@ export default function CalendarEditor(): ReactNode {
                           }}
                         >
                           <span style={{ fontWeight: 500 }}>{cal.name}</span>
-                          <span style={{
-                            fontSize: '0.75rem',
-                            fontFamily: 'monospace',
-                            color: 'var(--ifm-color-content-secondary)',
-                          }}>
+                          <span
+                            style={{
+                              fontSize: '0.75rem',
+                              fontFamily: 'monospace',
+                              color: 'var(--ifm-color-content-secondary)',
+                            }}
+                          >
                             {cal.id}
                           </span>
                         </button>
@@ -258,11 +258,10 @@ export default function CalendarEditor(): ReactNode {
           </div>
 
           <div className={styles.modalFooter}>
-            <button
-              className={clsx(styles.button, styles.buttonPrimary)}
-              onClick={handleCreateNewInRepo}
-            >
-              <span role="img" aria-label="new">✨</span>
+            <button className={clsx(styles.button, styles.buttonPrimary)} onClick={handleCreateNewInRepo}>
+              <span role="img" aria-label="new">
+                ✨
+              </span>
               Create New Calendar
             </button>
             <button
@@ -284,17 +283,18 @@ export default function CalendarEditor(): ReactNode {
         <div className={styles.header}>
           <div className={styles.headerLeft}>
             <h1 className={styles.headerTitle}>
-              <span role="img" aria-label="calendar">📅</span>
+              <span role="img" aria-label="calendar">
+                📅
+              </span>
               Romcal Editor
             </h1>
           </div>
           <div className={styles.headerRight}>
             {isFileSystemSupported && (
-              <button
-                className={clsx(styles.button, styles.buttonSecondary)}
-                onClick={handleConnectRepo}
-              >
-                <span role="img" aria-label="folder">📁</span>
+              <button className={clsx(styles.button, styles.buttonSecondary)} onClick={handleConnectRepo}>
+                <span role="img" aria-label="folder">
+                  📁
+                </span>
                 Connect Repository
               </button>
             )}
@@ -304,39 +304,39 @@ export default function CalendarEditor(): ReactNode {
           <div className={styles.welcomeIcon}>🗓️</div>
           <h2 className={styles.welcomeTitle}>Welcome to Romcal Editor</h2>
           <p className={styles.welcomeDescription}>
-            Create and edit liturgical calendar definitions for the Romcal project.
-            Define days, entities, and translations for your local calendar.
+            Create and edit liturgical calendar definitions for the Romcal project. Define days, entities, and
+            translations for your local calendar.
           </p>
 
           {scanError && (
-            <div style={{
-              padding: '0.75rem 1rem',
-              background: 'rgba(239, 68, 68, 0.1)',
-              color: 'rgb(220, 38, 38)',
-              borderRadius: '6px',
-              marginBottom: '1rem',
-              maxWidth: '500px',
-            }}>
+            <div
+              style={{
+                padding: '0.75rem 1rem',
+                background: 'rgba(239, 68, 68, 0.1)',
+                color: 'rgb(220, 38, 38)',
+                borderRadius: '6px',
+                marginBottom: '1rem',
+                maxWidth: '500px',
+              }}
+            >
               {scanError}
             </div>
           )}
 
           <div className={styles.welcomeActions}>
-            <button
-              className={clsx(styles.button, styles.buttonPrimary)}
-              onClick={createNewCalendar}
-            >
-              <span role="img" aria-label="new">✨</span>
+            <button className={clsx(styles.button, styles.buttonPrimary)} onClick={createNewCalendar}>
+              <span role="img" aria-label="new">
+                ✨
+              </span>
               New Calendar
             </button>
             {isFileSystemSupported && (
               <>
                 <div className={styles.welcomeDivider}>or</div>
-                <button
-                  className={clsx(styles.button, styles.buttonSecondary)}
-                  onClick={handleConnectRepo}
-                >
-                  <span role="img" aria-label="folder">📁</span>
+                <button className={clsx(styles.button, styles.buttonSecondary)} onClick={handleConnectRepo}>
+                  <span role="img" aria-label="folder">
+                    📁
+                  </span>
                   Load from Repository
                 </button>
               </>
@@ -362,21 +362,23 @@ export default function CalendarEditor(): ReactNode {
       <header className={styles.header}>
         <div className={styles.headerLeft}>
           <h1 className={styles.headerTitle}>
-            <span role="img" aria-label="calendar">📅</span>
+            <span role="img" aria-label="calendar">
+              📅
+            </span>
             Romcal Editor
             {isDirty && <span className={styles.dirtyIndicator} title="Unsaved changes" />}
           </h1>
           {calendar.id && (
-            <span style={{ color: 'var(--ifm-color-content-secondary)', fontSize: '0.875rem' }}>
-              — {calendar.id}
-            </span>
+            <span style={{ color: 'var(--ifm-color-content-secondary)', fontSize: '0.875rem' }}>— {calendar.id}</span>
           )}
         </div>
         <div className={styles.headerRight}>
-          {isFileSystemSupported && (
-            isConnected ? (
+          {isFileSystemSupported &&
+            (isConnected ? (
               <div className={clsx(styles.connectionStatus, styles.connectionStatusConnected)}>
-                <span role="img" aria-label="connected">✓</span>
+                <span role="img" aria-label="connected">
+                  ✓
+                </span>
                 {repoPath || 'Connected'}
                 <button
                   className={clsx(styles.button, styles.buttonSmall, styles.buttonSecondary)}
@@ -393,15 +395,13 @@ export default function CalendarEditor(): ReactNode {
                 </button>
               </div>
             ) : (
-              <button
-                className={clsx(styles.button, styles.buttonSecondary)}
-                onClick={handleConnectRepo}
-              >
-                <span role="img" aria-label="folder">📁</span>
+              <button className={clsx(styles.button, styles.buttonSecondary)} onClick={handleConnectRepo}>
+                <span role="img" aria-label="folder">
+                  📁
+                </span>
                 Connect Repository
               </button>
-            )
-          )}
+            ))}
           <ExportPanel />
         </div>
       </header>
@@ -414,7 +414,9 @@ export default function CalendarEditor(): ReactNode {
             {/* Calendar Section */}
             <div className={styles.navSection}>
               <div className={styles.navSectionTitle}>
-                <span role="img" aria-label="calendar">📋</span>
+                <span role="img" aria-label="calendar">
+                  📋
+                </span>
                 Calendar
               </div>
               <button
@@ -447,7 +449,9 @@ export default function CalendarEditor(): ReactNode {
             {/* Entities Section */}
             <div className={styles.navSection}>
               <div className={styles.navSectionTitle}>
-                <span role="img" aria-label="person">👤</span>
+                <span role="img" aria-label="person">
+                  👤
+                </span>
                 Entities
               </div>
               <button
@@ -468,14 +472,18 @@ export default function CalendarEditor(): ReactNode {
               className={clsx(styles.button, styles.buttonSecondary, styles.buttonSmall)}
               onClick={() => setActivePanel({ type: 'days' })}
             >
-              <span role="img" aria-label="add">+</span>
+              <span role="img" aria-label="add">
+                +
+              </span>
               New Day Definition
             </button>
             <button
               className={clsx(styles.button, styles.buttonSecondary, styles.buttonSmall)}
               onClick={() => setActivePanel({ type: 'entities' })}
             >
-              <span role="img" aria-label="add">+</span>
+              <span role="img" aria-label="add">
+                +
+              </span>
               New Entity
             </button>
           </div>
@@ -483,15 +491,15 @@ export default function CalendarEditor(): ReactNode {
 
         {/* Editor Panel */}
         <div className={styles.editorPanel}>
-          <div className={styles.panelContent}>
-            {renderPanel()}
-          </div>
+          <div className={styles.panelContent}>{renderPanel()}</div>
 
           {/* Preview Panel */}
           <div className={clsx(styles.previewPanel, isPreviewCollapsed && styles.previewCollapsed)}>
             <div className={styles.previewHeader} onClick={togglePreviewCollapsed}>
               <h3 className={styles.previewTitle}>
-                <span role="img" aria-label="preview">👁️</span>
+                <span role="img" aria-label="preview">
+                  👁️
+                </span>
                 Calendar Preview
               </h3>
               <div className={styles.previewControls}>

@@ -238,10 +238,7 @@ export function validateCalendar(calendar: CalendarDefinition): ValidationResult
 /**
  * Check for semantic warnings (entity references that don't exist, etc.)
  */
-export function checkSemanticWarnings(
-  calendar: CalendarDefinition,
-  availableEntities: Set<string>
-): ValidationError[] {
+export function checkSemanticWarnings(calendar: CalendarDefinition, availableEntities: Set<string>): ValidationError[] {
   const warnings: ValidationError[] = [];
 
   for (const [dayId, day] of Object.entries(calendar.days_definitions)) {

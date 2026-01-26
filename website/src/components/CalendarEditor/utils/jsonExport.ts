@@ -119,10 +119,7 @@ export function downloadCalendar(calendar: CalendarDefinition) {
 /**
  * Download all entity files for a locale
  */
-export function downloadEntities(
-  locale: string,
-  entities: Record<string, EntityDefinition>
-) {
+export function downloadEntities(locale: string, entities: Record<string, EntityDefinition>) {
   const groups = groupEntitiesByLetter(entities);
 
   for (const [letter, letterEntities] of Object.entries(groups)) {
