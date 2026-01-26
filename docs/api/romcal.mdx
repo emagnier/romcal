@@ -9,7 +9,7 @@ The main class for generating liturgical calendars.
 
 ## Constructor
 
-<Tabs>
+<Tabs syncKey="lang">
   <TabItem label="TypeScript">
 
 ```typescript
@@ -43,7 +43,7 @@ let romcal = Romcal::new()
 
 Generate a liturgical calendar for a given year.
 
-<Tabs>
+<Tabs syncKey="lang">
   <TabItem label="TypeScript">
 
 ```typescript
@@ -71,7 +71,7 @@ fn generate_calendar(&self, year: i32) -> Vec<LiturgicalDay>
 
 Generate a mass-centric calendar for a given year.
 
-<Tabs>
+<Tabs syncKey="lang">
   <TabItem label="TypeScript">
 
 ```typescript
@@ -99,7 +99,7 @@ fn generate_masses(&self, year: i32) -> Vec<Mass>
 
 Get a specific liturgical date.
 
-<Tabs>
+<Tabs syncKey="lang">
   <TabItem label="TypeScript">
 
 ```typescript
@@ -127,7 +127,7 @@ fn get_date(&self, date_id: &str, year: i32) -> String
 
 Lookup an entity by its exact ID.
 
-<Tabs>
+<Tabs syncKey="lang">
   <TabItem label="TypeScript">
 
 ```typescript
@@ -155,7 +155,7 @@ fn get_entity(&self, entity_id: &str) -> Option<Entity>
 
 Search for entities with fuzzy matching.
 
-<Tabs>
+<Tabs syncKey="lang">
   <TabItem label="TypeScript">
 
 ```typescript
@@ -185,7 +185,7 @@ fn search_entities(&self, query: &str, options: SearchOptions) -> Vec<SearchResu
 
 Get a list of all available calendars.
 
-<Tabs>
+<Tabs syncKey="lang">
   <TabItem label="TypeScript">
 
 ```typescript
@@ -214,7 +214,7 @@ fn available_calendars() -> Vec<String>
 
 Get a list of all available locales.
 
-<Tabs>
+<Tabs syncKey="lang">
   <TabItem label="TypeScript">
 
 ```typescript
@@ -243,7 +243,7 @@ fn available_locales() -> Vec<String>
 
 Merge multiple calendar definition objects into a single combined definition. Useful for combining custom definitions with built-in calendars.
 
-<Tabs>
+<Tabs syncKey="lang">
   <TabItem label="TypeScript">
 
 ```typescript
@@ -270,7 +270,7 @@ fn merge_calendar_definitions(definitions: &[CalendarDefinition]) -> CalendarDef
 
 **Example:**
 
-<Tabs>
+<Tabs syncKey="lang">
   <TabItem label="TypeScript">
 
 ```typescript
@@ -308,7 +308,7 @@ let merged = Romcal::merge_calendar_definitions(&[built_in_defs, custom_definiti
 
 Merge multiple resource files (entity translations) into a single combined resource object. Useful for adding custom translations or overriding existing ones.
 
-<Tabs>
+<Tabs syncKey="lang">
   <TabItem label="TypeScript">
 
 ```typescript
@@ -335,7 +335,7 @@ fn merge_resource_files(resources: &[ResourceFile]) -> ResourceFile
 
 **Example:**
 
-<Tabs>
+<Tabs syncKey="lang">
   <TabItem label="TypeScript">
 
 ```typescript

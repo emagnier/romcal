@@ -85,7 +85,7 @@ entities.b.json
 entities.f.json  # Contains francis_of_assisi, frances_of_rome, etc.
 ```
 
-## TypeScript/JavaScript Variables
+## TypeScript Variables
 
 Convert IDs to PascalCase:
 

@@ -31,7 +31,7 @@ romcal/
 ├── core/              # Rust core library
 ├── cli/               # Command-line interface
 ├── bindings/
-│   ├── typescript/    # TypeScript/JavaScript binding
+│   ├── typescript/    # TypeScript binding
 │   ├── python/        # Python binding
 │   └── wasm/          # WebAssembly build
 ├── data/
