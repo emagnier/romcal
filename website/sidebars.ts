@@ -48,7 +48,7 @@ const sidebars: SidebarsConfig = {
         type: 'doc',
         id: 'reference/index',
       },
-      items: ['reference/girm', 'reference/gnlyc', 'reference/gilh'],
+      items: ['reference/girm', 'reference/gnly', 'reference/gilh'],
     },
     'glossary',
   ],

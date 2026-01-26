@@ -12,28 +12,15 @@ The Catholic Church's liturgical calendar is governed by several official docume
 
 ### [General Instruction of the Roman Missal (GIRM)](./girm)
 
-The detailed document that provides the rubrics for the celebration of the Mass, including:
+The detailed document that provides the rubrics for the celebration of the Mass.
 
-- Liturgical colors
-- Order of precedence for celebrations
-- Norms for combining celebrations
+### [Universal Norms on the Liturgical Year and the Calendar (GNLY)](./gnly)
 
-### [General Norms for the Liturgical Year and the Calendar (GNLYC)](./gnlyc)
-
-The document that defines the structure of the liturgical year:
-
-- Liturgical seasons and their duration
-- Ranks of celebrations (solemnities, feasts, memorials)
-- Table of precedence for liturgical days
-- Rules for concurrence and occurrence
+The document that defines the structure of the liturgical year and calendar.
 
 ### [General Instruction of the Liturgy of the Hours (GILH)](./gilh)
 
-Instructions for the Divine Office:
-
-- Structure of the Liturgy of the Hours
-- Four-week psalter cycle
-- Coordination with the liturgical year
+Instructions for the Divine Office.
 
 ## How Romcal Uses These Documents
 
@@ -43,9 +30,3 @@ Romcal implements the rules defined in these documents to:
 2. **Resolve conflicts**: Apply precedence rules when multiple celebrations fall on the same day
 3. **Assign properties**: Set liturgical colors, ranks, and other metadata
 4. **Generate cycles**: Calculate Sunday/weekday cycles and psalter weeks
-
-## Sources
-
-- [GIRM (English)](https://www.liturgyoffice.org.uk/Resources/GIRM/Documents/GIRM.pdf)
-- [GNLYC (English)](https://www.liturgyoffice.org.uk/Resources/GIRM/Documents/GNLY.pdf)
-- [GILH (English)](https://www.liturgyoffice.org.uk/Resources/Rites/GILH.pdf)
