@@ -1,5 +1,4 @@
 ---
-sidebar_position: 2
 title: General Instruction of the Roman Missal
 description: GIRM - Third Typical Edition (2002)
 ---

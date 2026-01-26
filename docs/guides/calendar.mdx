@@ -1,6 +1,8 @@
 ---
-sidebar_position: 1
+title: Generating Calendars
 ---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
 
 # Generating Calendars
 
@@ -8,11 +10,8 @@ Learn how to generate liturgical calendars with Romcal.
 
 ## Basic Usage
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs groupId="language">
-  <TabItem value="ts" label="TypeScript" default>
+<Tabs>
+  <TabItem label="TypeScript">
 
 ```typescript
 import { Romcal } from 'romcal';
@@ -22,7 +21,7 @@ const calendar = romcal.generateCalendar(2025);
 ```
 
   </TabItem>
-  <TabItem value="py" label="Python">
+  <TabItem label="Python">
 
 ```python
 from romcal import Romcal
@@ -32,7 +31,7 @@ calendar = romcal.generate_calendar(2025)
 ```
 
   </TabItem>
-  <TabItem value="rs" label="Rust">
+  <TabItem label="Rust">
 
 ```rust
 use romcal::Romcal;
@@ -48,8 +47,8 @@ let calendar = romcal.generate_calendar(2025);
 
 Romcal supports many regional and diocesan calendars that include local celebrations.
 
-<Tabs groupId="language">
-  <TabItem value="ts" label="TypeScript" default>
+<Tabs>
+  <TabItem label="TypeScript">
 
 ```typescript
 import { Romcal } from 'romcal';
@@ -62,7 +61,7 @@ const paris = new Romcal({ calendar: 'france__paris' });
 ```
 
   </TabItem>
-  <TabItem value="py" label="Python">
+  <TabItem label="Python">
 
 ```python
 from romcal import Romcal
@@ -75,7 +74,7 @@ paris = Romcal(calendar="france__paris")
 ```
 
   </TabItem>
-  <TabItem value="rs" label="Rust">
+  <TabItem label="Rust">
 
 ```rust
 use romcal::Romcal;

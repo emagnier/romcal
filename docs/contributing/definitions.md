@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+title: Calendar Definitions
 ---
 
 # Calendar Definitions

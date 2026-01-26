@@ -1,6 +1,8 @@
 ---
-sidebar_position: 3
+title: Types
 ---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
 
 # Types
 
@@ -10,11 +12,8 @@ Type definitions and enums used in Romcal.
 
 Represents a single day in the liturgical calendar.
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs groupId="language">
-  <TabItem value="ts" label="TypeScript" default>
+<Tabs>
+  <TabItem label="TypeScript">
 
 ```typescript
 interface LiturgicalDay {
@@ -34,7 +33,7 @@ interface LiturgicalDay {
 ```
 
   </TabItem>
-  <TabItem value="py" label="Python">
+  <TabItem label="Python">
 
 ```python
 @dataclass
@@ -54,7 +53,7 @@ class LiturgicalDay:
 ```
 
   </TabItem>
-  <TabItem value="rs" label="Rust">
+  <TabItem label="Rust">
 
 ```rust
 pub struct LiturgicalDay {
@@ -152,8 +151,8 @@ Four-week psalter cycle.
 
 Represents a liturgical entity (saint, blessed, feast).
 
-<Tabs groupId="language">
-  <TabItem value="ts" label="TypeScript" default>
+<Tabs>
+  <TabItem label="TypeScript">
 
 ```typescript
 interface Entity {
@@ -168,7 +167,7 @@ interface Entity {
 ```
 
   </TabItem>
-  <TabItem value="py" label="Python">
+  <TabItem label="Python">
 
 ```python
 @dataclass
@@ -183,7 +182,7 @@ class Entity:
 ```
 
   </TabItem>
-  <TabItem value="rs" label="Rust">
+  <TabItem label="Rust">
 
 ```rust
 pub struct Entity {

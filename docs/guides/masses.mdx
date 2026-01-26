@@ -1,6 +1,8 @@
 ---
-sidebar_position: 2
+title: Mass-Centric Calendars
 ---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
 
 # Mass-Centric Calendars
 
@@ -16,11 +18,8 @@ While the standard calendar is organized by liturgical date, the mass-centric ca
 
 ## Basic Usage
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs groupId="language">
-  <TabItem value="ts" label="TypeScript" default>
+<Tabs>
+  <TabItem label="TypeScript">
 
 ```typescript
 import { Romcal } from 'romcal';
@@ -30,7 +29,7 @@ const masses = romcal.generateMasses(2025);
 ```
 
   </TabItem>
-  <TabItem value="py" label="Python">
+  <TabItem label="Python">
 
 ```python
 from romcal import Romcal
@@ -40,7 +39,7 @@ masses = romcal.generate_masses(2025)
 ```
 
   </TabItem>
-  <TabItem value="rs" label="Rust">
+  <TabItem label="Rust">
 
 ```rust
 use romcal::Romcal;

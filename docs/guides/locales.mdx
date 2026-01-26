@@ -1,6 +1,8 @@
 ---
-sidebar_position: 5
+title: Localization
 ---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
 
 # Localization
 
@@ -8,11 +10,8 @@ Romcal supports multiple languages for celebration names and other text content.
 
 ## Setting the Locale
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs groupId="language">
-  <TabItem value="ts" label="TypeScript" default>
+<Tabs>
+  <TabItem label="TypeScript">
 
 ```typescript
 import { Romcal } from 'romcal';
@@ -28,7 +27,7 @@ const es = new Romcal({ locale: 'es' });
 ```
 
   </TabItem>
-  <TabItem value="py" label="Python">
+  <TabItem label="Python">
 
 ```python
 from romcal import Romcal
@@ -44,7 +43,7 @@ es = Romcal(locale="es")
 ```
 
   </TabItem>
-  <TabItem value="rs" label="Rust">
+  <TabItem label="Rust">
 
 ```rust
 use romcal::Romcal;
@@ -72,8 +71,8 @@ romcal list locales
 
 Or programmatically:
 
-<Tabs groupId="language">
-  <TabItem value="ts" label="TypeScript" default>
+<Tabs>
+  <TabItem label="TypeScript">
 
 ```typescript
 import { Romcal } from 'romcal';
@@ -83,7 +82,7 @@ console.log(locales); // ['en', 'fr', 'es', 'it', ...]
 ```
 
   </TabItem>
-  <TabItem value="py" label="Python">
+  <TabItem label="Python">
 
 ```python
 from romcal import Romcal
@@ -93,7 +92,7 @@ print(locales)  # ['en', 'fr', 'es', 'it', ...]
 ```
 
   </TabItem>
-  <TabItem value="rs" label="Rust">
+  <TabItem label="Rust">
 
 ```rust
 use romcal::Romcal;
@@ -116,8 +115,8 @@ romcal list calendars --tree  # Show hierarchy
 
 Or programmatically:
 
-<Tabs groupId="language">
-  <TabItem value="ts" label="TypeScript" default>
+<Tabs>
+  <TabItem label="TypeScript">
 
 ```typescript
 import { Romcal } from 'romcal';
@@ -127,7 +126,7 @@ console.log(calendars);
 ```
 
   </TabItem>
-  <TabItem value="py" label="Python">
+  <TabItem label="Python">
 
 ```python
 from romcal import Romcal
@@ -137,7 +136,7 @@ print(calendars)
 ```
 
   </TabItem>
-  <TabItem value="rs" label="Rust">
+  <TabItem label="Rust">
 
 ```rust
 use romcal::Romcal;

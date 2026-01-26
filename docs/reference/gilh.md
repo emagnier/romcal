@@ -1,5 +1,4 @@
 ---
-sidebar_position: 4
 title: General Instruction of the Liturgy of the Hours
 description: GILH
 ---

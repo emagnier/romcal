@@ -1,6 +1,8 @@
 ---
-sidebar_position: 2
+title: Getting Started
 ---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
 
 # Getting Started
 
@@ -8,11 +10,8 @@ This guide will help you install `romcal` and generate your first liturgical cal
 
 ## Installation
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs groupId="language">
-  <TabItem value="ts" label="TypeScript/JavaScript" default>
+<Tabs>
+  <TabItem label="TypeScript/JavaScript">
 
 ```bash
 npm install romcal
@@ -25,14 +24,14 @@ yarn add romcal
 ```
 
   </TabItem>
-  <TabItem value="py" label="Python">
+  <TabItem label="Python">
 
 ```bash
 pip install romcal
 ```
 
   </TabItem>
-  <TabItem value="rs" label="Rust">
+  <TabItem label="Rust">
 
 Add to your `Cargo.toml`:
 
@@ -52,8 +51,8 @@ cargo add romcal
 
 ## Generate a Calendar
 
-<Tabs groupId="language">
-  <TabItem value="ts" label="TypeScript/JavaScript" default>
+<Tabs>
+  <TabItem label="TypeScript/JavaScript">
 
 ```typescript
 import { Romcal } from 'romcal';
@@ -71,7 +70,7 @@ for (const day of calendar) {
 ```
 
   </TabItem>
-  <TabItem value="py" label="Python">
+  <TabItem label="Python">
 
 ```python
 from romcal import Romcal
@@ -88,7 +87,7 @@ for day in calendar:
 ```
 
   </TabItem>
-  <TabItem value="rs" label="Rust">
+  <TabItem label="Rust">
 
 ```rust
 use romcal::Romcal;
@@ -114,8 +113,8 @@ fn main() {
 
 You can customize Romcal with various options:
 
-<Tabs groupId="language">
-  <TabItem value="ts" label="TypeScript/JavaScript" default>
+<Tabs>
+  <TabItem label="TypeScript/JavaScript">
 
 ```typescript
 import { Romcal } from 'romcal';
@@ -139,7 +138,7 @@ const romcal = new Romcal({
 ```
 
   </TabItem>
-  <TabItem value="py" label="Python">
+  <TabItem label="Python">
 
 ```python
 from romcal import Romcal
@@ -163,7 +162,7 @@ romcal = Romcal(
 ```
 
   </TabItem>
-  <TabItem value="rs" label="Rust">
+  <TabItem label="Rust">
 
 ```rust
 use romcal::Romcal;

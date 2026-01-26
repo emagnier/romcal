@@ -1,6 +1,8 @@
 ---
-sidebar_position: 4
+title: Calculating Dates
 ---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
 
 # Calculating Dates
 
@@ -8,11 +10,8 @@ Calculate specific liturgical dates without generating a full calendar.
 
 ## Get a Specific Date
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs groupId="language">
-  <TabItem value="ts" label="TypeScript" default>
+<Tabs>
+  <TabItem label="TypeScript">
 
 ```typescript
 import { Romcal } from 'romcal';
@@ -29,7 +28,7 @@ console.log(pentecost); // "2025-06-08"
 ```
 
   </TabItem>
-  <TabItem value="py" label="Python">
+  <TabItem label="Python">
 
 ```python
 from romcal import Romcal
@@ -46,7 +45,7 @@ print(pentecost)  # "2025-06-08"
 ```
 
   </TabItem>
-  <TabItem value="rs" label="Rust">
+  <TabItem label="Rust">
 
 ```rust
 use romcal::Romcal;
@@ -83,8 +82,8 @@ println!("{}", pentecost); // "2025-06-08"
 
 Romcal supports both Gregorian and Julian Easter calculation:
 
-<Tabs groupId="language">
-  <TabItem value="ts" label="TypeScript" default>
+<Tabs>
+  <TabItem label="TypeScript">
 
 ```typescript
 import { Romcal } from 'romcal';
@@ -97,7 +96,7 @@ const eastern = new Romcal({ easterCalculation: 'julian' });
 ```
 
   </TabItem>
-  <TabItem value="py" label="Python">
+  <TabItem label="Python">
 
 ```python
 from romcal import Romcal
@@ -110,7 +109,7 @@ eastern = Romcal(easter_calculation="julian")
 ```
 
   </TabItem>
-  <TabItem value="rs" label="Rust">
+  <TabItem label="Rust">
 
 ```rust
 use romcal::Romcal;

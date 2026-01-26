@@ -1,6 +1,8 @@
 ---
-sidebar_position: 1
+title: API Overview
 ---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
 
 # API Overview
 
@@ -8,25 +10,22 @@ Reference documentation for the Romcal API across TypeScript, Python, and Rust.
 
 ## Installation
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs groupId="language">
-  <TabItem value="ts" label="TypeScript" default>
+<Tabs>
+  <TabItem label="TypeScript">
 
 ```bash
 npm install romcal
 ```
 
   </TabItem>
-  <TabItem value="py" label="Python">
+  <TabItem label="Python">
 
 ```bash
 pip install romcal
 ```
 
   </TabItem>
-  <TabItem value="rs" label="Rust">
+  <TabItem label="Rust">
 
 ```bash
 cargo add romcal
@@ -37,8 +36,8 @@ cargo add romcal
 
 ## Main Entry Point
 
-<Tabs groupId="language">
-  <TabItem value="ts" label="TypeScript" default>
+<Tabs>
+  <TabItem label="TypeScript">
 
 ```typescript
 import { Romcal } from 'romcal';
@@ -47,7 +46,7 @@ const romcal = new Romcal(options);
 ```
 
   </TabItem>
-  <TabItem value="py" label="Python">
+  <TabItem label="Python">
 
 ```python
 from romcal import Romcal
@@ -56,7 +55,7 @@ romcal = Romcal(**options)
 ```
 
   </TabItem>
-  <TabItem value="rs" label="Rust">
+  <TabItem label="Rust">
 
 ```rust
 use romcal::Romcal;

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+title: Entity Resources
 ---
 
 # Entity Resources

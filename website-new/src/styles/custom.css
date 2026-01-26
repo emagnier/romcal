@@ -1,0 +1,14 @@
+/* Romcal custom styles for Starlight */
+
+:root {
+  /* Romcal red accent color */
+  --sl-color-accent-low: #4a0f08;
+  --sl-color-accent: #cf2612;
+  --sl-color-accent-high: #f5a89f;
+}
+
+:root[data-theme='light'] {
+  --sl-color-accent-low: #f5d0cc;
+  --sl-color-accent: #cf2612;
+  --sl-color-accent-high: #6b1309;
+}

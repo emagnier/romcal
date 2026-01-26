@@ -1,6 +1,8 @@
 ---
-sidebar_position: 4
+title: Options
 ---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
 
 # Options
 
@@ -8,11 +10,8 @@ Configuration options for Romcal.
 
 ## RomcalOptions
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs groupId="language">
-  <TabItem value="ts" label="TypeScript" default>
+<Tabs>
+  <TabItem label="TypeScript">
 
 ```typescript
 interface RomcalOptions {
@@ -26,7 +25,7 @@ interface RomcalOptions {
 ```
 
   </TabItem>
-  <TabItem value="py" label="Python">
+  <TabItem label="Python">
 
 ```python
 class RomcalOptions:
@@ -39,7 +38,7 @@ class RomcalOptions:
 ```
 
   </TabItem>
-  <TabItem value="rs" label="Rust">
+  <TabItem label="Rust">
 
 ```rust
 pub struct RomcalOptions {
@@ -137,8 +136,8 @@ When `true`, Corpus Christi is celebrated on the Sunday after Trinity Sunday ins
 
 Options for the `searchEntities` method.
 
-<Tabs groupId="language">
-  <TabItem value="ts" label="TypeScript" default>
+<Tabs>
+  <TabItem label="TypeScript">
 
 ```typescript
 interface SearchOptions {
@@ -152,7 +151,7 @@ interface SearchOptions {
 ```
 
   </TabItem>
-  <TabItem value="py" label="Python">
+  <TabItem label="Python">
 
 ```python
 class SearchOptions:
@@ -165,7 +164,7 @@ class SearchOptions:
 ```
 
   </TabItem>
-  <TabItem value="rs" label="Rust">
+  <TabItem label="Rust">
 
 ```rust
 pub struct SearchOptions {

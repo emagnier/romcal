@@ -1,5 +1,4 @@
 ---
-sidebar_position: 3
 title: Universal Norms on the Liturgical Year and the Calendar
 description: GNLY - Third Typical Edition (2002)
 ---
