@@ -1,52 +1,27 @@
 {
-  "name": "docs",
-  "version": "0.0.0",
-  "private": true,
+  "name": "romcal-docs",
+  "type": "module",
+  "version": "0.0.1",
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
-    "docusaurus": "docusaurus",
-    "start": "docusaurus start",
-    "build": "docusaurus build",
-    "swizzle": "docusaurus swizzle",
-    "deploy": "docusaurus deploy",
-    "clear": "docusaurus clear",
-    "serve": "docusaurus serve",
-    "write-translations": "docusaurus write-translations",
-    "write-heading-ids": "docusaurus write-heading-ids",
-    "typecheck": "tsc",
+    "sync-docs": "node scripts/sync-docs.mjs",
+    "watch-docs": "chokidar \"../docs/**/*\" -c \"pnpm sync-docs\"",
+    "dev": "pnpm sync-docs && run-p watch-docs dev:astro",
+    "dev:astro": "astro dev",
+    "start": "pnpm dev",
+    "build": "pnpm sync-docs && astro build",
+    "preview": "astro preview",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "astro": "astro"
   },
   "dependencies": {
-    "@docusaurus/core": "3.9.2",
-    "@docusaurus/preset-classic": "3.9.2",
-    "@mdx-js/react": "^3.1.1",
-    "clsx": "^2.1.1",
-    "prism-react-renderer": "^2.4.1",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3"
+    "@astrojs/starlight": "^0.37.4",
+    "astro": "^5.6.1",
+    "sharp": "^0.34.2"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.9.2",
-    "@docusaurus/tsconfig": "3.9.2",
-    "@docusaurus/types": "3.9.2",
-    "prettier": "^3.7.4",
-    "typescript": "~5.6.2"
-  },
-  "browserslist": {
-    "production": [
-      ">0.5%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 3 chrome version",
-      "last 3 firefox version",
-      "last 5 safari version"
-    ]
-  },
-  "engines": {
-    "node": ">=22"
-  },
-  "packageManager": "pnpm@10.28.0"
+    "chokidar-cli": "^3.0.0",
+    "npm-run-all2": "^8.0.4",
+    "prettier": "^3.8.1"
+  }
 }

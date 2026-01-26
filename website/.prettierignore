@@ -1,13 +1,5 @@
-# Build output
-build/
-.docusaurus/
-
-# Dependencies
+dist/
 node_modules/
-
-# Cache
-.cache/
-
-# Generated files
-*.min.js
-*.min.css
+.astro/
+src/content/docs/
+pnpm-lock.yaml

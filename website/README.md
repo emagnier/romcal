@@ -1,41 +1,49 @@
-# Website
+# Starlight Starter Kit: Basics
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+[![Built with Starlight](https://astro.badg.es/v2/built-with-starlight/tiny.svg)](https://starlight.astro.build)
 
-## Installation
-
-```bash
-pnpm install
+```
+pnpm create astro@latest -- --template starlight
 ```
 
-## Local Development
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-```bash
-pnpm start
+## 🚀 Project Structure
+
+Inside of your Astro + Starlight project, you'll see the following folders and files:
+
+```
+.
+├── public/
+├── src/
+│   ├── assets/
+│   ├── content/
+│   │   └── docs/
+│   └── content.config.ts
+├── astro.config.mjs
+├── package.json
+└── tsconfig.json
 ```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+Starlight looks for `.md` or `.mdx` files in the `src/content/docs/` directory. Each file is exposed as a route based on its file name.
 
-## Build
+Images can be added to `src/assets/` and embedded in Markdown with a relative link.
 
-```bash
-pnpm build
-```
+Static assets, like favicons, can be placed in the `public/` directory.
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+## 🧞 Commands
 
-## Deployment
+All commands are run from the root of the project, from a terminal:
 
-Using SSH:
+| Command                | Action                                           |
+| :--------------------- | :----------------------------------------------- |
+| `pnpm install`         | Installs dependencies                            |
+| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
+| `pnpm build`           | Build your production site to `./dist/`          |
+| `pnpm preview`         | Preview your build locally, before deploying     |
+| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `pnpm astro -- --help` | Get help using the Astro CLI                     |
 
-```bash
-USE_SSH=true pnpm deploy
-```
+## 👀 Want to learn more?
 
-Not using SSH:
-
-```bash
-GIT_USER=<Your GitHub username> pnpm deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+Check out [Starlight’s docs](https://starlight.astro.build/), read [the Astro documentation](https://docs.astro.build), or jump into the [Astro Discord server](https://astro.build/chat).
