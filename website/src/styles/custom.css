@@ -50,3 +50,31 @@
   font-family: 'Crimson Text', serif;
   font-weight: 600;
 }
+
+/* Card icon colors */
+.card:nth-child(4n + 1) {
+  --sl-card-border: #ffd23f;
+  --sl-card-bg: #332a0d;
+}
+
+.card:nth-child(4n + 2) {
+  --sl-card-border: #2b9eb3;
+  --sl-card-bg: #0f2a2f;
+}
+
+.card:nth-child(4n + 3) {
+  --sl-card-border: #85ff89;
+  --sl-card-bg: #1a331b;
+}
+
+:root[data-theme='light'] .card:nth-child(4n + 1) {
+  --sl-card-bg: #fff8e0;
+}
+
+:root[data-theme='light'] .card:nth-child(4n + 2) {
+  --sl-card-bg: #e8f5f7;
+}
+
+:root[data-theme='light'] .card:nth-child(4n + 3) {
+  --sl-card-bg: #e6fff0;
+}
