@@ -51,6 +51,11 @@
   font-weight: 600;
 }
 
+/* Card text */
+.card strong {
+  font-weight: 600;
+}
+
 /* Card icon colors */
 .card:nth-child(4n + 1) {
   --sl-card-border: #ffd23f;
@@ -67,6 +72,11 @@
   --sl-card-bg: #1a331b;
 }
 
+.card:nth-child(4n + 4) {
+  --sl-card-border: #ff6b9d;
+  --sl-card-bg: #331a24;
+}
+
 :root[data-theme='light'] .card:nth-child(4n + 1) {
   --sl-card-bg: #fff8e0;
 }
@@ -77,4 +87,8 @@
 
 :root[data-theme='light'] .card:nth-child(4n + 3) {
   --sl-card-bg: #e6fff0;
+}
+
+:root[data-theme='light'] .card:nth-child(4n + 4) {
+  --sl-card-bg: #ffe6ee;
 }
