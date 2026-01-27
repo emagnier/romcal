@@ -36,6 +36,7 @@ default = []
 cli = ["dep:clap"]
 schema-gen = ["schemars"]
 ts-bindings = ["ts-rs"]
+bundled-data = []
 
 [[bin]]
 name = "generate-schema"

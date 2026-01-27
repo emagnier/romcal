@@ -21,6 +21,9 @@ pub mod helpers;
 pub mod romcal;
 pub mod types;
 
+#[cfg(feature = "bundled-data")]
+pub mod bundled_data;
+
 /// The version of the romcal library.
 pub const VERSION: &str = env!("CARGO_PKG_VERSION");
 
