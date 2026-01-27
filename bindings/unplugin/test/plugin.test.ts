@@ -248,8 +248,8 @@ describe('@romcal/unplugin', () => {
         $schema: '../../../../schemas/calendar_definition.json',
         id: 'my_parish',
         metadata: {
-          jurisdiction: 'ECCLESIASTICAL',
-          type: 'DIOCESE',
+          jurisdiction: 'ecclesiastical',
+          type: 'diocese',
         },
         parent_calendar_ids: ['france'],
         days_definitions: {},

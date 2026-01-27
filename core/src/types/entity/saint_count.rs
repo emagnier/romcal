@@ -9,7 +9,7 @@ use ts_rs::TS;
 // ============================================================================
 
 /// Custom JSON Schema for SaintCount.
-/// Generates a schema that accepts either an integer or the string "MANY".
+/// Generates a schema that accepts either an integer or the string "many".
 #[cfg(feature = "schema-gen")]
 fn saint_count_schema(_gen: &mut SchemaGenerator) -> Schema {
     serde_json::from_value(serde_json::json!({
@@ -20,7 +20,7 @@ fn saint_count_schema(_gen: &mut SchemaGenerator) -> Schema {
                 "minimum": 0
             },
             {
-                "const": "MANY",
+                "const": "many",
                 "type": "string"
             },
             {
@@ -33,16 +33,16 @@ fn saint_count_schema(_gen: &mut SchemaGenerator) -> Schema {
 
 /// Represents the number of saints for an entity or a group of entities.
 ///
-/// Can be either a specific number (u32) or "MANY" to indicate
+/// Can be either a specific number (u32) or "many" to indicate
 /// an indeterminate number of saints.
 ///
 /// # Serialization
 /// - `Number(n)` serializes as integer `n`
-/// - `Many` serializes as string `"MANY"`
+/// - `Many` serializes as string `"many"`
 ///
 /// # Deserialization
 /// - Integers are converted to `Number(u32)`
-/// - String `"MANY"` is converted to `Many`
+/// - String `"many"` is converted to `Many`
 /// - All other types generate an error
 #[derive(Debug, Clone, PartialEq, Eq)]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
@@ -62,17 +62,17 @@ impl SaintCount {
         Self::Number(n)
     }
 
-    /// Create a new SaintCount representing "MANY"
+    /// Create a new SaintCount representing "many"
     pub fn many() -> Self {
-        Self::Many("MANY".to_string())
+        Self::Many("many".to_string())
     }
 
-    /// Check if this represents "MANY"
+    /// Check if this represents "many"
     pub fn is_many(&self) -> bool {
-        matches!(self, Self::Many(s) if s == "MANY")
+        matches!(self, Self::Many(s) if s == "many")
     }
 
-    /// Get the number if it's a specific number, None if it's "MANY"
+    /// Get the number if it's a specific number, None if it's "many"
     pub fn as_number(&self) -> Option<u32> {
         match self {
             Self::Number(n) => Some(*n),
@@ -122,16 +122,16 @@ impl<'de> Deserialize<'de> for SaintCount {
                 }
             }
             Value::String(s) => {
-                if s == "MANY" {
+                if s == "many" {
                     Ok(Self::Many(s))
                 } else {
                     Err(serde::de::Error::custom(format!(
-                        "expected 'MANY' or a number, got string: '{}'",
+                        "expected 'many' or a number, got string: '{}'",
                         s
                     )))
                 }
             }
-            _ => Err(serde::de::Error::custom("expected 'MANY' or a number")),
+            _ => Err(serde::de::Error::custom("expected 'many' or a number")),
         }
     }
 }
@@ -149,7 +149,7 @@ mod tests {
         assert_ser_tokens(&SaintCount::Number(42), &[Token::U32(42)]);
         assert_ser_tokens(&SaintCount::Number(0), &[Token::U32(0)]);
         assert_ser_tokens(&SaintCount::Number(u32::MAX), &[Token::U32(u32::MAX)]);
-        assert_ser_tokens(&SaintCount::Many("MANY".to_string()), &[Token::Str("MANY")]);
+        assert_ser_tokens(&SaintCount::Many("many".to_string()), &[Token::Str("many")]);
     }
 
     #[test]
@@ -158,7 +158,7 @@ mod tests {
         assert_de_tokens(&SaintCount::Number(42), &[Token::U32(42)]);
         assert_de_tokens(&SaintCount::Number(0), &[Token::U32(0)]);
         assert_de_tokens(&SaintCount::Number(u32::MAX), &[Token::U32(u32::MAX)]);
-        assert_de_tokens(&SaintCount::Many("MANY".to_string()), &[Token::Str("MANY")]);
+        assert_de_tokens(&SaintCount::Many("many".to_string()), &[Token::Str("many")]);
 
         // Test with different numeric types
         assert_de_tokens(&SaintCount::Number(42), &[Token::U8(42)]);
@@ -171,7 +171,7 @@ mod tests {
     fn test_saint_count_roundtrip() {
         // Test complete roundtrip
         assert_tokens(&SaintCount::Number(42), &[Token::U32(42)]);
-        assert_tokens(&SaintCount::Many("MANY".to_string()), &[Token::Str("MANY")]);
+        assert_tokens(&SaintCount::Many("many".to_string()), &[Token::Str("many")]);
     }
 
     #[test]
@@ -179,7 +179,7 @@ mod tests {
         // Test deserialization errors
         assert_de_tokens_error::<SaintCount>(
             &[Token::Str("INVALID")],
-            "expected 'MANY' or a number, got string: 'INVALID'",
+            "expected 'many' or a number, got string: 'INVALID'",
         );
 
         assert_de_tokens_error::<SaintCount>(
@@ -209,18 +209,18 @@ mod tests {
         use serde_json;
 
         // Test JSON serialization
-        let many = SaintCount::Many("MANY".to_string());
+        let many = SaintCount::Many("many".to_string());
         let json = serde_json::to_string(&many).unwrap();
-        assert_eq!(json, r#""MANY""#);
+        assert_eq!(json, r#""many""#);
 
         let number = SaintCount::Number(42);
         let json = serde_json::to_string(&number).unwrap();
         assert_eq!(json, "42");
 
         // Test JSON deserialization
-        let json_with_many = r#""MANY""#;
+        let json_with_many = r#""many""#;
         let result: SaintCount = serde_json::from_str(json_with_many).unwrap();
-        assert!(matches!(result, SaintCount::Many(s) if s == "MANY"));
+        assert!(matches!(result, SaintCount::Many(s) if s == "many"));
 
         let json_with_number = r#"42"#;
         let result: SaintCount = serde_json::from_str(json_with_number).unwrap();

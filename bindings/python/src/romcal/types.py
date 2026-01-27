@@ -4,7 +4,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Annotated, Any, Literal
+from typing import Annotated, Any
 
 from pydantic import BaseModel, ConfigDict, Field, RootModel
 
@@ -303,35 +303,35 @@ class SaintCount1(RootModel[int]):
     """
     Represents the number of saints for an entity or a group of entities.
 
-    Can be either a specific number (u32) or "MANY" to indicate
+    Can be either a specific number (u32) or "many" to indicate
     an indeterminate number of saints.
 
     # Serialization
     - `Number(n)` serializes as integer `n`
-    - `Many` serializes as string `"MANY"`
+    - `Many` serializes as string `"many"`
 
     # Deserialization
     - Integers are converted to `Number(u32)`
-    - String `"MANY"` is converted to `Many`
+    - String `"many"` is converted to `Many`
     - All other types generate an error
     """
 
 
-class SaintCount(RootModel[SaintCount1 | Literal["MANY"] | None]):
-    root: Annotated[SaintCount1 | Literal["MANY"] | None, Field(title="SaintCount")]
+class SaintCount(RootModel[SaintCount1 | str | None]):
+    root: Annotated[SaintCount1 | str | None, Field(title="SaintCount")]
     """
     Represents the number of saints for an entity or a group of entities.
 
-    Can be either a specific number (u32) or "MANY" to indicate
+    Can be either a specific number (u32) or "many" to indicate
     an indeterminate number of saints.
 
     # Serialization
     - `Number(n)` serializes as integer `n`
-    - `Many` serializes as string `"MANY"`
+    - `Many` serializes as string `"many"`
 
     # Deserialization
     - Integers are converted to `Number(u32)`
-    - String `"MANY"` is converted to `Many`
+    - String `"many"` is converted to `Many`
     - All other types generate an error
     """
 

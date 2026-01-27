@@ -3,16 +3,16 @@
 /**
  * Represents the number of saints for an entity or a group of entities.
  *
- * Can be either a specific number (u32) or "MANY" to indicate
+ * Can be either a specific number (u32) or "many" to indicate
  * an indeterminate number of saints.
  *
  * # Serialization
  * - `Number(n)` serializes as integer `n`
- * - `Many` serializes as string `"MANY"`
+ * - `Many` serializes as string `"many"`
  *
  * # Deserialization
  * - Integers are converted to `Number(u32)`
- * - String `"MANY"` is converted to `Many`
+ * - String `"many"` is converted to `Many`
  * - All other types generate an error
  */
 export type SaintCount = { Number: number } | { Many: string }

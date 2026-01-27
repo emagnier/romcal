@@ -106,9 +106,9 @@ Each file contains entities for a single letter:
   "first_martyrs_of_the_holy_roman_church": {
     "fullname": "The First Martyrs of the Holy Roman Church",
     "name": "First Martyrs of the Holy Roman Church",
-    "titles": ["MARTYR"],
+    "titles": ["martyr"],
     "hide_titles": true,
-    "count": "MANY",
+    "count": "many",
     "date_of_death": 64
   }
 }

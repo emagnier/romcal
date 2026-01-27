@@ -1122,7 +1122,7 @@ pub const CALENDAR_DEFINITION_SCHEMA: &str = r##"{
       "additionalProperties": false
     },
     "SaintCount": {
-      "description": "Represents the number of saints for an entity or a group of entities.\n\nCan be either a specific number (u32) or \"MANY\" to indicate\nan indeterminate number of saints.\n\n# Serialization\n- `Number(n)` serializes as integer `n`\n- `Many` serializes as string `\"MANY\"`\n\n# Deserialization\n- Integers are converted to `Number(u32)`\n- String `\"MANY\"` is converted to `Many`\n- All other types generate an error",
+      "description": "Represents the number of saints for an entity or a group of entities.\n\nCan be either a specific number (u32) or \"many\" to indicate\nan indeterminate number of saints.\n\n# Serialization\n- `Number(n)` serializes as integer `n`\n- `Many` serializes as string `\"many\"`\n\n# Deserialization\n- Integers are converted to `Number(u32)`\n- String `\"many\"` is converted to `Many`\n- All other types generate an error",
       "anyOf": [
         {
           "type": "integer",
@@ -1131,7 +1131,7 @@ pub const CALENDAR_DEFINITION_SCHEMA: &str = r##"{
         },
         {
           "type": "string",
-          "const": "MANY"
+          "const": "many"
         },
         {
           "type": "null"
@@ -2514,7 +2514,7 @@ pub const RESOURCES_SCHEMA: &str = r##"{
       ]
     },
     "SaintCount": {
-      "description": "Represents the number of saints for an entity or a group of entities.\n\nCan be either a specific number (u32) or \"MANY\" to indicate\nan indeterminate number of saints.\n\n# Serialization\n- `Number(n)` serializes as integer `n`\n- `Many` serializes as string `\"MANY\"`\n\n# Deserialization\n- Integers are converted to `Number(u32)`\n- String `\"MANY\"` is converted to `Many`\n- All other types generate an error",
+      "description": "Represents the number of saints for an entity or a group of entities.\n\nCan be either a specific number (u32) or \"many\" to indicate\nan indeterminate number of saints.\n\n# Serialization\n- `Number(n)` serializes as integer `n`\n- `Many` serializes as string `\"many\"`\n\n# Deserialization\n- Integers are converted to `Number(u32)`\n- String `\"many\"` is converted to `Many`\n- All other types generate an error",
       "anyOf": [
         {
           "type": "integer",
@@ -2523,7 +2523,7 @@ pub const RESOURCES_SCHEMA: &str = r##"{
         },
         {
           "type": "string",
-          "const": "MANY"
+          "const": "many"
         },
         {
           "type": "null"

@@ -214,7 +214,7 @@
       "fullname": "Blessed Martyrs of Angers",
       "canonization_level": "blessed",
       "name": "Martyrs of Angers",
-      "count": "MANY",
+      "count": "many",
       "titles": [
         "martyr"
       ],
@@ -228,7 +228,7 @@
       "fullname": "Blessed Martyrs of Paris",
       "canonization_level": "blessed",
       "name": "Martyrs of Paris",
-      "count": "MANY",
+      "count": "many",
       "titles": [
         "martyr"
       ],

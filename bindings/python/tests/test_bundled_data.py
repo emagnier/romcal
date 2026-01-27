@@ -238,7 +238,7 @@ class TestRomcalWithBundledData:
         assert romcal.locale == "en"
 
     @pytest.mark.parametrize(
-        "calendar,locale",
+        ("calendar", "locale"),
         [
             ("general_roman", "en"),
             ("general_roman", "la"),

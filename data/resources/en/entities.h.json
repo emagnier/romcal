@@ -154,7 +154,7 @@
     },
     "holy_guardian_angels": {
       "fullname": "The Holy Guardian Angels",
-      "count": "MANY"
+      "count": "many"
     },
     "holy_hermits_and_evangelists": {
       "fullname": "The Holy Hermits and Evangelists",
@@ -162,7 +162,7 @@
         "hermit",
         "evangelist"
       ],
-      "count": "MANY",
+      "count": "many",
       "sources": [
         "mr_fr_2022_ed3_angers"
       ]
@@ -173,7 +173,7 @@
       "titles": [
         "martyr"
       ],
-      "count": "MANY",
+      "count": "many",
       "date_of_death": 2,
       "date_of_death_is_approximative": true
     },
@@ -226,7 +226,7 @@
     },
     "hungarian_saints_and_blesseds": {
       "fullname": "Hungarian Saints and Blesseds",
-      "count": "MANY"
+      "count": "many"
     },
     "hyacinth_of_poland_priest": {
       "fullname": "Saint Hyacinth, Priest",

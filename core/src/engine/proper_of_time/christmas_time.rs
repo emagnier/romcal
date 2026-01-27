@@ -441,7 +441,8 @@ mod tests {
         let romcal = Romcal::new(Preset {
             context: Some(crate::CalendarContext::Liturgical),
             ..Preset::default()
-        }).unwrap();
+        })
+        .unwrap();
         let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
         let christmas_time = ChristmasTime::new(&proper_of_time);
         // For liturgical year 2026, Christmas is in 2025
@@ -495,7 +496,8 @@ mod tests {
         let romcal = Romcal::new(Preset {
             context: Some(crate::CalendarContext::Liturgical),
             ..Preset::default()
-        }).unwrap();
+        })
+        .unwrap();
         let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
         let christmas_time = ChristmasTime::new(&proper_of_time);
 

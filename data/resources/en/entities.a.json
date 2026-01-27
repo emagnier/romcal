@@ -263,7 +263,7 @@
       "fullname": "All Holy Bishops of the Diocese of Angers",
       "canonization_level": "saint",
       "hide_canonization_level": true,
-      "count": "MANY",
+      "count": "many",
       "titles": [
         "bishop"
       ],
@@ -277,7 +277,7 @@
       "canonization_level": "saint",
       "hide_canonization_level": true,
       "name": "The Holy Bishops of the diocese of Coutances and Avranches",
-      "count": "MANY",
+      "count": "many",
       "titles": [
         "bishop"
       ],
@@ -292,7 +292,7 @@
       "canonization_level": "saint",
       "hide_canonization_level": true,
       "name": "The Holy Priests of the diocese of Coutances and Avranches",
-      "count": "MANY",
+      "count": "many",
       "titles": [
         "priest"
       ],
@@ -308,7 +308,7 @@
     "all_saints_of_ireland": {
       "fullname": "All Saints of Ireland",
       "canonization_level": "saint",
-      "count": "MANY"
+      "count": "many"
     },
     "all_saints_of_the_archdiocese_of_lyon": {
       "fullname": "All Saints of the Archdiocese of Lyon"
@@ -316,13 +316,13 @@
     "all_saints_of_the_archdiocese_of_paris": {
       "fullname": "All Saints of the Archdiocese of Paris",
       "canonization_level": "saint",
-      "count": "MANY"
+      "count": "many"
     },
     "all_saints_of_the_diocese_of_coutances": {
       "fullname": "All Saints of the Diocese of Coutances and Avranches",
       "canonization_level": "saint",
       "hide_canonization_level": true,
-      "count": "MANY",
+      "count": "many",
       "sources": [
         "mr_fr_1982_ed2_coutances",
         "https://www.diocese50.fr/les-paroisses-et-les-doyennes/notre-dame-coutances/les-saints-du-diocese/tous-les-saints-de-coutances-et-avranches"
@@ -331,12 +331,12 @@
     "all_saints_of_the_diocese_of_saint_denis": {
       "fullname": "All Saints of the Diocese of Saint-Denis",
       "canonization_level": "saint",
-      "count": "MANY"
+      "count": "many"
     },
     "all_saints_of_wales": {
       "fullname": "All Saints of Wales",
       "canonization_level": "saint",
-      "count": "MANY"
+      "count": "many"
     },
     "aloysius_gonzaga_religious": {
       "fullname": "Saint Aloysius Gonzaga, Religious",
