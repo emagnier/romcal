@@ -10,8 +10,8 @@ describe('Romcal configuration', () => {
     expect(romcal.epiphanyOnSunday).toBe(false)
     expect(romcal.corpusChristiOnSunday).toBe(true)
     expect(romcal.ascensionOnSunday).toBe(false)
-    expect(romcal.easterCalculationType).toBe('GREGORIAN')
-    expect(romcal.context).toBe('GREGORIAN')
+    expect(romcal.easterCalculationType).toBe('gregorian')
+    expect(romcal.context).toBe('gregorian')
   })
 
   it('should accept calendar and locale as arguments', async () => {
@@ -38,18 +38,18 @@ describe('Romcal configuration', () => {
   })
 
   it('should throw RomcalError for invalid easter calculation type', async () => {
-    await expect(createRomcal({ easterCalculationType: 'INVALID' as never })).rejects.toThrow(
+    await expect(createRomcal({ easterCalculationType: 'invalid' as never })).rejects.toThrow(
       RomcalError,
     )
-    await expect(createRomcal({ easterCalculationType: 'INVALID' as never })).rejects.toThrow(
-      "Invalid easter_calculation_type: 'INVALID'",
+    await expect(createRomcal({ easterCalculationType: 'invalid' as never })).rejects.toThrow(
+      "Invalid easter_calculation_type: 'invalid'",
     )
   })
 
   it('should throw RomcalError for invalid context', async () => {
-    await expect(createRomcal({ context: 'INVALID' as never })).rejects.toThrow(RomcalError)
-    await expect(createRomcal({ context: 'INVALID' as never })).rejects.toThrow(
-      "Invalid context: 'INVALID'",
+    await expect(createRomcal({ context: 'invalid' as never })).rejects.toThrow(RomcalError)
+    await expect(createRomcal({ context: 'invalid' as never })).rejects.toThrow(
+      "Invalid context: 'invalid'",
     )
   })
 })

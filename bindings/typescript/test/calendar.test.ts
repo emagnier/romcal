@@ -41,8 +41,8 @@ describe('Gregorian year calendar (default)', () => {
 
     expect(easter).toBeDefined()
     expect(easter.length).toBeGreaterThan(0)
-    // Easter has the highest precedence (TRIDUUM_1)
-    expect(easter[0].precedence).toBe('TRIDUUM_1')
+    // Easter has the highest precedence (triduum_1)
+    expect(easter[0].precedence).toBe('triduum_1')
     expect(easter[0].is_holy_day_of_obligation).toBe(true)
   })
 
@@ -50,14 +50,14 @@ describe('Gregorian year calendar (default)', () => {
     const easter = calendar['2026-04-05']
 
     expect(easter[0].fullname).toBe('Easter Sunday of the Resurrection of the Lord')
-    expect(easter[0].season).toBe('EASTER_TIME')
+    expect(easter[0].season).toBe('easter_time')
   })
 
   it('should include Christmas 2026 on December 25', async () => {
     const christmas = calendar['2026-12-25']
 
     expect(christmas).toBeDefined()
-    expect(christmas[0].rank).toBe('SOLEMNITY')
+    expect(christmas[0].rank).toBe('solemnity')
   })
 
   it('should have no masses defined for Holy Saturday (April 4)', async () => {
@@ -80,7 +80,7 @@ describe('Liturgical year calendar', () => {
     romcal = await createRomcal({
       calendar: 'general_roman',
       locale: 'en',
-      context: 'LITURGICAL',
+      context: 'liturgical',
       calendarDefinitions,
       resources,
     })
@@ -107,7 +107,7 @@ describe('Liturgical year calendar', () => {
     const christmas = calendar['2025-12-25']
 
     expect(christmas).toBeDefined()
-    expect(christmas[0].rank).toBe('SOLEMNITY')
+    expect(christmas[0].rank).toBe('solemnity')
   })
 })
 
@@ -139,7 +139,7 @@ describe('Mass calendar (Gregorian year)', () => {
     expect(dec24).toBeDefined()
     expect(dec24.length).toBe(2)
     // Morning mass (Advent weekday) + Previous evening mass (Christmas vigil)
-    expect(massTimes).toStrictEqual(['MORNING_MASS', 'PREVIOUS_EVENING_MASS'])
+    expect(massTimes).toStrictEqual(['morning_mass', 'previous_evening_mass'])
   })
 
   it('should include multiple Christmas 2026 masses', async () => {
@@ -148,7 +148,7 @@ describe('Mass calendar (Gregorian year)', () => {
 
     expect(christmas).toBeDefined()
     expect(christmas.length).toBe(3)
-    expect(massTimes).toStrictEqual(['NIGHT_MASS', 'MASS_AT_DAWN', 'DAY_MASS'])
+    expect(massTimes).toStrictEqual(['night_mass', 'mass_at_dawn', 'day_mass'])
   })
 
   it('should have correct mass time names', async () => {
@@ -165,7 +165,7 @@ describe('Mass calendar (Gregorian year)', () => {
 
     expect(easterVigilDay).toBeDefined()
 
-    const vigil = easterVigilDay.find((m) => (m.mass_time as string) === 'EASTER_VIGIL')
+    const vigil = easterVigilDay.find((m) => (m.mass_time as string) === 'easter_vigil')
     expect(vigil).toBeDefined()
     expect(vigil!.liturgical_date).toBe('2026-04-05')
   })
@@ -177,7 +177,7 @@ describe('Mass calendar (Gregorian year)', () => {
 
     expect(holySaturday).toBeDefined()
     expect(holySaturday.length).toBe(1)
-    expect(holySaturday[0].mass_time).toBe('EASTER_VIGIL')
+    expect(holySaturday[0].mass_time).toBe('easter_vigil')
   })
 })
 
@@ -191,7 +191,7 @@ describe('Mass calendar (Liturgical year)', () => {
     romcal = await createRomcal({
       calendar: 'general_roman',
       locale: 'en',
-      context: 'LITURGICAL',
+      context: 'liturgical',
       calendarDefinitions,
       resources,
     })

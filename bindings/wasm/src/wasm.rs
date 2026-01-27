@@ -103,22 +103,22 @@ impl PartialRomcalConfig {
     /// Build the configuration with defaults
     pub fn build(&self) -> Result<RomcalConfig, JsValue> {
         let easter_type = match self.easter_calculation_type.as_deref() {
-            Some("GREGORIAN") | None => Some(EasterCalculationType::Gregorian),
-            Some("JULIAN") => Some(EasterCalculationType::Julian),
+            Some("gregorian") | None => Some(EasterCalculationType::Gregorian),
+            Some("julian") => Some(EasterCalculationType::Julian),
             Some(invalid) => {
                 return Err(JsValue::from_str(&format!(
-                    "Invalid easter_calculation_type: '{}'. Expected 'GREGORIAN' or 'JULIAN'",
+                    "Invalid easter_calculation_type: '{}'. Expected 'gregorian' or 'julian'",
                     invalid
                 )));
             }
         };
 
         let context = match self.context.as_deref() {
-            Some("GREGORIAN") | None => Some(CalendarContext::Gregorian),
-            Some("LITURGICAL") => Some(CalendarContext::Liturgical),
+            Some("gregorian") | None => Some(CalendarContext::Gregorian),
+            Some("liturgical") => Some(CalendarContext::Liturgical),
             Some(invalid) => {
                 return Err(JsValue::from_str(&format!(
-                    "Invalid context: '{}'. Expected 'GREGORIAN' or 'LITURGICAL'",
+                    "Invalid context: '{}'. Expected 'gregorian' or 'liturgical'",
                     invalid
                 )));
             }
