@@ -79,7 +79,7 @@
     "format:check": "prettier --check ."
   },
   "peerDependencies": {
-    "romcal": "^4.0.0"
+    "romcal": "^4.0.0-beta.5"
   },
   "dependencies": {
     "unplugin": "^3.0.0"

@@ -242,6 +242,62 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   # ============================================================================
+  # NPM - UNPLUGIN (@romcal/unplugin)
+  # ============================================================================
+  npm-unplugin:
+    name: npm (unplugin)
+    runs-on: ubuntu-latest
+    needs: [prepare, npm]
+    if: needs.prepare.outputs.publish-npm == 'true'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          package_json_file: bindings/unplugin/package.json
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "pnpm"
+          cache-dependency-path: bindings/unplugin/pnpm-lock.yaml
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Install dependencies
+        working-directory: bindings/unplugin
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        working-directory: bindings/unplugin
+        run: pnpm build
+
+      - name: Verify version matches tag
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          TAG_VERSION="${GITHUB_REF#refs/tags/v}"
+          PKG_VERSION=$(node -p "require('./bindings/unplugin/package.json').version")
+          if [ "$TAG_VERSION" != "$PKG_VERSION" ]; then
+            echo "❌ Tag version ($TAG_VERSION) doesn't match package.json ($PKG_VERSION)"
+            exit 1
+          fi
+          echo "✅ Version verified: $PKG_VERSION"
+
+      - name: Publish to npm
+        working-directory: bindings/unplugin
+        run: |
+          if [ "${{ needs.prepare.outputs.dry-run }}" = "true" ]; then
+            echo "🧪 Dry run: pnpm publish"
+            pnpm publish --dry-run
+          else
+            echo "🚀 Publishing @romcal/unplugin to npm"
+            pnpm publish --access public
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # ============================================================================
   # PYPI - WHEELS (multi-platform builds)
   # ============================================================================
   pypi-wheels:
@@ -422,7 +478,7 @@ jobs:
   summary:
     name: Summary
     runs-on: ubuntu-latest
-    needs: [prepare, crates-core, crates-cli, npm, pypi-publish]
+    needs: [prepare, crates-core, crates-cli, npm, npm-unplugin, pypi-publish]
     if: always()
     steps:
       - name: Summary
@@ -449,9 +505,14 @@ jobs:
 
           if [ "${{ needs.prepare.outputs.publish-npm }}" = "true" ]; then
             if [ "${{ needs.npm.result }}" = "success" ]; then
-              echo "| npm | ✅ Success |" >> $GITHUB_STEP_SUMMARY
+              echo "| npm (romcal) | ✅ Success |" >> $GITHUB_STEP_SUMMARY
             else
-              echo "| npm | ❌ Failed |" >> $GITHUB_STEP_SUMMARY
+              echo "| npm (romcal) | ❌ Failed |" >> $GITHUB_STEP_SUMMARY
+            fi
+            if [ "${{ needs.npm-unplugin.result }}" = "success" ]; then
+              echo "| npm (@romcal/unplugin) | ✅ Success |" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "| npm (@romcal/unplugin) | ❌ Failed |" >> $GITHUB_STEP_SUMMARY
             fi
           else
             echo "| npm | ⏭️ Skipped |" >> $GITHUB_STEP_SUMMARY

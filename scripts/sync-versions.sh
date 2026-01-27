@@ -108,6 +108,40 @@ update_cli_dependency() {
     fi
 }
 
+# Function to update romcal peerDependency version in unplugin/package.json
+update_unplugin_peer_dependency() {
+    local file="$PROJECT_ROOT/bindings/unplugin/package.json"
+    local relative_path="bindings/unplugin/package.json"
+
+    if [ ! -f "$file" ]; then
+        return
+    fi
+
+    # Extract current romcal peerDependency version (only from peerDependencies section)
+    # Use grep -A1 to get the line after "peerDependencies", then extract the version
+    local current=$(grep -A1 '"peerDependencies"' "$file" | grep '"romcal":' | sed 's/.*"romcal": "\^\([^"]*\)".*/\1/')
+
+    if [ -z "$current" ]; then
+        return
+    fi
+
+    if [ "$current" = "$VERSION" ]; then
+        echo -e "${GREEN}✓ $relative_path (romcal peerDep)${NC}"
+    elif [ "$CHECK_MODE" = true ]; then
+        echo -e "${RED}✗ $relative_path romcal peerDependency (found: ^$current, expected: ^$VERSION)${NC}"
+        ERRORS=$((ERRORS + 1))
+    else
+        # Use node to update the peerDependency (most reliable for JSON)
+        node -e "
+            const fs = require('fs');
+            const pkg = JSON.parse(fs.readFileSync('$file', 'utf8'));
+            pkg.peerDependencies.romcal = '^$VERSION';
+            fs.writeFileSync('$file', JSON.stringify(pkg, null, 2) + '\n');
+        "
+        echo -e "${GREEN}✓ $relative_path (romcal peerDep updated from ^$current)${NC}"
+    fi
+}
+
 # Function to check/update package.json version
 update_package_json() {
     local file="$1"
@@ -174,8 +208,10 @@ update_cargo_version "$PROJECT_ROOT/bindings/uniffi/Cargo.toml"
 update_cargo_version "$PROJECT_ROOT/tools/Cargo.toml"
 
 echo ""
-echo "TypeScript package:"
+echo "TypeScript packages:"
 update_package_json "$PROJECT_ROOT/bindings/typescript/package.json"
+update_package_json "$PROJECT_ROOT/bindings/unplugin/package.json"
+update_unplugin_peer_dependency
 
 echo ""
 echo "Python package:"
