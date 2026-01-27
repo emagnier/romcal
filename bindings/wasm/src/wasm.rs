@@ -216,7 +216,7 @@ impl RomcalConfig {
 #[wasm_bindgen]
 #[derive(Default)]
 pub struct Romcal {
-    config: RomcalConfig,
+    inner: RomcalConfig,
 }
 
 #[wasm_bindgen]
@@ -227,10 +227,46 @@ impl Romcal {
         Self::default()
     }
 
-    /// Get the configuration
+    /// Get the calendar type
     #[wasm_bindgen(getter)]
-    pub fn config(&self) -> RomcalConfig {
-        self.config.clone()
+    pub fn calendar(&self) -> String {
+        self.inner.inner.calendar.clone()
+    }
+
+    /// Get the locale
+    #[wasm_bindgen(getter)]
+    pub fn locale(&self) -> String {
+        self.inner.inner.locale.clone()
+    }
+
+    /// Get epiphany on Sunday setting
+    #[wasm_bindgen(getter, js_name = "epiphanyOnSunday")]
+    pub fn epiphany_on_sunday(&self) -> bool {
+        self.inner.inner.epiphany_on_sunday
+    }
+
+    /// Get corpus christi on Sunday setting
+    #[wasm_bindgen(getter, js_name = "corpusChristiOnSunday")]
+    pub fn corpus_christi_on_sunday(&self) -> bool {
+        self.inner.inner.corpus_christi_on_sunday
+    }
+
+    /// Get ascension on Sunday setting
+    #[wasm_bindgen(getter, js_name = "ascensionOnSunday")]
+    pub fn ascension_on_sunday(&self) -> bool {
+        self.inner.inner.ascension_on_sunday
+    }
+
+    /// Get easter calculation type
+    #[wasm_bindgen(getter, js_name = "easterCalculationType")]
+    pub fn easter_calculation_type(&self) -> String {
+        self.inner.inner.easter_calculation_type.to_string()
+    }
+
+    /// Get calendar context
+    #[wasm_bindgen(getter)]
+    pub fn context(&self) -> String {
+        self.inner.inner.context.to_string()
     }
 
     /// Generate the complete liturgical calendar for a given liturgical year
@@ -239,7 +275,7 @@ impl Romcal {
     /// where keys are dates in YYYY-MM-DD format
     #[wasm_bindgen(js_name = "generateLiturgicalCalendar")]
     pub fn generate_liturgical_calendar(&self, year: i32) -> Result<String, JsValue> {
-        self.config
+        self.inner
             .inner
             .generate_liturgical_calendar(year)
             .map(|calendar| serde_json::to_string(&calendar).unwrap_or_default())
@@ -252,7 +288,7 @@ impl Romcal {
     /// where keys are civil dates in YYYY-MM-DD format
     #[wasm_bindgen(js_name = "generateMassCalendar")]
     pub fn generate_mass_calendar(&self, year: i32) -> Result<String, JsValue> {
-        self.config
+        self.inner
             .inner
             .generate_mass_calendar(year)
             .map(|calendar| serde_json::to_string(&calendar).unwrap_or_default())
@@ -264,7 +300,7 @@ impl Romcal {
     /// Returns date in YYYY-MM-DD format
     #[wasm_bindgen(js_name = "getDate")]
     pub fn get_date(&self, id: &str, year: i32) -> Result<String, JsValue> {
-        self.config
+        self.inner
             .inner
             .get_date(id, year)
             .map_err(|e| JsValue::from_str(&e.to_string()))
@@ -275,7 +311,7 @@ impl Romcal {
     /// Returns the entity as a JSON string, or null if not found.
     #[wasm_bindgen(js_name = "getEntity")]
     pub fn get_entity(&self, id: &str) -> Option<String> {
-        self.config
+        self.inner
             .inner
             .get_entity(id)
             .and_then(|entity| serde_json::to_string(&entity).ok())
@@ -296,7 +332,7 @@ impl Romcal {
     /// A pretty-printed JSON string of the optimized configuration.
     #[wasm_bindgen(js_name = "createBundle")]
     pub fn create_bundle(&self) -> Result<String, JsValue> {
-        self.config
+        self.inner
             .inner
             .create_bundle()
             .map_err(|e| JsValue::from_str(&e.to_string()))
@@ -328,7 +364,7 @@ impl Romcal {
         let core_query = query.to_core().map_err(|e| JsValue::from_str(&e))?;
 
         // Execute search
-        let results = self.config.inner.search_entities(core_query);
+        let results = self.inner.inner.search_entities(core_query);
 
         // Convert results to JSON-serializable format
         let wasm_results: Vec<WasmEntitySearchResult> = results
@@ -451,7 +487,7 @@ pub fn romcal_with_partial_config(
     partial_config.context = context;
 
     Ok(Romcal {
-        config: partial_config.build()?,
+        inner: partial_config.build()?,
     })
 }
 
@@ -459,7 +495,7 @@ pub fn romcal_with_partial_config(
 #[wasm_bindgen]
 pub fn romcal_with_config_object(config: &PartialRomcalConfig) -> Result<Romcal, JsValue> {
     Ok(Romcal {
-        config: config.build()?,
+        inner: config.build()?,
     })
 }
 

@@ -172,10 +172,7 @@ export interface RomcalBundle {
 /**
  * A Romcal instance with calendar generation methods.
  */
-export interface Romcal {
-  /** The configuration of this Romcal instance */
-  config: RomcalConfigInterface
-
+export interface Romcal extends RomcalConfigInterface {
   /**
    * Generate the complete liturgical calendar for a given liturgical year.
    *
@@ -229,17 +226,15 @@ export interface Romcal {
  */
 function createInstance(wasmInstance: wasm.Romcal): Romcal {
   return {
-    config: {
-      calendar: wasmInstance.config.calendar,
-      locale: wasmInstance.config.locale,
-      epiphanyOnSunday: wasmInstance.config.epiphany_on_sunday,
-      corpusChristiOnSunday: wasmInstance.config.corpus_christi_on_sunday,
-      ascensionOnSunday: wasmInstance.config.ascension_on_sunday,
-      // Safe cast: values are validated by Rust during Romcal instantiation
-      easterCalculationType: wasmInstance.config.easter_calculation_type as EasterCalculationType,
-      // Safe cast: values are validated by Rust during Romcal instantiation
-      context: wasmInstance.config.context as CalendarContext,
-    },
+    calendar: wasmInstance.calendar,
+    locale: wasmInstance.locale,
+    epiphanyOnSunday: wasmInstance.epiphanyOnSunday,
+    corpusChristiOnSunday: wasmInstance.corpusChristiOnSunday,
+    ascensionOnSunday: wasmInstance.ascensionOnSunday,
+    // Safe cast: values are validated by Rust during Romcal instantiation
+    easterCalculationType: wasmInstance.easterCalculationType as EasterCalculationType,
+    // Safe cast: values are validated by Rust during Romcal instantiation
+    context: wasmInstance.context as CalendarContext,
 
     async generateLiturgicalCalendar(year: number): Promise<LiturgicalCalendar> {
       try {

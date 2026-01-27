@@ -16,8 +16,8 @@ describe('Browser ESM bundle', () => {
 
     const romcal = await createRomcal()
 
-    expect(romcal.config).toBeDefined()
-    expect(romcal.config.calendar).toBe('general_roman')
+    expect(romcal.calendar).toBe('general_roman')
+    expect(romcal.locale).toBe('en')
   })
 
   it('should generate a liturgical calendar', async () => {
@@ -63,8 +63,8 @@ describe('Browser UMD bundle (script tag)', () => {
   it('should create an instance via global', async () => {
     const romcal = await window.Romcal.createRomcal()
 
-    expect(romcal.config).toBeDefined()
-    expect(romcal.config.calendar).toBe('general_roman')
+    expect(romcal.calendar).toBe('general_roman')
+    expect(romcal.locale).toBe('en')
   })
 
   it('should generate a liturgical calendar via global', async () => {
