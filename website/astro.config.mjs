@@ -34,6 +34,9 @@ export default defineConfig({
             { label: 'Liturgical Entities', slug: 'guides/entities' },
             { label: 'Working with Dates', slug: 'guides/dates' },
             { label: 'Locales', slug: 'guides/locales' },
+            { label: 'Data Loading', slug: 'guides/data-loading' },
+            { label: 'Bundle Optimization', slug: 'guides/bundle-optimization' },
+            { label: 'Bundler Plugin', slug: 'guides/bundler-plugin' },
           ],
         },
         {

@@ -1,0 +1,170 @@
+---
+title: Bundle Optimization
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+
+When building **TypeScript** web applications with romcal, bundle size matters. This guide covers techniques to minimize the amount of data shipped to your users.
+
+## Understanding the Data
+
+Romcal includes data for:
+- **70+ calendars** (general_roman, country calendars, diocesan calendars)
+- **14+ locales** (en, fr, es, it, de, etc.)
+- **1000+ martyrology entities** (saints, places, events)
+
+Unoptimized, this represents over **1 MB** of data and continues to grow as new calendars, locales, and martyrology entities are added in future releases. Most applications only need a fraction of this.
+
+## Optimization Levels
+
+| Level | Technique | Gzipped Size | Effort |
+| ----- | --------- | ------------ | ------ |
+| 0 | No optimization | ~180 KB | None |
+| 1 | Tree-shaking | ~25 KB | Low |
+| 2 | Bundle plugin | ~4 KB | Medium |
+
+## Level 1: Tree-Shaking
+
+The romcal package is marked as side-effect free, enabling automatic tree-shaking by modern bundlers (Vite, Rollup, webpack, esbuild, Rspack, Rolldown, Farm, Bun).
+
+**How it works**: Only import the calendars and localized resources you need.
+
+```typescript
+// Only these imports are included in your bundle
+import { generalRoman, europe, france } from 'romcal/definitions';
+import { en, fr } from 'romcal/resources';
+```
+
+**Result**: ~25 KB gzipped for a typical single-calendar, single-locale setup.
+
+:::tip
+Tree-shaking happens automatically. Just avoid importing everything with `import * as definitions from 'romcal/definitions'` in production builds.
+:::
+
+## Level 2: Bundle Plugin
+
+For maximum optimization, use the `@romcal/unplugin` bundler plugin. It analyzes your configuration at build time and generates a minimal data bundle.
+
+**How it works**: The plugin calls `createBundle()` which:
+1. Resolves your calendar hierarchy (france → europe → general_roman)
+2. Resolves your locale fallback chain (fr → en)
+3. Filters entities to only those referenced by your calendars
+4. Deduplicates properties across locales
+
+**Result**: ~4 KB gzipped for a typical setup (vs ~25 KB with tree-shaking alone).
+
+:::tip[Best of both worlds]
+For convenience, import all data in your plugin config. The plugin will automatically filter and optimize the bundle based on your calendar and locale settings.
+:::
+
+See [Bundler Plugin](/guides/bundler-plugin) for setup instructions.
+
+## Level 2 Alternative: Manual Bundle Generation
+
+If you can't use the plugin, generate a bundle manually:
+
+### Using the CLI
+
+```bash
+romcal bundle --calendar france --locale fr --output bundle.json
+```
+
+Then load it in your app:
+
+```typescript
+import bundleData from './bundle.json';
+import { createRomcal } from 'romcal';
+
+const romcal = await createRomcal(bundleData);
+```
+
+### Using the API
+
+<Tabs syncKey="lang">
+  <TabItem label="TypeScript">
+
+```typescript
+import { createRomcal } from 'romcal';
+import { generalRoman, europe, france } from 'romcal/definitions';
+import { en, fr } from 'romcal/resources';
+
+// Create romcal instance with full data
+const romcal = await createRomcal({
+  calendar: 'france',
+  locale: 'fr',
+  calendarDefinitions: [generalRoman, europe, france],
+  resources: [en, fr],
+});
+
+// Generate optimized bundle
+const bundle = romcal.createBundle();
+
+// Save bundle.json for production use
+console.log(JSON.stringify(bundle));
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+import json
+from romcal import Romcal
+
+# Data is bundled in the wheel
+romcal = Romcal(calendar="france", locale="fr")
+
+# Generate optimized bundle
+bundle = romcal.create_bundle()
+
+# Save for production use
+with open("bundle.json", "w") as f:
+    json.dump(bundle, f)
+```
+
+  </TabItem>
+  <TabItem label="Rust">
+
+```rust
+use romcal::{Romcal, get_bundled_calendar_definitions, get_bundled_resources};
+
+let romcal = Romcal::builder()
+    .calendar("france")
+    .locale("fr")
+    .calendar_definitions(get_bundled_calendar_definitions()?)
+    .resources(get_bundled_resources()?)
+    .build()?;
+
+// Generate optimized bundle
+let bundle = romcal.create_bundle()?;
+
+// Save for production use
+std::fs::write("bundle.json", serde_json::to_string(&bundle)?)?;
+```
+
+  </TabItem>
+</Tabs>
+
+## Size Comparison
+
+Real-world measurements for a French calendar with French locale:
+
+| Configuration | Gzipped Size |
+| ------------- | ------------ |
+| All data (70+ calendars, 14+ locales) | ~180 KB |
+| Tree-shaking (3 calendars, 2 locales) | ~25 KB |
+| Bundle plugin (optimized) | ~4 KB |
+
+## Best Practices
+
+1. **Development**: Import all data for convenience
+   ```typescript
+   import * as definitions from 'romcal/definitions';
+   import * as resources from 'romcal/resources';
+   ```
+
+2. **Production**: Use the [bundle plugin](/guides/bundler-plugin) for maximum optimization
+
+3. **Static sites**: Pre-generate the bundle at build time using the CLI or API
+
+4. **Server-side rendering**: Bundle size is less critical; prioritize code simplicity

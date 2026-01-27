@@ -1,0 +1,339 @@
+---
+title: Bundler Plugin
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+
+The `@romcal/unplugin` package provides a bundler plugin for **TypeScript** projects that generates optimized romcal data at build time. It supports Vite, Rollup, webpack, esbuild, Rspack, Rolldown, Farm, and Bun (powered by [unplugin](https://unplugin.unjs.io/)).
+
+## Installation
+
+```bash
+npm install @romcal/unplugin
+# or
+pnpm add @romcal/unplugin
+```
+
+## Setup
+
+Configure the plugin in your bundler:
+
+<Tabs>
+  <TabItem label="Vite">
+
+```typescript
+// vite.config.ts
+import { defineConfig } from 'vite';
+import romcal from '@romcal/unplugin/vite';
+import { generalRoman, europe, france } from 'romcal/definitions';
+import { en, fr } from 'romcal/resources';
+
+export default defineConfig({
+  plugins: [
+    romcal({
+      calendar: 'france',
+      locale: 'fr',
+      calendarDefinitions: [generalRoman, europe, france],
+      resources: [en, fr],
+    }),
+  ],
+});
+```
+
+  </TabItem>
+  <TabItem label="Rollup">
+
+```typescript
+// rollup.config.js
+import romcal from '@romcal/unplugin/rollup';
+import { generalRoman, europe, france } from 'romcal/definitions';
+import { en, fr } from 'romcal/resources';
+
+export default {
+  plugins: [
+    romcal({
+      calendar: 'france',
+      locale: 'fr',
+      calendarDefinitions: [generalRoman, europe, france],
+      resources: [en, fr],
+    }),
+  ],
+};
+```
+
+  </TabItem>
+  <TabItem label="webpack">
+
+```javascript
+// webpack.config.js
+const romcal = require('@romcal/unplugin/webpack').default;
+const { generalRoman, europe, france } = require('romcal/definitions');
+const { en, fr } = require('romcal/resources');
+
+module.exports = {
+  plugins: [
+    romcal({
+      calendar: 'france',
+      locale: 'fr',
+      calendarDefinitions: [generalRoman, europe, france],
+      resources: [en, fr],
+    }),
+  ],
+};
+```
+
+  </TabItem>
+  <TabItem label="esbuild">
+
+```typescript
+// esbuild.config.js
+import { build } from 'esbuild';
+import romcal from '@romcal/unplugin/esbuild';
+import { generalRoman, europe, france } from 'romcal/definitions';
+import { en, fr } from 'romcal/resources';
+
+build({
+  plugins: [
+    romcal({
+      calendar: 'france',
+      locale: 'fr',
+      calendarDefinitions: [generalRoman, europe, france],
+      resources: [en, fr],
+    }),
+  ],
+});
+```
+
+  </TabItem>
+  <TabItem label="Rspack">
+
+```javascript
+// rspack.config.js
+const romcal = require('@romcal/unplugin/rspack').default;
+const { generalRoman, europe, france } = require('romcal/definitions');
+const { en, fr } = require('romcal/resources');
+
+module.exports = {
+  plugins: [
+    romcal({
+      calendar: 'france',
+      locale: 'fr',
+      calendarDefinitions: [generalRoman, europe, france],
+      resources: [en, fr],
+    }),
+  ],
+};
+```
+
+  </TabItem>
+  <TabItem label="Rolldown">
+
+```typescript
+// rolldown.config.js
+import romcal from '@romcal/unplugin/rolldown';
+import { generalRoman, europe, france } from 'romcal/definitions';
+import { en, fr } from 'romcal/resources';
+
+export default {
+  plugins: [
+    romcal({
+      calendar: 'france',
+      locale: 'fr',
+      calendarDefinitions: [generalRoman, europe, france],
+      resources: [en, fr],
+    }),
+  ],
+};
+```
+
+  </TabItem>
+  <TabItem label="Farm">
+
+```typescript
+// farm.config.ts
+import { defineConfig } from '@farmfe/core';
+import romcal from '@romcal/unplugin/farm';
+import { generalRoman, europe, france } from 'romcal/definitions';
+import { en, fr } from 'romcal/resources';
+
+export default defineConfig({
+  plugins: [
+    romcal({
+      calendar: 'france',
+      locale: 'fr',
+      calendarDefinitions: [generalRoman, europe, france],
+      resources: [en, fr],
+    }),
+  ],
+});
+```
+
+  </TabItem>
+  <TabItem label="Bun">
+
+```typescript
+// build.ts
+import romcal from '@romcal/unplugin/bun';
+import { generalRoman, europe, france } from 'romcal/definitions';
+import { en, fr } from 'romcal/resources';
+
+await Bun.build({
+  entrypoints: ['./src/index.ts'],
+  outdir: './dist',
+  plugins: [
+    romcal({
+      calendar: 'france',
+      locale: 'fr',
+      calendarDefinitions: [generalRoman, europe, france],
+      resources: [en, fr],
+    }),
+  ],
+});
+```
+
+  </TabItem>
+</Tabs>
+
+## Usage
+
+Import the virtual module in your application:
+
+```typescript
+import bundleData from 'virtual:romcal';
+import { createRomcal } from 'romcal';
+
+// Create romcal instance with optimized data
+const romcal = await createRomcal(bundleData);
+
+// Generate calendars as usual
+const calendar = await romcal.generateLiturgicalCalendar(2025);
+```
+
+Or use the alternative module ID:
+
+```typescript
+import bundleData from '@romcal/bundle';
+```
+
+:::note[Virtual modules]
+The `virtual:` prefix is a bundler convention for modules that don't exist on disk but are generated at build time by plugins. Both `virtual:romcal` and `@romcal/bundle` point to the same generated data.
+:::
+
+## Configuration Options
+
+```typescript
+interface RomcalPluginOptions {
+  // Required: The calendar to use
+  calendar: string;
+
+  // Required: The locale for translations
+  locale: string;
+
+  // Calendar definitions (required)
+  calendarDefinitions: CalendarDefinition[];
+
+  // Resources/translations (required)
+  resources: Resources[];
+
+  // Optional: Move Epiphany to Sunday
+  epiphanyOnSunday?: boolean;
+
+  // Optional: Move Ascension to Sunday
+  ascensionOnSunday?: boolean;
+
+  // Optional: Move Corpus Christi to Sunday
+  corpusChristiOnSunday?: boolean;
+
+  // Optional: Easter calculation method
+  easterCalculationType?: 'gregorian' | 'julian';
+
+  // Optional: Calendar context
+  context?: 'gregorian' | 'liturgical';
+
+  // Optional: Custom module ID
+  moduleId?: string;
+}
+```
+
+:::tip
+Include all parent calendars in the hierarchy. For `france`, you need: `generalRoman`, `europe`, and `france`. See [Ordering Rules](/guides/data-loading#ordering-rules) for details.
+:::
+
+## What Gets Optimized
+
+The plugin generates a minimal bundle by filtering calendars, locales, and entities based on your configuration. See [Bundle Optimization](/guides/bundle-optimization) for details on how this works and size comparisons.
+
+## TypeScript Support
+
+The plugin includes full TypeScript support. Add type declarations:
+
+```typescript
+// src/vite-env.d.ts or src/global.d.ts
+declare module 'virtual:romcal' {
+  import type { RomcalBundle } from 'romcal';
+  const bundle: RomcalBundle;
+  export default bundle;
+}
+
+declare module '@romcal/bundle' {
+  import type { RomcalBundle } from 'romcal';
+  const bundle: RomcalBundle;
+  export default bundle;
+}
+```
+
+## Custom Module ID
+
+Change the import path with the `moduleId` option. This is useful when:
+- You need **multiple romcal configurations** in the same project (e.g., one for France, one for the USA)
+- There's a **naming conflict** with another virtual module
+- You prefer a **more explicit name** for your project
+
+```typescript
+romcal({
+  calendar: 'france',
+  locale: 'fr',
+  moduleId: 'my-romcal-data',
+  // ...
+});
+```
+
+```typescript
+// In your app
+import bundleData from 'my-romcal-data';
+```
+
+## Troubleshooting
+
+### "calendarDefinitions is required"
+
+You must provide calendar definitions to the plugin:
+
+```typescript
+import { generalRoman, europe, france } from 'romcal/definitions';
+
+romcal({
+  calendarDefinitions: [generalRoman, europe, france],
+  // ...
+});
+```
+
+### "Calendar 'xxx' not found"
+
+Ensure you've included the calendar and all its parents:
+
+```typescript
+// For 'france', you need all three:
+calendarDefinitions: [generalRoman, europe, france]
+```
+
+### "Locale 'xxx' not found"
+
+Include the locale and its fallback (usually English):
+
+```typescript
+import { en, fr } from 'romcal/resources';
+
+resources: [en, fr]
+```

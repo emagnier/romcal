@@ -1,0 +1,290 @@
+---
+title: Data Loading
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+Romcal requires two types of data to generate liturgical calendars:
+
+- **Calendar Definitions**: Rules and celebrations for each calendar (general_roman, france, etc.)
+- **Resources**: Entities (martyrology items, places, events) with their localized names and metadata
+
+Data loading varies by language and tooling.
+
+## Comparison
+
+| Platform       | Data Location      | Loading Method                          |
+| -------------- | ------------------ | --------------------------------------- |
+| **TypeScript** | Separate JS files  | Import what you need (tree-shakeable)   |
+| **Python**     | Bundled in wheel   | Automatic, nothing to configure         |
+| **Rust**       | Runtime or bundled | Load JSON or use `bundled-data` feature |
+| **CLI**        | Bundled in binary  | Automatic, nothing to configure         |
+
+## TypeScript
+
+Calendar definitions and resources are distributed as separate JavaScript files for optimal tree-shaking.
+
+### Basic Usage
+
+```typescript
+import { createRomcal } from 'romcal';
+import { generalRoman, europe, france } from 'romcal/definitions';
+import { en, fr } from 'romcal/resources';
+
+const romcal = await createRomcal({
+  calendar: 'france',
+  locale: 'fr',
+  calendarDefinitions: [generalRoman, europe, france],
+  resources: [en, fr],
+});
+```
+
+### Import Strategies
+
+**Import all data** (larger bundle, simpler code):
+
+```typescript
+import * as definitions from 'romcal/definitions';
+import * as resources from 'romcal/resources';
+
+const romcal = await createRomcal({
+  calendar: 'france',
+  locale: 'fr',
+  calendarDefinitions: Object.values(definitions),
+  resources: Object.values(resources),
+});
+```
+
+**Import only what you need** (smaller bundle):
+
+```typescript
+// Only import the calendar hierarchy you need
+import { generalRoman, europe, france } from 'romcal/definitions';
+// Only import your locale and fallback
+import { en, fr } from 'romcal/resources';
+```
+
+:::tip[Bundle Optimization]
+For production apps, use the `@romcal/unplugin` plugin to automatically optimize your bundle.
+See [Bundle Optimization](/guides/bundle-optimization) for details.
+:::
+
+## Python
+
+Data is bundled directly into the compiled wheel. No configuration needed.
+
+```python
+from romcal import Romcal
+
+# Data is automatically available
+romcal = Romcal(calendar="france", locale="fr")
+calendar = romcal.liturgical_calendar(2025)
+```
+
+### Accessing Bundled Data
+
+You can also access the raw bundled data if needed:
+
+```python
+from romcal import (
+    get_bundled_calendar_definitions,
+    get_bundled_resources,
+)
+
+definitions = get_bundled_calendar_definitions()
+resources = get_bundled_resources()
+```
+
+## Rust
+
+By default, the `romcal` crate does not include embedded data. You have two options:
+
+### Option 1: Runtime Loading (Default)
+
+Load JSON files at runtime from the filesystem or other sources:
+
+```rust
+use romcal::{Romcal, CalendarDefinition, Resources};
+use std::fs;
+
+// Load calendar definitions
+let france_json = fs::read_to_string("data/definitions/france/france.json")?;
+let france: CalendarDefinition = serde_json::from_str(&france_json)?;
+
+// Load resources
+let fr_json = fs::read_to_string("data/resources/fr/meta.json")?;
+let fr: Resources = serde_json::from_str(&fr_json)?;
+
+let romcal = Romcal::builder()
+    .calendar("france")
+    .locale("fr")
+    .calendar_definitions(vec![france])
+    .resources(vec![fr])
+    .build()?;
+```
+
+### Option 2: Bundled Data (Feature Flag)
+
+Compile with the `bundled-data` feature to embed all data in the binary:
+
+```toml
+# Cargo.toml
+[dependencies]
+romcal = { version = "4", features = ["bundled-data"] }
+```
+
+```rust
+use romcal::Romcal;
+
+// Data is automatically available
+let romcal = Romcal::new("france", "fr")?;
+let calendar = romcal.liturgical_calendar(2025)?;
+```
+
+:::note
+The `bundled-data` feature increases binary size by approximately 2 MB but simplifies deployment.
+:::
+
+## CLI
+
+The CLI binary includes all data. No configuration needed.
+
+```bash
+# Just works
+romcal calendar 2025 --calendar france --locale fr
+```
+
+## Custom Calendars
+
+All platforms support adding custom calendar definitions at runtime:
+
+<Tabs syncKey="lang">
+  <TabItem label="TypeScript">
+
+```typescript
+import { createRomcal } from 'romcal';
+import * as definitions from 'romcal/definitions';
+import { en, fr } from 'romcal/resources';
+
+// All calendar definitions provided by romcal
+const builtInDefinitions = Object.values(definitions);
+
+const myParish = {
+  id: 'my_parish',
+  metadata: { jurisdiction: 'ecclesiastical', type: 'parish' },
+  parent_calendar_ids: ['europe', 'france'],
+  days_definitions: {
+    // Custom celebrations...
+  },
+};
+
+const romcal = await createRomcal({
+  calendar: 'my_parish',
+  locale: 'fr',
+  calendarDefinitions: [...builtInDefinitions, myParish],
+  resources: [en, fr],
+});
+```
+
+:::tip[Bundle size]
+Using `Object.values(definitions)` imports all calendar definitions, which is convenient but disables tree-shaking. For smaller production bundles, use [@romcal/unplugin](/guides/bundler-plugin).
+:::
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+import json
+from romcal import (
+    Romcal,
+    get_bundled_calendar_definitions,
+    get_bundled_resources,
+)
+
+# All calendar definitions provided by romcal (Pydantic models)
+built_in_definitions = get_bundled_calendar_definitions()
+built_in_resources = get_bundled_resources()
+
+my_parish = {
+    "id": "my_parish",
+    "metadata": {"jurisdiction": "ecclesiastical", "type": "parish"},
+    "parent_calendar_ids": ["europe", "france"],
+    "days_definitions": {
+        # Custom celebrations...
+    },
+}
+
+# Serialize Pydantic models to dicts for JSON
+definitions_dicts = [d.model_dump(by_alias=True, exclude_none=True) for d in built_in_definitions]
+resources_dicts = [r.model_dump(by_alias=True, exclude_none=True) for r in built_in_resources]
+
+romcal = Romcal(
+    calendar="my_parish",
+    locale="fr",
+    calendar_definitions_json=json.dumps([*definitions_dicts, my_parish]),
+    resources_json=json.dumps(resources_dicts),
+)
+```
+
+  </TabItem>
+  <TabItem label="Rust">
+
+```rust
+use romcal::{Romcal, CalendarDefinition, get_bundled_calendar_definitions, get_bundled_resources};
+
+// All calendar definitions provided by romcal
+let mut definitions = get_bundled_calendar_definitions()?;
+
+let my_parish = CalendarDefinition {
+    id: "my_parish".to_string(),
+    parent_calendar_ids: vec!["europe".to_string(), "france".to_string()],
+    // ...
+};
+definitions.push(my_parish);
+
+let romcal = Romcal::builder()
+    .calendar("my_parish")
+    .locale("fr")
+    .calendar_definitions(definitions)
+    .resources(get_bundled_resources()?)
+    .build()?;
+```
+
+  </TabItem>
+</Tabs>
+
+## Ordering Rules
+
+#### `parent_calendar_ids`
+
+Order matters. List parent calendars from most specific to most general:
+
+```typescript
+const myParish = {
+  parent_calendar_ids: ['europe', 'france'], // Correct: europe -> france
+};
+```
+
+The `general_roman` ID can be omitted. Romcal adds it automatically as the root calendar.
+
+#### `calendarDefinitions`
+
+Order doesn't matter. Romcal resolves the hierarchy based on each calendar's `parent_calendar_ids`:
+
+```typescript
+// These are equivalent
+calendarDefinitions: [generalRoman, europe, france];
+calendarDefinitions: [france, generalRoman, europe];
+```
+
+#### `resources`
+
+Order doesn't matter. Romcal automatically sorts resources using BCP 47 locale matching rules, with `en` as the final fallback:
+
+```typescript
+// These are equivalent
+resources: [en, fr];
+resources: [fr, en];
+```
+
+For example, with `locale: 'fr-CA'`, romcal looks up translations in order: `fr-CA` -> `fr` -> `en`.
