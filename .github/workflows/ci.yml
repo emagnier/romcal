@@ -291,7 +291,7 @@ jobs:
 
       - name: Build
         working-directory: bindings/typescript
-        run: pnpm build:vite
+        run: pnpm build:vite && pnpm generate-data
 
       - name: Test (Node.js + Browser)
         working-directory: bindings/typescript
