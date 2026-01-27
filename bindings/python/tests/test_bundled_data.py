@@ -4,8 +4,6 @@ These tests verify that the Python wheel includes embedded calendar definitions
 and resources when compiled with the `bundled-data` feature.
 """
 
-import json
-
 import pytest
 
 from romcal import (
@@ -37,22 +35,6 @@ def bundled_resources() -> list[Resources]:
     if not has_bundled_data():
         pytest.skip("Bundled data not available")
     return get_bundled_resources()
-
-
-@pytest.fixture(scope="module")
-def bundled_definitions_json(bundled_definitions: list[CalendarDefinition]) -> str:
-    """Convert bundled definitions to JSON string."""
-    return json.dumps(
-        [d.model_dump(mode="json", by_alias=True, exclude_none=True) for d in bundled_definitions]
-    )
-
-
-@pytest.fixture(scope="module")
-def bundled_resources_json(bundled_resources: list[Resources]) -> str:
-    """Convert bundled resources to JSON string."""
-    return json.dumps(
-        [r.model_dump(mode="json", by_alias=True, exclude_none=True) for r in bundled_resources]
-    )
 
 
 # =============================================================================
@@ -224,14 +206,14 @@ class TestRomcalWithBundledData:
     """Tests for creating Romcal instances with bundled data."""
 
     def test_create_romcal_with_bundled_data(
-        self, bundled_definitions_json: str, bundled_resources_json: str
+        self, bundled_definitions: list[CalendarDefinition], bundled_resources: list[Resources]
     ) -> None:
         """Should create Romcal instance using bundled data."""
         romcal = Romcal(
             calendar="general_roman",
             locale="en",
-            calendar_definitions_json=bundled_definitions_json,
-            resources_json=bundled_resources_json,
+            calendar_definitions=bundled_definitions,
+            resources=bundled_resources,
         )
 
         assert romcal.calendar == "general_roman"
@@ -252,8 +234,8 @@ class TestRomcalWithBundledData:
     )
     def test_create_romcal_with_various_calendar_locale_combinations(
         self,
-        bundled_definitions_json: str,
-        bundled_resources_json: str,
+        bundled_definitions: list[CalendarDefinition],
+        bundled_resources: list[Resources],
         calendar: str,
         locale: str,
     ) -> None:
@@ -261,8 +243,8 @@ class TestRomcalWithBundledData:
         romcal = Romcal(
             calendar=calendar,
             locale=locale,
-            calendar_definitions_json=bundled_definitions_json,
-            resources_json=bundled_resources_json,
+            calendar_definitions=bundled_definitions,
+            resources=bundled_resources,
         )
 
         assert romcal.calendar == calendar
@@ -282,14 +264,14 @@ class TestCalendarGenerationWithBundledData:
     """Tests for calendar generation using bundled data."""
 
     def test_generate_liturgical_calendar(
-        self, bundled_definitions_json: str, bundled_resources_json: str
+        self, bundled_definitions: list[CalendarDefinition], bundled_resources: list[Resources]
     ) -> None:
         """Should generate liturgical calendar using bundled data."""
         romcal = Romcal(
             calendar="france",
             locale="fr",
-            calendar_definitions_json=bundled_definitions_json,
-            resources_json=bundled_resources_json,
+            calendar_definitions=bundled_definitions,
+            resources=bundled_resources,
         )
 
         calendar = romcal.liturgical_calendar(2026)
@@ -304,14 +286,14 @@ class TestCalendarGenerationWithBundledData:
         assert easter[0].fullname is not None
 
     def test_generate_mass_calendar(
-        self, bundled_definitions_json: str, bundled_resources_json: str
+        self, bundled_definitions: list[CalendarDefinition], bundled_resources: list[Resources]
     ) -> None:
         """Should generate mass calendar using bundled data."""
         romcal = Romcal(
             calendar="general_roman",
             locale="en",
-            calendar_definitions_json=bundled_definitions_json,
-            resources_json=bundled_resources_json,
+            calendar_definitions=bundled_definitions,
+            resources=bundled_resources,
         )
 
         mass_calendar = romcal.mass_calendar(2026)
@@ -325,14 +307,14 @@ class TestCalendarGenerationWithBundledData:
         assert len(christmas) >= 3  # Night, Dawn, Day masses
 
     def test_get_date_with_bundled_data(
-        self, bundled_definitions_json: str, bundled_resources_json: str
+        self, bundled_definitions: list[CalendarDefinition], bundled_resources: list[Resources]
     ) -> None:
         """Should get specific celebration dates using bundled data."""
         romcal = Romcal(
             calendar="general_roman",
             locale="en",
-            calendar_definitions_json=bundled_definitions_json,
-            resources_json=bundled_resources_json,
+            calendar_definitions=bundled_definitions,
+            resources=bundled_resources,
         )
 
         # Test well-known dates (using actual celebration IDs)
@@ -347,14 +329,14 @@ class TestCalendarGenerationWithBundledData:
         assert pentecost_2026 == "2026-05-24"
 
     def test_get_date_error_for_invalid_celebration(
-        self, bundled_definitions_json: str, bundled_resources_json: str
+        self, bundled_definitions: list[CalendarDefinition], bundled_resources: list[Resources]
     ) -> None:
         """Should raise error for invalid celebration ID."""
         romcal = Romcal(
             calendar="general_roman",
             locale="en",
-            calendar_definitions_json=bundled_definitions_json,
-            resources_json=bundled_resources_json,
+            calendar_definitions=bundled_definitions,
+            resources=bundled_resources,
         )
 
         with pytest.raises(RomcalError) as exc_info:
@@ -363,15 +345,15 @@ class TestCalendarGenerationWithBundledData:
         assert "nonexistent_celebration" in str(exc_info.value)
 
     def test_localized_names_with_bundled_data(
-        self, bundled_definitions_json: str, bundled_resources_json: str
+        self, bundled_definitions: list[CalendarDefinition], bundled_resources: list[Resources]
     ) -> None:
         """Should have properly localized names."""
         # French
         romcal_fr = Romcal(
             calendar="france",
             locale="fr",
-            calendar_definitions_json=bundled_definitions_json,
-            resources_json=bundled_resources_json,
+            calendar_definitions=bundled_definitions,
+            resources=bundled_resources,
         )
         cal_fr = romcal_fr.liturgical_calendar(2026)
         easter_fr = cal_fr.get("2026-04-05")
@@ -382,8 +364,8 @@ class TestCalendarGenerationWithBundledData:
         romcal_en = Romcal(
             calendar="general_roman",
             locale="en",
-            calendar_definitions_json=bundled_definitions_json,
-            resources_json=bundled_resources_json,
+            calendar_definitions=bundled_definitions,
+            resources=bundled_resources,
         )
         cal_en = romcal_en.liturgical_calendar(2026)
         easter_en = cal_en.get("2026-04-05")
@@ -394,8 +376,8 @@ class TestCalendarGenerationWithBundledData:
         romcal_la = Romcal(
             calendar="general_roman",
             locale="la",
-            calendar_definitions_json=bundled_definitions_json,
-            resources_json=bundled_resources_json,
+            calendar_definitions=bundled_definitions,
+            resources=bundled_resources,
         )
         cal_la = romcal_la.liturgical_calendar(2026)
         easter_la = cal_la.get("2026-04-05")
@@ -412,44 +394,44 @@ class TestBundledDataErrors:
     """Tests for error handling with bundled data."""
 
     def test_unknown_calendar_raises_error(
-        self, bundled_definitions_json: str, bundled_resources_json: str
+        self, bundled_definitions: list[CalendarDefinition], bundled_resources: list[Resources]
     ) -> None:
         """Unknown calendar should raise an explicit error."""
         with pytest.raises(RomcalError) as exc_info:
             Romcal(
                 calendar="nonexistent_calendar",
                 locale="en",
-                calendar_definitions_json=bundled_definitions_json,
-                resources_json=bundled_resources_json,
+                calendar_definitions=bundled_definitions,
+                resources=bundled_resources,
             )
 
         # Verify error message mentions the calendar
         assert "nonexistent_calendar" in str(exc_info.value)
 
     def test_unknown_locale_raises_error(
-        self, bundled_definitions_json: str, bundled_resources_json: str
+        self, bundled_definitions: list[CalendarDefinition], bundled_resources: list[Resources]
     ) -> None:
         """Unknown locale should raise an explicit error."""
         with pytest.raises(RomcalError) as exc_info:
             Romcal(
                 calendar="general_roman",
                 locale="nonexistent_locale",
-                calendar_definitions_json=bundled_definitions_json,
-                resources_json=bundled_resources_json,
+                calendar_definitions=bundled_definitions,
+                resources=bundled_resources,
             )
 
         # Verify error message mentions the locale
         assert "nonexistent_locale" in str(exc_info.value)
 
     def test_invalid_year_with_bundled_data(
-        self, bundled_definitions_json: str, bundled_resources_json: str
+        self, bundled_definitions: list[CalendarDefinition], bundled_resources: list[Resources]
     ) -> None:
         """Should raise error for invalid year."""
         romcal = Romcal(
             calendar="general_roman",
             locale="en",
-            calendar_definitions_json=bundled_definitions_json,
-            resources_json=bundled_resources_json,
+            calendar_definitions=bundled_definitions,
+            resources=bundled_resources,
         )
 
         with pytest.raises(RomcalError) as exc_info:

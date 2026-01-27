@@ -62,21 +62,40 @@ romcal2 = Romcal(
 
 ### Configuration Options
 
-| Option                      | Type                    | Default           | Description                                             |
-| --------------------------- | ----------------------- | ----------------- | ------------------------------------------------------- |
-| `calendar`                  | `str`                   | `"general_roman"` | Calendar ID (e.g., `"france"`, `"united_states"`)       |
-| `locale`                    | `str`                   | `"en"`            | Locale code (e.g., `"fr"`, `"es"`)                      |
-| `context`                   | `CalendarContext`       | `GREGORIAN`       | `GREGORIAN` (Jan-Dec) or `LITURGICAL` (Advent-Advent)   |
-| `epiphany_on_sunday`        | `bool`                  | `False`           | Celebrate Epiphany on Sunday (Jan 2-8) instead of Jan 6 |
-| `ascension_on_sunday`       | `bool`                  | `False`           | Celebrate Ascension on Sunday instead of Thursday       |
-| `corpus_christi_on_sunday`  | `bool`                  | `True`            | Celebrate Corpus Christi on Sunday instead of Thursday  |
-| `easter_calculation_type`   | `EasterCalculationType` | `GREGORIAN`       | `GREGORIAN` or `JULIAN` Easter calculation              |
-| `calendar_definitions_json` | `str`                   | `None`            | JSON string of calendar definitions                     |
-| `resources_json`            | `str`                   | `None`            | JSON string of locale resources                         |
+| Option                     | Type                    | Default           | Description                                             |
+| -------------------------- | ----------------------- | ----------------- | ------------------------------------------------------- |
+| `calendar`                 | `str`                   | `"general_roman"` | Calendar ID (e.g., `"france"`, `"united_states"`)       |
+| `locale`                   | `str`                   | `"en"`            | Locale code (e.g., `"fr"`, `"es"`)                      |
+| `context`                  | `CalendarContext`       | `GREGORIAN`       | `GREGORIAN` (Jan-Dec) or `LITURGICAL` (Advent-Advent)   |
+| `epiphany_on_sunday`       | `bool`                  | `False`           | Celebrate Epiphany on Sunday (Jan 2-8) instead of Jan 6 |
+| `ascension_on_sunday`      | `bool`                  | `False`           | Celebrate Ascension on Sunday instead of Thursday       |
+| `corpus_christi_on_sunday` | `bool`                  | `True`            | Celebrate Corpus Christi on Sunday instead of Thursday  |
+| `easter_calculation_type`  | `EasterCalculationType` | `GREGORIAN`       | `GREGORIAN` or `JULIAN` Easter calculation              |
+| `calendar_definitions`     | `list`                  | `None`            | List of calendar definitions (Pydantic models or dicts) |
+| `resources`                | `list`                  | `None`            | List of locale resources (Pydantic models or dicts)     |
 
 ### Loading Calendar Data
 
-Without loading data, only the Proper of Time is available. To include the General Roman Calendar, particular calendars, and localized names, load calendar definitions and resources:
+Without loading data, only the Proper of Time is available. To include the General Roman Calendar, particular calendars, and localized names, you can either use bundled data or load from files.
+
+**Using bundled data (recommended):**
+
+```python
+from romcal import (
+    Romcal,
+    get_bundled_calendar_definitions,
+    get_bundled_resources,
+)
+
+romcal = Romcal(
+    calendar="france",
+    locale="fr",
+    calendar_definitions=get_bundled_calendar_definitions(),
+    resources=get_bundled_resources(),
+)
+```
+
+**Loading from files:**
 
 ```python
 import json
@@ -125,12 +144,12 @@ def load_resources():
 
     return resources
 
-# Create instance with loaded data
+# Create instance with loaded data (dicts are accepted)
 romcal = Romcal(
     calendar="france",
     locale="fr",
-    calendar_definitions_json=json.dumps(load_calendar_definitions()),
-    resources_json=json.dumps(load_resources()),
+    calendar_definitions=load_calendar_definitions(),
+    resources=load_resources(),
 )
 ```
 

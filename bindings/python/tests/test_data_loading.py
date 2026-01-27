@@ -29,13 +29,15 @@ class TestFrenchCalendarWithLoadedData:
     """Tests for French calendar with loaded data."""
 
     @pytest.fixture(autouse=True)
-    def setup(self, calendar_definitions_json: str, resources_json: str) -> None:
+    def setup(
+        self, calendar_definitions: list[CalendarDefinition], resources: list[Resources]
+    ) -> None:
         """Set up test fixtures."""
         self.romcal = Romcal(
             calendar="france",
             locale="fr",
-            calendar_definitions_json=calendar_definitions_json,
-            resources_json=resources_json,
+            calendar_definitions=calendar_definitions,
+            resources=resources,
         )
 
     def test_should_generate_liturgical_calendar_with_french_locale(self) -> None:
@@ -78,13 +80,15 @@ class TestEnglishCalendarWithLoadedData:
     """Tests for English calendar with loaded data."""
 
     @pytest.fixture(autouse=True)
-    def setup(self, calendar_definitions_json: str, resources_json: str) -> None:
+    def setup(
+        self, calendar_definitions: list[CalendarDefinition], resources: list[Resources]
+    ) -> None:
         """Set up test fixtures."""
         self.romcal = Romcal(
             calendar="general_roman",
             locale="en",
-            calendar_definitions_json=calendar_definitions_json,
-            resources_json=resources_json,
+            calendar_definitions=calendar_definitions,
+            resources=resources,
         )
 
     def test_should_generate_liturgical_calendar_with_english_locale(self) -> None:

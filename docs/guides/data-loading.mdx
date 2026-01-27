@@ -194,14 +194,13 @@ Using `Object.values(definitions)` imports all calendar definitions, which is co
   <TabItem label="Python">
 
 ```python
-import json
 from romcal import (
     Romcal,
     get_bundled_calendar_definitions,
     get_bundled_resources,
 )
 
-# All calendar definitions provided by romcal (Pydantic models)
+# All calendar definitions provided by romcal
 built_in_definitions = get_bundled_calendar_definitions()
 built_in_resources = get_bundled_resources()
 
@@ -214,15 +213,11 @@ my_parish = {
     },
 }
 
-# Serialize Pydantic models to dicts for JSON
-definitions_dicts = [d.model_dump(by_alias=True, exclude_none=True) for d in built_in_definitions]
-resources_dicts = [r.model_dump(by_alias=True, exclude_none=True) for r in built_in_resources]
-
 romcal = Romcal(
     calendar="my_parish",
     locale="fr",
-    calendar_definitions_json=json.dumps([*definitions_dicts, my_parish]),
-    resources_json=json.dumps(resources_dicts),
+    calendar_definitions=[*built_in_definitions, my_parish],
+    resources=built_in_resources,
 )
 ```
 

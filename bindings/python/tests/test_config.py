@@ -2,7 +2,14 @@
 
 import pytest
 
-from romcal import CalendarContext, EasterCalculationType, Romcal
+from romcal import (
+    CalendarContext,
+    EasterCalculationType,
+    Romcal,
+    get_bundled_calendar_definitions,
+    get_bundled_resources,
+    has_bundled_data,
+)
 
 
 class TestRomcalConfiguration:
@@ -80,3 +87,53 @@ class TestRomcalConfiguration:
         )
         with pytest.raises(core.RomcalError, match="Invalid context"):
             core.Romcal(config)
+
+
+@pytest.mark.skipif(not has_bundled_data(), reason="Bundled data not available")
+class TestDataParameterTypes:
+    """Tests for calendar_definitions and resources parameter types."""
+
+    def test_should_accept_raw_dicts_for_data_parameters(self) -> None:
+        """Should accept raw dicts instead of Pydantic models."""
+        # Get bundled data and convert to dicts
+        definitions = get_bundled_calendar_definitions()
+        resources = get_bundled_resources()
+
+        definitions_as_dicts = [
+            d.model_dump(mode="json", by_alias=True, exclude_none=True) for d in definitions
+        ]
+        resources_as_dicts = [
+            r.model_dump(mode="json", by_alias=True, exclude_none=True) for r in resources
+        ]
+
+        romcal = Romcal(
+            calendar="general_roman",
+            locale="en",
+            calendar_definitions=definitions_as_dicts,
+            resources=resources_as_dicts,
+        )
+
+        calendar = romcal.liturgical_calendar(2026)
+        assert len(calendar) > 300
+
+    def test_should_accept_mixed_pydantic_models_and_dicts(self) -> None:
+        """Should accept a mix of Pydantic models and dicts in the same list."""
+        definitions = get_bundled_calendar_definitions()
+        resources = get_bundled_resources()
+
+        # Mix: first item as dict, rest as Pydantic models
+        first_def_as_dict = definitions[0].model_dump(mode="json", by_alias=True, exclude_none=True)
+        mixed_definitions = [first_def_as_dict, *definitions[1:]]
+
+        first_res_as_dict = resources[0].model_dump(mode="json", by_alias=True, exclude_none=True)
+        mixed_resources = [first_res_as_dict, *resources[1:]]
+
+        romcal = Romcal(
+            calendar="general_roman",
+            locale="en",
+            calendar_definitions=mixed_definitions,
+            resources=mixed_resources,
+        )
+
+        calendar = romcal.liturgical_calendar(2026)
+        assert len(calendar) > 300

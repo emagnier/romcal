@@ -28,6 +28,8 @@ from __future__ import annotations
 import json
 from typing import TYPE_CHECKING
 
+from pydantic import BaseModel
+
 # Import types from generated Pydantic models
 from .types import (
     CalendarContext,
@@ -202,6 +204,19 @@ def _get_core() -> _core:
     return _uniffi.romcal_uniffi
 
 
+def _serialize_to_json(items: list[BaseModel | dict] | None) -> str | None:
+    """Serialize a list of Pydantic models or dicts to JSON string."""
+    if items is None:
+        return None
+    serialized = [
+        item.model_dump(mode="json", by_alias=True, exclude_none=True)
+        if isinstance(item, BaseModel)
+        else item
+        for item in items
+    ]
+    return json.dumps(serialized)
+
+
 class Romcal:
     """Liturgical calendar for the Roman Rite of the Catholic Church.
 
@@ -223,11 +238,25 @@ class Romcal:
             Defaults to EasterCalculationType.gregorian.
         context: Calendar context.
             Defaults to CalendarContext.gregorian.
+        calendar_definitions: List of calendar definitions (Pydantic models or dicts).
+            Use get_bundled_calendar_definitions() to get built-in definitions.
+        resources: List of locale resources (Pydantic models or dicts).
+            Use get_bundled_resources() to get built-in resources.
 
     Example:
         >>> r = Romcal(calendar="france", locale="fr")
         >>> calendar = r.liturgical_calendar(2025)
         >>> print(len(calendar))  # Number of days in the liturgical year
+
+    Example with custom calendar:
+        >>> from romcal import Romcal, get_bundled_calendar_definitions, get_bundled_resources
+        >>> my_parish = {"id": "my_parish", "parent_calendar_ids": ["france"], ...}
+        >>> r = Romcal(
+        ...     calendar="my_parish",
+        ...     locale="fr",
+        ...     calendar_definitions=[*get_bundled_calendar_definitions(), my_parish],
+        ...     resources=get_bundled_resources(),
+        ... )
     """
 
     def __init__(
@@ -240,8 +269,8 @@ class Romcal:
         corpus_christi_on_sunday: bool = True,
         easter_calculation_type: EasterCalculationType = EasterCalculationType.gregorian,
         context: CalendarContext = CalendarContext.gregorian,
-        calendar_definitions_json: str | None = None,
-        resources_json: str | None = None,
+        calendar_definitions: list[CalendarDefinition | dict] | None = None,
+        resources: list[Resources | dict] | None = None,
     ) -> None:
         core = _get_core()
         config = core.RomcalConfig(
@@ -252,8 +281,8 @@ class Romcal:
             corpus_christi_on_sunday=corpus_christi_on_sunday,
             easter_calculation_type=easter_calculation_type.value,
             context=context.value,
-            calendar_definitions_json=calendar_definitions_json,
-            resources_json=resources_json,
+            calendar_definitions_json=_serialize_to_json(calendar_definitions),
+            resources_json=_serialize_to_json(resources),
         )
         try:
             self._inner = core.Romcal(config)

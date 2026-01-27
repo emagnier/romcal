@@ -107,8 +107,8 @@ def main() -> None:
     romcal = Romcal(
         calendar="france",
         locale="fr",
-        calendar_definitions_json=json.dumps(calendar_definitions),
-        resources_json=json.dumps(resources),
+        calendar_definitions=calendar_definitions,
+        resources=resources,
     )
     print(f"  Calendar: {romcal.calendar}")
     print(f"  Locale: {romcal.locale}")

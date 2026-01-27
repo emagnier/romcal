@@ -67,19 +67,3 @@ def calendar_definitions() -> list[CalendarDefinition]:
 def resources() -> list[Resources]:
     """Fixture to load all resources."""
     return load_all_resources()
-
-
-@pytest.fixture(scope="session")
-def calendar_definitions_json(calendar_definitions: list[CalendarDefinition]) -> str:
-    """Fixture to get calendar definitions as JSON string."""
-    return json.dumps(
-        [d.model_dump(mode="json", by_alias=True, exclude_none=True) for d in calendar_definitions]
-    )
-
-
-@pytest.fixture(scope="session")
-def resources_json(resources: list[Resources]) -> str:
-    """Fixture to get resources as JSON string."""
-    return json.dumps(
-        [r.model_dump(mode="json", by_alias=True, exclude_none=True) for r in resources]
-    )

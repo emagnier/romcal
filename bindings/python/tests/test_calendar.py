@@ -2,7 +2,7 @@
 
 import pytest
 
-from romcal import CalendarContext, Romcal, RomcalError
+from romcal import CalendarContext, CalendarDefinition, Resources, Romcal, RomcalError
 from romcal.types import MassTime, Precedence, Rank, Season
 
 
@@ -10,13 +10,15 @@ class TestGregorianYearCalendar:
     """Tests for Gregorian year calendar (default context)."""
 
     @pytest.fixture(autouse=True)
-    def setup(self, calendar_definitions_json: str, resources_json: str) -> None:
+    def setup(
+        self, calendar_definitions: list[CalendarDefinition], resources: list[Resources]
+    ) -> None:
         """Set up test fixtures."""
         self.romcal = Romcal(
             calendar="general_roman",
             locale="en",
-            calendar_definitions_json=calendar_definitions_json,
-            resources_json=resources_json,
+            calendar_definitions=calendar_definitions,
+            resources=resources,
         )
         self.calendar = self.romcal.liturgical_calendar(2026)
 
@@ -70,14 +72,16 @@ class TestLiturgicalYearCalendar:
     """Tests for liturgical year calendar (LITURGICAL context)."""
 
     @pytest.fixture(autouse=True)
-    def setup(self, calendar_definitions_json: str, resources_json: str) -> None:
+    def setup(
+        self, calendar_definitions: list[CalendarDefinition], resources: list[Resources]
+    ) -> None:
         """Set up test fixtures."""
         self.romcal = Romcal(
             calendar="general_roman",
             locale="en",
             context=CalendarContext.liturgical,
-            calendar_definitions_json=calendar_definitions_json,
-            resources_json=resources_json,
+            calendar_definitions=calendar_definitions,
+            resources=resources,
         )
         self.calendar = self.romcal.liturgical_calendar(2026)
 
@@ -109,13 +113,15 @@ class TestMassCalendarGregorianYear:
     """Tests for mass calendar (Gregorian year context)."""
 
     @pytest.fixture(autouse=True)
-    def setup(self, calendar_definitions_json: str, resources_json: str) -> None:
+    def setup(
+        self, calendar_definitions: list[CalendarDefinition], resources: list[Resources]
+    ) -> None:
         """Set up test fixtures."""
         self.romcal = Romcal(
             calendar="general_roman",
             locale="en",
-            calendar_definitions_json=calendar_definitions_json,
-            resources_json=resources_json,
+            calendar_definitions=calendar_definitions,
+            resources=resources,
         )
         self.mass_calendar = self.romcal.mass_calendar(2026)
 
@@ -176,14 +182,16 @@ class TestMassCalendarLiturgicalYear:
     """Tests for mass calendar (Liturgical year context)."""
 
     @pytest.fixture(autouse=True)
-    def setup(self, calendar_definitions_json: str, resources_json: str) -> None:
+    def setup(
+        self, calendar_definitions: list[CalendarDefinition], resources: list[Resources]
+    ) -> None:
         """Set up test fixtures."""
         self.romcal = Romcal(
             calendar="general_roman",
             locale="en",
             context=CalendarContext.liturgical,
-            calendar_definitions_json=calendar_definitions_json,
-            resources_json=resources_json,
+            calendar_definitions=calendar_definitions,
+            resources=resources,
         )
         self.mass_calendar = self.romcal.mass_calendar(2026)
 
@@ -203,14 +211,14 @@ class TestFrenchCalendar:
     """Tests for French calendar."""
 
     def test_should_generate_french_locale_calendar(
-        self, calendar_definitions_json: str, resources_json: str
+        self, calendar_definitions: list[CalendarDefinition], resources: list[Resources]
     ) -> None:
         """Should generate French locale calendar."""
         romcal = Romcal(
             calendar="france",
             locale="fr",
-            calendar_definitions_json=calendar_definitions_json,
-            resources_json=resources_json,
+            calendar_definitions=calendar_definitions,
+            resources=resources,
         )
         calendar = romcal.liturgical_calendar(2026)
 
