@@ -5,8 +5,8 @@ import { generateBundle } from './bundle.js';
 const VIRTUAL_MODULE_PREFIX = '\0romcal:';
 const DEFAULT_MODULE_ID = 'virtual:romcal';
 
-export const unplugin = createUnplugin<RomcalPluginOptions | undefined>((options = {}) => {
-  const moduleId = options.moduleId ?? DEFAULT_MODULE_ID;
+export const unplugin = createUnplugin<RomcalPluginOptions>((options) => {
+  const moduleId = options?.moduleId ?? DEFAULT_MODULE_ID;
 
   // Cache the optimized bundle (avoid recalculating on each HMR)
   let cachedBundle: string | null = null;

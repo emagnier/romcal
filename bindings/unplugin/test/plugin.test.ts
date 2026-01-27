@@ -4,13 +4,40 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import romcalPlugin from '../src/vite.js';
 import { generateBundle } from '../src/bundle.js';
+import type { RomcalPluginOptions } from '../src/types.js';
+
+// Import calendar definitions explicitly
+import { france } from 'romcal/definitions/france';
+import { europe } from 'romcal/definitions/europe';
+import { generalRoman } from 'romcal/definitions/general_roman';
+import { unitedStates } from 'romcal/definitions/united_states';
+import { americas } from 'romcal/definitions/americas';
+import { germany } from 'romcal/definitions/germany';
+
+// Import resources explicitly
+import { fr } from 'romcal/resources/fr';
+import { en } from 'romcal/resources/en';
+import { de } from 'romcal/resources/de';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-async function buildWithPlugin(
-  pluginOptions: Parameters<typeof romcalPlugin>[0] = {},
-  entry?: string
-): Promise<string> {
+// Default options for France/fr tests
+const franceOptions: RomcalPluginOptions = {
+  calendar: 'france',
+  locale: 'fr',
+  calendarDefinitions: [france, europe, generalRoman],
+  resources: [fr, en],
+};
+
+// Default options for general_roman/en tests
+const defaultOptions: RomcalPluginOptions = {
+  calendar: 'general_roman',
+  locale: 'en',
+  calendarDefinitions: [generalRoman],
+  resources: [en],
+};
+
+async function buildWithPlugin(pluginOptions: RomcalPluginOptions, entry?: string): Promise<string> {
   const config: InlineConfig = {
     root: join(__dirname, 'fixtures'),
     configFile: false,
@@ -48,10 +75,7 @@ async function buildWithPlugin(
 describe('@romcal/unplugin', () => {
   describe('virtual module resolution', () => {
     it('should resolve virtual:romcal module', async () => {
-      const code = await buildWithPlugin({
-        calendar: 'france',
-        locale: 'fr',
-      });
+      const code = await buildWithPlugin(franceOptions);
 
       expect(code).toContain('france');
       expect(code).toContain('fr');
@@ -60,10 +84,7 @@ describe('@romcal/unplugin', () => {
 
   describe('bundle content', () => {
     it('should include calendar and locale in bundle', async () => {
-      const code = await buildWithPlugin({
-        calendar: 'france',
-        locale: 'fr',
-      });
+      const code = await buildWithPlugin(franceOptions);
 
       // Minified code uses unquoted property names
       expect(code).toContain('calendar: "france"');
@@ -71,20 +92,14 @@ describe('@romcal/unplugin', () => {
     });
 
     it('should include calendar definitions', async () => {
-      const code = await buildWithPlugin({
-        calendar: 'france',
-        locale: 'fr',
-      });
+      const code = await buildWithPlugin(franceOptions);
 
       expect(code).toContain('calendar_definitions');
       expect(code).toContain('general_roman');
     });
 
     it('should include resources', async () => {
-      const code = await buildWithPlugin({
-        calendar: 'france',
-        locale: 'fr',
-      });
+      const code = await buildWithPlugin(franceOptions);
 
       expect(code).toContain('resources');
       expect(code).toContain('entities');
@@ -93,7 +108,7 @@ describe('@romcal/unplugin', () => {
 
   describe('default configuration', () => {
     it('should use general_roman and en by default', async () => {
-      const code = await buildWithPlugin();
+      const code = await buildWithPlugin(defaultOptions);
 
       // Minified code uses unquoted property names
       expect(code).toContain('calendar: "general_roman"');
@@ -106,6 +121,8 @@ describe('@romcal/unplugin', () => {
       const code = await buildWithPlugin({
         calendar: 'united_states',
         locale: 'en',
+        calendarDefinitions: [unitedStates, americas, generalRoman],
+        resources: [en],
       });
 
       expect(code).toContain('calendar: "united_states"');
@@ -116,6 +133,8 @@ describe('@romcal/unplugin', () => {
       const code = await buildWithPlugin({
         calendar: 'germany',
         locale: 'de',
+        calendarDefinitions: [germany, europe, generalRoman],
+        resources: [de, en],
       });
 
       expect(code).toContain('calendar: "germany"');
@@ -126,8 +145,7 @@ describe('@romcal/unplugin', () => {
   describe('configuration options', () => {
     it('should respect epiphanyOnSunday option', async () => {
       const code = await buildWithPlugin({
-        calendar: 'france',
-        locale: 'fr',
+        ...franceOptions,
         epiphanyOnSunday: true,
       });
 
@@ -137,8 +155,7 @@ describe('@romcal/unplugin', () => {
 
     it('should respect ascensionOnSunday option', async () => {
       const code = await buildWithPlugin({
-        calendar: 'france',
-        locale: 'fr',
+        ...franceOptions,
         ascensionOnSunday: true,
       });
 
@@ -148,8 +165,7 @@ describe('@romcal/unplugin', () => {
 
     it('should respect corpusChristiOnSunday option', async () => {
       const code = await buildWithPlugin({
-        calendar: 'france',
-        locale: 'fr',
+        ...franceOptions,
         corpusChristiOnSunday: false,
       });
 
@@ -160,10 +176,7 @@ describe('@romcal/unplugin', () => {
 
   describe('calendar hierarchy', () => {
     it('should include parent calendars in hierarchy', async () => {
-      const bundle = await generateBundle({
-        calendar: 'france',
-        locale: 'fr',
-      });
+      const bundle = await generateBundle(franceOptions);
 
       // France → Europe → General Roman
       const calendarIds = bundle.calendar_definitions.map((c) => c.id);
@@ -173,10 +186,7 @@ describe('@romcal/unplugin', () => {
     });
 
     it('should include locale fallback hierarchy', async () => {
-      const bundle = await generateBundle({
-        calendar: 'france',
-        locale: 'fr',
-      });
+      const bundle = await generateBundle(franceOptions);
 
       // fr → en (fallback)
       const locales = bundle.resources.map((r) => r.locale);
@@ -186,11 +196,35 @@ describe('@romcal/unplugin', () => {
   });
 
   describe('error handling', () => {
+    it('should throw error for missing calendarDefinitions', async () => {
+      await expect(
+        generateBundle({
+          calendar: 'france',
+          locale: 'fr',
+          calendarDefinitions: [],
+          resources: [fr, en],
+        })
+      ).rejects.toThrow(/calendarDefinitions is required/);
+    });
+
+    it('should throw error for missing resources', async () => {
+      await expect(
+        generateBundle({
+          calendar: 'france',
+          locale: 'fr',
+          calendarDefinitions: [france, europe, generalRoman],
+          resources: [],
+        })
+      ).rejects.toThrow(/resources is required/);
+    });
+
     it('should throw error for invalid calendar', async () => {
       await expect(
         generateBundle({
           calendar: 'nonexistent_calendar',
           locale: 'en',
+          calendarDefinitions: [generalRoman],
+          resources: [en],
         })
       ).rejects.toThrow();
     });
@@ -200,39 +234,10 @@ describe('@romcal/unplugin', () => {
         generateBundle({
           calendar: 'general_roman',
           locale: 'nonexistent_locale',
+          calendarDefinitions: [generalRoman],
+          resources: [en],
         })
       ).rejects.toThrow();
-    });
-
-    it('should create bundle even with custom calendar (validation at generate time)', async () => {
-      // Custom calendar with a day definition
-      // Note: Entity validation happens at calendar generation time, not bundle creation
-      const customCalendar = {
-        $schema: '../../../../schemas/calendar_definition.json',
-        id: 'test_parish',
-        metadata: {
-          jurisdiction: 'ECCLESIASTICAL',
-          type: 'DIOCESE',
-        },
-        parent_calendar_ids: ['general_roman'],
-        days_definitions: {
-          // This day references an entity that exists in general_roman resources
-          test_day: {
-            precedence: 'OPTIONAL_MEMORIAL_12',
-            date_def: { month: 1, date: 15 },
-          },
-        },
-      };
-
-      // createBundle() packages data without validating entity references
-      // Validation happens when generateLiturgicalCalendar() is called
-      const bundle = await generateBundle({
-        calendar: 'test_parish',
-        locale: 'en',
-        calendarDefinitions: [customCalendar as any],
-      });
-
-      expect(bundle.calendar).toBe('test_parish');
     });
   });
 
@@ -253,7 +258,8 @@ describe('@romcal/unplugin', () => {
       const bundle = await generateBundle({
         calendar: 'my_parish',
         locale: 'fr',
-        calendarDefinitions: [customCalendar as any],
+        calendarDefinitions: [customCalendar as any, france, europe, generalRoman],
+        resources: [fr, en],
       });
 
       const calendarIds = bundle.calendar_definitions.map((c) => c.id);

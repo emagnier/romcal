@@ -1,35 +1,33 @@
-import type { CalendarDefinition, Resources } from 'romcal';
 import type { RomcalPluginOptions, RomcalBundle } from './types.js';
 
 /**
  * Generate an optimized bundle with only the required data.
  *
  * The hierarchy resolution (parent calendars, locale fallback) is handled
- * automatically by romcal's createBundle() method. This function loads all
- * available data, merges with custom data if provided, and lets createBundle()
- * filter what's necessary.
+ * automatically by romcal's createBundle() method.
+ *
+ * @throws Error if calendarDefinitions or resources are not provided
  */
 export async function generateBundle(options: RomcalPluginOptions): Promise<RomcalBundle> {
+  const { calendarDefinitions, resources } = options;
+
+  // Require explicit data - no magic loading
+  if (!calendarDefinitions || calendarDefinitions.length === 0) {
+    throw new Error(
+      '[@romcal/unplugin] calendarDefinitions is required. ' +
+        "Import the calendars you need from 'romcal/definitions'."
+    );
+  }
+
+  if (!resources || resources.length === 0) {
+    throw new Error(
+      '[@romcal/unplugin] resources is required. ' + "Import the locales you need from 'romcal/resources'."
+    );
+  }
+
   const { createRomcal } = await import('romcal');
 
-  // Load embedded calendar definitions (filter out default export)
-  const definitionsModule = await import('romcal/definitions');
-  const embeddedDefinitions = Object.entries(definitionsModule)
-    .filter(([key]) => key !== 'default')
-    .map(([, value]) => value as CalendarDefinition);
-
-  // Load embedded resources (filter out default export)
-  const resourcesModule = await import('romcal/resources');
-  const embeddedResources = Object.entries(resourcesModule)
-    .filter(([key]) => key !== 'default')
-    .map(([, value]) => value as Resources);
-
-  // Merge embedded data with custom data (if provided)
-  const calendarDefinitions = [...embeddedDefinitions, ...(options.calendarDefinitions ?? [])];
-  const resources = [...embeddedResources, ...(options.resources ?? [])];
-
-  // Create romcal instance with merged data
-  // createBundle() handles the filtering based on calendar + locale
+  // Create romcal instance with provided data
   const romcal = await createRomcal({
     ...options,
     calendarDefinitions,
