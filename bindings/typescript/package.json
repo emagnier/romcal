@@ -78,7 +78,6 @@
     "url": "https://github.com/romcal/romcal/issues"
   },
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
     "build": "pnpm build:wasm && pnpm build:vite && pnpm generate-data",
     "build:vite": "vite build",
     "build:wasm": "wasm-pack build ../wasm --target web --out-dir ../typescript/pkg",
