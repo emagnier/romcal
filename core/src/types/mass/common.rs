@@ -11,7 +11,7 @@ use ts_rs::TS;
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+#[serde(rename_all = "snake_case")]
 #[allow(non_camel_case_types)]
 pub enum Common {
     /// No common.
@@ -104,7 +104,7 @@ pub enum Common {
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+#[serde(rename_all = "snake_case")]
 #[allow(non_camel_case_types)]
 pub enum CommonDefinition {
     /// No common.
@@ -209,7 +209,7 @@ mod tests {
         // Verify that serialization works
         let common = Common::BlessedVirginMary_OrdinaryTime;
         let json = serde_json::to_string(&common).unwrap();
-        assert_eq!(json, "\"BLESSED_VIRGIN_MARY__ORDINARY_TIME\"");
+        assert_eq!(json, "\"blessed_virgin_mary__ordinary_time\"");
 
         let deserialized: Common = serde_json::from_str(&json).unwrap();
         assert_eq!(deserialized, Common::BlessedVirginMary_OrdinaryTime);
@@ -220,7 +220,7 @@ mod tests {
         // Verify that serialization works
         let common_def = CommonDefinition::BlessedVirginMary;
         let json = serde_json::to_string(&common_def).unwrap();
-        assert_eq!(json, "\"BLESSED_VIRGIN_MARY\"");
+        assert_eq!(json, "\"blessed_virgin_mary\"");
 
         let deserialized: CommonDefinition = serde_json::from_str(&json).unwrap();
         assert_eq!(deserialized, CommonDefinition::BlessedVirginMary);

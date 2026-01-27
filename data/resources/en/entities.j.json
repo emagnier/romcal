@@ -3,17 +3,17 @@
   "locale": "en",
   "entities": {
     "jacinta_marto": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Jacinta Marto"
     },
     "jacinta_marto_and_francisco_marto": {
       "fullname": "Saints Jacinta and Francisco Marto"
     },
     "jacques_francois_lefranc_martyr": {
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Jacques François Lefranc",
       "titles": [
-        "MARTYR"
+        "martyr"
       ],
       "date_of_birth": "1739-03-30",
       "date_of_death": "1792-09-02",
@@ -27,11 +27,11 @@
       "fullname": "Blessed François Lefranc and the Martyrs of the French Revolution"
     },
     "jacques_jules_bonnaud_priest": {
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Jacques Jules Bonnaud",
       "titles": [
-        "PRIEST",
-        "MARTYR"
+        "priest",
+        "martyr"
       ],
       "date_of_birth": 1740,
       "date_of_death": "1792-09-02",
@@ -44,10 +44,10 @@
     },
     "james_apostle": {
       "fullname": "Saint James, Apostle",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "James",
       "titles": [
-        "APOSTLE"
+        "apostle"
       ],
       "date_of_death": 44
     },
@@ -56,37 +56,37 @@
     },
     "james_strzemie_bishop": {
       "fullname": "Blessed James Strzemię, Bishop",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "James Strzemię",
       "titles": [
-        "BISHOP"
+        "bishop"
       ]
     },
     "jane_frances_de_chantal_religious": {
       "fullname": "Saint Jane Frances de Chantal, Religious",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Jane Frances de Chantal",
       "titles": [
-        "RELIGIOUS"
+        "religious"
       ],
       "date_of_death": 1641
     },
     "januarius_i_of_benevento_bishop": {
       "fullname": "Saint Januarius, Bishop and Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Januarius",
       "titles": [
-        "BISHOP",
-        "MARTYR"
+        "bishop",
+        "martyr"
       ],
       "date_of_death": 305
     },
     "jarlath_of_tuam_bishop": {
       "fullname": "Saint Jarlath, Bishop",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Jarlath",
       "titles": [
-        "BISHOP"
+        "bishop"
       ]
     },
     "jean_chevillard_and_companions_martyrs": {
@@ -96,11 +96,11 @@
       ]
     },
     "jean_chevillard_martyr": {
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Jean Chevillard",
       "titles": [
-        "RELIGIOUS",
-        "MARTYR"
+        "religious",
+        "martyr"
       ],
       "date_of_birth": "1925-08-27",
       "date_of_death": "1994-12-27",
@@ -111,11 +111,11 @@
     },
     "jean_louis_bonnard_priest": {
       "fullname": "Saint Jean-Louis Bonnard, Priest and Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Jean-Louis Bonnard",
       "titles": [
-        "PRIEST",
-        "MARTYR"
+        "priest",
+        "martyr"
       ],
       "date_of_death": "1852-5-01",
       "sources": [
@@ -124,11 +124,11 @@
     },
     "jean_pierre_neel_priest": {
       "fullname": "Saint Jean Pierre Néel, Priest and Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Jean-Pierre Néel",
       "titles": [
-        "PRIEST",
-        "MARTYR"
+        "priest",
+        "martyr"
       ],
       "date_of_death": "1862-2-18",
       "sources": [
@@ -142,11 +142,11 @@
       ]
     },
     "jean_robert_queneau_martyr": {
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Jean-Robert Queneau",
       "titles": [
-        "PRIEST",
-        "MARTYR"
+        "priest",
+        "martyr"
       ],
       "date_of_birth": "1758-04-09",
       "date_of_death": "1792-09-02",
@@ -157,11 +157,11 @@
     },
     "jean_theophane_venard_priest": {
       "fullname": "Saint Théophane Vénard, Priest and Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Jean Théophane Venard",
       "titles": [
-        "PRIEST",
-        "MARTYR"
+        "priest",
+        "martyr"
       ],
       "date_of_birth": "1829-11-21",
       "date_of_death": "1861-02-02",
@@ -172,10 +172,10 @@
     },
     "jeanne_delanoue_of_the_cross_religious": {
       "fullname": "Saint Jeanne Delanoue, Religious",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Jeanne Delanoue",
       "titles": [
-        "RELIGIOUS"
+        "religious"
       ],
       "date_of_birth": "1666-06-18",
       "date_of_death": "1736-08-17",
@@ -185,26 +185,26 @@
       ]
     },
     "jerome_de_angelis_priest": {
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Jerome de Angelis",
       "titles": [
-        "PRIEST",
-        "MARTYR"
+        "priest",
+        "martyr"
       ]
     },
     "jerome_emiliani": {
       "fullname": "Saint Jerome Emiliani",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Jerome Emiliani",
       "date_of_death": 1537
     },
     "jerome_of_stridon_priest": {
       "fullname": "Saint Jerome, Priest and Doctor of the Church",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Jerome",
       "titles": [
-        "PRIEST",
-        "DOCTOR_OF_THE_CHURCH"
+        "priest",
+        "doctor_of_the_church"
       ],
       "date_of_death": 420
     },
@@ -215,10 +215,10 @@
       "fullname": "Saints Anne, Patroness of the Province of Quebec, and Joachim, Parents of the Blessed Virgin Mary"
     },
     "joachim_father_of_mary": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Joachim",
       "titles": [
-        "PARENTS_OF_THE_BLESSED_VIRGIN_MARY"
+        "parents_of_the_blessed_virgin_mary"
       ],
       "date_of_death": {
         "century": 1
@@ -226,17 +226,17 @@
     },
     "joachim_he_kaizhi_martyr": {
       "fullname": "Saint Joachim He Kaizhi, Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Joachim He Kaizhi",
       "titles": [
-        "MARTYR"
+        "martyr"
       ]
     },
     "joan_of_arc_virgin": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Joan of Arc",
       "titles": [
-        "VIRGIN"
+        "virgin"
       ],
       "date_of_death": 1431
     },
@@ -245,98 +245,98 @@
     },
     "joan_of_portugal_virgin": {
       "fullname": "Blessed Joan of Portugal, Virgin",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Joan of Portugal",
       "titles": [
-        "VIRGIN"
+        "virgin"
       ]
     },
     "joaquina_of_saint_francis_of_assisi_de_vedruna_religious": {
       "fullname": "Saint Joaquina of Saint Francis of Assisi de Vedruna, Religious",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Joaquina of Saint Francis of Assisi de Vedruna",
       "titles": [
-        "RELIGIOUS"
+        "religious"
       ]
     },
     "john_apostle": {
       "fullname": "Saint John, Apostle and Evangelist",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "John",
       "titles": [
-        "APOSTLE",
-        "EVANGELIST"
+        "apostle",
+        "evangelist"
       ]
     },
     "john_baptist_de_la_salle_priest": {
       "fullname": "Saint John Baptist de la Salle, Priest",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "John Baptist de la Salle",
       "titles": [
-        "PRIEST"
+        "priest"
       ],
       "date_of_death": 1719
     },
     "john_berchmans_religious": {
       "fullname": "Saint John Berchmans, Religious",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "John Berchmans",
       "titles": [
-        "RELIGIOUS"
+        "religious"
       ],
       "date_of_death": 1621
     },
     "john_beyzym_priest": {
       "fullname": "Blessed John Beyzym, Priest",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "John Beyzym",
       "titles": [
-        "PRIEST"
+        "priest"
       ]
     },
     "john_bosco_priest": {
       "fullname": "Saint John Bosco, Priest",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "John Bosco",
       "titles": [
-        "PRIEST"
+        "priest"
       ],
       "date_of_death": 1888
     },
     "john_brenner_priest": {
       "fullname": "Blessed John Brenner, Priest and Martyr",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "John Brenner",
       "titles": [
-        "PRIEST",
-        "MARTYR"
+        "priest",
+        "martyr"
       ]
     },
     "john_cassian_priest": {
       "fullname": "Saint John Cassian, Priest",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "John Cassian",
       "titles": [
-        "PRIEST"
+        "priest"
       ]
     },
     "john_chrysostom_bishop": {
       "fullname": "Saint John Chrysostom, Bishop and Doctor of the Church",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "John Chrysostom",
       "titles": [
-        "BISHOP",
-        "DOCTOR_OF_THE_CHURCH"
+        "bishop",
+        "doctor_of_the_church"
       ],
       "date_of_death": 407
     },
     "john_damascene_priest": {
       "fullname": "Saint John Damascene, Priest and Doctor of the Church",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "John Damascene",
       "titles": [
-        "PRIEST",
-        "DOCTOR_OF_THE_CHURCH"
+        "priest",
+        "doctor_of_the_church"
       ],
       "date_of_death": 749
     },
@@ -347,11 +347,11 @@
       "fullname": "Saints John de Brébeuf and Isaac Jogues, Priests, and Companions, Martyrs, Copatrons of Canada"
     },
     "john_de_brebeuf_priest": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "John de Brébeuf",
       "titles": [
-        "PRIEST",
-        "MARTYR"
+        "priest",
+        "martyr"
       ],
       "date_of_birth": "1593-03-25",
       "date_of_death": "1649-03-16",
@@ -366,27 +366,27 @@
     },
     "john_de_britto_priest": {
       "fullname": "Saint John de Brito, Priest and Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "John de Brito",
       "titles": [
-        "PRIEST",
-        "MARTYR"
+        "priest",
+        "martyr"
       ]
     },
     "john_del_castillo_priest": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Roch González",
       "titles": [
-        "PRIEST",
-        "MARTYR"
+        "priest",
+        "martyr"
       ]
     },
     "john_eudes_priest": {
       "fullname": "Saint John Eudes, Priest",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "John Eudes",
       "titles": [
-        "PRIEST"
+        "priest"
       ],
       "date_of_birth": "1601-11-14",
       "date_of_death": "1680-08-19",
@@ -397,11 +397,11 @@
       ]
     },
     "john_fisher_bishop": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "John Fisher",
       "titles": [
-        "BISHOP",
-        "MARTYR"
+        "bishop",
+        "martyr"
       ],
       "date_of_death": "1535-06-22"
     },
@@ -410,11 +410,11 @@
     },
     "john_francis_regis_priest": {
       "fullname": "Saint John Francis Regis, Priest",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "John Francis Regis",
       "titles": [
-        "PRIEST",
-        "MISSIONARY"
+        "priest",
+        "missionary"
       ],
       "date_of_birth": "1597-01-31",
       "date_of_death": "1640-12-31",
@@ -428,79 +428,79 @@
     },
     "john_gabriel_perboyre_priest": {
       "fullname": "Saint John Gabriel Perboyre, Priest and Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "John Gabriel Perboyre",
       "titles": [
-        "PRIEST",
-        "MARTYR"
+        "priest",
+        "martyr"
       ]
     },
     "john_henry_newman_priest": {
       "fullname": "Saint John Henry Newman, Priest",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "John Henry Newman",
       "titles": [
-        "PRIEST"
+        "priest"
       ]
     },
     "john_i_pope": {
       "fullname": "Saint John I, Pope and Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "John I",
       "titles": [
-        "POPE",
-        "MARTYR"
+        "pope",
+        "martyr"
       ],
       "date_of_death": 526
     },
     "john_jones_priest": {
       "fullname": "Saint John Jones, Priest and Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "John Jones",
       "titles": [
-        "PRIEST",
-        "MARTYR"
+        "priest",
+        "martyr"
       ]
     },
     "john_leonardi_priest": {
       "fullname": "Saint John Leonardi, Priest",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "John Leonardi",
       "titles": [
-        "PRIEST"
+        "priest"
       ],
       "date_of_death": 1609
     },
     "john_lloyd_priest": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "John Lloyd",
       "titles": [
-        "PRIEST",
-        "MARTYR"
+        "priest",
+        "martyr"
       ]
     },
     "john_macias_religious": {
       "fullname": "Saint John Macías, Religious",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "John Macías",
       "titles": [
-        "RELIGIOUS"
+        "religious"
       ]
     },
     "john_martin_moye_priest": {
       "fullname": "Blessed John Martin Moye, Priest",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "John Martin Moye",
       "titles": [
-        "PRIEST"
+        "priest"
       ]
     },
     "john_mary_vianney_priest": {
       "fullname": "Saint John Mary Vianney, Priest",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "John Vianney",
       "titles": [
-        "PRIEST"
+        "priest"
       ],
       "date_of_birth": 1786,
       "date_of_death": 1859,
@@ -510,211 +510,211 @@
     },
     "john_nepomucene_neumann_bishop": {
       "fullname": "Saint John Neumann, Bishop",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "John Neumann",
       "titles": [
-        "BISHOP"
+        "bishop"
       ]
     },
     "john_nepomucene_priest": {
       "fullname": "Saint John Nepomucene, Priest and Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "John Nepomucene",
       "titles": [
-        "PRIEST",
-        "MARTYR"
+        "priest",
+        "martyr"
       ]
     },
     "john_of_avila_priest": {
       "fullname": "Saint John of Ávila, Priest and Doctor of the Church",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "John of Ávila",
       "titles": [
-        "PRIEST",
-        "DOCTOR_OF_THE_CHURCH"
+        "priest",
+        "doctor_of_the_church"
       ]
     },
     "john_of_capistrano_priest": {
       "fullname": "Saint John of Capistrano, Priest",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "John of Capistrano",
       "titles": [
-        "PRIEST"
+        "priest"
       ],
       "date_of_death": 1456
     },
     "john_of_dukla_priest": {
       "fullname": "Saint John of Dukla, Priest",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "John of Dukla",
       "titles": [
-        "PRIEST"
+        "priest"
       ]
     },
     "john_of_god_duarte_cidade_religious": {
       "fullname": "Saint John of God, Religious",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "John of God",
       "titles": [
-        "RELIGIOUS"
+        "religious"
       ],
       "date_of_death": 1550
     },
     "john_of_kanty_priest": {
       "fullname": "Saint John of Kanty, Priest",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "John of Kanty",
       "titles": [
-        "PRIEST"
+        "priest"
       ],
       "date_of_death": 1473
     },
     "john_of_the_cross_priest": {
       "fullname": "Saint John of the Cross, Priest and Doctor of the Church",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "John of the Cross",
       "titles": [
-        "PRIEST",
-        "DOCTOR_OF_THE_CHURCH"
+        "priest",
+        "doctor_of_the_church"
       ],
       "date_of_death": 1591
     },
     "john_of_triora_priest": {
       "fullname": "Saint John of Triora, Priest and Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "John of Triora",
       "titles": [
-        "PRIEST",
-        "MARTYR"
+        "priest",
+        "martyr"
       ]
     },
     "john_ogilvie_priest": {
       "fullname": "Saint John Ogilvie, Priest and Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "John Ogilvie",
       "titles": [
-        "PRIEST",
-        "MARTYR"
+        "priest",
+        "martyr"
       ]
     },
     "john_paul_ii_pope": {
       "fullname": "Saint John Paul II, Pope",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "John Paul II",
       "titles": [
-        "POPE"
+        "pope"
       ],
       "date_of_death": 2005
     },
     "john_roberts_priest": {
       "fullname": "Saint John Roberts, Priest and Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "John Roberts",
       "titles": [
-        "PRIEST",
-        "MARTYR"
+        "priest",
+        "martyr"
       ]
     },
     "john_sarkander_priest": {
       "fullname": "Saint John Sarkander, Priest and Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "John Sarkander",
       "titles": [
-        "PRIEST",
-        "MARTYR"
+        "priest",
+        "martyr"
       ]
     },
     "john_scheffler_bishop": {
       "fullname": "Blessed John Scheffler, Bishop and Martyr",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "John Scheffler",
       "titles": [
-        "BISHOP",
-        "MARTYR"
+        "bishop",
+        "martyr"
       ]
     },
     "john_xxiii_pope": {
       "fullname": "Saint John XXIII, Pope",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "John XXIII",
       "titles": [
-        "POPE"
+        "pope"
       ],
       "date_of_death": 1963
     },
     "josaphat_kuntsevych_bishop": {
       "fullname": "Saint Josaphat, Bishop and Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Josaphat",
       "titles": [
-        "BISHOP",
-        "MARTYR"
+        "bishop",
+        "martyr"
       ],
       "date_of_death": 1623
     },
     "jose_maria_de_yermo_y_parres_priest": {
       "fullname": "Saint José Maria de Yermo y Parres, Priest",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "José Maria de Yermo y Parres",
       "titles": [
-        "PRIEST"
+        "priest"
       ]
     },
     "josemaria_escriva_de_balaguer_priest": {
       "fullname": "Saint Josemaría Escrivá de Balaguer, Priest",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Josemaría Escrivá de Balaguer",
       "titles": [
-        "PRIEST"
+        "priest"
       ]
     },
     "joseph_bilczewski_bishop": {
       "fullname": "Saint Joseph Bilczewski, Bishop",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Joseph Bilczewski",
       "titles": [
-        "BISHOP"
+        "bishop"
       ]
     },
     "joseph_de_anchieta_priest": {
       "fullname": "Saint Joseph de Anchieta, Priest",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Joseph de Anchieta",
       "titles": [
-        "PRIEST"
+        "priest"
       ]
     },
     "joseph_freinademetz_priest": {
       "fullname": "Saint Joseph Freinademetz, Priest",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Joseph Freinademetz",
       "titles": [
-        "PRIEST"
+        "priest"
       ]
     },
     "joseph_of_calasanz_priest": {
       "fullname": "Saint Joseph of Calasanz, Priest",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Joseph of Calasanz",
       "titles": [
-        "PRIEST"
+        "priest"
       ],
       "date_of_death": 1648
     },
     "joseph_sebastian_pelczar_bishop": {
       "fullname": "Saint Joseph Sebastian Pelczar, Bishop",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Joseph Sebastian Pelczar",
       "titles": [
-        "BISHOP"
+        "bishop"
       ]
     },
     "joseph_spouse_of_mary": {
       "fullname": "Saint Joseph, Spouse of the Blessed Virgin Mary",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Joseph",
       "titles": [
-        "SPOUSE_OF_THE_BLESSED_VIRGIN_MARY"
+        "spouse_of_the_blessed_virgin_mary"
       ]
     },
     "joseph_spouse_of_mary_patron_of_canada": {
@@ -722,104 +722,104 @@
     },
     "joseph_the_worker": {
       "fullname": "Saint Joseph the Worker",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Joseph the Worker"
     },
     "joseph_vaz_priest": {
       "fullname": "Saint Joseph Vaz, Priest",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Joseph Vaz",
       "titles": [
-        "PRIEST"
+        "priest"
       ]
     },
     "joseph_yuan_gengyin_priest": {
       "fullname": "Saint Joseph Yuan Gengyin, Priest and Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Joseph Yuan Gengyin",
       "titles": [
-        "PRIEST",
-        "MARTYR"
+        "priest",
+        "martyr"
       ]
     },
     "joseph_zhang_dapeng_martyr": {
       "fullname": "Saint Joseph Zhang Dapeng, Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Joseph Zhang Dapeng",
       "titles": [
-        "MARTYR"
+        "martyr"
       ]
     },
     "josephine_bakhita_virgin": {
       "fullname": "Saint Josephine Bakhita, Virgin",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Josephine Bakhita",
       "titles": [
-        "VIRGIN"
+        "virgin"
       ],
       "date_of_death": 1947
     },
     "juan_diego_cuauhtlatoatzin": {
       "fullname": "Saint Juan Diego Cuauhtlatoatzin",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Juan Diego Cuauhtlatoatzin",
       "date_of_death": 1548
     },
     "jude_apostle": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Jude",
       "titles": [
-        "APOSTLE"
+        "apostle"
       ]
     },
     "juliana_of_liege_virgin": {
       "fullname": "Saint Juliana of Liège, Virgin",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Juliana of Liège",
       "titles": [
-        "VIRGIN"
+        "virgin"
       ],
       "date_of_death": 1258
     },
     "julie_billiart_virgin": {
       "fullname": "Saint Julie Billiart, Virgin",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Julie Billiart",
       "titles": [
-        "VIRGIN"
+        "virgin"
       ],
       "date_of_death": 1816
     },
     "julius_of_caerleon_martyr": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Julius",
       "titles": [
-        "MARTYR"
+        "martyr"
       ]
     },
     "junipero_serra_priest": {
       "fullname": "Saint Junípero Serra, Priest",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Junípero Serra",
       "titles": [
-        "PRIEST"
+        "priest"
       ]
     },
     "justin_martyr": {
       "fullname": "Saint Justin, Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Justin",
       "titles": [
-        "MARTYR"
+        "martyr"
       ],
       "date_of_death": 165
     },
     "justus_of_lyon_bishop": {
       "fullname": "Saint Justus, Bishop",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Justus of Lyon",
       "titles": [
-        "BISHOP"
+        "bishop"
       ],
       "date_of_birth": {
         "century": 4

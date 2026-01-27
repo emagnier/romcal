@@ -7,13 +7,10 @@ use ts_rs::TS;
 /// Different Masses are celebrated at various times and occasions throughout the liturgical year.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, EnumIter, PartialOrd, Ord)]
 #[cfg_attr(feature = "schema-gen", derive(schemars::JsonSchema))]
-#[cfg_attr(feature = "schema-gen", schemars(rename_all = "SCREAMING_SNAKE_CASE"))]
+#[cfg_attr(feature = "schema-gen", schemars(rename_all = "snake_case"))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
-#[cfg_attr(
-    feature = "ts-bindings",
-    ts(export, rename_all = "SCREAMING_SNAKE_CASE")
-)]
-#[serde(rename_all(serialize = "SCREAMING_SNAKE_CASE", deserialize = "snake_case"))]
+#[cfg_attr(feature = "ts-bindings", ts(export, rename_all = "snake_case"))]
+#[serde(rename_all = "snake_case")]
 pub enum MassTime {
     /// Easter Vigil - the most important Mass of the liturgical year, celebrated on Holy Saturday night
     EasterVigil,
@@ -123,21 +120,17 @@ mod tests {
 
     #[test]
     fn test_mass_time_serialization() {
-        // Verify that serialization produces SCREAMING_SNAKE_CASE
+        // Verify that serialization produces snake_case
         let mass_time = MassTime::DayMass;
         let json = serde_json::to_string(&mass_time).unwrap();
-        assert_eq!(json, "\"DAY_MASS\"");
+        assert_eq!(json, "\"day_mass\"");
     }
 
     #[test]
     fn test_mass_time_deserialization() {
-        // Verify that deserialization accepts snake_case (for definition files)
+        // Verify that deserialization accepts snake_case
         let deserialized: MassTime = serde_json::from_str("\"day_mass\"").unwrap();
         assert_eq!(deserialized, MassTime::DayMass);
-
-        // SCREAMING_SNAKE_CASE should not work for deserialization
-        let result: Result<MassTime, _> = serde_json::from_str("\"DAY_MASS\"");
-        assert!(result.is_err());
     }
 
     #[test]

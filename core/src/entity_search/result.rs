@@ -5,7 +5,7 @@ use strum::Display;
 
 /// Type of match that was found for a search result.
 #[derive(Debug, Clone, PartialEq, Eq, Display)]
-#[strum(serialize_all = "SCREAMING_SNAKE_CASE")]
+#[strum(serialize_all = "snake_case")]
 pub enum MatchType {
     /// Exact ID match (score = 1.0).
     ExactId,
@@ -105,8 +105,8 @@ mod tests {
 
     #[test]
     fn test_match_type_display() {
-        assert_eq!(MatchType::ExactId.to_string(), "EXACT_ID");
-        assert_eq!(MatchType::Fuzzy.to_string(), "FUZZY");
-        assert_eq!(MatchType::FilterOnly.to_string(), "FILTER_ONLY");
+        assert_eq!(MatchType::ExactId.to_string(), "exact_id");
+        assert_eq!(MatchType::Fuzzy.to_string(), "fuzzy");
+        assert_eq!(MatchType::FilterOnly.to_string(), "filter_only");
     }
 }

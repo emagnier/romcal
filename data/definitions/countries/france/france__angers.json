@@ -2,8 +2,8 @@
   "$schema": "../../../../schemas/calendar_definition.json",
   "id": "france__angers",
   "metadata": {
-    "jurisdiction": "ECCLESIASTICAL",
-    "type": "DIOCESE"
+    "jurisdiction": "ecclesiastical",
+    "type": "diocese"
   },
   "parent_calendar_ids": [
     "europe",
@@ -11,56 +11,56 @@
   ],
   "days_definitions": {
     "maurus_of_glanfeuil_abbot": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 1,
         "date": 15
       }
     },
     "blessed_martyrs_of_angers": {
-      "precedence": "PROPER_MEMORIAL_11B",
+      "precedence": "proper_memorial_11b",
       "date_def": {
         "month": 2,
         "date": 1
       }
     },
     "jean_theophane_venard_priest": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 2,
         "date": 3
       }
     },
     "licinius_of_angers_bishop": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 2,
         "date": 13
       }
     },
     "noel_pinot_priest": {
-      "precedence": "PROPER_MEMORIAL_11B",
+      "precedence": "proper_memorial_11b",
       "date_def": {
         "month": 2,
         "date": 21
       }
     },
     "albinus_of_angers_bishop": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 3,
         "date": 1
       }
     },
     "mary_euphrasia_pelletier_religious": {
-      "precedence": "PROPER_MEMORIAL_11B",
+      "precedence": "proper_memorial_11b",
       "date_def": {
         "month": 4,
         "date": 24
       }
     },
     "jean_chevillard_and_companions_martyrs": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 5,
         "date": 8
@@ -71,21 +71,21 @@
       ]
     },
     "holy_hermits_and_evangelists": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 7,
         "date": 8
       }
     },
     "jeanne_delanoue_of_the_cross_religious": {
-      "precedence": "PROPER_MEMORIAL_11B",
+      "precedence": "proper_memorial_11b",
       "date_def": {
         "month": 8,
         "date": 17
       }
     },
     "jean_robert_queneau_and_companions_martyrs": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 9,
         "date": 2
@@ -102,7 +102,7 @@
       }
     },
     "maurilius_of_angers_bishop_second_patron_of_the_diocese_of_angers": {
-      "precedence": "PROPER_MEMORIAL__SECOND_PATRON_11A",
+      "precedence": "proper_memorial__second_patron_11a",
       "date_def": {
         "month": 9,
         "date": 13
@@ -112,14 +112,14 @@
           "id": "maurilius_of_angers_bishop",
           "titles": {
             "append": [
-              "SECOND_PATRON_OF_THE_DIOCESE"
+              "second_patron_of_the_diocese"
             ]
           }
         }
       ]
     },
     "maurice_of_agaunum_and_companions_martyrs_patron_of_the_diocese_of_angers": {
-      "precedence": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_DIOCESE_8A",
+      "precedence": "proper_feast__principal_patron_of_a_diocese_8a",
       "date_def": {
         "month": 9,
         "date": 22
@@ -129,7 +129,7 @@
           "id": "maurice_of_agaunum_martyr",
           "titles": {
             "append": [
-              "PATRON_OF_THE_DIOCESE"
+              "patron_of_the_diocese"
             ]
           }
         },
@@ -137,21 +137,21 @@
           "id": "companions_martyrs",
           "titles": {
             "append": [
-              "PATRON_OF_THE_DIOCESE"
+              "patron_of_the_diocese"
             ]
           }
         }
       ]
     },
     "florentius_of_anjou_abbot": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 9,
         "date": 25
       }
     },
     "rene_goupil_religious": {
-      "precedence": "PROPER_MEMORIAL_11B",
+      "precedence": "proper_memorial_11b",
       "date_def": {
         "month": 9,
         "date": 26
@@ -164,14 +164,14 @@
       }
     },
     "dedication_of_the_cathedral_of_saint_maurice_of_agaunum_angers_france": {
-      "precedence": "PROPER_FEAST__DEDICATION_OF_THE_CATHEDRAL_CHURCH_8B",
+      "precedence": "proper_feast__dedication_of_the_cathedral_church_8b",
       "date_def": {
         "month": 10,
         "date": 22
       }
     },
     "all_holy_bishops_of_the_diocese_of_angers": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 11,
         "date": 12

@@ -2,15 +2,15 @@
   "$schema": "../../../../schemas/calendar_definition.json",
   "id": "slovenia",
   "metadata": {
-    "jurisdiction": "CIVIL",
-    "type": "COUNTRY"
+    "jurisdiction": "civil",
+    "type": "country"
   },
   "parent_calendar_ids": [
     "europe"
   ],
   "days_definitions": {
     "john_nepomucene_priest": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 5,
         "date": 16

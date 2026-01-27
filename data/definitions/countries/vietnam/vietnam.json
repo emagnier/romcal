@@ -2,13 +2,13 @@
   "$schema": "../../../../schemas/calendar_definition.json",
   "id": "vietnam",
   "metadata": {
-    "jurisdiction": "CIVIL",
-    "type": "COUNTRY"
+    "jurisdiction": "civil",
+    "type": "country"
   },
   "parent_calendar_ids": [],
   "days_definitions": {
     "andrew_dung_lac_priest_and_companions_martyrs": {
-      "precedence": "PROPER_FEAST_8F",
+      "precedence": "proper_feast_8f",
       "date_def": {
         "month": 11,
         "date": 13

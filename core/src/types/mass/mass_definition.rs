@@ -422,14 +422,13 @@ mod tests {
         masses.insert(MassTime::DayMass, day_mass);
 
         let json = serde_json::to_string_pretty(&masses).unwrap();
-        // MassTime is serialized as SCREAMING_SNAKE_CASE
-        assert!(json.contains("\"DAY_MASS\""));
+        // MassTime is serialized as snake_case
+        assert!(json.contains("\"day_mass\""));
         assert!(json.contains("\"invariant\""));
         assert!(json.contains("\"alleluia\""));
 
-        // Deserialization accepts snake_case (for definition files)
-        let snake_case_json = json.replace("\"DAY_MASS\"", "\"day_mass\"");
-        let deserialized: MassesDefinitions = serde_json::from_str(&snake_case_json).unwrap();
+        // Deserialization also uses snake_case
+        let deserialized: MassesDefinitions = serde_json::from_str(&json).unwrap();
         assert_eq!(deserialized.len(), 1);
         assert!(deserialized.contains_key(&MassTime::DayMass));
     }
@@ -482,9 +481,9 @@ mod tests {
         println!("Example JSON structure:");
         println!("{}", json);
 
-        // Verify JSON structure (MassTime is serialized as SCREAMING_SNAKE_CASE)
-        assert!(json.contains("\"DAY_MASS\""));
-        assert!(json.contains("\"EVENING_MASS_OF_THE_LORDS_SUPPER\""));
+        // Verify JSON structure (MassTime is serialized as snake_case)
+        assert!(json.contains("\"day_mass\""));
+        assert!(json.contains("\"evening_mass_of_the_lords_supper\""));
         assert!(json.contains("\"invariant\""));
         assert!(json.contains("\"year_a\""));
         assert!(json.contains("\"year_b\""));
@@ -493,12 +492,8 @@ mod tests {
         assert!(json.contains("\"psalm\""));
         assert!(json.contains("\"gospel\""));
 
-        // Deserialize from snake_case (as used in definition files)
-        let snake_case_json = json.replace("\"DAY_MASS\"", "\"day_mass\"").replace(
-            "\"EVENING_MASS_OF_THE_LORDS_SUPPER\"",
-            "\"evening_mass_of_the_lords_supper\"",
-        );
-        let deserialized: MassesDefinitions = serde_json::from_str(&snake_case_json).unwrap();
+        // Deserialize from snake_case
+        let deserialized: MassesDefinitions = serde_json::from_str(&json).unwrap();
         assert_eq!(deserialized.len(), 2);
         assert!(deserialized.contains_key(&MassTime::DayMass));
         assert!(deserialized.contains_key(&MassTime::EveningMassOfTheLordsSupper));

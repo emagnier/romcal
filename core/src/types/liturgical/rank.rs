@@ -10,7 +10,7 @@ use ts_rs::TS;
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+#[serde(rename_all = "snake_case")]
 pub enum Rank {
     /// Solemnities are counted among the most important days, whose celebration
     /// begins with First Vespers (Evening Prayer I) on the preceding day. Some Solemnities
@@ -99,7 +99,7 @@ mod tests {
         // Verify that serialization works
         let rank = Rank::Solemnity;
         let json = serde_json::to_string(&rank).unwrap();
-        assert_eq!(json, "\"SOLEMNITY\"");
+        assert_eq!(json, "\"solemnity\"");
 
         let deserialized: Rank = serde_json::from_str(&json).unwrap();
         assert_eq!(deserialized, Rank::Solemnity);

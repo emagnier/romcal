@@ -2,8 +2,8 @@
   "$schema": "../../../../schemas/calendar_definition.json",
   "id": "france__lyon",
   "metadata": {
-    "jurisdiction": "ECCLESIASTICAL",
-    "type": "ARCHDIOCESE"
+    "jurisdiction": "ecclesiastical",
+    "type": "archdiocese"
   },
   "parent_calendar_ids": [
     "europe",
@@ -11,7 +11,7 @@
   ],
   "days_definitions": {
     "gregory_x_pope": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 1,
         "date": 10
@@ -21,40 +21,40 @@
       "custom_locale_id": "francis_de_sales_bishop_patron_of_the_clergy_of_the_archdiocese_of_lyon",
       "titles": {
         "append": [
-          "PATRON_OF_THE_CLERGY_OF_THE_ARCHDIOCESE_OF_LYON"
+          "patron_of_the_clergy_of_the_archdiocese_of_lyon"
         ]
       }
     },
     "marie_of_saint_ignatius_claudine_thevenet_religious": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 2,
         "date": 3
       }
     },
     "jean_pierre_neel_priest": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 2,
         "date": 19
       }
     },
     "baldomerus_of_lyon_religious": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 2,
         "date": 27
       }
     },
     "nicetius_of_lyon_bishop": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 4,
         "date": 2
       }
     },
     "epipodius_of_lyon_and_alexander_of_lyon_martyrs": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 4,
         "date": 22
@@ -65,29 +65,29 @@
       ]
     },
     "jean_louis_bonnard_priest": {
-      "precedence": "PROPER_MEMORIAL_11B",
+      "precedence": "proper_memorial_11b",
       "date_def": {
         "month": 5,
         "date": 4
       }
     },
     "our_lady_of_fourviere": {
-      "precedence": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_DIOCESE_8A",
+      "precedence": "proper_feast__principal_patron_of_a_diocese_8a",
       "date_def": {
-        "date_fn": "EASTER_SUNDAY",
+        "date_fn": "easter_sunday",
         "day_offset": 13
       }
     },
     "pothinus_of_lyon_bishop_blandina_of_lyon_virgin_and_companions_martyrs": {
       "custom_locale_id": "pothinus_of_lyon_bishop_patron_the_city_of_lyon_blandina_of_lyon_virgin_and_companions_martyrs",
-      "precedence": "PROPER_FEAST_8F",
+      "precedence": "proper_feast_8f",
       "entities": [
         {
           "id": "pothinus_of_lyon_bishop",
           "titles": [
-            "BISHOP",
-            "PATRON_OF_THE_CITY_OF_LYON",
-            "MARTYR"
+            "bishop",
+            "patron_of_the_city_of_lyon",
+            "martyr"
           ]
         },
         "blandina_of_lyon_virgin",
@@ -101,21 +101,21 @@
       }
     },
     "marcellin_champagnat_priest": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 6,
         "date": 6
       }
     },
     "john_francis_regis_priest": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 6,
         "date": 16
       }
     },
     "innocent_v_pope": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 6,
         "date": 22
@@ -123,13 +123,13 @@
     },
     "irenaeus_of_lyon_bishop": {
       "custom_locale_id": "irenaeus_of_lyon_bishop_patron_of_the_archdiocese_of_lyon_and_companions_martyrs",
-      "precedence": "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A",
+      "precedence": "proper_solemnity__principal_patron_4a",
       "entities": [
         {
           "id": "irenaeus_of_lyon_bishop",
           "titles": {
             "append": [
-              "PATRON_OF_THE_DIOCESE"
+              "patron_of_the_diocese"
             ]
           }
         },
@@ -137,10 +137,10 @@
       ]
     },
     "john_mary_vianney_priest": {
-      "precedence": "PROPER_FEAST_8F"
+      "precedence": "proper_feast_8f"
     },
     "jacques_jules_bonnaud_priest_and_companions_martyrs": {
-      "precedence": "PROPER_MEMORIAL_11B",
+      "precedence": "proper_memorial_11b",
       "date_def": {
         "month": 9,
         "date": 1
@@ -151,21 +151,21 @@
       ]
     },
     "justus_of_lyon_bishop": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 9,
         "date": 2
       }
     },
     "frederic_ozanam_founder": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 9,
         "date": 9
       }
     },
     "maurice_of_agaunum_and_companions_martyrs": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 9,
         "date": 22
@@ -176,42 +176,42 @@
       ]
     },
     "therese_marie_victoire_couderc_virgin": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 9,
         "date": 26
       }
     },
     "annemund_of_lyon_bishop": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 9,
         "date": 28
       }
     },
     "anthony_chevrier_priest": {
-      "precedence": "PROPER_MEMORIAL_11B",
+      "precedence": "proper_memorial_11b",
       "date_def": {
         "month": 10,
         "date": 3
       }
     },
     "dismas_the_good_thief": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 10,
         "date": 12
       }
     },
     "viator_of_lyon": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 10,
         "date": 21
       }
     },
     "dedication_of_the_cathedral_of_saint_john_the_baptist_lyon_france": {
-      "precedence": "PROPER_FEAST__DEDICATION_OF_THE_CATHEDRAL_CHURCH_8B",
+      "precedence": "proper_feast__dedication_of_the_cathedral_church_8b",
       "date_def": {
         "month": 10,
         "date": 24
@@ -224,21 +224,21 @@
       }
     },
     "all_holy_bishops_of_the_archdiocese_of_lyon": {
-      "precedence": "PROPER_MEMORIAL_11B",
+      "precedence": "proper_memorial_11b",
       "date_def": {
         "month": 11,
         "date": 5
       }
     },
     "all_saints_of_the_archdiocese_of_lyon": {
-      "precedence": "PROPER_MEMORIAL_11B",
+      "precedence": "proper_memorial_11b",
       "date_def": {
         "month": 11,
         "date": 8
       }
     },
     "eucherius_of_lyon_bishop": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 11,
         "date": 16

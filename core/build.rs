@@ -294,22 +294,21 @@ fn generate_definitions_module(
     json_files.sort();
 
     for file_path in json_files {
-        if let Ok(json_content) = fs::read_to_string(&file_path) {
-            if let Ok(json) = serde_json::from_str::<serde_json::Value>(&json_content) {
-                if let Some(id) = json.get("id").and_then(|v| v.as_str()) {
-                    let const_name = id.to_uppercase().replace(['-', '.'], "_");
-                    // Path is already relative to CARGO_MANIFEST_DIR (e.g., ../data/definitions/...)
-                    let rel_path_str = file_path.to_string_lossy().replace('\\', "/");
+        if let Ok(json_content) = fs::read_to_string(&file_path)
+            && let Ok(json) = serde_json::from_str::<serde_json::Value>(&json_content)
+            && let Some(id) = json.get("id").and_then(|v| v.as_str())
+        {
+            let const_name = id.to_uppercase().replace(['-', '.'], "_");
+            // Path is already relative to CARGO_MANIFEST_DIR (e.g., ../data/definitions/...)
+            let rel_path_str = file_path.to_string_lossy().replace('\\', "/");
 
-                    content.push_str(&format!("{}/// Calendar definition: {}\n", indent, id));
-                    content.push_str(&format!(
-                        "{}pub const {}: &str = include_str!(concat!(env!(\"CARGO_MANIFEST_DIR\"), \"/{}\"));\n",
-                        indent, const_name, rel_path_str
-                    ));
+            content.push_str(&format!("{}/// Calendar definition: {}\n", indent, id));
+            content.push_str(&format!(
+                "{}pub const {}: &str = include_str!(concat!(env!(\"CARGO_MANIFEST_DIR\"), \"/{}\"));\n",
+                indent, const_name, rel_path_str
+            ));
 
-                    const_names.push(const_name);
-                }
-            }
+            const_names.push(const_name);
         }
     }
 }
@@ -343,48 +342,44 @@ fn generate_resources_module(
 
         for entry in entries {
             let path = entry.path();
-            if path.is_dir() {
-                if let Some(locale_name) = path.file_name().and_then(|n| n.to_str()) {
-                    let module_name = locale_name.replace('-', "_");
-                    content.push_str(&format!(
-                        "{}/// Resources for locale: {}\n",
-                        indent, locale_name
-                    ));
-                    content.push_str(&format!("{}pub mod {} {{\n", indent, module_name));
+            if path.is_dir()
+                && let Some(locale_name) = path.file_name().and_then(|n| n.to_str())
+            {
+                let module_name = locale_name.replace('-', "_");
+                content.push_str(&format!(
+                    "{}/// Resources for locale: {}\n",
+                    indent, locale_name
+                ));
+                content.push_str(&format!("{}pub mod {} {{\n", indent, module_name));
 
-                    let mut file_const_names = Vec::new();
+                let mut file_const_names = Vec::new();
 
-                    // Collect all JSON files in this locale directory
-                    if let Ok(files) = fs::read_dir(&path) {
-                        let mut files: Vec<_> = files.flatten().collect();
-                        files.sort_by_key(|e| e.path());
+                // Collect all JSON files in this locale directory
+                if let Ok(files) = fs::read_dir(&path) {
+                    let mut files: Vec<_> = files.flatten().collect();
+                    files.sort_by_key(|e| e.path());
 
-                        for file in files {
-                            let file_path = file.path();
-                            if file_path.extension().is_some_and(|ext| ext == "json") {
-                                if let Some(file_name) =
-                                    file_path.file_stem().and_then(|n| n.to_str())
-                                {
-                                    let const_name =
-                                        file_name.to_uppercase().replace(['-', '.'], "_");
-                                    // Path is already relative to CARGO_MANIFEST_DIR
-                                    let rel_path_str =
-                                        file_path.to_string_lossy().replace('\\', "/");
+                    for file in files {
+                        let file_path = file.path();
+                        if file_path.extension().is_some_and(|ext| ext == "json")
+                            && let Some(file_name) = file_path.file_stem().and_then(|n| n.to_str())
+                        {
+                            let const_name = file_name.to_uppercase().replace(['-', '.'], "_");
+                            // Path is already relative to CARGO_MANIFEST_DIR
+                            let rel_path_str = file_path.to_string_lossy().replace('\\', "/");
 
-                                    content.push_str(&format!(
-                                        "{}    pub const {}: &str = include_str!(concat!(env!(\"CARGO_MANIFEST_DIR\"), \"/{}\"));\n",
-                                        indent, const_name, rel_path_str
-                                    ));
+                            content.push_str(&format!(
+                                "{}    pub const {}: &str = include_str!(concat!(env!(\"CARGO_MANIFEST_DIR\"), \"/{}\"));\n",
+                                indent, const_name, rel_path_str
+                            ));
 
-                                    file_const_names.push(const_name);
-                                }
-                            }
+                            file_const_names.push(const_name);
                         }
                     }
-
-                    content.push_str(&format!("{}}}\n", indent));
-                    locale_info.push((locale_name.to_string(), file_const_names));
                 }
+
+                content.push_str(&format!("{}}}\n", indent));
+                locale_info.push((locale_name.to_string(), file_const_names));
             }
         }
     }

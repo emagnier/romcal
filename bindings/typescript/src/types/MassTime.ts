@@ -5,13 +5,13 @@
  * Different Masses are celebrated at various times and occasions throughout the liturgical year.
  */
 export type MassTime =
-  | 'EASTER_VIGIL'
-  | 'PREVIOUS_EVENING_MASS'
-  | 'NIGHT_MASS'
-  | 'MASS_AT_DAWN'
-  | 'MORNING_MASS'
-  | 'MASS_OF_THE_PASSION'
-  | 'CELEBRATION_OF_THE_PASSION'
-  | 'DAY_MASS'
-  | 'CHRISM_MASS'
-  | 'EVENING_MASS_OF_THE_LORDS_SUPPER'
+  | 'easter_vigil'
+  | 'previous_evening_mass'
+  | 'night_mass'
+  | 'mass_at_dawn'
+  | 'morning_mass'
+  | 'mass_of_the_passion'
+  | 'celebration_of_the_passion'
+  | 'day_mass'
+  | 'chrism_mass'
+  | 'evening_mass_of_the_lords_supper'

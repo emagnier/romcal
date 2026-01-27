@@ -3,44 +3,44 @@
   "locale": "en",
   "entities": {
     "saints_of_lindisfarne": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "The Saints of Lindisfarne",
       "count": "MANY"
     },
     "salomea_of_poland_religious": {
       "fullname": "Blessed Salomea of Poland, Religious",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Salomea of Poland",
       "titles": [
-        "RELIGIOUS"
+        "religious"
       ]
     },
     "sancha_of_portugal_and_mafalda_of_portugal_virgins": {
       "fullname": "Blessed Sancha and Mafalda, Virgins"
     },
     "sancha_of_portugal_virgin": {
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Sancha",
       "titles": [
-        "VIRGIN"
+        "virgin"
       ]
     },
     "sara_salkahazi_virgin": {
       "fullname": "Blessed Sára Salkaházi, Virgin and Martyr",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Sára Salkaházi",
       "titles": [
-        "VIRGIN",
-        "MARTYR"
+        "virgin",
+        "martyr"
       ]
     },
     "saturnin_of_toulouse_bishop": {
       "fullname": "Saint Saturnin of Toulouse, Bishop and Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Saturnin",
       "titles": [
-        "BISHOP",
-        "MARTYR"
+        "bishop",
+        "martyr"
       ],
       "date_of_birth": {
         "century": 3
@@ -54,18 +54,18 @@
     },
     "scholastica_of_nursia_virgin": {
       "fullname": "Saint Scholastica, Virgin",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Scholastica",
       "titles": [
-        "VIRGIN"
+        "virgin"
       ],
       "date_of_death": 543
     },
     "scubilion_abbot": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Scubilion",
       "titles": [
-        "ABBOT"
+        "abbot"
       ],
       "date_of_death": 565,
       "date_of_death_is_approximative": true,
@@ -75,36 +75,36 @@
     },
     "sebastian_de_aparicio_religious": {
       "fullname": "Blessed Sebastian de Aparicio, Religious",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Sebastian de Aparicio",
       "titles": [
-        "RELIGIOUS"
+        "religious"
       ]
     },
     "sebastian_of_milan_martyr": {
       "fullname": "Saint Sebastian, Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Sebastian",
       "titles": [
-        "MARTYR"
+        "martyr"
       ],
       "date_of_death": 284,
       "date_of_death_is_approximative": true
     },
     "senan_of_inis_cathaigh_bishop": {
       "fullname": "Saint Senan, Bishop",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Senan",
       "titles": [
-        "BISHOP"
+        "bishop"
       ]
     },
     "senerius_of_normandy_bishop": {
       "fullname": "Saint Senerius, Bishop",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Senerius",
       "titles": [
-        "BISHOP"
+        "bishop"
       ],
       "date_of_death": 574,
       "date_of_death_is_approximative": true,
@@ -126,18 +126,18 @@
     },
     "severinus_of_noricum_monk": {
       "fullname": "Saint Severinus of Noricum, Monk",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Severinus of Noricum",
       "titles": [
-        "MONK"
+        "monk"
       ]
     },
     "severus_of_avranches_bishop": {
       "fullname": "Saint Severus of Avranches, Bishop",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Severus",
       "titles": [
-        "BISHOP"
+        "bishop"
       ],
       "date_of_death": 578,
       "date_of_death_is_approximative": true,
@@ -149,10 +149,10 @@
     },
     "sharbel_makhluf_priest": {
       "fullname": "Saint Sharbel Makhlūf, Priest",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Sharbel Makhlūf",
       "titles": [
-        "PRIEST"
+        "priest"
       ],
       "date_of_death": 1898
     },
@@ -160,41 +160,41 @@
       "fullname": "Shipwreck of Saint Paul, Apostle",
       "name": "Shipwreck of Saint Paul",
       "titles": [
-        "APOSTLE"
+        "apostle"
       ]
     },
     "sigismund_of_burgundy_martyr": {
       "fullname": "Saint Sigismund, Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Sigismund",
       "titles": [
-        "MARTYR"
+        "martyr"
       ]
     },
     "sigmund_felix_felinski_bishop": {
       "fullname": "Saint Sigmund Felix Feliński, Bishop",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Sigmund Felix Feliński",
       "titles": [
-        "BISHOP"
+        "bishop"
       ]
     },
     "simon_and_jude_apostles": {
       "fullname": "Saints Simon and Jude, Apostles"
     },
     "simon_apostle": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Simon",
       "titles": [
-        "APOSTLE"
+        "apostle"
       ]
     },
     "simon_of_lipnica_priest": {
       "fullname": "Saint Simon of Lipnica, Priest",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Simon of Lipnica",
       "titles": [
-        "PRIEST"
+        "priest"
       ]
     },
     "six_welsh_martyrs": {
@@ -206,11 +206,11 @@
       "fullname": "Six Welsh Martyrs and Companions"
     },
     "sixtus_ii_pope": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Sixtus II",
       "titles": [
-        "POPE",
-        "MARTYR"
+        "pope",
+        "martyr"
       ],
       "date_of_death": 258
     },
@@ -219,35 +219,35 @@
     },
     "spyridon_of_trimythous_bishop": {
       "fullname": "Saint Spyridon, Bishop",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Spyridon",
       "titles": [
-        "BISHOP"
+        "bishop"
       ]
     },
     "stanislaus_kazimierczyk_priest": {
       "fullname": "Saint Stanislaus Kazimierczyk, Priest",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Stanislaus Kazimierczyk",
       "titles": [
-        "PRIEST"
+        "priest"
       ]
     },
     "stanislaus_kostka_religious": {
       "fullname": "Saint Stanislaus Kostka, Religious",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Stanislaus Kostka",
       "titles": [
-        "RELIGIOUS"
+        "religious"
       ]
     },
     "stanislaus_of_szczepanow_bishop": {
       "fullname": "Saint Stanislaus, Bishop and Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Stanislaus",
       "titles": [
-        "BISHOP",
-        "MARTYR"
+        "bishop",
+        "martyr"
       ],
       "date_of_death": 1079
     },
@@ -256,27 +256,27 @@
     },
     "stephen_i_of_hungary": {
       "fullname": "Saint Stephen of Hungary",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Stephen of Hungary",
       "titles": [
-        "KING"
+        "king"
       ],
       "date_of_death": 1038
     },
     "stephen_pongracz_priest": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Stephen Pongrácz",
       "titles": [
-        "PRIEST",
-        "MARTYR"
+        "priest",
+        "martyr"
       ]
     },
     "stephen_the_first_martyr": {
       "fullname": "Saint Stephen, the First Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Stephen",
       "titles": [
-        "THE_FIRST_MARTYR"
+        "the_first_martyr"
       ],
       "date_of_death": 35,
       "sources": [
@@ -292,36 +292,36 @@
     },
     "sunniva_of_norway_virgin": {
       "fullname": "Saint Sunniva, Virgin and Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Sunniva",
       "titles": [
-        "VIRGIN",
-        "MARTYR"
+        "virgin",
+        "martyr"
       ]
     },
     "swithun_of_winchester_bishop": {
       "fullname": "Saint Swithun, Bishop",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Swithun",
       "titles": [
-        "BISHOP"
+        "bishop"
       ]
     },
     "sylvester_i_pope": {
       "fullname": "Saint Sylvester I, Pope",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Sylvester I",
       "titles": [
-        "POPE"
+        "pope"
       ],
       "date_of_death": 335
     },
     "sylvius_of_toulouse_bishop": {
       "fullname": "Saint Sylvius of Toulouse, Bishop",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Sylvius",
       "titles": [
-        "BISHOP"
+        "bishop"
       ],
       "date_of_death": 400,
       "date_of_death_is_approximative": true,
@@ -332,11 +332,11 @@
     },
     "szilard_bogdanffy_bishop": {
       "fullname": "Blessed Szilárd Bogdánffy, Bishop and Martyr",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Szilárd Bogdánffy",
       "titles": [
-        "BISHOP",
-        "MARTYR"
+        "bishop",
+        "martyr"
       ]
     }
   }

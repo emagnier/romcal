@@ -12,7 +12,7 @@ use super::MassTime;
 #[cfg_attr(feature = "ts-bindings", ts(export))]
 pub struct MassInfo {
     /// The type of mass (e.g., DayMass, EasterVigil, etc.)
-    /// Serialized as SCREAMING_SNAKE_CASE (e.g., "DAY_MASS")
+    /// Serialized as snake_case (e.g., "day_mass")
     #[serde(rename = "type")]
     pub mass_type: MassTime,
     /// The localized name of the mass type (translation key in snake_case)
@@ -75,8 +75,8 @@ mod tests {
     fn test_mass_info_serialization() {
         let mass_info = MassInfo::new(MassTime::DayMass);
         let json = serde_json::to_string(&mass_info).unwrap();
-        // type is serialized as SCREAMING_SNAKE_CASE
-        assert!(json.contains("\"type\":\"DAY_MASS\""));
+        // type is serialized as snake_case
+        assert!(json.contains("\"type\":\"day_mass\""));
         // name remains in snake_case (translation key)
         assert!(json.contains("\"name\":\"day_mass\""));
     }

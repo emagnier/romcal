@@ -11,7 +11,7 @@ use ts_rs::TS;
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+#[serde(rename_all = "snake_case")]
 pub enum Acclamation {
     /// Alleluia - joyful acclamation used outside of Lent
     Alleluia,
@@ -27,6 +27,6 @@ impl Acclamation {
     /// Check if a value is a valid Acclamation.
     /// This function provides the same functionality as the TypeScript `isAcclamationType` function.
     pub fn is_valid(value: &str) -> bool {
-        matches!(value, "ALLELUIA" | "LENT" | "MIXED" | "NONE")
+        matches!(value, "alleluia" | "lent" | "mixed" | "none")
     }
 }

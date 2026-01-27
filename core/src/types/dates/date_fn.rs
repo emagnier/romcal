@@ -13,7 +13,7 @@ use ts_rs::TS;
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+#[serde(rename_all = "snake_case")]
 pub enum DateFn {
     /// Monday after Pentecost.
     MaryMotherOfTheChurch,
@@ -70,7 +70,7 @@ mod tests {
         // Verify that serialization works
         let date_fn = DateFn::EasterSunday;
         let json = serde_json::to_string(&date_fn).unwrap();
-        assert_eq!(json, "\"EASTER_SUNDAY\"");
+        assert_eq!(json, "\"easter_sunday\"");
 
         let deserialized: DateFn = serde_json::from_str(&json).unwrap();
         assert_eq!(deserialized, DateFn::EasterSunday);

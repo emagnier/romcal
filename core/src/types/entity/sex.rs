@@ -11,8 +11,8 @@ use ts_rs::TS;
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
-#[strum(serialize_all = "SCREAMING_SNAKE_CASE")]
+#[serde(rename_all = "snake_case")]
+#[strum(serialize_all = "snake_case")]
 pub enum Sex {
     /// Male person
     Male,
@@ -40,7 +40,7 @@ mod tests {
         // Verify that serialization works
         let sex = Sex::Male;
         let json = serde_json::to_string(&sex).unwrap();
-        assert_eq!(json, "\"MALE\"");
+        assert_eq!(json, "\"male\"");
 
         let deserialized: Sex = serde_json::from_str(&json).unwrap();
         assert_eq!(deserialized, Sex::Male);
@@ -48,8 +48,8 @@ mod tests {
 
     #[test]
     fn test_sex_parse() {
-        assert_eq!(Sex::from_str("MALE").unwrap(), Sex::Male);
-        assert_eq!(Sex::from_str("FEMALE").unwrap(), Sex::Female);
+        assert_eq!(Sex::from_str("male").unwrap(), Sex::Male);
+        assert_eq!(Sex::from_str("female").unwrap(), Sex::Female);
         assert!(Sex::from_str("INVALID").is_err());
     }
 }

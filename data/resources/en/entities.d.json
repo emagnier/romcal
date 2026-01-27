@@ -4,53 +4,53 @@
   "entities": {
     "damasus_i_pope": {
       "fullname": "Saint Damasus I, Pope",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Damasus I",
       "titles": [
-        "POPE"
+        "pope"
       ],
       "date_of_death": 384
     },
     "damian_of_cilicia_martyr": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Damian",
       "titles": [
-        "MARTYR"
+        "martyr"
       ]
     },
     "damien_de_veuster_priest": {
       "fullname": "Saint Damien de Veuster, Priest",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Damien de Veuster",
       "titles": [
-        "PRIEST"
+        "priest"
       ],
       "date_of_death": 1889
     },
     "daniel_brottier_priest": {
       "fullname": "Blessed Daniel Brottier, Priest",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Daniel Brottier",
       "titles": [
-        "PRIEST"
+        "priest"
       ],
       "date_of_death": "28-2-1936"
     },
     "david_lewis_priest": {
       "fullname": "Saint David Lewis, Priest and Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "David Lewis",
       "titles": [
-        "PRIEST",
-        "MARTYR"
+        "priest",
+        "martyr"
       ]
     },
     "david_of_wales_bishop": {
       "fullname": "Saint David, Bishop",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "David",
       "titles": [
-        "BISHOP"
+        "bishop"
       ]
     },
     "david_of_wales_bishop_patron_of_wales": {
@@ -58,18 +58,18 @@
     },
     "davnet_of_sliabh_beagh_virgin": {
       "fullname": "Saint Davnet, Virgin",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Davnet",
       "titles": [
-        "VIRGIN"
+        "virgin"
       ]
     },
     "declan_of_ardmore_bishop": {
       "fullname": "Saint Declan, Bishop",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Declan",
       "titles": [
-        "BISHOP"
+        "bishop"
       ]
     },
     "dedication_of_consecrated_churches": {
@@ -92,7 +92,7 @@
       "fullname": "The Dedication of the Basilicas of Saints Peter and Paul, Apostles",
       "name": "Dedication of the Basilicas of Saints Peter and Paul",
       "titles": [
-        "APOSTLE"
+        "apostle"
       ],
       "count": 2
     },
@@ -139,26 +139,26 @@
     },
     "deiniol_of_bangor_bishop": {
       "fullname": "Saint Deiniol, Bishop",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Deiniol",
       "titles": [
-        "BISHOP"
+        "bishop"
       ]
     },
     "demetrius_of_thessaloniki_martyr": {
       "fullname": "Saint Demetrius of Thessaloniki, Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Demetrius of Thessaloniki",
       "titles": [
-        "MARTYR"
+        "martyr"
       ]
     },
     "denis_of_paris_bishop": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Denis",
       "titles": [
-        "BISHOP",
-        "MARTYR"
+        "bishop",
+        "martyr"
       ],
       "date_of_death": {
         "or": [
@@ -179,25 +179,25 @@
     },
     "dina_belanger_virgin": {
       "fullname": "Blessed Dina Bélanger, Virgin",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Dina Bélanger",
       "titles": [
-        "VIRGIN"
+        "virgin"
       ],
       "date_of_death": 1929
     },
     "dionysius_the_areopagite_bishop": {
       "fullname": "Saint Dionysius the Areopagite, Bishop and Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Dionysius the Areopagite",
       "titles": [
-        "BISHOP",
-        "MARTYR"
+        "bishop",
+        "martyr"
       ]
     },
     "dismas_the_good_thief": {
       "fullname": "Dismas the Good Thief",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "sources": [
         "mr_fr_2014_ed2_lyon"
       ]
@@ -208,43 +208,43 @@
     },
     "dominic_de_guzman_priest": {
       "fullname": "Saint Dominic, Priest",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Dominic",
       "titles": [
-        "PRIEST"
+        "priest"
       ],
       "date_of_death": 1221
     },
     "dominic_of_the_mother_of_god_barberi_priest": {
       "fullname": "Blessed Dominic of the Mother of God Barberi, Priest",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Dominic of the Mother of God Barberi",
       "titles": [
-        "PRIEST"
+        "priest"
       ]
     },
     "droctoveus_of_autun_abbot": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Droctoveus",
       "titles": [
-        "ABBOT"
+        "abbot"
       ],
       "date_of_death": 558
     },
     "dunstan_of_canterbury_bishop": {
       "fullname": "Saint Dunstan, Bishop",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Dunstan",
       "titles": [
-        "BISHOP"
+        "bishop"
       ]
     },
     "dyfrig_of_wales_bishop": {
       "fullname": "Saint Dyfrig, Bishop",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Dyfrig",
       "titles": [
-        "BISHOP"
+        "bishop"
       ]
     }
   }

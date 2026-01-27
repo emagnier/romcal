@@ -2,22 +2,22 @@
   "$schema": "../../../../schemas/calendar_definition.json",
   "id": "romania",
   "metadata": {
-    "jurisdiction": "CIVIL",
-    "type": "COUNTRY"
+    "jurisdiction": "civil",
+    "type": "country"
   },
   "parent_calendar_ids": [
     "europe"
   ],
   "days_definitions": {
     "john_cassian_priest": {
-      "precedence": "PROPER_MEMORIAL_11B",
+      "precedence": "proper_memorial_11b",
       "date_def": {
         "month": 2,
         "date": 28
       }
     },
     "vladimir_ghika_priest": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 5,
         "date": 16

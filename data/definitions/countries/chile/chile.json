@@ -2,29 +2,29 @@
   "$schema": "../../../../schemas/calendar_definition.json",
   "id": "chile",
   "metadata": {
-    "jurisdiction": "CIVIL",
-    "type": "COUNTRY"
+    "jurisdiction": "civil",
+    "type": "country"
   },
   "parent_calendar_ids": [
     "americas"
   ],
   "days_definitions": {
     "laura_vicuna_virgin": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 1,
         "date": 22
       }
     },
     "pius_ix_pope": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 2,
         "date": 7
       }
     },
     "our_lady_of_lourdes": {
-      "precedence": "PROPER_MEMORIAL_11B",
+      "precedence": "proper_memorial_11b",
       "date_def": {
         "month": 2,
         "date": 11
@@ -37,21 +37,21 @@
       }
     },
     "teresa_of_jesus_of_los_andes_virgin": {
-      "precedence": "PROPER_FEAST_8F",
+      "precedence": "proper_feast_8f",
       "date_def": {
         "month": 7,
         "date": 13
       }
     },
     "camillus_de_lellis_priest": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 7,
         "date": 14
       }
     },
     "henry_ii_emperor": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 7,
         "date": 14
@@ -59,42 +59,42 @@
     },
     "our_lady_of_mount_carmel": {
       "custom_locale_id": "our_lady_of_mount_carmel_mother_and_queen_of_chile",
-      "precedence": "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A",
+      "precedence": "proper_solemnity__principal_patron_4a",
       "date_def": {
         "month": 7,
         "date": 16
       },
       "titles": {
         "append": [
-          "MOTHER_AND_QUEEN_OF_CHILE"
+          "mother_and_queen_of_chile"
         ]
       }
     },
     "alberto_hurtado_priest": {
-      "precedence": "PROPER_MEMORIAL_11B",
+      "precedence": "proper_memorial_11b",
       "date_def": {
         "month": 8,
         "date": 18
       }
     },
     "rose_of_lima_virgin": {
-      "precedence": "PROPER_FEAST_8F",
+      "precedence": "proper_feast_8f",
       "date_def": {
         "month": 8,
         "date": 30
       }
     },
     "our_lady_of_mercy": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 9,
         "date": 24
       }
     },
     "our_lord_jesus_christ_the_eternal_high_priest": {
-      "precedence": "PROPER_FEAST_8F",
+      "precedence": "proper_feast_8f",
       "date_def": {
-        "date_fn": "PENTECOST_SUNDAY",
+        "date_fn": "pentecost_sunday",
         "day_offset": 4
       }
     }

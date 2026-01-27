@@ -2,23 +2,23 @@
   "$schema": "../../../../schemas/calendar_definition.json",
   "id": "japan",
   "metadata": {
-    "jurisdiction": "CIVIL",
-    "type": "COUNTRY"
+    "jurisdiction": "civil",
+    "type": "country"
   },
   "parent_calendar_ids": [],
   "days_definitions": {
     "paul_miki_and_companions_martyrs": {
-      "precedence": "PROPER_FEAST_8F"
+      "precedence": "proper_feast_8f"
     },
     "our_lady_of_the_discovery_of_the_hidden_christians": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 3,
         "date": 17
       }
     },
     "peter_kibe_priest_and_companions_martyrs": {
-      "precedence": "PROPER_MEMORIAL_11B",
+      "precedence": "proper_memorial_11b",
       "date_def": {
         "month": 7,
         "date": 1
@@ -29,14 +29,14 @@
       ]
     },
     "205_blessed_martyrs_of_japan": {
-      "precedence": "PROPER_MEMORIAL_11B",
+      "precedence": "proper_memorial_11b",
       "date_def": {
         "month": 9,
         "date": 10
       }
     },
     "thomas_hioji_rokuzayemon_nishi_priest_and_companions_martyrs": {
-      "precedence": "PROPER_MEMORIAL_11B",
+      "precedence": "proper_memorial_11b",
       "date_def": {
         "month": 9,
         "date": 28
@@ -47,7 +47,7 @@
       ]
     },
     "francis_xavier_priest": {
-      "precedence": "PROPER_FEAST_8F",
+      "precedence": "proper_feast_8f",
       "date_def": {
         "month": 12,
         "date": 3

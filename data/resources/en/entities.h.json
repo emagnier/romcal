@@ -4,29 +4,29 @@
   "entities": {
     "hedwig_of_poland": {
       "fullname": "Saint Hedwig of Poland",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Hedwig of Poland"
     },
     "hedwig_of_silesia_religious": {
       "fullname": "Saint Hedwig, Religious",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Hedwig",
       "titles": [
-        "RELIGIOUS"
+        "religious"
       ],
       "date_of_death": 1243
     },
     "helena_of_constantinople": {
       "fullname": "Saint Helena",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Helena"
     },
     "helier_of_jersey_martyr": {
       "fullname": "Saint Helier, Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Helier",
       "titles": [
-        "MARTYR"
+        "martyr"
       ],
       "date_of_death": 552,
       "date_of_death_is_approximative": true,
@@ -38,20 +38,20 @@
     },
     "hemma_of_gurk": {
       "fullname": "Saint Hemma of Gurk",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Hemma of Gurk"
     },
     "hemming_of_turku_bishop": {
       "fullname": "Blessed Hemming of Turku, Bishop",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Hemming of Turku",
       "titles": [
-        "BISHOP"
+        "bishop"
       ]
     },
     "henry_ii_emperor": {
       "fullname": "Saint Henry",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Henry",
       "date_of_death": 1024
     },
@@ -60,44 +60,44 @@
     },
     "henry_of_finland_bishop": {
       "fullname": "Saint Henry, Bishop and Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Henry",
       "titles": [
-        "BISHOP",
-        "MARTYR"
+        "bishop",
+        "martyr"
       ],
       "date_of_death": 1156
     },
     "henry_suso_priest": {
       "fullname": "Blessed Henry Suso, Priest",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Henry Suso",
       "titles": [
-        "PRIEST"
+        "priest"
       ]
     },
     "hermann_joseph_of_steinfeld_priest": {
       "fullname": "Saint Hermann Joseph, Priest",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Hermann Joseph",
       "titles": [
-        "PRIEST"
+        "priest"
       ]
     },
     "hermenegild_the_visigoths_martyr": {
       "fullname": "Saint Hermenegild, Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Hermenegild",
       "titles": [
-        "MARTYR"
+        "martyr"
       ]
     },
     "hilarius_of_toulouse_bishop": {
       "fullname": "Saint Hilary of Toulouse, Bishop",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Hilarius",
       "titles": [
-        "BISHOP"
+        "bishop"
       ],
       "date_of_death": 360,
       "date_of_death_is_approximative": true,
@@ -111,37 +111,37 @@
     },
     "hilary_of_poitiers_bishop": {
       "fullname": "Saint Hilary, Bishop and Doctor of the Church",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Hilary",
       "titles": [
-        "BISHOP",
-        "DOCTOR_OF_THE_CHURCH"
+        "bishop",
+        "doctor_of_the_church"
       ],
       "date_of_death": 367
     },
     "hilda_of_whitby_abbess": {
       "fullname": "Saint Hilda, Abbess",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Hilda",
       "titles": [
-        "ABBESS"
+        "abbess"
       ]
     },
     "hildegard_of_bingen_abbess": {
       "fullname": "Saint Hildegard of Bingen, Abbess and Doctor of the Church",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Hildegard of Bingen",
       "titles": [
-        "ABBESS",
-        "DOCTOR_OF_THE_CHURCH"
+        "abbess",
+        "doctor_of_the_church"
       ]
     },
     "hippolytus_of_rome_priest": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Hippolytus",
       "titles": [
-        "PRIEST",
-        "MARTYR"
+        "priest",
+        "martyr"
       ],
       "date_of_death": 235
     },
@@ -159,8 +159,8 @@
     "holy_hermits_and_evangelists": {
       "fullname": "The Holy Hermits and Evangelists",
       "titles": [
-        "HERMIT",
-        "EVANGELIST"
+        "hermit",
+        "evangelist"
       ],
       "count": "MANY",
       "sources": [
@@ -171,7 +171,7 @@
       "fullname": "The Holy Innocents, Martyrs",
       "name": "Holy Innocents",
       "titles": [
-        "MARTYR"
+        "martyr"
       ],
       "count": "MANY",
       "date_of_death": 2,
@@ -185,43 +185,43 @@
     },
     "honorat_kozminski_priest": {
       "fullname": "Blessed Honorat Koźmiński, Priest",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Honorat Koźmiński",
       "titles": [
-        "PRIEST"
+        "priest"
       ]
     },
     "hosanna_of_cattaro_virgin": {
       "fullname": "Blessed Hosanna of Cattaro, Virgin",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Hosanna of Cattaro",
       "titles": [
-        "VIRGIN"
+        "virgin"
       ]
     },
     "hroznata_of_bohemia_martyr": {
       "fullname": "Blessed Hroznata, Martyr",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Hroznata",
       "titles": [
-        "MARTYR"
+        "martyr"
       ]
     },
     "hubert_of_liege_bishop": {
       "fullname": "Saint Hubert, Bishop",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Hubert",
       "titles": [
-        "BISHOP"
+        "bishop"
       ],
       "date_of_death": 727
     },
     "hugh_of_lincoln_bishop": {
       "fullname": "Saint Hugh of Lincoln, Bishop",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Hugh of Lincoln",
       "titles": [
-        "BISHOP"
+        "bishop"
       ]
     },
     "hungarian_saints_and_blesseds": {
@@ -230,10 +230,10 @@
     },
     "hyacinth_of_poland_priest": {
       "fullname": "Saint Hyacinth, Priest",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Hyacinth",
       "titles": [
-        "PRIEST"
+        "priest"
       ]
     }
   }

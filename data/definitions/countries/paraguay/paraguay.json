@@ -2,17 +2,17 @@
   "$schema": "../../../../schemas/calendar_definition.json",
   "id": "paraguay",
   "metadata": {
-    "jurisdiction": "CIVIL",
-    "type": "COUNTRY"
+    "jurisdiction": "civil",
+    "type": "country"
   },
   "parent_calendar_ids": [
     "americas"
   ],
   "days_definitions": {
     "our_lord_jesus_christ_the_eternal_high_priest": {
-      "precedence": "PROPER_FEAST_8F",
+      "precedence": "proper_feast_8f",
       "date_def": {
-        "date_fn": "PENTECOST_SUNDAY",
+        "date_fn": "pentecost_sunday",
         "day_offset": 4
       }
     }

@@ -51,8 +51,6 @@ pub fn merge_resource_files(locale: &str, files_json: Vec<&str>) -> Result<Resou
 ///
 /// This function validates that each JSON string is a valid calendar definition,
 /// then returns them as JSON Values to preserve the original structure.
-/// This avoids issues with asymmetric serialization (e.g., MassTime uses snake_case
-/// for input but SCREAMING_SNAKE_CASE for output).
 ///
 /// # Arguments
 ///

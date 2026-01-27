@@ -11,7 +11,7 @@ use ts_rs::TS;
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+#[serde(rename_all = "snake_case")]
 pub enum Season {
     /// Advent
     Advent,
@@ -62,7 +62,7 @@ mod tests {
         // Verify that serialization works
         let season = Season::Advent;
         let json = serde_json::to_string(&season).unwrap();
-        assert_eq!(json, "\"ADVENT\"");
+        assert_eq!(json, "\"advent\"");
 
         let deserialized: Season = serde_json::from_str(&json).unwrap();
         assert_eq!(deserialized, Season::Advent);

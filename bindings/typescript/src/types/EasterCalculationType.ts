@@ -6,4 +6,4 @@
  * Determines which algorithm to use for calculating the date of Easter Sunday,
  * which is the basis for most movable feasts in the liturgical calendar.
  */
-export type EasterCalculationType = 'GREGORIAN' | 'JULIAN'
+export type EasterCalculationType = 'gregorian' | 'julian'

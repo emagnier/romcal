@@ -189,9 +189,9 @@ pub struct RomcalConfig {
     pub ascension_on_sunday: Option<bool>,
     /// Corpus Christi is celebrated on a Sunday
     pub corpus_christi_on_sunday: Option<bool>,
-    /// Easter calculation type ('GREGORIAN' or 'JULIAN')
+    /// Easter calculation type ('gregorian' or 'julian')
     pub easter_calculation_type: Option<String>,
-    /// Calendar context ('GREGORIAN' or 'LITURGICAL')
+    /// Calendar context ('gregorian' or 'liturgical')
     pub context: Option<String>,
     /// Calendar definitions as JSON string
     pub calendar_definitions_json: Option<String>,
@@ -214,11 +214,11 @@ impl Romcal {
 
         // Validate and parse easter_calculation_type
         let easter_type = match config.easter_calculation_type.as_deref() {
-            Some("JULIAN") => Some(EasterCalculationType::Julian),
-            Some("GREGORIAN") | None => Some(EasterCalculationType::Gregorian),
+            Some("julian") => Some(EasterCalculationType::Julian),
+            Some("gregorian") | None => Some(EasterCalculationType::Gregorian),
             Some(invalid) => {
                 return Err(RomcalError::InvalidConfig(format!(
-                    "Invalid easter_calculation_type: '{}'. Expected 'GREGORIAN' or 'JULIAN'",
+                    "Invalid easter_calculation_type: '{}'. Expected 'gregorian' or 'julian'",
                     invalid
                 )));
             }
@@ -226,11 +226,11 @@ impl Romcal {
 
         // Validate and parse context
         let context = match config.context.as_deref() {
-            Some("LITURGICAL") => Some(CalendarContext::Liturgical),
-            Some("GREGORIAN") | None => Some(CalendarContext::Gregorian),
+            Some("liturgical") => Some(CalendarContext::Liturgical),
+            Some("gregorian") | None => Some(CalendarContext::Gregorian),
             Some(invalid) => {
                 return Err(RomcalError::InvalidConfig(format!(
-                    "Invalid context: '{}'. Expected 'GREGORIAN' or 'LITURGICAL'",
+                    "Invalid context: '{}'. Expected 'gregorian' or 'liturgical'",
                     invalid
                 )));
             }
@@ -424,4 +424,49 @@ pub fn merge_calendar_definitions(files_json: Vec<String>) -> Result<String, Rom
     let definitions = romcal::merge_calendar_definitions(files_refs)?;
     serde_json::to_string(&definitions)
         .map_err(|e| RomcalError::ParseError(format!("Failed to serialize definitions: {}", e)))
+}
+
+// ============================================================================
+// Bundled Data Functions (available when bundled-data feature is enabled)
+// ============================================================================
+
+/// Get all bundled calendar definitions as a JSON array.
+///
+/// This function is only available when the `bundled-data` feature is enabled.
+/// Returns all calendar definitions (general_roman, countries, regions, dioceses)
+/// embedded in the binary.
+///
+/// # Returns
+///
+/// A JSON string representing an array of CalendarDefinition objects.
+#[cfg(feature = "bundled-data")]
+#[uniffi::export]
+pub fn get_bundled_calendar_definitions() -> Result<String, RomcalError> {
+    let definitions = romcal::bundled_data::get_all_calendar_definitions()?;
+    serde_json::to_string(&definitions)
+        .map_err(|e| RomcalError::ParseError(format!("Failed to serialize definitions: {}", e)))
+}
+
+/// Get all bundled resources as a JSON array.
+///
+/// This function is only available when the `bundled-data` feature is enabled.
+/// Returns all locale resources (en, fr, es, it, de, etc.) embedded in the binary.
+///
+/// # Returns
+///
+/// A JSON string representing an array of Resources objects.
+#[cfg(feature = "bundled-data")]
+#[uniffi::export]
+pub fn get_bundled_resources() -> Result<String, RomcalError> {
+    let resources = romcal::bundled_data::get_all_resources()?;
+    serde_json::to_string(&resources)
+        .map_err(|e| RomcalError::ParseError(format!("Failed to serialize resources: {}", e)))
+}
+
+/// Check if bundled data is available.
+///
+/// Returns true if the library was compiled with the `bundled-data` feature.
+#[uniffi::export]
+pub fn has_bundled_data() -> bool {
+    cfg!(feature = "bundled-data")
 }

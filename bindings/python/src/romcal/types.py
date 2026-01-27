@@ -4,7 +4,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Annotated, Any
+from typing import Annotated, Any, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, RootModel
 
@@ -15,17 +15,17 @@ class CalendarType(Enum):
     Defines the scope and authority level of the liturgical calendar.
     """
 
-    GENERAL_ROMAN = "GENERAL_ROMAN"
-    REGION = "REGION"
-    COUNTRY = "COUNTRY"
-    ARCHDIOCESE = "ARCHDIOCESE"
-    DIOCESE = "DIOCESE"
-    CITY = "CITY"
-    PARISH = "PARISH"
-    GENERAL_COMMUNITY = "GENERAL_COMMUNITY"
-    REGIONAL_COMMUNITY = "REGIONAL_COMMUNITY"
-    LOCAL_COMMUNITY = "LOCAL_COMMUNITY"
-    OTHER = "OTHER"
+    general_roman = "general_roman"
+    region = "region"
+    country = "country"
+    archdiocese = "archdiocese"
+    diocese = "diocese"
+    city = "city"
+    parish = "parish"
+    general_community = "general_community"
+    regional_community = "regional_community"
+    local_community = "local_community"
+    other = "other"
 
 
 class CalendarJurisdiction(Enum):
@@ -34,8 +34,8 @@ class CalendarJurisdiction(Enum):
     Determines whether the calendar follows ecclesiastical or civil authority.
     """
 
-    ECCLESIASTICAL = "ECCLESIASTICAL"
-    CIVIL = "CIVIL"
+    ecclesiastical = "ecclesiastical"
+    civil = "civil"
 
 
 class EasterCalculationType(Enum):
@@ -46,8 +46,8 @@ class EasterCalculationType(Enum):
     which is the basis for most movable feasts in the liturgical calendar.
     """
 
-    GREGORIAN = "GREGORIAN"
-    JULIAN = "JULIAN"
+    gregorian = "gregorian"
+    julian = "julian"
 
 
 class MonthIndex(RootModel[int]):
@@ -68,23 +68,23 @@ class DateFn(Enum):
     based on Easter or other variable dates.
     """
 
-    MARY_MOTHER_OF_THE_CHURCH = "MARY_MOTHER_OF_THE_CHURCH"
-    EPIPHANY_SUNDAY = "EPIPHANY_SUNDAY"
-    PRESENTATION_OF_THE_LORD = "PRESENTATION_OF_THE_LORD"
-    ANNUNCIATION = "ANNUNCIATION"
-    PALM_SUNDAY = "PALM_SUNDAY"
-    EASTER_SUNDAY = "EASTER_SUNDAY"
-    DIVINE_MERCY_SUNDAY = "DIVINE_MERCY_SUNDAY"
-    IMMACULATE_HEART_OF_MARY = "IMMACULATE_HEART_OF_MARY"
-    PENTECOST_SUNDAY = "PENTECOST_SUNDAY"
-    CORPUS_CHRISTI_SUNDAY = "CORPUS_CHRISTI_SUNDAY"
-    NATIVITY_OF_JOHN_THE_BAPTIST = "NATIVITY_OF_JOHN_THE_BAPTIST"
-    PETER_AND_PAUL_APOSTLES = "PETER_AND_PAUL_APOSTLES"
-    TRANSFIGURATION = "TRANSFIGURATION"
-    ASSUMPTION = "ASSUMPTION"
-    EXALTATION_OF_THE_HOLY_CROSS = "EXALTATION_OF_THE_HOLY_CROSS"
-    ALL_SAINTS = "ALL_SAINTS"
-    IMMACULATE_CONCEPTION_OF_MARY = "IMMACULATE_CONCEPTION_OF_MARY"
+    mary_mother_of_the_church = "mary_mother_of_the_church"
+    epiphany_sunday = "epiphany_sunday"
+    presentation_of_the_lord = "presentation_of_the_lord"
+    annunciation = "annunciation"
+    palm_sunday = "palm_sunday"
+    easter_sunday = "easter_sunday"
+    divine_mercy_sunday = "divine_mercy_sunday"
+    immaculate_heart_of_mary = "immaculate_heart_of_mary"
+    pentecost_sunday = "pentecost_sunday"
+    corpus_christi_sunday = "corpus_christi_sunday"
+    nativity_of_john_the_baptist = "nativity_of_john_the_baptist"
+    peter_and_paul_apostles = "peter_and_paul_apostles"
+    transfiguration = "transfiguration"
+    assumption = "assumption"
+    exaltation_of_the_holy_cross = "exaltation_of_the_holy_cross"
+    all_saints = "all_saints"
+    immaculate_conception_of_mary = "immaculate_conception_of_mary"
 
 
 class DayOfWeek(RootModel[int]):
@@ -132,43 +132,43 @@ class Precedence(Enum):
     Defines the hierarchical order of liturgical celebrations according to UNLY norms.
     """
 
-    TRIDUUM_1 = "TRIDUUM_1"
-    PROPER_OF_TIME_SOLEMNITY_2 = "PROPER_OF_TIME_SOLEMNITY_2"
-    PRIVILEGED_SUNDAY_2 = "PRIVILEGED_SUNDAY_2"
-    ASH_WEDNESDAY_2 = "ASH_WEDNESDAY_2"
-    WEEKDAY_OF_HOLY_WEEK_2 = "WEEKDAY_OF_HOLY_WEEK_2"
-    WEEKDAY_OF_EASTER_OCTAVE_2 = "WEEKDAY_OF_EASTER_OCTAVE_2"
-    GENERAL_SOLEMNITY_3 = "GENERAL_SOLEMNITY_3"
-    COMMEMORATION_OF_ALL_THE_FAITHFUL_DEPARTED_3 = "COMMEMORATION_OF_ALL_THE_FAITHFUL_DEPARTED_3"
-    PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A = "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A"
-    PROPER_SOLEMNITY__DEDICATION_OF_THE_OWN_CHURCH_4B = (
-        "PROPER_SOLEMNITY__DEDICATION_OF_THE_OWN_CHURCH_4B"
+    triduum_1 = "triduum_1"
+    proper_of_time_solemnity_2 = "proper_of_time_solemnity_2"
+    privileged_sunday_2 = "privileged_sunday_2"
+    ash_wednesday_2 = "ash_wednesday_2"
+    weekday_of_holy_week_2 = "weekday_of_holy_week_2"
+    weekday_of_easter_octave_2 = "weekday_of_easter_octave_2"
+    general_solemnity_3 = "general_solemnity_3"
+    commemoration_of_all_the_faithful_departed_3 = "commemoration_of_all_the_faithful_departed_3"
+    proper_solemnity__principal_patron_4a = "proper_solemnity__principal_patron_4a"
+    proper_solemnity__dedication_of_the_own_church_4b = (
+        "proper_solemnity__dedication_of_the_own_church_4b"
     )
-    PROPER_SOLEMNITY__TITLE_OF_THE_OWN_CHURCH_4C = "PROPER_SOLEMNITY__TITLE_OF_THE_OWN_CHURCH_4C"
-    PROPER_SOLEMNITY__TITLE_OR_FOUNDER_OR_PRIMARY_PATRON_OF_A_RELIGIOUS_ORG_4D = (
-        "PROPER_SOLEMNITY__TITLE_OR_FOUNDER_OR_PRIMARY_PATRON_OF_A_RELIGIOUS_ORG_4D"
+    proper_solemnity__title_of_the_own_church_4c = "proper_solemnity__title_of_the_own_church_4c"
+    proper_solemnity__title_or_founder_or_primary_patron_of_a_religious_org_4d = (
+        "proper_solemnity__title_or_founder_or_primary_patron_of_a_religious_org_4d"
     )
-    GENERAL_LORD_FEAST_5 = "GENERAL_LORD_FEAST_5"
-    UNPRIVILEGED_SUNDAY_6 = "UNPRIVILEGED_SUNDAY_6"
-    GENERAL_FEAST_7 = "GENERAL_FEAST_7"
-    PROPER_FEAST__PRINCIPAL_PATRON_OF_A_DIOCESE_8A = (
-        "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_DIOCESE_8A"
+    general_lord_feast_5 = "general_lord_feast_5"
+    unprivileged_sunday_6 = "unprivileged_sunday_6"
+    general_feast_7 = "general_feast_7"
+    proper_feast__principal_patron_of_a_diocese_8a = (
+        "proper_feast__principal_patron_of_a_diocese_8a"
     )
-    PROPER_FEAST__DEDICATION_OF_THE_CATHEDRAL_CHURCH_8B = (
-        "PROPER_FEAST__DEDICATION_OF_THE_CATHEDRAL_CHURCH_8B"
+    proper_feast__dedication_of_the_cathedral_church_8b = (
+        "proper_feast__dedication_of_the_cathedral_church_8b"
     )
-    PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C = "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C"
-    PROPER_FEAST__TITLE_OR_FOUNDER_OR_PRIMARY_PATRON_OF_A_RELIGIOUS_ORG_8D = (
-        "PROPER_FEAST__TITLE_OR_FOUNDER_OR_PRIMARY_PATRON_OF_A_RELIGIOUS_ORG_8D"
+    proper_feast__principal_patron_of_a_region_8c = "proper_feast__principal_patron_of_a_region_8c"
+    proper_feast__title_or_founder_or_primary_patron_of_a_religious_org_8d = (
+        "proper_feast__title_or_founder_or_primary_patron_of_a_religious_org_8d"
     )
-    PROPER_FEAST__TO_AN_INDIVIDUAL_CHURCH_8E = "PROPER_FEAST__TO_AN_INDIVIDUAL_CHURCH_8E"
-    PROPER_FEAST_8F = "PROPER_FEAST_8F"
-    PRIVILEGED_WEEKDAY_9 = "PRIVILEGED_WEEKDAY_9"
-    GENERAL_MEMORIAL_10 = "GENERAL_MEMORIAL_10"
-    PROPER_MEMORIAL__SECOND_PATRON_11A = "PROPER_MEMORIAL__SECOND_PATRON_11A"
-    PROPER_MEMORIAL_11B = "PROPER_MEMORIAL_11B"
-    OPTIONAL_MEMORIAL_12 = "OPTIONAL_MEMORIAL_12"
-    WEEKDAY_13 = "WEEKDAY_13"
+    proper_feast__to_an_individual_church_8e = "proper_feast__to_an_individual_church_8e"
+    proper_feast_8f = "proper_feast_8f"
+    privileged_weekday_9 = "privileged_weekday_9"
+    general_memorial_10 = "general_memorial_10"
+    proper_memorial__second_patron_11a = "proper_memorial__second_patron_11a"
+    proper_memorial_11b = "proper_memorial_11b"
+    optional_memorial_12 = "optional_memorial_12"
+    weekday_13 = "weekday_13"
 
 
 class CommonDefinition(Enum):
@@ -177,29 +177,29 @@ class CommonDefinition(Enum):
     Provides a simplified version of the Common enum for easier classification.
     """
 
-    NONE = "NONE"
-    DEDICATION_ANNIVERSARY__INSIDE = "DEDICATION_ANNIVERSARY__INSIDE"
-    DEDICATION_ANNIVERSARY__OUTSIDE = "DEDICATION_ANNIVERSARY__OUTSIDE"
-    BLESSED_VIRGIN_MARY = "BLESSED_VIRGIN_MARY"
-    MARTYRS = "MARTYRS"
-    MISSIONARY_MARTYRS = "MISSIONARY_MARTYRS"
-    VIRGIN_MARTYRS = "VIRGIN_MARTYRS"
-    WOMAN_MARTYRS = "WOMAN_MARTYRS"
-    PASTORS = "PASTORS"
-    POPES = "POPES"
-    BISHOPS = "BISHOPS"
-    FOUNDERS = "FOUNDERS"
-    MISSIONARIES = "MISSIONARIES"
-    DOCTORS_OF_THE_CHURCH = "DOCTORS_OF_THE_CHURCH"
-    VIRGINS = "VIRGINS"
-    SAINTS = "SAINTS"
-    ABBOTS = "ABBOTS"
-    MONKS = "MONKS"
-    NUNS = "NUNS"
-    RELIGIOUS = "RELIGIOUS"
-    MERCY_WORKERS = "MERCY_WORKERS"
-    EDUCATORS = "EDUCATORS"
-    HOLY_WOMEN = "HOLY_WOMEN"
+    none = "none"
+    dedication_anniversary__inside = "dedication_anniversary__inside"
+    dedication_anniversary__outside = "dedication_anniversary__outside"
+    blessed_virgin_mary = "blessed_virgin_mary"
+    martyrs = "martyrs"
+    missionary_martyrs = "missionary_martyrs"
+    virgin_martyrs = "virgin_martyrs"
+    woman_martyrs = "woman_martyrs"
+    pastors = "pastors"
+    popes = "popes"
+    bishops = "bishops"
+    founders = "founders"
+    missionaries = "missionaries"
+    doctors_of_the_church = "doctors_of_the_church"
+    virgins = "virgins"
+    saints = "saints"
+    abbots = "abbots"
+    monks = "monks"
+    nuns = "nuns"
+    religious = "religious"
+    mercy_workers = "mercy_workers"
+    educators = "educators"
+    holy_women = "holy_women"
 
 
 class Title(Enum):
@@ -208,75 +208,75 @@ class Title(Enum):
     Represents the various ecclesiastical titles and patronages that can be assigned to entities.
     """
 
-    ABBESS = "ABBESS"
-    ABBOT = "ABBOT"
-    APOSTLE = "APOSTLE"
-    ARCHANGEL = "ARCHANGEL"
-    BISHOP = "BISHOP"
-    DEACON = "DEACON"
-    DOCTOR_OF_THE_CHURCH = "DOCTOR_OF_THE_CHURCH"
-    EMPRESS = "EMPRESS"
-    EVANGELIST = "EVANGELIST"
-    FIRST_BISHOP = "FIRST_BISHOP"
-    HERMIT = "HERMIT"
-    KING = "KING"
-    MARTYR = "MARTYR"
-    MISSIONARY = "MISSIONARY"
-    MONK = "MONK"
-    MOTHER_AND_QUEEN_OF_CHILE = "MOTHER_AND_QUEEN_OF_CHILE"
-    PARENTS_OF_THE_BLESSED_VIRGIN_MARY = "PARENTS_OF_THE_BLESSED_VIRGIN_MARY"
-    POPE = "POPE"
-    PATRIARCH = "PATRIARCH"
-    PILGRIM = "PILGRIM"
-    PRIEST = "PRIEST"
-    PROPHET = "PROPHET"
-    PROTO_MARTYR_OF_OCEANIA = "PROTO_MARTYR_OF_OCEANIA"
-    QUEEN = "QUEEN"
-    QUEEN_OF_POLAND = "QUEEN_OF_POLAND"
-    RELIGIOUS = "RELIGIOUS"
-    SLAVIC_MISSIONARY = "SLAVIC_MISSIONARY"
-    SPOUSE_OF_THE_BLESSED_VIRGIN_MARY = "SPOUSE_OF_THE_BLESSED_VIRGIN_MARY"
-    THE_FIRST_MARTYR = "THE_FIRST_MARTYR"
-    VIRGIN = "VIRGIN"
-    COPATRON_OF_EUROPE = "COPATRON_OF_EUROPE"
-    COPATRON_OF_IRELAND = "COPATRON_OF_IRELAND"
-    COPATRON_OF_CANADA = "COPATRON_OF_CANADA"
-    COPATRONESS_OF_EUROPE = "COPATRONESS_OF_EUROPE"
-    COPATRONESS_OF_FRANCE = "COPATRONESS_OF_FRANCE"
-    COPATRONESS_OF_IRELAND = "COPATRONESS_OF_IRELAND"
-    COPATRONESS_OF_ITALY_AND_EUROPE = "COPATRONESS_OF_ITALY_AND_EUROPE"
-    COPATRONESS_OF_THE_PHILIPPINES = "COPATRONESS_OF_THE_PHILIPPINES"
-    PATRON_OF_CANADA = "PATRON_OF_CANADA"
-    PATRON_OF_ENGLAND = "PATRON_OF_ENGLAND"
-    PATRON_OF_EUROPE = "PATRON_OF_EUROPE"
-    PATRON_OF_FRANCE = "PATRON_OF_FRANCE"
-    PATRON_OF_IRELAND = "PATRON_OF_IRELAND"
-    PATRON_OF_ITALY = "PATRON_OF_ITALY"
-    PATRON_OF_OCEANIA = "PATRON_OF_OCEANIA"
-    PATRON_OF_POLAND = "PATRON_OF_POLAND"
-    PATRON_OF_RUSSIA = "PATRON_OF_RUSSIA"
-    PATRON_OF_SCOTLAND = "PATRON_OF_SCOTLAND"
-    PATRON_OF_SPAIN = "PATRON_OF_SPAIN"
-    PATRON_OF_THE_CZECH_NATION = "PATRON_OF_THE_CZECH_NATION"
-    PATRON_OF_THE_DIOCESE = "PATRON_OF_THE_DIOCESE"
-    PATRON_OF_WALES = "PATRON_OF_WALES"
-    PATRONESS_OF_ALSACE = "PATRONESS_OF_ALSACE"
-    PATRONESS_OF_ARGENTINA = "PATRONESS_OF_ARGENTINA"
-    PATRONESS_OF_BRAZIL = "PATRONESS_OF_BRAZIL"
-    PATRONESS_OF_HUNGARY = "PATRONESS_OF_HUNGARY"
-    PATRONESS_OF_PUERTO_RICO = "PATRONESS_OF_PUERTO_RICO"
-    PATRONESS_OF_SLOVAKIA = "PATRONESS_OF_SLOVAKIA"
-    PATRONESS_OF_THE_AMERICAS = "PATRONESS_OF_THE_AMERICAS"
-    PATRONESS_OF_THE_PHILIPPINES = "PATRONESS_OF_THE_PHILIPPINES"
-    PATRONESS_OF_THE_PROVINCE_OF_QUEBEC = "PATRONESS_OF_THE_PROVINCE_OF_QUEBEC"
-    PATRONESS_OF_THE_USA = "PATRONESS_OF_THE_USA"
-    PATRON_OF_THE_CLERGY_OF_THE_ARCHDIOCESE_OF_LYON = (
-        "PATRON_OF_THE_CLERGY_OF_THE_ARCHDIOCESE_OF_LYON"
+    abbess = "abbess"
+    abbot = "abbot"
+    apostle = "apostle"
+    archangel = "archangel"
+    bishop = "bishop"
+    deacon = "deacon"
+    doctor_of_the_church = "doctor_of_the_church"
+    empress = "empress"
+    evangelist = "evangelist"
+    first_bishop = "first_bishop"
+    hermit = "hermit"
+    king = "king"
+    martyr = "martyr"
+    missionary = "missionary"
+    monk = "monk"
+    mother_and_queen_of_chile = "mother_and_queen_of_chile"
+    parents_of_the_blessed_virgin_mary = "parents_of_the_blessed_virgin_mary"
+    pope = "pope"
+    patriarch = "patriarch"
+    pilgrim = "pilgrim"
+    priest = "priest"
+    prophet = "prophet"
+    proto_martyr_of_oceania = "proto_martyr_of_oceania"
+    queen = "queen"
+    queen_of_poland = "queen_of_poland"
+    religious = "religious"
+    slavic_missionary = "slavic_missionary"
+    spouse_of_the_blessed_virgin_mary = "spouse_of_the_blessed_virgin_mary"
+    the_first_martyr = "the_first_martyr"
+    virgin = "virgin"
+    copatron_of_europe = "copatron_of_europe"
+    copatron_of_ireland = "copatron_of_ireland"
+    copatron_of_canada = "copatron_of_canada"
+    copatroness_of_europe = "copatroness_of_europe"
+    copatroness_of_france = "copatroness_of_france"
+    copatroness_of_ireland = "copatroness_of_ireland"
+    copatroness_of_italy_and_europe = "copatroness_of_italy_and_europe"
+    copatroness_of_the_philippines = "copatroness_of_the_philippines"
+    patron_of_canada = "patron_of_canada"
+    patron_of_england = "patron_of_england"
+    patron_of_europe = "patron_of_europe"
+    patron_of_france = "patron_of_france"
+    patron_of_ireland = "patron_of_ireland"
+    patron_of_italy = "patron_of_italy"
+    patron_of_oceania = "patron_of_oceania"
+    patron_of_poland = "patron_of_poland"
+    patron_of_russia = "patron_of_russia"
+    patron_of_scotland = "patron_of_scotland"
+    patron_of_spain = "patron_of_spain"
+    patron_of_the_czech_nation = "patron_of_the_czech_nation"
+    patron_of_the_diocese = "patron_of_the_diocese"
+    patron_of_wales = "patron_of_wales"
+    patroness_of_alsace = "patroness_of_alsace"
+    patroness_of_argentina = "patroness_of_argentina"
+    patroness_of_brazil = "patroness_of_brazil"
+    patroness_of_hungary = "patroness_of_hungary"
+    patroness_of_puerto_rico = "patroness_of_puerto_rico"
+    patroness_of_slovakia = "patroness_of_slovakia"
+    patroness_of_the_americas = "patroness_of_the_americas"
+    patroness_of_the_philippines = "patroness_of_the_philippines"
+    patroness_of_the_province_of_quebec = "patroness_of_the_province_of_quebec"
+    patroness_of_the_usa = "patroness_of_the_usa"
+    patron_of_the_clergy_of_the_archdiocese_of_lyon = (
+        "patron_of_the_clergy_of_the_archdiocese_of_lyon"
     )
-    PATRON_OF_THE_CITY_OF_LYON = "PATRON_OF_THE_CITY_OF_LYON"
-    PATRONESS_OF_COSTA_RICA = "PATRONESS_OF_COSTA_RICA"
-    PRINCIPAL_PATRON_OF_THE_DIOCESE = "PRINCIPAL_PATRON_OF_THE_DIOCESE"
-    SECOND_PATRON_OF_THE_DIOCESE = "SECOND_PATRON_OF_THE_DIOCESE"
+    patron_of_the_city_of_lyon = "patron_of_the_city_of_lyon"
+    patroness_of_costa_rica = "patroness_of_costa_rica"
+    principal_patron_of_the_diocese = "principal_patron_of_the_diocese"
+    second_patron_of_the_diocese = "second_patron_of_the_diocese"
 
 
 class CompoundTitle(BaseModel):
@@ -317,8 +317,8 @@ class SaintCount1(RootModel[int]):
     """
 
 
-class SaintCount(RootModel[SaintCount1 | str | None]):
-    root: Annotated[SaintCount1 | str | None, Field(title="SaintCount")]
+class SaintCount(RootModel[SaintCount1 | Literal["MANY"] | None]):
+    root: Annotated[SaintCount1 | Literal["MANY"] | None, Field(title="SaintCount")]
     """
     Represents the number of saints for an entity or a group of entities.
 
@@ -342,13 +342,13 @@ class Color(Enum):
     Each color has specific liturgical significance and is used during particular seasons or celebrations.
     """
 
-    RED = "RED"
-    ROSE = "ROSE"
-    PURPLE = "PURPLE"
-    GREEN = "GREEN"
-    WHITE = "WHITE"
-    GOLD = "GOLD"
-    BLACK = "BLACK"
+    red = "red"
+    rose = "rose"
+    purple = "purple"
+    green = "green"
+    white = "white"
+    gold = "gold"
+    black = "black"
 
 
 class MassContent(BaseModel):
@@ -822,9 +822,9 @@ class EntityType(Enum):
     Defines whether the entity represents a person, place, or event.
     """
 
-    PERSON = "PERSON"
-    PLACE = "PLACE"
-    EVENT = "EVENT"
+    person = "person"
+    place = "place"
+    event = "event"
 
 
 class CanonizationLevel(Enum):
@@ -833,8 +833,8 @@ class CanonizationLevel(Enum):
     Defines whether someone is beatified (Blessed) or canonized (Saint).
     """
 
-    BLESSED = "BLESSED"
-    SAINT = "SAINT"
+    blessed = "blessed"
+    saint = "saint"
 
 
 class SaintDateDef3(BaseModel):
@@ -871,8 +871,8 @@ class Sex(Enum):
     Sex of a person.
     """
 
-    MALE = "MALE"
-    FEMALE = "FEMALE"
+    male = "male"
+    female = "female"
 
 
 class Rank(Enum):
@@ -880,12 +880,12 @@ class Rank(Enum):
     Liturgical rank indicating the importance and celebration style of a liturgical day
     """
 
-    SOLEMNITY = "SOLEMNITY"
-    SUNDAY = "SUNDAY"
-    FEAST = "FEAST"
-    MEMORIAL = "MEMORIAL"
-    OPTIONAL_MEMORIAL = "OPTIONAL_MEMORIAL"
-    WEEKDAY = "WEEKDAY"
+    solemnity = "solemnity"
+    sunday = "sunday"
+    feast = "feast"
+    memorial = "memorial"
+    optional_memorial = "optional_memorial"
+    weekday = "weekday"
 
 
 class Season(Enum):
@@ -894,12 +894,12 @@ class Season(Enum):
     Represents the major periods that structure the liturgical calendar.
     """
 
-    ADVENT = "ADVENT"
-    CHRISTMAS_TIME = "CHRISTMAS_TIME"
-    LENT = "LENT"
-    PASCHAL_TRIDUUM = "PASCHAL_TRIDUUM"
-    EASTER_TIME = "EASTER_TIME"
-    ORDINARY_TIME = "ORDINARY_TIME"
+    advent = "advent"
+    christmas_time = "christmas_time"
+    lent = "lent"
+    paschal_triduum = "paschal_triduum"
+    easter_time = "easter_time"
+    ordinary_time = "ordinary_time"
 
 
 class Period(Enum):
@@ -908,16 +908,16 @@ class Period(Enum):
     Defines sub-periods that have special liturgical characteristics or rules.
     """
 
-    CHRISTMAS_OCTAVE = "CHRISTMAS_OCTAVE"
-    DAYS_BEFORE_EPIPHANY = "DAYS_BEFORE_EPIPHANY"
-    DAYS_FROM_EPIPHANY = "DAYS_FROM_EPIPHANY"
-    CHRISTMAS_TO_PRESENTATION_OF_THE_LORD = "CHRISTMAS_TO_PRESENTATION_OF_THE_LORD"
-    PRESENTATION_OF_THE_LORD_TO_HOLY_THURSDAY = "PRESENTATION_OF_THE_LORD_TO_HOLY_THURSDAY"
-    HOLY_WEEK = "HOLY_WEEK"
-    PASCHAL_TRIDUUM = "PASCHAL_TRIDUUM"
-    EASTER_OCTAVE = "EASTER_OCTAVE"
-    EARLY_ORDINARY_TIME = "EARLY_ORDINARY_TIME"
-    LATE_ORDINARY_TIME = "LATE_ORDINARY_TIME"
+    christmas_octave = "christmas_octave"
+    days_before_epiphany = "days_before_epiphany"
+    days_from_epiphany = "days_from_epiphany"
+    christmas_to_presentation_of_the_lord = "christmas_to_presentation_of_the_lord"
+    presentation_of_the_lord_to_holy_thursday = "presentation_of_the_lord_to_holy_thursday"
+    holy_week = "holy_week"
+    paschal_triduum = "paschal_triduum"
+    easter_octave = "easter_octave"
+    early_ordinary_time = "early_ordinary_time"
+    late_ordinary_time = "late_ordinary_time"
 
 
 class Common(Enum):
@@ -926,40 +926,40 @@ class Common(Enum):
     Provides standardized liturgical texts for various types of commemorations.
     """
 
-    NONE = "NONE"
-    DEDICATION_ANNIVERSARY__INSIDE = "DEDICATION_ANNIVERSARY__INSIDE"
-    DEDICATION_ANNIVERSARY__OUTSIDE = "DEDICATION_ANNIVERSARY__OUTSIDE"
-    BLESSED_VIRGIN_MARY__ORDINARY_TIME = "BLESSED_VIRGIN_MARY__ORDINARY_TIME"
-    BLESSED_VIRGIN_MARY__ADVENT = "BLESSED_VIRGIN_MARY__ADVENT"
-    BLESSED_VIRGIN_MARY__CHRISTMAS = "BLESSED_VIRGIN_MARY__CHRISTMAS"
-    BLESSED_VIRGIN_MARY__EASTER = "BLESSED_VIRGIN_MARY__EASTER"
-    MARTYRS__OUTSIDE_EASTER__SEVERAL = "MARTYRS__OUTSIDE_EASTER__SEVERAL"
-    MARTYRS__OUTSIDE_EASTER__ONE = "MARTYRS__OUTSIDE_EASTER__ONE"
-    MARTYRS__EASTER__SEVERAL = "MARTYRS__EASTER__SEVERAL"
-    MARTYRS__EASTER__ONE = "MARTYRS__EASTER__ONE"
-    MARTYRS__MISSIONARY__SEVERAL = "MARTYRS__MISSIONARY__SEVERAL"
-    MARTYRS__MISSIONARY__ONE = "MARTYRS__MISSIONARY__ONE"
-    MARTYRS__VIRGIN = "MARTYRS__VIRGIN"
-    MARTYRS__WOMAN = "MARTYRS__WOMAN"
-    PASTORS__POPE_OR_BISHOP = "PASTORS__POPE_OR_BISHOP"
-    PASTORS__BISHOP = "PASTORS__BISHOP"
-    PASTORS__SEVERAL = "PASTORS__SEVERAL"
-    PASTORS__ONE = "PASTORS__ONE"
-    PASTORS__FOUNDER__ONE = "PASTORS__FOUNDER__ONE"
-    PASTORS__FOUNDER__SEVERAL = "PASTORS__FOUNDER__SEVERAL"
-    PASTORS__MISSIONARY = "PASTORS__MISSIONARY"
-    DOCTORS_OF_THE_CHURCH = "DOCTORS_OF_THE_CHURCH"
-    VIRGINS__SEVERAL = "VIRGINS__SEVERAL"
-    VIRGINS__ONE = "VIRGINS__ONE"
-    SAINTS__ALL__SEVERAL = "SAINTS__ALL__SEVERAL"
-    SAINTS__ALL__ONE = "SAINTS__ALL__ONE"
-    SAINTS__ABBOT = "SAINTS__ABBOT"
-    SAINT__MONK = "SAINT__MONK"
-    SAINTS__NUN = "SAINTS__NUN"
-    SAINTS__RELIGIOUS = "SAINTS__RELIGIOUS"
-    SAINTS__MERCY_WORKS = "SAINTS__MERCY_WORKS"
-    SAINTS__EDUCATORS = "SAINTS__EDUCATORS"
-    SAINTS__HOLY_WOMEN = "SAINTS__HOLY_WOMEN"
+    none = "none"
+    dedication_anniversary__inside = "dedication_anniversary__inside"
+    dedication_anniversary__outside = "dedication_anniversary__outside"
+    blessed_virgin_mary__ordinary_time = "blessed_virgin_mary__ordinary_time"
+    blessed_virgin_mary__advent = "blessed_virgin_mary__advent"
+    blessed_virgin_mary__christmas = "blessed_virgin_mary__christmas"
+    blessed_virgin_mary__easter = "blessed_virgin_mary__easter"
+    martyrs__outside_easter__several = "martyrs__outside_easter__several"
+    martyrs__outside_easter__one = "martyrs__outside_easter__one"
+    martyrs__easter__several = "martyrs__easter__several"
+    martyrs__easter__one = "martyrs__easter__one"
+    martyrs__missionary__several = "martyrs__missionary__several"
+    martyrs__missionary__one = "martyrs__missionary__one"
+    martyrs__virgin = "martyrs__virgin"
+    martyrs__woman = "martyrs__woman"
+    pastors__pope_or_bishop = "pastors__pope_or_bishop"
+    pastors__bishop = "pastors__bishop"
+    pastors__several = "pastors__several"
+    pastors__one = "pastors__one"
+    pastors__founder__one = "pastors__founder__one"
+    pastors__founder__several = "pastors__founder__several"
+    pastors__missionary = "pastors__missionary"
+    doctors_of_the_church = "doctors_of_the_church"
+    virgins__several = "virgins__several"
+    virgins__one = "virgins__one"
+    saints__all__several = "saints__all__several"
+    saints__all__one = "saints__all__one"
+    saints__abbot = "saints__abbot"
+    saint__monk = "saint__monk"
+    saints__nun = "saints__nun"
+    saints__religious = "saints__religious"
+    saints__mercy_works = "saints__mercy_works"
+    saints__educators = "saints__educators"
+    saints__holy_women = "saints__holy_women"
 
 
 class ColorInfo(BaseModel):
@@ -986,16 +986,16 @@ class MassTime(Enum):
     Different Masses are celebrated at various times and occasions throughout the liturgical year.
     """
 
-    EASTER_VIGIL = "EASTER_VIGIL"
-    PREVIOUS_EVENING_MASS = "PREVIOUS_EVENING_MASS"
-    NIGHT_MASS = "NIGHT_MASS"
-    MASS_AT_DAWN = "MASS_AT_DAWN"
-    MORNING_MASS = "MORNING_MASS"
-    MASS_OF_THE_PASSION = "MASS_OF_THE_PASSION"
-    CELEBRATION_OF_THE_PASSION = "CELEBRATION_OF_THE_PASSION"
-    DAY_MASS = "DAY_MASS"
-    CHRISM_MASS = "CHRISM_MASS"
-    EVENING_MASS_OF_THE_LORDS_SUPPER = "EVENING_MASS_OF_THE_LORDS_SUPPER"
+    easter_vigil = "easter_vigil"
+    previous_evening_mass = "previous_evening_mass"
+    night_mass = "night_mass"
+    mass_at_dawn = "mass_at_dawn"
+    morning_mass = "morning_mass"
+    mass_of_the_passion = "mass_of_the_passion"
+    celebration_of_the_passion = "celebration_of_the_passion"
+    day_mass = "day_mass"
+    chrism_mass = "chrism_mass"
+    evening_mass_of_the_lords_supper = "evening_mass_of_the_lords_supper"
 
 
 class SundayCycle(Enum):
@@ -1006,9 +1006,9 @@ class SundayCycle(Enum):
     C year is always divisible by 3, A has remainder of 1, and B remainder of 2.
     """
 
-    YEAR_A = "YEAR_A"
-    YEAR_B = "YEAR_B"
-    YEAR_C = "YEAR_C"
+    year_a = "year_a"
+    year_b = "year_b"
+    year_c = "year_c"
 
 
 class WeekdayCycle(Enum):
@@ -1017,8 +1017,8 @@ class WeekdayCycle(Enum):
     Odd-numbered years are the Cycle I (year 1); even-numbered ones are the Cycle II (year 2).
     """
 
-    YEAR_1 = "YEAR_1"
-    YEAR_2 = "YEAR_2"
+    year_1 = "year_1"
+    year_2 = "year_2"
 
 
 class PsalterWeekCycle(Enum):
@@ -1028,10 +1028,10 @@ class PsalterWeekCycle(Enum):
     and Easter Sunday the cycle is always begun again with Week 1 (others being omitted when necessary).
     """
 
-    WEEK_1 = "WEEK_1"
-    WEEK_2 = "WEEK_2"
-    WEEK_3 = "WEEK_3"
-    WEEK_4 = "WEEK_4"
+    week_1 = "week_1"
+    week_2 = "week_2"
+    week_3 = "week_3"
+    week_4 = "week_4"
 
 
 class CalendarContext(Enum):
@@ -1042,8 +1042,8 @@ class CalendarContext(Enum):
     in a given year's calendar output.
     """
 
-    GREGORIAN = "GREGORIAN"
-    LITURGICAL = "LITURGICAL"
+    gregorian = "gregorian"
+    liturgical = "liturgical"
 
 
 class SundayCycleCombined(Enum):
@@ -1053,9 +1053,9 @@ class SundayCycleCombined(Enum):
     across different combinations of Sunday cycles.
     """
 
-    YEAR_A_B = "YEAR_A_B"
-    YEAR_A_C = "YEAR_A_C"
-    YEAR_B_C = "YEAR_B_C"
+    year_a_b = "year_a_b"
+    year_a_c = "year_a_c"
+    year_b_c = "year_b_c"
 
 
 class LiturgicalCycle(Enum):
@@ -1081,10 +1081,10 @@ class Acclamation(Enum):
     Acclamations are short liturgical responses or exclamations used during Mass.
     """
 
-    ALLELUIA = "ALLELUIA"
-    LENT = "LENT"
-    MIXED = "MIXED"
-    NONE = "NONE"
+    alleluia = "alleluia"
+    lent = "lent"
+    mixed = "mixed"
+    none = "none"
 
 
 class BibleBook(Enum):
@@ -1588,7 +1588,7 @@ class MassInfo(BaseModel):
     type: MassTime
     """
     The type of mass (e.g., DayMass, EasterVigil, etc.)
-    Serialized as SCREAMING_SNAKE_CASE (e.g., "DAY_MASS")
+    Serialized as snake_case (e.g., "day_mass")
     """
     name: str
     """
@@ -1769,7 +1769,7 @@ class MassContext(BaseModel):
     mass_time: MassTime
     """
     The type of mass (e.g., DayMass, EasterVigil, etc.)
-    Serialized as SCREAMING_SNAKE_CASE (e.g., "DAY_MASS")
+    Serialized as snake_case (e.g., "day_mass")
     """
     mass_time_name: str
     """
@@ -2056,7 +2056,7 @@ class EntityDefinition(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    type: EntityType | None = "PERSON"
+    type: EntityType | None = "person"
     """
     The type of the entity.
 

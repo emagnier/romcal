@@ -2214,12 +2214,12 @@ mod tests {
         assert!(json.is_ok(), "Mass calendar should serialize to JSON");
 
         let json_str = json.unwrap();
-        // Check that mass_time is serialized as SCREAMING_SNAKE_CASE
+        // Check that mass_time is serialized as snake_case
         assert!(
-            json_str.contains("\"mass_time\":\"DAY_MASS\"")
-                || json_str.contains("\"mass_time\":\"PREVIOUS_EVENING_MASS\"")
-                || json_str.contains("\"mass_time\":\"EASTER_VIGIL\""),
-            "mass_time should be serialized as SCREAMING_SNAKE_CASE"
+            json_str.contains("\"mass_time\":\"day_mass\"")
+                || json_str.contains("\"mass_time\":\"previous_evening_mass\"")
+                || json_str.contains("\"mass_time\":\"easter_vigil\""),
+            "mass_time should be serialized as snake_case"
         );
     }
 }

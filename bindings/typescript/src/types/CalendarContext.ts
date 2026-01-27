@@ -6,4 +6,4 @@
  * Determines how the calendar year is structured and which dates are included
  * in a given year's calendar output.
  */
-export type CalendarContext = 'GREGORIAN' | 'LITURGICAL'
+export type CalendarContext = 'gregorian' | 'liturgical'

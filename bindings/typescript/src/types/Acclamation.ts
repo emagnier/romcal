@@ -4,4 +4,4 @@
  * Acclamations used in liturgical celebrations.
  * Acclamations are short liturgical responses or exclamations used during Mass.
  */
-export type Acclamation = 'ALLELUIA' | 'LENT' | 'MIXED' | 'NONE'
+export type Acclamation = 'alleluia' | 'lent' | 'mixed' | 'none'

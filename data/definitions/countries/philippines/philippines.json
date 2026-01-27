@@ -2,13 +2,13 @@
   "$schema": "../../../../schemas/calendar_definition.json",
   "id": "philippines",
   "metadata": {
-    "jurisdiction": "CIVIL",
-    "type": "COUNTRY"
+    "jurisdiction": "civil",
+    "type": "country"
   },
   "parent_calendar_ids": [],
   "days_definitions": {
     "holy_child_of_cebu": {
-      "precedence": "PROPER_FEAST_8F",
+      "precedence": "proper_feast_8f",
       "date_def": {
         "month": 1,
         "day_of_week": 0,
@@ -16,7 +16,7 @@
       }
     },
     "peter_baptist_blasquez_paul_miki_and_companions_martyrs": {
-      "precedence": "PROPER_MEMORIAL_11B",
+      "precedence": "proper_memorial_11b",
       "date_def": {
         "month": 2,
         "date": 6
@@ -28,7 +28,7 @@
       ]
     },
     "pedro_calungsod_martyr": {
-      "precedence": "PROPER_MEMORIAL_11B",
+      "precedence": "proper_memorial_11b",
       "date_def": {
         "month": 4,
         "date": 2
@@ -37,15 +37,15 @@
         {
           "when": {
             "from": {
-              "date_fn": "PALM_SUNDAY"
+              "date_fn": "palm_sunday"
             },
             "to": {
-              "date_fn": "DIVINE_MERCY_SUNDAY"
+              "date_fn": "divine_mercy_sunday"
             },
             "inclusive": true
           },
           "then": {
-            "date_fn": "PALM_SUNDAY",
+            "date_fn": "palm_sunday",
             "day_offset": -1
           }
         },
@@ -54,28 +54,28 @@
             "day_of_week": 0
           },
           "then": {
-            "date_fn": "PALM_SUNDAY",
+            "date_fn": "palm_sunday",
             "day_offset": -1
           }
         }
       ]
     },
     "isidore_the_farmer": {
-      "precedence": "PROPER_MEMORIAL_11B",
+      "precedence": "proper_memorial_11b",
       "date_def": {
         "month": 5,
         "date": 15
       }
     },
     "roch_of_montpellier": {
-      "precedence": "PROPER_MEMORIAL_11B",
+      "precedence": "proper_memorial_11b",
       "date_def": {
         "month": 8,
         "date": 16
       }
     },
     "ezequiel_moreno_bishop": {
-      "precedence": "PROPER_MEMORIAL_11B",
+      "precedence": "proper_memorial_11b",
       "date_def": {
         "month": 8,
         "date": 19
@@ -83,39 +83,39 @@
     },
     "rose_of_lima_virgin": {
       "custom_locale_id": "rose_of_lima_virgin_copatroness_of_the_philippines",
-      "precedence": "PROPER_MEMORIAL_11B",
+      "precedence": "proper_memorial_11b",
       "date_def": {
         "month": 8,
         "date": 23
       },
       "titles": {
         "append": [
-          "COPATRONESS_OF_THE_PHILIPPINES"
+          "copatroness_of_the_philippines"
         ]
       }
     },
     "lawrence_ruiz_and_companions_martyrs": {
-      "precedence": "PROPER_MEMORIAL_11B"
+      "precedence": "proper_memorial_11b"
     },
     "immaculate_conception_of_the_blessed_virgin_mary": {
       "custom_locale_id": "immaculate_conception_of_the_blessed_virgin_mary_patroness_of_the_philippines",
-      "precedence": "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A",
+      "precedence": "proper_solemnity__principal_patron_4a",
       "date_def": {
         "month": 12,
         "date": 8
       },
       "titles": {
         "append": [
-          "PATRONESS_OF_THE_PHILIPPINES"
+          "patroness_of_the_philippines"
         ]
       }
     },
     "our_lady_of_guadalupe": {
       "custom_locale_id": "our_lady_of_guadalupe_patroness_of_the_philippines",
-      "precedence": "PROPER_MEMORIAL_11B",
+      "precedence": "proper_memorial_11b",
       "titles": {
         "append": [
-          "PATRONESS_OF_THE_PHILIPPINES"
+          "patroness_of_the_philippines"
         ]
       }
     }

@@ -30,7 +30,7 @@ import type { WeekdayCycle } from './WeekdayCycle'
 export type MassContext = {
   /**
    * The type of mass (e.g., DayMass, EasterVigil, etc.)
-   * Serialized as SCREAMING_SNAKE_CASE (e.g., "DAY_MASS")
+   * Serialized as snake_case (e.g., "day_mass")
    */
   mass_time: MassTime
   /**

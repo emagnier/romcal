@@ -9,11 +9,11 @@ use ts_rs::TS;
 /// Represents the various ecclesiastical titles and patronages that can be assigned to entities.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, EnumIter)]
 #[cfg_attr(feature = "cli", derive(clap::ValueEnum))]
-#[cfg_attr(feature = "cli", clap(rename_all = "SCREAMING_SNAKE_CASE"))]
+#[cfg_attr(feature = "cli", clap(rename_all = "snake_case"))]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+#[serde(rename_all = "snake_case")]
 pub enum Title {
     // Original Title variants
     Abbess,
@@ -177,7 +177,7 @@ mod tests {
         // Verify that serialization works
         let title = Title::Abbot;
         let json = serde_json::to_string(&title).unwrap();
-        assert_eq!(json, "\"ABBOT\"");
+        assert_eq!(json, "\"abbot\"");
 
         let deserialized: Title = serde_json::from_str(&json).unwrap();
         assert_eq!(deserialized, Title::Abbot);

@@ -2,27 +2,27 @@
   "$schema": "../../../../schemas/calendar_definition.json",
   "id": "sri_lanka",
   "metadata": {
-    "jurisdiction": "CIVIL",
-    "type": "COUNTRY"
+    "jurisdiction": "civil",
+    "type": "country"
   },
   "parent_calendar_ids": [],
   "days_definitions": {
     "joseph_vaz_priest": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 1,
         "date": 16
       }
     },
     "our_lady_of_lanka": {
-      "precedence": "PROPER_FEAST_8F",
+      "precedence": "proper_feast_8f",
       "date_def": {
         "month": 2,
         "date": 4
       }
     },
     "our_lady_of_madhu": {
-      "precedence": "PROPER_FEAST_8F",
+      "precedence": "proper_feast_8f",
       "date_def": {
         "month": 7,
         "date": 2

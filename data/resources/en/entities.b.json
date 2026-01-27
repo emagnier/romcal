@@ -4,10 +4,10 @@
   "entities": {
     "baldomerus_of_lyon_religious": {
       "fullname": "Saint Baldomerus, Religious",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Saint Galmier",
       "titles": [
-        "RELIGIOUS"
+        "religious"
       ],
       "date_of_death": "630-2-27",
       "date_of_death_is_approximative": true,
@@ -20,100 +20,100 @@
     },
     "barbara_of_heliopolis_virgin": {
       "fullname": "Saint Barbara, Virgin and Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Barbara",
       "titles": [
-        "VIRGIN",
-        "MARTYR"
+        "virgin",
+        "martyr"
       ]
     },
     "barnabas_apostle": {
       "fullname": "Saint Barnabas, Apostle",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Barnabas",
       "titles": [
-        "APOSTLE"
+        "apostle"
       ]
     },
     "bartholomew_apostle": {
       "fullname": "Saint Bartholomew, Apostle",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Bartholomew",
       "titles": [
-        "APOSTLE"
+        "apostle"
       ]
     },
     "bartholomew_dias_laurel_religious": {
       "fullname": "Blessed Bartholomew Días Laurel, Religious and Martyr",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Bartholomew Días Laurel",
       "titles": [
-        "RELIGIOUS",
-        "MARTYR"
+        "religious",
+        "martyr"
       ]
     },
     "bartholomew_of_the_martyrs_fernandes_bishop": {
       "fullname": "Saint Bartholomew of the Martyrs Fernandes, Bishop",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Bartholomew of the Martyrs Fernandes",
       "titles": [
-        "BISHOP"
+        "bishop"
       ]
     },
     "basil_the_great_and_gregory_nazianzen_bishops": {
       "fullname": "Saints Basil the Great and Gregory Nazianzen, Bishops and Doctors of the Church"
     },
     "basil_the_great_bishop": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Basil the Great",
       "titles": [
-        "BISHOP",
-        "DOCTOR_OF_THE_CHURCH"
+        "bishop",
+        "doctor_of_the_church"
       ],
       "date_of_death": 379
     },
     "beatrice_da_silva_meneses_virgin": {
       "fullname": "Saint Beatrice da Silva Meneses, Virgin",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Beatrice da Silva Meneses",
       "titles": [
-        "VIRGIN"
+        "virgin"
       ]
     },
     "bede_the_venerable_priest": {
       "fullname": "Saint Bede the Venerable, Priest and Doctor of the Church",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Bede the Venerable",
       "titles": [
-        "PRIEST",
-        "DOCTOR_OF_THE_CHURCH"
+        "priest",
+        "doctor_of_the_church"
       ],
       "date_of_death": 735
     },
     "benedict_of_aniane_abbot": {
       "fullname": "Saint Benedict of Aniane, Abbot",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Benedict of Aniane",
       "titles": [
-        "ABBOT"
+        "abbot"
       ],
       "date_of_death": "820-2-11"
     },
     "benedict_of_jesus_valdivielso_saez_religious": {
       "fullname": "Saint Benedict of Jesus Valdivielso Sáez, Religious and Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Benedict of Jesus Valdivielso Sáez",
       "titles": [
-        "RELIGIOUS",
-        "MARTYR"
+        "religious",
+        "martyr"
       ]
     },
     "benedict_of_nursia_abbot": {
       "fullname": "Saint Benedict, Abbot",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Benedict",
       "titles": [
-        "ABBOT"
+        "abbot"
       ],
       "date_of_death": 547,
       "date_of_death_is_approximative": true
@@ -122,55 +122,55 @@
       "fullname": "Saint Benedict, Abbot, Patron of Europe"
     },
     "benedict_of_skalka_hermit": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Benedict",
       "titles": [
-        "HERMIT"
+        "hermit"
       ],
       "date_of_death": 1012
     },
     "benno_of_meissen_bishop": {
       "fullname": "Saint Benno of Meissen, Bishop",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Benno of Meissen",
       "titles": [
-        "BISHOP"
+        "bishop"
       ]
     },
     "bernadette_soubirous_virgin": {
       "fullname": "Saint Bernadette Soubirous, Virgin",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Bernadette Soubirous",
       "titles": [
-        "VIRGIN"
+        "virgin"
       ],
       "date_of_death": 1879
     },
     "bernard_of_clairvaux_abbot": {
       "fullname": "Saint Bernard, Abbot and Doctor of the Church",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Bernard",
       "titles": [
-        "ABBOT",
-        "DOCTOR_OF_THE_CHURCH"
+        "abbot",
+        "doctor_of_the_church"
       ],
       "date_of_death": 1153
     },
     "bernardine_of_siena_priest": {
       "fullname": "Saint Bernardine of Siena, Priest",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Bernardine of Siena",
       "titles": [
-        "PRIEST"
+        "priest"
       ],
       "date_of_death": 1444
     },
     "bertrand_of_comminges_bishop": {
       "fullname": "Saint Bertrand of Comminges, Bishop",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Bertrand of Comminges",
       "titles": [
-        "BISHOP"
+        "bishop"
       ],
       "date_of_birth": 1050,
       "date_of_birth_is_approximative": true,
@@ -185,38 +185,38 @@
     },
     "beuno_of_wales_abbot": {
       "fullname": "Saint Beuno, Abbot",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Beuno",
       "titles": [
-        "ABBOT"
+        "abbot"
       ]
     },
     "blaise_of_sebaste_bishop": {
       "fullname": "Saint Blaise, Bishop and Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Blaise",
       "titles": [
-        "BISHOP",
-        "MARTYR"
+        "bishop",
+        "martyr"
       ],
       "date_of_death": 316
     },
     "blandina_of_lyon_virgin": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Blandina",
       "titles": [
-        "VIRGIN",
-        "MARTYR"
+        "virgin",
+        "martyr"
       ],
       "date_of_death": 177
     },
     "blessed_martyrs_of_angers": {
       "fullname": "Blessed Martyrs of Angers",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Martyrs of Angers",
       "count": "MANY",
       "titles": [
-        "MARTYR"
+        "martyr"
       ],
       "hide_titles": true,
       "sources": [
@@ -226,37 +226,37 @@
     },
     "blessed_martyrs_of_paris": {
       "fullname": "Blessed Martyrs of Paris",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Martyrs of Paris",
       "count": "MANY",
       "titles": [
-        "MARTYR"
+        "martyr"
       ],
       "hide_titles": true
     },
     "bogumilus_of_dobrow_bishop": {
       "fullname": "Blessed Bogumilus, Bishop",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Bogumilus",
       "titles": [
-        "BISHOP"
+        "bishop"
       ]
     },
     "boleslawa_mary_lament_virgin": {
       "fullname": "Blessed Boleslawa Mary Lament, Virgin",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Boleslawa Mary Lament",
       "titles": [
-        "VIRGIN"
+        "virgin"
       ]
     },
     "bonaventure_of_bagnoregio_bishop": {
       "fullname": "Saint Bonaventure, Bishop and Doctor of the Church",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Bonaventure",
       "titles": [
-        "BISHOP",
-        "DOCTOR_OF_THE_CHURCH"
+        "bishop",
+        "doctor_of_the_church"
       ],
       "date_of_birth": 1221,
       "date_of_death": 1274,
@@ -266,11 +266,11 @@
     },
     "boniface_of_mainz_bishop": {
       "fullname": "Saint Boniface, Bishop and Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Boniface",
       "titles": [
-        "BISHOP",
-        "MARTYR"
+        "bishop",
+        "martyr"
       ],
       "date_of_death": 754
     },
@@ -278,26 +278,26 @@
       "fullname": "Saints Boris and Gleb, Martyrs"
     },
     "boris_of_kiev_martyr": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Boris",
       "titles": [
-        "MARTYR"
+        "martyr"
       ]
     },
     "brendan_of_clonfert_abbot": {
       "fullname": "Saint Brendan, Abbot",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Brendan",
       "titles": [
-        "ABBOT"
+        "abbot"
       ]
     },
     "bridget_of_sweden_religious": {
       "fullname": "Saint Bridget, Religious",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Bridget",
       "titles": [
-        "RELIGIOUS"
+        "religious"
       ],
       "date_of_death": 1373
     },
@@ -306,10 +306,10 @@
     },
     "brigid_of_kildare_virgin": {
       "fullname": "Saint Brigid, Abbess",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Brigid",
       "titles": [
-        "ABBESS"
+        "abbess"
       ],
       "date_of_death": 523
     },
@@ -318,36 +318,36 @@
     },
     "bronislava_of_poland_virgin": {
       "fullname": "Blessed Bronislava, Virgin",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Bronislava",
       "titles": [
-        "VIRGIN"
+        "virgin"
       ]
     },
     "bronislaw_markiewicz_priest": {
       "fullname": "Blessed Bronisław Markiewicz, Priest",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Bronisław Markiewicz",
       "titles": [
-        "PRIEST"
+        "priest"
       ]
     },
     "bruno_of_cologne_priest": {
       "fullname": "Saint Bruno, Priest",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Bruno",
       "titles": [
-        "PRIEST"
+        "priest"
       ],
       "date_of_death": 1101
     },
     "bruno_of_querfurt_bishop": {
       "fullname": "Saint Bruno of Querfurt, Bishop And Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Bruno of Querfurt",
       "titles": [
-        "BISHOP",
-        "MARTYR"
+        "bishop",
+        "martyr"
       ]
     }
   }

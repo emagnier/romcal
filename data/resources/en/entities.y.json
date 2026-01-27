@@ -4,10 +4,10 @@
   "entities": {
     "yolanda_of_poland_religious": {
       "fullname": "Blessed Yolanda, Religious",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Yolanda",
       "titles": [
-        "RELIGIOUS"
+        "religious"
       ]
     }
   }

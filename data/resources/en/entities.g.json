@@ -3,28 +3,28 @@
   "locale": "en",
   "entities": {
     "gabriel_archangel": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Gabriel",
       "titles": [
-        "ARCHANGEL"
+        "archangel"
       ]
     },
     "gabriel_taurin_dufresse_bishop": {
       "fullname": "Saint Gabriel-Taurin Dufresse, Bishop and Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Gabriel-Taurin Dufresse",
       "titles": [
-        "BISHOP",
-        "MARTYR"
+        "bishop",
+        "martyr"
       ]
     },
     "gall_of_switzerland_abbot": {
       "fullname": "Saint Gall, Abbot and Missionary",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Gall",
       "titles": [
-        "ABBOT",
-        "MISSIONARY"
+        "abbot",
+        "missionary"
       ],
       "date_of_death": {
         "or": [
@@ -35,10 +35,10 @@
     },
     "gaud_of_evreux_bishop": {
       "fullname": "Saint Gaud, Bishop",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Gaud",
       "titles": [
-        "BISHOP"
+        "bishop"
       ],
       "date_of_death": 491,
       "date_of_death_is_approximative": true,
@@ -49,26 +49,26 @@
       ]
     },
     "gebhard_of_constance_bishop": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Gebhard of Constance",
       "titles": [
-        "BISHOP"
+        "bishop"
       ]
     },
     "genevieve_of_paris_virgin": {
       "fullname": "Saint Genevieve, Virgin",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Genevieve",
       "titles": [
-        "VIRGIN"
+        "virgin"
       ],
       "date_of_death": 500
     },
     "geoffrey_of_savigny_abbot": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Geoffrey of Savigny",
       "titles": [
-        "ABBOT"
+        "abbot"
       ],
       "sources": [
         "mr_fr_1982_ed2_coutances",
@@ -78,18 +78,18 @@
     },
     "george_matulaitis_bishop": {
       "fullname": "Blessed George Matulaitis, Bishop",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "George Matulaitis",
       "titles": [
-        "BISHOP"
+        "bishop"
       ]
     },
     "george_of_lydda_martyr": {
       "fullname": "Saint George, Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "George",
       "titles": [
-        "MARTYR"
+        "martyr"
       ],
       "date_of_death": 303
     },
@@ -98,43 +98,43 @@
     },
     "george_preca_priest": {
       "fullname": "Saint George Preca, Priest",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "George Preca",
       "titles": [
-        "PRIEST"
+        "priest"
       ]
     },
     "gerald_of_braga_bishop": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Gerald of Braga",
       "titles": [
-        "BISHOP"
+        "bishop"
       ]
     },
     "gerard_of_csanad_bishop": {
       "fullname": "Saint Gerard of Csanád, Bishop and Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Gerard of Csanád",
       "titles": [
-        "BISHOP",
-        "MARTYR"
+        "bishop",
+        "martyr"
       ]
     },
     "germain_of_paris_bishop": {
       "fullname": "Saint Germain of Paris, Bishop",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Germain of Paris",
       "titles": [
-        "BISHOP"
+        "bishop"
       ],
       "date_of_death": 576
     },
     "germaine_cousin_virgin": {
       "fullname": "Saint Germaine Cousin, Virgin",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Germaine Cousin",
       "titles": [
-        "VIRGIN"
+        "virgin"
       ],
       "date_of_birth": 1579,
       "date_of_death": 1601,
@@ -147,20 +147,20 @@
     },
     "germanus_of_auxerre_bishop": {
       "fullname": "Saint Germanus of Auxerre, Bishop",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Germanus of Auxerre",
       "titles": [
-        "BISHOP"
+        "bishop"
       ],
       "date_of_death": 448
     },
     "germanus_of_normandy_bishop": {
       "fullname": "Saint Germanus of Normandy, Bishop and Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Germanus of Normandy",
       "titles": [
-        "BISHOP",
-        "MARTYR"
+        "bishop",
+        "martyr"
       ],
       "date_of_death": 480,
       "date_of_death_is_approximative": true,
@@ -172,78 +172,78 @@
     },
     "gertrude_of_nivelles_abbess": {
       "fullname": "Saint Gertrude of Nivelles, Abbess",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Gertrude of Nivelles",
       "titles": [
-        "ABBESS"
+        "abbess"
       ],
       "date_of_death": 659
     },
     "gertrude_the_great_virgin": {
       "fullname": "Saint Gertrude, Virgin",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Gertrude",
       "titles": [
-        "VIRGIN"
+        "virgin"
       ],
       "date_of_death": 1301
     },
     "gisela_of_hungary": {
       "fullname": "Blessed Gisela",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Gisela"
     },
     "gleb_of_kiev_martyr": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Gleb",
       "titles": [
-        "MARTYR"
+        "martyr"
       ]
     },
     "gobnait_of_ballyvourney_virgin": {
       "fullname": "Saint Gobnait, Virgin",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Gobnait",
       "titles": [
-        "VIRGIN"
+        "virgin"
       ]
     },
     "gorazd_of_moravia": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Gorazd"
     },
     "gorazd_of_moravia_and_companions": {
       "fullname": "Saint Gorazd and Companions"
     },
     "gorazd_of_moravia_bishop": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Gorazd",
       "titles": [
-        "BISHOP"
+        "bishop"
       ]
     },
     "gotthard_of_hildesheim_bishop": {
       "fullname": "Saint Gotthard, Bishop",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Gotthard",
       "titles": [
-        "BISHOP"
+        "bishop"
       ]
     },
     "gratia_of_cattaro_religious": {
       "fullname": "Blessed Gratia of Cattaro, Religious",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Gratia of Cattaro",
       "titles": [
-        "RELIGIOUS"
+        "religious"
       ]
     },
     "gregory_grassi_bishop": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Gregory Grassi",
       "titles": [
-        "BISHOP",
-        "MARTYR"
+        "bishop",
+        "martyr"
       ]
     },
     "gregory_grassi_francis_fogolla_and_anthony_fantosati_bishops_and_companions_martyrs": {
@@ -251,47 +251,47 @@
     },
     "gregory_i_the_great_pope": {
       "fullname": "Saint Gregory the Great, Pope and Doctor of the Church",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Gregory the Great",
       "titles": [
-        "POPE",
-        "DOCTOR_OF_THE_CHURCH"
+        "pope",
+        "doctor_of_the_church"
       ],
       "date_of_death": 604
     },
     "gregory_nazianzen_bishop": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Gregory Nazianzen",
       "titles": [
-        "BISHOP",
-        "DOCTOR_OF_THE_CHURCH"
+        "bishop",
+        "doctor_of_the_church"
       ],
       "date_of_death": 390
     },
     "gregory_of_narek_abbot": {
       "fullname": "Saint Gregory of Narek, Abbot and Doctor of the Church",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Gregory of Narek",
       "titles": [
-        "ABBOT",
-        "DOCTOR_OF_THE_CHURCH"
+        "abbot",
+        "doctor_of_the_church"
       ]
     },
     "gregory_vii_pope": {
       "fullname": "Saint Gregory VII, Pope",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Gregory VII",
       "titles": [
-        "POPE"
+        "pope"
       ],
       "date_of_death": 1085
     },
     "gregory_x_pope": {
       "fullname": "Blessed Gregory X, Pope",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Gregory X",
       "titles": [
-        "POPE"
+        "pope"
       ],
       "date_of_death": "1276-1-10",
       "sources": [
@@ -303,10 +303,10 @@
       "name": "Guardian Angel of Portugal"
     },
     "guillaume_niobe_of_savigny_religious": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Guillaume Niobe of Savigny",
       "titles": [
-        "RELIGIOUS"
+        "religious"
       ],
       "sources": [
         "mr_fr_1982_ed2_coutances",
@@ -316,26 +316,26 @@
     },
     "gundisalvus_garcia_martyr": {
       "fullname": "Saint Gundisalvus Garcia, Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Gundisalvus Garcia",
       "titles": [
-        "MARTYR"
+        "martyr"
       ]
     },
     "gundisalvus_of_amarante_priest": {
       "fullname": "Blessed Gundisalvus of Amarante, Priest",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Gundisalvus of Amarante",
       "titles": [
-        "PRIEST"
+        "priest"
       ]
     },
     "gundisalvus_of_lagos_priest": {
       "fullname": "Blessed Gundisalvus of Lagos, Priest",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Gundisalvus of Lagos",
       "titles": [
-        "PRIEST"
+        "priest"
       ]
     }
   }

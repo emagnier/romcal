@@ -15,7 +15,7 @@ use ts_rs::TS;
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+#[serde(rename_all = "snake_case")]
 pub enum SundayCycle {
     /// Year A
     YearA,
@@ -32,7 +32,7 @@ pub enum SundayCycle {
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+#[serde(rename_all = "snake_case")]
 pub enum SundayCycleCombined {
     /// Years A and B combined
     YearAB,
@@ -48,7 +48,7 @@ pub enum SundayCycleCombined {
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+#[serde(rename_all = "snake_case")]
 #[allow(non_camel_case_types)] // Intentionally using Year_1/Year_2 to produce YEAR_1/YEAR_2 in JSON
 pub enum WeekdayCycle {
     /// Year 1 (Cycle I)
@@ -64,7 +64,7 @@ pub enum WeekdayCycle {
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+#[serde(rename_all = "snake_case")]
 #[allow(non_camel_case_types)] // Intentionally using Week_1/Week_2/etc. to produce WEEK_1/WEEK_2/etc. in JSON
 pub enum PsalterWeekCycle {
     /// Week 1
@@ -483,7 +483,7 @@ mod tests {
         // Verify that serialization works
         let cycle = SundayCycle::YearA;
         let json = serde_json::to_string(&cycle).unwrap();
-        assert_eq!(json, "\"YEAR_A\"");
+        assert_eq!(json, "\"year_a\"");
 
         let deserialized: SundayCycle = serde_json::from_str(&json).unwrap();
         assert_eq!(deserialized, SundayCycle::YearA);
@@ -494,7 +494,7 @@ mod tests {
         // Verify that serialization works
         let cycle = SundayCycleCombined::YearAB;
         let json = serde_json::to_string(&cycle).unwrap();
-        assert_eq!(json, "\"YEAR_A_B\"");
+        assert_eq!(json, "\"year_a_b\"");
 
         let deserialized: SundayCycleCombined = serde_json::from_str(&json).unwrap();
         assert_eq!(deserialized, SundayCycleCombined::YearAB);
@@ -505,7 +505,7 @@ mod tests {
         // Verify that serialization works
         let cycle = WeekdayCycle::Year_1;
         let json = serde_json::to_string(&cycle).unwrap();
-        assert_eq!(json, "\"YEAR_1\"");
+        assert_eq!(json, "\"year_1\"");
 
         let deserialized: WeekdayCycle = serde_json::from_str(&json).unwrap();
         assert_eq!(deserialized, WeekdayCycle::Year_1);
@@ -516,7 +516,7 @@ mod tests {
         // Verify that serialization works
         let cycle = PsalterWeekCycle::Week_1;
         let json = serde_json::to_string(&cycle).unwrap();
-        assert_eq!(json, "\"WEEK_1\"");
+        assert_eq!(json, "\"week_1\"");
 
         let deserialized: PsalterWeekCycle = serde_json::from_str(&json).unwrap();
         assert_eq!(deserialized, PsalterWeekCycle::Week_1);

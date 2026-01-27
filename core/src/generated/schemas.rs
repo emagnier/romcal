@@ -76,57 +76,57 @@ pub const CALENDAR_DEFINITION_SCHEMA: &str = r##"{
         {
           "description": "General Roman Calendar (universal)",
           "type": "string",
-          "const": "GENERAL_ROMAN"
+          "const": "general_roman"
         },
         {
           "description": "Regional calendar (multiple countries)",
           "type": "string",
-          "const": "REGION"
+          "const": "region"
         },
         {
           "description": "National calendar (single country)",
           "type": "string",
-          "const": "COUNTRY"
+          "const": "country"
         },
         {
           "description": "Archdiocesan calendar",
           "type": "string",
-          "const": "ARCHDIOCESE"
+          "const": "archdiocese"
         },
         {
           "description": "Diocesan calendar",
           "type": "string",
-          "const": "DIOCESE"
+          "const": "diocese"
         },
         {
           "description": "City calendar",
           "type": "string",
-          "const": "CITY"
+          "const": "city"
         },
         {
           "description": "Parish calendar",
           "type": "string",
-          "const": "PARISH"
+          "const": "parish"
         },
         {
           "description": "General religious community calendar",
           "type": "string",
-          "const": "GENERAL_COMMUNITY"
+          "const": "general_community"
         },
         {
           "description": "Regional religious community calendar",
           "type": "string",
-          "const": "REGIONAL_COMMUNITY"
+          "const": "regional_community"
         },
         {
           "description": "Local religious community calendar",
           "type": "string",
-          "const": "LOCAL_COMMUNITY"
+          "const": "local_community"
         },
         {
           "description": "Other specialized calendar",
           "type": "string",
-          "const": "OTHER"
+          "const": "other"
         }
       ]
     },
@@ -136,12 +136,12 @@ pub const CALENDAR_DEFINITION_SCHEMA: &str = r##"{
         {
           "description": "Calendar under ecclesiastical authority (Church)",
           "type": "string",
-          "const": "ECCLESIASTICAL"
+          "const": "ecclesiastical"
         },
         {
           "description": "Calendar under civil authority (State)",
           "type": "string",
-          "const": "CIVIL"
+          "const": "civil"
         }
       ]
     },
@@ -190,12 +190,12 @@ pub const CALENDAR_DEFINITION_SCHEMA: &str = r##"{
         {
           "description": "Gregorian calculation (default)",
           "type": "string",
-          "const": "GREGORIAN"
+          "const": "gregorian"
         },
         {
           "description": "Julian calculation converted to Gregorian",
           "type": "string",
-          "const": "JULIAN"
+          "const": "julian"
         }
       ]
     },
@@ -465,87 +465,87 @@ pub const CALENDAR_DEFINITION_SCHEMA: &str = r##"{
         {
           "description": "Monday after Pentecost.",
           "type": "string",
-          "const": "MARY_MOTHER_OF_THE_CHURCH"
+          "const": "mary_mother_of_the_church"
         },
         {
           "description": "Sunday between January 2 and 8 (or January 6 if not transferred).",
           "type": "string",
-          "const": "EPIPHANY_SUNDAY"
+          "const": "epiphany_sunday"
         },
         {
           "description": "February 2 (Candlemas).",
           "type": "string",
-          "const": "PRESENTATION_OF_THE_LORD"
+          "const": "presentation_of_the_lord"
         },
         {
           "description": "March 25 (may be transferred if in Holy Week or Easter Octave).",
           "type": "string",
-          "const": "ANNUNCIATION"
+          "const": "annunciation"
         },
         {
           "description": "Sunday before Easter.",
           "type": "string",
-          "const": "PALM_SUNDAY"
+          "const": "palm_sunday"
         },
         {
           "description": "First Sunday after the Paschal Full Moon.",
           "type": "string",
-          "const": "EASTER_SUNDAY"
+          "const": "easter_sunday"
         },
         {
           "description": "Second Sunday of Easter.",
           "type": "string",
-          "const": "DIVINE_MERCY_SUNDAY"
+          "const": "divine_mercy_sunday"
         },
         {
           "description": "Saturday after the Second Sunday after Pentecost.",
           "type": "string",
-          "const": "IMMACULATE_HEART_OF_MARY"
+          "const": "immaculate_heart_of_mary"
         },
         {
           "description": "Seventh Sunday after Easter.",
           "type": "string",
-          "const": "PENTECOST_SUNDAY"
+          "const": "pentecost_sunday"
         },
         {
           "description": "Thursday or Sunday after Trinity Sunday.",
           "type": "string",
-          "const": "CORPUS_CHRISTI_SUNDAY"
+          "const": "corpus_christi_sunday"
         },
         {
           "description": "June 24.",
           "type": "string",
-          "const": "NATIVITY_OF_JOHN_THE_BAPTIST"
+          "const": "nativity_of_john_the_baptist"
         },
         {
           "description": "June 29.",
           "type": "string",
-          "const": "PETER_AND_PAUL_APOSTLES"
+          "const": "peter_and_paul_apostles"
         },
         {
           "description": "August 6.",
           "type": "string",
-          "const": "TRANSFIGURATION"
+          "const": "transfiguration"
         },
         {
           "description": "August 15.",
           "type": "string",
-          "const": "ASSUMPTION"
+          "const": "assumption"
         },
         {
           "description": "September 14.",
           "type": "string",
-          "const": "EXALTATION_OF_THE_HOLY_CROSS"
+          "const": "exaltation_of_the_holy_cross"
         },
         {
           "description": "November 1.",
           "type": "string",
-          "const": "ALL_SAINTS"
+          "const": "all_saints"
         },
         {
           "description": "December 8.",
           "type": "string",
-          "const": "IMMACULATE_CONCEPTION_OF_MARY"
+          "const": "immaculate_conception_of_mary"
         }
       ]
     },
@@ -682,137 +682,137 @@ pub const CALENDAR_DEFINITION_SCHEMA: &str = r##"{
         {
           "description": "1 - The Paschal Triduum of the Passion and Resurrection of the Lord.",
           "type": "string",
-          "const": "TRIDUUM_1"
+          "const": "triduum_1"
         },
         {
           "description": "2 - The Nativity of the Lord, the Epiphany, the Ascension, or Pentecost.",
           "type": "string",
-          "const": "PROPER_OF_TIME_SOLEMNITY_2"
+          "const": "proper_of_time_solemnity_2"
         },
         {
           "description": "2 - A Sunday of Advent, Lent, or Easter.",
           "type": "string",
-          "const": "PRIVILEGED_SUNDAY_2"
+          "const": "privileged_sunday_2"
         },
         {
           "description": "2 - Ash Wednesday.",
           "type": "string",
-          "const": "ASH_WEDNESDAY_2"
+          "const": "ash_wednesday_2"
         },
         {
           "description": "2 - A weekday of Holy Week from Monday up to and including Thursday.",
           "type": "string",
-          "const": "WEEKDAY_OF_HOLY_WEEK_2"
+          "const": "weekday_of_holy_week_2"
         },
         {
           "description": "2 - A day within the Octave of Easter.",
           "type": "string",
-          "const": "WEEKDAY_OF_EASTER_OCTAVE_2"
+          "const": "weekday_of_easter_octave_2"
         },
         {
           "description": "3 - A Solemnity inscribed in the General Calendar, whether of the Lord, of the Blessed Virgin Mary, or of a Saint.",
           "type": "string",
-          "const": "GENERAL_SOLEMNITY_3"
+          "const": "general_solemnity_3"
         },
         {
           "description": "3 - The Commemoration of All the Faithful Departed.",
           "type": "string",
-          "const": "COMMEMORATION_OF_ALL_THE_FAITHFUL_DEPARTED_3"
+          "const": "commemoration_of_all_the_faithful_departed_3"
         },
         {
           "description": "4a - A proper Solemnity of the principal Patron of the place, city, or state.",
           "type": "string",
-          "const": "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A"
+          "const": "proper_solemnity__principal_patron_4a"
         },
         {
           "description": "4b - The Solemnity of the dedication and of the anniversary of the dedication of the own church.",
           "type": "string",
-          "const": "PROPER_SOLEMNITY__DEDICATION_OF_THE_OWN_CHURCH_4B"
+          "const": "proper_solemnity__dedication_of_the_own_church_4b"
         },
         {
           "description": "4c - The solemnity of the title of the own church.",
           "type": "string",
-          "const": "PROPER_SOLEMNITY__TITLE_OF_THE_OWN_CHURCH_4C"
+          "const": "proper_solemnity__title_of_the_own_church_4c"
         },
         {
           "description": "4d - A Solemnity either of the Title or of the Founder or of the principal Patron of an Order or Congregation.",
           "type": "string",
-          "const": "PROPER_SOLEMNITY__TITLE_OR_FOUNDER_OR_PRIMARY_PATRON_OF_A_RELIGIOUS_ORG_4D"
+          "const": "proper_solemnity__title_or_founder_or_primary_patron_of_a_religious_org_4d"
         },
         {
           "description": "5 - A Feast of the Lord inscribed in the General Calendar.",
           "type": "string",
-          "const": "GENERAL_LORD_FEAST_5"
+          "const": "general_lord_feast_5"
         },
         {
           "description": "6 - A Sunday of Christmas Time or a Sunday in Ordinary Time.",
           "type": "string",
-          "const": "UNPRIVILEGED_SUNDAY_6"
+          "const": "unprivileged_sunday_6"
         },
         {
           "description": "7 - A Feast of the Blessed Virgin Mary or of a Saint in the General Calendar.",
           "type": "string",
-          "const": "GENERAL_FEAST_7"
+          "const": "general_feast_7"
         },
         {
           "description": "8a - The Proper Feast of the principal Patron of the diocese.",
           "type": "string",
-          "const": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_DIOCESE_8A"
+          "const": "proper_feast__principal_patron_of_a_diocese_8a"
         },
         {
           "description": "8b - The Proper Feast of the anniversary of the dedication of the cathedral church.",
           "type": "string",
-          "const": "PROPER_FEAST__DEDICATION_OF_THE_CATHEDRAL_CHURCH_8B"
+          "const": "proper_feast__dedication_of_the_cathedral_church_8b"
         },
         {
           "description": "8c - The Proper Feast of the principal Patron of a region or province, or a country, or of a wider territory.",
           "type": "string",
-          "const": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C"
+          "const": "proper_feast__principal_patron_of_a_region_8c"
         },
         {
           "description": "8d - The Proper Feast of the Title, Founder, or principal Patron of an Order or Congregation.",
           "type": "string",
-          "const": "PROPER_FEAST__TITLE_OR_FOUNDER_OR_PRIMARY_PATRON_OF_A_RELIGIOUS_ORG_8D"
+          "const": "proper_feast__title_or_founder_or_primary_patron_of_a_religious_org_8d"
         },
         {
           "description": "8e - Other Feast, proper to an individual church.",
           "type": "string",
-          "const": "PROPER_FEAST__TO_AN_INDIVIDUAL_CHURCH_8E"
+          "const": "proper_feast__to_an_individual_church_8e"
         },
         {
           "description": "8f - Other Proper Feast inscribed in the Calendar of each diocese or Order or Congregation.",
           "type": "string",
-          "const": "PROPER_FEAST_8F"
+          "const": "proper_feast_8f"
         },
         {
           "description": "9 - Privileged Weekday.",
           "type": "string",
-          "const": "PRIVILEGED_WEEKDAY_9"
+          "const": "privileged_weekday_9"
         },
         {
           "description": "10 - Obligatory Memorials in the General Calendar.",
           "type": "string",
-          "const": "GENERAL_MEMORIAL_10"
+          "const": "general_memorial_10"
         },
         {
           "description": "11a - Proper Obligatory Memorial of a secondary Patron of the place, diocese, region, or religious province.",
           "type": "string",
-          "const": "PROPER_MEMORIAL__SECOND_PATRON_11A"
+          "const": "proper_memorial__second_patron_11a"
         },
         {
           "description": "11b - Other Proper Obligatory Memorial inscribed in the Calendar of each diocese, or Order or congregation.",
           "type": "string",
-          "const": "PROPER_MEMORIAL_11B"
+          "const": "proper_memorial_11b"
         },
         {
           "description": "12 - Optional Memorial.",
           "type": "string",
-          "const": "OPTIONAL_MEMORIAL_12"
+          "const": "optional_memorial_12"
         },
         {
           "description": "13 - Weekday.",
           "type": "string",
-          "const": "WEEKDAY_13"
+          "const": "weekday_13"
         }
       ]
     },
@@ -835,117 +835,117 @@ pub const CALENDAR_DEFINITION_SCHEMA: &str = r##"{
         {
           "description": "No common.",
           "type": "string",
-          "const": "NONE"
+          "const": "none"
         },
         {
           "description": "Dedication anniversary (in the Church that was Dedicated).",
           "type": "string",
-          "const": "DEDICATION_ANNIVERSARY__INSIDE"
+          "const": "dedication_anniversary__inside"
         },
         {
           "description": "Dedication anniversary (outside the Church that was Dedicated).",
           "type": "string",
-          "const": "DEDICATION_ANNIVERSARY__OUTSIDE"
+          "const": "dedication_anniversary__outside"
         },
         {
           "description": "Common of the Blessed Virgin Mary.",
           "type": "string",
-          "const": "BLESSED_VIRGIN_MARY"
+          "const": "blessed_virgin_mary"
         },
         {
           "description": "Common for Martyrs.",
           "type": "string",
-          "const": "MARTYRS"
+          "const": "martyrs"
         },
         {
           "description": "Common for Missionary Martyrs.",
           "type": "string",
-          "const": "MISSIONARY_MARTYRS"
+          "const": "missionary_martyrs"
         },
         {
           "description": "Common for Virgin Martyrs.",
           "type": "string",
-          "const": "VIRGIN_MARTYRS"
+          "const": "virgin_martyrs"
         },
         {
           "description": "Common for Holy Woman Martyrs.",
           "type": "string",
-          "const": "WOMAN_MARTYRS"
+          "const": "woman_martyrs"
         },
         {
           "description": "Common for Pastors.",
           "type": "string",
-          "const": "PASTORS"
+          "const": "pastors"
         },
         {
           "description": "Common for Popes.",
           "type": "string",
-          "const": "POPES"
+          "const": "popes"
         },
         {
           "description": "Common for Bishops.",
           "type": "string",
-          "const": "BISHOPS"
+          "const": "bishops"
         },
         {
           "description": "Common for Founders.",
           "type": "string",
-          "const": "FOUNDERS"
+          "const": "founders"
         },
         {
           "description": "Common for Missionaries.",
           "type": "string",
-          "const": "MISSIONARIES"
+          "const": "missionaries"
         },
         {
           "description": "Common for Doctors of the Church.",
           "type": "string",
-          "const": "DOCTORS_OF_THE_CHURCH"
+          "const": "doctors_of_the_church"
         },
         {
           "description": "Common for Virgins.",
           "type": "string",
-          "const": "VIRGINS"
+          "const": "virgins"
         },
         {
           "description": "Common for Holy Men and Women.",
           "type": "string",
-          "const": "SAINTS"
+          "const": "saints"
         },
         {
           "description": "Common for Abbots.",
           "type": "string",
-          "const": "ABBOTS"
+          "const": "abbots"
         },
         {
           "description": "Common for Monks.",
           "type": "string",
-          "const": "MONKS"
+          "const": "monks"
         },
         {
           "description": "Common for Nuns.",
           "type": "string",
-          "const": "NUNS"
+          "const": "nuns"
         },
         {
           "description": "Common for Religious.",
           "type": "string",
-          "const": "RELIGIOUS"
+          "const": "religious"
         },
         {
           "description": "Common for Those Who Practiced Works of Mercy.",
           "type": "string",
-          "const": "MERCY_WORKERS"
+          "const": "mercy_workers"
         },
         {
           "description": "Common for Educators.",
           "type": "string",
-          "const": "EDUCATORS"
+          "const": "educators"
         },
         {
           "description": "Common for Holy Women.",
           "type": "string",
-          "const": "HOLY_WOMEN"
+          "const": "holy_women"
         }
       ]
     },
@@ -1025,73 +1025,73 @@ pub const CALENDAR_DEFINITION_SCHEMA: &str = r##"{
       "description": "Titles and patronages associated with saints and blessed.\nRepresents the various ecclesiastical titles and patronages that can be assigned to entities.",
       "type": "string",
       "enum": [
-        "ABBESS",
-        "ABBOT",
-        "APOSTLE",
-        "ARCHANGEL",
-        "BISHOP",
-        "DEACON",
-        "DOCTOR_OF_THE_CHURCH",
-        "EMPRESS",
-        "EVANGELIST",
-        "FIRST_BISHOP",
-        "HERMIT",
-        "KING",
-        "MARTYR",
-        "MISSIONARY",
-        "MONK",
-        "MOTHER_AND_QUEEN_OF_CHILE",
-        "PARENTS_OF_THE_BLESSED_VIRGIN_MARY",
-        "POPE",
-        "PATRIARCH",
-        "PILGRIM",
-        "PRIEST",
-        "PROPHET",
-        "PROTO_MARTYR_OF_OCEANIA",
-        "QUEEN",
-        "QUEEN_OF_POLAND",
-        "RELIGIOUS",
-        "SLAVIC_MISSIONARY",
-        "SPOUSE_OF_THE_BLESSED_VIRGIN_MARY",
-        "THE_FIRST_MARTYR",
-        "VIRGIN",
-        "COPATRON_OF_EUROPE",
-        "COPATRON_OF_IRELAND",
-        "COPATRON_OF_CANADA",
-        "COPATRONESS_OF_EUROPE",
-        "COPATRONESS_OF_FRANCE",
-        "COPATRONESS_OF_IRELAND",
-        "COPATRONESS_OF_ITALY_AND_EUROPE",
-        "COPATRONESS_OF_THE_PHILIPPINES",
-        "PATRON_OF_CANADA",
-        "PATRON_OF_ENGLAND",
-        "PATRON_OF_EUROPE",
-        "PATRON_OF_FRANCE",
-        "PATRON_OF_IRELAND",
-        "PATRON_OF_ITALY",
-        "PATRON_OF_OCEANIA",
-        "PATRON_OF_POLAND",
-        "PATRON_OF_RUSSIA",
-        "PATRON_OF_SCOTLAND",
-        "PATRON_OF_SPAIN",
-        "PATRON_OF_THE_CZECH_NATION",
-        "PATRON_OF_THE_DIOCESE",
-        "PATRON_OF_WALES",
-        "PATRONESS_OF_ALSACE",
-        "PATRONESS_OF_ARGENTINA",
-        "PATRONESS_OF_BRAZIL",
-        "PATRONESS_OF_HUNGARY",
-        "PATRONESS_OF_PUERTO_RICO",
-        "PATRONESS_OF_SLOVAKIA",
-        "PATRONESS_OF_THE_AMERICAS",
-        "PATRONESS_OF_THE_PHILIPPINES",
-        "PATRONESS_OF_THE_PROVINCE_OF_QUEBEC",
-        "PATRONESS_OF_THE_USA",
-        "PATRON_OF_THE_CLERGY_OF_THE_ARCHDIOCESE_OF_LYON",
-        "PATRON_OF_THE_CITY_OF_LYON",
-        "PATRONESS_OF_COSTA_RICA",
-        "PRINCIPAL_PATRON_OF_THE_DIOCESE",
-        "SECOND_PATRON_OF_THE_DIOCESE"
+        "abbess",
+        "abbot",
+        "apostle",
+        "archangel",
+        "bishop",
+        "deacon",
+        "doctor_of_the_church",
+        "empress",
+        "evangelist",
+        "first_bishop",
+        "hermit",
+        "king",
+        "martyr",
+        "missionary",
+        "monk",
+        "mother_and_queen_of_chile",
+        "parents_of_the_blessed_virgin_mary",
+        "pope",
+        "patriarch",
+        "pilgrim",
+        "priest",
+        "prophet",
+        "proto_martyr_of_oceania",
+        "queen",
+        "queen_of_poland",
+        "religious",
+        "slavic_missionary",
+        "spouse_of_the_blessed_virgin_mary",
+        "the_first_martyr",
+        "virgin",
+        "copatron_of_europe",
+        "copatron_of_ireland",
+        "copatron_of_canada",
+        "copatroness_of_europe",
+        "copatroness_of_france",
+        "copatroness_of_ireland",
+        "copatroness_of_italy_and_europe",
+        "copatroness_of_the_philippines",
+        "patron_of_canada",
+        "patron_of_england",
+        "patron_of_europe",
+        "patron_of_france",
+        "patron_of_ireland",
+        "patron_of_italy",
+        "patron_of_oceania",
+        "patron_of_poland",
+        "patron_of_russia",
+        "patron_of_scotland",
+        "patron_of_spain",
+        "patron_of_the_czech_nation",
+        "patron_of_the_diocese",
+        "patron_of_wales",
+        "patroness_of_alsace",
+        "patroness_of_argentina",
+        "patroness_of_brazil",
+        "patroness_of_hungary",
+        "patroness_of_puerto_rico",
+        "patroness_of_slovakia",
+        "patroness_of_the_americas",
+        "patroness_of_the_philippines",
+        "patroness_of_the_province_of_quebec",
+        "patroness_of_the_usa",
+        "patron_of_the_clergy_of_the_archdiocese_of_lyon",
+        "patron_of_the_city_of_lyon",
+        "patroness_of_costa_rica",
+        "principal_patron_of_the_diocese",
+        "second_patron_of_the_diocese"
       ]
     },
     "CompoundTitle": {
@@ -1157,37 +1157,37 @@ pub const CALENDAR_DEFINITION_SCHEMA: &str = r##"{
         {
           "description": "Red - used for martyrs, Pentecost, and Palm Sunday",
           "type": "string",
-          "const": "RED"
+          "const": "red"
         },
         {
           "description": "Rose - used on Gaudete Sunday (3rd Advent) and Laetare Sunday (4th Lent)",
           "type": "string",
-          "const": "ROSE"
+          "const": "rose"
         },
         {
           "description": "Purple - used during Advent and Lent",
           "type": "string",
-          "const": "PURPLE"
+          "const": "purple"
         },
         {
           "description": "Green - used during Ordinary Time",
           "type": "string",
-          "const": "GREEN"
+          "const": "green"
         },
         {
           "description": "White - used for Christmas, Easter, and most feasts",
           "type": "string",
-          "const": "WHITE"
+          "const": "white"
         },
         {
           "description": "Gold - used for solemn celebrations and special occasions",
           "type": "string",
-          "const": "GOLD"
+          "const": "gold"
         },
         {
           "description": "Black - used for funerals and All Souls' Day",
           "type": "string",
-          "const": "BLACK"
+          "const": "black"
         }
       ]
     },
@@ -2130,7 +2130,7 @@ pub const RESOURCES_SCHEMA: &str = r##"{
               "type": "null"
             }
           ],
-          "default": "PERSON"
+          "default": "person"
         },
         "fullname": {
           "description": "The full name of the entity.",
@@ -2316,17 +2316,17 @@ pub const RESOURCES_SCHEMA: &str = r##"{
         {
           "description": "A person (saint, blessed, or other individual)",
           "type": "string",
-          "const": "PERSON"
+          "const": "person"
         },
         {
           "description": "A place (shrine, city, or geographical location)",
           "type": "string",
-          "const": "PLACE"
+          "const": "place"
         },
         {
           "description": "An event (historical or liturgical occurrence)",
           "type": "string",
-          "const": "EVENT"
+          "const": "event"
         }
       ]
     },
@@ -2336,12 +2336,12 @@ pub const RESOURCES_SCHEMA: &str = r##"{
         {
           "description": "Beatified person (Blessed) - first step toward sainthood",
           "type": "string",
-          "const": "BLESSED"
+          "const": "blessed"
         },
         {
           "description": "Canonized person (Saint) - fully recognized as a saint",
           "type": "string",
-          "const": "SAINT"
+          "const": "saint"
         }
       ]
     },
@@ -2429,73 +2429,73 @@ pub const RESOURCES_SCHEMA: &str = r##"{
       "description": "Titles and patronages associated with saints and blessed.\nRepresents the various ecclesiastical titles and patronages that can be assigned to entities.",
       "type": "string",
       "enum": [
-        "ABBESS",
-        "ABBOT",
-        "APOSTLE",
-        "ARCHANGEL",
-        "BISHOP",
-        "DEACON",
-        "DOCTOR_OF_THE_CHURCH",
-        "EMPRESS",
-        "EVANGELIST",
-        "FIRST_BISHOP",
-        "HERMIT",
-        "KING",
-        "MARTYR",
-        "MISSIONARY",
-        "MONK",
-        "MOTHER_AND_QUEEN_OF_CHILE",
-        "PARENTS_OF_THE_BLESSED_VIRGIN_MARY",
-        "POPE",
-        "PATRIARCH",
-        "PILGRIM",
-        "PRIEST",
-        "PROPHET",
-        "PROTO_MARTYR_OF_OCEANIA",
-        "QUEEN",
-        "QUEEN_OF_POLAND",
-        "RELIGIOUS",
-        "SLAVIC_MISSIONARY",
-        "SPOUSE_OF_THE_BLESSED_VIRGIN_MARY",
-        "THE_FIRST_MARTYR",
-        "VIRGIN",
-        "COPATRON_OF_EUROPE",
-        "COPATRON_OF_IRELAND",
-        "COPATRON_OF_CANADA",
-        "COPATRONESS_OF_EUROPE",
-        "COPATRONESS_OF_FRANCE",
-        "COPATRONESS_OF_IRELAND",
-        "COPATRONESS_OF_ITALY_AND_EUROPE",
-        "COPATRONESS_OF_THE_PHILIPPINES",
-        "PATRON_OF_CANADA",
-        "PATRON_OF_ENGLAND",
-        "PATRON_OF_EUROPE",
-        "PATRON_OF_FRANCE",
-        "PATRON_OF_IRELAND",
-        "PATRON_OF_ITALY",
-        "PATRON_OF_OCEANIA",
-        "PATRON_OF_POLAND",
-        "PATRON_OF_RUSSIA",
-        "PATRON_OF_SCOTLAND",
-        "PATRON_OF_SPAIN",
-        "PATRON_OF_THE_CZECH_NATION",
-        "PATRON_OF_THE_DIOCESE",
-        "PATRON_OF_WALES",
-        "PATRONESS_OF_ALSACE",
-        "PATRONESS_OF_ARGENTINA",
-        "PATRONESS_OF_BRAZIL",
-        "PATRONESS_OF_HUNGARY",
-        "PATRONESS_OF_PUERTO_RICO",
-        "PATRONESS_OF_SLOVAKIA",
-        "PATRONESS_OF_THE_AMERICAS",
-        "PATRONESS_OF_THE_PHILIPPINES",
-        "PATRONESS_OF_THE_PROVINCE_OF_QUEBEC",
-        "PATRONESS_OF_THE_USA",
-        "PATRON_OF_THE_CLERGY_OF_THE_ARCHDIOCESE_OF_LYON",
-        "PATRON_OF_THE_CITY_OF_LYON",
-        "PATRONESS_OF_COSTA_RICA",
-        "PRINCIPAL_PATRON_OF_THE_DIOCESE",
-        "SECOND_PATRON_OF_THE_DIOCESE"
+        "abbess",
+        "abbot",
+        "apostle",
+        "archangel",
+        "bishop",
+        "deacon",
+        "doctor_of_the_church",
+        "empress",
+        "evangelist",
+        "first_bishop",
+        "hermit",
+        "king",
+        "martyr",
+        "missionary",
+        "monk",
+        "mother_and_queen_of_chile",
+        "parents_of_the_blessed_virgin_mary",
+        "pope",
+        "patriarch",
+        "pilgrim",
+        "priest",
+        "prophet",
+        "proto_martyr_of_oceania",
+        "queen",
+        "queen_of_poland",
+        "religious",
+        "slavic_missionary",
+        "spouse_of_the_blessed_virgin_mary",
+        "the_first_martyr",
+        "virgin",
+        "copatron_of_europe",
+        "copatron_of_ireland",
+        "copatron_of_canada",
+        "copatroness_of_europe",
+        "copatroness_of_france",
+        "copatroness_of_ireland",
+        "copatroness_of_italy_and_europe",
+        "copatroness_of_the_philippines",
+        "patron_of_canada",
+        "patron_of_england",
+        "patron_of_europe",
+        "patron_of_france",
+        "patron_of_ireland",
+        "patron_of_italy",
+        "patron_of_oceania",
+        "patron_of_poland",
+        "patron_of_russia",
+        "patron_of_scotland",
+        "patron_of_spain",
+        "patron_of_the_czech_nation",
+        "patron_of_the_diocese",
+        "patron_of_wales",
+        "patroness_of_alsace",
+        "patroness_of_argentina",
+        "patroness_of_brazil",
+        "patroness_of_hungary",
+        "patroness_of_puerto_rico",
+        "patroness_of_slovakia",
+        "patroness_of_the_americas",
+        "patroness_of_the_philippines",
+        "patroness_of_the_province_of_quebec",
+        "patroness_of_the_usa",
+        "patron_of_the_clergy_of_the_archdiocese_of_lyon",
+        "patron_of_the_city_of_lyon",
+        "patroness_of_costa_rica",
+        "principal_patron_of_the_diocese",
+        "second_patron_of_the_diocese"
       ]
     },
     "Sex": {
@@ -2504,12 +2504,12 @@ pub const RESOURCES_SCHEMA: &str = r##"{
         {
           "description": "Male person",
           "type": "string",
-          "const": "MALE"
+          "const": "male"
         },
         {
           "description": "Female person",
           "type": "string",
-          "const": "FEMALE"
+          "const": "female"
         }
       ]
     },

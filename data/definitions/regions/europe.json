@@ -2,60 +2,60 @@
   "$schema": "../../../schemas/calendar_definition.json",
   "id": "europe",
   "metadata": {
-    "jurisdiction": "CIVIL",
-    "type": "REGION"
+    "jurisdiction": "civil",
+    "type": "region"
   },
   "parent_calendar_ids": [],
   "days_definitions": {
     "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop": {
       "custom_locale_id": "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop_copatrons_of_europe",
-      "precedence": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C",
+      "precedence": "proper_feast__principal_patron_of_a_region_8c",
       "titles": {
         "append": [
-          "COPATRON_OF_EUROPE"
+          "copatron_of_europe"
         ]
       },
-      "commons_def": "NONE"
+      "commons_def": "none"
     },
     "catherine_of_siena_virgin": {
       "custom_locale_id": "catherine_of_siena_virgin_copatroness_of_europe",
-      "precedence": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C",
+      "precedence": "proper_feast__principal_patron_of_a_region_8c",
       "titles": {
         "append": [
-          "COPATRONESS_OF_EUROPE"
+          "copatroness_of_europe"
         ]
       },
-      "commons_def": "NONE"
+      "commons_def": "none"
     },
     "benedict_of_nursia_abbot": {
       "custom_locale_id": "benedict_of_nursia_abbot_patron_of_europe",
-      "precedence": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C",
+      "precedence": "proper_feast__principal_patron_of_a_region_8c",
       "titles": {
         "append": [
-          "PATRON_OF_EUROPE"
+          "patron_of_europe"
         ]
       },
-      "commons_def": "NONE"
+      "commons_def": "none"
     },
     "bridget_of_sweden_religious": {
       "custom_locale_id": "bridget_of_sweden_religious_copatroness_of_europe",
-      "precedence": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C",
+      "precedence": "proper_feast__principal_patron_of_a_region_8c",
       "titles": {
         "append": [
-          "COPATRONESS_OF_EUROPE"
+          "copatroness_of_europe"
         ]
       },
-      "commons_def": "NONE"
+      "commons_def": "none"
     },
     "teresa_benedicta_of_the_cross_stein_virgin": {
       "custom_locale_id": "teresa_benedicta_of_the_cross_stein_virgin_copatroness_of_europe",
-      "precedence": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C",
+      "precedence": "proper_feast__principal_patron_of_a_region_8c",
       "titles": {
         "append": [
-          "COPATRONESS_OF_EUROPE"
+          "copatroness_of_europe"
         ]
       },
-      "commons_def": "NONE"
+      "commons_def": "none"
     }
   }
 }

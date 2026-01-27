@@ -97,7 +97,7 @@ impl From<&LiturgicalDay> for CelebrationSummary {
 pub struct MassContext {
     // === Mass identification ===
     /// The type of mass (e.g., DayMass, EasterVigil, etc.)
-    /// Serialized as SCREAMING_SNAKE_CASE (e.g., "DAY_MASS")
+    /// Serialized as snake_case (e.g., "day_mass")
     pub mass_time: MassTime,
 
     /// The localized name of the mass time (translation key in snake_case)
@@ -347,8 +347,8 @@ mod tests {
         let context = MassContext::new(&day, MassTime::DayMass, "2025-12-25".to_string(), vec![]);
 
         let json = serde_json::to_string(&context).unwrap();
-        // mass_time is serialized as SCREAMING_SNAKE_CASE
-        assert!(json.contains("\"mass_time\":\"DAY_MASS\""));
+        // mass_time is serialized as snake_case
+        assert!(json.contains("\"mass_time\":\"day_mass\""));
         // mass_time_name remains in snake_case
         assert!(json.contains("\"mass_time_name\":\"day_mass\""));
     }

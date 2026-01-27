@@ -2,83 +2,83 @@
   "$schema": "../../../../schemas/calendar_definition.json",
   "id": "russia",
   "metadata": {
-    "jurisdiction": "CIVIL",
-    "type": "COUNTRY"
+    "jurisdiction": "civil",
+    "type": "country"
   },
   "parent_calendar_ids": [],
   "days_definitions": {
     "george_matulaitis_bishop": {
-      "precedence": "PROPER_MEMORIAL_11B",
+      "precedence": "proper_memorial_11b",
       "date_def": {
         "month": 1,
         "date": 27
       }
     },
     "boleslawa_mary_lament_virgin": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 1,
         "date": 29
       }
     },
     "angela_merici_virgin": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 1,
         "date": 29
       }
     },
     "george_of_lydda_martyr": {
-      "precedence": "PROPER_MEMORIAL_11B",
+      "precedence": "proper_memorial_11b",
       "date_def": {
         "month": 5,
         "date": 6
       }
     },
     "theodosius_of_the_caves_abbot": {
-      "precedence": "PROPER_MEMORIAL_11B",
+      "precedence": "proper_memorial_11b",
       "date_def": {
         "month": 5,
         "date": 16
       }
     },
     "our_lady_of_perpetual_help": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 6,
         "date": 27
       }
     },
     "leonid_feodorov_priest": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 6,
         "date": 27
       }
     },
     "anthony_of_the_caves_monk": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 7,
         "date": 24
       }
     },
     "olga_of_kiev": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 7,
         "date": 24
       }
     },
     "vladimir_i_the_great_of_kiev": {
-      "precedence": "PROPER_MEMORIAL_11B",
+      "precedence": "proper_memorial_11b",
       "date_def": {
         "month": 7,
         "date": 28
       }
     },
     "boris_of_kiev_and_gleb_of_kiev_martyrs": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 8,
         "date": 5
@@ -89,38 +89,38 @@
       ]
     },
     "our_lady_of_czestochowa": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 8,
         "date": 26
       }
     },
     "our_lady_of_vladimir": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 9,
         "date": 7
       }
     },
     "faustina_kowalska_virgin": {
-      "precedence": "PROPER_MEMORIAL_11B"
+      "precedence": "proper_memorial_11b"
     },
     "oleksiy_zarytskyi_priest": {
-      "precedence": "PROPER_MEMORIAL_11B",
+      "precedence": "proper_memorial_11b",
       "date_def": {
         "month": 10,
         "date": 30
       }
     },
     "our_lady_of_the_gate_of_dawn": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 11,
         "date": 16
       }
     },
     "raphael_of_saint_joseph_kalinowski_priest": {
-      "precedence": "PROPER_MEMORIAL_11B",
+      "precedence": "proper_memorial_11b",
       "date_def": {
         "month": 11,
         "date": 20
@@ -128,22 +128,22 @@
     },
     "andrew_apostle": {
       "custom_locale_id": "andrew_apostle_patron_of_russia",
-      "precedence": "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A",
+      "precedence": "proper_solemnity__principal_patron_4a",
       "titles": {
         "append": [
-          "PATRON_OF_RUSSIA"
+          "patron_of_russia"
         ]
       }
     },
     "barbara_of_heliopolis_virgin": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 12,
         "date": 4
       }
     },
     "nicholas_of_myra_bishop": {
-      "precedence": "PROPER_MEMORIAL_11B",
+      "precedence": "proper_memorial_11b",
       "date_def": {
         "month": 12,
         "date": 6

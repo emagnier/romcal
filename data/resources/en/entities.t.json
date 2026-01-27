@@ -4,19 +4,19 @@
   "entities": {
     "teilo_of_llandaff_bishop": {
       "fullname": "Saint Teilo, Bishop",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Teilo",
       "titles": [
-        "BISHOP"
+        "bishop"
       ]
     },
     "teresa_benedicta_of_the_cross_stein_virgin": {
       "fullname": "Saint Teresa Benedicta of the Cross Stein, Virgin and Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Teresa Benedicta of the Cross Stein",
       "titles": [
-        "VIRGIN",
-        "MARTYR"
+        "virgin",
+        "martyr"
       ],
       "date_of_death": 1942
     },
@@ -25,44 +25,44 @@
     },
     "teresa_of_calcutta_religious": {
       "fullname": "Saint Teresa of Calcutta, Religious",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Teresa of Calcutta",
       "titles": [
-        "RELIGIOUS"
+        "religious"
       ]
     },
     "teresa_of_jesus_jornet_ibars_virgin": {
       "fullname": "Saint Teresa of Jesus Jornet Ibars, Virgin",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Teresa of Jesus Jornet Ibars",
       "titles": [
-        "VIRGIN"
+        "virgin"
       ]
     },
     "teresa_of_jesus_of_avila_virgin": {
       "fullname": "Saint Teresa of Jesus, Virgin and Doctor of the Church",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Teresa of Jesus of Ávila",
       "titles": [
-        "VIRGIN",
-        "DOCTOR_OF_THE_CHURCH"
+        "virgin",
+        "doctor_of_the_church"
       ],
       "date_of_death": 1582
     },
     "teresa_of_jesus_of_los_andes_virgin": {
       "fullname": "Saint Teresa of Jesus of Los Andes, Virgin",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Teresa of Jesus of Los Andes",
       "titles": [
-        "VIRGIN"
+        "virgin"
       ]
     },
     "teresa_of_portugal_religious": {
       "fullname": "Blessed Teresa of Portugal, Religious",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Teresa of Portugal",
       "titles": [
-        "RELIGIOUS"
+        "religious"
       ]
     },
     "thanksgiving_day": {
@@ -73,43 +73,43 @@
     },
     "theodore_of_canterbury_bishop": {
       "fullname": "Saint Theodore of Canterbury, Bishop",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Theodore of Canterbury",
       "titles": [
-        "BISHOP"
+        "bishop"
       ]
     },
     "theodore_romzha_bishop": {
       "fullname": "Blessed Theodore Romzha, Bishop and Martyr",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Theodore Romzha",
       "titles": [
-        "BISHOP",
-        "MARTYR"
+        "bishop",
+        "martyr"
       ]
     },
     "theodosius_of_the_caves_abbot": {
       "fullname": "Saint Theodosius of the Caves, Abbot",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Theodosius of the Caves",
       "titles": [
-        "ABBOT"
+        "abbot"
       ]
     },
     "theotonius_of_coimbra_priest": {
       "fullname": "Saint Theotonius of Coimbra, Priest",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Theotonius of Coimbra",
       "titles": [
-        "PRIEST"
+        "priest"
       ]
     },
     "therese_marie_victoire_couderc_virgin": {
       "fullname": "Saint Thérèse Couderc, Virgin",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Thérèse Couderc",
       "titles": [
-        "VIRGIN"
+        "virgin"
       ],
       "date_of_birth": "1805-2-1",
       "date_of_death": "1885-9-26",
@@ -119,11 +119,11 @@
     },
     "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin": {
       "fullname": "Saint Thérèse of the Child Jesus, Virgin and Doctor of the Church",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Thérèse of the Child Jesus and the Holy Face of Lisieux",
       "titles": [
-        "VIRGIN",
-        "DOCTOR_OF_THE_CHURCH"
+        "virgin",
+        "doctor_of_the_church"
       ],
       "date_of_death": 1897
     },
@@ -132,19 +132,19 @@
     },
     "thomas_apostle": {
       "fullname": "Saint Thomas, Apostle",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Thomas",
       "titles": [
-        "APOSTLE"
+        "apostle"
       ]
     },
     "thomas_aquinas_priest": {
       "fullname": "Saint Thomas Aquinas, Priest and Doctor of the Church",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Thomas Aquinas",
       "titles": [
-        "PRIEST",
-        "DOCTOR_OF_THE_CHURCH"
+        "priest",
+        "doctor_of_the_church"
       ],
       "date_of_birth": 1225,
       "date_of_birth_is_approximative": true,
@@ -158,11 +158,11 @@
     },
     "thomas_becket_bishop": {
       "fullname": "Saint Thomas Becket, Bishop and Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Thomas Becket",
       "titles": [
-        "BISHOP",
-        "MARTYR"
+        "bishop",
+        "martyr"
       ],
       "date_of_birth": {
         "or": [
@@ -179,10 +179,10 @@
     },
     "thomas_helye_priest": {
       "fullname": "Blessed Thomas Hélye, Priest",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Thomas Hélye",
       "titles": [
-        "PRIEST"
+        "priest"
       ],
       "date_of_birth": {
         "between": [
@@ -198,11 +198,11 @@
       ]
     },
     "thomas_hioji_rokuzayemon_nishi_priest": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Thomas Hioji Rokuzayemon Nishi",
       "titles": [
-        "PRIEST",
-        "MARTYR"
+        "priest",
+        "martyr"
       ]
     },
     "thomas_hioji_rokuzayemon_nishi_priest_and_companions_martyrs": {
@@ -210,44 +210,44 @@
     },
     "thomas_jean_georges_rehm_priest": {
       "fullname": "Blessed Thomas Jean-Georges Rehm, Priest and Martyr",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Jean-Georges Rehm",
       "titles": [
-        "PRIEST",
-        "MARTYR"
+        "priest",
+        "martyr"
       ],
       "date_of_death": "1794-8"
     },
     "thomas_more_martyr": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Thomas More",
       "titles": [
-        "MARTYR"
+        "martyr"
       ],
       "date_of_death": "1537-07-6"
     },
     "thomas_of_villanova_bishop": {
       "fullname": "Saint Thomas of Villanova, Bishop",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Thomas of Villanova",
       "titles": [
-        "BISHOP"
+        "bishop"
       ]
     },
     "thorfinn_of_hamar_bishop": {
       "fullname": "Saint Thorfinn, Bishop",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Thorfinn",
       "titles": [
-        "BISHOP"
+        "bishop"
       ]
     },
     "thorlac_of_iceland_bishop": {
       "fullname": "Saint Thorlac, Bishop",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Thorlac",
       "titles": [
-        "BISHOP"
+        "bishop"
       ]
     },
     "thursday_of_the_lords_supper": {
@@ -257,20 +257,20 @@
       "fullname": "Saints Timothy and Titus, Bishops"
     },
     "timothy_of_ephesus_bishop": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Timothy",
       "titles": [
-        "BISHOP"
+        "bishop"
       ],
       "date_of_death": {
         "century": 1
       }
     },
     "titus_of_crete_bishop": {
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Titus",
       "titles": [
-        "BISHOP"
+        "bishop"
       ],
       "date_of_death": {
         "century": 1
@@ -287,10 +287,10 @@
     },
     "turibius_of_mogrovejo_bishop": {
       "fullname": "Saint Turibius of Mogrovejo, Bishop",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Turibius of Mogrovejo",
       "titles": [
-        "BISHOP"
+        "bishop"
       ],
       "date_of_death": 1606
     }

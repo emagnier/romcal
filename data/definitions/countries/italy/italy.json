@@ -2,8 +2,8 @@
   "$schema": "../../../../schemas/calendar_definition.json",
   "id": "italy",
   "metadata": {
-    "jurisdiction": "CIVIL",
-    "type": "COUNTRY"
+    "jurisdiction": "civil",
+    "type": "country"
   },
   "parent_calendar_ids": [
     "europe"
@@ -11,22 +11,22 @@
   "days_definitions": {
     "catherine_of_siena_virgin": {
       "custom_locale_id": "catherine_of_siena_virgin_copatroness_of_italy_and_europe",
-      "precedence": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C",
+      "precedence": "proper_feast__principal_patron_of_a_region_8c",
       "titles": [
-        "VIRGIN",
-        "DOCTOR_OF_THE_CHURCH",
-        "COPATRONESS_OF_ITALY_AND_EUROPE"
+        "virgin",
+        "doctor_of_the_church",
+        "copatroness_of_italy_and_europe"
       ]
     },
     "norbert_of_xanten_bishop": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 6,
         "date": 6
       }
     },
     "mary_magdalene": {
-      "precedence": "PROPER_FEAST_8F",
+      "precedence": "proper_feast_8f",
       "date_def": {
         "month": 7,
         "date": 22
@@ -34,10 +34,10 @@
     },
     "francis_of_assisi": {
       "custom_locale_id": "francis_of_assisi_patron_of_italy",
-      "precedence": "PROPER_FEAST__PRINCIPAL_PATRON_OF_A_REGION_8C",
+      "precedence": "proper_feast__principal_patron_of_a_region_8c",
       "titles": {
         "append": [
-          "PATRON_OF_ITALY"
+          "patron_of_italy"
         ]
       }
     }

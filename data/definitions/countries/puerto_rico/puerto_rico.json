@@ -2,64 +2,64 @@
   "$schema": "../../../../schemas/calendar_definition.json",
   "id": "puerto_rico",
   "metadata": {
-    "jurisdiction": "CIVIL",
-    "type": "COUNTRY"
+    "jurisdiction": "civil",
+    "type": "country"
   },
   "parent_calendar_ids": [
     "americas"
   ],
   "days_definitions": {
     "most_holy_name_of_jesus": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 1,
         "date": 3
       }
     },
     "our_lady_of_bethlehem": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 1,
         "date": 3
       }
     },
     "marydolores_rodriguez_sopena_virgin": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 1,
         "date": 10
       }
     },
     "carlos_manuel_rodriguez_santiago": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 5,
         "date": 4
       }
     },
     "our_lady_of_mount_carmel": {
-      "precedence": "PROPER_FEAST_8F",
+      "precedence": "proper_feast_8f",
       "date_def": {
         "month": 7,
         "date": 16
       }
     },
     "teresa_of_jesus_jornet_ibars_virgin": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 8,
         "date": 26
       }
     },
     "rose_of_lima_virgin": {
-      "precedence": "PROPER_FEAST_8F",
+      "precedence": "proper_feast_8f",
       "date_def": {
         "month": 8,
         "date": 30
       }
     },
     "charles_spinola_and_jerome_de_angelis_priests": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 9,
         "date": 10
@@ -70,7 +70,7 @@
       ]
     },
     "mary_soledad_torres_acosta_virgin": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 10,
         "date": 11
@@ -78,21 +78,21 @@
     },
     "our_lady_mother_of_divine_providence": {
       "custom_locale_id": "our_lady_mother_of_divine_providence_patroness_of_puerto_rico",
-      "precedence": "PROPER_SOLEMNITY__PRINCIPAL_PATRON_4A",
+      "precedence": "proper_solemnity__principal_patron_4a",
       "date_def": {
         "month": 11,
         "date": 19
       },
       "titles": {
         "append": [
-          "PATRONESS_OF_PUERTO_RICO"
+          "patroness_of_puerto_rico"
         ]
       }
     },
     "our_lord_jesus_christ_the_eternal_high_priest": {
-      "precedence": "PROPER_FEAST_8F",
+      "precedence": "proper_feast_8f",
       "date_def": {
-        "date_fn": "PENTECOST_SUNDAY",
+        "date_fn": "pentecost_sunday",
         "day_offset": 4
       }
     }

@@ -2,8 +2,8 @@
   "$schema": "../../../schemas/calendar_definition.json",
   "id": "asia",
   "metadata": {
-    "jurisdiction": "CIVIL",
-    "type": "REGION"
+    "jurisdiction": "civil",
+    "type": "region"
   },
   "parent_calendar_ids": [],
   "days_definitions": {}

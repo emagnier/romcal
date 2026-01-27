@@ -5,4 +5,4 @@
  * This allows for flexible configuration where the same readings can be used
  * across different combinations of Sunday cycles.
  */
-export type SundayCycleCombined = 'YEAR_A_B' | 'YEAR_A_C' | 'YEAR_B_C'
+export type SundayCycleCombined = 'year_a_b' | 'year_a_c' | 'year_b_c'

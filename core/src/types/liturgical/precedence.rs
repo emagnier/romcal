@@ -12,7 +12,7 @@ use ts_rs::TS;
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+#[serde(rename_all = "snake_case")]
 #[allow(non_camel_case_types)]
 pub enum Precedence {
     /// 1 - The Paschal Triduum of the Passion and Resurrection of the Lord.
@@ -256,7 +256,7 @@ mod tests {
         // Verify that serialization works
         let precedence = Precedence::Triduum_1;
         let json = serde_json::to_string(&precedence).unwrap();
-        assert_eq!(json, "\"TRIDUUM_1\"");
+        assert_eq!(json, "\"triduum_1\"");
 
         let deserialized: Precedence = serde_json::from_str(&json).unwrap();
         assert_eq!(deserialized, Precedence::Triduum_1);

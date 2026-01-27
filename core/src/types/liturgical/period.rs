@@ -11,7 +11,7 @@ use ts_rs::TS;
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+#[serde(rename_all = "snake_case")]
 pub enum Period {
     /// The eight days following Christmas (December 25 - January 1)
     ChristmasOctave,
@@ -86,7 +86,7 @@ mod tests {
         // Verify that serialization works
         let period = Period::ChristmasOctave;
         let json = serde_json::to_string(&period).unwrap();
-        assert_eq!(json, "\"CHRISTMAS_OCTAVE\"");
+        assert_eq!(json, "\"christmas_octave\"");
 
         let deserialized: Period = serde_json::from_str(&json).unwrap();
         assert_eq!(deserialized, Period::ChristmasOctave);

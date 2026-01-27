@@ -303,13 +303,13 @@ impl TemplateResolver {
 
     fn get_color_from_struct(&self, colors: &LocaleColors, color: &str) -> Option<String> {
         match color {
-            "BLACK" => colors.black.clone(),
-            "GOLD" => colors.gold.clone(),
-            "GREEN" => colors.green.clone(),
-            "PURPLE" => colors.purple.clone(),
-            "RED" => colors.red.clone(),
-            "ROSE" => colors.rose.clone(),
-            "WHITE" => colors.white.clone(),
+            "black" => colors.black.clone(),
+            "gold" => colors.gold.clone(),
+            "green" => colors.green.clone(),
+            "purple" => colors.purple.clone(),
+            "red" => colors.red.clone(),
+            "rose" => colors.rose.clone(),
+            "white" => colors.white.clone(),
             _ => None,
         }
     }
@@ -329,12 +329,12 @@ impl TemplateResolver {
 
     fn get_rank_from_struct(&self, ranks: &RanksMetadata, rank: &str) -> Option<String> {
         match rank {
-            "SOLEMNITY" => ranks.solemnity.clone(),
-            "SUNDAY" => ranks.sunday.clone(),
-            "FEAST" => ranks.feast.clone(),
-            "MEMORIAL" => ranks.memorial.clone(),
-            "OPTIONAL_MEMORIAL" => ranks.optional_memorial.clone(),
-            "WEEKDAY" => ranks.weekday.clone(),
+            "solemnity" => ranks.solemnity.clone(),
+            "sunday" => ranks.sunday.clone(),
+            "feast" => ranks.feast.clone(),
+            "memorial" => ranks.memorial.clone(),
+            "optional_memorial" => ranks.optional_memorial.clone(),
+            "weekday" => ranks.weekday.clone(),
             _ => None,
         }
     }
@@ -354,20 +354,20 @@ impl TemplateResolver {
 
     fn get_period_from_struct(&self, periods: &PeriodsMetadata, period: &str) -> Option<String> {
         match period {
-            "CHRISTMAS_OCTAVE" => periods.christmas_octave.clone(),
-            "DAYS_BEFORE_EPIPHANY" => periods.days_before_epiphany.clone(),
-            "DAYS_FROM_EPIPHANY" => periods.days_from_epiphany.clone(),
-            "CHRISTMAS_TO_PRESENTATION_OF_THE_LORD" => {
+            "christmas_octave" => periods.christmas_octave.clone(),
+            "days_before_epiphany" => periods.days_before_epiphany.clone(),
+            "days_from_epiphany" => periods.days_from_epiphany.clone(),
+            "christmas_to_presentation_of_the_lord" => {
                 periods.christmas_to_presentation_of_the_lord.clone()
             }
-            "PRESENTATION_OF_THE_LORD_TO_HOLY_THURSDAY" => {
+            "presentation_of_the_lord_to_holy_thursday" => {
                 periods.presentation_of_the_lord_to_holy_thursday.clone()
             }
-            "HOLY_WEEK" => periods.holy_week.clone(),
-            "PASCHAL_TRIDUUM" => periods.paschal_triduum.clone(),
-            "EASTER_OCTAVE" => periods.easter_octave.clone(),
-            "EARLY_ORDINARY_TIME" => periods.early_ordinary_time.clone(),
-            "LATE_ORDINARY_TIME" => periods.late_ordinary_time.clone(),
+            "holy_week" => periods.holy_week.clone(),
+            "paschal_triduum" => periods.paschal_triduum.clone(),
+            "easter_octave" => periods.easter_octave.clone(),
+            "early_ordinary_time" => periods.early_ordinary_time.clone(),
+            "late_ordinary_time" => periods.late_ordinary_time.clone(),
             _ => None,
         }
     }
@@ -387,17 +387,17 @@ impl TemplateResolver {
 
     fn get_cycle_from_struct(&self, cycles: &CyclesMetadata, cycle: &str) -> Option<String> {
         match cycle {
-            "PROPER_OF_TIME" => cycles.proper_of_time.clone(),
-            "PROPER_OF_SAINTS" => cycles.proper_of_saints.clone(),
-            "YEAR_A" => cycles.sunday_year_a.clone(),
-            "YEAR_B" => cycles.sunday_year_b.clone(),
-            "YEAR_C" => cycles.sunday_year_c.clone(),
-            "YEAR_1" => cycles.weekday_year_1.clone(),
-            "YEAR_2" => cycles.weekday_year_2.clone(),
-            "WEEK_1" => cycles.psalter_week_1.clone(),
-            "WEEK_2" => cycles.psalter_week_2.clone(),
-            "WEEK_3" => cycles.psalter_week_3.clone(),
-            "WEEK_4" => cycles.psalter_week_4.clone(),
+            "proper_of_time" => cycles.proper_of_time.clone(),
+            "proper_of_saints" => cycles.proper_of_saints.clone(),
+            "year_a" => cycles.sunday_year_a.clone(),
+            "year_b" => cycles.sunday_year_b.clone(),
+            "year_c" => cycles.sunday_year_c.clone(),
+            "year_1" => cycles.weekday_year_1.clone(),
+            "year_2" => cycles.weekday_year_2.clone(),
+            "week_1" => cycles.psalter_week_1.clone(),
+            "week_2" => cycles.psalter_week_2.clone(),
+            "week_3" => cycles.psalter_week_3.clone(),
+            "week_4" => cycles.psalter_week_4.clone(),
             _ => None,
         }
     }
@@ -421,21 +421,21 @@ impl TemplateResolver {
         season: &str,
     ) -> Option<String> {
         match season {
-            "ADVENT" => seasons.advent.as_ref().and_then(|s| s.season.clone()),
-            "CHRISTMAS_TIME" => seasons
+            "advent" => seasons.advent.as_ref().and_then(|s| s.season.clone()),
+            "christmas_time" => seasons
                 .christmas_time
                 .as_ref()
                 .and_then(|s| s.season.clone()),
-            "ORDINARY_TIME" => seasons
+            "ordinary_time" => seasons
                 .ordinary_time
                 .as_ref()
                 .and_then(|s| s.season.clone()),
-            "LENT" => seasons.lent.as_ref().and_then(|s| s.season.clone()),
-            "PASCHAL_TRIDUUM" => seasons
+            "lent" => seasons.lent.as_ref().and_then(|s| s.season.clone()),
+            "paschal_triduum" => seasons
                 .paschal_triduum
                 .as_ref()
                 .and_then(|s| s.season.clone()),
-            "EASTER_TIME" => seasons.easter_time.as_ref().and_then(|s| s.season.clone()),
+            "easter_time" => seasons.easter_time.as_ref().and_then(|s| s.season.clone()),
             _ => None,
         }
     }

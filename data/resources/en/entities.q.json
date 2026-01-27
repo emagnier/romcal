@@ -7,11 +7,11 @@
     },
     "quirinus_of_sescia_bishop": {
       "fullname": "Saint Quirinus of Sescia, Bishop and Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Quirinus of Sescia",
       "titles": [
-        "BISHOP",
-        "MARTYR"
+        "bishop",
+        "martyr"
       ]
     }
   }

@@ -4,4 +4,4 @@
  * The type of entity in the liturgical calendar.
  * Defines whether the entity represents a person, place, or event.
  */
-export type EntityType = 'PERSON' | 'PLACE' | 'EVENT'
+export type EntityType = 'person' | 'place' | 'event'

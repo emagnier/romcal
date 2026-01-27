@@ -4,7 +4,7 @@
   "entities": {
     "205_blessed_martyrs_of_japan": {
       "fullname": "205 Blessed Martyrs of Japan",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "count": 205
     }
   }

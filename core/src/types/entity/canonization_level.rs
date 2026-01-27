@@ -12,8 +12,8 @@ use ts_rs::TS;
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
-#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
-#[strum(serialize_all = "SCREAMING_SNAKE_CASE")]
+#[serde(rename_all = "snake_case")]
+#[strum(serialize_all = "snake_case")]
 pub enum CanonizationLevel {
     /// Beatified person (Blessed) - first step toward sainthood
     Blessed,
@@ -53,7 +53,7 @@ mod tests {
         // Verify that serialization works
         let level = CanonizationLevel::Blessed;
         let json = serde_json::to_string(&level).unwrap();
-        assert_eq!(json, "\"BLESSED\"");
+        assert_eq!(json, "\"blessed\"");
 
         let deserialized: CanonizationLevel = serde_json::from_str(&json).unwrap();
         assert_eq!(deserialized, CanonizationLevel::Blessed);
@@ -62,11 +62,11 @@ mod tests {
     #[test]
     fn test_canonization_level_parse() {
         assert_eq!(
-            CanonizationLevel::from_str("SAINT").unwrap(),
+            CanonizationLevel::from_str("saint").unwrap(),
             CanonizationLevel::Saint
         );
         assert_eq!(
-            CanonizationLevel::from_str("BLESSED").unwrap(),
+            CanonizationLevel::from_str("blessed").unwrap(),
             CanonizationLevel::Blessed
         );
         assert!(CanonizationLevel::from_str("INVALID").is_err());

@@ -2,24 +2,24 @@
   "$schema": "../../../../schemas/calendar_definition.json",
   "id": "sweden",
   "metadata": {
-    "jurisdiction": "CIVIL",
-    "type": "COUNTRY"
+    "jurisdiction": "civil",
+    "type": "country"
   },
   "parent_calendar_ids": [
     "europe"
   ],
   "days_definitions": {
     "elizabeth_hesselblad_religious": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 6,
         "date": 4
       }
     },
     "our_lord_jesus_christ_the_eternal_high_priest": {
-      "precedence": "PROPER_FEAST_8F",
+      "precedence": "proper_feast_8f",
       "date_def": {
-        "date_fn": "PENTECOST_SUNDAY",
+        "date_fn": "pentecost_sunday",
         "day_offset": 4
       }
     }

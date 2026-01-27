@@ -98,8 +98,8 @@ impl Resources {
                             "Entity '{}' has canonization level '{}' but no fullname to display it",
                             id,
                             match level {
-                                CanonizationLevel::Blessed => "BLESSED",
-                                CanonizationLevel::Saint => "SAINT",
+                                CanonizationLevel::Blessed => "blessed",
+                                CanonizationLevel::Saint => "saint",
                             }
                         ));
                     }

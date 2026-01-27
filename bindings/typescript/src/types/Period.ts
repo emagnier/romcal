@@ -5,13 +5,13 @@
  * Defines sub-periods that have special liturgical characteristics or rules.
  */
 export type Period =
-  | 'CHRISTMAS_OCTAVE'
-  | 'DAYS_BEFORE_EPIPHANY'
-  | 'DAYS_FROM_EPIPHANY'
-  | 'CHRISTMAS_TO_PRESENTATION_OF_THE_LORD'
-  | 'PRESENTATION_OF_THE_LORD_TO_HOLY_THURSDAY'
-  | 'HOLY_WEEK'
-  | 'PASCHAL_TRIDUUM'
-  | 'EASTER_OCTAVE'
-  | 'EARLY_ORDINARY_TIME'
-  | 'LATE_ORDINARY_TIME'
+  | 'christmas_octave'
+  | 'days_before_epiphany'
+  | 'days_from_epiphany'
+  | 'christmas_to_presentation_of_the_lord'
+  | 'presentation_of_the_lord_to_holy_thursday'
+  | 'holy_week'
+  | 'paschal_triduum'
+  | 'easter_octave'
+  | 'early_ordinary_time'
+  | 'late_ordinary_time'

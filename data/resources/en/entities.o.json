@@ -4,10 +4,10 @@
   "entities": {
     "odile_of_alsace_abbess": {
       "fullname": "Saint Odile, Abbess",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Odile of Alsace",
       "titles": [
-        "ABBESS"
+        "abbess"
       ],
       "date_of_death": 720,
       "date_of_death_is_approximative": true
@@ -17,49 +17,49 @@
     },
     "odoric_of_pordenone_priest": {
       "fullname": "Blessed Odoric of Pordenone, Priest",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Odoric of Pordenone",
       "titles": [
-        "PRIEST"
+        "priest"
       ]
     },
     "olaf_ii_of_norway_martyr": {
       "fullname": "Saint Olaf II, Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Olaf II",
       "titles": [
-        "MARTYR"
+        "martyr"
       ]
     },
     "oleksiy_zarytskyi_priest": {
       "fullname": "Blessed Oleksiy Zarytskyi, Priest and Martyr",
-      "canonization_level": "BLESSED",
+      "canonization_level": "blessed",
       "name": "Oleksiy Zarytskyi",
       "titles": [
-        "PRIEST",
-        "MARTYR"
+        "priest",
+        "martyr"
       ]
     },
     "olga_of_kiev": {
       "fullname": "Saint Olga",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Olga"
     },
     "oliver_plunket_bishop": {
       "fullname": "Saint Oliver Plunket, Bishop and Martyr",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Oliver Plunket",
       "titles": [
-        "BISHOP",
-        "MARTYR"
+        "bishop",
+        "martyr"
       ]
     },
     "ortaire_of_landelles_abbot": {
       "fullname": "Saint Ortaire, Abbot",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Ortaire",
       "titles": [
-        "ABBOT"
+        "abbot"
       ],
       "date_of_birth": 482,
       "date_of_birth_is_approximative": true,
@@ -72,18 +72,18 @@
     },
     "otteran_of_iona_monk": {
       "fullname": "Saint Otteran, Monk",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Otteran",
       "titles": [
-        "MONK"
+        "monk"
       ]
     },
     "otto_of_bamberg_bishop": {
       "fullname": "Saint Otto of Bamberg, Bishop",
-      "canonization_level": "SAINT",
+      "canonization_level": "saint",
       "name": "Otto of Bamberg",
       "titles": [
-        "BISHOP"
+        "bishop"
       ]
     },
     "our_lady_help_of_christians": {
@@ -245,7 +245,7 @@
       "fullname": "Our Lady, Queen of Poland",
       "name": "Our Lady",
       "titles": [
-        "QUEEN_OF_POLAND"
+        "queen_of_poland"
       ]
     },
     "our_lady_refuge_of_sinners": {

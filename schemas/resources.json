@@ -724,7 +724,7 @@
               "type": "null"
             }
           ],
-          "default": "PERSON"
+          "default": "person"
         },
         "fullname": {
           "description": "The full name of the entity.",
@@ -910,17 +910,17 @@
         {
           "description": "A person (saint, blessed, or other individual)",
           "type": "string",
-          "const": "PERSON"
+          "const": "person"
         },
         {
           "description": "A place (shrine, city, or geographical location)",
           "type": "string",
-          "const": "PLACE"
+          "const": "place"
         },
         {
           "description": "An event (historical or liturgical occurrence)",
           "type": "string",
-          "const": "EVENT"
+          "const": "event"
         }
       ]
     },
@@ -930,12 +930,12 @@
         {
           "description": "Beatified person (Blessed) - first step toward sainthood",
           "type": "string",
-          "const": "BLESSED"
+          "const": "blessed"
         },
         {
           "description": "Canonized person (Saint) - fully recognized as a saint",
           "type": "string",
-          "const": "SAINT"
+          "const": "saint"
         }
       ]
     },
@@ -1023,73 +1023,73 @@
       "description": "Titles and patronages associated with saints and blessed.\nRepresents the various ecclesiastical titles and patronages that can be assigned to entities.",
       "type": "string",
       "enum": [
-        "ABBESS",
-        "ABBOT",
-        "APOSTLE",
-        "ARCHANGEL",
-        "BISHOP",
-        "DEACON",
-        "DOCTOR_OF_THE_CHURCH",
-        "EMPRESS",
-        "EVANGELIST",
-        "FIRST_BISHOP",
-        "HERMIT",
-        "KING",
-        "MARTYR",
-        "MISSIONARY",
-        "MONK",
-        "MOTHER_AND_QUEEN_OF_CHILE",
-        "PARENTS_OF_THE_BLESSED_VIRGIN_MARY",
-        "POPE",
-        "PATRIARCH",
-        "PILGRIM",
-        "PRIEST",
-        "PROPHET",
-        "PROTO_MARTYR_OF_OCEANIA",
-        "QUEEN",
-        "QUEEN_OF_POLAND",
-        "RELIGIOUS",
-        "SLAVIC_MISSIONARY",
-        "SPOUSE_OF_THE_BLESSED_VIRGIN_MARY",
-        "THE_FIRST_MARTYR",
-        "VIRGIN",
-        "COPATRON_OF_EUROPE",
-        "COPATRON_OF_IRELAND",
-        "COPATRON_OF_CANADA",
-        "COPATRONESS_OF_EUROPE",
-        "COPATRONESS_OF_FRANCE",
-        "COPATRONESS_OF_IRELAND",
-        "COPATRONESS_OF_ITALY_AND_EUROPE",
-        "COPATRONESS_OF_THE_PHILIPPINES",
-        "PATRON_OF_CANADA",
-        "PATRON_OF_ENGLAND",
-        "PATRON_OF_EUROPE",
-        "PATRON_OF_FRANCE",
-        "PATRON_OF_IRELAND",
-        "PATRON_OF_ITALY",
-        "PATRON_OF_OCEANIA",
-        "PATRON_OF_POLAND",
-        "PATRON_OF_RUSSIA",
-        "PATRON_OF_SCOTLAND",
-        "PATRON_OF_SPAIN",
-        "PATRON_OF_THE_CZECH_NATION",
-        "PATRON_OF_THE_DIOCESE",
-        "PATRON_OF_WALES",
-        "PATRONESS_OF_ALSACE",
-        "PATRONESS_OF_ARGENTINA",
-        "PATRONESS_OF_BRAZIL",
-        "PATRONESS_OF_HUNGARY",
-        "PATRONESS_OF_PUERTO_RICO",
-        "PATRONESS_OF_SLOVAKIA",
-        "PATRONESS_OF_THE_AMERICAS",
-        "PATRONESS_OF_THE_PHILIPPINES",
-        "PATRONESS_OF_THE_PROVINCE_OF_QUEBEC",
-        "PATRONESS_OF_THE_USA",
-        "PATRON_OF_THE_CLERGY_OF_THE_ARCHDIOCESE_OF_LYON",
-        "PATRON_OF_THE_CITY_OF_LYON",
-        "PATRONESS_OF_COSTA_RICA",
-        "PRINCIPAL_PATRON_OF_THE_DIOCESE",
-        "SECOND_PATRON_OF_THE_DIOCESE"
+        "abbess",
+        "abbot",
+        "apostle",
+        "archangel",
+        "bishop",
+        "deacon",
+        "doctor_of_the_church",
+        "empress",
+        "evangelist",
+        "first_bishop",
+        "hermit",
+        "king",
+        "martyr",
+        "missionary",
+        "monk",
+        "mother_and_queen_of_chile",
+        "parents_of_the_blessed_virgin_mary",
+        "pope",
+        "patriarch",
+        "pilgrim",
+        "priest",
+        "prophet",
+        "proto_martyr_of_oceania",
+        "queen",
+        "queen_of_poland",
+        "religious",
+        "slavic_missionary",
+        "spouse_of_the_blessed_virgin_mary",
+        "the_first_martyr",
+        "virgin",
+        "copatron_of_europe",
+        "copatron_of_ireland",
+        "copatron_of_canada",
+        "copatroness_of_europe",
+        "copatroness_of_france",
+        "copatroness_of_ireland",
+        "copatroness_of_italy_and_europe",
+        "copatroness_of_the_philippines",
+        "patron_of_canada",
+        "patron_of_england",
+        "patron_of_europe",
+        "patron_of_france",
+        "patron_of_ireland",
+        "patron_of_italy",
+        "patron_of_oceania",
+        "patron_of_poland",
+        "patron_of_russia",
+        "patron_of_scotland",
+        "patron_of_spain",
+        "patron_of_the_czech_nation",
+        "patron_of_the_diocese",
+        "patron_of_wales",
+        "patroness_of_alsace",
+        "patroness_of_argentina",
+        "patroness_of_brazil",
+        "patroness_of_hungary",
+        "patroness_of_puerto_rico",
+        "patroness_of_slovakia",
+        "patroness_of_the_americas",
+        "patroness_of_the_philippines",
+        "patroness_of_the_province_of_quebec",
+        "patroness_of_the_usa",
+        "patron_of_the_clergy_of_the_archdiocese_of_lyon",
+        "patron_of_the_city_of_lyon",
+        "patroness_of_costa_rica",
+        "principal_patron_of_the_diocese",
+        "second_patron_of_the_diocese"
       ]
     },
     "Sex": {
@@ -1098,12 +1098,12 @@
         {
           "description": "Male person",
           "type": "string",
-          "const": "MALE"
+          "const": "male"
         },
         {
           "description": "Female person",
           "type": "string",
-          "const": "FEMALE"
+          "const": "female"
         }
       ]
     },

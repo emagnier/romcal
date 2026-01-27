@@ -2,8 +2,8 @@
   "$schema": "../../../schemas/calendar_definition.json",
   "id": "temporal_cycle",
   "metadata": {
-    "jurisdiction": "ECCLESIASTICAL",
-    "type": "GENERAL_ROMAN"
+    "jurisdiction": "ecclesiastical",
+    "type": "general_roman"
   },
   "particular_config": {
     "epiphany_on_sunday": false,

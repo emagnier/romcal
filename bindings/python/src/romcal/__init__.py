@@ -50,7 +50,10 @@ __all__ = [
     "Resources",
     "Romcal",
     "RomcalError",
+    "get_bundled_calendar_definitions",
+    "get_bundled_resources",
     "get_version",
+    "has_bundled_data",
     "merge_calendar_definitions",
     "merge_resource_files",
 ]
@@ -117,6 +120,69 @@ def merge_calendar_definitions(files: list[dict]) -> list[CalendarDefinition]:
     return [CalendarDefinition.model_validate(d) for d in raw_list]
 
 
+def has_bundled_data() -> bool:
+    """Check if bundled data is available.
+
+    Returns:
+        True if the library was compiled with embedded calendar definitions
+        and resources data. This is typically the case when installing from PyPI.
+    """
+    return _get_core().has_bundled_data()
+
+
+def get_bundled_calendar_definitions() -> list[CalendarDefinition]:
+    """Get all bundled calendar definitions.
+
+    Returns all calendar definitions (general_roman, countries, regions, dioceses)
+    embedded in the binary. This includes ~69 calendars.
+
+    Returns:
+        A list of CalendarDefinition objects.
+
+    Raises:
+        RomcalError: If bundled data is not available (library compiled without it).
+
+    Example:
+        >>> if has_bundled_data():
+        ...     definitions = get_bundled_calendar_definitions()
+        ...     print(f"Loaded {len(definitions)} calendars")
+    """
+    core = _get_core()
+    try:
+        result_json = core.get_bundled_calendar_definitions()
+        raw_list = json.loads(result_json)
+        return [CalendarDefinition.model_validate(d) for d in raw_list]
+    except core.RomcalError as e:
+        raise RomcalError(str(e)) from e
+
+
+def get_bundled_resources() -> list[Resources]:
+    """Get all bundled locale resources.
+
+    Returns all locale resources (en, fr, es, it, de, la, etc.)
+    embedded in the binary. This includes ~13 locales.
+
+    Returns:
+        A list of Resources objects.
+
+    Raises:
+        RomcalError: If bundled data is not available (library compiled without it).
+
+    Example:
+        >>> if has_bundled_data():
+        ...     resources = get_bundled_resources()
+        ...     locales = [r.locale for r in resources]
+        ...     print(f"Available locales: {locales}")
+    """
+    core = _get_core()
+    try:
+        result_json = core.get_bundled_resources()
+        raw_list = json.loads(result_json)
+        return [Resources.model_validate(r) for r in raw_list]
+    except core.RomcalError as e:
+        raise RomcalError(str(e)) from e
+
+
 def __getattr__(name: str) -> str:
     """Lazy load __version__ from the FFI module."""
     if name == "__version__":
@@ -154,9 +220,9 @@ class Romcal:
         corpus_christi_on_sunday: Whether Corpus Christi is celebrated on Sunday.
             Defaults to True.
         easter_calculation_type: Easter calculation method.
-            Defaults to EasterCalculationType.GREGORIAN.
+            Defaults to EasterCalculationType.gregorian.
         context: Calendar context.
-            Defaults to CalendarContext.GREGORIAN.
+            Defaults to CalendarContext.gregorian.
 
     Example:
         >>> r = Romcal(calendar="france", locale="fr")
@@ -172,8 +238,8 @@ class Romcal:
         epiphany_on_sunday: bool = False,
         ascension_on_sunday: bool = False,
         corpus_christi_on_sunday: bool = True,
-        easter_calculation_type: EasterCalculationType = EasterCalculationType.GREGORIAN,
-        context: CalendarContext = CalendarContext.GREGORIAN,
+        easter_calculation_type: EasterCalculationType = EasterCalculationType.gregorian,
+        context: CalendarContext = CalendarContext.gregorian,
         calendar_definitions_json: str | None = None,
         resources_json: str | None = None,
     ) -> None:

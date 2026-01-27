@@ -2,55 +2,55 @@
   "$schema": "../../../../schemas/calendar_definition.json",
   "id": "lebanon",
   "metadata": {
-    "jurisdiction": "CIVIL",
-    "type": "COUNTRY"
+    "jurisdiction": "civil",
+    "type": "country"
   },
   "parent_calendar_ids": [],
   "days_definitions": {
     "barbara_of_heliopolis_virgin": {
-      "precedence": "PROPER_MEMORIAL_11B",
+      "precedence": "proper_memorial_11b",
       "date_def": {
         "month": 12,
         "date": 4
       }
     },
     "nicholas_of_myra_bishop": {
-      "precedence": "PROPER_MEMORIAL_11B",
+      "precedence": "proper_memorial_11b",
       "date_def": {
         "month": 12,
         "date": 6
       }
     },
     "sharbel_makhluf_priest": {
-      "precedence": "OPTIONAL_MEMORIAL_12",
+      "precedence": "optional_memorial_12",
       "date_def": {
         "month": 12,
         "date": 24
       }
     },
     "maron_of_syria_hermit": {
-      "precedence": "PROPER_MEMORIAL_11B",
+      "precedence": "proper_memorial_11b",
       "date_def": {
         "month": 2,
         "date": 9
       }
     },
     "rafqa_pietra_choboq_ar_rayes_virgin": {
-      "precedence": "PROPER_MEMORIAL_11B",
+      "precedence": "proper_memorial_11b",
       "date_def": {
         "month": 3,
         "date": 23
       }
     },
     "george_of_lydda_martyr": {
-      "precedence": "PROPER_MEMORIAL_11B",
+      "precedence": "proper_memorial_11b",
       "date_def": {
         "month": 4,
         "date": 23
       }
     },
     "our_lady_of_lebanon": {
-      "precedence": "PROPER_FEAST_8F",
+      "precedence": "proper_feast_8f",
       "date_def": {
         "month": 5,
         "date": 1
