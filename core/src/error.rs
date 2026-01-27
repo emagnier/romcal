@@ -25,6 +25,8 @@ pub enum RomcalError {
     ValidationError(String),
     /// Unknown date name
     InvalidDateName(String),
+    /// Entity not found after locale fallback (entity_id, checked_locales)
+    EntityNotFound(String, Vec<String>),
 }
 
 impl fmt::Display for RomcalError {
@@ -54,6 +56,14 @@ impl fmt::Display for RomcalError {
             }
             RomcalError::InvalidDateName(name) => {
                 write!(f, "Unknown date name: {}", name)
+            }
+            RomcalError::EntityNotFound(id, locales) => {
+                write!(
+                    f,
+                    "Entity '{}' not found in any locale. Checked: {}",
+                    id,
+                    locales.join(" → ")
+                )
             }
         }
     }

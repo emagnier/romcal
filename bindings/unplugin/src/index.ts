@@ -40,15 +40,6 @@ export const unplugin = createUnplugin<RomcalPluginOptions | undefined>((options
 // Calendar: ${bundle.calendar}, Locale: ${bundle.locale}
 const bundle = ${JSON.stringify(bundle)};
 export default bundle;
-export const calendar = bundle.calendar;
-export const locale = bundle.locale;
-export const context = bundle.context;
-export const epiphanyOnSunday = bundle.epiphany_on_sunday;
-export const ascensionOnSunday = bundle.ascension_on_sunday;
-export const corpusChristiOnSunday = bundle.corpus_christi_on_sunday;
-export const easterCalculationType = bundle.easter_calculation_type;
-export const calendarDefinitions = bundle.calendar_definitions;
-export const resources = bundle.resources;
 `;
 
         // Cache result

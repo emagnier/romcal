@@ -44,6 +44,7 @@ impl From<romcal::error::RomcalError> for RomcalError {
         match err {
             CoreError::InvalidYear(_, _) => RomcalError::InvalidYear(err.to_string()),
             CoreError::InvalidDateName(name) => RomcalError::NotFound(name),
+            CoreError::EntityNotFound(id, _locales) => RomcalError::NotFound(id),
             CoreError::InvalidConfig => {
                 RomcalError::InvalidConfig("Invalid configuration".to_string())
             }

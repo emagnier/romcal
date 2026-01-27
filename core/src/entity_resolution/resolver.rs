@@ -5,8 +5,10 @@
 
 use std::collections::BTreeMap;
 
+use super::locale::build_merge_hierarchy;
 use super::merge::merge_locale_resources;
 use super::pointer::{combine_titles, resolve_entity_pointer};
+use crate::error::{RomcalError, RomcalResult};
 use crate::romcal::Romcal;
 use crate::types::calendar::day_definition::DayDefinition;
 use crate::types::entity::title::TitlesDef;
@@ -23,6 +25,8 @@ pub struct EntityResolver {
     entities: BTreeMap<EntityId, Entity>,
     /// The target locale
     locale: String,
+    /// The locale hierarchy that was checked (for error messages)
+    locale_hierarchy: Vec<String>,
 }
 
 impl EntityResolver {
@@ -40,9 +44,14 @@ impl EntityResolver {
     /// * `romcal` - The romcal instance containing resources and locale configuration
     pub fn new(romcal: &Romcal) -> Self {
         let locale = romcal.locale.clone();
+        let locale_hierarchy = build_merge_hierarchy(&locale);
         let entities = merge_locale_resources(romcal);
 
-        Self { entities, locale }
+        Self {
+            entities,
+            locale,
+            locale_hierarchy,
+        }
     }
 
     /// Returns the target locale
@@ -63,20 +72,35 @@ impl EntityResolver {
     /// 1. If day_def.entities is defined: resolve each EntityRef
     /// 2. Otherwise (fallback): look for entity with id == day_id
     ///    - If found: return that entity
-    ///    - If not found: return empty Vec
-    pub fn resolve_entities_for_day(&self, day_def: &DayDefinition, day_id: &str) -> Vec<Entity> {
+    ///    - If not found: return error
+    ///
+    /// # Errors
+    ///
+    /// Returns `RomcalError::EntityNotFound` if an entity ID is not found
+    /// in the merged entities map (checked locales: specific → parent → en).
+    pub fn resolve_entities_for_day(
+        &self,
+        day_def: &DayDefinition,
+        day_id: &str,
+    ) -> RomcalResult<Vec<Entity>> {
         if let Some(entity_pointers) = &day_def.entities {
             // Resolve each entity pointer
-            entity_pointers
-                .iter()
-                .map(|pointer| resolve_entity_pointer(&self.entities, pointer))
-                .collect()
+            let mut entities = Vec::with_capacity(entity_pointers.len());
+            for pointer in entity_pointers {
+                let entity =
+                    resolve_entity_pointer(&self.entities, pointer, &self.locale_hierarchy)?;
+                entities.push(entity);
+            }
+            Ok(entities)
         } else {
             // Fallback: try to find entity with same ID as day_id
             if let Some(entity) = self.entities.get(day_id) {
-                vec![entity.clone()]
+                Ok(vec![entity.clone()])
             } else {
-                Vec::new()
+                Err(RomcalError::EntityNotFound(
+                    day_id.to_string(),
+                    self.locale_hierarchy.clone(),
+                ))
             }
         }
     }
@@ -272,7 +296,9 @@ mod tests {
             masses: None,
         };
 
-        let entities = resolver.resolve_entities_for_day(&day_def, "test_day");
+        let entities = resolver
+            .resolve_entities_for_day(&day_def, "test_day")
+            .unwrap();
 
         assert_eq!(entities.len(), 2);
         assert_eq!(entities[0].name, Some("Saint Peter".to_string()));
@@ -307,10 +333,81 @@ mod tests {
             masses: None,
         };
 
-        let entities = resolver.resolve_entities_for_day(&day_def, "test_day_id");
+        let entities = resolver
+            .resolve_entities_for_day(&day_def, "test_day_id")
+            .unwrap();
 
         assert_eq!(entities.len(), 1);
         assert_eq!(entities[0].name, Some("Test Saint".to_string()));
+    }
+
+    #[test]
+    fn test_resolve_entities_for_day_not_found() {
+        let romcal = Romcal::default();
+        let resolver = EntityResolver::new(&romcal);
+
+        // Create day definition with entity that doesn't exist
+        let day_def = DayDefinition {
+            date_def: None,
+            date_exceptions: None,
+            precedence: None,
+            commons_def: None,
+            is_holy_day_of_obligation: None,
+            allow_similar_rank_items: None,
+            is_optional: None,
+            custom_locale_id: None,
+            entities: Some(vec![EntityRef::ResourceId(
+                "nonexistent_entity".to_string(),
+            )]),
+            titles: None,
+            drop: None,
+            colors: None,
+            masses: None,
+        };
+
+        let result = resolver.resolve_entities_for_day(&day_def, "test_day");
+
+        assert!(result.is_err());
+        match result {
+            Err(RomcalError::EntityNotFound(id, locales)) => {
+                assert_eq!(id, "nonexistent_entity");
+                assert_eq!(locales, vec!["en"]);
+            }
+            _ => panic!("Expected EntityNotFound error"),
+        }
+    }
+
+    #[test]
+    fn test_resolve_entities_for_day_fallback_not_found() {
+        let romcal = Romcal::default();
+        let resolver = EntityResolver::new(&romcal);
+
+        // Create day definition without entities (should fallback to day_id which doesn't exist)
+        let day_def = DayDefinition {
+            date_def: None,
+            date_exceptions: None,
+            precedence: None,
+            commons_def: None,
+            is_holy_day_of_obligation: None,
+            allow_similar_rank_items: None,
+            is_optional: None,
+            custom_locale_id: None,
+            entities: None,
+            titles: None,
+            drop: None,
+            colors: None,
+            masses: None,
+        };
+
+        let result = resolver.resolve_entities_for_day(&day_def, "nonexistent_day");
+
+        assert!(result.is_err());
+        match result {
+            Err(RomcalError::EntityNotFound(id, _)) => {
+                assert_eq!(id, "nonexistent_day");
+            }
+            _ => panic!("Expected EntityNotFound error"),
+        }
     }
 
     #[test]
@@ -346,7 +443,9 @@ mod tests {
             masses: None,
         };
 
-        let entities = resolver.resolve_entities_for_day(&day_def, "test_day");
+        let entities = resolver
+            .resolve_entities_for_day(&day_def, "test_day")
+            .unwrap();
 
         assert_eq!(entities.len(), 1);
         assert_eq!(entities[0].name, Some("Test Saint".to_string()));
@@ -451,7 +550,9 @@ mod tests {
             masses: None,
         };
 
-        let entities = resolver.resolve_entities_for_day(&day_def, "test_day");
+        let entities = resolver
+            .resolve_entities_for_day(&day_def, "test_day")
+            .unwrap();
 
         // Should be: [Bishop, Martyr (from base), DoctorOfTheChurch]
         assert_eq!(

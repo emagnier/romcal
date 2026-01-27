@@ -934,9 +934,10 @@ impl Calendar {
 
         // Resolve entities for this day using the entity resolver
         // Priority: day_def.entities > fallback on day_id
+        // Returns error if entity not found after locale fallback
         let resolved_entities = self
             .entity_resolver
-            .resolve_entities_for_day(day_def, day_id);
+            .resolve_entities_for_day(day_def, day_id)?;
 
         // Set entities on the liturgical day
         liturgical_day.entities = resolved_entities.clone();
@@ -1858,8 +1859,10 @@ mod tests {
 
     #[test]
     fn test_masses_from_calendar_definition() {
+        use crate::engine::resources::Resources;
         use crate::types::CalendarMetadata;
         use crate::types::calendar::{CalendarJurisdiction, CalendarType, DayDefinition};
+        use crate::types::entity::EntityDefinition;
         use crate::types::mass::{MassCycleDefinition, MassTime, MassesDefinitions};
 
         // Create a test calendar definition with masses
@@ -1905,10 +1908,17 @@ mod tests {
             )]),
         };
 
-        // Create romcal with this calendar definition
+        // Create entity for test_solemnity (required for strict validation)
+        let mut entity_def = EntityDefinition::new();
+        entity_def.fullname = Some("Test Solemnity".to_string());
+        let mut resources = Resources::new("en".to_string());
+        resources.add_entity("test_solemnity".to_string(), entity_def);
+
+        // Create romcal with this calendar definition and resources
         let mut romcal = Romcal::default();
         romcal.calendar = "test_calendar".to_string();
         romcal.calendar_definitions.push(calendar_def);
+        romcal.add_resources(resources);
 
         let calendar = Calendar::new(romcal, 2026).unwrap();
         let result = calendar.generate().unwrap();

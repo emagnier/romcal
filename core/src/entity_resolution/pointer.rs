@@ -4,32 +4,38 @@
 
 use std::collections::BTreeMap;
 
+use crate::error::{RomcalError, RomcalResult};
 use crate::types::calendar::entity_ref::EntityRef;
 use crate::types::entity::title::{Title, TitlesDef};
-use crate::types::entity::{Entity, EntityDefinition, EntityId};
+use crate::types::entity::{Entity, EntityId};
 
 /// Resolves an EntityRef to a full Entity.
 ///
-/// For ResourceId: looks up the entity by ID, creates empty entity if not found.
+/// For ResourceId: looks up the entity by ID, returns error if not found.
 /// For Override: looks up base entity and applies overrides.
+///
+/// # Errors
+///
+/// Returns `RomcalError::EntityNotFound` if the entity ID is not found
+/// in the merged entities map.
 pub(crate) fn resolve_entity_pointer(
     entities: &BTreeMap<EntityId, Entity>,
     pointer: &EntityRef,
-) -> Entity {
+    locale_hierarchy: &[String],
+) -> RomcalResult<Entity> {
     match pointer {
         EntityRef::ResourceId(id) => {
-            // Look up entity by ID, create empty with ID if not found
+            // Look up entity by ID, return error if not found
             entities
                 .get(id)
                 .cloned()
-                .unwrap_or_else(|| create_empty_entity_with_id(id))
+                .ok_or_else(|| RomcalError::EntityNotFound(id.clone(), locale_hierarchy.to_vec()))
         }
         EntityRef::Override(override_def) => {
-            // Look up base entity
-            let mut entity = entities
-                .get(&override_def.id)
-                .cloned()
-                .unwrap_or_else(|| create_empty_entity_with_id(&override_def.id));
+            // Look up base entity, return error if not found
+            let mut entity = entities.get(&override_def.id).cloned().ok_or_else(|| {
+                RomcalError::EntityNotFound(override_def.id.clone(), locale_hierarchy.to_vec())
+            })?;
 
             // Update the ID to match the override
             entity.id.clone_from(&override_def.id);
@@ -45,16 +51,9 @@ pub(crate) fn resolve_entity_pointer(
                 entity.count = Some(count.clone());
             }
 
-            entity
+            Ok(entity)
         }
     }
-}
-
-/// Creates an empty entity with just an ID (used as fallback when entity not found).
-pub(crate) fn create_empty_entity_with_id(id: &str) -> Entity {
-    let mut definition = EntityDefinition::new();
-    definition.name = Some(id.to_string());
-    Entity::new(id.to_string(), definition)
 }
 
 /// Applies a TitlesDef to existing titles.
