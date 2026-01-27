@@ -89,8 +89,8 @@
     "prettier": "^3.8.1",
     "romcal": "link:../typescript",
     "typescript": "^5.9.3",
-    "vite": "^6.3.5",
-    "vitest": "^3.1.4"
+    "vite": "^7.3.1",
+    "vitest": "^4.0.18"
   },
   "license": "Apache-2.0"
 }
