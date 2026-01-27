@@ -422,7 +422,7 @@ mod tests {
         let romcal = Romcal::new(Preset {
             context: Some(crate::CalendarContext::Liturgical),
             ..Preset::default()
-        });
+        }).unwrap();
         let all_days = ProperOfTime::new(romcal, 2026)
             .unwrap()
             .generate_all()

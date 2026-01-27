@@ -98,7 +98,13 @@ impl Romcal {
     /// 1. Value from Preset (highest priority)
     /// 2. Value from ResourcesMetadata of the target locale
     /// 3. Default value (Numeric)
-    pub fn new(config: Preset) -> Self {
+    ///
+    /// # Errors
+    ///
+    /// Returns an error if:
+    /// - The requested calendar is not found in `calendar_definitions`
+    /// - The requested locale (or its fallback chain) is not found in `resources`
+    pub fn new(config: Preset) -> Result<Self, RomcalError> {
         let calendar_definitions = config.calendar_definitions.unwrap_or_default();
 
         // Normalize locale to lowercase (BCP 47 is case-insensitive)
@@ -115,6 +121,34 @@ impl Romcal {
             })
             .collect();
 
+        // Get the calendar ID (use default if not provided)
+        let calendar = config
+            .calendar
+            .unwrap_or_else(|| DEFAULT_CALENDAR.to_string());
+
+        // Validate calendar exists in definitions (skip if no definitions provided)
+        if !calendar_definitions.is_empty()
+            && !calendar_definitions.iter().any(|def| def.id == calendar)
+        {
+            let available: Vec<String> =
+                calendar_definitions.iter().map(|d| d.id.clone()).collect();
+            return Err(RomcalError::CalendarNotFound(calendar, available));
+        }
+
+        // Validate locale exists in resources (skip if no resources provided)
+        // Check for exact match or base locale fallback (e.g., "fr" for "fr-ca")
+        // No implicit fallback to DEFAULT_LOCALE - user must explicitly provide the locale
+        if !resources.is_empty() {
+            let base_locale = locale.split('-').next().unwrap_or(&locale);
+            let locale_found = resources
+                .iter()
+                .any(|res| res.locale == locale || res.locale == base_locale);
+            if !locale_found {
+                let available: Vec<String> = resources.iter().map(|r| r.locale.clone()).collect();
+                return Err(RomcalError::LocaleNotFound(locale.to_string(), available));
+            }
+        }
+
         // Get ordinal_format from locale's ResourcesMetadata if not set in Preset
         let ordinal_format_from_locale = resources
             .iter()
@@ -122,10 +156,8 @@ impl Romcal {
             .and_then(|res| res.metadata.as_ref())
             .and_then(|meta| meta.ordinal_format);
 
-        Self {
-            calendar: config
-                .calendar
-                .unwrap_or_else(|| DEFAULT_CALENDAR.to_string()),
+        Ok(Self {
+            calendar,
             locale: locale.to_string(),
             context: config.context.unwrap_or(DEFAULT_CONTEXT),
             easter_calculation_type: config
@@ -146,7 +178,7 @@ impl Romcal {
                 .unwrap_or(DEFAULT_ORDINAL_FORMAT),
             calendar_definitions,
             resources,
-        }
+        })
     }
 
     /// Get a calendar definition by ID
@@ -386,18 +418,22 @@ mod tests {
     #[test]
     fn test_locale_case_insensitive() {
         // BCP 47 locales are case-insensitive
+        // Note: With no resources provided, validation is skipped
         let romcal_lower = Romcal::new(Preset {
             locale: Some("fr-ca".to_string()),
             ..Default::default()
-        });
+        })
+        .unwrap();
         let romcal_upper = Romcal::new(Preset {
             locale: Some("FR-CA".to_string()),
             ..Default::default()
-        });
+        })
+        .unwrap();
         let romcal_mixed = Romcal::new(Preset {
             locale: Some("Fr-Ca".to_string()),
             ..Default::default()
-        });
+        })
+        .unwrap();
 
         // All should normalize to lowercase
         assert_eq!(romcal_lower.locale, "fr-ca");
@@ -411,7 +447,8 @@ mod tests {
             locale: Some("fr-CA".to_string()),
             resources: Some(vec![Resources::new("FR-CA".to_string())]),
             ..Default::default()
-        });
+        })
+        .unwrap();
 
         // Resource locale should be normalized
         assert_eq!(romcal.resources[0].locale, "fr-ca");
@@ -422,5 +459,83 @@ mod tests {
         // Adding resources should also normalize
         romcal.add_resources(Resources::new("EN-GB".to_string()));
         assert!(romcal.get_resources("en-gb").is_some());
+    }
+
+    #[test]
+    fn test_calendar_not_found_error() {
+        let result = Romcal::new(Preset {
+            calendar: Some("nonexistent_calendar".to_string()),
+            calendar_definitions: Some(vec![CalendarDefinition::new("general_roman".to_string())]),
+            ..Default::default()
+        });
+
+        assert!(result.is_err());
+        match result {
+            Err(RomcalError::CalendarNotFound(calendar, available)) => {
+                assert_eq!(calendar, "nonexistent_calendar");
+                assert!(available.contains(&"general_roman".to_string()));
+            }
+            _ => panic!("Expected CalendarNotFound error"),
+        }
+    }
+
+    #[test]
+    fn test_locale_not_found_error() {
+        let result = Romcal::new(Preset {
+            locale: Some("nonexistent_locale".to_string()),
+            resources: Some(vec![Resources::new("en".to_string())]),
+            ..Default::default()
+        });
+
+        assert!(result.is_err());
+        match result {
+            Err(RomcalError::LocaleNotFound(locale, available)) => {
+                assert_eq!(locale, "nonexistent_locale");
+                assert!(available.contains(&"en".to_string()));
+            }
+            _ => panic!("Expected LocaleNotFound error"),
+        }
+    }
+
+    #[test]
+    fn test_locale_fallback_to_base() {
+        // fr-ca should be accepted if fr is available (base locale fallback)
+        let result = Romcal::new(Preset {
+            locale: Some("fr-ca".to_string()),
+            resources: Some(vec![Resources::new("fr".to_string())]),
+            ..Default::default()
+        });
+
+        assert!(result.is_ok());
+    }
+
+    #[test]
+    fn test_locale_no_implicit_english_fallback() {
+        // Unknown locale should NOT fallback to "en" - explicit error is raised
+        let result = Romcal::new(Preset {
+            locale: Some("xx".to_string()),
+            resources: Some(vec![Resources::new("en".to_string())]),
+            ..Default::default()
+        });
+
+        assert!(result.is_err());
+        match result {
+            Err(RomcalError::LocaleNotFound(locale, _)) => {
+                assert_eq!(locale, "xx");
+            }
+            _ => panic!("Expected LocaleNotFound error"),
+        }
+    }
+
+    #[test]
+    fn test_empty_definitions_skip_validation() {
+        // With empty definitions, calendar validation is skipped
+        let result = Romcal::new(Preset {
+            calendar: Some("any_calendar".to_string()),
+            calendar_definitions: Some(vec![]),
+            ..Default::default()
+        });
+
+        assert!(result.is_ok());
     }
 }

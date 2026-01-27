@@ -202,7 +202,8 @@ mod tests {
         let mut romcal = Romcal::new(Preset {
             locale: Some("fr-FR".to_string()),
             ..Preset::default()
-        });
+        })
+        .unwrap();
 
         // Add English entity (base)
         let en_def = create_test_entity_def("Test Saint (EN)", vec![Title::Martyr]);
@@ -237,7 +238,8 @@ mod tests {
         let mut romcal = Romcal::new(Preset {
             locale: Some("fr-FR".to_string()),
             ..Preset::default()
-        });
+        })
+        .unwrap();
 
         // Add French entity (parent)
         let mut fr_def = EntityDefinition::new();

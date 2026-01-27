@@ -27,6 +27,21 @@ pub struct CalendarDefinition {
     pub days_definitions: BTreeMap<DayId, DayDefinition>,
 }
 
+impl CalendarDefinition {
+    /// Create a new CalendarDefinition with minimal defaults
+    #[cfg(test)]
+    pub fn new(id: CalendarId) -> Self {
+        Self {
+            schema: None,
+            id,
+            metadata: CalendarMetadata::default(),
+            particular_config: None,
+            parent_calendar_ids: vec![],
+            days_definitions: BTreeMap::new(),
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

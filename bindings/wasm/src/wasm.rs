@@ -149,9 +149,8 @@ impl PartialRomcalConfig {
             resources,
         };
 
-        Ok(RomcalConfig {
-            inner: RomcalCore::new(preset),
-        })
+        let inner = RomcalCore::new(preset).map_err(|e| JsValue::from_str(&e.to_string()))?;
+        Ok(RomcalConfig { inner })
     }
 }
 

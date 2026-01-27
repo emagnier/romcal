@@ -36,6 +36,10 @@ pub enum RomcalError {
     ParseError(String),
     #[error("Calculation error: {0}")]
     CalculationError(String),
+    #[error("Calendar not found: {0}")]
+    CalendarNotFound(String),
+    #[error("Locale not found: {0}")]
+    LocaleNotFound(String),
 }
 
 impl From<romcal::error::RomcalError> for RomcalError {
@@ -49,6 +53,8 @@ impl From<romcal::error::RomcalError> for RomcalError {
                 RomcalError::InvalidConfig("Invalid configuration".to_string())
             }
             CoreError::ValidationError(msg) => RomcalError::InvalidConfig(msg),
+            CoreError::CalendarNotFound(calendar, _) => RomcalError::CalendarNotFound(calendar),
+            CoreError::LocaleNotFound(locale, _) => RomcalError::LocaleNotFound(locale),
             CoreError::InvalidDate
             | CoreError::CalculationError
             | CoreError::DateConversionError => RomcalError::CalculationError(err.to_string()),
@@ -256,9 +262,8 @@ impl Romcal {
             resources,
         };
 
-        Ok(Arc::new(Self {
-            inner: RomcalCore::new(preset),
-        }))
+        let inner = RomcalCore::new(preset)?;
+        Ok(Arc::new(Self { inner }))
     }
 
     /// Get the calendar type

@@ -194,7 +194,7 @@ mod tests {
         let romcal = Romcal::new(Preset {
             context: Some(crate::CalendarContext::Liturgical),
             ..Preset::default()
-        });
+        }).unwrap();
         let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
         let advent = Advent::new(&proper_of_time);
         // For liturgical year 2026, Advent begins in 2025

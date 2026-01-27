@@ -1000,7 +1000,8 @@ mod tests {
         let config = Romcal::new(Preset {
             context: Some(crate::CalendarContext::Liturgical),
             ..Preset::default()
-        });
+        })
+        .unwrap();
         let dates = LiturgicalDates::new(config, 2024).unwrap();
 
         assert_eq!(dates.year, 2024);

@@ -8,7 +8,7 @@ use crate::types::{CalendarJurisdiction, CalendarType};
 
 /// Metadata for a calendar.
 /// Contains essential information about the calendar's type and jurisdiction.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, Default)]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]

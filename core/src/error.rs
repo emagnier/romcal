@@ -27,6 +27,10 @@ pub enum RomcalError {
     InvalidDateName(String),
     /// Entity not found after locale fallback (entity_id, checked_locales)
     EntityNotFound(String, Vec<String>),
+    /// Calendar not found in provided definitions (calendar_id, available_calendars)
+    CalendarNotFound(String, Vec<String>),
+    /// Locale not found in provided resources (locale, available_locales)
+    LocaleNotFound(String, Vec<String>),
 }
 
 impl fmt::Display for RomcalError {
@@ -63,6 +67,30 @@ impl fmt::Display for RomcalError {
                     "Entity '{}' not found in any locale. Checked: {}",
                     id,
                     locales.join(" → ")
+                )
+            }
+            RomcalError::CalendarNotFound(calendar, available) => {
+                write!(
+                    f,
+                    "Calendar '{}' not found in provided definitions. Available: {}",
+                    calendar,
+                    if available.is_empty() {
+                        "(none)".to_string()
+                    } else {
+                        available.join(", ")
+                    }
+                )
+            }
+            RomcalError::LocaleNotFound(locale, available) => {
+                write!(
+                    f,
+                    "Locale '{}' not found in provided resources. Available: {}",
+                    locale,
+                    if available.is_empty() {
+                        "(none)".to_string()
+                    } else {
+                        available.join(", ")
+                    }
                 )
             }
         }

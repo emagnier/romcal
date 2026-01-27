@@ -17,8 +17,8 @@ class TestRomcalConfiguration:
         assert romcal.epiphany_on_sunday is False
         assert romcal.corpus_christi_on_sunday is True
         assert romcal.ascension_on_sunday is False
-        assert romcal.easter_calculation_type == EasterCalculationType.GREGORIAN
-        assert romcal.context == CalendarContext.GREGORIAN
+        assert romcal.easter_calculation_type == EasterCalculationType.gregorian
+        assert romcal.context == CalendarContext.gregorian
 
     def test_should_accept_calendar_and_locale_as_arguments(self) -> None:
         """Should accept calendar and locale as arguments."""
@@ -55,7 +55,7 @@ class TestRomcalConfiguration:
             ascension_on_sunday=False,
             corpus_christi_on_sunday=True,
             easter_calculation_type="INVALID",
-            context="GREGORIAN",
+            context="gregorian",
             calendar_definitions_json=None,
             resources_json=None,
         )
@@ -73,7 +73,7 @@ class TestRomcalConfiguration:
             epiphany_on_sunday=False,
             ascension_on_sunday=False,
             corpus_christi_on_sunday=True,
-            easter_calculation_type="GREGORIAN",
+            easter_calculation_type="gregorian",
             context="INVALID",
             calendar_definitions_json=None,
             resources_json=None,

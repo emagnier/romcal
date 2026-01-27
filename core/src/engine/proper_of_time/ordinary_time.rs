@@ -415,7 +415,7 @@ mod tests {
         let romcal = Romcal::new(Preset {
             epiphany_on_sunday: Some(false),
             ..Preset::default()
-        });
+        }).unwrap();
         let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
         let ordinary_time = OrdinaryTime::new(&proper_of_time);
 
@@ -441,7 +441,7 @@ mod tests {
         let romcal = Romcal::new(Preset {
             epiphany_on_sunday: Some(true),
             ..Preset::default()
-        });
+        }).unwrap();
         let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
         let ordinary_time = OrdinaryTime::new(&proper_of_time);
 

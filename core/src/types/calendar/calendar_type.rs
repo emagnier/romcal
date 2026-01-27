@@ -7,13 +7,14 @@ use ts_rs::TS;
 
 /// The type of the calendar.
 /// Defines the scope and authority level of the liturgical calendar.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, EnumIter)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, EnumIter, Default)]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
 #[cfg_attr(feature = "ts-bindings", ts(export))]
 #[serde(rename_all = "snake_case")]
 pub enum CalendarType {
     /// General Roman Calendar (universal)
+    #[default]
     GeneralRoman,
     /// Regional calendar (multiple countries)
     Region,

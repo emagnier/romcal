@@ -38,7 +38,7 @@ class TestGregorianYearCalendar:
         assert easter is not None
         assert len(easter) > 0
         # Easter has the highest precedence (TRIDUUM_1)
-        assert easter[0].precedence == Precedence.TRIDUUM_1
+        assert easter[0].precedence == Precedence.triduum_1
         assert easter[0].is_holy_day_of_obligation is True
 
     def test_should_have_correct_easter_season(self) -> None:
@@ -47,14 +47,14 @@ class TestGregorianYearCalendar:
 
         assert easter is not None
         assert easter[0].fullname == "Easter Sunday of the Resurrection of the Lord"
-        assert easter[0].season == Season.EASTER_TIME
+        assert easter[0].season == Season.easter_time
 
     def test_should_include_christmas_2026_on_december_25(self) -> None:
         """Should include Christmas 2026 on December 25."""
         christmas = self.calendar.get("2026-12-25")
 
         assert christmas is not None
-        assert christmas[0].rank == Rank.SOLEMNITY
+        assert christmas[0].rank == Rank.solemnity
 
     def test_should_have_no_masses_for_holy_saturday(self) -> None:
         """Should have no masses defined for Holy Saturday (April 4)."""
@@ -75,7 +75,7 @@ class TestLiturgicalYearCalendar:
         self.romcal = Romcal(
             calendar="general_roman",
             locale="en",
-            context=CalendarContext.LITURGICAL,
+            context=CalendarContext.liturgical,
             calendar_definitions_json=calendar_definitions_json,
             resources_json=resources_json,
         )
@@ -102,7 +102,7 @@ class TestLiturgicalYearCalendar:
         christmas = self.calendar.get("2025-12-25")
 
         assert christmas is not None
-        assert christmas[0].rank == Rank.SOLEMNITY
+        assert christmas[0].rank == Rank.solemnity
 
 
 class TestMassCalendarGregorianYear:
@@ -132,7 +132,7 @@ class TestMassCalendarGregorianYear:
         mass_times = [m.mass_time for m in dec24]
         assert len(dec24) == 2
         # Morning mass (Advent weekday) + Previous evening mass (Christmas vigil)
-        assert mass_times == [MassTime.MORNING_MASS, MassTime.PREVIOUS_EVENING_MASS]
+        assert mass_times == [MassTime.morning_mass, MassTime.previous_evening_mass]
 
     def test_should_include_multiple_christmas_2026_masses(self) -> None:
         """Should include multiple Christmas 2026 masses."""
@@ -141,7 +141,7 @@ class TestMassCalendarGregorianYear:
 
         mass_times = [m.mass_time for m in christmas]
         assert len(christmas) == 3
-        assert mass_times == [MassTime.NIGHT_MASS, MassTime.MASS_AT_DAWN, MassTime.DAY_MASS]
+        assert mass_times == [MassTime.night_mass, MassTime.mass_at_dawn, MassTime.day_mass]
 
     def test_should_have_correct_mass_time_names(self) -> None:
         """Should have correct mass time names."""
@@ -157,7 +157,7 @@ class TestMassCalendarGregorianYear:
         easter_vigil_day = self.mass_calendar.get("2026-04-04")
         assert easter_vigil_day is not None
 
-        vigil = next((m for m in easter_vigil_day if m.mass_time == MassTime.EASTER_VIGIL), None)
+        vigil = next((m for m in easter_vigil_day if m.mass_time == MassTime.easter_vigil), None)
         assert vigil is not None
         assert vigil.liturgical_date == "2026-04-05"
 
@@ -169,7 +169,7 @@ class TestMassCalendarGregorianYear:
 
         assert holy_saturday is not None
         assert len(holy_saturday) == 1
-        assert holy_saturday[0].mass_time == MassTime.EASTER_VIGIL
+        assert holy_saturday[0].mass_time == MassTime.easter_vigil
 
 
 class TestMassCalendarLiturgicalYear:
@@ -181,7 +181,7 @@ class TestMassCalendarLiturgicalYear:
         self.romcal = Romcal(
             calendar="general_roman",
             locale="en",
-            context=CalendarContext.LITURGICAL,
+            context=CalendarContext.liturgical,
             calendar_definitions_json=calendar_definitions_json,
             resources_json=resources_json,
         )
