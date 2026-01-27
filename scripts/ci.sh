@@ -89,7 +89,7 @@ run_script "check-json-roundtrip.sh" "1️⃣1️⃣ Testing JSON roundtrip inte
 
 # Step 12: Build and test TypeScript bindings
 if [ -d "$PROJECT_ROOT/bindings/typescript" ]; then
-    run_step "1️⃣2️⃣ Building and testing TypeScript bindings" "cd '$PROJECT_ROOT/bindings/typescript' && npm ci && npm run build && npm run format:check && npm run test:run"
+    run_step "1️⃣2️⃣ Building and testing TypeScript bindings" "cd '$PROJECT_ROOT/bindings/typescript' && pnpm install --frozen-lockfile && pnpm build && pnpm format:check && pnpm test:run"
 fi
 
 # Step 13: Build and test Python bindings
