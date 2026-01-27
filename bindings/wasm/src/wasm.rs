@@ -281,6 +281,27 @@ impl Romcal {
             .and_then(|entity| serde_json::to_string(&entity).ok())
     }
 
+    /// Create an optimized JSON bundle of the current configuration.
+    ///
+    /// This method filters and deduplicates the configuration to create a minimal
+    /// bundle suitable for distribution. The output contains:
+    ///
+    /// - Only calendar definitions in the hierarchy (general_roman → parents → main)
+    /// - Only resources for locales in the hierarchy (en → parent → specific)
+    /// - Property-level deduplication across locale hierarchy
+    /// - No null values or empty objects
+    ///
+    /// # Returns
+    ///
+    /// A pretty-printed JSON string of the optimized configuration.
+    #[wasm_bindgen(js_name = "createBundle")]
+    pub fn create_bundle(&self) -> Result<String, JsValue> {
+        self.config
+            .inner
+            .create_bundle()
+            .map_err(|e| JsValue::from_str(&e.to_string()))
+    }
+
     /// Search entities with fuzzy matching and filters.
     ///
     /// # Arguments

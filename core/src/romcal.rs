@@ -170,10 +170,27 @@ impl Romcal {
         self.resources.push(resources);
     }
 
-    /// Create a JSON bundle of the current configuration
-    /// This method serializes the Preset to JSON format
-    /// and removes null values and empty objects from the output
-    pub fn optimize(&self) -> Result<String, serde_json::Error> {
+    /// Create an optimized JSON bundle of the current configuration.
+    ///
+    /// This method filters and deduplicates the configuration to create a minimal
+    /// bundle suitable for distribution. The output contains:
+    ///
+    /// - Only calendar definitions in the hierarchy (general_roman → parents → main)
+    /// - Only resources for locales in the hierarchy (en → parent → specific)
+    /// - Property-level deduplication across locale hierarchy
+    /// - No null values or empty objects
+    ///
+    /// # Returns
+    ///
+    /// A pretty-printed JSON string of the optimized configuration.
+    ///
+    /// # Errors
+    ///
+    /// Returns an error if:
+    /// - Duplicate calendar IDs or locales are found
+    /// - Required calendars or locales are missing
+    /// - JSON serialization fails
+    pub fn create_bundle(&self) -> Result<String, serde_json::Error> {
         crate::engine::optimize::optimize(self)
             .map_err(|e| serde_json::Error::io(std::io::Error::other(e.to_string())))
     }

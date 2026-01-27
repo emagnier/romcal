@@ -120,6 +120,52 @@ export class RomcalError extends Error {
 }
 
 // ============================================================================
+// Romcal Bundle
+// ============================================================================
+
+/**
+ * Optimized bundle containing the configuration and only the necessary data.
+ *
+ * This type matches the JSON output from `createBundle()` and can be:
+ * - Generated at build time via `@romcal/unplugin`
+ * - Generated via CLI: `romcal bundle -c france -l fr`
+ * - Generated programmatically via `romcal.createBundle()`
+ *
+ * The bundle can be passed directly to `createRomcal()` to create a new instance.
+ * Uses snake_case to match the Rust/JSON serialization format, ensuring compatibility
+ * across all romcal implementations (TypeScript, Rust, Python).
+ *
+ * @example
+ * ```typescript
+ * // Generate bundle at build time (via plugin) or runtime
+ * const bundle = await romcal.createBundle();
+ *
+ * // Create a new instance from bundle
+ * const romcal2 = await createRomcal(bundle);
+ * ```
+ */
+export interface RomcalBundle {
+  /** Calendar ID (e.g., 'general_roman', 'france', 'united_states') */
+  calendar: string
+  /** Locale code (e.g., 'en', 'fr', 'es') */
+  locale: string
+  /** Calendar context (GREGORIAN or LITURGICAL year boundaries) */
+  context: CalendarContext
+  /** Epiphany is celebrated on Sunday (between January 2-8) */
+  epiphany_on_sunday: boolean
+  /** Ascension is celebrated on Sunday (7th Sunday of Easter) */
+  ascension_on_sunday: boolean
+  /** Corpus Christi is celebrated on Sunday */
+  corpus_christi_on_sunday: boolean
+  /** Easter calculation method (GREGORIAN or JULIAN) */
+  easter_calculation_type: EasterCalculationType
+  /** Calendar definitions (hierarchy filtered: general_roman → parents → main) */
+  calendar_definitions: CalendarDefinition[]
+  /** Resources/locales (hierarchy filtered and property-level deduplicated) */
+  resources: Resources[]
+}
+
+// ============================================================================
 // Romcal Instance
 // ============================================================================
 
@@ -157,6 +203,21 @@ export interface Romcal {
    * @returns Date in YYYY-MM-DD format
    */
   getDate(id: string, year: number): Promise<string>
+
+  /**
+   * Create an optimized JSON bundle of the current configuration.
+   *
+   * This method filters and deduplicates the configuration to create a minimal
+   * bundle suitable for distribution. The output contains:
+   *
+   * - Only calendar definitions in the hierarchy (general_roman → parents → main)
+   * - Only resources for locales in the hierarchy (en → parent → specific)
+   * - Property-level deduplication across locale hierarchy
+   * - No null values or empty objects
+   *
+   * @returns An optimized bundle object
+   */
+  createBundle(): Promise<RomcalBundle>
 }
 
 // ============================================================================
@@ -218,6 +279,17 @@ function createInstance(wasmInstance: wasm.Romcal): Romcal {
         )
       }
     },
+
+    async createBundle(): Promise<RomcalBundle> {
+      try {
+        const json = wasmInstance.createBundle()
+        // Safe cast: JSON structure is guaranteed by Rust's serde serialization
+        return JSON.parse(json) as RomcalBundle
+      } catch (error) {
+        const message = error instanceof Error ? error.message : String(error)
+        throw new RomcalError(`Failed to create bundle: ${message}`, { cause: error })
+      }
+    },
   }
 }
 
@@ -254,6 +326,12 @@ export async function createRomcal(config: RomcalConfigInterface): Promise<Romca
 export async function createRomcal(config: PartialRomcalConfigInterface): Promise<Romcal>
 
 /**
+ * Create a new Romcal instance from a pre-generated bundle.
+ * Bundles can be generated via plugin, CLI, or `romcal.createBundle()`.
+ */
+export async function createRomcal(bundle: RomcalBundle): Promise<Romcal>
+
+/**
  * Create a new Romcal instance.
  *
  * @example
@@ -276,7 +354,7 @@ export async function createRomcal(config: PartialRomcalConfigInterface): Promis
  * ```
  */
 export async function createRomcal(
-  calendarOrConfig?: string | RomcalConfigInterface | PartialRomcalConfigInterface,
+  calendarOrConfig?: string | RomcalConfigInterface | PartialRomcalConfigInterface | RomcalBundle,
   locale?: string,
 ): Promise<Romcal> {
   await initWasm()
@@ -286,7 +364,23 @@ export async function createRomcal(
 
     // Handle different parameter combinations
     if (typeof calendarOrConfig === 'object' && calendarOrConfig !== null) {
-      const config = calendarOrConfig as PartialRomcalConfigInterface
+      // Detect if this is a RomcalBundle (snake_case) or config (camelCase)
+      const isBundle = 'epiphany_on_sunday' in calendarOrConfig
+
+      // Normalize to PartialRomcalConfigInterface format
+      const config: PartialRomcalConfigInterface = isBundle
+        ? {
+            calendar: (calendarOrConfig as RomcalBundle).calendar,
+            locale: (calendarOrConfig as RomcalBundle).locale,
+            context: (calendarOrConfig as RomcalBundle).context,
+            epiphanyOnSunday: (calendarOrConfig as RomcalBundle).epiphany_on_sunday,
+            ascensionOnSunday: (calendarOrConfig as RomcalBundle).ascension_on_sunday,
+            corpusChristiOnSunday: (calendarOrConfig as RomcalBundle).corpus_christi_on_sunday,
+            easterCalculationType: (calendarOrConfig as RomcalBundle).easter_calculation_type,
+            calendarDefinitions: (calendarOrConfig as RomcalBundle).calendar_definitions,
+            resources: (calendarOrConfig as RomcalBundle).resources,
+          }
+        : (calendarOrConfig as PartialRomcalConfigInterface)
 
       // Create a partial config object and let Rust handle the defaults
       const partialConfig = new wasm.PartialRomcalConfig()
