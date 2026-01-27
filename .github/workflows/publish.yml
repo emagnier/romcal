@@ -94,7 +94,7 @@ jobs:
   # CRATES.IO - CORE (romcal)
   # ============================================================================
   crates-core:
-    name: Crates.io (core)
+    name: Crates.io (romcal)
     runs-on: ubuntu-latest
     needs: [prepare]
     if: needs.prepare.outputs.publish-crates == 'true'
@@ -140,7 +140,7 @@ jobs:
   # CRATES.IO - CLI (romcal-cli)
   # ============================================================================
   crates-cli:
-    name: Crates.io (cli)
+    name: Crates.io (romcal-cli)
     runs-on: ubuntu-latest
     needs: [prepare, crates-core]
     if: needs.prepare.outputs.publish-crates == 'true'
@@ -173,7 +173,7 @@ jobs:
   # NPM (romcal TypeScript/WASM)
   # ============================================================================
   npm:
-    name: npm
+    name: npm (romcal)
     runs-on: ubuntu-latest
     needs: [prepare]
     if: needs.prepare.outputs.publish-npm == 'true'
@@ -245,7 +245,7 @@ jobs:
   # NPM - UNPLUGIN (@romcal/unplugin)
   # ============================================================================
   npm-unplugin:
-    name: npm (unplugin)
+    name: npm (@romcal/unplugin)
     runs-on: ubuntu-latest
     needs: [prepare, npm]
     if: needs.prepare.outputs.publish-npm == 'true'
@@ -397,7 +397,7 @@ jobs:
   # PYPI - PUBLISH (collect all wheels + sdist)
   # ============================================================================
   pypi-publish:
-    name: PyPI Publish
+    name: PyPI (romcal)
     runs-on: ubuntu-latest
     needs: [prepare, pypi-wheels, pypi-sdist]
     if: needs.prepare.outputs.publish-pypi == 'true'
