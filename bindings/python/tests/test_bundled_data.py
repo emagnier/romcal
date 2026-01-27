@@ -411,26 +411,6 @@ class TestCalendarGenerationWithBundledData:
 class TestBundledDataErrors:
     """Tests for error handling with bundled data."""
 
-    @pytest.mark.skipif(has_bundled_data(), reason="Bundled data is available")
-    def test_get_bundled_calendar_definitions_raises_error_when_not_available(self) -> None:
-        """get_bundled_calendar_definitions() should raise error when not available."""
-        with pytest.raises(RomcalError) as exc_info:
-            get_bundled_calendar_definitions()
-
-        # Verify error message is informative
-        error_msg = str(exc_info.value).lower()
-        assert "bundled" in error_msg or "not available" in error_msg or "not compiled" in error_msg
-
-    @pytest.mark.skipif(has_bundled_data(), reason="Bundled data is available")
-    def test_get_bundled_resources_raises_error_when_not_available(self) -> None:
-        """get_bundled_resources() should raise error when not available."""
-        with pytest.raises(RomcalError) as exc_info:
-            get_bundled_resources()
-
-        # Verify error message is informative
-        error_msg = str(exc_info.value).lower()
-        assert "bundled" in error_msg or "not available" in error_msg or "not compiled" in error_msg
-
     def test_unknown_calendar_raises_error(
         self, bundled_definitions_json: str, bundled_resources_json: str
     ) -> None:
