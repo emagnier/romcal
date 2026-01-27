@@ -1,6 +1,6 @@
 [package]
 name = "romcal-uniffi"
-version = "4.0.0-beta.5"
+version = "4.0.0-beta.6"
 edition = "2024"
 authors = ["Étienne Magnier <etienne.magnier@gmail.com>"]
 description = "UniFFI bindings for romcal liturgical calendar library"

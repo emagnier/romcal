@@ -1,6 +1,6 @@
 {
   "name": "@romcal/unplugin",
-  "version": "4.0.0-beta.5",
+  "version": "4.0.0-beta.6",
   "description": "Bundler plugin for romcal data optimization",
   "type": "module",
   "main": "./dist/index.js",
@@ -87,7 +87,7 @@
     "format:check": "prettier --check ."
   },
   "peerDependencies": {
-    "romcal": "^4.0.0-beta.5"
+    "romcal": "^4.0.0-beta.6"
   },
   "dependencies": {
     "unplugin": "^3.0.0"
