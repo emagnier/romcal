@@ -149,7 +149,7 @@ import bundle from 'virtual:romcal';
 import { createRomcal } from 'romcal';
 
 const romcal = await createRomcal(bundle);
-const calendar = await romcal.generateLiturgicalCalendar(2026);
+const calendar = romcal.generateLiturgicalCalendar(2026);
 ```
 
 ## Options

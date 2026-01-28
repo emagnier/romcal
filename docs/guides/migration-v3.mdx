@@ -1,0 +1,368 @@
+---
+title: Migration from v3
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+This guide helps you migrate from **TypeScript** romcal v3 to v4.
+
+## Key Changes
+
+Romcal v4 is a complete rewrite with a new architecture:
+
+| Aspect              | v3                              | v4                                    |
+| ------------------- | ------------------------------- | ------------------------------------- |
+| **Core**            | Pure TypeScript                 | Rust compiled to WASM                 |
+| **Languages**       | TypeScript only                 | TypeScript, Python, Rust, CLI         |
+| **Packages**        | Multiple (`@romcal/calendar.*`) | Single (`romcal`)                     |
+| **Data**            | Pre-bundled by locale           | Explicit imports (tree-shakeable)     |
+| **API calls**       | Async                           | Sync (after init)                     |
+| **Output format**   | camelCase, nested objects       | snake_case, flat properties           |
+
+## Installation
+
+<Tabs syncKey="pkg">
+  <TabItem label="npm">
+
+```diff
+- npm install romcal @romcal/calendar.france
++ npm install romcal
+```
+
+  </TabItem>
+  <TabItem label="pnpm">
+
+```diff
+- pnpm add romcal @romcal/calendar.france
++ pnpm add romcal
+```
+
+  </TabItem>
+  <TabItem label="yarn">
+
+```diff
+- yarn add romcal @romcal/calendar.france
++ yarn add romcal
+```
+
+  </TabItem>
+</Tabs>
+
+Remove all `@romcal/calendar.*` packages from your dependencies.
+
+## Initialization
+
+### v3: Synchronous with pre-bundled data
+
+```typescript
+import Romcal from 'romcal';
+import { France_Fr } from '@romcal/calendar.france';
+
+const romcal = new Romcal({
+  localizedCalendar: France_Fr,
+});
+```
+
+### v4: Asynchronous with explicit data
+
+```typescript
+import { createRomcal } from 'romcal';
+import { generalRoman, europe, france } from 'romcal/definitions';
+import { en, fr } from 'romcal/resources';
+
+const romcal = await createRomcal({
+  calendar: 'france',
+  locale: 'fr',
+  calendarDefinitions: [generalRoman, europe, france],
+  resources: [en, fr],
+});
+```
+
+:::note[Why async?]
+v4 uses WebAssembly which requires asynchronous initialization. The `createRomcal()` function handles WASM loading automatically.
+:::
+
+:::note[Why explicit data?]
+v4 separates data from code for tree-shaking. Only the calendars and locales you import are included in your bundle. See [Data Loading](/guides/data-loading) and [Bundle Optimization](/guides/bundle-optimization) for details.
+:::
+
+## Configuration Changes
+
+### Options mapping
+
+| v3                      | v4                                                          | Values <small>(v3 → v4)</small>     |
+| ----------------------- | ----------------------------------------------------------- | ----------------------------------- |
+| `localizedCalendar`     | `calendar` + `locale` + `calendarDefinitions` + `resources` |                                     |
+| `scope`                 | `context`                                                   | `'GREGORIAN'` → `'gregorian'`, etc. |
+| `epiphanyOnSunday`      | `epiphanyOnSunday`                                          | `boolean`                           |
+| `ascensionOnSunday`     | `ascensionOnSunday`                                         | `boolean`                           |
+| `corpusChristiOnSunday` | `corpusChristiOnSunday`                                     | `boolean`                           |
+| `easterCalculationType` | `easterCalculationType`                                     | `'GREGORIAN'` → `'gregorian'`, etc. |
+
+### Example
+
+<Tabs syncKey="version">
+  <TabItem label="v3">
+
+```typescript
+const romcal = new Romcal({
+  localizedCalendar: France_Fr,
+  scope: 'LITURGICAL',
+  epiphanyOnSunday: true,
+  corpusChristiOnSunday: true,
+});
+
+const calendar = await romcal.generateCalendar(2026);
+```
+
+  </TabItem>
+  <TabItem label="v4">
+
+```typescript
+const romcal = await createRomcal({
+  calendar: 'france',
+  locale: 'fr',
+  context: 'liturgical',
+  epiphanyOnSunday: true,
+  corpusChristiOnSunday: true,
+  calendarDefinitions: [generalRoman, europe, france],
+  resources: [en, fr],
+});
+
+const calendar = romcal.generateLiturgicalCalendar(2026);
+```
+
+  </TabItem>
+</Tabs>
+
+## API Changes
+
+### Methods
+
+| v3                      | v4                                 | Description <small>(v3 → v4)</small>            |
+| ----------------------- | ---------------------------------- | ----------------------------------------------- |
+| `generateCalendar()`    | `generateLiturgicalCalendar(year)` | Get liturgical days (async → sync)              |
+| `getOneLiturgicalDay()` | N/A                                | Not yet available in v4                         |
+| N/A                     | `generateMassCalendar(year)`       | Get mass-centric calendar (sync)                |
+| `dates(year).*()`       | `getDate(id, year)`                | Get a date (sync), `Date` → `YYYY-MM-DD`        |
+| `getAllDefinitions()`   | N/A                                | Removed; use `createBundle()` instead           |
+| N/A                     | `getEntity(id)`                    | Get an entity by ID (sync)                      |
+| N/A                     | `searchEntities(query)`            | Search entities (sync)                          |
+| `romcal.config.*`       | `romcal.*`                         | Config properties directly on instance          |
+| N/A                     | `createBundle()`                   | Create optimized data bundle (sync)             |
+| `getVersion()`          | `getVersion()`                     | Get version (sync → async), standalone function |
+
+:::tip[Simpler API]
+In v4, all instance methods are synchronous (no `await` needed). Only `createRomcal()` and `getVersion()` remain async for WASM initialization.
+:::
+
+### LiturgicalDay properties
+
+v4 uses a flatter structure and `snake_case` naming:
+
+| v3                               | v4                          | Notes <small>(v3 → v4)</small>   |
+| -------------------------------- | --------------------------- | -------------------------------- |
+| `id`                             | `id`                        |                                  |
+| `allowSimilarRankItems`          | `allow_similar_rank_items`  | snake_case                       |
+| `alternativeTransferDateDefs`    | N/A                         | Removed                          |
+| `calendar.dayOfSeason`           | `day_of_season`             | Flattened                        |
+| `calendar.dayOfWeek`             | `day_of_week`               | Flattened                        |
+| `calendar.endOfLiturgicalYear`   | `end_of_liturgical_year`    | Flattened                        |
+| `calendar.endOfSeason`           | `end_of_season`             | Flattened                        |
+| `calendar.nthDayOfWeekInMonth`   | `nth_day_of_week_in_month`  | Flattened                        |
+| `calendar.startOfLiturgicalYear` | `start_of_liturgical_year`  | Flattened                        |
+| `calendar.startOfSeason`         | `start_of_season`           | Flattened                        |
+| `calendar.weekOfSeason`          | `week_of_season`            | Flattened                        |
+| `colorNames`                     | `colors[].name`             | Included in `ColorInfo`          |
+| `colors`                         | `colors`                    | Now includes localized names     |
+| `commonsDef`                     | `commons`                   | Now includes localized names     |
+| `cycles.properCycle`             | N/A                         | Removed                          |
+| `cycles.properCycleName`         | N/A                         | Removed                          |
+| `cycles.psalterWeek`             | `psalter_week`              | Flattened + `psalter_week_name`  |
+| `cycles.sundayCycle`             | `sunday_cycle`              | Flattened + `sunday_cycle_name`  |
+| `cycles.weekdayCycle`            | `weekday_cycle`             | Flattened + `weekday_cycle_name` |
+| `date`                           | `date`                      |                                  |
+| `dateDef`                        | `date_def`                  | snake_case                       |
+| `dateExceptions`                 | `date_exceptions`           | snake_case                       |
+| `fromCalendarId`                 | `from_calendar_id`          | snake_case                       |
+| `fromExtendedCalendars`          | `parent_overrides`          | Renamed                          |
+| `i18nDef`                        | N/A                         | Removed (name in `fullname`)     |
+| `isHolyDayOfObligation`          | `is_holy_day_of_obligation` | snake_case                       |
+| `isOptional`                     | `is_optional`               | snake_case                       |
+| `martyrology`                    | `entities`                  | Renamed, richer structure        |
+| `name`                           | `fullname`                  |                                  |
+| `periods`                        | `periods`                   | Now includes localized names     |
+| `precedence`                     | `precedence`                |                                  |
+| `rank`                           | `rank`                      |                                  |
+| `rankName`                       | `rank_name`                 | snake_case                       |
+| `seasonNames`                    | `season_name`               | Array → single string            |
+| `seasons`                        | `season`                    | Array → single value             |
+| `titles`                         | `titles`                    |                                  |
+| `weekday`                        | N/A                         | Removed                          |
+| `config()`                       | N/A                         | Removed (use `romcal.*`)         |
+| `definition()`                   | N/A                         | Removed                          |
+| N/A                              | `masses`                    | New: mass definitions            |
+
+:::tip[Flatter structure]
+v4 favors a flat structure wherever possible, removing nested objects like `cycles` and `calendar`. This makes the data easier to work with across APIs, CSV exports, databases, and multiple programming languages. Arrays such as `masses`, `entities`, and `colors` remain nested where they represent true one-to-many relationships.
+:::
+
+### Removed and unavailable features
+
+Some v3 features are not yet available in v4, while others have been intentionally removed.
+
+**Not yet available:**
+
+| Feature                 | Notes                            |
+| ----------------------- | -------------------------------- |
+| `getOneLiturgicalDay()` | Retrieve a single liturgical day |
+
+**Removed:**
+
+| Feature                                 | Reason                                                                                                                                                                                |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `getAllDefinitions()`, `definition()`   | Use `createBundle()` instead for more complete data                                                                                                                                   |
+| `alternativeTransferDateDefs`           | Rolled back from v3; will be revisited with a simpler approach                                                                                                                        |
+| `i18nDef`                               | Was tied to i18next; `LiturgicalDay` now includes all metadata needed for custom translations                                                                                         |
+| `cycles.properCycle`, `properCycleName` | Temporal/sanctoral distinction already handled by calendar hierarchy (`temporal_cycle` vs other calendar ids); removed to simplify                                                    |
+| `weekday`                               | Data already merged into memorials (not applicable to feasts/solemnities); for optional memorials, weekday is output separately. Future support planned for readings/orations choice. |
+| `config()`                              | Access config directly via `romcal.*` properties                                                                                                                                      |
+
+## Entities and localization
+
+In v3, martyrology data and locale translations were stored separately. v4 introduces a unified data model called **entities**, which combines martyrology items, places, and events into a single, more generic structure. This simplifies contributions by reducing the need to synchronize between multiple data sources.
+
+Each entity now contains both localized properties (`fullname`, `name`, etc.) and non-localized metadata (`canonization_level`, `titles`, `date_of_death`, `date_of_death_is_approximative`, etc.).
+
+**Locale conventions:**
+
+- **English as primary language**: By convention, all metadata is defined in the `en` resources. Other locales (e.g., `fr`) only contain translations for localized properties.
+- **Fallback logic**: Any content added in a non-English locale must also exist in English to ensure proper fallback behavior.
+- **BCP 47 compliance**: Locale resolution follows BCP 47 rules (e.g., `fr-CA` → `fr` → `en`).
+
+**Translation approach:**
+
+romcal v4 handles translations in a simplified manner, supporting plural forms and grammatical gender (masculine/feminine/neuter) where needed. However, romcal is not intended to be a full-featured translation engine for complex grammatical rules specific to certain languages. Instead, it provides all the metadata necessary for external tools to handle advanced localization if required.
+
+At minimum, each liturgical day includes a `fullname` property that corresponds as closely as possible to the celebration name found in official liturgical books (lectionary, missal).
+
+## Data Loading and Bundle Optimization
+
+In v3, calendar definitions, translations, and martyrology data were pre-bundled into locale-specific packages like `@romcal/calendar.france`. Tree-shaking wasn't feasible since each package contained everything needed for a given calendar and locale. This approach required maintaining nearly 70 separate npm packages.
+
+v4 takes a different approach: a single `romcal` package with data separated from code. You explicitly import the calendars and locales you need, enabling effective tree-shaking (~25 KB gzip). For maximum optimization, an optional bundler plugin reduces this further (~4 KB).
+
+→ See [Data Loading](/guides/data-loading) and [Bundle Optimization](/guides/bundle-optimization) for details.
+
+## Browser Support
+
+v4 requires WebAssembly support:
+
+- Chrome 57+ (March 2017)
+- Firefox 52+ (March 2017)
+- Safari 11+ (September 2017)
+- Edge 16+ (October 2017)
+
+All modern browsers support WASM. For older browsers, a polyfill may be needed.
+
+## Mobile Development
+
+romcal v4 does not currently support React Native, as its JavaScript engines (JavaScriptCore, Hermes) do not natively support WebAssembly. Webview-based frameworks like Cordova or Capacitor should work since modern WebViews support WASM.
+
+Native support for iOS and Android could be achieved through Swift and Kotlin bindings. The use of [UniFFI](https://mozilla.github.io/uniffi-rs/) in this project is a step in that direction. These bindings could then be distributed as native modules (via CocoaPods, Swift Package Manager, or Maven) and exposed to frameworks like React Native or Flutter.
+
+Community contributions and proof-of-concept implementations in this area are welcome.
+
+## Common Migration Patterns
+
+### Simple calendar generation
+
+<Tabs syncKey="version">
+  <TabItem label="v3">
+
+```typescript
+import Romcal from 'romcal';
+import { France_Fr } from '@romcal/calendar.france';
+
+const romcal = new Romcal({ localizedCalendar: France_Fr });
+const calendar = await romcal.generateCalendar(2026);
+
+for (const [date, days] of Object.entries(calendar)) {
+  console.log(date, days[0].name);
+}
+```
+
+  </TabItem>
+  <TabItem label="v4">
+
+```typescript
+import { createRomcal } from 'romcal';
+import { generalRoman, europe, france } from 'romcal/definitions';
+import { en, fr } from 'romcal/resources';
+
+const romcal = await createRomcal({
+  calendar: 'france',
+  locale: 'fr',
+  calendarDefinitions: [generalRoman, europe, france],
+  resources: [en, fr],
+});
+
+const calendar = romcal.generateLiturgicalCalendar(2026);
+
+for (const [date, days] of Object.entries(calendar)) {
+  console.log(date, days[0].fullname);
+}
+```
+
+  </TabItem>
+</Tabs>
+
+### Getting a celebration date
+
+<Tabs syncKey="version">
+  <TabItem label="v3">
+
+```typescript
+// Option 1: Via getOneLiturgicalDay (returns LiturgicalDay with .date property)
+const easter = await romcal.getOneLiturgicalDay('easter_sunday', { year: 2026 });
+console.log(easter?.date); // "2026-04-05"
+
+// Option 2: Via dates() utility (returns Date object, limited to well-known dates)
+const easterDate = romcal.dates(2026).easterSunday();
+console.log(easterDate); // Date object
+```
+
+  </TabItem>
+  <TabItem label="v4">
+
+```typescript
+const easterDate = romcal.getDate('easter_sunday', 2026);
+console.log(easterDate); // "2026-04-05"
+```
+
+  </TabItem>
+</Tabs>
+
+:::note
+The v3 method `getOneLiturgicalDay()` returned a full `LiturgicalDay` object. This method is not yet available in v4. Use `generateLiturgicalCalendar()` and filter the results if you need full liturgical day data.
+:::
+
+## What's New in v4
+
+Beyond migration changes, v4 introduces new capabilities:
+
+- Significantly faster execution thanks to compiled Rust core (via WebAssembly)
+- Clear separation between library code and data
+- Improved data documentation with JSON Schema and quality typings across languages
+- Mass-centric calendar generation
+- Entity search and retrieval
+- Multi-platform support (Python, Rust, CLI)
+- Comprehensive general documentation
+
+→ See [Getting Started](/getting-started) to explore these features.
+
+## Need Help?
+
+- [Data Loading Guide](/guides/data-loading)
+- [Bundle Optimization](/guides/bundle-optimization)
+- [GitHub Issues](https://github.com/romcal/romcal/issues)
