@@ -37,6 +37,7 @@ export default defineConfig({
             { label: 'Data Loading', slug: 'guides/data-loading' },
             { label: 'Bundle Optimization', slug: 'guides/bundle-optimization' },
             { label: 'Bundler Plugin', slug: 'guides/bundler-plugin' },
+            { label: 'Migration from v3', slug: 'guides/migration-v3' },
           ],
         },
         {

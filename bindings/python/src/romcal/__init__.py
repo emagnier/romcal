@@ -26,6 +26,8 @@ Example usage:
 from __future__ import annotations
 
 import json
+from dataclasses import dataclass, field
+from enum import Enum
 from typing import TYPE_CHECKING
 
 from pydantic import BaseModel
@@ -34,10 +36,15 @@ from pydantic import BaseModel
 from .types import (
     CalendarContext,
     CalendarDefinition,
+    CanonizationLevel,
     EasterCalculationType,
+    Entity,
+    EntityType,
     LiturgicalDay,
     MassContext,
     Resources,
+    Sex,
+    Title,
 )
 
 if TYPE_CHECKING:
@@ -46,12 +53,20 @@ if TYPE_CHECKING:
 __all__ = [
     "CalendarContext",
     "CalendarDefinition",
+    "CanonizationLevel",
     "EasterCalculationType",
+    "Entity",
+    "EntityQuery",
+    "EntitySearchResult",
+    "EntityType",
     "LiturgicalDay",
     "MassContext",
+    "MatchType",
     "Resources",
     "Romcal",
     "RomcalError",
+    "Sex",
+    "Title",
     "get_bundled_calendar_definitions",
     "get_bundled_resources",
     "get_version",
@@ -195,6 +210,100 @@ def __getattr__(name: str) -> str:
 
 class RomcalError(Exception):
     """Exception raised for Romcal errors."""
+
+
+class MatchType(Enum):
+    """Type of match that was found for a search result."""
+
+    exact_id = "exact_id"
+    """Exact ID match (score = 1.0)."""
+
+    fuzzy = "fuzzy"
+    """Fuzzy match on text fields (score < 1.0)."""
+
+    filter_only = "filter_only"
+    """Match by filters only (no text query provided)."""
+
+
+@dataclass
+class EntityQuery:
+    """Query parameters for searching entities.
+
+    All fields are optional. When a field is None, it is not used for filtering.
+    When `text` is provided, fuzzy matching is performed on entity ID, fullname, and name.
+
+    Example:
+        >>> from romcal import EntityQuery, CanonizationLevel, Title
+        >>> query = EntityQuery(text="francis", canonization_level=CanonizationLevel.saint)
+        >>> results = romcal.search_entities(query)
+    """
+
+    text: str | None = None
+    """Fuzzy text search on id, fullname, and name fields."""
+
+    entity_type: EntityType | None = None
+    """Filter by entity type."""
+
+    canonization_level: CanonizationLevel | None = None
+    """Filter by canonization level."""
+
+    sex: Sex | None = None
+    """Filter by sex."""
+
+    titles: list[Title] | None = None
+    """Filter by titles. Entity must have at least one of the specified titles."""
+
+    limit: int | None = None
+    """Maximum number of results to return. Default: 20."""
+
+    min_score: float | None = None
+    """Minimum score threshold (0.0 to 1.0). Default: 0.3."""
+
+    def _to_json_dict(self) -> dict:
+        """Convert to JSON-compatible dict with snake_case keys."""
+        d: dict = {}
+        if self.text is not None:
+            d["text"] = self.text
+        if self.entity_type is not None:
+            d["entity_type"] = self.entity_type.value
+        if self.canonization_level is not None:
+            d["canonization_level"] = self.canonization_level.value
+        if self.sex is not None:
+            d["sex"] = self.sex.value
+        if self.titles is not None:
+            d["titles"] = [t.value for t in self.titles]
+        if self.limit is not None:
+            d["limit"] = self.limit
+        if self.min_score is not None:
+            d["min_score"] = self.min_score
+        return d
+
+
+@dataclass
+class EntitySearchResult:
+    """Result of an entity search.
+
+    Attributes:
+        entity: The matched entity.
+        score: Match score from 0.0 to 1.0, where 1.0 is a perfect match.
+        match_type: Type of match that was found.
+        matched_fields: Names of fields that matched the query.
+    """
+
+    entity: Entity
+    score: float
+    match_type: MatchType
+    matched_fields: list[str] = field(default_factory=list)
+
+    @classmethod
+    def _from_json_dict(cls, d: dict) -> EntitySearchResult:
+        """Create from JSON dict with snake_case keys."""
+        return cls(
+            entity=Entity.model_validate(d["entity"]),
+            score=d["score"],
+            match_type=MatchType(d["match_type"]),
+            matched_fields=d.get("matched_fields", []),
+        )
 
 
 def _get_core() -> _core:
@@ -425,3 +534,54 @@ class Romcal:
             return self._inner.get_date(celebration_id, year)
         except core.RomcalError as e:
             raise RomcalError(str(e)) from e
+
+    def get_entity(self, entity_id: str) -> Entity | None:
+        """Get an entity by its exact ID.
+
+        Args:
+            entity_id: The unique identifier of the entity (e.g., 'agnes_of_rome_virgin').
+
+        Returns:
+            The Entity object, or None if not found.
+
+        Example:
+            >>> r = Romcal()
+            >>> entity = r.get_entity("agnes_of_rome_virgin")
+            >>> if entity:
+            ...     print(f"{entity.name} ({entity.canonization_level})")
+        """
+        entity_json = self._inner.get_entity(entity_id)
+        if entity_json is None:
+            return None
+        return Entity.model_validate(json.loads(entity_json))
+
+    def search_entities(self, query: EntityQuery) -> list[EntitySearchResult]:
+        """Search entities with fuzzy matching and filters.
+
+        Args:
+            query: Search parameters including text, filters, and options.
+
+        Returns:
+            A list of EntitySearchResult sorted by score (highest first).
+
+        Raises:
+            RomcalError: If the search fails.
+
+        Example:
+            >>> r = Romcal()
+            >>> query = EntityQuery(text="francis", canonization_level="saint")
+            >>> results = r.search_entities(query)
+            >>> for result in results:
+            ...     print(f"{result.entity.name}: {result.score:.2f}")
+        """
+        core = _get_core()
+        try:
+            query_json = json.dumps(query._to_json_dict())
+            results_json = self._inner.search_entities(query_json)
+            raw_results = json.loads(results_json)
+            return [EntitySearchResult._from_json_dict(r) for r in raw_results]
+        except core.RomcalError as e:
+            raise RomcalError(str(e)) from e
+        except json.JSONDecodeError as e:
+            msg = f"Failed to parse search results JSON: {e}"
+            raise RomcalError(msg) from e

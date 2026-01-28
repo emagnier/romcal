@@ -2,7 +2,6 @@ use romcal::engine::calendar_definition::CalendarDefinition;
 use romcal::engine::resources::Resources;
 use romcal::entity_search::EntityQuery;
 use romcal::romcal::{Preset, Romcal as RomcalCore};
-use romcal::types::entity::{CanonizationLevel, EntityType, Sex, Title};
 use romcal::types::{CalendarContext, EasterCalculationType};
 use serde::{Deserialize, Serialize};
 use wasm_bindgen::prelude::*;
@@ -316,6 +315,36 @@ impl Romcal {
             .and_then(|entity| serde_json::to_string(&entity).ok())
     }
 
+    /// Search entities with fuzzy matching and filters.
+    ///
+    /// # Arguments
+    ///
+    /// * `query_json` - A JSON object with search parameters:
+    ///   - `text`: Optional fuzzy text search
+    ///   - `entityType`: Optional filter ('person', 'place', 'event')
+    ///   - `canonizationLevel`: Optional filter ('saint', 'blessed', etc.)
+    ///   - `sex`: Optional filter ('male', 'female')
+    ///   - `titles`: Optional array of title strings
+    ///   - `limit`: Optional maximum results (default: 20)
+    ///   - `minScore`: Optional minimum score 0.0-1.0 (default: 0.3)
+    ///
+    /// # Returns
+    ///
+    /// A JSON array of search results sorted by score (highest first).
+    #[wasm_bindgen(js_name = "searchEntities")]
+    pub fn search_entities(&self, query_json: &str) -> Result<String, JsValue> {
+        // Parse the query from JSON directly into core type
+        let query: EntityQuery = serde_json::from_str(query_json)
+            .map_err(|e| JsValue::from_str(&format!("Invalid query JSON: {}", e)))?;
+
+        // Execute search
+        let results = self.inner.inner.search_entities(query);
+
+        // Serialize results directly (EntitySearchResult now has Serialize)
+        serde_json::to_string(&results)
+            .map_err(|e| JsValue::from_str(&format!("Failed to serialize results: {}", e)))
+    }
+
     /// Create an optimized JSON bundle of the current configuration.
     ///
     /// This method filters and deduplicates the configuration to create a minimal
@@ -336,127 +365,6 @@ impl Romcal {
             .create_bundle()
             .map_err(|e| JsValue::from_str(&e.to_string()))
     }
-
-    /// Search entities with fuzzy matching and filters.
-    ///
-    /// # Arguments
-    ///
-    /// * `query_json` - A JSON object with search parameters:
-    ///   - `text`: Optional fuzzy text search
-    ///   - `entityType`: Optional filter ('PERSON', 'PLACE', 'EVENT')
-    ///   - `canonizationLevel`: Optional filter ('SAINT', 'BLESSED')
-    ///   - `sex`: Optional filter ('MALE', 'FEMALE')
-    ///   - `titles`: Optional array of title strings
-    ///   - `limit`: Optional maximum results (default: 20)
-    ///   - `minScore`: Optional minimum score 0.0-1.0 (default: 0.3)
-    ///
-    /// # Returns
-    ///
-    /// A JSON array of search results sorted by score (highest first).
-    #[wasm_bindgen(js_name = "searchEntities")]
-    pub fn search_entities(&self, query_json: &str) -> Result<String, JsValue> {
-        // Parse the query from JSON
-        let query: WasmEntityQuery = serde_json::from_str(query_json)
-            .map_err(|e| JsValue::from_str(&format!("Invalid query JSON: {}", e)))?;
-
-        // Convert to core query
-        let core_query = query.to_core().map_err(|e| JsValue::from_str(&e))?;
-
-        // Execute search
-        let results = self.inner.inner.search_entities(core_query);
-
-        // Convert results to JSON-serializable format
-        let wasm_results: Vec<WasmEntitySearchResult> = results
-            .into_iter()
-            .map(|r| WasmEntitySearchResult {
-                entity: r.entity,
-                score: r.score,
-                match_type: r.match_type.to_string(),
-                matched_fields: r.matched_fields,
-            })
-            .collect();
-
-        serde_json::to_string(&wasm_results)
-            .map_err(|e| JsValue::from_str(&format!("Failed to serialize results: {}", e)))
-    }
-}
-
-/// WASM-compatible entity query for JSON deserialization
-#[derive(Debug, Clone, Default, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct WasmEntityQuery {
-    text: Option<String>,
-    entity_type: Option<String>,
-    canonization_level: Option<String>,
-    sex: Option<String>,
-    titles: Option<Vec<String>>,
-    limit: Option<usize>,
-    min_score: Option<f64>,
-}
-
-impl WasmEntityQuery {
-    fn to_core(&self) -> Result<EntityQuery, String> {
-        let entity_type = self
-            .entity_type
-            .as_ref()
-            .map(|s| {
-                s.parse::<EntityType>()
-                    .map_err(|_| format!("Invalid entityType: '{}'", s))
-            })
-            .transpose()?;
-
-        let canonization_level = self
-            .canonization_level
-            .as_ref()
-            .map(|s| {
-                s.parse::<CanonizationLevel>()
-                    .map_err(|_| format!("Invalid canonizationLevel: '{}'", s))
-            })
-            .transpose()?;
-
-        let sex = self
-            .sex
-            .as_ref()
-            .map(|s| {
-                s.parse::<Sex>()
-                    .map_err(|_| format!("Invalid sex: '{}'", s))
-            })
-            .transpose()?;
-
-        let titles = self
-            .titles
-            .as_ref()
-            .map(|titles| {
-                titles
-                    .iter()
-                    .map(|s| {
-                        serde_json::from_str::<Title>(&format!("\"{}\"", s))
-                            .map_err(|_| format!("Invalid title: '{}'", s))
-                    })
-                    .collect::<Result<Vec<Title>, String>>()
-            })
-            .transpose()?;
-
-        Ok(EntityQuery {
-            text: self.text.clone(),
-            entity_type,
-            canonization_level,
-            sex,
-            titles,
-            limit: self.limit,
-            min_score: self.min_score,
-        })
-    }
-}
-
-/// WASM-compatible entity search result for JSON serialization
-#[derive(Debug, Clone, Serialize)]
-#[serde(rename_all = "camelCase")]
-struct WasmEntitySearchResult {
-    entity: romcal::types::entity::Entity,
-    score: f64,
-    match_type: String,
-    matched_fields: Vec<String>,
 }
 
 /// Create a new Romcal instance (default configuration)

@@ -9,6 +9,9 @@ import type {
   CalendarContext,
   CalendarDefinition,
   EasterCalculationType,
+  Entity,
+  EntityQuery,
+  EntitySearchResult,
   LiturgicalDay,
   MassContext,
   Resources,
@@ -199,7 +202,7 @@ export interface Romcal extends RomcalConfigInterface {
    * @param year - The year
    * @returns Date in YYYY-MM-DD format
    */
-  getDate(id: string, year: number): Promise<string>
+  getDate(id: string, year: number): string
 
   /**
    * Create an optimized JSON bundle of the current configuration.
@@ -215,6 +218,22 @@ export interface Romcal extends RomcalConfigInterface {
    * @returns An optimized bundle object
    */
   createBundle(): Promise<RomcalBundle>
+
+  /**
+   * Get an entity by its exact ID.
+   *
+   * @param id - Entity ID (e.g., "agnes_of_rome_virgin")
+   * @returns The entity object, or null if not found
+   */
+  getEntity(id: string): Entity | null
+
+  /**
+   * Search entities with fuzzy matching and filters.
+   *
+   * @param query - Search parameters
+   * @returns Array of search results sorted by score (highest first)
+   */
+  searchEntities(query: EntityQuery): EntitySearchResult[]
 }
 
 // ============================================================================
@@ -263,7 +282,7 @@ function createInstance(wasmInstance: wasm.Romcal): Romcal {
       }
     },
 
-    async getDate(id: string, year: number): Promise<string> {
+    getDate(id: string, year: number): string {
       try {
         return wasmInstance.getDate(id, year)
       } catch (error) {
@@ -283,6 +302,26 @@ function createInstance(wasmInstance: wasm.Romcal): Romcal {
       } catch (error) {
         const message = error instanceof Error ? error.message : String(error)
         throw new RomcalError(`Failed to create bundle: ${message}`, { cause: error })
+      }
+    },
+
+    getEntity(id: string): Entity | null {
+      const json = wasmInstance.getEntity(id)
+      if (json === undefined || json === null) {
+        return null
+      }
+      // Safe cast: JSON structure is guaranteed by Rust's serde serialization
+      return JSON.parse(json) as Entity
+    },
+
+    searchEntities(query: EntityQuery): EntitySearchResult[] {
+      try {
+        const json = wasmInstance.searchEntities(JSON.stringify(query))
+        // Safe cast: JSON structure is guaranteed by Rust's serde serialization
+        return JSON.parse(json) as EntitySearchResult[]
+      } catch (error) {
+        const message = error instanceof Error ? error.message : String(error)
+        throw new RomcalError(`Failed to search entities: ${message}`, { cause: error })
       }
     },
   }

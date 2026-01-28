@@ -1,34 +1,49 @@
 //! Entity query definition for searching entities.
 
+use serde::{Deserialize, Serialize};
+
+#[cfg(feature = "ts-bindings")]
+use ts_rs::TS;
+
 use crate::types::entity::{CanonizationLevel, EntityType, Sex, Title};
 
 /// Query parameters for searching entities.
 ///
 /// All fields are optional. When a field is `None`, it is not used for filtering.
 /// When `text` is provided, fuzzy matching is performed on entity ID, fullname, and name.
-#[derive(Debug, Clone, Default)]
+#[derive(Debug, Clone, Default, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+#[cfg_attr(feature = "ts-bindings", derive(TS))]
+#[cfg_attr(feature = "ts-bindings", ts(export, rename_all = "snake_case"))]
 pub struct EntityQuery {
     /// Fuzzy text search on id, fullname, and name fields.
+    #[cfg_attr(feature = "ts-bindings", ts(optional))]
     pub text: Option<String>,
 
     /// Filter by entity type (Person, Place, Event).
+    #[cfg_attr(feature = "ts-bindings", ts(optional))]
     pub entity_type: Option<EntityType>,
 
     /// Filter by canonization level (Saint, Blessed).
+    #[cfg_attr(feature = "ts-bindings", ts(optional))]
     pub canonization_level: Option<CanonizationLevel>,
 
     /// Filter by sex (Male, Female).
+    #[cfg_attr(feature = "ts-bindings", ts(optional))]
     pub sex: Option<Sex>,
 
     /// Filter by titles. Entity must have at least one of the specified titles.
+    #[cfg_attr(feature = "ts-bindings", ts(optional))]
     pub titles: Option<Vec<Title>>,
 
     /// Maximum number of results to return.
     /// Default: 20 (applied in search logic).
+    #[cfg_attr(feature = "ts-bindings", ts(optional))]
     pub limit: Option<usize>,
 
     /// Minimum score threshold (0.0 to 1.0).
     /// Default: 0.3 (applied in search logic).
+    #[cfg_attr(feature = "ts-bindings", ts(optional))]
     pub min_score: Option<f64>,
 }
 

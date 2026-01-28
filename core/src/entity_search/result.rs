@@ -1,11 +1,19 @@
 //! Search result types for entity searches.
 
-use crate::types::entity::Entity;
+use serde::{Deserialize, Serialize};
 use strum::Display;
 
+#[cfg(feature = "ts-bindings")]
+use ts_rs::TS;
+
+use crate::types::entity::Entity;
+
 /// Type of match that was found for a search result.
-#[derive(Debug, Clone, PartialEq, Eq, Display)]
+#[derive(Debug, Clone, PartialEq, Eq, Display, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
 #[strum(serialize_all = "snake_case")]
+#[cfg_attr(feature = "ts-bindings", derive(TS))]
+#[cfg_attr(feature = "ts-bindings", ts(export))]
 pub enum MatchType {
     /// Exact ID match (score = 1.0).
     ExactId,
@@ -16,7 +24,10 @@ pub enum MatchType {
 }
 
 /// Result of an entity search.
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+#[cfg_attr(feature = "ts-bindings", derive(TS))]
+#[cfg_attr(feature = "ts-bindings", ts(export, rename_all = "snake_case"))]
 pub struct EntitySearchResult {
     /// The matched entity.
     pub entity: Entity,
