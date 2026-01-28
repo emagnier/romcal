@@ -141,7 +141,7 @@ export class RomcalError extends Error {
  * @example
  * ```typescript
  * // Generate bundle at build time (via plugin) or runtime
- * const bundle = await romcal.createBundle();
+ * const bundle = romcal.createBundle();
  *
  * // Create a new instance from bundle
  * const romcal2 = await createRomcal(bundle);
@@ -182,7 +182,7 @@ export interface Romcal extends RomcalConfigInterface {
    * @param year - The liturgical year (e.g., 2026 for liturgical year 2025-2026)
    * @returns A map of dates (YYYY-MM-DD) to liturgical days
    */
-  generateLiturgicalCalendar(year: number): Promise<LiturgicalCalendar>
+  generateLiturgicalCalendar(year: number): LiturgicalCalendar
 
   /**
    * Generate a mass-centric view of the liturgical calendar for a given year.
@@ -193,7 +193,7 @@ export interface Romcal extends RomcalConfigInterface {
    * @param year - The liturgical year (e.g., 2026 for liturgical year 2025-2026)
    * @returns A map of civil dates (YYYY-MM-DD) to mass contexts
    */
-  generateMassCalendar(year: number): Promise<MassCalendar>
+  generateMassCalendar(year: number): MassCalendar
 
   /**
    * Get a liturgical date by its ID for a given year.
@@ -217,7 +217,7 @@ export interface Romcal extends RomcalConfigInterface {
    *
    * @returns An optimized bundle object
    */
-  createBundle(): Promise<RomcalBundle>
+  createBundle(): RomcalBundle
 
   /**
    * Get an entity by its exact ID.
@@ -255,7 +255,7 @@ function createInstance(wasmInstance: wasm.Romcal): Romcal {
     // Safe cast: values are validated by Rust during Romcal instantiation
     context: wasmInstance.context as CalendarContext,
 
-    async generateLiturgicalCalendar(year: number): Promise<LiturgicalCalendar> {
+    generateLiturgicalCalendar(year: number): LiturgicalCalendar {
       try {
         const json = wasmInstance.generateLiturgicalCalendar(year)
         // Safe cast: JSON structure is guaranteed by Rust's serde serialization
@@ -269,7 +269,7 @@ function createInstance(wasmInstance: wasm.Romcal): Romcal {
       }
     },
 
-    async generateMassCalendar(year: number): Promise<MassCalendar> {
+    generateMassCalendar(year: number): MassCalendar {
       try {
         const json = wasmInstance.generateMassCalendar(year)
         // Safe cast: JSON structure is guaranteed by Rust's serde serialization
@@ -294,7 +294,7 @@ function createInstance(wasmInstance: wasm.Romcal): Romcal {
       }
     },
 
-    async createBundle(): Promise<RomcalBundle> {
+    createBundle(): RomcalBundle {
       try {
         const json = wasmInstance.createBundle()
         // Safe cast: JSON structure is guaranteed by Rust's serde serialization
@@ -384,7 +384,7 @@ export async function createRomcal(bundle: RomcalBundle): Promise<Romcal>
  * });
  *
  * // Generate calendar
- * const calendar = await romcal.generateLiturgicalCalendar(2026);
+ * const calendar = romcal.generateLiturgicalCalendar(2026);
  * ```
  */
 export async function createRomcal(

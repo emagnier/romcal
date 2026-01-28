@@ -24,7 +24,7 @@ describe('Browser ESM bundle', () => {
     const { createRomcal } = await import('../dist/romcal.js')
 
     const romcal = await createRomcal()
-    const calendar = await romcal.generateLiturgicalCalendar(2026)
+    const calendar = romcal.generateLiturgicalCalendar(2026)
 
     expect(calendar['2026-04-05']).toBeDefined() // Easter
     expect(calendar['2026-04-05'][0].id).toBe('easter_sunday')
@@ -34,7 +34,7 @@ describe('Browser ESM bundle', () => {
     const { createRomcal } = await import('../dist/romcal.js')
 
     const romcal = await createRomcal()
-    const easter = await romcal.getDate('easter_sunday', 2026)
+    const easter = romcal.getDate('easter_sunday', 2026)
 
     expect(easter).toBe('2026-04-05')
   })
@@ -69,7 +69,7 @@ describe('Browser UMD bundle (script tag)', () => {
 
   it('should generate a liturgical calendar via global', async () => {
     const romcal = await window.Romcal.createRomcal()
-    const calendar = await romcal.generateLiturgicalCalendar(2026)
+    const calendar = romcal.generateLiturgicalCalendar(2026)
 
     expect(calendar['2026-04-05']).toBeDefined()
     expect(calendar['2026-04-05'][0].id).toBe('easter_sunday')

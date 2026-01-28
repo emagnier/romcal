@@ -43,8 +43,8 @@ describe('French calendar with loaded data', () => {
     })
   })
 
-  it('should generate liturgical calendar with French locale', async () => {
-    const calendar = await romcal.generateLiturgicalCalendar(2026)
+  it('should generate liturgical calendar with French locale', () => {
+    const calendar = romcal.generateLiturgicalCalendar(2026)
 
     const easter = calendar['2026-04-05']
     expect(easter).toBeDefined()
@@ -53,8 +53,8 @@ describe('French calendar with loaded data', () => {
     expect(easter[0].season_name).toBeDefined()
   })
 
-  it('should include French saints', async () => {
-    const calendar = await romcal.generateLiturgicalCalendar(2026)
+  it('should include French saints', () => {
+    const calendar = romcal.generateLiturgicalCalendar(2026)
 
     // Saint Jean-Marie Vianney - August 4
     const vianney = calendar['2026-08-04']
@@ -65,8 +65,8 @@ describe('French calendar with loaded data', () => {
     expect(saintDay!.fullname).toBeDefined()
   })
 
-  it('should generate mass calendar with French locale', async () => {
-    const massCalendar = await romcal.generateMassCalendar(2026)
+  it('should generate mass calendar with French locale', () => {
+    const massCalendar = romcal.generateMassCalendar(2026)
 
     // Default context is GREGORIAN, so Christmas 2026 is in the calendar
     const christmas = massCalendar['2026-12-25']
@@ -96,8 +96,8 @@ describe('English calendar with loaded data', () => {
     })
   })
 
-  it('should generate liturgical calendar with English locale', async () => {
-    const calendar = await romcal.generateLiturgicalCalendar(2026)
+  it('should generate liturgical calendar with English locale', () => {
+    const calendar = romcal.generateLiturgicalCalendar(2026)
 
     const easter = calendar['2026-04-05']
     expect(easter).toBeDefined()

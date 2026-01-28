@@ -102,7 +102,7 @@ async function main() {
 
   // Generate liturgical calendar for 2026
   console.log('Generating liturgical calendar for 2026...')
-  const liturgicalCalendar = await romcal.generateLiturgicalCalendar(2026)
+  const liturgicalCalendar = romcal.generateLiturgicalCalendar(2026)
   const dates = Object.keys(liturgicalCalendar)
   console.log(`  Total dates: ${dates.length}`)
   console.log(`  First date: ${dates[0]}`)
@@ -147,7 +147,7 @@ async function main() {
 
   // Generate mass calendar
   console.log('Generating mass calendar for 2026...')
-  const massCalendar = await romcal.generateMassCalendar(2026)
+  const massCalendar = romcal.generateMassCalendar(2026)
 
   // Show Christmas masses
   const christmasMasses = massCalendar['2025-12-25']

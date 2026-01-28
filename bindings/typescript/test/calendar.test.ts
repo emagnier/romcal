@@ -22,21 +22,21 @@ describe('Gregorian year calendar (default)', () => {
       resources,
       // context: 'GREGORIAN' is the default
     })
-    calendar = await romcal.generateLiturgicalCalendar(2026)
+    calendar = romcal.generateLiturgicalCalendar(2026)
   })
 
-  it('should generate a full Gregorian year', async () => {
+  it('should generate a full Gregorian year', () => {
     const dates = Object.keys(calendar)
     expect(dates.length).toBeGreaterThanOrEqual(365)
   })
 
-  it('should start on January 1 and end on December 31', async () => {
+  it('should start on January 1 and end on December 31', () => {
     const dates = Object.keys(calendar).sort()
     expect(dates[0]).toBe('2026-01-01')
     expect(dates[dates.length - 1]).toBe('2026-12-31')
   })
 
-  it('should include Easter 2026 on April 5', async () => {
+  it('should include Easter 2026 on April 5', () => {
     const easter = calendar['2026-04-05']
 
     expect(easter).toBeDefined()
@@ -46,21 +46,21 @@ describe('Gregorian year calendar (default)', () => {
     expect(easter[0].is_holy_day_of_obligation).toBe(true)
   })
 
-  it('should have correct Easter season', async () => {
+  it('should have correct Easter season', () => {
     const easter = calendar['2026-04-05']
 
     expect(easter[0].fullname).toBe('Easter Sunday of the Resurrection of the Lord')
     expect(easter[0].season).toBe('easter_time')
   })
 
-  it('should include Christmas 2026 on December 25', async () => {
+  it('should include Christmas 2026 on December 25', () => {
     const christmas = calendar['2026-12-25']
 
     expect(christmas).toBeDefined()
     expect(christmas[0].rank).toBe('solemnity')
   })
 
-  it('should have no masses defined for Holy Saturday (April 4)', async () => {
+  it('should have no masses defined for Holy Saturday (April 4)', () => {
     const holySaturday = calendar['2026-04-04']
 
     expect(holySaturday).toBeDefined()
@@ -84,26 +84,26 @@ describe('Liturgical year calendar', () => {
       calendarDefinitions,
       resources,
     })
-    calendar = await romcal.generateLiturgicalCalendar(2026)
+    calendar = romcal.generateLiturgicalCalendar(2026)
   })
 
-  it('should generate a full liturgical year', async () => {
+  it('should generate a full liturgical year', () => {
     const dates = Object.keys(calendar)
     expect(dates.length).toBeGreaterThan(350)
   })
 
-  it('should start in late November 2025 (Advent)', async () => {
+  it('should start in late November 2025 (Advent)', () => {
     const dates = Object.keys(calendar).sort()
     // Liturgical year 2026 starts on first Sunday of Advent 2025
     expect(dates[0]).toBe('2025-11-30')
   })
 
-  it('should end in late November 2026 (Saturday after Christ the King)', async () => {
+  it('should end in late November 2026 (Saturday after Christ the King)', () => {
     const dates = Object.keys(calendar).sort()
     expect(dates[dates.length - 1]).toBe('2026-11-28')
   })
 
-  it('should include Christmas 2025', async () => {
+  it('should include Christmas 2025', () => {
     const christmas = calendar['2025-12-25']
 
     expect(christmas).toBeDefined()
@@ -124,15 +124,15 @@ describe('Mass calendar (Gregorian year)', () => {
       calendarDefinitions,
       resources,
     })
-    massCalendar = await romcal.generateMassCalendar(2026)
+    massCalendar = romcal.generateMassCalendar(2026)
   })
 
-  it('should generate mass calendar', async () => {
+  it('should generate mass calendar', () => {
     const dates = Object.keys(massCalendar)
     expect(dates.length).toBeGreaterThanOrEqual(365)
   })
 
-  it('should include December 24 masses (morning + Christmas vigil)', async () => {
+  it('should include December 24 masses (morning + Christmas vigil)', () => {
     const dec24 = massCalendar['2026-12-24']
     const massTimes = dec24.map((t) => t.mass_time)
 
@@ -142,7 +142,7 @@ describe('Mass calendar (Gregorian year)', () => {
     expect(massTimes).toStrictEqual(['morning_mass', 'previous_evening_mass'])
   })
 
-  it('should include multiple Christmas 2026 masses', async () => {
+  it('should include multiple Christmas 2026 masses', () => {
     const christmas = massCalendar['2026-12-25']
     const massTimes = christmas.map((t) => t.mass_time)
 
@@ -151,7 +151,7 @@ describe('Mass calendar (Gregorian year)', () => {
     expect(massTimes).toStrictEqual(['night_mass', 'mass_at_dawn', 'day_mass'])
   })
 
-  it('should have correct mass time names', async () => {
+  it('should have correct mass time names', () => {
     const christmas = massCalendar['2026-12-25']
 
     for (const mass of christmas) {
@@ -160,7 +160,7 @@ describe('Mass calendar (Gregorian year)', () => {
     }
   })
 
-  it('should place Easter Vigil on Saturday evening (April 4)', async () => {
+  it('should place Easter Vigil on Saturday evening (April 4)', () => {
     const easterVigilDay = massCalendar['2026-04-04']
 
     expect(easterVigilDay).toBeDefined()
@@ -170,7 +170,7 @@ describe('Mass calendar (Gregorian year)', () => {
     expect(vigil!.liturgical_date).toBe('2026-04-05')
   })
 
-  it('should have a mass entry for Holy Saturday in mass-centric view', async () => {
+  it('should have a mass entry for Holy Saturday in mass-centric view', () => {
     // Holy Saturday has no masses in the liturgical day definition,
     // but the mass-centric calendar includes the Easter Vigil on this civil date
     const holySaturday = massCalendar['2026-04-04']
@@ -195,10 +195,10 @@ describe('Mass calendar (Liturgical year)', () => {
       calendarDefinitions,
       resources,
     })
-    massCalendar = await romcal.generateMassCalendar(2026)
+    massCalendar = romcal.generateMassCalendar(2026)
   })
 
-  it('should include Christmas 2025 masses', async () => {
+  it('should include Christmas 2025 masses', () => {
     const christmas = massCalendar['2025-12-25']
 
     expect(christmas).toBeDefined()
@@ -221,7 +221,7 @@ describe('French calendar', () => {
       calendarDefinitions,
       resources,
     })
-    const calendar = await romcal.generateLiturgicalCalendar(2026)
+    const calendar = romcal.generateLiturgicalCalendar(2026)
 
     const easter = calendar['2026-04-05']
     expect(easter).toBeDefined()
@@ -233,14 +233,14 @@ describe('error handling', () => {
   it('should throw RomcalError for invalid year', async () => {
     const romcal = await createRomcal()
 
-    await expect(romcal.generateLiturgicalCalendar(1500)).rejects.toThrow(RomcalError)
+    expect(() => romcal.generateLiturgicalCalendar(1500)).toThrow(RomcalError)
   })
 
   it('should include error message for invalid year', async () => {
     const romcal = await createRomcal()
 
     try {
-      await romcal.generateLiturgicalCalendar(1500)
+      romcal.generateLiturgicalCalendar(1500)
       expect.fail('Should have thrown an error')
     } catch (error) {
       expect(error).toBeInstanceOf(RomcalError)
@@ -250,20 +250,20 @@ describe('error handling', () => {
 
   it('should accept year 1583 (first valid Gregorian year)', async () => {
     const romcal = await createRomcal()
-    const calendar = await romcal.generateLiturgicalCalendar(1583)
+    const calendar = romcal.generateLiturgicalCalendar(1583)
     expect(Object.keys(calendar).length).toBeGreaterThan(0)
   })
 
   it('should reject year 1582 (before Gregorian calendar)', async () => {
     const romcal = await createRomcal()
-    await expect(romcal.generateLiturgicalCalendar(1582)).rejects.toThrow(RomcalError)
+    expect(() => romcal.generateLiturgicalCalendar(1582)).toThrow(RomcalError)
   })
 
   it('should throw RomcalError with validation message for year < 1583', async () => {
     const romcal = await createRomcal()
 
     try {
-      await romcal.generateLiturgicalCalendar(1500)
+      romcal.generateLiturgicalCalendar(1500)
       expect.fail('Should have thrown an error')
     } catch (error) {
       expect(error).toBeInstanceOf(RomcalError)

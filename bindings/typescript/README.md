@@ -19,11 +19,11 @@ import { createRomcal } from 'romcal'
 const romcal = await createRomcal()
 
 // Get a specific liturgical date
-const easter = await romcal.getDate('easter_sunday', 2026)
+const easter = romcal.getDate('easter_sunday', 2026)
 console.log(easter) // "2026-04-05"
 
 // Generate the liturgical calendar for year 2026
-const calendar = await romcal.generateLiturgicalCalendar(2026)
+const calendar = romcal.generateLiturgicalCalendar(2026)
 
 // Access a specific date
 const christmas = calendar['2026-12-25']
@@ -126,7 +126,7 @@ const romcal3 = await createRomcal({
 Generate the complete liturgical calendar for a given year.
 
 ```typescript
-const calendar = await romcal.generateLiturgicalCalendar(2026)
+const calendar = romcal.generateLiturgicalCalendar(2026)
 // calendar is Record<string, LiturgicalDay[]>
 // Keys are dates in "YYYY-MM-DD" format
 
@@ -142,7 +142,7 @@ for (const [date, days] of Object.entries(calendar)) {
 Generate a mass-centric view of the calendar organized by civil date and mass time.
 
 ```typescript
-const massCalendar = await romcal.generateMassCalendar(2026)
+const massCalendar = romcal.generateMassCalendar(2026)
 // massCalendar is Record<string, MassContext[]>
 
 // Evening masses appear on the previous civil day
@@ -155,10 +155,10 @@ console.log(easterVigil?.liturgical_date) // "2026-04-05"
 Get a liturgical date by its ID.
 
 ```typescript
-const easter = await romcal.getDate('easter_sunday', 2026) // "2026-04-05"
-const ashWed = await romcal.getDate('ash_wednesday', 2026) // "2026-02-18"
-const pentecost = await romcal.getDate('pentecost_sunday', 2026) // "2026-05-24"
-const christmas = await romcal.getDate('christmas', 2026) // "2026-12-25"
+const easter = romcal.getDate('easter_sunday', 2026) // "2026-04-05"
+const ashWed = romcal.getDate('ash_wednesday', 2026) // "2026-02-18"
+const pentecost = romcal.getDate('pentecost_sunday', 2026) // "2026-05-24"
+const christmas = romcal.getDate('christmas', 2026) // "2026-12-25"
 ```
 
 Any date ID from the liturgical calendar can be used (e.g., `easter_sunday`, `christmas`, `ordinary_time_5_monday`).
@@ -181,7 +181,7 @@ For detailed documentation on liturgical types (seasons, ranks, precedence, colo
 
 ## Error Handling
 
-All async operations may throw `RomcalError`:
+Operations may throw `RomcalError`:
 
 ```typescript
 import { createRomcal, RomcalError } from 'romcal'
@@ -189,7 +189,7 @@ import { createRomcal, RomcalError } from 'romcal'
 try {
   const romcal = await createRomcal()
   // Year must be >= 1583 (Gregorian calendar adoption)
-  const calendar = await romcal.generateLiturgicalCalendar(1500)
+  const calendar = romcal.generateLiturgicalCalendar(1500)
 } catch (error) {
   if (error instanceof RomcalError) {
     console.error('Romcal error:', error.message)

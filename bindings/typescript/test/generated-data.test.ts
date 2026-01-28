@@ -62,8 +62,8 @@ describe('romcal with generated data', () => {
     expect(romcal.locale).toBe('fr')
   })
 
-  it('should generate calendar with localized names', async () => {
-    const calendar = await romcal.generateLiturgicalCalendar(2026)
+  it('should generate calendar with localized names', () => {
+    const calendar = romcal.generateLiturgicalCalendar(2026)
 
     // Easter Sunday
     const easter = calendar['2026-04-05']
@@ -72,8 +72,8 @@ describe('romcal with generated data', () => {
     expect(easter[0].rank_name).toBeDefined()
   })
 
-  it('should include French-specific saints', async () => {
-    const calendar = await romcal.generateLiturgicalCalendar(2026)
+  it('should include French-specific saints', () => {
+    const calendar = romcal.generateLiturgicalCalendar(2026)
 
     // Saint Jean-Marie Vianney - August 4
     const vianney = calendar['2026-08-04']
