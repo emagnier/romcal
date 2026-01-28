@@ -20,3 +20,6 @@ npm-debug.log*
 
 # ESLint
 .eslintcache
+
+# Test artifacts
+test/__screenshots__/
