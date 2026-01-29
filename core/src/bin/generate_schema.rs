@@ -170,15 +170,15 @@ fn apply_standard_fixes(schema_value: &mut Value, config: &SchemaConfig) {
 
 /// Extract definitions from all schemas and merge them into the types schema
 fn merge_definitions_into_types_schema(types_schema: &mut Value, schema_values: &[&Value]) {
-    if let Some(types_definitions) = types_schema.get_mut("definitions") {
-        if let Some(definitions_obj) = types_definitions.as_object_mut() {
-            for schema_value in schema_values {
-                if let Some(definitions) = schema_value.get("definitions") {
-                    if let Some(defs) = definitions.as_object() {
-                        for (key, value) in defs {
-                            definitions_obj.insert(key.clone(), value.clone());
-                        }
-                    }
+    if let Some(types_definitions) = types_schema.get_mut("definitions")
+        && let Some(definitions_obj) = types_definitions.as_object_mut()
+    {
+        for schema_value in schema_values {
+            if let Some(definitions) = schema_value.get("definitions")
+                && let Some(defs) = definitions.as_object()
+            {
+                for (key, value) in defs {
+                    definitions_obj.insert(key.clone(), value.clone());
                 }
             }
         }
@@ -187,13 +187,12 @@ fn merge_definitions_into_types_schema(types_schema: &mut Value, schema_values: 
 
 /// Add a type to the schema definitions
 fn add_type_to_schema(types_schema: &mut Value, type_value: &mut Value, type_name: &str) {
-    if let Some(types_definitions) = types_schema.get_mut("definitions") {
-        if let Some(definitions_obj) = types_definitions.as_object_mut() {
-            if let Some(type_obj) = type_value.as_object_mut() {
-                type_obj.remove("$schema");
-                definitions_obj.insert(type_name.to_string(), type_value.clone());
-            }
-        }
+    if let Some(types_definitions) = types_schema.get_mut("definitions")
+        && let Some(definitions_obj) = types_definitions.as_object_mut()
+        && let Some(type_obj) = type_value.as_object_mut()
+    {
+        type_obj.remove("$schema");
+        definitions_obj.insert(type_name.to_string(), type_value.clone());
     }
 }
 

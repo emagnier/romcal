@@ -109,7 +109,7 @@ fn test_locale_tree_generation_multiple_levels() {
     assert!(tree.len() >= 2);
 
     // Test that all expected locales exist somewhere in the tree
-    let all_locales: Vec<String> = tree.iter().flat_map(|n| collect_all_children(n)).collect();
+    let all_locales: Vec<String> = tree.iter().flat_map(collect_all_children).collect();
     assert!(all_locales.contains(&"en-gb-london".to_string()));
     assert!(all_locales.contains(&"en-gb-manchester".to_string()));
     assert!(all_locales.contains(&"fr-ca-montreal".to_string()));
@@ -130,7 +130,7 @@ fn test_locale_tree_generation_orphaned_locales() {
     assert!(tree.len() >= 3);
 
     // Test that all expected locales exist somewhere in the tree
-    let all_locales: Vec<String> = tree.iter().flat_map(|n| collect_all_children(n)).collect();
+    let all_locales: Vec<String> = tree.iter().flat_map(collect_all_children).collect();
     let root_locales: Vec<String> = tree.iter().map(|n| n.locale.clone()).collect();
 
     // Check that all locales exist either at root or as children
@@ -357,7 +357,7 @@ fn test_large_tree_performance() {
     );
 
     // Verify all locales are present (some might be deduplicated)
-    let all_locales: Vec<String> = tree.iter().flat_map(|n| collect_all_children(n)).collect();
+    let all_locales: Vec<String> = tree.iter().flat_map(collect_all_children).collect();
     assert!(all_locales.len() <= locales.len());
 }
 
@@ -367,10 +367,10 @@ fn test_locale_with_multiple_hyphens() {
     let locales = vec!["en".to_string(), "en-gb-london-westminster".to_string()];
 
     let tree = build_locale_tree(&locales);
-    assert!(tree.len() >= 1);
+    assert!(!tree.is_empty());
 
     // Test that the deep locale exists somewhere in the tree
-    let all_locales: Vec<String> = tree.iter().flat_map(|n| collect_all_children(n)).collect();
+    let all_locales: Vec<String> = tree.iter().flat_map(collect_all_children).collect();
     assert!(all_locales.contains(&"en-gb-london-westminster".to_string()));
 }
 

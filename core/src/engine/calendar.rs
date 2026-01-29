@@ -1707,7 +1707,7 @@ mod tests {
         let result = calendar.generate().unwrap();
 
         // Check that all days from Proper of Time have end_of_season defined
-        for (_date, days) in &result {
+        for days in result.values() {
             for day in days {
                 if day.from_calendar_id == PROPER_OF_TIME_ID {
                     assert!(
@@ -1911,14 +1911,18 @@ mod tests {
         };
 
         // Create martyrology entry for test_solemnity (required for strict validation)
-        let mut entry_def = MartyrologyEntryDef::default();
-        entry_def.fullname = Some("Test Solemnity".to_string());
+        let entry_def = MartyrologyEntryDef {
+            fullname: Some("Test Solemnity".to_string()),
+            ..Default::default()
+        };
         let mut resources = Resources::new("en".to_string());
         resources.add_martyrology_entry("test_solemnity".to_string(), entry_def);
 
         // Create romcal with this calendar definition and resources
-        let mut romcal = Romcal::default();
-        romcal.calendar = "test_calendar".to_string();
+        let mut romcal = Romcal {
+            calendar: "test_calendar".to_string(),
+            ..Default::default()
+        };
         romcal.calendar_definitions.push(calendar_def);
         romcal.add_resources(resources);
 
@@ -2195,8 +2199,8 @@ mod tests {
             assert!(!mass.mass_time_name.is_empty());
 
             // Day-level context should be directly accessible (flat)
-            assert!(mass.sunday_cycle_name.len() > 0);
-            assert!(mass.weekday_cycle_name.len() > 0);
+            assert!(!mass.sunday_cycle_name.is_empty());
+            assert!(!mass.weekday_cycle_name.is_empty());
 
             // Celebration data should be directly accessible (flat)
             assert!(!mass.id.is_empty());

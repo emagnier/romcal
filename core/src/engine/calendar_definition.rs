@@ -81,6 +81,6 @@ mod tests {
         assert_eq!(deserialized.len(), 1);
 
         // Test key access
-        assert!(deserialized.get("easter_sunday").is_some());
+        assert!(deserialized.contains_key("easter_sunday"));
     }
 }

@@ -384,10 +384,7 @@ mod tests {
         let mut date_groups: std::collections::HashMap<String, Vec<&LiturgicalDay>> =
             std::collections::HashMap::new();
         for day in &all_days {
-            date_groups
-                .entry(day.date.clone())
-                .or_insert_with(Vec::new)
-                .push(day);
+            date_groups.entry(day.date.clone()).or_default().push(day);
         }
 
         let duplicate_dates: Vec<_> = date_groups
@@ -590,9 +587,11 @@ mod tests {
     #[test]
     fn test_ordinal_format_from_locale_metadata() {
         // When ordinal_format is set in locale metadata, it should be used
-        let mut romcal = Romcal::default();
-        romcal.locale = "test".to_string();
-        romcal.resources = vec![create_test_resources("test", Some(OrdinalFormat::Letters))];
+        let romcal = Romcal {
+            locale: "test".to_string(),
+            resources: vec![create_test_resources("test", Some(OrdinalFormat::Letters))],
+            ..Default::default()
+        };
 
         let resolver = ProperOfTime::create_template_resolver(&romcal);
         assert!(resolver.is_some());
@@ -602,10 +601,12 @@ mod tests {
     #[test]
     fn test_ordinal_format_from_romcal_when_metadata_not_set() {
         // When ordinal_format is not set in metadata, romcal value should be used
-        let mut romcal = Romcal::default();
-        romcal.locale = "test".to_string();
-        romcal.ordinal_format = OrdinalFormat::Letters;
-        romcal.resources = vec![create_test_resources("test", None)];
+        let romcal = Romcal {
+            locale: "test".to_string(),
+            ordinal_format: OrdinalFormat::Letters,
+            resources: vec![create_test_resources("test", None)],
+            ..Default::default()
+        };
 
         let resolver = ProperOfTime::create_template_resolver(&romcal);
         assert!(resolver.is_some());
@@ -615,10 +616,12 @@ mod tests {
     #[test]
     fn test_ordinal_format_metadata_takes_priority() {
         // When ordinal_format is set in both metadata and romcal, metadata should win
-        let mut romcal = Romcal::default();
-        romcal.locale = "test".to_string();
-        romcal.ordinal_format = OrdinalFormat::Numeric; // Romcal says Numeric
-        romcal.resources = vec![create_test_resources("test", Some(OrdinalFormat::Letters))]; // Metadata says Letters
+        let romcal = Romcal {
+            locale: "test".to_string(),
+            ordinal_format: OrdinalFormat::Numeric, // Romcal says Numeric
+            resources: vec![create_test_resources("test", Some(OrdinalFormat::Letters))], // Metadata says Letters
+            ..Default::default()
+        };
 
         let resolver = ProperOfTime::create_template_resolver(&romcal);
         assert!(resolver.is_some());
@@ -629,9 +632,11 @@ mod tests {
     #[test]
     fn test_ordinal_format_fallback_to_en_locale() {
         // When target locale has no metadata but 'en' does, use 'en' metadata
-        let mut romcal = Romcal::default();
-        romcal.locale = "nonexistent".to_string();
-        romcal.resources = vec![create_test_resources("en", Some(OrdinalFormat::Letters))];
+        let romcal = Romcal {
+            locale: "nonexistent".to_string(),
+            resources: vec![create_test_resources("en", Some(OrdinalFormat::Letters))],
+            ..Default::default()
+        };
 
         let resolver = ProperOfTime::create_template_resolver(&romcal);
         assert!(resolver.is_some());
@@ -641,9 +646,11 @@ mod tests {
     #[test]
     fn test_ordinal_format_no_resolver_without_resources() {
         // When no resources are available, resolver should be None
-        let mut romcal = Romcal::default();
-        romcal.locale = "test".to_string();
-        romcal.resources = vec![];
+        let romcal = Romcal {
+            locale: "test".to_string(),
+            resources: vec![],
+            ..Default::default()
+        };
 
         let resolver = ProperOfTime::create_template_resolver(&romcal);
         assert!(resolver.is_none());
@@ -680,9 +687,11 @@ mod tests {
             },
         );
 
-        let mut romcal = Romcal::default();
-        romcal.locale = "en".to_string();
-        romcal.resources = vec![create_test_resources_with_martyrology("en", martyrology)];
+        let romcal = Romcal {
+            locale: "en".to_string(),
+            resources: vec![create_test_resources_with_martyrology("en", martyrology)],
+            ..Default::default()
+        };
 
         let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
 
@@ -696,9 +705,11 @@ mod tests {
     #[test]
     fn test_fullname_fallback_to_template_when_no_martyrology() {
         // When no martyrology fullname exists but day_type is provided, template should be used
-        let mut romcal = Romcal::default();
-        romcal.locale = "en".to_string();
-        romcal.resources = vec![create_test_resources("en", None)];
+        let romcal = Romcal {
+            locale: "en".to_string(),
+            resources: vec![create_test_resources("en", None)],
+            ..Default::default()
+        };
 
         let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
 
@@ -722,9 +733,11 @@ mod tests {
             },
         );
 
-        let mut romcal = Romcal::default();
-        romcal.locale = "en".to_string();
-        romcal.resources = vec![create_test_resources_with_martyrology("en", martyrology)];
+        let romcal = Romcal {
+            locale: "en".to_string(),
+            resources: vec![create_test_resources_with_martyrology("en", martyrology)],
+            ..Default::default()
+        };
 
         let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
 
@@ -762,12 +775,14 @@ mod tests {
             },
         );
 
-        let mut romcal = Romcal::default();
-        romcal.locale = "fr".to_string();
-        romcal.resources = vec![
-            create_test_resources_with_martyrology("en", en_martyrology),
-            create_test_resources_with_martyrology("fr", fr_martyrology),
-        ];
+        let romcal = Romcal {
+            locale: "fr".to_string(),
+            resources: vec![
+                create_test_resources_with_martyrology("en", en_martyrology),
+                create_test_resources_with_martyrology("fr", fr_martyrology),
+            ],
+            ..Default::default()
+        };
 
         let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
 
