@@ -2,7 +2,6 @@
 title: Naming Conventions
 ---
 
-
 Consistent naming conventions ensure the project remains organized and searchable.
 
 ## Calendar IDs
@@ -31,12 +30,12 @@ Calendar IDs use `snake_case` with double underscores (`__`) to separate hierarc
 
 1. Use `snake_case` for all parts
 2. Use `__` (double underscore) to separate hierarchy levels
-3. Use the entity name, not its type (e.g., `strasbourg` not `archdiocese_of_strasbourg`)
+3. Use the calendar name, not its type (e.g., `strasbourg` not `archdiocese_of_strasbourg`)
 4. Only include region prefix when different calendars exist in multiple regions
 
-## Entity IDs
+## Martyrology Entry IDs
 
-Entity IDs use `snake_case` with descriptive suffixes.
+Martyrology entry IDs use `snake_case` with descriptive suffixes.
 
 ### Format
 
@@ -80,9 +79,9 @@ france__strasbourg__city.json
 Resources are organized alphabetically by first letter:
 
 ```
-entities.a.json
-entities.b.json
-entities.f.json  # Contains francis_of_assisi, frances_of_rome, etc.
+martyrology.a.json
+martyrology.b.json
+martyrology.f.json  # Contains francis_of_assisi, frances_of_rome, etc.
 ```
 
 ## TypeScript Variables
@@ -108,10 +107,10 @@ Use dots instead of double underscores:
 
 ## Summary Table
 
-| Context     | Format              | Example                         |
-| ----------- | ------------------- | ------------------------------- |
-| Calendar ID | `snake_case` + `__` | `france__paris`                 |
-| Entity ID   | `snake_case`        | `francis_of_assisi`             |
-| File name   | Match ID + `.json`  | `france__paris.json`            |
-| TypeScript  | PascalCase          | `FranceParis`                   |
-| npm package | Dots                | `@romcal/calendar.france.paris` |
+| Context        | Format              | Example                         |
+| -------------- | ------------------- | ------------------------------- |
+| Calendar ID    | `snake_case` + `__` | `france__paris`                 |
+| Martyrology ID | `snake_case`        | `francis_of_assisi`             |
+| File name      | Match ID + `.json`  | `france__paris.json`            |
+| TypeScript     | PascalCase          | `FranceParis`                   |
+| npm package    | Dots                | `@romcal/calendar.france.paris` |

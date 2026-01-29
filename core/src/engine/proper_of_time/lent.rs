@@ -90,7 +90,7 @@ impl<'a> Lent<'a> {
 
     /// Creates Ash Wednesday
     fn create_ash_wednesday(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
-        // Entity-based day, fullname comes from entity resolution
+        // Martyrology-based day, fullname comes from martyrology resolution
         let periods = self
             .proper_of_time
             .resolve_periods(vec![Period::PresentationOfTheLordToHolyThursday]);
@@ -177,7 +177,7 @@ impl<'a> Lent<'a> {
 
     /// Creates Palm Sunday of the Passion of the Lord
     fn create_palm_sunday(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
-        // Entity-based day, fullname comes from entity resolution
+        // Martyrology-based day, fullname comes from martyrology resolution
         let periods = self.proper_of_time.resolve_periods(vec![
             Period::HolyWeek,
             Period::PresentationOfTheLordToHolyThursday,

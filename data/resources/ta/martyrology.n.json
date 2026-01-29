@@ -1,0 +1,48 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "ta",
+  "martyrology": {
+    "nativity_of_john_the_baptist": {
+      "fullname": "புனித திருமுழுக்கு யோவானின் பிறப்பு"
+    },
+    "nativity_of_the_blessed_virgin_mary": {
+      "fullname": "புனித கன்னி மரியாளின் பிறப்பு"
+    },
+    "nativity_of_the_lord": {
+      "fullname": "கிறிஸ்து பிறப்பு"
+    },
+    "nazaria_ignacia_of_saint_teresa_of_jesus_march_mesa_virgin": {
+      "fullname": "ஜீசஸ் மார்ச் மேசா புனித தெரேசாவின் புனித நாசாரியா இக்னேசியா - கன்னி"
+    },
+    "nereus_of_terracina_and_achilleus_of_terracina_martyrs": {
+      "fullname": "புனிதர்கள் நேரியஸ், ஆச்சிலியஸ் - மறைசாட்சிகள்"
+    },
+    "nicholas_barre_priest": {
+      "fullname": "முத்திப்பேறுபெற்ற நிக்கலஸ் பாறெ - அருட்பணியாளர்"
+    },
+    "nicholas_of_flue_hermit": {
+      "fullname": "புனித நிக்கலஸ் புளூ - வனத்து துறவி"
+    },
+    "nicholas_of_myra_bishop": {
+      "fullname": "புனித நிக்கலஸ் - ஆயர்"
+    },
+    "nicholas_steno_bishop": {
+      "fullname": "முத்திப்பேறுபெற்ற நிக்கலஸ் ஸ்டெனொ - ஆயர்"
+    },
+    "nicholas_tavelic_priest": {
+      "fullname": "புனித நிக்கலஸ் டவலிச் - அருட்பணியாளர், மறைசாட்சி"
+    },
+    "ninian_of_whithorn_bishop": {
+      "fullname": "புனித நினியன் - ஆயர்"
+    },
+    "norbert_of_xanten_bishop": {
+      "fullname": "புனித நோபெர்ட் - ஆயர்"
+    },
+    "nuno_of_saint_mary_pereira_religious": {
+      "fullname": "புனித மரிய பெரேராவின் புனித நூனொ - துறவி"
+    },
+    "nykyta_budka_and_vasyl_velychkovsky_bishops": {
+      "fullname": "முத்திப்பேறுபெற்றவர்களான் நிகிட்டா புட்கா, வசில் வெலிசொவிஸ்கி - ஆயர்கள், மறை சாட்சிகள்"
+    }
+  }
+}

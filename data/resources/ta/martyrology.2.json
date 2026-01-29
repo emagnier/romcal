@@ -1,0 +1,9 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "ta",
+  "martyrology": {
+    "205_blessed_martyrs_of_japan": {
+      "fullname": "205 முத்திப்பேறுபெற்ற ஜப்பானிய வேத சாட்சிகள்"
+    }
+  }
+}

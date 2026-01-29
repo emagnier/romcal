@@ -162,23 +162,23 @@ for (date, days) in &calendar {
 
 Each `LiturgicalDay` contains:
 
-| Field                       | Type               | Description                             |
-| --------------------------- | ------------------ | --------------------------------------- |
-| `id`                        | `String`           | Unique identifier                       |
-| `fullname`                  | `String`           | Localized display name                  |
-| `date`                      | `String`           | Date in YYYY-MM-DD format               |
-| `precedence`                | `Precedence`       | Liturgical precedence level             |
-| `rank`                      | `Rank`             | Rank (Solemnity, Feast, Memorial, etc.) |
-| `rank_name`                 | `String`           | Localized rank name                     |
-| `season`                    | `Option<Season>`   | Liturgical season                       |
-| `season_name`               | `Option<String>`   | Localized season name                   |
-| `colors`                    | `Vec<ColorInfo>`   | Liturgical colors                       |
-| `entities`                  | `Vec<Entity>`      | Saints, Blessed, or Places              |
-| `sunday_cycle`              | `SundayCycle`      | Year A, B, or C                         |
-| `weekday_cycle`             | `WeekdayCycle`     | Year 1 or 2                             |
-| `psalter_week`              | `PsalterWeekCycle` | Week 1-4                                |
-| `is_holy_day_of_obligation` | `bool`             | Holy day of obligation                  |
-| `is_optional`               | `bool`             | Optional celebration                    |
+| Field                       | Type                    | Description                             |
+| --------------------------- | ----------------------- | --------------------------------------- |
+| `id`                        | `String`                | Unique identifier                       |
+| `fullname`                  | `String`                | Localized display name                  |
+| `date`                      | `String`                | Date in YYYY-MM-DD format               |
+| `precedence`                | `Precedence`            | Liturgical precedence level             |
+| `rank`                      | `Rank`                  | Rank (Solemnity, Feast, Memorial, etc.) |
+| `rank_name`                 | `String`                | Localized rank name                     |
+| `season`                    | `Option<Season>`        | Liturgical season                       |
+| `season_name`               | `Option<String>`        | Localized season name                   |
+| `colors`                    | `Vec<ColorInfo>`        | Liturgical colors                       |
+| `martyrology`               | `Vec<MartyrologyEntry>` | Saints, Blessed, or Places              |
+| `sunday_cycle`              | `SundayCycle`           | Year A, B, or C                         |
+| `weekday_cycle`             | `WeekdayCycle`          | Year 1 or 2                             |
+| `psalter_week`              | `PsalterWeekCycle`      | Week 1-4                                |
+| `is_holy_day_of_obligation` | `bool`                  | Holy day of obligation                  |
+| `is_optional`               | `bool`                  | Optional celebration                    |
 
 ## Generating a Mass-Centric Calendar
 
@@ -229,7 +229,7 @@ Each `MassContext` is a flat structure containing:
 | `season`                | `Option<Season>`          | Liturgical season                             |
 | `season_name`           | `Option<String>`          | Localized season name                         |
 | `colors`                | `Vec<ColorInfo>`          | Liturgical colors                             |
-| `entities`              | `Vec<Entity>`             | Saints, Blessed, or Places                    |
+| `martyrology`           | `Vec<MartyrologyEntry>`   | Saints, Blessed, or Places                    |
 | `sunday_cycle`          | `SundayCycle`             | Year A, B, or C                               |
 | `weekday_cycle`         | `WeekdayCycle`            | Year 1 or 2                                   |
 | `psalter_week`          | `PsalterWeekCycle`        | Week 1-4                                      |
@@ -259,7 +259,7 @@ let json_bundle = romcal.optimize()?;
 // json_bundle contains only:
 // - Target calendar and its parent calendars
 // - Target locale and parent locales
-// - Entities actually used in the calendar
+// - Martyrology entries actually used in the calendar
 ```
 
 ## Key Types

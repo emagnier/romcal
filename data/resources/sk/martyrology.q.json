@@ -1,0 +1,12 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "sk",
+  "martyrology": {
+    "queenship_of_the_blessed_virgin_mary": {
+      "fullname": "Preblahoslavenej Panny Márie Kráľovnej"
+    },
+    "quirinus_of_sescia_bishop": {
+      "fullname": "Svätého Kvirína zo Sisaku, biskupa"
+    }
+  }
+}

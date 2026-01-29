@@ -1,0 +1,21 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "pt-br",
+  "martyrology": {
+    "valerius_of_trier_bishop": {
+      "fullname": "São Valério, bispo"
+    },
+    "vincent_de_paul_priest": {
+      "fullname": "São Vicente de Paulo, presbítero"
+    },
+    "vincent_ferrer_priest": {
+      "fullname": "São Vicente Ferrer, presbítero"
+    },
+    "vincent_of_saragossa_deacon": {
+      "fullname": "São Vicente de Saragoça, diácono"
+    },
+    "visitation_of_mary": {
+      "fullname": "Visitação da Nossa Senhora"
+    }
+  }
+}

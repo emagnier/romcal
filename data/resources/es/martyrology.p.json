@@ -1,0 +1,102 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "es",
+  "martyrology": {
+    "palm_sunday_of_the_passion_of_the_lord": {
+      "fullname": "Domingo de Ramos"
+    },
+    "pancras_of_rome_martyr": {
+      "fullname": "San Pancracio, mártir"
+    },
+    "paschal_baylon_religious": {
+      "fullname": "San Pascual Bailón, religioso"
+    },
+    "passion_of_saint_john_the_baptist": {
+      "fullname": "Martirio de San Juan Bautista"
+    },
+    "patrick_of_ireland_bishop": {
+      "fullname": "San Patricio, obispo"
+    },
+    "paul_miki_and_companions_martyrs": {
+      "fullname": "Santos Pablo Miki y compañeros, mártires"
+    },
+    "paul_of_the_cross_priest": {
+      "fullname": "San Pablo de la Cruz, presbítero"
+    },
+    "paul_vi_pope": {
+      "fullname": "San Pablo VI, papa"
+    },
+    "paulinus_of_nola_bishop": {
+      "fullname": "San Paulino de Nola, obispo"
+    },
+    "pelagius_of_cordoba_martyr": {
+      "fullname": "San Pelayo, mártir"
+    },
+    "pentecost_sunday": {
+      "fullname": "Pentecostés"
+    },
+    "perpetua_of_carthage_and_felicity_of_carthage_martyrs": {
+      "fullname": "Santas Perpetua y Felicidad, mártires"
+    },
+    "peter_and_paul_apostles": {
+      "fullname": "San Pedro y San Pablo, apóstoles"
+    },
+    "peter_canisius_priest": {
+      "fullname": "San Pedro Canisio, presbítero y doctor de la Iglesia"
+    },
+    "peter_chanel_priest": {
+      "fullname": "San Pedro Chanel, presbítero y mártir"
+    },
+    "peter_chrysologus_bishop": {
+      "fullname": "San Pedro Crisólogo, obispo y doctor de la Iglesia"
+    },
+    "peter_claver_priest": {
+      "fullname": "San Pedro Claver, presbítero"
+    },
+    "peter_damian_bishop": {
+      "fullname": "San Pedro Damián, obispo y doctor de la Iglesia"
+    },
+    "peter_de_zuniga_and_louis_flores_priests": {
+      "fullname": "Beatos Pedro Zuniga y Luis Flores, presbíteros y mártires"
+    },
+    "peter_julian_eymard_priest": {
+      "fullname": "San Pedro Julián Eymard, presbítero"
+    },
+    "peter_of_alcantara_priest": {
+      "fullname": "San Pedro de Alcántara, presbítero"
+    },
+    "philip_and_james_apostles": {
+      "fullname": "Santos Felipe y Santiago, apóstoles"
+    },
+    "philip_neri_priest": {
+      "fullname": "San Felipe Neri, presbítero"
+    },
+    "philip_of_jesus_de_las_casas_martyr": {
+      "fullname": "San Felipe de Jesús de las Casas, mártir"
+    },
+    "pius_francesco_forgione_priest": {
+      "fullname": "San Pío de Pietrelcina, presbítero"
+    },
+    "pius_ix_pope": {
+      "fullname": "Beato Pío IX, papa"
+    },
+    "pius_v_pope": {
+      "fullname": "San Pío V, papa"
+    },
+    "pius_x_pope": {
+      "fullname": "San Pío X, papa"
+    },
+    "polycarp_of_smyrna_bishop": {
+      "fullname": "San Policarpo, obispo y mártir"
+    },
+    "pontian_i_pope_and_hippolytus_of_rome_priest": {
+      "fullname": "San Ponciano, papa y San Hipólito, presbítero, mártires,"
+    },
+    "presentation_of_the_blessed_virgin_mary": {
+      "fullname": "Presentación de la Santísima Virgen María"
+    },
+    "presentation_of_the_lord": {
+      "fullname": "Presentación de Jesús en el Templo"
+    }
+  }
+}

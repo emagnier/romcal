@@ -1,0 +1,45 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "cs",
+  "martyrology": {
+    "waitangi_day": {
+      "fullname": "Den Waitangi"
+    },
+    "walpurga_of_heidenheim_abbess": {
+      "fullname": "Sv. Valburgy z Heidenheimu, abatyše"
+    },
+    "wenceslaus_i_of_bohemia_martyr": {
+      "fullname": "Sv. Václava, mučedníka"
+    },
+    "wenceslaus_i_of_bohemia_martyr_patron_of_the_czech_nation": {
+      "fullname": "Sv. Václava, mučedníka a patrona českého národa"
+    },
+    "wendelin_of_trier_hermit": {
+      "fullname": "Sv. Vendelína, poustevníka"
+    },
+    "wilfrid_of_york_bishop": {
+      "fullname": "Sv. Vilfrida, biskupa"
+    },
+    "william_apor_bishop": {
+      "fullname": "Bl. Viléma Apore, biskupa a mučedníka"
+    },
+    "willibald_of_eichstatt_bishop": {
+      "fullname": "Sv. Willibalda, biskupa"
+    },
+    "willibrord_of_utrecht_bishop": {
+      "fullname": "Sv. Willibrorda, biskupa"
+    },
+    "winefride_of_flintshire_virgin": {
+      "fullname": "Sv. Winefridy, panny"
+    },
+    "wladyslaw_bladzinski_priest_and_companions_martyrs": {
+      "fullname": "Bl. Vladislava Błądziński, kněze, a druhů, mučedníků"
+    },
+    "wolfgang_of_regensburg_bishop": {
+      "fullname": "Sv. Wolfganga, biskupa"
+    },
+    "wulstan_of_worcester_bishop": {
+      "fullname": "Sv. Wulstana, biskupa"
+    }
+  }
+}

@@ -16,8 +16,8 @@ use super::MassTime;
 use crate::engine::calendar_definition::CalendarId;
 use crate::engine::liturgical_day::{LiturgicalDay, LiturgicalDayId};
 use crate::types::dates::DayOfWeek;
-use crate::types::entity::{Entity, TitlesDef};
 use crate::types::liturgical::Season;
+use crate::types::martyrology::{MartyrologyEntry, TitlesDef};
 use crate::types::{
     ColorInfo, CommonInfo, PeriodInfo, Precedence, PsalterWeekCycle, Rank, SundayCycle,
     WeekdayCycle,
@@ -48,8 +48,8 @@ pub struct CelebrationSummary {
     pub colors: Vec<ColorInfo>,
     /// The common prayers/readings used for this celebration
     pub commons: Vec<CommonInfo>,
-    /// The entities (Saints, Blessed, or Places) linked to this liturgical day
-    pub entities: Vec<Entity>,
+    /// The martyrology entries (Saints, Blessed, or Places) linked to this liturgical day
+    pub martyrology: Vec<MartyrologyEntry>,
     /// The titles for this liturgical day
     pub titles: TitlesDef,
     /// Holy days of obligation
@@ -70,7 +70,7 @@ impl From<&LiturgicalDay> for CelebrationSummary {
             rank_name: day.rank_name.clone(),
             colors: day.colors.clone(),
             commons: day.commons.clone(),
-            entities: day.entities.clone(),
+            martyrology: day.martyrology.clone(),
             titles: day.titles.clone(),
             is_holy_day_of_obligation: day.is_holy_day_of_obligation,
             is_optional: day.is_optional,
@@ -195,8 +195,8 @@ pub struct MassContext {
     /// The common prayers/readings used
     pub commons: Vec<CommonInfo>,
 
-    /// The entities (Saints, Blessed, or Places) linked to this day
-    pub entities: Vec<Entity>,
+    /// The martyrology entries (Saints, Blessed, or Places) linked to this day
+    pub martyrology: Vec<MartyrologyEntry>,
 
     /// The titles for this liturgical day
     pub titles: TitlesDef,
@@ -263,7 +263,7 @@ impl MassContext {
             rank_name: day.rank_name.clone(),
             colors: day.colors.clone(),
             commons: day.commons.clone(),
-            entities: day.entities.clone(),
+            martyrology: day.martyrology.clone(),
             titles: day.titles.clone(),
             is_holy_day_of_obligation: day.is_holy_day_of_obligation,
             is_optional: day.is_optional,

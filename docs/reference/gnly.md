@@ -3,7 +3,6 @@ title: Universal Norms on the Liturgical Year and the Calendar
 description: Liturgical days, seasons (Advent, Christmas, Lent, Easter, Ordinary Time), calendar rules, and table of precedence.
 ---
 
-
 > The English translation of the General Instruction of the Roman Missal
 > (Third Typical Edition) © 2010, International Commission on English in the Liturgy, Inc.
 > All rights reserved.

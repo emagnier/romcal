@@ -1,0 +1,81 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "pt-br",
+  "martyrology": {
+    "cajetan_of_thiene_priest": {
+      "fullname": "São Caetano, presbítero"
+    },
+    "callistus_i_pope": {
+      "fullname": "São Calisto I, papa e mártir"
+    },
+    "camillus_de_lellis_priest": {
+      "fullname": "São Camilo de Lellis, presbítero"
+    },
+    "carmelites_of_compiegne_virgins_and_martyrs": {
+      "fullname": "Beatas Carmelitas de Compiègne, virgens e mártires"
+    },
+    "casimir_of_poland": {
+      "fullname": "São Casimiro"
+    },
+    "catherine_of_alexandria_virgin": {
+      "fullname": "Santa Catarina de Alexandria, virgem e mártir"
+    },
+    "catherine_of_siena_virgin": {
+      "fullname": "Santa Catarina de Siena, virgem e doutor da Igreja"
+    },
+    "catherine_zoe_laboure_virgin": {
+      "fullname": "Santa Catarina Labouré, virgem"
+    },
+    "cecilia_of_rome_virgin": {
+      "fullname": "Santa Cecília, virgem e mártir"
+    },
+    "ceraunus_of_paris_bishop": {
+      "fullname": "São Cerauno de Paris, bispo"
+    },
+    "chair_of_saint_peter_the_apostle": {
+      "fullname": "Cátedra de São Pedro, Apóstolo"
+    },
+    "charles_borromeo_bishop": {
+      "fullname": "São Carlos Borromeu, bispo"
+    },
+    "charles_lwanga_and_companions_martyrs": {
+      "fullname": "Santos Carlos Lwanga e companheiros, mártires"
+    },
+    "charles_of_jesus_de_foucauld": {
+      "fullname": "São Carlos de Foucauld, presbítero"
+    },
+    "christopher_magallanes_priest_and_companions_martyrs": {
+      "fullname": "Santos Cristóvão de Magalhães, presbítero, e Companheiros, mártires"
+    },
+    "clare_of_assisi_virgin": {
+      "fullname": "Santa Clara de Assis, virgem"
+    },
+    "clement_i_pope": {
+      "fullname": "São Clemente I, papa e mártir"
+    },
+    "columban_of_luxeuil_abbot": {
+      "fullname": "São Columbano, abade"
+    },
+    "commemoration_of_all_the_faithful_departed": {
+      "fullname": "Comemoração de Todos os Fiéis Defuntos"
+    },
+    "conversion_of_saint_paul_the_apostle": {
+      "fullname": "Conversão de São Paulo, Apóstolo"
+    },
+    "cornelius_i_pope_and_cyprian_of_carthage_bishop_martyrs": {
+      "fullname": "Santos Cornélio, papa, e Cipriano, bispo, mártires"
+    },
+    "cosmas_of_cilicia_and_damian_of_cilicia_martyrs": {
+      "fullname": "Santos Cosme e Damião, mártires"
+    },
+    "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop": {
+      "fullname": "São Cirilo o Filósofo, monge, e São Metódio, bispo"
+    },
+    "cyril_of_alexandria_bishop": {
+      "fullname": "São Cirilo de Alexandria, bispo e doutor da Igreja"
+    },
+    "cyril_of_jerusalem_bishop": {
+      "fullname": "São Cirilo de Jerusalém, bispo e doutor da Igreja"
+    }
+  }
+}

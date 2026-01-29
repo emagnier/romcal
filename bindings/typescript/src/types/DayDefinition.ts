@@ -3,7 +3,7 @@ import type { ColorsDef } from './ColorsDef'
 import type { CommonsDef } from './CommonsDef'
 import type { DateDef } from './DateDef'
 import type { DateDefExceptions } from './DateDefExceptions'
-import type { EntityRef } from './EntityRef'
+import type { MartyrologyRef } from './MartyrologyRef'
 import type { MassesDefinitions } from './MassesDefinitions'
 import type { Precedence } from './Precedence'
 import type { TitlesDef } from './TitlesDef'
@@ -11,7 +11,7 @@ import type { TitlesDef } from './TitlesDef'
 /**
  * Definition of a liturgical day with all its properties and configurations.
  * It represents a complete liturgical day definition that can be used
- * to generate calendar entries with proper precedence, colors, and entity associations.
+ * to generate calendar entries with proper precedence, colors, and martyrology associations.
  */
 export type DayDefinition = {
   /**
@@ -59,11 +59,11 @@ export type DayDefinition = {
    */
   custom_locale_id: string | null
   /**
-   * The entities (Saints, Blessed, or Places) linked from the Entity catalog
+   * The martyrology entries (Saints, Blessed, or Places) linked from the martyrology catalog
    */
-  entities: Array<EntityRef> | null
+  martyrology: Array<MartyrologyRef> | null
   /**
-   * The combined titles of all entities linked to this date definition
+   * The combined titles of all entries linked to this date definition
    */
   titles: TitlesDef | null
   /**
@@ -74,7 +74,7 @@ export type DayDefinition = {
   /**
    * The liturgical color(s) of the liturgical day.
    *
-   * **Deprecated:** Rely on the `titles` field of entities instead to determine the liturgical color(s).
+   * **Deprecated:** Rely on the `titles` field of entries instead to determine the liturgical color(s).
    */
   colors: ColorsDef | null
   /**

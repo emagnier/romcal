@@ -5,8 +5,8 @@ const path = require("path");
 
 /**
  * Script to transform resources JSON files structure:
- * 1. Rename "items" property to "entities"
- * 2. Transform entities from Record<key, object> to array of {id: key, ...object}
+ * 1. Rename "items" property to "martyrology"
+ * 2. Transform martyrology from Record<key, object> to array of {id: key, ...object}
  * 3. Remove "letter" property
  */
 
@@ -21,9 +21,9 @@ function transformResourceFile(filePath) {
 		const data = JSON.parse(content);
 
 		// Check if the file has the expected structure
-		if (!data.items && !data.entities) {
+		if (!data.items && !data.martyrology) {
 			console.log(
-				`⚠️  Skipping ${filePath} - no "items" or "entities" property found`,
+				`⚠️  Skipping ${filePath} - no "items" or "martyrology" property found`,
 			);
 			return;
 		}
@@ -34,16 +34,16 @@ function transformResourceFile(filePath) {
 			locale: data.locale,
 		};
 
-		// Transform items to entities array or keep existing entities
+		// Transform items to martyrology array or keep existing martyrology
 		if (data.items && typeof data.items === "object") {
-			// Original format: transform items to entities array
-			transformed.entities = Object.entries(data.items).map(([key, value]) => ({
+			// Original format: transform items to martyrology array
+			transformed.martyrology = Object.entries(data.items).map(([key, value]) => ({
 				id: key,
 				...value,
 			}));
-		} else if (data.entities && Array.isArray(data.entities)) {
-			// Already transformed format: keep entities as is
-			transformed.entities = data.entities;
+		} else if (data.martyrology && Array.isArray(data.martyrology)) {
+			// Already transformed format: keep martyrology as is
+			transformed.martyrology = data.martyrology;
 		}
 
 		// Write back the transformed data

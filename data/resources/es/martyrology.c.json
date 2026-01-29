@@ -1,0 +1,111 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "es",
+  "martyrology": {
+    "cajetan_of_thiene_priest": {
+      "fullname": "San Cayetano de Thiene, presbítero"
+    },
+    "callistus_i_pope": {
+      "fullname": "San Calixto I, papa y mártir"
+    },
+    "camillus_de_lellis_priest": {
+      "fullname": "San Camilo de Lelis, presbítero"
+    },
+    "carlos_manuel_rodriguez_santiago": {
+      "fullname": "Beato Carlos Manuel Rodriguez"
+    },
+    "carmelites_of_compiegne_virgins_and_martyrs": {
+      "fullname": "Beatas Carmelitas de Compiègne, vírgenes y mártires"
+    },
+    "casimir_of_poland": {
+      "fullname": "San Casimiro"
+    },
+    "catherine_of_alexandria_virgin": {
+      "fullname": "Santa Catalina de Alexandria, virgen y mártir"
+    },
+    "catherine_of_siena_virgin": {
+      "fullname": "Santa Catalina de Siena, virgen y doctora de la Iglesia"
+    },
+    "catherine_of_siena_virgin_copatroness_of_europe": {
+      "fullname": "Santa Catalina de Siena, virgen, doctora de la Iglesia y Patrona Secundaria de Europa"
+    },
+    "catherine_of_siena_virgin_copatroness_of_italy_and_europe": {
+      "fullname": "Santa Catalina de Siena, virgen, doctora de la Iglesia y Patrona Secundaria de Italia y Europa"
+    },
+    "catherine_zoe_laboure_virgin": {
+      "fullname": "Santa Catalina Labouré, virgen"
+    },
+    "cecilia_of_rome_virgin": {
+      "fullname": "Santa Cecilia, virgen y mártir"
+    },
+    "ceraunus_of_paris_bishop": {
+      "fullname": "San Cerauno de París, obispo"
+    },
+    "chair_of_saint_peter_the_apostle": {
+      "fullname": "Cátedra de San Pedro, apóstol"
+    },
+    "charles_borromeo_bishop": {
+      "fullname": "San Carlos Borromeo, obispo"
+    },
+    "charles_lwanga_and_companions_martyrs": {
+      "fullname": "Santos Carlos Luanga y compañeros, mártires"
+    },
+    "charles_of_jesus_de_foucauld": {
+      "fullname": "Santos Carlos de Foucauld, presbítero"
+    },
+    "christopher_magallanes_priest_and_companions_martyrs": {
+      "fullname": "San Cristóbal Magallanes, presbítero y Compañeros, mártires"
+    },
+    "christopher_of_palestine_martyr": {
+      "fullname": "San Cristóbal, mártir"
+    },
+    "clare_of_assisi_virgin": {
+      "fullname": "Santa Clara, virgen"
+    },
+    "clement_i_pope": {
+      "fullname": "San Clemente I, papa y mártir"
+    },
+    "clotilde_of_burgundy": {
+      "fullname": "Santa Clotilde"
+    },
+    "columban_of_luxeuil_abbot": {
+      "fullname": "San Columbano, Abad"
+    },
+    "commemoration_of_all_the_faithful_departed": {
+      "fullname": "Conmemoración de todos los fieles difuntos",
+      "sources": [
+        "https://www.conferenciaepiscopal.es/wp-content/uploads/2022/11/CLP-y-salmos-responsoriales-2022-2023_internet.pdf#page=342"
+      ]
+    },
+    "conversion_of_saint_paul_the_apostle": {
+      "fullname": "Conversión de San Pablo, apóstol"
+    },
+    "cornelius_i_pope_and_cyprian_of_carthage_bishop_martyrs": {
+      "fullname": "San Cornelio, papa, y Cipriano, obispo, mártires"
+    },
+    "cosmas_of_cilicia_and_damian_of_cilicia_martyrs": {
+      "fullname": "Santos Cosme y Damián, mártires"
+    },
+    "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop": {
+      "fullname": "Santos Cirilo, monje, y Metodio, obispo"
+    },
+    "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop_copatrons_of_europe": {
+      "fullname": "Santos Cirilo, monje, y Metodio, obispo, patronos de Europa",
+      "sources": [
+        "https://www.conferenciaepiscopal.es/wp-content/uploads/2022/11/CLP-y-salmos-responsoriales-2022-2023_internet.pdf#page=105"
+      ]
+    },
+    "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop_slavic_missionaries_copatrons_of_europe": {
+      "fullname": "Santos Cirilo, monje, y Metodio, obispo, apóstoles de los eslavos, patronos de Europa",
+      "sources": [
+        "https://es.wikipedia.org/wiki/Cirilo_y_Metodio#:~:text=conocidos%20como%20los-,ap%C3%B3stoles%20de%20los%20eslavos,-%2C2%E2%80%8B%20fueron and https://abcblogs.abc.es/cronicas-nomada/otros-temas/cirilo-y-metodio-artifices-de-los-idiomas-eslavos.html#:~:text=Ap%C3%B3stoles%20de%20los%20eslavos"
+      ]
+    },
+    "cyril_of_alexandria_bishop": {
+      "fullname": "San Cirilio de Alexandria, obispo y doctor de la Iglesia"
+    },
+    "cyril_of_jerusalem_bishop": {
+      "fullname": "San Cirilio de Jerusalén, obispo y doctor de la Iglesia"
+    }
+  }
+}

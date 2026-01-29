@@ -33,7 +33,7 @@ def load_all_calendar_definitions() -> list[CalendarDefinition]:
 def load_all_resources() -> list[Resources]:
     """Load all resources from the data folder.
 
-    Each locale has meta.json + entities.*.json files that need to be merged.
+    Each locale has meta.json + martyrology.*.json files that need to be merged.
     """
     resources_dir = DATA_DIR / "resources"
     resources: list[Resources] = []

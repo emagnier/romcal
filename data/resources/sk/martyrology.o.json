@@ -1,0 +1,162 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "sk",
+  "martyrology": {
+    "odile_of_alsace_abbess": {
+      "fullname": "Svätej Otílie, opátky"
+    },
+    "odile_of_alsace_abbess_patroness_of_alsace": {
+      "fullname": "Svätej Otílie, opátky, patrónky Alsaska"
+    },
+    "odoric_of_pordenone_priest": {
+      "fullname": "Blahoslaveného Odorika z Pordenone, kňaza"
+    },
+    "olaf_ii_of_norway_martyr": {
+      "fullname": "Svätého Olafa, mučeníka"
+    },
+    "oleksiy_zarytskyi_priest": {
+      "fullname": "Blahoslaveného Alexeja Zaryckého, kňaza a mučeníka"
+    },
+    "olga_of_kiev": {
+      "fullname": "Svätej Oľgy"
+    },
+    "oliver_plunket_bishop": {
+      "fullname": "Svätého Olivera Plunketa, biskupa a mučeníka"
+    },
+    "otteran_of_iona_monk": {
+      "fullname": "Svätého Oterána, mnícha"
+    },
+    "otto_of_bamberg_bishop": {
+      "fullname": "Svätého Ota z Bambergu, biskupa"
+    },
+    "our_lady_help_of_christians": {
+      "fullname": "Preblahoslavenej Panny Márie, Pomocnice kresťanov"
+    },
+    "our_lady_mediatrix_of_all_grace": {
+      "fullname": "Preblahoslavenej Panny Márie, Prostrednice všetkých milostí"
+    },
+    "our_lady_mother_of_christian_unity": {
+      "fullname": "Preblahoslavenej Panny Márie, Matky jednoty kresťanov"
+    },
+    "our_lady_mother_of_divine_providence_patroness_of_puerto_rico": {
+      "fullname": "Preblahoslavenej Panny Márie, Matky Božej Prozreteľnosti, patrónky Portorika"
+    },
+    "our_lady_of_aparecida_patroness_of_brazil": {
+      "fullname": "Preblahoslavenej Panny Márie z Aparecidy, patrónky Brazílie"
+    },
+    "our_lady_of_bethlehem": {
+      "fullname": "Preblahoslavenej Panny Márie Betlehemskej"
+    },
+    "our_lady_of_china": {
+      "fullname": "Preblahoslavenej Panny Márie Čínskej"
+    },
+    "our_lady_of_czestochowa": {
+      "fullname": "Preblahoslavenej Panny Márie Čenstochovskej"
+    },
+    "our_lady_of_fatima": {
+      "fullname": "Preblahoslavenej Panny Márie Fatimskej"
+    },
+    "our_lady_of_good_counsel": {
+      "fullname": "Preblahoslavenej Panny Márie Dobrej Rady"
+    },
+    "our_lady_of_guadalupe": {
+      "fullname": "Preblahoslavenej Panny Márie Guadalupskej"
+    },
+    "our_lady_of_guadalupe_patroness_of_the_americas": {
+      "fullname": "Preblahoslavenej Panny Márie Guadalupskej, patrónky Ameriky"
+    },
+    "our_lady_of_guadalupe_patroness_of_the_philippines": {
+      "fullname": "Preblahoslavenej Panny Márie Guadalupskej, patrónky Filipín"
+    },
+    "our_lady_of_hungary_patroness_of_hungary": {
+      "fullname": "Preblahoslavenej Panny Márie Maďarov, patrónky Maďarska"
+    },
+    "our_lady_of_itati": {
+      "fullname": "Preblahoslavenej Panny Márie Itatskej"
+    },
+    "our_lady_of_knock": {
+      "fullname": "Preblahoslavenej Panny Márie z Knock"
+    },
+    "our_lady_of_lanka": {
+      "fullname": "Preblahoslavenej Panny Márie z Lanky"
+    },
+    "our_lady_of_lebanon": {
+      "fullname": "Preblahoslavenej Panny Márie z Lebanonu"
+    },
+    "our_lady_of_loreto": {
+      "fullname": "Preblahoslavenej Panny Márie Loretánskej"
+    },
+    "our_lady_of_lourdes": {
+      "fullname": "Preblahoslavenej Panny Márie Lurdskej"
+    },
+    "our_lady_of_lujan_patroness_of_argentina": {
+      "fullname": "Preblahoslavenej Panny Marie Lujánska, patrónky Argentíny"
+    },
+    "our_lady_of_madhu": {
+      "fullname": "Preblahoslavenej Panny Márie z Madhu"
+    },
+    "our_lady_of_marija_bistrica": {
+      "fullname": "Preblahoslavenej Panny Márie z Marije Bistrice"
+    },
+    "our_lady_of_mercy": {
+      "fullname": "Preblahoslavenej Panny Márie milosrdenstva"
+    },
+    "our_lady_of_mount_carmel": {
+      "fullname": "Preblahoslavenej Panny Márie Karmelskej"
+    },
+    "our_lady_of_mount_carmel_mother_and_queen_of_chile": {
+      "fullname": "Preblahoslavenej Panny Márie Karmelskej, Matky a Kráľovnej Chile"
+    },
+    "our_lady_of_perpetual_help": {
+      "fullname": "Preblahoslavenej Panny Márie ustavičnej pomoci"
+    },
+    "our_lady_of_sorrows": {
+      "fullname": "Sedembolestnej Panny Márie"
+    },
+    "our_lady_of_sorrows_patroness_of_slovakia": {
+      "fullname": "Sedembolestnej Panny Márie, patrónky Slovenska"
+    },
+    "our_lady_of_the_discovery_of_the_hidden_christians": {
+      "fullname": "Preblahoslavenej Panny Márie od objavenia skrytých kresťanov"
+    },
+    "our_lady_of_the_gate_of_dawn": {
+      "fullname": "Preblahoslavenej Panny Márie Ostrobramskej"
+    },
+    "our_lady_of_the_miraculous_medal": {
+      "fullname": "Preblahoslavenej Panny Márie Zázračnej medaily"
+    },
+    "our_lady_of_the_pillar": {
+      "fullname": "Preblahoslavenej Panny Márie na Stĺpe"
+    },
+    "our_lady_of_the_rosary": {
+      "fullname": "Ružencovej Panny Márie"
+    },
+    "our_lady_of_the_valley": {
+      "fullname": "Preblahoslavenej Panny Márie z Údolia"
+    },
+    "our_lady_of_vladimir": {
+      "fullname": "Preblahoslavenej Panny Márie Vladimírskej"
+    },
+    "our_lady_of_walsingham": {
+      "fullname": "Preblahoslavenej Panny Márie Walsinghamskej"
+    },
+    "our_lady_queen_of_peace": {
+      "fullname": "Preblahoslavenej Panny Márie, Kráľovnej pokoja"
+    },
+    "our_lady_queen_of_poland": {
+      "fullname": "Preblahoslavenej Panny Márie, Kráľovnej Poľska"
+    },
+    "our_lady_refuge_of_sinners": {
+      "fullname": "Preblahoslavenej Panny Márie, Útočiska hriešnikov"
+    },
+    "our_lord_jesus_christ_king_of_the_universe": {
+      "fullname": "Nášho Pána Ježiša Krista, Kráľa neba i zeme"
+    },
+    "our_lord_jesus_christ_the_eternal_high_priest": {
+      "fullname": "Nášho Pána Ježiša Krista, najvyššieho a večného kňaza"
+    },
+    "our_lord_of_miracles": {
+      "fullname": "Pána zázrakov"
+    }
+  }
+}

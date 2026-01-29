@@ -61,8 +61,8 @@ After building, the binary is located at:
 | `bundle`                       | Bundle required data (definitions + resources)        |
 | `validate definitions <FILES>` | Validate calendar definition files                    |
 | `validate resources <FILES>`   | Validate resource files                               |
-| `entity <ID>`                  | Lookup a single entity by its exact ID                |
-| `search [TEXT]`                | Fuzzy search for entities with filtering              |
+| `martyrology <ID>`             | Lookup a single martyrology entry by its exact ID     |
+| `search [TEXT]`                | Fuzzy search for martyrology entries with filtering   |
 | `completions <SHELL>`          | Generate shell completion scripts                     |
 
 ### date
@@ -99,7 +99,7 @@ romcal calendar 2025 -f json > calendar.json
 | Cycles     | `sunday_cycle`, `weekday_cycle`, `psalter_week`                                                   |
 | Position   | `week_of_season`, `day_of_season`, `day_of_week`                                                  |
 | Boundaries | `start_of_season`, `end_of_season`, `start_of_liturgical_year`, `end_of_liturgical_year`          |
-| Metadata   | `commons`, `titles`, `entities`, `is_holy_day_of_obligation`, `is_optional`                       |
+| Metadata   | `commons`, `titles`, `martyrology`, `is_holy_day_of_obligation`, `is_optional`                    |
 | Advanced   | `date_def`, `date_exceptions`, `from_calendar_id`, `allow_similar_rank_items`, `parent_overrides` |
 
 ### masses
@@ -151,30 +151,30 @@ romcal validate definitions path/to/calendar.json
 romcal validate resources "data/resources/**/*.json"
 ```
 
-### entity
+### martyrology
 
-Lookup a single entity by its exact ID. Returns entity details in the specified format.
+Lookup a single martyrology entry by its exact ID. Returns entry details in the specified format.
 
 ```bash
-romcal entity francis_of_assisi
-romcal entity francis_of_assisi -f json
-romcal entity our_lady_of_lourdes --locale fr
+romcal martyrology francis_of_assisi
+romcal martyrology francis_of_assisi -f json
+romcal martyrology our_lady_of_lourdes --locale fr
 ```
 
 **Output fields (CSV/lines):**
 
 | Field               | Description                  |
 | ------------------- | ---------------------------- |
-| `id`                | Entity identifier            |
+| `id`                | Martyrology entry identifier |
 | `fullname`          | Full display name            |
 | `name`              | Short name                   |
-| `type`              | Entity type                  |
+| `type`              | Entry type                   |
 | `sex`               | Sex (MALE, FEMALE, etc.)     |
 | `canonizationLevel` | Canonization level           |
 
 ### search
 
-Fuzzy search for entities with advanced filtering capabilities. Returns ranked results based on relevance score.
+Fuzzy search for martyrology entries with advanced filtering capabilities. Returns ranked results based on relevance score.
 
 ```bash
 romcal search "francis"
@@ -185,26 +185,26 @@ romcal search "mary" --title VIRGIN -f json
 
 **Filter options:**
 
-| Option        | Description                                      |
-| ------------- | ------------------------------------------------ |
-| `--type`      | Filter by entity type (e.g., SAINT, BLESSED)     |
-| `--sex`       | Filter by sex (MALE, FEMALE)                     |
-| `--level`     | Filter by canonization level                     |
-| `--title`     | Filter by title(s) - can be repeated             |
-| `--limit`     | Maximum number of results (default: 20)          |
-| `--min_score` | Minimum score threshold 0.0-1.0 (default: 0.3)   |
+| Option        | Description                                    |
+| ------------- | ---------------------------------------------- |
+| `--type`      | Filter by entry type (e.g., SAINT, BLESSED)    |
+| `--sex`       | Filter by sex (MALE, FEMALE)                   |
+| `--level`     | Filter by canonization level                   |
+| `--title`     | Filter by title(s) - can be repeated           |
+| `--limit`     | Maximum number of results (default: 20)        |
+| `--min_score` | Minimum score threshold 0.0-1.0 (default: 0.3) |
 
 **Output fields:**
 
 | Field               | Description                    |
 | ------------------- | ------------------------------ |
-| `id`                | Entity identifier              |
+| `id`                | Martyrology entry identifier   |
 | `score`             | Relevance score (0.0-1.0)      |
 | `matchType`         | Type of match                  |
 | `matchedFields`     | Fields that matched the search |
 | `fullname`          | Full display name              |
 | `name`              | Short name                     |
-| `type`              | Entity type                    |
+| `type`              | Entry type                     |
 | `sex`               | Sex                            |
 | `canonizationLevel` | Canonization level             |
 
@@ -220,7 +220,7 @@ romcal search "mary" --title VIRGIN -f json
 
 ### Preset Options
 
-Available on `date`, `calendar`, `masses`, `preset`, `bundle`, `entity`, and `search` commands:
+Available on `date`, `calendar`, `masses`, `preset`, `bundle`, `martyrology`, and `search` commands:
 
 ```
 -c, --calendar <NAME>           Calendar to use (default: general_roman)

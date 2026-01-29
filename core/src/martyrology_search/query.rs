@@ -1,0 +1,139 @@
+//! Martyrology query definition for searching martyrology entries.
+
+use serde::{Deserialize, Serialize};
+
+#[cfg(feature = "ts-bindings")]
+use ts_rs::TS;
+
+use crate::types::martyrology::{CanonizationLevel, MartyrologyEntryType, Sex, Title};
+
+/// Query parameters for searching martyrology entries.
+///
+/// All fields are optional. When a field is `None`, it is not used for filtering.
+/// When `text` is provided, fuzzy matching is performed on entry ID, fullname, and name.
+#[derive(Debug, Clone, Default, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+#[cfg_attr(feature = "ts-bindings", derive(TS))]
+#[cfg_attr(feature = "ts-bindings", ts(export, rename_all = "snake_case"))]
+pub struct MartyrologyQuery {
+    /// Fuzzy text search on id, fullname, and name fields.
+    #[cfg_attr(feature = "ts-bindings", ts(optional))]
+    pub text: Option<String>,
+
+    /// Filter by entry type (Person, Place, Event).
+    #[cfg_attr(feature = "ts-bindings", ts(optional))]
+    pub entry_type: Option<MartyrologyEntryType>,
+
+    /// Filter by canonization level (Saint, Blessed).
+    #[cfg_attr(feature = "ts-bindings", ts(optional))]
+    pub canonization_level: Option<CanonizationLevel>,
+
+    /// Filter by sex (Male, Female).
+    #[cfg_attr(feature = "ts-bindings", ts(optional))]
+    pub sex: Option<Sex>,
+
+    /// Filter by titles. Entry must have at least one of the specified titles.
+    #[cfg_attr(feature = "ts-bindings", ts(optional))]
+    pub titles: Option<Vec<Title>>,
+
+    /// Maximum number of results to return.
+    /// Default: 20 (applied in search logic).
+    #[cfg_attr(feature = "ts-bindings", ts(optional))]
+    pub limit: Option<usize>,
+
+    /// Minimum score threshold (0.0 to 1.0).
+    /// Default: 0.3 (applied in search logic).
+    #[cfg_attr(feature = "ts-bindings", ts(optional))]
+    pub min_score: Option<f64>,
+}
+
+impl MartyrologyQuery {
+    /// Returns the effective limit, defaulting to 20 if not specified.
+    pub fn effective_limit(&self) -> usize {
+        self.limit.unwrap_or(20)
+    }
+
+    /// Returns the effective minimum score, defaulting to 0.3 if not specified.
+    pub fn effective_min_score(&self) -> f64 {
+        self.min_score.unwrap_or(0.3)
+    }
+
+    /// Returns true if this query has any text to search for.
+    pub fn has_text(&self) -> bool {
+        self.text.as_ref().is_some_and(|t| !t.trim().is_empty())
+    }
+
+    /// Returns true if this query has any filters set.
+    pub fn has_filters(&self) -> bool {
+        self.entry_type.is_some()
+            || self.canonization_level.is_some()
+            || self.sex.is_some()
+            || self.titles.is_some()
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_default_query() {
+        let query = MartyrologyQuery::default();
+        assert!(query.text.is_none());
+        assert!(query.entry_type.is_none());
+        assert!(query.canonization_level.is_none());
+        assert!(query.sex.is_none());
+        assert!(query.titles.is_none());
+        assert!(query.limit.is_none());
+        assert!(query.min_score.is_none());
+    }
+
+    #[test]
+    fn test_effective_defaults() {
+        let query = MartyrologyQuery::default();
+        assert_eq!(query.effective_limit(), 20);
+        assert!((query.effective_min_score() - 0.3).abs() < f64::EPSILON);
+    }
+
+    #[test]
+    fn test_has_text() {
+        let query = MartyrologyQuery::default();
+        assert!(!query.has_text());
+
+        let query = MartyrologyQuery {
+            text: Some("".into()),
+            ..Default::default()
+        };
+        assert!(!query.has_text());
+
+        let query = MartyrologyQuery {
+            text: Some("   ".into()),
+            ..Default::default()
+        };
+        assert!(!query.has_text());
+
+        let query = MartyrologyQuery {
+            text: Some("francis".into()),
+            ..Default::default()
+        };
+        assert!(query.has_text());
+    }
+
+    #[test]
+    fn test_has_filters() {
+        let query = MartyrologyQuery::default();
+        assert!(!query.has_filters());
+
+        let query = MartyrologyQuery {
+            entry_type: Some(MartyrologyEntryType::Person),
+            ..Default::default()
+        };
+        assert!(query.has_filters());
+
+        let query = MartyrologyQuery {
+            canonization_level: Some(CanonizationLevel::Saint),
+            ..Default::default()
+        };
+        assert!(query.has_filters());
+    }
+}

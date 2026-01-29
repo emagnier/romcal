@@ -2,7 +2,6 @@
 title: Contributing
 ---
 
-
 Thank you for your interest in contributing to Romcal! This guide will help you understand how to contribute to the project.
 
 ## Ways to Contribute
@@ -12,7 +11,7 @@ Thank you for your interest in contributing to Romcal! This guide will help you 
 The most common contributions are additions or corrections to calendar definitions:
 
 - **[Calendar Definitions](./definitions)** - Add celebrations for a region, country, or diocese
-- **[Entity Resources](./resources)** - Add or translate entity names (saints, feasts, etc.)
+- **[Martyrology Resources](./resources)** - Add or translate martyrology entries (saints, blessed, etc.)
 
 ### Code Contributions
 
@@ -36,13 +35,13 @@ romcal/
 │   └── wasm/          # WebAssembly build
 ├── data/
 │   ├── definitions/   # Calendar definitions (JSON)
-│   └── resources/     # Entity translations (JSON)
+│   └── resources/     # Martyrology translations (JSON)
 └── docs/              # This documentation
 ```
 
 ## Guidelines
 
-- **[Naming Conventions](./naming-conventions)** - How to name calendars and entities
+- **[Naming Conventions](./naming-conventions)** - How to name calendars and martyrology entries
 - **[Data Structure](./data-structure)** - Organization of data files
 
 ## Getting Help

@@ -65,7 +65,7 @@
         "month": 5,
         "date": 8
       },
-      "entities": [
+      "martyrology": [
         "jean_chevillard_martyr",
         "companions_martyrs"
       ]
@@ -90,7 +90,7 @@
         "month": 9,
         "date": 2
       },
-      "entities": [
+      "martyrology": [
         "jean_robert_queneau_martyr",
         "companions_martyrs"
       ]
@@ -107,7 +107,7 @@
         "month": 9,
         "date": 13
       },
-      "entities": [
+      "martyrology": [
         {
           "id": "maurilius_of_angers_bishop",
           "titles": {
@@ -124,7 +124,7 @@
         "month": 9,
         "date": 22
       },
-      "entities": [
+      "martyrology": [
         {
           "id": "maurice_of_agaunum_martyr",
           "titles": {

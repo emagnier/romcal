@@ -16,8 +16,8 @@ mod utils;
 use commands::bundle;
 use commands::calendar;
 use commands::date;
-use commands::entity;
 use commands::list;
+use commands::martyrology;
 use commands::masses;
 use commands::search;
 use commands::show_preset;
@@ -27,7 +27,7 @@ use crate::config::Config;
 use crate::enums::FieldPath;
 use crate::enums::{CliCalendarContext, CliEasterCalculationType, CliOutputFormat, ValidationType};
 use crate::preset::create_romcal;
-use romcal::types::entity::{CanonizationLevel, EntityType, Sex, Title};
+use romcal::types::martyrology::{CanonizationLevel, MartyrologyEntryType, Sex, Title};
 
 /// Config file flag
 #[derive(Args, Clone, Default)]
@@ -208,7 +208,7 @@ enum Commands {
         year: Option<i32>,
 
         /// Filter to show only specific properties (supports dot notation for nested fields)
-        /// Examples: id, fullname, colors.key, entities.name
+        /// Examples: id, fullname, colors.key, martyrology.name
         #[arg(long, value_delimiter = ',')]
         filter: Option<Vec<FieldPath>>,
 
@@ -258,9 +258,9 @@ enum Commands {
         #[command(flatten)]
         debug: DebugArgs,
     },
-    /// Get an entity by its exact ID
-    Entity {
-        /// Entity ID (e.g., "francis_of_assisi")
+    /// Get a martyrology entry by its exact ID
+    Martyrology {
+        /// Martyrology entry ID (e.g., "francis_of_assisi")
         id: String,
 
         #[command(flatten)]
@@ -272,14 +272,14 @@ enum Commands {
         #[command(flatten)]
         debug: DebugArgs,
     },
-    /// Search entities with fuzzy matching and filters
+    /// Search martyrology entries with fuzzy matching and filters
     Search {
         /// Text to search (fuzzy match on id/name/fullname)
         text: Option<String>,
 
-        /// Filter by entity type
+        /// Filter by entry type
         #[arg(long = "type", value_enum)]
-        entity_type: Option<EntityType>,
+        entry_type: Option<MartyrologyEntryType>,
 
         /// Filter by sex
         #[arg(long, value_enum)]
@@ -475,14 +475,14 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
                 commands::validate::handle(ValidationType::Resources, &file_paths)
             }
         },
-        Commands::Entity {
+        Commands::Martyrology {
             id,
             preset,
             output,
             debug,
         } => {
             debug.init();
-            entity::handle(
+            martyrology::handle(
                 &id,
                 output.get_format(&config).into(),
                 preset.into_romcal(&config)?,
@@ -490,7 +490,7 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
         }
         Commands::Search {
             text,
-            entity_type,
+            entry_type,
             sex,
             level,
             title,
@@ -504,7 +504,7 @@ fn run(cli: Cli) -> Result<(), RomcalCliError> {
             search::handle(
                 search::SearchOptions {
                     text,
-                    entity_type,
+                    entry_type,
                     sex,
                     level,
                     titles: title,

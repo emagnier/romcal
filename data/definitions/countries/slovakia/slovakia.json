@@ -83,7 +83,7 @@
         "month": 7,
         "date": 17
       },
-      "entities": [
+      "martyrology": [
         "andrew_zorard_of_nitra_hermit",
         "benedict_of_skalka_hermit"
       ]
@@ -94,7 +94,7 @@
         "month": 7,
         "date": 27
       },
-      "entities": [
+      "martyrology": [
         "gorazd_of_moravia",
         "companions_martyrs"
       ]
@@ -119,7 +119,7 @@
         "month": 9,
         "date": 7
       },
-      "entities": [
+      "martyrology": [
         "marko_krizin_priest",
         "melchior_grodziecki_priest",
         "stephen_pongracz_priest"

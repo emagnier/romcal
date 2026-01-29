@@ -34,13 +34,13 @@ describe('generated resources', () => {
   it('should have valid fr resources', () => {
     expect(fr).toBeDefined()
     expect(fr.locale).toBe('fr')
-    expect(fr.entities).toBeDefined()
+    expect(fr.martyrology).toBeDefined()
   })
 
   it('should have valid en resources', () => {
     expect(en).toBeDefined()
     expect(en.locale).toBe('en')
-    expect(en.entities).toBeDefined()
+    expect(en.martyrology).toBeDefined()
   })
 })
 

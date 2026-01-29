@@ -2,7 +2,6 @@
 title: Data Structure
 ---
 
-
 This page explains the organization of data files in the Romcal repository.
 
 ## Overview
@@ -14,7 +13,7 @@ data/
 │   ├── regions/           # Regional calendars
 │   ├── countries/         # National and diocesan calendars
 │   └── communities/       # Religious communities
-└── resources/             # Entity translations
+└── resources/             # Martyrology translations
     ├── en/                # English (default)
     ├── fr/                # French
     ├── es/                # Spanish
@@ -82,20 +81,20 @@ communities/
 
 ## Resources Directory
 
-Each locale has its own subdirectory with entity files organized alphabetically:
+Each locale has its own subdirectory with martyrology files organized alphabetically:
 
 ```
 resources/
 ├── en/
-│   ├── entities.a.json    # andrew_apostle, anthony_of_padua, ...
-│   ├── entities.b.json    # basil_the_great, benedict_of_nursia, ...
-│   ├── entities.c.json    # catherine_of_siena, charles_borromeo, ...
+│   ├── martyrology.a.json    # andrew_apostle, anthony_of_padua, ...
+│   ├── martyrology.b.json    # basil_the_great, benedict_of_nursia, ...
+│   ├── martyrology.c.json    # catherine_of_siena, charles_borromeo, ...
 │   └── ...
 ├── fr/
-│   ├── entities.a.json    # French translations
+│   ├── martyrology.a.json    # French translations
 │   └── ...
 └── la/
-    ├── entities.a.json    # Latin names
+    ├── martyrology.a.json    # Latin names
     └── ...
 ```
 
@@ -156,8 +155,8 @@ romcal validate resources "data/resources/**/*.json"
 ### New Locale
 
 1. Create directory: `data/resources/xx/` (ISO language code)
-2. Create entity files: `entities.a.json`, `entities.b.json`, etc.
-3. Translate entity names from English source
+2. Create martyrology files: `martyrology.a.json`, `martyrology.b.json`, etc.
+3. Translate martyrology entries from English source
 
 ## Best Practices
 

@@ -1,0 +1,114 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "pt-br",
+  "martyrology": {
+    "madeleine_sophie_barat_virgin": {
+      "fullname": "Santa Magdalena Sofia Barat, virgem"
+    },
+    "marcellinus_of_rome_and_peter_the_exorcist_martyrs": {
+      "fullname": "Santos Marcelino e Pedro, mártires"
+    },
+    "marcellus_of_paris_bishop": {
+      "fullname": "São Marcelo de Paris, bispo"
+    },
+    "margaret_mary_alacoque_virgin": {
+      "fullname": "Santa Margarida Maria Alacoque, virgem"
+    },
+    "margaret_of_scotland": {
+      "fullname": "Santa Margarida da Escócia"
+    },
+    "maria_goretti_virgin": {
+      "fullname": "Santa Maria Goretti, virgem e mártir"
+    },
+    "marie_eugenie_of_jesus_milleret_de_brou_virgin": {
+      "fullname": "Santa Marie-Eugénie de Jésus Milleret de Brou, virgem e fundadora"
+    },
+    "mark_evangelist": {
+      "fullname": "São Marcos, evangelista"
+    },
+    "martha_of_bethany_mary_of_bethany_and_lazarus_of_bethany": {
+      "fullname": "Santa Marta, Maria e Lázaro"
+    },
+    "martin_de_porres_religious": {
+      "fullname": "São Martinho de Porres, religioso"
+    },
+    "martin_i_pope": {
+      "fullname": "São Martinho I, papa e mártir"
+    },
+    "martin_of_tours_bishop": {
+      "fullname": "São Martinho de Tours, bispo"
+    },
+    "mary_magdalene": {
+      "fullname": "Santa Maria Madalena"
+    },
+    "mary_magdalene_de_pazzi_virgin": {
+      "fullname": "Santa Maria Madalena de Pazzi, virgem"
+    },
+    "mary_mother_of_god": {
+      "fullname": "Maria, Mãe de Deus"
+    },
+    "mary_mother_of_the_church": {
+      "fullname": "Bem-aventurada Virgem Maria, Mãe da Igreja"
+    },
+    "mary_of_the_incarnation_barbara_acarie_religious": {
+      "fullname": "Beata Maria da Encarnação Bárbara Acarie, religiosa"
+    },
+    "mary_of_the_incarnation_marie_guyart_religious": {
+      "fullname": "Santa Maria da Encarnação Maria Guyart, religiosa"
+    },
+    "mary_of_the_providence_eugenie_smet_virgin": {
+      "fullname": "Beata Maria da Providência Eugênia Smet, virgem"
+    },
+    "mary_of_the_sacred_heart_sophie_therese_de_soubiran_la_louviere_virgin": {
+      "fullname": "Beata Maria Teresa de Soubiran La Louvière, virgem"
+    },
+    "maternus_of_cologne_bishop": {
+      "fullname": "São Materno, bispo"
+    },
+    "maternus_of_cologne_valerius_of_trier_and_eucharius_of_trier_bishops": {
+      "fullname": "Santos Materno, Valério e Eucário, bispos"
+    },
+    "matthew_apostle": {
+      "fullname": "São Mateus, apóstolo e evangelista"
+    },
+    "matthias_apostle": {
+      "fullname": "São Matias, apóstolo"
+    },
+    "maximilian_mary_raymund_kolbe_priest": {
+      "fullname": "São Maximiliano Maria Kolbe, presbítero e mártir"
+    },
+    "mederic_of_autun_and_droctoveus_of_autun_abbots": {
+      "fullname": "Santos Mederico e Droctoveo, abades"
+    },
+    "michael_gabriel_and_raphael_archangels": {
+      "fullname": "Santos Miguel, Gabriel e Rafael, arcanjos"
+    },
+    "modestus_andlauer_and_andrew_bauer_martyrs": {
+      "fullname": "Santos Modesto Andlauer e André Bauer, mártires"
+    },
+    "modestus_andlauer_martyr": {
+      "fullname": "São Modesto Andlauer, mártir"
+    },
+    "monica_of_hippo": {
+      "fullname": "Santa Mônica de Hipona"
+    },
+    "morand_of_cluny_monk": {
+      "fullname": "São Morando, monge"
+    },
+    "most_holy_body_and_blood_of_christ": {
+      "fullname": "Corpus Christi"
+    },
+    "most_holy_name_of_jesus": {
+      "fullname": "Santíssimo Nome de Jesus"
+    },
+    "most_holy_name_of_mary": {
+      "fullname": "Santíssimo Nome de Maria"
+    },
+    "most_holy_trinity": {
+      "fullname": "Santíssima Trindade"
+    },
+    "most_sacred_heart_of_jesus": {
+      "fullname": "Sagrado Coração de Jesus"
+    }
+  }
+}

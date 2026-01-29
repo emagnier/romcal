@@ -2,7 +2,6 @@
 title: Commands Reference
 ---
 
-
 Detailed documentation for all CLI commands.
 
 ## Global Options
@@ -17,7 +16,7 @@ These options are available for all commands:
 
 ## Preset Options
 
-Available on `date`, `calendar`, `masses`, `preset`, `bundle`, `entity`, and `search` commands:
+Available on `date`, `calendar`, `masses`, `preset`, `bundle`, `martyrology`, and `search` commands:
 
 ```
 -c, --calendar <NAME>           Calendar to use (default: general_roman)
@@ -88,7 +87,7 @@ romcal calendar 2025 -f json > calendar.json
 | Cycles     | `sunday_cycle`, `weekday_cycle`, `psalter_week`                                          |
 | Position   | `week_of_season`, `day_of_season`, `day_of_week`                                         |
 | Boundaries | `start_of_season`, `end_of_season`, `start_of_liturgical_year`, `end_of_liturgical_year` |
-| Metadata   | `commons`, `titles`, `entities`, `is_holy_day_of_obligation`, `is_optional`              |
+| Metadata   | `commons`, `titles`, `martyrology`, `is_holy_day_of_obligation`, `is_optional`           |
 
 ---
 
@@ -138,27 +137,27 @@ romcal list locales -f json        # Output as JSON
 
 ---
 
-## entity
+## martyrology
 
-Lookup a single entity by its exact ID.
+Lookup a single martyrology entry by its exact ID.
 
 ```bash
-romcal entity <ID> [OPTIONS]
+romcal martyrology <ID> [OPTIONS]
 ```
 
 **Examples:**
 
 ```bash
-romcal entity francis_of_assisi
-romcal entity francis_of_assisi -f json
-romcal entity our_lady_of_lourdes --locale fr
+romcal martyrology francis_of_assisi
+romcal martyrology francis_of_assisi -f json
+romcal martyrology our_lady_of_lourdes --locale fr
 ```
 
 ---
 
 ## search
 
-Fuzzy search for entities with filtering capabilities.
+Fuzzy search for martyrology entries with filtering capabilities.
 
 ```bash
 romcal search [TEXT] [OPTIONS]
@@ -168,7 +167,7 @@ romcal search [TEXT] [OPTIONS]
 
 | Option        | Description                                    |
 | ------------- | ---------------------------------------------- |
-| `--type`      | Filter by entity type (SAINT, BLESSED)         |
+| `--type`      | Filter by entry type (PERSON, PLACE, etc.)     |
 | `--sex`       | Filter by sex (MALE, FEMALE)                   |
 | `--level`     | Filter by canonization level                   |
 | `--title`     | Filter by title(s) - can be repeated           |

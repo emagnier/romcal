@@ -1,0 +1,111 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "pt-br",
+  "martyrology": {
+    "jacinta_marto_and_francisco_marto": {
+      "fullname": "Santos Francisco Marto e Jacinta Marto"
+    },
+    "james_apostle": {
+      "fullname": "São Tiago, Apóstolo"
+    },
+    "jane_frances_de_chantal_religious": {
+      "fullname": "Santa Joana Francisca de Chantal, religiosa"
+    },
+    "januarius_i_of_benevento_bishop": {
+      "fullname": "São Januário, bispo e mártir"
+    },
+    "jerome_emiliani": {
+      "fullname": "São Jerônimo Emiliani"
+    },
+    "jerome_of_stridon_priest": {
+      "fullname": "São Jerônimo, presbítero e doutor da Igreja"
+    },
+    "joachim_and_anne_parents_of_mary": {
+      "fullname": "Santos Joaquim e Ana, pais da Virgem Santa Maria"
+    },
+    "joan_of_portugal_virgin": {
+      "fullname": "Beata Joana de Portugal, virgem"
+    },
+    "john_apostle": {
+      "fullname": "São João, apóstolo e evangelista"
+    },
+    "john_baptist_de_la_salle_priest": {
+      "fullname": "São João Batista de La Salle, presbítero"
+    },
+    "john_bosco_priest": {
+      "fullname": "São João Bosco, presbítero"
+    },
+    "john_chrysostom_bishop": {
+      "fullname": "São João Crisóstomo, bispo e doutor da Igreja"
+    },
+    "john_damascene_priest": {
+      "fullname": "São João Damasceno, presbítero e doutor da Igreja"
+    },
+    "john_de_brebeuf_isaac_jogues_priests_and_companions_martyrs": {
+      "fullname": "Santos João de Brébeuf, Isaac Jogues, presbíteros, e Companheiros, mártires"
+    },
+    "john_de_britto_priest": {
+      "fullname": "São João de Brito, presbítero e mártir"
+    },
+    "john_eudes_priest": {
+      "fullname": "São João Eudes, presbítero"
+    },
+    "john_fisher_bishop_and_thomas_more_martyrs": {
+      "fullname": " Santos João Fisher, bispo, e Tomás Moro, mártires"
+    },
+    "john_i_pope": {
+      "fullname": "São João I, papa e mártir"
+    },
+    "john_leonardi_priest": {
+      "fullname": "São João Leonardi, presbítero"
+    },
+    "john_mary_vianney_priest": {
+      "fullname": "São João Maria Vianney, presbítero"
+    },
+    "john_of_avila_priest": {
+      "fullname": "São João De Ávila, presbítero e doutor da Igreja"
+    },
+    "john_of_capistrano_priest": {
+      "fullname": "São João de Capistrano, presbítero"
+    },
+    "john_of_god_duarte_cidade_religious": {
+      "fullname": "São João de Deus, religioso"
+    },
+    "john_of_kanty_priest": {
+      "fullname": "São João de Kenty, presbítero"
+    },
+    "john_of_the_cross_priest": {
+      "fullname": "São João da Cruz, presbítero e doutor da Igreja"
+    },
+    "john_paul_ii_pope": {
+      "fullname": "Papa São João Paulo II"
+    },
+    "john_xxiii_pope": {
+      "fullname": "Papa São João XXIII"
+    },
+    "josaphat_kuntsevych_bishop": {
+      "fullname": "São Josafa Kuncewicz, bispo"
+    },
+    "joseph_de_anchieta_priest": {
+      "fullname": "São José de Anchieta, presbítero"
+    },
+    "joseph_of_calasanz_priest": {
+      "fullname": "São José de Calasanz, presbítero"
+    },
+    "joseph_spouse_of_mary": {
+      "fullname": "São José, esposo de Maria"
+    },
+    "joseph_the_worker": {
+      "fullname": "São José Operário"
+    },
+    "josephine_bakhita_virgin": {
+      "fullname": "Santa Josefina Bakhita, virgem"
+    },
+    "juan_diego_cuauhtlatoatzin": {
+      "fullname": "São João Diogo Cuauhtlatoatzin"
+    },
+    "justin_martyr": {
+      "fullname": "São Justino, mártir"
+    }
+  }
+}

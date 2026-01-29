@@ -1,0 +1,81 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "pt-br",
+  "martyrology": {
+    "odile_of_alsace_abbess": {
+      "fullname": "Santa Odília, abadessa"
+    },
+    "odile_of_alsace_abbess_patroness_of_alsace": {
+      "fullname": "Santa Odília, abadessa, patrona da Alsácia"
+    },
+    "our_lady_help_of_christians": {
+      "fullname": "Nossa Senhora, Auxílio dos Cristãos"
+    },
+    "our_lady_mediatrix_of_all_grace": {
+      "fullname": "Nossa Senhora, Medianeira de todas as Graças"
+    },
+    "our_lady_mother_of_divine_providence_patroness_of_puerto_rico": {
+      "fullname": "Nossa Senhora, Mãe da Divina Providência"
+    },
+    "our_lady_of_aparecida": {
+      "fullname": "Nossa Senhora da Conceição Aparecida"
+    },
+    "our_lady_of_aparecida_patroness_of_brazil": {
+      "fullname": "Nossa Senhora Aparecida"
+    },
+    "our_lady_of_china": {
+      "fullname": "Nossa Senhora da China"
+    },
+    "our_lady_of_fatima": {
+      "fullname": "Nossa Senhora de Fatima"
+    },
+    "our_lady_of_good_counsel": {
+      "fullname": "Nossa Senhora do Bom Conselho"
+    },
+    "our_lady_of_guadalupe": {
+      "fullname": "Nossa Senhora de Guadalupe"
+    },
+    "our_lady_of_hungary_patroness_of_hungary": {
+      "fullname": "Nossa Senhora da Hungria"
+    },
+    "our_lady_of_loreto": {
+      "fullname": "Nossa Senhora de Loreto"
+    },
+    "our_lady_of_lourdes": {
+      "fullname": "Nossa Senhora de Lourdes"
+    },
+    "our_lady_of_lujan_patroness_of_argentina": {
+      "fullname": "Nossa Senhora de Luján, padroeira da Argentina"
+    },
+    "our_lady_of_mount_carmel": {
+      "fullname": "Nossa Senhora do Monte Carmelo"
+    },
+    "our_lady_of_perpetual_help": {
+      "fullname": "Nossa Senhora do Perpétuo Socorro"
+    },
+    "our_lady_of_sorrows": {
+      "fullname": "Nossa Senhora das Dores"
+    },
+    "our_lady_of_the_gate_of_dawn": {
+      "fullname": "Nossa Senhora da Porta da Aurora"
+    },
+    "our_lady_of_the_miraculous_medal": {
+      "fullname": "Nossa Senhora da Medalha Milagrosa"
+    },
+    "our_lady_of_the_pillar": {
+      "fullname": "Nossa Senhora do Pilar"
+    },
+    "our_lady_of_the_rosary": {
+      "fullname": "Nossa Senhora do Rosário"
+    },
+    "our_lady_queen_of_peace": {
+      "fullname": "Nossa Senhora Rainha da Paz"
+    },
+    "our_lady_refuge_of_sinners": {
+      "fullname": "Nossa Senhora, Refúgio dos Pecadores"
+    },
+    "our_lord_jesus_christ_king_of_the_universe": {
+      "fullname": "Cristo Rei do Universo"
+    }
+  }
+}

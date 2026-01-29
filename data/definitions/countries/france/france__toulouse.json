@@ -33,7 +33,7 @@
         "month": 5,
         "date": 20
       },
-      "entities": [
+      "martyrology": [
         "hilarius_of_toulouse_bishop",
         "sylvius_of_toulouse_bishop"
       ]
@@ -44,7 +44,7 @@
         "month": 5,
         "date": 29
       },
-      "entities": [
+      "martyrology": [
         "raymond_costeran_martyr",
         "companions_martyrs"
       ]

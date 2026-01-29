@@ -202,7 +202,7 @@ The plugin generates an optimized bundle at build time that includes:
 
 1. **Calendar definitions**: Only the calendars in the hierarchy (e.g., `france` → `europe` → `general_roman`)
 2. **Resources**: Only the locales needed (e.g., `fr` → `en`)
-3. **Entities**: Only the martyrology items referenced by the selected calendars
+3. **Martyrology**: Only the martyrology entries referenced by the selected calendars
 
 This results in significantly smaller bundles compared to importing all data.
 

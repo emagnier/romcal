@@ -1,0 +1,69 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "la",
+  "martyrology": {
+    "rabanus_maurus_bishop": {
+      "fullname": "S. Rabani Mauri, episcopi"
+    },
+    "radim_of_gniezno_bishop": {
+      "fullname": "S. Radim, episcopi"
+    },
+    "rafqa_pietra_choboq_ar_rayes_virgin": {
+      "fullname": "S. Rafqa Petræ Choboq Ar-Rayès, virginis"
+    },
+    "raphael_chylinski_priest": {
+      "fullname": "B. Raphaelis Chyliński, presbyteri"
+    },
+    "raphael_guizar_y_valencia_bishop": {
+      "fullname": "S. Raphaelis Guízar Valencia, episcopi"
+    },
+    "raphael_of_saint_joseph_kalinowski_priest": {
+      "fullname": "S. Raphaelis a Sancto Ioseph Kalinowski, presbyteri"
+    },
+    "raymond_of_penyafort_priest": {
+      "fullname": "S. Raimundi de Penyafort, presbyteri"
+    },
+    "remigius_of_reims_bishop": {
+      "fullname": "S. Remigii, episcopi"
+    },
+    "richard_gwyn_martyr": {
+      "fullname": "S. Richardi Gwyn, martyris"
+    },
+    "richard_of_chichester_bishop": {
+      "fullname": "S. Richardi Cicestriæ, episcopi"
+    },
+    "richardis_of_swabia_empress": {
+      "fullname": "S. Richardis, imperatricis"
+    },
+    "rita_of_cascia_religious": {
+      "fullname": "S. Ritæ de Cascia, religiosæ"
+    },
+    "robert_bellarmine_bishop": {
+      "fullname": "S. Roberti Bellarmini, episcopi et Ecclesiæ doctoris"
+    },
+    "roch_gonzalez_alphonsus_rodriguez_and_john_del_castillo_priests": {
+      "fullname": "Ss. Rochi González, Alfonsi Rodríguez et Ioannis del Castillo, presbyterorum et martyrum"
+    },
+    "roch_of_montpellier": {
+      "fullname": "S. Rochi"
+    },
+    "romuald_of_ravenna_abbot": {
+      "fullname": "S. Romualdi, abbatis"
+    },
+    "rosalie_jeanne_marie_rendu_virgin": {
+      "fullname": "B. Rosaliæ Rendu, virginis"
+    },
+    "rose_of_lima_virgin": {
+      "fullname": "S. Rosæ de Lima, virginis"
+    },
+    "rose_of_lima_virgin_copatroness_of_the_philippines": {
+      "fullname": "S. Rosæ de Lima, virginis, patronæ secundariæ Insularum Philippinæ"
+    },
+    "rose_philippine_duchesne_virgin": {
+      "fullname": "S. Rosæ Philippinæ Duchesne, virginis"
+    },
+    "rupert_of_salzburg_and_virgilius_of_salzburg_bishops": {
+      "fullname": "Ss. Ruperti et Virgilii Salisburgensis, episcoporum"
+    }
+  }
+}

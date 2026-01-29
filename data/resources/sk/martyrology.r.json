@@ -1,0 +1,69 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "sk",
+  "martyrology": {
+    "rabanus_maurus_bishop": {
+      "fullname": "Svätého Rabana Maura, biskupa"
+    },
+    "radim_of_gniezno_bishop": {
+      "fullname": "Svätého Radima, biskupa"
+    },
+    "rafqa_pietra_choboq_ar_rayes_virgin": {
+      "fullname": "Svätej Rebeky Petry Choboq Ar-Rayès, panny"
+    },
+    "raphael_chylinski_priest": {
+      "fullname": "Blahoslaveného Rafaela Chylinského, kňaza"
+    },
+    "raphael_guizar_y_valencia_bishop": {
+      "fullname": "Svätého Rafaela Guízara, biskupa"
+    },
+    "raphael_of_saint_joseph_kalinowski_priest": {
+      "fullname": "Svätého Rafaela od svätého Jozefa Kalinowského, kňaza"
+    },
+    "raymond_of_penyafort_priest": {
+      "fullname": " Svätého Rajmunda z Peňafortu, kňaza"
+    },
+    "remigius_of_reims_bishop": {
+      "fullname": "Svätého Remígia, biskupa"
+    },
+    "richard_gwyn_martyr": {
+      "fullname": "Svätého Richarda Gwyna, mučeníka"
+    },
+    "richard_of_chichester_bishop": {
+      "fullname": " Svätého Richarda z Chichesteru, biskupa"
+    },
+    "richardis_of_swabia_empress": {
+      "fullname": "Svätej Richardy, cisárovnej"
+    },
+    "rita_of_cascia_religious": {
+      "fullname": "Svätej Rity z Cascie, rehoľníčky"
+    },
+    "robert_bellarmine_bishop": {
+      "fullname": "Svätého Róberta Bellarmína, biskupa a učiteľa Cirkvi"
+    },
+    "roch_gonzalez_alphonsus_rodriguez_and_john_del_castillo_priests": {
+      "fullname": "Svätého Rochusa Gonzáleza, Alfonza Rodrígueza Olmeda a Jána del Castilla, kňazov a mučeníkov"
+    },
+    "roch_of_montpellier": {
+      "fullname": "Svätého Rocha"
+    },
+    "romuald_of_ravenna_abbot": {
+      "fullname": "Svätého Romualda, opáta"
+    },
+    "rosalie_jeanne_marie_rendu_virgin": {
+      "fullname": "Blahoslavenej Rozálie Renduovej, panny"
+    },
+    "rose_of_lima_virgin": {
+      "fullname": "Svätej Ruženy Limskej, panny"
+    },
+    "rose_of_lima_virgin_copatroness_of_the_philippines": {
+      "fullname": "Svätej Ruženy Limskej, panny, patrónky Filipín"
+    },
+    "rose_philippine_duchesne_virgin": {
+      "fullname": "Svätej Ruženy Filipíny Duchesne, panny"
+    },
+    "rupert_of_salzburg_and_virgilius_of_salzburg_bishops": {
+      "fullname": "Svätých Ruperta a Virgila zo Salzburgu, biskupov"
+    }
+  }
+}

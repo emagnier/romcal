@@ -1,0 +1,120 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "la",
+  "martyrology": {
+    "fabian_i_pope": {
+      "fullname": "S. Fabiani, papæ et martyris"
+    },
+    "fachanan_of_kilfenora_bishop": {
+      "fullname": "S. Fachanani Finaborensis, episcopi"
+    },
+    "fachtna_of_rosscarbery_bishop": {
+      "fullname": "S. Fachanani, episcopi"
+    },
+    "faustina_kowalska_virgin": {
+      "fullname": "S. Faustinæ Kowalska, virginis"
+    },
+    "ferdinand_iii_of_castile": {
+      "fullname": "S. Ferdinandi"
+    },
+    "fiacre_of_breuil_monk": {
+      "fullname": "S. Fiacrii, monachi"
+    },
+    "fidelis_of_sigmaringen_priest": {
+      "fullname": "S. Fidelis a Sigmaringen, presbyteri et martyris"
+    },
+    "finbarr_of_cork_bishop": {
+      "fullname": "S. Barri Corcagie, episcopi"
+    },
+    "finding_of_the_holy_cross": {
+      "fullname": "In Inventione Sanctæ Crucis"
+    },
+    "finnian_of_clonard_bishop": {
+      "fullname": "S. Finniani Clonardensis, episcopi"
+    },
+    "fintan_of_clonenagh_abbot": {
+      "fullname": "S. Fintani, abbatis"
+    },
+    "first_martyrs_of_the_holy_roman_church": {
+      "fullname": "Ss. Protomartyrum S. Romanæ Ecclesiæ"
+    },
+    "first_polish_martyrs": {
+      "fullname": "Ss. Benedicti, Ioannis, Matthæi, Isaac, Christiani, martyrum"
+    },
+    "five_wounds_of_the_lord": {
+      "fullname": "Ss.mi D. N. I. C. quinque vulneribus"
+    },
+    "flannan_of_killaloe_bishop": {
+      "fullname": "S. Flannani, episcopi"
+    },
+    "florentius_of_strasbourg_bishop": {
+      "fullname": "S. Florentii Florentii Argentinensis, episcopi"
+    },
+    "florian_of_lorch_and_companions_martyrs": {
+      "fullname": "Ss. Floriani et sociorum, martyrum"
+    },
+    "florian_of_lorch_martyr": {
+      "fullname": "S. Floriani, martyris"
+    },
+    "frances_of_rome_religious": {
+      "fullname": "S. Franciscæ Romanæ, religiosæ"
+    },
+    "frances_xavier_cabrini_virgin": {
+      "fullname": "S. Franciscæ Xaveriæ Cabrini, virginis"
+    },
+    "francis_borgia_priest": {
+      "fullname": "S. Francisci Borgia, presbyteri"
+    },
+    "francis_de_sales_bishop": {
+      "fullname": "S. Francisci de Sales, episcopi et Ecclesiæ doctoris"
+    },
+    "francis_diaz_del_rincon_priest_and_companions_martyrs": {
+      "fullname": "Ss. Francisci Diaz, presbyteri, et sociorum, martyrum"
+    },
+    "francis_ferdinand_de_capillas_priest": {
+      "fullname": "S. Francisci Fernández de Capillas, presbyteri et martyris"
+    },
+    "francis_of_assisi": {
+      "fullname": "S. Francisci Assisiensis"
+    },
+    "francis_of_assisi_patron_of_italy": {
+      "fullname": "S. Francisci Assisiensis, patroni Italiæ"
+    },
+    "francis_of_paola_hermit": {
+      "fullname": "S. Francisci de Paola, eremitæ"
+    },
+    "francis_solanus_priest": {
+      "fullname": "S. Francisci Solani, presbyteri"
+    },
+    "francis_xavier_priest": {
+      "fullname": "S. Francisci Xavier, presbyteri"
+    },
+    "francis_xavier_seelos_priest": {
+      "fullname": "B. Francisci Xaverii Seelos, presbyteri"
+    },
+    "francois_de_montmorency_laval_bishop": {
+      "fullname": "S. Francisci de Montmorency-Laval, episcopi"
+    },
+    "frederic_janssoone_priest": {
+      "fullname": "B. Friderici Janssoone, presbyteri"
+    },
+    "frederic_ozanam_founder": {
+      "fullname": "B. Friderici Ozanam, fundatoris"
+    },
+    "friday_of_the_passion_of_the_lord": {
+      "fullname": "Feria VI in Passione Domini"
+    },
+    "fridolin_of_sackingen_monk": {
+      "fullname": "S. Fridolini, monachi"
+    },
+    "fructuosus_of_braga_martin_of_braga_and_gerald_of_braga_bishops": {
+      "fullname": "Ss. Fructuosi, Martini et Geraldi Bracarensis, episcoporum"
+    },
+    "fructuosus_of_tarragona_bishop_and_augurius_of_tarragona_and_eulogius_of_tarragona_deacons_martyrs": {
+      "fullname": "Ss. Fructuosi, episcopi, Augurii et Eulogii, diaconorum, martyrum"
+    },
+    "fursa_of_peronne_abbot": {
+      "fullname": "S. Fursei, abbatis"
+    }
+  }
+}

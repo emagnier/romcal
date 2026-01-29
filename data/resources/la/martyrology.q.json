@@ -1,0 +1,12 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "la",
+  "martyrology": {
+    "queenship_of_the_blessed_virgin_mary": {
+      "fullname": "B. Mariæ Virginis Reginæ"
+    },
+    "quirinus_of_sescia_bishop": {
+      "fullname": "S. Quirini Sisciensis, episcopi"
+    }
+  }
+}

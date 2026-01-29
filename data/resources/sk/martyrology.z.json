@@ -1,0 +1,21 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "sk",
+  "martyrology": {
+    "zdenka_cecilia_schelingova_virgin": {
+      "fullname": "Blahoslavenej Zdenky Cecílie Schelingovej, panny a mučenice"
+    },
+    "zdislava_of_lemberk": {
+      "fullname": "Svätej Zdislavy"
+    },
+    "zepherin_namuncura": {
+      "fullname": "Blahoslaveného Zefirína Namuncurá"
+    },
+    "zoltan_lajos_meszlenyi_bishop": {
+      "fullname": "Blahoslaveného Zoltána Ľudovíta Meszlényiho, biskupa a mučeníka"
+    },
+    "zygmunt_gorazdowski_priest": {
+      "fullname": "Svätého Žigmunda Gorazdowského, kňaza"
+    }
+  }
+}

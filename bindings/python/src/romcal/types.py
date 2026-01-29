@@ -205,7 +205,7 @@ class CommonDefinition(Enum):
 class Title(Enum):
     """
     Titles and patronages associated with saints and blessed.
-    Represents the various ecclesiastical titles and patronages that can be assigned to entities.
+    Represents the various ecclesiastical titles and patronages that can be assigned to martyrology entries.
     """
 
     abbess = "abbess"
@@ -301,7 +301,7 @@ class CompoundTitle(BaseModel):
 class SaintCount1(RootModel[int]):
     root: Annotated[int, Field(ge=0, title="SaintCount")]
     """
-    Represents the number of saints for an entity or a group of entities.
+    Represents the number of saints for an entry or a group of entries.
 
     Can be either a specific number (u32) or "many" to indicate
     an indeterminate number of saints.
@@ -320,7 +320,7 @@ class SaintCount1(RootModel[int]):
 class SaintCount(RootModel[SaintCount1 | str | None]):
     root: Annotated[SaintCount1 | str | None, Field(title="SaintCount")]
     """
-    Represents the number of saints for an entity or a group of entities.
+    Represents the number of saints for an entry or a group of entries.
 
     Can be either a specific number (u32) or "many" to indicate
     an indeterminate number of saints.
@@ -816,10 +816,10 @@ class CyclesMetadata(BaseModel):
     """
 
 
-class EntityType(Enum):
+class MartyrologyEntryType(Enum):
     """
-    The type of entity in the liturgical calendar.
-    Defines whether the entity represents a person, place, or event.
+    The type of entry in the Roman Martyrology.
+    Defines whether the entry represents a person, place, or event.
     """
 
     person = "person"
@@ -1596,11 +1596,13 @@ class MassInfo(BaseModel):
     """
 
 
-class Entity(BaseModel):
+class MartyrologyEntry(BaseModel):
     """
-    An entity with a guaranteed ID.
+    An entry in the Roman Martyrology with a guaranteed ID.
 
-    This struct is used for entities that have been resolved from the resources,
+    This struct represents a saint, blessed, church dedication, or event
+    from the official catalog of the Catholic Church.
+    It is used for entries that have been resolved from the resources,
     where the ID is always present (e.g., in search results, liturgical days).
     """
 
@@ -1609,19 +1611,19 @@ class Entity(BaseModel):
     )
     id: str
     """
-    The unique identifier of the entity (required)
+    The unique identifier of the entry (required)
     """
-    type: EntityType
+    type: MartyrologyEntryType
     """
-    The type of the entity.
+    The type of the entry.
     """
     fullname: str | None = None
     """
-    The full name of the entity.
+    The full name of the entry.
     """
     name: str | None = None
     """
-    The short name of the entity, without the canonization level and titles.
+    The short name of the entry, without the canonization level and titles.
     """
     canonization_level: CanonizationLevel | None = None
     """
@@ -1685,7 +1687,7 @@ class Entity(BaseModel):
     """
     sources: list[str] | None = None
     """
-    Sources for the information about this entity.
+    Sources for the information about this entry.
     """
 
 
@@ -1726,9 +1728,9 @@ class CelebrationSummary(BaseModel):
     """
     The common prayers/readings used for this celebration
     """
-    entities: list[Entity]
+    martyrology: list[MartyrologyEntry]
     """
-    The entities (Saints, Blessed, or Places) linked to this liturgical day
+    The martyrology entries (Saints, Blessed, or Places) linked to this liturgical day
     """
     titles: TitlesDef
     """
@@ -1878,9 +1880,9 @@ class MassContext(BaseModel):
     """
     The common prayers/readings used
     """
-    entities: list[Entity]
+    martyrology: list[MartyrologyEntry]
     """
-    The entities (Saints, Blessed, or Places) linked to this day
+    The martyrology entries (Saints, Blessed, or Places) linked to this day
     """
     titles: TitlesDef
     """
@@ -1924,10 +1926,10 @@ class DateDefException(BaseModel):
     """
 
 
-class EntityOverride(BaseModel):
+class MartyrologyEntryOverride(BaseModel):
     """
-    Custom entity definition that extends or overrides properties from the entity catalog.
-    Used when a liturgical day needs specific entity properties that differ from the base entity.
+    Custom martyrology entry definition that extends or overrides properties from the martyrology catalog.
+    Used when a liturgical day needs specific entry properties that differ from the base entry.
     """
 
     model_config = ConfigDict(
@@ -1935,19 +1937,19 @@ class EntityOverride(BaseModel):
     )
     id: str
     """
-    The ID of the entity item (must reference an existing entity in the catalog)
+    The ID of the martyrology entry (must reference an existing entry in the catalog)
     """
     titles: TitlesDef | None = None
     """
-    The custom titles for this entity in the context of this liturgical day
+    The custom titles for this entry in the context of this liturgical day
     """
     hide_titles: bool | None = None
     """
-    Whether to hide titles when displaying this entity (useful when titles are already included in the entity name)
+    Whether to hide titles when displaying this entry (useful when titles are already included in the entry name)
     """
     count: SaintCount | None = None
     """
-    The number of persons this entity represents (useful for groups of martyrs or saints)
+    The number of persons this entry represents (useful for groups of martyrs or saints)
     """
 
 
@@ -2052,23 +2054,30 @@ class ResourcesMetadata(BaseModel):
     """
 
 
-class EntityDefinition(BaseModel):
+class MartyrologyEntryDef(BaseModel):
+    """
+    Definition of an entry in the Roman Martyrology.
+
+    A martyrology entry represents a person (saint, blessed), place (church, shrine),
+    or event in the official catalog of the Catholic Church.
+    """
+
     model_config = ConfigDict(
         extra="forbid",
     )
-    type: EntityType | None = "person"
+    type: MartyrologyEntryType | None = "person"
     """
-    The type of the entity.
+    The type of the martyrology entry.
 
-    Defaults to `EntityType::Person`.
+    Defaults to `MartyrologyEntryType::Person`.
     """
     fullname: str | None = None
     """
-    The full name of the entity.
+    The full name of the entry.
     """
     name: str | None = None
     """
-    The short name of the entity, without the canonization level and titles.
+    The short name of the entry, without the canonization level and titles.
     """
     canonization_level: CanonizationLevel | None = None
     """
@@ -2145,7 +2154,7 @@ class EntityDefinition(BaseModel):
     """
     sources: list[str] | None = None
     """
-    Sources for the information about this entity
+    Sources for the information about this entry
     """
     field_todo: Annotated[list[str] | None, Field(alias="_todo")] = None
     """
@@ -2225,9 +2234,9 @@ class Resources(BaseModel):
     """
     Metadata of the resources
     """
-    entities: dict[str, Any] | None = None
+    martyrology: dict[str, Any] | None = None
     """
-    Entities of the resources: a person, a place, an event, etc.
+    Martyrology entries: saints, blessed, places, events from the Roman Martyrology
     """
 
 
@@ -2318,9 +2327,9 @@ class LiturgicalDay(BaseModel):
     """
     The titles for this liturgical day.
     """
-    entities: list[Entity]
+    martyrology: list[MartyrologyEntry]
     """
-    The entities (Saints, Blessed, or Places) linked to this liturgical day.
+    The martyrology entries (Saints, Blessed, or Places) linked to this liturgical day.
     """
     week_of_season: Annotated[int | None, Field(ge=0)] = None
     """
@@ -2405,11 +2414,11 @@ class DateDefExceptions(RootModel[DateDefException | list[DateDefException]]):
     """
 
 
-class EntityRef(RootModel[str | EntityOverride]):
-    root: str | EntityOverride
+class MartyrologyRef(RootModel[str | MartyrologyEntryOverride]):
+    root: str | MartyrologyEntryOverride
     """
-    A reference to an entity in the entity catalog.
-    Can either reference an existing entity by ID or define a custom entity with additional properties.
+    A reference to an entry in the martyrology catalog.
+    Can either reference an existing entry by ID or define a custom entry with additional properties.
     """
 
 
@@ -2417,7 +2426,7 @@ class DayDefinition(BaseModel):
     """
     Definition of a liturgical day with all its properties and configurations.
     It represents a complete liturgical day definition that can be used
-    to generate calendar entries with proper precedence, colors, and entity associations.
+    to generate calendar entries with proper precedence, colors, and martyrology associations.
     """
 
     model_config = ConfigDict(
@@ -2467,13 +2476,13 @@ class DayDefinition(BaseModel):
     """
     The custom locale ID for this date definition in this calendar
     """
-    entities: list[EntityRef] | None = None
+    martyrology: list[MartyrologyRef] | None = None
     """
-    The entities (Saints, Blessed, or Places) linked from the Entity catalog
+    The martyrology entries (Saints, Blessed, or Places) linked from the martyrology catalog
     """
     titles: TitlesDef | None = None
     """
-    The combined titles of all entities linked to this date definition
+    The combined titles of all entries linked to this date definition
     """
     drop: bool | None = None
     """
@@ -2484,7 +2493,7 @@ class DayDefinition(BaseModel):
     """
     The liturgical color(s) of the liturgical day.
 
-    **Deprecated:** Rely on the `titles` field of entities instead to determine the liturgical color(s).
+    **Deprecated:** Rely on the `titles` field of entries instead to determine the liturgical color(s).
     """
     masses: MassesDefinitions | None = None
     """

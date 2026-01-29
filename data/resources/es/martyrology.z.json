@@ -1,0 +1,9 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "es",
+  "martyrology": {
+    "zepherin_namuncura": {
+      "fullname": "Beato Ceferino Namuncurá"
+    }
+  }
+}

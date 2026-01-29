@@ -24,8 +24,8 @@
 use serde_json::Value;
 use std::collections::{HashMap, HashSet};
 
-use crate::entity_resolution::locale::get_all_parent_locales;
-use crate::types::entity::EntityDefinition;
+use crate::martyrology_resolution::locale::get_all_parent_locales;
+use crate::types::martyrology::MartyrologyEntryDef;
 use crate::types::resource::{
     AdventSeason, ChristmasTimeSeason, CyclesMetadata, EasterTimeSeason, LentSeason, LocaleColors,
     OrdinaryTimeSeason, PaschalTriduumSeason, PeriodsMetadata, RanksMetadata, ResourcesMetadata,
@@ -40,14 +40,14 @@ use crate::{CalendarDefinition, Resources, Romcal, RomcalError, RomcalResult};
 /// Maps lowercase locale to original case (for case-insensitive lookup).
 type LocaleMap = HashMap<String, String>;
 
-/// Set of IDs (entities, calendars, etc.).
+/// Set of IDs (martyrology entries, calendars, etc.).
 type IdSet = HashSet<String>;
 
 /// Set of property names for tracking defined properties during deduplication.
 type PropertySet = HashSet<String>;
 
-/// Maps entity ID to its set of defined properties across locales.
-type EntityPropertiesMap = HashMap<String, PropertySet>;
+/// Maps martyrology entry ID to its set of defined properties across locales.
+type MartyrologyPropertiesMap = HashMap<String, PropertySet>;
 
 // ============================================================================
 // Main Entry Point
@@ -240,14 +240,18 @@ fn filter_resources(
             ))
         })?;
 
-    // Collect entity IDs used in calendar definitions
-    let used_entity_ids = collect_used_entity_ids(filtered_calendars);
+    // Collect martyrology entry IDs used in calendar definitions
+    let used_martyrology_ids = collect_used_martyrology_ids(filtered_calendars);
 
     // Build locale priority: specific → general → en
     let priority_locales = build_priority_locales(target_locale, &available_locales, &exact_locale);
 
     // Apply hierarchical deduplication
-    apply_hierarchical_deduplication(priority_locales, &resources_by_locale, &used_entity_ids)
+    apply_hierarchical_deduplication(
+        priority_locales,
+        &resources_by_locale,
+        &used_martyrology_ids,
+    )
 }
 
 /// Build maps for efficient locale lookups.
@@ -294,23 +298,23 @@ fn build_priority_locales(
     locales
 }
 
-/// Collect all entity IDs referenced in calendar day definitions.
-fn collect_used_entity_ids(calendars: &[CalendarDefinition]) -> IdSet {
+/// Collect all martyrology entry IDs referenced in calendar day definitions.
+fn collect_used_martyrology_ids(calendars: &[CalendarDefinition]) -> IdSet {
     let mut ids = IdSet::new();
 
     for cal in calendars {
         for (day_id, day_def) in &cal.days_definitions {
-            // Day definition ID is itself a potential entity reference
+            // Day definition ID is itself a potential martyrology reference
             ids.insert(day_id.clone());
 
-            // Collect entity references
-            if let Some(entities) = &day_def.entities {
-                for entity_ref in entities {
-                    match entity_ref {
-                        crate::types::calendar::EntityRef::ResourceId(id) => {
+            // Collect martyrology references
+            if let Some(martyrology) = &day_def.martyrology {
+                for martyrology_ref in martyrology {
+                    match martyrology_ref {
+                        crate::types::calendar::MartyrologyRef::ResourceId(id) => {
                             ids.insert(id.clone());
                         }
-                        crate::types::calendar::EntityRef::Override(o) => {
+                        crate::types::calendar::MartyrologyRef::Override(o) => {
                             ids.insert(o.id.clone());
                         }
                     }
@@ -330,7 +334,7 @@ fn collect_used_entity_ids(calendars: &[CalendarDefinition]) -> IdSet {
 fn apply_hierarchical_deduplication(
     priority_locales: Vec<String>,
     resources_by_locale: &HashMap<&str, &Resources>,
-    used_entity_ids: &IdSet,
+    used_martyrology_ids: &IdSet,
 ) -> RomcalResult<Vec<Resources>> {
     // Build filtered resources list (specific → general)
     let mut resources: Vec<Resources> = priority_locales
@@ -338,63 +342,63 @@ fn apply_hierarchical_deduplication(
         .filter_map(|locale| {
             resources_by_locale.get(locale.as_str()).map(|r| {
                 let mut filtered = (*r).clone();
-                filter_entities_by_usage(&mut filtered, used_entity_ids);
+                filter_martyrology_by_usage(&mut filtered, used_martyrology_ids);
                 filtered
             })
         })
         .collect();
 
     // Apply property-level deduplication
-    deduplicate_entity_properties(&mut resources);
+    deduplicate_martyrology_properties(&mut resources);
     deduplicate_metadata_properties(&mut resources);
 
-    // Clean up empty entities
-    remove_empty_entities(&mut resources);
+    // Clean up empty martyrology entries
+    remove_empty_martyrology_entries(&mut resources);
 
     Ok(resources)
 }
 
-/// Filter entities to only include those referenced in calendar definitions.
-fn filter_entities_by_usage(resource: &mut Resources, used_ids: &IdSet) {
-    if let Some(entities) = &mut resource.entities {
-        entities.retain(|id, _| used_ids.contains(id));
+/// Filter martyrology entries to only include those referenced in calendar definitions.
+fn filter_martyrology_by_usage(resource: &mut Resources, used_ids: &IdSet) {
+    if let Some(martyrology) = &mut resource.martyrology {
+        martyrology.retain(|id, _| used_ids.contains(id));
     }
 }
 
 // ============================================================================
-// Entity Property-Level Deduplication
+// Martyrology Property-Level Deduplication
 // ============================================================================
 
-/// Deduplicate entity properties across locales.
+/// Deduplicate martyrology entry properties across locales.
 ///
-/// For each entity, if a property exists in a more specific locale,
+/// For each entry, if a property exists in a more specific locale,
 /// it is removed from parent locales. Resources must be ordered
 /// from most specific to most general.
-fn deduplicate_entity_properties(resources: &mut [Resources]) {
-    let mut defined_props: EntityPropertiesMap = HashMap::new();
+fn deduplicate_martyrology_properties(resources: &mut [Resources]) {
+    let mut defined_props: MartyrologyPropertiesMap = HashMap::new();
 
     for resource in resources.iter_mut() {
-        if let Some(entities) = &mut resource.entities {
-            for (entity_id, entity) in entities.iter_mut() {
-                let props = defined_props.entry(entity_id.clone()).or_default();
-                deduplicate_single_entity(entity, props);
+        if let Some(martyrology) = &mut resource.martyrology {
+            for (entry_id, entry) in martyrology.iter_mut() {
+                let props = defined_props.entry(entry_id.clone()).or_default();
+                deduplicate_single_entry(entry, props);
             }
         }
     }
 }
 
-/// Deduplicate properties of a single entity.
+/// Deduplicate properties of a single martyrology entry.
 ///
 /// For each property: if already defined in a more specific locale, set to None;
 /// otherwise if Some, mark as defined for parent locales.
-fn deduplicate_single_entity(entity: &mut EntityDefinition, defined: &mut PropertySet) {
+fn deduplicate_single_entry(entry: &mut MartyrologyEntryDef, defined: &mut PropertySet) {
     /// Macro to deduplicate a single Option field.
     /// If already defined → set to None. If Some → mark as defined.
     macro_rules! dedup {
         ($field:ident) => {
             if defined.contains(stringify!($field)) {
-                entity.$field = None;
-            } else if entity.$field.is_some() {
+                entry.$field = None;
+            } else if entry.$field.is_some() {
                 defined.insert(stringify!($field).to_string());
             }
         };
@@ -421,12 +425,12 @@ fn deduplicate_single_entity(entity: &mut EntityDefinition, defined: &mut Proper
     dedup!(sources);
 }
 
-/// Check if an entity has all properties set to None.
-fn is_entity_empty(entity: &EntityDefinition) -> bool {
+/// Check if a martyrology entry has all properties set to None.
+fn is_entry_empty(entry: &MartyrologyEntryDef) -> bool {
     /// Macro to check if a field is None.
     macro_rules! is_none {
         ($($field:ident),+) => {
-            $(entity.$field.is_none())&&+
+            $(entry.$field.is_none())&&+
         };
     }
 
@@ -454,11 +458,11 @@ fn is_entity_empty(entity: &EntityDefinition) -> bool {
     )
 }
 
-/// Remove entities where all properties are None after deduplication.
-fn remove_empty_entities(resources: &mut [Resources]) {
+/// Remove martyrology entries where all properties are None after deduplication.
+fn remove_empty_martyrology_entries(resources: &mut [Resources]) {
     for resource in resources.iter_mut() {
-        if let Some(entities) = &mut resource.entities {
-            entities.retain(|_, entity| !is_entity_empty(entity));
+        if let Some(martyrology) = &mut resource.martyrology {
+            martyrology.retain(|_, entry| !is_entry_empty(entry));
         }
     }
 }
@@ -724,36 +728,42 @@ fn remove_null_and_empty_values(value: Value) -> Value {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::types::calendar::{CalendarJurisdiction, CalendarType, DayDefinition, EntityRef};
-    use crate::types::entity::{EntityOverride, EntityType};
+    use crate::types::calendar::{
+        CalendarJurisdiction, CalendarType, DayDefinition, MartyrologyRef,
+    };
+    use crate::types::martyrology::{MartyrologyEntryOverride, MartyrologyEntryType};
 
     // ------------------------------------------------------------------------
     // Test Helpers
     // ------------------------------------------------------------------------
 
-    /// Create a test entity with specified properties.
-    fn entity(
+    /// Create a test martyrology entry with specified properties.
+    fn martyrology_entry(
         name: Option<&str>,
         fullname: Option<&str>,
-        entity_type: Option<EntityType>,
-    ) -> EntityDefinition {
-        EntityDefinition {
+        entry_type: Option<MartyrologyEntryType>,
+    ) -> MartyrologyEntryDef {
+        MartyrologyEntryDef {
             name: name.map(String::from),
             fullname: fullname.map(String::from),
-            r#type: entity_type,
+            r#type: entry_type,
             ..Default::default()
         }
     }
 
-    /// Create a Resources with a single entity.
-    fn resources_with_entity(locale: &str, entity_id: &str, e: EntityDefinition) -> Resources {
-        let mut entities = std::collections::BTreeMap::new();
-        entities.insert(entity_id.to_string(), e);
+    /// Create a Resources with a single martyrology entry.
+    fn resources_with_martyrology_entry(
+        locale: &str,
+        entry_id: &str,
+        e: MartyrologyEntryDef,
+    ) -> Resources {
+        let mut martyrology = std::collections::BTreeMap::new();
+        martyrology.insert(entry_id.to_string(), e);
         Resources {
             schema: None,
             locale: locale.to_string(),
             metadata: None,
-            entities: Some(entities),
+            martyrology: Some(martyrology),
         }
     }
 
@@ -763,7 +773,7 @@ mod tests {
             schema: None,
             locale: locale.to_string(),
             metadata: Some(metadata),
-            entities: None,
+            martyrology: None,
         }
     }
 
@@ -848,18 +858,18 @@ mod tests {
     }
 
     // ------------------------------------------------------------------------
-    // Entity Collection Tests
+    // Martyrology Collection Tests
     // ------------------------------------------------------------------------
 
     #[test]
-    fn test_collect_used_entity_ids() {
+    fn test_collect_used_martyrology_ids() {
         let mut days = std::collections::BTreeMap::new();
         days.insert(
             "saint_john".to_string(),
             DayDefinition {
-                entities: Some(vec![
-                    EntityRef::ResourceId("john_baptist".to_string()),
-                    EntityRef::Override(EntityOverride {
+                martyrology: Some(vec![
+                    MartyrologyRef::ResourceId("john_baptist".to_string()),
+                    MartyrologyRef::Override(MartyrologyEntryOverride {
                         id: "john_evangelist".to_string(),
                         titles: None,
                         hide_titles: None,
@@ -876,7 +886,7 @@ mod tests {
             ..calendar_def("test", vec![])
         };
 
-        let ids = collect_used_entity_ids(&[cal]);
+        let ids = collect_used_martyrology_ids(&[cal]);
 
         assert!(ids.contains("saint_john"));
         assert!(ids.contains("saint_peter"));
@@ -886,94 +896,139 @@ mod tests {
     }
 
     #[test]
-    fn test_filter_entities_by_usage() {
+    fn test_filter_martyrology_by_usage() {
         let mut res = Resources {
             schema: None,
             locale: "en".to_string(),
             metadata: None,
-            entities: Some({
+            martyrology: Some({
                 let mut m = std::collections::BTreeMap::new();
-                m.insert("used".to_string(), entity(Some("Used"), None, None));
-                m.insert("unused".to_string(), entity(Some("Unused"), None, None));
+                m.insert(
+                    "used".to_string(),
+                    martyrology_entry(Some("Used"), None, None),
+                );
+                m.insert(
+                    "unused".to_string(),
+                    martyrology_entry(Some("Unused"), None, None),
+                );
                 m
             }),
         };
 
         let used: IdSet = ["used"].iter().map(|s| s.to_string()).collect();
-        filter_entities_by_usage(&mut res, &used);
+        filter_martyrology_by_usage(&mut res, &used);
 
-        let entities = res.entities.unwrap();
-        assert_eq!(entities.len(), 1);
-        assert!(entities.contains_key("used"));
+        let martyrology = res.martyrology.unwrap();
+        assert_eq!(martyrology.len(), 1);
+        assert!(martyrology.contains_key("used"));
     }
 
     // ------------------------------------------------------------------------
-    // Entity Property Deduplication Tests
+    // Martyrology Property Deduplication Tests
     // ------------------------------------------------------------------------
 
     #[test]
-    fn test_deduplicate_entity_properties_hierarchy() {
+    fn test_deduplicate_martyrology_properties_hierarchy() {
         // fr-ca (specific) → fr (parent) → en (fallback)
         let mut resources = vec![
-            resources_with_entity("fr-ca", "john", entity(Some("Jean"), None, None)),
-            resources_with_entity(
+            resources_with_martyrology_entry(
+                "fr-ca",
+                "john",
+                martyrology_entry(Some("Jean"), None, None),
+            ),
+            resources_with_martyrology_entry(
                 "fr",
                 "john",
-                entity(Some("Jean"), Some("Jean le Baptiste"), None),
+                martyrology_entry(Some("Jean"), Some("Jean le Baptiste"), None),
             ),
-            resources_with_entity(
+            resources_with_martyrology_entry(
                 "en",
                 "john",
-                entity(
+                martyrology_entry(
                     Some("John"),
                     Some("John the Baptist"),
-                    Some(EntityType::Person),
+                    Some(MartyrologyEntryType::Person),
                 ),
             ),
         ];
 
-        deduplicate_entity_properties(&mut resources);
+        deduplicate_martyrology_properties(&mut resources);
 
         // fr-ca: keeps name (most specific)
-        let fr_ca = resources[0].entities.as_ref().unwrap().get("john").unwrap();
+        let fr_ca = resources[0]
+            .martyrology
+            .as_ref()
+            .unwrap()
+            .get("john")
+            .unwrap();
         assert!(fr_ca.name.is_some());
         assert!(fr_ca.fullname.is_none());
         assert!(fr_ca.r#type.is_none());
 
         // fr: name removed (in fr-ca), keeps fullname
-        let fr = resources[1].entities.as_ref().unwrap().get("john").unwrap();
+        let fr = resources[1]
+            .martyrology
+            .as_ref()
+            .unwrap()
+            .get("john")
+            .unwrap();
         assert!(fr.name.is_none());
         assert!(fr.fullname.is_some());
         assert!(fr.r#type.is_none());
 
         // en: name & fullname removed, keeps type
-        let en = resources[2].entities.as_ref().unwrap().get("john").unwrap();
+        let en = resources[2]
+            .martyrology
+            .as_ref()
+            .unwrap()
+            .get("john")
+            .unwrap();
         assert!(en.name.is_none());
         assert!(en.fullname.is_none());
         assert!(en.r#type.is_some());
     }
 
     #[test]
-    fn test_remove_empty_entities_after_dedup() {
+    fn test_remove_empty_martyrology_entries_after_dedup() {
         let mut resources = vec![
-            resources_with_entity("fr", "john", entity(Some("Jean"), None, None)),
-            resources_with_entity("en", "john", entity(Some("John"), None, None)),
+            resources_with_martyrology_entry(
+                "fr",
+                "john",
+                martyrology_entry(Some("Jean"), None, None),
+            ),
+            resources_with_martyrology_entry(
+                "en",
+                "john",
+                martyrology_entry(Some("John"), None, None),
+            ),
         ];
 
-        deduplicate_entity_properties(&mut resources);
-        remove_empty_entities(&mut resources);
+        deduplicate_martyrology_properties(&mut resources);
+        remove_empty_martyrology_entries(&mut resources);
 
         // fr: keeps john
-        assert!(resources[0].entities.as_ref().unwrap().contains_key("john"));
+        assert!(
+            resources[0]
+                .martyrology
+                .as_ref()
+                .unwrap()
+                .contains_key("john")
+        );
 
         // en: john removed (became empty)
-        assert!(!resources[1].entities.as_ref().unwrap().contains_key("john"));
+        assert!(
+            !resources[1]
+                .martyrology
+                .as_ref()
+                .unwrap()
+                .contains_key("john")
+        );
     }
 
     #[test]
-    fn test_is_entity_empty() {
-        // Create empty entity using helper (sets all to None via Default)
-        let mut empty = entity(None, None, None);
+    fn test_is_entry_empty() {
+        // Create empty martyrology entry using helper (sets all to None via Default)
+        let mut empty = martyrology_entry(None, None, None);
         // Ensure all properties are None
         empty.canonization_level = None;
         empty.date_of_canonization = None;
@@ -991,10 +1046,10 @@ mod tests {
         empty.date_of_death_is_approximative = None;
         empty.count = None;
         empty.sources = None;
-        assert!(is_entity_empty(&empty));
+        assert!(is_entry_empty(&empty));
 
-        let with_name = entity(Some("John"), None, None);
-        assert!(!is_entity_empty(&with_name));
+        let with_name = martyrology_entry(Some("John"), None, None);
+        assert!(!is_entry_empty(&with_name));
     }
 
     // ------------------------------------------------------------------------
@@ -1117,20 +1172,26 @@ mod tests {
     }
 
     // ------------------------------------------------------------------------
-    // Independent Entities Test
+    // Independent Martyrology Entries Test
     // ------------------------------------------------------------------------
 
     #[test]
-    fn test_deduplicate_independent_entities() {
+    fn test_deduplicate_independent_martyrology_entries() {
         let mut resources = vec![
             Resources {
                 schema: None,
                 locale: "fr".to_string(),
                 metadata: None,
-                entities: Some({
+                martyrology: Some({
                     let mut m = std::collections::BTreeMap::new();
-                    m.insert("john".to_string(), entity(Some("Jean"), None, None));
-                    m.insert("peter".to_string(), entity(Some("Pierre"), None, None));
+                    m.insert(
+                        "john".to_string(),
+                        martyrology_entry(Some("Jean"), None, None),
+                    );
+                    m.insert(
+                        "peter".to_string(),
+                        martyrology_entry(Some("Pierre"), None, None),
+                    );
                     m
                 }),
             },
@@ -1138,30 +1199,30 @@ mod tests {
                 schema: None,
                 locale: "en".to_string(),
                 metadata: None,
-                entities: Some({
+                martyrology: Some({
                     let mut m = std::collections::BTreeMap::new();
                     m.insert(
                         "john".to_string(),
-                        entity(Some("John"), Some("John the Baptist"), None),
+                        martyrology_entry(Some("John"), Some("John the Baptist"), None),
                     );
                     m.insert(
                         "peter".to_string(),
-                        entity(Some("Peter"), Some("Peter the Apostle"), None),
+                        martyrology_entry(Some("Peter"), Some("Peter the Apostle"), None),
                     );
                     m
                 }),
             },
         ];
 
-        deduplicate_entity_properties(&mut resources);
+        deduplicate_martyrology_properties(&mut resources);
 
         // fr: both keep name
-        let fr = resources[0].entities.as_ref().unwrap();
+        let fr = resources[0].martyrology.as_ref().unwrap();
         assert!(fr.get("john").unwrap().name.is_some());
         assert!(fr.get("peter").unwrap().name.is_some());
 
         // en: both lose name, keep fullname
-        let en = resources[1].entities.as_ref().unwrap();
+        let en = resources[1].martyrology.as_ref().unwrap();
         assert!(en.get("john").unwrap().name.is_none());
         assert!(en.get("john").unwrap().fullname.is_some());
         assert!(en.get("peter").unwrap().name.is_none());

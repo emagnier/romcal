@@ -5,8 +5,8 @@ use std::collections::BTreeMap;
 #[cfg(feature = "ts-bindings")]
 use ts_rs::TS;
 
-use crate::types::EntityId;
-use crate::types::entity::{CanonizationLevel, EntityDefinition};
+use crate::types::MartyrologyEntryId;
+use crate::types::martyrology::{CanonizationLevel, MartyrologyEntryDef};
 use crate::types::resource::ResourcesMetadata;
 
 /// Locale code of the resources, in BCP-47 IETF tag format
@@ -29,9 +29,9 @@ pub struct Resources {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub metadata: Option<ResourcesMetadata>,
 
-    /// Entities of the resources: a person, a place, an event, etc.
+    /// Martyrology entries: saints, blessed, places, events from the Roman Martyrology
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub entities: Option<BTreeMap<EntityId, EntityDefinition>>,
+    pub martyrology: Option<BTreeMap<MartyrologyEntryId, MartyrologyEntryDef>>,
 }
 
 impl Resources {
@@ -41,61 +41,61 @@ impl Resources {
             schema: None,
             locale,
             metadata: None,
-            entities: None,
+            martyrology: None,
         }
     }
 
-    /// Add an entity definition to the resources
-    pub fn add_entity(&mut self, id: EntityId, entity: EntityDefinition) {
-        let entities = self.entities.get_or_insert_with(BTreeMap::new);
-        entities.insert(id, entity);
+    /// Add a martyrology entry definition to the resources
+    pub fn add_martyrology_entry(&mut self, id: MartyrologyEntryId, entry: MartyrologyEntryDef) {
+        let martyrology = self.martyrology.get_or_insert_with(BTreeMap::new);
+        martyrology.insert(id, entry);
     }
 
-    /// Get an entity definition by its ID
-    pub fn get_entity(&self, id: &str) -> Option<&EntityDefinition> {
-        self.entities.as_ref()?.get(id)
+    /// Get a martyrology entry definition by its ID
+    pub fn get_martyrology_entry(&self, id: &str) -> Option<&MartyrologyEntryDef> {
+        self.martyrology.as_ref()?.get(id)
     }
 
-    /// Get a mutable reference to an entity definition by its ID
-    pub fn get_entity_mut(&mut self, id: &str) -> Option<&mut EntityDefinition> {
-        self.entities.as_mut()?.get_mut(id)
+    /// Get a mutable reference to a martyrology entry definition by its ID
+    pub fn get_martyrology_entry_mut(&mut self, id: &str) -> Option<&mut MartyrologyEntryDef> {
+        self.martyrology.as_mut()?.get_mut(id)
     }
 
-    /// Remove an entity definition by its ID
-    pub fn remove_entity(&mut self, id: &str) -> Option<EntityDefinition> {
-        self.entities.as_mut()?.remove(id)
+    /// Remove a martyrology entry definition by its ID
+    pub fn remove_martyrology_entry(&mut self, id: &str) -> Option<MartyrologyEntryDef> {
+        self.martyrology.as_mut()?.remove(id)
     }
 
-    /// Get all entity IDs
-    pub fn get_entity_ids(&self) -> Vec<&String> {
-        self.entities
+    /// Get all martyrology entry IDs
+    pub fn get_martyrology_entry_ids(&self) -> Vec<&String> {
+        self.martyrology
             .as_ref()
-            .map(|entities| entities.keys().collect())
+            .map(|martyrology| martyrology.keys().collect())
             .unwrap_or_default()
     }
 
-    /// Validate that all entities are properly structured
-    /// Check for entity structure (uniqueness is guaranteed by BTreeMap)
-    pub fn validate_entities(&self) -> Result<(), Vec<String>> {
+    /// Validate that all martyrology entries are properly structured
+    /// Check for entry structure (uniqueness is guaranteed by BTreeMap)
+    pub fn validate_martyrology(&self) -> Result<(), Vec<String>> {
         let mut errors = Vec::new();
 
-        if let Some(entities) = &self.entities {
-            for (id, entity) in entities {
-                // Validate entity structure
-                if entity.name.is_none() && entity.fullname.is_none() {
+        if let Some(martyrology) = &self.martyrology {
+            for (id, entry) in martyrology {
+                // Validate entry structure
+                if entry.name.is_none() && entry.fullname.is_none() {
                     errors.push(format!(
-                        "Entity '{}' must have either 'name' or 'fullname'",
+                        "Martyrology entry '{}' must have either 'name' or 'fullname'",
                         id
                     ));
                 }
 
                 // Validate canonization level consistency
-                if let Some(level) = &entity.canonization_level {
-                    if entity.hide_canonization_level == Some(true) && entity.fullname.is_some() {
+                if let Some(level) = &entry.canonization_level {
+                    if entry.hide_canonization_level == Some(true) && entry.fullname.is_some() {
                         // This is OK - canonization level is hidden because it's in the fullname
-                    } else if entity.fullname.is_none() {
+                    } else if entry.fullname.is_none() {
                         errors.push(format!(
-                            "Entity '{}' has canonization level '{}' but no fullname to display it",
+                            "Martyrology entry '{}' has canonization level '{}' but no fullname to display it",
                             id,
                             match level {
                                 CanonizationLevel::Blessed => "blessed",
@@ -114,21 +114,23 @@ impl Resources {
         }
     }
 
-    /// Merge entities from another Resources
-    pub fn merge_entities(&mut self, other: &Resources) {
-        if let Some(other_entities) = &other.entities {
-            let entities = self.entities.get_or_insert_with(BTreeMap::new);
-            entities.extend(other_entities.clone());
+    /// Merge martyrology entries from another Resources
+    pub fn merge_martyrology(&mut self, other: &Resources) {
+        if let Some(other_martyrology) = &other.martyrology {
+            let martyrology = self.martyrology.get_or_insert_with(BTreeMap::new);
+            martyrology.extend(other_martyrology.clone());
         }
     }
 
-    /// Get all entity definitions as a reference to the map
-    pub fn get_entities(&self) -> Option<&BTreeMap<EntityId, EntityDefinition>> {
-        self.entities.as_ref()
+    /// Get all martyrology entry definitions as a reference to the map
+    pub fn get_martyrology(&self) -> Option<&BTreeMap<MartyrologyEntryId, MartyrologyEntryDef>> {
+        self.martyrology.as_ref()
     }
 
-    /// Get all entity definitions as a mutable reference to the map
-    pub fn get_entities_mut(&mut self) -> Option<&mut BTreeMap<EntityId, EntityDefinition>> {
-        self.entities.as_mut()
+    /// Get all martyrology entry definitions as a mutable reference to the map
+    pub fn get_martyrology_mut(
+        &mut self,
+    ) -> Option<&mut BTreeMap<MartyrologyEntryId, MartyrologyEntryDef>> {
+        self.martyrology.as_mut()
     }
 }

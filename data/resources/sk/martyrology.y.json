@@ -1,0 +1,9 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "sk",
+  "martyrology": {
+    "yolanda_of_poland_religious": {
+      "fullname": "Blahoslavenej Jolany, rehoľníčky"
+    }
+  }
+}

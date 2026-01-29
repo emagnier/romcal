@@ -13,11 +13,11 @@
 //! ```
 
 pub mod engine;
-pub mod entity_resolution;
-pub mod entity_search;
 pub mod error;
 pub mod generated;
 pub mod helpers;
+pub mod martyrology_resolution;
+pub mod martyrology_search;
 pub mod romcal;
 pub mod types;
 
@@ -34,16 +34,16 @@ pub use engine::liturgical_day::*;
 pub use engine::proper_of_time::ProperOfTime;
 pub use engine::resources::*;
 pub use engine::template_resolver::{GrammaticalGender, ProperOfTimeDayType, TemplateResolver};
-pub use entity_resolution::EntityResolver;
 pub use error::{RomcalError, RomcalResult, Validate, validate_range, validate_year};
 pub use generated::calendar_ids::CALENDAR_IDS;
 pub use generated::locale_ids::LOCALE_CODES;
 pub use generated::schemas;
 pub use helpers::{merge_calendar_definitions, merge_resource_files};
+pub use martyrology_resolution::MartyrologyResolver;
 pub use romcal::{Preset, Romcal};
-pub use types::entity::SaintCount;
-pub use types::entity::{Entity, EntityId};
 pub use types::liturgical::Season;
+pub use types::martyrology::SaintCount;
+pub use types::martyrology::{MartyrologyEntry, MartyrologyEntryId};
 pub use types::mass::{CelebrationSummary, MassCalendar, MassContext, MassInfo, MassTime};
 pub use types::{CalendarContext, EasterCalculationType};
 
@@ -52,5 +52,7 @@ pub use types::dates::{DateDefWithOffset, DayOfWeek, MonthIndex};
 pub use types::liturgical::SundayCycleCombined;
 pub use types::mass::{Acclamation, BibleBook, LiturgicalCycle, MassPart};
 
-// Entity search types
-pub use entity_search::{EntityMatcher, EntityQuery, EntitySearchResult, MatchType};
+// Martyrology search types
+pub use martyrology_search::{
+    MartyrologyMatcher, MartyrologyQuery, MartyrologySearchResult, MatchType,
+};

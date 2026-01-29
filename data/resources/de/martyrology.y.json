@@ -1,0 +1,9 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "de",
+  "martyrology": {
+    "yolanda_of_poland_religious": {
+      "fullname": "Sel. Jolanthe, Ordensfrau"
+    }
+  }
+}

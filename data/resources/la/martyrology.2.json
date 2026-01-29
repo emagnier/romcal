@@ -1,0 +1,9 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "la",
+  "martyrology": {
+    "205_blessed_martyrs_of_japan": {
+      "fullname": "B. Martyres Iaponici CCV"
+    }
+  }
+}

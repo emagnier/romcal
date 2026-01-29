@@ -1,6 +1,6 @@
 use romcal::engine::calendar_definition::CalendarDefinition;
 use romcal::engine::resources::Resources;
-use romcal::entity_search::EntityQuery;
+use romcal::martyrology_search::MartyrologyQuery;
 use romcal::romcal::{Preset, Romcal as RomcalCore};
 use romcal::types::{CalendarContext, EasterCalculationType};
 use serde::de::DeserializeOwned;
@@ -47,7 +47,7 @@ impl From<romcal::error::RomcalError> for RomcalError {
         match err {
             CoreError::InvalidYear(_, _) => RomcalError::InvalidYear(err.to_string()),
             CoreError::InvalidDateName(name) => RomcalError::NotFound(name),
-            CoreError::EntityNotFound(_, _) => RomcalError::NotFound(err.to_string()),
+            CoreError::MartyrologyEntryNotFound(_, _) => RomcalError::NotFound(err.to_string()),
             CoreError::InvalidConfig => {
                 RomcalError::InvalidConfig("Invalid configuration".to_string())
             }
@@ -211,22 +211,22 @@ impl Romcal {
         self.inner.get_date(id, year).map_err(RomcalError::from)
     }
 
-    /// Get an entity by its exact ID.
+    /// Get a martyrology entry by its exact ID.
     ///
-    /// Returns the entity as a JSON string, or None if not found.
-    pub fn get_entity(&self, id: &str) -> Option<String> {
+    /// Returns the entry as a JSON string, or None if not found.
+    pub fn get_martyrology_entry(&self, id: &str) -> Option<String> {
         self.inner
-            .get_entity(id)
-            .and_then(|entity| serde_json::to_string(&entity).ok())
+            .get_martyrology_entry(id)
+            .and_then(|entry| serde_json::to_string(&entry).ok())
     }
 
-    /// Search entities with fuzzy matching and filters.
+    /// Search martyrology entries with fuzzy matching and filters.
     ///
     /// # Arguments
     ///
     /// * `query_json` - A JSON object with search parameters:
     ///   - `text`: Optional fuzzy text search
-    ///   - `entity_type`: Optional filter ('person', 'place', 'event')
+    ///   - `entry_type`: Optional filter ('person', 'place', 'event')
     ///   - `canonization_level`: Optional filter ('saint', 'blessed', etc.)
     ///   - `sex`: Optional filter ('male', 'female')
     ///   - `titles`: Optional array of title strings
@@ -236,15 +236,15 @@ impl Romcal {
     /// # Returns
     ///
     /// A JSON array of search results sorted by score (highest first).
-    pub fn search_entities(&self, query_json: String) -> Result<String, RomcalError> {
+    pub fn search_martyrology(&self, query_json: String) -> Result<String, RomcalError> {
         // Parse the query from JSON directly into core type
-        let query: EntityQuery = serde_json::from_str(&query_json)
+        let query: MartyrologyQuery = serde_json::from_str(&query_json)
             .map_err(|e| RomcalError::ParseError(format!("Invalid query JSON: {}", e)))?;
 
         // Execute search
-        let results = self.inner.search_entities(query);
+        let results = self.inner.search_martyrology(query);
 
-        // Serialize results directly (EntitySearchResult has Serialize)
+        // Serialize results directly (MartyrologySearchResult has Serialize)
         serde_json::to_string(&results)
             .map_err(|e| RomcalError::ParseError(format!("Failed to serialize results: {}", e)))
     }
@@ -273,7 +273,7 @@ pub fn version() -> String {
     romcal::VERSION.to_string()
 }
 
-/// Merge multiple resource files (meta.json + entities.*.json) into a single Resources JSON.
+/// Merge multiple resource files (meta.json + martyrology.*.json) into a single Resources JSON.
 ///
 /// This helper allows you to load resource files however you want and then
 /// merge them into the expected structure.

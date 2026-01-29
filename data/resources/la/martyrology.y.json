@@ -1,0 +1,9 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "la",
+  "martyrology": {
+    "yolanda_of_poland_religious": {
+      "fullname": "B. Iolentæ, religiosæ"
+    }
+  }
+}

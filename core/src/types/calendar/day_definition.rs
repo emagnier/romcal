@@ -5,8 +5,8 @@ use serde::{Deserialize, Serialize};
 use ts_rs::TS;
 
 use crate::types::{
-    Color, CommonDefinition, DateDef, DateDefExceptions, EntityRef, MassesDefinitions, Precedence,
-    TitlesDef,
+    Color, CommonDefinition, DateDef, DateDefExceptions, MartyrologyRef, MassesDefinitions,
+    Precedence, TitlesDef,
 };
 
 /// Locale identifier for internationalization
@@ -35,7 +35,7 @@ pub type DayId = String;
 
 /// Definition of a liturgical day with all its properties and configurations.
 /// It represents a complete liturgical day definition that can be used
-/// to generate calendar entries with proper precedence, colors, and entity associations.
+/// to generate calendar entries with proper precedence, colors, and martyrology associations.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, Default)]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
@@ -77,10 +77,10 @@ pub struct DayDefinition {
     /// The custom locale ID for this date definition in this calendar
     #[serde(skip_serializing_if = "Option::is_none")]
     pub custom_locale_id: Option<LocaleId>,
-    /// The entities (Saints, Blessed, or Places) linked from the Entity catalog
+    /// The martyrology entries (Saints, Blessed, or Places) linked from the martyrology catalog
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub entities: Option<Vec<EntityRef>>,
-    /// The combined titles of all entities linked to this date definition
+    pub martyrology: Option<Vec<MartyrologyRef>>,
+    /// The combined titles of all entries linked to this date definition
     #[serde(skip_serializing_if = "Option::is_none")]
     pub titles: Option<TitlesDef>,
     /// If this liturgical day must be removed from this calendar and from all parent calendars
@@ -89,7 +89,7 @@ pub struct DayDefinition {
     pub drop: Option<bool>,
     /// The liturgical color(s) of the liturgical day.
     ///
-    /// **Deprecated:** Rely on the `titles` field of entities instead to determine the liturgical color(s).
+    /// **Deprecated:** Rely on the `titles` field of entries instead to determine the liturgical color(s).
     #[serde(skip_serializing_if = "Option::is_none")]
     pub colors: Option<ColorsDef>,
     /// The masses definitions for this liturgical day

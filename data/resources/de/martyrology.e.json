@@ -1,0 +1,105 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "de",
+  "martyrology": {
+    "easter_sunday": {
+      "fullname": "Ostersonntag der Auferstehung des Herrn"
+    },
+    "edmund_bojanowski": {
+      "fullname": "Sel. Edmund Bojanowski"
+    },
+    "edmund_campion_priest": {
+      "fullname": "Hl. Edmund Campion, Priester und Märtyrer"
+    },
+    "edmund_ignatius_rice_religious": {
+      "fullname": "Sel. Edmund Rice, Ordensmann"
+    },
+    "edmund_of_abingdon_bishop": {
+      "fullname": "Hl. Edmund von Abingdon, Bischof"
+    },
+    "edward_the_confessor": {
+      "fullname": "Hl. Eduard der Bekenner"
+    },
+    "eligius_of_noyon_bishop": {
+      "fullname": "Hl. Eligius, Bischof"
+    },
+    "elijah_prophet": {
+      "fullname": "Hl. Elija, Prophet"
+    },
+    "elizabeth_ann_seton_religious": {
+      "fullname": "Hl. Elizabeth Ann Seton, Ordensfrau"
+    },
+    "elizabeth_hesselblad_religious": {
+      "fullname": "Hl. Elizabeth Hesselblad, Ordensfrau"
+    },
+    "elizabeth_of_hungary_religious": {
+      "fullname": "Hl. Elisabeth von Ungarn, Ordensfrau"
+    },
+    "elizabeth_of_portugal": {
+      "fullname": "Hl. Elisabeth von Portugal"
+    },
+    "emeric_of_hungary": {
+      "fullname": "Hl. Emmerich"
+    },
+    "emilie_tavernier_gamelin_religious": {
+      "fullname": "Sel. Émilie Tavernier-Gamelin, Ordensfrau"
+    },
+    "enda_of_aran_abbot": {
+      "fullname": "Hl. Enda, Abt"
+    },
+    "english_martyrs": {
+      "fullname": "Englische Märtyrer"
+    },
+    "eoghan_of_ardstraw_bishop": {
+      "fullname": "Hl. Eoghan, Bischof"
+    },
+    "ephrem_the_syrian_deacon": {
+      "fullname": "Hl. Ephräm der Syrer, Diakon und Kirchenlehrer"
+    },
+    "epiphany_of_the_lord": {
+      "fullname": "Erscheinung des Herrn"
+    },
+    "epipodius_of_lyon_and_alexander_of_lyon_martyrs": {
+      "fullname": "Hl. Epipodius und Alexander, Märtyrer"
+    },
+    "eric_ix_of_sweden_martyr": {
+      "fullname": "Hl. Erik IX. von Schweden, Märtyrer"
+    },
+    "etheldreda_of_ely_abbess": {
+      "fullname": "Hl. Æthelthryth, Äbtissin"
+    },
+    "eucharius_of_trier_bishop": {
+      "fullname": "Hl. Eucharius, Bischof"
+    },
+    "eucherius_of_lyon_bishop": {
+      "fullname": "Hl. Eucherius, Bischof"
+    },
+    "eugene_de_mazenod_bishop": {
+      "fullname": "Hl. Eugène de Mazenod, Bischof"
+    },
+    "eugenia_of_alsace_and_attala_of_alsace_virgins": {
+      "fullname": "Hl. Eugenia und Attala, Jungfrauen"
+    },
+    "eulalia_of_merida_virgin": {
+      "fullname": "Hl. Eulalia von Mérida, Jungfrau und Märtyrerin"
+    },
+    "eulogius_of_cordoba_bishop": {
+      "fullname": "Hl. Eulogius von Córdoba, Bischof"
+    },
+    "eusebius_of_esztergom_priest": {
+      "fullname": "Sel. Eusebius von Esztergom, Priester"
+    },
+    "eusebius_of_vercelli_bishop": {
+      "fullname": "Hl. Eusebius von Vercelli, Bischof"
+    },
+    "exaltation_of_the_holy_cross": {
+      "fullname": "Kreuzerhöhung"
+    },
+    "eysteinn_of_nidaros_bishop": {
+      "fullname": "Hl. Eysteinn von Nidaros, Bischof"
+    },
+    "ezequiel_moreno_bishop": {
+      "fullname": "Hl. Ezequiel Moreno, Bischof"
+    }
+  }
+}

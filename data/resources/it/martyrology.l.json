@@ -1,0 +1,42 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "it",
+  "martyrology": {
+    "landry_of_paris_bishop": {
+      "fullname": "San Landerico di Parigi, vescovo"
+    },
+    "lawrence_of_brindisi_priest": {
+      "fullname": "San Lorenzo da Brindisi, sacerdote e dottore della Chiesa"
+    },
+    "lawrence_of_rome_deacon": {
+      "fullname": "San Lorenzo, diacono e martire"
+    },
+    "lawrence_ruiz_and_companions_martyrs": {
+      "fullname": "Santi Lorenzo Ruiz e compagni, martiri"
+    },
+    "leo_i_the_great_pope": {
+      "fullname": "San Leone Magno, papa e dottore della Chiesa"
+    },
+    "leodegar_of_autun_bishop": {
+      "fullname": "San Leodegario di Autun, vescovo e martire"
+    },
+    "louis_grignion_de_montfort_priest": {
+      "fullname": "San Luigi Maria Grignion de Montfort, sacerdote"
+    },
+    "louis_ix_of_france": {
+      "fullname": "San Ludovico"
+    },
+    "louise_de_marillac_religious": {
+      "fullname": "Santa Luisa di Marillac, religiosa"
+    },
+    "lucy_of_syracuse_virgin": {
+      "fullname": "Santa Lucia, vergine e martire"
+    },
+    "ludan_of_scotland_pilgrim": {
+      "fullname": "San Ludano, pellegrino"
+    },
+    "luke_evangelist": {
+      "fullname": "San Luca, evangelista"
+    }
+  }
+}

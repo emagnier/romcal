@@ -1,8 +1,8 @@
 pub mod bundle;
 pub mod calendar;
 pub mod date;
-pub mod entity;
 pub mod list;
+pub mod martyrology;
 pub mod masses;
 pub mod search;
 pub mod show_preset;

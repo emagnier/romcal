@@ -1,0 +1,9 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "en-gb",
+  "martyrology": {
+    "raymond_of_penyafort_priest": {
+      "fullname": "Saint Raymond of Peñafort, Priest"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "en",
+  "martyrology": {
+    "yolanda_of_poland_religious": {
+      "fullname": "Blessed Yolanda, Religious",
+      "canonization_level": "blessed",
+      "name": "Yolanda",
+      "titles": [
+        "religious"
+      ]
+    }
+  }
+}

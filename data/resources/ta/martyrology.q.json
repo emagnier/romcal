@@ -1,0 +1,12 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "ta",
+  "martyrology": {
+    "queenship_of_the_blessed_virgin_mary": {
+      "fullname": "விண்ணக மண்ணக அரசியாகிய கன்னி மரியாள்"
+    },
+    "quirinus_of_sescia_bishop": {
+      "fullname": "செஸ்சியாவின் புனித குயரினஸ் - ஆயர். மறைசாட்சி"
+    }
+  }
+}

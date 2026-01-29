@@ -38,9 +38,9 @@ from .types import (
     CalendarDefinition,
     CanonizationLevel,
     EasterCalculationType,
-    Entity,
-    EntityType,
     LiturgicalDay,
+    MartyrologyEntry,
+    MartyrologyEntryType,
     MassContext,
     Resources,
     Sex,
@@ -55,11 +55,11 @@ __all__ = [
     "CalendarDefinition",
     "CanonizationLevel",
     "EasterCalculationType",
-    "Entity",
-    "EntityQuery",
-    "EntitySearchResult",
-    "EntityType",
     "LiturgicalDay",
+    "MartyrologyEntry",
+    "MartyrologyEntryType",
+    "MartyrologyQuery",
+    "MartyrologySearchResult",
     "MassContext",
     "MatchType",
     "Resources",
@@ -86,7 +86,7 @@ def get_version() -> str:
 
 
 def merge_resource_files(locale: str, files: list[dict]) -> Resources:
-    """Merge multiple resource files (meta.json + entities.*.json) into a single Resources object.
+    """Merge multiple resource files (meta.json + martyrology.*.json) into a single Resources object.
 
     This helper allows you to load resource files however you want and then
     merge them into the expected structure.
@@ -102,9 +102,9 @@ def merge_resource_files(locale: str, files: list[dict]) -> Resources:
         >>> import json
         >>> with open("data/resources/fr/meta.json") as f:
         ...     meta = json.load(f)
-        >>> with open("data/resources/fr/entities.a.json") as f:
-        ...     entities = json.load(f)
-        >>> resources = merge_resource_files("fr", [meta, entities])
+        >>> with open("data/resources/fr/martyrology.a.json") as f:
+        ...     martyrology = json.load(f)
+        >>> resources = merge_resource_files("fr", [meta, martyrology])
     """
     core = _get_core()
     files_json = [json.dumps(f) for f in files]
@@ -226,23 +226,23 @@ class MatchType(Enum):
 
 
 @dataclass
-class EntityQuery:
-    """Query parameters for searching entities.
+class MartyrologyQuery:
+    """Query parameters for searching martyrology entries.
 
     All fields are optional. When a field is None, it is not used for filtering.
-    When `text` is provided, fuzzy matching is performed on entity ID, fullname, and name.
+    When `text` is provided, fuzzy matching is performed on entry ID, fullname, and name.
 
     Example:
-        >>> from romcal import EntityQuery, CanonizationLevel, Title
-        >>> query = EntityQuery(text="francis", canonization_level=CanonizationLevel.saint)
-        >>> results = romcal.search_entities(query)
+        >>> from romcal import MartyrologyQuery, CanonizationLevel, Title
+        >>> query = MartyrologyQuery(text="francis", canonization_level=CanonizationLevel.saint)
+        >>> results = romcal.search_martyrology(query)
     """
 
     text: str | None = None
     """Fuzzy text search on id, fullname, and name fields."""
 
-    entity_type: EntityType | None = None
-    """Filter by entity type."""
+    entry_type: MartyrologyEntryType | None = None
+    """Filter by entry type."""
 
     canonization_level: CanonizationLevel | None = None
     """Filter by canonization level."""
@@ -251,7 +251,7 @@ class EntityQuery:
     """Filter by sex."""
 
     titles: list[Title] | None = None
-    """Filter by titles. Entity must have at least one of the specified titles."""
+    """Filter by titles. Entry must have at least one of the specified titles."""
 
     limit: int | None = None
     """Maximum number of results to return. Default: 20."""
@@ -264,8 +264,8 @@ class EntityQuery:
         d: dict = {}
         if self.text is not None:
             d["text"] = self.text
-        if self.entity_type is not None:
-            d["entity_type"] = self.entity_type.value
+        if self.entry_type is not None:
+            d["entry_type"] = self.entry_type.value
         if self.canonization_level is not None:
             d["canonization_level"] = self.canonization_level.value
         if self.sex is not None:
@@ -280,26 +280,26 @@ class EntityQuery:
 
 
 @dataclass
-class EntitySearchResult:
-    """Result of an entity search.
+class MartyrologySearchResult:
+    """Result of a martyrology search.
 
     Attributes:
-        entity: The matched entity.
+        entry: The matched martyrology entry.
         score: Match score from 0.0 to 1.0, where 1.0 is a perfect match.
         match_type: Type of match that was found.
         matched_fields: Names of fields that matched the query.
     """
 
-    entity: Entity
+    entry: MartyrologyEntry
     score: float
     match_type: MatchType
     matched_fields: list[str] = field(default_factory=list)
 
     @classmethod
-    def _from_json_dict(cls, d: dict) -> EntitySearchResult:
+    def _from_json_dict(cls, d: dict) -> MartyrologySearchResult:
         """Create from JSON dict with snake_case keys."""
         return cls(
-            entity=Entity.model_validate(d["entity"]),
+            entry=MartyrologyEntry.model_validate(d["entry"]),
             score=d["score"],
             match_type=MatchType(d["match_type"]),
             matched_fields=d.get("matched_fields", []),
@@ -535,51 +535,51 @@ class Romcal:
         except core.RomcalError as e:
             raise RomcalError(str(e)) from e
 
-    def get_entity(self, entity_id: str) -> Entity | None:
-        """Get an entity by its exact ID.
+    def get_martyrology_entry(self, entry_id: str) -> MartyrologyEntry | None:
+        """Get a martyrology entry by its exact ID.
 
         Args:
-            entity_id: The unique identifier of the entity (e.g., 'agnes_of_rome_virgin').
+            entry_id: The unique identifier of the entry (e.g., 'agnes_of_rome_virgin').
 
         Returns:
-            The Entity object, or None if not found.
+            The MartyrologyEntry object, or None if not found.
 
         Example:
             >>> r = Romcal()
-            >>> entity = r.get_entity("agnes_of_rome_virgin")
-            >>> if entity:
-            ...     print(f"{entity.name} ({entity.canonization_level})")
+            >>> entry = r.get_martyrology_entry("agnes_of_rome_virgin")
+            >>> if entry:
+            ...     print(f"{entry.name} ({entry.canonization_level})")
         """
-        entity_json = self._inner.get_entity(entity_id)
-        if entity_json is None:
+        entry_json = self._inner.get_martyrology_entry(entry_id)
+        if entry_json is None:
             return None
-        return Entity.model_validate(json.loads(entity_json))
+        return MartyrologyEntry.model_validate(json.loads(entry_json))
 
-    def search_entities(self, query: EntityQuery) -> list[EntitySearchResult]:
-        """Search entities with fuzzy matching and filters.
+    def search_martyrology(self, query: MartyrologyQuery) -> list[MartyrologySearchResult]:
+        """Search martyrology entries with fuzzy matching and filters.
 
         Args:
             query: Search parameters including text, filters, and options.
 
         Returns:
-            A list of EntitySearchResult sorted by score (highest first).
+            A list of MartyrologySearchResult sorted by score (highest first).
 
         Raises:
             RomcalError: If the search fails.
 
         Example:
             >>> r = Romcal()
-            >>> query = EntityQuery(text="francis", canonization_level="saint")
-            >>> results = r.search_entities(query)
+            >>> query = MartyrologyQuery(text="francis", canonization_level="saint")
+            >>> results = r.search_martyrology(query)
             >>> for result in results:
-            ...     print(f"{result.entity.name}: {result.score:.2f}")
+            ...     print(f"{result.entry.name}: {result.score:.2f}")
         """
         core = _get_core()
         try:
             query_json = json.dumps(query._to_json_dict())
-            results_json = self._inner.search_entities(query_json)
+            results_json = self._inner.search_martyrology(query_json)
             raw_results = json.loads(results_json)
-            return [EntitySearchResult._from_json_dict(r) for r in raw_results]
+            return [MartyrologySearchResult._from_json_dict(r) for r in raw_results]
         except core.RomcalError as e:
             raise RomcalError(str(e)) from e
         except json.JSONDecodeError as e:

@@ -37,7 +37,7 @@ export async function generateBundle(options: RomcalPluginOptions): Promise<Romc
   // createBundle() automatically handles:
   // - Calendar hierarchy resolution (france → europe → general_roman)
   // - Locale hierarchy resolution (fr-ca → fr → en)
-  // - Filtering unused entities
+  // - Filtering unused martyrology entries
   // - Property deduplication across locales
   return romcal.createBundle();
 }

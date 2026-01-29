@@ -1,0 +1,111 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "es",
+  "martyrology": {
+    "odile_of_alsace_abbess": {
+      "fullname": "Santa Odilia, abadesa"
+    },
+    "odile_of_alsace_abbess_patroness_of_alsace": {
+      "fullname": "Santa Odilia, abadesa, Patrona de Alsacia"
+    },
+    "olga_of_kiev": {
+      "fullname": "Santa Olga"
+    },
+    "our_lady_help_of_christians": {
+      "fullname": "Nuestra Señora, Auxilio de los Cristianos"
+    },
+    "our_lady_of_angels_patroness_of_costa_rica": {
+      "fullname": "Nuestra Señora de los Ángeles, patrona de Costa Rica",
+      "sources": [
+        "Ordo Temporis 2023-2024, page: 96, https://lacecor-my.sharepoint.com/:b:/g/personal/repositorioweb_iglesiacr_org/Ee_y58b67V1EinO2QLxwS8gBb3zFtlgpRFG0_KBU9l_kCQ?e=TVe9YR"
+      ]
+    },
+    "our_lady_of_aparecida_patroness_of_brazil": {
+      "fullname": "Nuestra Señora de Aparecida, Patrona de Brasil"
+    },
+    "our_lady_of_bethlehem": {
+      "fullname": "Nuestra Señora de Belén"
+    },
+    "our_lady_of_fatima": {
+      "fullname": "Nuestra Señora de Fátima"
+    },
+    "our_lady_of_good_counsel": {
+      "fullname": "Nuestra Señora del Buen Consejo"
+    },
+    "our_lady_of_guadalupe": {
+      "fullname": "Nuestra Señora de Guadalupe"
+    },
+    "our_lady_of_guadalupe_patroness_of_the_americas": {
+      "fullname": "Nuestra Señora de Guadalupe, Patrona de América"
+    },
+    "our_lady_of_itati": {
+      "fullname": "Nuestra Señora de Itatí"
+    },
+    "our_lady_of_loreto": {
+      "fullname": "Nuestra Señora de Loreto"
+    },
+    "our_lady_of_lourdes": {
+      "fullname": "Nuestra Señora de Lourdes"
+    },
+    "our_lady_of_lujan": {
+      "fullname": "Nuestra Señora de Luján"
+    },
+    "our_lady_of_lujan_patroness_of_argentina": {
+      "fullname": "Nuestra Señora de Luján, Patrona de Argentina"
+    },
+    "our_lady_of_mercy": {
+      "fullname": "Nuestra Señora de la Misericordia"
+    },
+    "our_lady_of_mount_carmel": {
+      "fullname": "Nuestra Señora del Monte Carmelo"
+    },
+    "our_lady_of_mount_carmel_mother_and_queen_of_chile": {
+      "fullname": "Nuestra Señora del Monte Carmelo, Madre y Reina de Chile"
+    },
+    "our_lady_of_perpetual_help": {
+      "fullname": "Nuestra Señora del Perpetuo Socorro"
+    },
+    "our_lady_of_sorrows": {
+      "fullname": "Bienaventurada Virgen María de los dolores"
+    },
+    "our_lady_of_sorrows_patroness_of_slovakia": {
+      "fullname": "Nuestra Señora del Socorro, Patrona de Eslovaquia"
+    },
+    "our_lady_of_the_gate_of_dawn": {
+      "fullname": "Nuestra Señora de la Puerta del Aurora"
+    },
+    "our_lady_of_the_miraculous_medal": {
+      "fullname": "Nuestra Señora de la Medalla Milagrosa"
+    },
+    "our_lady_of_the_pillar": {
+      "fullname": "Nuestra Señora del Pilar"
+    },
+    "our_lady_of_the_rosary": {
+      "fullname": "Bienaventurada Virgen María del Rosario"
+    },
+    "our_lady_of_the_valley": {
+      "fullname": "Nuestra Señora del Valle"
+    },
+    "our_lady_queen_of_peace": {
+      "fullname": "Nuestra Señora, Reina de la Paz"
+    },
+    "our_lady_refuge_of_sinners": {
+      "fullname": "Nuestra Señora, refugio de los pecadores"
+    },
+    "our_lord_jesus_christ_king_of_the_universe": {
+      "fullname": "Jesucristo, Rey del Universo",
+      "sources": [
+        "https://textosparalaliturgia.blogspot.com/2014/09/misal-romano-jesucristo-rey-del-universo.html"
+      ]
+    },
+    "our_lord_jesus_christ_the_eternal_high_priest": {
+      "fullname": "Jesucristo, Sumo y Eterno Sacerdote",
+      "sources": [
+        "https://textosparalaliturgia.blogspot.com/2014/05/misal-romano-jesucristo-sumo-y-eterno.html"
+      ]
+    },
+    "our_lord_of_miracles": {
+      "fullname": "Nuestro Señor de los Milagros"
+    }
+  }
+}

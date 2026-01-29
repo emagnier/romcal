@@ -1,0 +1,123 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "de",
+  "martyrology": {
+    "labor_day": {
+      "fullname": "Tag der Arbeit"
+    },
+    "ladislas_of_gielniow_priest": {
+      "fullname": "Sel. Ladislaus von Gielniów, Priester"
+    },
+    "ladislaus_batthyany_strattmann": {
+      "fullname": "Sel. Ladislaus Batthyány-Strattmann"
+    },
+    "ladislaus_i_of_hungary": {
+      "fullname": "Hl. Ladislaus"
+    },
+    "lambert_of_maastricht_bishop": {
+      "fullname": "Hl. Lambert von Maastricht, Bischof und Märtyrer"
+    },
+    "landry_of_paris_bishop": {
+      "fullname": "Hl. Landry von Paris, Bischof"
+    },
+    "laserian_of_leighlin_bishop": {
+      "fullname": "Hl. Laserian, Bischof"
+    },
+    "laura_vicuna_virgin": {
+      "fullname": "Sel. Laura Vicuña, Jungfrau"
+    },
+    "laurence_otoole_bishop": {
+      "fullname": "Hl. Laurentius O’Toole, Bischof"
+    },
+    "laurence_wang_bing_and_companions_martyrs": {
+      "fullname": "Hl. Laurentius Wang Bing und Gefährten, Märtyrer"
+    },
+    "lawrence_bai_xiaoman_martyr": {
+      "fullname": "Hl. Laurentius Bai Xiaoman, Märtyrer"
+    },
+    "lawrence_of_brindisi_priest": {
+      "fullname": "Hl. Laurentius von Brindisi, Priester und Kirchenlehrer"
+    },
+    "lawrence_of_rome_deacon": {
+      "fullname": "Hl. Laurentius, Diakon und Märtyrer"
+    },
+    "lawrence_ruiz_and_companions_martyrs": {
+      "fullname": "Hl. Laurentius Ruiz und Gefährten, Märtyrer"
+    },
+    "leander_of_seville_bishop": {
+      "fullname": "Hl. Leander von Sevilla, Bischof"
+    },
+    "lelia_of_killeely_virgin": {
+      "fullname": "Hl. Lelia, Jungfrau"
+    },
+    "leo_i_the_great_pope": {
+      "fullname": "Hl. Leo der Große, Papst und Kirchenlehrer"
+    },
+    "leo_ignatius_mangin_priest_and_companions_martyrs": {
+      "fullname": "Hl. Leo Ignatius Mangin, Priester, und Gefährten, Märtyrer"
+    },
+    "leo_ix_pope": {
+      "fullname": "Hl. Leo IX., Papst"
+    },
+    "leoba_of_tauberbischofsheim_abbess": {
+      "fullname": "Hl. Lioba, Äbtissin"
+    },
+    "leodegar_of_autun_bishop": {
+      "fullname": "Hl. Leodegar von Autun, Bischof und Märtyrer"
+    },
+    "leonard_of_noblac_hermit": {
+      "fullname": "Hl. Leonhard von Noblat, Einsiedler"
+    },
+    "leonid_feodorov_priest": {
+      "fullname": "Sel. Leonid Feodorov, Priester und Märtyrer"
+    },
+    "leopold_iii_of_babenberg": {
+      "fullname": "Hl. Leopold III. von Babenberg"
+    },
+    "leopold_mandic_priest": {
+      "fullname": "Hl. Leopold Mandić, Priester"
+    },
+    "louis_bertrand_priest": {
+      "fullname": "Hl. Ludwig Bertrand, Priester"
+    },
+    "louis_grignion_de_montfort_priest": {
+      "fullname": "Hl. Ludwig Maria Grignion von Montfort, Priester"
+    },
+    "louis_ix_of_france": {
+      "fullname": "Hl. Ludwig"
+    },
+    "louis_zephirin_moreau_bishop": {
+      "fullname": "Sel. Louis-Zéphirin Moreau, Bischof"
+    },
+    "louise_de_marillac_religious": {
+      "fullname": "Hl. Luise von Marillac, Ordensfrau"
+    },
+    "lucius_of_chur_bishop": {
+      "fullname": "Hl. Lucius von Chur, Bischof und Märtyrer"
+    },
+    "lucy_of_syracuse_virgin": {
+      "fullname": "Hl. Lucia, Jungfrau und Märtyrerin"
+    },
+    "lucy_yi_zhenmei_virgin": {
+      "fullname": "Hl. Lucia Yi Zhenmei, Jungfrau und Märtyrerin"
+    },
+    "ludan_of_scotland_pilgrim": {
+      "fullname": "Hl. Ludan, Pilger"
+    },
+    "ludger_of_munster_bishop": {
+      "fullname": "Hl. Liudger, Bischof"
+    },
+    "ludmila_of_bohemia_martyr": {
+      "fullname": "Hl. Ludmilla, Märtyrerin"
+    },
+    "luigi_orione_priest": {
+      "fullname": "Hl. Luigi Orione, Priester"
+    },
+    "luke_evangelist": {
+      "fullname": "Hl. Lukas, Evangelist"
+    },
+    "lydia_of_philippi": {
+      "fullname": "Hl. Lydia von Philippi"
+    }
+  }
+}

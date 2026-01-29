@@ -1,0 +1,15 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "it",
+  "martyrology": {
+    "wenceslaus_i_of_bohemia_martyr": {
+      "fullname": "San Venceslao, martire"
+    },
+    "wenceslaus_i_of_bohemia_martyr_patron_of_the_czech_nation": {
+      "fullname": "San Venceslao, martire e patrono della nazione ceca"
+    },
+    "wendelin_of_trier_hermit": {
+      "fullname": "San Vendelino, eremita"
+    }
+  }
+}

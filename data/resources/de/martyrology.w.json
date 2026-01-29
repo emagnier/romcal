@@ -1,0 +1,45 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "de",
+  "martyrology": {
+    "waitangi_day": {
+      "fullname": "Waitangi-Tag"
+    },
+    "walpurga_of_heidenheim_abbess": {
+      "fullname": "Hl. Walburga von Heidenheim, Äbtissin"
+    },
+    "wenceslaus_i_of_bohemia_martyr": {
+      "fullname": "Hl. Wenzel, Märtyrer"
+    },
+    "wenceslaus_i_of_bohemia_martyr_patron_of_the_czech_nation": {
+      "fullname": "Hl. Wenzel, Märtyrer, Schutzpatron der tschechischen Nation"
+    },
+    "wendelin_of_trier_hermit": {
+      "fullname": "Hl. Wendelin, Einsiedler"
+    },
+    "wilfrid_of_york_bishop": {
+      "fullname": "Hl. Wilfrid, Bischof"
+    },
+    "william_apor_bishop": {
+      "fullname": "Sel. William Apor, Bischof und Märtyrer"
+    },
+    "willibald_of_eichstatt_bishop": {
+      "fullname": "Hl. Willibald, Bischof"
+    },
+    "willibrord_of_utrecht_bishop": {
+      "fullname": "Hl. Willibrord, Bischof"
+    },
+    "winefride_of_flintshire_virgin": {
+      "fullname": "Hl. Winefride, Jungfrau"
+    },
+    "wladyslaw_bladzinski_priest_and_companions_martyrs": {
+      "fullname": "Sel. Wladyslaw Błądziński, Priester, und Gefährten, Märtyrer"
+    },
+    "wolfgang_of_regensburg_bishop": {
+      "fullname": "Hl. Wolfgang von Regensburg, Bischof"
+    },
+    "wulstan_of_worcester_bishop": {
+      "fullname": "Hl. Wulstan, Bischof"
+    }
+  }
+}

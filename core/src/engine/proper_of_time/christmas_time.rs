@@ -170,7 +170,7 @@ impl<'a> ChristmasTime<'a> {
 
     /// Creates the Nativity of the Lord (December 25)
     fn create_nativity_of_the_lord(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
-        // Entity-based day, fullname comes from entity resolution
+        // Martyrology-based day, fullname comes from martyrology resolution
         let periods = self.proper_of_time.resolve_periods(vec![
             Period::ChristmasOctave,
             Period::ChristmasToPresentationOfTheLord,
@@ -224,7 +224,7 @@ impl<'a> ChristmasTime<'a> {
 
     /// Creates the Holy Family
     fn create_holy_family(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
-        // Entity-based day, fullname comes from entity resolution
+        // Martyrology-based day, fullname comes from martyrology resolution
         let periods = self.proper_of_time.resolve_periods(vec![
             Period::ChristmasOctave,
             Period::ChristmasToPresentationOfTheLord,
@@ -250,7 +250,7 @@ impl<'a> ChristmasTime<'a> {
 
     /// Creates Mary, Mother of God (January 1)
     fn create_mary_mother_of_god(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
-        // Entity-based day, fullname comes from entity resolution
+        // Martyrology-based day, fullname comes from martyrology resolution
         let periods = self.proper_of_time.resolve_periods(vec![
             Period::ChristmasOctave,
             Period::ChristmasToPresentationOfTheLord,
@@ -330,7 +330,7 @@ impl<'a> ChristmasTime<'a> {
 
     /// Creates the Epiphany of the Lord
     fn create_epiphany_of_the_lord(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
-        // Entity-based day, fullname comes from entity resolution
+        // Martyrology-based day, fullname comes from martyrology resolution
         let periods = self.proper_of_time.resolve_periods(vec![
             Period::DaysFromEpiphany,
             Period::ChristmasToPresentationOfTheLord,
@@ -378,7 +378,7 @@ impl<'a> ChristmasTime<'a> {
 
     /// Creates the Baptism of the Lord
     fn create_baptism_of_the_lord(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
-        // Entity-based day, fullname comes from entity resolution
+        // Martyrology-based day, fullname comes from martyrology resolution
         let periods = self.proper_of_time.resolve_periods(vec![
             Period::DaysFromEpiphany,
             Period::ChristmasToPresentationOfTheLord,

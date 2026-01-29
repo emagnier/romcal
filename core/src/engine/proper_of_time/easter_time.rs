@@ -166,7 +166,7 @@ impl<'a> EasterTime<'a> {
 
     /// Creates Divine Mercy Sunday (Second Sunday of Easter)
     fn create_divine_mercy_sunday(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
-        // Entity-based day, fullname comes from entity resolution
+        // Martyrology-based day, fullname comes from martyrology resolution
         let periods = self
             .proper_of_time
             .resolve_periods(vec![Period::EasterOctave]);
@@ -222,7 +222,7 @@ impl<'a> EasterTime<'a> {
 
     /// Creates the Ascension of the Lord
     fn create_ascension_of_the_lord(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
-        // Entity-based day, fullname comes from entity resolution
+        // Martyrology-based day, fullname comes from martyrology resolution
         let liturgical_day = self.proper_of_time.create_liturgical_day_base(
             "ascension_of_the_lord",
             date,
@@ -237,7 +237,7 @@ impl<'a> EasterTime<'a> {
 
     /// Creates Pentecost Sunday
     fn create_pentecost_sunday(&self, date: DateTime<Utc>) -> RomcalResult<LiturgicalDay> {
-        // Entity-based day, fullname comes from entity resolution
+        // Martyrology-based day, fullname comes from martyrology resolution
         let liturgical_day = self
             .proper_of_time
             .create_liturgical_day_base(

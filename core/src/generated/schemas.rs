@@ -200,7 +200,7 @@ pub const CALENDAR_DEFINITION_SCHEMA: &str = r##"{
       ]
     },
     "DayDefinition": {
-      "description": "Definition of a liturgical day with all its properties and configurations.\nIt represents a complete liturgical day definition that can be used\nto generate calendar entries with proper precedence, colors, and entity associations.",
+      "description": "Definition of a liturgical day with all its properties and configurations.\nIt represents a complete liturgical day definition that can be used\nto generate calendar entries with proper precedence, colors, and martyrology associations.",
       "type": "object",
       "properties": {
         "date_def": {
@@ -275,18 +275,18 @@ pub const CALENDAR_DEFINITION_SCHEMA: &str = r##"{
             "null"
           ]
         },
-        "entities": {
-          "description": "The entities (Saints, Blessed, or Places) linked from the Entity catalog",
+        "martyrology": {
+          "description": "The martyrology entries (Saints, Blessed, or Places) linked from the martyrology catalog",
           "type": [
             "array",
             "null"
           ],
           "items": {
-            "$ref": "#/definitions/EntityRef"
+            "$ref": "#/definitions/MartyrologyRef"
           }
         },
         "titles": {
-          "description": "The combined titles of all entities linked to this date definition",
+          "description": "The combined titles of all entries linked to this date definition",
           "anyOf": [
             {
               "$ref": "#/definitions/TitlesDef"
@@ -304,7 +304,7 @@ pub const CALENDAR_DEFINITION_SCHEMA: &str = r##"{
           ]
         },
         "colors": {
-          "description": "The liturgical color(s) of the liturgical day.\n\n**Deprecated:** Rely on the `titles` field of entities instead to determine the liturgical color(s).",
+          "description": "The liturgical color(s) of the liturgical day.\n\n**Deprecated:** Rely on the `titles` field of entries instead to determine the liturgical color(s).",
           "anyOf": [
             {
               "$ref": "#/definitions/ColorsDef"
@@ -949,29 +949,29 @@ pub const CALENDAR_DEFINITION_SCHEMA: &str = r##"{
         }
       ]
     },
-    "EntityRef": {
-      "description": "A reference to an entity in the entity catalog.\nCan either reference an existing entity by ID or define a custom entity with additional properties.",
+    "MartyrologyRef": {
+      "description": "A reference to an entry in the martyrology catalog.\nCan either reference an existing entry by ID or define a custom entry with additional properties.",
       "anyOf": [
         {
-          "description": "Reference to an existing entity by its ID",
+          "description": "Reference to an existing martyrology entry by its ID",
           "type": "string"
         },
         {
-          "description": "Custom entity definition with additional properties specific to a liturgical day",
-          "$ref": "#/definitions/EntityOverride"
+          "description": "Custom entry definition with additional properties specific to a liturgical day",
+          "$ref": "#/definitions/MartyrologyEntryOverride"
         }
       ]
     },
-    "EntityOverride": {
-      "description": "Custom entity definition that extends or overrides properties from the entity catalog.\nUsed when a liturgical day needs specific entity properties that differ from the base entity.",
+    "MartyrologyEntryOverride": {
+      "description": "Custom martyrology entry definition that extends or overrides properties from the martyrology catalog.\nUsed when a liturgical day needs specific entry properties that differ from the base entry.",
       "type": "object",
       "properties": {
         "id": {
-          "description": "The ID of the entity item (must reference an existing entity in the catalog)",
+          "description": "The ID of the martyrology entry (must reference an existing entry in the catalog)",
           "type": "string"
         },
         "titles": {
-          "description": "The custom titles for this entity in the context of this liturgical day",
+          "description": "The custom titles for this entry in the context of this liturgical day",
           "anyOf": [
             {
               "$ref": "#/definitions/TitlesDef"
@@ -982,14 +982,14 @@ pub const CALENDAR_DEFINITION_SCHEMA: &str = r##"{
           ]
         },
         "hide_titles": {
-          "description": "Whether to hide titles when displaying this entity (useful when titles are already included in the entity name)",
+          "description": "Whether to hide titles when displaying this entry (useful when titles are already included in the entry name)",
           "type": [
             "boolean",
             "null"
           ]
         },
         "count": {
-          "description": "The number of persons this entity represents (useful for groups of martyrs or saints)",
+          "description": "The number of persons this entry represents (useful for groups of martyrs or saints)",
           "anyOf": [
             {
               "$ref": "#/definitions/SaintCount"
@@ -1022,7 +1022,7 @@ pub const CALENDAR_DEFINITION_SCHEMA: &str = r##"{
       ]
     },
     "Title": {
-      "description": "Titles and patronages associated with saints and blessed.\nRepresents the various ecclesiastical titles and patronages that can be assigned to entities.",
+      "description": "Titles and patronages associated with saints and blessed.\nRepresents the various ecclesiastical titles and patronages that can be assigned to martyrology entries.",
       "type": "string",
       "enum": [
         "abbess",
@@ -1122,7 +1122,7 @@ pub const CALENDAR_DEFINITION_SCHEMA: &str = r##"{
       "additionalProperties": false
     },
     "SaintCount": {
-      "description": "Represents the number of saints for an entity or a group of entities.\n\nCan be either a specific number (u32) or \"many\" to indicate\nan indeterminate number of saints.\n\n# Serialization\n- `Number(n)` serializes as integer `n`\n- `Many` serializes as string `\"many\"`\n\n# Deserialization\n- Integers are converted to `Number(u32)`\n- String `\"many\"` is converted to `Many`\n- All other types generate an error",
+      "description": "Represents the number of saints for an entry or a group of entries.\n\nCan be either a specific number (u32) or \"many\" to indicate\nan indeterminate number of saints.\n\n# Serialization\n- `Number(n)` serializes as integer `n`\n- `Many` serializes as string `\"many\"`\n\n# Deserialization\n- Integers are converted to `Number(u32)`\n- String `\"many\"` is converted to `Many`\n- All other types generate an error",
       "anyOf": [
         {
           "type": "integer",
@@ -1431,14 +1431,14 @@ pub const RESOURCES_SCHEMA: &str = r##"{
         }
       ]
     },
-    "entities": {
-      "description": "Entities of the resources: a person, a place, an event, etc.",
+    "martyrology": {
+      "description": "Martyrology entries: saints, blessed, places, events from the Roman Martyrology",
       "type": [
         "object",
         "null"
       ],
       "additionalProperties": {
-        "$ref": "#/definitions/EntityDefinition"
+        "$ref": "#/definitions/MartyrologyEntryDef"
       }
     }
   },
@@ -2117,14 +2117,15 @@ pub const RESOURCES_SCHEMA: &str = r##"{
       },
       "additionalProperties": false
     },
-    "EntityDefinition": {
+    "MartyrologyEntryDef": {
+      "description": "Definition of an entry in the Roman Martyrology.\n\nA martyrology entry represents a person (saint, blessed), place (church, shrine),\nor event in the official catalog of the Catholic Church.",
       "type": "object",
       "properties": {
         "type": {
-          "description": "The type of the entity.\n\nDefaults to `EntityType::Person`.",
+          "description": "The type of the martyrology entry.\n\nDefaults to `MartyrologyEntryType::Person`.",
           "anyOf": [
             {
-              "$ref": "#/definitions/EntityType"
+              "$ref": "#/definitions/MartyrologyEntryType"
             },
             {
               "type": "null"
@@ -2133,14 +2134,14 @@ pub const RESOURCES_SCHEMA: &str = r##"{
           "default": "person"
         },
         "fullname": {
-          "description": "The full name of the entity.",
+          "description": "The full name of the entry.",
           "type": [
             "string",
             "null"
           ]
         },
         "name": {
-          "description": "The short name of the entity, without the canonization level and titles.",
+          "description": "The short name of the entry, without the canonization level and titles.",
           "type": [
             "string",
             "null"
@@ -2287,7 +2288,7 @@ pub const RESOURCES_SCHEMA: &str = r##"{
           ]
         },
         "sources": {
-          "description": "Sources for the information about this entity",
+          "description": "Sources for the information about this entry",
           "type": [
             "array",
             "null"
@@ -2310,8 +2311,8 @@ pub const RESOURCES_SCHEMA: &str = r##"{
       },
       "additionalProperties": false
     },
-    "EntityType": {
-      "description": "The type of entity in the liturgical calendar.\nDefines whether the entity represents a person, place, or event.",
+    "MartyrologyEntryType": {
+      "description": "The type of entry in the Roman Martyrology.\nDefines whether the entry represents a person, place, or event.",
       "oneOf": [
         {
           "description": "A person (saint, blessed, or other individual)",
@@ -2426,7 +2427,7 @@ pub const RESOURCES_SCHEMA: &str = r##"{
       ]
     },
     "Title": {
-      "description": "Titles and patronages associated with saints and blessed.\nRepresents the various ecclesiastical titles and patronages that can be assigned to entities.",
+      "description": "Titles and patronages associated with saints and blessed.\nRepresents the various ecclesiastical titles and patronages that can be assigned to martyrology entries.",
       "type": "string",
       "enum": [
         "abbess",
@@ -2514,7 +2515,7 @@ pub const RESOURCES_SCHEMA: &str = r##"{
       ]
     },
     "SaintCount": {
-      "description": "Represents the number of saints for an entity or a group of entities.\n\nCan be either a specific number (u32) or \"many\" to indicate\nan indeterminate number of saints.\n\n# Serialization\n- `Number(n)` serializes as integer `n`\n- `Many` serializes as string `\"many\"`\n\n# Deserialization\n- Integers are converted to `Number(u32)`\n- String `\"many\"` is converted to `Many`\n- All other types generate an error",
+      "description": "Represents the number of saints for an entry or a group of entries.\n\nCan be either a specific number (u32) or \"many\" to indicate\nan indeterminate number of saints.\n\n# Serialization\n- `Number(n)` serializes as integer `n`\n- `Many` serializes as string `\"many\"`\n\n# Deserialization\n- Integers are converted to `Number(u32)`\n- String `\"many\"` is converted to `Many`\n- All other types generate an error",
       "anyOf": [
         {
           "type": "integer",

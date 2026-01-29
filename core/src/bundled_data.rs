@@ -45,7 +45,7 @@ pub fn get_all_calendar_definitions() -> Result<Vec<CalendarDefinition>, RomcalE
 /// Get all bundled resources as parsed structs.
 ///
 /// Returns a vector of all locale resources embedded in the binary.
-/// Each locale's multiple JSON files (meta.json, entities.*.json) are merged automatically.
+/// Each locale's multiple JSON files (meta.json, martyrology.*.json) are merged automatically.
 pub fn get_all_resources() -> Result<Vec<Resources>, RomcalError> {
     get_all_resource_jsons()
         .into_iter()
@@ -239,15 +239,15 @@ mod tests {
     }
 
     #[test]
-    fn test_english_locale_has_entities() {
+    fn test_english_locale_has_martyrology() {
         let resources = get_all_resources().unwrap();
         let english = resources.iter().find(|r| r.locale == "en");
         assert!(english.is_some(), "English locale must be present");
 
         let en = english.unwrap();
         assert!(
-            en.entities.as_ref().is_some_and(|e| !e.is_empty()),
-            "English locale should have entities"
+            en.martyrology.as_ref().is_some_and(|m| !m.is_empty()),
+            "English locale should have martyrology entries"
         );
     }
 

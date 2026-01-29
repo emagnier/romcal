@@ -3,7 +3,6 @@ title: General Instruction of the Liturgy of the Hours
 description: Divine Office structure (Lauds, Vespers, Compline), psalms, readings, hymns, and celebrations throughout the year.
 ---
 
-
 :::info TODO
 This page will contain the full text of the General Instruction of the Liturgy of the Hours.
 :::

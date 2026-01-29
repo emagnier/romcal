@@ -63,7 +63,7 @@ mod tests {
                 allow_similar_rank_items: Some(false),
                 is_optional: Some(false),
                 custom_locale_id: None,
-                entities: None,
+                martyrology: None,
                 titles: None,
                 drop: None,
                 colors: None,

@@ -4,7 +4,6 @@ title: Options
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
 
-
 Configuration options for Romcal.
 
 ## RomcalOptions
@@ -131,16 +130,17 @@ Whether to celebrate Corpus Christi (The Body and Blood of Christ) on Sunday ins
 
 When `true`, Corpus Christi is celebrated on the Sunday after Trinity Sunday instead of the Thursday after.
 
-## Search Options
+## Martyrology Query Options
 
-Options for the `searchEntities` method.
+Options for the `searchMartyrologyEntries` method.
 
 <Tabs syncKey="lang">
   <TabItem label="TypeScript">
 
 ```typescript
-interface SearchOptions {
-  type?: EntityType;
+interface MartyrologyQuery {
+  text?: string;
+  entryType?: MartyrologyEntryType;
   sex?: Sex;
   canonizationLevel?: CanonizationLevel;
   titles?: Title[];
@@ -153,8 +153,9 @@ interface SearchOptions {
   <TabItem label="Python">
 
 ```python
-class SearchOptions:
-    type: EntityType | None = None
+class MartyrologyQuery:
+    text: str | None = None
+    entry_type: MartyrologyEntryType | None = None
     sex: Sex | None = None
     canonization_level: CanonizationLevel | None = None
     titles: list[Title] | None = None
@@ -166,8 +167,9 @@ class SearchOptions:
   <TabItem label="Rust">
 
 ```rust
-pub struct SearchOptions {
-    pub entity_type: Option<EntityType>,
+pub struct MartyrologyQuery {
+    pub text: Option<String>,
+    pub entry_type: Option<MartyrologyEntryType>,
     pub sex: Option<Sex>,
     pub canonization_level: Option<CanonizationLevel>,
     pub titles: Option<Vec<Title>>,
@@ -179,13 +181,14 @@ pub struct SearchOptions {
   </TabItem>
 </Tabs>
 
-### Search Option Details
+### Query Option Details
 
-| Option              | Type                | Default | Description                                  |
-| ------------------- | ------------------- | ------- | -------------------------------------------- |
-| `type`              | `EntityType`        | -       | Filter by entity type (SAINT, BLESSED, etc.) |
-| `sex`               | `Sex`               | -       | Filter by sex (MALE, FEMALE)                 |
-| `canonizationLevel` | `CanonizationLevel` | -       | Filter by canonization level                 |
-| `titles`            | `Title[]`           | -       | Filter by titles (MARTYR, VIRGIN, etc.)      |
-| `limit`             | `number`            | `20`    | Maximum number of results                    |
-| `minScore`          | `number`            | `0.3`   | Minimum relevance score (0.0-1.0)            |
+| Option              | Type                   | Default | Description                                 |
+| ------------------- | ---------------------- | ------- | ------------------------------------------- |
+| `text`              | `string`               | -       | Text to search for (fuzzy matching)         |
+| `entryType`         | `MartyrologyEntryType` | -       | Filter by entry type (PERSON, PLACE, EVENT) |
+| `sex`               | `Sex`                  | -       | Filter by sex (MALE, FEMALE)                |
+| `canonizationLevel` | `CanonizationLevel`    | -       | Filter by canonization level                |
+| `titles`            | `Title[]`              | -       | Filter by titles (MARTYR, VIRGIN, etc.)     |
+| `limit`             | `number`               | `20`    | Maximum number of results                   |
+| `minScore`          | `number`               | `0.3`   | Minimum relevance score (0.0-1.0)           |

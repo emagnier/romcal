@@ -29,7 +29,7 @@
         "month": 1,
         "date": 23
       },
-      "entities": [
+      "martyrology": [
         "vincent_lewoniuk_martyr",
         "companions_martyrs"
       ]
@@ -185,7 +185,7 @@
         "month": 6,
         "date": 12
       },
-      "entities": [
+      "martyrology": [
         "anthony_julian_nowowiejski_bishop",
         "companions_martyrs"
       ]
@@ -259,7 +259,7 @@
         "month": 7,
         "date": 13
       },
-      "entities": [
+      "martyrology": [
         "andrew_zorard_of_nitra_hermit",
         "benedict_of_skalka_hermit"
       ]
@@ -354,7 +354,7 @@
         "month": 9,
         "date": 4
       },
-      "entities": [
+      "martyrology": [
         "mary_stella_of_the_blessed_sacrament_mardosewicz_virgin",
         {
           "id": "companions_martyrs",

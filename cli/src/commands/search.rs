@@ -1,15 +1,15 @@
-//! Entity search command handler.
+//! Martyrology search command handler.
 
 use crate::enums::OutputFormat;
 use crate::error::RomcalCliError;
 use romcal::Romcal;
-use romcal::entity_search::EntityQuery;
-use romcal::types::entity::{CanonizationLevel, EntityType, Sex, Title};
+use romcal::martyrology_search::MartyrologyQuery;
+use romcal::types::martyrology::{CanonizationLevel, MartyrologyEntryType, Sex, Title};
 
 /// Search options from CLI arguments.
 pub struct SearchOptions {
     pub text: Option<String>,
-    pub entity_type: Option<EntityType>,
+    pub entry_type: Option<MartyrologyEntryType>,
     pub sex: Option<Sex>,
     pub level: Option<CanonizationLevel>,
     pub titles: Option<Vec<Title>>,
@@ -24,9 +24,9 @@ pub fn handle(
     romcal: Romcal,
 ) -> Result<(), RomcalCliError> {
     // Build the query from CLI options
-    let query = EntityQuery {
+    let query = MartyrologyQuery {
         text: options.text,
-        entity_type: options.entity_type,
+        entry_type: options.entry_type,
         canonization_level: options.level,
         sex: options.sex,
         titles: options.titles,
@@ -35,10 +35,12 @@ pub fn handle(
     };
 
     // Execute search
-    let results = romcal.search_entities(query);
+    let results = romcal.search_martyrology(query);
 
     if results.is_empty() {
-        return Err(RomcalCliError::not_found("No entities found".to_string()));
+        return Err(RomcalCliError::not_found(
+            "No martyrology entries found".to_string(),
+        ));
     }
 
     match output_format {
@@ -47,7 +49,7 @@ pub fn handle(
                 .iter()
                 .map(|r| {
                     serde_json::json!({
-                        "entity": r.entity,
+                        "entry": r.entry,
                         "score": r.score,
                         "matchType": r.match_type.to_string(),
                         "matchedFields": r.matched_fields,
@@ -61,7 +63,7 @@ pub fn handle(
                 .iter()
                 .map(|r| {
                     serde_json::json!({
-                        "entity": r.entity,
+                        "entry": r.entry,
                         "score": r.score,
                         "matchType": r.match_type.to_string(),
                         "matchedFields": r.matched_fields,
@@ -78,17 +80,17 @@ pub fn handle(
             println!("id,score,matchType,fullname,name,type,sex,canonizationLevel");
 
             for r in &results {
-                let fullname = r.entity.fullname.as_deref().unwrap_or("");
-                let name = r.entity.name.as_deref().unwrap_or("");
-                let entity_type = format!("{:?}", r.entity.r#type).to_uppercase();
+                let fullname = r.entry.fullname.as_deref().unwrap_or("");
+                let name = r.entry.name.as_deref().unwrap_or("");
+                let entry_type = format!("{:?}", r.entry.r#type).to_uppercase();
                 let sex = r
-                    .entity
+                    .entry
                     .sex
                     .as_ref()
                     .map(|s| format!("{:?}", s).to_uppercase())
                     .unwrap_or_default();
                 let level = r
-                    .entity
+                    .entry
                     .canonization_level
                     .as_ref()
                     .map(|l| format!("{:?}", l).to_uppercase())
@@ -96,12 +98,12 @@ pub fn handle(
 
                 println!(
                     "{},{:.2},{},{},{},{},{},{}",
-                    escape_csv(&r.entity.id),
+                    escape_csv(&r.entry.id),
                     r.score,
                     r.match_type,
                     escape_csv(fullname),
                     escape_csv(name),
-                    entity_type,
+                    entry_type,
                     sex,
                     level
                 );
@@ -110,12 +112,12 @@ pub fn handle(
         OutputFormat::Lines => {
             // Lines: ID/Name  Score  Fullname
             for r in &results {
-                let id = if r.entity.id.is_empty() {
-                    r.entity.name.as_deref().unwrap_or("-")
+                let id = if r.entry.id.is_empty() {
+                    r.entry.name.as_deref().unwrap_or("-")
                 } else {
-                    &r.entity.id
+                    &r.entry.id
                 };
-                let fullname = r.entity.fullname.as_deref().unwrap_or("");
+                let fullname = r.entry.fullname.as_deref().unwrap_or("");
                 println!("{}  {:.2}  {}", id, r.score, fullname);
             }
         }

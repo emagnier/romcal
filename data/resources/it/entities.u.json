@@ -1,9 +1,0 @@
-{
-  "$schema": "../../../schemas/resources.json",
-  "locale": "it",
-  "entities": {
-    "urban_i_pope": {
-      "fullname": "Sant’Urbano I, papa"
-    }
-  }
-}

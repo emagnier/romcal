@@ -1,0 +1,24 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "es",
+  "martyrology": {
+    "valerius_of_trier_bishop": {
+      "fullname": "San Valerio, obispo"
+    },
+    "vincent_de_paul_priest": {
+      "fullname": "San Vicente de Paúl, presbítero",
+      "sources": [
+        "https://liturgiapapal.org/attachments/article/1093/PROPIO%20DE%20LOS%20SANTOS.pdf#page=10"
+      ]
+    },
+    "vincent_ferrer_priest": {
+      "fullname": "San Vicente Ferrer, presbítero"
+    },
+    "vincent_of_saragossa_deacon": {
+      "fullname": "San Vicente de Zaragoza, diácono y mártir"
+    },
+    "visitation_of_mary": {
+      "fullname": "Visitación de la Santísima Virgen María"
+    }
+  }
+}

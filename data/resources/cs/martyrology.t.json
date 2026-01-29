@@ -1,0 +1,90 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "cs",
+  "martyrology": {
+    "teilo_of_llandaff_bishop": {
+      "fullname": "Sv. Teila, biskupa"
+    },
+    "teresa_benedicta_of_the_cross_stein_virgin": {
+      "fullname": "Sv. Terezie Benedikty od Kříže, panny a mučednice"
+    },
+    "teresa_benedicta_of_the_cross_stein_virgin_copatroness_of_europe": {
+      "fullname": "Sv. Terezie Benedikty od Kříže, panny, mučednice a spolupatronky Evropy"
+    },
+    "teresa_of_calcutta_religious": {
+      "fullname": "Sv. Terezy z Kalkaty, řeholnice"
+    },
+    "teresa_of_jesus_jornet_ibars_virgin": {
+      "fullname": "Sv. Terezie od Ježíše Jornet Ibars, panny"
+    },
+    "teresa_of_jesus_of_avila_virgin": {
+      "fullname": "Sv. Terezie od Ježíše z Ávily, panny a učitelky církve"
+    },
+    "teresa_of_jesus_of_los_andes_virgin": {
+      "fullname": "Sv. Terezie od Ježíše z Los Andes, panny"
+    },
+    "teresa_of_portugal_religious": {
+      "fullname": "Bl. Terezie Portugalské, řeholnice"
+    },
+    "theodore_of_canterbury_bishop": {
+      "fullname": "Sv. Teodora z Canterbury, biskupa"
+    },
+    "theodore_romzha_bishop": {
+      "fullname": "Bl. Teodora Romži, biskupa a mučedníka"
+    },
+    "theodosius_of_the_caves_abbot": {
+      "fullname": "Sv. Teodózia Pečerského, opata"
+    },
+    "theotonius_of_coimbra_priest": {
+      "fullname": "Sv. Teotonia, kněze"
+    },
+    "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin": {
+      "fullname": "Sv. Terezie od Dítěte Ježíše, panny a učitelky církve"
+    },
+    "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin_copatroness_of_france": {
+      "fullname": "Sv. Terezie od Dítěte Ježíše, panny, učitelky církve a spolupatronky Francie"
+    },
+    "thomas_apostle": {
+      "fullname": "Sv. Tomáše, apoštola"
+    },
+    "thomas_aquinas_priest": {
+      "fullname": "Sv. Tomáše Akvinského, kněze a učitele církve"
+    },
+    "thomas_becket_bishop": {
+      "fullname": "Sv. Tomáše Becketa, biskupa a mučedníka"
+    },
+    "thomas_hioji_rokuzayemon_nishi_priest_and_companions_martyrs": {
+      "fullname": "Sv. Tomáše Hioji Rokuzayemon Nishi, kněze, a druhů, mučedníků"
+    },
+    "thomas_jean_georges_rehm_priest": {
+      "fullname": "Bl. Tomáše Jana Jiřího Rehma, kněze a mučedníka"
+    },
+    "thomas_of_villanova_bishop": {
+      "fullname": "Sv. Tomáše z Villanovy, biskupa"
+    },
+    "thorfinn_of_hamar_bishop": {
+      "fullname": "Sv. Torfina, biskupa"
+    },
+    "thorlac_of_iceland_bishop": {
+      "fullname": "Sv. Torlaka, biskupa"
+    },
+    "thursday_of_the_lords_supper": {
+      "fullname": "$(names:holy_thursday)"
+    },
+    "timothy_of_ephesus_and_titus_of_crete_bishops": {
+      "fullname": "Sv. Timoteje a Tita, biskupů"
+    },
+    "transfiguration_of_the_lord": {
+      "fullname": "Proměnění Páně"
+    },
+    "translation_of_the_relics_of_odile_of_alsace_abbess": {
+      "fullname": "Přesunu ostatků sv. Otýlie"
+    },
+    "translation_of_the_relics_of_saint_stephen_of_hungary": {
+      "fullname": "Přesunu ostatků sv. Štěpána Uherského"
+    },
+    "turibius_of_mogrovejo_bishop": {
+      "fullname": "Sv. Turibia z Mongroveja, biskupa"
+    }
+  }
+}

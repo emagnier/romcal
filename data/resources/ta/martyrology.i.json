@@ -1,0 +1,72 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "ta",
+  "martyrology": {
+    "ignatius_de_azevedo_priest_and_companions_martyrs": {
+      "fullname": "முத்திப்பேறுபெற்ற இஞ்ஞாசியார் அசவேடொ - அருட்பணியாளர், தோழர்கள், மறைசாட்சிகள்"
+    },
+    "ignatius_falzon": {
+      "fullname": "முத்திபேறுபெற்ற இஞ்ஞாசியார் பால்சன்"
+    },
+    "ignatius_of_antioch_bishop": {
+      "fullname": "அந்தியோக்கின் புனித இஞ்ஞாசியார் - ஆயர், மறைசாட்சி"
+    },
+    "ignatius_of_loyola_priest": {
+      "fullname": "லொயோலாவின் இஞ்ஞாசியார் - அருட்பணியாளர்"
+    },
+    "ildephonsus_of_toledo_bishop": {
+      "fullname": "டொலேடோவின் புனித இல்டெபொன்சஸ் - ஆயர்"
+    },
+    "illtud_the_knight_abbot": {
+      "fullname": "புனித இல்டட் - மடாதிபதி"
+    },
+    "immaculate_conception_of_the_blessed_virgin_mary": {
+      "fullname": "புனித கன்னி மரியாவின் அமல உற்பவம்"
+    },
+    "immaculate_conception_of_the_blessed_virgin_mary_patroness_of_the_philippines": {
+      "fullname": "மாசில்லாமல் உற்பவித்த கன்னி மரியாள் - பிலிப்பின் நாட்டின் பாதுகாவலி"
+    },
+    "immaculate_conception_of_the_blessed_virgin_mary_patroness_of_the_usa": {
+      "fullname": "மாசில்லாமல் உற்பவித்த கன்னி மரியாள் - அமெரிக்காவின் பாதுகாவலி"
+    },
+    "immaculate_heart_of_mary": {
+      "fullname": "புனித கன்னி மரியாவின் மாசற்ற இதயம்"
+    },
+    "innocent_v_pope": {
+      "fullname": "முத்திப்பேறுபெற்ற ஐந்தாம் இனோசெண்ட் - திருத்தந்தை"
+    },
+    "innocent_xi_pope": {
+      "fullname": "முத்திப்பேறுபெற்ற பதினோறாம் இனோசெண்ட் - திருத்தந்தை"
+    },
+    "irenaeus_of_lyon_bishop": {
+      "fullname": "லியோனின் புனித இரேனியஸ் - ஆயர், மறைசாட்சி, மறைவல்லுனர்"
+    },
+    "irene_of_macedonia": {
+      "fullname": "மசிதோனியாவின் புனித ஐரின்"
+    },
+    "irish_martyrs": {
+      "fullname": "அயர்லாந்தின் மறைசாட்சிகள்"
+    },
+    "isabelle_of_france_virgin": {
+      "fullname": "பிரான்ஸ் நாட்டின் முத்திப்பேறுபெற்ற இசபெல்லா - கன்னி"
+    },
+    "isidore_of_seville_bishop": {
+      "fullname": "புனித இசிதோர் - ஆயர், மறைவல்லுனர்"
+    },
+    "isidore_the_farmer": {
+      "fullname": "புனித இசிதோர்"
+    },
+    "istvan_sandor_religious": {
+      "fullname": "முத்திப்பேறுபெற்ற இஸ்த்வன் சண்டோர் - துறவி, மறைசாட்சி"
+    },
+    "ita_of_killeedy_virgin": {
+      "fullname": "புனித இடா - துறவி"
+    },
+    "ivan_merz": {
+      "fullname": "முத்திப்பேறுபெற்ற ஐவன் மேர்ஸ்"
+    },
+    "ivo_of_kermartin_priest": {
+      "fullname": "புனித ஐவோ - அருட்பணியாளர்"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "es",
+  "martyrology": {
+    "queenship_of_the_blessed_virgin_mary": {
+      "fullname": "Santísima Virgen María, Reina del Cielo"
+    }
+  }
+}

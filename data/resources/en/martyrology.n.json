@@ -1,0 +1,144 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "en",
+  "martyrology": {
+    "nativity_of_john_the_baptist": {
+      "fullname": "The Nativity of Saint John the Baptist"
+    },
+    "nativity_of_the_blessed_virgin_mary": {
+      "fullname": "The Nativity of the Blessed Virgin Mary"
+    },
+    "nativity_of_the_lord": {
+      "fullname": "The Nativity of the Lord (Christmas)",
+      "name": "The Nativity of the Lord"
+    },
+    "nazaria_ignacia_of_saint_teresa_of_jesus_march_mesa_virgin": {
+      "fullname": "Saint Nazaria Ignacia of Saint Teresa of Jesus March Mesa, Virgin",
+      "canonization_level": "saint",
+      "name": "Nazaria Ignacia of Saint Teresa of Jesus March Mesa",
+      "titles": [
+        "virgin"
+      ]
+    },
+    "nereus_of_terracina_and_achilleus_of_terracina_martyrs": {
+      "fullname": "Saints Nereus and Achilleus, Martyrs"
+    },
+    "nereus_of_terracina_martyr": {
+      "canonization_level": "saint",
+      "name": "Nereus",
+      "titles": [
+        "martyr"
+      ],
+      "date_of_death": 304,
+      "date_of_death_is_approximative": true
+    },
+    "nicetius_of_lyon_bishop": {
+      "fullname": "Saint Nicetius, Bishop",
+      "canonization_level": "saint",
+      "name": "Nicetius",
+      "titles": [
+        "bishop"
+      ],
+      "date_of_death": "573-4-2",
+      "sources": [
+        "mr_fr_2014_ed2_lyon"
+      ]
+    },
+    "nicholas_barre_priest": {
+      "fullname": "Blessed Nicholas Barré, Priest",
+      "canonization_level": "blessed",
+      "name": "Nicholas Barré",
+      "titles": [
+        "priest"
+      ],
+      "date_of_death": "1686-5-31"
+    },
+    "nicholas_of_flue_hermit": {
+      "fullname": "Saint Nicholas of Flüe, Hermit",
+      "canonization_level": "saint",
+      "name": "Nicholas of Flüe",
+      "titles": [
+        "hermit"
+      ]
+    },
+    "nicholas_of_myra_bishop": {
+      "fullname": "Saint Nicholas, Bishop",
+      "canonization_level": "saint",
+      "name": "Nicholas",
+      "titles": [
+        "bishop"
+      ],
+      "date_of_death": 350,
+      "date_of_death_is_approximative": true
+    },
+    "nicholas_steno_bishop": {
+      "fullname": "Blessed Nicholas Steno, Bishop",
+      "canonization_level": "blessed",
+      "name": "Nicholas Steno",
+      "titles": [
+        "bishop"
+      ]
+    },
+    "nicholas_tavelic_priest": {
+      "fullname": "Saint Nicholas Tavelić, Priest and Martyr",
+      "canonization_level": "saint",
+      "name": "Nicholas Tavelić",
+      "titles": [
+        "priest",
+        "martyr"
+      ]
+    },
+    "ninian_of_whithorn_bishop": {
+      "fullname": "Saint Ninian, Bishop",
+      "canonization_level": "saint",
+      "name": "Ninian",
+      "titles": [
+        "bishop"
+      ]
+    },
+    "noel_pinot_priest": {
+      "fullname": "Blessed Noël Pinot, Priest and Martyr",
+      "canonization_level": "blessed",
+      "name": "Noël Pinot",
+      "titles": [
+        "priest",
+        "martyr"
+      ],
+      "date_of_birth": "1747-12-19",
+      "date_of_death": "1794-02-21",
+      "sources": [
+        "mr_fr_2022_ed3_angers",
+        "https://en.wikipedia.org/wiki/No%C3%ABl_Pinot"
+      ]
+    },
+    "norbert_of_xanten_bishop": {
+      "fullname": "Saint Norbert, Bishop",
+      "canonization_level": "saint",
+      "name": "Norbert",
+      "titles": [
+        "bishop"
+      ],
+      "date_of_death": 1134
+    },
+    "nuno_of_saint_mary_pereira_religious": {
+      "fullname": "Saint Nuno of Saint Mary Pereira, Religious",
+      "canonization_level": "saint",
+      "name": "Nuno of Saint Mary Pereira",
+      "titles": [
+        "religious"
+      ]
+    },
+    "nykyta_budka_and_vasyl_velychkovsky_bishops": {
+      "fullname": "Blesseds Nykyta Budka and Vasyl Velychkovsky, Bishops and Martyrs"
+    },
+    "nykyta_budka_bishop": {
+      "canonization_level": "blessed",
+      "name": "Nykyta Budka",
+      "titles": [
+        "bishop",
+        "martyr"
+      ],
+      "date_of_death": 1949
+    }
+  }
+}

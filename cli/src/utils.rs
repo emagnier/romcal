@@ -200,7 +200,7 @@ pub fn validate_year(year: i32) -> Result<(), RomcalCliError> {
 /// Combine multiple Resources by locale
 /// Groups resources by locale and merges them together:
 /// - Deep merge of metadata properties
-/// - Concatenation of entities arrays
+/// - Concatenation of martyrology entries
 pub fn combine_resources_by_locale(
     resources: Vec<romcal::Resources>,
 ) -> Result<Vec<romcal::Resources>, RomcalCliError> {
@@ -252,12 +252,12 @@ pub fn combine_resources_by_locale(
                 combined.metadata = resource.metadata;
             }
 
-            // Concatenate entities manually
-            if let Some(source_entities) = resource.entities {
-                let target_entities = combined
-                    .entities
+            // Concatenate martyrology entries manually
+            if let Some(source_martyrology) = resource.martyrology {
+                let target_martyrology = combined
+                    .martyrology
                     .get_or_insert_with(std::collections::BTreeMap::new);
-                target_entities.extend(source_entities);
+                target_martyrology.extend(source_martyrology);
             }
         }
 
@@ -306,40 +306,42 @@ fn merge_json_values(target: &mut serde_json::Value, source: serde_json::Value) 
 #[cfg(test)]
 mod tests {
     use super::*;
-    use romcal::types::entity::EntityDefinition;
+    use romcal::types::martyrology::MartyrologyEntryDef;
     use std::collections::BTreeMap;
 
-    fn create_test_entity_def(name: &str) -> EntityDefinition {
-        EntityDefinition {
+    fn create_test_entry_def(name: &str) -> MartyrologyEntryDef {
+        MartyrologyEntryDef {
             name: Some(name.to_string()),
             ..Default::default()
         }
     }
 
-    fn create_test_entities_map(entities: Vec<(&str, &str)>) -> BTreeMap<String, EntityDefinition> {
+    fn create_test_martyrology_map(
+        entries: Vec<(&str, &str)>,
+    ) -> BTreeMap<String, MartyrologyEntryDef> {
         let mut map = BTreeMap::new();
-        for (id, name) in entities {
-            map.insert(id.to_string(), create_test_entity_def(name));
+        for (id, name) in entries {
+            map.insert(id.to_string(), create_test_entry_def(name));
         }
         map
     }
 
     fn create_test_resources_definition(
         locale: &str,
-        entities: BTreeMap<String, EntityDefinition>,
+        martyrology: BTreeMap<String, MartyrologyEntryDef>,
     ) -> romcal::Resources {
         let mut resources = romcal::Resources::new(locale.to_string());
-        resources.entities = Some(entities);
+        resources.martyrology = Some(martyrology);
         resources
     }
 
     fn create_test_resources_definition_with_metadata(
         locale: &str,
-        entities: BTreeMap<String, EntityDefinition>,
+        martyrology: BTreeMap<String, MartyrologyEntryDef>,
         metadata: romcal::types::resource::ResourcesMetadata,
     ) -> romcal::Resources {
         let mut resources = romcal::Resources::new(locale.to_string());
-        resources.entities = Some(entities);
+        resources.martyrology = Some(martyrology);
         resources.metadata = Some(metadata);
         resources
     }
@@ -355,18 +357,18 @@ mod tests {
         let resources = vec![
             create_test_resources_definition(
                 "fr",
-                create_test_entities_map(vec![("entity1", "Entity 1")]),
+                create_test_martyrology_map(vec![("entry1", "Entry 1")]),
             ),
             create_test_resources_definition(
                 "fr",
-                create_test_entities_map(vec![("entity2", "Entity 2")]),
+                create_test_martyrology_map(vec![("entry2", "Entry 2")]),
             ),
         ];
 
         let result = combine_resources_by_locale(resources).unwrap();
         assert_eq!(result.len(), 1);
         assert_eq!(result[0].locale, "fr");
-        assert_eq!(result[0].entities.as_ref().unwrap().len(), 2);
+        assert_eq!(result[0].martyrology.as_ref().unwrap().len(), 2);
     }
 
     #[test]
@@ -374,15 +376,15 @@ mod tests {
         let resources = vec![
             create_test_resources_definition(
                 "fr",
-                create_test_entities_map(vec![("entity1", "Entity 1")]),
+                create_test_martyrology_map(vec![("entry1", "Entry 1")]),
             ),
             create_test_resources_definition(
                 "en",
-                create_test_entities_map(vec![("entity2", "Entity 2")]),
+                create_test_martyrology_map(vec![("entry2", "Entry 2")]),
             ),
             create_test_resources_definition(
                 "fr",
-                create_test_entities_map(vec![("entity3", "Entity 3")]),
+                create_test_martyrology_map(vec![("entry3", "Entry 3")]),
             ),
         ];
 
@@ -391,11 +393,11 @@ mod tests {
 
         // Find the French resources
         let fr_resources = result.iter().find(|r| r.locale == "fr").unwrap();
-        assert_eq!(fr_resources.entities.as_ref().unwrap().len(), 2);
+        assert_eq!(fr_resources.martyrology.as_ref().unwrap().len(), 2);
 
         // Find the English resources
         let en_resources = result.iter().find(|r| r.locale == "en").unwrap();
-        assert_eq!(en_resources.entities.as_ref().unwrap().len(), 1);
+        assert_eq!(en_resources.martyrology.as_ref().unwrap().len(), 1);
     }
 
     #[test]
@@ -477,26 +479,26 @@ mod tests {
     }
 
     #[test]
-    fn test_combine_resources_by_locale_entities_concatenation() {
+    fn test_combine_resources_by_locale_martyrology_concatenation() {
         let resources = vec![
             create_test_resources_definition(
                 "fr",
-                create_test_entities_map(vec![("entity1", "Entity 1"), ("entity2", "Entity 2")]),
+                create_test_martyrology_map(vec![("entry1", "Entry 1"), ("entry2", "Entry 2")]),
             ),
             create_test_resources_definition(
                 "fr",
-                create_test_entities_map(vec![("entity3", "Entity 3")]),
+                create_test_martyrology_map(vec![("entry3", "Entry 3")]),
             ),
         ];
 
         let result = combine_resources_by_locale(resources).unwrap();
         assert_eq!(result.len(), 1);
 
-        let entities = result[0].entities.as_ref().unwrap();
-        assert_eq!(entities.len(), 3);
-        assert!(entities.contains_key("entity1"));
-        assert!(entities.contains_key("entity2"));
-        assert!(entities.contains_key("entity3"));
+        let martyrology = result[0].martyrology.as_ref().unwrap();
+        assert_eq!(martyrology.len(), 3);
+        assert!(martyrology.contains_key("entry1"));
+        assert!(martyrology.contains_key("entry2"));
+        assert!(martyrology.contains_key("entry3"));
     }
 
     #[test]
@@ -506,11 +508,11 @@ mod tests {
         let resources = vec![
             create_test_resources_definition(
                 "fr",
-                create_test_entities_map(vec![("entity1", "Entity 1")]),
+                create_test_martyrology_map(vec![("entry1", "Entry 1")]),
             ),
             create_test_resources_definition(
                 "en",
-                create_test_entities_map(vec![("entity2", "Entity 2")]),
+                create_test_martyrology_map(vec![("entry2", "Entry 2")]),
             ),
         ];
 

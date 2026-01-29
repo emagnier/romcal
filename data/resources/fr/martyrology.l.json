@@ -1,0 +1,90 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "fr",
+  "martyrology": {
+    "labor_day": {
+      "fullname": "Fête du travail",
+      "sources": [
+        "mr_fr_2021_ed3"
+      ]
+    },
+    "lambert_of_maastricht_bishop": {
+      "fullname": "Saint Lambert, évêque et martyr († 705)"
+    },
+    "landry_of_paris_bishop": {
+      "fullname": "Saint Landry, évêque de Paris († au 7e s.)"
+    },
+    "laud_of_coutances_bishop": {
+      "fullname": "Saint Lô, évêque de Coutances († 566)",
+      "sources": [
+        "mr_fr_1982_ed2_coutances"
+      ]
+    },
+    "laud_of_coutances_bishop_patron_of_the_diocese_of_coutances": {
+      "fullname": "Saint Lô, évêque de Coutances, patron du diocèse († 566)",
+      "sources": [
+        "mr_fr_1982_ed2_coutances"
+      ]
+    },
+    "lawrence_of_brindisi_priest": {
+      "fullname": "Saint Laurent de Brindisi, prêtre et docteur de l’Église († 1619)"
+    },
+    "lawrence_of_rome_deacon": {
+      "fullname": "Saint Laurent de Rome, diacre et martyr († 258)"
+    },
+    "lawrence_ruiz_and_companions_martyrs": {
+      "fullname": "Saints Laurent Ruiz et ses compagnons, martyrs à Nagasaki au Japon († v. 1635)"
+    },
+    "leo_i_the_great_pope": {
+      "fullname": "Saint Léon le Grand, pape et docteur de l’Église"
+    },
+    "leo_ix_pope": {
+      "fullname": "Saint Léon IX, pape († 540)"
+    },
+    "leodegar_of_autun_bishop": {
+      "fullname": "Saint Léger, évêque et martyr († 679 ou 680)"
+    },
+    "leon_de_carentan_bishop": {
+      "fullname": "Saint Léon de Carentan, évêque et martyr († 890)",
+      "sources": [
+        "mr_fr_1982_ed2_coutances"
+      ]
+    },
+    "licinius_of_angers_bishop": {
+      "fullname": "Saint Lézin, évêque († 610)",
+      "sources": [
+        "mr_fr_2022_ed3_angers"
+      ]
+    },
+    "louis_grignion_de_montfort_priest": {
+      "fullname": "Saint Louis-Marie Grignion de Montfort, prêtre († 1716)",
+      "sources": [
+        "mr_fr_2021_ed3"
+      ]
+    },
+    "louis_ix_of_france": {
+      "fullname": "Saint Louis, roi de France († 1270)"
+    },
+    "louis_of_toulouse_bishop": {
+      "fullname": "Saint Louis d’Anjou, évêque († 1297)",
+      "sources": [
+        "mr_fr_1974_ed1_region_apostolique_du_midi"
+      ]
+    },
+    "louis_zephirin_moreau_bishop": {
+      "fullname": "Bienheureux Louis Zéphyrin Moreau, évêque († 1901)"
+    },
+    "louise_de_marillac_religious": {
+      "fullname": "Sainte Louise de Marillac, religieuse († 1660)"
+    },
+    "lucy_of_syracuse_virgin": {
+      "fullname": "Sainte Lucie, vierge et martyre en Sicile († v. 305)"
+    },
+    "ludan_of_scotland_pilgrim": {
+      "fullname": "Saint Ludan, pèlerin († 1202)"
+    },
+    "luke_evangelist": {
+      "fullname": "Saint Luc, évangéliste"
+    }
+  }
+}

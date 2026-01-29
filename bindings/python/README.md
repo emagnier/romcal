@@ -126,20 +126,20 @@ def load_resources():
     # Merge files for each locale
     for locale, locale_files in files_by_locale.items():
         metadata = None
-        entities = {}
+        martyrology = {}
 
         for file in locale_files:
             with open(file) as f:
                 content = json.load(f)
             if file.name == "meta.json":
                 metadata = content.get("metadata")
-            elif file.name.startswith("entities.") and "entities" in content:
-                entities.update(content["entities"])
+            elif file.name.startswith("martyrology.") and "martyrology" in content:
+                martyrology.update(content["martyrology"])
 
         resources.append({
             "locale": locale,
             "metadata": metadata,
-            "entities": entities if entities else None,
+            "martyrology": martyrology if martyrology else None,
         })
 
     return resources

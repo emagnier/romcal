@@ -1,0 +1,9 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "fr",
+  "martyrology": {
+    "queenship_of_the_blessed_virgin_mary": {
+      "fullname": "Vierge Marie, reine"
+    }
+  }
+}

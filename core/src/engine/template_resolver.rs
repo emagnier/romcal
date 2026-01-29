@@ -773,7 +773,7 @@ impl TemplateResolver {
     // -------------------------------------------------------------------------
 
     fn resolve_triduum_day(&self, day_id: &str) -> String {
-        // For Triduum days, we use the entity names directly
+        // For Triduum days, we use the martyrology names directly
         // These are fixed celebrations, not templated
         match day_id {
             "holy_thursday" => "Holy Thursday".to_string(),

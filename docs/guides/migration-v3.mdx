@@ -10,14 +10,14 @@ This guide helps you migrate from **TypeScript** romcal v3 to v4.
 
 Romcal v4 is a complete rewrite with a new architecture:
 
-| Aspect              | v3                              | v4                                    |
-| ------------------- | ------------------------------- | ------------------------------------- |
-| **Core**            | Pure TypeScript                 | Rust compiled to WASM                 |
-| **Languages**       | TypeScript only                 | TypeScript, Python, Rust, CLI         |
-| **Packages**        | Multiple (`@romcal/calendar.*`) | Single (`romcal`)                     |
-| **Data**            | Pre-bundled by locale           | Explicit imports (tree-shakeable)     |
-| **API calls**       | Async                           | Sync (after init)                     |
-| **Output format**   | camelCase, nested objects       | snake_case, flat properties           |
+| Aspect            | v3                              | v4                                |
+| ----------------- | ------------------------------- | --------------------------------- |
+| **Core**          | Pure TypeScript                 | Rust compiled to WASM             |
+| **Languages**     | TypeScript only                 | TypeScript, Python, Rust, CLI     |
+| **Packages**      | Multiple (`@romcal/calendar.*`) | Single (`romcal`)                 |
+| **Data**          | Pre-bundled by locale           | Explicit imports (tree-shakeable) |
+| **API calls**     | Async                           | Sync (after init)                 |
+| **Output format** | camelCase, nested objects       | snake_case, flat properties       |
 
 ## Installation
 
@@ -146,8 +146,8 @@ const calendar = romcal.generateLiturgicalCalendar(2026);
 | N/A                     | `generateMassCalendar(year)`       | Get mass-centric calendar (sync)                |
 | `dates(year).*()`       | `getDate(id, year)`                | Get a date (sync), `Date` → `YYYY-MM-DD`        |
 | `getAllDefinitions()`   | N/A                                | Removed; use `createBundle()` instead           |
-| N/A                     | `getEntity(id)`                    | Get an entity by ID (sync)                      |
-| N/A                     | `searchEntities(query)`            | Search entities (sync)                          |
+| N/A                     | `getMartyrologyEntry(id)`          | Get a martyrology entry by ID (sync)            |
+| N/A                     | `searchMartyrologyEntries(query)`  | Search martyrology entries (sync)               |
 | `romcal.config.*`       | `romcal.*`                         | Config properties directly on instance          |
 | N/A                     | `createBundle()`                   | Create optimized data bundle (sync)             |
 | `getVersion()`          | `getVersion()`                     | Get version (sync → async), standalone function |
@@ -189,7 +189,7 @@ v4 uses a flatter structure and `snake_case` naming:
 | `i18nDef`                        | N/A                         | Removed (name in `fullname`)     |
 | `isHolyDayOfObligation`          | `is_holy_day_of_obligation` | snake_case                       |
 | `isOptional`                     | `is_optional`               | snake_case                       |
-| `martyrology`                    | `entities`                  | Renamed, richer structure        |
+| `martyrology`                    | `martyrology`               |                                  |
 | `name`                           | `fullname`                  |                                  |
 | `periods`                        | `periods`                   | Now includes localized names     |
 | `precedence`                     | `precedence`                |                                  |
@@ -204,7 +204,7 @@ v4 uses a flatter structure and `snake_case` naming:
 | N/A                              | `masses`                    | New: mass definitions            |
 
 :::tip[Flatter structure]
-v4 favors a flat structure wherever possible, removing nested objects like `cycles` and `calendar`. This makes the data easier to work with across APIs, CSV exports, databases, and multiple programming languages. Arrays such as `masses`, `entities`, and `colors` remain nested where they represent true one-to-many relationships.
+v4 favors a flat structure wherever possible, removing nested objects like `cycles` and `calendar`. This makes the data easier to work with across APIs, CSV exports, databases, and multiple programming languages. Arrays such as `masses`, `martyrology`, and `colors` remain nested where they represent true one-to-many relationships.
 :::
 
 ### Removed and unavailable features
@@ -228,11 +228,11 @@ Some v3 features are not yet available in v4, while others have been intentional
 | `weekday`                               | Data already merged into memorials (not applicable to feasts/solemnities); for optional memorials, weekday is output separately. Future support planned for readings/orations choice. |
 | `config()`                              | Access config directly via `romcal.*` properties                                                                                                                                      |
 
-## Entities and localization
+## Martyrology and localization
 
-In v3, martyrology data and locale translations were stored separately. v4 introduces a unified data model called **entities**, which combines martyrology items, places, and events into a single, more generic structure. This simplifies contributions by reducing the need to synchronize between multiple data sources.
+In v3, martyrology data and locale translations were stored separately. v4 introduces a unified data model for **martyrology entries**, which combines metadata (saints, blessed, places, groups) with their locale translations into a single, richer structure. This simplifies contributions by reducing the need to synchronize between multiple data sources.
 
-Each entity now contains both localized properties (`fullname`, `name`, etc.) and non-localized metadata (`canonization_level`, `titles`, `date_of_death`, `date_of_death_is_approximative`, etc.).
+Each martyrology entry now contains both localized properties (`fullname`, `name`, etc.) and non-localized metadata (`canonization_level`, `titles`, `date_of_death`, `date_of_death_is_approximative`, etc.).
 
 **Locale conventions:**
 
@@ -355,7 +355,7 @@ Beyond migration changes, v4 introduces new capabilities:
 - Clear separation between library code and data
 - Improved data documentation with JSON Schema and quality typings across languages
 - Mass-centric calendar generation
-- Entity search and retrieval
+- Martyrology search and retrieval
 - Multi-platform support (Python, Rust, CLI)
 - Comprehensive general documentation
 

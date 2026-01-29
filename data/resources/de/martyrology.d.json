@@ -1,0 +1,93 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "de",
+  "martyrology": {
+    "damasus_i_pope": {
+      "fullname": "Hl. Damasus I., Papst"
+    },
+    "damien_de_veuster_priest": {
+      "fullname": "Hl. Damian de Veuster, Priester"
+    },
+    "daniel_brottier_priest": {
+      "fullname": "Sel. Daniel Brottier, Priester"
+    },
+    "david_lewis_priest": {
+      "fullname": "Hl. David Lewis, Priester und Märtyrer"
+    },
+    "david_of_wales_bishop": {
+      "fullname": "Hl. David, Bischof"
+    },
+    "david_of_wales_bishop_patron_of_wales": {
+      "fullname": "Hl. David, Bischof, Schutzpatron von Wales"
+    },
+    "davnet_of_sliabh_beagh_virgin": {
+      "fullname": "Hl. Davnet, Jungfrau"
+    },
+    "declan_of_ardmore_bishop": {
+      "fullname": "Hl. Declan, Bischof"
+    },
+    "dedication_of_consecrated_churches": {
+      "fullname": "Kirchweihfest"
+    },
+    "dedication_of_the_basilica_of_saint_mary_major": {
+      "fullname": "Weihetag der Basilika Santa Maria Maggiore"
+    },
+    "dedication_of_the_basilicas_of_saints_peter_and_paul_apostles": {
+      "fullname": "Weihetag der Basiliken St. Peter und Paul, Apostel"
+    },
+    "dedication_of_the_cathedral_basilica_of_saint_denis_france": {
+      "fullname": "Weihetag der Kathedralbasilika von Saint-Denis, Frankreich"
+    },
+    "dedication_of_the_cathedral_of_notre_dame_de_strasbourg_france": {
+      "fullname": "Weihetag der Kathedrale Notre-Dame von Straßburg"
+    },
+    "dedication_of_the_cathedral_of_saint_john_the_baptist_lyon_france": {
+      "fullname": "Weihetag der Kathedrale St. Johannes der Täufer, Lyon"
+    },
+    "dedication_of_the_lateran_basilica": {
+      "fullname": "Weihetag der Lateranbasilika"
+    },
+    "dedication_of_the_notre_dame_de_paris_cathedral_paris_france": {
+      "fullname": "Weihetag der Kathedrale Notre-Dame de Paris, Paris"
+    },
+    "deiniol_of_bangor_bishop": {
+      "fullname": "Hl. Deiniol, Bischof"
+    },
+    "demetrius_of_thessaloniki_martyr": {
+      "fullname": "Hl. Demetrius von Thessaloniki, Märtyrer"
+    },
+    "denis_of_paris_bishop_and_companions_martyrs": {
+      "fullname": "Hl. Dionysius, Bischof, und Gefährten, Märtyrer"
+    },
+    "denis_of_paris_bishop_patron_of_the_archdiocese_of_paris": {
+      "fullname": "Hl. Dionysius, Bischof und Märtyrer, Schutzpatron der Erzdiözese Paris"
+    },
+    "denis_of_paris_bishop_patron_of_the_city_and_of_the_diocese_of_saint_denis": {
+      "fullname": "Hl. Dionysius, Bischof und Märtyrer, Schutzpatron der Stadt und der Diözese Saint-Denis"
+    },
+    "dina_belanger_virgin": {
+      "fullname": "Sel. Dina Bélanger, Jungfrau"
+    },
+    "dionysius_the_areopagite_bishop": {
+      "fullname": "Hl. Dionysius Areopagita, Bischof und Märtyrer"
+    },
+    "dismas_the_good_thief": {
+      "fullname": "Dismas, der gute Schächer"
+    },
+    "divine_mercy_sunday": {
+      "fullname": "Barmherzigkeitssonntag"
+    },
+    "dominic_de_guzman_priest": {
+      "fullname": "Hl. Dominikus, Priester"
+    },
+    "dominic_of_the_mother_of_god_barberi_priest": {
+      "fullname": "Sel. Dominikus von der Mutter Gottes Barberi, Priester"
+    },
+    "dunstan_of_canterbury_bishop": {
+      "fullname": "Hl. Dunstan, Bischof"
+    },
+    "dyfrig_of_wales_bishop": {
+      "fullname": "Hl. Dyfrig, Bischof"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "de",
+  "martyrology": {
+    "nativity_of_john_the_baptist": {
+      "fullname": "Die Geburt des heiligen Johannes des Täufers"
+    },
+    "nativity_of_the_blessed_virgin_mary": {
+      "fullname": "Mariä Geburt"
+    },
+    "nativity_of_the_lord": {
+      "fullname": "Weihnachten - Hochfest der Geburt des Herrn"
+    },
+    "nazaria_ignacia_of_saint_teresa_of_jesus_march_mesa_virgin": {
+      "fullname": "Hl. Nazaria Ignacia von der heiligen Teresa von Jesus March Mesa, Jungfrau"
+    },
+    "nereus_of_terracina_and_achilleus_of_terracina_martyrs": {
+      "fullname": "Hl. Nereus und Achilleus, Märtyrer"
+    },
+    "nicetius_of_lyon_bishop": {
+      "fullname": "Hl. Nizier, Bischof"
+    },
+    "nicholas_barre_priest": {
+      "fullname": "Sel. Nikolaus Barré, Priester"
+    },
+    "nicholas_of_flue_hermit": {
+      "fullname": "Hl. Niklaus von Flüe, Einsiedler"
+    },
+    "nicholas_of_myra_bishop": {
+      "fullname": "Hl. Nikolaus, Bischof"
+    },
+    "nicholas_steno_bishop": {
+      "fullname": "Sel. Nikolaus Steno, Bischof"
+    },
+    "nicholas_tavelic_priest": {
+      "fullname": "Hl. Nikolaus Tavelić, Priester und Märtyrer"
+    },
+    "ninian_of_whithorn_bishop": {
+      "fullname": "Hl. Ninian, Bischof"
+    },
+    "norbert_of_xanten_bishop": {
+      "fullname": "Hl. Norbert, Bischof"
+    },
+    "nuno_of_saint_mary_pereira_religious": {
+      "fullname": "Hl. Nuno von Santa Maria Pereira, Ordensmann"
+    },
+    "nykyta_budka_and_vasyl_velychkovsky_bishops": {
+      "fullname": "Sel.n Nykyta Budka und Vasyl Velychkovsky, Bischöfe und Märtyrer"
+    }
+  }
+}

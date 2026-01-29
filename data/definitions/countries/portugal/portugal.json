@@ -43,7 +43,7 @@
         "month": 2,
         "date": 20
       },
-      "entities": [
+      "martyrology": [
         "jacinta_marto",
         "francisco_marto"
       ]
@@ -89,7 +89,7 @@
         "month": 6,
         "date": 20
       },
-      "entities": [
+      "martyrology": [
         "sancha_of_portugal_virgin",
         "mafalda_of_portugal_virgin"
       ]
@@ -114,7 +114,7 @@
         "month": 7,
         "date": 17
       },
-      "entities": [
+      "martyrology": [
         "ignatius_de_azevedo_priest",
         "companions_martyrs"
       ]
@@ -160,7 +160,7 @@
         "month": 12,
         "date": 5
       },
-      "entities": [
+      "martyrology": [
         "fructuosus_of_braga_bishop",
         "martin_of_braga_bishop",
         "gerald_of_braga_bishop"

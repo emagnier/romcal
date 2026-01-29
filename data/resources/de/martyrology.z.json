@@ -1,0 +1,21 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "de",
+  "martyrology": {
+    "zdenka_cecilia_schelingova_virgin": {
+      "fullname": "Sel. Zdenka Cecilia Schelingová, Jungfrau und Märtyrerin"
+    },
+    "zdislava_of_lemberk": {
+      "fullname": "Hl. Zdislava"
+    },
+    "zepherin_namuncura": {
+      "fullname": "Sel. Zephyrinus Namuncurá"
+    },
+    "zoltan_lajos_meszlenyi_bishop": {
+      "fullname": "Sel. Zoltán Lajos Meszlényi, Bischof und Märtyrer"
+    },
+    "zygmunt_gorazdowski_priest": {
+      "fullname": "Hl. Zygmunt Gorazdowski, Priester"
+    }
+  }
+}

@@ -1,0 +1,121 @@
+---
+title: Searching Martyrology
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+Romcal includes a database of martyrology entries (saints, blessed, places, events) that you can search and lookup.
+
+## Lookup by ID
+
+If you know the exact ID of a martyrology entry, you can look it up directly.
+
+<Tabs syncKey="lang">
+  <TabItem label="TypeScript">
+
+```typescript
+import { Romcal } from 'romcal';
+
+const romcal = new Romcal();
+const francis = romcal.getMartyrologyEntry('francis_of_assisi');
+
+console.log(francis.fullname); // "Saint Francis of Assisi"
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+from romcal import Romcal
+
+romcal = Romcal()
+francis = romcal.get_martyrology_entry("francis_of_assisi")
+
+print(francis.fullname)  # "Saint Francis of Assisi"
+```
+
+  </TabItem>
+  <TabItem label="Rust">
+
+```rust
+use romcal::Romcal;
+
+let romcal = Romcal::new();
+let francis = romcal.get_martyrology_entry("francis_of_assisi");
+
+println!("{}", francis.fullname); // "Saint Francis of Assisi"
+```
+
+  </TabItem>
+</Tabs>
+
+## Fuzzy Search
+
+Search for martyrology entries by name with fuzzy matching.
+
+<Tabs syncKey="lang">
+  <TabItem label="TypeScript">
+
+```typescript
+import { Romcal } from 'romcal';
+
+const romcal = new Romcal();
+const results = romcal.searchMartyrologyEntries({ text: 'francis' });
+
+for (const result of results) {
+  console.log(`${result.entry.id}: ${result.entry.fullname} (score: ${result.score})`);
+}
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+from romcal import Romcal, MartyrologyQuery
+
+romcal = Romcal()
+results = romcal.search_martyrology(MartyrologyQuery(text="francis"))
+
+for result in results:
+    print(f"{result.entry.id}: {result.entry.fullname} (score: {result.score})")
+```
+
+  </TabItem>
+  <TabItem label="Rust">
+
+```rust
+use romcal::{Romcal, MartyrologyQuery};
+
+let romcal = Romcal::new();
+let query = MartyrologyQuery { text: Some("francis".to_string()), ..Default::default() };
+let results = romcal.search_martyrology(query);
+
+for result in &results {
+    println!("{}: {} (score: {})", result.entry.id, result.entry.fullname, result.score);
+}
+```
+
+  </TabItem>
+</Tabs>
+
+## Search Filters
+
+You can filter search results by various criteria:
+
+- **entry_type**: Entry type (PERSON, PLACE, EVENT, GROUP)
+- **sex**: MALE or FEMALE
+- **canonization_level**: SAINT, BLESSED, etc.
+- **titles**: Filter by title (MARTYR, VIRGIN, DOCTOR_OF_THE_CHURCH, etc.)
+
+## Martyrology Entry Properties
+
+Each martyrology entry includes:
+
+| Property             | Description                            |
+| -------------------- | -------------------------------------- |
+| `id`                 | Unique identifier                      |
+| `fullname`           | Full display name                      |
+| `name`               | Short name                             |
+| `canonization_level` | SAINT, BLESSED, etc.                   |
+| `titles`             | Array of titles (MARTYR, BISHOP, etc.) |
+| `date_of_death`      | Year or full date of death             |

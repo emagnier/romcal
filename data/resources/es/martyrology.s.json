@@ -1,0 +1,42 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "es",
+  "martyrology": {
+    "scholastica_of_nursia_virgin": {
+      "fullname": "Santa Escolástica, virgen"
+    },
+    "sebastian_de_aparicio_religious": {
+      "fullname": "Beato Sebastián de Aparicio, religioso"
+    },
+    "sebastian_of_milan_martyr": {
+      "fullname": "San Sebastián, mártir"
+    },
+    "seven_holy_founders_of_the_servite_order": {
+      "fullname": "Los Santos Siete Fundadores de la Orden de los Servitas"
+    },
+    "sharbel_makhluf_priest": {
+      "fullname": "San Sarbelio Makhluf, presbítero y eremita"
+    },
+    "simon_and_jude_apostles": {
+      "fullname": "Santos Simón y Judas, apóstoles"
+    },
+    "sixtus_ii_pope_and_companions_martyrs": {
+      "fullname": "Santos Sixto II, papa, y compañeros, mártires"
+    },
+    "stanislaus_of_szczepanow_bishop": {
+      "fullname": "San Estanislao de Cracovia, obispo y mártir"
+    },
+    "stephen_i_of_hungary": {
+      "fullname": "San Esteban de Hungría"
+    },
+    "stephen_the_first_martyr": {
+      "fullname": "San Esteban, Primer mártir"
+    },
+    "sunday_of_the_word_of_god": {
+      "fullname": "3º domingo del Tiempo Ordinario, o domingo de la Palabra de Dios"
+    },
+    "sylvester_i_pope": {
+      "fullname": "San Silvestre I, papa"
+    }
+  }
+}

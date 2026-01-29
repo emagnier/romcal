@@ -4,7 +4,7 @@ import type { CommonInfo } from './CommonInfo'
 import type { DateDef } from './DateDef'
 import type { DateDefException } from './DateDefException'
 import type { DayOfWeek } from './DayOfWeek'
-import type { Entity } from './Entity'
+import type { MartyrologyEntry } from './MartyrologyEntry'
 import type { MassInfo } from './MassInfo'
 import type { ParentOverride } from './ParentOverride'
 import type { PeriodInfo } from './PeriodInfo'
@@ -100,9 +100,9 @@ export type LiturgicalDay = {
    */
   titles: TitlesDef
   /**
-   * The entities (Saints, Blessed, or Places) linked to this liturgical day.
+   * The martyrology entries (Saints, Blessed, or Places) linked to this liturgical day.
    */
-  entities: Array<Entity>
+  martyrology: Array<MartyrologyEntry>
   /**
    * The week number of the current liturgical season.
    * Starts from `1`, except in the seasons of lent,

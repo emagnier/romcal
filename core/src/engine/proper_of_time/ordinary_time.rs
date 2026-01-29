@@ -258,7 +258,7 @@ impl<'a> OrdinaryTime<'a> {
         date: DateTime<Utc>,
         period: Period,
     ) -> RomcalResult<LiturgicalDay> {
-        // Entity-based day, fullname comes from entity resolution
+        // Martyrology-based day, fullname comes from martyrology resolution
         let periods = self.proper_of_time.resolve_periods(vec![period]);
         let liturgical_day = self
             .proper_of_time
@@ -281,7 +281,7 @@ impl<'a> OrdinaryTime<'a> {
         date: DateTime<Utc>,
         period: Period,
     ) -> RomcalResult<LiturgicalDay> {
-        // Entity-based day, fullname comes from entity resolution
+        // Martyrology-based day, fullname comes from martyrology resolution
         let periods = self.proper_of_time.resolve_periods(vec![period]);
         let liturgical_day = self
             .proper_of_time
@@ -304,7 +304,7 @@ impl<'a> OrdinaryTime<'a> {
         date: DateTime<Utc>,
         period: Period,
     ) -> RomcalResult<LiturgicalDay> {
-        // Entity-based day, fullname comes from entity resolution
+        // Martyrology-based day, fullname comes from martyrology resolution
         let periods = self.proper_of_time.resolve_periods(vec![period]);
         let liturgical_day = self
             .proper_of_time
@@ -327,7 +327,7 @@ impl<'a> OrdinaryTime<'a> {
         date: DateTime<Utc>,
         period: Period,
     ) -> RomcalResult<LiturgicalDay> {
-        // Entity-based day, fullname comes from entity resolution
+        // Martyrology-based day, fullname comes from martyrology resolution
         let periods = self.proper_of_time.resolve_periods(vec![period]);
         let liturgical_day = self
             .proper_of_time
@@ -350,7 +350,7 @@ impl<'a> OrdinaryTime<'a> {
         date: DateTime<Utc>,
         period: Period,
     ) -> RomcalResult<LiturgicalDay> {
-        // Entity-based day, fullname comes from entity resolution
+        // Martyrology-based day, fullname comes from martyrology resolution
         let periods = self.proper_of_time.resolve_periods(vec![period]);
         let liturgical_day = self
             .proper_of_time

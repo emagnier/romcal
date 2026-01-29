@@ -1,0 +1,9 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "fr",
+  "martyrology": {
+    "kateri_tekakwitha_virgin": {
+      "fullname": "Sainte Kateri Tekakwitha, vierge Amérindienne († 1680)"
+    }
+  }
+}

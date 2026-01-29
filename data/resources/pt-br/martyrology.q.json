@@ -1,0 +1,9 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "pt-br",
+  "martyrology": {
+    "queenship_of_the_blessed_virgin_mary": {
+      "fullname": "Bem-aventurada virgem Maria, Rainha do Céu"
+    }
+  }
+}

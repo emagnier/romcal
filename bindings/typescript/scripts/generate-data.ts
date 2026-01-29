@@ -123,7 +123,7 @@ ${exports.join('\n')}
  * Generate JavaScript files for resources (locales).
  *
  * For each locale in data/resources/:
- * 1. Reads all JSON files (meta.json + entities.*.json)
+ * 1. Reads all JSON files (meta.json + martyrology.*.json)
  * 2. Uses merge_resource_files() to merge them
  * 3. Generates a .js file with the merged data
  */

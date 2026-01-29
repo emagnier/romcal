@@ -1,0 +1,45 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "pl",
+  "martyrology": {
+    "teresa_benedicta_of_the_cross_stein_virgin": {
+      "fullname": "Św. Teresy Benedykty od Krzyża, dziewicy i męczennicy"
+    },
+    "teresa_benedicta_of_the_cross_stein_virgin_copatroness_of_europe": {
+      "fullname": "Św. Teresy Benedykty od Krzyża, dziewicy i męczennicy, patronki Europy"
+    },
+    "teresa_of_jesus_of_avila_virgin": {
+      "fullname": "Św. Teresy od Jezusa, dziewicy i doktora Kościoła"
+    },
+    "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin": {
+      "fullname": "Św. Teresy od Dzieciątka Jezus, dziewicy i doktora Kościoła"
+    },
+    "thomas_apostle": {
+      "fullname": "Św. Tomasza, Apostoła"
+    },
+    "thomas_aquinas_priest": {
+      "fullname": "Św. Tomasza z Akwinu, prezbitera i doktora Kościoła"
+    },
+    "thomas_becket_bishop": {
+      "fullname": "Św. Tomasza Becketa, biskupa i męczennika"
+    },
+    "thomas_jean_georges_rehm_priest": {
+      "fullname": "Bł. Tomasza Jana Jerzego Rehma, prezbitera i męczennika"
+    },
+    "thursday_of_the_lords_supper": {
+      "fullname": "$(names:holy_thursday)"
+    },
+    "timothy_of_ephesus_and_titus_of_crete_bishops": {
+      "fullname": "Świętych biskupów Tymoteusza i Tytusa"
+    },
+    "transfiguration_of_the_lord": {
+      "fullname": "Przemienienie Pańskie"
+    },
+    "translation_of_the_relics_of_odile_of_alsace_abbess": {
+      "fullname": "Przeniesienie relikwii św. Otylii"
+    },
+    "turibius_of_mogrovejo_bishop": {
+      "fullname": "Św. Turybiusza z Mongrovejo, biskupa"
+    }
+  }
+}

@@ -8,10 +8,10 @@ use serde::{Deserialize, Serialize};
 use crate::engine::calendar_definition::CalendarDefinition;
 use crate::engine::dates::LiturgicalDates;
 use crate::engine::resources::Resources;
-use crate::entity_resolution::{EntityResolver, normalize_locale};
-use crate::entity_search::{EntityMatcher, EntityQuery, EntitySearchResult};
 use crate::error::RomcalError;
-use crate::types::entity::Entity;
+use crate::martyrology_resolution::{MartyrologyResolver, normalize_locale};
+use crate::martyrology_search::{MartyrologyMatcher, MartyrologyQuery, MartyrologySearchResult};
+use crate::types::martyrology::MartyrologyEntry;
 use crate::types::{CalendarContext, EasterCalculationType, OrdinalFormat};
 
 // Default configuration constants
@@ -274,27 +274,27 @@ impl Romcal {
         crate::engine::calendar::Calendar::new(self.clone(), year)?.generate_mass_calendar()
     }
 
-    /// Get an entity by its exact ID.
+    /// Get a martyrology entry by its exact ID.
     ///
     /// Searches in the current locale's resources first, then falls back to other locales.
     ///
     /// # Arguments
     ///
-    /// * `id` - The entity ID (e.g., "francis_of_assisi")
+    /// * `id` - The martyrology entry ID (e.g., "francis_of_assisi")
     ///
     /// # Returns
     ///
-    /// The entity if found, or `None` if not found.
+    /// The entry if found, or `None` if not found.
     ///
     /// Uses locale fallback: en → parent locale → specific locale
-    pub fn get_entity(&self, id: &str) -> Option<Entity> {
-        let resolver = EntityResolver::new(self);
-        resolver.resolve_entity(id).cloned()
+    pub fn get_martyrology_entry(&self, id: &str) -> Option<MartyrologyEntry> {
+        let resolver = MartyrologyResolver::new(self);
+        resolver.resolve_entry(id).cloned()
     }
 
-    /// Search entities with fuzzy matching and filters.
+    /// Search martyrology entries with fuzzy matching and filters.
     ///
-    /// Searches entities merged from all locales (en → parent → specific).
+    /// Searches entries merged from all locales (en → parent → specific).
     ///
     /// # Arguments
     ///
@@ -303,10 +303,10 @@ impl Romcal {
     /// # Returns
     ///
     /// A vector of search results sorted by score (highest first).
-    pub fn search_entities(&self, query: EntityQuery) -> Vec<EntitySearchResult> {
-        let resolver = EntityResolver::new(self);
-        let matcher = EntityMatcher::new();
-        matcher.search(resolver.get_all_entities().values(), &query)
+    pub fn search_martyrology(&self, query: MartyrologyQuery) -> Vec<MartyrologySearchResult> {
+        let resolver = MartyrologyResolver::new(self);
+        let matcher = MartyrologyMatcher::new();
+        matcher.search(resolver.get_all_entries().values(), &query)
     }
 
     /// Get a liturgical date by its ID for a given year

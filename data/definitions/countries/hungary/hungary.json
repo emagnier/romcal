@@ -43,7 +43,7 @@
         "month": 2,
         "date": 20
       },
-      "entities": [
+      "martyrology": [
         "jacinta_marto",
         "francisco_marto"
       ]
@@ -207,7 +207,7 @@
         "month": 7,
         "date": 17
       },
-      "entities": [
+      "martyrology": [
         "andrew_zorard_of_nitra_hermit",
         "benedict_of_skalka_hermit"
       ]
@@ -273,7 +273,7 @@
         "month": 9,
         "date": 7
       },
-      "entities": [
+      "martyrology": [
         "marko_krizin_priest",
         "melchior_grodziecki_priest",
         "stephen_pongracz_priest"

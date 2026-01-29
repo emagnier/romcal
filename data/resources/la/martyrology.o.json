@@ -1,0 +1,162 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "la",
+  "martyrology": {
+    "odile_of_alsace_abbess": {
+      "fullname": "S. Odiliæ, abatissæ"
+    },
+    "odile_of_alsace_abbess_patroness_of_alsace": {
+      "fullname": "S. Odiliæ, abatissæ, patronæ Alsatiæ"
+    },
+    "odoric_of_pordenone_priest": {
+      "fullname": "B. Odorici de Portu Naonis, presbyteri"
+    },
+    "olaf_ii_of_norway_martyr": {
+      "fullname": "S. Olavi, martyris"
+    },
+    "oleksiy_zarytskyi_priest": {
+      "fullname": "B. Alexii Zaryckyj, presbyteri et martyri"
+    },
+    "olga_of_kiev": {
+      "fullname": "S. Olgæ Kioviensis"
+    },
+    "oliver_plunket_bishop": {
+      "fullname": "S. Oliverii Plunket, episcopi et martyris"
+    },
+    "otteran_of_iona_monk": {
+      "fullname": "S. Otterani, monachi"
+    },
+    "otto_of_bamberg_bishop": {
+      "fullname": "S. Ottonis Bambergensis, episcopi"
+    },
+    "our_lady_help_of_christians": {
+      "fullname": "B. Mariæ Virginis Auxilium Christianorum"
+    },
+    "our_lady_mediatrix_of_all_grace": {
+      "fullname": "B. Mariæ Virginis Omnium Gratiarum Mediatricis"
+    },
+    "our_lady_mother_of_christian_unity": {
+      "fullname": "B. Mariæ Virginis Unitatis Christianorum Matris"
+    },
+    "our_lady_mother_of_divine_providence_patroness_of_puerto_rico": {
+      "fullname": "B. Mariæ Virginis Divinæ Providentiæ Matris atque Patronæ Portus Divitis"
+    },
+    "our_lady_of_aparecida_patroness_of_brazil": {
+      "fullname": "B. Mariæ Virginis de Aparecida, Patronæ Brasiliæ"
+    },
+    "our_lady_of_bethlehem": {
+      "fullname": "B. Mariæ Virginis de Bethlehem"
+    },
+    "our_lady_of_china": {
+      "fullname": "B. Mariæ Virginis Sinæ"
+    },
+    "our_lady_of_czestochowa": {
+      "fullname": "B. Mariæ Virginis de Częstochowa"
+    },
+    "our_lady_of_fatima": {
+      "fullname": "B. Mariæ Virginis de Fatima"
+    },
+    "our_lady_of_good_counsel": {
+      "fullname": "B. Mariæ Virginis boni Consilii Matris"
+    },
+    "our_lady_of_guadalupe": {
+      "fullname": "B. Mariæ Virginis de Guadalupe"
+    },
+    "our_lady_of_guadalupe_patroness_of_the_americas": {
+      "fullname": "B. Mariæ Virginis de Guadalupe, Patronæ Americæ"
+    },
+    "our_lady_of_guadalupe_patroness_of_the_philippines": {
+      "fullname": "Beatæ Mariæ Virginis de Guadalupe, Patronæ Insularum Philippinarum"
+    },
+    "our_lady_of_hungary_patroness_of_hungary": {
+      "fullname": "B. Mariæ Virginis, Patronæ Hungariæ"
+    },
+    "our_lady_of_itati": {
+      "fullname": "B. Mariæ Virginis de Itati"
+    },
+    "our_lady_of_knock": {
+      "fullname": "B. Mariæ Virginis de Knock"
+    },
+    "our_lady_of_lanka": {
+      "fullname": "B. Mariæ Virginis de Lanka"
+    },
+    "our_lady_of_lebanon": {
+      "fullname": "B. Mariæ Virginis de Libano"
+    },
+    "our_lady_of_loreto": {
+      "fullname": "B. Mariæ Virginis de Loreto"
+    },
+    "our_lady_of_lourdes": {
+      "fullname": "B. Mariæ Virginis de Lourdes"
+    },
+    "our_lady_of_lujan_patroness_of_argentina": {
+      "fullname": "B. Mariæ Virginis de Luján, Patronæ Argentinæ"
+    },
+    "our_lady_of_madhu": {
+      "fullname": "B. Mariæ Virginis de Madhu"
+    },
+    "our_lady_of_marija_bistrica": {
+      "fullname": "B. Mariæ Virginis de Marija Bistrica"
+    },
+    "our_lady_of_mercy": {
+      "fullname": "B. Mariæ Virginis a Misericordia"
+    },
+    "our_lady_of_mount_carmel": {
+      "fullname": "B. Mariæ Virginis de Monte Carmelo"
+    },
+    "our_lady_of_mount_carmel_mother_and_queen_of_chile": {
+      "fullname": "B. Mariæ Virginis de Monte Carmelo, Chiliæ Matris atque Reginæ"
+    },
+    "our_lady_of_perpetual_help": {
+      "fullname": "B. Mariæ Virginis perpetuæ Auxilium"
+    },
+    "our_lady_of_sorrows": {
+      "fullname": "B. Mariæ Virginis Perdolentis"
+    },
+    "our_lady_of_sorrows_patroness_of_slovakia": {
+      "fullname": "B. Mariæ Virginis Perdolentis, Patronæ Slovaciæ"
+    },
+    "our_lady_of_the_discovery_of_the_hidden_christians": {
+      "fullname": "B. Mariæ Virginis a Inventione occultorum Christianorum"
+    },
+    "our_lady_of_the_gate_of_dawn": {
+      "fullname": "B. Mariæ Virginis Portæ Auroræ"
+    },
+    "our_lady_of_the_miraculous_medal": {
+      "fullname": "B. Mariæ Virginis a Numisma Mirabile"
+    },
+    "our_lady_of_the_pillar": {
+      "fullname": "B. Mariæ Virginis a Columna"
+    },
+    "our_lady_of_the_rosary": {
+      "fullname": "B. Mariæ Virginis a Rosario"
+    },
+    "our_lady_of_the_valley": {
+      "fullname": "B. Mariæ Virginis de Valle"
+    },
+    "our_lady_of_vladimir": {
+      "fullname": "B. Mariæ Virginis Volodimiriensis"
+    },
+    "our_lady_of_walsingham": {
+      "fullname": "B. Mariæ Virginis de Walsingham"
+    },
+    "our_lady_queen_of_peace": {
+      "fullname": "B. Mariæ Virginis Reginæ Pacis"
+    },
+    "our_lady_queen_of_poland": {
+      "fullname": "B Mariæ Virginis Reginæ Poloniæ"
+    },
+    "our_lady_refuge_of_sinners": {
+      "fullname": "B. Mariæ Virginis Refugii peccatorum"
+    },
+    "our_lord_jesus_christ_king_of_the_universe": {
+      "fullname": "D. N. I. C. universorum regis"
+    },
+    "our_lord_jesus_christ_the_eternal_high_priest": {
+      "fullname": "Domini nostri Iesu Christi, Summi et Æterni Sacerdotis"
+    },
+    "our_lord_of_miracles": {
+      "fullname": "Domini Miraculorum"
+    }
+  }
+}

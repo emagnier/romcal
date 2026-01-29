@@ -1,9 +1,8 @@
 ---
-title: Entity Resources
+title: Martyrology Resources
 ---
 
-
-Entity resources contain the names and metadata for liturgical entities (saints, feasts, etc.) in each locale.
+Martyrology resources contain the names and metadata for martyrology entries (saints, blessed, places, events) in each locale.
 
 ## File Location
 
@@ -11,25 +10,25 @@ Resources are stored in `data/resources/` organized by locale:
 
 ```
 data/resources/
-├── en/                    # English
-│   ├── entities.a.json    # Entities starting with 'a'
-│   ├── entities.b.json    # Entities starting with 'b'
+├── en/                       # English
+│   ├── martyrology.a.json    # Entries starting with 'a'
+│   ├── martyrology.b.json    # Entries starting with 'b'
 │   └── ...
-├── fr/                    # French
-│   ├── entities.a.json
+├── fr/                       # French
+│   ├── martyrology.a.json
 │   └── ...
 └── ...
 ```
 
 ## File Format
 
-Each file contains entities for a single letter:
+Each file contains martyrology entries for a single letter:
 
 ```json
 {
   "$schema": "../../../schemas/resources.json",
   "locale": "en",
-  "entities": {
+  "martyrology": {
     "francis_of_assisi": {
       "fullname": "Saint Francis of Assisi",
       "canonization_level": "SAINT",
@@ -47,7 +46,7 @@ Each file contains entities for a single letter:
 }
 ```
 
-## Entity Fields
+## Martyrology Entry Fields
 
 ### Required Fields
 
@@ -114,7 +113,7 @@ Each file contains entities for a single letter:
 }
 ```
 
-### Non-Person Entity
+### Non-Person Entry
 
 ```json
 {
@@ -126,11 +125,11 @@ Each file contains entities for a single letter:
 
 ## Adding a Translation
 
-To add a French translation for an entity:
+To add a French translation for a martyrology entry:
 
-1. Find or create `data/resources/fr/entities.f.json`
+1. Find or create `data/resources/fr/martyrology.f.json`
 
-2. Add the entity:
+2. Add the entry:
 
 ```json
 {
@@ -146,7 +145,7 @@ To add a French translation for an entity:
 
 ## ID Naming Conventions
 
-Entity IDs follow these conventions:
+Martyrology entry IDs follow these conventions:
 
 - Use `snake_case`
 - Include location for disambiguation: `francis_of_assisi`, `francis_of_paola`

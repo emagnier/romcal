@@ -29,7 +29,7 @@
     "peter_chanel_priest": {
       "custom_locale_id": "peter_chanel_priest_patron_of_oceania",
       "precedence": "proper_memorial_11b",
-      "entities": [
+      "martyrology": [
         "peter_chanel_priest"
       ],
       "titles": [

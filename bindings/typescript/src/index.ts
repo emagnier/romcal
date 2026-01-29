@@ -9,10 +9,10 @@ import type {
   CalendarContext,
   CalendarDefinition,
   EasterCalculationType,
-  Entity,
-  EntityQuery,
-  EntitySearchResult,
   LiturgicalDay,
+  MartyrologyEntry,
+  MartyrologyQuery,
+  MartyrologySearchResult,
   MassContext,
   Resources,
 } from './types/index.js'
@@ -220,20 +220,20 @@ export interface Romcal extends RomcalConfigInterface {
   createBundle(): RomcalBundle
 
   /**
-   * Get an entity by its exact ID.
+   * Get a martyrology entry by its exact ID.
    *
-   * @param id - Entity ID (e.g., "agnes_of_rome_virgin")
-   * @returns The entity object, or null if not found
+   * @param id - Martyrology entry ID (e.g., "agnes_of_rome_virgin")
+   * @returns The martyrology entry object, or null if not found
    */
-  getEntity(id: string): Entity | null
+  getMartyrologyEntry(id: string): MartyrologyEntry | null
 
   /**
-   * Search entities with fuzzy matching and filters.
+   * Search martyrology entries with fuzzy matching and filters.
    *
    * @param query - Search parameters
    * @returns Array of search results sorted by score (highest first)
    */
-  searchEntities(query: EntityQuery): EntitySearchResult[]
+  searchMartyrologyEntries(query: MartyrologyQuery): MartyrologySearchResult[]
 }
 
 // ============================================================================
@@ -305,23 +305,23 @@ function createInstance(wasmInstance: wasm.Romcal): Romcal {
       }
     },
 
-    getEntity(id: string): Entity | null {
-      const json = wasmInstance.getEntity(id)
+    getMartyrologyEntry(id: string): MartyrologyEntry | null {
+      const json = wasmInstance.getMartyrologyEntry(id)
       if (json === undefined || json === null) {
         return null
       }
       // Safe cast: JSON structure is guaranteed by Rust's serde serialization
-      return JSON.parse(json) as Entity
+      return JSON.parse(json) as MartyrologyEntry
     },
 
-    searchEntities(query: EntityQuery): EntitySearchResult[] {
+    searchMartyrologyEntries(query: MartyrologyQuery): MartyrologySearchResult[] {
       try {
-        const json = wasmInstance.searchEntities(JSON.stringify(query))
+        const json = wasmInstance.searchMartyrologyEntries(JSON.stringify(query))
         // Safe cast: JSON structure is guaranteed by Rust's serde serialization
-        return JSON.parse(json) as EntitySearchResult[]
+        return JSON.parse(json) as MartyrologySearchResult[]
       } catch (error) {
         const message = error instanceof Error ? error.message : String(error)
-        throw new RomcalError(`Failed to search entities: ${message}`, { cause: error })
+        throw new RomcalError(`Failed to search martyrology entries: ${message}`, { cause: error })
       }
     },
   }
@@ -482,7 +482,7 @@ export async function getVersion(): Promise<string> {
 }
 
 /**
- * Merge multiple resource files (meta.json + entities.*.json) into a single Resources object.
+ * Merge multiple resource files (meta.json + martyrology.*.json) into a single Resources object.
  *
  * This helper allows you to load resource files however you want (fetch, import, fs, etc.)
  * and then merge them into the expected structure.
@@ -494,8 +494,8 @@ export async function getVersion(): Promise<string> {
  * @example
  * ```typescript
  * const metaFr = await fetch('/data/resources/fr/meta.json').then(r => r.json())
- * const entitiesFr = await fetch('/data/resources/fr/entities.a.json').then(r => r.json())
- * const resources = await mergeResourceFiles('fr', [metaFr, entitiesFr])
+ * const martyrologyFr = await fetch('/data/resources/fr/martyrology.a.json').then(r => r.json())
+ * const resources = await mergeResourceFiles('fr', [metaFr, martyrologyFr])
  * ```
  */
 export async function mergeResourceFiles(locale: string, files: object[]): Promise<Resources> {

@@ -190,11 +190,13 @@ class TestBundledResources:
         for locale in major_locales:
             assert locale in locales, f"Missing locale: {locale}"
 
-    def test_bundled_resources_have_entities(self, bundled_resources: list[Resources]) -> None:
-        """Each bundled resource should have entities."""
+    def test_bundled_resources_have_martyrology(self, bundled_resources: list[Resources]) -> None:
+        """Each bundled resource should have martyrology entries."""
         for resource in bundled_resources:
-            assert resource.entities is not None
-            assert len(resource.entities) > 0, f"No entities for locale: {resource.locale}"
+            assert resource.martyrology is not None
+            assert len(resource.martyrology) > 0, (
+                f"No martyrology entries for locale: {resource.locale}"
+            )
 
 
 # =============================================================================

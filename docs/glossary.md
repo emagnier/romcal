@@ -2,7 +2,6 @@
 title: Glossary
 ---
 
-
 Definitions of terms used in Romcal and Catholic liturgy.
 
 ## Abbreviations

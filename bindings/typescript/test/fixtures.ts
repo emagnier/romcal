@@ -28,7 +28,7 @@ export async function loadAllCalendarDefinitions(): Promise<CalendarDefinition[]
 
 /**
  * Load all resources from the data folder
- * Each locale has meta.json + entities.*.json files that need to be merged
+ * Each locale has meta.json + martyrology.*.json files that need to be merged
  */
 export async function loadAllResources(): Promise<Resources[]> {
   const resourcesDir = join(DATA_DIR, 'resources')

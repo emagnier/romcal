@@ -2,7 +2,7 @@
 
 /**
  * Titles and patronages associated with saints and blessed.
- * Represents the various ecclesiastical titles and patronages that can be assigned to entities.
+ * Represents the various ecclesiastical titles and patronages that can be assigned to martyrology entries.
  */
 export type Title =
   | 'abbess'

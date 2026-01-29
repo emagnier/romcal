@@ -4,7 +4,6 @@ title: Types
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
 
-
 Type definitions and enums used in Romcal.
 
 ## LiturgicalDay
@@ -146,15 +145,15 @@ Four-week psalter cycle.
 | `WEEK_3` | Week 3      |
 | `WEEK_4` | Week 4      |
 
-## Entity
+## MartyrologyEntry
 
-Represents a liturgical entity (saint, blessed, feast).
+Represents an entry from the Roman Martyrology (saint, blessed, place, or event).
 
 <Tabs syncKey="lang">
   <TabItem label="TypeScript">
 
 ```typescript
-interface Entity {
+interface MartyrologyEntry {
   id: string;
   fullname: string;
   name: string;
@@ -170,7 +169,7 @@ interface Entity {
 
 ```python
 @dataclass
-class Entity:
+class MartyrologyEntry:
     id: str
     fullname: str
     name: str
@@ -184,7 +183,7 @@ class Entity:
   <TabItem label="Rust">
 
 ```rust
-pub struct Entity {
+pub struct MartyrologyEntry {
     pub id: String,
     pub fullname: String,
     pub name: String,
@@ -209,7 +208,7 @@ pub struct Entity {
 
 ### Title
 
-Common titles for entities.
+Common titles for martyrology entries.
 
 | Value                  | Description          |
 | ---------------------- | -------------------- |

@@ -1,0 +1,39 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "pl",
+  "martyrology": {
+    "easter_sunday": {
+      "fullname": "Niedziela Wielkanocy Zmartwychwstania Pańskiego"
+    },
+    "edmund_bojanowski": {
+      "fullname": "Bł. Edmunda Bojanowskiego"
+    },
+    "eligius_of_noyon_bishop": {
+      "fullname": "Św. Eligiusza, biskupa"
+    },
+    "elizabeth_of_hungary_religious": {
+      "fullname": "Św. Elżbiety Węgierskiej, zakonnicy"
+    },
+    "elizabeth_of_portugal": {
+      "fullname": "Św. Elżbiety Portugalskiej"
+    },
+    "ephrem_the_syrian_deacon": {
+      "fullname": "Św. Efrema, diakona i doktora Kościoła"
+    },
+    "epiphany_of_the_lord": {
+      "fullname": "Objawienie Pańskie"
+    },
+    "eucharius_of_trier_bishop": {
+      "fullname": "Św. Euchariusza, biskupa"
+    },
+    "eugenia_of_alsace_and_attala_of_alsace_virgins": {
+      "fullname": "Św. Eugenii i Attali, dziewic"
+    },
+    "eusebius_of_vercelli_bishop": {
+      "fullname": "Św. Euzebiusza z Vercelii, biskupa"
+    },
+    "exaltation_of_the_holy_cross": {
+      "fullname": "Podwyższenie Krzyża Świętego"
+    }
+  }
+}

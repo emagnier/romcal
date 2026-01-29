@@ -4,7 +4,6 @@ title: Romcal Class
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
 
-
 The main class for generating liturgical calendars.
 
 ## Constructor
@@ -123,57 +122,57 @@ fn get_date(&self, date_id: &str, year: i32) -> String
   </TabItem>
 </Tabs>
 
-### getEntity
+### getMartyrologyEntry
 
-Lookup an entity by its exact ID.
+Lookup a martyrology entry by its exact ID.
 
 <Tabs syncKey="lang">
   <TabItem label="TypeScript">
 
 ```typescript
-getEntity(entityId: string): Entity | null
+getMartyrologyEntry(entryId: string): MartyrologyEntry | null
 ```
 
   </TabItem>
   <TabItem label="Python">
 
 ```python
-def get_entity(self, entity_id: str) -> Entity | None
+def get_martyrology_entry(self, entry_id: str) -> MartyrologyEntry | None
 ```
 
   </TabItem>
   <TabItem label="Rust">
 
 ```rust
-fn get_entity(&self, entity_id: &str) -> Option<Entity>
+fn get_martyrology_entry(&self, entry_id: &str) -> Option<MartyrologyEntry>
 ```
 
   </TabItem>
 </Tabs>
 
-### searchEntities
+### searchMartyrologyEntries
 
-Search for entities with fuzzy matching.
+Search for martyrology entries with fuzzy matching.
 
 <Tabs syncKey="lang">
   <TabItem label="TypeScript">
 
 ```typescript
-searchEntities(query: string, options?: SearchOptions): SearchResult[]
+searchMartyrologyEntries(query: MartyrologyQuery): MartyrologySearchResult[]
 ```
 
   </TabItem>
   <TabItem label="Python">
 
 ```python
-def search_entities(self, query: str, **options) -> list[SearchResult]
+def search_martyrology(self, query: MartyrologyQuery) -> list[MartyrologySearchResult]
 ```
 
   </TabItem>
   <TabItem label="Rust">
 
 ```rust
-fn search_entities(&self, query: &str, options: SearchOptions) -> Vec<SearchResult>
+fn search_martyrology(&self, query: MartyrologyQuery) -> Vec<MartyrologySearchResult>
 ```
 
   </TabItem>
@@ -306,7 +305,7 @@ let merged = Romcal::merge_calendar_definitions(&[built_in_defs, custom_definiti
 
 ### mergeResourceFiles
 
-Merge multiple resource files (entity translations) into a single combined resource object. Useful for adding custom translations or overriding existing ones.
+Merge multiple resource files (martyrology translations) into a single combined resource object. Useful for adding custom translations or overriding existing ones.
 
 <Tabs syncKey="lang">
   <TabItem label="TypeScript">
@@ -343,7 +342,7 @@ import { Romcal } from 'romcal';
 
 const customResources = {
   locale: 'en',
-  entities: {
+  martyrology: {
     my_custom_saint: {
       fullname: 'Saint Custom Name',
       canonization_level: 'SAINT',
@@ -361,7 +360,7 @@ from romcal import Romcal
 
 custom_resources = {
     "locale": "en",
-    "entities": {
+    "martyrology": {
         "my_custom_saint": {
             "fullname": "Saint Custom Name",
             "canonization_level": "SAINT",
@@ -380,7 +379,7 @@ use serde_json::json;
 
 let custom_resources = json!({
     "locale": "en",
-    "entities": {
+    "martyrology": {
         "my_custom_saint": {
             "fullname": "Saint Custom Name",
             "canonization_level": "SAINT"

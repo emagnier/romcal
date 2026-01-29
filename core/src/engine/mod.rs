@@ -1,7 +1,7 @@
 //! Core engine for liturgical calendar generation.
 //!
 //! This module contains the main business logic for computing liturgical calendars,
-//! resolving entities, and managing resources.
+//! resolving martyrology entries, and managing resources.
 
 pub mod calendar;
 pub mod calendar_definition;

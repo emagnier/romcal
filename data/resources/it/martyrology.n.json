@@ -1,0 +1,27 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "it",
+  "martyrology": {
+    "nativity_of_john_the_baptist": {
+      "fullname": "Nativitá di San Giovanni Battista"
+    },
+    "nativity_of_the_blessed_virgin_mary": {
+      "fullname": "Nativitá della Beata Vergine Maria"
+    },
+    "nativity_of_the_lord": {
+      "fullname": "Natale del Signore"
+    },
+    "nereus_of_terracina_and_achilleus_of_terracina_martyrs": {
+      "fullname": "Santi Nereo e Achilleo, martiri"
+    },
+    "nicholas_barre_priest": {
+      "fullname": "Beato Nicola Barré, sacerdote"
+    },
+    "nicholas_of_myra_bishop": {
+      "fullname": "San Nicola, vescovo"
+    },
+    "norbert_of_xanten_bishop": {
+      "fullname": "San Norberto, vescovo"
+    }
+  }
+}

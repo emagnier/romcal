@@ -1,0 +1,15 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "ta",
+  "martyrology": {
+    "ulrich_of_augsburg_bishop": {
+      "fullname": "ஒக்ஸ்பெர்கின் புனித உல்றிச் - ஆயர்"
+    },
+    "urban_i_pope": {
+      "fullname": "புனித முதலாம் உர்பன் - திருத்தந்தை, மறைசாட்சி"
+    },
+    "ursula_of_cologne_and_companions_virgins": {
+      "fullname": "புனித உர்சுலா, தோழர்கள் - கன்னியர்கள், மறைசாட்சிகள்"
+    }
+  }
+}

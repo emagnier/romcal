@@ -1,0 +1,93 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "fr",
+  "martyrology": {
+    "damasus_i_pope": {
+      "fullname": "Saint Damase Ier, pape († 384)"
+    },
+    "damien_de_veuster_priest": {
+      "fullname": "Saint Père Damien, prêtre et Missionnaire Picpus († 1889)"
+    },
+    "daniel_brottier_priest": {
+      "fullname": "Bienheureux Daniel Brottier, prêtre, apôtre des Orphelins d’Auteuil († 1936 à Paris)"
+    },
+    "dedication_of_consecrated_churches": {
+      "fullname": "Dédicace des églises consacrées dont on ne connaît pas la date de consécration",
+      "sources": [
+        "mr_fr_2021_ed3"
+      ]
+    },
+    "dedication_of_the_basilica_of_mont_saint_michel_france": {
+      "fullname": "Dédicace de la basilique du Mont-Saint-Michel",
+      "sources": [
+        "mr_fr_1982_ed2_coutances"
+      ]
+    },
+    "dedication_of_the_basilica_of_saint_mary_major": {
+      "fullname": "Dédicace de la basilique Sainte-Marie Majeure"
+    },
+    "dedication_of_the_basilicas_of_saints_peter_and_paul_apostles": {
+      "fullname": "Dédicace des basiliques de Saint Pierre et Saint Paul, apôtres, à Rome"
+    },
+    "dedication_of_the_cathedral_basilica_of_saint_denis_france": {
+      "fullname": "Dédicace de la cathédrale de Saint-Denis"
+    },
+    "dedication_of_the_cathedral_of_notre_dame_de_strasbourg_france": {
+      "fullname": "Dédicace de la cathédrale de Strasbourg"
+    },
+    "dedication_of_the_cathedral_of_notre_dame_of_coutances_france": {
+      "fullname": "Dédicace de la cathédrale de Coutances",
+      "sources": [
+        "mr_fr_1982_ed2_coutances"
+      ]
+    },
+    "dedication_of_the_cathedral_of_saint_john_the_baptist_lyon_france": {
+      "fullname": "Dédicace de la cathédrale primatiale",
+      "sources": [
+        "mr_fr_2014_ed2_lyon"
+      ]
+    },
+    "dedication_of_the_cathedral_of_saint_maurice_of_agaunum_angers_france": {
+      "fullname": "Dédicace de la Cathédrale Saint-Maurice",
+      "sources": [
+        "mr_fr_2022_ed3_angers"
+      ]
+    },
+    "dedication_of_the_cathedral_of_saint_stephen_of_toulouse_france": {
+      "fullname": "Dédicace de la cathédrale Saint-Étienne",
+      "sources": [
+        "mr_fr_1974_ed1_region_apostolique_du_midi"
+      ]
+    },
+    "dedication_of_the_lateran_basilica": {
+      "fullname": "Dédicace de la Basilique du Latran"
+    },
+    "dedication_of_the_notre_dame_de_paris_cathedral_paris_france": {
+      "fullname": "Dédicace de la cathédrale de Paris"
+    },
+    "denis_of_paris_bishop_and_companions_martyrs": {
+      "fullname": "Saint Denis, évêque, et ses compagnons, martyrs à Paris († IIIème s.)"
+    },
+    "denis_of_paris_bishop_patron_of_the_archdiocese_of_paris": {
+      "fullname": "Saint Denis, martyr, premier évêque, patron du diocèse"
+    },
+    "denis_of_paris_bishop_patron_of_the_city_and_of_the_diocese_of_saint_denis": {
+      "fullname": "Saint Denis, évêque et martyr, patron de la ville et du diocèse de Saint-Denis"
+    },
+    "dina_belanger_virgin": {
+      "fullname": "Bienheureuse Dina Bélanger, religieuse de la congrégation des Sœurs de Jésus-Marie († 1929)"
+    },
+    "dismas_the_good_thief": {
+      "fullname": "Saint Dismas (le Bon Larron)",
+      "sources": [
+        "mr_fr_2014_ed2_lyon"
+      ]
+    },
+    "divine_mercy_sunday": {
+      "fullname": "Deuxième dimanche de Pâques ou de la Divine Miséricorde"
+    },
+    "dominic_de_guzman_priest": {
+      "fullname": "Saint Dominique de Guzman, prêtre, fondateur de l’Ordre des Frères prêcheurs († 1221)"
+    }
+  }
+}

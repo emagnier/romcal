@@ -25,14 +25,14 @@
         }
       ]
     },
-    "entities": {
-      "description": "Entities of the resources: a person, a place, an event, etc.",
+    "martyrology": {
+      "description": "Martyrology entries: saints, blessed, places, events from the Roman Martyrology",
       "type": [
         "object",
         "null"
       ],
       "additionalProperties": {
-        "$ref": "#/definitions/EntityDefinition"
+        "$ref": "#/definitions/MartyrologyEntryDef"
       }
     }
   },
@@ -711,14 +711,15 @@
       },
       "additionalProperties": false
     },
-    "EntityDefinition": {
+    "MartyrologyEntryDef": {
+      "description": "Definition of an entry in the Roman Martyrology.\n\nA martyrology entry represents a person (saint, blessed), place (church, shrine),\nor event in the official catalog of the Catholic Church.",
       "type": "object",
       "properties": {
         "type": {
-          "description": "The type of the entity.\n\nDefaults to `EntityType::Person`.",
+          "description": "The type of the martyrology entry.\n\nDefaults to `MartyrologyEntryType::Person`.",
           "anyOf": [
             {
-              "$ref": "#/definitions/EntityType"
+              "$ref": "#/definitions/MartyrologyEntryType"
             },
             {
               "type": "null"
@@ -727,14 +728,14 @@
           "default": "person"
         },
         "fullname": {
-          "description": "The full name of the entity.",
+          "description": "The full name of the entry.",
           "type": [
             "string",
             "null"
           ]
         },
         "name": {
-          "description": "The short name of the entity, without the canonization level and titles.",
+          "description": "The short name of the entry, without the canonization level and titles.",
           "type": [
             "string",
             "null"
@@ -881,7 +882,7 @@
           ]
         },
         "sources": {
-          "description": "Sources for the information about this entity",
+          "description": "Sources for the information about this entry",
           "type": [
             "array",
             "null"
@@ -904,8 +905,8 @@
       },
       "additionalProperties": false
     },
-    "EntityType": {
-      "description": "The type of entity in the liturgical calendar.\nDefines whether the entity represents a person, place, or event.",
+    "MartyrologyEntryType": {
+      "description": "The type of entry in the Roman Martyrology.\nDefines whether the entry represents a person, place, or event.",
       "oneOf": [
         {
           "description": "A person (saint, blessed, or other individual)",
@@ -1020,7 +1021,7 @@
       ]
     },
     "Title": {
-      "description": "Titles and patronages associated with saints and blessed.\nRepresents the various ecclesiastical titles and patronages that can be assigned to entities.",
+      "description": "Titles and patronages associated with saints and blessed.\nRepresents the various ecclesiastical titles and patronages that can be assigned to martyrology entries.",
       "type": "string",
       "enum": [
         "abbess",
@@ -1108,7 +1109,7 @@
       ]
     },
     "SaintCount": {
-      "description": "Represents the number of saints for an entity or a group of entities.\n\nCan be either a specific number (u32) or \"many\" to indicate\nan indeterminate number of saints.\n\n# Serialization\n- `Number(n)` serializes as integer `n`\n- `Many` serializes as string `\"many\"`\n\n# Deserialization\n- Integers are converted to `Number(u32)`\n- String `\"many\"` is converted to `Many`\n- All other types generate an error",
+      "description": "Represents the number of saints for an entry or a group of entries.\n\nCan be either a specific number (u32) or \"many\" to indicate\nan indeterminate number of saints.\n\n# Serialization\n- `Number(n)` serializes as integer `n`\n- `Many` serializes as string `\"many\"`\n\n# Deserialization\n- Integers are converted to `Number(u32)`\n- String `\"many\"` is converted to `Many`\n- All other types generate an error",
       "anyOf": [
         {
           "type": "integer",

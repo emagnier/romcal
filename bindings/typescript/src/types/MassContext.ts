@@ -3,7 +3,7 @@ import type { CelebrationSummary } from './CelebrationSummary'
 import type { ColorInfo } from './ColorInfo'
 import type { CommonInfo } from './CommonInfo'
 import type { DayOfWeek } from './DayOfWeek'
-import type { Entity } from './Entity'
+import type { MartyrologyEntry } from './MartyrologyEntry'
 import type { MassTime } from './MassTime'
 import type { PeriodInfo } from './PeriodInfo'
 import type { Precedence } from './Precedence'
@@ -141,9 +141,9 @@ export type MassContext = {
    */
   commons: Array<CommonInfo>
   /**
-   * The entities (Saints, Blessed, or Places) linked to this day
+   * The martyrology entries (Saints, Blessed, or Places) linked to this day
    */
-  entities: Array<Entity>
+  martyrology: Array<MartyrologyEntry>
   /**
    * The titles for this liturgical day
    */

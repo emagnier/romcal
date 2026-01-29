@@ -23,7 +23,7 @@
 - **Perpetual calendar**: Calculate liturgical dates for any year
 - **Multiple calendars**: Support for numerous liturgical calendars by country, diocese, city, region...
 - **Localization**: Available in multiple languages with easy support for adding new languages
-- **Entity catalog**: Enriched metadata for each liturgical day (saints, blessed, places, events)
+- **Martyrology catalog**: Enriched metadata for each liturgical day (saints, blessed, places, groups)
 - **Extensible & Customizable**: Easy to add and customize calendars and locales
 
 ## 📜 Liturgical accuracy
@@ -73,7 +73,7 @@ To use Romcal in your project, see our [complete documentation](docs/) for insta
 ### Data structure
 
 - `/data/definitions` - Calendar definitions by country, diocese, region and communities
-- `/data/resources` - Localization files and entity catalogs
+- `/data/resources` - Localization files and martyrology catalogs
 
 Contributions are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for community standards.
 

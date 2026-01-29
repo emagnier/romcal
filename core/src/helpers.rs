@@ -9,7 +9,7 @@ use crate::engine::calendar_definition::CalendarDefinition;
 use crate::engine::resources::Resources;
 use crate::error::RomcalError;
 
-/// Merge multiple resource files (meta.json + entities.*.json) into a single Resources object.
+/// Merge multiple resource files (meta.json + martyrology.*.json) into a single Resources object.
 ///
 /// # Arguments
 ///
@@ -18,14 +18,14 @@ use crate::error::RomcalError;
 ///
 /// # Returns
 ///
-/// A merged Resources object with combined metadata and entities.
+/// A merged Resources object with combined metadata and martyrology entries.
 ///
 /// # Example
 ///
 /// ```ignore
 /// let meta = r#"{"locale": "fr", "metadata": {...}}"#;
-/// let entities = r#"{"locale": "fr", "entities": {...}}"#;
-/// let resources = merge_resource_files("fr", vec![meta, entities])?;
+/// let martyrology = r#"{"locale": "fr", "martyrology": {...}}"#;
+/// let resources = merge_resource_files("fr", vec![meta, martyrology])?;
 /// ```
 pub fn merge_resource_files(locale: &str, files_json: Vec<&str>) -> Result<Resources, RomcalError> {
     let mut result = Resources::new(locale.to_string());
@@ -35,8 +35,8 @@ pub fn merge_resource_files(locale: &str, files_json: Vec<&str>) -> Result<Resou
             RomcalError::ValidationError(format!("Failed to parse resource file: {}", e))
         })?;
 
-        // Merge entities first (before moving metadata)
-        result.merge_entities(&file);
+        // Merge martyrology first (before moving metadata)
+        result.merge_martyrology(&file);
 
         // Extract metadata if present
         if file.metadata.is_some() {
@@ -97,26 +97,26 @@ mod tests {
         let resources = result.unwrap();
         assert_eq!(resources.locale, "en");
         assert!(resources.metadata.is_none());
-        assert!(resources.entities.is_none());
+        assert!(resources.martyrology.is_none());
     }
 
     #[test]
-    fn test_merge_resource_files_with_entities() {
-        let entities_json = r#"{
+    fn test_merge_resource_files_with_martyrology() {
+        let martyrology_json = r#"{
             "locale": "en",
-            "entities": {
+            "martyrology": {
                 "saint_peter": {
                     "fullname": "Saint Peter"
                 }
             }
         }"#;
 
-        let result = merge_resource_files("en", vec![entities_json]);
+        let result = merge_resource_files("en", vec![martyrology_json]);
         assert!(result.is_ok());
         let resources = result.unwrap();
         assert_eq!(resources.locale, "en");
-        assert!(resources.entities.is_some());
-        assert!(resources.entities.unwrap().contains_key("saint_peter"));
+        assert!(resources.martyrology.is_some());
+        assert!(resources.martyrology.unwrap().contains_key("saint_peter"));
     }
 
     #[test]

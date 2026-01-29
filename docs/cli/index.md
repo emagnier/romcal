@@ -2,7 +2,6 @@
 title: CLI Overview
 ---
 
-
 The Romcal CLI is a command-line tool for calculating Catholic liturgical dates and generating calendars.
 
 ## Quick Start
@@ -25,7 +24,7 @@ romcal list calendars
 
 - **Calculate dates**: Get specific liturgical dates (Easter, Pentecost, etc.)
 - **Generate calendars**: Output full liturgical calendars in various formats
-- **Search entities**: Look up saints, blesseds, and feasts
+- **Search martyrology**: Look up saints, blessed, and feasts
 - **Multiple formats**: YAML, JSON, CSV, or line-by-line output
 - **Shell completion**: Tab completion for bash, zsh, fish, and PowerShell
 
@@ -38,8 +37,8 @@ romcal list calendars
 | `masses [YEAR]`           | Generate mass-centric calendar       |
 | `list calendars`          | List available calendars             |
 | `list locales`            | List available locales               |
-| `entity <ID>`             | Lookup a single entity by ID         |
-| `search [TEXT]`           | Fuzzy search for entities            |
+| `martyrology <ID>`        | Lookup a martyrology entry by ID     |
+| `search [TEXT]`           | Fuzzy search martyrology entries     |
 | `preset`                  | Display current configuration        |
 | `bundle`                  | Bundle required data files           |
 | `validate`                | Validate definition/resource files   |

@@ -2,7 +2,6 @@
 title: Liturgical Reference
 ---
 
-
 The Catholic Church's liturgical calendar follows official norms from the Dicastery for Divine Worship. Romcal implements these rules to calculate dates, resolve conflicts, and assign liturgical properties.
 
 ### [General Instruction of the Roman Missal (GIRM)](./girm)

@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 use ts_rs::TS;
 
 use crate::types::dates::{DateDef, DateDefException, DayOfWeek};
-use crate::types::entity::{Entity, TitlesDef};
+use crate::types::martyrology::{MartyrologyEntry, TitlesDef};
 use crate::types::mass::MassInfo;
 use crate::types::{
     ColorInfo, CommonDefinition, CommonInfo, PeriodInfo, Precedence, PsalterWeekCycle, Rank,
@@ -176,8 +176,8 @@ pub struct LiturgicalDay {
     /// The titles for this liturgical day.
     pub titles: TitlesDef, // Use Enum Title
 
-    /// The entities (Saints, Blessed, or Places) linked to this liturgical day.
-    pub entities: Vec<Entity>, // Use Struct Entity
+    /// The martyrology entries (Saints, Blessed, or Places) linked to this liturgical day.
+    pub martyrology: Vec<MartyrologyEntry>,
 
     /// The week number of the current liturgical season.
     /// Starts from `1`, except in the seasons of lent,
@@ -290,7 +290,7 @@ impl LiturgicalDay {
             colors: Vec::new(),
             masses: MassInfo::default_day_mass(),
             titles: TitlesDef::Titles(Vec::new()),
-            entities: Vec::new(),
+            martyrology: Vec::new(),
             week_of_season: None,
             day_of_season: None,
             day_of_week: DayOfWeek(0), // Sunday
@@ -370,9 +370,9 @@ impl LiturgicalDay {
         self
     }
 
-    /// Sets the entities linked to this liturgical day.
-    pub fn with_entities(mut self, entities: Vec<Entity>) -> Self {
-        self.entities = entities;
+    /// Sets the martyrology entries linked to this liturgical day.
+    pub fn with_martyrology(mut self, martyrology: Vec<MartyrologyEntry>) -> Self {
+        self.martyrology = martyrology;
         self
     }
 

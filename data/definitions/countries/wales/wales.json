@@ -49,7 +49,7 @@
         "month": 6,
         "date": 20
       },
-      "entities": [
+      "martyrology": [
         "alban_of_britain_martyr",
         "julius_of_caerleon_martyr",
         "aaron_of_caerleon_martyr"
@@ -68,7 +68,7 @@
         "month": 7,
         "date": 25
       },
-      "entities": [
+      "martyrology": [
         "philip_evans_priest",
         "john_lloyd_priest"
       ]
@@ -127,7 +127,7 @@
         "month": 10,
         "date": 25
       },
-      "entities": [
+      "martyrology": [
         "six_welsh_martyrs",
         {
           "id": "companions_martyrs",

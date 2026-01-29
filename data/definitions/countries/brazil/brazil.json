@@ -43,7 +43,7 @@
         "month": 7,
         "date": 17
       },
-      "entities": [
+      "martyrology": [
         "ignatius_de_azevedo_priest",
         "companions_martyrs"
       ]
@@ -61,7 +61,7 @@
         "month": 10,
         "date": 3
       },
-      "entities": [
+      "martyrology": [
         "andrew_de_soveral_priest",
         "ambrose_francis_ferro_priest"
       ]
@@ -92,7 +92,7 @@
         "month": 11,
         "date": 19
       },
-      "entities": [
+      "martyrology": [
         "roch_gonzalez_priest",
         "alphonsus_rodriguez_priest",
         "john_del_castillo_priest"

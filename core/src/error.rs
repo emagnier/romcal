@@ -25,8 +25,8 @@ pub enum RomcalError {
     ValidationError(String),
     /// Unknown date name
     InvalidDateName(String),
-    /// Entity not found after locale fallback (entity_id, checked_locales)
-    EntityNotFound(String, Vec<String>),
+    /// Martyrology entry not found after locale fallback (entry_id, checked_locales)
+    MartyrologyEntryNotFound(String, Vec<String>),
     /// Calendar not found in provided definitions (calendar_id, available_calendars)
     CalendarNotFound(String, Vec<String>),
     /// Locale not found in provided resources (locale, available_locales)
@@ -61,10 +61,10 @@ impl fmt::Display for RomcalError {
             RomcalError::InvalidDateName(name) => {
                 write!(f, "Unknown date name: {}", name)
             }
-            RomcalError::EntityNotFound(id, locales) => {
+            RomcalError::MartyrologyEntryNotFound(id, locales) => {
                 write!(
                     f,
-                    "Entity '{}' not found in any locale. Checked: {}",
+                    "Martyrology entry '{}' not found in any locale. Checked: {}",
                     id,
                     locales.join(" → ")
                 )

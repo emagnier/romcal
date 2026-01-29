@@ -1,0 +1,69 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "fr",
+  "martyrology": {
+    "easter_sunday": {
+      "fullname": "Dimanche de Pâques - La résurrection du Seigneur"
+    },
+    "eligius_of_noyon_bishop": {
+      "fullname": "Saint Éloi, évêque"
+    },
+    "elijah_prophet": {
+      "fullname": "Saint Élie, prophète († IXe s. av. J.-C.)"
+    },
+    "elizabeth_of_hungary_religious": {
+      "fullname": "Sainte Élisabeth de Hongrie († 1231)"
+    },
+    "elizabeth_of_portugal": {
+      "fullname": "Sainte Élisabeth du Portugal, reine († 1336)"
+    },
+    "emilie_tavernier_gamelin_religious": {
+      "fullname": "Bienheureuse Émilie Tavernier-Gamelin, religieuse, fondatrice des Sœurs de la Providence de Montréal († 1851)"
+    },
+    "ephrem_the_syrian_deacon": {
+      "fullname": "Saint Ephrem, diacre et docteur de l’Église, († 373)"
+    },
+    "epiphany_of_the_lord": {
+      "fullname": "Épiphanie du Seigneur"
+    },
+    "epipodius_of_lyon_and_alexander_of_lyon_martyrs": {
+      "fullname": "Saints Épipode et Alexandre, martyrs († 178)",
+      "sources": [
+        "mr_fr_2014_ed2_lyon"
+      ]
+    },
+    "erembert_of_toulouse_bishop": {
+      "fullname": "Saint Érembert, évêque († v. 672)",
+      "sources": [
+        "mr_fr_1974_ed1_region_apostolique_du_midi"
+      ]
+    },
+    "eucharius_of_trier_bishop": {
+      "fullname": "Saint Euchaire, évêque († IVème s.)"
+    },
+    "eucherius_of_lyon_bishop": {
+      "fullname": "Saint Eucher, évêque († v. 449)",
+      "sources": [
+        "mr_fr_2014_ed2_lyon"
+      ]
+    },
+    "eugene_de_mazenod_bishop": {
+      "fullname": "Saint Eugène de Mazenod, fondateur des Oblats de Marie-Immaculée, évêque de Marseille († 1861)"
+    },
+    "eugenia_of_alsace_and_attala_of_alsace_virgins": {
+      "fullname": "Sainte Eugénie et Sainte Attale, vierges († VIIIème s.)"
+    },
+    "eusebius_of_vercelli_bishop": {
+      "fullname": "Saint Eusèbe de Verceil, évêque († 371)"
+    },
+    "exaltation_of_the_holy_cross": {
+      "fullname": "La Croix Glorieuse"
+    },
+    "exuperius_of_toulouse_bishop": {
+      "fullname": "Saint Exupère, évêque († v. 410)",
+      "sources": [
+        "mr_fr_1974_ed1_region_apostolique_du_midi"
+      ]
+    }
+  }
+}

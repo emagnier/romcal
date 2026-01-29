@@ -3,7 +3,6 @@ title: General Instruction of the Roman Missal
 description: Structure of the Mass, ministries, forms of celebration, church arrangement, sacred vessels and vestments, and adaptations.
 ---
 
-
 **_INSTITUTIO GENERALIS MISSALIS ROMANI_**
 
 > The English translation of the General Instruction of the Roman Missal

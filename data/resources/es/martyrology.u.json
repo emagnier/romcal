@@ -1,0 +1,9 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "es",
+  "martyrology": {
+    "urban_i_pope": {
+      "fullname": "San Urbano I, papa"
+    }
+  }
+}

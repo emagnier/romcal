@@ -1,0 +1,9 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "ta",
+  "martyrology": {
+    "yolanda_of_poland_religious": {
+      "fullname": "முத்திப்பேறுபெற்ற யோலண்டா - துறவி"
+    }
+  }
+}

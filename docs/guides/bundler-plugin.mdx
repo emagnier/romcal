@@ -4,7 +4,6 @@ title: Bundler Plugin
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
 
-
 The `@romcal/unplugin` package provides a bundler plugin for **TypeScript** projects that generates optimized romcal data at build time. It supports Vite, Rollup, webpack, esbuild, Rspack, Rolldown, Farm, and Bun (powered by [unplugin](https://unplugin.unjs.io/)).
 
 ## Installation
@@ -262,7 +261,7 @@ Include all parent calendars in the hierarchy. For `france`, you need: `generalR
 
 ## What Gets Optimized
 
-The plugin generates a minimal bundle by filtering calendars, locales, and entities based on your configuration. See [Bundle Optimization](/guides/bundle-optimization) for details on how this works and size comparisons.
+The plugin generates a minimal bundle by filtering calendars, locales, and martyrology entries based on your configuration. See [Bundle Optimization](/guides/bundle-optimization) for details on how this works and size comparisons.
 
 ## TypeScript Support
 
@@ -286,6 +285,7 @@ declare module '@romcal/bundle' {
 ## Custom Module ID
 
 Change the import path with the `moduleId` option. This is useful when:
+
 - You need **multiple romcal configurations** in the same project (e.g., one for France, one for the USA)
 - There's a **naming conflict** with another virtual module
 - You prefer a **more explicit name** for your project
@@ -325,7 +325,7 @@ Ensure you've included the calendar and all its parents:
 
 ```typescript
 // For 'france', you need all three:
-calendarDefinitions: [generalRoman, europe, france]
+calendarDefinitions: [generalRoman, europe, france];
 ```
 
 ### "Locale 'xxx' not found"
@@ -335,5 +335,5 @@ Include the locale and its fallback (usually English):
 ```typescript
 import { en, fr } from 'romcal/resources';
 
-resources: [en, fr]
+resources: [en, fr];
 ```

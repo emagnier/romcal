@@ -12,8 +12,8 @@ use super::dates::LiturgicalDates;
 use super::liturgical_day::{LiturgicalDay, ParentOverride};
 use super::proper_of_time::ProperOfTime;
 use super::proper_of_time::utils::PROPER_OF_TIME_ID;
-use crate::entity_resolution::EntityResolver;
 use crate::error::{RomcalError, RomcalResult};
+use crate::martyrology_resolution::MartyrologyResolver;
 use crate::romcal::Romcal;
 use crate::types::calendar::{DayDefinition, DayId};
 use crate::types::dates::{DateDef, DateDefException, DateDefExceptions, ExceptionCondition};
@@ -41,8 +41,8 @@ pub struct Calendar {
     calendar_hierarchy: Vec<CalendarDefinition>,
     /// Mapping calendar_id -> priority (0 = general_roman, higher = more specific)
     calendar_priority: HashMap<String, usize>,
-    /// Entity resolver for resolving entity pointers to full entities
-    entity_resolver: EntityResolver,
+    /// Martyrology resolver for resolving martyrology pointers to full entries
+    martyrology_resolver: MartyrologyResolver,
 }
 
 /// Internal state during calendar building.
@@ -81,8 +81,8 @@ impl Calendar {
             .date_naive()
             - Duration::days(1);
 
-        // Create entity resolver with locale-merged resources
-        let entity_resolver = EntityResolver::new(&romcal);
+        // Create martyrology resolver with locale-merged resources
+        let martyrology_resolver = MartyrologyResolver::new(&romcal);
 
         Ok(Self {
             romcal,
@@ -92,7 +92,7 @@ impl Calendar {
             end_of_year,
             calendar_hierarchy,
             calendar_priority,
-            entity_resolver,
+            martyrology_resolver,
         })
     }
 
@@ -890,17 +890,17 @@ impl Calendar {
             .or_else(|| existing_day.map(|d| d.allow_similar_rank_items))
             .unwrap_or(false);
 
-        // Resolve the fullname from the entity
+        // Resolve the fullname from the martyrology
         // If custom_locale_id is defined, use it for lookup, otherwise use day_id
         let custom_locale_id = day_def.custom_locale_id.as_deref();
         let fullname = self
-            .entity_resolver
+            .martyrology_resolver
             .get_fullname_for_day(day_id, custom_locale_id)
             .unwrap_or_else(|| day_id.clone());
 
         let mut liturgical_day = LiturgicalDay::new(
             day_id.clone(),
-            fullname, // Use resolved fullname from entity
+            fullname, // Use resolved fullname from martyrology
             date_str.to_string(),
             date_def,
             precedence.clone(),
@@ -932,23 +932,25 @@ impl Calendar {
             }
         }
 
-        // Resolve entities for this day using the entity resolver
-        // Priority: day_def.entities > fallback on day_id
-        // Returns error if entity not found after locale fallback
-        let resolved_entities = self
-            .entity_resolver
-            .resolve_entities_for_day(day_def, day_id)?;
+        // Resolve martyrology entries for this day using the martyrology resolver
+        // Priority: day_def.martyrology > fallback on day_id
+        // Returns error if entry not found after locale fallback
+        let resolved_martyrology = self
+            .martyrology_resolver
+            .resolve_martyrology_for_day(day_def, day_id)?;
 
-        // Set entities on the liturgical day
-        liturgical_day.entities = resolved_entities.clone();
+        // Set martyrology entries on the liturgical day
+        liturgical_day.martyrology = resolved_martyrology.clone();
 
-        // Add titles - priority: day_def.titles > combined from entities > inherited from existing
+        // Add titles - priority: day_def.titles > combined from martyrology > inherited from existing
         if let Some(titles) = &day_def.titles {
             // Explicitly defined titles in the calendar definition
             liturgical_day.titles = titles.clone();
-        } else if !resolved_entities.is_empty() {
-            // Combine titles from all resolved entities
-            liturgical_day.titles = self.entity_resolver.combine_titles(&resolved_entities);
+        } else if !resolved_martyrology.is_empty() {
+            // Combine titles from all resolved entries
+            liturgical_day.titles = self
+                .martyrology_resolver
+                .combine_titles(&resolved_martyrology);
         } else if let Some(existing) = existing_day {
             // Inherit titles from existing day if not defined
             if !existing.titles.is_empty() {
@@ -1733,7 +1735,7 @@ mod tests {
 
     #[test]
     fn test_martyr_color_from_titles() {
-        use crate::types::entity::{Title, TitlesDef};
+        use crate::types::martyrology::{Title, TitlesDef};
 
         // Test with martyr title
         let martyr_titles = TitlesDef::Titles(vec![Title::Bishop, Title::Martyr]);
@@ -1862,7 +1864,7 @@ mod tests {
         use crate::engine::resources::Resources;
         use crate::types::CalendarMetadata;
         use crate::types::calendar::{CalendarJurisdiction, CalendarType, DayDefinition};
-        use crate::types::entity::EntityDefinition;
+        use crate::types::martyrology::MartyrologyEntryDef;
         use crate::types::mass::{MassCycleDefinition, MassTime, MassesDefinitions};
 
         // Create a test calendar definition with masses
@@ -1880,7 +1882,7 @@ mod tests {
             allow_similar_rank_items: None,
             is_optional: None,
             custom_locale_id: None,
-            entities: None,
+            martyrology: None,
             titles: None,
             drop: None,
             colors: None,
@@ -1908,11 +1910,11 @@ mod tests {
             )]),
         };
 
-        // Create entity for test_solemnity (required for strict validation)
-        let mut entity_def = EntityDefinition::new();
-        entity_def.fullname = Some("Test Solemnity".to_string());
+        // Create martyrology entry for test_solemnity (required for strict validation)
+        let mut entry_def = MartyrologyEntryDef::default();
+        entry_def.fullname = Some("Test Solemnity".to_string());
         let mut resources = Resources::new("en".to_string());
-        resources.add_entity("test_solemnity".to_string(), entity_def);
+        resources.add_martyrology_entry("test_solemnity".to_string(), entry_def);
 
         // Create romcal with this calendar definition and resources
         let mut romcal = Romcal::default();

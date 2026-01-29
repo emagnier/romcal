@@ -1,0 +1,9 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "sk",
+  "martyrology": {
+    "205_blessed_martyrs_of_japan": {
+      "fullname": "Blahoslavených 205 japonských mučeníkov"
+    }
+  }
+}

@@ -26,8 +26,8 @@ use self::utils::{PROPER_OF_TIME_ID, enum_to_string, sort_liturgical_days_by_dat
 use crate::engine::dates::LiturgicalDates;
 use crate::engine::liturgical_day::LiturgicalDay;
 use crate::engine::template_resolver::{ProperOfTimeDayType, TemplateResolver};
-use crate::entity_resolution::EntityResolver;
 use crate::error::RomcalResult;
+use crate::martyrology_resolution::MartyrologyResolver;
 use crate::romcal::Romcal;
 use crate::types::dates::{DateDef, DayOfWeek};
 use crate::types::liturgical::{
@@ -40,7 +40,7 @@ pub struct ProperOfTime {
     dates: LiturgicalDates,
     cache: ProperOfTimeCache,
     template_resolver: Option<TemplateResolver>,
-    entity_resolver: EntityResolver,
+    martyrology_resolver: MartyrologyResolver,
 }
 
 impl ProperOfTime {
@@ -62,15 +62,15 @@ impl ProperOfTime {
         // Create template resolver from locale metadata
         let template_resolver = Self::create_template_resolver(&romcal);
 
-        // Create entity resolver to resolve fullnames for entity-based days
-        let entity_resolver = EntityResolver::new(&romcal);
+        // Create martyrology resolver to resolve fullnames for martyrology-based days
+        let martyrology_resolver = MartyrologyResolver::new(&romcal);
 
         Ok(Self {
             romcal,
             dates: liturgical_dates,
             cache,
             template_resolver,
-            entity_resolver,
+            martyrology_resolver,
         })
     }
 
@@ -131,9 +131,9 @@ impl ProperOfTime {
         let sunday_cycle = self.cache.sunday_cycle();
         let weekday_cycle = self.cache.weekday_cycle();
 
-        // Resolve fullname with priority: 1) Entity, 2) Template, 3) ID fallback
+        // Resolve fullname with priority: 1) Martyrology, 2) Template, 3) ID fallback
         let fullname = self
-            .entity_resolver
+            .martyrology_resolver
             .get_fullname_for_day(&id, None)
             .or_else(|| {
                 day_type.and_then(|dt| {
@@ -576,7 +576,7 @@ mod tests {
             schema: None,
             locale: locale.to_string(),
             metadata: Some(create_test_metadata(ordinal_format)),
-            entities: None,
+            martyrology: None,
         }
     }
 
@@ -650,31 +650,31 @@ mod tests {
     }
 
     // -------------------------------------------------------------------------
-    // Tests for entity-based fullname resolution
+    // Tests for martyrology-based fullname resolution
     // -------------------------------------------------------------------------
 
-    use crate::types::entity::EntityDefinition;
+    use crate::types::martyrology::MartyrologyEntryDef;
 
-    /// Creates test resources with entities for entity fullname resolution tests
-    fn create_test_resources_with_entities(
+    /// Creates test resources with martyrology entries for fullname resolution tests
+    fn create_test_resources_with_martyrology(
         locale: &str,
-        entities: std::collections::BTreeMap<String, EntityDefinition>,
+        martyrology: std::collections::BTreeMap<String, MartyrologyEntryDef>,
     ) -> Resources {
         Resources {
             schema: None,
             locale: locale.to_string(),
             metadata: Some(create_test_metadata(None)),
-            entities: Some(entities),
+            martyrology: Some(martyrology),
         }
     }
 
     #[test]
-    fn test_fullname_resolved_from_entity() {
-        // When an entity has a fullname defined, it should be used
-        let mut entities = std::collections::BTreeMap::new();
-        entities.insert(
+    fn test_fullname_resolved_from_martyrology() {
+        // When a martyrology entry has a fullname defined, it should be used
+        let mut martyrology = std::collections::BTreeMap::new();
+        martyrology.insert(
             "mary_mother_of_god".to_string(),
-            EntityDefinition {
+            MartyrologyEntryDef {
                 fullname: Some("Mary, Mother of God".to_string()),
                 ..Default::default()
             },
@@ -682,81 +682,81 @@ mod tests {
 
         let mut romcal = Romcal::default();
         romcal.locale = "en".to_string();
-        romcal.resources = vec![create_test_resources_with_entities("en", entities)];
+        romcal.resources = vec![create_test_resources_with_martyrology("en", martyrology)];
 
         let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
 
-        // Check that entity resolver has the entity
+        // Check that martyrology resolver has the entry
         let fullname = proper_of_time
-            .entity_resolver
+            .martyrology_resolver
             .get_fullname_for_day("mary_mother_of_god", None);
         assert_eq!(fullname, Some("Mary, Mother of God".to_string()));
     }
 
     #[test]
-    fn test_fullname_fallback_to_template_when_no_entity() {
-        // When no entity fullname exists but day_type is provided, template should be used
+    fn test_fullname_fallback_to_template_when_no_martyrology() {
+        // When no martyrology fullname exists but day_type is provided, template should be used
         let mut romcal = Romcal::default();
         romcal.locale = "en".to_string();
         romcal.resources = vec![create_test_resources("en", None)];
 
         let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
 
-        // For days like "advent_sunday_1" that don't have entity fullnames,
+        // For days like "advent_sunday_1" that don't have martyrology fullnames,
         // the template resolver should be used
         // This is implicitly tested by the fact that ProperOfTime works correctly
         assert!(proper_of_time.template_resolver.is_some());
     }
 
     #[test]
-    fn test_entity_fullname_priority_over_template() {
-        // Entity fullname should take priority over template resolution
-        // This tests the priority: Entity > Template > ID
+    fn test_martyrology_fullname_priority_over_template() {
+        // Martyrology fullname should take priority over template resolution
+        // This tests the priority: Martyrology > Template > ID
 
-        let mut entities = std::collections::BTreeMap::new();
-        entities.insert(
-            "test_entity".to_string(),
-            EntityDefinition {
-                fullname: Some("Entity Fullname".to_string()),
+        let mut martyrology = std::collections::BTreeMap::new();
+        martyrology.insert(
+            "test_entry".to_string(),
+            MartyrologyEntryDef {
+                fullname: Some("Martyrology Fullname".to_string()),
                 ..Default::default()
             },
         );
 
         let mut romcal = Romcal::default();
         romcal.locale = "en".to_string();
-        romcal.resources = vec![create_test_resources_with_entities("en", entities)];
+        romcal.resources = vec![create_test_resources_with_martyrology("en", martyrology)];
 
         let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
 
-        // The entity resolver should find the fullname
+        // The martyrology resolver should find the fullname
         let fullname = proper_of_time
-            .entity_resolver
-            .get_fullname_for_day("test_entity", None);
-        assert_eq!(fullname, Some("Entity Fullname".to_string()));
+            .martyrology_resolver
+            .get_fullname_for_day("test_entry", None);
+        assert_eq!(fullname, Some("Martyrology Fullname".to_string()));
 
-        // Non-existent entity should return None
+        // Non-existent entry should return None
         let no_fullname = proper_of_time
-            .entity_resolver
+            .martyrology_resolver
             .get_fullname_for_day("nonexistent", None);
         assert!(no_fullname.is_none());
     }
 
     #[test]
-    fn test_entity_fullname_with_locale_override() {
-        // When target locale has entity fullname, it should override 'en'
-        let mut en_entities = std::collections::BTreeMap::new();
-        en_entities.insert(
+    fn test_martyrology_fullname_with_locale_override() {
+        // When target locale has martyrology fullname, it should override 'en'
+        let mut en_martyrology = std::collections::BTreeMap::new();
+        en_martyrology.insert(
             "mary_mother_of_god".to_string(),
-            EntityDefinition {
+            MartyrologyEntryDef {
                 fullname: Some("Mary, Mother of God".to_string()),
                 ..Default::default()
             },
         );
 
-        let mut fr_entities = std::collections::BTreeMap::new();
-        fr_entities.insert(
+        let mut fr_martyrology = std::collections::BTreeMap::new();
+        fr_martyrology.insert(
             "mary_mother_of_god".to_string(),
-            EntityDefinition {
+            MartyrologyEntryDef {
                 fullname: Some("Sainte Marie, Mère de Dieu".to_string()),
                 ..Default::default()
             },
@@ -765,15 +765,15 @@ mod tests {
         let mut romcal = Romcal::default();
         romcal.locale = "fr".to_string();
         romcal.resources = vec![
-            create_test_resources_with_entities("en", en_entities),
-            create_test_resources_with_entities("fr", fr_entities),
+            create_test_resources_with_martyrology("en", en_martyrology),
+            create_test_resources_with_martyrology("fr", fr_martyrology),
         ];
 
         let proper_of_time = ProperOfTime::new(romcal, 2026).unwrap();
 
         // French locale should use French fullname
         let fullname = proper_of_time
-            .entity_resolver
+            .martyrology_resolver
             .get_fullname_for_day("mary_mother_of_god", None);
         assert_eq!(fullname, Some("Sainte Marie, Mère de Dieu".to_string()));
     }

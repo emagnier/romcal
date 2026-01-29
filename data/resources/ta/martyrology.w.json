@@ -1,0 +1,45 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "ta",
+  "martyrology": {
+    "waitangi_day": {
+      "fullname": "வைடங்கி நாள்"
+    },
+    "walpurga_of_heidenheim_abbess": {
+      "fullname": "ஹெய்டென்ஹெய்மின் புனித வால்புர்கா - மடாதிபதி"
+    },
+    "wenceslaus_i_of_bohemia_martyr": {
+      "fullname": "புனித வென்சஸ்லௌஸ் - மறைசாட்சி"
+    },
+    "wenceslaus_i_of_bohemia_martyr_patron_of_the_czech_nation": {
+      "fullname": "புனித வென்சஸ்லௌஸ் - மறைசாட்சி, செக் நாட்டின் பாதுகாவலர்"
+    },
+    "wendelin_of_trier_hermit": {
+      "fullname": "புனித வெண்டலின் - வனத்து துறவி, மடாதிபதி"
+    },
+    "wilfrid_of_york_bishop": {
+      "fullname": "புனித வில்பிறி - ஆயர்"
+    },
+    "william_apor_bishop": {
+      "fullname": "முத்திப்பேறுபெற்ற வில்லியம் அபோர் - ஆயர், மறைசாட்சி"
+    },
+    "willibald_of_eichstatt_bishop": {
+      "fullname": "ஈக்ஸ்டாட்டின் புனித விலிபோல்ட் - ஆயர்"
+    },
+    "willibrord_of_utrecht_bishop": {
+      "fullname": "உட்ரெட்டின் புனித விலிபோல்ட் - ஆயர"
+    },
+    "winefride_of_flintshire_virgin": {
+      "fullname": "புனித வினிபிறீடா - கன்னி"
+    },
+    "wladyslaw_bladzinski_priest_and_companions_martyrs": {
+      "fullname": "முத்திப்பேறுபெற்ற விளடிச்லோ பட்சின்ஸ்கி - அருட்பணியாள்ர், தோழர்கள் - மறைசாட்சிகள்"
+    },
+    "wolfgang_of_regensburg_bishop": {
+      "fullname": "ரொசென்பேர்கின் புனித வூல்வ்கங் - ஆயர்"
+    },
+    "wulstan_of_worcester_bishop": {
+      "fullname": "புனித வுல்ஸ்டன் - ஆயர்"
+    }
+  }
+}

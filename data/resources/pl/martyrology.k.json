@@ -1,0 +1,9 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "pl",
+  "martyrology": {
+    "kinga_of_poland_virgin": {
+      "fullname": "Św. Kingi, dziewicy"
+    }
+  }
+}

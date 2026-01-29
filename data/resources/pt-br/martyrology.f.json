@@ -1,0 +1,48 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "pt-br",
+  "martyrology": {
+    "fabian_i_pope": {
+      "fullname": "São Fabiano, pap e mártir"
+    },
+    "faustina_kowalska_virgin": {
+      "fullname": "Santa Faustina Kowalska, virgem"
+    },
+    "fidelis_of_sigmaringen_priest": {
+      "fullname": "São Fiel de Sigmaringa, presbítero e mártir"
+    },
+    "first_martyrs_of_the_holy_roman_church": {
+      "fullname": "Primeiros mártires da Igreja de Roma"
+    },
+    "five_wounds_of_the_lord": {
+      "fullname": "As Cinco Chagas do Senhor"
+    },
+    "florentius_of_strasbourg_bishop": {
+      "fullname": "São Florêncio, bispo"
+    },
+    "frances_of_rome_religious": {
+      "fullname": "Santa Francisca Romana, religiosa"
+    },
+    "francis_de_sales_bishop": {
+      "fullname": "São Francisco de Sales, bispo e doutor da Igreja"
+    },
+    "francis_of_assisi": {
+      "fullname": "São Francisco de Assis, religioso"
+    },
+    "francis_of_paola_hermit": {
+      "fullname": "São Francisco de Paula, eremita"
+    },
+    "francis_xavier_priest": {
+      "fullname": "São Francisco Xavier, presbítero"
+    },
+    "frederic_ozanam_founder": {
+      "fullname": "Beato Frederico Ozanam, fundador"
+    },
+    "friday_of_the_passion_of_the_lord": {
+      "fullname": "Sexta-feira Santa"
+    },
+    "fructuosus_of_braga_martin_of_braga_and_gerald_of_braga_bishops": {
+      "fullname": "São Frutuoso de Braga, São Martinho de Braga e São Geraldoo de Braga, bispos"
+    }
+  }
+}

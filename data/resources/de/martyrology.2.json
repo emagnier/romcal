@@ -1,0 +1,9 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "de",
+  "martyrology": {
+    "205_blessed_martyrs_of_japan": {
+      "fullname": "205 Selige Märtyrer Japans"
+    }
+  }
+}

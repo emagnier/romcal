@@ -102,7 +102,7 @@ describe('@romcal/unplugin', () => {
       const code = await buildWithPlugin(franceOptions);
 
       expect(code).toContain('resources');
-      expect(code).toContain('entities');
+      expect(code).toContain('martyrology');
     });
   });
 

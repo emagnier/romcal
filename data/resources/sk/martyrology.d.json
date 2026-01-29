@@ -1,0 +1,87 @@
+{
+  "$schema": "../../../schemas/resources.json",
+  "locale": "sk",
+  "martyrology": {
+    "damasus_i_pope": {
+      "fullname": "Svätého Damaza I., pápeža"
+    },
+    "damien_de_veuster_priest": {
+      "fullname": "Svätého Damiána de Veuster, kňaza a mučeníka"
+    },
+    "daniel_brottier_priest": {
+      "fullname": "Blahoslaveného Daniela Brottiera, kňaza"
+    },
+    "david_lewis_priest": {
+      "fullname": "Svätého Dávida Lewisa, kňaza a mučeníka"
+    },
+    "david_of_wales_bishop": {
+      "fullname": "Svätého Dávida z Walesu, biskupa"
+    },
+    "david_of_wales_bishop_patron_of_wales": {
+      "fullname": "Svätého Dávida z Walesu, biskupa, patróna Walesu"
+    },
+    "davnet_of_sliabh_beagh_virgin": {
+      "fullname": "Svätej Davnety, panny"
+    },
+    "declan_of_ardmore_bishop": {
+      "fullname": "Svätého Deklana, biskupa"
+    },
+    "dedication_of_consecrated_churches": {
+      "fullname": "Výročie posviacky chrámov, ktorých deň posviacky nie je známy"
+    },
+    "dedication_of_the_basilica_of_saint_mary_major": {
+      "fullname": "Výročie posviacky hlavnej mariánskej baziliky v Ríme"
+    },
+    "dedication_of_the_basilicas_of_saints_peter_and_paul_apostles": {
+      "fullname": "Výročie posviacky bazilík sv. Petra a Pavla, apoštolov"
+    },
+    "dedication_of_the_cathedral_basilica_of_saint_denis_france": {
+      "fullname": "Výročie posviacky Katedrálnej baziliky Saint-Denis, Francúzsko"
+    },
+    "dedication_of_the_cathedral_of_notre_dame_de_strasbourg_france": {
+      "fullname": "Výročie posviacky Katedrály Notre-Dame de Strasbourg, Francúzsko"
+    },
+    "dedication_of_the_lateran_basilica": {
+      "fullname": "Výročie posviacky Lateránskej baziliky"
+    },
+    "dedication_of_the_notre_dame_de_paris_cathedral_paris_france": {
+      "fullname": "Výročie posviacky Katedrály Notre-Dame de Paris, Paríž"
+    },
+    "deiniol_of_bangor_bishop": {
+      "fullname": "Svätého Deiniola, biskupa"
+    },
+    "demetrius_of_thessaloniki_martyr": {
+      "fullname": "Svätého Demetra Solúnskeho, mučeníka"
+    },
+    "denis_of_paris_bishop_and_companions_martyrs": {
+      "fullname": "Svätého Dionýza, biskupa, a spoločníkov, mučeníkov"
+    },
+    "denis_of_paris_bishop_patron_of_the_archdiocese_of_paris": {
+      "fullname": "Svätého Dionýza, biskupa a mučeníka, patróna Parížskej arcidiecézy"
+    },
+    "denis_of_paris_bishop_patron_of_the_city_and_of_the_diocese_of_saint_denis": {
+      "fullname": "Svätého Dionýza, biskupa a mučeníka, patróna mesta a Diecézy Saint-Denis"
+    },
+    "dina_belanger_virgin": {
+      "fullname": "Blahoslavenej Diny Bélangerovej, panny"
+    },
+    "dionysius_the_areopagite_bishop": {
+      "fullname": "Svätého Dionýza Areopagitu, biskupa a mučeníka"
+    },
+    "divine_mercy_sunday": {
+      "fullname": "2. veľkonočná nedeľa alebo Nedeľa Božieho milosrdenstva"
+    },
+    "dominic_de_guzman_priest": {
+      "fullname": "Svätého Dominika, kňaza"
+    },
+    "dominic_of_the_mother_of_god_barberi_priest": {
+      "fullname": "Blahoslaveného Dominika od Matky Božej Barberi, kňaza"
+    },
+    "dunstan_of_canterbury_bishop": {
+      "fullname": "Svätého Dunstana z Canterbury, biskupa"
+    },
+    "dyfrig_of_wales_bishop": {
+      "fullname": "Svätého Dubrícia z Walesu, biskupa"
+    }
+  }
+}

@@ -2,7 +2,6 @@
 title: Calendar Definitions
 ---
 
-
 Calendar definitions specify liturgical celebrations for a particular region, country, diocese, or community.
 
 ## File Location
@@ -168,6 +167,6 @@ romcal validate definitions path/to/your/calendar.json
 }
 ```
 
-2. Add the corresponding entity in the resources (if not already present)
+2. Add the corresponding martyrology entry in the resources (if not already present)
 
 3. Validate: `romcal validate definitions data/definitions/countries/france/france__lyon.json`
