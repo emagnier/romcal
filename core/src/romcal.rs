@@ -76,6 +76,17 @@ pub struct Romcal {
 
 impl Default for Romcal {
     fn default() -> Self {
+        #[cfg(feature = "bundled-data")]
+        let (calendar_definitions, resources) = {
+            let defs =
+                crate::bundled_data::get_all_calendar_definitions().unwrap_or_else(|_| Vec::new());
+            let res = crate::bundled_data::get_all_resources().unwrap_or_else(|_| Vec::new());
+            (defs, res)
+        };
+
+        #[cfg(not(feature = "bundled-data"))]
+        let (calendar_definitions, resources) = (Vec::new(), Vec::new());
+
         Self {
             calendar: DEFAULT_CALENDAR.to_string(),
             locale: DEFAULT_LOCALE.to_string(),
@@ -85,8 +96,8 @@ impl Default for Romcal {
             corpus_christi_on_sunday: DEFAULT_CORPUS_CHRISTI_ON_SUNDAY,
             ascension_on_sunday: DEFAULT_ASCENSION_ON_SUNDAY,
             ordinal_format: DEFAULT_ORDINAL_FORMAT,
-            calendar_definitions: Vec::new(),
-            resources: Vec::new(),
+            calendar_definitions,
+            resources,
         }
     }
 }
@@ -179,6 +190,22 @@ impl Romcal {
             calendar_definitions,
             resources,
         })
+    }
+
+    /// Creates a new Romcal instance with empty calendar definitions and resources.
+    pub fn empty() -> Self {
+        Self {
+            calendar: DEFAULT_CALENDAR.to_string(),
+            locale: DEFAULT_LOCALE.to_string(),
+            context: DEFAULT_CONTEXT,
+            easter_calculation_type: DEFAULT_EASTER_TYPE,
+            epiphany_on_sunday: DEFAULT_EPIPHANY_ON_SUNDAY,
+            corpus_christi_on_sunday: DEFAULT_CORPUS_CHRISTI_ON_SUNDAY,
+            ascension_on_sunday: DEFAULT_ASCENSION_ON_SUNDAY,
+            ordinal_format: DEFAULT_ORDINAL_FORMAT,
+            calendar_definitions: Vec::new(),
+            resources: Vec::new(),
+        }
     }
 
     /// Get a calendar definition by ID

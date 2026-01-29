@@ -179,7 +179,7 @@ mod tests {
 
     #[test]
     fn test_resolve_martyrology_pointer_resource_id() {
-        let mut romcal = Romcal::default();
+        let mut romcal = Romcal::empty();
 
         // Add test entry
         let definition = create_test_entry_def("Test Saint", vec![Title::Martyr]);
@@ -260,7 +260,7 @@ mod tests {
 
     #[test]
     fn test_resolve_martyrology_for_day_with_pointers() {
-        let mut romcal = Romcal::default();
+        let mut romcal = Romcal::empty();
 
         // Add test entries
         let definition1 = create_test_entry_def("Saint Peter", vec![Title::Apostle]);
@@ -307,7 +307,7 @@ mod tests {
 
     #[test]
     fn test_resolve_martyrology_for_day_fallback() {
-        let mut romcal = Romcal::default();
+        let mut romcal = Romcal::empty();
 
         // Add entry with same ID as day_id
         let definition = create_test_entry_def("Test Saint", vec![Title::Martyr]);
@@ -412,7 +412,7 @@ mod tests {
 
     #[test]
     fn test_resolve_martyrology_pointer_override() {
-        let mut romcal = Romcal::default();
+        let mut romcal = Romcal::empty();
 
         // Add base entry
         let definition = create_test_entry_def("Test Saint", vec![Title::Martyr]);
@@ -516,7 +516,7 @@ mod tests {
 
     #[test]
     fn test_compound_titles() {
-        let mut romcal = Romcal::default();
+        let mut romcal = Romcal::empty();
 
         // Add base entry
         let definition = create_test_entry_def("Test Saint", vec![Title::Martyr]);

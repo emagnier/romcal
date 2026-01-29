@@ -70,7 +70,7 @@ impl Calendar {
     pub fn new(romcal: Romcal, year: i32) -> RomcalResult<Self> {
         let dates = LiturgicalDates::new(romcal.clone(), year)?;
 
-        let (calendar_hierarchy, calendar_priority) = Self::resolve_calendar_hierarchy(&romcal);
+        let (calendar_hierarchy, calendar_priority) = Self::resolve_calendar_hierarchy(&romcal)?;
 
         // Calculate liturgical year boundaries
         // Start: First Sunday of Advent (previous calendar year)
@@ -249,25 +249,35 @@ impl Calendar {
     }
 
     /// Resolves the calendar hierarchy from root to target (general to specific)
+    ///
+    /// # Errors
+    ///
+    /// Returns an error if:
+    /// - The target calendar doesn't exist in calendar_definitions
+    /// - Any parent calendar in the hierarchy doesn't exist
     fn resolve_calendar_hierarchy(
         romcal: &Romcal,
-    ) -> (Vec<CalendarDefinition>, HashMap<String, usize>) {
+    ) -> RomcalResult<(Vec<CalendarDefinition>, HashMap<String, usize>)> {
         let mut hierarchy = Vec::new();
         let mut visited_ids = HashSet::new();
+        let mut current_path = HashSet::new();
 
-        // Always start with general_roman as the base calendar (most general)
-        // It should be processed first, even if not explicitly in parent chain
-        if let Some(general_roman) = romcal.get_calendar_definition("general_roman")
-            && !visited_ids.contains("general_roman")
-        {
-            hierarchy.push(general_roman.clone());
-            visited_ids.insert("general_roman".to_string());
-        }
-
-        // Then process the target calendar and its parent chain
-        if let Some(target) = romcal.get_calendar_definition(&romcal.calendar) {
-            Self::collect_calendar_hierarchy(romcal, target, &mut hierarchy, &mut visited_ids);
-        }
+        // Validate and load the target calendar and its parent chain
+        let target = romcal
+            .get_calendar_definition(&romcal.calendar)
+            .ok_or_else(|| {
+                RomcalError::ValidationError(format!(
+                    "Calendar '{}' not found in calendar definitions.",
+                    romcal.calendar
+                ))
+            })?;
+        Self::collect_calendar_hierarchy(
+            romcal,
+            target,
+            &mut hierarchy,
+            &mut visited_ids,
+            &mut current_path,
+        )?;
 
         // Post-order DFS produces the correct order (general → specific), no reverse needed
 
@@ -276,30 +286,57 @@ impl Calendar {
             calendar_priority.entry(calendar.id.clone()).or_insert(idx);
         }
 
-        (hierarchy, calendar_priority)
+        Ok((hierarchy, calendar_priority))
     }
 
     /// Recursively collects calendar definitions in hierarchy
+    ///
+    /// # Errors
+    ///
+    /// Returns an error if:
+    /// - Any parent calendar doesn't exist
+    /// - A circular reference is detected
     fn collect_calendar_hierarchy(
         romcal: &Romcal,
         calendar: &CalendarDefinition,
         hierarchy: &mut Vec<CalendarDefinition>,
         visited: &mut HashSet<String>,
-    ) {
-        if visited.contains(&calendar.id) {
-            return;
+        current_path: &mut HashSet<String>,
+    ) -> RomcalResult<()> {
+        // Check for circular reference (calendar in current recursion path)
+        if current_path.contains(&calendar.id) {
+            return Err(RomcalError::ValidationError(format!(
+                "Circular reference detected in calendar hierarchy: '{}' references itself (directly or indirectly).",
+                calendar.id
+            )));
         }
-        visited.insert(calendar.id.clone());
+
+        // Skip if already fully processed (diamond inheritance is OK)
+        if visited.contains(&calendar.id) {
+            return Ok(());
+        }
+
+        // Mark as being processed in current path
+        current_path.insert(calendar.id.clone());
 
         // Process parent calendars FIRST (post-order DFS)
         for parent_id in &calendar.parent_calendar_ids {
-            if let Some(parent) = romcal.get_calendar_definition(parent_id) {
-                Self::collect_calendar_hierarchy(romcal, parent, hierarchy, visited);
-            }
+            let parent = romcal.get_calendar_definition(parent_id).ok_or_else(|| {
+                RomcalError::ValidationError(format!(
+                    "Parent calendar '{}' (required by '{}') not found in calendar definitions.",
+                    parent_id, calendar.id
+                ))
+            })?;
+            Self::collect_calendar_hierarchy(romcal, parent, hierarchy, visited, current_path)?;
         }
+
+        // Remove from current path, mark as fully visited
+        current_path.remove(&calendar.id);
+        visited.insert(calendar.id.clone());
 
         // Add this calendar AFTER processing all parents
         hierarchy.push(calendar.clone());
+        Ok(())
     }
 
     /// Processes a calendar definition and adds its days to the index
@@ -1271,6 +1308,10 @@ impl Calendar {
 mod tests {
     use super::*;
 
+    // ============================================================================
+    // Calendar creation and utility tests
+    // ============================================================================
+
     #[test]
     fn test_calendar_creation() {
         let romcal = Romcal::default();
@@ -1304,6 +1345,10 @@ mod tests {
             NaiveDate::from_ymd_opt(2024, 12, 31).unwrap()
         );
     }
+
+    // ============================================================================
+    // Precedence tests
+    // ============================================================================
 
     #[test]
     fn test_precedence_comparison() {
@@ -1361,6 +1406,10 @@ mod tests {
             std::cmp::Ordering::Less
         );
     }
+
+    // ============================================================================
+    // Date calculation tests
+    // ============================================================================
 
     #[test]
     fn test_calculate_month_date() {
@@ -1455,6 +1504,10 @@ mod tests {
         // Last Sunday of November 2026 is November 29
         assert_eq!(expected_date.day(), 29);
     }
+
+    // ============================================================================
+    // Calendar generation tests
+    // ============================================================================
 
     #[test]
     fn test_generate_calendar_basic() {
@@ -1754,6 +1807,10 @@ mod tests {
         assert!(proto_martyr_titles.contains_martyr());
     }
 
+    // ============================================================================
+    // Mass assignment tests
+    // ============================================================================
+
     #[test]
     fn test_masses_default_is_day_mass() {
         use crate::types::mass::MassTime;
@@ -1919,10 +1976,8 @@ mod tests {
         resources.add_martyrology_entry("test_solemnity".to_string(), entry_def);
 
         // Create romcal with this calendar definition and resources
-        let mut romcal = Romcal {
-            calendar: "test_calendar".to_string(),
-            ..Default::default()
-        };
+        let mut romcal = Romcal::empty();
+        romcal.calendar = "test_calendar".to_string();
         romcal.calendar_definitions.push(calendar_def);
         romcal.add_resources(resources);
 
@@ -2075,7 +2130,9 @@ mod tests {
         }
     }
 
-    // ==================== Mass Calendar Tests ====================
+    // ============================================================================
+    // Mass calendar generation tests
+    // ============================================================================
 
     #[test]
     fn test_generate_mass_calendar_basic() {
@@ -2227,5 +2284,260 @@ mod tests {
                 || json_str.contains("\"mass_time\":\"easter_vigil\""),
             "mass_time should be serialized as snake_case"
         );
+    }
+
+    // ============================================================================
+    // Calendar validation tests
+    // ============================================================================
+
+    #[test]
+    fn test_calendar_not_found_error() {
+        // Create romcal with no calendar definitions, requesting a non-existent calendar
+        let mut romcal = Romcal::empty();
+        romcal.calendar = "non_existent_calendar".to_string();
+
+        let result = Calendar::new(romcal, 2026);
+
+        match result {
+            Err(error) => {
+                let error_str = error.to_string();
+                assert!(
+                    error_str.contains("not found"),
+                    "Error should mention 'not found': {}",
+                    error_str
+                );
+                assert!(
+                    error_str.contains("non_existent_calendar"),
+                    "Error should mention the calendar name: {}",
+                    error_str
+                );
+            }
+            Ok(_) => panic!("Expected an error for non-existent calendar"),
+        }
+    }
+
+    #[test]
+    fn test_parent_calendar_not_found_error() {
+        use crate::types::CalendarMetadata;
+        use crate::types::calendar::{CalendarJurisdiction, CalendarType};
+
+        // Create a calendar that references a non-existent parent
+        let child_calendar = CalendarDefinition {
+            schema: None,
+            id: "child_calendar".to_string(),
+            metadata: CalendarMetadata {
+                r#type: CalendarType::Country,
+                jurisdiction: CalendarJurisdiction::Civil,
+            },
+            particular_config: None,
+            parent_calendar_ids: vec!["non_existent_parent".to_string()],
+            days_definitions: std::collections::BTreeMap::new(),
+        };
+
+        let mut romcal = Romcal::empty();
+        romcal.calendar = "child_calendar".to_string();
+        romcal.calendar_definitions.push(child_calendar);
+
+        let result = Calendar::new(romcal, 2026);
+
+        match result {
+            Err(error) => {
+                let error_str = error.to_string();
+                assert!(
+                    error_str.contains("Parent calendar"),
+                    "Error should mention 'Parent calendar': {}",
+                    error_str
+                );
+                assert!(
+                    error_str.contains("non_existent_parent"),
+                    "Error should mention the parent calendar name: {}",
+                    error_str
+                );
+                assert!(
+                    error_str.contains("child_calendar"),
+                    "Error should mention which calendar requires the parent: {}",
+                    error_str
+                );
+            }
+            Ok(_) => panic!("Expected an error for missing parent calendar"),
+        }
+    }
+
+    #[test]
+    fn test_general_roman_calendar_with_definition() {
+        use crate::types::CalendarMetadata;
+        use crate::types::calendar::{CalendarJurisdiction, CalendarType};
+
+        let general_roman = CalendarDefinition {
+            schema: None,
+            id: "general_roman".to_string(),
+            metadata: CalendarMetadata {
+                r#type: CalendarType::GeneralRoman,
+                jurisdiction: CalendarJurisdiction::Ecclesiastical,
+            },
+            particular_config: None,
+            parent_calendar_ids: vec![],
+            days_definitions: std::collections::BTreeMap::new(),
+        };
+
+        let mut romcal = Romcal::empty();
+        romcal.calendar = "general_roman".to_string();
+        romcal.calendar_definitions.push(general_roman);
+
+        let result = Calendar::new(romcal, 2026);
+        assert!(
+            result.is_ok(),
+            "general_roman with explicit definition should work"
+        );
+    }
+
+    #[test]
+    fn test_grandparent_calendar_not_found_error() {
+        use crate::types::CalendarMetadata;
+        use crate::types::calendar::{CalendarJurisdiction, CalendarType};
+
+        // Create hierarchy: child → parent → grandparent (missing)
+        let parent_calendar = CalendarDefinition {
+            schema: None,
+            id: "parent_calendar".to_string(),
+            metadata: CalendarMetadata {
+                r#type: CalendarType::Region,
+                jurisdiction: CalendarJurisdiction::Civil,
+            },
+            particular_config: None,
+            parent_calendar_ids: vec!["missing_grandparent".to_string()],
+            days_definitions: std::collections::BTreeMap::new(),
+        };
+
+        let child_calendar = CalendarDefinition {
+            schema: None,
+            id: "child_calendar".to_string(),
+            metadata: CalendarMetadata {
+                r#type: CalendarType::Country,
+                jurisdiction: CalendarJurisdiction::Civil,
+            },
+            particular_config: None,
+            parent_calendar_ids: vec!["parent_calendar".to_string()],
+            days_definitions: std::collections::BTreeMap::new(),
+        };
+
+        let mut romcal = Romcal::empty();
+        romcal.calendar = "child_calendar".to_string();
+        romcal.calendar_definitions.push(parent_calendar);
+        romcal.calendar_definitions.push(child_calendar);
+
+        let result = Calendar::new(romcal, 2026);
+
+        match result {
+            Err(error) => {
+                let error_str = error.to_string();
+                assert!(
+                    error_str.contains("missing_grandparent"),
+                    "Error should mention the missing grandparent: {}",
+                    error_str
+                );
+            }
+            Ok(_) => panic!("Expected an error for missing grandparent calendar"),
+        }
+    }
+
+    #[test]
+    fn test_multiple_parents_one_missing_error() {
+        use crate::types::CalendarMetadata;
+        use crate::types::calendar::{CalendarJurisdiction, CalendarType};
+
+        // Create calendar with multiple parents, one missing
+        let existing_parent = CalendarDefinition {
+            schema: None,
+            id: "existing_parent".to_string(),
+            metadata: CalendarMetadata {
+                r#type: CalendarType::GeneralRoman,
+                jurisdiction: CalendarJurisdiction::Ecclesiastical,
+            },
+            particular_config: None,
+            parent_calendar_ids: vec![],
+            days_definitions: std::collections::BTreeMap::new(),
+        };
+
+        let child_calendar = CalendarDefinition {
+            schema: None,
+            id: "child_calendar".to_string(),
+            metadata: CalendarMetadata {
+                r#type: CalendarType::Country,
+                jurisdiction: CalendarJurisdiction::Civil,
+            },
+            particular_config: None,
+            parent_calendar_ids: vec!["existing_parent".to_string(), "missing_parent".to_string()],
+            days_definitions: std::collections::BTreeMap::new(),
+        };
+
+        let mut romcal = Romcal::empty();
+        romcal.calendar = "child_calendar".to_string();
+        romcal.calendar_definitions.push(existing_parent);
+        romcal.calendar_definitions.push(child_calendar);
+
+        let result = Calendar::new(romcal, 2026);
+
+        match result {
+            Err(error) => {
+                let error_str = error.to_string();
+                assert!(
+                    error_str.contains("missing_parent"),
+                    "Error should mention the missing parent: {}",
+                    error_str
+                );
+            }
+            Ok(_) => panic!("Expected an error when one of multiple parents is missing"),
+        }
+    }
+
+    #[test]
+    fn test_circular_reference_error() {
+        use crate::types::CalendarMetadata;
+        use crate::types::calendar::{CalendarJurisdiction, CalendarType};
+
+        // Create circular reference: A → B → A
+        let calendar_a = CalendarDefinition {
+            schema: None,
+            id: "calendar_a".to_string(),
+            metadata: CalendarMetadata {
+                r#type: CalendarType::GeneralRoman,
+                jurisdiction: CalendarJurisdiction::Ecclesiastical,
+            },
+            particular_config: None,
+            parent_calendar_ids: vec!["calendar_b".to_string()],
+            days_definitions: std::collections::BTreeMap::new(),
+        };
+
+        let calendar_b = CalendarDefinition {
+            schema: None,
+            id: "calendar_b".to_string(),
+            metadata: CalendarMetadata {
+                r#type: CalendarType::Region,
+                jurisdiction: CalendarJurisdiction::Civil,
+            },
+            particular_config: None,
+            parent_calendar_ids: vec!["calendar_a".to_string()],
+            days_definitions: std::collections::BTreeMap::new(),
+        };
+
+        let mut romcal = Romcal::empty();
+        romcal.calendar = "calendar_a".to_string();
+        romcal.calendar_definitions.push(calendar_a);
+        romcal.calendar_definitions.push(calendar_b);
+
+        let result = Calendar::new(romcal, 2026);
+
+        match result {
+            Err(error) => {
+                let error_str = error.to_string();
+                assert!(
+                    error_str.contains("Circular reference"),
+                    "Error should mention circular reference: {}",
+                    error_str
+                );
+            }
+            Ok(_) => panic!("Expected an error for circular reference in calendar hierarchy"),
+        }
     }
 }

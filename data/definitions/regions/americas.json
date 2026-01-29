@@ -5,7 +5,9 @@
     "jurisdiction": "civil",
     "type": "region"
   },
-  "parent_calendar_ids": [],
+  "parent_calendar_ids": [
+    "general_roman"
+  ],
   "days_definitions": {
     "our_lady_of_guadalupe": {
       "custom_locale_id": "our_lady_of_guadalupe_patroness_of_the_americas",

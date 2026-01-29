@@ -10,7 +10,9 @@
     "ascension_on_sunday": false,
     "corpus_christi_on_sunday": false
   },
-  "parent_calendar_ids": [],
+  "parent_calendar_ids": [
+    "general_roman"
+  ],
   "days_definitions": {
     "patrick_of_ireland_bishop": {
       "precedence": "proper_solemnity__principal_patron_4a",

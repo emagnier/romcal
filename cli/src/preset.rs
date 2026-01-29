@@ -2,7 +2,28 @@ use crate::error::RomcalCliError;
 use crate::utils::{
     combine_resources_by_locale, parse_calendar_definition_files, parse_resource_files,
 };
+use romcal::engine::{CalendarDefinition, Resources};
 use romcal::{CalendarContext, EasterCalculationType, Romcal};
+
+/// Load bundled calendar definitions and resources.
+fn load_bundled_data() -> Result<(Vec<CalendarDefinition>, Vec<Resources>), RomcalCliError> {
+    let definitions = romcal::bundled_data::get_all_calendar_definitions().map_err(|e| {
+        RomcalCliError::ConfigError(format!("Failed to load bundled definitions: {}", e))
+    })?;
+    let resources = romcal::bundled_data::get_all_resources().map_err(|e| {
+        RomcalCliError::ConfigError(format!("Failed to load bundled resources: {}", e))
+    })?;
+    Ok((definitions, resources))
+}
+
+/// Merge custom calendar definitions into bundled ones.
+/// Custom definitions with same ID override bundled ones.
+fn merge_calendar_definitions(base: &mut Vec<CalendarDefinition>, custom: Vec<CalendarDefinition>) {
+    for custom_def in custom {
+        base.retain(|def| def.id != custom_def.id);
+        base.push(custom_def);
+    }
+}
 
 /// Create a romcal instance from CLI parameters
 #[allow(clippy::too_many_arguments)]
@@ -16,11 +37,47 @@ pub fn create_romcal(
     corpus_christi_on_sunday: Option<bool>,
     calendar_definitions: &[String],
     resources: &[String],
+    replace: bool,
 ) -> Result<Romcal, RomcalCliError> {
-    // Start with default romcal from core
-    let mut romcal = Romcal::default();
+    let has_custom_data = !calendar_definitions.is_empty() || !resources.is_empty();
 
-    // Override with CLI-provided values if specified
+    // 1. Determine base data
+    let (mut all_definitions, mut all_resources) = if replace && has_custom_data {
+        // Replace mode: start with empty vectors
+        (Vec::new(), Vec::new())
+    } else {
+        // Merge mode (default): load bundled data
+        load_bundled_data()?
+    };
+
+    // 2. Add/replace custom definitions if provided
+    if !calendar_definitions.is_empty() {
+        let custom_definitions = parse_calendar_definition_files(calendar_definitions)?;
+        if replace {
+            all_definitions = custom_definitions;
+        } else {
+            merge_calendar_definitions(&mut all_definitions, custom_definitions);
+        }
+    }
+
+    // 3. Add/replace custom resources if provided
+    if !resources.is_empty() {
+        let custom_resources = parse_resource_files(resources)?;
+        if replace {
+            all_resources = combine_resources_by_locale(custom_resources)?;
+        } else {
+            // Merge: combine bundled + custom resources by locale
+            all_resources.extend(custom_resources);
+            all_resources = combine_resources_by_locale(all_resources)?;
+        }
+    }
+
+    // 4. Create romcal instance with loaded data
+    let mut romcal = Romcal::default();
+    romcal.calendar_definitions = all_definitions;
+    romcal.resources = all_resources;
+
+    // 5. Override with CLI-provided values if specified
     if let Some(cal) = calendar {
         romcal.calendar = cal.to_string();
     }
@@ -41,15 +98,6 @@ pub fn create_romcal(
     }
     if let Some(corpus_christi) = corpus_christi_on_sunday {
         romcal.corpus_christi_on_sunday = corpus_christi;
-    }
-
-    // Load custom calendar definitions and resources if provided
-    if !calendar_definitions.is_empty() {
-        romcal.calendar_definitions = parse_calendar_definition_files(calendar_definitions)?;
-    }
-    if !resources.is_empty() {
-        let parsed_resources = parse_resource_files(resources)?;
-        romcal.resources = combine_resources_by_locale(parsed_resources)?;
     }
 
     Ok(romcal)

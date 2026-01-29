@@ -5,7 +5,9 @@
     "jurisdiction": "civil",
     "type": "country"
   },
-  "parent_calendar_ids": [],
+  "parent_calendar_ids": [
+    "general_roman"
+  ],
   "days_definitions": {
     "andrew_dung_lac_priest_and_companions_martyrs": {
       "precedence": "proper_feast_8f",

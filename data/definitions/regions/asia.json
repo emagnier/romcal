@@ -5,6 +5,8 @@
     "jurisdiction": "civil",
     "type": "region"
   },
-  "parent_calendar_ids": [],
+  "parent_calendar_ids": [
+    "general_roman"
+  ],
   "days_definitions": {}
 }

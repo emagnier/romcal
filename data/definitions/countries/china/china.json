@@ -5,7 +5,9 @@
     "jurisdiction": "civil",
     "type": "country"
   },
-  "parent_calendar_ids": [],
+  "parent_calendar_ids": [
+    "general_roman"
+  ],
   "days_definitions": {
     "odoric_of_pordenone_priest": {
       "precedence": "optional_memorial_12",

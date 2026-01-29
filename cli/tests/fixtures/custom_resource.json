@@ -1,0 +1,9 @@
+{
+  "locale": "en",
+  "martyrology": {
+    "test_custom_saint": {
+      "name": "Test Custom Saint",
+      "type": "person"
+    }
+  }
+}

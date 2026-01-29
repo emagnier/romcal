@@ -6,6 +6,10 @@ fn romcal() -> Command {
     cargo_bin_cmd!("romcal")
 }
 
+fn fixture_path(name: &str) -> String {
+    format!("{}/tests/fixtures/{}", env!("CARGO_MANIFEST_DIR"), name)
+}
+
 // ============================================================================
 // date command tests
 // ============================================================================
@@ -172,4 +176,168 @@ fn test_invalid_format() {
         .args(["date", "easter_sunday", "2025", "-f", "invalid"])
         .assert()
         .failure();
+}
+
+// ============================================================================
+// bundled data tests
+// ============================================================================
+
+#[test]
+fn test_bundled_data_default() {
+    // CLI should work out-of-the-box with built-in data
+    romcal()
+        .args(["calendar", "2026"])
+        .assert()
+        .success()
+        .stdout(predicate::str::contains("mary_mother_of_god"));
+}
+
+#[test]
+fn test_bundled_data_with_calendar_and_locale() {
+    // Specific calendar and locale should work with built-in data
+    romcal()
+        .args(["calendar", "2026", "-c", "france", "-l", "fr"])
+        .assert()
+        .success()
+        .stdout(predicate::str::contains("Sainte Marie"));
+}
+
+#[test]
+fn test_replace_flag_without_custom_data_uses_builtin() {
+    // --replace without -d/-r should be ignored and use built-in data
+    romcal()
+        .args(["calendar", "2026", "--replace"])
+        .assert()
+        .success()
+        .stdout(predicate::str::contains("mary_mother_of_god"));
+}
+
+// ============================================================================
+// custom data merge tests
+// ============================================================================
+
+#[test]
+fn test_merge_custom_definitions() {
+    // Custom definitions should be merged with built-in data
+    romcal()
+        .args([
+            "calendar",
+            "2026",
+            "-c",
+            "test_custom_calendar",
+            "-d",
+            &fixture_path("custom_calendar.json"),
+            "-r",
+            &fixture_path("custom_resource.json"),
+        ])
+        .assert()
+        .success()
+        .stdout(predicate::str::contains("test_custom_saint"));
+}
+
+#[test]
+fn test_merge_custom_resources() {
+    // Custom resources should be merged with built-in data
+    // The custom saint name should appear in output
+    romcal()
+        .args([
+            "calendar",
+            "2026",
+            "-c",
+            "test_custom_calendar",
+            "-d",
+            &fixture_path("custom_calendar.json"),
+            "-r",
+            &fixture_path("custom_resource.json"),
+        ])
+        .assert()
+        .success()
+        .stdout(predicate::str::contains("Test Custom Saint"));
+}
+
+#[test]
+fn test_merge_preserves_builtin_data() {
+    // When merging, built-in data should still be available
+    romcal()
+        .args([
+            "calendar",
+            "2026",
+            "-d",
+            &fixture_path("custom_calendar.json"),
+        ])
+        .assert()
+        .success()
+        // Built-in general_roman entries should still work
+        .stdout(predicate::str::contains("mary_mother_of_god"));
+}
+
+// ============================================================================
+// custom data replace tests
+// ============================================================================
+
+#[test]
+fn test_replace_with_custom_definitions() {
+    // With --replace, only custom data should be used
+    // Must include general_roman since test_custom_calendar depends on it
+    let definitions = format!(
+        "{},{}",
+        fixture_path("general_roman_minimal.json"),
+        fixture_path("custom_calendar.json")
+    );
+    romcal()
+        .args([
+            "calendar",
+            "2026",
+            "-c",
+            "test_custom_calendar",
+            "-d",
+            &definitions,
+            "-r",
+            &fixture_path("custom_resource.json"),
+            "--replace",
+        ])
+        .assert()
+        .success()
+        .stdout(predicate::str::contains("test_custom_saint"));
+}
+
+#[test]
+fn test_replace_rejects_missing_calendar() {
+    // With --replace, if a calendar doesn't exist in custom data, it should fail
+    romcal()
+        .args([
+            "calendar",
+            "2026",
+            "-c",
+            "france",
+            "-d",
+            &fixture_path("custom_calendar.json"),
+            "-r",
+            &fixture_path("custom_resource.json"),
+            "--replace",
+        ])
+        .assert()
+        .failure()
+        .stderr(predicate::str::contains("Calendar 'france' not found"));
+}
+
+#[test]
+fn test_replace_rejects_missing_parent_calendar() {
+    // With --replace, if a parent calendar doesn't exist in custom data, it should fail
+    romcal()
+        .args([
+            "calendar",
+            "2026",
+            "-c",
+            "test_custom_calendar",
+            "-d",
+            &fixture_path("custom_calendar.json"),
+            "-r",
+            &fixture_path("custom_resource.json"),
+            "--replace",
+        ])
+        .assert()
+        .failure()
+        .stderr(predicate::str::contains("Parent calendar 'general_roman'"))
+        .stderr(predicate::str::contains("not found"));
 }

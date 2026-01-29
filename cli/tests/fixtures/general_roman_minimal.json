@@ -1,0 +1,14 @@
+{
+  "id": "general_roman",
+  "metadata": {
+    "jurisdiction": "ecclesiastical",
+    "type": "general_roman"
+  },
+  "particular_config": {
+    "epiphany_on_sunday": false,
+    "ascension_on_sunday": false,
+    "corpus_christi_on_sunday": false
+  },
+  "parent_calendar_ids": [],
+  "days_definitions": {}
+}

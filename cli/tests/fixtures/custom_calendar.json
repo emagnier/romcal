@@ -1,0 +1,21 @@
+{
+  "id": "test_custom_calendar",
+  "metadata": {
+    "jurisdiction": "civil",
+    "type": "country"
+  },
+  "parent_calendar_ids": [
+    "general_roman"
+  ],
+  "days_definitions": {
+    "test_custom_saint": {
+      "precedence": "proper_memorial_11b",
+      "date_def": {
+        "month": 1,
+        "date": 15
+      },
+      "commons_def": "none",
+      "martyrology": ["test_custom_saint"]
+    }
+  }
+}

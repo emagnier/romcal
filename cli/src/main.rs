@@ -75,6 +75,10 @@ struct PresetArgs {
     /// Paths to resource JSON files (supports glob patterns)
     #[arg(short = 'r', long, value_delimiter = ',')]
     resources: Vec<String>,
+
+    /// Use only custom data files, ignoring romcal's built-in data
+    #[arg(long)]
+    replace: bool,
 }
 
 impl PresetArgs {
@@ -135,6 +139,7 @@ impl PresetArgs {
             Some(corpus_christi_on_sunday),
             &definitions,
             &resources,
+            self.replace,
         )
     }
 }
