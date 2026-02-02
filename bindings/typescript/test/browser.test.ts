@@ -14,16 +14,16 @@ describe('Browser ESM bundle', () => {
     // Import the built ESM module (Vite will serve it)
     const { createRomcal } = await import('../dist/romcal.js')
 
-    const romcal = await createRomcal()
+    const romcal = await createRomcal('temporal_cycle')
 
-    expect(romcal.calendar).toBe('general_roman')
+    expect(romcal.calendar).toBe('temporal_cycle')
     expect(romcal.locale).toBe('en')
   })
 
   it('should generate a liturgical calendar', async () => {
     const { createRomcal } = await import('../dist/romcal.js')
 
-    const romcal = await createRomcal()
+    const romcal = await createRomcal('temporal_cycle')
     const calendar = romcal.generateLiturgicalCalendar(2026)
 
     expect(calendar['2026-04-05']).toBeDefined() // Easter
@@ -33,7 +33,7 @@ describe('Browser ESM bundle', () => {
   it('should get a specific date', async () => {
     const { createRomcal } = await import('../dist/romcal.js')
 
-    const romcal = await createRomcal()
+    const romcal = await createRomcal('temporal_cycle')
     const easter = romcal.getDate('easter_sunday', 2026)
 
     expect(easter).toBe('2026-04-05')
@@ -61,14 +61,14 @@ describe('Browser UMD bundle (script tag)', () => {
   })
 
   it('should create an instance via global', async () => {
-    const romcal = await window.Romcal.createRomcal()
+    const romcal = await window.Romcal.createRomcal('temporal_cycle')
 
-    expect(romcal.calendar).toBe('general_roman')
+    expect(romcal.calendar).toBe('temporal_cycle')
     expect(romcal.locale).toBe('en')
   })
 
   it('should generate a liturgical calendar via global', async () => {
-    const romcal = await window.Romcal.createRomcal()
+    const romcal = await window.Romcal.createRomcal('temporal_cycle')
     const calendar = romcal.generateLiturgicalCalendar(2026)
 
     expect(calendar['2026-04-05']).toBeDefined()

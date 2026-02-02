@@ -231,13 +231,13 @@ describe('French calendar', () => {
 
 describe('error handling', () => {
   it('should throw RomcalError for invalid year', async () => {
-    const romcal = await createRomcal()
+    const romcal = await createRomcal('temporal_cycle')
 
     expect(() => romcal.generateLiturgicalCalendar(1500)).toThrow(RomcalError)
   })
 
   it('should include error message for invalid year', async () => {
-    const romcal = await createRomcal()
+    const romcal = await createRomcal('temporal_cycle')
 
     try {
       romcal.generateLiturgicalCalendar(1500)
@@ -249,18 +249,18 @@ describe('error handling', () => {
   })
 
   it('should accept year 1583 (first valid Gregorian year)', async () => {
-    const romcal = await createRomcal()
+    const romcal = await createRomcal('temporal_cycle')
     const calendar = romcal.generateLiturgicalCalendar(1583)
     expect(Object.keys(calendar).length).toBeGreaterThan(0)
   })
 
   it('should reject year 1582 (before Gregorian calendar)', async () => {
-    const romcal = await createRomcal()
+    const romcal = await createRomcal('temporal_cycle')
     expect(() => romcal.generateLiturgicalCalendar(1582)).toThrow(RomcalError)
   })
 
   it('should throw RomcalError with validation message for year < 1583', async () => {
-    const romcal = await createRomcal()
+    const romcal = await createRomcal('temporal_cycle')
 
     try {
       romcal.generateLiturgicalCalendar(1500)

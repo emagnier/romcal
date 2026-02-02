@@ -16,6 +16,9 @@ use crate::types::{CalendarContext, EasterCalculationType, OrdinalFormat};
 
 // Default configuration constants
 const DEFAULT_CALENDAR: &str = "general_roman";
+/// Calendar value indicating only the temporal cycle (proper of time) should be used,
+/// without any calendar definitions (general roman, country, diocese, etc.).
+pub const TEMPORAL_CYCLE: &str = "temporal_cycle";
 const DEFAULT_LOCALE: &str = "en";
 const DEFAULT_EASTER_TYPE: EasterCalculationType = EasterCalculationType::Gregorian;
 const DEFAULT_CONTEXT: CalendarContext = CalendarContext::Gregorian;
@@ -76,17 +79,6 @@ pub struct Romcal {
 
 impl Default for Romcal {
     fn default() -> Self {
-        #[cfg(feature = "bundled-data")]
-        let (calendar_definitions, resources) = {
-            let defs =
-                crate::bundled_data::get_all_calendar_definitions().unwrap_or_else(|_| Vec::new());
-            let res = crate::bundled_data::get_all_resources().unwrap_or_else(|_| Vec::new());
-            (defs, res)
-        };
-
-        #[cfg(not(feature = "bundled-data"))]
-        let (calendar_definitions, resources) = (Vec::new(), Vec::new());
-
         Self {
             calendar: DEFAULT_CALENDAR.to_string(),
             locale: DEFAULT_LOCALE.to_string(),
@@ -96,13 +88,37 @@ impl Default for Romcal {
             corpus_christi_on_sunday: DEFAULT_CORPUS_CHRISTI_ON_SUNDAY,
             ascension_on_sunday: DEFAULT_ASCENSION_ON_SUNDAY,
             ordinal_format: DEFAULT_ORDINAL_FORMAT,
-            calendar_definitions,
-            resources,
+            calendar_definitions: Self::default_calendar_definitions(),
+            resources: Self::default_resources(),
         }
     }
 }
 
 impl Romcal {
+    /// Returns bundled calendar definitions if the `bundled-data` feature is enabled.
+    fn default_calendar_definitions() -> Vec<CalendarDefinition> {
+        #[cfg(feature = "bundled-data")]
+        {
+            crate::bundled_data::get_all_calendar_definitions().unwrap_or_default()
+        }
+        #[cfg(not(feature = "bundled-data"))]
+        {
+            Vec::new()
+        }
+    }
+
+    /// Returns bundled resources if the `bundled-data` feature is enabled.
+    fn default_resources() -> Vec<Resources> {
+        #[cfg(feature = "bundled-data")]
+        {
+            crate::bundled_data::get_all_resources().unwrap_or_default()
+        }
+        #[cfg(not(feature = "bundled-data"))]
+        {
+            Vec::new()
+        }
+    }
+
     /// Creates a new Romcal instance with default values applied to any None fields
     ///
     /// Priority for ordinal_format:
@@ -116,29 +132,36 @@ impl Romcal {
     /// - The requested calendar is not found in `calendar_definitions`
     /// - The requested locale (or its fallback chain) is not found in `resources`
     pub fn new(config: Preset) -> Result<Self, RomcalError> {
-        let calendar_definitions = config.calendar_definitions.unwrap_or_default();
+        // None = use bundled data if available, Some(...) = use exactly what was provided
+        let calendar_definitions = match config.calendar_definitions {
+            Some(defs) => defs,
+            None => Self::default_calendar_definitions(),
+        };
 
         // Normalize locale to lowercase (BCP 47 is case-insensitive)
         let locale = normalize_locale(config.locale.as_deref().unwrap_or(DEFAULT_LOCALE));
 
-        // Normalize resources locales to lowercase
-        let resources: Vec<Resources> = config
-            .resources
-            .unwrap_or_default()
-            .into_iter()
-            .map(|mut res| {
-                res.locale = normalize_locale(&res.locale);
-                res
-            })
-            .collect();
+        // None = use bundled data if available, Some(...) = use exactly what was provided
+        let resources: Vec<Resources> = match config.resources {
+            Some(res) => res,
+            None => Self::default_resources(),
+        }
+        .into_iter()
+        .map(|mut res| {
+            res.locale = normalize_locale(&res.locale);
+            res
+        })
+        .collect();
 
         // Get the calendar ID (use default if not provided)
         let calendar = config
             .calendar
             .unwrap_or_else(|| DEFAULT_CALENDAR.to_string());
 
-        // Validate calendar exists in definitions (skip if no definitions provided)
+        // Validate calendar exists in definitions
+        // Skip if no definitions provided or if using temporal_cycle (proper of time only)
         if !calendar_definitions.is_empty()
+            && calendar != TEMPORAL_CYCLE
             && !calendar_definitions.iter().any(|def| def.id == calendar)
         {
             let available: Vec<String> =
@@ -193,9 +216,10 @@ impl Romcal {
     }
 
     /// Creates a new Romcal instance with empty calendar definitions and resources.
+    /// Uses `temporal_cycle` as the default calendar (proper of time only).
     pub fn empty() -> Self {
         Self {
-            calendar: DEFAULT_CALENDAR.to_string(),
+            calendar: TEMPORAL_CYCLE.to_string(),
             locale: DEFAULT_LOCALE.to_string(),
             context: DEFAULT_CONTEXT,
             easter_calculation_type: DEFAULT_EASTER_TYPE,
@@ -378,7 +402,7 @@ mod tests {
     use super::*;
 
     fn create_test_romcal() -> Romcal {
-        Romcal::default()
+        Romcal::empty()
     }
 
     #[test]

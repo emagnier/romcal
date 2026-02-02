@@ -40,7 +40,7 @@ pub use generated::locale_ids::LOCALE_CODES;
 pub use generated::schemas;
 pub use helpers::{merge_calendar_definitions, merge_resource_files};
 pub use martyrology_resolution::MartyrologyResolver;
-pub use romcal::{Preset, Romcal};
+pub use romcal::{Preset, Romcal, TEMPORAL_CYCLE};
 pub use types::liturgical::Season;
 pub use types::martyrology::SaintCount;
 pub use types::martyrology::{MartyrologyEntry, MartyrologyEntryId};

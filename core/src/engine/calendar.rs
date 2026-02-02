@@ -258,6 +258,11 @@ impl Calendar {
     fn resolve_calendar_hierarchy(
         romcal: &Romcal,
     ) -> RomcalResult<(Vec<CalendarDefinition>, HashMap<String, usize>)> {
+        // The temporal cycle uses only the proper of time, no calendar definitions needed
+        if romcal.calendar == crate::romcal::TEMPORAL_CYCLE {
+            return Ok((Vec::new(), HashMap::new()));
+        }
+
         let mut hierarchy = Vec::new();
         let mut visited_ids = HashSet::new();
         let mut current_path = HashSet::new();
@@ -1314,7 +1319,7 @@ mod tests {
 
     #[test]
     fn test_calendar_creation() {
-        let romcal = Romcal::default();
+        let romcal = Romcal::empty();
         let calendar = Calendar::new(romcal, 2026).unwrap();
 
         assert_eq!(calendar.year, 2026);
@@ -1352,7 +1357,7 @@ mod tests {
 
     #[test]
     fn test_precedence_comparison() {
-        let romcal = Romcal::default();
+        let romcal = Romcal::empty();
         let calendar = Calendar::new(romcal, 2026).unwrap();
 
         // Create mock days with different precedences
@@ -1413,7 +1418,7 @@ mod tests {
 
     #[test]
     fn test_calculate_month_date() {
-        let romcal = Romcal::default();
+        let romcal = Romcal::empty();
         let calendar = Calendar::new(romcal, 2026).unwrap();
 
         // Test simple month/date
@@ -1442,7 +1447,7 @@ mod tests {
 
     #[test]
     fn test_calculate_date_function() {
-        let romcal = Romcal::default();
+        let romcal = Romcal::empty();
         let calendar = Calendar::new(romcal, 2026).unwrap();
 
         // Test Easter Sunday
@@ -1469,7 +1474,7 @@ mod tests {
 
     #[test]
     fn test_calculate_weekday_of_month() {
-        let romcal = Romcal::default();
+        let romcal = Romcal::empty();
         let calendar = Calendar::new(romcal, 2026).unwrap();
 
         // Test 3rd Sunday of September (e.g., for Catechetical Sunday)
@@ -1488,7 +1493,7 @@ mod tests {
 
     #[test]
     fn test_calculate_last_weekday_of_month() {
-        let romcal = Romcal::default();
+        let romcal = Romcal::empty();
         let calendar = Calendar::new(romcal, 2026).unwrap();
 
         // Test last Sunday of November (Christ the King region)
@@ -1511,7 +1516,7 @@ mod tests {
 
     #[test]
     fn test_generate_calendar_basic() {
-        let romcal = Romcal::default();
+        let romcal = Romcal::empty();
         let calendar = Calendar::new(romcal, 2026).unwrap();
 
         let result = calendar.generate();
@@ -1579,7 +1584,7 @@ mod tests {
 
     #[test]
     fn test_apply_precedence_rules_single_day() {
-        let romcal = Romcal::default();
+        let romcal = Romcal::empty();
         let calendar = Calendar::new(romcal, 2026).unwrap();
 
         use crate::types::liturgical::{PsalterWeekCycle, SundayCycle, WeekdayCycle};
@@ -1612,7 +1617,7 @@ mod tests {
 
     #[test]
     fn test_apply_precedence_rules_multiple_days() {
-        let romcal = Romcal::default();
+        let romcal = Romcal::empty();
         let calendar = Calendar::new(romcal, 2026).unwrap();
 
         use crate::types::liturgical::{PsalterWeekCycle, SundayCycle, WeekdayCycle};
@@ -1672,7 +1677,7 @@ mod tests {
         use crate::types::liturgical::{PsalterWeekCycle, SundayCycle, WeekdayCycle};
         use std::collections::HashMap;
 
-        let romcal = Romcal::default();
+        let romcal = Romcal::empty();
         let mut calendar = Calendar::new(romcal, 2026).unwrap();
 
         // Simulate a hierarchy: general_roman (0) < france (1) < france__angers (2)
@@ -1755,7 +1760,7 @@ mod tests {
 
     #[test]
     fn test_proper_of_time_end_of_season_not_null() {
-        let romcal = Romcal::default();
+        let romcal = Romcal::empty();
         let calendar = Calendar::new(romcal, 2026).unwrap();
         let result = calendar.generate().unwrap();
 
@@ -1815,7 +1820,7 @@ mod tests {
     fn test_masses_default_is_day_mass() {
         use crate::types::mass::MassTime;
 
-        let romcal = Romcal::default();
+        let romcal = Romcal::empty();
         let calendar = Calendar::new(romcal, 2026).unwrap();
         let result = calendar.generate().unwrap();
 
@@ -1833,7 +1838,7 @@ mod tests {
     fn test_masses_easter_sunday() {
         use crate::types::mass::MassTime;
 
-        let romcal = Romcal::default();
+        let romcal = Romcal::empty();
         let calendar = Calendar::new(romcal, 2026).unwrap();
         let result = calendar.generate().unwrap();
 
@@ -1858,7 +1863,7 @@ mod tests {
 
     #[test]
     fn test_masses_holy_saturday_is_aliturgical() {
-        let romcal = Romcal::default();
+        let romcal = Romcal::empty();
         let calendar = Calendar::new(romcal, 2026).unwrap();
         let result = calendar.generate().unwrap();
 
@@ -1877,7 +1882,7 @@ mod tests {
     fn test_masses_nativity_of_the_lord() {
         use crate::types::mass::MassTime;
 
-        let romcal = Romcal::default();
+        let romcal = Romcal::empty();
         let calendar = Calendar::new(romcal, 2026).unwrap();
         let result = calendar.generate().unwrap();
 
@@ -2013,7 +2018,7 @@ mod tests {
     fn test_masses_pentecost_sunday() {
         use crate::types::mass::MassTime;
 
-        let romcal = Romcal::default();
+        let romcal = Romcal::empty();
         let calendar = Calendar::new(romcal, 2026).unwrap();
         let result = calendar.generate().unwrap();
 
@@ -2045,7 +2050,7 @@ mod tests {
     fn test_masses_palm_sunday() {
         use crate::types::mass::MassTime;
 
-        let romcal = Romcal::default();
+        let romcal = Romcal::empty();
         let calendar = Calendar::new(romcal, 2026).unwrap();
         let result = calendar.generate().unwrap();
 
@@ -2065,7 +2070,7 @@ mod tests {
     fn test_masses_good_friday() {
         use crate::types::mass::MassTime;
 
-        let romcal = Romcal::default();
+        let romcal = Romcal::empty();
         let calendar = Calendar::new(romcal, 2026).unwrap();
         let result = calendar.generate().unwrap();
 
@@ -2088,7 +2093,7 @@ mod tests {
     fn test_masses_holy_thursday() {
         use crate::types::mass::MassTime;
 
-        let romcal = Romcal::default();
+        let romcal = Romcal::empty();
         let calendar = Calendar::new(romcal, 2026).unwrap();
         let result = calendar.generate().unwrap();
 
@@ -2114,7 +2119,7 @@ mod tests {
     fn test_masses_december_24() {
         use crate::types::mass::MassTime;
 
-        let romcal = Romcal::default();
+        let romcal = Romcal::empty();
         let calendar = Calendar::new(romcal, 2026).unwrap();
         let result = calendar.generate().unwrap();
 
@@ -2136,7 +2141,7 @@ mod tests {
 
     #[test]
     fn test_generate_mass_calendar_basic() {
-        let romcal = Romcal::default();
+        let romcal = Romcal::empty();
         let calendar = Calendar::new(romcal, 2026).unwrap();
 
         let result = calendar.generate_mass_calendar();
@@ -2160,7 +2165,7 @@ mod tests {
 
     #[test]
     fn test_generate_mass_calendar_christmas_evening_mass_shifted() {
-        let romcal = Romcal::default();
+        let romcal = Romcal::empty();
         let calendar = Calendar::new(romcal, 2026).unwrap();
         let mass_calendar = calendar.generate_mass_calendar().unwrap();
 
@@ -2204,7 +2209,7 @@ mod tests {
 
     #[test]
     fn test_generate_mass_calendar_easter_vigil_shifted() {
-        let romcal = Romcal::default();
+        let romcal = Romcal::empty();
         let calendar = Calendar::new(romcal, 2026).unwrap();
         let mass_calendar = calendar.generate_mass_calendar().unwrap();
 
@@ -2224,7 +2229,7 @@ mod tests {
 
     #[test]
     fn test_generate_mass_calendar_context_from_liturgical_date() {
-        let romcal = Romcal::default();
+        let romcal = Romcal::empty();
         let calendar = Calendar::new(romcal, 2026).unwrap();
         let mass_calendar = calendar.generate_mass_calendar().unwrap();
 
@@ -2244,7 +2249,7 @@ mod tests {
 
     #[test]
     fn test_generate_mass_calendar_flat_structure() {
-        let romcal = Romcal::default();
+        let romcal = Romcal::empty();
         let calendar = Calendar::new(romcal, 2026).unwrap();
         let mass_calendar = calendar.generate_mass_calendar().unwrap();
 
@@ -2268,7 +2273,7 @@ mod tests {
 
     #[test]
     fn test_generate_mass_calendar_serialization() {
-        let romcal = Romcal::default();
+        let romcal = Romcal::empty();
         let calendar = Calendar::new(romcal, 2026).unwrap();
         let mass_calendar = calendar.generate_mass_calendar().unwrap();
 
@@ -2292,9 +2297,25 @@ mod tests {
 
     #[test]
     fn test_calendar_not_found_error() {
-        // Create romcal with no calendar definitions, requesting a non-existent calendar
+        use crate::types::CalendarMetadata;
+        use crate::types::calendar::{CalendarJurisdiction, CalendarType};
+
+        // Create romcal with a definition, but requesting a different calendar
+        let some_calendar = CalendarDefinition {
+            schema: None,
+            id: "some_calendar".to_string(),
+            metadata: CalendarMetadata {
+                r#type: CalendarType::GeneralRoman,
+                jurisdiction: CalendarJurisdiction::Ecclesiastical,
+            },
+            particular_config: None,
+            parent_calendar_ids: vec![],
+            days_definitions: std::collections::BTreeMap::new(),
+        };
+
         let mut romcal = Romcal::empty();
         romcal.calendar = "non_existent_calendar".to_string();
+        romcal.calendar_definitions.push(some_calendar);
 
         let result = Calendar::new(romcal, 2026);
 

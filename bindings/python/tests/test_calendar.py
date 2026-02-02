@@ -248,7 +248,7 @@ class TestErrorHandling:
 
     def test_should_accept_year_1583(self) -> None:
         """Should accept year 1583 (first valid Gregorian year)."""
-        romcal = Romcal()
+        romcal = Romcal("temporal_cycle")
         calendar = romcal.liturgical_calendar(1583)
         assert len(calendar) > 0
 

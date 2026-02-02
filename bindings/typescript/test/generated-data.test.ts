@@ -25,8 +25,7 @@ describe('generated definitions', () => {
   it('should have valid europe calendar definition', () => {
     expect(europe).toBeDefined()
     expect(europe.id).toBe('europe')
-    // Europe is a top-level region, no parent except general_roman (handled implicitly)
-    expect(europe.parent_calendar_ids).toEqual([])
+    expect(europe.parent_calendar_ids).toEqual(['general_roman'])
   })
 })
 

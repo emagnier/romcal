@@ -73,9 +73,11 @@ pub fn create_romcal(
     }
 
     // 4. Create romcal instance with loaded data
-    let mut romcal = Romcal::default();
-    romcal.calendar_definitions = all_definitions;
-    romcal.resources = all_resources;
+    let mut romcal = Romcal {
+        calendar_definitions: all_definitions,
+        resources: all_resources,
+        ..Romcal::default()
+    };
 
     // 5. Override with CLI-provided values if specified
     if let Some(cal) = calendar {
