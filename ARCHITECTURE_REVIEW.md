@@ -73,7 +73,6 @@ Romcal is a well-architected, multi-target Rust project for Catholic liturgical 
 - **Triple serialization**: `Rust struct` → `serde_json` → `String` (FFI) → `json.loads` → `dict` → `Pydantic model_validate`. Should explore `pythonize` or native UniFFI Records.
 - **`MartyrologyQuery`**: Uses `@dataclass` with manual `_to_json_dict()` instead of Pydantic — inconsistent.
 - **`ConfigDict(extra="forbid")`**: Breaks forward compatibility if Rust adds fields.
-- **No async support**: Blocking calls in `asyncio` apps (FastAPI, Django async).
 
 ### Score: 7.5/10
 
@@ -163,8 +162,12 @@ Extract generic `render_collection<T: Serialize>()` function. Reduction: ~700 �
 |---|------|-------|-------------|
 | 4.1 | Document algorithms with references | Core | UNLY §49, Oudin 1940, CDWDS documents in doc-comments |
 | 4.2 | Document `NO_COLOR` support | CLI | Add `--no-color` flag for discoverability |
-| 4.3 | Add async wrappers | Python | `asyncio.to_thread()` wrappers for FastAPI/Django async |
-| 4.4 | Normalize naming conventions | TypeScript | Explicit `fromBundle()` adapter instead of auto-detection |
+| 4.3 | Normalize naming conventions | TypeScript | Explicit `fromBundle()` adapter instead of auto-detection |
+
+> **Note on async**: Adding async wrappers (Python, TypeScript, or Rust) was considered and rejected.
+> Romcal is purely CPU-bound with data embedded at compile time — there is no I/O to parallelize.
+> Async would only add API complexity, dependency bloat, and runtime overhead with zero benefit.
+> This would only become relevant if Romcal loaded data from a remote API or database, which is not planned.
 
 ---
 
