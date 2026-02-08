@@ -47,11 +47,9 @@ Romcal is a well-architected, multi-target Rust project for Catholic liturgical 
 
 ### Areas for Improvement
 
-- **Unstructured errors**: `JsValue::from_str(msg)` — no programmatic error distinction in JS.
-- **Naming inconsistency**: `RomcalConfigInterface` (camelCase) vs `RomcalBundle` (snake_case) requires auto-detection.
 - **`fix-imports.ts`**: Fragile script looping on `tsc --noEmit` error messages.
 
-### Score: 7.5/10
+### Score: 8/10
 
 ---
 
@@ -162,8 +160,14 @@ Extract generic `render_collection<T: Serialize>()` function. Reduction: ~700 �
 |---|------|-------|-------------|
 | 4.1 | Document algorithms with references | Core | UNLY §49, Oudin 1940, CDWDS documents in doc-comments |
 | 4.2 | Document `NO_COLOR` support | CLI | Add `--no-color` flag for discoverability |
-| 4.3 | Normalize naming conventions | TypeScript | Explicit `fromBundle()` adapter instead of auto-detection |
-| 4.4 | Standardize error message prefixes | Core | Prefix error messages with type (e.g. `CalendarNotFound: ...`) for optional consumer parsing. 2-3h, no breaking changes. |
+| 4.3 | Standardize error message prefixes | Core | Prefix error messages with type (e.g. `CalendarNotFound: ...`) for optional consumer parsing. 2-3h, no breaking changes. |
+
+> **Note on naming conventions**: The dual convention (camelCase for TypeScript API, snake_case for
+> JSON bundles) was analyzed and confirmed as the correct design. snake_case in bundles preserves
+> cross-platform JSON compatibility (Rust, Python, CLI). camelCase in the Romcal instance follows
+> JavaScript conventions. The auto-detection (`'epiphany_on_sunday' in obj`) is unambiguous since
+> the two property namespaces never overlap. Changing either convention would break existing users,
+> data files, or cross-platform compatibility with no benefit.
 
 > **Note on async**: Adding async wrappers (Python, TypeScript, or Rust) was considered and rejected.
 > Romcal is purely CPU-bound with data embedded at compile time — there is no I/O to parallelize.
