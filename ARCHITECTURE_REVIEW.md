@@ -161,6 +161,7 @@ Extract generic `render_collection<T: Serialize>()` function. Reduction: ~700 �
 | 4.1 | Document algorithms with references | Core | UNLY §49, Oudin 1940, CDWDS documents in doc-comments |
 | 4.2 | Document `NO_COLOR` support | CLI | Add `--no-color` flag for discoverability |
 | 4.3 | Standardize error message prefixes | Core | Prefix error messages with type (e.g. `CalendarNotFound: ...`) for optional consumer parsing. 2-3h, no breaking changes. |
+| 4.4 | Document dual naming convention | TypeScript | Explain in TS package docs why bundles use snake_case (cross-platform JSON compatibility with Rust/Python/CLI) while the Romcal instance uses camelCase (JS convention), and why the auto-detection is safe (property namespaces never overlap). |
 
 > **Note on naming conventions**: The dual convention (camelCase for TypeScript API, snake_case for
 > JSON bundles) was analyzed and confirmed as the correct design. snake_case in bundles preserves
@@ -187,7 +188,8 @@ Extract generic `render_collection<T: Serialize>()` function. Reduction: ~700 �
 
 3.1 (newtypes) ── independent, can be done anytime
 3.4 (fix-imports) ── independent, can be done anytime
-4.4 (error prefixes) ── independent, lightweight, can be done anytime
+4.3 (error prefixes) ── independent, lightweight, can be done anytime
+4.4 (naming convention docs) ── independent, can be done anytime
 ```
 
 Items 1.3 and 2.2 should be done together as they both affect CLI command rendering.
