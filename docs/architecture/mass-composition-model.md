@@ -41,11 +41,13 @@ These are **indivisible**: they are taken as a complete set. The psalm follows t
 
 The rule depends on what the saint's entry in the Lectionary provides:
 
-| Lectionary provides | Rule |
-|---|---|
-| **Strictly proper readings** (the saint is named in the biblical text) | Obligatory — must use them |
-| **Proper readings** (suggested for the saint, not strictly proper) | Optional — may use them, but feria readings are the default |
-| **No specific readings** | Feria readings are used |
+| Lectionary provides | Rule | Reference |
+|---|---|---|
+| **Strictly proper readings** (*lectiones stricte propriae*) | Obligatory — must use them | GIRM 357 |
+| **Proper readings** (*lectiones propriae*) — suggested for the saint, not strictly proper | Optional — may use them, but feria readings are the default | GIRM 357 |
+| **No specific readings** | Feria readings are used | GIRM 357 |
+
+**Note on "strictly proper readings":** GIRM 357 states that "unless strictly proper readings are given, the readings assigned for the weekday are customarily used" — implying that strictly proper readings, when they exist, override the weekday readings. However, the GIRM does not fully define the term "strictly proper." GIRM 358 offers a partial definition by referring to "proper New Testament readings, that is to say, readings in which mention is made of the Saint being celebrated." The complete technical definition of *lectiones stricte propriae* vs. *lectiones propriae* comes from the **Introduction to the Lectionary for Mass** (*Ordo Lectionum Missae*, OLM, nos. 78-84), referenced in GIRM footnotes 142-143 but not included in the romcal reference documents.
 
 When the Lectionary provides only one proper reading for the saint (e.g., only a gospel), the other reading comes from the feria automatically. This is the only "mixing" that occurs — and it is dictated by the Lectionary's structure, not by the celebrant's choice.
 
@@ -547,7 +549,8 @@ struct ReadingsOption {
     source: TextSource,
     /// Is this the default option for this day?
     is_default: bool,
-    /// Are these strictly proper readings? (GIRM 357 — obligatory if true)
+    /// Are these strictly proper readings? (GIRM 357 — when true, these readings
+    /// override the weekday readings; see OLM 78-84 for the full definition)
     is_strictly_proper: bool,
 
     /// The indivisible readings block (shared type)
