@@ -114,14 +114,17 @@ Romcal is a well-architected, multi-target Rust project for Catholic liturgical 
 > and a 20-30% increase in maintenance surface — for zero or negative performance gain.
 > JSON provides forward compatibility, compact untagged serialization, and debuggability.
 
-#### 1.2 Structure errors at FFI boundaries
-**Cross-cutting**: Core + WASM + UniFFI + CLI
+#### ~~1.2 Structure errors at FFI boundaries~~ — DOWNGRADED to P4
 
-- **Core**: Define serializable error format: `{ code, message, context }`
-- **WASM**: Serialize errors as structured JS objects (not strings)
-- **UniFFI**: Map enriched enum variants directly (UniFFI supports data-carrying enums)
-- **CLI**: Add distinct exit codes (2 = invalid config, 3 = calendar not found)
-- **Python/TS**: Expose error subclasses (`CalendarNotFoundError`, `InvalidYearError`)
+> **After deep analysis, full error structuring at FFI boundaries is not worthwhile for romcal.**
+> UniFFI 0.28 cannot support enum errors with associated data (e.g. `Vec<String>` of available
+> calendars), making a clean cross-platform implementation impossible. No existing consumer
+> distinguishes errors programmatically — all tests use string matching. The effort (~40-60h,
+> breaking changes on all platforms) vastly outweighs the speculative benefit.
+>
+> **Recommended alternative (P4):** Standardize error message prefixes in the core Display impl
+> (e.g. `"CalendarNotFound: calendar=france (available: ...)"`) so consumers can optionally
+> parse the prefix. Effort: 2-3 hours, zero breaking changes.
 
 #### 1.3 Refactor calendar/masses duplication in CLI
 **Scope**: CLI only
@@ -160,6 +163,7 @@ Extract generic `render_collection<T: Serialize>()` function. Reduction: ~700 �
 | 4.1 | Document algorithms with references | Core | UNLY §49, Oudin 1940, CDWDS documents in doc-comments |
 | 4.2 | Document `NO_COLOR` support | CLI | Add `--no-color` flag for discoverability |
 | 4.3 | Normalize naming conventions | TypeScript | Explicit `fromBundle()` adapter instead of auto-detection |
+| 4.4 | Standardize error message prefixes | Core | Prefix error messages with type (e.g. `CalendarNotFound: ...`) for optional consumer parsing. 2-3h, no breaking changes. |
 
 > **Note on async**: Adding async wrappers (Python, TypeScript, or Rust) was considered and rejected.
 > Romcal is purely CPU-bound with data embedded at compile time — there is no I/O to parallelize.
@@ -171,11 +175,6 @@ Extract generic `render_collection<T: Serialize>()` function. Reduction: ~700 �
 ## Cross-Cutting Dependency Graph
 
 ```
-1.2 (structured errors) ── cross-cutting: Core + WASM + UniFFI + CLI
-         │
-         ▼
-   Python/TS error subclasses
-
 1.3 (calendar/masses dedup) ──► 2.2 (OutputFormat)
                                  both should be done together
 
@@ -184,6 +183,7 @@ Extract generic `render_collection<T: Serialize>()` function. Reduction: ~700 �
 
 3.1 (newtypes) ── independent, can be done anytime
 3.4 (fix-imports) ── independent, can be done anytime
+4.4 (error prefixes) ── independent, lightweight, can be done anytime
 ```
 
 Items 1.3 and 2.2 should be done together as they both affect CLI command rendering.
