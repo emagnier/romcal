@@ -7,7 +7,7 @@
 
 ## Executive Summary
 
-Romcal is a well-architected, multi-target Rust project for Catholic liturgical calendar computation. The Rust core (~12,600 lines) compiles to CLI, WebAssembly (TypeScript/JS), and UniFFI (Python), with externalized JSON data. Overall quality is above average for a Rust project, with strong domain modeling and clean separation of concerns. The main structural issues are cross-cutting: JSON string marshalling at FFI boundaries and unstructured error propagation.
+Romcal is a well-architected, multi-target Rust project for Catholic liturgical calendar computation. The Rust core (~12,600 lines) compiles to CLI, WebAssembly (TypeScript/JS), and UniFFI (Python), with externalized JSON data. Overall quality is above average for a Rust project, with strong domain modeling and clean separation of concerns. Deep analysis confirmed that key architectural choices (JSON serialization at FFI boundaries, synchronous API, string-based error propagation) are the correct trade-offs for romcal's domain. The remaining improvements are primarily internal: CLI code duplication, module decomposition, and test coverage.
 
 ---
 
