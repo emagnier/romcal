@@ -47,7 +47,6 @@ Romcal is a well-architected, multi-target Rust project for Catholic liturgical 
 
 ### Areas for Improvement
 
-- **JSON string marshalling**: All WASM data returned as `String` → `JSON.parse()`. Should use `serde-wasm-bindgen` for direct `JsValue` serialization.
 - **Unstructured errors**: `JsValue::from_str(msg)` — no programmatic error distinction in JS.
 - **Naming inconsistency**: `RomcalConfigInterface` (camelCase) vs `RomcalBundle` (snake_case) requires auto-detection.
 - **`fix-imports.ts`**: Fragile script looping on `tsc --noEmit` error messages.
@@ -70,7 +69,6 @@ Romcal is a well-architected, multi-target Rust project for Catholic liturgical 
 
 ### Areas for Improvement
 
-- **Triple serialization**: `Rust struct` → `serde_json` → `String` (FFI) → `json.loads` → `dict` → `Pydantic model_validate`. Should explore `pythonize` or native UniFFI Records.
 - **`MartyrologyQuery`**: Uses `@dataclass` with manual `_to_json_dict()` instead of Pydantic — inconsistent.
 - **`ConfigDict(extra="forbid")`**: Breaks forward compatibility if Rust adds fields.
 
@@ -106,16 +104,15 @@ Romcal is a well-architected, multi-target Rust project for Catholic liturgical 
 
 ### Priority 1 — High Impact, Active Technical Debt
 
-#### 1.1 Eliminate JSON string marshalling at FFI boundaries
-**Cross-cutting**: Core + WASM + UniFFI
+#### ~~1.1 Eliminate JSON string marshalling at FFI boundaries~~ — REJECTED
 
-| Platform | Current | Target |
-|----------|---------|--------|
-| WASM | `serde_json::to_string` → `String` → `JSON.parse` | `serde-wasm-bindgen` → `JsValue` directly |
-| UniFFI | `serde_json::to_string` → `String` → `json.loads` → `Pydantic` | `pythonize` or native UniFFI Records |
-| Core | No shared FFI trait | Add `IntoFfi` trait for centralized conversion |
-
-**Impact**: Performance (365+ entries × 40+ fields per calendar), type safety at FFI boundary.
+> **After deep analysis, JSON string marshalling is the correct architectural choice for romcal.**
+> The data types (`LiturgicalDay` with 35+ fields, `BTreeMap` collections, 5+ untagged enums,
+> recursive `Box<DateDef>`, custom `SaintCount` serialization) are fundamentally incompatible
+> with native wasm-bindgen and UniFFI representations. Alternatives (`serde-wasm-bindgen`,
+> `pythonize`, native Records) would require 40-50 wrapper types, 2-3 months of refactoring,
+> and a 20-30% increase in maintenance surface — for zero or negative performance gain.
+> JSON provides forward compatibility, compact untagged serialization, and debuggability.
 
 #### 1.2 Structure errors at FFI boundaries
 **Cross-cutting**: Core + WASM + UniFFI + CLI
@@ -174,22 +171,20 @@ Extract generic `render_collection<T: Serialize>()` function. Reduction: ~700 �
 ## Cross-Cutting Dependency Graph
 
 ```
-1.1 (JSON marshalling) ──────► 1.2 (structured errors)
-         │                              │
-         ▼                              ▼
-   3.2 (benchmarks)          Python/TS error subclasses
-   to measure improvement
+1.2 (structured errors) ── cross-cutting: Core + WASM + UniFFI + CLI
          │
          ▼
-   3.3 (golden-file tests)
-   to prevent regressions
+   Python/TS error subclasses
 
 1.3 (calendar/masses dedup) ──► 2.2 (OutputFormat)
                                  both should be done together
+
+3.2 (benchmarks) ──► 3.3 (golden-file tests)
+                      to prevent regressions
 
 3.1 (newtypes) ── independent, can be done anytime
 3.4 (fix-imports) ── independent, can be done anytime
 ```
 
-Items 1.1 and 1.2 should be tackled together as they both modify the FFI boundary layer.
 Items 1.3 and 2.2 should be done together as they both affect CLI command rendering.
+Items 3.2 and 3.3 are complementary — benchmarks measure performance, snapshots detect logic regressions.
