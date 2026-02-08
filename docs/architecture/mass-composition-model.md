@@ -1,0 +1,839 @@
+# Mass Composition Model — Liturgical Calendar & Mass Calendar
+
+## Context and Motivation
+
+When a weekday (feria, rank 13 in romcal) also has optional memorials (rank 12) available for the same civil date, the Church's norms (GIRM and GNLY) define precise rules for how the celebrant may choose and combine liturgical texts — readings, orations, antiphons — between the feria and the optional memorial.
+
+This document synthesizes the analysis of these liturgical rules and proposes a data model for romcal that faithfully reflects them, organized around two complementary output approaches:
+
+- **Approach 1 — Liturgical Calendar** (`generate_liturgical_calendar`): centered on the liturgical day, for internal use and as the foundation for Approach 2.
+- **Approach 2 — Mass Calendar** (`generate_mass_calendar`): centered on the mass as celebrated on a civil date, with pre-resolved options and explicit composition rules.
+
+---
+
+## Part I — Liturgical Rules Synthesis
+
+### 1. The Two-Level Decision (GIRM 355)
+
+On a weekday in Ordinary Time with optional memorials, the celebrant makes a **global choice** first (GIRM 355.3): celebrate the feria, or celebrate one of the available optional memorials.
+
+This choice determines which "formulary" (set of texts) is used as the base. However, certain elements can then be mixed between sources.
+
+### 2. The Three Substitution Groups
+
+The GIRM organizes mass texts into groups with distinct substitution rules:
+
+#### Group 1 — Formulary Block (GIRM 355)
+
+**Collect + Entrance Antiphon + Communion Antiphon**
+
+These three elements are **inseparable**. They follow the global choice of celebration. If you celebrate the memorial, all three come from the saint (proper or Common). If you celebrate the feria, all three come from the feria.
+
+The collect is the identifying marker of the celebration. GIRM 363 states: "On memorials of Saints, the collect proper to the day is used." The antiphons follow the same formulary.
+
+**Exception — Privileged weekdays (GIRM 355.1):** On weekdays of Advent Dec 17-24, Octave of Christmas, and Lent, the Mass of the feria is obligatory. Only the collect may be borrowed from the memorial — this is the only case where the collect is detachable from the antiphons.
+
+#### Group 2 — Readings Block (GIRM 357-358)
+
+**Reading 1 + Psalm + (Reading 2) + Alleluia + Gospel**
+
+These are **indivisible**: they are taken as a complete set. The psalm follows the first reading it responds to.
+
+The rule depends on what the saint's entry in the Lectionary provides:
+
+| Lectionary provides | Rule |
+|---|---|
+| **Strictly proper readings** (the saint is named in the biblical text) | Obligatory — must use them |
+| **Proper readings** (suggested for the saint, not strictly proper) | Optional — may use them, but feria readings are the default |
+| **No specific readings** | Feria readings are used |
+
+When the Lectionary provides only one proper reading for the saint (e.g., only a gospel), the other reading comes from the feria automatically. This is the only "mixing" that occurs — and it is dictated by the Lectionary's structure, not by the celebrant's choice.
+
+**The celebrant cannot mix readings at will** (e.g., taking the gospel from the saint and the first reading from the feria when both are available). It is all-or-nothing within what the Lectionary assigns.
+
+GIRM 358 also notes that the priest should "take care not to omit the readings assigned for each day in the Lectionary for weekdays too frequently," emphasizing the default preference for the feria's *lectio continua*.
+
+#### Group 3 — Flexible Orations (GIRM 363)
+
+**Prayer over the Offerings, Prayer after Communion, Preface**
+
+Each of these can be chosen **independently** (à la carte):
+
+> "The prayer over the offerings, however, and the prayer after Communion, unless they are proper, may be taken either from the Common or from the weekdays of the current Season." (GIRM 363)
+
+The preface similarly can come from the Common of the saint or from the season.
+
+### 3. Summary by Season Context
+
+The rules vary depending on the liturgical season:
+
+| Season | GIRM ref | Formulary block | Readings block | Flexible orations |
+|---|---|---|---|---|
+| **Ordinary Time weekdays** | 355.3 | Free choice: feria or memorial | Feria default, saint if proper | Each independently: feria or Common |
+| **Advent before Dec 17, Christmas from Jan 2, Easter** | 355.2 | Free choice: feria or memorial | Free choice | Each independently |
+| **Advent Dec 17-24, Octave of Christmas, Lent** | 355.1 | Feria imposed (only collect borrowable from memorial) | Feria imposed | Feria imposed |
+
+### 4. Visual Schema
+
+```
+WEEKDAY IN ORDINARY TIME + OPTIONAL MEMORIAL
+═════════════════════════════════════════════
+
+  Which celebration? ─────────────────────────
+  │                                           │
+  ▼                                           ▼
+FERIA                                     MEMORIAL
+(all from feria)                              │
+                           ┌──────────────────┼──────────────────┐
+                           ▼                  ▼                  ▼
+                      AS A BLOCK         À LA CARTE          AS A BLOCK
+                   (follows choice)      (mixable)          (readings)
+                           │                  │                  │
+                    • Collect (saint)   • Pr. over offer.   • All from
+                    • Entrance ant.       (feria OR           feria
+                      (saint)             Common)             ... OR ...
+                    • Communion ant.    • Pr. after comm.   • All from
+                      (saint)             (feria OR           saint (if
+                                          Common)             proper,
+                                        • Preface              with
+                                          (season OR           psalm)
+                                          Common)
+```
+
+```
+PRIVILEGED WEEKDAYS (Advent 17-24, Lent...)
+═══════════════════════════════════════════
+
+  Formulary = FERIA (imposed)
+  │
+  └── Only exception: the collect ALONE
+      may be borrowed from the memorial
+      (everything else = feria)
+```
+
+### 5. Source References
+
+- **GIRM 355** — Choice of Mass on optional memorials (by season)
+- **GIRM 357** — Choice of readings for memorials
+- **GIRM 358** — Weekday Lectionary readings and continuous reading
+- **GIRM 363** — Choice of orations for memorials
+- **GIRM 364-365** — Preface and Eucharistic Prayer choices
+- **GNLY 10** — "Celebrations, according to the importance assigned to them, are distinguished one from another and termed: Solemnity, Feast, Memorial."
+- **GNLY 14** — "Memorials are either obligatory or optional; their observance is integrated into the celebration of the occurring weekday."
+- **GNLY 16** — Weekdays definition and precedence rules
+- **GNLY 59** — Table of Liturgical Days according to Their Order of Precedence
+
+---
+
+## Part II — Vocabulary: Liturgical Day vs. Celebration
+
+The GNLY uses both terms with distinct meanings:
+
+**Liturgical day** (*dies liturgicus*) — GNLY 3:
+> "The liturgical day runs from midnight to midnight. However, the celebration of Sunday and of Solemnities begins already on the evening of the previous day."
+
+The liturgical day is the **temporal frame**: a calendar date that can host one or more celebrations.
+
+**Celebration** (*celebratio*) — GNLY 10:
+> "Celebrations, according to the importance assigned to them, are hence distinguished one from another and termed: Solemnity, Feast, Memorial."
+
+A celebration is the **liturgical entity** with a rank, a name, and texts. The feria is a celebration. An optional memorial is a different celebration. Both can coexist on the same liturgical day.
+
+### Consequence for the data model
+
+- **`LiturgicalDay`** = the container (one per civil date). Carries the shared temporal context (season, cycle, psalter week...).
+- **`Celebration`** = the content (one or more per liturgical day). Carries identity (name, rank, precedence) and mass texts.
+
+A single liturgical day can contain multiple celebrations: the feria as the primary celebration, plus any optional memorials as alternatives.
+
+---
+
+## Part III — Cycle Resolution
+
+Romcal already computes the applicable liturgical cycle for any given date (Year A/B/C for Sundays, Year 1/2 for weekdays). Therefore, the output data model does **not** include a cycle dimension — the engine resolves the correct cycle internally and returns only the applicable content.
+
+The cycle information remains available in `DayContext` (`sunday_cycle`, `weekday_cycle`) for informational purposes, but the mass texts are already those of the resolved cycle.
+
+---
+
+## Part IV — Data Model
+
+### Shared Types
+
+These types are used by both approaches.
+
+#### `DayContext`
+
+**What it is:** The shared temporal context for all celebrations on a given date.
+
+**Why this name:** It provides the calendrical "context" of the "day" — season, cycles, position within the season — without any celebration-specific information.
+
+**Contents:**
+
+```rust
+struct DayContext {
+    season: Option<Season>,
+    season_name: Option<String>,
+    sunday_cycle: SundayCycle,
+    weekday_cycle: WeekdayCycle,
+    psalter_week: PsalterWeekCycle,
+    week_of_season: Option<u32>,
+    day_of_season: Option<u32>,
+    day_of_week: DayOfWeek,
+    periods: Vec<PeriodInfo>,
+    start_of_season: Option<String>,
+    end_of_season: Option<String>,
+    start_of_liturgical_year: String,
+    end_of_liturgical_year: String,
+}
+```
+
+#### `FormularySet`
+
+**What it is:** The inseparable block of texts that identify a celebration in the Mass: collect + entrance antiphon + communion antiphon.
+
+**Why this name:** In liturgical terminology, the "formulary" (*formularium*) is the complete set of proper texts for a given Mass. This struct represents the core identifying subset that must be taken as a unit. "Set" emphasizes that these elements are grouped and inseparable.
+
+**Liturgical basis:** GIRM 355 — these three elements follow the choice of celebration as a block.
+
+```rust
+struct FormularySet {
+    collect: Option<String>,
+    entrance_antiphon: Option<String>,
+    communion_antiphon: Option<String>,
+}
+```
+
+#### `ReadingsSet`
+
+**What it is:** A complete, indivisible set of readings for the Liturgy of the Word.
+
+**Why this name:** "Readings" because it contains all the Scripture readings and their associated chants. "Set" because they form an indivisible block — you take them all together or not at all.
+
+**Liturgical basis:** GIRM 357 — readings for memorials are taken as a complete set (feria or saint), not mixed individually.
+
+```rust
+struct ReadingsSet {
+    reading_1: Option<String>,
+    psalm: Option<String>,
+    canticle: Option<String>,
+    reading_2: Option<String>,
+    sequence: Option<String>,
+    alleluia: Option<String>,
+    gospel: Option<String>,
+}
+```
+
+#### `FlexibleOrations`
+
+**What it is:** The orations that can each be chosen independently between different sources (feria, Common, season).
+
+**Why this name:** "Flexible" because unlike the formulary block, each oration here can be sourced independently. "Orations" is the liturgical term for these presidential prayers.
+
+**Liturgical basis:** GIRM 363 — "The prayer over the offerings [...] and the prayer after Communion [...] may be taken either from the Common or from the weekdays of the current Season."
+
+```rust
+struct FlexibleOrations {
+    prayer_over_the_offerings: Option<String>,
+    prayer_after_communion: Option<String>,
+    preface: Option<String>,
+    solemn_blessing: Option<String>,
+    prayer_over_the_people: Option<String>,
+}
+```
+
+#### `TextSource`
+
+**What it is:** An enum indicating where a liturgical text comes from.
+
+**Why this name:** It identifies the "source" of a "text" — its provenance in the liturgical books.
+
+```rust
+enum TextSource {
+    /// From the Proper of Time (feria/weekday)
+    ProperOfTime { day_id: String },
+    /// From the proper texts of a specific saint
+    ProperOfSaint { saint_id: String },
+    /// From a Common (e.g., Common of Virgins, Common of Pastors)
+    Common { common: Common, saint_id: Option<String> },
+    /// From a Sunday of Ordinary Time (GIRM 363 alternative)
+    SundayOrdinaryTime { week: u32 },
+}
+```
+
+#### `SourcedText`
+
+**What it is:** A liturgical text paired with its provenance.
+
+**Why this name:** It is a "text" that is "sourced" — you know where it comes from. This is essential for Approach 2 where flexible orations are presented as a list of alternatives, each with its origin.
+
+```rust
+struct SourcedText {
+    source: TextSource,
+    text: String,
+}
+```
+
+#### `CelebrationId`
+
+**What it is:** A unique identifier for a celebration.
+
+**Why this name:** It identifies a `Celebration` uniquely within the calendar (e.g., `"ord_time_5_mon"`, `"st_scholastica"`).
+
+```rust
+type CelebrationId = String;
+```
+
+---
+
+### Approach 1 — Liturgical Calendar
+
+**Method:** `Calendar::generate_liturgical_calendar() → LiturgicalCalendar`
+
+**Principle:** Organized by liturgical day. Each civil date maps to one `LiturgicalDay` containing all possible celebrations. Masses are not shifted — evening masses (vigils, PreviousEveningMass) remain attached to their liturgical day. This approach serves as the internal foundation from which Approach 2 is generated.
+
+#### `LiturgicalCalendar`
+
+**What it is:** The top-level output type. A map from civil date to liturgical day.
+
+**Why this name:** It is a "calendar" organized by "liturgical" days — the liturgical perspective on the year.
+
+**Why keyed by civil date:** By convention and for practical convenience, each liturgical day is associated with the civil date where the majority of the day occurs. The `MassTime` enum carries the information about whether a mass is celebrated the evening before (e.g., `PreviousEveningMass`, `EasterVigil`).
+
+```rust
+type LiturgicalCalendar = BTreeMap<String, LiturgicalDay>;
+```
+
+#### `LiturgicalDay`
+
+**What it is:** One liturgical day — the temporal frame for a given civil date, containing the shared context and all possible celebrations.
+
+**Why this name:** It is the "liturgical day" as defined by GNLY 3: "The liturgical day runs from midnight to midnight." It is the container, not the content. A single `LiturgicalDay` can host multiple `Celebration` objects (a feria + optional memorials).
+
+**Why not `Celebration`:** A liturgical day is not a celebration — it is the temporal frame within which celebrations occur. GNLY 10 distinguishes the two concepts explicitly.
+
+```rust
+struct LiturgicalDay {
+    /// Civil date of attachment (YYYY-MM-DD)
+    date: String,
+
+    /// Shared temporal context for all celebrations on this day
+    context: DayContext,
+
+    /// Possible celebrations, ordered by precedence
+    /// [0] = primary (feria or highest-ranking celebration)
+    /// [1..] = alternatives (optional memorials, etc.)
+    celebrations: Vec<Celebration>,
+}
+```
+
+#### `Celebration`
+
+**What it is:** One liturgical celebration — an entity with a rank, a name, liturgical colors, and mass texts. The feria of Wednesday of the 5th week is a celebration. The optional memorial of St. Scholastica is another celebration.
+
+**Why this name:** GNLY 10 defines it: "Celebrations, according to the importance assigned to them, are distinguished one from another and termed: Solemnity, Feast, Memorial." A celebration is the thing you celebrate, with its specific rank and proper texts.
+
+**Why not `LiturgicalDay`:** In the current romcal model, `LiturgicalDay` mixes the temporal frame and the celebration identity. This separation clarifies that multiple celebrations can coexist within one liturgical day.
+
+```rust
+struct Celebration {
+    /// Unique identifier (e.g., "ord_time_5_wed", "st_scholastica")
+    id: CelebrationId,
+    /// Localized full name
+    name: String,
+    /// Liturgical precedence (GNLY table, levels 1-13)
+    precedence: Precedence,
+    /// Liturgical rank (Solemnity, Feast, Memorial, OptionalMemorial, Weekday)
+    rank: Rank,
+    /// Localized rank name
+    rank_name: String,
+    /// Liturgical colors
+    colors: Vec<ColorInfo>,
+    /// Common categories (e.g., Common of Virgins, Common of Pastors)
+    commons: Vec<CommonInfo>,
+    /// Martyrology entries (linked saints, blessed, or places)
+    martyrology: Vec<MartyrologyEntry>,
+    /// Titles (patron, founder, doctor...)
+    titles: TitlesDef,
+    /// Holy day of obligation
+    is_holy_day_of_obligation: bool,
+    /// Optional celebration (can be omitted in favor of the feria)
+    is_optional: bool,
+    /// Source calendar in the inheritance chain
+    from_calendar_id: CalendarId,
+
+    /// Masses attached to this celebration, by mass time
+    /// Most celebrations: { DayMass: ... }
+    /// Christmas: { PreviousEveningMass, NightMass, MassAtDawn, DayMass }
+    /// No civil date shifting here — masses stay on their liturgical day
+    masses: BTreeMap<MassTime, CelebrationMass>,
+}
+```
+
+#### `CelebrationMass`
+
+**What it is:** The textual content of a mass for a specific celebration, structured by the three GIRM substitution groups.
+
+**Why this name:** It is the "mass" content belonging to a "celebration." The cycle is already resolved — this struct contains the applicable texts directly, without a cycle dimension.
+
+**Why not `MassContent` (existing name):** The existing `MassContent` is a flat `BTreeMap<MassPart, String>` with no grouping semantics. `CelebrationMass` structures the content by GIRM substitution groups (formulary, readings, flexible orations), which is the key improvement.
+
+```rust
+struct CelebrationMass {
+    /// Formulary block (GIRM 355) — inseparable
+    formulary: FormularySet,
+    /// Readings block (GIRM 357) — indivisible
+    readings: ReadingsSet,
+    /// Flexible orations (GIRM 363) — each independently choosable
+    flexible_orations: FlexibleOrations,
+}
+```
+
+#### Approach 1 — Example
+
+```
+LiturgicalCalendar
+│
+├── "2025-02-10" → LiturgicalDay
+│   ├── date: "2025-02-10"
+│   ├── context: DayContext { season: OrdinaryTime, week: 5, ... }
+│   └── celebrations:
+│       ├── [0] Celebration
+│       │   ├── id: "ord_time_5_mon"
+│       │   ├── name: "Monday, 5th Week of Ordinary Time"
+│       │   ├── rank: Weekday (13)
+│       │   ├── is_optional: false
+│       │   └── masses:
+│       │       └── DayMass → CelebrationMass
+│       │           ├── formulary: FormularySet { collect, ant_entr, ant_comm }
+│       │           ├── readings: ReadingsSet { reading_1, psalm, gospel }
+│       │           └── flexible_orations: FlexibleOrations { ... }
+│       │
+│       ├── [1] Celebration
+│       │   ├── id: "st_scholastica"
+│       │   ├── name: "Saint Scholastica"
+│       │   ├── rank: OptionalMemorial (12)
+│       │   ├── is_optional: true
+│       │   └── masses:
+│       │       └── DayMass → CelebrationMass { ... }
+│       │
+│       └── [2] Celebration
+│           ├── id: "bl_luigi_stepinac"
+│           ├── name: "Blessed Luigi Stepinac"
+│           ├── rank: OptionalMemorial (12)
+│           └── ...
+│
+├── "2025-12-25" → LiturgicalDay
+│   ├── context: DayContext { season: ChristmasTime, ... }
+│   └── celebrations:
+│       └── [0] Celebration
+│           ├── id: "christmas"
+│           ├── rank: Solemnity (2)
+│           └── masses:                          ← no shift
+│               ├── PreviousEveningMass → ...    ← stays on Dec 25
+│               ├── NightMass → ...
+│               ├── MassAtDawn → ...
+│               └── DayMass → ...
+```
+
+---
+
+### Approach 2 — Mass Calendar
+
+**Method:** `Calendar::generate_mass_calendar() → MassCalendar`
+
+**Principle:** Organized by civil date and mass time. Each mass is a self-contained unit with all options pre-resolved by the engine. Evening masses are shifted to the previous civil day. The consumer picks from the options according to the explicit composition rules.
+
+**Generated from Approach 1:** The engine first produces the `LiturgicalCalendar`, then transforms it into the `MassCalendar` by: shifting evening masses to the previous civil date, assembling identity and readings options from available celebrations, resolving flexible orations with their sources, and computing the applicable composition rules based on season and precedence.
+
+#### `MassCalendar`
+
+**What it is:** The top-level output type. A map from civil date to a list of masses celebrated that day.
+
+**Why this name:** It is a "calendar" organized by "masses" — the practical perspective of what is actually celebrated on each civil day.
+
+```rust
+type MassCalendar = BTreeMap<String, Vec<MassComposition>>;
+```
+
+#### `MassComposition`
+
+**What it is:** A single mass with all its options pre-resolved, structured by GIRM substitution groups. The consumer receives everything needed to compose the mass without knowing the GIRM rules themselves.
+
+**Why this name:** "Mass" because it represents one mass celebration. "Composition" because the mass is "composed" from options across different blocks — the consumer composes the final mass by picking from the provided options according to the rules.
+
+**Why not `MassContext` (existing name):** The existing `MassContext` is a flat structure that merely references optional celebrations by summary. `MassComposition` goes further: it provides the actual texts organized by substitution groups, with explicit composition rules.
+
+```rust
+struct MassComposition {
+    // === Identification ===
+    /// Type of mass (DayMass, NightMass, EasterVigil...)
+    mass_time: MassTime,
+    /// Civil date — after shifting for evening masses
+    civil_date: String,
+    /// Liturgical date — before shifting (the "theological" date)
+    liturgical_date: String,
+
+    // === Context ===
+    /// Shared day context
+    context: DayContext,
+
+    // === Default celebration ===
+    /// The celebration to use by default (typically the feria or highest-ranking)
+    default_celebration_id: CelebrationId,
+
+    // === FORMULARY BLOCK (GIRM 355) ===
+    /// Each option = one possible celebration with its collect + antiphons
+    /// The consumer picks ONE option — all three texts come as a block
+    identity_options: Vec<IdentityOption>,
+
+    // === READINGS BLOCK (GIRM 357) ===
+    /// Each option = a complete, indivisible set of readings
+    /// The consumer picks ONE option
+    readings_options: Vec<ReadingsOption>,
+
+    // === FLEXIBLE ORATIONS (GIRM 363) ===
+    /// Each oration has its own list of alternatives, chosen independently
+    prayer_over_offerings_options: Vec<SourcedText>,
+    prayer_after_communion_options: Vec<SourcedText>,
+    preface_options: Vec<SourcedText>,
+    solemn_blessing_options: Vec<SourcedText>,
+    prayer_over_people_options: Vec<SourcedText>,
+
+    // === COMPOSITION RULES ===
+    /// Constraints determined by the engine based on season/precedence
+    composition_rules: CompositionRules,
+}
+```
+
+#### `IdentityOption`
+
+**What it is:** One possible celebration that can be chosen for the formulary block. Contains the celebration's metadata and its inseparable text trio (collect + antiphons).
+
+**Why this name:** "Identity" because the formulary block is what *identifies* which celebration is being performed — the collect is the defining prayer. "Option" because it is one choice among several.
+
+**Why it wraps `FormularySet`:** The `FormularySet` (shared type) provides the three inseparable texts. `IdentityOption` adds the celebration metadata (name, rank, colors...) that the consumer needs for display and logic.
+
+```rust
+struct IdentityOption {
+    /// Reference to the celebration
+    celebration_id: CelebrationId,
+    celebration_name: String,
+    rank: Rank,
+    precedence: Precedence,
+    colors: Vec<ColorInfo>,
+    commons: Vec<CommonInfo>,
+    martyrology: Vec<MartyrologyEntry>,
+    titles: TitlesDef,
+    is_holy_day_of_obligation: bool,
+    from_calendar_id: CalendarId,
+
+    /// The three inseparable texts (shared type)
+    formulary: FormularySet,
+}
+```
+
+#### `ReadingsOption`
+
+**What it is:** One possible set of readings for the Liturgy of the Word. Contains the complete, indivisible reading set with its source and metadata.
+
+**Why this name:** "Readings" because it contains the Scripture readings. "Option" because it is one choice among several (feria readings vs. saint's proper readings).
+
+**Why it wraps `ReadingsSet`:** The `ReadingsSet` (shared type) provides the indivisible text block. `ReadingsOption` adds source provenance and flags (is this the default? are these strictly proper?).
+
+```rust
+struct ReadingsOption {
+    /// Where these readings come from
+    source: TextSource,
+    /// Is this the default option for this day?
+    is_default: bool,
+    /// Are these strictly proper readings? (GIRM 357 — obligatory if true)
+    is_strictly_proper: bool,
+
+    /// The indivisible readings block (shared type)
+    readings: ReadingsSet,
+}
+```
+
+#### `CompositionRules`
+
+**What it is:** The set of constraints that govern how the consumer may combine the options. Determined by the engine based on the liturgical season and precedence context.
+
+**Why this name:** "Composition" because these are the rules for *composing* the mass from the available options. "Rules" because they are normative constraints from the GIRM, not suggestions.
+
+```rust
+struct CompositionRules {
+    /// Rule for the formulary block (collect + antiphons)
+    identity: BlockRule,
+    /// Rule for the readings block
+    readings: ReadingsRule,
+    /// Rule for the flexible orations
+    flexible_orations: FlexibleRule,
+}
+```
+
+#### `BlockRule`
+
+**What it is:** A rule governing a block where you must pick one option entirely.
+
+**Why this name:** It is a "rule" for a "block" of inseparable texts.
+
+```rust
+enum BlockRule {
+    /// Free choice among the proposed options
+    PickOne,
+    /// First option is imposed (no choice)
+    Forced,
+}
+```
+
+#### `ReadingsRule`
+
+**What it is:** A rule specific to the readings block, which has more nuanced behavior than a simple pick-one.
+
+**Why this name:** It is a "rule" specific to "readings," reflecting the three distinct behaviors defined by GIRM 357-358.
+
+```rust
+enum ReadingsRule {
+    /// Feria readings are obligatory, no exception
+    /// (privileged weekdays: Advent Dec 17-24, Lent)
+    FeriaOnly,
+    /// Feria readings by default; overridden only if the saint has
+    /// strictly proper readings (GIRM 357)
+    FeriaDefaultWithStrictOverride,
+    /// Free choice among the proposed reading sets
+    PickOne,
+}
+```
+
+#### `FlexibleRule`
+
+**What it is:** A rule for the flexible orations, where each oration may be chosen independently.
+
+**Why this name:** It is a "rule" for the "flexible" orations (those governed by GIRM 363).
+
+```rust
+enum FlexibleRule {
+    /// Each oration can be chosen independently from its own list
+    PickEachIndependently,
+    /// All orations must come from the feria
+    /// (privileged weekdays — except the collect, handled in the identity block)
+    FeriaOnly,
+}
+```
+
+#### Approach 2 — Example
+
+```
+MassCalendar
+│
+├── "2025-02-10" → [
+│   MassComposition {
+│       mass_time: DayMass,
+│       civil_date: "2025-02-10",
+│       liturgical_date: "2025-02-10",
+│       context: DayContext { season: OrdinaryTime, week: 5, ... },
+│       default_celebration_id: "ord_time_5_mon",
+│
+│       identity_options: [
+│           IdentityOption {                          ← feria
+│               celebration_id: "ord_time_5_mon",
+│               rank: Weekday,
+│               formulary: FormularySet { collect: "...", ... }
+│           },
+│           IdentityOption {                          ← optional memorial
+│               celebration_id: "st_scholastica",
+│               rank: OptionalMemorial,
+│               formulary: FormularySet { collect: "...", ... }
+│           },
+│       ],
+│
+│       readings_options: [
+│           ReadingsOption {                          ← feria (default)
+│               source: ProperOfTime("ord_time_5_mon"),
+│               is_default: true,
+│               is_strictly_proper: false,
+│               readings: ReadingsSet { reading_1: "...", ... }
+│           },
+│       ],
+│
+│       prayer_over_offerings_options: [
+│           SourcedText { source: ProperOfTime("..."), text: "..." },
+│           SourcedText { source: Common(Virgins, ...), text: "..." },
+│       ],
+│       prayer_after_communion_options: [ ... ],
+│       preface_options: [ ... ],
+│       solemn_blessing_options: [],
+│       prayer_over_people_options: [],
+│
+│       composition_rules: CompositionRules {
+│           identity: PickOne,
+│           readings: FeriaDefaultWithStrictOverride,
+│           flexible_orations: PickEachIndependently,
+│       }
+│   }
+│ ]
+│
+├── "2025-12-24" → [                                  ← SHIFTED
+│   MassComposition {
+│       mass_time: DayMass,                            ← feria of Dec 24
+│       civil_date: "2025-12-24",
+│       liturgical_date: "2025-12-24",
+│       ...
+│   },
+│   MassComposition {
+│       mass_time: PreviousEveningMass,                ← Christmas eve mass
+│       civil_date: "2025-12-24",                      ← shifted here
+│       liturgical_date: "2025-12-25",                 ← belongs to Dec 25
+│       ...
+│   },
+│ ]
+│
+├── "2025-12-25" → [
+│   MassComposition { mass_time: NightMass, ... },
+│   MassComposition { mass_time: MassAtDawn, ... },
+│   MassComposition { mass_time: DayMass, ... },
+│ ]
+```
+
+---
+
+## Part V — Type Sharing Summary
+
+```
+Type                        Approach 1   Approach 2   Shared?
+──────────────────────────  ──────────   ──────────   ───────
+DayContext                     ✓            ✓          YES
+FormularySet                   ✓            ✓ ¹        YES
+ReadingsSet                    ✓            ✓ ¹        YES
+FlexibleOrations               ✓            ✗ ²        APP 1
+TextSource                     ✗            ✓          APP 2
+SourcedText                    ✗            ✓          APP 2
+CelebrationId                  ✓            ✓          YES
+
+LiturgicalCalendar             ✓            ✗          APP 1
+LiturgicalDay                  ✓            ✗          APP 1
+Celebration                    ✓            ✗          APP 1
+CelebrationMass                ✓            ✗          APP 1
+
+MassCalendar                   ✗            ✓          APP 2
+MassComposition                ✗            ✓          APP 2
+IdentityOption                 ✗            ✓          APP 2
+ReadingsOption                 ✗            ✓          APP 2
+CompositionRules               ✗            ✓          APP 2
+BlockRule                      ✗            ✓          APP 2
+ReadingsRule                   ✗            ✓          APP 2
+FlexibleRule                   ✗            ✓          APP 2
+
+Existing types (unchanged)     ✓            ✓          YES
+  Season, Rank, Precedence, MassTime, Common, CommonInfo,
+  Color, ColorInfo, DayOfWeek, SundayCycle, WeekdayCycle,
+  PsalterWeekCycle, PeriodInfo, TitlesDef, MartyrologyEntry,
+  CalendarId
+
+¹ Reused inside IdentityOption / ReadingsOption
+² Exploded into Vec<SourcedText> per oration in Approach 2
+```
+
+---
+
+## Part VI — Module Organization
+
+```
+core/src/types/
+├── shared/                          SHARED TYPES
+│   ├── day_context.rs               DayContext
+│   ├── text_blocks.rs               FormularySet, ReadingsSet, FlexibleOrations
+│   ├── sourced_text.rs              TextSource, SourcedText
+│   └── mod.rs
+│
+├── liturgical_calendar/             APPROACH 1
+│   ├── liturgical_day.rs            LiturgicalDay
+│   ├── celebration.rs               Celebration, CelebrationId, CelebrationMass
+│   └── mod.rs
+│
+├── mass_calendar/                   APPROACH 2
+│   ├── mass_composition.rs          MassComposition
+│   ├── identity_option.rs           IdentityOption
+│   ├── readings_option.rs           ReadingsOption
+│   ├── composition_rules.rs         CompositionRules, BlockRule,
+│   │                                ReadingsRule, FlexibleRule
+│   └── mod.rs
+│
+├── liturgical/                      EXISTING (unchanged)
+│   ├── rank.rs                      Rank
+│   ├── precedence.rs                Precedence
+│   ├── season.rs                    Season
+│   ├── cycles.rs                    SundayCycle, WeekdayCycle
+│   └── ...
+│
+├── mass/                            EXISTING (unchanged)
+│   ├── mass_time.rs                 MassTime
+│   ├── common.rs                    Common
+│   └── ...
+```
+
+---
+
+## Part VII — Transformation Pipeline
+
+```
+Calendar source files (YAML/JSON input)
+        │
+        ▼
+   DayDefinition (existing input type)
+        │
+        ▼
+┌───────────────────────────────────────────┐
+│  Calendar engine                          │
+│                                           │
+│  1. Resolve dates                         │
+│  2. Apply precedence rules (GNLY 59)     │
+│  3. Assemble Celebrations per day         │
+│  4. Resolve liturgical cycle              │
+│  5. Populate mass content by GIRM groups  │
+└──────────┬────────────────────────────────┘
+           │
+    ┌──────┴──────┐
+    ▼             ▼
+ generate_      generate_
+ liturgical_    mass_
+ calendar()     calendar()
+    │             │
+    ▼             │
+ Liturgical       │  Transformation:
+ Calendar         │  • Shift evening masses to previous civil date
+    │             │  • Assemble IdentityOption from each Celebration
+    │             │  • Assemble ReadingsOption with source + flags
+    │             │  • Explode FlexibleOrations into Vec<SourcedText>
+    └─────────────│  • Compute CompositionRules from season/precedence
+                  ▼
+              Mass Calendar (API output)
+```
+
+---
+
+## Part VIII — Future Extensibility
+
+This architecture is designed to extend naturally to the **Liturgy of the Hours** in the future. The shared types (`DayContext`, `TextSource`, `ReadingsSet`...) are agnostic to the Mass and can be reused for the Office.
+
+```rust
+// Future
+impl Calendar {
+    fn generate_liturgical_calendar(&self) -> LiturgicalCalendar;  // exists
+    fn generate_mass_calendar(&self) -> MassCalendar;              // exists
+    fn generate_hours_calendar(&self) -> HoursCalendar;            // future
+}
+```
+
+The `Celebration` struct in Approach 1 could naturally carry both mass and hours content:
+
+```rust
+struct Celebration {
+    // ... identity fields ...
+    masses: BTreeMap<MassTime, CelebrationMass>,
+    hours: BTreeMap<HourTime, CelebrationHour>,  // future
+}
+```
+
+This would support both the Roman Office and monastic propers (e.g., Benedictine, Cistercian) through the existing calendar inheritance mechanism.
