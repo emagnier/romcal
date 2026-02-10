@@ -400,11 +400,17 @@ struct DayContext {
 
 ```rust
 struct FormularySet {
+    /// Collect override for this specific Mass time.
+    /// When None, resolves to Celebration.prayer (CP §44).
+    /// When Some(...), this Mass has a specific collect that differs from
+    /// the canonical prayer (e.g., Christmas NightMass vs DayMass).
     collect: Option<String>,
     entrance_antiphon: Option<String>,
     communion_antiphon: Option<String>,
 }
 ```
+
+> **Resolution rule:** The effective collect for a Mass is: `formulary_set.collect` if present, otherwise `celebration.prayer`, otherwise the Common provides it. Most celebrations have a single collect stored in `Celebration.prayer`; the `FormularySet.collect` override is only needed when multiple Masses of the same celebration have distinct collects (e.g., Christmas: 4 different collects for Vigil, Night, Dawn, Day).
 
 #### `ReadingText`
 
@@ -628,6 +634,17 @@ struct Celebration {
     /// Source calendar in the inheritance chain
     from_calendar_id: CalendarId,
 
+    /// The canonical prayer of this celebration (CP §44 cross-domain identity).
+    /// This is the single text that serves as:
+    /// - the Mass collect (FormularySet.collect)
+    /// - the Office concluding prayer (CelebrationHour.concluding_prayer)
+    /// When present, both domains resolve to this text unless they provide
+    /// their own override. See "Office Prayer = Mass Collect" (Part VIII §7).
+    ///
+    /// None = no proper prayer (e.g., the celebration relies on Common texts
+    /// or on the seasonal weekday prayer).
+    prayer: Option<String>,
+
     /// Masses attached to this celebration, by mass time
     /// Most celebrations: { DayMass: ... }
     /// Christmas: { PreviousEveningMass, NightMass, MassAtDawn, DayMass }
@@ -669,9 +686,11 @@ LiturgicalCalendar
 │       │   ├── name: "Monday, 5th Week of Ordinary Time"
 │       │   ├── rank: Weekday (13)
 │       │   ├── is_optional: false
+│       │   ├── prayer: "Deus, qui..."            ← weekday collect (CP §44)
 │       │   └── masses:
 │       │       └── DayMass → CelebrationMass
-│       │           ├── formulary: FormularySet { collect, ant_entr, ant_comm }
+│       │           ├── formulary: FormularySet { collect: None, ant_entr, ant_comm }
+│       │           │                              ↑ resolves to Celebration.prayer
 │       │           ├── readings: ReadingsSet { reading_1, psalm, gospel }
 │       │           └── flexible_orations: FlexibleOrations { ... }
 │       │
@@ -680,6 +699,7 @@ LiturgicalCalendar
 │       │   ├── name: "Saint Scholastica"
 │       │   ├── rank: OptionalMemorial (12)
 │       │   ├── is_optional: true
+│       │   ├── prayer: "Deus, qui animam..."     ← saint's collect = Office prayer (CP §44)
 │       │   └── masses:
 │       │       └── DayMass → CelebrationMass { ... }
 │       │
@@ -695,11 +715,12 @@ LiturgicalCalendar
 │       └── [0] Celebration
 │           ├── id: "christmas"
 │           ├── rank: Solemnity (2)
+│           ├── prayer: None                     ← multi-Mass: each has its own collect
 │           └── masses:                          ← no shift
-│               ├── PreviousEveningMass → ...    ← stays on Dec 25
-│               ├── NightMass → ...
-│               ├── MassAtDawn → ...
-│               └── DayMass → ...
+│               ├── PreviousEveningMass → CelebrationMass { formulary: { collect: Some("..."), ... } }
+│               ├── NightMass → CelebrationMass { formulary: { collect: Some("..."), ... } }
+│               ├── MassAtDawn → CelebrationMass { formulary: { collect: Some("..."), ... } }
+│               └── DayMass → CelebrationMass { formulary: { collect: Some("..."), ... } }
 ```
 
 ---
@@ -1486,17 +1507,43 @@ The role of the Common differs between Mass and Office:
 
 **Consequence for the data model:** The `commons: Vec<CommonInfo>` field in `HoursCelebrationOption` lists the applicable Commons for that celebration, allowing the engine to resolve texts from the correct Common when the saint's Proper is absent.
 
-#### Office Prayer = Mass Collect (CP 44)
+#### Office Prayer = Mass Collect (CP 44) — Shared `Celebration.prayer`
 
-CP §44 states a cross-domain identity rule: "The prayer is always the same as the opening prayer of the Mass." This means:
+CP §44 states a cross-domain identity rule: "The prayer is always the same as the opening prayer of the Mass." This means the Office concluding prayer and the Mass collect are **the same text** for a given celebration.
 
-- The Office concluding prayer (`CelebrationHour.concluding_prayer`) is the same text as the Mass collect (`FormularySet.collect`).
-- On memorials, GILH §235c makes this prayer mandatory from the saint — and it is the same text that serves as the Mass collect.
-- The engine should store this text once per celebration and reference it from both `CelebrationMass.formulary_set.collect` and `CelebrationHour.concluding_prayer`.
+**Data model:** The `Celebration` struct carries a `prayer: Option<String>` field — the canonical prayer of the celebration, stored once. Both domains resolve to it:
 
-This identity reinforces the shared `Celebration` entity design (Approach 1): since the collect/concluding prayer is the same text, the `Celebration` struct naturally unifies it. In Approach 2 and 3, the text appears in both `IdentityOption.formulary_set.collect` and `ResolvedHourContent.concluding_prayer`, duplicated but traceable to the same source.
+```
+Celebration.prayer            ← single source of truth (CP §44)
+    │
+    ├──► FormularySet.collect            (Mass)
+    │    None → resolves to Celebration.prayer
+    │    Some(...) → override for this specific Mass time
+    │
+    └──► CelebrationHour.concluding_prayer  (Office)
+         None → resolves to Celebration.prayer
+         Some(...) → override for this specific Hour
+```
 
-**Exception:** GILH §198 notes that at Night Prayer, "the prayer is always the prayer given in the psalter for that hour" — this is a structural prayer, not the saint's collect. The CP §44 identity applies only to the Hours where the concluding prayer is "from the proper" (Lauds, Vespers, Office of Readings, Daytime Prayer on feasts/solemnities).
+**Resolution chain** (applied by the engine in Approaches 2 and 3):
+
+| Step | Mass collect | Office concluding prayer |
+|------|-------------|--------------------------|
+| 1. Field override | `FormularySet.collect` if `Some` | `CelebrationHour.concluding_prayer` if `Some` |
+| 2. Canonical prayer | `Celebration.prayer` if `Some` | `Celebration.prayer` if `Some` |
+| 3. Fallback | Common of the saint (GIRM 363) | Common of the saint or weekday (§235c) |
+
+**Why `Celebration.prayer` and not duplication:**
+- On memorials, GILH §235c makes the concluding prayer mandatory from the saint — and it is the same text that serves as the Mass collect. Storing it once ensures consistency.
+- The identity reinforces the shared `Celebration` entity design (Approach 1): the `Celebration` is the unifying concept across Mass and Office.
+- In Approaches 2 and 3, the resolved text appears in both `IdentityOption.formulary_set.collect` and `ResolvedHourContent.concluding_prayer` — identical content, traceable to the same source.
+
+**When `FormularySet.collect` overrides `Celebration.prayer`:**
+Multi-Mass celebrations (e.g., Christmas: Vigil, Night, Dawn, Day) have distinct collects per Mass time. Each `FormularySet` provides its own `collect`, and `Celebration.prayer` typically holds the DayMass collect (or is `None` if all four are distinct). This override is rare — most celebrations have a single Mass with a single collect.
+
+**Exception — Night Prayer (Compline):** GILH §198 notes that at Night Prayer, "the prayer is always the prayer given in the psalter for that hour." The CP §44 identity does **not** apply to Compline. The engine must never resolve Compline's concluding prayer from `Celebration.prayer`. This exception applies universally — even on solemnities.
+
+**Hours where CP §44 applies:** Lauds, Vespers, Office of Readings, and Daytime Prayer (on feasts/solemnities where the concluding prayer is "from the proper"). On memorials, §235c governs: the concluding prayer is mandatory from the saint at any Hour where it is said (Lauds, Vespers, Office of Readings) — and that text is `Celebration.prayer`.
 
 ### 8. Type Shareability: Mass → Office
 
@@ -1543,7 +1590,14 @@ struct CelebrationHour {
     canticle_antiphon: Option<String>,
     intercessions: Option<String>,
 
-    /// Concluding prayer — mandatory from saint on memorials (§235c)
+    /// Concluding prayer override for this specific Hour.
+    /// When None, resolves to Celebration.prayer (CP §44 identity).
+    /// When Some(...), this Hour has a specific prayer that differs from
+    /// the canonical prayer (rare — e.g., a solemnity with distinct per-Hour prayers).
+    /// Exception: Compline always uses the psalter prayer (GILH §198),
+    /// never Celebration.prayer.
+    /// On memorials: mandatory from saint (§235c) — the engine ensures
+    /// Celebration.prayer is populated for any celebrated memorial.
     concluding_prayer: Option<String>,
 
     /// Office of Readings content — only populated for HourTime::OfficeOfReadings.
@@ -1579,12 +1633,13 @@ struct CelebrationOfficeReadings {
 ```rust
 struct Celebration {
     // ... identity fields (name, rank, colors, commons...) ...
+    prayer: Option<String>,                          // ← canonical prayer (CP §44)
     masses: BTreeMap<MassTime, CelebrationMass>,
     hours: BTreeMap<HourTime, CelebrationHour>,
 }
 ```
 
-The same `Celebration` entity — St. Scholastica, Memorial — carries both Mass and Office texts. The identity fields are shared; only the content differs by mode.
+The same `Celebration` entity — St. Scholastica, Memorial — carries both Mass and Office texts. The identity fields are shared; `prayer` is the cross-domain canonical prayer (CP §44) that serves as both Mass collect and Office concluding prayer; only the domain-specific content differs by mode.
 
 #### `HourTime`
 
@@ -1923,7 +1978,7 @@ HoursCalendar
 │                   hymn: SourcedText { source: Common(Virgins), ... },
 │                   concluding_prayer: SourcedText {  ← mandatory from saint (§235c)
 │                       source: ProperOfSaint("st_scholastica"), ...
-│                   },
+│                   },                                ← resolved from Celebration.prayer (CP §44)
 │                   office_readings: Some(OfficeReadingsContent {
 │                       scripture_reading: SourcedText { ... },  ← same cycle (§235d)
 │                       patristic_reading: None,                 ← replaced (§235d)
@@ -2273,7 +2328,7 @@ CP specifies the proper texts expected for each celebration in both Mass and Off
 | Hymns | Existing proper hymns may be kept | §44 |
 | **Concluding prayer** | **"Always the same as the opening prayer of the Mass"** | §44 |
 
-The last row is the cross-domain identity rule discussed in Part VIII §7: the Office concluding prayer and the Mass collect are the same text (see "Office Prayer = Mass Collect").
+The last row is the cross-domain identity rule modeled by `Celebration.prayer` (see Part VIII §7 "Office Prayer = Mass Collect"): the text is stored once and resolved by both domains.
 
 **Consequence for the data model:** The `FormularySet` structure (Mass) aligns with CP §40's enumeration. The `CelebrationHour` structure (Office) aligns with CP §44's enumeration. The `hagiographical_reading` field in `CelebrationOfficeReadings` should carry content for every celebration above weekday rank, per CP §43.
 
