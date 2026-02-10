@@ -37,7 +37,10 @@ The collect is the identifying marker of the celebration. GIRM 363 states: "On m
 
 **Reading 1 + Psalm + (Reading 2) + Alleluia + Gospel**
 
-These are **indivisible**: they are taken as a complete set. The psalm follows the first reading it responds to.
+The degree of flexibility within this block depends on the **source** of the readings:
+
+- **Weekday and proper readings**: These are **indivisible** — they are taken as a complete, pre-composed set. The psalm responds to the first reading it is paired with.
+- **Common readings**: These are **divisible by component** — the celebrant may choose each element independently from pools of texts (GILM 71, 89). See below.
 
 ##### The three categories of readings for saints (GILM 83)
 
@@ -78,9 +81,47 @@ It is **not** automatically from the feria — the Common is always an option (G
 
 **The celebrant cannot mix readings at will** (e.g., taking the gospel from the saint and the first reading from the feria when both proper readings are available). When proper readings exist, they must all be used.
 
-##### Default preference for feria (GIRM 358, GILM 83)
+##### Default preference for weekday readings (GIRM 358, GILM 83)
 
 Both GIRM 358 and GILM 83 emphasize that the priest should take care not to omit the weekday readings too frequently, as the Church desires "a more lavish table of the word of God" (*GILM 83*) through the *lectio continua*.
+
+##### Component-level choice in Commons readings (GILM 71)
+
+GILM 71 explains the ordering principle of the Commons:
+
+> "As to their sequence, all the texts in this part of the Order of Readings appear in the order in which they are to be read at Mass. Thus the Old Testament texts are first, then the texts from the Apostles, followed by the psalms and verses between the readings, and finally the texts from the Gospels. **The rationale of this arrangement is that, unless otherwise noted, the celebrant may choose at will from such texts.**"
+
+This means Common readings are organized as **pools per reading position**:
+- Pool of Old Testament readings → pick one
+- Pool of Apostle readings → pick one
+- Pool of psalms → pick one
+- Pool of gospels → pick one
+
+The celebrant composes the readings set by picking independently from each pool. This is fundamentally different from proper or weekday readings, which are pre-composed and indivisible.
+
+##### Psalm independence in Commons (GILM 89)
+
+GILM 89 reinforces this flexibility specifically for the responsorial psalm:
+
+> "As a rule the psalm to be used is the one assigned to the reading. But **in the case of readings for the Common of Saints, ritual Masses, Masses for various needs and occasions, votive Masses, and Masses for the dead the choice is left up to the priest celebrating.** He will base his choice on the principle of the pastoral benefit of those present."
+
+GILM 89 also notes that alternative psalms are provided for seasons and classes of Saints, which "may replace the text corresponding to the reading" when the psalm is sung.
+
+**Consequence for the data model:** The psalm is bound to reading 1 for proper/weekday readings (indivisible), but independently choosable for Common readings.
+
+##### Acclamation before the Gospel (GILM 90-91)
+
+GILM 90: The acclamation (alleluia verse) between the second reading and the Gospel is "either specified in each Mass and correlated with the Gospel or else it is left as a choice to be made from those in the series given for a liturgical season or one of the Commons."
+
+GILM 91: During Lent, a specific acclamation format is used instead of the Alleluia.
+
+**Consequence for the data model:** When specified, the acclamation is part of the indivisible block. When left as a choice (Commons, seasonal), it follows the same pool logic as other Common components.
+
+##### Long and short forms (GILM 75, 80)
+
+GILM 75 notes that "in the case of certain rather lengthy texts, longer and shorter versions are provided." GILM 80 specifies that "a pastoral criterion must also guide the choice between the longer and shorter forms of the same text."
+
+**Consequence for the data model:** A reading text may have an optional short form variant.
 
 #### Group 3 — Flexible Orations (GIRM 363)
 
@@ -115,19 +156,19 @@ FERIA                                     MEMORIAL
 (all from feria)                              │
                            ┌──────────────────┼──────────────────┐
                            ▼                  ▼                  ▼
-                      AS A BLOCK         À LA CARTE          AS A BLOCK
-                   (follows choice)      (mixable)          (readings)
-                           │                  │                  │
-                    • Collect (saint)   • Pr. over offer.   • All from feria
-                    • Entrance ant.       (feria OR           ... OR ...
-                      (saint)             Common)           • All from saint
-                    • Communion ant.    • Pr. after comm.     (if proper
-                      (saint)             (feria OR           readings exist,
-                                          Common)             GILM 83)
-                                        • Preface            ... OR ...
-                                          (season OR        • All from Common
-                                          Common)             (always available,
-                                                              GILM 83)
+                      AS A BLOCK         À LA CARTE          READINGS
+                   (follows choice)      (mixable)
+                           │                  │
+                    • Collect (saint)   • Pr. over offer.   ┌─ WEEKDAY/PROPER:
+                    • Entrance ant.       (feria OR         │  Indivisible set
+                      (saint)             Common)           │  (all or nothing)
+                    • Communion ant.    • Pr. after comm.   │
+                      (saint)             (feria OR         ├─ COMMON (GILM 71):
+                                          Common)           │  Pool per component
+                                        • Preface           │  (pick each reading,
+                                          (season OR        │   psalm, gospel
+                                          Common)           │   independently)
+                                                            └─ (GILM 83, 89)
 ```
 
 ```
@@ -159,10 +200,15 @@ PRIVILEGED WEEKDAYS (Advent 17-24, Lent...)
 
 #### GILM (General Introduction to the Lectionary for Mass, *Ordo Lectionum Missae*)
 - **GILM 70** — Two series of readings for saints: Proper of Saints and Commons of Saints
+- **GILM 71** — Ordering of Commons readings: OT first, then Apostle, then psalms, then Gospels. "The celebrant may choose at will from such texts." This is the basis for component-level choice in Common readings.
+- **GILM 75** — Long and short forms of texts: "longer and shorter versions are provided to suit different situations"
+- **GILM 80** — Choice between long/short forms: "a pastoral criterion must also guide the choice"
 - **GILM 82** — Weekday readings arrangement: used on their assigned days unless a celebration with proper readings occurs
 - **GILM 83** — Three categories of readings for saints: proper (obligatory), accommodated (facultative), common (freely chosen). Common readings are always available as alternatives.
 - **GILM 84** — Rules by rank: solemnities (proper or Common), feasts and memorials (two readings, first from OT or Apostle, second from Gospels)
-- **GILM 89** — Psalm follows the first reading; for Commons, the choice is left to the priest
+- **GILM 89** — Psalm follows the first reading; **but for Commons, the choice is left to the priest.** Alternative psalms per season/class may replace the assigned psalm when sung.
+- **GILM 90** — Acclamation before the Gospel: either specified (correlated with Gospel) or left as a choice from the season or Commons series
+- **GILM 91** — Lenten acclamation: specific format replaces the Alleluia during Lent
 
 ---
 
@@ -245,23 +291,84 @@ struct FormularySet {
 }
 ```
 
+#### `ReadingText`
+
+**What it is:** A liturgical reading text that may have an optional short form variant.
+
+**Why this name:** It is a "reading" "text" with potential variant forms.
+
+**Liturgical basis:** GILM 75, 80 — some readings are provided in both long and short forms.
+
+```rust
+struct ReadingText {
+    /// The full text of the reading
+    text: String,
+    /// Optional short form, when the Lectionary provides one (GILM 75, 80)
+    short_form: Option<String>,
+}
+```
+
 #### `ReadingsSet`
 
-**What it is:** A complete, indivisible set of readings for the Liturgy of the Word.
+**What it is:** A complete, **indivisible** set of readings for the Liturgy of the Word. Used for weekday (*lectio continua*) and proper readings, where the Lectionary assigns specific texts as a pre-composed unit.
 
 **Why this name:** "Readings" because it contains all the Scripture readings and their associated chants. "Set" because they form an indivisible block — you take them all together or not at all.
 
-**Liturgical basis:** GIRM 357 — readings for memorials are taken as a complete set (feria or saint), not mixed individually.
+**Liturgical basis:** GIRM 357 — proper and weekday readings are taken as a complete set, not mixed individually. The psalm responds to the first reading it is paired with.
+
+**When NOT to use:** For Common readings, where the celebrant chooses independently per component (GILM 71, 89), use `ReadingsPool` instead.
 
 ```rust
 struct ReadingsSet {
-    reading_1: Option<String>,
+    reading_1: Option<ReadingText>,
     psalm: Option<String>,
     canticle: Option<String>,
-    reading_2: Option<String>,
+    reading_2: Option<ReadingText>,
     sequence: Option<String>,
     alleluia: Option<String>,
-    gospel: Option<String>,
+    gospel: Option<ReadingText>,
+}
+```
+
+#### `ReadingsPool`
+
+**What it is:** A set of **pools** of readings, one per reading position, from which the celebrant chooses independently. Used for Common readings, where GILM 71 and 89 grant component-level freedom.
+
+**Why this name:** "Readings" because it concerns the Liturgy of the Word. "Pool" because each position offers a pool of texts to choose from — unlike `ReadingsSet` which is a fixed, pre-composed unit.
+
+**Liturgical basis:**
+- GILM 71 — "the celebrant may choose at will from such texts" (Commons are organized by reading position precisely for this purpose)
+- GILM 89 — "in the case of readings for the Common of Saints [...] the choice is left up to the priest" (psalm independence)
+
+```rust
+struct ReadingsPool {
+    /// Available first readings (OT or Apostle) — pick one
+    first_readings: Vec<ReadingText>,
+    /// Available psalms — pick one independently (GILM 89)
+    psalms: Vec<String>,
+    /// Available second readings (when 3 readings are required) — pick one
+    second_readings: Vec<ReadingText>,
+    /// Available alleluia/acclamation verses — pick one (GILM 90)
+    alleluia_verses: Vec<String>,
+    /// Available gospels — pick one
+    gospels: Vec<ReadingText>,
+}
+```
+
+#### `ReadingsContent`
+
+**What it is:** An enum distinguishing the two modes of readings provision: a fixed, indivisible set vs. a pool of independently choosable components.
+
+**Why this name:** It represents the "content" of the "readings" block, which can take two structural forms depending on the source.
+
+**Liturgical basis:** The distinction arises from the different treatment of proper/weekday readings (indivisible, GIRM 357) vs. Common readings (component-level choice, GILM 71, 89).
+
+```rust
+enum ReadingsContent {
+    /// Fixed, indivisible set (weekday lectio continua, proper readings)
+    Fixed(ReadingsSet),
+    /// Pool of components, each independently choosable (Commons, GILM 71)
+    Pool(ReadingsPool),
 }
 ```
 
@@ -423,8 +530,8 @@ struct Celebration {
 struct CelebrationMass {
     /// Formulary block (GIRM 355) — inseparable
     formulary: FormularySet,
-    /// Readings block (GIRM 357) — indivisible
-    readings: ReadingsSet,
+    /// Readings block — Fixed (proper/weekday) or Pool (Common)
+    readings: ReadingsContent,
     /// Flexible orations (GIRM 363) — each independently choosable
     flexible_orations: FlexibleOrations,
 }
@@ -528,9 +635,9 @@ struct MassComposition {
     /// The consumer picks ONE option — all three texts come as a block
     identity_options: Vec<IdentityOption>,
 
-    // === READINGS BLOCK (GIRM 357) ===
-    /// Each option = a complete, indivisible set of readings
-    /// The consumer picks ONE option
+    // === READINGS BLOCK (GIRM 357, GILM 71/83/89) ===
+    /// Each option = either a fixed set (weekday/proper) or a pool (Common)
+    /// The consumer picks ONE option, then composes from it
     readings_options: Vec<ReadingsOption>,
 
     // === FLEXIBLE ORATIONS (GIRM 363) ===
@@ -576,11 +683,11 @@ struct IdentityOption {
 
 #### `ReadingsOption`
 
-**What it is:** One possible set of readings for the Liturgy of the Word. Contains the complete, indivisible reading set with its source and metadata.
+**What it is:** One possible readings provision for the Liturgy of the Word. May be a fixed set (weekday, proper) or a pool of independently choosable components (Common).
 
-**Why this name:** "Readings" because it contains the Scripture readings. "Option" because it is one choice among several (feria readings, saint's proper readings, or Common readings).
+**Why this name:** "Readings" because it concerns the Scripture readings. "Option" because it is one choice among several (weekday readings, saint's proper readings, or Common readings).
 
-**Why it wraps `ReadingsSet`:** The `ReadingsSet` (shared type) provides the indivisible text block. `ReadingsOption` adds source provenance, the GILM 83 category, and flags (is this the default? is this obligatory?).
+**Why it wraps `ReadingsContent`:** The `ReadingsContent` enum (shared type) distinguishes the two structural modes. `ReadingsOption` adds source provenance, the GILM 83 category, and flags.
 
 ```rust
 struct ReadingsOption {
@@ -591,8 +698,8 @@ struct ReadingsOption {
     /// Is this the default option for this day?
     is_default: bool,
 
-    /// The indivisible readings block (shared type)
-    readings: ReadingsSet,
+    /// Fixed set or pool of components (shared type)
+    readings: ReadingsContent,
 }
 ```
 
@@ -712,17 +819,26 @@ MassCalendar
 │       ],
 │
 │       readings_options: [
-│           ReadingsOption {                          ← feria (default)
+│           ReadingsOption {                          ← weekday (default)
 │               source: ProperOfTime("ord_time_5_mon"),
 │               category: Weekday,
 │               is_default: true,
-│               readings: ReadingsSet { reading_1: "...", ... }
+│               readings: Fixed(ReadingsSet {         ← indivisible
+│                   reading_1: "1 Kgs 8:1-7...",
+│                   psalm: "Ps 132:6-10",
+│                   gospel: "Mk 6:53-56", ...
+│               })
 │           },
 │           ReadingsOption {                          ← Common of Virgins
 │               source: Common(Virgins, "st_scholastica"),
 │               category: Common,
 │               is_default: false,
-│               readings: ReadingsSet { reading_1: "...", ... }
+│               readings: Pool(ReadingsPool {         ← per-component choice
+│                   first_readings: ["Song 8:6-7", "1 Cor 7:25-35", ...],
+│                   psalms: ["Ps 148:1-2...", "Ps 45:11-12...", ...],
+│                   gospels: ["Mt 25:1-13", "Mk 3:31-35", ...],
+│                   ...
+│               })
 │           },
 │       ],
 │
@@ -774,7 +890,10 @@ Type                        Approach 1   Approach 2   Shared?
 ──────────────────────────  ──────────   ──────────   ───────
 DayContext                     ✓            ✓          YES
 FormularySet                   ✓            ✓ ¹        YES
+ReadingText                    ✓            ✓          YES
 ReadingsSet                    ✓            ✓ ¹        YES
+ReadingsPool                   ✓            ✓ ¹        YES
+ReadingsContent                ✓            ✓ ¹        YES
 FlexibleOrations               ✓            ✗ ²        APP 1
 TextSource                     ✗            ✓          APP 2
 SourcedText                    ✗            ✓          APP 2
@@ -801,7 +920,7 @@ Existing types (unchanged)     ✓            ✓          YES
   PsalterWeekCycle, PeriodInfo, TitlesDef, MartyrologyEntry,
   CalendarId
 
-¹ Reused inside IdentityOption / ReadingsOption
+¹ Reused inside IdentityOption / ReadingsOption / ReadingsContent
 ² Exploded into Vec<SourcedText> per oration in Approach 2
 ```
 
@@ -813,7 +932,8 @@ Existing types (unchanged)     ✓            ✓          YES
 core/src/types/
 ├── shared/                          SHARED TYPES
 │   ├── day_context.rs               DayContext
-│   ├── text_blocks.rs               FormularySet, ReadingsSet, FlexibleOrations
+│   ├── text_blocks.rs               FormularySet, ReadingText, ReadingsSet,
+│   │                                ReadingsPool, ReadingsContent, FlexibleOrations
 │   ├── sourced_text.rs              TextSource, SourcedText
 │   └── mod.rs
 │
