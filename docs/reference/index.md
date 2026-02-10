@@ -26,7 +26,7 @@ Individual decrees from the Dicastery for Divine Worship are the **living source
 
 **Official source**: [Dicastery for Divine Worship](https://www.vatican.va/roman_curia/congregations/ccdds/index.htm) on vatican.va — individual decrees in multiple languages.
 
-**Chronological index**: [GCatholic](https://gcatholic.org/documents/data/curia-d05.htm) maintains a historical list of all documents from the Dicastery and its predecessors (Congregation of Rites, Congregation for Divine Worship).
+**Chronological index**: [GCatholic](https://gcatholic.org/documents/data/curia-d05.htm) — historical list of all documents from the Dicastery and its predecessors. Not an official source, but useful as an index; official sources are always preferred when available.
 
 ## Extended Scope Documents
 
@@ -60,6 +60,18 @@ These are not normative documents but reference data that Romcal uses.
 
 The official list of saints and blessed recognized by the Church, with their liturgical dates. Romcal uses this as the authoritative source for sanctoral entries. The current edition (2004, with supplements) contains over 7,000 entries.
 
-### Notitiae Responses
+**Latin text**: [Archive.org](https://archive.org/details/MartRom2004) — full scan of the 2004 _editio typica altera_.
+
+**Structured data**: [GCatholic](https://gcatholic.org/saints/data/martyrology2004-1a.htm) — English translations organized by month. Not an official source, but a helpful reference; official sources are always preferred when available.
+
+### [Notitiae Responses](./notitiae-responses)
 
 The Dicastery's journal _Notitiae_ publishes responses to _dubia_ (formal questions) that clarify edge cases in the GNLY: ambiguous transfers, impeded solemnities, vigil rules, etc. Useful when debugging unusual calendar scenarios.
+
+**Full document**: [R1-R15 responses](./notitiae-responses) — Latin texts with English translations, organized by GNLY article.
+
+**Official archives**: [Notitiae PDFs](https://www.cultodivino.va/en/rivista-notitiae.html) on cultodivino.va — full issues from 1965 to present.
+
+**Searchable database**: [Notitiae Response Database](https://notitiae.ipsissima-verba.org/) by Rev. Dylan Schrader — responses organized by theme, tagged and searchable. Not an official source, but an invaluable reference.
+
+**GNLY annotations**: [Catholic Culture](https://www.catholicculture.org/culture/library/view.cfm?id=10842) — responses R1–R15 integrated directly into the GNLY text with Notitiae references.

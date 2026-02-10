@@ -78,6 +78,7 @@ export default defineConfig({
             { label: 'GILM — Lectionary for Mass', slug: 'reference/gilm' },
             { label: 'GILH — Liturgy of the Hours', slug: 'reference/gilh' },
             { label: 'PS — Easter Feasts', slug: 'reference/ps' },
+            { label: 'Notitiae Responses', slug: 'reference/notitiae-responses' },
           ],
         },
         { label: 'Glossary', slug: 'glossary' },

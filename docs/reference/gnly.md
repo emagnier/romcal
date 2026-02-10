@@ -68,6 +68,10 @@ The liturgical day runs from midnight to midnight. However, the celebration of S
 - b) the Ascension to the Seventh Sunday of Easter;
 - c) the Solemnity of the Most Holy Body and Blood of Christ to the Sunday after Trinity Sunday.
 
+:::tip[Notitiae Response]
+See [R1](/reference/notitiae-responses#r1--transfer-of-solemnities-to-sunday) for clarifications on implementation.
+:::
+
 #### III. Solemnities, Feasts, and Memorials
 
 <span id="p8"></span>8. In the cycle of the year, as she celebrates the mystery of Christ, the Church also venerates with a particular love the Blessed Mother of God, Mary, and proposes to the devotion of the faithful the Memorials of the Martyrs and other Saints.[^4]
@@ -81,6 +85,10 @@ The liturgical day runs from midnight to midnight. However, the celebration of S
 <span id="p12"></span>12. The celebration of the two greatest Solemnities, Easter and the Nativity, is extended over eight days. Each Octave is governed by its own rules.
 
 <span id="p13"></span>13. Feasts are celebrated within the limits of the natural day; accordingly they have no First Vespers (Evening Prayer I), except in the case of Feasts of the Lord that fall on a Sunday in Ordinary Time or in Christmas Time and which replace the Sunday Office.
+
+:::tip[Notitiae Response]
+See [R2](/reference/notitiae-responses#r2--first-vespers-for-feasts-in-christmas-time) for clarifications on First Vespers for Holy Family and Baptism of the Lord.
+:::
 
 <span id="p14"></span>14. Memorials are either obligatory or optional; their observance is integrated into the celebration of the occurring weekday in accordance with the norms set forth in the _General Instruction of the Roman Missal_ and of the Liturgy of the Hours.
 Obligatory Memorials which fall on weekdays of Lent may only be celebrated as Optional Memorials.
@@ -108,6 +116,10 @@ If several Optional Memorials are inscribed in the Calendar on the same day, onl
 
 <span id="p20"></span>20. On Friday of the Passion of the Lord[^9] (Good Friday) and, if appropriate, also on Holy Saturday until the Easter Vigil,[^10] the sacred Paschal Fast is everywhere observed.
 
+:::tip[Notitiae Response]
+See [R3](/reference/notitiae-responses#r3--paschal-fast-and-sacraments) for clarifications on sacraments during the Paschal fast.
+:::
+
 <span id="p21"></span>21. The Easter Vigil, in the holy night when the Lord rose again, is considered the "mother of all holy Vigils,"[^11] in which the Church, keeping watch, awaits the Resurrection of Christ and celebrates it in the Sacraments. Therefore, the entire celebration of this sacred Vigil must take place at night, so that it both begins after nightfall and ends before the dawn on the Sunday.
 
 #### II. Easter Time
@@ -121,6 +133,10 @@ These are the days above all others in which the _Alleluia_ is sung.
 
 <span id="p25"></span>25. On the fortieth day after Easter the Ascension of the Lord is celebrated, except where, not being observed as a Holyday of Obligation, it has been assigned to the Seventh Sunday of Easter (cf. no. 7).
 
+:::tip[Notitiae Response]
+See [R4](/reference/notitiae-responses#r4--suppression-of-ascension-vigil) for clarifications on the suppression of the Ascension vigil.
+:::
+
 <span id="p26"></span>26. The weekdays from the Ascension up to and including the Saturday before Pentecost prepare for the coming of the Holy Spirit, the Paraclete.
 
 #### III. Lent
@@ -131,6 +147,10 @@ These are the days above all others in which the _Alleluia_ is sung.
 From the beginning of Lent until the Paschal Vigil, the _Alleluia_ is not said.
 
 <span id="p29"></span>29. On Ash Wednesday, the beginning of Lent, which is observed everywhere as a fast day,[^14] ashes are distributed.
+
+:::tip[Notitiae Response]
+See [R5](/reference/notitiae-responses#r5--distribution-of-ashes-outside-mass) for clarifications on distributing ashes outside Mass.
+:::
 
 <span id="p30"></span>30. The Sundays of this time of year are called the First, Second, Third, Fourth, and Fifth Sundays of Lent. The Sixth Sunday, on which Holy Week begins, is called "Palm Sunday of the Passion of the Lord."
 
@@ -146,6 +166,10 @@ On Thursday of Holy Week, in the morning, the Bishop concelebrates Mass with his
 <span id="p34"></span>34. The Vigil Mass of the Nativity is used on the evening of December 24, either before or after First Vespers (Evening Prayer I).
 On the day of the Nativity of the Lord, following ancient Roman tradition, Mass may be celebrated three times, that is, in the night, at dawn, and during the day.
 
+:::tip[Notitiae Response]
+See [R6](/reference/notitiae-responses#r6--christmas-vigil-mass) for clarifications on Christmas Vigil Mass timing.
+:::
+
 <span id="p35"></span>35. The Nativity of the Lord has its own Octave, arranged thus:
 
 - a) Sunday within the Octave or, if there is no Sunday, December 30, is the Feast of the Holy Family of Jesus, Mary, and Joseph;
@@ -157,6 +181,10 @@ On the day of the Nativity of the Lord, following ancient Roman tradition, Mass 
 
 <span id="p36"></span>36. The Sunday falling between January 2 and January 5 is the Second Sunday after the Nativity.
 
+:::tip[Notitiae Response]
+See [R7](/reference/notitiae-responses#r7--second-sunday-after-the-nativity) for clarifications on the Mass for this Sunday.
+:::
+
 <span id="p37"></span>37. The Epiphany of the Lord is celebrated on January 6, unless, where it is not observed as a Holyday of Obligation, it has been assigned to the Sunday occurring between January 2 and 8 (cf. no. 7).
 
 <span id="p38"></span>38. The Sunday falling after January 6 is the Feast of the Baptism of the Lord.
@@ -166,6 +194,10 @@ On the day of the Nativity of the Lord, following ancient Roman tradition, Mass 
 <span id="p39"></span>39. Advent has a twofold character, for it is a time of preparation for the Solemnities of Christmas, in which the First Coming of the Son of God to humanity is remembered, and likewise a time when, by remembrance of this, minds and hearts are led to look forward to Christ's Second Coming at the end of time. For these two reasons, Advent is a period of devout and expectant delight.
 
 <span id="p40"></span>40. Advent begins with First Vespers (Evening Prayer I) of the Sunday that falls on or closest to November 30 and it ends before First Vespers (Evening Prayer I) of Christmas.
+
+:::tip[Notitiae Response]
+See [R8](/reference/notitiae-responses#r8--no-commemorations-in-advent-and-lent) for clarifications on commemorations during Advent and Lent.
+:::
 
 <span id="p41"></span>41. The Sundays of this time of year are named the First, Second, Third, and Fourth Sundays of Advent.
 
@@ -184,6 +216,10 @@ During these times of the year there is used the series of formularies given for
 
 <span id="p46"></span>46. In order that the Rogation Days and Ember Days may be adapted to the different regions and different needs of the faithful, the Conferences of Bishops should arrange the time and manner in which they are held.
 Consequently, concerning their duration, whether they are to last one or more days, or be repeated in the course of the year, norms are to be established by the competent authority, taking into consideration local needs.
+
+:::tip[Notitiae Response]
+See [R9](/reference/notitiae-responses#r9--rogation-and-ember-days) for clarifications on celebrating Rogation and Ember Days.
+:::
 
 <span id="p47"></span>47. The Mass for each day of these celebrations should be chosen from among the Masses for Various Needs, and should be one which is more particularly appropriate to the purpose of the supplications.
 
@@ -212,6 +248,10 @@ This principle may also be similarly observed in the case of religious calendars
 - a) in a diocesan calendar, besides celebrations of Patrons and of the dedication of the cathedral church, the Saints and Blessed who have special connections with the diocese, e.g., by their birth, residence over a long period, or their death;
 - b) in a religious calendar, besides celebrations of the Title, the Founder and the Patron, those Saints and Blessed who were members of that religious family or had a special relationship with it;
 - c) in calendars for individual churches, besides the proper celebrations of the diocese or religious family, celebrations proper to the church that are listed in the Table of Liturgical Days, and Saints whose body is kept in the church. Members of religious families, too, join the community of the local Church in celebrating the anniversary of the dedication of the cathedral church and the principal Patrons of the place and of the wider region where they live.
+
+:::tip[Notitiae Responses]
+See [R10](/reference/notitiae-responses#r10--anniversary-of-co-cathedral) for clarifications on co-cathedral anniversaries, and [R11](/reference/notitiae-responses#r11--title-of-churches-and-feasts) for church titles and titular feasts.
+:::
 
 <span id="p53"></span>53. When a diocese or religious family has the distinction of having many Saints and Blessed, care must be taken so that the calendar of the entire diocese or entire institute does not become overburdened. Consequently:
 
@@ -243,7 +283,15 @@ The Solemnity of Saint Joseph, where it is observed as a Holyday of Obligation, 
 
 <span id="p58"></span>58. For the pastoral good of the faithful, it is permitted to observe on Sundays in Ordinary Time those celebrations that fall during the week and that are agreeable to the devotion of the faithful, provided the celebrations rank above that Sunday in the Table of Liturgical Days. The Mass of such celebrations may be used at all the celebrations of Mass at which the people are present.
 
+:::tip[Notitiae Response]
+See [R12](/reference/notitiae-responses#r12--transfer-of-dedication-anniversary) for clarifications on transferring dedication anniversaries to Sunday.
+:::
+
 <span id="p59"></span>59. Precedence among liturgical days, as regards their celebration, is governed solely by the following Table.
+
+:::tip[Notitiae Response]
+See [R13](/reference/notitiae-responses#r13--exaltation-of-the-cross-and-lateran-dedication-on-sunday) for clarifications on the Exaltation of the Cross and Lateran Dedication falling on Sunday.
+:::
 
 ### Table of Liturgical Days according to Their Order of Precedence
 
@@ -309,7 +357,15 @@ III
 <span id="p60"></span>60. If several celebrations fall on the same day, the one that holds the highest rank according to the Table of Liturgical Days is observed. However, a Solemnity impeded by a liturgical day that takes precedence over it should be transferred to the closest day not listed under nos. 1-8 in the Table of Precedence, provided that what is laid down in no. 5 is observed. As to the Solemnity of the Annunciation of the Lord, whenever it falls on any day of Holy Week, it shall always be transferred to the Monday after the Second Sunday of Easter.
 Other celebrations are omitted in that year.
 
+:::tip[Notitiae Response]
+See [R14](/reference/notitiae-responses#r14--method-for-transferring-impeded-solemnities) for clarifications on the method for transferring impeded solemnities.
+:::
+
 <span id="p61"></span>61. Should on the other hand, Vespers (Evening Prayer) of the current day's Office and First Vespers (Evening Prayer I) of the following day be assigned for celebration on the same day, then Vespers (Evening Prayer) of the celebration with the higher rank in the Table of Liturgical Days takes precedence; in cases of equal rank, Vespers (Evening Prayer) of the current day takes precedence.
+
+:::tip[Notitiae Response]
+See [R15](/reference/notitiae-responses#r15--order-in-the-litany-of-the-saints) for clarifications on amendments to the Litany of the Saints.
+:::
 
 ---
 

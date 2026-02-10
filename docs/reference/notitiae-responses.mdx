@@ -1,0 +1,552 @@
+---
+title: Notitiae Responses
+description: Official responses to dubia clarifying the Universal Norms on the Liturgical Year and the Calendar.
+tableOfContents:
+  minHeadingLevel: 2
+  maxHeadingLevel: 6
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+> These responses (_Responsa ad dubia_) from the Congregation for Divine Worship,
+> published in _Notitiae_, clarify edge cases in the [GNLY](/reference/gnly). They have
+> orientative force until formally published in _Acta Apostolicae Sedis_.
+
+:::note[Sources]
+**Official archives**: [Notitiae PDFs](https://www.cultodivino.va/en/rivista-notitiae.html) on cultodivino.va — full issues from 1965 to present.
+
+**Searchable database**: [Notitiae Response Database](https://notitiae.ipsissima-verba.org/) by Rev. Dylan Schrader — responses organized by theme, tagged and searchable.
+
+**GNLY annotations**: [Catholic Culture](https://www.catholicculture.org/culture/library/view.cfm?id=10842) — responses R1–R15 integrated directly into the GNLY text with Notitiae references.
+:::
+
+:::caution[Translation notice]
+No official English translations of these responses exist. The English texts provided here are AI-assisted translations from the Latin intended for reference only. The original Latin texts are preserved in each response as the authoritative source.
+:::
+
+---
+
+## R1 — Transfer of Solemnities to Sunday
+
+**GNLY reference**: [§7](/reference/gnly#p7)
+
+**Source**: _Notitiae_ 5 (1969) 326-327, no. 8 — [PDF](https://notitiae.ipsissima-verba.org/pdf/notitiae-1969-326-327.pdf)
+
+<Tabs>
+  <TabItem label="English">
+    **Dubium**:
+    How should Mass and office be structured when the Solemnities of the Epiphany, Ascension, and Corpus Christi are transferred to Sunday according to GNLY no. 7?
+
+    **Responsum**:
+    These solemnities follow a specific calendar structure beginning in 1970. When transferred to Sunday, they take the place of that Sunday entirely. The proper Mass and Office of the solemnity are used; there is no commemoration of the Sunday.
+
+  </TabItem>
+  <TabItem label="Latin">
+    **Dubium**:
+    _Quomodo ordinanda est celebratio Missae et Officii divini in regionibus ubi sollemnitates Epiphaniae et Ascensionis Domini ac Corporis Christi in dominicam transferuntur?_
+
+    **Responsum**:
+    _Attenta declaratione anno praeterito facta a Sacra Congregatione Rituum (Cf. Notitiae, vol. IV, 1968, p. 279), adveniente anno 1970, ubi supradictae sollemnitates in dominicam transferuntur, celebrentur secundum Calendarium quod sequitur._ [Follows detailed calendar]
+
+  </TabItem>
+</Tabs>
+
+**Application for Romcal**:
+When `epiphanyOnSunday`, `ascensionOnSunday`, or `corpusChristiOnSunday` options are enabled, the solemnity completely replaces the underlying Sunday. No liturgical elements of the Sunday are retained.
+
+---
+
+## R2 — First Vespers for Feasts in Christmas Time
+
+**GNLY reference**: [§13](/reference/gnly#p13)
+
+**Source**: _Notitiae_ 5 (1969) 325, no. 5; corrected in ibid. 402 — [PDF](https://notitiae.ipsissima-verba.org/pdf/notitiae-1969-325-325.pdf)
+
+<Tabs>
+  <TabItem label="English">
+    **Dubium**:
+    Should Evening Prayer I (First Vespers) be celebrated for the Feast of the Holy Family and the Feast of the Baptism of the Lord?
+
+    **Responsum**:
+    Yes. (The initial response of "No" was corrected.) These Sundays in Christmas Time rank equally with Sundays of Ordinary Time and thus have First Vespers. The general rule in GNLY §13 that Feasts have no First Vespers applies except when Feasts of the Lord fall on a Sunday in Ordinary Time or Christmas Time.
+
+  </TabItem>
+  <TabItem label="Latin">
+    **Dubium**:
+    _Utrum celebrandae sint I Vesperae festorum Sanctae Familiae et Baptismatis Domini?_
+
+    **Responsum**:
+    _Negative._ (cf. _Normae de Anno lit. et de Cal._ n. 13). _Nam, uti apparet ex tabula praecedentiae (ibid., n. 59, 6), Dominicae temporis Nativitatis aequantur dominicis per annum, et festa Domini quae in eis occurrunt, I Vesperas habent._
+
+    Note: The initial "Negative" was corrected to "Affirmative" in _Notitiae_ 5 (1969) 402.
+
+  </TabItem>
+</Tabs>
+
+**Application for Romcal**:
+The Holy Family (Sunday within Octave of Christmas) and Baptism of the Lord (Sunday after Epiphany) include `firstVespers: true` in their liturgical properties when they fall on Sunday.
+
+---
+
+## R3 — Paschal Fast and Sacraments
+
+**GNLY reference**: [§20](/reference/gnly#p20)
+
+**Source**: _Notitiae_ 13 (1977) 602 — [PDF, p. 56](<https://www.cultodivino.va/content/dam/cultodivino/rivista-notitiae/1970/notitiae-13-(1977)/Notitiae-137-1977.pdf#page=56>)
+
+<Tabs>
+  <TabItem label="English">
+    **Dubium**:
+    Should the rubric "On this and the following day, the Church, according to most ancient tradition, does not celebrate the sacraments at all," found in the Roman Missal for Good Friday (n. 1), be understood as referring to all sacraments or only to the celebration of Mass?
+
+    **Responsum**:
+    The rubric is to be understood as referring only to the celebration of the sacrifice of the Mass.
+
+    The words "does not celebrate the sacraments at all" are taken from the letter of Pope Innocent I to Decentius, in which it says: "For it is clear everywhere that the apostles were in mourning during those two days (that is, Friday and Saturday) and hid themselves for fear of the Jews; there is certainly no doubt that they fasted so much during those two days that the tradition of the Church holds that during those two days the sacraments are not celebrated at all" (Ep. 25, 4; PL 20, 555 B-556 A).
+
+    According to the custom of the first centuries, the sacred paschal fast, which is celebrated on Good Friday and, as appropriate, also on Holy Saturday until the Easter Vigil (cf. GNLY n. 20), also includes fasting or abstinence from the Eucharistic celebration.
+
+    This remains the meaning and significance of rubric n. 1 for Good Friday.
+
+  </TabItem>
+  <TabItem label="Latin">
+    **Dubium**:
+    _Utrum rubrica: « Hac et sequenti die, Ecclesia, ex antiquissima traditione, sacramenta penitus non celebrat », quae invenitur in Missali Romano, Feria VI in Passione Domini, sub n. 1, intellegi debeat de omnium sacramentorum aut tantum de Missae sacrificii celebratione._
+
+    **Responsum**:
+    _Rubrica intellegi debet tantummodo de Missae sacrificii celebratione._
+
+    _Etenim verba: « sacramenta penitus non celebrat » deprompta sunt e litteris Papae Innocentii I ad Decentium, in quibus dicitur: « Nam ubique constat apostolos biduo isto (id est feria VI et sabbato) in moerore fuisse et propter metum Iudeorum se occuluisse; quod utique non dubium est in tantum eos ieiunasse biduo memorato, ut traditio ecclesiae habeat, isto biduo sacramenta penitus non celebrari » (Ep. 25, 4; PL 20, 555 B-556 A)._
+
+    _Secundum consuetudinem primorum saeculorum, paschale sacrum ieiunium, quod celebratur Feria VI in Passione Domini, et iuxta opportunitatem etiam Sabbato Sancto usque ad Vigiliam Paschatis (cf. Normae universales de Anno liturgico et de Calendario, n. 20), comprehendit etiam ieiunium seu abstinentiam a celebratione eucharistica._
+
+    _Huiusmodi manet ratio necnon significatio rubricae n. 1 Feriae VI in Passione Domini._
+
+  </TabItem>
+</Tabs>
+
+**Application for Romcal**:
+Good Friday and Holy Saturday are marked with special properties indicating no Mass is celebrated, but this does not affect the general calendar output regarding other sacraments.
+
+---
+
+## R4 — Suppression of Ascension Vigil
+
+**GNLY reference**: [§25](/reference/gnly#p25)
+
+**Source**: _Notitiae_ 5 (1969) 325, no. 7 — [PDF](https://notitiae.ipsissima-verba.org/pdf/notitiae-1969-325-325.pdf)
+
+<Tabs>
+  <TabItem label="English">
+    **Dubium**:
+    With the Ascension vigil suppressed in the reformed calendar, what Mass and Office are proper for the day before the Ascension?
+
+    **Responsum**:
+    The Mass follows the preceding Sunday (Sixth Sunday of Easter). The Office uses the weekday of Easter Time. There is no longer a vigil celebration for the Ascension.
+
+  </TabItem>
+  <TabItem label="Latin">
+    **Dubium**:
+    _Abolita Vigilia Ascensionis, quaenam sunt Missa et officium huius diei?_
+
+    **Responsum**:
+    _Missa dicitur de dominica praecedenti et Officium, pro anno 1970, ut in Breviario, scilicet de Vigilia._
+
+  </TabItem>
+</Tabs>
+
+**Application for Romcal**:
+The Wednesday before Ascension Thursday (or Saturday before Ascension Sunday) is a regular weekday of Easter Time with no special vigil properties.
+
+---
+
+## R5 — Distribution of Ashes Outside Mass
+
+**GNLY reference**: [§29](/reference/gnly#p29)
+
+**Source**: _Notitiae_ 10 (1974) 80, no. 2 — [PDF](https://notitiae.ipsissima-verba.org/pdf/notitiae-1974-80-80.pdf)
+
+<Tabs>
+  <TabItem label="English">
+    **Dubium**:
+    May the blessing and distribution of ashes, palms, and candles occur outside Mass?
+
+    **Responsum**:
+    Ashes may be blessed and distributed outside Mass for pastoral reasons (e.g., for the sick, those who cannot attend Mass, additional services). However, palms and candles remain inseparably connected to their respective Masses as solemn entrance rites and should not be blessed or distributed apart from Mass.
+
+  </TabItem>
+  <TabItem label="Latin">
+    **Dubium**:
+    _Utrum benedictio et impositio cinerum (feria IV cinerum), benedictio et distributio palmarum (dominica in palmis) et candelarum (in Praesentatione Domini) peragi possit sine Missa._
+
+    **Responsum**:
+    _Benedictio et impositio cinerum, ob rationes pastorales, fieri potest etiam sine Missa (v. Missale Romanum, p. 180). Ceterae benedictiones stricte conectuntur cum Missae celebratione ad modum processionis seu sollemnis introiti._
+
+  </TabItem>
+</Tabs>
+
+**Application for Romcal**:
+Ash Wednesday is flagged as allowing distribution of ashes outside Mass. Palm Sunday and Candlemas (Presentation) are tied to their Mass celebrations.
+
+---
+
+## R6 — Christmas Vigil Mass
+
+**GNLY reference**: [§34](/reference/gnly#p34)
+
+**Source**: _Notitiae_ 5 (1969) 405, no. 21 — [PDF](https://notitiae.ipsissima-verba.org/pdf/notitiae-1969-405-405.pdf); _Notitiae_ 10 (1974) 80, no. 1 — [PDF](https://notitiae.ipsissima-verba.org/pdf/notitiae-1974-80-80.pdf)
+
+<Tabs>
+  <TabItem label="English">
+    **Dubium (a)**:
+    May the Christmas Vigil Mass be celebrated in the morning of December 24?
+
+    **Responsum**:
+    No. In the reformed liturgy, vigils are no longer separate celebrations on the morning before a feast. The Vigil Mass is celebrated on the evening of December 24, before or after First Vespers, as an anticipation of the Solemnity.
+
+    **Dubium (b)**:
+    May the Christmas Midnight Mass ("in nocte") be celebrated on the evening of December 24?
+
+    **Responsum**:
+    The Mass "in nocte" (Midnight Mass) must occur "around midnight" to maintain its authentic character as the nocturnal celebration of Christ's birth. An evening Mass on December 24 uses the Vigil Mass texts, not the Midnight Mass texts.
+
+  </TabItem>
+  <TabItem label="Latin">
+    **Dubium (a)**:
+    _Utrum mane diei 24 decembris celebrari possit Missa de vigilia Nativitatis?_
+
+    **Responsum**:
+    _Negative. Dicitur Missa de feria. Notio vigiliarum penitus mutatus est. Amplius non habentur vigiliae sicut antea intelligebantur. Nunc vespere diei praecedentis quarumdam sollemnitatum dicitur Missa propria de vigilia, quae iam pertinet ad sollemnitatem: est ergo Missa festiva._
+
+    **Dubium (b)**:
+    _Utrum Missa « in nocte Nativitatis » celebrari possit vespere vigiliae eiusdem sollemnitatis._
+
+    **Responsum**:
+    _Missa « in nocte Nativitatis » celebranda est ad mediam circiter noctem, ut veritas temporis servetur. Ad Missam vero, quae ad satisfaciendum praecepto vespere vigiliae anticipatur, adhibendum erit formularium Missae in vigilia, prout a rubrica Missalis indicatur (p. 153: « Haec Missa adhibeatur vespere diei 24 decembris sive ante sive post I Vesperas Nativitatis »)._
+
+  </TabItem>
+</Tabs>
+
+**Application for Romcal**:
+December 24 is marked as the Vigil of Christmas. The three Christmas Masses (Vigil/Evening, Night, Dawn, Day) are distinguished with proper timing metadata.
+
+---
+
+## R7 — Second Sunday after the Nativity
+
+**GNLY reference**: [§36](/reference/gnly#p36)
+
+**Source**: _Notitiae_ 5 (1969) 325, no. 6 — [PDF](https://notitiae.ipsissima-verba.org/pdf/notitiae-1969-325-325.pdf)
+
+<Tabs>
+  <TabItem label="English">
+    **Dubium**:
+    What Mass is celebrated on the Second Sunday after the Nativity?
+
+    **Responsum**:
+    When the reformed Roman Missal is in use, the proper texts for the Second Sunday after Christmas are used. This Sunday occurs between January 2 and January 5, before Epiphany (which is January 6 or the Sunday between January 2-8).
+
+  </TabItem>
+  <TabItem label="Latin">
+    **Dubium**:
+    _Quae Missa celebranda est dominica II post Nativitatem?_
+
+    **Responsum**:
+    _Missa quam dabit Missale Romanum instauratum; secus Missa quae in hodierno Missali habetur pro dominica post Nativitatem._
+
+  </TabItem>
+</Tabs>
+
+**Application for Romcal**:
+The Second Sunday after the Nativity is generated when the calendar configuration places Epiphany on January 6 (not on Sunday). When Epiphany is transferred to Sunday, this Sunday may not occur depending on the date.
+
+---
+
+## R8 — No Commemorations in Advent and Lent
+
+**GNLY reference**: [§40](/reference/gnly#p40)
+
+**Source**: _Notitiae_ 5 (1969) 405, no. 19 — [PDF](https://notitiae.ipsissima-verba.org/pdf/notitiae-1969-405-405.pdf)
+
+<Tabs>
+  <TabItem label="English">
+    **Dubium**:
+    Should weekday commemorations be made during Advent or Lenten solemnities?
+
+    **Responsum**:
+    No commemorations occur in either Mass or Office during these seasons. The reformed liturgy has largely eliminated the practice of commemorations. When a solemnity falls on an Advent or Lenten weekday, only the solemnity is celebrated.
+
+  </TabItem>
+  <TabItem label="Latin">
+    **Dubium**:
+    _Utrum in sollemnitatibus quae tempore Adventus et Quadragesimae occurrunt facienda sit commemoratio feriae?_
+
+    **Responsum**:
+    _Negative. Nulla fit commemoratio neque in Missa neque in Officio._
+
+  </TabItem>
+</Tabs>
+
+**Application for Romcal**:
+Romcal does not generate commemoration data for Advent or Lenten days. Solemnities in these seasons stand alone without weekday commemorations.
+
+---
+
+## R9 — Rogation and Ember Days
+
+**GNLY reference**: [§46](/reference/gnly#p46)
+
+**Source**: _Notitiae_ 5 (1969) 405, no. 20 — [PDF](https://notitiae.ipsissima-verba.org/pdf/notitiae-1969-405-405.pdf)
+
+<Tabs>
+  <TabItem label="English">
+    **Dubium**:
+    How should Rogation and Ember Days be celebrated after the reform?
+
+    **Responsum**:
+    The specific dates and manner of celebrating Rogation and Ember Days are left to the discretion of diocesan bishops or Bishops' Conferences. Bishops may order special votive Masses suited to local occasions (harvest festivals, peace, unity, local needs). The traditional dates are no longer obligatory.
+
+  </TabItem>
+  <TabItem label="Latin">
+    **Dubium**:
+    _Quid faciendum pro Rogationibus et Quattuor Temporibus?_
+
+    **Responsum**:
+    _Standum est ad ordinationes Conferentiarum Episcopalium aut singulorum Episcoporum sive quoad tempus sive quoad modum. Diebus quibus antea habebantur rogationes vel quattuor tempora Missa et Officium fiunt de feria aut de sanctis. Episcopus autem vel Conferentia Episcopalis praecipere valent illis diebus peculiares celebrationes quae diversae esse possunt, v. gr. ruri vel in civitatibus, et quae varia themata attingere possunt, fructus terrae, pacem, unitatem Ecclesiae, propagationem fidei, etc. Hoc in casu dicitur Missa votiva apta._
+
+  </TabItem>
+</Tabs>
+
+**Application for Romcal**:
+Romcal does not generate fixed Rogation or Ember Days in the General Roman Calendar. These may be added to particular calendars as configured by Bishops' Conferences.
+
+---
+
+## R10 — Anniversary of Co-Cathedral
+
+**GNLY reference**: [§52](/reference/gnly#p52)
+
+**Source**: _Notitiae_ 9 (1973) 152 — [PDF, p. 38](<https://www.cultodivino.va/content/dam/cultodivino/rivista-notitiae/1970/notitiae-09-(1973)/Notitiae-082-1973.pdf#page=38>)
+
+<Tabs>
+  <TabItem label="English">
+    **Dubium**:
+    Must the dedication anniversary of a co-cathedral be celebrated throughout the diocese?
+
+    **Responsum**:
+    No. The celebration of the anniversary of the Dedication of the cathedral church is to be observed as a solemnity in the cathedral church itself, and as a feast in the other churches of the diocese, on the recurring day when the church was consecrated. However, when co-cathedrals exist in a diocese, the anniversary of their Dedication is celebrated only in the dedicated church itself, by no means throughout the diocese. For the title of co-cathedral is generally given to churches because of a particular importance they have held in the life of the diocese. But the cathedral church, as the sign of the unity of the local church, is unique, and only its Dedication anniversary should be celebrated throughout the entire diocese.
+
+    When, however, a diocese is formed from several dioceses joined together, in which nevertheless the former dioceses still preserve a certain unity—for example, having their own curia and chapter—each of them may celebrate the anniversary of their own cathedral.
+
+  </TabItem>
+  <TabItem label="Latin">
+    **Dubium**:
+    _An celebrandum sit in tota dioecesi anniversarium dedicationis Ecclesiae concathedralis._
+
+    **Responsum**:
+    _Negative. Celebratio anniversarii Dedicationis ecclesiae cathedralis peragenda est, gradu sollemnitatis in ipsa ecclesia cathedrali, gradu autem festi aliis in ecclesiis dioecesis, recurrenti die quo ecclesia consecrata est. Quando autem in dioecesi concathedralia habentur anniversarium earum Dedicationis peragitur tantum in ipsa ecclesia dedicata, minime vero in dioecesi. Nam titulus concathedralis generaliter datur ecclesiis ob peculiare momentum habitum in vita dioecesi. At ecclesia cathedralis, signum unitatis ecclesiae localis, unica est et tantum eius Dedicationis anniversarium celebrari debet in tota dioecesi._
+
+    _Quando autem dioecesis coalescit ex pluribus dioecesibus insimul coniunctis, in qua tamen antiquae dioeceses quamdam unitatem adhuc servant, v. gr. suam curiam et capitulum habent, unaquaeque earum celebrare possunt anniversarium suae cathedralis._
+
+  </TabItem>
+</Tabs>
+
+**Application for Romcal**:
+Diocesan calendars should include only one cathedral dedication anniversary with diocese-wide celebration. Co-cathedral anniversaries are local celebrations.
+
+---
+
+## R11 — Title of Churches and Feasts
+
+**GNLY reference**: [§52](/reference/gnly#p52)
+
+**Source**: _Notitiae_ 5 (1969) 404, no. 18 — [PDF](https://notitiae.ipsissima-verba.org/pdf/notitiae-1969-404-404.pdf)
+
+<Tabs>
+  <TabItem label="English">
+    **Dubium**:
+    Must a church's title be changed if it presents historical problems or if the saint is no longer in the General Calendar?
+
+    **Responsum**:
+    No. Every church retains its original title and celebrates its titular feast. Even if a saint has been removed from the General Calendar, the church dedicated to that saint continues to celebrate the titular feast. Revisions to church titles may be considered during calendar studies, but are not obligatory.
+
+  </TabItem>
+  <TabItem label="Latin">
+    **Dubium**:
+    _Utrum mutandi sint tituli ecclesiae qui aliquam difficultatem historicam praebent aut qui in Calendario generali amplius non habentur?_
+
+    **Responsum**:
+    _Negative. Unaquaeque ecclesia suum titulum servat et festum proprii titularis celebrat, etsi amplius non consideratur in Calendario generali. Quando examen instituetur pro revisione Calendariorum propriorum, tunc forsan denuo quaestio moveri posset attentis non solum critica historica, sed etiam rationibus ordinis pastoralis et spiritualis fidelium._
+
+  </TabItem>
+</Tabs>
+
+**Application for Romcal**:
+Church-specific calendars may include titular feasts for saints not in the General Calendar. The title of a church is a permanent dedication.
+
+---
+
+## R12 — Transfer of Dedication Anniversary
+
+**GNLY reference**: [§58](/reference/gnly#p58)
+
+**Source**: _Notitiae_ 5 (1969) 404, no. 16 — [PDF](https://notitiae.ipsissima-verba.org/pdf/notitiae-1969-404-404.pdf); _Notitiae_ 11 (1975) 61 — [PDF](https://notitiae.ipsissima-verba.org/pdf/notitiae-1975-61-61.pdf)
+
+<Tabs>
+  <TabItem label="English">
+    **Dubium (a)**:
+    May a church's dedication anniversary and patron solemnity be transferred to Sunday for pastoral benefit?
+
+    **Responsum**:
+    Yes, under these conditions:
+
+    - The Sunday must be in Ordinary Time or Christmas Time (not Advent, Lent, or Easter)
+    - It must concern a particular church or the principal patron of a place
+    - It does not apply to cathedral or regional patron celebrations
+
+    **Dubium (b)**:
+    May the cathedral dedication anniversary be celebrated on an Ordinary Time Sunday?
+
+    **Responsum**:
+    Generally no, as this would affect the entire diocese. However, the bishop may invoke serious pastoral need (per GIRM 332) for the sake of diocesan unity, but this should be exceptional.
+
+  </TabItem>
+  <TabItem label="Latin">
+    **Dubium (a)**:
+    _Utrum anniversarium Dedicationis ecclesiae et sollemnitas patroni aut tituli ecclesiae in dominicam transferri possint?_
+
+    **Responsum**:
+    _Affirmative, si agitur de dominica per annum vel temporis Nativitatis et de anniversario Dedicationis ecclesiae propriae vel de patrono principali loci aut de titulo ecclesiae propriae, quae celebrantur tanquam sollemnitates. De his celebrationibus dici possunt omnes Missae, quae concurrente populo celebrantur (cf. « Normae de Anno lit. et de Cal. », n. 58)._
+
+    _Negative. Si translatio facienda est in dominicas Adventus, Quadragesimae et paschae, vel in dominicas in quibus occurrat aliqua sollemnitas Domini, B. Mariae Virginis et Sanctorum in calendario generali inscripta, vel si agitur de anniversario dedicationis ecclesiae Cathedralis, de patrono regionis vel nationis, de patrono secundario._
+
+    **Dubium (b)**:
+    _Utrum anniversarium Dedicationis ecclesiae cathedralis celebrari possit in dominica temporis « per annum »._
+
+    **Responsum**:
+    _Negative. Nam agitur de festo Domini particulari in tota dioecesi celebrando (cf. Normae de Calendario, n. 52 a, c). In tabula diecesium liturgicorum dominicis temporis nativitatis et per annum praevalent tantum festa Domini in Calendario generali inscripta (n. 5), minime vero festa propria, inter quae habetur celebratio Dedicationis ecclesiae cathedralis (n. 8 b). Huic normae subest sollicitudo servandi dominicae suum characterem et aliis celebrationibus eam non gravandi._
+
+    _Quandoque, tamen, Episcopus dioecesis momentum cathedralis, signum unitatis Ecclesiae localis, extollere cupit, v. gr. occasione refectionis vel peculiaris anniversarii cathedralis, totam communitatem dioecesanam circa eandem celebrationem adunando. Quod saepe fieri potest tantum die dominica. Hoc in casu uti valet facultate ei concessa ab Institutione generali Missalis Romani: « Occurrente aliqua graviore necessitate vel utilitate pastorali, Missa ipsis conveniens celebrari potest, de mandato vel licentia Ordinarii loci, omnibus diebus, exceptis sollemnitatibus, dominicis Adventus, Quadragesimae et Paschae et feriis IV Cinerum et Hebdomadae Sanctae » (n. 332)._
+
+  </TabItem>
+</Tabs>
+
+**Application for Romcal**:
+Romcal supports `transferToSunday` options for proper celebrations, respecting the restrictions on which Sundays allow transfers.
+
+---
+
+## R13 — Exaltation of the Cross and Lateran Dedication on Sunday
+
+**GNLY reference**: [§59](/reference/gnly#p59)
+
+**Source**: _Notitiae_ 10 (1974) 40, no. 3 — [PDF, p. 46](<https://www.cultodivino.va/content/dam/cultodivino/rivista-notitiae/1970/notitiae-10-(1974)/Notitiae-089-1974.pdf#page=46>)
+
+<Tabs>
+  <TabItem label="English">
+    **Dubium**:
+    September 14 and November 9 fall on a Sunday in Ordinary Time. Which celebration is to be observed?
+
+    **Responsum**:
+    Respectively, the Exaltation of the Holy Cross (September 14) and the Dedication of the Lateran Basilica (November 9).
+
+  </TabItem>
+  <TabItem label="Latin">
+    **Dubium**:
+    _Dies 14 septembris et 9 novembris incident in dominicam temporis « per annum ». Quaenam erit celebratio peragenda?_
+
+    **Responsum**:
+    _Respective de Exsaltatione sanctae Crucis (die 14 sept.) et de Dedicatione Basilicae Lateranensis (9 novembris)._
+
+  </TabItem>
+</Tabs>
+
+**Application for Romcal**:
+Romcal applies the Table of Precedence correctly. Feasts of the Lord (rank 5) supersede Sundays in Ordinary Time (rank 6).
+
+---
+
+## R14 — Method for Transferring Impeded Solemnities
+
+**GNLY reference**: [§60](/reference/gnly#p60)
+
+**Source**: _Notitiae_ 6 (1970) 405, no. 44 — [PDF](https://notitiae.ipsissima-verba.org/pdf/notitiae-1970-405-405.pdf)
+
+<Tabs>
+  <TabItem label="English">
+    **Dubium**:
+    What method should be used to transfer solemnities that are impeded by higher-ranking celebrations?
+
+    **Responsum**:
+    The general rule is to transfer to the nearest unimpeded day. Special provision for Advent and Lent Sundays: when a solemnity is impeded by such a Sunday, it should be transferred to the preceding Saturday when possible, following GNLY no. 5. This ensures the solemnity is not simply omitted when it cannot be transferred forward.
+
+  </TabItem>
+  <TabItem label="Latin">
+    **Dubium**:
+    _Quomodo transferendae sunt sollemnitates quae impediuntur die liturgico qui praecedentia gaudet?_
+
+    **Responsum**:
+    _Generatim sollemnitates, quae impediuntur, ad proximiorem diem transferuntur (cf. Normae de Anno liturgico et de Calendario n. 60). Attamen sollemnitates quae in dominicis Adventus et Quadragesimae incidant ad diem sequentem aliquando transferri nequeunt, cum Sollemnitas S. Ioseph vel Annuntiationis Domini, dominica Psalmis de passione Domini occurrant, et celebrari deberent post duas hebdomadas. Ideo ad difficultates minuendas, n. 5 supradictarum Normarum statuit ut in his temporibus sollemnitates forte die dominica occurrentes, sabbato praecedenti, de more, celebrentur. Si autem sabbatum liber non sit a celebrationibus sub nn. 1-8 in tabula praecedentiae recensitis, tunc servari potest principium generale, n. 60._
+
+  </TabItem>
+</Tabs>
+
+**Application for Romcal**:
+Romcal implements transfer logic that:
+
+1. First attempts the nearest following unimpeded day
+2. For solemnities impeded by Advent/Lent Sundays, considers the preceding Saturday
+3. Respects the Table of Precedence for determining which days can receive transfers
+
+---
+
+## R15 — Order in the Litany of the Saints
+
+**GNLY reference**: [§61](/reference/gnly#p61)
+
+**Source**: _Notitiae_ 6 (1970) 375 — [PDF, p. 35](<https://www.cultodivino.va/content/dam/cultodivino/rivista-notitiae/1970/notitiae-06-(1970)/Notitiae-058-1970.pdf#page=35>)
+
+<Tabs>
+  <TabItem label="English">
+    **Responsum**:
+    The following changes are to be inserted in the Litany of the Saints:
+
+    1. The name of Saint John the Baptist is to be placed immediately after the name of Saint Elijah and before the name of Saint Joseph.
+    2. The name of Saint Stanislaus (Bishop and Martyr) is to be inserted after the name of Saint Boniface and before the name of Saint Thomas Becket. However, this second change applies only to the Litanies used in solemn supplications.
+
+  </TabItem>
+  <TabItem label="Latin">
+    **Responsum**:
+    _In Litanias Sanctorum hae inserantur mutationes:_
+
+    _1. Nomen Sancti Ioannis Baptistae ponatur immediate post nomen S. Eliae et ante nomen S. Ioseph._
+
+    _2. Nomen Sancti Stanislai (Episcopi et Martyris) inseratur post nomen Sancti Bonifatii et ante nomen Sancti Thomae Becket. Haec tamen secunda mutatio tantum valet pro Litaniis in sollemnibus supplicationibus adhibendis._
+
+  </TabItem>
+</Tabs>
+
+**Application for Romcal**:
+This response affects liturgical texts rather than calendar calculations. Romcal does not generate litany content, but this is noted for completeness.
+
+---
+
+## Summary Table
+
+| Ref.                                                                  | GNLY § | Subject                                                  | Source                                             |
+| --------------------------------------------------------------------- | ------ | -------------------------------------------------------- | -------------------------------------------------- |
+| [R1](#r1--transfer-of-solemnities-to-sunday)                          | §7     | Transfer of Epiphany/Ascension/Corpus Christi to Sunday  | _Notitiae_ 5 (1969) 326-327, n. 8                  |
+| [R2](#r2--first-vespers-for-feasts-in-christmas-time)                 | §13    | First Vespers for Holy Family / Baptism of the Lord      | _Notitiae_ 5 (1969) 325, n. 5                      |
+| [R3](#r3--paschal-fast-and-sacraments)                                | §20    | Paschal fast and sacraments on Good Friday/Holy Saturday | _Notitiae_ 13 (1977) 602                           |
+| [R4](#r4--suppression-of-ascension-vigil)                             | §25    | Ascension vigil suppressed                               | _Notitiae_ 5 (1969) 325, n. 7                      |
+| [R5](#r5--distribution-of-ashes-outside-mass)                         | §29    | Distribution of ashes outside Mass                       | _Notitiae_ 10 (1974) 80, n. 2                      |
+| [R6](#r6--christmas-vigil-mass)                                       | §34    | Christmas Vigil Mass (not in the morning)                | _Notitiae_ 5 (1969) 405, n. 21; 10 (1974) 80, n. 1 |
+| [R7](#r7--second-sunday-after-the-nativity)                           | §36    | Second Sunday after the Nativity                         | _Notitiae_ 5 (1969) 325, n. 6                      |
+| [R8](#r8--no-commemorations-in-advent-and-lent)                       | §40    | No commemorations in Advent/Lent                         | _Notitiae_ 5 (1969) 405, n. 19                     |
+| [R9](#r9--rogation-and-ember-days)                                    | §46    | Rogation and Ember Days                                  | _Notitiae_ 5 (1969) 405, n. 20                     |
+| [R10](#r10--anniversary-of-co-cathedral)                              | §52    | Anniversary of co-cathedral                              | _Notitiae_ 9 (1973) 152                            |
+| [R11](#r11--title-of-churches-and-feasts)                             | §52    | Church titles and feasts                                 | _Notitiae_ 5 (1969) 404, n. 18                     |
+| [R12](#r12--transfer-of-dedication-anniversary)                       | §58    | Transfer of dedication anniversary to Sunday             | _Notitiae_ 5 (1969) 404, n. 16; 11 (1975) 61       |
+| [R13](#r13--exaltation-of-the-cross-and-lateran-dedication-on-sunday) | §59    | Exaltation of Cross / Lateran Dedication on Sunday       | _Notitiae_ 10 (1974) 40, n. 3                      |
+| [R14](#r14--method-for-transferring-impeded-solemnities)              | §60    | Method for transferring impeded solemnities              | _Notitiae_ 6 (1970) 405, n. 44                     |
+| [R15](#r15--order-in-the-litany-of-the-saints)                        | §61    | Order in the Litany of the Saints                        | _Notitiae_ 6 (1970) 375                            |
