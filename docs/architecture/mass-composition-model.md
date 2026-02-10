@@ -13,25 +13,40 @@ This document synthesizes the analysis of these liturgical rules and proposes a 
 
 ## Part I — Liturgical Rules Synthesis
 
-### 1. The Two-Level Decision (GIRM 355)
+### 1. The Choice of Mass (GIRM 355)
 
-On a weekday in Ordinary Time with optional memorials, the celebrant makes a **global choice** first (GIRM 355.3): celebrate the feria, or celebrate one of the available optional memorials.
+GIRM 355 governs the choice of Mass on days with optional memorials. The range of options varies by season:
 
-This choice determines which "formulary" (set of texts) is used as the base. However, certain elements can then be mixed between sources.
+- **GIRM 355.3 (Ordinary Time weekdays):** Five options — (a) the weekday Mass, (b) the Mass of an optional memorial occurring that day, (c) the Mass of any Saint listed in the *Martyrology* for that day, (d) a Mass for Various Needs, or (e) a Votive Mass.
+- **GIRM 355.2 (Advent before Dec 17, Christmas from Jan 2, Easter):** Four options — (a) the weekday Mass, (b) the Mass of the Saint, (c) the Mass of one of the Saints whose memorial is observed, or (d) the Mass of any Saint listed in the *Martyrology* for that day.
+- **GIRM 355.1 (Advent Dec 17-24, Octave of Christmas, Lent):** The Mass of the current liturgical day is obligatory, with limited borrowing from a memorial (see below).
+
+> **Scope note:** This document focuses on the **feria vs. optional memorial** choice — the primary use case for romcal. The Martyrology, Votive Masses, Masses for Various Needs (GIRM 375, 377), and Masses for the Dead (GIRM 381) are valid additional options on Ordinary Time weekdays but are not modeled here.
+
+GIRM 355 also adds two pastoral directives:
+- The priest "will take care not to omit the readings assigned for each day in the Lectionary for weekdays too frequently and without sufficient reason, since the Church desires that a richer portion at the table of God's word be provided for the faithful."
+- "Where the optional memorials of the Blessed Virgin Mary or of the Saints are dear to the faithful, the priest should satisfy their legitimate devotion."
+- When choosing between a memorial in the General Calendar and one in a diocesan or religious calendar, "preference should be given, all things being equal and in keeping with tradition, to the memorial inscribed in the particular calendar."
+
+Once the celebrant has made this global choice, it determines which "formulary" (set of texts) is used as the base. However, certain elements can then be mixed between sources.
 
 ### 2. The Three Substitution Groups
 
 The GIRM organizes mass texts into groups with distinct substitution rules:
 
-#### Group 1 — Formulary Block (GIRM 355)
+#### Group 1 — Formulary Block
 
 **Collect + Entrance Antiphon + Communion Antiphon**
 
-These three elements are **inseparable**. They follow the global choice of celebration. If you celebrate the memorial, all three come from the saint (proper or Common). If you celebrate the feria, all three come from the feria.
+These three elements follow the global choice of celebration as a block. If you celebrate the memorial, all three come from the saint (proper or Common). If you celebrate the feria, all three come from the feria.
 
-The collect is the identifying marker of the celebration. GIRM 363 states: "On memorials of Saints, the collect proper to the day is used." The antiphons follow the same formulary.
+> **Architectural note:** The GIRM does not explicitly group these three elements together as an "inseparable block." This grouping is an architectural inference derived from what GIRM 363 makes individually flexible (prayer over the offerings, prayer after Communion) and what it does not — leaving the collect, entrance antiphon, and communion antiphon bound to the chosen formulary. Note that GIRM 48 and 87 (cf. GIRM 367) do allow the entrance and communion antiphons to be replaced by other approved chants, which is a separate form of flexibility not modeled here.
+
+The collect is the identifying marker of the celebration. GIRM 363 states: "On memorials of Saints, the collect proper to the day is used, **or, if none is available, one from an appropriate Common.**"
 
 **Exception — Privileged weekdays (GIRM 355.1):** On weekdays of Advent Dec 17-24, Octave of Christmas, and Lent, the Mass of the feria is obligatory. Only the collect may be borrowed from the memorial — this is the only case where the collect is detachable from the antiphons.
+
+**Further exception — Ash Wednesday and Holy Week (GIRM 355.1):** On Ash Wednesday and during Holy Week, even the collect may **not** be borrowed from a memorial. The feria is imposed entirely without exception.
 
 #### Group 2 — Readings Block (GIRM 357-358, GILM 83-84)
 
@@ -81,9 +96,13 @@ It is **not** automatically from the feria — the Common is always an option (G
 
 **The celebrant cannot mix readings at will** (e.g., taking the gospel from the saint and the first reading from the feria when both proper readings are available). When proper readings exist, they must all be used.
 
-##### Default preference for weekday readings (GIRM 358, GILM 83)
+##### Default preference for weekday readings (GIRM 355, GILM 83)
 
-Both GIRM 358 and GILM 83 emphasize that the priest should take care not to omit the weekday readings too frequently, as the Church desires "a more lavish table of the word of God" (*GILM 83*) through the *lectio continua*.
+Both GIRM 355 (in its pastoral remarks following 355.3) and GILM 83 emphasize that the priest should take care not to omit the weekday readings too frequently, as the Church desires "a more lavish table of the word of God" (*GILM 83*) through the *lectio continua*.
+
+##### Interrupted continuous reading (GIRM 358)
+
+GIRM 358 provides that when the continuous weekday reading is interrupted by a solemnity, feast, or particular celebration, "the priest, taking into consideration the entire week's scheme of readings, is allowed either to combine parts omitted with other readings or to decide which readings are to be preferred over others." This flexibility is a pastoral provision, not modeled as a data structure but relevant context for consumers.
 
 ##### Component-level choice in Commons readings (GILM 71)
 
@@ -123,15 +142,33 @@ GILM 75 notes that "in the case of certain rather lengthy texts, longer and shor
 
 **Consequence for the data model:** A reading text may have an optional short form variant.
 
-#### Group 3 — Flexible Orations (GIRM 363)
+#### Group 3 — Flexible Orations (GIRM 363) and Preface (GIRM 364-365)
 
-**Prayer over the Offerings, Prayer after Communion, Preface**
+**Prayer over the Offerings, Prayer after Communion**
 
 Each of these can be chosen **independently** (à la carte):
 
 > "The prayer over the offerings, however, and the prayer after Communion, unless they are proper, may be taken either from the Common or from the weekdays of the current Season." (GIRM 363)
 
-The preface similarly can come from the Common of the saint or from the season.
+##### Weekday orations in Ordinary Time (GIRM 363 §3)
+
+On weekdays in Ordinary Time, GIRM 363 provides broader alternatives for orations: "besides the orations from the previous Sunday, orations from another Sunday in Ordinary Time may be used, or one of the prayers for various needs provided in the Missal. It is always permissible, however, to use the collect alone from these Masses."
+
+##### Seasonal restriction (GIRM 363 §5)
+
+"During the more important seasons of the year, however, the proper seasonal orations appointed for each weekday in the Missal already make provision for this." This means the broader alternatives above (other Sundays, prayers for various needs) do **not** apply during Advent, Christmas, Lent, and Easter — the seasonal weekday orations are already provided.
+
+##### Preface (GIRM 364-365)
+
+The preface can come from the Common of the saint or from the season. GIRM 363 does not govern the preface — it only addresses orations (collect, prayer over the offerings, prayer after Communion).
+
+GIRM 365 governs the choice of Eucharistic Prayer, which has a direct interaction with the preface: Eucharistic Prayer IV has an **invariable** preface and "may be used when a Mass has no Preface of its own" (GIRM 365.4). This constraint limits preface flexibility.
+
+> **Architectural note:** The preface is grouped with the flexible orations in this model for structural convenience, but its normative framework is GIRM 364-365, not GIRM 363. The Eucharistic Prayer choice itself is not modeled here.
+
+##### Long and short forms of texts (GIRM 360)
+
+GIRM 360 provides that "at times, a longer and shorter form of the same text is given. In choosing between these two forms, a pastoral criterion must be kept in mind." This parallels GILM 75 and 80 for readings, and applies to any liturgical text with variant forms.
 
 ### 3. Summary by Season Context
 
@@ -139,9 +176,13 @@ The rules vary depending on the liturgical season:
 
 | Season | GIRM ref | Formulary block | Readings block | Flexible orations |
 |---|---|---|---|---|
-| **Ordinary Time weekdays** | 355.3 | Free choice: feria or memorial | Feria default; saint's proper if they exist (obligatory); or Common (always available) | Each independently: feria or Common |
-| **Advent before Dec 17, Christmas from Jan 2, Easter** | 355.2 | Free choice: feria or memorial | Free choice: feria, saint's proper, or Common | Each independently |
-| **Advent Dec 17-24, Octave of Christmas, Lent** | 355.1 | Feria imposed (only collect borrowable from memorial) | Feria imposed | Feria imposed |
+| **Ordinary Time weekdays** | 355.3 | Free choice: feria or memorial ¹ | Feria default; saint's proper if they exist (obligatory); or Common (always available) | Each independently: feria or Common |
+| **Advent before Dec 17, Christmas from Jan 2, Easter** | 355.2 | Free choice: feria or memorial ² | Free choice: feria, saint's proper, or Common | Each independently |
+| **Advent Dec 17-24, Octave of Christmas, Lent** (except Ash Wed & Holy Week) | 355.1 | Feria imposed (only collect borrowable from memorial) | Feria imposed | Feria imposed |
+| **Ash Wednesday, Holy Week** | 355.1 | Feria imposed entirely (no collect borrowing) | Feria imposed | Feria imposed |
+
+¹ GIRM 355.3 also allows Martyrology saints, Masses for Various Needs, and Votive Masses (out of scope for this model).
+² GIRM 355.2 also allows the Mass of any Saint listed in the *Martyrology* (out of scope for this model).
 
 ### 4. Visual Schema
 
@@ -172,24 +213,34 @@ FERIA                                     MEMORIAL
 ```
 
 ```
-PRIVILEGED WEEKDAYS (Advent 17-24, Lent...)
-═══════════════════════════════════════════
+PRIVILEGED WEEKDAYS (Advent 17-24, Octave of Christmas, Lent)
+═════════════════════════════════════════════════════════════
 
   Formulary = FERIA (imposed)
   │
   └── Only exception: the collect ALONE
       may be borrowed from the memorial
       (everything else = feria)
+
+  ⚠ ASH WEDNESDAY & HOLY WEEK:
+      No exception at all — feria imposed
+      entirely, including the collect.
 ```
 
 ### 5. Source References
 
 #### GIRM (General Instruction of the Roman Missal)
-- **GIRM 355** — Choice of Mass on optional memorials (by season)
-- **GIRM 357** — Choice of readings for memorials (strictly proper override)
-- **GIRM 358** — Weekday Lectionary readings and continuous reading
-- **GIRM 363** — Choice of orations for memorials
-- **GIRM 364-365** — Preface and Eucharistic Prayer choices
+- **GIRM 355** — Choice of Mass on optional memorials (by season): five options in OT (355.3), four in certain seasons (355.2), feria imposed on privileged days (355.1). Pastoral caution on preserving weekday readings. Exception: no collect borrowing on Ash Wednesday and Holy Week.
+- **GIRM 357** — Choice of readings for memorials: weekday readings unless strictly proper readings exist
+- **GIRM 358** — Weekday Lectionary readings: continuous reading scheme; priest may combine omitted readings when interrupted by celebrations
+- **GIRM 360** — Long and short forms of texts: "a pastoral criterion must be kept in mind"
+- **GIRM 361** — Pastoral criteria for choosing between alternative texts; prohibition against permanently excluding Scripture passages
+- **GIRM 362** — Adaptations to the *Ordo Lectionum Missae* by Conferences of Bishops must be observed
+- **GIRM 363** — Choice of orations for memorials: collect from proper or Common; prayer over offerings and prayer after Communion flexible. OT weekdays: orations from other Sundays or prayers for various needs also available (§3). Seasonal restriction: during major seasons, proper seasonal orations are already provided (§5).
+- **GIRM 364-365** — Preface (purpose and variety) and Eucharistic Prayer choices. EP IV has an invariable preface and may only be used when a Mass has no preface of its own (365.4).
+- **GIRM 367** — Norms for chants at entrance, offertory, and Communion (cf. GIRM 48, 87): entrance and communion antiphons may be replaced by other approved chants
+- **GIRM 375, 377** — Votive Masses and Masses for Various Needs on OT weekdays with optional memorials (out of scope for this model)
+- **GIRM 381** — Masses for the Dead on OT weekdays with optional memorials (out of scope for this model)
 
 #### GNLY (General Norms for the Liturgical Year and the Calendar)
 - **GNLY 3** — "The liturgical day runs from midnight to midnight."
@@ -281,7 +332,7 @@ struct DayContext {
 
 **Why this name:** In liturgical terminology, the "formulary" (*formularium*) is the complete set of proper texts for a given Mass. This struct represents the core identifying subset that must be taken as a unit. "Set" emphasizes that these elements are grouped and inseparable.
 
-**Liturgical basis:** GIRM 355 — these three elements follow the choice of celebration as a block.
+**Liturgical basis:** Architectural inference — GIRM 363 explicitly makes the prayer over the offerings and prayer after Communion flexible, but leaves these three elements (collect, entrance antiphon, communion antiphon) bound to the chosen formulary. See Group 1 discussion in Part I for caveats.
 
 ```rust
 struct FormularySet {
@@ -297,13 +348,13 @@ struct FormularySet {
 
 **Why this name:** It is a "reading" "text" with potential variant forms.
 
-**Liturgical basis:** GILM 75, 80 — some readings are provided in both long and short forms.
+**Liturgical basis:** GIRM 360, GILM 75, 80 — some readings are provided in both long and short forms; "a pastoral criterion must be kept in mind" when choosing.
 
 ```rust
 struct ReadingText {
     /// The full text of the reading
     text: String,
-    /// Optional short form, when the Lectionary provides one (GILM 75, 80)
+    /// Optional short form, when the Lectionary provides one (GIRM 360, GILM 75, 80)
     short_form: Option<String>,
 }
 ```
@@ -378,13 +429,15 @@ enum ReadingsContent {
 
 **Why this name:** "Flexible" because unlike the formulary block, each oration here can be sourced independently. "Orations" is the liturgical term for these presidential prayers.
 
-**Liturgical basis:** GIRM 363 — "The prayer over the offerings [...] and the prayer after Communion [...] may be taken either from the Common or from the weekdays of the current Season."
+**Liturgical basis:**
+- GIRM 363 — "The prayer over the offerings [...] and the prayer after Communion [...] may be taken either from the Common or from the weekdays of the current Season."
+- GIRM 364-365 — The preface is included here for structural convenience, though its norms come from GIRM 364-365, not 363.
 
 ```rust
 struct FlexibleOrations {
     prayer_over_the_offerings: Option<String>,
     prayer_after_communion: Option<String>,
-    preface: Option<String>,
+    preface: Option<String>,        // Governed by GIRM 364-365, not 363
     solemn_blessing: Option<String>,
     prayer_over_the_people: Option<String>,
 }
@@ -528,11 +581,11 @@ struct Celebration {
 
 ```rust
 struct CelebrationMass {
-    /// Formulary block (GIRM 355) — inseparable
+    /// Formulary block — follows the choice of celebration
     formulary: FormularySet,
     /// Readings block — Fixed (proper/weekday) or Pool (Common)
     readings: ReadingsContent,
-    /// Flexible orations (GIRM 363) — each independently choosable
+    /// Flexible orations (GIRM 363) and preface (GIRM 364-365)
     flexible_orations: FlexibleOrations,
 }
 ```
@@ -630,7 +683,7 @@ struct MassComposition {
     /// The celebration to use by default (typically the feria or highest-ranking)
     default_celebration_id: CelebrationId,
 
-    // === FORMULARY BLOCK (GIRM 355) ===
+    // === FORMULARY BLOCK ===
     /// Each option = one possible celebration with its collect + antiphons
     /// The consumer picks ONE option — all three texts come as a block
     identity_options: Vec<IdentityOption>,
@@ -640,11 +693,11 @@ struct MassComposition {
     /// The consumer picks ONE option, then composes from it
     readings_options: Vec<ReadingsOption>,
 
-    // === FLEXIBLE ORATIONS (GIRM 363) ===
+    // === FLEXIBLE ORATIONS (GIRM 363) AND PREFACE (GIRM 364-365) ===
     /// Each oration has its own list of alternatives, chosen independently
     prayer_over_offerings_options: Vec<SourcedText>,
     prayer_after_communion_options: Vec<SourcedText>,
-    preface_options: Vec<SourcedText>,
+    preface_options: Vec<SourcedText>,   // Governed by GIRM 364-365
     solemn_blessing_options: Vec<SourcedText>,
     prayer_over_people_options: Vec<SourcedText>,
 
@@ -751,8 +804,12 @@ struct CompositionRules {
 enum BlockRule {
     /// Free choice among the proposed options
     PickOne,
-    /// First option is imposed (no choice)
-    Forced,
+    /// First option is imposed, but the collect alone may be borrowed from a memorial
+    /// (privileged weekdays: Advent Dec 17-24, Octave of Christmas, Lent — GIRM 355.1)
+    ForcedCollectBorrowable,
+    /// First option is imposed entirely — no borrowing permitted
+    /// (Ash Wednesday, Holy Week — GIRM 355.1 exception)
+    ForcedNoException,
 }
 ```
 
