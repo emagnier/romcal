@@ -291,7 +291,7 @@ struct FlexibleOrations {
 
 ```rust
 enum TextSource {
-    /// From the Proper of Time (feria/weekday)
+    /// From the Proper of Time (weekday)
     ProperOfTime { day_id: String },
     /// From the proper texts of a specific saint
     ProperOfSaint { saint_id: String },
@@ -607,7 +607,7 @@ struct ReadingsOption {
 ```rust
 enum ReadingsCategory {
     /// Weekday readings from the lectio continua (Proper of Time)
-    Feria,
+    Weekday,
     /// Proper readings for the saint — obligatory, must replace weekday readings (GILM 83)
     Proper,
     /// Accommodated readings — facultative, not binding except for pastoral reasons (GILM 83)
@@ -657,14 +657,14 @@ enum BlockRule {
 
 ```rust
 enum ReadingsRule {
-    /// Feria readings are obligatory, no exception
+    /// Weekday readings are obligatory, no exception
     /// (privileged weekdays: Advent Dec 17-24, Lent)
-    FeriaOnly,
-    /// Feria readings by default; overridden if the saint has proper readings
+    WeekdayOnly,
+    /// Weekday readings by default; overridden if the saint has proper readings
     /// (GILM 83, GIRM 357). Common readings also available as alternatives.
-    FeriaDefaultWithProperOverride,
+    WeekdayDefaultWithProperOverride,
     /// Free choice among the proposed reading sets
-    /// (feria, saint's proper/accommodated, or Common)
+    /// (weekday, saint's proper/accommodated, or Common)
     PickOne,
 }
 ```
@@ -679,9 +679,9 @@ enum ReadingsRule {
 enum FlexibleRule {
     /// Each oration can be chosen independently from its own list
     PickEachIndependently,
-    /// All orations must come from the feria
+    /// All orations must come from the weekday
     /// (privileged weekdays — except the collect, handled in the identity block)
-    FeriaOnly,
+    WeekdayOnly,
 }
 ```
 
@@ -714,7 +714,7 @@ MassCalendar
 │       readings_options: [
 │           ReadingsOption {                          ← feria (default)
 │               source: ProperOfTime("ord_time_5_mon"),
-│               category: Feria,
+│               category: Weekday,
 │               is_default: true,
 │               readings: ReadingsSet { reading_1: "...", ... }
 │           },
@@ -737,7 +737,7 @@ MassCalendar
 │
 │       composition_rules: CompositionRules {
 │           identity: PickOne,
-│           readings: FeriaDefaultWithProperOverride,
+│           readings: WeekdayDefaultWithProperOverride,
 │           flexible_orations: PickEachIndependently,
 │       }
 │   }
