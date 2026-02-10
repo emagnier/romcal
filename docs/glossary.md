@@ -6,9 +6,17 @@ Definitions of terms used in Romcal and Catholic liturgy.
 
 ## Abbreviations
 
+### CP
+
+See [Calendaria Particularia](#calendaria-particularia).
+
 ### GILH
 
 See [General Instruction of the Liturgy of the Hours](#general-instruction-of-the-liturgy-of-the-hours).
+
+### GILM
+
+See [General Introduction to the Lectionary for Mass](#general-introduction-to-the-lectionary-for-mass).
 
 ### GIRM
 
@@ -22,6 +30,10 @@ See [Universal Norms on the Liturgical Year and the Calendar](#universal-norms-o
 
 See [Universal Norms on the Liturgical Year and the Calendar](#universal-norms-on-the-liturgical-year-and-the-calendar).
 
+### PS
+
+See [Paschalis Sollemnitatis](#paschalis-sollemnitatis).
+
 ### UNLY
 
 See [Universal Norms on the Liturgical Year and the Calendar](#universal-norms-on-the-liturgical-year-and-the-calendar).
@@ -29,6 +41,12 @@ See [Universal Norms on the Liturgical Year and the Calendar](#universal-norms-o
 ---
 
 ## C
+
+### Calendaria Particularia
+
+_Calendaria Particularia_ (Latin: "Particular Calendars") is an instruction from the Congregation for Divine Worship (June 24, 1970) providing norms for revising particular calendars and propers for dioceses, religious institutes, and other entities. It extends the GNLY with specific rules for patron saints, proper celebrations, and liturgical privileges.
+
+See: [CP](./reference/cp.md)
 
 ### Celebration
 
@@ -55,6 +73,12 @@ See [Liturgy of the Hours](#liturgy-of-the-hours).
 The General Instruction of the Liturgy of the Hours (GILH) is the document that provides the general instructions for the Liturgy of the Hours. It is an official liturgical document promulgated by the Congregation for Divine Worship.
 
 See: [GILH](./reference/gilh.md)
+
+### General Introduction to the Lectionary for Mass
+
+The General Introduction to the Lectionary for Mass (GILM) is the introductory document to the Order of Readings for Mass (_Ordo Lectionum Missae_). It explains the theological foundations of Scripture proclamation in the liturgy, the structure of the Liturgy of the Word, and the principles for arranging readings throughout the liturgical year.
+
+See: [GILM](./reference/gilm.md)
 
 ### General Instruction of the Roman Missal
 
@@ -128,6 +152,12 @@ See: [General Instruction of the Liturgy of the Hours](#general-instruction-of-t
 ---
 
 ## P
+
+### Paschalis Sollemnitatis
+
+_Paschalis Sollemnitatis_ (Latin: "Of the Paschal Solemnity") is a circular letter from the Congregation for Divine Worship (January 16, 1988) concerning the preparation and celebration of the Easter feasts. It recalls and clarifies norms for Lent, Holy Week, the Easter Triduum, and Easter Time.
+
+See: [PS](./reference/ps.md)
 
 ### Precedence
 
