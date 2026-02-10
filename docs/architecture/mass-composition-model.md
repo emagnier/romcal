@@ -280,30 +280,35 @@ PRIVILEGED WEEKDAYS (Advent 17-24, Octave of Christmas, Lent)
 
 - **GILH 34-36** — The Invitatory: opens the first Hour of the day (normally Office of Readings or Lauds). Consists of an invitatory antiphon + Psalm 95 (or Ps 100, 67, 24). The antiphon varies by celebration and follows the §235b priority on memorials.
 - **GILH 37** — Morning Prayer (Lauds) and Evening Prayer (Vespers) are the "double hinge" of the Daily Office: the two principal Hours around which the entire Office is structured
-- **GILH 53** — Concluding prayer: from the Psalter in Ordinary Time, from the Proper of the Season or of the Saints otherwise
+- **GILH 53** — Concluding prayer at Lauds/Vespers: "for weekdays in Ordinary Time is found in the psalter and for other days in the proper." This is the structural rule; §197-200 provide the detailed per-Hour rules.
 - **GILH 55-73** — The Office of Readings: hymn, 3 psalms with antiphons, versicle, 1st reading (Scripture) + responsory, 2nd reading (patristic or hagiographical) + responsory, Te Deum (when applicable), concluding prayer. The most complex Hour in terms of content variation.
 - **GILH 62** — On memorials, psalms and antiphons are taken from the current week and day of the psalter, unless proper psalms or antiphons are indicated
 - **GILH 64, 67** — Office of Readings has two readings: the first from Scripture (continuous reading cycle), the second patristic. On memorials, a hagiographical reading replaces the second reading if one exists
-- **GILH 68** — Te Deum: sung on solemnities, feasts, and Sundays (except in Lent); omitted on memorials and weekdays
-- **GILH 73** — Vigil extension of the Office of Readings: "after the Office of Readings and before the Te Deum, canticles from the special appendix [...] are inserted, the passage from the Gospels is then read." The vigil is not a separate Hour but an extension celebrated "during the night or early morning."
-- **GILH 84-92** — Compline (Night Prayer): the most stable Hour. Examination of conscience, hymn, psalm(s) with antiphon, short reading, versicle, Nunc Dimittis canticle + antiphon, concluding prayer, Marian antiphon. Nearly always from the weekday psalter — only varies on solemnities (§230: Compline after Vespers I uses Sunday scheme; after Vespers II uses Saturday Week I if no proper).
+- **GILH 68** — Te Deum: said "on Sundays outside Lent, on days within the octaves of Easter and Christmas, and on solemnities and feasts" after the second reading + responsory; "omitted on memorials and weekdays." The last part (from "Save your people, Lord") may be omitted.
+- **GILH 73** — Vigil extension of the Office of Readings: "After the two readings and before the Te Deum canticles should be added from the special appendix [...]. Then the gospel should be read; a homily on the gospel may be added. After this the Te Deum is sung and the prayer said." On solemnities/feasts: Gospel from the Lectionary for Mass; on Sundays: from the series on the paschal mystery in the appendix.
+- **GILH 84-92** — Compline (Night Prayer): the most stable Hour. Examination of conscience, hymn, psalm(s) with antiphon, short reading, versicle, Nunc Dimittis canticle + antiphon, concluding prayer, Marian antiphon. Nearly always from the weekday psalter — only varies on solemnities (§230: "everything is said as on Sundays, after evening prayer I and II respectively").
 - **GILH 93-98** — Provisions for combining Hours of the Office with Mass: shared opening rite, psalm as entrance chant, single concluding rite
-- **GILH 116-119** — Antiphon rules by rank: on memorials without proper antiphons, antiphons for the canticles of Zechariah and Mary may be taken from the Common or from the current psalter
-- **GILH 134-135** — Psalm arrangements: on solemnities and feasts, proper psalms; on memorials and weekdays, psalms from the current psalter
+- **GILH 116-119** — Antiphon rules by rank and season. §116: proper antiphons for psalms during Easter Triduum, octaves, and seasons. §117: solemnities and feasts have proper antiphons (if not, from the Common). §118: saints' memorials retain any proper antiphons. §119: antiphons for the Canticles of Zechariah and Mary come from Proper of Seasons (OT) or Proper/Common (solemnities, feasts); on memorials without proper antiphons, "the antiphon may be taken at will either from the common or from the current week."
+- **GILH 134-135** — Psalm arrangements by rank. §134: detailed per-Hour assignments on solemnities/feasts — Office of Readings: proper psalms from tradition; Lauds: Sunday of Week I; EP I on solemnities: Laudate Psalms (Ps 113, 117, 135, 146, 147A, 147B); EP II on solemnities and EP on feasts: proper; Daytime Prayer on solemnities: Gradual Psalms (Ps 120-128) or Sunday of Week I; Daytime Prayer on feasts: current psalter. §135: "In all other cases the psalms are taken from the current week and day of the psalter, unless there are proper antiphons or proper psalms."
+- **GILH 144** — No Gospel readings in the Liturgy of the Hours, except in the vigil form of the Office of Readings (§73): "Without prejudice to the exception noted in no. 73, there are no readings from the Gospel in the liturgy of the hours, since in the Mass each year the Gospel is read in its entirety." Architectural principle: `VigilExtension.gospel` is the sole Gospel element in the Office data model.
+- **GILH 156-158** — Short readings (capitula): chosen to give "clear and concise expression to a theme or an exhortation." Four weekly series for OT, weekly series per season, proper for solemnities/feasts/some memorials, one-week series for Night Prayer. New Testament only at Evening Prayer (§158c).
+- **GILH 166-168** — Hagiographical readings definition. §166: "either texts from a Father of the Church or another ecclesiastical writer, referring specifically or rightly applicable to the saint being commemorated, or the readings are texts from the saint's own writings, or are biographical." §167: historical accuracy required, spiritual benefit emphasized. §168: biographical note at the head of the reading is for information only, not read aloud.
 - **GILH 175-178** — Daytime Prayer (Terce, Sext, Nones): hymn, 3 psalms with antiphons, short reading, versicle, concluding prayer. Two psalmody schemes: "current" (from the psalter week) and "complementary" (for those who pray all three hours). On memorials, entirely from weekday (§236). On solemnities, may have proper hymn, antiphons, reading, and prayer (§229).
-- **GILH 199** — Concluding prayer: on memorials, from the saint's proper or the appropriate Common; on weekdays, from the psalter or the seasonal proper
-- **GILH 206** — Vigil form structure for the Triduum: "In the celebration of the vigils, [...] after the two readings and before the canticle Te Deum, the canticles and the Gospel indicated for each case are added."
-- **GILH 209** — Vespers suppression on Holy Thursday and Good Friday: those who attend the evening Mass of the Lord's Supper or the Celebration of the Lord's Passion omit Vespers.
+- **GILH 197-200** — Concluding prayer rules per Hour. §197: marks the completion of each Hour; said by priest/deacon in public celebration. §198: Office of Readings = "the prayer proper to the day"; Night Prayer = "always the prayer given in the psalter for that hour." §199: Lauds/Vespers = from the proper on Sundays, seasonal weekdays, solemnities, feasts, and memorials; on OT weekdays = from the psalter. §200: Daytime Prayer = from the proper on Sundays, seasonal weekdays, solemnities, and feasts; on other days = from the psalter, "expressing the character of the particular hour."
+- **GILH 206** — Sunday vigils: "The way to celebrate Sunday vigils, as circumstances suggest, has been discussed in no. 73." Cross-reference to §73 for the vigil form of the Office of Readings.
+- **GILH 209** — Vespers suppression on Holy Thursday and Good Friday: "Those who take part in the evening Mass of the Lord's Supper or the celebration of the Lord's passion on Good Friday do not say evening prayer on either day."
+- **GILH 210** — On Good Friday and Holy Saturday, the Office of Readings "should be celebrated publicly with the people before morning prayer, as far as this is possible." Pastoral directive on timing.
 - **GILH 211** — Compline suppression on Holy Saturday: those who attend the Easter Vigil omit Compline.
-- **GILH 212** — Easter Vigil replaces the Office of Readings on Holy Saturday. For those absent, a reduced Office of Readings is provided (choosing 4 of the Vigil's OT readings). Cross-domain interaction: a Mass celebration affects the Office.
+- **GILH 212** — Easter Vigil replaces the Office of Readings on Holy Saturday. For those absent, a reduced Office of Readings is provided: "at least four of its readings" — recommended Exodus, Ezekiel, St. Paul (NT), and the Gospel (NT) — followed by Te Deum and the prayer of the day. Cross-domain interaction: a Mass celebration affects the Office.
 - **GILH 215** — Christmas night: when the vigil form of the Office of Readings is celebrated before Midnight Mass, Compline is omitted. Also specifies the vigil form for Christmas.
-- **GILH 225-230** — How the Office is arranged on **solemnities**: everything from Proper or Common (§225); psalmody from Laudate group or Sunday Week I (§225); Te Deum said (§228); Daytime Prayer proper (§229); Compline: after Vespers I → Sunday scheme, after Vespers II → Saturday Week I or proper (§230). Solemnities begin with Vespers I the preceding evening.
-- **GILH 231-233** — How the Office is arranged on **feasts**: "celebrated within the limits of the natural day" — no Vespers I (§231), except Lord's Feasts falling on Sunday (GNLY 13); Te Deum said (§231); Office of Readings as solemnities (§232); Daytime Prayer: weekday psalter + feast concluding prayer (§233); Compline from weekday (§233).
+- **GILH 225-230** — How the Office is arranged on **solemnities**: everything from Proper or Common (§226-227); psalmody per Hour (EP I: Laudate Psalms, Lauds: Sunday Week I, OdR: proper, Daytime: Gradual Psalms — see §134 and §3a psalmody table); Te Deum said (§228); §228 also: "In the case of a saint with a purely local cult and without special texts even in the local proper, everything is taken from the common"; Daytime Prayer proper (§229); Compline: "as on Sundays, after evening prayer I and II respectively" (§230). Solemnities begin with Vespers I the preceding evening.
+- **GILH 231-233** — How the Office is arranged on **feasts**: "celebrated within the limits of the natural day" — no Vespers I (§231), except Lord's Feasts falling on Sunday (GNLY 13); Te Deum said (§231); "At the office of readings, at morning prayer, and at evening prayer, all is done as on solemnities" (§231). Daytime Prayer (§232): weekday hymn (always), weekday psalms/antiphons (rarely proper antiphon from tradition), proper short reading and concluding prayer. Night Prayer: "as on ordinary days" (§233).
 - **GILH 234** — No difference in arrangement between obligatory and optional memorials, except during privileged seasons
 - **GILH 235-236** — Memorials during Ordinary Time: (a) psalms/antiphons from current weekday; (b) invitatory, hymn, short reading, canticle antiphons, intercessions from saint's Proper, or else from Common or weekday; (c) concluding prayer from the saint (mandatory); (d) Office of Readings: 1st reading from Scripture cycle, 2nd from saint/Common; Te Deum not said. Daytime Prayer and Night Prayer entirely from weekday (§236).
 - **GILH 237-239** — Memorials during privileged seasons: no memorials on Sundays/solemnities/feasts/Ash Wed/Holy Week/Easter Octave (§237); obligatory memorials become optional on Advent Dec 17-24, Christmas Octave, Lent weekdays (§238); limited additions: hagiographical reading **added after** patristic (not replacing), saint's antiphon and prayer **appended** to Morning/Evening Prayer (§239)
 - **GILH 240** — Optional memorial of BVM on Saturdays in Ordinary Time, celebrated as other memorials
 - **GILH 244** — On weekdays with optional memorials, a saint from the Roman Martyrology may be celebrated as other memorials (parallels GIRM 355.3c)
+- **GILH 247** — Immutability of formularies on privileged days: "In the office for Sundays, solemnities, feasts of the Lord listed in the General Calendar, the weekdays of Lent and Holy Week, the days within the octaves of Easter and Christmas, and the weekdays from 17 to 24 December inclusive, it is never permissible to change the formularies that are proper or adapted to the celebration, such as antiphons, hymns, readings, responsories, prayers, and very often also the psalms." Exception: Sunday psalms may be substituted with psalms from another week.
 - **GILH 249** — Interrupted continuous reading in the Office: may combine omitted parts or prefer certain readings (parallels GIRM 358)
 
 ---
@@ -1195,7 +1200,7 @@ Solemnities receive the most complete proper treatment. **Everything** is from t
 | **Vespers I** (Evening Prayer I) | Proper/Common — begins the solemnity on the preceding evening | §225 |
 | **Invitatory antiphon** | Proper/Common | §225 |
 | **Hymn** | Proper/Common | §225 |
-| **Psalmody** | Proper, or from the Laudate group (Ps 118, 150), or from Sunday of Week I | §225 |
+| **Psalmody** | Per Hour — see detail below | §134, §225-229 |
 | **Antiphons** (psalm + canticle) | Proper/Common | §225 |
 | **Short reading, short responsory** | Proper/Common | §225 |
 | **Canticle antiphon** (Benedictus/Magnificat) | Proper/Common | §225 |
@@ -1205,7 +1210,18 @@ Solemnities receive the most complete proper treatment. **Everything** is from t
 | **Office of Readings — 2nd reading** | Proper/Common (patristic or hagiographical) | §228 |
 | **Te Deum** | **Said** | §228 |
 | **Daytime Prayer** | Proper hymn, proper antiphons, proper short reading and prayer; psalmody may use the "gradual" psalms (Ps 120-128) unless proper | §229 |
-| **Compline** | After Vespers I: Compline of Sunday; after Vespers II: proper if given, otherwise Saturday of Week I | §230 |
+| **Compline** | "Everything is said as on Sundays, after evening prayer I and II respectively" — i.e., Compline after Vespers I uses the Sunday-after-EP-I scheme; Compline after Vespers II uses the Sunday-after-EP-II scheme | §230 |
+
+**Psalmody detail by Hour on Solemnities (§134, §226-229):**
+
+| Hour | Psalms source | Reference |
+|------|---------------|-----------|
+| **Vespers I** | Laudate Psalms (Ps 113, 117, 135, 146, 147A, 147B), following ancient custom | §134, §226 |
+| **Office of Readings** | Proper psalms from tradition | §134, §228 |
+| **Lauds** | Psalms from Sunday of Week I | §134, §227 |
+| **Daytime Prayer** | Gradual Psalms (Ps 120-128) with proper antiphon; on Sundays: Sunday of Week I; certain solemnities of the Lord: special psalms | §134, §229 |
+| **Vespers II** | Proper psalms and canticle | §134, §226 |
+| **Compline** | After Vespers I → Sunday scheme; after Vespers II → Sunday scheme | §230 |
 
 **Key points for the data model:**
 - Solemnities need **full content for every Hour** — all fields populated, nothing from the weekday.
@@ -1222,14 +1238,14 @@ Feasts are celebrated like solemnities but with two significant restrictions:
 | **No Vespers I** | Feasts are "celebrated within the limits of the natural day" (GNLY 13). No Evening Prayer I. | §231 |
 | **Exception: Lord's Feasts on Sundays** | When a Feast of the Lord falls on a Sunday in OT or Christmas Time, it replaces the Sunday Office — including Vespers I from Saturday evening (GNLY 13). | §231 |
 | **Te Deum** | **Said** (same as solemnities) | §231 |
-| **Office of Readings** | Proper/Common — same as solemnities | §232 |
-| **Daytime Prayer** | From the weekday psalter unless proper hymn/texts indicated; concluding prayer from the feast | §233 |
-| **Compline** | From the weekday (since no Vespers I/II distinction) | §233 |
+| **Office of Readings, Lauds, Vespers** | "All is done as on solemnities" — Proper/Common | §231 |
+| **Daytime Prayer** | Hymn: weekday (always). Psalms + antiphons: weekday (unless special tradition requires a proper antiphon). Short reading: **proper**. Concluding prayer: **proper**. | §232 |
+| **Compline** | "As on ordinary days" — from the weekday | §233 |
 
 **Key points for the data model:**
 - The `VespersI` entry in `HourTime` is NOT generated for feasts (except Lord's Feasts on Sundays that replace the Sunday Office).
 - Most feast content is the same as solemnities — the main difference is temporal scope.
-- Daytime Prayer is simpler than on solemnities: weekday psalter base with feast concluding prayer.
+- Daytime Prayer is simpler than on solemnities: weekday hymn, weekday psalms and antiphons (rarely a proper antiphon from tradition), but both the short reading and concluding prayer are proper (§232).
 
 #### 3c. On Memorials — Summary Table
 
@@ -1240,24 +1256,25 @@ For reference, the complete comparison by rank:
                         ─────────        ─────           ──────────────      ────────────────     ───────
 Vespers I               Proper/Common    No ¹            No                  No                   No
 Invitatory antiphon     Proper/Common    Proper/Common   §235b ²             Weekday              Weekday
-Hymn                    Proper/Common    Proper/Common   §235b               Weekday + saint ⁴    Weekday
+Hymn                    Proper/Common    Proper/Common   §235b               Weekday              Weekday
 Psalmody                Proper ³         Proper ³        Weekday psalter     Weekday psalter      Weekday psalter
 Psalm antiphons         Proper/Common    Proper/Common   Weekday psalter     Weekday psalter      Weekday psalter
 Short reading           Proper/Common    Proper/Common   §235b               Weekday              Weekday
 Short responsory        Proper/Common    Proper/Common   §235b               Weekday              Weekday
 Canticle antiphon       Proper/Common    Proper/Common   §235b               Weekday + saint ⁴    Weekday
 Intercessions           Proper/Common    Proper/Common   §235b               Weekday              Weekday
-Concluding prayer       Proper/Common    Proper/Common   Saint (mandatory)   Saint (appended)     Weekday
+Concluding prayer       Proper/Common    Proper/Common   Saint (mandatory)   Saint ⁴ˢ             Weekday
 OdR 1st reading         Proper/Common    Proper/Common   Scripture cycle     Scripture cycle       Scripture cycle
 OdR 2nd reading         Proper/Common    Proper/Common   Saint/Common ⁵      Weekday + saint ⁶   Patristic
 Te Deum                 Yes              Yes             No                  No                   No
-Daytime Prayer          Proper           Wkday + prayer  Weekday (§236)      Weekday              Weekday
+Daytime Prayer          Proper           Wkday + rdr/pr  Weekday (§236)      Weekday              Weekday
 Compline                Special ³        Weekday         Weekday (§236)      Weekday              Weekday
 
 ¹ Except Lord's Feasts falling on Sunday (GNLY 13)
 ² §235b priority: Saint's Proper → Common → weekday
-³ Psalms from Laudate group or Sunday Week I (§225); Compline after Vespers I/II has specific rules (§230)
-⁴ §239b: Saint's antiphon and prayer appended to Lauds/Vespers
+³ Per-Hour psalm detail: see §3a Psalmody table above; Compline uses Sunday scheme (§230)
+⁴ §239b: Saint's antiphon (Benedictus/Magnificat) and prayer appended to Lauds/Vespers
+⁴ˢ §239a (OdR): Saint's concluding prayer replaces weekday; §239b (Lauds/Vespers): Saint's prayer appended
 ⁵ §235d: Hagiographical reading replaces patristic reading
 ⁶ §239a: Hagiographical reading added AFTER patristic (not replacing)
 ```
@@ -1292,11 +1309,13 @@ The Office handles memorials during privileged seasons differently from the Mass
 
 **§237 — Complete exclusion:** On Sundays, solemnities, feasts, Ash Wednesday, Holy Week, and during the Easter Octave, "no regard is taken of any memorials." This parallels the Mass rule (GIRM 355.1 exception for Ash Wednesday/Holy Week).
 
-**§238 — Demotion:** On weekdays of Advent Dec 17-24, Christmas Octave, and Lent, "obligatory memorials are not celebrated" and "are treated as optional memorials." This parallels GNLY 14 (Lenten demotion) and applies to the Office as well.
+**§238 — Demotion:** On weekdays of Advent Dec 17-24, Christmas Octave, and Lent, "no obligatory memorials are celebrated, even in particular calendars." For Lent specifically: "When any happen to fall during Lent in a given year, they are treated as optional memorials." This parallels GNLY 14 (Lenten demotion). Note the distinction: during Lent, obligatory memorials are explicitly demoted to optional; during Dec 17-24 and Christmas Octave, they are simply not celebrated — though §239 additions remain available for any memorial in all three periods.
 
 **§239 — Limited additions:** During these privileged seasons, if the celebrant wishes to mark the saint's memorial:
-- **(a) Office of Readings:** A hagiographical reading may be **added after** the patristic reading (with its responsorial), not replacing it, along with the saint's concluding prayer.
-- **(b) Morning/Evening Prayer:** The saint's antiphon (from Proper or Common) and prayer may be **appended** to the Hour.
+- **(a) Office of Readings:** A hagiographical reading may be **added after** the patristic reading (with its responsory), not replacing it. The concluding prayer of the saint is used (replacing the weekday prayer).
+- **(b) Morning/Evening Prayer:** The ending of the weekday concluding prayer may be omitted, and the saint's antiphon (from Proper or Common, for the Benedictus or Magnificat) and prayer may be **appended** to the Hour.
+
+> **Note on concluding prayer:** §239a and §239b have different mechanisms. In the Office of Readings (§239a), the saint's concluding prayer *replaces* the weekday prayer. In Lauds/Vespers (§239b), the saint's prayer is *appended* alongside the weekday prayer (whose ending is omitted). This distinction matters for the data model.
 
 **Key difference from the Mass:** In the Mass on privileged weekdays (GIRM 355.1), the collect is **borrowed** from the memorial, replacing the weekday collect — a substitution. In the Office (§239), no weekday element is removed or replaced — the saint's elements are **added alongside** the weekday elements. This is architecturally significant: the Mass model uses `ForcedCollectBorrowable` (a substitution rule), but the Office would need an "append" or "supplement" rule with no equivalent in the current `BlockRule` enum.
 
@@ -1343,13 +1362,14 @@ PRIVILEGED WEEKDAYS — OFFICE ADDITION MECHANISM (GILH 239)
   ├── Office of Readings (§239a):
   │   ├── 1st reading: Scripture cycle (UNCHANGED)
   │   ├── 2nd reading: Patristic (KEPT — not replaced)
-  │   └── + ADDED AFTER: hagiographical reading + responsory
-  │       + Saint's concluding prayer
+  │   ├── + ADDED AFTER: hagiographical reading + responsory
+  │   └── Concluding prayer: SAINT'S (replaces weekday)
   │
   ├── Lauds / Vespers (§239b):
   │   ├── All elements: weekday (UNCHANGED)
+  │   ├── Concluding prayer ending: OMITTED
   │   └── + APPENDED: saint's antiphon (Benedictus/Magnificat)
-  │       + Saint's prayer
+  │       + Saint's prayer (alongside weekday prayer)
   │
   └── Other Hours: weekday only (no additions)
 
@@ -1365,9 +1385,12 @@ COMPARISON: MASS vs. OFFICE ON PRIVILEGED WEEKDAYS
   MASS (GIRM 355.1)                      OFFICE (GILH 239)
   ─────────────────                       ─────────────────
   Mechanism: SUBSTITUTION                 Mechanism: ADDITION
-  • Collect borrowed FROM memorial        • Nothing removed from weekday
-    (replaces weekday collect)            • Saint's elements ADDED ALONGSIDE
-  • Rest: weekday imposed                 • Patristic reading KEPT (not replaced)
+  • Collect borrowed FROM memorial        • OdR (§239a): hagiographical reading
+    (replaces weekday collect)              ADDED after patristic; saint's
+  • Rest: weekday imposed                   concluding prayer REPLACES weekday
+                                          • Lauds/Vespers (§239b): saint's
+                                            antiphon + prayer APPENDED
+                                          • Patristic reading KEPT (not replaced)
   Data model: ForcedCollectBorrowable     Data model: AdditionsOnly
 ```
 
@@ -1381,6 +1404,7 @@ The Te Deum is a hymn of praise sung after the second reading in the Office of R
 |---------|---------|-----------|
 | **Solemnities** | Said | §228 |
 | **Feasts** | Said | §231 |
+| **Days within Octaves** (Easter, Christmas) | Said | §68 |
 | **Sundays** (outside Lent) | Said | §68 |
 | **Sundays** (in Lent) | **Not said** | §68 |
 | **Memorials** (all seasons) | **Not said** | §235d |
@@ -1713,7 +1737,8 @@ struct ResolvedHourContent {
 | Weekday (no memorial) | Present | None | Patristic only |
 | Memorial in OT (§235d) | None | Present | Hagiographical **replaces** patristic |
 | Memorial in privileged season (§239a) | Present | Present | Hagiographical **added after** patristic |
-| Solemnity/Feast (§225-233) | None | Present | Proper reading (honor of the saint) |
+| Solemnity/Feast of a **Saint** (§228) | None | Present | Proper reading about the saint serves as 2nd reading |
+| Solemnity/Feast of the **Lord** (§228) | Present | None | Patristic reading from the Proper |
 
 ```rust
 struct OfficeReadingsContent {
@@ -1729,7 +1754,7 @@ struct OfficeReadingsContent {
     /// Te Deum — on solemnities, feasts, Sundays outside Lent (GILH 68)
     /// Not said on memorials or weekdays
     te_deum: bool,
-    /// Vigil extension — canticles and Gospel inserted BEFORE Te Deum (GILH 73, 206, 215)
+    /// Vigil extension — canticles and Gospel inserted BEFORE Te Deum (GILH 73; §206 cross-refs §73; §215)
     /// Present only when the vigil form of the Office of Readings is celebrated
     vigil_extension: Option<VigilExtension>,
 }
@@ -1739,11 +1764,11 @@ struct OfficeReadingsContent {
 
 **What it is:** The additional elements appended to the Office of Readings when it is celebrated in its extended vigil form — canticles from the Old Testament followed by a Gospel reading.
 
-**Why this name:** "Vigil" because this form is used at vigils (GILH §73: "celebrated during the night or early morning"). "Extension" because it extends the Office of Readings — it is not a separate Hour, but additional content inserted after the second reading and **before** the Te Deum.
+**Why this name:** "Vigil" because this form is used at vigils of Sundays, solemnities, and feasts (GILH §73). "Extension" because it extends the Office of Readings — it is not a separate Hour, but additional content inserted after the two readings and **before** the Te Deum.
 
 **Liturgical basis:**
-- **GILH §73:** "Whenever it may be desired to celebrate a longer vigil [...] after the Office of Readings and before the Te Deum, canticles from the special appendix [...] are inserted, the passage from the Gospels is then read."
-- **GILH §206:** "In the celebration of the vigils, [...] after the two readings and before the canticle *Te Deum*, the canticles and the Gospel indicated for each case are added."
+- **GILH §73:** "After the two readings and before the Te Deum canticles should be added from the special appendix [...]. Then the gospel should be read; a homily on the gospel may be added. After this the Te Deum is sung and the prayer said." On solemnities/feasts: Gospel from the Lectionary for Mass; on Sundays: from the paschal mystery series in the appendix.
+- **GILH §206:** References §73 for Sunday vigils: "The way to celebrate Sunday vigils, as circumstances suggest, has been discussed in no. 73."
 - **GILH §215:** On Christmas night, when the vigil form is used, Compline is omitted by those who attend.
 
 **When present:** On solemnities (especially Easter, Christmas, Pentecost) and Sundays when the community chooses the vigil form. The Te Deum is sung *after* the vigil canticles and Gospel (§73), not before. The `te_deum: bool` field indicates whether Te Deum is said; the `vigil_extension` field adds the vigil elements that precede it.
@@ -1992,11 +2017,11 @@ Two exceptional mechanisms affect the Office during the Triduum and Christmas. B
 
 #### A. Vigil Extension (GILH 73, 206, 215)
 
-The Office of Readings can be celebrated in an extended **vigil form** on solemnities and Sundays. This is not a separate Hour — it is an extension appended to the Office of Readings:
+The Office of Readings can be celebrated in an extended **vigil form** on solemnities, feasts, and Sundays (§73). This is not a separate Hour — it is an extension appended to the Office of Readings:
 
 1. The normal Office of Readings is celebrated (two readings)
 2. **Before** the Te Deum, canticles from the special appendix are inserted (typically 3 OT canticles with antiphons)
-3. A Gospel is proclaimed
+3. A Gospel is proclaimed (a homily may be added — §73)
 4. The Te Deum is then sung (or the corresponding seasonal hymn)
 
 The `VigilExtension` struct (added to `OfficeReadingsContent`) models this appendage. When `vigil_extension` is `Some(...)`, the consumer knows that the vigil form is available for this Office of Readings. The canticles and Gospel are provided; the consumer inserts them before the Te Deum.
@@ -2062,7 +2087,7 @@ The Hour is entirely replaced by a Mass celebration. The `content` in `celebrati
 
 | Day | Hour replaced | Replaced by | Reduced form | Reference |
 |-----|--------------|-------------|--------------|-----------|
-| Holy Saturday | Office of Readings | Easter Vigil | 4 OT readings from the Vigil + Te Deum | GILH §212 |
+| Holy Saturday | Office of Readings | Easter Vigil | At least 4 readings from the Vigil (recommended: Exodus, Ezekiel, St. Paul, Gospel) + Te Deum + prayer of the day | GILH §212 |
 
 **Example — Holy Saturday:**
 
@@ -2076,7 +2101,7 @@ HoursCalendar["2025-04-19"] → [
                 celebration_id: "holy_saturday",
                 content: ResolvedHourContent {
                     office_readings: Some(OfficeReadingsContent {
-                        scripture_reading: ...,  ← 4 chosen OT readings (reduced form)
+                        scripture_reading: ...,  ← at least 4 Vigil readings (reduced form)
                         patristic_reading: None,
                         hagiographical_reading: None,
                         te_deum: true,
