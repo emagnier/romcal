@@ -266,6 +266,23 @@ PRIVILEGED WEEKDAYS (Advent 17-24, Octave of Christmas, Lent)
 - **GILM 90** — Acclamation before the Gospel: either specified (correlated with Gospel) or left as a choice from the season or Commons series
 - **GILM 91** — Lenten acclamation: specific format replaces the Alleluia during Lent
 
+#### GILH (General Instruction of the Liturgy of the Hours)
+
+> **Note:** The Liturgy of the Hours is not currently implemented in romcal. These references document architectural implications for future extensibility (see Part VIII).
+
+- **GILH 37** — Morning Prayer (Lauds) and Evening Prayer (Vespers) are the "double hinge" of the Daily Office: the two principal Hours around which the entire Office is structured
+- **GILH 53** — Concluding prayer: from the Psalter in Ordinary Time, from the Proper of the Season or of the Saints otherwise
+- **GILH 62** — On memorials, psalms and antiphons are taken from the current week and day of the psalter, unless proper psalms or antiphons are indicated
+- **GILH 64, 67** — Office of Readings has two readings: the first from Scripture (continuous reading cycle), the second patristic. On memorials, a hagiographical reading replaces the second reading if one exists
+- **GILH 68** — Te Deum: sung on solemnities, feasts, and Sundays (except in Lent); omitted on memorials and weekdays
+- **GILH 93-98** — Provisions for combining Hours of the Office with Mass: shared opening rite, psalm as entrance chant, single concluding rite
+- **GILH 116-119** — Antiphon rules by rank: on memorials without proper antiphons, antiphons for the canticles of Zechariah and Mary may be taken from the Common or from the current psalter
+- **GILH 134-135** — Psalm arrangements: on solemnities and feasts, proper psalms; on memorials and weekdays, psalms from the current psalter
+- **GILH 199** — Concluding prayer: on memorials, from the saint's proper or the appropriate Common; on weekdays, from the psalter or the seasonal proper
+- **GILH 228-234** — How the Office is arranged on memorials: psalms from the current weekday; other elements (invitatory antiphon, hymn, short reading, antiphons at Benedictus/Magnificat, intercessions, concluding prayer) from the saint's proper or Common
+- **GILH 235-236** — Optional memorials: same freedom as obligatory memorials, but all substitutable elements may alternatively remain from the weekday
+- **GILH 237-239** — Weekdays: everything from the psalter and current day
+
 ---
 
 ## Part II — Vocabulary: Liturgical Day vs. Celebration
@@ -989,6 +1006,8 @@ Existing types (unchanged)     ✓            ✓          YES
 ² Exploded into Vec<SourcedText> per oration in Approach 2
 ```
 
+**Office shareability (GILH):** When the Liturgy of the Hours is added, the following types will be directly reusable: `DayContext`, `CelebrationId`, `TextSource`, `SourcedText`, `ReadingText`. The following types are Mass-specific and will need Office equivalents: `FormularySet`, `ReadingsSet`/`ReadingsPool`/`ReadingsContent`, `FlexibleOrations`, `CelebrationMass`. The `CompositionRules` approach (rules governing substitution) transfers conceptually, but the specific rule enums (`BlockRule`, `ReadingsRule`, `FlexibleRule`) are Mass-specific. See Part VIII for detailed analysis.
+
 ---
 
 ## Part VI — Module Organization
@@ -1068,20 +1087,106 @@ Calendar source files (YAML/JSON input)
 
 ---
 
-## Part VIII — Future Extensibility
+## Part VIII — Future Extensibility: Liturgy of the Hours
 
-This architecture is designed to extend naturally to the **Liturgy of the Hours** in the future. The shared types (`DayContext`, `TextSource`, `ReadingsSet`...) are agnostic to the Mass and can be reused for the Office.
+> **Status:** The Liturgy of the Hours is not currently implemented in romcal. This section documents how GILH rules inform the current architecture and guide future extensibility.
+
+### 1. Office Substitution Groups (vs. Mass)
+
+The Mass has three substitution groups (Part I §2). The Office has fundamentally **different** groups on memorials:
+
+| Group | Mass (GIRM) | Office (GILH) |
+|-------|-------------|----------------|
+| **Psalmody** | Entrance/communion antiphons follow the formulary choice | Psalms + psalm antiphons ALWAYS from the current weekday psalter (GILH 62, 134) |
+| **Identifying texts** | Formulary block: collect + entrance/communion antiphons (inseparable) | Proper elements: invitatory antiphon, hymn, short reading, canticle antiphons (Benedictus/Magnificat), intercessions, concluding prayer — from saint's proper or Common (GILH 228-234) |
+| **Readings** | Scripture readings: fixed set or pool (GIRM 357, GILM 71) | Office of Readings: 1st reading from Scripture cycle + 2nd reading patristic or hagiographical (GILH 64, 67) |
+| **Flexible orations** | Prayer over offerings, prayer after Communion: individually choosable (GIRM 363) | Not applicable — the Office has no equivalent flexible orations |
+
+**Key architectural difference:** In the Mass, the entrance and communion antiphons follow the formulary choice (inseparable from the collect). In the Office, psalm antiphons stay with the psalter on memorials, while only the canticle antiphons (at Benedictus and Magnificat) can come from the saint. This means `FormularySet` cannot be reused for the Office — the Office needs a different structure.
+
+### 2. Memorial Rules Comparison
+
+| Element | Mass on Memorial | Office on Memorial (GILH 228-234) |
+|---------|------------------|-----------------------------------|
+| **Psalms** | N/A (Mass has no psalmody block) | From the current weekday psalter (GILH 62, 134) |
+| **Psalm antiphons** | Follow formulary choice | From the current weekday psalter (GILH 62) |
+| **Canticle antiphons** | N/A | From saint's proper, or Common, or current psalter (GILH 116-119) |
+| **Collect / Concluding prayer** | From saint's proper or Common (GIRM 363) | From saint's proper or Common (GILH 199) |
+| **Readings** | Proper override weekday; Common always available (GILM 83) | 1st: Scripture cycle; 2nd: hagiographical replaces patristic (GILH 67) |
+| **Hymn** | N/A | From saint's proper or Common (GILH 228) |
+| **Short reading** | N/A | From saint's proper or Common (GILH 228) |
+| **Intercessions** | Universal Prayer (not governed by GIRM 363) | From saint's proper or Common (GILH 228) |
+| **Te Deum** | N/A | Omitted on memorials (GILH 68) |
+
+### 3. Optional Memorials in the Office (GILH 235-236)
+
+On optional memorials, the Office grants even broader freedom than on obligatory memorials: **all** substitutable elements (those listed as "from saint's proper or Common" above) may alternatively remain from the weekday. The celebrant has full choice between:
+
+- Celebrating entirely as the weekday (nothing from the saint)
+- Substituting some elements from the saint/Common while keeping others from the weekday
+- Substituting all available elements from the saint/Common
+
+This parallels the Mass's "pick one" approach for the formulary block but applies **element-by-element** — making the Office closer to Group 3 (flexible orations) behavior than to Group 1 (inseparable block) behavior.
+
+### 4. Type Shareability: Mass → Office
+
+| Type | Reusable? | Reason |
+|------|-----------|--------|
+| `DayContext` | **YES** | Same temporal frame: season, cycles, psalter week |
+| `CelebrationId` | **YES** | Same celebration identity |
+| `TextSource` | **YES** | Same provenance concept (Proper of Time, Proper of Saints, Common) |
+| `SourcedText` | **YES** | Text + provenance — applies to any liturgical text |
+| `ReadingText` | **YES** | Long/short form concept applies to Office readings too |
+| `FormularySet` | **NO** | Mass-specific: collect + Mass antiphons. Office has no equivalent inseparable block |
+| `ReadingsSet` | **NO** | Mass Liturgy of the Word ≠ Office of Readings (different structure, different sources) |
+| `ReadingsPool` | **NO** | Pool-per-component logic is Mass/GILM-specific |
+| `ReadingsContent` | **NO** | Enum of `ReadingsSet`/`ReadingsPool` — both Mass-specific |
+| `FlexibleOrations` | **NO** | Prayer over offerings, prayer after Communion — Mass-specific |
+| `CompositionRules` | **Partially** | The approach (rules governing substitution) transfers, but the specific rule enums (`BlockRule`, `ReadingsRule`, `FlexibleRule`) are Mass-specific |
+
+### 5. CelebrationHour Sketch
 
 ```rust
-// Future
-impl Calendar {
-    fn generate_liturgical_calendar(&self) -> LiturgicalCalendar;  // exists
-    fn generate_mass_calendar(&self) -> MassCalendar;              // exists
-    fn generate_hours_calendar(&self) -> HoursCalendar;            // future
+/// The textual content of one Hour for a specific celebration.
+/// Parallels CelebrationMass but with Office-specific structure.
+struct CelebrationHour {
+    /// Psalmody — from the current psalter on memorials (GILH 62, 134)
+    psalmody: OfficePsalmody,
+    /// Proper elements that can come from the saint/Common (GILH 228-234)
+    proper_elements: OfficeProperElements,
+    /// For Office of Readings only (GILH 64, 67)
+    office_readings: Option<OfficeReadings>,
+}
+
+struct OfficePsalmody {
+    /// Psalm entries with their antiphons
+    psalms: Vec<PsalmEntry>,
+    /// OT or NT canticle in the psalmody
+    canticle: Option<CanticleEntry>,
+}
+
+struct OfficeProperElements {
+    invitatory_antiphon: Option<String>,
+    hymn: Option<String>,
+    short_reading: Option<String>,
+    responsory: Option<String>,
+    /// At Benedictus (Lauds) or Magnificat (Vespers) — GILH 116-119
+    canticle_antiphon: Option<String>,
+    intercessions: Option<String>,
+    concluding_prayer: Option<String>,
+}
+
+struct OfficeReadings {
+    /// First reading: from the Scripture continuous reading cycle
+    scripture_reading: ReadingText,
+    /// Second reading: patristic (weekday) or hagiographical (memorial)
+    second_reading: ReadingText,
+    /// Te Deum — present on solemnities, feasts, Sundays outside Lent (GILH 68)
+    te_deum: bool,
 }
 ```
 
-The `Celebration` struct in Approach 1 could naturally carry both mass and hours content:
+### 6. Integration in Celebration and Calendar
 
 ```rust
 struct Celebration {
@@ -1089,6 +1194,32 @@ struct Celebration {
     masses: BTreeMap<MassTime, CelebrationMass>,
     hours: BTreeMap<HourTime, CelebrationHour>,  // future
 }
+
+enum HourTime {
+    OfficeOfReadings,
+    Lauds,          // Morning Prayer
+    Terce,          // Mid-morning
+    Sext,           // Midday
+    None,           // Mid-afternoon
+    Vespers,        // Evening Prayer
+    Compline,       // Night Prayer
+}
+
+impl Calendar {
+    fn generate_liturgical_calendar(&self) -> LiturgicalCalendar;  // exists
+    fn generate_mass_calendar(&self) -> MassCalendar;              // exists
+    fn generate_hours_calendar(&self) -> HoursCalendar;            // future
+}
 ```
 
 This would support both the Roman Office and monastic propers (e.g., Benedictine, Cistercian) through the existing calendar inheritance mechanism.
+
+### 7. Combining Hours with Mass (GILH 93-98)
+
+GILH 93-98 provides for combining Lauds with Morning Mass or Vespers with Evening Mass. When combined:
+
+- The shared opening rite replaces both individual ones
+- A psalm from the Hour may serve as the entrance chant
+- A single concluding rite concludes both
+
+This interaction means the `MassComposition` (Approach 2) may in the future need a reference to the combined Hour, or a combined output type. This does not affect the current Mass-only architecture but should be considered when adding Hours support.
