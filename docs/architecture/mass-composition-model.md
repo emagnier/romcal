@@ -311,6 +311,20 @@ PRIVILEGED WEEKDAYS (Advent 17-24, Octave of Christmas, Lent)
 - **GILH 247** — Immutability of formularies on privileged days: "In the office for Sundays, solemnities, feasts of the Lord listed in the General Calendar, the weekdays of Lent and Holy Week, the days within the octaves of Easter and Christmas, and the weekdays from 17 to 24 December inclusive, it is never permissible to change the formularies that are proper or adapted to the celebration, such as antiphons, hymns, readings, responsories, prayers, and very often also the psalms." Exception: Sunday psalms may be substituted with psalms from another week.
 - **GILH 249** — Interrupted continuous reading in the Office: may combine omitted parts or prefer certain readings (parallels GIRM 358)
 
+#### CP (Calendaria Particularia — Instruction on Particular Calendars, 1970)
+
+> **Note:** CP provides norms for revising particular calendars (diocesan, national, religious) and their propers. These norms define the calendar inheritance hierarchy that romcal implements via `CalendarId` chains.
+
+- **CP 2** — Proper of Seasons always takes precedence over particular celebrations. §2a: Sundays — no particular celebration (per se). §2b: Lent, Easter Octave, Dec 17-31 kept free of particular celebrations (exceptions: optional memorials, certain feasts, non-transferable solemnities).
+- **CP 3** — One celebration per year per saint. Exception: a second optional memorial for translation of body, conversion, or similar event.
+- **CP 8-12** — Rank assignment by calendar level. These norms define the default rank for proper celebrations at each level of the calendar hierarchy — see Part IX §1 for the complete rank table.
+- **CP 13-16** — Calendar inheritance hierarchy: General Calendar → National/Regional → Diocesan → Local/Church; separately, General Calendar → Religious → Province → House. A particular calendar is "formed by the insertion of particular celebrations into the General Calendar" (§13). Religious members also celebrate the diocese's patron and cathedral dedication (§16d).
+- **CP 23** — Precedence conflicts between General and Particular calendars. §23a: General Calendar solemnities always observed on their date. §23b: General Calendar feasts kept; proper feast of same date transferred to nearest free date (unless deeply rooted in local custom). §23c: "A proper memorial is to take precedence over a universal, optional memorial" — may sometimes take precedence over a universal obligatory memorial (by changing the universal to optional or by transferring it).
+- **CP 24-26** — Rank flexibility. §24: proper celebrations generally enter as obligatory or optional memorials unless the Table of Liturgical Days specifies otherwise. §25: "The observance of some celebrations in a particular place may have greater solemnity than in the entire diocese or religious institute." §26: Saints listed together must be celebrated together at the same rank.
+- **CP 40** — Mass proper texts enumeration: entrance antiphon, opening prayer (collect), prayer over the gifts, preface, communion antiphon, prayer after communion, optional solemn blessing. "Only the opening prayer has direct bearing on the saint being celebrated" (§40b).
+- **CP 41** — Reading constraints for proper Masses: solemnities require 3 readings; no OT during Easter season; proper responsorial psalm and Gospel acclamation required.
+- **CP 43-44** — Office proper texts. §43: hagiographical reading required for every solemnity, feast, and memorial — "usually not more than one hundred twenty words"; biographical note "is not to be read as part of the office." §44: proper elements for solemnities/feasts include invitatory, antiphons (especially Lauds/Vespers), intercessions, hymns. **Critical cross-domain rule:** "The prayer is always the same as the opening prayer of the Mass" — the Office concluding prayer = the Mass collect.
+
 ---
 
 ## Part II — Vocabulary: Liturgical Day vs. Celebration
@@ -1472,6 +1486,18 @@ The role of the Common differs between Mass and Office:
 
 **Consequence for the data model:** The `commons: Vec<CommonInfo>` field in `HoursCelebrationOption` lists the applicable Commons for that celebration, allowing the engine to resolve texts from the correct Common when the saint's Proper is absent.
 
+#### Office Prayer = Mass Collect (CP 44)
+
+CP §44 states a cross-domain identity rule: "The prayer is always the same as the opening prayer of the Mass." This means:
+
+- The Office concluding prayer (`CelebrationHour.concluding_prayer`) is the same text as the Mass collect (`FormularySet.collect`).
+- On memorials, GILH §235c makes this prayer mandatory from the saint — and it is the same text that serves as the Mass collect.
+- The engine should store this text once per celebration and reference it from both `CelebrationMass.formulary_set.collect` and `CelebrationHour.concluding_prayer`.
+
+This identity reinforces the shared `Celebration` entity design (Approach 1): since the collect/concluding prayer is the same text, the `Celebration` struct naturally unifies it. In Approach 2 and 3, the text appears in both `IdentityOption.formulary_set.collect` and `ResolvedHourContent.concluding_prayer`, duplicated but traceable to the same source.
+
+**Exception:** GILH §198 notes that at Night Prayer, "the prayer is always the prayer given in the psalter for that hour" — this is a structural prayer, not the saint's collect. The CP §44 identity applies only to the Hours where the concluding prayer is "from the proper" (Lauds, Vespers, Office of Readings, Daytime Prayer on feasts/solemnities).
+
 ### 8. Type Shareability: Mass → Office
 
 | Type | Reusable? | Reason |
@@ -2128,3 +2154,135 @@ HoursCalendar["2025-04-19"] → [
 ```
 
 **Architectural note:** These cross-domain interactions (Mass → Office) are rare — they only occur during the Triduum and at Christmas. The `HourSuppression` field is `None` on all other days. This keeps the model clean for the 99% case while faithfully representing the exceptions.
+
+---
+
+## Part IX — Particular Calendars and Calendar Inheritance (CP)
+
+> **Source:** _Calendaria Particularia_ (CP), Instruction from the Congregation for Divine Worship, 24 June 1970 (Notitiae 58, 1970). This document defines how particular calendars (diocesan, national, religious) are constructed by layering proper celebrations onto the General Calendar.
+
+### 1. Calendar Inheritance Hierarchy (CP 13-16)
+
+CP §13 defines the fundamental principle: "A particular calendar is formed by the insertion of particular celebrations into the General Calendar."
+
+The layering works as follows:
+
+```
+                    General Calendar (base)
+                            │
+              ┌─────────────┼──────────────┐
+              ▼                             ▼
+    National / Regional              Religious Order
+    Calendar (CP 14)                 Calendar (CP 16)
+              │                             │
+              ▼                             ▼
+    Diocesan Calendar                Religious Province
+    (CP 15a-b)                       Calendar (CP 16c)
+              │                             │
+              ▼                             ▼
+    Local / Church                   House / Church
+    Calendar (CP 15c)                Calendar (CP 16c)
+```
+
+**Cross-layering rule (CP §16d):** "Members of religious institutes join with the local Church in celebrating the anniversary of the dedication of the cathedral and the feast of the principal patrons of both the place and the wider area in which they reside."
+
+**Consequence for the data model:** This is already modeled in romcal via `CalendarId` chains and the `from_calendar_id` field. Each celebration carries the identity of the calendar that introduced it. The engine resolves the complete calendar by traversing the inheritance chain from the most specific calendar up to the General Calendar. CP formalizes the layering that romcal already implements.
+
+### 2. Rank Assignment by Calendar Level (CP 8-12, 24-26)
+
+The same saint can have **different ranks** depending on the calendar level. CP §8-12 defines the default rank for each type of proper celebration:
+
+```
+Type of celebration                  Calendar level        Default rank       CP ref
+───────────────────                  ──────────────        ────────────       ──────
+Principal patron of nation/region    National/Regional     Feast ¹            §8
+Secondary patron of nation/region    National/Regional     Memorial           §8
+Principal patron of diocese          Diocesan              Feast ¹            §9
+Cathedral dedication anniversary     Diocesan              Feast              §9
+Secondary patron of diocese          Diocesan              Memorial           §9
+Principal patron of town/city        Local                 Solemnity          §10
+Secondary patron of town/city        Local                 Memorial           §10
+Church dedication anniversary        Church                Solemnity          §11
+Church title                         Church                Solemnity          §11
+Saint buried in church               Church                Memorial           §11
+Religious title/founder/patron ²     Religious Institute   Solemnity/Feast    §12
+Beatified founder                    Religious Institute   Feast              §12a
+Secondary patron of religious        Religious Institute   Memorial           §12a
+Other saints (no special bond)       Any                   Obl./Opt. Memorial §24
+
+¹ "For pastoral reasons this may be observed as a solemnity" (CP §8, §9)
+² Only ONE of title/founder/patron may be a solemnity; others are feasts (§12)
+```
+
+**Rank elevation rule (CP §25):** "The observance of some celebrations in a particular place may have greater solemnity than in the entire diocese or religious institute." This means a more specific calendar in the inheritance chain can **override** the rank from a parent calendar.
+
+**Example:** St. Thomas Aquinas is an optional memorial in the General Calendar. In a Dominican calendar (§12), he is a solemnity (as founder). In the diocese of Aquino, he could be a feast (§9 principal patron).
+
+**Consequence for the data model:** The `Rank` field in `Celebration` (Approach 1) and in `IdentityOption`/`HoursCelebrationOption` (Approaches 2-3) reflects the rank as resolved for the specific calendar in use. The engine inherits rank from the most specific calendar that defines it. The `from_calendar_id` field traces which calendar contributed the celebration and its rank.
+
+### 3. Precedence Conflicts: General vs. Particular (CP 23)
+
+When a particular celebration falls on the same date as a General Calendar celebration, CP §23 defines the resolution:
+
+| General Calendar | Proper Calendar | Resolution | CP ref |
+|-----------------|-----------------|------------|--------|
+| Solemnity | Any proper | General solemnity observed on its date | §23a |
+| Feast | Proper feast (same date) | General feast kept; proper feast transferred to nearest free date | §23b |
+| Feast | Proper feast (deeply local) | Exception: proper feast may stay if transfer would cause "serious inconvenience" | §23b |
+| Optional memorial | Proper memorial | Proper memorial takes precedence | §23c |
+| Obligatory memorial | Proper memorial | Proper memorial **may** take precedence (by changing universal to optional, or by transferring universal) | §23c |
+
+**Consequence for the data model:** These precedence rules are applied during step 2 of the transformation pipeline (Part VII): "Apply precedence rules (GNLY 59, 60)." CP §23 extends these rules for the particular calendar context. The engine must handle the case where a universal obligatory memorial is demoted to optional when a proper memorial claims the date (§23c).
+
+### 4. Proper of Seasons Primacy (CP 2)
+
+CP §2 reinforces the GNLY principle that the temporal cycle always takes precedence:
+
+- **§2a:** On Sundays, no particular celebration is permitted (per se).
+- **§2b:** Lent, Easter Octave, and Dec 17-31 are to be kept free of particular celebrations — except optional memorials, certain feasts listed in Table of Liturgical Days §8 a-d, and non-transferable solemnities.
+- **§2c:** Indult celebrations must not "duplicate celebrations already in the cycle of the mystery of salvation" and "must not be too numerous."
+
+This reinforces the `MemorialRule::NoMemorial` and `AdditionsOnly` mechanisms already defined in Part VIII, and the GNLY 59-60 precedence rules in the pipeline.
+
+### 5. Proper Texts: Mass and Office Alignment (CP 40, 43-44)
+
+CP specifies the proper texts expected for each celebration in both Mass and Office:
+
+**Mass proper texts (CP §40):**
+
+| Text | Scope | CP ref |
+|------|-------|--------|
+| Entrance antiphon | Directs thoughts to the celebration | §40a |
+| Opening prayer (collect) | "Only [text with] direct bearing on the saint" | §40b |
+| Prayer over the gifts | Bears on eucharistic mystery (saint mentioned incidentally) | §40b |
+| Preface | Proper thanksgiving theme; literary form of praise, not petition | §40c |
+| Communion antiphon | Expresses communion within the eucharistic mystery | §40a |
+| Prayer after Communion | Bears on eucharistic mystery | §40b |
+| Solemn blessing / prayer over the people | Optional | §40b |
+
+**Office proper texts (CP §43-44):**
+
+| Text | Scope | CP ref |
+|------|-------|--------|
+| Hagiographical reading | Required for every solemnity, feast, and memorial — "usually not more than one hundred twenty words" | §43 |
+| Responsory for the reading | Proper or from a Common | §43 |
+| Biographical note | Preliminary note; "not to be read as part of the office" | §43 |
+| Invitatory antiphon | On solemnities and feasts | §44 |
+| Antiphons (esp. Lauds/Vespers) | Canticle antiphons | §44 |
+| Intercessions | On solemnities and feasts | §44 |
+| Hymns | Existing proper hymns may be kept | §44 |
+| **Concluding prayer** | **"Always the same as the opening prayer of the Mass"** | §44 |
+
+The last row is the cross-domain identity rule discussed in Part VIII §7: the Office concluding prayer and the Mass collect are the same text (see "Office Prayer = Mass Collect").
+
+**Consequence for the data model:** The `FormularySet` structure (Mass) aligns with CP §40's enumeration. The `CelebrationHour` structure (Office) aligns with CP §44's enumeration. The `hagiographical_reading` field in `CelebrationOfficeReadings` should carry content for every celebration above weekday rank, per CP §43.
+
+### 6. Reading Constraints for Proper Masses (CP 41)
+
+CP §41 imposes structural constraints on proper Mass readings:
+
+- **Solemnities:** 3 readings required (OT + Epistle + Gospel)
+- **Easter season:** No Old Testament reading (replaced by Acts or Revelation)
+- **Proper readings:** Must always include a proper responsorial psalm and a proper acclamation or verse before the Gospel
+
+These constraints complement GILM §83-84 and should be validated by the engine when assembling `ReadingsContent` for particular calendar celebrations.
