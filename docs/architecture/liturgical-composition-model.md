@@ -2,9 +2,9 @@
 
 ## Context and Motivation
 
-When a weekday (feria, rank 13 in romcal) also has optional memorials (rank 12) available for the same civil date, the Church's norms (GIRM, GNLY, GILM, GILH) define precise rules for how the celebrant may choose and combine liturgical texts — readings, orations, antiphons, psalmody — between the feria and the optional memorial, both for the Mass and for the Liturgy of the Hours.
+The Roman Rite's liturgical norms (GIRM, GNLY, GILM, GILH, CP) define precise rules for how liturgical texts — readings, orations, antiphons, psalmody — are selected, combined, and composed for every rank of celebration (solemnity, feast, memorial, weekday), across both the Mass and the Liturgy of the Hours, and at every level of the calendar hierarchy (general, national, diocesan, religious, local).
 
-This document synthesizes the analysis of these liturgical rules and proposes a data model for romcal that faithfully reflects them, organized around three complementary output approaches:
+This document is a comprehensive architecture and data-modeling reference for romcal. It synthesizes these liturgical rules and proposes a data model that faithfully reflects them, organized around three complementary output approaches:
 
 - **Approach 1 — Liturgical Calendar** (`generate_liturgical_calendar`): centered on the liturgical day, for internal use and as the foundation for Approaches 2 and 3.
 - **Approach 2 — Mass Calendar** (`generate_mass_calendar`): centered on the mass as celebrated on a civil date, with pre-resolved options and explicit composition rules.
