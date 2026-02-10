@@ -31,7 +31,7 @@ export default defineConfig({
           items: [
             { label: 'Generating Calendars', slug: 'guides/calendar' },
             { label: 'Mass-Centric Calendars', slug: 'guides/masses' },
-            { label: 'Liturgical Entities', slug: 'guides/entities' },
+            { label: 'Martyrology Entries', slug: 'guides/martyrology' },
             { label: 'Working with Dates', slug: 'guides/dates' },
             { label: 'Locales', slug: 'guides/locales' },
             { label: 'Data Loading', slug: 'guides/data-loading' },
@@ -72,15 +72,10 @@ export default defineConfig({
           label: 'Liturgical Reference',
           items: [
             { label: 'Overview', slug: 'reference' },
-            { label: 'General Instruction of the Roman Missal (GIRM)', slug: 'reference/girm' },
-            {
-              label: 'Universal Norms on the Liturgical Year and the Calendar (GNLY)',
-              slug: 'reference/gnly',
-            },
-            {
-              label: 'General Instruction of the Liturgy of the Hours (GILH)',
-              slug: 'reference/gilh',
-            },
+            { label: 'GNLY — Liturgical Year and Calendar', slug: 'reference/gnly' },
+            { label: 'GIRM — Roman Missal', slug: 'reference/girm' },
+            { label: 'GILM — Lectionary for Mass', slug: 'reference/gilm' },
+            { label: 'GILH — Liturgy of the Hours', slug: 'reference/gilh' },
           ],
         },
         { label: 'Glossary', slug: 'glossary' },

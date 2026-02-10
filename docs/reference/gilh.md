@@ -1,13 +1,17 @@
 ---
 title: General Instruction of the Liturgy of the Hours
 description: Divine Office structure (Lauds, Vespers, Compline), psalms, readings, hymns, and celebrations throughout the year.
+tableOfContents:
+  minHeadingLevel: 2
+  maxHeadingLevel: 6
 ---
 
-:::info TODO
+:::note[TODO]
 This page will contain the full text of the General Instruction of the Liturgy of the Hours.
 :::
 
-## Table of Contents
+<details>
+<summary><strong>Table of Contents</strong></summary>
 
 - Chapter One - The Importance of the Liturgy of the Hours or the Divine Office in the Life of the Church
   - I. The Prayer of Christ
@@ -62,6 +66,8 @@ This page will contain the full text of the General Instruction of the Liturgy o
 - Chapter Five - The Rites to be Observed in Communal Celebration
   - I. The Various Tasks to be Performed
   - II. Singing in the Office
+
+</details>
 
 ## Source
 
