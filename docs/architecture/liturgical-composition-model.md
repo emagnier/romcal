@@ -22,7 +22,7 @@ GIRM 355 governs the choice of Mass on days with optional memorials. The range o
 - **GIRM 355.2 (Advent before Dec 17, Christmas from Jan 2, Easter):** Four options — (a) the weekday Mass, (b) the Mass of the Saint, (c) the Mass of one of the Saints whose memorial is observed, or (d) the Mass of any Saint listed in the *Martyrology* for that day.
 - **GIRM 355.1 (Advent Dec 17-24, Octave of Christmas, Lent):** The Mass of the current liturgical day is obligatory, with limited borrowing from a memorial (see below).
 
-> **Scope note:** This document focuses on the **feria vs. optional memorial** choice — the primary use case for romcal. The Martyrology, Votive Masses, Masses for Various Needs (GIRM 375, 377), and Masses for the Dead (GIRM 381) are valid additional options on Ordinary Time weekdays but are not modeled here.
+> **Scope note:** This document models the composition rules for all ranks of celebrations in the General and Particular Calendars (solemnities, feasts, memorials, weekdays), for both Mass and Liturgy of the Hours. The Martyrology, Votive Masses, Masses for Various Needs (GIRM 375, 377), and Masses for the Dead (GIRM 381) are valid additional options on Ordinary Time weekdays but are not modeled here.
 
 GIRM 355 also adds two pastoral directives:
 - The priest "will take care not to omit the readings assigned for each day in the Lectionary for weekdays too frequently and without sufficient reason, since the Church desires that a richer portion at the table of God's word be provided for the faithful."
