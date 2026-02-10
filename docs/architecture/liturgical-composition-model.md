@@ -191,6 +191,8 @@ The rules vary depending on the liturgical season:
 
 **Lenten demotion (GNLY 14, 59 entry 12):** Obligatory Memorials that fall on Lenten weekdays may only be celebrated as Optional Memorials. They follow the same "special manner" as optional memorials on privileged weekdays (collect-borrowing only, except Ash Wednesday and Holy Week).
 
+**No commemorations (Notitiae R8):** The reformed liturgy has eliminated the practice of commemorations. When a solemnity occurs on an Advent or Lent weekday, only the solemnity is celebrated — no elements of the weekday are added as a "commemoration" in either Mass or Office. The composition model therefore has no commemoration mechanism.
+
 ### 4. Visual Schema
 
 ```
@@ -260,7 +262,7 @@ PRIVILEGED WEEKDAYS (Advent 17-24, Octave of Christmas, Lent)
 - **GNLY 24** — "The first eight days of Easter Time constitute the Octave of Easter and are celebrated as Solemnities of the Lord." These are not weekdays — no memorials are celebrated during the Octave.
 - **GNLY 59** — Table of Liturgical Days according to Their Order of Precedence. Entry 12: Optional Memorials "may be celebrated, in the special manner described in the *General Instruction*, even on the days listed in no. 9" — the GNLY's authorization for collect-borrowing on privileged weekdays (cf. `ForcedCollectBorrowable`). Entry 12 also: "In the same manner Obligatory Memorials may be celebrated as Optional Memorials if they happen to fall on Lenten weekdays."
 - **GNLY 61** — Vespers I/II conflict resolution: "Should Vespers of the current day's Office and First Vespers of the following day be assigned for celebration on the same day, then Vespers of the celebration with the higher rank in the Table of Liturgical Days takes precedence; in cases of equal rank, Vespers of the current day takes precedence."
-- **GNLY 60** — Precedence resolution: "If several celebrations fall on the same day, the one that holds the highest rank according to the Table of Liturgical Days is observed." Impeded solemnities are transferred; other celebrations are omitted that year.
+- **GNLY 60** — Precedence resolution: "If several celebrations fall on the same day, the one that holds the highest rank according to the Table of Liturgical Days is observed." Impeded solemnities are transferred; other celebrations are omitted that year. **Transfer method (Notitiae R14):** generally to the nearest free day; but when impeded by an Advent or Lent Sunday, the preceding Saturday is tried first (per GNLY 5), before falling back to the general rule.
 
 #### GILM (General Introduction to the Lectionary for Mass, *Ordo Lectionum Missae*)
 - **GILM 70** — Two series of readings for saints: Proper of Saints and Commons of Saints
@@ -324,6 +326,16 @@ PRIVILEGED WEEKDAYS (Advent 17-24, Octave of Christmas, Lent)
 - **CP 40** — Mass proper texts enumeration: entrance antiphon, opening prayer (collect), prayer over the gifts, preface, communion antiphon, prayer after communion, optional solemn blessing. "Only the opening prayer has direct bearing on the saint being celebrated" (§40b).
 - **CP 41** — Reading constraints for proper Masses: solemnities require 3 readings; no OT during Easter season; proper responsorial psalm and Gospel acclamation required.
 - **CP 43-44** — Office proper texts. §43: hagiographical reading required for every solemnity, feast, and memorial — "usually not more than one hundred twenty words"; biographical note "is not to be read as part of the office." §44: proper elements for solemnities/feasts include invitatory, antiphons (especially Lauds/Vespers), intercessions, hymns. **Critical cross-domain rule:** "The prayer is always the same as the opening prayer of the Mass" — the Office concluding prayer = the Mass collect.
+
+**Notitiae Responses** (Responsa ad dubia clarifying the GNLY):
+
+- **Notitiae R1** (GNLY 7) — When Epiphany, Ascension, or Corpus Christi are transferred to Sunday, the solemnity replaces the Sunday entirely. No Sunday elements are retained, no commemoration.
+- **Notitiae R2** (GNLY 13) — The Holy Family and Baptism of the Lord DO have Vespers I when they fall on Sunday. These are Feasts of the Lord on Sundays and thus have Evening Prayer I. (Correction of an initial "No" to "Yes".)
+- **Notitiae R6** (GNLY 34) — The Christmas Vigil Mass is celebrated on the evening of December 24 only (not in the morning). The Midnight Mass must occur around midnight. Normative source for the semantic distinction between `PreviousEveningMass` (vigil, evening) and `NightMass` (midnight).
+- **Notitiae R8** (GNLY 40) — No commemorations in Advent or Lent — neither in Mass nor in Office. The reformed liturgy has eliminated the practice of commemorations. Confirms the model needs no commemoration mechanism.
+- **Notitiae R10** (GNLY 52) — A co-cathedral's dedication anniversary is celebrated locally only, not throughout the diocese. Only the main cathedral has a diocese-wide celebration.
+- **Notitiae R12** (GNLY 58) — Dedication anniversary and patron solemnity may be transferred to an OT or Christmas Time Sunday (for local churches). The cathedral anniversary may NOT be transferred to Sunday (diocese-wide). Exception: the bishop may invoke GIRM 332 for serious pastoral need.
+- **Notitiae R14** (GNLY 60) — Method for transferring impeded solemnities: generally to the nearest free day. **But** when a solemnity is impeded by an Advent or Lent Sunday, the preceding Saturday should be tried first (per GNLY 5), before falling back to the general rule.
 
 ---
 
@@ -1271,7 +1283,7 @@ Feasts are celebrated like solemnities but with two significant restrictions:
 | Difference from Solemnity | Rule | GILH ref |
 |---------------------------|------|----------|
 | **No Vespers I** | Feasts are "celebrated within the limits of the natural day" (GNLY 13). No Evening Prayer I. | GILH §231 |
-| **Exception: Lord's Feasts on Sundays** | When a Feast of the Lord falls on a Sunday in OT or Christmas Time, it replaces the Sunday Office — including Vespers I from Saturday evening (GNLY 13). | GILH §231 |
+| **Exception: Lord's Feasts on Sundays** | When a Feast of the Lord falls on a Sunday in OT or Christmas Time, it replaces the Sunday Office — including Vespers I from Saturday evening (GNLY 13). Notitiae R2 confirms this applies specifically to the Holy Family and the Baptism of the Lord. | GILH §231, Notitiae R2 |
 | **Te Deum** | **Said** (same as solemnities) | GILH §231 |
 | **Office of Readings, Lauds, Vespers** | "All is done as on solemnities" — Proper/Common | GILH §231 |
 | **Daytime Prayer** | Hymn: weekday (always). Psalms + antiphons: weekday (unless special tradition requires a proper antiphon). Short reading: **proper**. Concluding prayer: **proper**. | GILH §232 |
@@ -2270,6 +2282,10 @@ Other saints (no special bond)       Any                   Obl./Opt. Memorial §
 ```
 
 **Rank elevation rule (CP §25):** "The observance of some celebrations in a particular place may have greater solemnity than in the entire diocese or religious institute." This means a more specific calendar in the inheritance chain can **override** the rank from a parent calendar.
+
+**Co-cathedral distinction (Notitiae R10):** A co-cathedral's dedication anniversary is celebrated **in that church only**, not throughout the diocese. The cathedral church is unique as the sign of unity of the local church — only its anniversary is celebrated diocese-wide. Exception: when a diocese was formed from merged dioceses that retain a degree of autonomy (own curia and chapter), each may celebrate their own cathedral's anniversary.
+
+**Titular feast permanence (Notitiae R11):** Every church retains its original title and celebrates its titular feast (Solemnity, CP §11), even if the saint has been removed from the General Calendar. Church-level calendars may therefore include titular feasts for saints absent from the General Calendar.
 
 **Example:** St. Thomas Aquinas is an optional memorial in the General Calendar. In a Dominican calendar (§12), he is a solemnity (as founder). In the diocese of Aquino, he could be a feast (§9 principal patron).
 
