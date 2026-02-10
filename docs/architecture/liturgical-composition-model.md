@@ -337,6 +337,16 @@ PRIVILEGED WEEKDAYS (Advent 17-24, Octave of Christmas, Lent)
 - **Notitiae R12** (GNLY 58) — Dedication anniversary and patron solemnity may be transferred to an OT or Christmas Time Sunday (for local churches). The cathedral anniversary may NOT be transferred to Sunday (diocese-wide). Exception: the bishop may invoke GIRM 332 for serious pastoral need.
 - **Notitiae R14** (GNLY 60) — Method for transferring impeded solemnities: generally to the nearest free day. **But** when a solemnity is impeded by an Advent or Lent Sunday, the preceding Saturday should be tried first (per GNLY 5), before falling back to the general rule.
 
+#### PS (Paschalis Sollemnitatis — Circular Letter on the Easter Feasts, 1988)
+
+> **Note:** PS is a **complementary document**. It clarifies and expands on the primary norms (GNLY, GIRM, GILH) for the Lenten and Easter cycles, but does not introduce new calendar calculation rules. Only the paragraphs with direct architectural or data-model relevance are listed here.
+
+- **PS 18** (GNLY 28) — Alleluia is omitted "from the beginning of Lent until the Paschal Vigil" in **all** celebrations, "even on solemnities and feasts." Clarifies that the Lenten acclamation format (GILM 91) applies universally — `ReadingsSet.alleluia` is replaced by a Lenten verse throughout Lent regardless of rank.
+- **PS 59** — Good Friday: "the Church does not celebrate the Eucharist." Only the Celebration of the Lord's Passion (with Communion from the reserved Sacrament) takes place. No `MassComposition` is generated for Good Friday — the Celebration of the Lord's Passion is a distinct liturgical action, not a Mass.
+- **PS 75** — Holy Saturday: "the Church abstains strictly from the celebration of the sacrifice of the Mass." Holy Communion may only be given as Viaticum. No `MassComposition` is generated until the Easter Vigil (which belongs liturgically to Easter Sunday).
+- **PS 85** — Easter Vigil readings: 7 Old Testament readings + 2 New Testament (Epistle + Gospel). When pastoral conditions require reducing, at least 3 OT readings must be read, and **Exodus 14 (the crossing of the Red Sea) must never be omitted**. This unique variable-minimum structure is specific to the Easter Vigil's `ReadingsContent`.
+- **PS 107** — Pentecost vigil: "prolonged celebration of Mass in the form of a vigil, whose character is not baptismal as in the Easter Vigil, but is one of urgent prayer." Confirms that Pentecost has a vigil Mass form (`PreviousEveningMass`, per GNLY 11).
+
 ---
 
 ## Part II — Vocabulary: Liturgical Day vs. Celebration
@@ -2159,9 +2169,11 @@ HoursComposition {
 
 The sequence in the vigil form: Office of Readings (2 readings) → vigil canticles → Gospel → Te Deum → concluding prayer.
 
-#### B. Hour Suppression (GILH 209, 211, 212, 215)
+#### B. Hour Suppression (GILH 209, 211, 212, 215) and No-Mass Days (PS 59, 75)
 
-On certain exceptional days, attending a Mass celebration makes a subsequent Hour of the Office redundant. The `HourSuppression` enum models these cases:
+On certain exceptional days, attending a Mass celebration makes a subsequent Hour of the Office redundant. The `HourSuppression` enum models these cases.
+
+Additionally, PS §59 and §75 confirm that **no Mass is celebrated** on Good Friday and Holy Saturday respectively. On Good Friday, only the Celebration of the Lord's Passion takes place (PS §59); on Holy Saturday, "the Church abstains strictly from the celebration of the sacrifice of the Mass" (PS §75). These days should not generate standard `MassComposition` entries in the `MassCalendar` — the Celebration of the Lord's Passion is a distinct liturgical action (not a Mass), and the Easter Vigil belongs liturgically to Easter Sunday.
 
 **`SuppressedIfAttends` — conditional omission:**
 
