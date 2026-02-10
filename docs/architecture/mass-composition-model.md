@@ -1,13 +1,14 @@
-# Mass Composition Model — Liturgical Calendar & Mass Calendar
+# Liturgical Composition Model — Mass & Liturgy of the Hours
 
 ## Context and Motivation
 
-When a weekday (feria, rank 13 in romcal) also has optional memorials (rank 12) available for the same civil date, the Church's norms (GIRM, GNLY, and GILM) define precise rules for how the celebrant may choose and combine liturgical texts — readings, orations, antiphons — between the feria and the optional memorial.
+When a weekday (feria, rank 13 in romcal) also has optional memorials (rank 12) available for the same civil date, the Church's norms (GIRM, GNLY, GILM, GILH) define precise rules for how the celebrant may choose and combine liturgical texts — readings, orations, antiphons, psalmody — between the feria and the optional memorial, both for the Mass and for the Liturgy of the Hours.
 
-This document synthesizes the analysis of these liturgical rules and proposes a data model for romcal that faithfully reflects them, organized around two complementary output approaches:
+This document synthesizes the analysis of these liturgical rules and proposes a data model for romcal that faithfully reflects them, organized around three complementary output approaches:
 
-- **Approach 1 — Liturgical Calendar** (`generate_liturgical_calendar`): centered on the liturgical day, for internal use and as the foundation for Approach 2.
+- **Approach 1 — Liturgical Calendar** (`generate_liturgical_calendar`): centered on the liturgical day, for internal use and as the foundation for Approaches 2 and 3.
 - **Approach 2 — Mass Calendar** (`generate_mass_calendar`): centered on the mass as celebrated on a civil date, with pre-resolved options and explicit composition rules.
+- **Approach 3 — Hours Calendar** (`generate_hours_calendar`): centered on the Hours of the Office as celebrated on a civil date, with pre-resolved content and composition rules adapted to the Office's overlay mechanism.
 
 ---
 
@@ -972,35 +973,49 @@ MassCalendar
 ## Part V — Type Sharing Summary
 
 ```
-Type                        Approach 1   Approach 2   Shared?
-──────────────────────────  ──────────   ──────────   ───────
-DayContext                     ✓            ✓          YES
-FormularySet                   ✓            ✓ ¹        YES
-ReadingText                    ✓            ✓          YES
-ReadingsSet                    ✓            ✓ ¹        YES
-ReadingsPool                   ✓            ✓ ¹        YES
-ReadingsContent                ✓            ✓ ¹        YES
-FlexibleOrations               ✓            ✗ ²        APP 1
-TextSource                     ✗            ✓          APP 2
-SourcedText                    ✗            ✓          APP 2
-CelebrationId                  ✓            ✓          YES
+Type                        App 1   App 2   App 3   Scope
+──────────────────────────  ──────  ──────  ──────  ──────────
+DayContext                     ✓       ✓       ✓    SHARED
+ReadingText                    ✓       ✓       ✓    SHARED
+TextSource                     ✗       ✓       ✓    SHARED (App 2+3)
+SourcedText                    ✗       ✓       ✓    SHARED (App 2+3)
+CelebrationId                  ✓       ✓       ✓    SHARED
 
-LiturgicalCalendar             ✓            ✗          APP 1
-LiturgicalDay                  ✓            ✗          APP 1
-Celebration                    ✓            ✗          APP 1
-CelebrationMass                ✓            ✗          APP 1
+FormularySet                   ✓       ✓ ¹     ✗    MASS
+ReadingsSet                    ✓       ✓ ¹     ✗    MASS
+ReadingsPool                   ✓       ✓ ¹     ✗    MASS
+ReadingsContent                ✓       ✓ ¹     ✗    MASS
+FlexibleOrations               ✓       ✗ ²     ✗    MASS (App 1)
 
-MassCalendar                   ✗            ✓          APP 2
-MassComposition                ✗            ✓          APP 2
-IdentityOption                 ✗            ✓          APP 2
-ReadingsOption                 ✗            ✓          APP 2
-ReadingsCategory               ✗            ✓          APP 2
-CompositionRules               ✗            ✓          APP 2
-BlockRule                      ✗            ✓          APP 2
-ReadingsRule                   ✗            ✓          APP 2
-FlexibleRule                   ✗            ✓          APP 2
+LiturgicalCalendar             ✓       ✗       ✗    App 1
+LiturgicalDay                  ✓       ✗       ✗    App 1
+Celebration                    ✓       ✗       ✗    App 1
+CelebrationMass                ✓       ✗       ✗    App 1 (Mass)
+CelebrationHour                ✓       ✗       ✗    App 1 (Office)
 
-Existing types (unchanged)     ✓            ✓          YES
+MassCalendar                   ✗       ✓       ✗    App 2
+MassComposition                ✗       ✓       ✗    App 2
+IdentityOption                 ✗       ✓       ✗    App 2
+ReadingsOption                 ✗       ✓       ✗    App 2
+ReadingsCategory               ✗       ✓       ✗    App 2
+CompositionRules               ✗       ✓       ✗    App 2
+BlockRule                      ✗       ✓       ✗    App 2
+ReadingsRule                   ✗       ✓       ✗    App 2
+FlexibleRule                   ✗       ✓       ✗    App 2
+
+HoursCalendar                  ✗       ✗       ✓    App 3
+HoursComposition               ✗       ✗       ✓    App 3
+HoursCelebrationOption         ✗       ✗       ✓    App 3
+ResolvedHourContent            ✗       ✗       ✓    App 3
+OfficeReadingsContent          ✗       ✗       ✓    App 3
+HoursCompositionRules          ✗       ✗       ✓    App 3
+MemorialRule                   ✗       ✗       ✓    App 3
+
+HourTime                       ✓       ✗       ✓    SHARED (App 1+3)
+HoursPsalmody                  ✓       ✗       ✓    SHARED (App 1+3)
+PsalmodyEntry                  ✓       ✗       ✓    SHARED (App 1+3)
+
+Existing types (unchanged)     ✓       ✓       ✓    SHARED
   Season, Rank, Precedence, MassTime, Common, CommonInfo,
   Color, ColorInfo, DayOfWeek, SundayCycle, WeekdayCycle,
   PsalterWeekCycle, PeriodInfo, TitlesDef, MartyrologyEntry,
@@ -1009,8 +1024,6 @@ Existing types (unchanged)     ✓            ✓          YES
 ¹ Reused inside IdentityOption / ReadingsOption / ReadingsContent
 ² Exploded into Vec<SourcedText> per oration in Approach 2
 ```
-
-**Office shareability (GILH):** When the Liturgy of the Hours is added, the following types will be directly reusable: `DayContext`, `CelebrationId`, `TextSource`, `SourcedText`, `ReadingText`. The following types are Mass-specific and will need Office equivalents: `FormularySet`, `ReadingsSet`/`ReadingsPool`/`ReadingsContent`, `FlexibleOrations`, `CelebrationMass`. The `CompositionRules` approach (rules governing substitution) transfers conceptually, but the specific rule enums (`BlockRule`, `ReadingsRule`, `FlexibleRule`) are Mass-specific. See Part VIII for detailed analysis.
 
 ---
 
@@ -1023,11 +1036,14 @@ core/src/types/
 │   ├── text_blocks.rs               FormularySet, ReadingText, ReadingsSet,
 │   │                                ReadingsPool, ReadingsContent, FlexibleOrations
 │   ├── sourced_text.rs              TextSource, SourcedText
+│   ├── psalmody.rs                  HoursPsalmody, PsalmodyEntry
 │   └── mod.rs
 │
 ├── liturgical_calendar/             APPROACH 1
 │   ├── liturgical_day.rs            LiturgicalDay
-│   ├── celebration.rs               Celebration, CelebrationId, CelebrationMass
+│   ├── celebration.rs               Celebration, CelebrationId
+│   ├── celebration_mass.rs          CelebrationMass
+│   ├── celebration_hour.rs          CelebrationHour, HourTime
 │   └── mod.rs
 │
 ├── mass_calendar/                   APPROACH 2
@@ -1036,6 +1052,13 @@ core/src/types/
 │   ├── readings_option.rs           ReadingsOption, ReadingsCategory
 │   ├── composition_rules.rs         CompositionRules, BlockRule,
 │   │                                ReadingsRule, FlexibleRule
+│   └── mod.rs
+│
+├── hours_calendar/                  APPROACH 3
+│   ├── hours_composition.rs         HoursComposition
+│   ├── hours_celebration_option.rs  HoursCelebrationOption, ResolvedHourContent
+│   ├── office_readings.rs           OfficeReadingsContent
+│   ├── hours_composition_rules.rs   HoursCompositionRules, MemorialRule
 │   └── mod.rs
 │
 ├── liturgical/                      EXISTING (unchanged)
@@ -1070,23 +1093,32 @@ Calendar source files (YAML/JSON input)
 │  3. Assemble Celebrations per day         │
 │  4. Resolve liturgical cycle              │
 │  5. Populate mass content by GIRM groups  │
+│  6. Populate hours content by GILH rules  │
 └──────────┬────────────────────────────────┘
            │
-    ┌──────┴──────┐
-    ▼             ▼
- generate_      generate_
- liturgical_    mass_
- calendar()     calendar()
-    │             │
-    ▼             │
- Liturgical       │  Transformation:
- Calendar         │  • Shift evening masses to previous civil date
-    │             │  • Assemble IdentityOption from each Celebration
-    │             │  • Assemble ReadingsOption with source + flags
-    │             │  • Explode FlexibleOrations into Vec<SourcedText>
-    └─────────────│  • Compute CompositionRules from season/precedence
-                  ▼
-              Mass Calendar (API output)
+    ┌──────┼──────────────┐
+    ▼      ▼              ▼
+ gen_    gen_            gen_
+ lit_    mass_           hours_
+ cal()   cal()           cal()
+    │      │              │
+    ▼      │              │
+ Liturgical│              │  Hours transformation:
+ Calendar  │              │  • Shift Vespers I to previous civil date
+    │      │              │  • Resolve §235 overlay per celebration
+    │      │              │  • Apply §239 addition logic
+    │      │              │  • Compute HoursCompositionRules
+    │      │              ▼
+    │      │          Hours Calendar (API output)
+    │      │
+    │      │  Mass transformation:
+    │      │  • Shift evening masses to previous civil date
+    │      │  • Assemble IdentityOption from each Celebration
+    │      │  • Assemble ReadingsOption with source + flags
+    │      │  • Explode FlexibleOrations into Vec<SourcedText>
+    └──────│  • Compute CompositionRules from season/precedence
+           ▼
+       Mass Calendar (API output)
 ```
 
 ---
@@ -1158,77 +1190,422 @@ The Office handles memorials during privileged seasons differently from the Mass
 | `FlexibleOrations` | **NO** | Prayer over offerings, prayer after Communion — Mass-specific |
 | `CompositionRules` | **Partially** | The approach (rules governing substitution) transfers, but the specific rule enums (`BlockRule`, `ReadingsRule`, `FlexibleRule`) are Mass-specific |
 
-### 5. CelebrationHour Sketch
+### 5. Approach 1 Extension — `CelebrationHour`
+
+**What it is:** The raw textual content that a celebration provides for one Hour of the Office. Parallels `CelebrationMass` but with Office-specific structure.
+
+**Why raw (not resolved):** In Approach 1, each `Celebration` carries its own texts — what it *provides*, not what the celebrant *uses*. On a memorial, the saint's `CelebrationHour` contains only the proper elements the saint provides; the weekday base content is in the feria's `CelebrationHour`. The resolution (merging weekday + saint per §235 rules) happens in Approach 3.
+
+**Why per-Hour:** The Proper of Saints distributes elements across Hours: an antiphon at the Benedictus (Lauds), an antiphon at the Magnificat (Vespers), a hagiographical reading (Office of Readings), etc. Storing them per-Hour mirrors how the celebrant actually uses them. On memorials, Daytime Prayer and Night Prayer have no entries from the saint (§236).
 
 ```rust
-/// The textual content of one Hour for a specific celebration.
-/// Parallels CelebrationMass but with Office-specific structure.
+/// Raw content that a celebration provides for one Hour.
+/// On memorials: only the saint's proper elements are populated.
+/// On solemnities/feasts: fully populated.
+/// The feria celebration: fully populated with weekday content.
 struct CelebrationHour {
-    /// Psalmody — from the current psalter on memorials (GILH 62, 134)
-    psalmody: OfficePsalmody,
-    /// Proper elements that can come from the saint/Common (GILH 228-234)
-    proper_elements: OfficeProperElements,
-    /// For Office of Readings only (GILH 64, 67)
-    office_readings: Option<OfficeReadings>,
-}
+    /// Proper psalmody — rare on memorials (§235a: usually from weekday)
+    /// On solemnities: proper psalms (§225-230)
+    psalmody: Option<HoursPsalmody>,
 
-struct OfficePsalmody {
-    /// Psalm entries with their antiphons
-    psalms: Vec<PsalmEntry>,
-    /// OT or NT canticle in the psalmody
-    canticle: Option<CanticleEntry>,
-}
-
-struct OfficeProperElements {
+    /// Elements from §235b (None = use weekday or Common instead)
     invitatory_antiphon: Option<String>,
     hymn: Option<String>,
     short_reading: Option<String>,
-    responsory: Option<String>,
+    short_responsory: Option<String>,
     /// At Benedictus (Lauds) or Magnificat (Vespers) — GILH 116-119
     canticle_antiphon: Option<String>,
     intercessions: Option<String>,
+
+    /// Concluding prayer — mandatory from saint on memorials (§235c)
     concluding_prayer: Option<String>,
+
+    /// Office of Readings: hagiographical reading + responsory (§235d)
+    /// Only populated for the OfficeOfReadings HourTime entry
+    hagiographical_reading: Option<ReadingText>,
+    hagiographical_responsory: Option<String>,
+}
+```
+
+**Integration in `Celebration`:**
+
+```rust
+struct Celebration {
+    // ... identity fields (name, rank, colors, commons...) ...
+    masses: BTreeMap<MassTime, CelebrationMass>,
+    hours: BTreeMap<HourTime, CelebrationHour>,
+}
+```
+
+The same `Celebration` entity — St. Scholastica, Memorial — carries both Mass and Office texts. The identity fields are shared; only the content differs by mode.
+
+#### `HourTime`
+
+**What it is:** An enum identifying a specific Hour of the Daily Office, including the shifted Evening Prayer I for solemnities.
+
+**Why `VespersI`:** GILH 225 states that solemnities begin with Evening Prayer I on the day before. This parallels `PreviousEveningMass` in the Mass model. In Approach 1 (liturgical perspective), Vespers I stays on the solemnity's `Celebration`. In Approach 3 (civil date perspective), it shifts to the previous civil date.
+
+```rust
+enum HourTime {
+    VespersI,          // Evening Prayer I (solemnities — starts the evening before)
+    OfficeOfReadings,
+    Lauds,             // Morning Prayer
+    Terce,             // Mid-morning Prayer
+    Sext,              // Midday Prayer
+    Nones,             // Mid-afternoon Prayer
+    Vespers,           // Evening Prayer (II on solemnities, regular otherwise)
+    Compline,          // Night Prayer
+}
+```
+
+#### `HoursPsalmody`
+
+**What it is:** The psalmody for one Hour — a sequence of psalm/canticle entries with their antiphons.
+
+**Liturgical basis:** Each Hour has a specific psalmody structure — typically 3 psalms at Office of Readings, 2 psalms + 1 OT canticle at Lauds, 2 psalms + 1 NT canticle at Vespers, 3 psalms at Daytime Prayer, etc.
+
+```rust
+struct HoursPsalmody {
+    /// Psalm/canticle entries in order
+    entries: Vec<PsalmodyEntry>,
 }
 
-struct OfficeReadings {
+struct PsalmodyEntry {
+    /// Psalm or canticle reference (e.g., "Ps 63", "Dan 3:57-88")
+    reference: String,
+    /// The text of the psalm/canticle
+    text: Option<String>,
+    /// Antiphon text
+    antiphon: Option<String>,
+}
+```
+
+### 6. Approach 3 — Hours Calendar
+
+**Method:** `Calendar::generate_hours_calendar() → HoursCalendar`
+
+**Principle:** Organized by civil date. Each entry is one Hour of the Office, self-contained with all options pre-resolved. Evening Prayer I of solemnities is shifted to the previous civil date. The consumer picks a celebration, and receives fully resolved content for that Hour.
+
+**Why a separate approach (not merged with Approach 2):** The Mass and Office have fundamentally different composition patterns:
+
+- **Mass** = **selection**: the consumer picks from options per substitution group (formulary block, readings, flexible orations). Each group has independent alternatives.
+- **Office** = **overlay**: the celebration choice determines a composite content where weekday base elements and saint's proper elements are merged by the engine per §235 rules. During privileged seasons, saint's elements are *added alongside*, not substituted (§239).
+
+These two patterns require different data structures and composition rules. Merging them would force artificial uniformity.
+
+**Generated from Approach 1:** The engine first produces the `LiturgicalCalendar`, then transforms it into the `HoursCalendar` by: shifting Vespers I to the previous civil date, resolving which elements come from the weekday vs. the saint per §235 rules, applying §239 addition logic for privileged seasons, and computing the applicable composition rules.
+
+#### `HoursCalendar`
+
+**What it is:** The top-level output type. A map from civil date to a list of Hours celebrated on that civil day.
+
+**Why this name:** It is a "calendar" organized by "hours" — the practical perspective of which Hours of the Office are celebrated on each civil day.
+
+**Why `Vec<HoursComposition>`:** Each entry is one Hour. A typical day has up to 7 entries (Office of Readings through Compline). When a solemnity begins tomorrow, today also receives a Vespers I entry (shifted), analogous to `PreviousEveningMass` in the Mass Calendar.
+
+```rust
+type HoursCalendar = BTreeMap<String, Vec<HoursComposition>>;
+```
+
+#### `HoursComposition`
+
+**What it is:** A single Hour of the Office with all its options pre-resolved. The consumer picks a celebration and receives the fully resolved content.
+
+**Why this name:** "Hours" because it represents one Hour of the Office. "Composition" because the Hour is "composed" from weekday and saint elements — the consumer receives the composed result.
+
+**Why per-Hour (not per-day):** Although the celebration choice applies to the whole day (if you celebrate St. Scholastica at Lauds, you celebrate her at Vespers too), the *content* differs per Hour (different psalms, different antiphons, different readings). And Vespers I may belong to a different celebration than the rest of the day. Per-Hour entries keep each unit self-contained, consistent with `MassComposition` in Approach 2.
+
+```rust
+struct HoursComposition {
+    // === Identification ===
+    /// Which Hour of the Office
+    hour_time: HourTime,
+    /// Civil date — after shifting for Vespers I
+    civil_date: String,
+    /// Liturgical date — before shifting (the "theological" date)
+    liturgical_date: String,
+
+    // === Context ===
+    /// Shared day context
+    context: DayContext,
+
+    // === Default celebration ===
+    default_celebration_id: CelebrationId,
+
+    // === CELEBRATION OPTIONS ===
+    /// Each option = one possible celebration with its pre-resolved Hour content.
+    /// The consumer picks ONE option.
+    /// GNLY 14: only one optional memorial may be celebrated per day.
+    celebration_options: Vec<HoursCelebrationOption>,
+
+    // === COMPOSITION RULES ===
+    /// How memorials interact with the weekday Office
+    composition_rules: HoursCompositionRules,
+}
+```
+
+#### `HoursCelebrationOption`
+
+**What it is:** One possible celebration that can be chosen for this Hour, with its fully resolved content. The engine has already applied §235 rules — merging weekday base with saint's proper elements.
+
+**Why this name:** It is one "option" among the available "celebrations" for this "Hour." Analogous to `IdentityOption` in the Mass model, but includes the full resolved content rather than just the formulary block.
+
+**Why fully resolved:** Unlike the Mass where the consumer actively composes (picks readings, picks orations), the Office consumer receives a finished composite. Once the celebration is chosen, §235 determines everything. The engine does the work, the consumer picks and uses.
+
+```rust
+struct HoursCelebrationOption {
+    /// Reference to the celebration
+    celebration_id: CelebrationId,
+    celebration_name: String,
+    rank: Rank,
+    precedence: Precedence,
+    colors: Vec<ColorInfo>,
+    commons: Vec<CommonInfo>,
+    from_calendar_id: CalendarId,
+
+    /// Fully resolved content for this Hour when this celebration is chosen.
+    /// The engine has already merged weekday base + saint's proper per §235.
+    content: ResolvedHourContent,
+}
+```
+
+#### `ResolvedHourContent`
+
+**What it is:** The fully resolved textual content for one Hour of the Office. Each element is paired with its source (`SourcedText`) so the consumer knows where it comes from.
+
+**Why "Resolved":** The engine has resolved the §235 priority order: if the saint has a proper element, it appears here with `source: ProperOfSaint`; if not, it comes from the Common or weekday, and the source reflects that.
+
+**Why `Option` on some fields:** Not all Hours have all elements. The invitatory is only at the first Hour of the day. The canticle antiphon (Benedictus/Magnificat) is only at Lauds/Vespers. Intercessions are only at Lauds/Vespers. Office of Readings content is only for that specific Hour.
+
+```rust
+struct ResolvedHourContent {
+    /// Psalmody — resolved (from weekday on memorials, from Proper on solemnities)
+    psalmody: HoursPsalmody,
+
+    /// Proper elements — each resolved with its source
+    invitatory_antiphon: Option<SourcedText>,
+    hymn: SourcedText,
+    short_reading: SourcedText,
+    short_responsory: SourcedText,
+    /// At Benedictus (Lauds) or Magnificat (Vespers) — GILH 116-119
+    canticle_antiphon: Option<SourcedText>,
+    intercessions: Option<SourcedText>,
+    concluding_prayer: SourcedText,
+
+    /// Office of Readings content (only for HourTime::OfficeOfReadings)
+    office_readings: Option<OfficeReadingsContent>,
+}
+```
+
+#### `OfficeReadingsContent`
+
+**What it is:** The readings content specific to the Office of Readings. Two or three readings depending on context.
+
+**Why separate `patristic_reading` and `hagiographical_reading`:** This models the §235d/§239 distinction explicitly:
+
+| Context | `patristic_reading` | `hagiographical_reading` | Behavior |
+|---------|---------------------|--------------------------|----------|
+| Weekday (no memorial) | Present | None | Patristic only |
+| Memorial in OT (§235d) | None | Present | Hagiographical **replaces** patristic |
+| Memorial in privileged season (§239a) | Present | Present | Hagiographical **added after** patristic |
+| Solemnity/Feast (§225-233) | None | Present | Proper reading (honor of the saint) |
+
+```rust
+struct OfficeReadingsContent {
     /// First reading: from the Scripture continuous reading cycle
-    scripture_reading: ReadingText,
-    /// Second reading: patristic (weekday) or hagiographical (memorial)
-    second_reading: ReadingText,
-    /// Te Deum — present on solemnities, feasts, Sundays outside Lent (GILH 68)
+    scripture_reading: SourcedText,
+    /// Patristic reading — from the current cycle or Common
+    /// Present on weekdays, absent when replaced by hagiographical on memorials (§235d)
+    /// Present alongside hagiographical during privileged seasons (§239a)
+    patristic_reading: Option<SourcedText>,
+    /// Hagiographical reading — in honor of the saint
+    /// Present on memorials (§235d), during §239 additions, and on solemnities/feasts
+    hagiographical_reading: Option<SourcedText>,
+    /// Te Deum — on solemnities, feasts, Sundays outside Lent (GILH 68)
+    /// Not said on memorials or weekdays
     te_deum: bool,
 }
 ```
 
-### 6. Integration in Celebration and Calendar
+#### `HoursCompositionRules`
+
+**What it is:** The rules governing how memorials interact with the weekday Office. Simpler than `CompositionRules` for the Mass because the Office has less compositional flexibility — once the celebration is chosen, the content is determined by §235 rules.
+
+**Why simpler than Mass:** The Mass has three independent rule dimensions (formulary block, readings, flexible orations). The Office has one primary rule: how the memorial interacts with the weekday content. The §235 resolution logic is handled by the engine, not exposed to the consumer.
 
 ```rust
-struct Celebration {
-    // ... identity fields ...
-    masses: BTreeMap<MassTime, CelebrationMass>,
-    hours: BTreeMap<HourTime, CelebrationHour>,  // future
-}
-
-enum HourTime {
-    OfficeOfReadings,
-    Lauds,          // Morning Prayer
-    Terce,          // Mid-morning
-    Sext,           // Midday
-    None,           // Mid-afternoon
-    Vespers,        // Evening Prayer
-    Compline,       // Night Prayer
-}
-
-impl Calendar {
-    fn generate_liturgical_calendar(&self) -> LiturgicalCalendar;  // exists
-    fn generate_mass_calendar(&self) -> MassCalendar;              // exists
-    fn generate_hours_calendar(&self) -> HoursCalendar;            // future
+struct HoursCompositionRules {
+    /// How memorials interact with the weekday Office
+    memorial: MemorialRule,
 }
 ```
 
-This would support both the Roman Office and monastic propers (e.g., Benedictine, Cistercian) through the existing calendar inheritance mechanism.
+#### `MemorialRule`
 
-### 7. Combining Hours with Mass (GILH 93-98)
+**What it is:** An enum governing the celebration of memorials in the Office on a given day.
+
+**Why this name:** It is a "rule" about "memorials" — whether they can be celebrated, and if so, how they interact with the weekday content.
+
+```rust
+enum MemorialRule {
+    /// Free choice: celebrate the memorial or the weekday
+    /// Engine applies §235 substitution rules (saint's elements replace weekday)
+    /// (Ordinary Time)
+    FreeChoice,
+    /// Memorial elements may only be added alongside weekday content
+    /// Engine applies §239 addition rules (hagiographical reading after patristic,
+    /// saint's antiphon and prayer appended)
+    /// (Advent Dec 17-24, Christmas Octave, Lent — except Ash Wed and Holy Week)
+    AdditionsOnly,
+    /// No memorial permitted at all
+    /// (Ash Wed, Holy Week, Easter Octave, Sundays, Solemnities, Feasts)
+    NoMemorial,
+}
+```
+
+#### Approach 3 — Example
+
+```
+HoursCalendar
+│
+├── "2025-02-10" → [
+│   HoursComposition {
+│       hour_time: OfficeOfReadings,
+│       civil_date: "2025-02-10",
+│       liturgical_date: "2025-02-10",
+│       context: DayContext { season: OrdinaryTime, week: 5, ... },
+│       default_celebration_id: "ord_time_5_mon",
+│
+│       celebration_options: [
+│           HoursCelebrationOption {                 ← feria
+│               celebration_id: "ord_time_5_mon",
+│               rank: Weekday,
+│               content: ResolvedHourContent {
+│                   psalmody: HoursPsalmody { ... },  ← weekday psalms
+│                   hymn: SourcedText { source: ProperOfTime, ... },
+│                   concluding_prayer: SourcedText { source: ProperOfTime, ... },
+│                   office_readings: Some(OfficeReadingsContent {
+│                       scripture_reading: SourcedText { ... },
+│                       patristic_reading: Some(SourcedText { ... }),
+│                       hagiographical_reading: None,
+│                       te_deum: false,
+│                   }),
+│                   ...
+│               }
+│           },
+│           HoursCelebrationOption {                 ← memorial
+│               celebration_id: "st_scholastica",
+│               rank: OptionalMemorial,
+│               content: ResolvedHourContent {
+│                   psalmody: HoursPsalmody { ... },  ← same weekday psalms (§235a)
+│                   hymn: SourcedText { source: Common(Virgins), ... },
+│                   concluding_prayer: SourcedText {  ← mandatory from saint (§235c)
+│                       source: ProperOfSaint("st_scholastica"), ...
+│                   },
+│                   office_readings: Some(OfficeReadingsContent {
+│                       scripture_reading: SourcedText { ... },  ← same cycle (§235d)
+│                       patristic_reading: None,                 ← replaced (§235d)
+│                       hagiographical_reading: Some(SourcedText {
+│                           source: ProperOfSaint("st_scholastica"), ...
+│                       }),
+│                       te_deum: false,
+│                   }),
+│                   ...
+│               }
+│           },
+│       ],
+│
+│       composition_rules: HoursCompositionRules {
+│           memorial: FreeChoice,
+│       }
+│   },
+│
+│   HoursComposition { hour_time: Lauds, ... },
+│   HoursComposition { hour_time: Terce, ... },
+│   HoursComposition { hour_time: Sext, ... },
+│   HoursComposition { hour_time: Nones, ... },
+│   HoursComposition { hour_time: Vespers, ... },
+│   HoursComposition { hour_time: Compline, ... },
+│ ]
+│
+├── "2025-03-10" → [                                ← Lenten weekday with memorial
+│   HoursComposition {
+│       hour_time: OfficeOfReadings,
+│       ...
+│       celebration_options: [
+│           HoursCelebrationOption {                 ← feria
+│               celebration_id: "lent_2_mon",
+│               rank: Weekday,
+│               content: ResolvedHourContent {
+│                   office_readings: Some(OfficeReadingsContent {
+│                       patristic_reading: Some(...),
+│                       hagiographical_reading: None,
+│                       ...
+│                   }),
+│                   ...
+│               }
+│           },
+│           HoursCelebrationOption {                 ← memorial (§239 additions)
+│               celebration_id: "st_john_ogilvie",
+│               rank: OptionalMemorial,              ← demoted per §238
+│               content: ResolvedHourContent {
+│                   office_readings: Some(OfficeReadingsContent {
+│                       patristic_reading: Some(...),      ← KEPT (§239a)
+│                       hagiographical_reading: Some(...), ← ADDED after (§239a)
+│                       ...
+│                   }),
+│                   concluding_prayer: SourcedText {       ← from saint (§239a)
+│                       source: ProperOfSaint("st_john_ogilvie"), ...
+│                   },
+│                   ...
+│               }
+│           },
+│       ],
+│
+│       composition_rules: HoursCompositionRules {
+│           memorial: AdditionsOnly,                 ← §239 mechanism
+│       }
+│   },
+│   ...
+│ ]
+│
+├── "2025-12-24" → [                                ← Vespers I shifted
+│   HoursComposition { hour_time: OfficeOfReadings, ... },  ← Dec 24 feria
+│   HoursComposition { hour_time: Lauds, ... },
+│   ...
+│   HoursComposition {
+│       hour_time: VespersI,                         ← Christmas Vespers I
+│       civil_date: "2025-12-24",                    ← shifted here
+│       liturgical_date: "2025-12-25",               ← belongs to Dec 25
+│       celebration_options: [
+│           HoursCelebrationOption {
+│               celebration_id: "christmas",
+│               rank: Solemnity,
+│               content: ResolvedHourContent { ... }, ← proper solemnity content
+│           },
+│       ],
+│       composition_rules: HoursCompositionRules {
+│           memorial: NoMemorial,
+│       }
+│   },
+│ ]
+```
+
+### 7. Integration and Calendar API
+
+```rust
+impl Calendar {
+    fn generate_liturgical_calendar(&self) -> LiturgicalCalendar;  // Approach 1
+    fn generate_mass_calendar(&self) -> MassCalendar;              // Approach 2
+    fn generate_hours_calendar(&self) -> HoursCalendar;            // Approach 3
+}
+```
+
+Approach 1 remains the internal foundation. The `Celebration` struct carries both `masses` and `hours` content. Approaches 2 and 3 are generated from Approach 1 by their respective transformation pipelines.
+
+This supports both the Roman Office and monastic propers (e.g., Benedictine, Cistercian) through the existing calendar inheritance mechanism — the same `CalendarId` chain that resolves Mass texts also resolves Office texts.
+
+### 8. Combining Hours with Mass (GILH 93-98)
 
 GILH 93-98 provides for combining Lauds with Morning Mass or Vespers with Evening Mass. When combined:
 
@@ -1236,4 +1613,4 @@ GILH 93-98 provides for combining Lauds with Morning Mass or Vespers with Evenin
 - A psalm from the Hour may serve as the entrance chant
 - A single concluding rite concludes both
 
-This interaction means the `MassComposition` (Approach 2) may in the future need a reference to the combined Hour, or a combined output type. This does not affect the current Mass-only architecture but should be considered when adding Hours support.
+This interaction means the `MassComposition` (Approach 2) may need a reference to the combined Hour, or a combined output type. This does not affect the current architecture but should be considered when adding Hours support.
