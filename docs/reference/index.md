@@ -4,6 +4,10 @@ title: Liturgical Reference
 
 The Catholic Church's liturgical calendar follows official norms from the Dicastery for Divine Worship. Romcal implements these rules to calculate dates, resolve conflicts, and assign liturgical properties.
 
+## Primary Documents
+
+These documents contain the normative rules that Romcal's calendar engine directly implements.
+
 ### [Universal Norms on the Liturgical Year and the Calendar (GNLY)](./gnly)
 
 The foundational document for Romcal. Defines the **liturgical seasons** (Advent, Christmas, Lent, Easter, Ordinary Time), **celebration ranks** (solemnity, feast, memorial), and the critical **Table of Precedence** used to resolve conflicts when multiple celebrations fall on the same day. Also specifies rules for **transferring solemnities** and the proper day for each celebration.
@@ -19,3 +23,11 @@ Introduction to the Lectionary for Mass. Provides the theological foundations of
 ### [General Instruction of the Liturgy of the Hours (GILH)](./gilh)
 
 Instructions for the Divine Office (Liturgy of the Hours). Romcal references the GILH for **psalter week** calculations and understanding how celebrations affect the Office. Covers the hours (Lauds, Vespers, Compline, etc.), psalm distribution, readings, and how feasts and memorials integrate with the daily Office.
+
+## Complementary Documents
+
+These documents clarify and expand on the primary norms. They provide valuable context for understanding the liturgical year but do not introduce new calendar calculation rules beyond what the primary documents establish.
+
+### [Preparation and Celebration of the Easter Feasts (PS)](./ps)
+
+Circular letter _Paschalis Sollemnitatis_ from the Congregation for Divine Worship (1988). Clarifies and complements the norms for **Lent**, **Holy Week**, the **Easter Triduum**, and **Easter Time**. While the calendar computation rules for these periods are already in the GNLY, this document provides pastoral guidance on timing, roles of ministers, and liturgical elements.

@@ -26,6 +26,10 @@ See [Universal Norms on the Liturgical Year and the Calendar](#universal-norms-o
 
 See [Universal Norms on the Liturgical Year and the Calendar](#universal-norms-on-the-liturgical-year-and-the-calendar).
 
+### PS
+
+See [Paschalis Sollemnitatis](#paschalis-sollemnitatis).
+
 ### UNLY
 
 See [Universal Norms on the Liturgical Year and the Calendar](#universal-norms-on-the-liturgical-year-and-the-calendar).
@@ -138,6 +142,12 @@ See: [General Instruction of the Liturgy of the Hours](#general-instruction-of-t
 ---
 
 ## P
+
+### Paschalis Sollemnitatis
+
+_Paschalis Sollemnitatis_ (Latin: "Of the Paschal Solemnity") is a circular letter from the Congregation for Divine Worship (January 16, 1988) concerning the preparation and celebration of the Easter feasts. It recalls and clarifies norms for Lent, Holy Week, the Easter Triduum, and Easter Time.
+
+See: [PS](./reference/ps.md)
 
 ### Precedence
 

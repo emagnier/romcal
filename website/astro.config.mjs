@@ -76,6 +76,7 @@ export default defineConfig({
             { label: 'GIRM — Roman Missal', slug: 'reference/girm' },
             { label: 'GILM — Lectionary for Mass', slug: 'reference/gilm' },
             { label: 'GILH — Liturgy of the Hours', slug: 'reference/gilh' },
+            { label: 'PS — Easter Feasts', slug: 'reference/ps' },
           ],
         },
         { label: 'Glossary', slug: 'glossary' },
