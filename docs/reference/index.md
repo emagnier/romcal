@@ -5,7 +5,7 @@ title: Liturgical Reference
 The Catholic Church's liturgical calendar follows official norms from the Dicastery for Divine Worship. Romcal implements these rules to calculate dates, resolve conflicts, and assign liturgical properties.
 
 :::note[Selection Criteria]
-A document is **primary** for Romcal if it contains **calendar calculation rules** that Romcal must implement. Documents that clarify or contextualize these rules without adding new computation logic are **complementary**. Many important liturgical documents (ceremonial instructions, translation norms, sacramental rites) fall outside Romcal's scope entirely.
+This page lists documents that contain **calendar calculation rules** or **reference data** that Romcal implements. Many important liturgical documents (ceremonial instructions, translation norms, sacramental rites) fall outside this scope and are intentionally not included.
 :::
 
 ## Core Documents
@@ -19,6 +19,14 @@ The foundational document for Romcal. Defines the **liturgical seasons** (Advent
 ### [Instruction on Particular Calendars (CP)](./cp)
 
 Instruction _Calendaria Particularia_ from the Congregation for Divine Worship (1970). Extends the GNLY with norms for **particular calendars** (diocesan, national, religious institutes). Defines rules for **patron saints**, **proper celebrations**, **rank assignments**, and **liturgical privileges**. Essential for Romcal's handling of calendars beyond the General Roman Calendar.
+
+### Dicastery Decrees
+
+Individual decrees from the Dicastery for Divine Worship are the **living source** for calendar updates: inscriptions of new saints, rank elevations, date changes, and removals. Unlike the documents above, these are not a single text to read but an ongoing stream of authoritative changes that Romcal's data must track.
+
+**Official source**: [Dicastery for Divine Worship](https://www.vatican.va/roman_curia/congregations/ccdds/index.htm) on vatican.va — individual decrees in multiple languages.
+
+**Chronological index**: [GCatholic](https://gcatholic.org/documents/data/curia-d05.htm) maintains a historical list of all documents from the Dicastery and its predecessors (Congregation of Rites, Congregation for Divine Worship).
 
 ## Extended Scope Documents
 
@@ -43,3 +51,15 @@ These documents clarify and expand on the primary norms. They provide valuable c
 ### [Preparation and Celebration of the Easter Feasts (PS)](./ps)
 
 Circular letter _Paschalis Sollemnitatis_ from the Congregation for Divine Worship (1988). Clarifies and complements the norms for **Lent**, **Holy Week**, the **Easter Triduum**, and **Easter Time**. While the calendar computation rules for these periods are already in the GNLY, this document provides pastoral guidance on timing, roles of ministers, and liturgical elements.
+
+## Data Sources
+
+These are not normative documents but reference data that Romcal uses.
+
+### Martyrologium Romanum
+
+The official list of saints and blessed recognized by the Church, with their liturgical dates. Romcal uses this as the authoritative source for sanctoral entries. The current edition (2004, with supplements) contains over 7,000 entries.
+
+### Notitiae Responses
+
+The Dicastery's journal _Notitiae_ publishes responses to _dubia_ (formal questions) that clarify edge cases in the GNLY: ambiguous transfers, impeded solemnities, vigil rules, etc. Useful when debugging unusual calendar scenarios.
