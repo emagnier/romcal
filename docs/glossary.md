@@ -10,6 +10,10 @@ Definitions of terms used in Romcal and Catholic liturgy.
 
 See [General Instruction of the Liturgy of the Hours](#general-instruction-of-the-liturgy-of-the-hours).
 
+### GILM
+
+See [General Introduction to the Lectionary for Mass](#general-introduction-to-the-lectionary-for-mass).
+
 ### GIRM
 
 See [General Instruction of the Roman Missal](#general-instruction-of-the-roman-missal).
@@ -55,6 +59,12 @@ See [Liturgy of the Hours](#liturgy-of-the-hours).
 The General Instruction of the Liturgy of the Hours (GILH) is the document that provides the general instructions for the Liturgy of the Hours. It is an official liturgical document promulgated by the Congregation for Divine Worship.
 
 See: [GILH](./reference/gilh.md)
+
+### General Introduction to the Lectionary for Mass
+
+The General Introduction to the Lectionary for Mass (GILM) is the introductory document to the Order of Readings for Mass (_Ordo Lectionum Missae_). It explains the theological foundations of Scripture proclamation in the liturgy, the structure of the Liturgy of the Word, and the principles for arranging readings throughout the liturgical year.
+
+See: [GILM](./reference/gilm.md)
 
 ### General Instruction of the Roman Missal
 
