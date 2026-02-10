@@ -279,9 +279,13 @@ PRIVILEGED WEEKDAYS (Advent 17-24, Octave of Christmas, Lent)
 - **GILH 116-119** — Antiphon rules by rank: on memorials without proper antiphons, antiphons for the canticles of Zechariah and Mary may be taken from the Common or from the current psalter
 - **GILH 134-135** — Psalm arrangements: on solemnities and feasts, proper psalms; on memorials and weekdays, psalms from the current psalter
 - **GILH 199** — Concluding prayer: on memorials, from the saint's proper or the appropriate Common; on weekdays, from the psalter or the seasonal proper
-- **GILH 228-234** — How the Office is arranged on memorials: psalms from the current weekday; other elements (invitatory antiphon, hymn, short reading, antiphons at Benedictus/Magnificat, intercessions, concluding prayer) from the saint's proper or Common
-- **GILH 235-236** — Optional memorials: same freedom as obligatory memorials, but all substitutable elements may alternatively remain from the weekday
-- **GILH 237-239** — Weekdays: everything from the psalter and current day
+- **GILH 225-233** — How the Office is arranged on solemnities (§225-230: everything proper or Common; Te Deum said; psalms from Laudate group or Sunday Week I) and feasts (§231-233: no Evening Prayer I; otherwise as solemnities)
+- **GILH 234** — No difference in arrangement between obligatory and optional memorials, except during privileged seasons
+- **GILH 235-236** — Memorials during Ordinary Time: (a) psalms/antiphons from current weekday; (b) invitatory, hymn, short reading, canticle antiphons, intercessions from saint's Proper, or else from Common or weekday; (c) concluding prayer from the saint (mandatory); (d) Office of Readings: 1st reading from Scripture cycle, 2nd from saint/Common; Te Deum not said. Daytime Prayer and Night Prayer entirely from weekday (§236).
+- **GILH 237-239** — Memorials during privileged seasons: no memorials on Sundays/solemnities/feasts/Ash Wed/Holy Week/Easter Octave (§237); obligatory memorials become optional on Advent Dec 17-24, Christmas Octave, Lent weekdays (§238); limited additions: hagiographical reading **added after** patristic (not replacing), saint's antiphon and prayer **appended** to Morning/Evening Prayer (§239)
+- **GILH 240** — Optional memorial of BVM on Saturdays in Ordinary Time, celebrated as other memorials
+- **GILH 244** — On weekdays with optional memorials, a saint from the Roman Martyrology may be celebrated as other memorials (parallels GIRM 355.3c)
+- **GILH 249** — Interrupted continuous reading in the Office: may combine omitted parts or prefer certain readings (parallels GIRM 358)
 
 ---
 
@@ -1098,35 +1102,45 @@ The Mass has three substitution groups (Part I §2). The Office has fundamentall
 | Group | Mass (GIRM) | Office (GILH) |
 |-------|-------------|----------------|
 | **Psalmody** | Entrance/communion antiphons follow the formulary choice | Psalms + psalm antiphons ALWAYS from the current weekday psalter (GILH 62, 134) |
-| **Identifying texts** | Formulary block: collect + entrance/communion antiphons (inseparable) | Proper elements: invitatory antiphon, hymn, short reading, canticle antiphons (Benedictus/Magnificat), intercessions, concluding prayer — from saint's proper or Common (GILH 228-234) |
+| **Identifying texts** | Formulary block: collect + entrance/communion antiphons (inseparable) | Proper elements: invitatory antiphon, hymn, short reading, canticle antiphons (Benedictus/Magnificat), intercessions — from saint's Proper, Common, or weekday (GILH 235b). Concluding prayer mandatory from saint (GILH 235c). |
 | **Readings** | Scripture readings: fixed set or pool (GIRM 357, GILM 71) | Office of Readings: 1st reading from Scripture cycle + 2nd reading patristic or hagiographical (GILH 64, 67) |
 | **Flexible orations** | Prayer over offerings, prayer after Communion: individually choosable (GIRM 363) | Not applicable — the Office has no equivalent flexible orations |
 
 **Key architectural difference:** In the Mass, the entrance and communion antiphons follow the formulary choice (inseparable from the collect). In the Office, psalm antiphons stay with the psalter on memorials, while only the canticle antiphons (at Benedictus and Magnificat) can come from the saint. This means `FormularySet` cannot be reused for the Office — the Office needs a different structure.
 
-### 2. Memorial Rules Comparison
+### 2. Memorial Rules in Ordinary Time (GILH 234-236)
 
-| Element | Mass on Memorial | Office on Memorial (GILH 228-234) |
-|---------|------------------|-----------------------------------|
-| **Psalms** | N/A (Mass has no psalmody block) | From the current weekday psalter (GILH 62, 134) |
-| **Psalm antiphons** | Follow formulary choice | From the current weekday psalter (GILH 62) |
-| **Canticle antiphons** | N/A | From saint's proper, or Common, or current psalter (GILH 116-119) |
-| **Collect / Concluding prayer** | From saint's proper or Common (GIRM 363) | From saint's proper or Common (GILH 199) |
-| **Readings** | Proper override weekday; Common always available (GILM 83) | 1st: Scripture cycle; 2nd: hagiographical replaces patristic (GILH 67) |
-| **Hymn** | N/A | From saint's proper or Common (GILH 228) |
-| **Short reading** | N/A | From saint's proper or Common (GILH 228) |
-| **Intercessions** | Universal Prayer (not governed by GIRM 363) | From saint's proper or Common (GILH 228) |
-| **Te Deum** | N/A | Omitted on memorials (GILH 68) |
+GILH 234: "There is no difference in the arrangement of the Office for obligatory and optional memorials except in the case of optional memorials falling during privileged seasons."
 
-### 3. Optional Memorials in the Office (GILH 235-236)
+The rules of §235-236 apply **identically** to both obligatory and optional memorials in Ordinary Time:
 
-On optional memorials, the Office grants even broader freedom than on obligatory memorials: **all** substitutable elements (those listed as "from saint's proper or Common" above) may alternatively remain from the weekday. The celebrant has full choice between:
+| Element | Source (GILH 235-236) | Flexibility |
+|---------|----------------------|-------------|
+| **Psalms + psalm antiphons** | Current weekday psalter (§235a) | Fixed (unless proper indicated) |
+| **Invitatory antiphon, hymn, short reading** | Saint's Proper → Common or weekday (§235b) | Flexible (priority order) |
+| **Canticle antiphons** (Benedictus/Magnificat) | Saint's Proper → Common or weekday (§235b) | Flexible (priority order) |
+| **Intercessions** | Saint's Proper → Common or weekday (§235b) | Flexible (priority order) |
+| **Concluding prayer** | From the Office of the saint (§235c) | **Mandatory** from saint |
+| **Office of Readings — 1st reading** | Current Scripture cycle (§235d) | Fixed |
+| **Office of Readings — 2nd reading** | Saint's proper or Common; current patristic if none exists (§235d) | From saint/Common |
+| **Te Deum** | Not said (§235d) | Fixed (omitted) |
+| **Daytime Prayer, Night Prayer** | Entirely from weekday (§236) | Fixed |
 
-- Celebrating entirely as the weekday (nothing from the saint)
-- Substituting some elements from the saint/Common while keeping others from the weekday
-- Substituting all available elements from the saint/Common
+**Comparison with Mass:** In the Mass, the collect is part of the formulary block choice — it comes from whichever celebration is chosen. In the Office, the concluding prayer is **always mandatory from the saint** (§235c) — it is the one element that unambiguously identifies the memorial. The flexible elements (§235b) follow a priority order: saint's Proper if given, otherwise Common or weekday — unlike the Mass's flexible orations (GIRM 363) which are freely choosable between sources without priority.
 
-This parallels the Mass's "pick one" approach for the formulary block but applies **element-by-element** — making the Office closer to Group 3 (flexible orations) behavior than to Group 1 (inseparable block) behavior.
+### 3. Memorials during Privileged Seasons (GILH 237-239)
+
+The Office handles memorials during privileged seasons differently from the Mass, using an **addition** mechanism rather than a **substitution** mechanism:
+
+**§237 — Complete exclusion:** On Sundays, solemnities, feasts, Ash Wednesday, Holy Week, and during the Easter Octave, "no regard is taken of any memorials." This parallels the Mass rule (GIRM 355.1 exception for Ash Wednesday/Holy Week).
+
+**§238 — Demotion:** On weekdays of Advent Dec 17-24, Christmas Octave, and Lent, "obligatory memorials are not celebrated" and "are treated as optional memorials." This parallels GNLY 14 (Lenten demotion) and applies to the Office as well.
+
+**§239 — Limited additions:** During these privileged seasons, if the celebrant wishes to mark the saint's memorial:
+- **(a) Office of Readings:** A hagiographical reading may be **added after** the patristic reading (with its responsorial), not replacing it, along with the saint's concluding prayer.
+- **(b) Morning/Evening Prayer:** The saint's antiphon (from Proper or Common) and prayer may be **appended** to the Hour.
+
+**Key difference from the Mass:** In the Mass on privileged weekdays (GIRM 355.1), the collect is **borrowed** from the memorial, replacing the weekday collect — a substitution. In the Office (§239), no weekday element is removed or replaced — the saint's elements are **added alongside** the weekday elements. This is architecturally significant: the Mass model uses `ForcedCollectBorrowable` (a substitution rule), but the Office would need an "append" or "supplement" rule with no equivalent in the current `BlockRule` enum.
 
 ### 4. Type Shareability: Mass → Office
 
