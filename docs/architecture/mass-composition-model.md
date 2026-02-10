@@ -276,10 +276,16 @@ PRIVILEGED WEEKDAYS (Advent 17-24, Octave of Christmas, Lent)
 - **GILH 62** — On memorials, psalms and antiphons are taken from the current week and day of the psalter, unless proper psalms or antiphons are indicated
 - **GILH 64, 67** — Office of Readings has two readings: the first from Scripture (continuous reading cycle), the second patristic. On memorials, a hagiographical reading replaces the second reading if one exists
 - **GILH 68** — Te Deum: sung on solemnities, feasts, and Sundays (except in Lent); omitted on memorials and weekdays
+- **GILH 73** — Vigil extension of the Office of Readings: "after the Office of Readings and before the Te Deum, canticles from the special appendix [...] are inserted, the passage from the Gospels is then read." The vigil is not a separate Hour but an extension celebrated "during the night or early morning."
 - **GILH 93-98** — Provisions for combining Hours of the Office with Mass: shared opening rite, psalm as entrance chant, single concluding rite
 - **GILH 116-119** — Antiphon rules by rank: on memorials without proper antiphons, antiphons for the canticles of Zechariah and Mary may be taken from the Common or from the current psalter
 - **GILH 134-135** — Psalm arrangements: on solemnities and feasts, proper psalms; on memorials and weekdays, psalms from the current psalter
 - **GILH 199** — Concluding prayer: on memorials, from the saint's proper or the appropriate Common; on weekdays, from the psalter or the seasonal proper
+- **GILH 206** — Vigil form structure for the Triduum: "In the celebration of the vigils, [...] after the two readings and before the canticle Te Deum, the canticles and the Gospel indicated for each case are added."
+- **GILH 209** — Vespers suppression on Holy Thursday and Good Friday: those who attend the evening Mass of the Lord's Supper or the Celebration of the Lord's Passion omit Vespers.
+- **GILH 211** — Compline suppression on Holy Saturday: those who attend the Easter Vigil omit Compline.
+- **GILH 212** — Easter Vigil replaces the Office of Readings on Holy Saturday. For those absent, a reduced Office of Readings is provided (choosing 4 of the Vigil's OT readings). Cross-domain interaction: a Mass celebration affects the Office.
+- **GILH 215** — Christmas night: when the vigil form of the Office of Readings is celebrated before Midnight Mass, Compline is omitted. Also specifies the vigil form for Christmas.
 - **GILH 225-233** — How the Office is arranged on solemnities (§225-230: everything proper or Common; Te Deum said; psalms from Laudate group or Sunday Week I) and feasts (§231-233: no Evening Prayer I; otherwise as solemnities)
 - **GILH 234** — No difference in arrangement between obligatory and optional memorials, except during privileged seasons
 - **GILH 235-236** — Memorials during Ordinary Time: (a) psalms/antiphons from current weekday; (b) invitatory, hymn, short reading, canticle antiphons, intercessions from saint's Proper, or else from Common or weekday; (c) concluding prayer from the saint (mandatory); (d) Office of Readings: 1st reading from Scripture cycle, 2nd from saint/Common; Te Deum not said. Daytime Prayer and Night Prayer entirely from weekday (§236).
@@ -1008,8 +1014,10 @@ HoursComposition               ✗       ✗       ✓    App 3
 HoursCelebrationOption         ✗       ✗       ✓    App 3
 ResolvedHourContent            ✗       ✗       ✓    App 3
 OfficeReadingsContent          ✗       ✗       ✓    App 3
+VigilExtension                 ✗       ✗       ✓    App 3
 HoursCompositionRules          ✗       ✗       ✓    App 3
 MemorialRule                   ✗       ✗       ✓    App 3
+HourSuppression                ✗       ✗       ✓    App 3
 
 HourTime                       ✓       ✗       ✓    SHARED (App 1+3)
 HoursPsalmody                  ✓       ✗       ✓    SHARED (App 1+3)
@@ -1055,9 +1063,9 @@ core/src/types/
 │   └── mod.rs
 │
 ├── hours_calendar/                  APPROACH 3
-│   ├── hours_composition.rs         HoursComposition
+│   ├── hours_composition.rs         HoursComposition, HourSuppression
 │   ├── hours_celebration_option.rs  HoursCelebrationOption, ResolvedHourContent
-│   ├── office_readings.rs           OfficeReadingsContent
+│   ├── office_readings.rs           OfficeReadingsContent, VigilExtension
 │   ├── hours_composition_rules.rs   HoursCompositionRules, MemorialRule
 │   └── mod.rs
 │
@@ -1341,6 +1349,12 @@ struct HoursComposition {
     // === COMPOSITION RULES ===
     /// How memorials interact with the weekday Office
     composition_rules: HoursCompositionRules,
+
+    // === SUPPRESSION ===
+    /// Indicates if this Hour is suppressed or replaced by a Mass celebration
+    /// (GILH 209, 211, 212, 215). When present, the consumer should inform
+    /// the user that this Hour may be omitted under certain conditions.
+    suppression: Option<HourSuppression>,
 }
 ```
 
@@ -1424,6 +1438,32 @@ struct OfficeReadingsContent {
     /// Te Deum — on solemnities, feasts, Sundays outside Lent (GILH 68)
     /// Not said on memorials or weekdays
     te_deum: bool,
+    /// Vigil extension — canticles and Gospel added after Te Deum (GILH 73, 206, 215)
+    /// Present only when the vigil form of the Office of Readings is celebrated
+    vigil_extension: Option<VigilExtension>,
+}
+```
+
+#### `VigilExtension`
+
+**What it is:** The additional elements appended to the Office of Readings when it is celebrated in its extended vigil form — canticles from the Old Testament followed by a Gospel reading.
+
+**Why this name:** "Vigil" because this form is used at vigils (GILH §73: "celebrated during the night or early morning"). "Extension" because it extends the Office of Readings — it is not a separate Hour, but an appendage to the existing Office of Readings after the Te Deum.
+
+**Liturgical basis:**
+- **GILH §73:** "Whenever it may be desired to celebrate a longer vigil [...] after the Office of Readings and before the Te Deum, canticles from the special appendix [...] are inserted, the passage from the Gospels is then read."
+- **GILH §206:** "In the celebration of the vigils, [...] after the two readings and before the canticle *Te Deum*, the canticles and the Gospel indicated for each case are added."
+- **GILH §215:** On Christmas night, when the vigil form is used, Compline is omitted by those who attend.
+
+**When present:** On solemnities (especially Easter, Christmas, Pentecost) and Sundays when the community chooses the vigil form. The Te Deum is sung *after* the vigil canticles and Gospel (§73), not before. The `te_deum: bool` field indicates whether Te Deum is said; the `vigil_extension` field adds the vigil elements that precede it.
+
+```rust
+struct VigilExtension {
+    /// OT canticles from the special appendix (GILH 73)
+    /// Typically 3 canticles with their antiphons
+    canticles: Vec<PsalmodyEntry>,
+    /// Gospel reading proclaimed after the canticles (GILH 73, 206)
+    gospel: SourcedText,
 }
 ```
 
@@ -1460,6 +1500,46 @@ enum MemorialRule {
     /// No memorial permitted at all
     /// (Ash Wed, Holy Week, Easter Octave, Sundays, Solemnities, Feasts)
     NoMemorial,
+}
+```
+
+#### `HourSuppression`
+
+**What it is:** An enum indicating that a specific Hour of the Office is conditionally suppressed or replaced by a Mass celebration. This models the Triduum and Christmas exceptions where attending a liturgical celebration makes a subsequent Hour redundant.
+
+**Why this name:** "Hour" because it concerns a specific Hour of the Office. "Suppression" because the Hour is suppressed (not celebrated) under certain conditions — the GILH's own language (e.g., §209: "il est convenable d'omettre les Vêpres").
+
+**Liturgical basis:**
+
+| Paragraph | Context | Rule |
+|-----------|---------|------|
+| **GILH §209** | Holy Thursday / Good Friday | Those who attend the evening Mass of the Lord's Supper (Holy Thursday) or the Celebration of the Lord's Passion (Good Friday) omit Vespers. |
+| **GILH §211** | Holy Saturday | Those who attend the Easter Vigil omit Compline. |
+| **GILH §212** | Holy Saturday — Office of Readings | The Easter Vigil takes the place of the Office of Readings. For those who cannot attend the Vigil, a reduced Office of Readings is provided (choosing 4 of the Vigil's OT readings). |
+| **GILH §215** | Christmas night | Those who celebrate the vigil form of the Office of Readings before Midnight Mass omit Compline. |
+
+**Why `Option<HourSuppression>` (not always present):** Most Hours are never suppressed. This field is `None` for all ordinary days. It is `Some(...)` only on the handful of exceptional days listed above.
+
+**Why not a boolean:** The suppression is *conditional* — it depends on what the person attends. The consumer needs to know *which* celebration triggers the suppression in order to inform the user correctly ("If you attend the Easter Vigil, you omit Compline").
+
+```rust
+enum HourSuppression {
+    /// This Hour is omitted if the person attends the referenced Mass celebration.
+    /// The Hour content is still provided for those who do NOT attend.
+    /// (GILH 209: Vespers on Holy Thursday/Good Friday; GILH 211: Compline on Holy Saturday;
+    ///  GILH 215: Compline on Christmas night)
+    SuppressedIfAttends {
+        /// The Mass celebration that triggers suppression
+        mass_celebration_id: CelebrationId,
+    },
+    /// This Hour is entirely replaced by a Mass celebration.
+    /// The `content` in `celebration_options` carries the reduced form
+    /// for those who cannot attend the Mass.
+    /// (GILH 212: Easter Vigil replaces Office of Readings on Holy Saturday)
+    ReplacedByMass {
+        /// The Mass celebration that replaces this Hour
+        mass_celebration_id: CelebrationId,
+    },
 }
 ```
 
@@ -1614,3 +1694,86 @@ GILH 93-98 provides for combining Lauds with Morning Mass or Vespers with Evenin
 - A single concluding rite concludes both
 
 This interaction means the `MassComposition` (Approach 2) may need a reference to the combined Hour, or a combined output type. This does not affect the current architecture but should be considered when adding Hours support.
+
+### 9. Vigil Extension and Hour Suppression (GILH 73, 206, 209, 211, 212, 215)
+
+Two exceptional mechanisms affect the Office during the Triduum and Christmas. Both involve **cross-domain interactions** — where a Mass celebration affects the Office.
+
+#### A. Vigil Extension (GILH 73, 206, 215)
+
+The Office of Readings can be celebrated in an extended **vigil form** on solemnities and Sundays. This is not a separate Hour — it is an extension appended to the Office of Readings:
+
+1. The normal Office of Readings is celebrated (two readings)
+2. **Before** the Te Deum, canticles from the special appendix are inserted (typically 3 OT canticles with antiphons)
+3. A Gospel is proclaimed
+4. The Te Deum is then sung (or the corresponding seasonal hymn)
+
+The `VigilExtension` struct (added to `OfficeReadingsContent`) models this appendage. When `vigil_extension` is `Some(...)`, the consumer knows that the vigil form is available for this Office of Readings. The canticles and Gospel are provided; the consumer inserts them before the Te Deum.
+
+**Concrete examples:**
+- **Holy Saturday → Easter Vigil:** GILH §212 — the Easter Vigil replaces the Office of Readings entirely (see below for `ReplacedByMass`). But the reduced form for absentees also uses the vigil structure.
+- **Christmas night:** GILH §215 — the Office of Readings in vigil form, with the Nativity canticles and Gospel, may be celebrated before Midnight Mass.
+- **Pentecost, other solemnities:** When the community chooses the vigil form per §73.
+
+#### B. Hour Suppression (GILH 209, 211, 212, 215)
+
+On certain exceptional days, attending a Mass celebration makes a subsequent Hour of the Office redundant. The `HourSuppression` enum models these cases:
+
+**`SuppressedIfAttends` — conditional omission:**
+
+The Hour is provided with full content (for those who do NOT attend the Mass), but is marked as suppressible for those who DO attend.
+
+| Day | Hour suppressed | Triggered by | Reference |
+|-----|----------------|--------------|-----------|
+| Holy Thursday | Vespers | Evening Mass of the Lord's Supper | GILH §209 |
+| Good Friday | Vespers | Celebration of the Lord's Passion | GILH §209 |
+| Holy Saturday | Compline | Easter Vigil | GILH §211 |
+| Christmas night | Compline | Vigil form of Office of Readings before Midnight Mass | GILH §215 |
+
+**`ReplacedByMass` — full replacement:**
+
+The Hour is entirely replaced by a Mass celebration. The `content` in `celebration_options` carries a reduced form for those who cannot attend the Mass.
+
+| Day | Hour replaced | Replaced by | Reduced form | Reference |
+|-----|--------------|-------------|--------------|-----------|
+| Holy Saturday | Office of Readings | Easter Vigil | 4 OT readings from the Vigil + Te Deum | GILH §212 |
+
+**Example — Holy Saturday:**
+
+```
+HoursCalendar["2025-04-19"] → [
+    HoursComposition {
+        hour_time: OfficeOfReadings,
+        ...
+        celebration_options: [
+            HoursCelebrationOption {
+                celebration_id: "holy_saturday",
+                content: ResolvedHourContent {
+                    office_readings: Some(OfficeReadingsContent {
+                        scripture_reading: ...,  ← 4 chosen OT readings (reduced form)
+                        patristic_reading: None,
+                        hagiographical_reading: None,
+                        te_deum: true,
+                        vigil_extension: None,
+                    }),
+                    ...
+                }
+            },
+        ],
+        suppression: Some(ReplacedByMass {
+            mass_celebration_id: "easter_vigil",
+        }),
+        ...
+    },
+    HoursComposition {
+        hour_time: Compline,
+        ...
+        suppression: Some(SuppressedIfAttends {
+            mass_celebration_id: "easter_vigil",
+        }),
+        ...
+    },
+]
+```
+
+**Architectural note:** These cross-domain interactions (Mass → Office) are rare — they only occur during the Triduum and at Christmas. The `HourSuppression` field is `None` on all other days. This keeps the model clean for the 99% case while faithfully representing the exceptions.
