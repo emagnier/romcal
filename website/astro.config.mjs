@@ -73,6 +73,7 @@ export default defineConfig({
           items: [
             { label: 'Overview', slug: 'reference' },
             { label: 'GNLY — Liturgical Year and Calendar', slug: 'reference/gnly' },
+            { label: 'CP — Particular Calendars', slug: 'reference/cp' },
             { label: 'GIRM — Roman Missal', slug: 'reference/girm' },
             { label: 'GILM — Lectionary for Mass', slug: 'reference/gilm' },
             { label: 'GILH — Liturgy of the Hours', slug: 'reference/gilh' },

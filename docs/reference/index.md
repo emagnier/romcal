@@ -4,25 +4,37 @@ title: Liturgical Reference
 
 The Catholic Church's liturgical calendar follows official norms from the Dicastery for Divine Worship. Romcal implements these rules to calculate dates, resolve conflicts, and assign liturgical properties.
 
-## Primary Documents
+:::note[Selection Criteria]
+A document is **primary** for Romcal if it contains **calendar calculation rules** that Romcal must implement. Documents that clarify or contextualize these rules without adding new computation logic are **complementary**. Many important liturgical documents (ceremonial instructions, translation norms, sacramental rites) fall outside Romcal's scope entirely.
+:::
 
-These documents contain the normative rules that Romcal's calendar engine directly implements.
+## Core Documents
+
+These documents are essential for Romcal's calendar engine. Without them, the core functionality cannot work correctly.
 
 ### [Universal Norms on the Liturgical Year and the Calendar (GNLY)](./gnly)
 
-The foundational document for Romcal. Defines the **liturgical seasons** (Advent, Christmas, Lent, Easter, Ordinary Time), **celebration ranks** (solemnity, feast, memorial), and the critical **Table of Precedence** used to resolve conflicts when multiple celebrations fall on the same day. Also specifies rules for **transferring solemnities** and the proper day for each celebration.
+The foundational document for Romcal. Defines the **liturgical seasons** (Advent, Christmas, Lent, Easter, Ordinary Time), **celebration ranks** (solemnity, feast, memorial), and the critical **Table of Precedence** (§59) used to resolve conflicts when multiple celebrations fall on the same day. Also specifies rules for **transferring solemnities** and the proper day for each celebration.
+
+### [Instruction on Particular Calendars (CP)](./cp)
+
+Instruction _Calendaria Particularia_ from the Congregation for Divine Worship (1970). Extends the GNLY with norms for **particular calendars** (diocesan, national, religious institutes). Defines rules for **patron saints**, **proper celebrations**, **rank assignments**, and **liturgical privileges**. Essential for Romcal's handling of calendars beyond the General Roman Calendar.
+
+## Extended Scope Documents
+
+These documents govern aspects of the liturgy that Romcal partially implements or may extend in the future.
 
 ### [General Instruction of the Roman Missal (GIRM)](./girm)
 
-The rubrics for celebrating Mass. Romcal uses the GIRM for **liturgical colors** assignment, **Mass formulary** selection rules, and **regional adaptations** (e.g., Epiphany/Ascension on Sunday). Covers the structure of the Mass, ministries, sacred vessels, vestments, and adaptations by Bishops' Conferences.
+The rubrics for celebrating Mass. Romcal uses the GIRM for **liturgical colors** assignment (§346), **Mass formulary** selection rules, and **regional adaptations** (e.g., Epiphany/Ascension on Sunday). Covers the structure of the Mass, ministries, sacred vessels, vestments, and adaptations by Bishops' Conferences.
 
 ### [General Introduction to the Lectionary for Mass (GILM)](./gilm)
 
-Introduction to the Lectionary for Mass. Provides the theological foundations of **Scripture proclamation** in the liturgy, the structure of the **Liturgy of the Word**, and the **Order of Readings** arrangement throughout the liturgical year. Covers biblical readings, responsorial psalms, the Gospel acclamation, the homily, and principles for selecting readings for Sundays, weekdays, and special celebrations.
+Introduction to the Lectionary for Mass. Provides the **Order of Readings** arrangement throughout the liturgical year, the **Sunday cycle** (A, B, C), and the **weekday cycle** (I, II). Romcal outputs cycle information for each liturgical day.
 
 ### [General Instruction of the Liturgy of the Hours (GILH)](./gilh)
 
-Instructions for the Divine Office (Liturgy of the Hours). Romcal references the GILH for **psalter week** calculations and understanding how celebrations affect the Office. Covers the hours (Lauds, Vespers, Compline, etc.), psalm distribution, readings, and how feasts and memorials integrate with the daily Office.
+Instructions for the Divine Office (Liturgy of the Hours). Romcal uses the GILH for **psalter week** calculations (§133). The document also defines how celebrations affect the structure of the Office (proper antiphons, readings, hymns).
 
 ## Complementary Documents
 

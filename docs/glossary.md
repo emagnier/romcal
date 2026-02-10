@@ -6,6 +6,10 @@ Definitions of terms used in Romcal and Catholic liturgy.
 
 ## Abbreviations
 
+### CP
+
+See [Calendaria Particularia](#calendaria-particularia).
+
 ### GILH
 
 See [General Instruction of the Liturgy of the Hours](#general-instruction-of-the-liturgy-of-the-hours).
@@ -37,6 +41,12 @@ See [Universal Norms on the Liturgical Year and the Calendar](#universal-norms-o
 ---
 
 ## C
+
+### Calendaria Particularia
+
+_Calendaria Particularia_ (Latin: "Particular Calendars") is an instruction from the Congregation for Divine Worship (June 24, 1970) providing norms for revising particular calendars and propers for dioceses, religious institutes, and other entities. It extends the GNLY with specific rules for patron saints, proper celebrations, and liturgical privileges.
+
+See: [CP](./reference/cp.md)
 
 ### Celebration
 
