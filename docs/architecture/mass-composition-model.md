@@ -2,7 +2,7 @@
 
 ## Context and Motivation
 
-When a weekday (feria, rank 13 in romcal) also has optional memorials (rank 12) available for the same civil date, the Church's norms (GIRM and GNLY) define precise rules for how the celebrant may choose and combine liturgical texts — readings, orations, antiphons — between the feria and the optional memorial.
+When a weekday (feria, rank 13 in romcal) also has optional memorials (rank 12) available for the same civil date, the Church's norms (GIRM, GNLY, and GILM) define precise rules for how the celebrant may choose and combine liturgical texts — readings, orations, antiphons — between the feria and the optional memorial.
 
 This document synthesizes the analysis of these liturgical rules and proposes a data model for romcal that faithfully reflects them, organized around two complementary output approaches:
 
@@ -33,27 +33,54 @@ The collect is the identifying marker of the celebration. GIRM 363 states: "On m
 
 **Exception — Privileged weekdays (GIRM 355.1):** On weekdays of Advent Dec 17-24, Octave of Christmas, and Lent, the Mass of the feria is obligatory. Only the collect may be borrowed from the memorial — this is the only case where the collect is detachable from the antiphons.
 
-#### Group 2 — Readings Block (GIRM 357-358)
+#### Group 2 — Readings Block (GIRM 357-358, GILM 83-84)
 
 **Reading 1 + Psalm + (Reading 2) + Alleluia + Gospel**
 
 These are **indivisible**: they are taken as a complete set. The psalm follows the first reading it responds to.
 
-The rule depends on what the saint's entry in the Lectionary provides:
+##### The three categories of readings for saints (GILM 83)
+
+The GILM (Introduction to the Lectionary for Mass, *Ordo Lectionum Missae*) distinguishes three categories of readings for celebrations of saints:
+
+| Category | Definition (GILM 83) | Rule |
+|---|---|---|
+| **Proper readings** (*lectiones propriae*) | Biblical passages about the Saint or the mystery that the Mass is celebrating. The Order of Readings makes explicit note of every case on a memorial. | **Obligatory** — "Even in the case of a memorial these readings must take the place of the weekday readings for the same day." |
+| **Accommodated readings** (*lectiones accommodatae*) | Readings that bring out some particular aspect of a Saint's spiritual life or work. | **Facultative** — "Use of such readings does not seem binding, except for compelling pastoral reasons." For the most part, references are given to readings in the Commons to facilitate choice. |
+| **Common readings** (*lectiones communes*) | Readings placed in the Commons either for a determined class of Saints (martyrs, virgins, pastors) or for the Saints in general. | **Freely chosen** — "It will be up to the priest to choose the one best suited to those listening." |
+
+##### The Common as a permanent alternative (GILM 83)
+
+GILM 83 explicitly states: "In all celebrations of Saints the readings may be taken not only from the Commons to which the references are given in each case, but also from the **Common of Men and Women Saints**, whenever there is special reason for doing so."
+
+This means that **Common readings are always available as alternatives** for any celebration of a saint — even when no accommodated or proper readings are indicated.
+
+##### How GIRM 357-358 articulates with GILM 83
+
+GIRM 357 states that "unless strictly proper readings are given, the readings assigned for the weekday are customarily used" — implying that strictly proper readings, when they exist, override the weekday readings. The term "strictly proper" (*lectiones stricte propriae*) is used in the GIRM but not fully defined there. GIRM 358 offers a partial definition by referring to "proper New Testament readings, that is to say, readings in which mention is made of the Saint being celebrated." The complete technical definition comes from GILM 78-84.
+
+In practical terms, the readings rule for memorials is:
 
 | Lectionary provides | Rule | Reference |
 |---|---|---|
-| **Strictly proper readings** (*lectiones stricte propriae*) | Obligatory — must use them | GIRM 357 |
-| **Proper readings** (*lectiones propriae*) — suggested for the saint, not strictly proper | Optional — may use them, but feria readings are the default | GIRM 357 |
-| **No specific readings** | Feria readings are used | GIRM 357 |
+| **Proper readings** (the saint is named or the mystery is directly evoked in the biblical text) | Obligatory — must replace weekday readings | GILM 83, GIRM 357 |
+| **Accommodated readings** (the Lectionary gives suggestions for the saint) | Facultative — may use them, or choose from Common, or keep feria | GILM 83 |
+| **No specific readings** (the Lectionary refers to a Common) | Feria readings by default, but Common readings are also available | GILM 83, GIRM 357 |
 
-**Note on "strictly proper readings":** GIRM 357 states that "unless strictly proper readings are given, the readings assigned for the weekday are customarily used" — implying that strictly proper readings, when they exist, override the weekday readings. However, the GIRM does not fully define the term "strictly proper." GIRM 358 offers a partial definition by referring to "proper New Testament readings, that is to say, readings in which mention is made of the Saint being celebrated." The complete technical definition of *lectiones stricte propriae* vs. *lectiones propriae* comes from the **Introduction to the Lectionary for Mass** (*Ordo Lectionum Missae*, OLM, nos. 78-84), referenced in GIRM footnotes 142-143 but not included in the romcal reference documents.
+##### When the Lectionary provides only one proper reading
 
-When the Lectionary provides only one proper reading for the saint (e.g., only a gospel), the other reading comes from the feria automatically. This is the only "mixing" that occurs — and it is dictated by the Lectionary's structure, not by the celebrant's choice.
+When the Lectionary gives only one proper reading for a saint (e.g., only a gospel), that reading **must** be used (it is proper). The other reading(s) can be taken from:
+- The **feria** (weekday lectionary)
+- The **Common** corresponding to the saint's category
+- An **accommodated reading** if the Lectionary indicates one
 
-**The celebrant cannot mix readings at will** (e.g., taking the gospel from the saint and the first reading from the feria when both are available). It is all-or-nothing within what the Lectionary assigns.
+It is **not** automatically from the feria — the Common is always an option (GILM 83).
 
-GIRM 358 also notes that the priest should "take care not to omit the readings assigned for each day in the Lectionary for weekdays too frequently," emphasizing the default preference for the feria's *lectio continua*.
+**The celebrant cannot mix readings at will** (e.g., taking the gospel from the saint and the first reading from the feria when both proper readings are available). When proper readings exist, they must all be used.
+
+##### Default preference for feria (GIRM 358, GILM 83)
+
+Both GIRM 358 and GILM 83 emphasize that the priest should take care not to omit the weekday readings too frequently, as the Church desires "a more lavish table of the word of God" (*GILM 83*) through the *lectio continua*.
 
 #### Group 3 — Flexible Orations (GIRM 363)
 
@@ -71,8 +98,8 @@ The rules vary depending on the liturgical season:
 
 | Season | GIRM ref | Formulary block | Readings block | Flexible orations |
 |---|---|---|---|---|
-| **Ordinary Time weekdays** | 355.3 | Free choice: feria or memorial | Feria default, saint if proper | Each independently: feria or Common |
-| **Advent before Dec 17, Christmas from Jan 2, Easter** | 355.2 | Free choice: feria or memorial | Free choice | Each independently |
+| **Ordinary Time weekdays** | 355.3 | Free choice: feria or memorial | Feria default; saint's proper if they exist (obligatory); or Common (always available) | Each independently: feria or Common |
+| **Advent before Dec 17, Christmas from Jan 2, Easter** | 355.2 | Free choice: feria or memorial | Free choice: feria, saint's proper, or Common | Each independently |
 | **Advent Dec 17-24, Octave of Christmas, Lent** | 355.1 | Feria imposed (only collect borrowable from memorial) | Feria imposed | Feria imposed |
 
 ### 4. Visual Schema
@@ -91,15 +118,16 @@ FERIA                                     MEMORIAL
                       AS A BLOCK         À LA CARTE          AS A BLOCK
                    (follows choice)      (mixable)          (readings)
                            │                  │                  │
-                    • Collect (saint)   • Pr. over offer.   • All from
-                    • Entrance ant.       (feria OR           feria
-                      (saint)             Common)             ... OR ...
-                    • Communion ant.    • Pr. after comm.   • All from
-                      (saint)             (feria OR           saint (if
-                                          Common)             proper,
-                                        • Preface              with
-                                          (season OR           psalm)
-                                          Common)
+                    • Collect (saint)   • Pr. over offer.   • All from feria
+                    • Entrance ant.       (feria OR           ... OR ...
+                      (saint)             Common)           • All from saint
+                    • Communion ant.    • Pr. after comm.     (if proper
+                      (saint)             (feria OR           readings exist,
+                                          Common)             GILM 83)
+                                        • Preface            ... OR ...
+                                          (season OR        • All from Common
+                                          Common)             (always available,
+                                                              GILM 83)
 ```
 
 ```
@@ -115,15 +143,26 @@ PRIVILEGED WEEKDAYS (Advent 17-24, Lent...)
 
 ### 5. Source References
 
+#### GIRM (General Instruction of the Roman Missal)
 - **GIRM 355** — Choice of Mass on optional memorials (by season)
-- **GIRM 357** — Choice of readings for memorials
+- **GIRM 357** — Choice of readings for memorials (strictly proper override)
 - **GIRM 358** — Weekday Lectionary readings and continuous reading
 - **GIRM 363** — Choice of orations for memorials
 - **GIRM 364-365** — Preface and Eucharistic Prayer choices
+
+#### GNLY (General Norms for the Liturgical Year and the Calendar)
+- **GNLY 3** — "The liturgical day runs from midnight to midnight."
 - **GNLY 10** — "Celebrations, according to the importance assigned to them, are distinguished one from another and termed: Solemnity, Feast, Memorial."
 - **GNLY 14** — "Memorials are either obligatory or optional; their observance is integrated into the celebration of the occurring weekday."
 - **GNLY 16** — Weekdays definition and precedence rules
 - **GNLY 59** — Table of Liturgical Days according to Their Order of Precedence
+
+#### GILM (General Introduction to the Lectionary for Mass, *Ordo Lectionum Missae*)
+- **GILM 70** — Two series of readings for saints: Proper of Saints and Commons of Saints
+- **GILM 82** — Weekday readings arrangement: used on their assigned days unless a celebration with proper readings occurs
+- **GILM 83** — Three categories of readings for saints: proper (obligatory), accommodated (facultative), common (freely chosen). Common readings are always available as alternatives.
+- **GILM 84** — Rules by rank: solemnities (proper or Common), feasts and memorials (two readings, first from OT or Apostle, second from Gospels)
+- **GILM 89** — Psalm follows the first reading; for Commons, the choice is left to the priest
 
 ---
 
@@ -539,22 +578,42 @@ struct IdentityOption {
 
 **What it is:** One possible set of readings for the Liturgy of the Word. Contains the complete, indivisible reading set with its source and metadata.
 
-**Why this name:** "Readings" because it contains the Scripture readings. "Option" because it is one choice among several (feria readings vs. saint's proper readings).
+**Why this name:** "Readings" because it contains the Scripture readings. "Option" because it is one choice among several (feria readings, saint's proper readings, or Common readings).
 
-**Why it wraps `ReadingsSet`:** The `ReadingsSet` (shared type) provides the indivisible text block. `ReadingsOption` adds source provenance and flags (is this the default? are these strictly proper?).
+**Why it wraps `ReadingsSet`:** The `ReadingsSet` (shared type) provides the indivisible text block. `ReadingsOption` adds source provenance, the GILM 83 category, and flags (is this the default? is this obligatory?).
 
 ```rust
 struct ReadingsOption {
     /// Where these readings come from
     source: TextSource,
+    /// Category per GILM 83 (determines binding force)
+    category: ReadingsCategory,
     /// Is this the default option for this day?
     is_default: bool,
-    /// Are these strictly proper readings? (GIRM 357 — when true, these readings
-    /// override the weekday readings; see OLM 78-84 for the full definition)
-    is_strictly_proper: bool,
 
     /// The indivisible readings block (shared type)
     readings: ReadingsSet,
+}
+```
+
+#### `ReadingsCategory`
+
+**What it is:** The three categories of readings for saints defined by GILM 83, each with a different binding force.
+
+**Why this name:** It categorizes readings per their normative weight, following the GILM's own distinction.
+
+**Liturgical basis:** GILM 83 — "proper readings... must take the place of the weekday readings"; "accommodated readings... does not seem binding"; "common readings... it will be up to the priest to choose."
+
+```rust
+enum ReadingsCategory {
+    /// Weekday readings from the lectio continua (Proper of Time)
+    Feria,
+    /// Proper readings for the saint — obligatory, must replace weekday readings (GILM 83)
+    Proper,
+    /// Accommodated readings — facultative, not binding except for pastoral reasons (GILM 83)
+    Accommodated,
+    /// Common readings — freely chosen from the Commons of Saints (GILM 83)
+    Common,
 }
 ```
 
@@ -601,10 +660,11 @@ enum ReadingsRule {
     /// Feria readings are obligatory, no exception
     /// (privileged weekdays: Advent Dec 17-24, Lent)
     FeriaOnly,
-    /// Feria readings by default; overridden only if the saint has
-    /// strictly proper readings (GIRM 357)
-    FeriaDefaultWithStrictOverride,
+    /// Feria readings by default; overridden if the saint has proper readings
+    /// (GILM 83, GIRM 357). Common readings also available as alternatives.
+    FeriaDefaultWithProperOverride,
     /// Free choice among the proposed reading sets
+    /// (feria, saint's proper/accommodated, or Common)
     PickOne,
 }
 ```
@@ -654,8 +714,14 @@ MassCalendar
 │       readings_options: [
 │           ReadingsOption {                          ← feria (default)
 │               source: ProperOfTime("ord_time_5_mon"),
+│               category: Feria,
 │               is_default: true,
-│               is_strictly_proper: false,
+│               readings: ReadingsSet { reading_1: "...", ... }
+│           },
+│           ReadingsOption {                          ← Common of Virgins
+│               source: Common(Virgins, "st_scholastica"),
+│               category: Common,
+│               is_default: false,
 │               readings: ReadingsSet { reading_1: "...", ... }
 │           },
 │       ],
@@ -671,7 +737,7 @@ MassCalendar
 │
 │       composition_rules: CompositionRules {
 │           identity: PickOne,
-│           readings: FeriaDefaultWithStrictOverride,
+│           readings: FeriaDefaultWithProperOverride,
 │           flexible_orations: PickEachIndependently,
 │       }
 │   }
@@ -723,6 +789,7 @@ MassCalendar                   ✗            ✓          APP 2
 MassComposition                ✗            ✓          APP 2
 IdentityOption                 ✗            ✓          APP 2
 ReadingsOption                 ✗            ✓          APP 2
+ReadingsCategory               ✗            ✓          APP 2
 CompositionRules               ✗            ✓          APP 2
 BlockRule                      ✗            ✓          APP 2
 ReadingsRule                   ✗            ✓          APP 2
@@ -758,7 +825,7 @@ core/src/types/
 ├── mass_calendar/                   APPROACH 2
 │   ├── mass_composition.rs          MassComposition
 │   ├── identity_option.rs           IdentityOption
-│   ├── readings_option.rs           ReadingsOption
+│   ├── readings_option.rs           ReadingsOption, ReadingsCategory
 │   ├── composition_rules.rs         CompositionRules, BlockRule,
 │   │                                ReadingsRule, FlexibleRule
 │   └── mod.rs
