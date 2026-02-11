@@ -2413,13 +2413,18 @@ enum Season {
 
 ```rust
 enum Color {
-    White,   // Christmas, Easter, feasts of the Lord (non-Passion), BVM, saints (non-martyrs)
-    Red,     // Palm Sunday, Good Friday, Pentecost, martyrs, Apostles
-    Green,   // Ordinary Time
-    Purple,  // Advent, Lent, funeral Masses (alternative to black)
-    Rose,    // Gaudete Sunday (3rd Advent), Laetare Sunday (4th Lent) — optional
-    Gold,    // Alternative to white on solemn occasions
-    Black,   // Funeral Masses, All Souls (alternative to purple)
+    White,   // Christmas and Easter seasons; celebrations of the Lord (non-Passion);
+             // BVM; Holy Angels; saints who were not martyrs (GIRM 346a)
+    Red,     // Palm Sunday, Good Friday, Pentecost; celebrations of the Lord's Passion
+             // (e.g. Exaltation of the Holy Cross); Apostles and Evangelists;
+             // Martyr Saints (GIRM 346b)
+    Green,   // Ordinary Time (GIRM 346c)
+    Purple,  // Advent, Lent; Masses and Offices for the Dead (GIRM 346d)
+    Rose,    // Gaudete Sunday (3rd Advent), Laetare Sunday (4th Lent)
+             // — "where it is the practice" (GIRM 346f)
+    Black,   // Masses for the Dead — "where it is the practice" (GIRM 346e)
+    Gold,    // See note below on festive vestments
+    Blue,    // Marian feasts — by national indult only (not in universal GIRM)
 }
 
 struct ColorInfo {
@@ -2428,7 +2433,13 @@ struct ColorInfo {
 }
 ```
 
-**Why `Vec<ColorInfo>`:** A celebration may have multiple permissible colors. Examples: gold as alternative to white on solemnities; black as alternative to purple for funerals; blue for Marian feasts in certain countries (by indult). The engine automatically assigns red for martyrs based on the `Title::Martyr` in `MartyrologyEntry.titles`.
+**Notes on specific colors:**
+
+- **Purple vs. Black for the Dead:** GIRM 346 positions purple as the standard color for Masses and Offices for the Dead (§346d), while black is the local-practice alternative (§346e: "where it is the practice"). Purple is the primary choice in most contemporary usage.
+- **Gold / festive vestments:** GIRM §346g says: "On more solemn days, sacred vestments may be used that are festive, that is, more precious, even if not of the color of the day." Gold is not named explicitly in the universal GIRM, but comes from national adaptations (e.g., US GIRM §346 mentions gold/silver). In romcal, `Gold` serves as a concrete variant for this rule.
+- **Blue:** Not present in the universal GIRM §346. Some countries (notably Spain, parts of Latin America, the Philippines) have a Marian indult authorizing blue for feasts of the Blessed Virgin Mary. Not currently in the romcal codebase — to be added when implementing calendars that require it.
+
+**Why `Vec<ColorInfo>`:** A celebration may have multiple permissible colors. Examples: gold as alternative on solemnities (§346g); black as alternative to purple for the Dead (§346d-e); blue as alternative to white for Marian feasts (by indult). The engine automatically assigns red for martyrs based on the `Title::Martyr` in `MartyrologyEntry.titles`.
 
 #### `CalendarId`
 
