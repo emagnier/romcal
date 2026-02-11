@@ -764,6 +764,115 @@ CP §41 imposes structural constraints on proper Mass readings:
 
 These constraints complement GILM §83-84 and should be validated by the engine when assembling `ReadingsContent` for particular calendar celebrations.
 
+### 7. The Paschal Triduum Is Not a Season
+
+The current romcal codebase has `Season::PaschalTriduum` as a sixth variant. This document removes it, based on the following normative evidence:
+
+1. **GNLY structure:** Title II (§17-47) gives the Triduum its own section (I, §18-21), separate from the five seasons (sections II-VI). GNLY lists five seasons only: Advent, Christmas Time, Lent, Easter Time, Ordinary Time.
+2. **GNLY §28:** "The forty days of Lent run from Ash Wednesday up to but excluding the Mass of the Lord's Supper." Lent ends before the Triduum begins.
+3. **GNLY §22:** "The fifty days from the Sunday of the Resurrection to Pentecost Sunday..." Easter Time begins on Easter Sunday.
+4. **GNLY §18:** The Triduum is described as "the high point of the entire liturgical year" — not as a season.
+5. **PS §27:** "The Lenten season lasts until the Thursday of this week. The Easter Triduum begins with the evening Mass of the Lord's Supper..." — explicit separation.
+
+The Triduum is a distinct liturgical unit that falls **between** Lent and Easter Time. It is tracked via `Period::PaschalTriduum` in `DayContext.periods`. During the Triduum, `DayContext.season` is:
+
+| Civil date | `season` | Rationale |
+|---|---|---|
+| Holy Thursday | `Some(Lent)` | GNLY §28: Lent until the evening Mass. The civil date begins in Lent (the Chrism Mass is a Lenten celebration). |
+| Good Friday | `None` | Between Lent and Easter Time. Not in any season. |
+| Holy Saturday | `None` | Between Lent and Easter Time. Not in any season. |
+| Easter Sunday | `Some(EasterTime)` | GNLY §22: Easter Time begins. The Triduum also ends this day (at Vespers). |
+
+This design ensures `Season` has exactly 5 variants matching GNLY, while `DayContext.season: Option<Season>` naturally handles the 2-3 days per year where no season applies. The consumer can detect the Triduum via `periods.contains(PaschalTriduum)`.
+
+The TLHM (Thesaurus Liturgiae Horarum Monasticae) confirms this classification: its Proprium de Tempore has 7 sections, with "Sacrum Triduum Paschale" (§4) as its own section, separate from the five seasonal sections.
+
+### 8. Title Model: TitleCategory + Qualifier + Patronage
+
+The current codebase uses a flat `Title` enum with 88 variants, mixing three distinct concerns:
+- **Ecclesiastical categories** (fixed, liturgically significant): `Martyr`, `Bishop`, `Virgin`...
+- **Category + qualifiers** (specific): `TheFirstMartyr`, `ProtoMartyrOfOceania`, `SlavicMissionary`...
+- **Patronages** (country-specific): `PatronOfFrance`, `CopatronessOfEurope`... (37 variants)
+
+This forces modifications to the core enum every time a data file needs a new qualifier or patronage. The `is_martyr_title()` method must manually list all martyr-like variants (currently 3), making it fragile.
+
+The new model separates these concerns into three layers:
+
+```rust
+// ── Layer 1: Fixed ecclesiastical categories ──
+// Closed enum — only changes if the Church creates a new title category.
+// These categories have liturgical impact (e.g., Martyr → red color).
+enum TitleCategory {
+    Abbess,
+    Abbot,
+    Apostle,
+    Archangel,
+    Bishop,
+    Deacon,
+    DoctorOfTheChurch,
+    Empress,
+    Evangelist,
+    Hermit,
+    King,
+    Martyr,
+    Missionary,
+    Monk,
+    Pope,
+    Patriarch,
+    Pilgrim,
+    Priest,
+    Prophet,
+    Queen,
+    Religious,
+    Virgin,
+    // Unique relational titles (liturgically significant, appear in the calendar as-is)
+    ParentsOfTheBlessedVirginMary,
+    SpouseOfTheBlessedVirginMary,
+}
+
+// ── Layer 2: Title = category + optional free-text qualifier ──
+// The qualifier comes from the localized data files, not from the code.
+struct Title {
+    category: TitleCategory,
+    qualifier: Option<String>,  // localized, e.g. "the First", "of Oceania", "Slavic"
+}
+
+// ── Layer 3: Patronages (fully data-driven) ──
+enum PatronRole {
+    Patron,
+    Copatron,
+    Patroness,
+    Copatroness,
+    PrincipalPatron,
+    SecondPatron,
+}
+
+struct Patronage {
+    role: PatronRole,
+    of: String,  // localized, e.g. "France", "Europe", "the Diocese"
+}
+```
+
+**Migration examples from the current flat enum:**
+
+| Current variant | New representation |
+|---|---|
+| `Title::Martyr` | `Title { category: Martyr, qualifier: None }` |
+| `Title::TheFirstMartyr` | `Title { category: Martyr, qualifier: Some("the First") }` |
+| `Title::ProtoMartyrOfOceania` | `Title { category: Martyr, qualifier: Some("Proto-Martyr of Oceania") }` |
+| `Title::SlavicMissionary` | `Title { category: Missionary, qualifier: Some("Slavic") }` |
+| `Title::QueenOfPoland` | `Title { category: Queen, qualifier: Some("of Poland") }` |
+| `Title::MotherAndQueenOfChile` | `Title { category: Queen, qualifier: Some("Mother and Queen of Chile") }` |
+| `Title::PatronOfFrance` | `Patronage { role: Patron, of: "France" }` |
+| `Title::CopatronessOfEurope` | `Patronage { role: Copatroness, of: "Europe" }` |
+| `Title::PrincipalPatronOfTheDiocese` | `Patronage { role: PrincipalPatron, of: "the Diocese" }` |
+
+**Key benefits:**
+- **Martyr detection becomes trivial:** `title.category == TitleCategory::Martyr` — no fragile match list.
+- **Zero core modifications** for new qualifiers or patronages — everything is in the data files.
+- **`PatronRole`** has only 6 variants (closed, stable) vs. the current 37 patron-specific `Title` variants.
+- **`Celebration` and `HoursCelebrationOption`** carry both `titles: TitlesDef` and `patronages: Vec<Patronage>`. Patronages are defined at calendar level (country/diocese), not in martyrology resources.
+
 ---
 
 ## Part IV — Data Model
@@ -2390,26 +2499,7 @@ enum Season {
 }
 ```
 
-> **Design decision: the Paschal Triduum is NOT a Season.**
->
-> The current romcal codebase has `Season::PaschalTriduum` as a sixth variant. This document removes it, based on the following normative evidence:
->
-> 1. **GNLY structure:** Title II (§17-47) gives the Triduum its own section (I, §18-21), separate from the five seasons (sections II-VI). GNLY lists five seasons only: Advent, Christmas Time, Lent, Easter Time, Ordinary Time.
-> 2. **GNLY §28:** "The forty days of Lent run from Ash Wednesday up to but excluding the Mass of the Lord's Supper." Lent ends before the Triduum begins.
-> 3. **GNLY §22:** "The fifty days from the Sunday of the Resurrection to Pentecost Sunday..." Easter Time begins on Easter Sunday.
-> 4. **GNLY §18:** The Triduum is described as "the high point of the entire liturgical year" — not as a season.
-> 5. **PS §27:** "The Lenten season lasts until the Thursday of this week. The Easter Triduum begins with the evening Mass of the Lord's Supper..." — explicit separation.
->
-> The Triduum is a distinct liturgical unit that falls **between** Lent and Easter Time. It is tracked via `Period::PaschalTriduum` in `DayContext.periods`. During the Triduum, `DayContext.season` is:
->
-> | Civil date | `season` | Rationale |
-> |---|---|---|
-> | Holy Thursday | `Some(Lent)` | GNLY §28: Lent until the evening Mass. The civil date begins in Lent (the Chrism Mass is a Lenten celebration). |
-> | Good Friday | `None` | Between Lent and Easter Time. Not in any season. |
-> | Holy Saturday | `None` | Between Lent and Easter Time. Not in any season. |
-> | Easter Sunday | `Some(EasterTime)` | GNLY §22: Easter Time begins. The Triduum also ends this day (at Vespers). |
->
-> This design ensures `Season` has exactly 5 variants matching GNLY, while `DayContext.season: Option<Season>` naturally handles the 2-3 days per year where no season applies. The consumer can detect the Triduum via `periods.contains(PaschalTriduum)`.
+> The Paschal Triduum is NOT a Season — see Part III §7 for normative analysis and `DayContext.season` values during the Triduum.
 
 #### `Color` and `ColorInfo`
 
@@ -2575,91 +2665,7 @@ struct MartyrologyEntry {
 
 #### `TitlesDef`, `Title`, `TitleCategory`, `Patronage`
 
-**What it is:** The titles associated with a celebration as published in the Missal, Lectionary, and Liturgy of the Hours. `TitlesDef` supports both direct lists and compound append/prepend operations (for calendar inheritance).
-
-> **Design decision: restructured Title model.**
->
-> The current codebase uses a flat `Title` enum with 88 variants, mixing three distinct concerns:
-> - **Ecclesiastical categories** (fixed, liturgically significant): `Martyr`, `Bishop`, `Virgin`...
-> - **Category + qualifiers** (specific): `TheFirstMartyr`, `ProtoMartyrOfOceania`, `SlavicMissionary`...
-> - **Patronages** (country-specific): `PatronOfFrance`, `CopatronessOfEurope`... (37 variants)
->
-> This forces modifications to the core enum every time a data file needs a new qualifier or patronage. The `is_martyr_title()` method must manually list all martyr-like variants (currently 3), making it fragile.
->
-> The new model separates these concerns into three layers:
-
-```rust
-// ── Layer 1: Fixed ecclesiastical categories ──
-// Closed enum — only changes if the Church creates a new title category.
-// These categories have liturgical impact (e.g., Martyr → red color).
-enum TitleCategory {
-    Abbess,
-    Abbot,
-    Apostle,
-    Archangel,
-    Bishop,
-    Deacon,
-    DoctorOfTheChurch,
-    Empress,
-    Evangelist,
-    Hermit,
-    King,
-    Martyr,
-    Missionary,
-    Monk,
-    Pope,
-    Patriarch,
-    Pilgrim,
-    Priest,
-    Prophet,
-    Queen,
-    Religious,
-    Virgin,
-    // Unique relational titles (liturgically significant, appear in the calendar as-is)
-    ParentsOfTheBlessedVirginMary,
-    SpouseOfTheBlessedVirginMary,
-}
-
-// ── Layer 2: Title = category + optional free-text qualifier ──
-// The qualifier comes from the localized data files, not from the code.
-struct Title {
-    category: TitleCategory,
-    qualifier: Option<String>,  // localized, e.g. "the First", "of Oceania", "Slavic"
-}
-
-// ── Layer 3: Patronages (fully data-driven) ──
-enum PatronRole {
-    Patron,
-    Copatron,
-    Patroness,
-    Copatroness,
-    PrincipalPatron,
-    SecondPatron,
-}
-
-struct Patronage {
-    role: PatronRole,
-    of: String,  // localized, e.g. "France", "Europe", "the Diocese"
-}
-```
-
-**Migration examples from the current flat enum:**
-
-| Current variant | New representation |
-|---|---|
-| `Title::Martyr` | `Title { category: Martyr, qualifier: None }` |
-| `Title::TheFirstMartyr` | `Title { category: Martyr, qualifier: Some("the First") }` |
-| `Title::ProtoMartyrOfOceania` | `Title { category: Martyr, qualifier: Some("Proto-Martyr of Oceania") }` |
-| `Title::SlavicMissionary` | `Title { category: Missionary, qualifier: Some("Slavic") }` |
-| `Title::QueenOfPoland` | `Title { category: Queen, qualifier: Some("of Poland") }` |
-| `Title::MotherAndQueenOfChile` | `Title { category: Queen, qualifier: Some("Mother and Queen of Chile") }` |
-| `Title::PatronOfFrance` | `Patronage { role: Patron, of: "France" }` |
-| `Title::CopatronessOfEurope` | `Patronage { role: Copatroness, of: "Europe" }` |
-| `Title::PrincipalPatronOfTheDiocese` | `Patronage { role: PrincipalPatron, of: "the Diocese" }` |
-
-**Martyr detection becomes trivial:** `title.category == TitleCategory::Martyr` — no fragile match list.
-
-**`TitlesDef` (unchanged concept, updated inner type):**
+**What it is:** The titles associated with a celebration as published in the Missal, Lectionary, and Liturgy of the Hours. See Part III §8 for the full design decision and type definitions (`TitleCategory`, `Title`, `PatronRole`, `Patronage`).
 
 ```rust
 enum TitlesDef {
@@ -2670,7 +2676,7 @@ enum TitlesDef {
 }
 ```
 
-**Where patronages live:** `Celebration` and `HoursCelebrationOption` carry both `titles: TitlesDef` and `patronages: Vec<Patronage>`. Patronages are defined in calendar data files (country/diocese level), not in martyrology resources. `PatronRole` has only 6 variants (closed, stable) vs. the current 37 patron-specific `Title` variants.
+`Celebration` and `HoursCelebrationOption` carry both `titles: TitlesDef` and `patronages: Vec<Patronage>`.
 
 ---
 
