@@ -22,7 +22,9 @@ GIRM 355 governs the choice of Mass on days with optional memorials. The range o
 - **GIRM 355.2 (Advent before Dec 17, Christmas from Jan 2, Easter):** Four options — (a) the weekday Mass, (b) the Mass of the Saint, (c) the Mass of one of the Saints whose memorial is observed, or (d) the Mass of any Saint listed in the *Martyrology* for that day.
 - **GIRM 355.1 (Advent Dec 17-24, Octave of Christmas, Lent):** The Mass of the current liturgical day is obligatory, with limited borrowing from a memorial (see below).
 
-> **Scope note:** This document models the composition rules for all ranks of celebrations in the General and Particular Calendars (solemnities, feasts, memorials, weekdays), for both Mass and Liturgy of the Hours. The Martyrology, Votive Masses, Masses for Various Needs (GIRM 375, 377), and Masses for the Dead (GIRM 381) are valid additional options on Ordinary Time weekdays but are not modeled here.
+> **Scope note:** This document models the composition rules for all ranks of celebrations in the General and Particular Calendars (solemnities, feasts, memorials, weekdays), for both Mass and Liturgy of the Hours. The following are not modeled here:
+> - The Martyrology, Votive Masses, Masses for Various Needs (GIRM 375, 377), and Masses for the Dead (GIRM 381) — valid additional options on Ordinary Time weekdays.
+> - **Rogation Days and Ember Days** (GNLY §45-47) — GNLY leaves their time, duration, and manner to the Conferences of Bishops; their Mass is chosen from the Masses for Various Needs (GNLY §47). When a national calendar defines them, they are modeled as particular celebrations within the existing calendar inheritance hierarchy.
 
 GIRM 355 also adds two pastoral directives:
 - The priest "will take care not to omit the readings assigned for each day in the Lectionary for weekdays too frequently and without sufficient reason, since the Church desires that a richer portion at the table of God's word be provided for the faithful."
@@ -2452,7 +2454,7 @@ enum Precedence {
     ProperFeast_PrincipalPatronOfARegion_8c,
     ProperFeast_TitleOrFounderOrPrimaryPatronOfAReligiousOrg_8d,
     ProperFeast_ToAnIndividualChurch_8e, ProperFeast_8f,
-    // 9. Privileged weekdays (Advent Dec 17-24, Lent)
+    // 9. Privileged weekdays (Advent Dec 17-24, Christmas Octave, Lent)
     PrivilegedWeekday_9,
     // 10. General Calendar obligatory memorials
     GeneralMemorial_10,
@@ -2465,7 +2467,9 @@ enum Precedence {
 }
 ```
 
-> **`Precedence.to_rank()`:** Each `Precedence` variant maps deterministically to a `Rank`. The Triduum (level 1), Ash Wednesday, Holy Week weekdays, and privileged weekdays (level 9) have `Rank::Weekday` despite their high precedence — their importance is conveyed by precedence, not rank. Easter Octave days have `Rank::Solemnity`. All Souls has `Rank::Feast`.
+> **`Precedence.to_rank()`:** Each `Precedence` variant maps deterministically to a `Rank`. The Triduum (level 1), Ash Wednesday, Holy Week weekdays, and privileged weekdays (level 9) have `Rank::Weekday` despite their high precedence — their importance is conveyed by precedence, not rank. Easter Octave days have `Rank::Solemnity`. All Souls currently has `Rank::Feast`.
+>
+> **Open question — All Souls rank:** GNLY §59 places the Commemoration of All the Faithful Departed at precedence level 3, alongside General Calendar Solemnities. However, liturgically All Souls is not celebrated as a full solemnity (no Gloria, no Creed, no First Vespers in the usual sense). The current assignment `Rank::Feast` reflects this mixed status: solemnity-level precedence but feast-level liturgical treatment. This needs to be verified against the rubrics of the Roman Missal and the Liturgy of the Hours to determine the correct `Rank` and its implications for composition rules.
 
 #### `Rank`
 
@@ -2490,12 +2494,18 @@ enum Rank {
 
 ```rust
 enum Season {
-    Advent,          // 4 Sundays before Christmas → Dec 24
-    ChristmasTime,   // Dec 25 → Sunday after Epiphany (Baptism of the Lord)
+    Advent,          // First Vespers of the Sunday nearest Nov 30
+                     // → before First Vespers of Christmas (GNLY §40)
+    ChristmasTime,   // First Vespers of Christmas (Dec 24 evening)
+                     // → Baptism of the Lord inclusive (GNLY §33)
     Lent,            // Ash Wednesday → Mass of the Lord's Supper exclusive (GNLY §28)
     EasterTime,      // Easter Sunday → Pentecost (GNLY §22)
-    OrdinaryTime,    // Two periods: Baptism of the Lord → Ash Wednesday,
-                     // Pentecost Monday → 1st Sunday of Advent
+    OrdinaryTime,    // Two periods (GNLY §44):
+                     // Day after the Baptism of the Lord → day before Ash Wednesday
+                     // Monday after Pentecost → day before First Vespers of Advent I
+                     // Note: the Baptism of the Lord may be celebrated on Sunday
+                     // OR on Monday (when Epiphany falls Jan 7/8), so OT may begin
+                     // on Monday or Tuesday.
 }
 ```
 
@@ -2742,6 +2752,9 @@ Calendar source files (YAML/JSON input)
 │  Calendar engine                          │
 │                                           │
 │  1. Resolve dates                         │
+│  1b. Apply permanent Sunday assignments   │
+│      (GNLY 7: Epiphany, Ascension,       │
+│       Corpus Christi) per calendar config │
 │  2. Apply precedence rules (GNLY 59, 60) │
 │  2b. Transfer impeded solemnities         │
 │      (GNLY 60, Notitiae R14) ¹           │
@@ -2778,7 +2791,9 @@ Calendar source files (YAML/JSON input)
        Mass Calendar (API output)
 ```
 
-¹ **Transfer of impeded solemnities (step 2b):** When a solemnity is impeded by a higher-ranking celebration on the same date, GNLY 60 requires it to be transferred to the nearest free day. Notitiae R14 refines the method: when impeded by an Advent or Lent Sunday, the preceding Saturday is tried first (per GNLY 5, which allows solemnities on Sunday), before falling back to the general nearest-free-day rule.
+**Step 1b — Permanent Sunday assignments (GNLY 7):** When the Epiphany, Ascension, or Corpus Christi are not observed as Holydays of Obligation, GNLY 7 permanently assigns them to a specific Sunday (Epiphany → Sunday between Jan 2-8; Ascension → 7th Sunday of Easter; Corpus Christi → Sunday after Trinity). This is a per-calendar-configuration rule (controlled by `is_holy_day_of_obligation` at the national level), applied before precedence resolution. It is not a conflict-resolution transfer but a permanent date assignment.
+
+¹ **Transfer of impeded solemnities (step 2b):** When a solemnity is impeded by a higher-ranking celebration on the same date, GNLY 60 requires it to be transferred to the nearest free day. GNLY 5 provides the base rule for privileged Sundays: transfer to the following Monday. Notitiae R14 refines the method: the preceding Saturday should be tried first, before falling back to the Monday or general nearest-free-day rule.
 
 ² **Lenten demotion (step 2c):** GNLY 14 states: "Obligatory Memorials which fall on weekdays of Lent may only be celebrated as Optional Memorials." This is a rank change (Memorial → OptionalMemorial) that affects both Mass (GIRM 355.1 regime) and Office (GILH §238-239 AdditionsOnly mechanism). Similarly, GILH §238 specifies that obligatory memorials are not celebrated during Advent Dec 17-24 and Christmas Octave.
 
@@ -2948,6 +2963,8 @@ HoursCalendar["2025-04-19"] → [
 
 ### GNLY (General Norms for the Liturgical Year and the Calendar)
 - **GNLY 3** — "The liturgical day runs from midnight to midnight. However, the celebration of Sunday and of Solemnities begins already on the evening of the previous day."
+- **GNLY 5** — Sundays of Advent, Lent, and Easter take precedence over all Feasts of the Lord and all Solemnities. "Solemnities occurring on these Sundays are transferred to the following Monday unless they occur on Palm Sunday or on Sunday of the Lord's Resurrection." Refined by Notitiae R14 (try preceding Saturday first).
+- **GNLY 7** — Permanent Sunday assignments for transferable solemnities: when the Epiphany, Ascension, or Corpus Christi are not Holydays of Obligation, they are assigned to a specific Sunday (Epiphany → Sunday between Jan 2-8; Ascension → 7th Sunday of Easter; Corpus Christi → Sunday after Trinity). Per-calendar-configuration rule (pipeline step 1b).
 - **GNLY 10** — "Celebrations, according to the importance assigned to them, are hence distinguished one from another and termed: Solemnity, Feast, Memorial."
 - **GNLY 11** — Solemnities begin with First Vespers on the preceding day; some have a proper Vigil Mass "to be used on the evening of the preceding day, if an evening Mass is celebrated." Normative basis for `PreviousEveningMass`.
 - **GNLY 13** — "Feasts are celebrated within the limits of the natural day; accordingly, they have no First Vespers (Evening Prayer I), unless they are Feasts of the Lord which fall on a Sunday in Ordinary Time or in the Christmas Season and which replace the Sunday Office."
@@ -2955,9 +2972,11 @@ HoursCalendar["2025-04-19"] → [
 - **GNLY 15** — "On Saturdays in Ordinary Time when no Obligatory Memorial occurs, an Optional Memorial of the Blessed Virgin Mary may be celebrated." A standing structural option generated by a general norm, not from a calendar inscription.
 - **GNLY 16** — Weekdays definition and precedence rules. 16a: Ash Wednesday and Holy Week weekdays take precedence over all. 16b: Advent Dec 17-24 and Lent weekdays have precedence over Obligatory Memorials. 16c: "Other weekdays [...] are **combined with** Memorials" — the GNLY's own term for the memorial-weekday integration that this document models.
 - **GNLY 24** — "The first eight days of Easter Time constitute the Octave of Easter and are celebrated as Solemnities of the Lord." These are not weekdays — no memorials are celebrated during the Octave.
+- **GNLY 45-47** — Rogation Days and Ember Days. GNLY 45-46: the Conferences of Bishops arrange the time, duration, and manner; GNLY 47: the Mass is chosen from the Masses for Various Needs. Not modeled in this document (see Part I §1 Scope note).
+- **GNLY 58** — Pastoral transfer to Sunday: "For the pastoral good of the faithful, it is permitted to observe on Sundays in Ordinary Time those celebrations that fall during the week and that are agreeable to the devotion of the faithful, provided the celebrations rank above that Sunday in the Table of Liturgical Days." A consumer-side pastoral option — the engine does not enforce it, but consumers may present this as a choice for Sundays in Ordinary Time.
 - **GNLY 59** — Table of Liturgical Days according to Their Order of Precedence. Entry 12: Optional Memorials "may be celebrated, in the special manner described in the *General Instruction*, even on the days listed in no. 9" — the GNLY's authorization for collect-borrowing on privileged weekdays (cf. `ForcedCollectBorrowable`). Entry 12 also: "In the same manner Obligatory Memorials may be celebrated as Optional Memorials if they happen to fall on Lenten weekdays."
 - **GNLY 61** — Vespers I/II conflict resolution: "Should Vespers of the current day's Office and First Vespers of the following day be assigned for celebration on the same day, then Vespers of the celebration with the higher rank in the Table of Liturgical Days takes precedence; in cases of equal rank, Vespers of the current day takes precedence."
-- **GNLY 60** — Precedence resolution: "If several celebrations fall on the same day, the one that holds the highest rank according to the Table of Liturgical Days is observed." Impeded solemnities are transferred; other celebrations are omitted that year. **Transfer method (Notitiae R14):** generally to the nearest free day; but when impeded by an Advent or Lent Sunday, the preceding Saturday is tried first (per GNLY 5), before falling back to the general rule.
+- **GNLY 60** — Precedence resolution: "If several celebrations fall on the same day, the one that holds the highest rank according to the Table of Liturgical Days is observed." Impeded solemnities are transferred; other celebrations are omitted that year. GNLY 5 provides the base rule: solemnities impeded by a privileged Sunday (Advent, Lent, Easter) are "transferred to the following Monday." **Transfer refinement (Notitiae R14):** the preceding Saturday should be tried first, before falling back to the Monday or general nearest-free-day rule.
 
 ### GILM (General Introduction to the Lectionary for Mass, *Ordo Lectionum Missae*)
 - **GILM 70** — Two series of readings for saints: Proper of Saints and Commons of Saints
