@@ -139,6 +139,22 @@ GILM 91: During Lent, a specific acclamation format is used instead of the Allel
 
 **Consequence for the data model:** When specified, the acclamation is part of the indivisible block. When left as a choice (Commons, seasonal), it follows the same pool logic as other Common components.
 
+##### Sequence (GIRM 64)
+
+GIRM 64: "The Sequence, which is optional except on Easter Sunday and on Pentecost Day, is sung before the *Alleluia*."
+
+The Sequence is a hymn that precedes the Alleluia (and thus the Gospel). It exists for five celebrations only:
+
+| Celebration | Sequence | Status |
+|-------------|----------|--------|
+| Easter Sunday | *Victimae Paschali Laudes* | **Obligatory** (GIRM §64) |
+| Easter Octave (Mon–Sat) | *Victimae Paschali Laudes* | Optional |
+| Pentecost | *Veni Sancte Spiritus* | **Obligatory** (GIRM §64) |
+| Corpus Christi | *Lauda Sion Salvatorem* | Optional |
+| Our Lady of Sorrows (Sep 15) | *Stabat Mater* | Optional |
+
+**Consequence for the data model:** The `sequence: Option<String>` field in `ReadingsSet` is `None` on most days and `Some(reference)` on these five celebrations. The obligatory/optional distinction is determined by the celebration itself — the engine sets the field, and consumers may choose to omit optional sequences but must include obligatory ones.
+
 ##### Long and short forms (GILM 75, 80)
 
 GILM 75 notes that "in the case of certain rather lengthy texts, longer and shorter versions are provided." GILM 80 specifies that "a pastoral criterion must also guide the choice between the longer and shorter forms of the same text."
@@ -1014,6 +1030,9 @@ struct ReadingsSet {
     psalm: Option<String>,
     canticle: Option<String>,
     reading_2: Option<ReadingText>,
+    /// Sequence hymn (GIRM §64): sung before the Alleluia on specific
+    /// celebrations only (Easter, Easter Octave, Pentecost, Corpus Christi,
+    /// Our Lady of Sorrows). None on all other days.
     sequence: Option<String>,
     alleluia: Option<String>,
     gospel: Option<ReadingText>,
@@ -2973,6 +2992,7 @@ HoursCalendar["2025-04-19"] → [
 - **GIRM 355** — Choice of Mass on optional memorials (by season): five options in OT (355.3), four in certain seasons (355.2), feria imposed on privileged days (355.1). Pastoral caution on preserving weekday readings. Exception: no collect borrowing on Ash Wednesday and Holy Week.
 - **GIRM 357** — Choice of readings for memorials: weekday readings unless strictly proper readings exist
 - **GIRM 358** — Weekday Lectionary readings: continuous reading scheme; priest may combine omitted readings when interrupted by celebrations
+- **GIRM 64** — Sequence: "The Sequence, which is optional except on Easter Sunday and on Pentecost Day, is sung before the *Alleluia*." Five occurrences: Easter (obligatory), Easter Octave (optional), Pentecost (obligatory), Corpus Christi (optional), Our Lady of Sorrows (optional).
 - **GIRM 360** — Long and short forms of texts: "a pastoral criterion must be kept in mind"
 - **GIRM 361** — Pastoral criteria for choosing between alternative texts; prohibition against permanently excluding Scripture passages
 - **GIRM 362** — Adaptations to the *Ordo Lectionum Missae* by Conferences of Bishops must be observed
