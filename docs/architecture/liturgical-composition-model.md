@@ -1640,11 +1640,22 @@ struct MassComposition {
     /// CelebrationOfThePassion on Good Friday — PS §59)
     is_eucharistic: bool,
 
-    // === Context ===
+    // === CONTEXT ===
     /// Shared day context
     context: DayContext,
 
-    // === Default celebration ===
+    // === ORDINARIUM MISSAE FLAGS ===
+    /// Gloria (GIRM §53): said on Sundays outside Advent/Lent,
+    /// on solemnities and feasts.
+    /// Computed by the engine from rank + season.
+    /// Exception: false on All Souls despite Feast rank (Mass for the Dead).
+    gloria: bool,
+    /// Creed (GIRM §68): said on Sundays and solemnities.
+    /// Computed by the engine from rank + season.
+    /// Exception: false on All Souls despite level 3 precedence.
+    creed: bool,
+
+    // === DEFAULT CELEBRATION ===
     /// The celebration to use by default (typically the feria or highest-ranking)
     default_celebration_id: CelebrationId,
 
@@ -2467,9 +2478,19 @@ enum Precedence {
 }
 ```
 
-> **`Precedence.to_rank()`:** Each `Precedence` variant maps deterministically to a `Rank`. The Triduum (level 1), Ash Wednesday, Holy Week weekdays, and privileged weekdays (level 9) have `Rank::Weekday` despite their high precedence — their importance is conveyed by precedence, not rank. Easter Octave days have `Rank::Solemnity`. All Souls currently has `Rank::Feast`.
+> **`Precedence.to_rank()`:** Each `Precedence` variant maps deterministically to a `Rank`. The Triduum (level 1), Ash Wednesday, Holy Week weekdays, and privileged weekdays (level 9) have `Rank::Weekday` despite their high precedence — their importance is conveyed by precedence, not rank. Easter Octave days have `Rank::Solemnity`. All Souls has `Rank::Feast` (see note below).
 >
-> **Open question — All Souls rank:** GNLY §59 places the Commemoration of All the Faithful Departed at precedence level 3, alongside General Calendar Solemnities. However, liturgically All Souls is not celebrated as a full solemnity (no Gloria, no Creed, no First Vespers in the usual sense). The current assignment `Rank::Feast` reflects this mixed status: solemnity-level precedence but feast-level liturgical treatment. This needs to be verified against the rubrics of the Roman Missal and the Liturgy of the Hours to determine the correct `Rank` and its implications for composition rules.
+> **All Souls — *sui generis* celebration.** GNLY §59 places the Commemoration of All the Faithful Departed at precedence level 3, alongside General Calendar Solemnities. However, All Souls is liturgically a **Mass for the Dead**, not a standard solemnity or feast:
+>
+> | Element | Solemnity | Feast | All Souls (actual) |
+> |---------|-----------|-------|--------------------|
+> | Gloria (GIRM §53) | Yes | Yes | **No** |
+> | Creed (GIRM §68) | Yes | No | **No** |
+> | Te Deum (GILH §68) | Yes | Yes | **No** |
+> | First Vespers | Yes | No | **No** |
+> | Colors | Festive | Festive | Purple / Black |
+>
+> `Rank::Feast` is a **pragmatic approximation**: it correctly reflects no First Vespers, no Creed, and the "within the natural day" scope (GNLY §13). The Gloria and Te Deum exceptions (which a standard Feast would have) are handled by the engine through the `gloria: bool` and `te_deum: bool` computed fields — both set to `false` for All Souls because it is a Mass for the Dead. This avoids the need for a dedicated Rank variant for a single celebration.
 
 #### `Rank`
 
