@@ -1134,8 +1134,11 @@ struct Celebration {
     /// to resolve Commons and assign colors. See Part IV §7 for key fields.
     martyrology: Vec<MartyrologyEntry>,
     /// Titles as published in the liturgical books (Martyr, Virgin, Bishop, etc.).
-    /// See Part IV §7. Current implementation to be revised for composability.
+    /// TitleCategory + optional qualifier. See Part IV §7.
     titles: TitlesDef,
+    /// Patronages (Patron/Copatron of a country, diocese, etc.).
+    /// Fully data-driven, defined at calendar level. See Part IV §7.
+    patronages: Vec<Patronage>,
     /// Holy day of obligation
     is_holy_day_of_obligation: bool,
     /// Optional celebration (can be omitted in favor of the feria)
@@ -1585,6 +1588,7 @@ struct IdentityOption {
     commons: Vec<CommonInfo>,
     martyrology: Vec<MartyrologyEntry>,
     titles: TitlesDef,
+    patronages: Vec<Patronage>,
     is_holy_day_of_obligation: bool,
     from_calendar_id: CalendarId,
 
@@ -2235,8 +2239,8 @@ PsalmodyEntry                  ✓       ✗       ✓    SHARED (L1+2H)
 Existing types (documented)    ✓       ✓       ✓    SHARED
   Season, Rank, Precedence, MassTime ³, Common, CommonInfo,
   Color, ColorInfo, DayOfWeek, SundayCycle, WeekdayCycle,
-  PsalterWeekCycle, PeriodInfo, TitlesDef, MartyrologyEntry,
-  CalendarId
+  PsalterWeekCycle, PeriodInfo, TitlesDef, TitleCategory, Title,
+  PatronRole, Patronage, MartyrologyEntry, CalendarId
 
 ¹ Reused inside IdentityOption / ReadingsOption / ReadingsContent
 ² Exploded into Vec<SourcedText> per oration in Layer 2 Mass
@@ -2524,22 +2528,104 @@ struct MartyrologyEntry {
 
 > **Scope note:** The `MartyrologyEntry` struct carries rich biographical metadata that is out of scope for this document. Only the fields that affect composition (titles, count, sex) or consumer display (name, canonization_level) are listed here.
 
-#### `TitlesDef`
+#### `TitlesDef`, `Title`, `TitleCategory`, `Patronage`
 
-**What it is:** The titles associated with a celebration as published in the Missal, Lectionary, and Liturgy of the Hours. Can be a simple list of titles or a compound definition with append/prepend operations (for calendar inheritance).
+**What it is:** The titles associated with a celebration as published in the Missal, Lectionary, and Liturgy of the Hours. `TitlesDef` supports both direct lists and compound append/prepend operations (for calendar inheritance).
+
+> **Design decision: restructured Title model.**
+>
+> The current codebase uses a flat `Title` enum with 88 variants, mixing three distinct concerns:
+> - **Ecclesiastical categories** (fixed, liturgically significant): `Martyr`, `Bishop`, `Virgin`...
+> - **Category + qualifiers** (specific): `TheFirstMartyr`, `ProtoMartyrOfOceania`, `SlavicMissionary`...
+> - **Patronages** (country-specific): `PatronOfFrance`, `CopatronessOfEurope`... (37 variants)
+>
+> This forces modifications to the core enum every time a data file needs a new qualifier or patronage. The `is_martyr_title()` method must manually list all martyr-like variants (currently 3), making it fragile.
+>
+> The new model separates these concerns into three layers:
+
+```rust
+// ── Layer 1: Fixed ecclesiastical categories ──
+// Closed enum — only changes if the Church creates a new title category.
+// These categories have liturgical impact (e.g., Martyr → red color).
+enum TitleCategory {
+    Abbess,
+    Abbot,
+    Apostle,
+    Archangel,
+    Bishop,
+    Deacon,
+    DoctorOfTheChurch,
+    Empress,
+    Evangelist,
+    Hermit,
+    King,
+    Martyr,
+    Missionary,
+    Monk,
+    Pope,
+    Patriarch,
+    Pilgrim,
+    Priest,
+    Prophet,
+    Queen,
+    Religious,
+    Virgin,
+    // Unique relational titles (liturgically significant, appear in the calendar as-is)
+    ParentsOfTheBlessedVirginMary,
+    SpouseOfTheBlessedVirginMary,
+}
+
+// ── Layer 2: Title = category + optional free-text qualifier ──
+// The qualifier comes from the localized data files, not from the code.
+struct Title {
+    category: TitleCategory,
+    qualifier: Option<String>,  // localized, e.g. "the First", "of Oceania", "Slavic"
+}
+
+// ── Layer 3: Patronages (fully data-driven) ──
+enum PatronRole {
+    Patron,
+    Copatron,
+    Patroness,
+    Copatroness,
+    PrincipalPatron,
+    SecondPatron,
+}
+
+struct Patronage {
+    role: PatronRole,
+    of: String,  // localized, e.g. "France", "Europe", "the Diocese"
+}
+```
+
+**Migration examples from the current flat enum:**
+
+| Current variant | New representation |
+|---|---|
+| `Title::Martyr` | `Title { category: Martyr, qualifier: None }` |
+| `Title::TheFirstMartyr` | `Title { category: Martyr, qualifier: Some("the First") }` |
+| `Title::ProtoMartyrOfOceania` | `Title { category: Martyr, qualifier: Some("Proto-Martyr of Oceania") }` |
+| `Title::SlavicMissionary` | `Title { category: Missionary, qualifier: Some("Slavic") }` |
+| `Title::QueenOfPoland` | `Title { category: Queen, qualifier: Some("of Poland") }` |
+| `Title::MotherAndQueenOfChile` | `Title { category: Queen, qualifier: Some("Mother and Queen of Chile") }` |
+| `Title::PatronOfFrance` | `Patronage { role: Patron, of: "France" }` |
+| `Title::CopatronessOfEurope` | `Patronage { role: Copatroness, of: "Europe" }` |
+| `Title::PrincipalPatronOfTheDiocese` | `Patronage { role: PrincipalPatron, of: "the Diocese" }` |
+
+**Martyr detection becomes trivial:** `title.category == TitleCategory::Martyr` — no fragile match list.
+
+**`TitlesDef` (unchanged concept, updated inner type):**
 
 ```rust
 enum TitlesDef {
-    /// Direct list: ["Martyr", "Virgin"]
+    /// Direct list: replaces all titles
     Titles(Vec<Title>),
-    /// Compound: { append: ["PatronOfFrance"], prepend: [] }
+    /// Compound: appends/prepends to inherited titles
     CompoundTitle(CompoundTitle),
 }
 ```
 
-**Key `Title` variants (non-exhaustive):** `Apostle`, `Martyr`, `Virgin`, `Bishop`, `Pope`, `Priest`, `Deacon`, `Religious`, `Monk`, `Nun`, `Abbot`, `Abbess`, `DoctorOfTheChurch`, `Hermit`, `Missionary`, `King`, `Queen`, `Evangelist`, `Prophet`, `Archangel`, `Founder`, plus patron-specific titles (`PatronOfEurope`, `PatronessOfTheAmericas`, `PrincipalPatronOfTheDiocese`, etc.).
-
-> **Design note:** The current `Title` enum has limited flexibility — titles like "first martyr" or "first martyr of Oceania" require dedicated variants (`TheFirstMartyr`, `ProtoMartyrOfOceania`). A future revision should support composable title qualifiers. This is out of scope for the current architecture.
+**Where patronages live:** `Celebration` and `HoursCelebrationOption` carry both `titles: TitlesDef` and `patronages: Vec<Patronage>`. Patronages are defined in calendar data files (country/diocese level), not in martyrology resources. `PatronRole` has only 6 variants (closed, stable) vs. the current 37 patron-specific `Title` variants.
 
 ---
 
