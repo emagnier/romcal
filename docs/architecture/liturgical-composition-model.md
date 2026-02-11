@@ -693,16 +693,19 @@ Cathedral dedication anniversary     Diocesan              Feast              §
 Secondary patron of diocese          Diocesan              Memorial           §9
 Principal patron of town/city        Local                 Solemnity          §10
 Secondary patron of town/city        Local                 Memorial           §10
-Church dedication anniversary        Church                Solemnity          §11
+Church dedication anniversary ³       Church                Solemnity          §11
 Church title                         Church                Solemnity          §11
 Saint buried in church               Church                Memorial           §11
-Religious title/founder/patron ²     Religious Institute   Solemnity/Feast    §12
+Religious title/founder/patron ²     Religious Institute   Solemnity/Feast    §12a
 Beatified founder                    Religious Institute   Feast              §12a
 Secondary patron of religious        Religious Institute   Memorial           §12a
+Province title or principal patron   Religious Province    Feast              §12b
+Province secondary patron            Religious Province    Memorial           §12b
 Other saints (no special bond)       Any                   Obl./Opt. Memorial §24
 
 ¹ "For pastoral reasons this may be observed as a solemnity" (CP §8, §9)
 ² Only ONE of title/founder/patron may be a solemnity; others are feasts (§12)
+³ "If it is consecrated" (CP §11) — unconsecrated churches have no dedication anniversary
 ```
 
 **Rank elevation rule (CP §25):** "The observance of some celebrations in a particular place may have greater solemnity than in the entire diocese or religious institute." This means a more specific calendar in the inheritance chain can **override** the rank from a parent calendar.
@@ -856,13 +859,14 @@ struct Title {
 }
 
 // ── Layer 3: Patronages (fully data-driven) ──
+// CP §31: "from now on there is to be only one principal patron.
+// Another may be added as a secondary patron."
+// Gender (patron/patroness) is resolved at display time from
+// MartyrologyEntry.sex — not a distinct role.
 enum PatronRole {
-    Patron,
-    Copatron,
-    Patroness,
-    Copatroness,
     PrincipalPatron,
-    SecondPatron,
+    SecondaryPatron,
+    Copatron,
 }
 
 struct Patronage {
@@ -881,14 +885,14 @@ struct Patronage {
 | `Title::SlavicMissionary` | `Title { category: Missionary, qualifier: Some("Slavic") }` |
 | `Title::QueenOfPoland` | `Title { category: Queen, qualifier: Some("of Poland") }` |
 | `Title::MotherAndQueenOfChile` | `Title { category: Queen, qualifier: Some("Mother and Queen of Chile") }` |
-| `Title::PatronOfFrance` | `Patronage { role: Patron, of: "France" }` |
-| `Title::CopatronessOfEurope` | `Patronage { role: Copatroness, of: "Europe" }` |
+| `Title::PatronOfFrance` | `Patronage { role: PrincipalPatron, of: "France" }` |
+| `Title::CopatronessOfEurope` | `Patronage { role: Copatron, of: "Europe" }` |
 | `Title::PrincipalPatronOfTheDiocese` | `Patronage { role: PrincipalPatron, of: "the Diocese" }` |
 
 **Key benefits:**
 - **Martyr detection becomes trivial:** `title.category == TitleCategory::Martyr` — no fragile match list.
 - **Zero core modifications** for new qualifiers or patronages — everything is in the data files.
-- **`PatronRole`** has only 6 variants (closed, stable) vs. the current 37 patron-specific `Title` variants.
+- **`PatronRole`** has only 3 variants (CP §31: principal, secondary, co-patron; gender resolved from `MartyrologyEntry.sex`) vs. the current 37 patron-specific `Title` variants.
 - **`Celebration` and `HoursCelebrationOption`** carry both `titles: TitlesDef` and `patronages: Vec<Patronage>`. Patronages are defined at calendar level (country/diocese), not in martyrology resources.
 
 ---
@@ -1559,6 +1563,10 @@ struct CelebrationOfficeReadings {
     /// On solemnities: may serve as the second reading (the reading "in honor of the saint").
     hagiographical_reading: Option<ReadingText>,
     hagiographical_responsory: Option<String>,
+    /// Biographical note (CP §43, GILH §168): preliminary sketch preceding the
+    /// hagiographical reading. "Not to be read as part of the office" — informational
+    /// metadata for presentation layers.
+    biographical_note: Option<String>,
 }
 ```
 
@@ -3078,6 +3086,8 @@ HoursCalendar["2025-04-19"] → [
 - **CP 13-16** — Calendar inheritance hierarchy: General Calendar → National/Regional → Diocesan → Local/Church; separately, General Calendar → Religious → Province → House. A particular calendar is "formed by the insertion of particular celebrations into the General Calendar" (§13). Religious members also celebrate the diocese's patron and cathedral dedication (§16d).
 - **CP 23** — Precedence conflicts between General and Particular calendars. §23a: General Calendar solemnities always observed on their date. §23b: General Calendar feasts kept; proper feast of same date transferred to nearest free date (unless deeply rooted in local custom). §23c: "A proper memorial is to take precedence over a universal, optional memorial" — may sometimes take precedence over a universal obligatory memorial (by changing the universal to optional or by transferring it).
 - **CP 24-26** — Rank flexibility. §24: proper celebrations generally enter as obligatory or optional memorials unless the Table of Liturgical Days specifies otherwise. §25: "The observance of some celebrations in a particular place may have greater solemnity than in the entire diocese or religious institute." §26: Saints listed together must be celebrated together at the same rank.
+- **CP 27** — Titles of the saints. Suppressed: "Confessor and Bishop," "Confessor, Nonbishop," "Neither Virgin nor Martyr," "Widow." Retained titles by category: (a) received usage (Apostle/Evangelist, Martyr, Virgin); (b) hierarchical rank (Bishop/Pope, Priest, Deacon); (c) religious institute (Abbot/Monk, Religious). For lay saints in particular calendars: "certain designations that suggest in some way the saints' state in life (e.g., 'King,' 'Father,' 'Mother,' etc.)." Normative basis for `TitleCategory` (Part III §8).
+- **CP 28-31** — Patron appointment rules. §28: only saints may be patrons (blessed require apostolic indult); Divine Persons excluded. §29: liturgical celebration only for duly chosen/immemorial patrons. §30: choice requires clergy/people, bishop approval, and Congregation confirmation. §31: "from now on there is to be only one principal patron" — a secondary patron may be added; two saints as principal patron only if listed together in the calendar. Normative basis for `PatronRole` and `Patronage` (Part III §8).
 - **CP 40** — Mass proper texts enumeration: entrance antiphon, opening prayer (collect), prayer over the gifts, preface, communion antiphon, prayer after communion, optional solemn blessing. "Only the opening prayer has direct bearing on the saint being celebrated" (§40b).
 - **CP 41** — Reading constraints for proper Masses: solemnities require 3 readings; no OT during Easter season; proper responsorial psalm and Gospel acclamation required.
 - **CP 43-44** — Office proper texts. §43: hagiographical reading required for every solemnity, feast, and memorial — "usually not more than one hundred twenty words"; biographical note "is not to be read as part of the office." §44: proper elements for solemnities/feasts include invitatory, antiphons (especially Lauds/Vespers), intercessions, hymns. **Critical cross-domain rule:** "The prayer is always the same as the opening prayer of the Mass" — the Office concluding prayer = the Mass collect.
