@@ -2474,7 +2474,7 @@ enum PsalterWeekCycle { Week_1, Week_2, Week_3, Week_4 }
 
 #### `PeriodInfo`
 
-**What it is:** Specific sub-periods within liturgical seasons. These sub-periods determine applicable rules for texts, readings, and Office structure, and are essential for religious and monastic liturgies (particularly the Benedictine monastic office per the TLHM).
+**What it is:** Specific sub-periods within or across liturgical seasons, plus pastoral observances. Most sub-periods determine applicable rules for texts, readings, and Office structure, and are essential for religious and monastic liturgies (particularly the Benedictine monastic office per the TLHM). Some periods represent pastoral observances that do not modify liturgical texts but are broadly observed in parishes and religious communities.
 
 ```rust
 enum Period {
@@ -2497,6 +2497,9 @@ enum Period {
     // ── Ordinary Time sub-periods ──
     EarlyOrdinaryTime,     // Monday after Baptism of the Lord → day before Ash Wednesday
     LateOrdinaryTime,      // Monday after Pentecost → Saturday before 1st Sunday of Advent
+
+    // ── Pastoral/ecumenical observance ──
+    WeekOfPrayerForChristianUnity, // Jan 18 → Jan 25
 }
 
 struct PeriodInfo {
@@ -2521,6 +2524,7 @@ struct PeriodInfo {
 | `EasterOctave` | Normative | GNLY §12, §24 (celebrated as Solemnities of the Lord) |
 | `EarlyOrdinaryTime` | Semi-normative | GILH §152: "From the Monday after the feast of the Baptism of the Lord until Lent" (explicit boundary). GNLY §43 acknowledges two runs of OT without naming them. |
 | `LateOrdinaryTime` | Semi-normative | GILH §152: "from the Monday after Pentecost until Advent" (explicit boundary). Same status as above. |
+| `WeekOfPrayerForChristianUnity` | Pastoral | Fixed dates: Jan 18 (former feast of the Chair of St. Peter) → Jan 25 (Conversion of St. Paul). Not a liturgical period that modifies Mass or Office texts, but a pastoral and ecumenical observance encouraged in parishes and religious communities. Established in 1908 (P. Paul Wattson), renewed in 1935 (Abbé Paul Couturier, Lyon). Official basis: *Unitatis Redintegratio* §8 (Vatican II); Directory for the Application of Principles and Norms on Ecumenism §110 (PCPCU, 1993). Materials prepared jointly by the Dicastery for Promoting Christian Unity and the World Council of Churches. |
 
 > **The Presentation of the Lord as period boundary — Marian antiphons of Compline.**
 >
