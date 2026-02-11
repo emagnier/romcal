@@ -3,6 +3,8 @@
 //! This module provides the main `Romcal` struct and `Preset` configuration
 //! for initializing and customizing liturgical calendar generation.
 
+use std::collections::BTreeMap;
+
 use serde::{Deserialize, Serialize};
 
 use crate::engine::calendar_definition::CalendarDefinition;
@@ -247,10 +249,33 @@ impl Romcal {
         self.calendar_definitions.push(calendar_def);
     }
 
-    /// Add a resources definition to the configuration
+    /// Add a resources definition to the configuration.
+    ///
+    /// If resources for the same locale already exist, the new entries are
+    /// merged into the existing resource (martyrology entries are added or
+    /// replaced, metadata is overwritten when provided). This prevents
+    /// duplicate locale entries that would be invisible to `get_resources`.
     pub fn add_resources(&mut self, mut resources: Resources) {
         resources.locale = normalize_locale(&resources.locale);
-        self.resources.push(resources);
+        if let Some(existing) = self
+            .resources
+            .iter_mut()
+            .find(|r| r.locale == resources.locale)
+        {
+            // Merge martyrology entries into existing resource
+            if let Some(new_martyrology) = resources.martyrology {
+                let existing_martyrology = existing.martyrology.get_or_insert_with(BTreeMap::new);
+                for (id, entry) in new_martyrology {
+                    existing_martyrology.insert(id, entry);
+                }
+            }
+            // Merge metadata if provided
+            if resources.metadata.is_some() {
+                existing.metadata = resources.metadata;
+            }
+        } else {
+            self.resources.push(resources);
+        }
     }
 
     /// Create an optimized JSON bundle of the current configuration.
@@ -576,6 +601,69 @@ mod tests {
             }
             _ => panic!("Expected LocaleNotFound error"),
         }
+    }
+
+    #[test]
+    fn test_add_resources_merges_same_locale() {
+        use crate::types::martyrology::MartyrologyEntryDef;
+
+        let mut romcal = Romcal::empty();
+
+        // Add first resource for "en" with entry "saint_a"
+        let mut res1 = Resources::new("en".to_string());
+        let mut def_a = MartyrologyEntryDef::new();
+        def_a.name = Some("Saint A".to_string());
+        res1.add_martyrology_entry("saint_a".to_string(), def_a);
+        romcal.add_resources(res1);
+
+        // Add second resource for "en" with entry "saint_b"
+        let mut res2 = Resources::new("en".to_string());
+        let mut def_b = MartyrologyEntryDef::new();
+        def_b.name = Some("Saint B".to_string());
+        res2.add_martyrology_entry("saint_b".to_string(), def_b);
+        romcal.add_resources(res2);
+
+        // Should have only one resource for "en" (merged, not duplicated)
+        let en_count = romcal.resources.iter().filter(|r| r.locale == "en").count();
+        assert_eq!(en_count, 1, "Should have exactly one resource for 'en'");
+
+        // Both entries should be accessible via get_resources
+        let en_res = romcal.get_resources("en").unwrap();
+        let martyrology = en_res.martyrology.as_ref().unwrap();
+        assert!(
+            martyrology.contains_key("saint_a"),
+            "saint_a should be present"
+        );
+        assert!(
+            martyrology.contains_key("saint_b"),
+            "saint_b should be present"
+        );
+    }
+
+    #[test]
+    fn test_add_resources_overwrites_existing_entry() {
+        use crate::types::martyrology::MartyrologyEntryDef;
+
+        let mut romcal = Romcal::empty();
+
+        // Add resource with entry "saint_a" name="Original"
+        let mut res1 = Resources::new("en".to_string());
+        let mut def1 = MartyrologyEntryDef::new();
+        def1.name = Some("Original".to_string());
+        res1.add_martyrology_entry("saint_a".to_string(), def1);
+        romcal.add_resources(res1);
+
+        // Add another resource for "en" with same entry overwritten
+        let mut res2 = Resources::new("en".to_string());
+        let mut def2 = MartyrologyEntryDef::new();
+        def2.name = Some("Updated".to_string());
+        res2.add_martyrology_entry("saint_a".to_string(), def2);
+        romcal.add_resources(res2);
+
+        // The entry should be overwritten
+        let en_res = romcal.get_resources("en").unwrap();
+        let entry = en_res.martyrology.as_ref().unwrap().get("saint_a").unwrap();
+        assert_eq!(entry.name, Some("Updated".to_string()));
     }
 
     #[test]
