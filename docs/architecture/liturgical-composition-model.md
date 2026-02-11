@@ -273,7 +273,7 @@ Before analyzing how celebrations affect the Office, it is necessary to understa
 - **Invitatory**: Precedes the first Hour of the day (normally Office of Readings or Lauds). Its antiphon varies by celebration. On memorials, it follows the GILH §235b priority: saint's Proper → Common → weekday.
 - **Lauds and Vespers** are the two "principal Hours" (GILH §37) and have the richest variation per celebration: canticle antiphon (Benedictus/Magnificat), intercessions, hymn, short reading.
 - **Office of Readings** has two readings with responsories — the most complex element affected by memorial rules (GILH §235d, GILH §239a).
-- **Daytime Prayer** (Terce/Sext/Nones): On memorials, entirely from the weekday (GILH §236). On solemnities, proper texts. The celebrant normally chooses ONE of the three unless bound to all three (clerics with choral obligation). The GILH (GILH §175-178) provides two psalmody schemes: the "current" (from the psalter week) and the "complementary" (for those who pray all three).
+- **Daytime Prayer** (Terce/Sext/Nones): On memorials, entirely from the weekday (GILH §236). On solemnities, proper texts. The celebrant normally chooses ONE of the three unless bound to all three (clerics with choral obligation). The GILH (GILH §175-178) provides two psalmody schemes: the "current" (from the psalter week) and the "complementary" (for those who pray all three). **Consequence for the data model:** Each `HoursComposition` for Terce/Sext/Nones carries a single `HoursPsalmody` — the "current" scheme (psalter week). The "complementary" scheme is a fixed redistribution of psalms 120-128 across the three Hours, deterministic from the psalter structure. The engine does not need to provide both: a consumer who prays all three Hours can derive the complementary scheme from the psalter, or the engine can offer a configuration option.
 - **Compline** is the most stable Hour: almost always from the weekday psalter, unaffected by memorials (GILH §236). It only varies on solemnities (proper antiphon for the Nunc Dimittis) and in the exceptional suppression cases (GILH §211, GILH §215).
 
 ### 3. How the Office is Arranged by Rank
@@ -912,8 +912,48 @@ enum ReadingsContent {
     Fixed(ReadingsSet),
     /// Pool of components, each independently choosable (Commons, GILM 71)
     Pool(ReadingsPool),
+    /// Ordered sequence with variable selection (Easter Vigil — PS 85)
+    VigilSequence(VigilReadingsSequence),
 }
 ```
+
+#### `VigilReadingsSequence`
+
+**What it is:** An ordered sequence of Old Testament readings with variable selection, followed by fixed New Testament readings. Used for the Easter Vigil, which has a unique structure: 7 OT readings (reducible to a minimum of 3), each with its own responsorial psalm or canticle, followed by Gloria, Epistle, Alleluia, and Gospel.
+
+**Why this name:** "Vigil" because this structure is specific to the Easter Vigil (PS 85). "Readings" because it represents the Liturgy of the Word. "Sequence" because the OT readings are ordered and the celebrant selects a contiguous or designated subset, not individual picks from a pool.
+
+**Liturgical basis:** PS 85 — "After the first reading (the account of creation) at least two others should be read from the Old Testament, and in any case the reading from Exodus 14 must never be omitted." When pastoral conditions require reducing, at least 3 OT readings must be proclaimed, and Exodus 14 (the crossing of the Red Sea) is always mandatory. The full set is 7 OT + Epistle (Romans 6) + Gospel.
+
+**Why neither `Fixed` nor `Pool`:** `ReadingsSet` supports 2-3 readings (Reading 1 + optional Reading 2 + Gospel) — structurally insufficient for 9 readings. `ReadingsPool` models independent per-position choice from pools — semantically wrong, since the celebrant selects a *subset* from an ordered sequence, not one from each pool.
+
+```rust
+struct VigilReadingsSequence {
+    /// Ordered OT readings, each with its responsorial psalm/canticle.
+    /// The celebrant selects at least `min_ot_readings` from this sequence.
+    ot_readings: Vec<VigilReading>,
+    /// Minimum number of OT readings to proclaim (PS 85: 3)
+    min_ot_readings: u8,
+    /// Epistle — always proclaimed after the OT sequence and Gloria
+    epistle: ReadingText,
+    /// Alleluia — solemnly restored after the Lenten suppression
+    alleluia: String,
+    /// Gospel — always proclaimed
+    gospel: ReadingText,
+}
+
+struct VigilReading {
+    /// The OT reading text
+    reading: ReadingText,
+    /// Responsorial psalm or canticle following this reading
+    response: String,
+    /// Whether this reading must always be included even when reducing
+    /// (PS 85: true for Exodus 14 — "must never be omitted")
+    mandatory: bool,
+}
+```
+
+> **Scope:** Only the Easter Vigil uses `VigilSequence`. The Pentecost Vigil (PS §107) has an extended form with 4 OT readings, but without variable-minimum constraints — its two forms (extended and simple) are modeled as two separate `Fixed(ReadingsSet)` entries.
 
 #### `FlexibleOrations`
 
@@ -1035,7 +1075,7 @@ struct Celebration {
     name: String,
     /// Liturgical precedence (GNLY table, levels 1-13)
     precedence: Precedence,
-    /// Liturgical rank (Solemnity, Feast, Memorial, OptionalMemorial, Weekday)
+    /// Liturgical rank (Solemnity, Sunday, Feast, Memorial, OptionalMemorial, Weekday)
     rank: Rank,
     /// Localized rank name
     rank_name: String,
@@ -1085,12 +1125,76 @@ struct Celebration {
 struct CelebrationMass {
     /// Formulary block — follows the choice of celebration
     formulary: FormularySet,
-    /// Readings block — Fixed (proper/weekday) or Pool (Common)
+    /// Readings block — Fixed (proper/weekday), Pool (Common), or VigilSequence (Easter Vigil)
     readings: ReadingsContent,
     /// Flexible orations (GIRM 363) and preface (GIRM 364-365)
     flexible_orations: FlexibleOrations,
+
+    /// Whether this celebration is a eucharistic celebration (true for all Masses,
+    /// false for the Celebration of the Lord's Passion on Good Friday).
+    /// PS §59: "the Church does not celebrate the Eucharist" on Good Friday.
+    is_eucharistic: bool,
+
+    /// Gospel reading proclaimed during a pre-Mass entrance rite.
+    /// Present only on Palm Sunday (MassTime::MassOfThePassion): the Gospel of the
+    /// Lord's Entry into Jerusalem (Mt 21 / Mc 11 / Lc 19 by liturgical year).
+    /// The procession chants (Ps 23, 46, antiphons) replace the normal entrance rite
+    /// and are carried by FormularySet.entrance_antiphon.
+    /// Three entrance forms exist (solemn procession, solemn entrance, simple entrance
+    /// — PS §29-30); the choice between them is pastoral, not modeled.
+    entrance_gospel: Option<ReadingText>,
 }
 ```
+
+#### `MassTime` (existing type)
+
+**What it is:** An enum identifying the type of mass or liturgical action within a given celebration. Most celebrations have a single `DayMass`; multi-Mass days (Christmas, Triduum) have multiple variants.
+
+**Why this name:** It identifies the "time" or "occasion" of the "mass" within the liturgical day. Existing romcal type.
+
+**All variants:**
+
+```rust
+enum MassTime {
+    /// The most important Mass of the liturgical year, celebrated on Holy Saturday night.
+    /// Liturgically belongs to Easter Sunday — shifted to Saturday evening civil date
+    /// in Layer 2 Mass. Unique readings structure: 7 OT + 2 NT (PS 85).
+    EasterVigil,
+    /// Mass celebrated the evening before a major feast (GNLY 11).
+    /// Shifted to previous civil date in Layer 2 Mass.
+    PreviousEveningMass,
+    /// Mass celebrated during the night (Christmas Midnight Mass).
+    NightMass,
+    /// Mass celebrated at dawn (Christmas Dawn Mass, Easter morning).
+    MassAtDawn,
+    /// Regular morning Mass (e.g., December 24 morning — distinct from the
+    /// Christmas PreviousEveningMass celebrated that same evening).
+    MorningMass,
+    /// Regular daytime Mass — the default for most celebrations.
+    DayMass,
+    /// Palm Sunday Mass beginning with the commemoration of the Lord's Entry
+    /// into Jerusalem (PS §28-32). The procession/entrance rite has its own
+    /// Gospel reading (entrance_gospel field). The Mass Gospel is the Passion
+    /// narrative, proclaimed in the traditional three-person format (PS §33).
+    MassOfThePassion,
+    /// Celebration of the Lord's Passion on Good Friday (PS §59).
+    /// NOT a eucharistic celebration (is_eucharistic: false) — no consecration.
+    /// Includes readings (Isaiah, Hebrews, John's Passion), Great Intercessions,
+    /// Adoration of the Cross, and Communion from the reserved Sacrament.
+    CelebrationOfThePassion,
+    /// Chrism Mass — celebrated by the bishop with his presbyterium (PS §35-36).
+    /// Holy oils are consecrated and blessed. Traditionally on Holy Thursday morning,
+    /// but may be transferred to another day close to Easter. Primarily a diocesan
+    /// celebration — assigned in particular calendars, not in the General Calendar.
+    ChrismMass,
+    /// Evening Mass of the Lord's Supper on Holy Thursday (PS §44-48).
+    /// The evening Mass that begins the Paschal Triduum. Followed by the
+    /// transfer of the Blessed Sacrament and the stripping of the altar.
+    EveningMassOfTheLordsSupper,
+}
+```
+
+> **Architectural note:** `MassTime` includes `CelebrationOfThePassion`, which is not a eucharistic celebration (PS §59). This is a pragmatic design choice: the Celebration of the Lord's Passion has readings, prayers, and a structured liturgy of the Word — the same data structure as a Mass. Placing it within `MassTime` ensures consumers find "what happens in church" for every date in a single calendar, rather than needing a separate output type for one day per year. The `is_eucharistic: bool` field on `CelebrationMass` / `MassComposition` distinguishes it explicitly.
 
 #### Layer 1 — Example
 
@@ -1141,6 +1245,63 @@ LiturgicalCalendar
 │               ├── NightMass → CelebrationMass { formulary: { collect: Some("..."), ... } }
 │               ├── MassAtDawn → CelebrationMass { formulary: { collect: Some("..."), ... } }
 │               └── DayMass → CelebrationMass { formulary: { collect: Some("..."), ... } }
+│
+├── "2025-04-13" → LiturgicalDay                           ← Palm Sunday
+│   ├── context: DayContext { season: Lent, ... }
+│   └── celebrations:
+│       └── [0] Celebration
+│           ├── id: "palm_sunday"
+│           ├── rank: Sunday (2)
+│           └── masses:
+│               └── MassOfThePassion → CelebrationMass {
+│                       is_eucharistic: true,
+│                       entrance_gospel: Some(ReadingText { ... }),  ← Gospel of the Entry
+│                       readings: Fixed(ReadingsSet {               ← Passion = Mass Gospel
+│                           reading_1: "Is 50:4-7", psalm: "Ps 22",
+│                           reading_2: "Phil 2:6-11", gospel: "Mt 26-27 (Year A)", ...
+│                       }),
+│                       ...
+│                   }
+│
+├── "2025-04-17" → LiturgicalDay                           ← Holy Thursday
+│   └── celebrations:
+│       └── [0] Celebration
+│           ├── id: "holy_thursday"
+│           └── masses:
+│               └── EveningMassOfTheLordsSupper → CelebrationMass {
+│                       is_eucharistic: true, entrance_gospel: None, ... }
+│
+├── "2025-04-18" → LiturgicalDay                           ← Good Friday
+│   └── celebrations:
+│       └── [0] Celebration
+│           ├── id: "good_friday"
+│           └── masses:
+│               └── CelebrationOfThePassion → CelebrationMass {
+│                       is_eucharistic: false,              ← NOT a Mass (PS §59)
+│                       entrance_gospel: None,
+│                       readings: Fixed(ReadingsSet { ... }),  ← Is 52-53, Heb 4-5, Jn 18-19
+│                       ... }
+│
+├── "2025-04-19" → LiturgicalDay                           ← Holy Saturday
+│   └── celebrations:
+│       └── [0] Celebration
+│           ├── id: "holy_saturday"
+│           └── masses: {}                                  ← empty — aliturgical (PS §75)
+│
+├── "2025-04-20" → LiturgicalDay                           ← Easter Sunday
+│   └── celebrations:
+│       └── [0] Celebration
+│           ├── id: "easter_sunday"
+│           └── masses:
+│               ├── EasterVigil → CelebrationMass {         ← shifted to Apr 19 in L2M
+│                       is_eucharistic: true,
+│                       readings: VigilSequence(VigilReadingsSequence {
+│                           ot_readings: [7 readings...],   ← min 3, Ex 14 mandatory
+│                           min_ot_readings: 3,
+│                           epistle: "Rom 6:3-11", gospel: "Mt 28 (Year A)", ...
+│                       }),
+│                       ... }
+│               └── DayMass → CelebrationMass { is_eucharistic: true, ... }
 ```
 
 #### Layer 1 Extension — `CelebrationHour`
@@ -1295,12 +1456,15 @@ type MassCalendar = BTreeMap<String, Vec<MassComposition>>;
 ```rust
 struct MassComposition {
     // === Identification ===
-    /// Type of mass (DayMass, NightMass, EasterVigil...)
+    /// Type of mass (DayMass, NightMass, EasterVigil, CelebrationOfThePassion...)
     mass_time: MassTime,
     /// Civil date — after shifting for evening masses
     civil_date: String,
     /// Liturgical date — before shifting (the "theological" date)
     liturgical_date: String,
+    /// Whether this is a eucharistic celebration (false only for
+    /// CelebrationOfThePassion on Good Friday — PS §59)
+    is_eucharistic: bool,
 
     // === Context ===
     /// Shared day context
@@ -1309,6 +1473,12 @@ struct MassComposition {
     // === Default celebration ===
     /// The celebration to use by default (typically the feria or highest-ranking)
     default_celebration_id: CelebrationId,
+
+    // === PRE-MASS ENTRANCE RITE ===
+    /// Gospel reading proclaimed during a pre-Mass entrance rite.
+    /// Present only on Palm Sunday (MassOfThePassion): the Gospel of the
+    /// Lord's Entry into Jerusalem (PS §29-32). See CelebrationMass for details.
+    entrance_gospel: Option<ReadingText>,
 
     // === FORMULARY BLOCK ===
     /// Each option = one possible celebration with its collect + antiphons.
@@ -1804,13 +1974,14 @@ enum MemorialRule {
 
 ```rust
 enum HourSuppression {
-    /// This Hour is omitted if the person attends the referenced Mass celebration.
+    /// This Hour is omitted if the person attends the referenced celebration.
     /// The Hour content is still provided for those who do NOT attend.
-    /// (GILH 209: Vespers on Holy Thursday/Good Friday; GILH 211: Compline on Holy Saturday;
-    ///  GILH 215: Compline on Christmas night)
+    /// The triggering celebration may be a Mass (Holy Thursday, Easter Vigil),
+    /// a non-eucharistic action (Good Friday — CelebrationOfThePassion),
+    /// or an Office celebration (Christmas — vigil form of OdR, GILH §215).
     SuppressedIfAttends {
-        /// The Mass celebration that triggers suppression
-        mass_celebration_id: CelebrationId,
+        /// The celebration whose attendance triggers suppression
+        celebration_id: CelebrationId,
     },
     /// This Hour is entirely replaced by a Mass celebration.
     /// The `content` in `celebration_options` carries the reduced form
@@ -1818,7 +1989,7 @@ enum HourSuppression {
     /// (GILH 212: Easter Vigil replaces Office of Readings on Holy Saturday)
     ReplacedByMass {
         /// The Mass celebration that replaces this Hour
-        mass_celebration_id: CelebrationId,
+        celebration_id: CelebrationId,
     },
 }
 ```
@@ -1966,6 +2137,8 @@ FormularySet                   ✓       ✓ ¹     ✗    MASS
 ReadingsSet                    ✓       ✓ ¹     ✗    MASS
 ReadingsPool                   ✓       ✓ ¹     ✗    MASS
 ReadingsContent                ✓       ✓ ¹     ✗    MASS
+VigilReadingsSequence          ✓       ✓ ¹     ✗    MASS (Easter Vigil)
+VigilReading                   ✓       ✓ ¹     ✗    MASS (Easter Vigil)
 FlexibleOrations               ✓       ✗ ²     ✗    MASS (L1)
 
 LiturgicalCalendar             ✓       ✗       ✗    L1
@@ -1999,14 +2172,15 @@ HourTime                       ✓       ✗       ✓    SHARED (L1+2H)
 HoursPsalmody                  ✓       ✗       ✓    SHARED (L1+2H)
 PsalmodyEntry                  ✓       ✗       ✓    SHARED (L1+2H)
 
-Existing types (unchanged)     ✓       ✓       ✓    SHARED
-  Season, Rank, Precedence, MassTime, Common, CommonInfo,
+Existing types (documented)    ✓       ✓       ✓    SHARED
+  Season, Rank, Precedence, MassTime ³, Common, CommonInfo,
   Color, ColorInfo, DayOfWeek, SundayCycle, WeekdayCycle,
   PsalterWeekCycle, PeriodInfo, TitlesDef, MartyrologyEntry,
   CalendarId
 
 ¹ Reused inside IdentityOption / ReadingsOption / ReadingsContent
 ² Exploded into Vec<SourcedText> per oration in Layer 2 Mass
+³ MassTime: existing enum, documented in Part IV §4 with all 10 variants
 ```
 
 ---
@@ -2074,6 +2248,10 @@ Calendar source files (YAML/JSON input)
 │                                           │
 │  1. Resolve dates                         │
 │  2. Apply precedence rules (GNLY 59, 60) │
+│  2b. Transfer impeded solemnities         │
+│      (GNLY 60, Notitiae R14) ¹           │
+│  2c. Demote Lenten obligatory memorials   │
+│      to optional (GNLY 14, GILH §238) ²  │
 │  3. Assemble Celebrations per day         │
 │  4. Resolve liturgical cycle              │
 │  5. Populate mass content by GIRM groups  │
@@ -2104,6 +2282,10 @@ Calendar source files (YAML/JSON input)
            ▼
        Mass Calendar (API output)
 ```
+
+¹ **Transfer of impeded solemnities (step 2b):** When a solemnity is impeded by a higher-ranking celebration on the same date, GNLY 60 requires it to be transferred to the nearest free day. Notitiae R14 refines the method: when impeded by an Advent or Lent Sunday, the preceding Saturday is tried first (per GNLY 5, which allows solemnities on Sunday), before falling back to the general nearest-free-day rule.
+
+² **Lenten demotion (step 2c):** GNLY 14 states: "Obligatory Memorials which fall on weekdays of Lent may only be celebrated as Optional Memorials." This is a rank change (Memorial → OptionalMemorial) that affects both Mass (GIRM 355.1 regime) and Office (GILH §238-239 AdditionsOnly mechanism). Similarly, GILH §238 specifies that obligatory memorials are not celebrated during Advent Dec 17-24 and Christmas Octave.
 
 ### 3. Calendar API
 
@@ -2188,7 +2370,10 @@ The sequence in the vigil form: Office of Readings (2 readings) → vigil cantic
 
 On certain exceptional days, attending a Mass celebration makes a subsequent Hour of the Office redundant. The `HourSuppression` enum models these cases.
 
-Additionally, PS §59 and §75 confirm that **no Mass is celebrated** on Good Friday and Holy Saturday respectively. On Good Friday, only the Celebration of the Lord's Passion takes place (PS §59); on Holy Saturday, "the Church abstains strictly from the celebration of the sacrifice of the Mass" (PS §75). These days should not generate standard `MassComposition` entries in the `MassCalendar` — the Celebration of the Lord's Passion is a distinct liturgical action (not a Mass), and the Easter Vigil belongs liturgically to Easter Sunday.
+Additionally, PS §59 and §75 confirm specific constraints for Good Friday and Holy Saturday:
+
+- **Good Friday (PS §59):** "The Church does not celebrate the Eucharist." The Celebration of the Lord's Passion (readings, Great Intercessions, Adoration of the Cross, Communion from the reserved Sacrament) takes place instead. In the data model, this generates a `MassComposition` with `mass_time: CelebrationOfThePassion` and `is_eucharistic: false` — the same structure as a Mass (readings, prayers) but explicitly marked as non-eucharistic. This avoids creating a separate output type for one day per year while ensuring the consumer can distinguish it.
+- **Holy Saturday (PS §75):** "The Church abstains strictly from the celebration of the sacrifice of the Mass." No `MassComposition` entries are generated for this civil date until the Easter Vigil, which belongs liturgically to Easter Sunday and is shifted to Saturday evening in Layer 2 Mass (`MassTime::EasterVigil`, `civil_date: Holy Saturday`, `liturgical_date: Easter Sunday`).
 
 **`SuppressedIfAttends` — conditional omission:**
 
@@ -2232,7 +2417,7 @@ HoursCalendar["2025-04-19"] → [
             },
         ],
         suppression: Some(ReplacedByMass {
-            mass_celebration_id: "easter_vigil",
+            celebration_id: "easter_vigil",
         }),
         ...
     },
@@ -2240,7 +2425,7 @@ HoursCalendar["2025-04-19"] → [
         hour_time: Compline,
         ...
         suppression: Some(SuppressedIfAttends {
-            mass_celebration_id: "easter_vigil",
+            celebration_id: "easter_vigil",
         }),
         ...
     },
@@ -2357,7 +2542,11 @@ HoursCalendar["2025-04-19"] → [
 > **Note:** PS is a **complementary document**. It clarifies and expands on the primary norms (GNLY, GIRM, GILH) for the Lenten and Easter cycles, but does not introduce new calendar calculation rules. Only the paragraphs with direct architectural or data-model relevance are listed here.
 
 - **PS 18** (GNLY 28) — Alleluia is omitted "from the beginning of Lent until the Paschal Vigil" in **all** celebrations, "even on solemnities and feasts." Clarifies that the Lenten acclamation format (GILM 91) applies universally — `ReadingsSet.alleluia` is replaced by a Lenten verse throughout Lent regardless of rank.
-- **PS 59** — Good Friday: "the Church does not celebrate the Eucharist." Only the Celebration of the Lord's Passion (with Communion from the reserved Sacrament) takes place. No `MassComposition` is generated for Good Friday — the Celebration of the Lord's Passion is a distinct liturgical action, not a Mass.
-- **PS 75** — Holy Saturday: "the Church abstains strictly from the celebration of the sacrifice of the Mass." Holy Communion may only be given as Viaticum. No `MassComposition` is generated until the Easter Vigil (which belongs liturgically to Easter Sunday).
+- **PS 28-32** — Palm Sunday entrance rite. Three forms: solemn procession (§29), solemn entrance (§30), simple entrance (§30). The procession includes the blessing of palms, its own Gospel reading (the Lord's Entry into Jerusalem), and processional chants (Psalms 23, 46). This pre-Mass rite is modeled via `entrance_gospel: Option<ReadingText>` on `CelebrationMass`. The three forms are a pastoral choice, not modeled.
+- **PS 33** — Palm Sunday Passion narrative. The Mass Gospel is the Passion (synoptic of the year), proclaimed in the traditional three-person format (narrator, Christ, people), without candles or incense, and "in its entirety." Two Gospel readings on the same day: the Entry Gospel (procession) and the Passion Gospel (Mass).
+- **PS 35-36** — Chrism Mass. Celebrated by the bishop with his presbyterium, traditionally on Holy Thursday morning (transferable to another day close to Easter — §35). Only one celebration per diocese, in the cathedral (§36). Modeled as `MassTime::ChrismMass` — assigned in particular (diocesan) calendars.
+- **PS 44-48** — Evening Mass of the Lord's Supper on Holy Thursday. Begins the Paschal Triduum. Modeled as `MassTime::EveningMassOfTheLordsSupper`.
+- **PS 59** — Good Friday: "the Church does not celebrate the Eucharist." The Celebration of the Lord's Passion takes place instead. Modeled as `MassTime::CelebrationOfThePassion` with `is_eucharistic: false` — same data structure as a Mass, explicitly marked as non-eucharistic.
+- **PS 75** — Holy Saturday: "the Church abstains strictly from the celebration of the sacrifice of the Mass." Holy Communion may only be given as Viaticum. No `MassComposition` is generated for this civil date; the Easter Vigil (belonging liturgically to Easter Sunday) is shifted here in Layer 2 Mass.
 - **PS 85** — Easter Vigil readings: 7 Old Testament readings + 2 New Testament (Epistle + Gospel). When pastoral conditions require reducing, at least 3 OT readings must be read, and **Exodus 14 (the crossing of the Red Sea) must never be omitted**. This unique variable-minimum structure is specific to the Easter Vigil's `ReadingsContent`.
 - **PS 107** — Pentecost vigil: "prolonged celebration of Mass in the form of a vigil, whose character is not baptismal as in the Easter Vigil, but is one of urgent prayer." Confirms that Pentecost has a vigil Mass form (`PreviousEveningMass`, per GNLY 11).
