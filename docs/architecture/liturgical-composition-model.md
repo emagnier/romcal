@@ -2484,7 +2484,7 @@ enum Period {
     DaysFromEpiphany,      // Epiphany → Sunday of the Baptism of the Lord
 
     // ── Advent sub-period ──
-    AdventWeekdaysDec17To24,  // Dec 17 → Dec 24 (O Antiphons, proper readings)
+    DaysBeforeChristmas,      // Dec 17 → Dec 24
 
     // ── Broader cross-season periods ──
     ChristmasToPresentationOfTheLord,       // Dec 25 → Feb 2
@@ -2517,7 +2517,7 @@ struct PeriodInfo {
 
 | Period | Status | Source |
 |---|---|---|
-| `AdventWeekdaysDec17To24` | Normative | GNLY §42: "The weekdays from December 17 up to and including December 24 are ordered in a more direct way to preparing for the Nativity of the Lord." Precedence level 9 (GNLY §59). Each day has proper readings (GILM) and a proper O Antiphon at the Magnificat (GILH). |
+| `DaysBeforeChristmas` | Normative | The final week of Advent (Dec 17-24), named by GNLY §42: "The weekdays from December 17 up to and including December 24 are ordered in a more direct way to preparing for the Nativity of the Lord." Precedence level 9 (GNLY §59). Each day has proper readings (GILM) and a proper O Antiphon at the Magnificat (GILH). Named `DaysBeforeChristmas` to mirror `DaysBeforeEpiphany`; the scope is narrower than "all of Advent" — only the 8 days with proper texts and elevated precedence. |
 | `ChristmasOctave` | Normative | GNLY §12, §35; GILH §238 (no obligatory memorials during octave) |
 | `DaysBeforeEpiphany` | Normative | GNLY §35-36, §353 (weekdays from Jan 2); distinct memorial rules |
 | `DaysFromEpiphany` | Normative | TLHM « Ordinarium Tempore Epiphaniae » (explicit named sub-period with own proper texts); GILH §149 (readings from Isaiah 60-66 from Jan 7) |
