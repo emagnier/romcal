@@ -2514,13 +2514,26 @@ struct PeriodInfo {
 | `ChristmasOctave` | Normative | GNLY §12, §35; GILH §238 (no obligatory memorials during octave) |
 | `DaysBeforeEpiphany` | Normative | GNLY §35-36, §353 (weekdays from Jan 2); distinct memorial rules |
 | `DaysFromEpiphany` | Normative | TLHM « Ordinarium Tempore Epiphaniae » (explicit named sub-period with own proper texts); GILH §149 (readings from Isaiah 60-66 from Jan 7) |
-| `ChristmasToPresentationOfTheLord` | Practical | No normative definition found. Likely a monastic convention (TLHM Proprium de Tempore, §2 Tempus Nativitatis — to be confirmed). Important for religious propers where texts vary across this extended period. |
-| `PresentationOfTheLordToHolyThursday` | Practical | No normative definition found. Same origin as above. The Presentation (Feb 2) is a feast, not a normative period boundary. Used in monastic/religious propers for text selection. |
+| `ChristmasToPresentationOfTheLord` | Rubrical | The Presentation of the Lord (Feb 2) is a period boundary in the rubrics of the Liturgia Horarum for the final Marian antiphon of Compline (GILH §92): *Alma Redemptoris Mater* is sung from First Vespers of Advent through Feb 2. This period captures the Christmas portion of that span. Also relevant to monastic propers (TLHM §2 Tempus Nativitatis — sub-period details to be confirmed). |
+| `PresentationOfTheLordToHolyThursday` | Rubrical | Corresponds to the *Ave Regina Caelorum* period: sung from Feb 2 through Holy Wednesday (Liturgia Horarum rubrics, cf. GILH §92). This cross-season period spans Early Ordinary Time, Lent, and the beginning of Holy Week. Also used in monastic/religious propers for text selection. |
 | `HolyWeek` | Normative | GNLY §30-31; PS §27, §134; TLHM Tempus Quadragesimae distinguishes Office texts of weeks I-V from Holy Week |
 | `PaschalTriduum` | Normative | GNLY §18-21; PS §2, §38-99; TLHM has its own section (§4 Sacrum Triduum Paschale, separate from the five seasons) |
 | `EasterOctave` | Normative | GNLY §12, §24 (celebrated as Solemnities of the Lord) |
 | `EarlyOrdinaryTime` | Semi-normative | GILH §152: "From the Monday after the feast of the Baptism of the Lord until Lent" (explicit boundary). GNLY §43 acknowledges two runs of OT without naming them. |
 | `LateOrdinaryTime` | Semi-normative | GILH §152: "from the Monday after Pentecost until Advent" (explicit boundary). Same status as above. |
+
+> **The Presentation of the Lord as period boundary — Marian antiphons of Compline.**
+>
+> The Liturgia Horarum prescribes one of four Marian antiphons at the end of Night Prayer (Compline), each assigned to a specific period of the year (GILH §92). These assignments, inherited from the Breviarium Romanum, make the Presentation of the Lord (Feb 2) a rubrical period boundary:
+>
+> | Marian antiphon | Period | Corresponding `Period` variant(s) |
+> |---|---|---|
+> | *Alma Redemptoris Mater* | 1st Vespers of Advent → Feb 2 | Advent season + `ChristmasToPresentationOfTheLord` |
+> | *Ave Regina Caelorum* | Feb 2 → Holy Wednesday | `PresentationOfTheLordToHolyThursday` |
+> | *Regina Caeli* | Easter → Pentecost | Easter Time season |
+> | *Salve Regina* | Trinity → Saturday before Advent I | ≈ `LateOrdinaryTime` |
+>
+> These four periods cross seasonal boundaries (e.g., *Alma Redemptoris* spans Advent, Christmas Time, and early Ordinary Time), which is precisely why they are modeled as `Period` (cross-season sub-periods) rather than as properties of `Season`.
 
 > **Note on the TLHM (Thesaurus Liturgiae Horarum Monasticae):** The TLHM organizes its Proprium de Tempore into 7 sections: (1) Tempus Adventus, (2) Tempus Nativitatis, (3) Tempus Quadragesimae, (4) Sacrum Triduum Paschale, (5) Tempus Paschale, (6) Sollemnitates Domini per Annum occurrentes, (7) Tempus per Annum. This structure confirms the Triduum as a distinct liturgical unit and the Solemnities of the Lord in OT as a separate organizational grouping. The sub-period details within each section (particularly §2 Tempus Nativitatis for the Presentation boundary) remain to be documented from the TLHM Proprium.
 
