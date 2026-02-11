@@ -809,7 +809,24 @@ struct DayContext {
     /// Psalter week: I-IV (GILH §133). Restarted at Week I on 1st Sunday
     /// of Advent, 1st Sunday of OT, 1st Sunday of Lent, Easter Sunday.
     psalter_week: PsalterWeekCycle,
-    /// Week number within the season (e.g., 5 for "5th Week of OT")
+    /// Week number within the season. Weeks are Sunday-based (GILH §133):
+    /// the week number corresponds to the Sunday that opens it.
+    ///
+    /// Season-specific behavior:
+    /// - **Advent:** 1-4 (GNLY §41). Week 1 begins on the 1st Sunday of Advent.
+    /// - **Christmas Time:** None. The Lectionary organizes this season by
+    ///   calendar dates (octave, feasts), not by week numbers (GNLY §32-38,
+    ///   GILM §95-96).
+    /// - **Lent:** 1-6 (GNLY §30). Week 1 = 1st Sunday of Lent, Week 6 = Palm
+    ///   Sunday. **Convention:** the days from Ash Wednesday to the Saturday
+    ///   before the 1st Sunday of Lent use `week_of_season: Some(0)`. This is
+    ///   a practical convention (not normative) — the liturgical norms call
+    ///   these "weekdays of Lent" without assigning a week number.
+    /// - **Easter Time:** 1-7 (GNLY §23). Easter Sunday = Week 1.
+    /// - **Ordinary Time:** 1-34 (GNLY §43-44, GILM §104). Week 1 begins on
+    ///   the Monday after the Baptism of the Lord. Interrupted by Lent/Easter,
+    ///   resumes after Pentecost.
+    /// - **Triduum (season: None):** None.
     week_of_season: Option<u32>,
     /// Day number within the season (1-based)
     day_of_season: Option<u32>,
