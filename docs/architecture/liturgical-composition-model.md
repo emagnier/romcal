@@ -796,8 +796,9 @@ These types are used by both layers.
 
 ```rust
 struct DayContext {
-    /// Liturgical season (Advent, Lent, OrdinaryTime...). None on days
-    /// that may not belong to a season proper (see Season open question).
+    /// Liturgical season (GNLY 17-44). None during the Paschal Triduum
+    /// (Good Friday, Holy Saturday), which is not a season but a distinct
+    /// liturgical unit tracked via `periods` (see Season design decision).
     season: Option<Season>,
     /// Localized season name for display
     season_name: Option<String>,
@@ -1296,6 +1297,8 @@ LiturgicalCalendar
 │                   }
 │
 ├── "2025-04-17" → LiturgicalDay                           ← Holy Thursday
+│   ├── context: DayContext { season: Some(Lent),          ← still Lent (GNLY §28)
+│   │       periods: [HolyWeek, PaschalTriduum], ... }
 │   └── celebrations:
 │       └── [0] Celebration
 │           ├── id: "holy_thursday"
@@ -1304,6 +1307,8 @@ LiturgicalCalendar
 │                       is_eucharistic: true, entrance_gospel: None, ... }
 │
 ├── "2025-04-18" → LiturgicalDay                           ← Good Friday
+│   ├── context: DayContext { season: None,                ← between seasons
+│   │       periods: [HolyWeek, PaschalTriduum], ... }
 │   └── celebrations:
 │       └── [0] Celebration
 │           ├── id: "good_friday"
@@ -1315,12 +1320,16 @@ LiturgicalCalendar
 │                       ... }
 │
 ├── "2025-04-19" → LiturgicalDay                           ← Holy Saturday
+│   ├── context: DayContext { season: None,                ← between seasons
+│   │       periods: [HolyWeek, PaschalTriduum], ... }
 │   └── celebrations:
 │       └── [0] Celebration
 │           ├── id: "holy_saturday"
 │           └── masses: {}                                  ← empty — aliturgical (PS §75)
 │
 ├── "2025-04-20" → LiturgicalDay                           ← Easter Sunday
+│   ├── context: DayContext { season: Some(EasterTime),    ← Easter Time begins
+│   │       periods: [PaschalTriduum, EasterOctave], ... }
 │   └── celebrations:
 │       └── [0] Celebration
 │           ├── id: "easter_sunday"
@@ -2345,21 +2354,39 @@ enum Rank {
 
 **What it is:** The liturgical season of the Church year.
 
-**Liturgical basis:** GNLY 17-44 defines the seasons. Each season has its own liturgical characteristics (colors, readings cycle, presence/absence of Gloria and Alleluia).
+**Liturgical basis:** GNLY 17-44 defines five liturgical seasons (tempora). Each has its own liturgical characteristics (colors, readings cycle, presence/absence of Gloria and Alleluia).
 
 ```rust
 enum Season {
     Advent,          // 4 Sundays before Christmas → Dec 24
     ChristmasTime,   // Dec 25 → Sunday after Epiphany (Baptism of the Lord)
-    Lent,            // Ash Wednesday → Holy Thursday morning
-    PaschalTriduum,  // Holy Thursday evening → Easter Sunday Vespers
-    EasterTime,      // Easter Sunday → Pentecost
+    Lent,            // Ash Wednesday → Mass of the Lord's Supper exclusive (GNLY §28)
+    EasterTime,      // Easter Sunday → Pentecost (GNLY §22)
     OrdinaryTime,    // Two periods: Baptism of the Lord → Ash Wednesday,
                      // Pentecost Monday → 1st Sunday of Advent
 }
 ```
 
-> **Open question:** `PaschalTriduum` may warrant being modeled as a `Period` rather than a `Season`, since the Triduum is liturgically a single three-day celebration rather than a season proper. This would allow `DayContext.season` to remain non-`Vec` (a day belongs to one season) while still tracking the Triduum as a period. To be verified against GNLY 18-21.
+> **Design decision: the Paschal Triduum is NOT a Season.**
+>
+> The current romcal codebase has `Season::PaschalTriduum` as a sixth variant. This document removes it, based on the following normative evidence:
+>
+> 1. **GNLY structure:** Title II (§17-47) gives the Triduum its own section (I, §18-21), separate from the five seasons (sections II-VI). GNLY lists five seasons only: Advent, Christmas Time, Lent, Easter Time, Ordinary Time.
+> 2. **GNLY §28:** "The forty days of Lent run from Ash Wednesday up to but excluding the Mass of the Lord's Supper." Lent ends before the Triduum begins.
+> 3. **GNLY §22:** "The fifty days from the Sunday of the Resurrection to Pentecost Sunday..." Easter Time begins on Easter Sunday.
+> 4. **GNLY §18:** The Triduum is described as "the high point of the entire liturgical year" — not as a season.
+> 5. **PS §27:** "The Lenten season lasts until the Thursday of this week. The Easter Triduum begins with the evening Mass of the Lord's Supper..." — explicit separation.
+>
+> The Triduum is a distinct liturgical unit that falls **between** Lent and Easter Time. It is tracked via `Period::PaschalTriduum` in `DayContext.periods`. During the Triduum, `DayContext.season` is:
+>
+> | Civil date | `season` | Rationale |
+> |---|---|---|
+> | Holy Thursday | `Some(Lent)` | GNLY §28: Lent until the evening Mass. The civil date begins in Lent (the Chrism Mass is a Lenten celebration). |
+> | Good Friday | `None` | Between Lent and Easter Time. Not in any season. |
+> | Holy Saturday | `None` | Between Lent and Easter Time. Not in any season. |
+> | Easter Sunday | `Some(EasterTime)` | GNLY §22: Easter Time begins. The Triduum also ends this day (at Vespers). |
+>
+> This design ensures `Season` has exactly 5 variants matching GNLY, while `DayContext.season: Option<Season>` naturally handles the 2-3 days per year where no season applies. The consumer can detect the Triduum via `periods.contains(PaschalTriduum)`.
 
 #### `Color` and `ColorInfo`
 
