@@ -4,7 +4,7 @@
 
 The Roman Rite's liturgical norms (GIRM, GNLY, GILM, GILH, CP) define precise rules for how liturgical texts — readings, orations, antiphons, psalmody — are selected, combined, and composed for every rank of celebration (solemnity, feast, memorial, weekday), across both the Mass and the Liturgy of the Hours, and at every level of the calendar hierarchy (general, national, diocesan, religious, local).
 
-This document is a comprehensive architecture and data-modeling reference for romcal. It synthesizes these liturgical rules and proposes a data model that faithfully reflects them, organized around three complementary output layers:
+This document is a comprehensive architecture and data-modeling reference for romcal. It synthesizes these liturgical rules and proposes a data model that reflects them, organized around three complementary output layers:
 
 - **Layer 1 — Liturgical Calendar** (`generate_liturgical_calendar`): centered on the liturgical day, for internal use and as the foundation for Layers 2 Mass and 2 Hours.
 - **Layer 2 Mass — Mass Calendar** (`generate_mass_calendar`): centered on the mass as celebrated on a civil date, with pre-resolved options and explicit composition rules.
@@ -39,7 +39,7 @@ The GIRM organizes mass texts into groups with distinct substitution rules:
 
 **Collect + Entrance Antiphon + Communion Antiphon**
 
-These three elements follow the global choice of celebration as a block. If you celebrate the memorial, all three come from the saint (proper or Common). If you celebrate the feria, all three come from the feria.
+These three elements follow the global choice of celebration as a block. When the memorial is celebrated, all three come from the saint (proper or Common). When the feria is celebrated, all three come from the feria.
 
 > **Architectural note:** The GIRM does not explicitly group these three elements together as an "inseparable block." This grouping is an architectural inference derived from what GIRM 363 makes individually flexible (prayer over the offerings, prayer after Communion) and what it does not — leaving the collect, entrance antiphon, and communion antiphon bound to the chosen formulary. Note that GIRM 48 and 87 (cf. GIRM 367) do allow the entrance and communion antiphons to be replaced by other approved chants, which is a separate form of flexibility not modeled here.
 
@@ -240,7 +240,7 @@ PRIVILEGED WEEKDAYS (Advent 17-24, Octave of Christmas, Lent)
 
 ## Part II — Liturgical Rules: Liturgy of the Hours
 
-> **Status:** The Liturgy of the Hours is not currently implemented in romcal. This section provides the complete rules analysis for the Office, to ensure that the modelling is fully worked out in advance.
+> **Status:** The Liturgy of the Hours is not currently implemented in romcal. This section provides the complete rules analysis for the Office, to document the rules analysis for the Office prior to implementation.
 
 ### 1. Office Substitution Groups (vs. Mass)
 
@@ -278,7 +278,7 @@ Before analyzing how celebrations affect the Office, it is necessary to understa
 
 ### 3. How the Office is Arranged by Rank
 
-The GILH (Chapter IV, GILH §225-244) defines distinct rules for each rank. This section analyzes these rules completely.
+The GILH (Chapter IV, GILH §225-244) defines distinct rules for each rank. This section analyzes the rules for each rank.
 
 #### 3a. On Solemnities (GILH 225-230)
 
@@ -582,7 +582,7 @@ The GILH and GIRM do not explicitly address this question. In liturgical practic
 
 - **GNLY 14** states: "If several Optional Memorials are inscribed in the Calendar on the same day, only one may be celebrated." This applies to the celebration as a whole — Mass and Office together constitute "celebrating" a memorial.
 - **GILH 234** links the Office to the Mass norms: memorials "are integrated into the celebration of the occurring weekday in accordance with the norms set forth in the General Instruction of the Roman Missal and of the Liturgy of the Hours."
-- The practical consensus is that the same celebration should be chosen for both Mass and Office on the same day — you don't celebrate St. Scholastica at Mass and the feria at the Office, or vice versa.
+- In practice, the same celebration is chosen for both Mass and Office on the same day — celebrating St. Scholastica at Mass and the feria at the Office, or vice versa, is not consistent with how GNLY 14 frames celebration as a single act.
 
 **Consequence for the data model:** The `default_celebration_id` in both `MassComposition` and `HoursComposition` should be consistent for the same civil date. The consumer should be informed that choosing a memorial for one mode implies choosing it for the other. This could be modeled through:
 - A shared `celebration_choice_id` linking the Mass and Office entries for the same day, or
@@ -855,7 +855,7 @@ struct ReadingText {
 
 **What it is:** A complete, **indivisible** set of readings for the Liturgy of the Word. Used for weekday (*lectio continua*) and proper readings, where the Lectionary assigns specific texts as a pre-composed unit.
 
-**Why this name:** "Readings" because it contains all the Scripture readings and their associated chants. "Set" because they form an indivisible block — you take them all together or not at all.
+**Why this name:** "Readings" because it contains all the Scripture readings and their associated chants. "Set" because they form an indivisible block — they are taken together or not at all.
 
 **Liturgical basis:** GIRM 357 — proper and weekday readings are taken as a complete set, not mixed individually. The psalm responds to the first reading it is paired with.
 
@@ -958,7 +958,7 @@ enum TextSource {
 
 **What it is:** A liturgical text paired with its provenance.
 
-**Why this name:** It is a "text" that is "sourced" — you know where it comes from. This is essential for Layer 2 where flexible orations are presented as a list of alternatives, each with its origin.
+**Why this name:** It is a "text" that is "sourced" — its provenance is tracked. This is essential for Layer 2 where flexible orations are presented as a list of alternatives, each with its origin.
 
 ```rust
 struct SourcedText {
@@ -1023,7 +1023,7 @@ struct LiturgicalDay {
 
 **What it is:** One liturgical celebration — an entity with a rank, a name, liturgical colors, and mass texts. The feria of Wednesday of the 5th week is a celebration. The optional memorial of St. Scholastica is another celebration.
 
-**Why this name:** GNLY 10 defines it: "Celebrations, according to the importance assigned to them, are hence distinguished one from another and termed: Solemnity, Feast, Memorial." A celebration is the thing you celebrate, with its specific rank and proper texts.
+**Why this name:** GNLY 10 defines it: "Celebrations, according to the importance assigned to them, are hence distinguished one from another and termed: Solemnity, Feast, Memorial." A celebration is the liturgical entity that is celebrated, with its specific rank and proper texts.
 
 **Why not `LiturgicalDay`:** In the current romcal model, `LiturgicalDay` mixes the temporal frame and the celebration identity. This separation clarifies that multiple celebrations can coexist within one liturgical day.
 
@@ -1079,7 +1079,7 @@ struct Celebration {
 
 **Why this name:** It is the "mass" content belonging to a "celebration." The cycle is already resolved — this struct contains the applicable texts directly, without a cycle dimension.
 
-**Why not `MassContent` (existing name):** The existing `MassContent` is a flat `BTreeMap<MassPart, String>` with no grouping semantics. `CelebrationMass` structures the content by GIRM substitution groups (formulary, readings, flexible orations), which is the key improvement.
+**Why not `MassContent` (existing name):** The existing `MassContent` is a flat `BTreeMap<MassPart, String>` with no grouping semantics. `CelebrationMass` structures the content by GIRM substitution groups (formulary, readings, flexible orations), .
 
 ```rust
 struct CelebrationMass {
@@ -1290,7 +1290,7 @@ type MassCalendar = BTreeMap<String, Vec<MassComposition>>;
 
 **Why this name:** "Mass" because it represents one mass celebration. "Composition" because the mass is "composed" from options across different blocks — the consumer composes the final mass by picking from the provided options according to the rules.
 
-**Why not `MassContext` (existing name):** The existing `MassContext` is a flat structure that merely references optional celebrations by summary. `MassComposition` goes further: it provides the actual texts organized by substitution groups, with explicit composition rules.
+**Why not `MassContext` (existing name):** The existing `MassContext` is a flat structure that merely references optional celebrations by summary. `MassComposition` provides the actual texts organized by substitution groups, with explicit composition rules.
 
 ```rust
 struct MassComposition {
@@ -1425,7 +1425,7 @@ struct CompositionRules {
 
 #### `BlockRule`
 
-**What it is:** A rule governing a block where you must pick one option entirely.
+**What it is:** A rule governing a block where one option must be picked entirely.
 
 **Why this name:** It is a "rule" for a "block" of inseparable texts.
 
@@ -1578,7 +1578,7 @@ MassCalendar
 - **Mass** = **selection**: the consumer picks from options per substitution group (formulary block, readings, flexible orations). Each group has independent alternatives.
 - **Office** = **overlay**: the celebration choice determines a composite content where weekday base elements and saint's proper elements are merged by the engine per GILH §235 rules. During privileged seasons, saint's elements are *added alongside*, not substituted (GILH §239).
 
-These two patterns require different data structures and composition rules. Merging them would force artificial uniformity.
+These two patterns require different data structures and composition rules. Merging them would require a single data structure to represent two fundamentally different composition patterns.
 
 **Generated from Layer 1:** The engine first produces the `LiturgicalCalendar`, then transforms it into the `HoursCalendar` by: shifting Vespers I to the previous civil date, resolving which elements come from the weekday vs. the saint per GILH §235 rules, applying GILH §239 addition logic for privileged seasons, and computing the applicable composition rules.
 
@@ -1600,7 +1600,7 @@ type HoursCalendar = BTreeMap<String, Vec<HoursComposition>>;
 
 **Why this name:** "Hours" because it represents one Hour of the Office. "Composition" because the Hour is "composed" from weekday and saint elements — the consumer receives the composed result.
 
-**Why per-Hour (not per-day):** Although the celebration choice applies to the whole day (if you celebrate St. Scholastica at Lauds, you celebrate her at Vespers too), the *content* differs per Hour (different psalms, different antiphons, different readings). And Vespers I may belong to a different celebration than the rest of the day. Per-Hour entries keep each unit self-contained, consistent with `MassComposition` in Layer 2 Mass.
+**Why per-Hour (not per-day):** Although the celebration choice applies to the whole day (celebrating St. Scholastica at Lauds implies celebrating her at Vespers too), the *content* differs per Hour (different psalms, different antiphons, different readings). And Vespers I may belong to a different celebration than the rest of the day. Per-Hour entries keep each unit self-contained, consistent with `MassComposition` in Layer 2 Mass.
 
 ```rust
 struct HoursComposition {
@@ -1800,7 +1800,7 @@ enum MemorialRule {
 
 **Why `Option<HourSuppression>` (not always present):** Most Hours are never suppressed. This field is `None` for all ordinary days. It is `Some(...)` only on the handful of exceptional days listed above.
 
-**Why not a boolean:** The suppression is *conditional* — it depends on what the person attends. The consumer needs to know *which* celebration triggers the suppression in order to inform the user correctly ("If you attend the Easter Vigil, you omit Compline").
+**Why not a boolean:** The suppression is *conditional* — it depends on what the person attends. The consumer needs to know *which* celebration triggers the suppression in order to inform the user correctly ("Those who attend the Easter Vigil omit Compline").
 
 ```rust
 enum HourSuppression {
@@ -2247,7 +2247,7 @@ HoursCalendar["2025-04-19"] → [
 ]
 ```
 
-**Architectural note:** These cross-domain interactions (Mass → Office) are rare — they only occur during the Triduum and at Christmas. The `HourSuppression` field is `None` on all other days. This keeps the model clean for the 99% case while faithfully representing the exceptions.
+**Architectural note:** These cross-domain interactions (Mass → Office) only occur during the Triduum and at Christmas. The `HourSuppression` field is `None` on all other days (approximately 360 out of 365), avoiding unnecessary complexity on ordinary days while representing the exceptional cases.
 
 ---
 
