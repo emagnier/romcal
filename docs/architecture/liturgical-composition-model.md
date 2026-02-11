@@ -2474,20 +2474,29 @@ enum PsalterWeekCycle { Week_1, Week_2, Week_3, Week_4 }
 
 #### `PeriodInfo`
 
-**What it is:** Specific sub-periods within liturgical seasons, important for determining applicable rules and for religious/monastic liturgies.
+**What it is:** Specific sub-periods within liturgical seasons. These sub-periods determine applicable rules for texts, readings, and Office structure, and are essential for religious and monastic liturgies (particularly the Benedictine monastic office per the TLHM).
 
 ```rust
 enum Period {
-    ChristmasOctave,       // Dec 25 → Jan 1
+    // ── Christmas Time sub-periods ──
+    ChristmasOctave,       // Dec 25 → Jan 1 (Octave Day)
     DaysBeforeEpiphany,    // Jan 2 → day before Epiphany
-    DaysFromEpiphany,      // Epiphany → day before Presentation of the Lord
-    ChristmasToPresentationOfTheLord,
-    PresentationOfTheLordToHolyThursday,
+    DaysFromEpiphany,      // Epiphany → Sunday of the Baptism of the Lord
+
+    // ── Broader cross-season periods ──
+    ChristmasToPresentationOfTheLord,       // Dec 25 → Feb 2
+    PresentationOfTheLordToHolyThursday,    // Feb 2 → Holy Thursday
+
+    // ── Holy Week and Triduum ──
     HolyWeek,              // Palm Sunday → Holy Saturday
     PaschalTriduum,        // Holy Thursday evening → Easter Sunday Vespers
+
+    // ── Easter Time sub-period ──
     EasterOctave,          // Easter Sunday → 2nd Sunday of Easter
-    EarlyOrdinaryTime,     // After Presentation → day before Ash Wednesday
-    LateOrdinaryTime,      // After Pentecost → day before 1st Sunday of Advent
+
+    // ── Ordinary Time sub-periods ──
+    EarlyOrdinaryTime,     // Monday after Baptism of the Lord → day before Ash Wednesday
+    LateOrdinaryTime,      // Monday after Pentecost → Saturday before 1st Sunday of Advent
 }
 
 struct PeriodInfo {
@@ -2496,9 +2505,24 @@ struct PeriodInfo {
 }
 ```
 
-**Why `Vec<PeriodInfo>`:** A day can belong to multiple overlapping periods (e.g., Good Friday belongs to both `HolyWeek` and `PaschalTriduum`).
+**Why `Vec<PeriodInfo>`:** A day can belong to multiple overlapping periods (e.g., Good Friday belongs to both `HolyWeek` and `PaschalTriduum`; Dec 28 belongs to both `ChristmasOctave` and `ChristmasToPresentationOfTheLord`).
 
-> **Note:** These periods are not defined in the primary liturgical reference documents (GNLY, GIRM, GILH) as formal categories, but are derived from the calendar structure and are essential for monastic and religious propers where rules vary by sub-period.
+**Normative basis per variant:**
+
+| Period | Status | Source |
+|---|---|---|
+| `ChristmasOctave` | Normative | GNLY §12, §35; GILH §238 (no obligatory memorials during octave) |
+| `DaysBeforeEpiphany` | Normative | GNLY §35-36, §353 (weekdays from Jan 2); distinct memorial rules |
+| `DaysFromEpiphany` | Normative | TLHM « Ordinarium Tempore Epiphaniae » (explicit named sub-period with own proper texts); GILH §149 (readings from Isaiah 60-66 from Jan 7) |
+| `ChristmasToPresentationOfTheLord` | Practical | No normative definition found. Likely a monastic convention (TLHM Proprium de Tempore, §2 Tempus Nativitatis — to be confirmed). Important for religious propers where texts vary across this extended period. |
+| `PresentationOfTheLordToHolyThursday` | Practical | No normative definition found. Same origin as above. The Presentation (Feb 2) is a feast, not a normative period boundary. Used in monastic/religious propers for text selection. |
+| `HolyWeek` | Normative | GNLY §30-31; PS §27, §134; TLHM Tempus Quadragesimae distinguishes Office texts of weeks I-V from Holy Week |
+| `PaschalTriduum` | Normative | GNLY §18-21; PS §2, §38-99; TLHM has its own section (§4 Sacrum Triduum Paschale, separate from the five seasons) |
+| `EasterOctave` | Normative | GNLY §12, §24 (celebrated as Solemnities of the Lord) |
+| `EarlyOrdinaryTime` | Semi-normative | GILH §152: "From the Monday after the feast of the Baptism of the Lord until Lent" (explicit boundary). GNLY §43 acknowledges two runs of OT without naming them. |
+| `LateOrdinaryTime` | Semi-normative | GILH §152: "from the Monday after Pentecost until Advent" (explicit boundary). Same status as above. |
+
+> **Note on the TLHM (Thesaurus Liturgiae Horarum Monasticae):** The TLHM organizes its Proprium de Tempore into 7 sections: (1) Tempus Adventus, (2) Tempus Nativitatis, (3) Tempus Quadragesimae, (4) Sacrum Triduum Paschale, (5) Tempus Paschale, (6) Sollemnitates Domini per Annum occurrentes, (7) Tempus per Annum. This structure confirms the Triduum as a distinct liturgical unit and the Solemnities of the Lord in OT as a separate organizational grouping. The sub-period details within each section (particularly §2 Tempus Nativitatis for the Presentation boundary) remain to be documented from the TLHM Proprium.
 
 #### `MartyrologyEntry`
 
