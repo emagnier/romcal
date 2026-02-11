@@ -372,7 +372,7 @@ Compline                Special ³        Weekday         Weekday (GILH §236)  
 
 > This section corresponds to the "Memorial (OT)" column in the summary table above (§3c).
 
-GILH 234: "There is no difference in the arrangement of the Office for obligatory and optional memorials except in the case of optional memorials falling during privileged seasons."
+GILH 234: "There is no difference in the arrangement of the Office for obligatory and optional memorials except in the case of optional memorials falling during privileged seasons." (Note: "privileged seasons" in GILH §234 refers to privileged weekdays — see §5 below.)
 
 The rules of GILH §235-236 apply **identically** to both obligatory and optional memorials in Ordinary Time:
 
@@ -390,17 +390,19 @@ The rules of GILH §235-236 apply **identically** to both obligatory and optiona
 
 **Comparison with Mass:** In the Mass, the collect is part of the formulary block choice — it comes from whichever celebration is chosen. In the Office, the concluding prayer is **always mandatory from the saint** (GILH §235c) — it is the one element that unambiguously identifies the memorial. The flexible elements (GILH §235b) follow a priority order: saint's Proper if given, otherwise Common or weekday — unlike the Mass's flexible orations (GIRM 363) which are freely choosable between sources without priority.
 
-### 5. Memorials during Privileged Seasons (GILH 237-239)
+### 5. Memorials on Privileged Weekdays (GILH 237-239)
 
 > This section corresponds to the "Memorial (priv.)" column in the summary table above (§3c).
 
-The Office handles memorials during privileged seasons differently from the Mass, using an **addition** mechanism rather than a **substitution** mechanism:
+Privileged weekdays are the weekdays of Advent Dec 17-24, the Christmas Octave, and all Lent weekdays (Precedence level 9 — `PrivilegedWeekday_9`). Note: Advent Dec 1-16 weekdays are NOT privileged (level 13, regular weekdays).
+
+The Office handles memorials on privileged weekdays differently from the Mass, using an **addition** mechanism rather than a **substitution** mechanism:
 
 **GILH §237 — Complete exclusion:** On Sundays, solemnities, feasts, Ash Wednesday, Holy Week, and during the Easter Octave, "no regard is taken of any memorials." This parallels the Mass rule (GIRM 355.1 exception for Ash Wednesday/Holy Week).
 
 **GILH §238 — Demotion:** On weekdays of Advent Dec 17-24, Christmas Octave, and Lent, "no obligatory memorials are celebrated, even in particular calendars." For Lent specifically: "When any happen to fall during Lent in a given year, they are treated as optional memorials." This parallels GNLY 14 (Lenten demotion). Note the distinction: during Lent, obligatory memorials are explicitly demoted to optional; during Dec 17-24 and Christmas Octave, they are simply not celebrated — though GILH §239 additions remain available for any memorial in all three periods.
 
-**GILH §239 — Limited additions:** During these privileged seasons, if the celebrant wishes to mark the saint's memorial:
+**GILH §239 — Limited additions:** On these privileged weekdays, if the celebrant wishes to mark the saint's memorial:
 - **(a) Office of Readings:** A hagiographical reading may be **added after** the patristic reading (with its responsory), not replacing it. The concluding prayer of the saint is used (replacing the weekday prayer).
 - **(b) Morning/Evening Prayer:** The ending of the weekday concluding prayer may be omitted, and the saint's antiphon (from Proper or Common, for the Benedictus or Magnificat) and prayer may be **appended** to the Hour.
 
@@ -1804,11 +1806,11 @@ MassCalendar
 **Why a separate layer (not merged with Layer 2 Mass):** The Mass and Office have fundamentally different composition patterns:
 
 - **Mass** = **selection**: the consumer picks from options per substitution group (formulary block, readings, flexible orations). Each group has independent alternatives.
-- **Office** = **overlay**: the celebration choice determines a composite content where weekday base elements and saint's proper elements are merged by the engine per GILH §235 rules. During privileged seasons, saint's elements are *added alongside*, not substituted (GILH §239).
+- **Office** = **overlay**: the celebration choice determines a composite content where weekday base elements and saint's proper elements are merged by the engine per GILH §235 rules. On privileged weekdays, saint's elements are *added alongside*, not substituted (GILH §239).
 
 These two patterns require different data structures and composition rules. Merging them would require a single data structure to represent two fundamentally different composition patterns.
 
-**Generated from Layer 1:** The engine first produces the `LiturgicalCalendar`, then transforms it into the `HoursCalendar` by: shifting Vespers I to the previous civil date, resolving which elements come from the weekday vs. the saint per GILH §235 rules, applying GILH §239 addition logic for privileged seasons, and computing the applicable composition rules.
+**Generated from Layer 1:** The engine first produces the `LiturgicalCalendar`, then transforms it into the `HoursCalendar` by: shifting Vespers I to the previous civil date, resolving which elements come from the weekday vs. the saint per GILH §235 rules, applying GILH §239 addition logic for privileged weekdays, and computing the applicable composition rules.
 
 #### `HoursCalendar`
 
@@ -1928,7 +1930,7 @@ struct ResolvedHourContent {
 |---------|---------------------|--------------------------|----------|
 | Weekday (no memorial) | Present | None | Patristic only |
 | Memorial in OT (GILH §235d) | None | Present | Hagiographical **replaces** patristic |
-| Memorial in privileged season (GILH §239a) | Present | Present | Hagiographical **added after** patristic |
+| Memorial on privileged weekday (GILH §239a) | Present | Present | Hagiographical **added after** patristic |
 | Solemnity/Feast of a **Saint** (GILH §228) | None | Present | Proper reading about the saint serves as 2nd reading |
 | Solemnity/Feast of the **Lord** (GILH §228) | Present | None | Patristic reading from the Proper |
 
@@ -1938,7 +1940,7 @@ struct OfficeReadingsContent {
     scripture_reading: SourcedText,
     /// Patristic reading — from the current cycle or Common
     /// Present on weekdays, absent when replaced by hagiographical on memorials (GILH §235d)
-    /// Present alongside hagiographical during privileged seasons (GILH §239a)
+    /// Present alongside hagiographical on privileged weekdays (GILH §239a)
     patristic_reading: Option<SourcedText>,
     /// Hagiographical reading — in honor of the saint
     /// Present on memorials (GILH §235d), during GILH §239 additions, and on solemnities/feasts
@@ -2850,9 +2852,9 @@ HoursCalendar["2025-04-19"] → [
 - **GILH 215** — Christmas night: when the vigil form of the Office of Readings is celebrated before Midnight Mass, Compline is omitted. Also specifies the vigil form for Christmas.
 - **GILH 225-230** — How the Office is arranged on **solemnities**: everything from Proper or Common (GILH §226-227); psalmody per Hour (EP I: Laudate Psalms, Lauds: Sunday Week I, OdR: proper, Daytime: Gradual Psalms — see GILH §134 and §3a psalmody table); Te Deum said (GILH §228); GILH §228 also: "In the case of a saint with a purely local cult and without special texts even in the local proper, everything is taken from the common"; Daytime Prayer proper (GILH §229); Compline: "as on Sundays, after evening prayer I and II respectively" (GILH §230). Solemnities begin with Vespers I the preceding evening.
 - **GILH 231-233** — How the Office is arranged on **feasts**: "celebrated within the limits of the natural day" — no Vespers I (GILH §231), except Lord's Feasts falling on Sunday (GNLY 13); Te Deum said (GILH §231); "At the office of readings, at morning prayer, and at evening prayer, all is done as on solemnities" (GILH §231). Daytime Prayer (GILH §232): weekday hymn (always), weekday psalms/antiphons (rarely proper antiphon from tradition), proper short reading and concluding prayer. Night Prayer: "as on ordinary days" (GILH §233).
-- **GILH 234** — No difference in arrangement between obligatory and optional memorials, except during privileged seasons
+- **GILH 234** — No difference in arrangement between obligatory and optional memorials, except on privileged weekdays
 - **GILH 235-236** — Memorials during Ordinary Time: (a) psalms/antiphons from current weekday; (b) invitatory, hymn, short reading, canticle antiphons, intercessions from saint's Proper, or else from Common or weekday; (c) concluding prayer from the saint (mandatory); (d) Office of Readings: 1st reading from Scripture cycle, 2nd from saint/Common; Te Deum not said. Daytime Prayer and Night Prayer entirely from weekday (GILH §236).
-- **GILH 237-239** — Memorials during privileged seasons: no memorials on Sundays/solemnities/feasts/Ash Wed/Holy Week/Easter Octave (GILH §237); obligatory memorials become optional on Advent Dec 17-24, Christmas Octave, Lent weekdays (GILH §238); limited additions: hagiographical reading **added after** patristic (not replacing), saint's antiphon and prayer **appended** to Morning/Evening Prayer (GILH §239)
+- **GILH 237-239** — Memorials on privileged weekdays: no memorials on Sundays/solemnities/feasts/Ash Wed/Holy Week/Easter Octave (GILH §237); obligatory memorials become optional on Advent Dec 17-24, Christmas Octave, Lent weekdays (GILH §238); limited additions: hagiographical reading **added after** patristic (not replacing), saint's antiphon and prayer **appended** to Morning/Evening Prayer (GILH §239)
 - **GILH 240** — Optional memorial of BVM on Saturdays in Ordinary Time, celebrated as other memorials
 - **GILH 244** — On weekdays with optional memorials, a saint from the Roman Martyrology may be celebrated as other memorials (parallels GIRM 355.3c)
 - **GILH 247** — Immutability of formularies on privileged days: "In the office for Sundays, solemnities, feasts of the Lord listed in the General Calendar, the weekdays of Lent and Holy Week, the days within the octaves of Easter and Christmas, and the weekdays from 17 to 24 December inclusive, it is never permissible to change the formularies that are proper or adapted to the celebration, such as antiphons, hymns, readings, responsories, prayers, and very often also the psalms." Exception: Sunday psalms may be substituted with psalms from another week.
