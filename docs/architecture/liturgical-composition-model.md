@@ -796,18 +796,34 @@ These types are used by both layers.
 
 ```rust
 struct DayContext {
+    /// Liturgical season (Advent, Lent, OrdinaryTime...). None on days
+    /// that may not belong to a season proper (see Season open question).
     season: Option<Season>,
+    /// Localized season name for display
     season_name: Option<String>,
+    /// Sunday readings cycle: Year A, B, or C (GILM 66)
     sunday_cycle: SundayCycle,
+    /// Weekday readings cycle: Year 1 or 2 (GILM 69)
     weekday_cycle: WeekdayCycle,
+    /// Psalter week: I-IV (GILH §133). Restarted at Week I on 1st Sunday
+    /// of Advent, 1st Sunday of OT, 1st Sunday of Lent, Easter Sunday.
     psalter_week: PsalterWeekCycle,
+    /// Week number within the season (e.g., 5 for "5th Week of OT")
     week_of_season: Option<u32>,
+    /// Day number within the season (1-based)
     day_of_season: Option<u32>,
+    /// Day of the week (0 = Sunday, 6 = Saturday)
     day_of_week: DayOfWeek,
+    /// Sub-periods this day belongs to (e.g., HolyWeek + PaschalTriduum).
+    /// A day can belong to multiple overlapping periods.
     periods: Vec<PeriodInfo>,
+    /// First date of the current season (ISO format)
     start_of_season: Option<String>,
+    /// Last date of the current season (ISO format)
     end_of_season: Option<String>,
+    /// First date of the liturgical year (1st Sunday of Advent, ISO format)
     start_of_liturgical_year: String,
+    /// Last date of the liturgical year (Saturday before next Advent)
     end_of_liturgical_year: String,
 }
 ```
@@ -900,11 +916,11 @@ struct ReadingsPool {
 
 #### `ReadingsContent`
 
-**What it is:** An enum distinguishing the two modes of readings provision: a fixed, indivisible set vs. a pool of independently choosable components.
+**What it is:** An enum distinguishing the three modes of readings provision: a fixed indivisible set, a pool of independently choosable components, or a variable-length vigil sequence.
 
-**Why this name:** It represents the "content" of the "readings" block, which can take two structural forms depending on the source.
+**Why this name:** It represents the "content" of the "readings" block, which can take three structural forms depending on the source.
 
-**Liturgical basis:** The distinction arises from the different treatment of proper/weekday readings (indivisible, GIRM 357) vs. Common readings (component-level choice, GILM 71, 89).
+**Liturgical basis:** The distinction arises from the different treatment of proper/weekday readings (indivisible, GIRM 357), Common readings (component-level choice, GILM 71, 89), and Easter Vigil readings (ordered sequence with variable selection, PS 85).
 
 ```rust
 enum ReadingsContent {
@@ -969,8 +985,12 @@ struct VigilReading {
 struct FlexibleOrations {
     prayer_over_the_offerings: Option<String>,
     prayer_after_communion: Option<String>,
-    preface: Option<String>,        // Governed by GIRM 364-365, not 363
+    preface: Option<String>,              // Governed by GIRM 364-365, not 363
+    /// Optional solemn blessing (GIRM 167). Present on solemnities, certain feasts,
+    /// and special occasions. Alternative to the simple blessing.
     solemn_blessing: Option<String>,
+    /// Optional prayer over the people (GIRM 167). May be used in place of
+    /// the solemn blessing, especially during Lent.
     prayer_over_the_people: Option<String>,
 }
 ```
@@ -1079,19 +1099,31 @@ struct Celebration {
     rank: Rank,
     /// Localized rank name
     rank_name: String,
-    /// Liturgical colors
+    /// Permissible liturgical colors (GIRM 346). Multiple when alternatives
+    /// exist (e.g., gold/white on solemnities, black/purple for funerals).
+    /// Red is automatically assigned when MartyrologyEntry.titles contains Martyr.
     colors: Vec<ColorInfo>,
-    /// Common categories (e.g., Common of Virgins, Common of Pastors)
+    /// Applicable Commons from the Roman Missal (see Part IV §7 for resolution).
+    /// Empty when the celebration has all proper texts.
+    /// Multiple when the saint belongs to several categories (e.g., Virgin + Martyr).
+    /// Each Common provides a pool of fallback texts (prayers, readings, antiphons)
+    /// for elements that have no proper text.
     commons: Vec<CommonInfo>,
-    /// Martyrology entries (linked saints, blessed, or places)
+    /// Persons, entities, or groups celebrated on this day.
+    /// Carries biographical metadata (titles, sex, count) used by the engine
+    /// to resolve Commons and assign colors. See Part IV §7 for key fields.
     martyrology: Vec<MartyrologyEntry>,
-    /// Titles (patron, founder, doctor...)
+    /// Titles as published in the liturgical books (Martyr, Virgin, Bishop, etc.).
+    /// See Part IV §7. Current implementation to be revised for composability.
     titles: TitlesDef,
     /// Holy day of obligation
     is_holy_day_of_obligation: bool,
     /// Optional celebration (can be omitted in favor of the feria)
     is_optional: bool,
-    /// Source calendar in the inheritance chain
+    /// Calendar that last defined or modified this celebration.
+    /// If a General Calendar celebration is overridden by a local calendar,
+    /// this is the local calendar's ID. Full modification history available
+    /// in LiturgicalDay.parent_overrides.
     from_calendar_id: CalendarId,
 
     /// The canonical prayer of this celebration (CP §44 cross-domain identity).
@@ -2182,6 +2214,275 @@ Existing types (documented)    ✓       ✓       ✓    SHARED
 ² Exploded into Vec<SourcedText> per oration in Layer 2 Mass
 ³ MassTime: existing enum, documented in Part IV §4 with all 10 variants
 ```
+
+### 7. Existing Types Reference
+
+The types below exist in the romcal codebase and are referenced by the new types defined in this document. This section documents their structure and role in the final data model (output types), not the internal resolution or definition pipeline.
+
+#### `Common`
+
+**What it is:** An enum identifying a specific Common of the Roman Missal / Lectionary — a pool of liturgical texts (prayers, readings, antiphons) categorized by type of saint.
+
+**Liturgical basis:** The Roman Missal organizes Proper texts for saints and provides Common texts as fallbacks. Each Common corresponds to a category of saints (Martyrs, Virgins, Pastors, etc.) and provides a complete set of Mass formularies and readings. When a memorial has no proper text for a given element, the celebrant draws from the applicable Common.
+
+**How it works in the composition model:**
+- A `Celebration.commons` vector lists the applicable Commons for that celebration (e.g., `[Martyrs_OutsideEaster_One, Virgins_One]` for a virgin martyr in Ordinary Time).
+- When the celebration has no proper readings, the engine generates a `ReadingsOption` with `source: TextSource::Common` and `readings: Pool(ReadingsPool)` for each applicable Common.
+- The celebrant may freely choose from any of the applicable Commons' pools (GILM 71: "the celebrant may choose at will from such texts").
+- A celebration with all proper texts has `commons: []` (empty) — no Common is needed.
+- The `Common` enum is season-aware for the Blessed Virgin Mary (BVM has distinct Commons for Ordinary Time, Advent, Christmas, and Easter).
+
+**Variants (34):**
+
+```rust
+enum Common {
+    None,
+    // Dedication of a Church
+    DedicationAnniversary_Inside, DedicationAnniversary_Outside,
+    // Blessed Virgin Mary (season-specific)
+    BlessedVirginMary_OrdinaryTime, BlessedVirginMary_Advent,
+    BlessedVirginMary_Christmas, BlessedVirginMary_Easter,
+    // Martyrs
+    Martyrs_OutsideEaster_Several, Martyrs_OutsideEaster_One,
+    Martyrs_Easter_Several, Martyrs_Easter_One,
+    Martyrs_Missionary_Several, Martyrs_Missionary_One,
+    Martyrs_Virgin, Martyrs_Woman,
+    // Pastors
+    Pastors_PopeOrBishop, Pastors_Bishop,
+    Pastors_Several, Pastors_One,
+    Pastors_Founder_One, Pastors_Founder_Several,
+    Pastors_Missionary,
+    // Doctors of the Church
+    DoctorsOfTheChurch,
+    // Virgins
+    Virgins_Several, Virgins_One,
+    // Holy Men and Women
+    Saints_All_Several, Saints_All_One,
+    Saints_Abbot, Saint_Monk, Saints_Nun,
+    Saints_Religious, Saints_MercyWorks,
+    Saints_Educators, Saints_HolyWomen,
+}
+```
+
+> **Note on `CommonDefinition`:** The definition pipeline uses a simplified enum (`CommonDefinition`, e.g., `Martyrs`, `Virgins`) from which the engine deduces the fully resolved `Common` variant based on the `MartyrologyEntry` properties (season, `SaintCount`, sex). This resolution is internal to the engine and not exposed in the output types.
+
+#### `CommonInfo`
+
+**What it is:** A `Common` enum value paired with its localized display name.
+
+```rust
+struct CommonInfo {
+    /// The resolved Common variant
+    key: Common,
+    /// Localized name (e.g., "Common of One Martyr" / "Commun d'un Martyr")
+    name: String,
+}
+```
+
+#### `Precedence` (GNLY 59)
+
+**What it is:** An enum representing the liturgical precedence level from the Table of Liturgical Days (GNLY 59). Determines which celebration takes priority when multiple celebrations fall on the same date.
+
+**Structure:** GNLY 59 defines 13 numbered levels. romcal subdivides these into **27 variants** to distinguish sub-levels (e.g., level 2 has 5 sub-variants, level 4 has 4 sub-variants for different types of proper solemnities, level 8 has 6 sub-variants for different types of proper feasts):
+
+```rust
+enum Precedence {
+    // 1. Paschal Triduum
+    Triduum_1,
+    // 2. Proper of Time solemnities, privileged Sundays, Ash Wednesday,
+    //    Holy Week weekdays, Easter Octave
+    ProperOfTimeSolemnity_2, PrivilegedSunday_2, AshWednesday_2,
+    WeekdayOfHolyWeek_2, WeekdayOfEasterOctave_2,
+    // 3. General Calendar solemnities + All Souls
+    GeneralSolemnity_3, CommemorationOfAllTheFaithfulDeparted_3,
+    // 4. Proper solemnities (patron, dedication, title, religious org)
+    ProperSolemnity_PrincipalPatron_4a, ProperSolemnity_DedicationOfTheOwnChurch_4b,
+    ProperSolemnity_TitleOfTheOwnChurch_4c,
+    ProperSolemnity_TitleOrFounderOrPrimaryPatronOfAReligiousOrg_4d,
+    // 5. General Calendar feasts of the Lord
+    GeneralLordFeast_5,
+    // 6. Unprivileged Sundays (Christmas Time, Ordinary Time)
+    UnprivilegedSunday_6,
+    // 7. General Calendar feasts (BVM, saints)
+    GeneralFeast_7,
+    // 8. Proper feasts (diocese, cathedral, region, religious org, individual church)
+    ProperFeast_PrincipalPatronOfADiocese_8a,
+    ProperFeast_DedicationOfTheCathedralChurch_8b,
+    ProperFeast_PrincipalPatronOfARegion_8c,
+    ProperFeast_TitleOrFounderOrPrimaryPatronOfAReligiousOrg_8d,
+    ProperFeast_ToAnIndividualChurch_8e, ProperFeast_8f,
+    // 9. Privileged weekdays (Advent Dec 17-24, Lent)
+    PrivilegedWeekday_9,
+    // 10. General Calendar obligatory memorials
+    GeneralMemorial_10,
+    // 11. Proper obligatory memorials
+    ProperMemorial_SecondPatron_11a, ProperMemorial_11b,
+    // 12. Optional memorials
+    OptionalMemorial_12,
+    // 13. Weekdays
+    Weekday_13,
+}
+```
+
+> **`Precedence.to_rank()`:** Each `Precedence` variant maps deterministically to a `Rank`. The Triduum (level 1), Ash Wednesday, Holy Week weekdays, and privileged weekdays (level 9) have `Rank::Weekday` despite their high precedence — their importance is conveyed by precedence, not rank. Easter Octave days have `Rank::Solemnity`. All Souls has `Rank::Feast`.
+
+#### `Rank`
+
+**What it is:** The liturgical rank of a celebration (GNLY 10-13). Determines which composition rules apply.
+
+```rust
+enum Rank {
+    Solemnity,       // Highest: full proper, First Vespers, Gloria, Creed
+    Sunday,          // "Primordial feast day" — yields only to higher solemnities
+    Feast,           // Proper within the natural day, no First Vespers (exceptions exist)
+    Memorial,        // Obligatory; demoted to OptionalMemorial in Lent (GNLY 14)
+    OptionalMemorial,// Non-obligatory; only one may be celebrated per day (GNLY 14)
+    Weekday,         // Feria — base celebration when no saint is celebrated
+}
+```
+
+#### `Season`
+
+**What it is:** The liturgical season of the Church year.
+
+**Liturgical basis:** GNLY 17-44 defines the seasons. Each season has its own liturgical characteristics (colors, readings cycle, presence/absence of Gloria and Alleluia).
+
+```rust
+enum Season {
+    Advent,          // 4 Sundays before Christmas → Dec 24
+    ChristmasTime,   // Dec 25 → Sunday after Epiphany (Baptism of the Lord)
+    Lent,            // Ash Wednesday → Holy Thursday morning
+    PaschalTriduum,  // Holy Thursday evening → Easter Sunday Vespers
+    EasterTime,      // Easter Sunday → Pentecost
+    OrdinaryTime,    // Two periods: Baptism of the Lord → Ash Wednesday,
+                     // Pentecost Monday → 1st Sunday of Advent
+}
+```
+
+> **Open question:** `PaschalTriduum` may warrant being modeled as a `Period` rather than a `Season`, since the Triduum is liturgically a single three-day celebration rather than a season proper. This would allow `DayContext.season` to remain non-`Vec` (a day belongs to one season) while still tracking the Triduum as a period. To be verified against GNLY 18-21.
+
+#### `Color` and `ColorInfo`
+
+**What it is:** Liturgical colors prescribed for vestments and decorations (GIRM 346).
+
+```rust
+enum Color {
+    White,   // Christmas, Easter, feasts of the Lord (non-Passion), BVM, saints (non-martyrs)
+    Red,     // Palm Sunday, Good Friday, Pentecost, martyrs, Apostles
+    Green,   // Ordinary Time
+    Purple,  // Advent, Lent, funeral Masses (alternative to black)
+    Rose,    // Gaudete Sunday (3rd Advent), Laetare Sunday (4th Lent) — optional
+    Gold,    // Alternative to white on solemn occasions
+    Black,   // Funeral Masses, All Souls (alternative to purple)
+}
+
+struct ColorInfo {
+    key: Color,
+    name: String, // localized
+}
+```
+
+**Why `Vec<ColorInfo>`:** A celebration may have multiple permissible colors. Examples: gold as alternative to white on solemnities; black as alternative to purple for funerals; blue for Marian feasts in certain countries (by indult). The engine automatically assigns red for martyrs based on the `Title::Martyr` in `MartyrologyEntry.titles`.
+
+#### `CalendarId`
+
+**What it is:** A unique identifier for a calendar in the inheritance chain.
+
+```rust
+type CalendarId = String;
+```
+
+**Role in the model:** `Celebration.from_calendar_id` identifies which calendar last defined or modified this celebration. When a celebration is defined in the General Roman Calendar and a local calendar overrides some properties, `from_calendar_id` is the local calendar's ID. The complete modification history is available in `LiturgicalDay.parent_overrides` (not modeled in this document).
+
+#### Cycle types
+
+**What they are:** Enums identifying the liturgical reading cycle and psalter week.
+
+```rust
+/// Three-year Sunday readings cycle (GILM 66, GNLY 3-4)
+enum SundayCycle { YearA, YearB, YearC }
+
+/// Two-year weekday readings cycle (GILM 69)
+enum WeekdayCycle { Year_1, Year_2 }
+
+/// Four-week psalter cycle (GILH §133)
+/// Restarted at Week 1 on: 1st Sunday of Advent, 1st Sunday of OT,
+/// 1st Sunday of Lent, Easter Sunday.
+enum PsalterWeekCycle { Week_1, Week_2, Week_3, Week_4 }
+```
+
+#### `PeriodInfo`
+
+**What it is:** Specific sub-periods within liturgical seasons, important for determining applicable rules and for religious/monastic liturgies.
+
+```rust
+enum Period {
+    ChristmasOctave,       // Dec 25 → Jan 1
+    DaysBeforeEpiphany,    // Jan 2 → day before Epiphany
+    DaysFromEpiphany,      // Epiphany → day before Presentation of the Lord
+    ChristmasToPresentationOfTheLord,
+    PresentationOfTheLordToHolyThursday,
+    HolyWeek,              // Palm Sunday → Holy Saturday
+    PaschalTriduum,        // Holy Thursday evening → Easter Sunday Vespers
+    EasterOctave,          // Easter Sunday → 2nd Sunday of Easter
+    EarlyOrdinaryTime,     // After Presentation → day before Ash Wednesday
+    LateOrdinaryTime,      // After Pentecost → day before 1st Sunday of Advent
+}
+
+struct PeriodInfo {
+    key: Period,
+    name: String, // localized
+}
+```
+
+**Why `Vec<PeriodInfo>`:** A day can belong to multiple overlapping periods (e.g., Good Friday belongs to both `HolyWeek` and `PaschalTriduum`).
+
+> **Note:** These periods are not defined in the primary liturgical reference documents (GNLY, GIRM, GILH) as formal categories, but are derived from the calendar structure and are essential for monastic and religious propers where rules vary by sub-period.
+
+#### `MartyrologyEntry`
+
+**What it is:** Metadata about a person, entity, or group whose memorial, feast, or solemnity is celebrated. Based on the Roman Martyrology — the official catalog of saints recognized by the Catholic Church.
+
+**Key fields (subset relevant to the composition model):**
+
+```rust
+struct MartyrologyEntry {
+    id: MartyrologyEntryId,
+    r#type: MartyrologyEntryType,     // Person, Place, Event, etc.
+    fullname: Option<String>,
+    name: Option<String>,             // Short name (without canonization level/titles)
+    canonization_level: Option<CanonizationLevel>,
+    titles: Option<Vec<Title>>,       // Martyr, Virgin, Bishop, Doctor, etc.
+    sex: Option<Sex>,
+    count: Option<SaintCount>,        // One, Several — affects Common resolution
+    // ... dates (birth, death, canonization, beatification, dedication)
+    // ... display flags (hide_canonization_level, hide_titles)
+}
+```
+
+**Role in the composition model:**
+- `titles` determines automatic color assignment (presence of `Title::Martyr` → red)
+- `count` and `sex` are used by the engine to resolve `CommonDefinition` → `Common` (e.g., `Martyrs` + `count: Several` → `Martyrs_OutsideEaster_Several`)
+- `canonization_level` affects the display name but not the composition rules
+
+> **Scope note:** The `MartyrologyEntry` struct carries rich biographical metadata that is out of scope for this document. Only the fields that affect composition (titles, count, sex) or consumer display (name, canonization_level) are listed here.
+
+#### `TitlesDef`
+
+**What it is:** The titles associated with a celebration as published in the Missal, Lectionary, and Liturgy of the Hours. Can be a simple list of titles or a compound definition with append/prepend operations (for calendar inheritance).
+
+```rust
+enum TitlesDef {
+    /// Direct list: ["Martyr", "Virgin"]
+    Titles(Vec<Title>),
+    /// Compound: { append: ["PatronOfFrance"], prepend: [] }
+    CompoundTitle(CompoundTitle),
+}
+```
+
+**Key `Title` variants (non-exhaustive):** `Apostle`, `Martyr`, `Virgin`, `Bishop`, `Pope`, `Priest`, `Deacon`, `Religious`, `Monk`, `Nun`, `Abbot`, `Abbess`, `DoctorOfTheChurch`, `Hermit`, `Missionary`, `King`, `Queen`, `Evangelist`, `Prophet`, `Archangel`, `Founder`, plus patron-specific titles (`PatronOfEurope`, `PatronessOfTheAmericas`, `PrincipalPatronOfTheDiocese`, etc.).
+
+> **Design note:** The current `Title` enum has limited flexibility — titles like "first martyr" or "first martyr of Oceania" require dedicated variants (`TheFirstMartyr`, `ProtoMartyrOfOceania`). A future revision should support composable title qualifiers. This is out of scope for the current architecture.
 
 ---
 
