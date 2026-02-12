@@ -59,6 +59,10 @@ tableOfContents:
 
 </details>
 
+:::tip[Navigation Index]
+For a chapter-by-chapter summary highlighting what's relevant to romcal (also useful as context for AI-assisted development), see the [GIRM Navigation Index](/reference/girm-index).
+:::
+
 <!-- AI Quick Index — For detailed chapter-by-chapter guide, see docs/reference/girm-index.md
 | Chapter  | §§      | Relevance | Key topics                                           |
 | Preamble | 1–15    | —         | Historical context                                   |

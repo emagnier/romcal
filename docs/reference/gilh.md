@@ -68,6 +68,10 @@ tableOfContents:
 
 </details>
 
+:::tip[Navigation Index]
+For a chapter-by-chapter summary highlighting what's relevant to romcal (also useful as context for AI-assisted development), see the [GILH Navigation Index](/reference/gilh-index).
+:::
+
 <!-- AI Quick Index — For detailed chapter-by-chapter guide, see docs/reference/gilh-index.md
 | Chapter | §§      | Relevance | Key topics                                                    |
 | I       | 1–33    | —         | Theology, participants, obligation                            |

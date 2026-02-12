@@ -71,6 +71,7 @@ export default defineConfig({
         {
           label: 'Architecture',
           items: [
+            { label: 'Overview', slug: 'architecture' },
             { label: 'Liturgical Composition Model', slug: 'architecture/liturgical-composition-model' },
           ],
         },
@@ -79,17 +80,11 @@ export default defineConfig({
           items: [
             { label: 'Overview', slug: 'reference' },
             { label: 'GNLY — Liturgical Year and Calendar', slug: 'reference/gnly' },
-            { label: 'GNLY — Navigation Index', slug: 'reference/gnly-index' },
             { label: 'CP — Particular Calendars', slug: 'reference/cp' },
-            { label: 'CP — Navigation Index', slug: 'reference/cp-index' },
             { label: 'GIRM — Roman Missal', slug: 'reference/girm' },
-            { label: 'GIRM — Navigation Index', slug: 'reference/girm-index' },
             { label: 'GILM — Lectionary for Mass', slug: 'reference/gilm' },
-            { label: 'GILM — Navigation Index', slug: 'reference/gilm-index' },
             { label: 'GILH — Liturgy of the Hours', slug: 'reference/gilh' },
-            { label: 'GILH — Navigation Index', slug: 'reference/gilh-index' },
             { label: 'PS — Easter Feasts', slug: 'reference/ps' },
-            { label: 'PS — Navigation Index', slug: 'reference/ps-index' },
             { label: 'Notitiae Responses', slug: 'reference/notitiae-responses' },
           ],
         },

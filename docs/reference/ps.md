@@ -41,6 +41,10 @@ It does not replace the rubrics of the Roman Missal but explains and complements
 
 </details>
 
+:::tip[Navigation Index]
+For a section-by-section summary highlighting what's relevant to romcal (also useful as context for AI-assisted development), see the [PS Navigation Index](/reference/ps-index).
+:::
+
 <!-- AI Quick Index — For detailed section-by-section guide, see docs/reference/ps-index.md
 | Chapter | §§       | Relevance | Key topics                                                           |
 | Intro   | 1–5      | —         | Historical context and purpose                                       |

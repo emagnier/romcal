@@ -34,6 +34,10 @@ tableOfContents:
 
 </details>
 
+:::tip[Navigation Index]
+For a section-by-section summary highlighting what's relevant to romcal (also useful as context for AI-assisted development), see the [GNLY Navigation Index](/reference/gnly-index).
+:::
+
 <!-- AI Quick Index — For detailed section-by-section guide, see docs/reference/gnly-index.md
 | Section          | §§    | Relevance | Key topics                                       |
 | Preamble         | 1–2   | —         | Theological frame                                |
