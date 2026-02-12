@@ -59,6 +59,20 @@ tableOfContents:
 
 </details>
 
+<!-- AI Quick Index — For detailed chapter-by-chapter guide, see docs/architecture/girm-index.md
+| Chapter  | §§      | Relevance | Key topics                                           |
+| Preamble | 1–15    | —         | Historical context                                   |
+| I        | 16–26   | —         | Theological dignity of the Eucharist                 |
+| II       | 27–90   | Medium    | Structure of the Mass (§53 Gloria, §64 Sequence, §67 Creed) |
+| III      | 91–111  | —         | Ministries                                           |
+| IV       | 112–287 | —         | Ceremonial rubrics                                   |
+| V        | 288–318 | —         | Church architecture                                  |
+| VI       | 319–351 | HIGH      | §346 Liturgical colors, §347 colors for special Masses |
+| VII      | 352–367 | CRITICAL  | §355 Choice of Mass, §357 readings by rank, §363 orations |
+| VIII     | 368–385 | HIGH      | §372–377 when Ritual/Votive/Dead Masses are allowed  |
+| IX       | 386–399 | Low       | Adaptations by bishops                               |
+-->
+
 ---
 
 ## Preamble

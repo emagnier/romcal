@@ -72,6 +72,7 @@ export default defineConfig({
           label: 'Architecture',
           items: [
             { label: 'Liturgical Composition Model', slug: 'architecture/liturgical-composition-model' },
+            { label: 'GIRM — AI Navigation Index', slug: 'architecture/girm-index' },
           ],
         },
         {
