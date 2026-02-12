@@ -69,6 +69,12 @@ export default defineConfig({
           ],
         },
         {
+          label: 'Architecture',
+          items: [
+            { label: 'Liturgical Composition Model', slug: 'architecture/liturgical-composition-model' },
+          ],
+        },
+        {
           label: 'Liturgical Reference',
           items: [
             { label: 'Overview', slug: 'reference' },
