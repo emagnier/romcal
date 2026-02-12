@@ -75,6 +75,7 @@ export default defineConfig({
             { label: 'GNLY — AI Navigation Index', slug: 'architecture/gnly-index' },
             { label: 'CP — AI Navigation Index', slug: 'architecture/cp-index' },
             { label: 'GIRM — AI Navigation Index', slug: 'architecture/girm-index' },
+            { label: 'GILM — AI Navigation Index', slug: 'architecture/gilm-index' },
             { label: 'GILH — AI Navigation Index', slug: 'architecture/gilh-index' },
           ],
         },

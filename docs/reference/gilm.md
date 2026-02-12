@@ -103,6 +103,17 @@ tableOfContents:
 
 </details>
 
+<!-- AI Quick Index — For detailed chapter-by-chapter guide, see docs/architecture/gilm-index.md
+| Part / Chapter | §§        | Relevance | Key topics                                                          |
+| Preamble / I   | 1–10      | —         | Theology of the Word in liturgy                                     |
+| II             | 11–37     | Low       | Elements and rites of the Liturgy of the Word                       |
+| III            | 38–57     | —         | Offices and ministries                                              |
+| IV.2           | 64–77     | Critical  | Composition principles: cycles, saints' readings, long/short        |
+| IV.3           | 78–91     | Critical  | Use principles: §83 three categories, psalms, acclamations          |
+| V              | 92–110    | High      | Season-by-season readings description; OT week numbering (§104)     |
+| VI             | 111–125   | —         | Adaptations, translations, format                                   |
+-->
+
 ---
 
 ## Preamble
