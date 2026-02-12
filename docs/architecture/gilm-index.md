@@ -1,11 +1,11 @@
 ---
-title: 'GILM — AI Navigation Index'
+title: 'GILM — Navigation Index'
 description: Chapter-by-chapter summary of the General Introduction to the Lectionary for Mass, highlighting sections relevant to romcal's implementation and future development.
 ---
 
 :::note[Purpose]
 This index helps quickly locate the relevant rules in the
-[GILM reference document](../reference/gilm.md) (~700 lines, §1–125).
+[GILM reference document](/reference/gilm) (~700 lines, §1–125).
 Each chapter is summarized with its key paragraphs and their relevance to
 romcal's implementation and future features. Use the § numbers to jump
 to the source text.
@@ -356,19 +356,19 @@ acclamation.
 The GILM does not operate in isolation. For a complete picture, these
 related documents provide complementary rules:
 
-- **GNLY** ([index](./gnly-index.md) · [source](../reference/gnly.md)):
+- **GNLY** ([index](/architecture/gnly-index) · [source](/reference/gnly)):
   Calendar structure, seasons, ranks, and cycles. The GILM relies on
   GNLY ranks and seasons to determine which readings apply.
-- **GIRM** ([index](./girm-index.md) · [source](../reference/girm.md)):
+- **GIRM** ([index](/architecture/girm-index) · [source](/reference/girm)):
   §355 choice of Mass (optional memorials), §357–358 readings by rank
   and continuous reading, §359 common psalm alternatives, §360 long/short
   forms. GIRM §357 articulates with GILM §83 for readings on memorials.
-- **CP** ([index](./cp-index.md) · [source](../reference/cp.md)):
+- **CP** ([index](/architecture/cp-index) · [source](/reference/cp)):
   §41 readings constraints for particular calendar solemnities (3 readings,
   no OT in Easter, proper responsorial psalm). Aligns with GILM §84.
-- **GILH** ([index](./gilh-index.md) · [source](../reference/gilh.md)):
+- **GILH** ([index](/architecture/gilh-index) · [source](/reference/gilh)):
   Office of Readings has its own readings structure (GILH §64, §67)
   distinct from Mass readings. The GILM governs Mass only.
-- **PS** ([source](../reference/ps.md)):
+- **PS** ([index](/architecture/ps-index) · [source](/reference/ps)):
   §18 Lenten acclamation applies universally (clarifies GILM §91);
   §85 Easter Vigil readings with variable selection.

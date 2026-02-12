@@ -1,11 +1,11 @@
 ---
-title: 'GNLY — AI Navigation Index'
+title: 'GNLY — Navigation Index'
 description: Chapter-by-chapter summary of the Universal Norms on the Liturgical Year and the Calendar, highlighting sections relevant to romcal's implementation and future development.
 ---
 
 :::note[Purpose]
 This index helps quickly locate the relevant rules in the
-[GNLY reference document](../reference/gnly.md) (~400 lines, §1–61).
+[GNLY reference document](/reference/gnly) (~400 lines, §1–61).
 Each section is summarized with its key paragraphs and their relevance to
 romcal's implementation and future features. Use the § numbers to jump
 to the source text.
@@ -23,62 +23,62 @@ GNLY source when you need exact wording or enumerated sub-items.
 
 ## Quick Lookup — romcal concept → GNLY §§
 
-| romcal concept                         | GNLY §§        | Notes                                                        |
-| -------------------------------------- | -------------- | ------------------------------------------------------------ |
-| Season boundaries (all)                | §18–44         | Triduum (§18–21), Easter (§22–26), Lent (§27–31), Christmas (§32–38), Advent (§39–42), OT (§43–44) |
-| Advent start / end                     | §40            | 1st Vespers of nearest Sunday to Nov 30 → 1st Vespers of Christmas |
-| Advent Sundays                         | §41            | 1st, 2nd, 3rd, 4th Sundays of Advent                        |
-| Dec 17–24 privileged weekdays          | §42            | Elevated precedence (level 9 in §59)                         |
-| Christmas Time boundaries              | §33            | 1st Vespers of Nativity → Sunday after Epiphany inclusive    |
-| Christmas Octave / feasts              | §12, §35       | Octave days; Holy Family, Stephen, John, Innocents, Mary Mother |
-| Lent boundaries                        | §28            | Ash Wednesday → Mass of the Lord's Supper exclusive          |
-| Lent Sundays                           | §30            | 1st–5th Sundays of Lent; 6th = Palm Sunday                  |
-| Holy Week                              | §16a, §31      | Ash Wednesday + Mon–Thu of Holy Week: highest weekday rank   |
-| Triduum boundaries                     | §19            | Evening Mass of the Lord's Supper → Vespers of Easter Sunday |
-| Easter Time boundaries                 | §22            | Easter Sunday → Pentecost (50 days)                          |
-| Easter Octave                          | §12, §24       | 8 days celebrated as Solemnities of the Lord                 |
-| Ascension (movable)                    | §7b, §25       | 40th day or 7th Sunday of Easter                             |
-| Ordinary Time                          | §43–44         | Two runs: post-Baptism of the Lord → Lent; post-Pentecost → Advent |
-| Sunday precedence                      | §4–6           | Primordial feast; yields only to solemnities/Lord's feasts   |
-| Movable solemnities to Sunday          | §7             | Epiphany (§7a), Ascension (§7b), Corpus Christi (§7c)       |
-| Fixed Sunday celebrations              | §6             | Holy Family, Baptism, Trinity, Christ the King               |
-| Rank: Solemnity                        | §10–11         | Begins at 1st Vespers; some with Vigil Mass                  |
-| Rank: Feast                            | §10, §13       | Within the natural day; no 1st Vespers (exception: Lord's on Sunday) |
-| Rank: Memorial (obligatory / optional) | §10, §14       | Integrated into weekday; obligatory in Lent → optional       |
-| Rank: Weekday                          | §16            | 3 tiers (a–c) by season                                     |
-| Saturday BVM memorial                  | §15            | OT Saturdays when no obligatory memorial occurs              |
-| Octave rules                           | §12            | Only Easter and Christmas have octaves                       |
-| Rogation / Ember Days                  | §45–47         | Time/manner left to Conferences of Bishops                   |
-| General vs. particular calendar        | §48–49         | General = Roman Rite; particular = diocese / religious        |
-| Particular calendar composition        | §50–55         | Patrons, dedications, founders; avoid overburdening (§53)    |
-| Proper day for celebrations            | §56–58         | Birthday rule, impediment resolution, Lent-free dates        |
-| Table of Precedence                    | §59            | 13 levels — romcal's core precedence engine                  |
-| Transfer of impeded solemnities        | §60            | Closest free day (levels 1–8); Annunciation special rule     |
-| Vespers conflict resolution            | §61            | Higher rank wins; equal rank → current day                   |
-| Alleluia suppression (Lent)            | §28            | From Lent start until Paschal Vigil                          |
+| romcal concept                         | GNLY §§   | Notes                                                                                              |
+| -------------------------------------- | --------- | -------------------------------------------------------------------------------------------------- |
+| Season boundaries (all)                | §18–44    | Triduum (§18–21), Easter (§22–26), Lent (§27–31), Christmas (§32–38), Advent (§39–42), OT (§43–44) |
+| Advent start / end                     | §40       | 1st Vespers of nearest Sunday to Nov 30 → 1st Vespers of Christmas                                 |
+| Advent Sundays                         | §41       | 1st, 2nd, 3rd, 4th Sundays of Advent                                                               |
+| Dec 17–24 privileged weekdays          | §42       | Elevated precedence (level 9 in §59)                                                               |
+| Christmas Time boundaries              | §33       | 1st Vespers of Nativity → Sunday after Epiphany inclusive                                          |
+| Christmas Octave / feasts              | §12, §35  | Octave days; Holy Family, Stephen, John, Innocents, Mary Mother                                    |
+| Lent boundaries                        | §28       | Ash Wednesday → Mass of the Lord's Supper exclusive                                                |
+| Lent Sundays                           | §30       | 1st–5th Sundays of Lent; 6th = Palm Sunday                                                         |
+| Holy Week                              | §16a, §31 | Ash Wednesday + Mon–Thu of Holy Week: highest weekday rank                                         |
+| Triduum boundaries                     | §19       | Evening Mass of the Lord's Supper → Vespers of Easter Sunday                                       |
+| Easter Time boundaries                 | §22       | Easter Sunday → Pentecost (50 days)                                                                |
+| Easter Octave                          | §12, §24  | 8 days celebrated as Solemnities of the Lord                                                       |
+| Ascension (movable)                    | §7b, §25  | 40th day or 7th Sunday of Easter                                                                   |
+| Ordinary Time                          | §43–44    | Two runs: post-Baptism of the Lord → Lent; post-Pentecost → Advent                                 |
+| Sunday precedence                      | §4–6      | Primordial feast; yields only to solemnities/Lord's feasts                                         |
+| Movable solemnities to Sunday          | §7        | Epiphany (§7a), Ascension (§7b), Corpus Christi (§7c)                                              |
+| Fixed Sunday celebrations              | §6        | Holy Family, Baptism, Trinity, Christ the King                                                     |
+| Rank: Solemnity                        | §10–11    | Begins at 1st Vespers; some with Vigil Mass                                                        |
+| Rank: Feast                            | §10, §13  | Within the natural day; no 1st Vespers (exception: Lord's on Sunday)                               |
+| Rank: Memorial (obligatory / optional) | §10, §14  | Integrated into weekday; obligatory in Lent → optional                                             |
+| Rank: Weekday                          | §16       | 3 tiers (a–c) by season                                                                            |
+| Saturday BVM memorial                  | §15       | OT Saturdays when no obligatory memorial occurs                                                    |
+| Octave rules                           | §12       | Only Easter and Christmas have octaves                                                             |
+| Rogation / Ember Days                  | §45–47    | Time/manner left to Conferences of Bishops                                                         |
+| General vs. particular calendar        | §48–49    | General = Roman Rite; particular = diocese / religious                                             |
+| Particular calendar composition        | §50–55    | Patrons, dedications, founders; avoid overburdening (§53)                                          |
+| Proper day for celebrations            | §56–58    | Birthday rule, impediment resolution, Lent-free dates                                              |
+| Table of Precedence                    | §59       | 13 levels — romcal's core precedence engine                                                        |
+| Transfer of impeded solemnities        | §60       | Closest free day (levels 1–8); Annunciation special rule                                           |
+| Vespers conflict resolution            | §61       | Higher rank wins; equal rank → current day                                                         |
+| Alleluia suppression (Lent)            | §28       | From Lent start until Paschal Vigil                                                                |
 
 ---
 
 ## At a Glance
 
-| Section          | §§    | Relevance    | Key topics                                                         |
-| ---------------- | ----- | ------------ | ------------------------------------------------------------------ |
-| Preamble         | 1–2   | —            | Theological frame; applicability to the Roman Rite                 |
-| **Title I.I**    | **3** | **Low**      | **Liturgical day = midnight to midnight; Sunday/solemnity from evening prior** |
-| **Title I.II**   | **4–7** | **Critical** | **Sunday precedence, movable solemnities**                       |
-| **Title I.III**  | **8–15** | **Critical** | **Rank definitions: solemnity, feast, memorial**                 |
-| **Title I.IV**   | **16** | **High**    | **Weekday tiers by season**                                       |
-| **Title II.I**   | **18–21** | **Critical** | **Triduum boundaries and Easter Vigil**                         |
-| **Title II.II**  | **22–26** | **Critical** | **Easter Time, Octave, Ascension**                              |
-| **Title II.III** | **27–31** | **Critical** | **Lent boundaries, Ash Wednesday, Palm Sunday**                 |
-| **Title II.IV**  | **32–38** | **Critical** | **Christmas Time, Octave, Epiphany, Baptism of the Lord**       |
-| **Title II.V**   | **39–42** | **Critical** | **Advent boundaries, Dec 17–24**                                |
-| **Title II.VI**  | **43–44** | **High**    | **Ordinary Time: two runs, 33–34 weeks**                         |
-| Title II.VII     | 45–47 | Low          | Rogation/Ember Days (national calendar concern)                   |
-| **Ch. II Title I** | **48–55** | **High** | **General vs. particular calendar; proper celebrations**          |
-| **Ch. II Title II** | **56–58** | **High** | **Proper day for celebrations; impediment rules**               |
-| **Ch. II §59**   | **59** | **Critical** | **Table of Precedence (13 levels)**                              |
-| **Ch. II §60–61** | **60–61** | **Critical** | **Transfer rules; Vespers conflict**                           |
+| Section             | §§        | Relevance    | Key topics                                                                     |
+| ------------------- | --------- | ------------ | ------------------------------------------------------------------------------ |
+| Preamble            | 1–2       | —            | Theological frame; applicability to the Roman Rite                             |
+| **Title I.I**       | **3**     | **Low**      | **Liturgical day = midnight to midnight; Sunday/solemnity from evening prior** |
+| **Title I.II**      | **4–7**   | **Critical** | **Sunday precedence, movable solemnities**                                     |
+| **Title I.III**     | **8–15**  | **Critical** | **Rank definitions: solemnity, feast, memorial**                               |
+| **Title I.IV**      | **16**    | **High**     | **Weekday tiers by season**                                                    |
+| **Title II.I**      | **18–21** | **Critical** | **Triduum boundaries and Easter Vigil**                                        |
+| **Title II.II**     | **22–26** | **Critical** | **Easter Time, Octave, Ascension**                                             |
+| **Title II.III**    | **27–31** | **Critical** | **Lent boundaries, Ash Wednesday, Palm Sunday**                                |
+| **Title II.IV**     | **32–38** | **Critical** | **Christmas Time, Octave, Epiphany, Baptism of the Lord**                      |
+| **Title II.V**      | **39–42** | **Critical** | **Advent boundaries, Dec 17–24**                                               |
+| **Title II.VI**     | **43–44** | **High**     | **Ordinary Time: two runs, 33–34 weeks**                                       |
+| Title II.VII        | 45–47     | Low          | Rogation/Ember Days (national calendar concern)                                |
+| **Ch. II Title I**  | **48–55** | **High**     | **General vs. particular calendar; proper celebrations**                       |
+| **Ch. II Title II** | **56–58** | **High**     | **Proper day for celebrations; impediment rules**                              |
+| **Ch. II §59**      | **59**    | **Critical** | **Table of Precedence (13 levels)**                                            |
+| **Ch. II §60–61**   | **60–61** | **Critical** | **Transfer rules; Vespers conflict**                                           |
 
 ---
 
@@ -279,26 +279,18 @@ Not directly relevant to romcal.
 **The core of romcal's precedence engine.** 13 levels, grouped in 3 tiers:
 
 **Tier I** (always prevail):
+
 1. Paschal Triduum
 2. Nativity, Epiphany, Ascension, Pentecost; Advent/Lent/Easter Sundays;
    Ash Wednesday; Holy Week Mon–Thu; Easter Octave
 3. General Calendar solemnities (Lord, BVM, Saints); All Souls
 4. Proper solemnities (principal patron, dedication, title, founder)
 
-**Tier II** (feasts and strong weekdays):
-5. Lord's feasts in the General Calendar
-6. Sundays of Christmas Time and Ordinary Time
-7. BVM and Saints feasts in the General Calendar
-8. Proper feasts (diocese patron, cathedral dedication, regional patron, etc.)
-9. Advent Dec 17–24; Christmas Octave days; Lent weekdays
+**Tier II** (feasts and strong weekdays): 5. Lord's feasts in the General Calendar 6. Sundays of Christmas Time and Ordinary Time 7. BVM and Saints feasts in the General Calendar 8. Proper feasts (diocese patron, cathedral dedication, regional patron, etc.) 9. Advent Dec 17–24; Christmas Octave days; Lent weekdays
 
-**Tier III** (memorials and ordinary weekdays):
-10. General Calendar obligatory memorials
-11. Proper obligatory memorials (secondary patron, etc.)
-12. Optional memorials (may be celebrated even on level-9 days; obligatory
-    memorials on Lent weekdays also treated as optional)
-13. Ordinary weekdays: Advent up to Dec 16; Christmas Jan 2–Epiphany Saturday;
-    Easter Mon after Octave–Sat before Pentecost; OT weekdays
+**Tier III** (memorials and ordinary weekdays): 10. General Calendar obligatory memorials 11. Proper obligatory memorials (secondary patron, etc.) 12. Optional memorials (may be celebrated even on level-9 days; obligatory
+memorials on Lent weekdays also treated as optional) 13. Ordinary weekdays: Advent up to Dec 16; Christmas Jan 2–Epiphany Saturday;
+Easter Mon after Octave–Sat before Pentecost; OT weekdays
 
 ### Transfer and Conflict Rules (§60–61)
 
@@ -318,17 +310,21 @@ Not directly relevant to romcal.
 The GNLY does not operate in isolation. For a complete picture, these related
 documents provide complementary rules:
 
-- **GIRM** ([index](./girm-index.md) · [source](../reference/girm.md)):
+- **GIRM** ([index](/architecture/girm-index) · [source](/reference/girm)):
   §355 choice of Mass (optional memorials decision tree); §346 liturgical
   colors; §372–385 Ritual/Votive/Dead Mass restrictions — all rely on the
   GNLY rank and precedence system.
-- **CP** ([source](../reference/cp.md)):
+- **CP** ([index](/architecture/cp-index) · [source](/reference/cp)):
   Detailed rules for particular calendars (expands GNLY §48–55); patron
   categories, calendar inheritance, proper celebration inscription.
-- **GILM** ([source](../reference/gilm.md)):
+- **GILM** ([index](/architecture/gilm-index) · [source](/reference/gilm)):
   Lectionary structure and readings cycles. The GILM relies on GNLY ranks
   to determine number of readings (3 for solemnities, 2 for feasts, etc.).
-- **GILH** ([index](./gilh-index.md) · [source](../reference/gilh.md)):
+- **GILH** ([index](/architecture/gilh-index) · [source](/reference/gilh)):
   Liturgy of the Hours rules. The GILH Office overlay logic (§225–240)
   mirrors GNLY rank definitions; §133 psalter cycle resets align with
   season boundaries defined here.
+- **PS** ([index](/architecture/ps-index) · [source](/reference/ps)):
+  Easter feasts norms. PS reinforces and pastorally expands GNLY §5 (Lent),
+  §16b (Lenten precedence), §18 (Triduum), §22 (Easter Time 50 days),
+  §28 (Alleluia suppression), §58 (Easter Sunday precedence).

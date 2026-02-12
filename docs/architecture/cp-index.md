@@ -1,11 +1,11 @@
 ---
-title: 'CP — AI Navigation Index'
+title: 'CP — Navigation Index'
 description: Chapter-by-chapter summary of the Instruction on Particular Calendars (Calendaria Particularia), highlighting sections relevant to romcal's implementation and future development.
 ---
 
 :::note[Purpose]
 This index helps quickly locate the relevant rules in the
-[CP reference document](../reference/cp.md) (~350 lines, §1–50).
+[CP reference document](/reference/cp) (~350 lines, §1–50).
 Each chapter is summarized with its key paragraphs and their relevance to
 romcal's implementation and future features. Use the § numbers to jump
 to the source text.
@@ -351,14 +351,17 @@ structured.** Defines the text blocks that romcal models in
 The CP does not operate in isolation. For a complete picture, these related
 documents provide complementary rules:
 
-- **GNLY** ([index](./gnly-index.md) · [source](../reference/gnly.md)):
+- **GNLY** ([index](/architecture/gnly-index) · [source](/reference/gnly)):
   §48–55 calendar composition; §59 Table of Precedence; §50 proper
   celebrations rules. The CP extends and details these GNLY norms.
-- **GIRM** ([index](./girm-index.md) · [source](../reference/girm.md)):
+- **GIRM** ([index](/architecture/girm-index) · [source](/reference/girm)):
   §355 choice of Mass (optional memorials); §363 orations. The CP §40
   complements GIRM by specifying what makes a text "proper."
-- **GILH** ([index](./gilh-index.md) · [source](../reference/gilh.md)):
+- **GILH** ([index](/architecture/gilh-index) · [source](/reference/gilh)):
   §198 Compline prayer exception to CP §44; §235 memorial overlay rules.
-- **GILM** ([source](../reference/gilm.md)):
+- **GILM** ([index](/architecture/gilm-index) · [source](/reference/gilm)):
   Lectionary structure. CP §41 imposes readings constraints (3 for
   solemnities, no OT in Easter) that align with GILM norms.
+- **PS** ([index](/architecture/ps-index) · [source](/reference/ps)):
+  §2 Proper of Seasons precedence — Lent/Easter guarded from
+  particular celebrations.

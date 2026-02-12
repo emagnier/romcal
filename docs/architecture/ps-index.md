@@ -1,11 +1,11 @@
 ---
-title: 'PS — AI Navigation Index'
+title: 'PS — Navigation Index'
 description: Section-by-section summary of Paschalis Sollemnitatis (Circular Letter on the Easter Feasts), highlighting sections relevant to romcal's implementation and future development.
 ---
 
 :::note[Purpose]
 This index helps quickly locate the relevant rules in the
-[PS reference document](../reference/ps.md) (~425 lines, §1–108).
+[PS reference document](/reference/ps) (~425 lines, §1–108).
 Each chapter is summarized with its key paragraphs and their relevance to
 romcal's implementation and future features. Use the § numbers to jump
 to the source text.
@@ -363,20 +363,20 @@ modeled in romcal.
 PS is a complementary document that clarifies and expands on the
 primary norms. For the underlying rules, consult:
 
-- **GNLY** ([index](./gnly-index.md) · [source](../reference/gnly.md)):
+- **GNLY** ([index](/architecture/gnly-index) · [source](/reference/gnly)):
   §5, §16b (Lenten precedence), §18 (Triduum dates), §22 (Easter Time
   50 days), §28 (Alleluia suppression), §58 (Easter Sunday precedence).
   PS reinforces and pastorally expands these norms.
-- **GIRM** ([index](./girm-index.md) · [source](../reference/girm.md)):
+- **GIRM** ([index](/architecture/girm-index) · [source](/reference/girm)):
   Mass rubrics for the Triduum celebrations; liturgical color rules
   (§346 for Lent and Easter); Gloria/Creed rules per rank.
-- **GILM** ([index](./gilm-index.md) · [source](../reference/gilm.md)):
+- **GILM** ([index](/architecture/gilm-index) · [source](/reference/gilm)):
   §91 (Lenten acclamation replacing Alleluia — clarified by PS §18);
   §97 (Lenten Sunday readings, initiation Gospels — cf. PS §24);
   §99 (Easter Triduum readings structure).
-- **GILH** ([index](./gilh-index.md) · [source](../reference/gilh.md)):
+- **GILH** ([index](/architecture/gilh-index) · [source](/reference/gilh)):
   §210 (Office of Readings on Good Friday / Holy Saturday — cf. PS §40);
   §209–215 (Hour suppression on Triduum days).
-- **CP** ([index](./cp-index.md) · [source](../reference/cp.md)):
+- **CP** ([index](/architecture/cp-index) · [source](/reference/cp)):
   §2 (Proper of Seasons precedence — Lent/Easter guarded from
   particular celebrations).

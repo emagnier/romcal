@@ -6,6 +6,103 @@ tableOfContents:
   maxHeadingLevel: 4
 ---
 
+<!-- AI Quick Index — concept/type → section (line numbers are approximate)
+
+LITURGICAL RULES
+| Concept                              | Section              | Line  | Key references                    |
+| ------------------------------------ | -------------------- | ----- | --------------------------------- |
+| Choice of Mass (season options)      | Part I §1            | ~23   | GIRM 355                         |
+| Formulary block (collect+antiphons)  | Part I §2 Group 1    | ~48   | GIRM 363                         |
+| Readings block (3 categories)        | Part I §2 Group 2    | ~62   | GIRM 357-358, GILM 83-84         |
+| Proper / accommodated / common       | Part I §2 Group 2    | ~71   | GILM 83                          |
+| Readings by rank (tables)            | Part I §2 Group 2    | ~90   | GILM 83-84                       |
+| Sequence rules                       | Part I §2 Group 2    | ~159  | GIRM 64                          |
+| Flexible orations + preface          | Part I §2 Group 3    | ~174  | GIRM 363-365                     |
+| Season context summary table         | Part I §3            | ~202  |                                   |
+| Visual schema (Mass)                 | Part I §4            | ~224  |                                   |
+| Office substitution groups           | Part II §1           | ~273  |                                   |
+| Structure of each Hour               | Part II §2           | ~286  |                                   |
+| Office by rank (solemnity/feast)     | Part II §3           | ~307  | GILH 225-233                     |
+| Memorial overlay rules               | Part II §3c-§4       | ~369  | GILH 234-236                     |
+| Memorials on privileged weekdays     | Part II §5           | ~423  | GILH 237-239                     |
+| Visual schemas (Office)              | Part II §6           | ~444  |                                   |
+| Te Deum rules                        | Part II §7           | ~519  | GILH 68, 228, 231, 235d          |
+| Saturday BVM memorial                | Part II §8           | ~537  | GNLY 15, GILH 240                |
+| Commons: Office vs. Mass             | Part II §9           | ~547  |                                   |
+
+CROSS-CUTTING CONCERNS
+| Concept                              | Section              | Line  | Key references                    |
+| ------------------------------------ | -------------------- | ----- | --------------------------------- |
+| Liturgical day vs. celebration       | Part III §1          | ~564  |                                   |
+| Cycle resolution                     | Part III §2          | ~587  |                                   |
+| Vespers I/II conflict                | Part III §3          | ~593  | GNLY 61, GILH 225, 231           |
+| Mass-Office choice independence      | Part III §4          | ~614  | GILH 234, GNLY 14                |
+| Office prayer = Mass collect         | Part III §5          | ~631  | CP 44                            |
+| Particular calendars & inheritance   | Part III §6          | ~670  | CP 8-16, 23-26, 40-44            |
+| Calendar hierarchy (4 levels)        | Part III §6.1        | ~674  | CP 13-16                         |
+| Rank by calendar level               | Part III §6.2        | ~701  | CP 8-12, 24-26                   |
+| Precedence conflicts                 | Part III §6.3        | ~740  | CP 23                            |
+| Proper of Seasons primacy            | Part III §6.4        | ~754  | CP 2                             |
+| Proper texts alignment               | Part III §6.5        | ~764  | CP 40, 43-44                     |
+| Reading constraints                  | Part III §6.6        | ~797  | CP 41                            |
+| Paschal Triduum is not a season      | Part III §7          | ~807  | PS 38-72                         |
+| Title model                          | Part III §8          | ~830  |                                   |
+
+DATA MODEL (types)
+| Type / Section                       | Section              | Line  | Notes                             |
+| ------------------------------------ | -------------------- | ----- | --------------------------------- |
+| Type shareability overview           | Part IV §1           | ~923  | Mass → Office reuse table         |
+| DayContext                           | Part IV §2           | ~943  | Shared — temporal context         |
+| FormularySet                         | Part IV §2           | ~1003 | Mass — collect + antiphons        |
+| ReadingText                          | Part IV §2           | ~1025 | Shared — long/short form          |
+| ReadingsSet                          | Part IV §2           | ~1042 | Mass — indivisible readings       |
+| ReadingsPool                         | Part IV §2           | ~1067 | Mass — divisible per component    |
+| ReadingsContent                      | Part IV §2           | ~1093 | Mass — Set or Pool enum           |
+| VigilReadingsSequence                | Part IV §2           | ~1112 | Easter/Pentecost vigil            |
+| FlexibleOrations                     | Part IV §2           | ~1150 | Mass — prayer over offerings etc. |
+| TextSource                           | Part IV §2           | ~1175 | Shared — provenance               |
+| SourcedText                          | Part IV §2           | ~1194 | Shared — text + provenance        |
+| CelebrationId                        | Part IV §2           | ~1207 | Shared — identity                 |
+| LiturgicalCalendar (Layer 1)         | Part IV §3           | ~1223 | Calendar structure                |
+| LiturgicalDay                        | Part IV §3           | ~1235 | Day wrapper                       |
+| Celebration                          | Part IV §3           | ~1259 | Core celebration type             |
+| CelebrationMass                      | Part IV §3           | ~1328 | Mass texts per celebration        |
+| MassTime                             | Part IV §3           | ~1361 | Existing type reference           |
+| Layer 1 example                      | Part IV §3           | ~1411 |                                   |
+| CelebrationHour                      | Part IV §3           | ~1527 | Office content per celebration    |
+| HourTime                             | Part IV §3           | ~1611 | Hour slots                        |
+| HoursPsalmody                        | Part IV §3           | ~1632 | Psalmody structure                |
+| MassCalendar (Layer 2 Mass)          | Part IV §4           | ~1662 | Output structure                  |
+| MassComposition                      | Part IV §4           | ~1672 | Resolved Mass for a date          |
+| IdentityOption                       | Part IV §4           | ~1744 | Celebration choice                |
+| ReadingsOption                       | Part IV §4           | ~1772 | Readings resolution               |
+| ReadingsCategory                     | Part IV §4           | ~1794 | Proper/accommodated/common        |
+| CompositionRules                     | Part IV §4           | ~1815 | Substitution rules                |
+| BlockRule / ReadingsRule / FlexRule   | Part IV §4           | ~1832 | Rule enums                        |
+| Layer 2 Mass example                 | Part IV §4           | ~1887 |                                   |
+| HoursCalendar (Layer 2 Hours)        | Part IV §5           | ~1991 | Output structure                  |
+| HoursComposition                     | Part IV §5           | ~2003 | Resolved Office for a date        |
+| HoursCelebrationOption               | Part IV §5           | ~2046 | Per-celebration option             |
+| ResolvedHourContent                  | Part IV §5           | ~2071 | Content of one Hour               |
+| OfficeReadingsContent                | Part IV §5           | ~2099 | Office of Readings                |
+| VigilExtension                       | Part IV §5           | ~2133 | Extended vigil structure           |
+| HoursCompositionRules                | Part IV §5           | ~2157 | Office substitution rules         |
+| MemorialRule / HourSuppression       | Part IV §5           | ~2170 | Memorial + suppression enums      |
+| Layer 2 Hours example                | Part IV §5           | ~2234 |                                   |
+| Type sharing summary                 | Part IV §6           | ~2362 |                                   |
+| Existing types reference             | Part IV §7           | ~2423 | Common, Precedence, Rank, etc.    |
+
+ARCHITECTURE
+| Concept                              | Section              | Line  | Notes                             |
+| ------------------------------------ | -------------------- | ----- | --------------------------------- |
+| Module organization                  | Part V §1            | ~2769 | File tree                         |
+| Transformation pipeline              | Part V §2            | ~2816 | Layer 1 → Layer 2 steps           |
+| Calendar API                         | Part V §3            | ~2874 | Public interface                  |
+| Combining Hours with Mass            | Part V §4            | ~2888 | GILH 93-98                        |
+| Vigil extension & hour suppression   | Part V §5            | ~2898 | GILH 73, 206, 209-215; PS 59, 75 |
+| Source references appendix           | Appendix             | ~3024 | GIRM, GNLY, GILM, GILH, CP, PS   |
+-->
+
 ## Context and Motivation
 
 The Roman Rite's liturgical norms (GIRM, GNLY, GILM, GILH, CP) define precise rules for how liturgical texts — readings, orations, antiphons, psalmody — are selected, combined, and composed for every rank of celebration (solemnity, feast, memorial, weekday), across both the Mass and the Liturgy of the Hours, and at every level of the calendar hierarchy (general, national, diocesan, religious, local).

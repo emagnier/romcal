@@ -1,11 +1,11 @@
 ---
-title: 'GILH — AI Navigation Index'
+title: 'GILH — Navigation Index'
 description: Chapter-by-chapter summary of the General Instruction of the Liturgy of the Hours, highlighting sections relevant to romcal's implementation and future development.
 ---
 
 :::note[Purpose]
 This index helps quickly locate the relevant rules in the
-[GILH reference document](../reference/gilh.md) (~1 300 lines, §1–284).
+[GILH reference document](/reference/gilh) (~1 300 lines, §1–284).
 Each chapter is summarized with its key paragraphs and their relevance to
 romcal's implementation and future features. Use the § numbers to jump
 to the source text.
@@ -370,15 +370,18 @@ Roles of ministers and singing norms. Not relevant to romcal.
 The GILH does not operate in isolation. For a complete picture, these
 related documents provide complementary rules:
 
-- **GNLY** ([source](../reference/gnly.md)):
+- **GNLY** ([index](/architecture/gnly-index) · [source](/reference/gnly)):
   §59 Table of Precedence; §4–16 seasons; §13 natural day / EVP I rules;
   §14 memorial demotion in Lent.
-- **GIRM** ([index](./girm-index.md) · [source](../reference/girm.md)):
+- **GIRM** ([index](/architecture/girm-index) · [source](/reference/girm)):
   Mass-selection logic (§355); the Mass counterpart to the Office's
   memorial overlay (§363 orations vs. GILH §235).
-- **CP** ([source](../reference/cp.md)):
+- **CP** ([index](/architecture/cp-index) · [source](/reference/cp)):
   §44 cross-domain identity rule: "The prayer is always the same as the
   opening prayer of the Mass." Exception: Compline (GILH §198).
-- **GILM** ([source](../reference/gilm.md)):
+- **GILM** ([index](/architecture/gilm-index) · [source](/reference/gilm)):
   Lectionary structure and readings cycles. Complements GILH §143–155
   for the Office of Readings Scripture cycle.
+- **PS** ([index](/architecture/ps-index) · [source](/reference/ps)):
+  §40 Good Friday Office of Readings (cf. GILH §210);
+  §209–215 Hour suppression on Triduum days.

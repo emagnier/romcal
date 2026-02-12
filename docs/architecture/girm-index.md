@@ -1,11 +1,11 @@
 ---
-title: 'GIRM — AI Navigation Index'
+title: 'GIRM — Navigation Index'
 description: Chapter-by-chapter summary of the General Instruction of the Roman Missal, highlighting sections relevant to romcal's implementation and future development.
 ---
 
 :::note[Purpose]
 This index helps quickly locate the relevant rules in the
-[GIRM reference document](../reference/girm.md) (~2 000 lines, §1–399).
+[GIRM reference document](/reference/girm) (~2 000 lines, §1–399).
 Each chapter is summarized with its key paragraphs and their relevance to
 romcal's implementation and future features. Use the § numbers to jump
 to the source text.
@@ -334,18 +334,22 @@ particular calendar variations.
 The GIRM does not operate in isolation. For a complete picture, these related
 documents provide complementary rules:
 
-- **GNLY** ([source](../reference/gnly.md)):
+- **GNLY** ([index](/architecture/gnly-index) · [source](/reference/gnly)):
   §59 Table of Precedence (which celebration wins on a given day);
   §4–16 seasons and their boundaries; §48–61 rank definitions.
-- **CP** ([source](../reference/cp.md)):
+- **CP** ([index](/architecture/cp-index) · [source](/reference/cp)):
   Rules for particular calendars (national, diocesan, religious);
   proper celebrations, patron saints, calendar inheritance.
-- **GILM** ([source](../reference/gilm.md)):
+- **GILM** ([index](/architecture/gilm-index) · [source](/reference/gilm)):
   Detailed rules for readings composition (lectionary cycles, proper vs
   accommodated vs common readings for saints, continuous reading rules).
   Complements GIRM §356–362. Key cross-references: GILM §83–84 define
   "strictly proper readings" (_lectiones propriae_) vs "accommodated readings"
   (_lectiones accommodatae_) vs "common readings."
-- **GILH** ([source](../reference/gilh.md)):
+- **GILH** ([index](/architecture/gilh-index) · [source](/reference/gilh)):
   Liturgy of the Hours rules (Office structure, psalmody, antiphons).
   Separate from Mass but shares the same calendar and rank system.
+- **PS** ([index](/architecture/ps-index) · [source](/reference/ps)):
+  Easter feasts norms (Lent, Holy Week, Triduum, Easter Time).
+  PS §18 Lenten acclamation, §85 Easter Vigil readings;
+  complements GIRM liturgical color and Mass-selection rules for these seasons.
