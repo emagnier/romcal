@@ -310,21 +310,21 @@ Easter Mon after Octave–Sat before Pentecost; OT weekdays
 The GNLY does not operate in isolation. For a complete picture, these related
 documents provide complementary rules:
 
-- **GIRM** ([index](/architecture/girm-index) · [source](/reference/girm)):
+- **GIRM** ([index](/reference/girm-index) · [source](/reference/girm)):
   §355 choice of Mass (optional memorials decision tree); §346 liturgical
   colors; §372–385 Ritual/Votive/Dead Mass restrictions — all rely on the
   GNLY rank and precedence system.
-- **CP** ([index](/architecture/cp-index) · [source](/reference/cp)):
+- **CP** ([index](/reference/cp-index) · [source](/reference/cp)):
   Detailed rules for particular calendars (expands GNLY §48–55); patron
   categories, calendar inheritance, proper celebration inscription.
-- **GILM** ([index](/architecture/gilm-index) · [source](/reference/gilm)):
+- **GILM** ([index](/reference/gilm-index) · [source](/reference/gilm)):
   Lectionary structure and readings cycles. The GILM relies on GNLY ranks
   to determine number of readings (3 for solemnities, 2 for feasts, etc.).
-- **GILH** ([index](/architecture/gilh-index) · [source](/reference/gilh)):
+- **GILH** ([index](/reference/gilh-index) · [source](/reference/gilh)):
   Liturgy of the Hours rules. The GILH Office overlay logic (§225–240)
   mirrors GNLY rank definitions; §133 psalter cycle resets align with
   season boundaries defined here.
-- **PS** ([index](/architecture/ps-index) · [source](/reference/ps)):
+- **PS** ([index](/reference/ps-index) · [source](/reference/ps)):
   Easter feasts norms. PS reinforces and pastorally expands GNLY §5 (Lent),
   §16b (Lenten precedence), §18 (Triduum), §22 (Easter Time 50 days),
   §28 (Alleluia suppression), §58 (Easter Sunday precedence).

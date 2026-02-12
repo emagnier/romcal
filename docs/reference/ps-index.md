@@ -363,20 +363,20 @@ modeled in romcal.
 PS is a complementary document that clarifies and expands on the
 primary norms. For the underlying rules, consult:
 
-- **GNLY** ([index](/architecture/gnly-index) · [source](/reference/gnly)):
+- **GNLY** ([index](/reference/gnly-index) · [source](/reference/gnly)):
   §5, §16b (Lenten precedence), §18 (Triduum dates), §22 (Easter Time
   50 days), §28 (Alleluia suppression), §58 (Easter Sunday precedence).
   PS reinforces and pastorally expands these norms.
-- **GIRM** ([index](/architecture/girm-index) · [source](/reference/girm)):
+- **GIRM** ([index](/reference/girm-index) · [source](/reference/girm)):
   Mass rubrics for the Triduum celebrations; liturgical color rules
   (§346 for Lent and Easter); Gloria/Creed rules per rank.
-- **GILM** ([index](/architecture/gilm-index) · [source](/reference/gilm)):
+- **GILM** ([index](/reference/gilm-index) · [source](/reference/gilm)):
   §91 (Lenten acclamation replacing Alleluia — clarified by PS §18);
   §97 (Lenten Sunday readings, initiation Gospels — cf. PS §24);
   §99 (Easter Triduum readings structure).
-- **GILH** ([index](/architecture/gilh-index) · [source](/reference/gilh)):
+- **GILH** ([index](/reference/gilh-index) · [source](/reference/gilh)):
   §210 (Office of Readings on Good Friday / Holy Saturday — cf. PS §40);
   §209–215 (Hour suppression on Triduum days).
-- **CP** ([index](/architecture/cp-index) · [source](/reference/cp)):
+- **CP** ([index](/reference/cp-index) · [source](/reference/cp)):
   §2 (Proper of Seasons precedence — Lent/Easter guarded from
   particular celebrations).

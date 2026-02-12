@@ -351,17 +351,17 @@ structured.** Defines the text blocks that romcal models in
 The CP does not operate in isolation. For a complete picture, these related
 documents provide complementary rules:
 
-- **GNLY** ([index](/architecture/gnly-index) · [source](/reference/gnly)):
+- **GNLY** ([index](/reference/gnly-index) · [source](/reference/gnly)):
   §48–55 calendar composition; §59 Table of Precedence; §50 proper
   celebrations rules. The CP extends and details these GNLY norms.
-- **GIRM** ([index](/architecture/girm-index) · [source](/reference/girm)):
+- **GIRM** ([index](/reference/girm-index) · [source](/reference/girm)):
   §355 choice of Mass (optional memorials); §363 orations. The CP §40
   complements GIRM by specifying what makes a text "proper."
-- **GILH** ([index](/architecture/gilh-index) · [source](/reference/gilh)):
+- **GILH** ([index](/reference/gilh-index) · [source](/reference/gilh)):
   §198 Compline prayer exception to CP §44; §235 memorial overlay rules.
-- **GILM** ([index](/architecture/gilm-index) · [source](/reference/gilm)):
+- **GILM** ([index](/reference/gilm-index) · [source](/reference/gilm)):
   Lectionary structure. CP §41 imposes readings constraints (3 for
   solemnities, no OT in Easter) that align with GILM norms.
-- **PS** ([index](/architecture/ps-index) · [source](/reference/ps)):
+- **PS** ([index](/reference/ps-index) · [source](/reference/ps)):
   §2 Proper of Seasons precedence — Lent/Easter guarded from
   particular celebrations.

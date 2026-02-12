@@ -33,7 +33,7 @@ tableOfContents:
 
 </details>
 
-<!-- AI Quick Index — For detailed chapter-by-chapter guide, see docs/architecture/cp-index.md
+<!-- AI Quick Index — For detailed chapter-by-chapter guide, see docs/reference/cp-index.md
 | Chapter | §§    | Relevance | Key topics                                              |
 | I       | 1–6   | High      | General principles, Proper of Seasons precedence        |
 | II      | 7–27  | Critical  | Calendar hierarchy, proper celebrations, rank, titles   |

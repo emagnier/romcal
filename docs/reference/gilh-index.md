@@ -370,18 +370,18 @@ Roles of ministers and singing norms. Not relevant to romcal.
 The GILH does not operate in isolation. For a complete picture, these
 related documents provide complementary rules:
 
-- **GNLY** ([index](/architecture/gnly-index) · [source](/reference/gnly)):
+- **GNLY** ([index](/reference/gnly-index) · [source](/reference/gnly)):
   §59 Table of Precedence; §4–16 seasons; §13 natural day / EVP I rules;
   §14 memorial demotion in Lent.
-- **GIRM** ([index](/architecture/girm-index) · [source](/reference/girm)):
+- **GIRM** ([index](/reference/girm-index) · [source](/reference/girm)):
   Mass-selection logic (§355); the Mass counterpart to the Office's
   memorial overlay (§363 orations vs. GILH §235).
-- **CP** ([index](/architecture/cp-index) · [source](/reference/cp)):
+- **CP** ([index](/reference/cp-index) · [source](/reference/cp)):
   §44 cross-domain identity rule: "The prayer is always the same as the
   opening prayer of the Mass." Exception: Compline (GILH §198).
-- **GILM** ([index](/architecture/gilm-index) · [source](/reference/gilm)):
+- **GILM** ([index](/reference/gilm-index) · [source](/reference/gilm)):
   Lectionary structure and readings cycles. Complements GILH §143–155
   for the Office of Readings Scripture cycle.
-- **PS** ([index](/architecture/ps-index) · [source](/reference/ps)):
+- **PS** ([index](/reference/ps-index) · [source](/reference/ps)):
   §40 Good Friday Office of Readings (cf. GILH §210);
   §209–215 Hour suppression on Triduum days.

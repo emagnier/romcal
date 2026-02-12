@@ -103,7 +103,7 @@ tableOfContents:
 
 </details>
 
-<!-- AI Quick Index — For detailed chapter-by-chapter guide, see docs/architecture/gilm-index.md
+<!-- AI Quick Index — For detailed chapter-by-chapter guide, see docs/reference/gilm-index.md
 | Part / Chapter | §§        | Relevance | Key topics                                                          |
 | Preamble / I   | 1–10      | —         | Theology of the Word in liturgy                                     |
 | II             | 11–37     | Low       | Elements and rites of the Liturgy of the Word                       |

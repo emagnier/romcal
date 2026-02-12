@@ -59,7 +59,7 @@ tableOfContents:
 
 </details>
 
-<!-- AI Quick Index — For detailed chapter-by-chapter guide, see docs/architecture/girm-index.md
+<!-- AI Quick Index — For detailed chapter-by-chapter guide, see docs/reference/girm-index.md
 | Chapter  | §§      | Relevance | Key topics                                           |
 | Preamble | 1–15    | —         | Historical context                                   |
 | I        | 16–26   | —         | Theological dignity of the Eucharist                 |

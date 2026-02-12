@@ -34,7 +34,7 @@ tableOfContents:
 
 </details>
 
-<!-- AI Quick Index — For detailed section-by-section guide, see docs/architecture/gnly-index.md
+<!-- AI Quick Index — For detailed section-by-section guide, see docs/reference/gnly-index.md
 | Section          | §§    | Relevance | Key topics                                       |
 | Preamble         | 1–2   | —         | Theological frame                                |
 | Title I.II       | 4–7   | Critical  | Sunday precedence, movable solemnities           |

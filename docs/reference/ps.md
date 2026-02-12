@@ -41,7 +41,7 @@ It does not replace the rubrics of the Roman Missal but explains and complements
 
 </details>
 
-<!-- AI Quick Index — For detailed section-by-section guide, see docs/architecture/ps-index.md
+<!-- AI Quick Index — For detailed section-by-section guide, see docs/reference/ps-index.md
 | Chapter | §§       | Relevance | Key topics                                                           |
 | Intro   | 1–5      | —         | Historical context and purpose                                       |
 | I       | 6–26     | Medium    | Lent: Alleluia suppression (§18), Laetare (§25)                     |

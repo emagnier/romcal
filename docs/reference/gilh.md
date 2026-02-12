@@ -68,7 +68,7 @@ tableOfContents:
 
 </details>
 
-<!-- AI Quick Index — For detailed chapter-by-chapter guide, see docs/architecture/gilh-index.md
+<!-- AI Quick Index — For detailed chapter-by-chapter guide, see docs/reference/gilh-index.md
 | Chapter | §§      | Relevance | Key topics                                                    |
 | I       | 1–33    | —         | Theology, participants, obligation                            |
 | II      | 34–99   | HIGH      | Structure of each Hour (§34 Invitatory, §37 Lauds/Vespers,   |
