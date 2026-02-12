@@ -299,7 +299,7 @@ impl Romcal {
     /// - Required calendars or locales are missing
     /// - JSON serialization fails
     pub fn create_bundle(&self) -> Result<String, serde_json::Error> {
-        crate::engine::optimize::optimize(self)
+        crate::engine::bundle::bundle(self)
             .map_err(|e| serde_json::Error::io(std::io::Error::other(e.to_string())))
     }
 
