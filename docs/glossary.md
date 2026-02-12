@@ -36,7 +36,7 @@ See [Paschalis Sollemnitatis](#paschalis-sollemnitatis).
 
 ### UNLY
 
-See [Universal Norms on the Liturgical Year and the Calendar](#universal-norms-on-the-liturgical-year-and-the-calendar).
+Abbreviation for "**Universal** Norms on the Liturgical Year," reflecting the more recent English translation (Third Typical Edition, 2002/2010). Although technically more faithful to the Latin _universales_, the established abbreviation **GNLY** (from the original 1969 "**General** Norms" translation) is preferred in romcal for consistency with liturgical convention and parallel with GIRM/GILH/GILM. See [GNLY](#gnly).
 
 ---
 

@@ -262,7 +262,7 @@ pub const CALENDAR_DEFINITION_SCHEMA: &str = r##"{
           ]
         },
         "is_optional": {
-          "description": "Specify if this liturgical day is optional within a specific liturgical calendar\n\nUNLY #14:\nMemorials are either obligatory or optional; their observance is integrated into\nthe celebration of the occurring weekday in accordance with the norms set forth in the\nGeneral Instruction of the Roman Missal and of the Liturgy of the Hours\n\nNote: also used for the dedication of consecrated churches, which is an optional solemnity\nthat should not overwrite the default weekday.",
+          "description": "Specify if this liturgical day is optional within a specific liturgical calendar\n\nGNLY #14:\nMemorials are either obligatory or optional; their observance is integrated into\nthe celebration of the occurring weekday in accordance with the norms set forth in the\nGeneral Instruction of the Roman Missal and of the Liturgy of the Hours\n\nNote: also used for the dedication of consecrated churches, which is an optional solemnity\nthat should not overwrite the default weekday.",
           "type": [
             "boolean",
             "null"
@@ -677,7 +677,7 @@ pub const CALENDAR_DEFINITION_SCHEMA: &str = r##"{
       "additionalProperties": false
     },
     "Precedence": {
-      "description": "Liturgical precedence levels for determining which celebration takes priority.\nDefines the hierarchical order of liturgical celebrations according to UNLY norms.",
+      "description": "Liturgical precedence levels for determining which celebration takes priority.\nDefines the hierarchical order of liturgical celebrations according to GNLY norms.",
       "oneOf": [
         {
           "description": "1 - The Paschal Triduum of the Passion and Resurrection of the Lord.",

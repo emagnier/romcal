@@ -34,6 +34,20 @@ tableOfContents:
 
 </details>
 
+<!-- AI Quick Index — For detailed section-by-section guide, see docs/architecture/gnly-index.md
+| Section          | §§    | Relevance | Key topics                                       |
+| Preamble         | 1–2   | —         | Theological frame                                |
+| Title I.II       | 4–7   | Critical  | Sunday precedence, movable solemnities           |
+| Title I.III      | 8–15  | Critical  | Rank definitions: solemnity, feast, memorial     |
+| Title I.IV       | 16    | High      | Weekday tiers by season                          |
+| Title II.I–VI    | 18–44 | Critical  | Season boundaries (all seasons)                  |
+| Title II.VII     | 45–47 | Low       | Rogation/Ember Days                              |
+| Ch.II Title I    | 48–55 | High      | General vs. particular calendar                  |
+| Ch.II Title II   | 56–58 | High      | Proper day for celebrations                      |
+| Ch.II §59        | 59    | Critical  | Table of Precedence (13 levels)                  |
+| Ch.II §60–61     | 60–61 | Critical  | Transfer rules, Vespers conflict                 |
+-->
+
 ## Chapter I - THE LITURGICAL YEAR
 
 <span id="p1"></span>1. Holy Church celebrates the saving work of Christ on prescribed days in the course of the year with sacred remembrance. Each week, on the day called the Lord's Day, she commemorates the Resurrection of the Lord, which she also celebrates once a year in the great Paschal Solemnity, together with his blessed Passion. In fact, throughout the course of the year the Church unfolds the entire mystery of Christ and observes the birthdays of the Saints.

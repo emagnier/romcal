@@ -2,7 +2,7 @@
 
 /**
  * Liturgical precedence levels for determining which celebration takes priority.
- * Defines the hierarchical order of liturgical celebrations according to UNLY norms.
+ * Defines the hierarchical order of liturgical celebrations according to GNLY norms.
  */
 export type Precedence =
   | 'triduum_1'

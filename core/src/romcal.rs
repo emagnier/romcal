@@ -306,7 +306,7 @@ impl Romcal {
     /// Generate the complete liturgical calendar for a given liturgical year
     ///
     /// This method combines the Proper of Time with particular calendars
-    /// and applies precedence rules according to UNLY #49.
+    /// and applies precedence rules according to GNLY #49.
     ///
     /// # Arguments
     ///

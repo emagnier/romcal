@@ -15,19 +15,19 @@ pub enum Rank {
     /// Solemnities are counted among the most important days, whose celebration
     /// begins with First Vespers (Evening Prayer I) on the preceding day. Some Solemnities
     /// are also endowed with their own Vigil Mass, which is to be used on the evening of the
-    /// preceding day, if an evening Mass is celebrated. (UNLY #11)
+    /// preceding day, if an evening Mass is celebrated. (GNLY #11)
     Solemnity,
 
     /// On the first day of each week, which is known as the Day of the Lord or the Lord's
     /// Day, the Church, by an apostolic tradition that draws its origin from the very day of
     /// the Resurrection of Christ, celebrates the Paschal Mystery. Hence, Sunday must be
-    /// considered the primordial feast day. (UNLY #4)
+    /// considered the primordial feast day. (GNLY #4)
     Sunday,
 
     /// Feasts are celebrated within the limits of the natural day; accordingly they have
     /// no First Vespers (Evening Prayer I), except in the case of Feasts of the Lord that fall
     /// on a Sunday in Ordinary Time or in Christmas Time and which replace the Sunday
-    /// Office. (UNLY #13)
+    /// Office. (GNLY #13)
     Feast,
 
     /// **Obligatory memorials** are liturgical commemorations of saints, events, or aspects of the
@@ -45,7 +45,7 @@ pub enum Rank {
     /// liturgical norms provided in the General Instruction of the Roman Missal and the Liturgy of
     /// the Hours.
     /// In cases where multiple **optional memorials** are designated on the same day in the liturgical
-    /// calendar, only one of them may be celebrated, and the others must be omitted (UNLY #14).
+    /// calendar, only one of them may be celebrated, and the others must be omitted (GNLY #14).
     /// This allows for some flexibility in choosing which optional memorial to commemorate when
     /// multiple options are available.
     OptionalMemorial,
@@ -60,7 +60,7 @@ pub enum Rank {
     /// c. Other weekdays give way to all Solemnities and Feasts and are combined with
     ///    Memorials.
     ///
-    ///  (UNLY #16)
+    ///  (GNLY #16)
     Weekday,
 }
 

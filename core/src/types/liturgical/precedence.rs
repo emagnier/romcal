@@ -7,7 +7,7 @@ use strum::EnumIter;
 use ts_rs::TS;
 
 /// Liturgical precedence levels for determining which celebration takes priority.
-/// Defines the hierarchical order of liturgical celebrations according to UNLY norms.
+/// Defines the hierarchical order of liturgical celebrations according to GNLY norms.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, EnumIter)]
 #[cfg_attr(feature = "schema-gen", derive(JsonSchema))]
 #[cfg_attr(feature = "ts-bindings", derive(TS))]
@@ -89,7 +89,7 @@ impl Precedence {
     ///
     /// This method provides a convenient way to get the liturgical rank directly
     /// from a precedence level, following the hierarchical order defined in the
-    /// Universal Norms on the Liturgical Year and the Calendar (UNLY).
+    /// Universal Norms on the Liturgical Year and the Calendar (GNLY).
     ///
     /// # Returns
     ///

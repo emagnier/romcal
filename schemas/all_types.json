@@ -261,7 +261,7 @@
           ]
         },
         "is_optional": {
-          "description": "Specify if this liturgical day is optional within a specific liturgical calendar\n\nUNLY #14:\nMemorials are either obligatory or optional; their observance is integrated into\nthe celebration of the occurring weekday in accordance with the norms set forth in the\nGeneral Instruction of the Roman Missal and of the Liturgy of the Hours\n\nNote: also used for the dedication of consecrated churches, which is an optional solemnity\nthat should not overwrite the default weekday.",
+          "description": "Specify if this liturgical day is optional within a specific liturgical calendar\n\nGNLY #14:\nMemorials are either obligatory or optional; their observance is integrated into\nthe celebration of the occurring weekday in accordance with the norms set forth in the\nGeneral Instruction of the Roman Missal and of the Liturgy of the Hours\n\nNote: also used for the dedication of consecrated churches, which is an optional solemnity\nthat should not overwrite the default weekday.",
           "type": [
             "boolean",
             "null"
@@ -679,7 +679,7 @@
       ]
     },
     "Precedence": {
-      "description": "Liturgical precedence levels for determining which celebration takes priority.\nDefines the hierarchical order of liturgical celebrations according to UNLY norms.",
+      "description": "Liturgical precedence levels for determining which celebration takes priority.\nDefines the hierarchical order of liturgical celebrations according to GNLY norms.",
       "oneOf": [
         {
           "description": "1 - The Paschal Triduum of the Passion and Resurrection of the Lord.",
@@ -2401,17 +2401,17 @@
       "description": "Liturgical rank indicating the importance and celebration style of a liturgical day",
       "oneOf": [
         {
-          "description": "Solemnities are counted among the most important days, whose celebration\nbegins with First Vespers (Evening Prayer I) on the preceding day. Some Solemnities\nare also endowed with their own Vigil Mass, which is to be used on the evening of the\npreceding day, if an evening Mass is celebrated. (UNLY #11)",
+          "description": "Solemnities are counted among the most important days, whose celebration\nbegins with First Vespers (Evening Prayer I) on the preceding day. Some Solemnities\nare also endowed with their own Vigil Mass, which is to be used on the evening of the\npreceding day, if an evening Mass is celebrated. (GNLY #11)",
           "type": "string",
           "const": "solemnity"
         },
         {
-          "description": "On the first day of each week, which is known as the Day of the Lord or the Lord's\nDay, the Church, by an apostolic tradition that draws its origin from the very day of\nthe Resurrection of Christ, celebrates the Paschal Mystery. Hence, Sunday must be\nconsidered the primordial feast day. (UNLY #4)",
+          "description": "On the first day of each week, which is known as the Day of the Lord or the Lord's\nDay, the Church, by an apostolic tradition that draws its origin from the very day of\nthe Resurrection of Christ, celebrates the Paschal Mystery. Hence, Sunday must be\nconsidered the primordial feast day. (GNLY #4)",
           "type": "string",
           "const": "sunday"
         },
         {
-          "description": "Feasts are celebrated within the limits of the natural day; accordingly they have\nno First Vespers (Evening Prayer I), except in the case of Feasts of the Lord that fall\non a Sunday in Ordinary Time or in Christmas Time and which replace the Sunday\nOffice. (UNLY #13)",
+          "description": "Feasts are celebrated within the limits of the natural day; accordingly they have\nno First Vespers (Evening Prayer I), except in the case of Feasts of the Lord that fall\non a Sunday in Ordinary Time or in Christmas Time and which replace the Sunday\nOffice. (GNLY #13)",
           "type": "string",
           "const": "feast"
         },
@@ -2421,12 +2421,12 @@
           "const": "memorial"
         },
         {
-          "description": "**Optional memorials** are liturgical commemorations of saints, events, or aspects of the\nfaith, but they are not obligatory.\nTheir observance is integrated into the celebration of the occurring weekday, adhering to the\nliturgical norms provided in the General Instruction of the Roman Missal and the Liturgy of\nthe Hours.\nIn cases where multiple **optional memorials** are designated on the same day in the liturgical\ncalendar, only one of them may be celebrated, and the others must be omitted (UNLY #14).\nThis allows for some flexibility in choosing which optional memorial to commemorate when\nmultiple options are available.",
+          "description": "**Optional memorials** are liturgical commemorations of saints, events, or aspects of the\nfaith, but they are not obligatory.\nTheir observance is integrated into the celebration of the occurring weekday, adhering to the\nliturgical norms provided in the General Instruction of the Roman Missal and the Liturgy of\nthe Hours.\nIn cases where multiple **optional memorials** are designated on the same day in the liturgical\ncalendar, only one of them may be celebrated, and the others must be omitted (GNLY #14).\nThis allows for some flexibility in choosing which optional memorial to commemorate when\nmultiple options are available.",
           "type": "string",
           "const": "optional_memorial"
         },
         {
-          "description": "The days of the week that follow Sunday are called weekdays; however, they are\ncelebrated differently according to the importance of each.\n\na. Ash Wednesday and the weekdays of Holy Week, from Monday up to and including\n   Thursday, take precedence over all other celebrations.\nb. The weekdays of Advent from 17 December up to and including 24 December\n   and all the weekdays of Lent have precedence over Obligatory Memorials.\nc. Other weekdays give way to all Solemnities and Feasts and are combined with\n   Memorials.\n\n (UNLY #16)",
+          "description": "The days of the week that follow Sunday are called weekdays; however, they are\ncelebrated differently according to the importance of each.\n\na. Ash Wednesday and the weekdays of Holy Week, from Monday up to and including\n   Thursday, take precedence over all other celebrations.\nb. The weekdays of Advent from 17 December up to and including 24 December\n   and all the weekdays of Lent have precedence over Obligatory Memorials.\nc. Other weekdays give way to all Solemnities and Feasts and are combined with\n   Memorials.\n\n (GNLY #16)",
           "type": "string",
           "const": "weekday"
         }
@@ -3183,7 +3183,7 @@
     "CelebrationSummary": {
       "definitions": {
         "Precedence": {
-          "description": "Liturgical precedence levels for determining which celebration takes priority.\nDefines the hierarchical order of liturgical celebrations according to UNLY norms.",
+          "description": "Liturgical precedence levels for determining which celebration takes priority.\nDefines the hierarchical order of liturgical celebrations according to GNLY norms.",
           "oneOf": [
             {
               "description": "1 - The Paschal Triduum of the Passion and Resurrection of the Lord.",
@@ -3326,17 +3326,17 @@
           "description": "Liturgical rank indicating the importance and celebration style of a liturgical day",
           "oneOf": [
             {
-              "description": "Solemnities are counted among the most important days, whose celebration\nbegins with First Vespers (Evening Prayer I) on the preceding day. Some Solemnities\nare also endowed with their own Vigil Mass, which is to be used on the evening of the\npreceding day, if an evening Mass is celebrated. (UNLY #11)",
+              "description": "Solemnities are counted among the most important days, whose celebration\nbegins with First Vespers (Evening Prayer I) on the preceding day. Some Solemnities\nare also endowed with their own Vigil Mass, which is to be used on the evening of the\npreceding day, if an evening Mass is celebrated. (GNLY #11)",
               "type": "string",
               "const": "solemnity"
             },
             {
-              "description": "On the first day of each week, which is known as the Day of the Lord or the Lord's\nDay, the Church, by an apostolic tradition that draws its origin from the very day of\nthe Resurrection of Christ, celebrates the Paschal Mystery. Hence, Sunday must be\nconsidered the primordial feast day. (UNLY #4)",
+              "description": "On the first day of each week, which is known as the Day of the Lord or the Lord's\nDay, the Church, by an apostolic tradition that draws its origin from the very day of\nthe Resurrection of Christ, celebrates the Paschal Mystery. Hence, Sunday must be\nconsidered the primordial feast day. (GNLY #4)",
               "type": "string",
               "const": "sunday"
             },
             {
-              "description": "Feasts are celebrated within the limits of the natural day; accordingly they have\nno First Vespers (Evening Prayer I), except in the case of Feasts of the Lord that fall\non a Sunday in Ordinary Time or in Christmas Time and which replace the Sunday\nOffice. (UNLY #13)",
+              "description": "Feasts are celebrated within the limits of the natural day; accordingly they have\nno First Vespers (Evening Prayer I), except in the case of Feasts of the Lord that fall\non a Sunday in Ordinary Time or in Christmas Time and which replace the Sunday\nOffice. (GNLY #13)",
               "type": "string",
               "const": "feast"
             },
@@ -3346,12 +3346,12 @@
               "const": "memorial"
             },
             {
-              "description": "**Optional memorials** are liturgical commemorations of saints, events, or aspects of the\nfaith, but they are not obligatory.\nTheir observance is integrated into the celebration of the occurring weekday, adhering to the\nliturgical norms provided in the General Instruction of the Roman Missal and the Liturgy of\nthe Hours.\nIn cases where multiple **optional memorials** are designated on the same day in the liturgical\ncalendar, only one of them may be celebrated, and the others must be omitted (UNLY #14).\nThis allows for some flexibility in choosing which optional memorial to commemorate when\nmultiple options are available.",
+              "description": "**Optional memorials** are liturgical commemorations of saints, events, or aspects of the\nfaith, but they are not obligatory.\nTheir observance is integrated into the celebration of the occurring weekday, adhering to the\nliturgical norms provided in the General Instruction of the Roman Missal and the Liturgy of\nthe Hours.\nIn cases where multiple **optional memorials** are designated on the same day in the liturgical\ncalendar, only one of them may be celebrated, and the others must be omitted (GNLY #14).\nThis allows for some flexibility in choosing which optional memorial to commemorate when\nmultiple options are available.",
               "type": "string",
               "const": "optional_memorial"
             },
             {
-              "description": "The days of the week that follow Sunday are called weekdays; however, they are\ncelebrated differently according to the importance of each.\n\na. Ash Wednesday and the weekdays of Holy Week, from Monday up to and including\n   Thursday, take precedence over all other celebrations.\nb. The weekdays of Advent from 17 December up to and including 24 December\n   and all the weekdays of Lent have precedence over Obligatory Memorials.\nc. Other weekdays give way to all Solemnities and Feasts and are combined with\n   Memorials.\n\n (UNLY #16)",
+              "description": "The days of the week that follow Sunday are called weekdays; however, they are\ncelebrated differently according to the importance of each.\n\na. Ash Wednesday and the weekdays of Holy Week, from Monday up to and including\n   Thursday, take precedence over all other celebrations.\nb. The weekdays of Advent from 17 December up to and including 24 December\n   and all the weekdays of Lent have precedence over Obligatory Memorials.\nc. Other weekdays give way to all Solemnities and Feasts and are combined with\n   Memorials.\n\n (GNLY #16)",
               "type": "string",
               "const": "weekday"
             }
@@ -4348,7 +4348,7 @@
               ]
             },
             "is_optional": {
-              "description": "Specify if this liturgical day is optional within a specific liturgical calendar\n\nUNLY #14:\nMemorials are either obligatory or optional; their observance is integrated into\nthe celebration of the occurring weekday in accordance with the norms set forth in the\nGeneral Instruction of the Roman Missal and of the Liturgy of the Hours\n\nNote: also used for the dedication of consecrated churches, which is an optional solemnity\nthat should not overwrite the default weekday.",
+              "description": "Specify if this liturgical day is optional within a specific liturgical calendar\n\nGNLY #14:\nMemorials are either obligatory or optional; their observance is integrated into\nthe celebration of the occurring weekday in accordance with the norms set forth in the\nGeneral Instruction of the Roman Missal and of the Liturgy of the Hours\n\nNote: also used for the dedication of consecrated churches, which is an optional solemnity\nthat should not overwrite the default weekday.",
               "type": [
                 "boolean",
                 "null"
@@ -4763,7 +4763,7 @@
           "additionalProperties": false
         },
         "Precedence": {
-          "description": "Liturgical precedence levels for determining which celebration takes priority.\nDefines the hierarchical order of liturgical celebrations according to UNLY norms.",
+          "description": "Liturgical precedence levels for determining which celebration takes priority.\nDefines the hierarchical order of liturgical celebrations according to GNLY norms.",
           "oneOf": [
             {
               "description": "1 - The Paschal Triduum of the Passion and Resurrection of the Lord.",
@@ -6997,7 +6997,7 @@
           "additionalProperties": false
         },
         "Precedence": {
-          "description": "Liturgical precedence levels for determining which celebration takes priority.\nDefines the hierarchical order of liturgical celebrations according to UNLY norms.",
+          "description": "Liturgical precedence levels for determining which celebration takes priority.\nDefines the hierarchical order of liturgical celebrations according to GNLY norms.",
           "oneOf": [
             {
               "description": "1 - The Paschal Triduum of the Passion and Resurrection of the Lord.",
@@ -7140,17 +7140,17 @@
           "description": "Liturgical rank indicating the importance and celebration style of a liturgical day",
           "oneOf": [
             {
-              "description": "Solemnities are counted among the most important days, whose celebration\nbegins with First Vespers (Evening Prayer I) on the preceding day. Some Solemnities\nare also endowed with their own Vigil Mass, which is to be used on the evening of the\npreceding day, if an evening Mass is celebrated. (UNLY #11)",
+              "description": "Solemnities are counted among the most important days, whose celebration\nbegins with First Vespers (Evening Prayer I) on the preceding day. Some Solemnities\nare also endowed with their own Vigil Mass, which is to be used on the evening of the\npreceding day, if an evening Mass is celebrated. (GNLY #11)",
               "type": "string",
               "const": "solemnity"
             },
             {
-              "description": "On the first day of each week, which is known as the Day of the Lord or the Lord's\nDay, the Church, by an apostolic tradition that draws its origin from the very day of\nthe Resurrection of Christ, celebrates the Paschal Mystery. Hence, Sunday must be\nconsidered the primordial feast day. (UNLY #4)",
+              "description": "On the first day of each week, which is known as the Day of the Lord or the Lord's\nDay, the Church, by an apostolic tradition that draws its origin from the very day of\nthe Resurrection of Christ, celebrates the Paschal Mystery. Hence, Sunday must be\nconsidered the primordial feast day. (GNLY #4)",
               "type": "string",
               "const": "sunday"
             },
             {
-              "description": "Feasts are celebrated within the limits of the natural day; accordingly they have\nno First Vespers (Evening Prayer I), except in the case of Feasts of the Lord that fall\non a Sunday in Ordinary Time or in Christmas Time and which replace the Sunday\nOffice. (UNLY #13)",
+              "description": "Feasts are celebrated within the limits of the natural day; accordingly they have\nno First Vespers (Evening Prayer I), except in the case of Feasts of the Lord that fall\non a Sunday in Ordinary Time or in Christmas Time and which replace the Sunday\nOffice. (GNLY #13)",
               "type": "string",
               "const": "feast"
             },
@@ -7160,12 +7160,12 @@
               "const": "memorial"
             },
             {
-              "description": "**Optional memorials** are liturgical commemorations of saints, events, or aspects of the\nfaith, but they are not obligatory.\nTheir observance is integrated into the celebration of the occurring weekday, adhering to the\nliturgical norms provided in the General Instruction of the Roman Missal and the Liturgy of\nthe Hours.\nIn cases where multiple **optional memorials** are designated on the same day in the liturgical\ncalendar, only one of them may be celebrated, and the others must be omitted (UNLY #14).\nThis allows for some flexibility in choosing which optional memorial to commemorate when\nmultiple options are available.",
+              "description": "**Optional memorials** are liturgical commemorations of saints, events, or aspects of the\nfaith, but they are not obligatory.\nTheir observance is integrated into the celebration of the occurring weekday, adhering to the\nliturgical norms provided in the General Instruction of the Roman Missal and the Liturgy of\nthe Hours.\nIn cases where multiple **optional memorials** are designated on the same day in the liturgical\ncalendar, only one of them may be celebrated, and the others must be omitted (GNLY #14).\nThis allows for some flexibility in choosing which optional memorial to commemorate when\nmultiple options are available.",
               "type": "string",
               "const": "optional_memorial"
             },
             {
-              "description": "The days of the week that follow Sunday are called weekdays; however, they are\ncelebrated differently according to the importance of each.\n\na. Ash Wednesday and the weekdays of Holy Week, from Monday up to and including\n   Thursday, take precedence over all other celebrations.\nb. The weekdays of Advent from 17 December up to and including 24 December\n   and all the weekdays of Lent have precedence over Obligatory Memorials.\nc. Other weekdays give way to all Solemnities and Feasts and are combined with\n   Memorials.\n\n (UNLY #16)",
+              "description": "The days of the week that follow Sunday are called weekdays; however, they are\ncelebrated differently according to the importance of each.\n\na. Ash Wednesday and the weekdays of Holy Week, from Monday up to and including\n   Thursday, take precedence over all other celebrations.\nb. The weekdays of Advent from 17 December up to and including 24 December\n   and all the weekdays of Lent have precedence over Obligatory Memorials.\nc. Other weekdays give way to all Solemnities and Feasts and are combined with\n   Memorials.\n\n (GNLY #16)",
               "type": "string",
               "const": "weekday"
             }
@@ -8805,7 +8805,7 @@
           ]
         },
         "Precedence": {
-          "description": "Liturgical precedence levels for determining which celebration takes priority.\nDefines the hierarchical order of liturgical celebrations according to UNLY norms.",
+          "description": "Liturgical precedence levels for determining which celebration takes priority.\nDefines the hierarchical order of liturgical celebrations according to GNLY norms.",
           "oneOf": [
             {
               "description": "1 - The Paschal Triduum of the Passion and Resurrection of the Lord.",
@@ -8948,17 +8948,17 @@
           "description": "Liturgical rank indicating the importance and celebration style of a liturgical day",
           "oneOf": [
             {
-              "description": "Solemnities are counted among the most important days, whose celebration\nbegins with First Vespers (Evening Prayer I) on the preceding day. Some Solemnities\nare also endowed with their own Vigil Mass, which is to be used on the evening of the\npreceding day, if an evening Mass is celebrated. (UNLY #11)",
+              "description": "Solemnities are counted among the most important days, whose celebration\nbegins with First Vespers (Evening Prayer I) on the preceding day. Some Solemnities\nare also endowed with their own Vigil Mass, which is to be used on the evening of the\npreceding day, if an evening Mass is celebrated. (GNLY #11)",
               "type": "string",
               "const": "solemnity"
             },
             {
-              "description": "On the first day of each week, which is known as the Day of the Lord or the Lord's\nDay, the Church, by an apostolic tradition that draws its origin from the very day of\nthe Resurrection of Christ, celebrates the Paschal Mystery. Hence, Sunday must be\nconsidered the primordial feast day. (UNLY #4)",
+              "description": "On the first day of each week, which is known as the Day of the Lord or the Lord's\nDay, the Church, by an apostolic tradition that draws its origin from the very day of\nthe Resurrection of Christ, celebrates the Paschal Mystery. Hence, Sunday must be\nconsidered the primordial feast day. (GNLY #4)",
               "type": "string",
               "const": "sunday"
             },
             {
-              "description": "Feasts are celebrated within the limits of the natural day; accordingly they have\nno First Vespers (Evening Prayer I), except in the case of Feasts of the Lord that fall\non a Sunday in Ordinary Time or in Christmas Time and which replace the Sunday\nOffice. (UNLY #13)",
+              "description": "Feasts are celebrated within the limits of the natural day; accordingly they have\nno First Vespers (Evening Prayer I), except in the case of Feasts of the Lord that fall\non a Sunday in Ordinary Time or in Christmas Time and which replace the Sunday\nOffice. (GNLY #13)",
               "type": "string",
               "const": "feast"
             },
@@ -8968,12 +8968,12 @@
               "const": "memorial"
             },
             {
-              "description": "**Optional memorials** are liturgical commemorations of saints, events, or aspects of the\nfaith, but they are not obligatory.\nTheir observance is integrated into the celebration of the occurring weekday, adhering to the\nliturgical norms provided in the General Instruction of the Roman Missal and the Liturgy of\nthe Hours.\nIn cases where multiple **optional memorials** are designated on the same day in the liturgical\ncalendar, only one of them may be celebrated, and the others must be omitted (UNLY #14).\nThis allows for some flexibility in choosing which optional memorial to commemorate when\nmultiple options are available.",
+              "description": "**Optional memorials** are liturgical commemorations of saints, events, or aspects of the\nfaith, but they are not obligatory.\nTheir observance is integrated into the celebration of the occurring weekday, adhering to the\nliturgical norms provided in the General Instruction of the Roman Missal and the Liturgy of\nthe Hours.\nIn cases where multiple **optional memorials** are designated on the same day in the liturgical\ncalendar, only one of them may be celebrated, and the others must be omitted (GNLY #14).\nThis allows for some flexibility in choosing which optional memorial to commemorate when\nmultiple options are available.",
               "type": "string",
               "const": "optional_memorial"
             },
             {
-              "description": "The days of the week that follow Sunday are called weekdays; however, they are\ncelebrated differently according to the importance of each.\n\na. Ash Wednesday and the weekdays of Holy Week, from Monday up to and including\n   Thursday, take precedence over all other celebrations.\nb. The weekdays of Advent from 17 December up to and including 24 December\n   and all the weekdays of Lent have precedence over Obligatory Memorials.\nc. Other weekdays give way to all Solemnities and Feasts and are combined with\n   Memorials.\n\n (UNLY #16)",
+              "description": "The days of the week that follow Sunday are called weekdays; however, they are\ncelebrated differently according to the importance of each.\n\na. Ash Wednesday and the weekdays of Holy Week, from Monday up to and including\n   Thursday, take precedence over all other celebrations.\nb. The weekdays of Advent from 17 December up to and including 24 December\n   and all the weekdays of Lent have precedence over Obligatory Memorials.\nc. Other weekdays give way to all Solemnities and Feasts and are combined with\n   Memorials.\n\n (GNLY #16)",
               "type": "string",
               "const": "weekday"
             }

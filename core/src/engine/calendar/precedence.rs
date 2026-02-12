@@ -5,7 +5,7 @@ use crate::engine::liturgical_day::LiturgicalDay;
 use crate::types::liturgical::{Precedence, Rank, Season};
 
 impl Calendar {
-    /// Applies precedence rules according to UNLY #49
+    /// Applies precedence rules according to GNLY #49
     ///
     /// This function sorts and filters liturgical days for a single date
     /// based on their precedence, handling special cases like:
@@ -73,7 +73,7 @@ impl Calendar {
             }
         }
 
-        // During Lent, obligatory memorials become optional (UNLY #14)
+        // During Lent, obligatory memorials become optional (GNLY #14)
         if let Some(Season::Lent) = highest.season {
             for day in days.iter().skip(1) {
                 if day.rank == Rank::Memorial && !result.iter().any(|d| d.id == day.id) {
@@ -158,9 +158,9 @@ impl Calendar {
 
     /// Determines if a day can have optional memorials added to it
     ///
-    /// According to UNLY #14 and GIRM #355:
-    /// - On privileged weekdays (UNLY #59 9)
-    /// - On ferias (UNLY #59 13)
+    /// According to GNLY #14 and GIRM #355:
+    /// - On privileged weekdays (GNLY #59 9)
+    /// - On ferias (GNLY #59 13)
     fn can_have_optional_memorials(&self, day: &LiturgicalDay) -> bool {
         matches!(
             day.precedence,

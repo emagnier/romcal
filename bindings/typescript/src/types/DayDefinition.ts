@@ -45,7 +45,7 @@ export type DayDefinition = {
   /**
    * Specify if this liturgical day is optional within a specific liturgical calendar
    *
-   * UNLY #14:
+   * GNLY #14:
    * Memorials are either obligatory or optional; their observance is integrated into
    * the celebration of the occurring weekday in accordance with the norms set forth in the
    * General Instruction of the Roman Missal and of the Liturgy of the Hours

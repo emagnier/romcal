@@ -129,7 +129,7 @@ class DateDefWithOffset(BaseModel):
 class Precedence(Enum):
     """
     Liturgical precedence levels for determining which celebration takes priority.
-    Defines the hierarchical order of liturgical celebrations according to UNLY norms.
+    Defines the hierarchical order of liturgical celebrations according to GNLY norms.
     """
 
     triduum_1 = "triduum_1"
@@ -2464,7 +2464,7 @@ class DayDefinition(BaseModel):
     """
     Specify if this liturgical day is optional within a specific liturgical calendar
 
-    UNLY #14:
+    GNLY #14:
     Memorials are either obligatory or optional; their observance is integrated into
     the celebration of the occurring weekday in accordance with the norms set forth in the
     General Instruction of the Roman Missal and of the Liturgy of the Hours

@@ -2,7 +2,7 @@
 //!
 //! This module implements the liturgical calendar generation algorithm.
 //! It combines the Proper of Time with particular calendars and applies
-//! precedence rules according to UNLY #49.
+//! precedence rules according to GNLY #49.
 
 mod date_calculation;
 mod hierarchy;
@@ -29,7 +29,7 @@ use crate::types::mass::{CelebrationSummary, MassCalendar, MassContext, MassTime
 pub type LiturgicalCalendar = BTreeMap<String, Vec<LiturgicalDay>>;
 
 /// Calendar generator that combines Proper of Time with particular calendars
-/// and applies precedence rules according to UNLY #49.
+/// and applies precedence rules according to GNLY #49.
 pub struct Calendar {
     /// The romcal configuration
     romcal: Romcal,
