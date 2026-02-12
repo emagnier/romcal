@@ -41,6 +41,19 @@ It does not replace the rubrics of the Roman Missal but explains and complements
 
 </details>
 
+<!-- AI Quick Index — For detailed section-by-section guide, see docs/architecture/ps-index.md
+| Chapter | §§       | Relevance | Key topics                                                           |
+| Intro   | 1–5      | —         | Historical context and purpose                                       |
+| I       | 6–26     | Medium    | Lent: Alleluia suppression (§18), Laetare (§25)                     |
+| II      | 27–37    | High      | Holy Week: Palm Sunday entrance (§28–33), Chrism Mass (§35–36)      |
+| III     | 38–43    | High      | Triduum boundaries (§38), Easter fast                               |
+| IV      | 44–57    | High      | Holy Thursday: Evening Mass, Gloria silence (§50)                   |
+| V       | 58–72    | Critical  | Good Friday: no Eucharist (§59), Passion structure (§64–70)         |
+| VI      | 73–76    | Critical  | Holy Saturday: no Mass (§75)                                        |
+| VII     | 77–99    | Critical  | Easter Vigil structure (§81), readings (§85), Alleluia (§87)        |
+| VIII    | 100–108  | Medium    | Easter Time: 50 days, Pentecost vigil (§107)                        |
+-->
+
 ---
 
 <span id="p1"></span>1. The Easter Solemnity, revised and restored by Pius XII in 1951, and then the Order of Holy Week in 1955, were favorably received by the Church of the Roman Rite.[^1]
