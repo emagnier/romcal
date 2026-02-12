@@ -382,7 +382,7 @@ PRIVILEGED WEEKDAYS (Advent 17-24, Octave of Christmas, Lent)
 
 ## Part II — Liturgical Rules: Liturgy of the Hours
 
-> **Status:** The Liturgy of the Hours is not currently implemented in romcal. This section provides the complete rules analysis for the Office, to document the rules analysis for the Office prior to implementation.
+> **Scope:** This section provides the complete rules analysis for the Liturgy of the Hours, establishing the normative foundation for the Office data model (Part IV §3, §5) and the Hours transformation pipeline (Part V §2).
 
 ### 1. Office Substitution Groups (vs. Mass)
 
@@ -704,7 +704,7 @@ A single liturgical day can contain multiple celebrations: the feria as the prim
 
 ### 2. Cycle Resolution
 
-Romcal already computes the applicable liturgical cycle for any given date (Year A/B/C for Sundays, Year 1/2 for weekdays). Therefore, the output data model does **not** include a cycle dimension — the engine resolves the correct cycle internally and returns only the applicable content.
+The engine computes the applicable liturgical cycle for any given date (Year A/B/C for Sundays, Year 1/2 for weekdays). Therefore, the output data model does **not** include a cycle dimension — the engine resolves the correct cycle internally and returns only the applicable content.
 
 The cycle information remains available in `DayContext` (`sunday_cycle`, `weekday_cycle`) for informational purposes, but the mass texts are already those of the resolved cycle.
 
@@ -814,7 +814,7 @@ The layering works as follows:
 
 **Cross-layering rule (CP §16d):** "Members of religious institutes join with the local Church in celebrating the anniversary of the dedication of the cathedral and the feast of the principal patrons of both the place and the wider area in which they reside."
 
-**Consequence for the data model:** This is already modeled in romcal via `CalendarId` chains and the `from_calendar_id` field. Each celebration carries the identity of the calendar that introduced it. The engine resolves the complete calendar by traversing the inheritance chain from the most specific calendar up to the General Calendar. CP formalizes the layering that romcal already implements.
+**Consequence for the data model:** The engine models this via `CalendarId` chains and the `from_calendar_id` field. Each celebration carries the identity of the calendar that introduced it. The engine resolves the complete calendar by traversing the inheritance chain from the most specific calendar up to the General Calendar.
 
 #### 2. Rank Assignment by Calendar Level (CP 8-12, 24-26)
 
@@ -924,7 +924,7 @@ These constraints complement GILM §83-84 and should be validated by the engine 
 
 ### 7. The Paschal Triduum Is Not a Season
 
-The current romcal codebase has `Season::PaschalTriduum` as a sixth variant. This document removes it, based on the following normative evidence:
+The `Season` enum has exactly five variants — there is no `PaschalTriduum` season. This architectural decision is based on the following normative evidence:
 
 1. **GNLY structure:** Title II (§17-47) gives the Triduum its own section (I, §18-21), separate from the five seasons (sections II-VI). GNLY lists five seasons only: Advent, Christmas Time, Lent, Easter Time, Ordinary Time.
 2. **GNLY §28:** "The forty days of Lent run from Ash Wednesday up to but excluding the Mass of the Lord's Supper." Lent ends before the Triduum begins.
@@ -947,7 +947,7 @@ The TLHM (Thesaurus Liturgiae Horarum Monasticae) confirms this classification: 
 
 ### 8. Title Model: TitleCategory + Qualifier + Patronage
 
-The current codebase uses a flat `Title` enum with 88 variants, mixing three distinct concerns:
+A flat `Title` enum with many variants mixes three distinct concerns:
 
 - **Ecclesiastical categories** (fixed, liturgically significant): `Martyr`, `Bishop`, `Virgin`...
 - **Category + qualifiers** (specific): `TheFirstMartyr`, `ProtoMartyrOfOceania`, `SlavicMissionary`...
@@ -1390,7 +1390,7 @@ struct LiturgicalDay {
 
 **Why this name:** GNLY 10 defines it: "Celebrations, according to the importance assigned to them, are hence distinguished one from another and termed: Solemnity, Feast, Memorial." A celebration is the liturgical entity that is celebrated, with its specific rank and proper texts.
 
-**Why not `LiturgicalDay`:** In the current romcal model, `LiturgicalDay` mixes the temporal frame and the celebration identity. This separation clarifies that multiple celebrations can coexist within one liturgical day.
+**Why not `LiturgicalDay`:** A single `LiturgicalDay` type mixing the temporal frame and the celebration identity would conflate two distinct GNLY concepts. This separation clarifies that multiple celebrations can coexist within one liturgical day.
 
 ```rust
 struct Celebration {
@@ -1494,7 +1494,7 @@ struct CelebrationMass {
 
 **What it is:** An enum identifying the type of mass or liturgical action within a given celebration. Most celebrations have a single `DayMass`; multi-Mass days (Christmas, Triduum) have multiple variants.
 
-**Why this name:** It identifies the "time" or "occasion" of the "mass" within the liturgical day. Existing romcal type.
+**Why this name:** It identifies the "time" or "occasion" of the "mass" within the liturgical day.
 
 **All variants:**
 
@@ -2764,7 +2764,7 @@ struct ColorInfo {
 
 - **Purple vs. Black for the Dead:** GIRM 346 positions purple as the standard color for Masses and Offices for the Dead (§346d), while black is the local-practice alternative (§346e: "where it is the practice"). Purple is the primary choice in most contemporary usage.
 - **Gold / festive vestments:** GIRM §346g says: "On more solemn days, sacred vestments may be used that are festive, that is, more precious, even if not of the color of the day." Gold is not named explicitly in the universal GIRM, but comes from national adaptations (e.g., US GIRM §346 mentions gold/silver). In romcal, `Gold` serves as a concrete variant for this rule.
-- **Blue:** Not present in the universal GIRM §346. Some countries (notably Spain, parts of Latin America, the Philippines) have a Marian indult authorizing blue for feasts of the Blessed Virgin Mary. The `Blue` variant exists in the `Color` enum but is not yet used by any calendar currently implemented in romcal — it will be activated when implementing calendars that require it.
+- **Blue:** Not present in the universal GIRM §346. Some countries (notably Spain, parts of Latin America, the Philippines) have a Marian indult authorizing blue for feasts of the Blessed Virgin Mary. The `Blue` variant is included in the `Color` enum to support these calendars.
 
 **Why `Vec<ColorInfo>`:** A celebration may have multiple permissible colors. Examples: gold as alternative on solemnities (§346g); black as alternative to purple for the Dead (§346d-e); blue as alternative to white for Marian feasts (by indult). The engine automatically assigns red for martyrs based on the `Title::Martyr` in `MartyrologyEntry.titles`.
 
@@ -3236,7 +3236,7 @@ HoursCalendar["2025-04-19"] → [
 
 ### GILH (General Instruction of the Liturgy of the Hours)
 
-> **Note:** The Liturgy of the Hours is not currently implemented in romcal. These references document architectural implications for future extensibility (see Part II and Part IV §3).
+> **Note:** These references document the normative basis for the Office data model (Part II, Part IV §3 and §5) and the Hours transformation pipeline (Part V §2).
 
 - **GILH 34-36** — The Invitatory: opens the first Hour of the day (normally Office of Readings or Lauds). Consists of an invitatory antiphon + Psalm 95 (or Ps 100, 67, 24). The antiphon varies by celebration and follows the GILH §235b priority on memorials.
 - **GILH 37** — Morning Prayer (Lauds) and Evening Prayer (Vespers) are the "double hinge" of the Daily Office: the two principal Hours around which the entire Office is structured
