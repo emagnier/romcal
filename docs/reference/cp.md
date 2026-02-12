@@ -33,6 +33,15 @@ tableOfContents:
 
 </details>
 
+<!-- AI Quick Index — For detailed chapter-by-chapter guide, see docs/architecture/cp-index.md
+| Chapter | §§    | Relevance | Key topics                                              |
+| I       | 1–6   | High      | General principles, Proper of Seasons precedence        |
+| II      | 7–27  | Critical  | Calendar hierarchy, proper celebrations, rank, titles   |
+| III     | 28–38 | High      | Patrons, church titles, suppressed holydays             |
+| IV      | 39–47 | Critical  | Proper Mass/Office texts; §44 prayer identity rule      |
+| V       | 48–50 | Low       | Privileges and indults                                  |
+-->
+
 ---
 
 Particular calendars as well as the propers for offices and Masses should at this time be revised so that the principles and norms used in revising the Roman Missal[^1] and Breviary are also applied to particular calendars and to the propers of offices and Masses.

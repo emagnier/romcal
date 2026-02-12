@@ -73,6 +73,7 @@ export default defineConfig({
           items: [
             { label: 'Liturgical Composition Model', slug: 'architecture/liturgical-composition-model' },
             { label: 'GNLY — AI Navigation Index', slug: 'architecture/gnly-index' },
+            { label: 'CP — AI Navigation Index', slug: 'architecture/cp-index' },
             { label: 'GIRM — AI Navigation Index', slug: 'architecture/girm-index' },
             { label: 'GILH — AI Navigation Index', slug: 'architecture/gilh-index' },
           ],
