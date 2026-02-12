@@ -9,98 +9,101 @@ tableOfContents:
 <!-- AI Quick Index — concept/type → section (line numbers are approximate)
 
 LITURGICAL RULES
-| Concept                              | Section              | Line  | Key references                    |
-| ------------------------------------ | -------------------- | ----- | --------------------------------- |
-| Choice of Mass (season options)      | Part I §1            | ~23   | GIRM 355                         |
-| Formulary block (collect+antiphons)  | Part I §2 Group 1    | ~48   | GIRM 363                         |
-| Readings block (3 categories)        | Part I §2 Group 2    | ~62   | GIRM 357-358, GILM 83-84         |
-| Proper / accommodated / common       | Part I §2 Group 2    | ~71   | GILM 83                          |
-| Readings by rank (tables)            | Part I §2 Group 2    | ~90   | GILM 83-84                       |
-| Sequence rules                       | Part I §2 Group 2    | ~159  | GIRM 64                          |
-| Flexible orations + preface          | Part I §2 Group 3    | ~174  | GIRM 363-365                     |
-| Season context summary table         | Part I §3            | ~202  |                                   |
-| Visual schema (Mass)                 | Part I §4            | ~224  |                                   |
-| Office substitution groups           | Part II §1           | ~273  |                                   |
-| Structure of each Hour               | Part II §2           | ~286  |                                   |
-| Office by rank (solemnity/feast)     | Part II §3           | ~307  | GILH 225-233                     |
-| Memorial overlay rules               | Part II §3c-§4       | ~369  | GILH 234-236                     |
-| Memorials on privileged weekdays     | Part II §5           | ~423  | GILH 237-239                     |
-| Visual schemas (Office)              | Part II §6           | ~444  |                                   |
-| Te Deum rules                        | Part II §7           | ~519  | GILH 68, 228, 231, 235d          |
-| Saturday BVM memorial                | Part II §8           | ~537  | GNLY 15, GILH 240                |
-| Commons: Office vs. Mass             | Part II §9           | ~547  |                                   |
+| Concept                              | Section              | Line   | Key references                    |
+| ------------------------------------ | -------------------- | ------ | --------------------------------- |
+| Terminology glossary                 | Terminology          | ~116   |                                   |
+| Choice of Mass (season options)      | Part I §1            | ~134   | GIRM 355                         |
+| Formulary block (collect+antiphons)  | Part I §2 Group 1    | ~159   | GIRM 363                         |
+| Readings block (3 categories)        | Part I §2 Group 2    | ~173   | GIRM 357-358, GILM 83-84         |
+| Proper / accommodated / common       | Part I §2 Group 2    | ~182   | GILM 83                          |
+| Readings by rank (tables)            | Part I §2 Group 2    | ~202   | GILM 83-84                       |
+| Sequence rules                       | Part I §2 Group 2    | ~263   | GIRM 64                          |
+| Flexible orations + preface          | Part I §2 Group 3    | ~285   | GIRM 363-365                     |
+| Season context summary table         | Part I §3            | ~313   |                                   |
+| Visual schema (Mass)                 | Part I §4            | ~335   |                                   |
+| Office substitution groups           | Part II §1           | ~384   |                                   |
+| Structure of each Hour               | Part II §2           | ~397   |                                   |
+| Office by rank (solemnity/feast)     | Part II §3           | ~418   | GILH 225-233                     |
+| Memorial overlay rules               | Part II §3c-§4       | ~480   | GILH 234-236                     |
+| Memorials on privileged weekdays     | Part II §5           | ~536   | GILH 237-239                     |
+| Visual schemas (Office)              | Part II §6           | ~559   |                                   |
+| Te Deum rules                        | Part II §7           | ~634   | GILH 68, 228, 231, 235d          |
+| Saturday BVM memorial                | Part II §8           | ~652   | GNLY 15, GILH 240                |
+| Commons: Office vs. Mass             | Part II §9           | ~662   |                                   |
 
 CROSS-CUTTING CONCERNS
-| Concept                              | Section              | Line  | Key references                    |
-| ------------------------------------ | -------------------- | ----- | --------------------------------- |
-| Liturgical day vs. celebration       | Part III §1          | ~564  |                                   |
-| Cycle resolution                     | Part III §2          | ~587  |                                   |
-| Vespers I/II conflict                | Part III §3          | ~593  | GNLY 61, GILH 225, 231           |
-| Mass-Office choice independence      | Part III §4          | ~614  | GILH 234, GNLY 14                |
-| Office prayer = Mass collect         | Part III §5          | ~631  | CP 44                            |
-| Particular calendars & inheritance   | Part III §6          | ~670  | CP 8-16, 23-26, 40-44            |
-| Calendar hierarchy (4 levels)        | Part III §6.1        | ~674  | CP 13-16                         |
-| Rank by calendar level               | Part III §6.2        | ~701  | CP 8-12, 24-26                   |
-| Precedence conflicts                 | Part III §6.3        | ~740  | CP 23                            |
-| Proper of Seasons primacy            | Part III §6.4        | ~754  | CP 2                             |
-| Proper texts alignment               | Part III §6.5        | ~764  | CP 40, 43-44                     |
-| Reading constraints                  | Part III §6.6        | ~797  | CP 41                            |
-| Paschal Triduum is not a season      | Part III §7          | ~807  | PS 38-72                         |
-| Title model                          | Part III §8          | ~830  |                                   |
+| Concept                              | Section              | Line   | Key references                    |
+| ------------------------------------ | -------------------- | ------ | --------------------------------- |
+| Liturgical day vs. celebration       | Part III §1          | ~679   |                                   |
+| Cycle resolution                     | Part III §2          | ~702   |                                   |
+| Vespers I/II conflict                | Part III §3          | ~708   | GNLY 61, GILH 225, 231           |
+| Mass-Office choice independence      | Part III §4          | ~729   | GILH 234, GNLY 14                |
+| Office prayer = Mass collect         | Part III §5          | ~746   | CP 44                            |
+| Particular calendars & inheritance   | Part III §6          | ~785   | CP 8-16, 23-26, 40-44            |
+| Calendar hierarchy (4 levels)        | Part III §6.1        | ~789   | CP 13-16                         |
+| Rank by calendar level               | Part III §6.2        | ~816   | CP 8-12, 24-26                   |
+| Precedence conflicts                 | Part III §6.3        | ~855   | CP 23                            |
+| Proper of Seasons primacy            | Part III §6.4        | ~869   | CP 2                             |
+| Proper texts alignment               | Part III §6.5        | ~879   | CP 40, 43-44                     |
+| Reading constraints                  | Part III §6.6        | ~912   | CP 41                            |
+| Paschal Triduum is not a season      | Part III §7          | ~922   | PS 38-72                         |
+| Title model                          | Part III §8          | ~945   |                                   |
 
 DATA MODEL (types)
-| Type / Section                       | Section              | Line  | Notes                             |
-| ------------------------------------ | -------------------- | ----- | --------------------------------- |
-| Type shareability overview           | Part IV §1           | ~923  | Mass → Office reuse table         |
-| DayContext                           | Part IV §2           | ~943  | Shared — temporal context         |
-| FormularySet                         | Part IV §2           | ~1003 | Mass — collect + antiphons        |
-| ReadingText                          | Part IV §2           | ~1025 | Shared — long/short form          |
-| ReadingsSet                          | Part IV §2           | ~1042 | Mass — indivisible readings       |
-| ReadingsPool                         | Part IV §2           | ~1067 | Mass — divisible per component    |
-| ReadingsContent                      | Part IV §2           | ~1093 | Mass — Set or Pool enum           |
-| VigilReadingsSequence                | Part IV §2           | ~1112 | Easter/Pentecost vigil            |
-| FlexibleOrations                     | Part IV §2           | ~1150 | Mass — prayer over offerings etc. |
-| TextSource                           | Part IV §2           | ~1175 | Shared — provenance               |
-| SourcedText                          | Part IV §2           | ~1194 | Shared — text + provenance        |
-| CelebrationId                        | Part IV §2           | ~1207 | Shared — identity                 |
-| LiturgicalCalendar (Layer 1)         | Part IV §3           | ~1223 | Calendar structure                |
-| LiturgicalDay                        | Part IV §3           | ~1235 | Day wrapper                       |
-| Celebration                          | Part IV §3           | ~1259 | Core celebration type             |
-| CelebrationMass                      | Part IV §3           | ~1328 | Mass texts per celebration        |
-| MassTime                             | Part IV §3           | ~1361 | Existing type reference           |
-| Layer 1 example                      | Part IV §3           | ~1411 |                                   |
-| CelebrationHour                      | Part IV §3           | ~1527 | Office content per celebration    |
-| HourTime                             | Part IV §3           | ~1611 | Hour slots                        |
-| HoursPsalmody                        | Part IV §3           | ~1632 | Psalmody structure                |
-| MassCalendar (Layer 2 Mass)          | Part IV §4           | ~1662 | Output structure                  |
-| MassComposition                      | Part IV §4           | ~1672 | Resolved Mass for a date          |
-| IdentityOption                       | Part IV §4           | ~1744 | Celebration choice                |
-| ReadingsOption                       | Part IV §4           | ~1772 | Readings resolution               |
-| ReadingsCategory                     | Part IV §4           | ~1794 | Proper/accommodated/common        |
-| CompositionRules                     | Part IV §4           | ~1815 | Substitution rules                |
-| BlockRule / ReadingsRule / FlexRule   | Part IV §4           | ~1832 | Rule enums                        |
-| Layer 2 Mass example                 | Part IV §4           | ~1887 |                                   |
-| HoursCalendar (Layer 2 Hours)        | Part IV §5           | ~1991 | Output structure                  |
-| HoursComposition                     | Part IV §5           | ~2003 | Resolved Office for a date        |
-| HoursCelebrationOption               | Part IV §5           | ~2046 | Per-celebration option             |
-| ResolvedHourContent                  | Part IV §5           | ~2071 | Content of one Hour               |
-| OfficeReadingsContent                | Part IV §5           | ~2099 | Office of Readings                |
-| VigilExtension                       | Part IV §5           | ~2133 | Extended vigil structure           |
-| HoursCompositionRules                | Part IV §5           | ~2157 | Office substitution rules         |
-| MemorialRule / HourSuppression       | Part IV §5           | ~2170 | Memorial + suppression enums      |
-| Layer 2 Hours example                | Part IV §5           | ~2234 |                                   |
-| Type sharing summary                 | Part IV §6           | ~2362 |                                   |
-| Existing types reference             | Part IV §7           | ~2423 | Common, Precedence, Rank, etc.    |
+| Type / Section                       | Section              | Line   | Notes                             |
+| ------------------------------------ | -------------------- | ------ | --------------------------------- |
+| Type shareability overview           | Part IV §1           | ~1038  | Mass → Office reuse table         |
+| JSON serialization convention        | Part IV §2           | ~1056  | Adjacently tagged enums           |
+| DayContext                           | Part IV §2           | ~1060  | Shared — temporal context         |
+| FormularySet                         | Part IV §2           | ~1124  | Mass — collect + antiphons        |
+| ReadingText                          | Part IV §2           | ~1146  | Shared — long/short form          |
+| ReadingsSet                          | Part IV §2           | ~1163  | Mass — indivisible readings       |
+| ReadingsPool                         | Part IV §2           | ~1188  | Mass — divisible per component    |
+| ReadingsContent                      | Part IV §2           | ~1214  | Mass — Set or Pool enum           |
+| VigilReadingsSequence                | Part IV §2           | ~1233  | Easter/Pentecost vigil            |
+| FlexibleOrations                     | Part IV §2           | ~1271  | Mass — prayer over offerings etc. |
+| TextSource                           | Part IV §2           | ~1296  | Shared — provenance               |
+| SourcedText                          | Part IV §2           | ~1315  | Shared — text + provenance        |
+| CelebrationId                        | Part IV §2           | ~1328  | Shared — identity (newtype)       |
+| LiturgicalCalendar (Layer 1)         | Part IV §3           | ~1346  | Calendar structure (newtype)      |
+| LiturgicalDay                        | Part IV §3           | ~1360  | Day wrapper                       |
+| Celebration                          | Part IV §3           | ~1384  | Core celebration type             |
+| CelebrationMass                      | Part IV §3           | ~1457  | Mass texts per celebration        |
+| MassTime                             | Part IV §3           | ~1490  | Existing type reference           |
+| Layer 1 example                      | Part IV §3           | ~1540  |                                   |
+| CelebrationHour                      | Part IV §3           | ~1656  | Office content per celebration    |
+| HourTime                             | Part IV §3           | ~1740  | Hour slots                        |
+| HoursPsalmody                        | Part IV §3           | ~1761  | Psalmody structure                |
+| MassCalendar (Layer 2 Mass)          | Part IV §4           | ~1791  | Output structure                  |
+| MassComposition                      | Part IV §4           | ~1801  | Resolved Mass for a date          |
+| IdentityChoice                       | Part IV §4           | ~1877  | Celebration choice                |
+| ReadingsChoice                       | Part IV §4           | ~1905  | Readings resolution               |
+| ReadingsCategory                     | Part IV §4           | ~1927  | Proper/accommodated/common        |
+| CompositionRules                     | Part IV §4           | ~1948  | Substitution rules                |
+| BlockRule / ReadingsRule / FlexRule   | Part IV §4           | ~1965  | Rule enums                        |
+| Layer 2 Mass example                 | Part IV §4           | ~2020  |                                   |
+| HoursCalendar (Layer 2 Hours)        | Part IV §5           | ~2124  | Output structure                  |
+| HoursComposition                     | Part IV §5           | ~2136  | Resolved Office for a date        |
+| HoursCelebrationChoice               | Part IV §5           | ~2187  | Per-celebration choice            |
+| ResolvedHourContent                  | Part IV §5           | ~2212  | Content of one Hour               |
+| OfficeReadingsContent                | Part IV §5           | ~2240  | Office of Readings                |
+| VigilExtension                       | Part IV §5           | ~2280  | Extended vigil structure           |
+| HoursCompositionRules                | Part IV §5           | ~2304  | Office substitution rules         |
+| MemorialRule / HourSuppression       | Part IV §5           | ~2317  | Memorial + suppression enums      |
+| Layer 2 Hours example                | Part IV §5           | ~2381  |                                   |
+| Type sharing summary                 | Part IV §6           | ~2509  |                                   |
+| Existing types reference             | Part IV §7           | ~2570  | Common, Precedence, Rank, etc.    |
 
 ARCHITECTURE
-| Concept                              | Section              | Line  | Notes                             |
-| ------------------------------------ | -------------------- | ----- | --------------------------------- |
-| Module organization                  | Part V §1            | ~2769 | File tree                         |
-| Transformation pipeline              | Part V §2            | ~2816 | Layer 1 → Layer 2 steps           |
-| Calendar API                         | Part V §3            | ~2874 | Public interface                  |
-| Combining Hours with Mass            | Part V §4            | ~2888 | GILH 93-98                        |
-| Vigil extension & hour suppression   | Part V §5            | ~2898 | GILH 73, 206, 209-215; PS 59, 75 |
-| Source references appendix           | Appendix             | ~3024 | GIRM, GNLY, GILM, GILH, CP, PS   |
+| Concept                              | Section              | Line   | Notes                             |
+| ------------------------------------ | -------------------- | ------ | --------------------------------- |
+| Module organization                  | Part V §1            | ~2918  | File tree                         |
+| Transformation pipeline              | Part V §2            | ~2965  | Layer 1 → Layer 2 steps           |
+| Calendar API                         | Part V §3            | ~3028  | Public interface                  |
+| Combining Hours with Mass            | Part V §4            | ~3042  | GILH 93-98                        |
+| Vigil extension & hour suppression   | Part V §5            | ~3052  | GILH 73, 206, 209-215; PS 59, 75 |
+| Source references appendix           | Appendix             | ~3178  | GIRM, GNLY, GILM, GILH, CP, PS   |
+| Conclusion                           | Conclusion           | ~3307  |                                   |
 -->
 
 ## Context and Motivation
@@ -112,6 +115,20 @@ This document is a comprehensive architecture and data-modeling reference for ro
 - **Layer 1 — Liturgical Calendar** (`generate_liturgical_calendar`): centered on the liturgical day, for internal use and as the foundation for Layers 2 Mass and 2 Hours.
 - **Layer 2 Mass — Mass Calendar** (`generate_mass_calendar`): centered on the mass as celebrated on a civil date, with pre-resolved options and explicit composition rules.
 - **Layer 2 Hours — Hours Calendar** (`generate_hours_calendar`): centered on the Hours of the Office as celebrated on a civil date, with pre-resolved content and composition rules adapted to the Office's overlay mechanism.
+
+### Terminology
+
+The following terms appear throughout this document with specific meanings:
+
+| Term                        | Definition                                                                                                                                                                                                      |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Weekday / Feria**         | Synonyms. A day without a feast or memorial as its primary celebration. The code and this document prefer "weekday"; liturgical sources often use "feria."                                                      |
+| **Formulary**               | The complete set of texts (collect, antiphons, orations) associated with a specific celebration in the Missal. See Part I §2 Group 1.                                                                           |
+| **Proper**                  | (1) Texts specific to a saint or celebration, as opposed to Common texts. (2) _Lectiones propriae_ — readings about the saint or the mystery being celebrated (GILM 83). Context determines the intended sense. |
+| **Accommodated**            | Readings that highlight a particular aspect of a saint's life, without being strictly about the saint (GILM 83). Facultative — see Part I §2 Group 2.                                                           |
+| **Common**                  | A pool of liturgical texts (prayers, readings, antiphons) organized by category of saint (e.g., Common of Virgins). Used as fallback when no proper text exists.                                                |
+| **Indivisible / Divisible** | Indivisible: readings taken as a pre-composed set (weekday, proper). Divisible: readings chosen independently per component from pools (Common). See Part I §2 Group 2.                                         |
+| **Privileged weekdays**     | Weekdays of Advent Dec 17-24, Christmas Octave, and Lent (Precedence level 9 — `PrivilegedWeekday_9`). The feria is imposed, with limited memorial interaction.                                                 |
 
 ---
 
@@ -136,7 +153,7 @@ GIRM 355 also adds two pastoral directives:
 - "Where the optional memorials of the Blessed Virgin Mary or of the Saints are dear to the faithful, the priest should satisfy their legitimate devotion."
 - When choosing between a memorial in the General Calendar and one in a diocesan or religious calendar, "preference should be given, all things being equal and in keeping with tradition, to the memorial inscribed in the particular calendar."
 
-Once the celebrant has made this global choice, it determines which "formulary" (set of texts) is used as the base. However, certain elements can then be mixed between sources.
+Once the celebrant has made this global choice, it determines which formulary block (see §2 Group 1) is used as the base. However, certain elements can then be mixed between sources.
 
 ### 2. The Three Substitution Groups
 
@@ -148,19 +165,19 @@ The GIRM organizes mass texts into groups with distinct substitution rules:
 
 These three elements follow the global choice of celebration as a block. When the memorial is celebrated, all three come from the saint (proper or Common). When the feria is celebrated, all three come from the feria.
 
-> **Architectural note:** The GIRM does not explicitly group these three elements together as an "inseparable block." This grouping is an architectural inference derived from what GIRM 363 makes individually flexible (prayer over the offerings, prayer after Communion) and what it does not — leaving the collect, entrance antiphon, and communion antiphon bound to the chosen formulary. Note that GIRM 48 and 87 (cf. GIRM 367) do allow the entrance and communion antiphons to be replaced by other approved chants, which is a separate form of flexibility not modeled here.
+> **Architectural note:** The GIRM does not explicitly group these three elements together as an "inseparable block." This grouping is an architectural inference derived from what GIRM 363 makes individually flexible (prayer over the offerings, prayer after Communion) and what it does not — leaving the collect, entrance antiphon, and communion antiphon bound to the chosen formulary. Note that GIRM 48 and 87 (see GIRM 367 in the Appendix) do allow the entrance and communion antiphons to be replaced by other approved chants, which is a separate form of flexibility not modeled here.
 
 The collect is the identifying marker of the celebration. GIRM 363 states: "On memorials of Saints, the collect proper to the day is used, **or, if none is available, one from an appropriate Common.**"
 
 **Exception — Privileged weekdays (GIRM 355.1):** On weekdays of Advent Dec 17-24, Octave of Christmas, and Lent, the Mass of the feria is obligatory. Only the collect may be borrowed from the memorial — this is the only case where the collect is detachable from the antiphons.
 
-**Further exception — Ash Wednesday and Holy Week (GIRM 355.1):** On Ash Wednesday and during Holy Week, even the collect may **not** be borrowed from a memorial. The feria is imposed entirely without exception.
+**Further exception — Ash Wednesday and Holy Week (GIRM 355.1):** On Ash Wednesday and during Holy Week, even the collect may **not** be borrowed from a memorial. The feria is imposed entirely without exception. See Part III §7 for the Triduum norms (PS 38-72).
 
 #### Group 2 — Readings Block (GIRM 357-358, GILM 83-84)
 
 **Reading 1 + Psalm + (Reading 2) + Alleluia + Gospel**
 
-The degree of flexibility within this block depends on the **source** of the readings:
+The degree of flexibility within this block depends on the **category** of the readings:
 
 - **Weekday and proper readings**: These are **indivisible** — they are taken as a complete, pre-composed set. The psalm responds to the first reading it is paired with.
 - **Common readings**: These are **divisible by component** — the celebrant may choose each element independently from pools of texts (GILM 71, 89). See below.
@@ -260,7 +277,7 @@ The Sequence is a hymn that precedes the Alleluia (and thus the Gospel). It exis
 | Corpus Christi               | _Lauda Sion Salvatorem_    | Optional                  |
 | Our Lady of Sorrows (Sep 15) | _Stabat Mater_             | Optional                  |
 
-**Consequence for the data model:** The `sequence: Option<String>` field in `ReadingsSet` is `None` on most days and `Some(reference)` on these five celebrations. The obligatory/optional distinction is determined by the celebration itself — the engine sets the field, and consumers may choose to omit optional sequences but must include obligatory ones.
+**Consequence for the data model:** The `sequence: Option<String>` field in `ReadingsSet` is `None` on most days and `Some(reference)` on these five celebrations. The engine provides the sequence text; whether it is obligatory or optional is determined by the celebration itself (see table above). The engine does **not** encode `sequence.obligatory: bool` — the consumer must know that Easter Sunday and Pentecost sequences are obligatory (GIRM §64) while the others are optional.
 
 ##### Long and short forms (GILM 75, 80)
 
@@ -298,25 +315,25 @@ GIRM 360 provides that "at times, a longer and shorter form of the same text is 
 
 ### 3. Summary by Season Context
 
-The rules vary depending on the liturgical season:
+The rules vary depending on the liturgical season.
+
+> **Note on "Easter\*" in the table:** "Easter" here means **Easter weekdays outside the Octave**. The Easter Octave (GNLY 24) consists of days celebrated as Solemnities of the Lord (precedence level 2 in the Table of Liturgical Days, entry 2). No memorials are celebrated during the Octave. The expression "weekdays of the Easter Season" in GIRM 355.2 automatically excludes the Octave days because they are not weekdays.
+>
+> **Note on GIRM 355.1 and Easter:** GIRM 355.1 contains two distinct provisions: (1) the rule for privileged weekdays (Advent 17-24, Octave of Christmas, Lent) where the feria is imposed; and (2) the clarification "On weekdays of the Easter Season, memorials of Saints may rightly be celebrated fully." This second sentence confirms that Easter weekdays follow the 355.2 regime (free choice), not the restricted regime. The word "fully" means all three substitution groups follow the 355.2/355.3 rules — not just collect-borrowing.
 
 | Season                                                                       | GIRM ref | Formulary block                                       | Readings block                                                                         | Flexible orations                   |
 | ---------------------------------------------------------------------------- | -------- | ----------------------------------------------------- | -------------------------------------------------------------------------------------- | ----------------------------------- |
 | **Ordinary Time weekdays**                                                   | 355.3    | Free choice: feria or memorial ¹                      | Feria default; saint's proper if they exist (obligatory); or Common (always available) | Each independently: feria or Common |
-| **Advent before Dec 17, Christmas from Jan 2, Easter**                       | 355.2    | Free choice: feria or memorial ²                      | Free choice: feria, saint's proper, or Common                                          | Each independently                  |
+| **Advent before Dec 17, Christmas from Jan 2, Easter\***                     | 355.2    | Free choice: feria or memorial ²                      | Free choice: feria, saint's proper, or Common                                          | Each independently                  |
 | **Advent Dec 17-24, Octave of Christmas, Lent** (except Ash Wed & Holy Week) | 355.1    | Feria imposed (only collect borrowable from memorial) | Feria imposed                                                                          | Feria imposed                       |
 | **Ash Wednesday, Holy Week**                                                 | 355.1    | Feria imposed entirely (no collect borrowing)         | Feria imposed                                                                          | Feria imposed                       |
 
 ¹ GIRM 355.3 also allows Martyrology saints, Masses for Various Needs, and Votive Masses (out of scope for this model).
 ² GIRM 355.2 also allows the Mass of any Saint listed in the _Martyrology_ (out of scope for this model).
 
-> **Note on "Easter" in the table:** "Easter" here means **Easter weekdays outside the Octave**. The Easter Octave (GNLY 24) consists of days celebrated as Solemnities of the Lord (precedence level 2 in the Table of Liturgical Days, entry 2). No memorials are celebrated during the Octave. The expression "weekdays of the Easter Season" in GIRM 355.2 automatically excludes the Octave days because they are not weekdays.
-
-> **Note on GIRM 355.1 and Easter:** GIRM 355.1 contains two distinct provisions: (1) the rule for privileged weekdays (Advent 17-24, Octave of Christmas, Lent) where the feria is imposed; and (2) the clarification "On weekdays of the Easter Season, memorials of Saints may rightly be celebrated fully." This second sentence confirms that Easter weekdays follow the 355.2 regime (free choice), not the restricted regime. The word "fully" means all three substitution groups follow the 355.2/355.3 rules — not just collect-borrowing.
-
 **Lenten demotion (GNLY 14, 59 entry 12):** Obligatory Memorials that fall on Lenten weekdays may only be celebrated as Optional Memorials. They follow the same "special manner" as optional memorials on privileged weekdays (collect-borrowing only, except Ash Wednesday and Holy Week).
 
-**No commemorations (Notitiae R8):** The reformed liturgy has eliminated the practice of commemorations. When a solemnity occurs on an Advent or Lent weekday, only the solemnity is celebrated — no elements of the weekday are added as a "commemoration" in either Mass or Office. The composition model therefore has no commemoration mechanism.
+**No commemorations (Notitiae R8, see `notitiae-responses.mdx` R8):** The reformed liturgy has eliminated the practice of commemorations. When a solemnity occurs on an Advent or Lent weekday, only the solemnity is celebrated — no elements of the weekday are added as a "commemoration" in either Mass or Office. The composition model therefore has no commemoration mechanism.
 
 ### 4. Visual Schema
 
@@ -467,6 +484,8 @@ Feasts are celebrated like solemnities but with two significant restrictions:
 
 For reference, the complete comparison by rank:
 
+Legend: OT = Ordinary Time, priv. = privileged weekdays (Advent 17-24, Christmas Octave, Lent).
+
 ```
                         Solemnity        Feast           Memorial (OT)      Memorial (priv.)     Weekday
                         ─────────        ─────           ──────────────      ────────────────     ───────
@@ -536,7 +555,9 @@ The Office handles memorials on privileged weekdays differently from the Mass, u
 
 > **Note on concluding prayer:** GILH §239a and GILH §239b have different mechanisms. In the Office of Readings (GILH §239a), the saint's concluding prayer _replaces_ the weekday prayer. In Lauds/Vespers (GILH §239b), the saint's prayer is _appended_ alongside the weekday prayer (whose ending is omitted). This distinction matters for the data model.
 
-**Key difference from the Mass:** In the Mass on privileged weekdays (GIRM 355.1), the collect is **borrowed** from the memorial, replacing the weekday collect — a substitution. In the Office (GILH §239), no weekday element is removed or replaced — the saint's elements are **added alongside** the weekday elements. This is architecturally significant: the Mass model uses `ForcedCollectBorrowable` (a substitution rule), but the Office would need an "append" or "supplement" rule with no equivalent in the current `BlockRule` enum.
+**Key difference from the Mass:** In the Mass on privileged weekdays (GIRM 355.1), the collect is **borrowed** from the memorial, replacing the weekday collect — a substitution. In the Office (GILH §239), no weekday element is removed or replaced — the saint's elements are **added alongside** the weekday elements. This is architecturally significant: the Mass model uses `BlockRule::ForcedCollectBorrowable` (a substitution rule), but the Office uses `MemorialRule::AdditionsOnly` (Part IV §5), which models the "append" mechanism with no equivalent in the Mass's `BlockRule` enum.
+
+**How the additions materialize in the data model:** The GILH §239 additions (hagiographical reading, saint's antiphon + prayer) are resolved by the engine in Layer 2 Hours and appear in `ResolvedHourContent` and `OfficeReadingsContent`. Specifically: the hagiographical reading appears in `OfficeReadingsContent.hagiographical_reading` alongside the preserved `patristic_reading` (both `Some`); the saint's canticle antiphon and concluding prayer appear in `ResolvedHourContent.canticle_antiphon` and `ResolvedHourContent.concluding_prayer` with `source: ProperOfSaint`. The `MemorialRule::AdditionsOnly` variant (Part IV §5) signals to consumers that these elements are additions, not substitutions.
 
 ### 6. Visual Schemas for Office Composition
 
@@ -610,7 +631,7 @@ COMPARISON: MASS vs. OFFICE ON PRIVILEGED WEEKDAYS
                                           • Lauds/Vespers (GILH §239b): saint's
                                             antiphon + prayer APPENDED
                                           • Patristic reading KEPT (not replaced)
-  Data model: ForcedCollectBorrowable     Data model: AdditionsOnly
+  Data model: BlockRule::ForcedCollectBorrowable     Data model: MemorialRule::AdditionsOnly
 ```
 
 ### 7. Te Deum Rules (GILH 68, 228, 231, 235d)
@@ -637,9 +658,9 @@ GNLY 15: "On Saturdays in Ordinary Time when no Obligatory Memorial occurs, an O
 
 GILH 240 confirms this applies to the Office: the Saturday BVM memorial is celebrated as other optional memorials (GILH §235-236 rules).
 
-**Key point:** This is a **structural option** generated by a general norm, not inscribed in a specific calendar. It exists on every OT Saturday without an obligatory memorial. The engine must generate this option automatically, adding a `HoursCelebrationOption` for the BVM memorial with content from the Common of the Blessed Virgin Mary.
+**Key point:** This is a **structural option** generated by a general norm, not inscribed in a specific calendar. It exists on every OT Saturday without an obligatory memorial. The engine must generate this option automatically, adding a `HoursCelebrationChoice` for the BVM memorial with content from the Common of the Blessed Virgin Mary.
 
-This parallels the Mass model where the BVM Saturday memorial generates an `IdentityOption` and `ReadingsOption`.
+This parallels the Mass model where the BVM Saturday memorial generates an `IdentityChoice` (Part IV §4) and `ReadingsChoice` (Part IV §4).
 
 ### 9. Commons in the Office vs. Mass
 
@@ -652,7 +673,7 @@ The role of the Common differs between Mass and Office:
 | **Choice freedom**   | "The celebrant may choose at will" (GILM 71)                                                                         | Priority order: Proper → Common → weekday (GILH §235b)                          |
 | **Multiple Commons** | The saint's category determines the primary Common, but Common of Men and Women Saints is always available (GILM 83) | Similarly, multiple Commons may be indicated, and broader Commons are available |
 
-**Consequence for the data model:** The `commons: Vec<CommonInfo>` field in `HoursCelebrationOption` lists the applicable Commons for that celebration, allowing the engine to resolve texts from the correct Common when the saint's Proper is absent.
+**Consequence for the data model:** The `commons: Vec<CommonInfo>` field in `HoursCelebrationChoice` lists the applicable Commons for that celebration, allowing the engine to resolve texts from the correct Common when the saint's Proper is absent.
 
 ---
 
@@ -703,7 +724,7 @@ In practice:
 
 1. Check if the following liturgical day has a Vespers I (only solemnities and Lord's Feasts on Sundays).
 2. Compare precedence with the current day's Vespers per GNLY 61.
-3. Generate only the winning Vespers entry for that civil date evening.
+3. Generate only the winning Vespers entry for that civil date evening. The `HoursComposition.replaces_vespers_of` field identifies the losing celebration, enabling a pastoral note for consumers (e.g., "First Vespers of Sunday. Vespers of the Saturday are omitted.").
 4. The losing Vespers is omitted entirely — it does not appear as an option.
 
 This is different from the Mass model where `PreviousEveningMass` and `DayMass` of the same civil date coexist as separate entries. For the Office, only one Vespers is celebrated — there is no "pick one" mechanism. The engine makes the determination.
@@ -755,7 +776,7 @@ Celebration.prayer            ← single source of truth (CP §44)
 
 - On memorials, GILH §235c makes the concluding prayer mandatory from the saint — and it is the same text that serves as the Mass collect. Storing it once ensures consistency.
 - The identity reinforces the shared `Celebration` entity design (Layer 1): the `Celebration` is the unifying concept across Mass and Office.
-- In Layers 2 Mass and 2 Hours, the resolved text appears in both `IdentityOption.formulary_set.collect` and `ResolvedHourContent.concluding_prayer` — identical content, traceable to the same source.
+- In Layers 2 Mass and 2 Hours, the resolved text appears in both `IdentityChoice.formulary_set.collect` and `ResolvedHourContent.concluding_prayer` — identical content, traceable to the same source.
 
 **When `FormularySet.collect` overrides `Celebration.prayer`:**
 Multi-Mass celebrations (e.g., Christmas: Vigil, Night, Dawn, Day) have distinct collects per Mass time. Each `FormularySet` provides its own `collect`, and `Celebration.prayer` typically holds the DayMass collect (or is `None` if all four are distinct). This override is rare — most celebrations have a single Mass with a single collect.
@@ -832,7 +853,7 @@ Other saints (no special bond)       Any                   Obl./Opt. Memorial §
 
 **Example:** St. Thomas Aquinas is an optional memorial in the General Calendar. In a Dominican calendar (§12), he is a solemnity (as founder). In the diocese of Aquino, he could be a feast (§9 principal patron).
 
-**Consequence for the data model:** The `Rank` field in `Celebration` (Layer 1) and in `IdentityOption`/`HoursCelebrationOption` (Layers 2 Mass / 2 Hours) reflects the rank as resolved for the specific calendar in use. The engine inherits rank from the most specific calendar that defines it. The `from_calendar_id` field traces which calendar contributed the celebration and its rank.
+**Consequence for the data model:** The `Rank` field in `Celebration` (Layer 1) and in `IdentityChoice`/`HoursCelebrationChoice` (Layers 2 Mass / 2 Hours) reflects the rank as resolved for the specific calendar in use. The engine inherits rank from the most specific calendar that defines it. The `from_calendar_id` field traces which calendar contributed the celebration and its rank.
 
 #### 3. Precedence Conflicts: General vs. Particular (CP 23)
 
@@ -856,7 +877,7 @@ CP §2 reinforces the GNLY principle that the temporal cycle always takes preced
 - **§2b:** Lent, Easter Octave, and Dec 17-31 are to be kept free of particular celebrations — except optional memorials, certain feasts listed in Table of Liturgical Days §8 a-d, and non-transferable solemnities.
 - **§2c:** Indult celebrations must not "duplicate celebrations already in the cycle of the mystery of salvation" and "must not be too numerous."
 
-This reinforces the `MemorialRule::NoMemorial` and `AdditionsOnly` mechanisms already defined in Part II, and the GNLY 59-60 precedence rules in the pipeline.
+This reinforces the `MemorialRule::NoMemorial` and `MemorialRule::AdditionsOnly` mechanisms already defined in Part II, and the GNLY 59-60 precedence rules in the pipeline.
 
 #### 5. Proper Texts: Mass and Office Alignment (CP 40, 43-44)
 
@@ -1011,7 +1032,7 @@ struct Patronage {
 - **Martyr detection becomes trivial:** `title.category == TitleCategory::Martyr` — no fragile match list.
 - **Zero core modifications** for new qualifiers or patronages — everything is in the data files.
 - **`PatronRole`** has only 3 variants (CP §31: principal, secondary, co-patron; gender resolved from `MartyrologyEntry.sex`) vs. the current 37 patron-specific `Title` variants.
-- **`Celebration` and `HoursCelebrationOption`** carry both `titles: TitlesDef` and `patronages: Vec<Patronage>`. Patronages are defined at calendar level (country/diocese), not in martyrology resources.
+- **`Celebration` and `HoursCelebrationChoice`** carry both `titles: TitlesDef` and `patronages: Vec<Patronage>`. Patronages are defined at calendar level (country/diocese), not in martyrology resources.
 
 ---
 
@@ -1037,6 +1058,8 @@ struct Patronage {
 
 These types are used by both layers.
 
+> **JSON serialization convention:** All enums with data variants (e.g., `ReadingsContent`, `BlockRule`, `ReadingsRule`, `FlexibleRule`, `MemorialRule`, `HourSuppression`, `TextSource`) are serialized using **adjacently tagged** representation: `{"type": "Fixed", "data": {...}}`. This format is explicit, avoids field-name conflicts, and is straightforward to consume in any language (TypeScript, Python, etc.). Simple enums without data (e.g., `Season`, `Rank`, `Color`) serialize as plain strings. Newtypes (`CelebrationId`, `CalendarId`) serialize as plain strings.
+
 #### `DayContext`
 
 **What it is:** The shared temporal context for all celebrations on a given date.
@@ -1047,9 +1070,12 @@ These types are used by both layers.
 
 ```rust
 struct DayContext {
-    /// Liturgical season (GNLY 17-44). None during the Paschal Triduum
-    /// (Good Friday, Holy Saturday), which is not a season but a distinct
-    /// liturgical unit tracked via `periods` (see Season design decision).
+    /// Liturgical season (GNLY 17-44). None only on Good Friday and Holy
+    /// Saturday, which fall between Lent and Easter Time — the Paschal Triduum
+    /// is not a season but a distinct liturgical unit tracked via `periods`
+    /// (see Part III §7). Holy Thursday remains Some(Lent) because GNLY §28
+    /// places it within Lent until the evening Mass; Easter Sunday is
+    /// Some(EasterTime) because GNLY §22 begins Easter Time on that day.
     season: Option<Season>,
     /// Localized season name for display
     season_name: Option<String>,
@@ -1081,10 +1107,11 @@ struct DayContext {
     week_of_season: Option<u32>,
     /// Day number within the season (1-based)
     day_of_season: Option<u32>,
-    /// Day of the week (0 = Sunday, 6 = Saturday)
+    /// Day of the week
     day_of_week: DayOfWeek,
     /// Sub-periods this day belongs to (e.g., HolyWeek + PaschalTriduum).
     /// A day can belong to multiple overlapping periods.
+    /// See Part IV §7 for `Period` and `PeriodInfo` definitions.
     periods: Vec<PeriodInfo>,
     /// First date of the current season (ISO format)
     start_of_season: Option<String>,
@@ -1108,7 +1135,7 @@ struct DayContext {
 ```rust
 struct FormularySet {
     /// Collect override for this specific Mass time.
-    /// When None, resolves to Celebration.prayer (CP §44).
+    /// When None, **will be resolved in Layer 2** to `Celebration.prayer` (CP §44).
     /// When Some(...), this Mass has a specific collect that differs from
     /// the canonical prayer (e.g., Christmas NightMass vs DayMass).
     collect: Option<String>,
@@ -1308,8 +1335,10 @@ struct SourcedText {
 **Why this name:** It identifies a `Celebration` uniquely within the calendar (e.g., `"ord_time_5_mon"`, `"st_scholastica"`).
 
 ```rust
-type CelebrationId = String;
+struct CelebrationId(String);
 ```
+
+> **Newtype pattern:** `CelebrationId` is a newtype wrapping `String` rather than a type alias. This ensures type safety — prevents accidentally passing a `CalendarId` or a plain `String` where a `CelebrationId` is expected. In JSON, it serializes as a plain string.
 
 ### 3. Layer 1 — Liturgical Calendar
 
@@ -1326,8 +1355,10 @@ type CelebrationId = String;
 **Why keyed by civil date:** By convention and for practical convenience, each liturgical day is associated with the civil date where the majority of the day occurs. The `MassTime` enum carries the information about whether a mass is celebrated the evening before (e.g., `PreviousEveningMass`, `EasterVigil`).
 
 ```rust
-type LiturgicalCalendar = BTreeMap<String, LiturgicalDay>;
+struct LiturgicalCalendar(BTreeMap<String, LiturgicalDay>);
 ```
+
+> **Newtype pattern:** `LiturgicalCalendar` wraps the `BTreeMap` to provide a named type with domain-specific methods, rather than exposing the raw map. In JSON, it serializes as a plain object keyed by date strings.
 
 #### `LiturgicalDay`
 
@@ -1376,19 +1407,21 @@ struct Celebration {
     /// Permissible liturgical colors (GIRM 346). Multiple when alternatives
     /// exist (e.g., gold/white on solemnities, black/purple for funerals).
     /// Red is automatically assigned when MartyrologyEntry.titles contains Martyr.
+    /// See Part IV §7 for `Color` and `ColorInfo` definitions.
     colors: Vec<ColorInfo>,
-    /// Applicable Commons from the Roman Missal (see Part IV §7 for resolution).
-    /// Empty when the celebration has all proper texts.
-    /// Multiple when the saint belongs to several categories (e.g., Virgin + Martyr).
-    /// Each Common provides a pool of fallback texts (prayers, readings, antiphons)
-    /// for elements that have no proper text.
+    /// Applicable Commons from the Roman Missal (see Part IV §7 for `Common`
+    /// and `CommonInfo` definitions). Empty when the celebration has all proper
+    /// texts. Multiple when the saint belongs to several categories (e.g.,
+    /// Virgin + Martyr). Each Common provides a pool of fallback texts (prayers,
+    /// readings, antiphons) for elements that have no proper text.
     commons: Vec<CommonInfo>,
     /// Persons, entities, or groups celebrated on this day.
     /// Carries biographical metadata (titles, sex, count) used by the engine
     /// to resolve Commons and assign colors. See Part IV §7 for key fields.
     martyrology: Vec<MartyrologyEntry>,
     /// Titles as published in the liturgical books (Martyr, Virgin, Bishop, etc.).
-    /// TitleCategory + optional qualifier. See Part IV §7.
+    /// TitleCategory + optional qualifier. See Part III §8 for the design decision
+    /// and Part IV §7 for `TitlesDef` and `TitleCategory` definitions.
     titles: TitlesDef,
     /// Patronages (Patron/Copatron of a country, diocese, etc.).
     /// Fully data-driven, defined at calendar level. See Part IV §7.
@@ -1403,7 +1436,9 @@ struct Celebration {
     /// in LiturgicalDay.parent_overrides.
     from_calendar_id: CalendarId,
 
-    /// The canonical prayer of this celebration (CP §44 cross-domain identity).
+    /// Canonical prayer (CP §44) — serves as Mass collect and Office concluding
+    /// prayer unless overridden by `FormularySet.collect` or
+    /// `CelebrationHour.concluding_prayer` respectively.
     /// This is the single text that serves as:
     /// - the Mass collect (FormularySet.collect)
     /// - the Office concluding prayer (CelebrationHour.concluding_prayer)
@@ -1523,7 +1558,7 @@ LiturgicalCalendar
 │       │   └── masses:
 │       │       └── DayMass → CelebrationMass
 │       │           ├── formulary: FormularySet { collect: None, ant_entr, ant_comm }
-│       │           │                              ↑ resolves to Celebration.prayer
+│       │           │                              ↑ resolved in Layer 2 to Celebration.prayer
 │       │           ├── readings: ReadingsSet { reading_1, psalm, gospel }
 │       │           └── flexible_orations: FlexibleOrations { ... }
 │       │
@@ -1664,7 +1699,7 @@ struct CelebrationHour {
     /// On memorials: only hagiographical_reading populated (GILH §235d).
     /// On solemnities/feasts: both readings fully populated from Proper/Common (GILH §228).
     /// On the feria: scripture from weekday cycle, patristic from current cycle.
-    office_readings_content: Option<CelebrationOfficeReadings>,
+    office_of_readings_content: Option<CelebrationOfficeReadings>,
 }
 
 /// Raw Office of Readings content that a celebration provides.
@@ -1806,6 +1841,10 @@ struct MassComposition {
     /// The celebration to use by default (typically the feria or highest-ranking)
     default_celebration_id: CelebrationId,
 
+    // Note: GIRM 355 regime (which substitution rules apply) is not a separate
+    // field — it is fully deducible from `context.season` + `context.periods` +
+    // the `rank` of the default celebration, and is encoded in `composition_rules`.
+
     // === PRE-MASS ENTRANCE RITE ===
     /// Gospel reading proclaimed during a pre-Mass entrance rite.
     /// Present only on Palm Sunday (MassOfThePassion): the Gospel of the
@@ -1817,12 +1856,12 @@ struct MassComposition {
     /// The consumer picks ONE option — all three texts come as a block.
     /// GNLY 14: "If several Optional Memorials are inscribed in the Calendar
     /// on the same day, only one may be celebrated, the others being omitted."
-    identity_options: Vec<IdentityOption>,
+    identity_choices: Vec<IdentityChoice>,
 
     // === READINGS BLOCK (GIRM 357, GILM 71/83/89) ===
     /// Each option = either a fixed set (weekday/proper) or a pool (Common)
     /// The consumer picks ONE option, then composes from it
-    readings_options: Vec<ReadingsOption>,
+    readings_choices: Vec<ReadingsChoice>,
 
     // === FLEXIBLE ORATIONS (GIRM 363) AND PREFACE (GIRM 364-365) ===
     /// Each oration has its own list of alternatives, chosen independently
@@ -1838,16 +1877,16 @@ struct MassComposition {
 }
 ```
 
-#### `IdentityOption`
+#### `IdentityChoice`
 
 **What it is:** One possible celebration that can be chosen for the formulary block. Contains the celebration's metadata and its inseparable text trio (collect + antiphons).
 
-**Why this name:** "Identity" because the formulary block is what _identifies_ which celebration is being performed — the collect is the defining prayer. "Option" because it is one choice among several.
+**Why this name:** "Identity" because the formulary block is what _identifies_ which celebration is being performed — the collect is the defining prayer. "Choice" because it is one choice among several.
 
-**Why it wraps `FormularySet`:** The `FormularySet` (shared type) provides the three inseparable texts. `IdentityOption` adds the celebration metadata (name, rank, colors...) that the consumer needs for display and logic.
+**Why it wraps `FormularySet`:** The `FormularySet` (shared type) provides the three inseparable texts. `IdentityChoice` adds the celebration metadata (name, rank, colors...) that the consumer needs for display and logic.
 
 ```rust
-struct IdentityOption {
+struct IdentityChoice {
     /// Reference to the celebration
     celebration_id: CelebrationId,
     celebration_name: String,
@@ -1866,16 +1905,16 @@ struct IdentityOption {
 }
 ```
 
-#### `ReadingsOption`
+#### `ReadingsChoice`
 
 **What it is:** One possible readings provision for the Liturgy of the Word. May be a fixed set (weekday, proper) or a pool of independently choosable components (Common).
 
-**Why this name:** "Readings" because it concerns the Scripture readings. "Option" because it is one choice among several (weekday readings, saint's proper readings, or Common readings).
+**Why this name:** "Readings" because it concerns the Scripture readings. "Choice" because it is one choice among several (weekday readings, saint's proper readings, or Common readings).
 
-**Why it wraps `ReadingsContent`:** The `ReadingsContent` enum (shared type) distinguishes the two structural modes. `ReadingsOption` adds source provenance, the GILM 83 category, and flags.
+**Why it wraps `ReadingsContent`:** The `ReadingsContent` enum (shared type) distinguishes the two structural modes. `ReadingsChoice` adds source provenance, the GILM 83 category, and flags.
 
 ```rust
-struct ReadingsOption {
+struct ReadingsChoice {
     /// Where these readings come from
     source: TextSource,
     /// Category per GILM 83 (determines binding force)
@@ -1994,21 +2033,21 @@ MassCalendar
 │       context: DayContext { season: OrdinaryTime, week: 5, ... },
 │       default_celebration_id: "ord_time_5_mon",
 │
-│       identity_options: [
-│           IdentityOption {                          ← feria
+│       identity_choices: [
+│           IdentityChoice {                          ← feria
 │               celebration_id: "ord_time_5_mon",
 │               rank: Weekday,
 │               formulary: FormularySet { collect: "...", ... }
 │           },
-│           IdentityOption {                          ← optional memorial
+│           IdentityChoice {                          ← optional memorial
 │               celebration_id: "st_scholastica",
 │               rank: OptionalMemorial,
 │               formulary: FormularySet { collect: "...", ... }
 │           },
 │       ],
 │
-│       readings_options: [
-│           ReadingsOption {                          ← weekday (default)
+│       readings_choices: [
+│           ReadingsChoice {                          ← weekday (default)
 │               source: ProperOfTime("ord_time_5_mon"),
 │               category: Weekday,
 │               is_default: true,
@@ -2018,7 +2057,7 @@ MassCalendar
 │                   gospel: "Mk 6:53-56", ...
 │               })
 │           },
-│           ReadingsOption {                          ← Common of Virgins
+│           ReadingsChoice {                          ← Common of Virgins
 │               source: Common(Virgins, "st_scholastica"),
 │               category: Common,
 │               is_default: false,
@@ -2126,7 +2165,15 @@ struct HoursComposition {
     /// Each option = one possible celebration with its pre-resolved Hour content.
     /// The consumer picks ONE option.
     /// GNLY 14: only one optional memorial may be celebrated per day.
-    celebration_options: Vec<HoursCelebrationOption>,
+    celebration_choices: Vec<HoursCelebrationChoice>,
+
+    // === VESPERS CONFLICT ===
+    /// When this Hour is Vespers and it won a GNLY §61 conflict against the
+    /// Vespers of another celebration, this field identifies the losing
+    /// celebration. None if no conflict. Allows the consumer to display a
+    /// pastoral note (e.g., "First Vespers of Sunday. Vespers of the
+    /// Saturday are omitted.").
+    replaces_vespers_of: Option<CelebrationId>,
 
     // === COMPOSITION RULES ===
     /// How memorials interact with the weekday Office
@@ -2140,16 +2187,16 @@ struct HoursComposition {
 }
 ```
 
-#### `HoursCelebrationOption`
+#### `HoursCelebrationChoice`
 
 **What it is:** One possible celebration that can be chosen for this Hour, with its fully resolved content. The engine has already applied GILH §235 rules — merging weekday base with saint's proper elements.
 
-**Why this name:** It is one "option" among the available "celebrations" for this "Hour." Analogous to `IdentityOption` in the Mass model, but includes the full resolved content rather than just the formulary block.
+**Why this name:** It is one "choice" among the available "celebrations" for this "Hour." Analogous to `IdentityChoice` in the Mass model, but includes the full resolved content rather than just the formulary block.
 
 **Why fully resolved:** Unlike the Mass where the consumer actively composes (picks readings, picks orations), the Office consumer receives a finished composite. Once the celebration is chosen, GILH §235 determines everything. The engine does the work, the consumer picks and uses.
 
 ```rust
-struct HoursCelebrationOption {
+struct HoursCelebrationChoice {
     /// Reference to the celebration
     celebration_id: CelebrationId,
     celebration_name: String,
@@ -2218,11 +2265,17 @@ struct OfficeReadingsContent {
     /// Hagiographical reading — in honor of the saint
     /// Present on memorials (GILH §235d), during GILH §239 additions, and on solemnities/feasts
     hagiographical_reading: Option<SourcedText>,
-    /// Te Deum — on solemnities, feasts, Sundays outside Lent (GILH 68)
-    /// Not said on memorials or weekdays
+    /// Te Deum — on solemnities, feasts, days within the Easter and Christmas
+    /// Octaves, and Sundays outside Lent (GILH 68). Not said on memorials or
+    /// weekdays. When `vigil_extension` is `Some(...)`, the Te Deum is sung
+    /// AFTER the vigil canticles and Gospel (GILH §73), not before.
     te_deum: bool,
-    /// Vigil extension — canticles and Gospel inserted BEFORE Te Deum (GILH 73; GILH §206 cross-refs GILH §73; GILH §215)
-    /// Present only when the vigil form of the Office of Readings is celebrated
+    /// Vigil extension — canticles and Gospel inserted BEFORE Te Deum (GILH 73;
+    /// GILH §206 cross-refs GILH §73; GILH §215).
+    /// `Some(...)` when the engine provides the vigil form of the Office of
+    /// Readings for this day (solemnities, feasts, Sundays — GILH §73).
+    /// `None` when the vigil form is not available (weekdays, memorials).
+    /// The consumer decides whether to celebrate the vigil form.
     vigil_extension: Option<VigilExtension>,
 }
 ```
@@ -2318,7 +2371,7 @@ enum HourSuppression {
         celebration_id: CelebrationId,
     },
     /// This Hour is entirely replaced by a Mass celebration.
-    /// The `content` in `celebration_options` carries the reduced form
+    /// The `content` in `celebration_choices` carries the reduced form
     /// for those who cannot attend the Mass.
     /// (GILH 212: Easter Vigil replaces Office of Readings on Holy Saturday)
     ReplacedByMass {
@@ -2341,8 +2394,8 @@ HoursCalendar
 │       context: DayContext { season: OrdinaryTime, week: 5, ... },
 │       default_celebration_id: "ord_time_5_mon",
 │
-│       celebration_options: [
-│           HoursCelebrationOption {                 ← feria
+│       celebration_choices: [
+│           HoursCelebrationChoice {                 ← feria
 │               celebration_id: "ord_time_5_mon",
 │               rank: Weekday,
 │               content: ResolvedHourContent {
@@ -2358,7 +2411,7 @@ HoursCalendar
 │                   ...
 │               }
 │           },
-│           HoursCelebrationOption {                 ← memorial
+│           HoursCelebrationChoice {                 ← memorial
 │               celebration_id: "st_scholastica",
 │               rank: OptionalMemorial,
 │               content: ResolvedHourContent {
@@ -2397,8 +2450,8 @@ HoursCalendar
 │   HoursComposition {
 │       hour_time: OfficeOfReadings,
 │       ...
-│       celebration_options: [
-│           HoursCelebrationOption {                 ← feria
+│       celebration_choices: [
+│           HoursCelebrationChoice {                 ← feria
 │               celebration_id: "lent_2_mon",
 │               rank: Weekday,
 │               content: ResolvedHourContent {
@@ -2410,7 +2463,7 @@ HoursCalendar
 │                   ...
 │               }
 │           },
-│           HoursCelebrationOption {                 ← memorial (GILH §239 additions)
+│           HoursCelebrationChoice {                 ← memorial (GILH §239 additions)
 │               celebration_id: "st_john_ogilvie",
 │               rank: OptionalMemorial,              ← demoted per GILH §238
 │               content: ResolvedHourContent {
@@ -2442,8 +2495,8 @@ HoursCalendar
 │       hour_time: VespersI,                         ← Christmas Vespers I
 │       civil_date: "2025-12-24",                    ← shifted here
 │       liturgical_date: "2025-12-25",               ← belongs to Dec 25
-│       celebration_options: [
-│           HoursCelebrationOption {
+│       celebration_choices: [
+│           HoursCelebrationChoice {
 │               celebration_id: "christmas",
 │               rank: Solemnity,
 │               content: ResolvedHourContent { ... }, ← proper solemnity content
@@ -2484,8 +2537,8 @@ CelebrationOfficeReadings      ✓       ✗       ✗    L1 (Office)
 
 MassCalendar                   ✗       ✓       ✗    L2M
 MassComposition                ✗       ✓       ✗    L2M
-IdentityOption                 ✗       ✓       ✗    L2M
-ReadingsOption                 ✗       ✓       ✗    L2M
+IdentityChoice                 ✗       ✓       ✗    L2M
+ReadingsChoice                 ✗       ✓       ✗    L2M
 ReadingsCategory               ✗       ✓       ✗    L2M
 CompositionRules               ✗       ✓       ✗    L2M
 BlockRule                      ✗       ✓       ✗    L2M
@@ -2494,7 +2547,7 @@ FlexibleRule                   ✗       ✓       ✗    L2M
 
 HoursCalendar                  ✗       ✗       ✓    L2H
 HoursComposition               ✗       ✗       ✓    L2H
-HoursCelebrationOption         ✗       ✗       ✓    L2H
+HoursCelebrationChoice         ✗       ✗       ✓    L2H
 ResolvedHourContent            ✗       ✗       ✓    L2H
 OfficeReadingsContent          ✗       ✗       ✓    L2H
 VigilExtension                 ✗       ✗       ✓    L2H
@@ -2512,7 +2565,7 @@ Existing types (documented)    ✓       ✓       ✓    SHARED
   PsalterWeekCycle, PeriodInfo, TitlesDef, TitleCategory, Title,
   PatronRole, Patronage, MartyrologyEntry, CalendarId
 
-¹ Reused inside IdentityOption / ReadingsOption / ReadingsContent
+¹ Reused inside IdentityChoice / ReadingsChoice / ReadingsContent
 ² Exploded into Vec<SourcedText> per oration in Layer 2 Mass
 ³ MassTime: existing enum, documented in Part IV §4 with all 10 variants
 ```
@@ -2530,7 +2583,7 @@ The types below exist in the romcal codebase and are referenced by the new types
 **How it works in the composition model:**
 
 - A `Celebration.commons` vector lists the applicable Commons for that celebration (e.g., `[Martyrs_OutsideEaster_One, Virgins_One]` for a virgin martyr in Ordinary Time).
-- When the celebration has no proper readings, the engine generates a `ReadingsOption` with `source: TextSource::Common` and `readings: Pool(ReadingsPool)` for each applicable Common.
+- When the celebration has no proper readings, the engine generates a `ReadingsChoice` with `source: TextSource::Common` and `readings: Pool(ReadingsPool)` for each applicable Common.
 - The celebrant may freely choose from any of the applicable Commons' pools (GILM 71: "the celebrant may choose at will from such texts").
 - A celebration with all proper texts has `commons: []` (empty) — no Common is needed.
 - The `Common` enum is season-aware for the Blessed Virgin Mary (BVM has distinct Commons for Ordinary Time, Advent, Christmas, and Easter).
@@ -2711,7 +2764,7 @@ struct ColorInfo {
 
 - **Purple vs. Black for the Dead:** GIRM 346 positions purple as the standard color for Masses and Offices for the Dead (§346d), while black is the local-practice alternative (§346e: "where it is the practice"). Purple is the primary choice in most contemporary usage.
 - **Gold / festive vestments:** GIRM §346g says: "On more solemn days, sacred vestments may be used that are festive, that is, more precious, even if not of the color of the day." Gold is not named explicitly in the universal GIRM, but comes from national adaptations (e.g., US GIRM §346 mentions gold/silver). In romcal, `Gold` serves as a concrete variant for this rule.
-- **Blue:** Not present in the universal GIRM §346. Some countries (notably Spain, parts of Latin America, the Philippines) have a Marian indult authorizing blue for feasts of the Blessed Virgin Mary. Not currently in the romcal codebase — to be added when implementing calendars that require it.
+- **Blue:** Not present in the universal GIRM §346. Some countries (notably Spain, parts of Latin America, the Philippines) have a Marian indult authorizing blue for feasts of the Blessed Virgin Mary. The `Blue` variant exists in the `Color` enum but is not yet used by any calendar currently implemented in romcal — it will be activated when implementing calendars that require it.
 
 **Why `Vec<ColorInfo>`:** A celebration may have multiple permissible colors. Examples: gold as alternative on solemnities (§346g); black as alternative to purple for the Dead (§346d-e); blue as alternative to white for Marian feasts (by indult). The engine automatically assigns red for martyrs based on the `Title::Martyr` in `MartyrologyEntry.titles`.
 
@@ -2720,10 +2773,20 @@ struct ColorInfo {
 **What it is:** A unique identifier for a calendar in the inheritance chain.
 
 ```rust
-type CalendarId = String;
+struct CalendarId(String);
 ```
 
+> **Newtype pattern:** Same rationale as `CelebrationId` — prevents mixing `CalendarId` with `CelebrationId` or plain `String`. In JSON, it serializes as a plain string.
+
 **Role in the model:** `Celebration.from_calendar_id` identifies which calendar last defined or modified this celebration. When a celebration is defined in the General Roman Calendar and a local calendar overrides some properties, `from_calendar_id` is the local calendar's ID. The complete modification history is available in `LiturgicalDay.parent_overrides` (not modeled in this document).
+
+#### `DayOfWeek`
+
+**What it is:** The day of the week. Used in `DayContext.day_of_week`.
+
+```rust
+enum DayOfWeek { Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday }
+```
 
 #### Cycle types
 
@@ -2857,7 +2920,7 @@ enum TitlesDef {
 }
 ```
 
-`Celebration` and `HoursCelebrationOption` carry both `titles: TitlesDef` and `patronages: Vec<Patronage>`.
+`Celebration` and `HoursCelebrationChoice` carry both `titles: TitlesDef` and `patronages: Vec<Patronage>`.
 
 ---
 
@@ -2884,15 +2947,15 @@ core/src/types/
 │
 ├── mass_calendar/                   LAYER 2 MASS
 │   ├── mass_composition.rs          MassComposition
-│   ├── identity_option.rs           IdentityOption
-│   ├── readings_option.rs           ReadingsOption, ReadingsCategory
+│   ├── identity_choice.rs           IdentityChoice
+│   ├── readings_choice.rs           ReadingsChoice, ReadingsCategory
 │   ├── composition_rules.rs         CompositionRules, BlockRule,
 │   │                                ReadingsRule, FlexibleRule
 │   └── mod.rs
 │
 ├── hours_calendar/                  LAYER 2 HOURS
 │   ├── hours_composition.rs         HoursComposition, HourSuppression
-│   ├── hours_celebration_option.rs  HoursCelebrationOption, ResolvedHourContent
+│   ├── hours_celebration_choice.rs  HoursCelebrationChoice, ResolvedHourContent
 │   ├── office_readings.rs           OfficeReadingsContent, VigilExtension
 │   ├── hours_composition_rules.rs   HoursCompositionRules, MemorialRule
 │   └── mod.rs
@@ -2932,6 +2995,9 @@ Calendar source files (YAML/JSON input)
 │  2c. Demote Lenten obligatory memorials   │
 │      to optional (GNLY 14, GILH §238) ²  │
 │  3. Assemble Celebrations per day         │
+│  3b. Generate structural options          │
+│      (GNLY 15 Saturday BVM, Martyrology  │
+│       saints — GILH 244, GIRM 355.3c)   │
 │  4. Resolve liturgical cycle              │
 │  5. Populate mass content by GIRM groups  │
 │  6. Populate hours content by GILH rules  │
@@ -2939,9 +3005,9 @@ Calendar source files (YAML/JSON input)
            │
     ┌──────┼──────────────┐
     ▼      ▼              ▼
- gen_    gen_            gen_
- lit_    mass_           hours_
- cal()   cal()           cal()
+generate_ generate_     generate_
+liturgical mass_         hours_
+calendar() calendar()   calendar()
     │      │              │
     ▼      │              │
  Liturgical│              │  Hours transformation:
@@ -2954,9 +3020,9 @@ Calendar source files (YAML/JSON input)
     │      │
     │      │  Mass transformation:
     │      │  • Shift evening masses to previous civil date
-    │      │  • Assemble IdentityOption from each Celebration
-    │      │  • Assemble ReadingsOption with source + flags
-    │      │  • Explode FlexibleOrations into Vec<SourcedText>
+    │      │  • Assemble IdentityChoice from each Celebration
+    │      │  • Assemble ReadingsChoice with source + flags
+    │      │  • Explode FlexibleOrations into Vec<SourcedText> ³
     └──────│  • Compute CompositionRules from season/precedence
            ▼
        Mass Calendar (API output)
@@ -2964,7 +3030,9 @@ Calendar source files (YAML/JSON input)
 
 **Step 1b — Permanent Sunday assignments (GNLY 7):** When the Epiphany, Ascension, or Corpus Christi are not observed as Holydays of Obligation, GNLY 7 permanently assigns them to a specific Sunday (Epiphany → Sunday between Jan 2-8; Ascension → 7th Sunday of Easter; Corpus Christi → Sunday after Trinity). This is a per-calendar-configuration rule (controlled by `is_holy_day_of_obligation` at the national level), applied before precedence resolution. It is not a conflict-resolution transfer but a permanent date assignment.
 
-¹ **Transfer of impeded solemnities (step 2b):** When a solemnity is impeded by a higher-ranking celebration on the same date, GNLY 60 requires it to be transferred to the nearest free day. GNLY 5 provides the base rule for privileged Sundays: transfer to the following Monday. Notitiae R14 refines the method: the preceding Saturday should be tried first, before falling back to the Monday or general nearest-free-day rule.
+¹ **Transfer of impeded solemnities (step 2b):** When a solemnity is impeded by a higher-ranking celebration on the same date, GNLY 60 requires it to be transferred to the nearest free day. GNLY 5 provides the base rule for privileged Sundays: transfer to the following Monday. Notitiae R14 refines the method: the preceding Saturday should be tried first, before falling back to the Monday or general nearest-free-day rule. Implementation: the engine recalculates the target date within Layer 1 — the transferred `Celebration` retains its original `CelebrationId` and texts but is moved to the new `LiturgicalDay`. The `from_calendar_id` is unchanged. The consumer sees the solemnity on its transferred date in all three output layers (Layer 1, Layer 2 Mass, Layer 2 Hours).
+
+³ **FlexibleOrations explosion:** In Layer 1, `CelebrationMass.flexible_orations` is a single `FlexibleOrations` struct per celebration. In Layer 2 Mass, each oration field (prayer over the offerings, prayer after Communion, preface, etc.) is expanded into a `Vec<SourcedText>` — one entry per available source (feria, Common, other Sundays per GIRM 363 §3). Each `SourcedText` pairs the text with its `TextSource` provenance, allowing the consumer to present alternatives with their origin.
 
 ² **Lenten demotion (step 2c):** GNLY 14 states: "Obligatory Memorials which fall on weekdays of Lent may only be celebrated as Optional Memorials." This is a rank change (Memorial → OptionalMemorial) that affects both Mass (GIRM 355.1 regime) and Office (GILH §238-239 AdditionsOnly mechanism). Similarly, GILH §238 specifies that obligatory memorials are not celebrated during Advent Dec 17-24 and Christmas Octave.
 
@@ -3019,8 +3087,8 @@ The `VigilExtension` struct (added to `OfficeReadingsContent`) models this appen
 HoursComposition {
     hour_time: OfficeOfReadings,
     ...
-    celebration_options: [
-        HoursCelebrationOption {
+    celebration_choices: [
+        HoursCelebrationChoice {
             celebration_id: "christmas",
             content: ResolvedHourContent {
                 ...
@@ -3070,7 +3138,7 @@ The Hour is provided with full content (for those who do NOT attend the Mass), b
 
 **`ReplacedByMass` — full replacement:**
 
-The Hour is entirely replaced by a Mass celebration. The `content` in `celebration_options` carries a reduced form for those who cannot attend the Mass.
+The Hour is entirely replaced by a Mass celebration. The `content` in `celebration_choices` carries a reduced form for those who cannot attend the Mass.
 
 | Day           | Hour replaced      | Replaced by  | Reduced form                                                                                                      | Reference |
 | ------------- | ------------------ | ------------ | ----------------------------------------------------------------------------------------------------------------- | --------- |
@@ -3083,8 +3151,8 @@ HoursCalendar["2025-04-19"] → [
     HoursComposition {
         hour_time: OfficeOfReadings,
         ...
-        celebration_options: [
-            HoursCelebrationOption {
+        celebration_choices: [
+            HoursCelebrationChoice {
                 celebration_id: "holy_saturday",
                 content: ResolvedHourContent {
                     office_readings: Some(OfficeReadingsContent {
@@ -3149,7 +3217,7 @@ HoursCalendar["2025-04-19"] → [
 - **GNLY 24** — "The first eight days of Easter Time constitute the Octave of Easter and are celebrated as Solemnities of the Lord." These are not weekdays — no memorials are celebrated during the Octave.
 - **GNLY 45-47** — Rogation Days and Ember Days. GNLY 45-46: the Conferences of Bishops arrange the time, duration, and manner; GNLY 47: the Mass is chosen from the Masses for Various Needs. Not modeled in this document (see Part I §1 Scope note).
 - **GNLY 58** — Pastoral transfer to Sunday: "For the pastoral good of the faithful, it is permitted to observe on Sundays in Ordinary Time those celebrations that fall during the week and that are agreeable to the devotion of the faithful, provided the celebrations rank above that Sunday in the Table of Liturgical Days." A consumer-side pastoral option — the engine does not enforce it, but consumers may present this as a choice for Sundays in Ordinary Time.
-- **GNLY 59** — Table of Liturgical Days according to Their Order of Precedence. Entry 12: Optional Memorials "may be celebrated, in the special manner described in the _General Instruction_, even on the days listed in no. 9" — the GNLY's authorization for collect-borrowing on privileged weekdays (cf. `ForcedCollectBorrowable`). Entry 12 also: "In the same manner Obligatory Memorials may be celebrated as Optional Memorials if they happen to fall on Lenten weekdays."
+- **GNLY 59** — Table of Liturgical Days according to Their Order of Precedence. Entry 12: Optional Memorials "may be celebrated, in the special manner described in the _General Instruction_, even on the days listed in no. 9" — the GNLY's authorization for collect-borrowing on privileged weekdays (cf. `BlockRule::ForcedCollectBorrowable`). Entry 12 also: "In the same manner Obligatory Memorials may be celebrated as Optional Memorials if they happen to fall on Lenten weekdays."
 - **GNLY 61** — Vespers I/II conflict resolution: "Should Vespers of the current day's Office and First Vespers of the following day be assigned for celebration on the same day, then Vespers of the celebration with the higher rank in the Table of Liturgical Days takes precedence; in cases of equal rank, Vespers of the current day takes precedence."
 - **GNLY 60** — Precedence resolution: "If several celebrations fall on the same day, the one that holds the highest rank according to the Table of Liturgical Days is observed." Impeded solemnities are transferred; other celebrations are omitted that year. GNLY 5 provides the base rule: solemnities impeded by a privileged Sunday (Advent, Lent, Easter) are "transferred to the following Monday." **Transfer refinement (Notitiae R14):** the preceding Saturday should be tried first, before falling back to the Monday or general nearest-free-day rule.
 
@@ -3223,6 +3291,8 @@ HoursCalendar["2025-04-19"] → [
 
 - **Notitiae R1** (GNLY 7) — When Epiphany, Ascension, or Corpus Christi are transferred to Sunday, the solemnity replaces the Sunday entirely. No Sunday elements are retained, no commemoration.
 - **Notitiae R2** (GNLY 13) — The Holy Family and Baptism of the Lord DO have Vespers I when they fall on Sunday. These are Feasts of the Lord on Sundays and thus have Evening Prayer I. (Correction of an initial "No" to "Yes".)
+- **Notitiae R3** (GNLY 14) — When several optional memorials fall on the same day, only one may be celebrated. The others are simply omitted — they are not "transferred" or "commemorated." Confirms the `is_optional: true` mechanism and single-choice constraint.
+- **Notitiae R5** (GNLY 16c) — Clarifies the integration of memorials with weekdays: the memorial's proper elements overlay the weekday base according to the GIRM/GILH rules for each substitution group. This is the normative basis for the "overlay" mechanism modeled in Part II §4 and the `MemorialRule::FreeChoice` variant.
 - **Notitiae R6** (GNLY 34) — The Christmas Vigil Mass is celebrated on the evening of December 24 only (not in the morning). The Midnight Mass must occur around midnight. Normative source for the semantic distinction between `PreviousEveningMass` (vigil, evening) and `NightMass` (midnight).
 - **Notitiae R8** (GNLY 40) — No commemorations in Advent or Lent — neither in Mass nor in Office. The reformed liturgy has eliminated the practice of commemorations. Confirms the model needs no commemoration mechanism.
 - **Notitiae R10** (GNLY 52) — A co-cathedral's dedication anniversary is celebrated locally only, not throughout the diocese. Only the main cathedral has a diocese-wide celebration.
@@ -3242,3 +3312,15 @@ HoursCalendar["2025-04-19"] → [
 - **PS 75** — Holy Saturday: "the Church abstains strictly from the celebration of the sacrifice of the Mass." Holy Communion may only be given as Viaticum. No `MassComposition` is generated for this civil date; the Easter Vigil (belonging liturgically to Easter Sunday) is shifted here in Layer 2 Mass.
 - **PS 85** — Easter Vigil readings: 7 Old Testament readings + 2 New Testament (Epistle + Gospel). When pastoral conditions require reducing, at least 3 OT readings must be read, and **Exodus 14 (the crossing of the Red Sea) must never be omitted**. This unique variable-minimum structure is specific to the Easter Vigil's `ReadingsContent`.
 - **PS 107** — Pentecost vigil: "prolonged celebration of Mass in the form of a vigil, whose character is not baptismal as in the Easter Vigil, but is one of urgent prayer." Confirms that Pentecost has a vigil Mass form (`PreviousEveningMass`, per GNLY 11).
+
+---
+
+## Conclusion
+
+This document defines a three-layer architecture for liturgical composition:
+
+- **Layer 1 (Liturgical Calendar)** organizes celebrations by liturgical day, carrying both Mass and Office texts in their raw form — what each celebration _provides_.
+- **Layer 2 Mass (Mass Calendar)** transforms Layer 1 into a consumer-ready structure organized by civil date and mass time, with pre-resolved options per GIRM substitution group and explicit `CompositionRules`.
+- **Layer 2 Hours (Hours Calendar)** transforms Layer 1 into a consumer-ready structure organized by civil date and Hour, with fully resolved content per GILH §235/§239 rules and `HoursCompositionRules`.
+
+The transformation pipeline (Part V §2) handles date-shifting, precedence resolution, cycle resolution, and the assembly of options — so that consumers receive self-contained, pre-resolved data. The calendar inheritance hierarchy (CP 13-16) and the shared `Celebration` entity ensure that particular calendars, monastic propers, and future extensions plug into the same pipeline without structural changes.
