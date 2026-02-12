@@ -68,6 +68,18 @@ tableOfContents:
 
 </details>
 
+<!-- AI Quick Index — For detailed chapter-by-chapter guide, see docs/architecture/gilh-index.md
+| Chapter | §§      | Relevance | Key topics                                                    |
+| I       | 1–33    | —         | Theology, participants, obligation                            |
+| II      | 34–99   | HIGH      | Structure of each Hour (§34 Invitatory, §37 Lauds/Vespers,   |
+|         |         |           | §55 OdR, §68 Te Deum, §73 Vigil, §84 Compline, §92 Marian)  |
+| III     | 100–203 | HIGH      | Elements: §116-120 antiphons, §126-135 psalm cycle,           |
+|         |         |           | §143-155 readings, §156-158 short readings, §197-200 prayers  |
+| IV      | 204–252 | CRITICAL  | §209/211/212/215 suppressions, §225 solemnities, §231 feasts, |
+|         |         |           | §235 memorial overlay, §237-239 privileged weekdays            |
+| V       | 253–284 | —         | Roles and singing                                              |
+-->
+
 ---
 
 ## Chapter I - Importance of the Liturgy of the Hours or Divine Office in the Life of the Church
