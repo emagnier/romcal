@@ -21,7 +21,7 @@ hero:
       variant: minimal
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import { Card, CardGrid, LinkCard, Tabs, TabItem } from '@astrojs/starlight/components';
 
 ## Features
 
@@ -42,4 +42,64 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
     **High-performance Rust** core with native bindings for TypeScript, Python, and CLI. Clean APIs, JSON schemas, and
     tree-shaking support.
   </Card>
+</CardGrid>
+
+## Quick Example
+
+<Tabs>
+  <TabItem label="TypeScript">
+    ```ts
+    import Romcal from 'romcal';
+
+    const calendar = new Romcal();
+    const days = await calendar.generateCalendar(2025);
+    console.log(days);
+    ```
+
+  </TabItem>
+  <TabItem label="Python">
+    ```python
+    from romcal import Romcal
+
+    calendar = Romcal()
+    days = calendar.generate_calendar(2025)
+    print(days)
+    ```
+
+  </TabItem>
+  <TabItem label="Rust">
+    ```rust
+    use romcal::Romcal;
+
+    let calendar = Romcal::default();
+    let days = calendar.generate_calendar(2025);
+    println!("{:#?}", days);
+    ```
+
+  </TabItem>
+  <TabItem label="CLI">
+    ```bash
+    npx romcal --year 2025
+    ```
+  </TabItem>
+</Tabs>
+
+## Get Started
+
+<CardGrid>
+  <LinkCard
+    title="Building an app?"
+    description="Set up romcal in your project with TypeScript, Python, or Rust."
+    href="/getting-started/"
+  />
+  <LinkCard
+    title="Quick terminal lookups?"
+    description="Use the CLI to query liturgical data from the command line."
+    href="/cli/"
+  />
+  <LinkCard
+    title="Want to contribute?"
+    description="Learn how to add calendars, translations, and saint data."
+    href="/contributing/"
+  />
 </CardGrid>

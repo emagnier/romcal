@@ -22,6 +22,7 @@ export default defineConfig({
         './src/styles/custom.css',
       ],
       components: {
+        Header: './src/components/Header.astro',
         Footer: './src/components/Footer.astro',
       },
       sidebar: [
