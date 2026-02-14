@@ -26,6 +26,17 @@
   --sl-color-accent-high: #6b1309;
 }
 
+/* Experimental banner — soft amber instead of default accent */
+.sl-banner {
+  --sl-color-banner-bg: hsl(40, 30%, 22%);
+  --sl-color-banner-text: hsl(40, 50%, 88%);
+}
+
+:root[data-theme='light'] .sl-banner {
+  --sl-color-banner-bg: hsl(45, 70%, 88%);
+  --sl-color-banner-text: hsl(40, 40%, 28%);
+}
+
 /* Site title (Romcal) in the header */
 .site-title {
   font-family: 'Crimson Text', serif;

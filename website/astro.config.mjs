@@ -4,7 +4,7 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://romcal.js.org',
+  site: 'https://romcal.dev',
   integrations: [
     starlight({
       title: 'Romcal',
@@ -73,7 +73,10 @@ export default defineConfig({
           label: 'Architecture',
           items: [
             { label: 'Overview', slug: 'architecture' },
-            { label: 'Liturgical Composition Model', slug: 'architecture/liturgical-composition-model' },
+            {
+              label: 'Liturgical Composition Model',
+              slug: 'architecture/liturgical-composition-model',
+            },
           ],
         },
         {

@@ -1,6 +1,7 @@
 {
   "name": "romcal-docs",
   "type": "module",
+  "packageManager": "pnpm@10.28.0",
   "version": "0.0.1",
   "scripts": {
     "sync-docs": "node scripts/sync-docs.mjs",
