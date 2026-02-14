@@ -10,6 +10,16 @@
   --sl-font-headings: 'Crimson Text', serif;
 }
 
+:root:not([data-theme='light']) {
+  /* Softer aside colors (dark mode only) */
+  --sl-color-blue-low: hsl(224, 40%, 16%);
+  --sl-color-blue: hsl(224, 70%, 55%);
+  --sl-color-blue-high: hsl(224, 70%, 82%);
+  --sl-color-purple-low: hsl(270, 30%, 18%);
+  --sl-color-purple: hsl(270, 55%, 58%);
+  --sl-color-purple-high: hsl(270, 55%, 82%);
+}
+
 :root[data-theme='light'] {
   --sl-color-accent-low: #f5d0cc;
   --sl-color-accent: #cf2612;
