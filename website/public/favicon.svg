@@ -8,12 +8,12 @@
                 <g transform="matrix(1,0,0,1,-0.017693,0)">
                     <g transform="matrix(0.968835,0,0,0.968835,193.136,27.1217)">
                         <g transform="matrix(1.61754,0,0,1.61754,1482.48,1164.52)">
-                            <circle cx="178.597" cy="53.579" r="26.79" fill="#1a1a1a"/>
+                            <circle cx="178.597" cy="53.579" r="26.79" fill="black"/>
                         </g>
                     </g>
                     <g transform="matrix(1,0,0,1,-2,0)">
                         <g transform="matrix(1.56713,0,0,1.56713,1055.84,1155.59)">
-                            <circle cx="178.597" cy="53.579" r="26.79" fill="#1a1a1a"/>
+                            <circle cx="178.597" cy="53.579" r="26.79" fill="black"/>
                         </g>
                     </g>
                 </g>
