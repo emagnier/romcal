@@ -21,15 +21,15 @@ INPUT ARCHITECTURE
 TIER 1 — CALENDAR DEFINITIONS
 | Concept                              | Section              | Line   | Key references                    |
 | ------------------------------------ | -------------------- | ------ | --------------------------------- |
-| CalendarDefinition (root)            | Part II §1           | ~275   |                                   |
+| CalendarDef (root)            | Part II §1           | ~275   |                                   |
 | CalendarMetadata                     | Part II §2           | ~310   | CP 13-16                          |
 | ParticularConfig                     | Part II §3           | ~345   | GNLY 7                            |
-| DayDefinition (core input type)      | Part II §4           | ~380   |                                   |
+| CelebrationDef (core input type)      | Part II §4           | ~380   |                                   |
 | DateDef variants                     | Part II §5           | ~460   |                                   |
 | DateFn (movable feasts)              | Part II §6           | ~530   |                                   |
 | DateDefExceptions                    | Part II §7           | ~575   |                                   |
 | Precedence (GNLY 59)                 | Part II §8           | ~630   | GNLY 59                           |
-| CommonDefinition (simplified)        | Part II §9           | ~700   |                                   |
+| CommonDef (simplified)        | Part II §9           | ~700   |                                   |
 | TitleCategory and TitlesDef          | Part II §10          | ~770   |                                   |
 | PatronageDef                         | Part II §11          | ~850   | CP 31                             |
 | MartyrologyRef                       | Part II §12          | ~905   |                                   |
@@ -64,7 +64,7 @@ TRANSFORMATION & ERGONOMICS
 | Concept                              | Section              | Line   | Key references                    |
 | ------------------------------------ | -------------------- | ------ | --------------------------------- |
 | Input → Output mapping               | Part V §1            | ~2140  |                                   |
-| CommonDefinition → Common            | Part V §2            | ~2195  |                                   |
+| CommonDef → Common            | Part V §2            | ~2195  |                                   |
 | Title resolution                     | Part V §3            | ~2245  |                                   |
 | Patronage resolution                 | Part V §4            | ~2285  |                                   |
 | Canonical prayer                     | Part V §5            | ~2310  | CP 44                             |
@@ -81,7 +81,7 @@ The present document defines romcal's **input** data model — the data that con
 
 ### Design Principles
 
-1. **Contributor ergonomics first.** Input types favor simplicity over completeness. Where the engine can deduce information (e.g., liturgical colors from titles, full `Common` variant from `CommonDefinition` + season + saint count), the input stores the simplified form.
+1. **Contributor ergonomics first.** Input types favor simplicity over completeness. Where the engine can deduce information (e.g., liturgical colors from titles, full `Common` variant from `CommonDef` + season + saint count), the input stores the simplified form.
 
 2. **Separation by copyright sensitivity.** Liturgical data has three levels of copyright exposure:
    - **Structural data** (dates, precedence, calendar hierarchy) — factual, no copyright.
@@ -100,9 +100,9 @@ Each input type maps to one or more output types:
 
 | Input (this document)       | Output (companion document)             | Transformation                             |
 | --------------------------- | --------------------------------------- | ------------------------------------------ |
-| `CalendarDefinition`        | Calendar hierarchy, `from_calendar_id`  | Inheritance resolution                     |
-| `DayDefinition`             | `Celebration` (identity fields)         | Date resolution, precedence rules          |
-| `CommonDefinition`          | `Common`, `CommonInfo`                  | Expansion based on season + saint metadata |
+| `CalendarDef`        | Calendar hierarchy, `from_calendar_id`  | Inheritance resolution                     |
+| `CelebrationDef`             | `Celebration` (identity fields)         | Date resolution, precedence rules          |
+| `CommonDef`          | `Common`, `CommonInfo`                  | Expansion based on season + saint metadata |
 | `TitleCategory` + qualifier | `Title`                                 | Assembly of category + localized qualifier |
 | `PatronageDef`              | `Patronage`                             | Localization of role + subject             |
 | `MartyrologyEntryDef`       | `MartyrologyEntry`                      | Locale merge + type normalization          |
@@ -124,7 +124,7 @@ Each input type maps to one or more output types:
 | 2    | Martyrology & Localization | Saint metadata, localized names, UI strings              | Free (factual)   | Yes             |
 | 3    | Liturgical Texts           | Prayers, readings, antiphons, orations, Office content   | Restricted       | External        |
 
-**Tier 1** is purely structural: it describes _what_ is celebrated _when_ and at _what rank_, without any natural-language content. A `DayDefinition` says "St. Scholastica is an Optional Memorial on February 10 with Common of Virgins and Common of Religious" — but not her name, her collect prayer, or the readings for her memorial.
+**Tier 1** is purely structural: it describes _what_ is celebrated _when_ and at _what rank_, without any natural-language content. A `CelebrationDef` says "St. Scholastica is an Optional Memorial on February 10 with Common of Virgins and Common of Religious" — but not her name, her collect prayer, or the readings for her memorial.
 
 **Tier 2** provides the biographical and localized metadata: "Saint Scholastica, Virgin" (English), "Sainte Scholastique, vierge" (French), born ~480, died ~547, female, titles: virgin. It also provides all UI strings (season names, rank names, weekday names, ordinals).
 
@@ -256,7 +256,7 @@ Three JSON Schema files define the input model:
 
 | Schema file                | Validates                           |
 | -------------------------- | ----------------------------------- |
-| `calendar_definition.json` | Tier 1 — `CalendarDefinition` files |
+| `calendar_definition.json` | Tier 1 — `CalendarDef` files |
 | `resources.json`           | Tier 2 — `Resources` files          |
 | `liturgical_texts.json`    | Tier 3 — All liturgical text files  |
 
@@ -268,12 +268,12 @@ Editors with JSON Schema support (VS Code, IntelliJ) provide autocompletion and 
 
 Tier 1 files define the **structural skeleton** of liturgical calendars: which celebrations exist, when they occur, at what rank, with which Commons, and how they relate to martyrology entries. No natural-language text appears in Tier 1 — only identifiers, enums, dates, and flags.
 
-### 1. `CalendarDefinition`
+### 1. `CalendarDef`
 
 **What it is:** The root type for a calendar definition file. One file = one calendar.
 
 ```rust
-struct CalendarDefinition {
+struct CalendarDef {
     /// JSON Schema reference for validation
     schema: Option<String>,
     /// Unique identifier for this calendar (e.g., "france", "france__lyon", "benedictines")
@@ -285,19 +285,19 @@ struct CalendarDefinition {
     /// Parent calendar(s) in the inheritance chain
     parent_calendar_ids: Vec<CalendarId>,
     /// Day definitions: the celebrations defined or overridden by this calendar
-    days_definitions: BTreeMap<DayId, DayDefinition>,
+    celebrations: BTreeMap<CelebrationId, CelebrationDef>,
 }
 
 /// Unique calendar identifier (newtype for type safety)
 struct CalendarId(String);
 
 /// Unique day identifier within a calendar (e.g., "basil_the_great_and_gregory_nazianzen_bishops")
-type DayId = String;
+type CelebrationId = String;
 ```
 
 **Naming convention for `CalendarId`:** Country calendars use the country name in snake_case (`france`, `united_states`). Diocesan calendars use `country__diocese` with double underscore (`france__lyon`). Regional calendars use the region name (`europe`, `americas`). Community calendars use the order or community name (`benedictines`).
 
-**Naming convention for `DayId`:** The day identifier is a snake*case string derived from the celebration's name in English, typically following the pattern `{name}*{title}`(e.g.,`basil*the_great_bishop`, `joan_of_arc_virgin`). For compound celebrations: `{name1}\_and*{name2}_{shared_title}`(e.g.,`peter_and_paul_apostles`). Temporal cycle days use `{season}_{week}\_{weekday}`(e.g.,`advent_1_sunday`, `ordinary_time_5_monday`).
+**Naming convention for `CelebrationId`:** The day identifier is a snake*case string derived from the celebration's name in English, typically following the pattern `{name}*{title}`(e.g.,`basil*the_great_bishop`, `joan_of_arc_virgin`). For compound celebrations: `{name1}\_and*{name2}_{shared_title}`(e.g.,`peter_and_paul_apostles`). Temporal cycle days use `{season}_{week}\_{weekday}`(e.g.,`advent_1_sunday`, `ordinary_time_5_monday`).
 
 ### 2. `CalendarMetadata`
 
@@ -365,12 +365,12 @@ enum EasterCalculationType {
 
 **Liturgical basis:** GNLY 7 states: "In places, however, where the Solemnity of Epiphany, the Ascension, and Corpus Christi are not observed as Holydays of Obligation, they are assigned to a Sunday." The specific Sunday is determined by GNLY 7 itself. These are **permanent assignments**, not conflict-resolution transfers — they are applied before precedence resolution in the transformation pipeline.
 
-### 4. `DayDefinition`
+### 4. `CelebrationDef`
 
 **What it is:** The core input type. Defines or overrides a single liturgical day (celebration) within a calendar. All fields are optional to support partial overrides in child calendars.
 
 ```rust
-struct DayDefinition {
+struct CelebrationDef {
     // ── Date assignment ──
 
     /// When this celebration occurs
@@ -400,7 +400,7 @@ struct DayDefinition {
     /// Patronage designations specific to this calendar level
     patronages: Option<Vec<PatronageDef>>,
     /// Override the locale key used to look up this celebration's name.
-    /// When absent, the DayId itself serves as the locale key.
+    /// When absent, the CelebrationId itself serves as the locale key.
     custom_locale_id: Option<String>,
 
     // ── Mass reading references ──
@@ -417,7 +417,7 @@ struct DayDefinition {
 }
 ```
 
-**Why all fields are `Option`:** A `DayDefinition` in a child calendar is a **partial override** — it only specifies the fields that differ from the inherited definition. The engine merges child definitions onto parent definitions field by field. A `DayDefinition` in the General Roman Calendar typically has most fields populated; a `DayDefinition` in a national calendar may only override `precedence` and add `patronages`.
+**Why all fields are `Option`:** A `CelebrationDef` in a child calendar is a **partial override** — it only specifies the fields that differ from the inherited definition. The engine merges child definitions onto parent definitions field by field. A `CelebrationDef` in the General Roman Calendar typically has most fields populated; a `CelebrationDef` in a national calendar may only override `precedence` and add `patronages`.
 
 **Notable absence: `colors`.** Liturgical colors are **not** an input field. They are deduced by the engine from:
 
@@ -655,14 +655,14 @@ enum Precedence {
 "precedence": "optional_memorial_12"
 ```
 
-### 9. `CommonDefinition`
+### 9. `CommonDef`
 
-**What it is:** A simplified enum of liturgical Commons, used in calendar definitions. The engine expands each `CommonDefinition` into the fully resolved `Common` variant (see Part V §2 for the expansion rules).
+**What it is:** A simplified enum of liturgical Commons, used in calendar definitions. The engine expands each `CommonDef` into the fully resolved `Common` variant (see Part V §2 for the expansion rules).
 
 **Why simplified:** The full `Common` enum (34 variants) encodes season (BVM in Advent vs. Easter), count (One Martyr vs. Several Martyrs), and specific pastoral categories. These distinctions depend on runtime context (the current season, the number of saints celebrated). Contributors should not need to specify them — they provide the base category, and the engine resolves the rest.
 
 ```rust
-enum CommonDefinition {
+enum CommonDef {
     /// No Common — the celebration has fully proper texts
     None,
 
@@ -711,8 +711,8 @@ enum CommonDefinition {
 ```rust
 /// Single Common or list of Commons
 enum CommonsDef {
-    Single(CommonDefinition),
-    Multiple(Vec<CommonDefinition>),
+    Single(CommonDef),
+    Multiple(Vec<CommonDef>),
 }
 ```
 
@@ -867,7 +867,7 @@ struct PatronageDef {
 
 ### 12. `MartyrologyRef`
 
-**What it is:** A reference from a `DayDefinition` to one or more entries in the martyrology catalog (Tier 2). Most celebrations reference a single entry; compound celebrations (e.g., "Saints Basil and Gregory") reference multiple entries.
+**What it is:** A reference from a `CelebrationDef` to one or more entries in the martyrology catalog (Tier 2). Most celebrations reference a single entry; compound celebrations (e.g., "Saints Basil and Gregory") reference multiple entries.
 
 ```rust
 enum MartyrologyRef {
@@ -1081,7 +1081,7 @@ enum ReadingSlot {
     "corpus_christi_on_sunday": false
   },
   "parent_calendar_ids": [],
-  "days_definitions": {
+  "celebrations": {
     "basil_the_great_and_gregory_nazianzen_bishops": {
       "precedence": "general_memorial_10",
       "date_def": { "month": 1, "date": 2 },
@@ -1118,7 +1118,7 @@ enum ReadingSlot {
     "corpus_christi_on_sunday": true
   },
   "parent_calendar_ids": ["europe"],
-  "days_definitions": {
+  "celebrations": {
     "joan_of_arc_virgin": {
       "precedence": "proper_memorial__second_patron_11a",
       "date_def": { "month": 5, "date": 30 },
@@ -1413,7 +1413,7 @@ enum MartyrologyEntryType {
 
 **Default:** When `type` is absent, the entry defaults to `Person`.
 
-**Role in Common resolution:** The engine uses `type` and `count` (for `Group`) to resolve `CommonDefinition` → `Common`. A `Group` with `count > 1` (or `Many`) resolves to "Several" variants (e.g., `Martyrs_OutsideEaster_Several`). A `Person` resolves to "One" variants.
+**Role in Common resolution:** The engine uses `type` and `count` (for `Group`) to resolve `CommonDef` → `Common`. A `Group` with `count > 1` (or `Many`) resolves to "Several" variants (e.g., `Martyrs_OutsideEaster_Several`). A `Person` resolves to "One" variants.
 
 ### 5. `SaintDateDef`
 
@@ -1671,8 +1671,8 @@ Group 2 (readings) is handled separately in `ReadingsTexts` (§4), because readi
 struct ProperMassTextsFile {
     schema: Option<String>,
     locale: String,
-    /// Texts keyed by DayId (same ID as in CalendarDefinition)
-    texts: BTreeMap<DayId, CelebrationMassTexts>,
+    /// Texts keyed by CelebrationId (same ID as in CalendarDef)
+    texts: BTreeMap<CelebrationId, CelebrationMassTexts>,
 }
 
 /// Mass texts for one celebration
@@ -1810,7 +1810,7 @@ struct ReadingTextDef {
 struct ProperHoursTextsFile {
     schema: Option<String>,
     locale: String,
-    texts: BTreeMap<DayId, CelebrationHoursTexts>,
+    texts: BTreeMap<CelebrationId, CelebrationHoursTexts>,
 }
 
 /// Office texts for one celebration
@@ -2008,16 +2008,16 @@ This section describes how input types (Tiers 1-3) map to the output types defin
 ### 1. Overview
 
 ```
-Tier 1 (CalendarDefinition)
+Tier 1 (CalendarDef)
     │
-    ├── DayDefinition.date_def          → Celebration attachment to LiturgicalDay.date
-    ├── DayDefinition.precedence        → Celebration.precedence + Celebration.rank
-    ├── DayDefinition.commons_def       → Celebration.commons (after expansion)
-    ├── DayDefinition.titles            → Celebration.titles (after merge with Tier 2)
-    ├── DayDefinition.patronages        → Celebration.patronages (after localization)
-    ├── DayDefinition.martyrology       → Celebration.martyrology (after Tier 2 merge)
-    ├── DayDefinition.masses            → CelebrationMass.readings (citations)
-    └── CalendarDefinition.hierarchy    → Celebration.from_calendar_id + LiturgicalDay.parent_overrides
+    ├── CelebrationDef.date_def          → Celebration attachment to LiturgicalDay.date
+    ├── CelebrationDef.precedence        → Celebration.precedence + Celebration.rank
+    ├── CelebrationDef.commons_def       → Celebration.commons (after expansion)
+    ├── CelebrationDef.titles            → Celebration.titles (after merge with Tier 2)
+    ├── CelebrationDef.patronages        → Celebration.patronages (after localization)
+    ├── CelebrationDef.martyrology       → Celebration.martyrology (after Tier 2 merge)
+    ├── CelebrationDef.masses            → CelebrationMass.readings (citations)
+    └── CalendarDef.hierarchy    → Celebration.from_calendar_id + LiturgicalDay.parent_overrides
 
 Tier 2 (Resources)
     │
@@ -2034,11 +2034,11 @@ Tier 3 (Liturgical Texts)
     └── CommonHoursTexts                → CelebrationHour (fallback elements)
 ```
 
-### 2. `CommonDefinition` → `Common` Expansion
+### 2. `CommonDef` → `Common` Expansion
 
-The engine expands each `CommonDefinition` (23 variants) into the fully resolved `Common` (34 variants) based on runtime context:
+The engine expands each `CommonDef` (23 variants) into the fully resolved `Common` (34 variants) based on runtime context:
 
-| `CommonDefinition`        | Context needed                       | Resolved `Common` variants                                                      |
+| `CommonDef`        | Context needed                       | Resolved `Common` variants                                                      |
 | ------------------------- | ------------------------------------ | ------------------------------------------------------------------------------- |
 | `BlessedVirginMary`       | Current `Season`                     | `BVM_OrdinaryTime`, `BVM_Advent`, `BVM_Christmas`, `BVM_Easter`                 |
 | `Martyrs`                 | `Season` + `MartyrologyEntry.count`  | `Martyrs_OutsideEaster_One`, `..._Several`, `Martyrs_Easter_One`, `..._Several` |
@@ -2091,7 +2091,7 @@ TitleCategory::Bishop (from Tier 2)    →    Title {
 The `TitlesDef` operations (append/prepend) from Tier 1 definitions are applied to the base titles from Tier 2 martyrology entries. The engine resolves in order:
 
 1. Load base titles from `MartyrologyEntryDef.titles` (Tier 2).
-2. Apply `DayDefinition.titles` operations (Tier 1): append, prepend, or replace.
+2. Apply `CelebrationDef.titles` operations (Tier 1): append, prepend, or replace.
 3. Apply `MartyrologyRef.titles` operations (Tier 1, per-entry override): append, prepend, or replace.
 4. For each `TitleCategory`, look up the locale-specific qualifier from `MartyrologyEntryDef.title_qualifiers` (Tier 2).
 5. Assemble output `Title { category, qualifier }`.
@@ -2132,7 +2132,7 @@ The input model is deliberately simpler than the output model:
 
 | Aspect        | Input                            | Output                                 | Why simpler                                           |
 | ------------- | -------------------------------- | -------------------------------------- | ----------------------------------------------------- |
-| Commons       | 23 variants (`CommonDefinition`) | 34 variants (`Common`)                 | Season/count context resolved by engine               |
+| Commons       | 23 variants (`CommonDef`) | 34 variants (`Common`)                 | Season/count context resolved by engine               |
 | Titles        | 24 categories (`TitleCategory`)  | 24 categories + qualifiers (`Title`)   | Qualifiers are free-text in Tier 2, not enum variants |
 | Patronages    | 3 roles + locale key             | 3 roles + localized text (`Patronage`) | Gender and display resolved by engine                 |
 | Colors        | Not specified                    | `Vec<ColorInfo>`                       | Deduced from titles and season                        |
@@ -2143,7 +2143,7 @@ The input model is deliberately simpler than the output model:
 
 This means a contributor adding a new saint to a national calendar only needs to:
 
-1. Add a `DayDefinition` in the calendar's JSON (Tier 1): date, precedence, commons, martyrology ref.
+1. Add a `CelebrationDef` in the calendar's JSON (Tier 1): date, precedence, commons, martyrology ref.
 2. Add a `MartyrologyEntryDef` in the base locale (Tier 2): name, titles, dates.
 3. Add localized overrides in other locales (Tier 2): translated fullname.
 
@@ -2190,7 +2190,7 @@ No Tier 3 data is required for the calendar to function — the celebration will
 - `rank`: `OptionalMemorial`
 - `precedence`: `OptionalMemorial_12`
 - `colors`: `[White]` (deduced: bishop, not a martyr)
-- `commons`: `[Pastors_Bishop, DoctorsOfTheChurch]` (expanded from `CommonDefinition`)
+- `commons`: `[Pastors_Bishop, DoctorsOfTheChurch]` (expanded from `CommonDef`)
 
 ### 3. Adding a New Calendar
 
@@ -2207,7 +2207,7 @@ No Tier 3 data is required for the calendar to function — the celebration will
     "type": "diocese"
   },
   "parent_calendar_ids": ["france"],
-  "days_definitions": {
+  "celebrations": {
     "joan_of_arc_virgin": {
       "precedence": "proper_solemnity__principal_patron_4a",
       "patronages": [{ "role": "principal_patron", "of": "the_diocese" }]
@@ -2230,14 +2230,14 @@ This calendar:
 
 | Type                       | Tier | Purpose                                  |
 | -------------------------- | ---- | ---------------------------------------- |
-| `CalendarDefinition`       | 1    | Root calendar file structure             |
+| `CalendarDef`       | 1    | Root calendar file structure             |
 | `CalendarMetadata`         | 1    | Calendar classification                  |
 | `ParticularConfig`         | 1    | Movable feast configuration              |
-| `DayDefinition`            | 1    | Core celebration definition              |
+| `CelebrationDef`            | 1    | Core celebration definition              |
 | `DateDef`                  | 1    | Date assignment                          |
 | `DateFn`                   | 1    | Movable feast functions                  |
 | `DateDefExceptions`        | 1    | Conditional date adjustments             |
-| `CommonDefinition`         | 1    | Simplified Common enum (23 variants)     |
+| `CommonDef`         | 1    | Simplified Common enum (23 variants)     |
 | `PatronageDef`             | 1    | Patronage designation                    |
 | `MartyrologyRef`           | 1    | Reference to martyrology entry           |
 | `MartyrologyEntryOverride` | 1    | Per-celebration martyrology overrides    |
@@ -2256,7 +2256,7 @@ This calendar:
 
 | Type            | Usage in input                                                                    |
 | --------------- | --------------------------------------------------------------------------------- |
-| `Precedence`    | `DayDefinition.precedence`                                                        |
+| `Precedence`    | `CelebrationDef.precedence`                                                        |
 | `MassTime`      | `MassesDefinitions` keys, `ProperMassTexts` keys                                  |
 | `HourTime`      | `ProperHoursTexts` keys                                                           |
 | `TitleCategory` | `MartyrologyEntryDef.titles`, `TitlesDef`                                         |
@@ -2273,9 +2273,9 @@ This calendar:
 | Type                 | Produced from                                             |
 | -------------------- | --------------------------------------------------------- |
 | `LiturgicalCalendar` | All three tiers                                           |
-| `LiturgicalDay`      | `DayDefinition` + date resolution                         |
+| `LiturgicalDay`      | `CelebrationDef` + date resolution                         |
 | `DayContext`         | Date computation + `ParticularConfig`                     |
-| `Celebration`        | `DayDefinition` + `MartyrologyEntryDef` + texts           |
+| `Celebration`        | `CelebrationDef` + `MartyrologyEntryDef` + texts           |
 | `CelebrationMass`    | `MassReadingsDef` + `ProperMassTexts` + `CommonMassTexts` |
 | `CelebrationHour`    | `ProperHoursTexts` + `CommonHoursTexts`                   |
 | `MassCalendar`       | Layer 1 → Layer 2 Mass transformation                     |

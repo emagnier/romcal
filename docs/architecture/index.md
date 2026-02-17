@@ -14,7 +14,7 @@ Defines the three-tier input architecture — the data that contributors edit an
 - **Tier 2 — Martyrology Catalog & Localization**: factual biographical metadata, localized names, UI strings. Locale inheritance with `en` as universal base.
 - **Tier 3 — Liturgical Texts**: Mass formularies, Office propers, readings full text, Common text pools. Potentially copyrighted, Latin as baseline.
 
-Covers: `DayDefinition`, `DateDef`, `CommonDefinition` (23 simplified variants), `MartyrologyEntryDef`, BCP-47 locale hierarchy, graceful degradation (engine works with Tier 1 alone), input→output transformation rules, and contributor workflows.
+Covers: `CelebrationDef`, `DateDef`, `CommonDef` (23 simplified variants), `MartyrologyEntryDef`, BCP-47 locale hierarchy, graceful degradation (engine works with Tier 1 alone), input→output transformation rules, and contributor workflows.
 
 ### [Liturgical Composition Model](/architecture/liturgical-composition-model)
 

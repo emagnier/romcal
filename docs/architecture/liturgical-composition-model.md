@@ -2669,7 +2669,7 @@ enum Common {
 }
 ```
 
-> **Note on `CommonDefinition`:** The definition pipeline uses a simplified enum (`CommonDefinition`, e.g., `Martyrs`, `Virgins`) from which the engine deduces the fully resolved `Common` variant based on the `MartyrologyEntry` properties (season, `SaintCount`, sex). This resolution is internal to the engine and not exposed in the output types.
+> **Note on `CommonDef`:** The definition pipeline uses a simplified enum (`CommonDef`, e.g., `Martyrs`, `Virgins`) from which the engine deduces the fully resolved `Common` variant based on the `MartyrologyEntry` properties (season, `SaintCount`, sex). This resolution is internal to the engine and not exposed in the output types.
 
 #### `CommonInfo`
 
@@ -2997,7 +2997,7 @@ struct MartyrologyEntry {
 **Role in the composition model:**
 
 - `titles` determines automatic color assignment (presence of `Title::Martyr` → red)
-- `r#type` and `sex` are used by the engine to resolve `CommonDefinition` → `Common` (e.g., `Martyrs` + `Group { count: Some(3) }` → `Martyrs_OutsideEaster_Several`)
+- `r#type` and `sex` are used by the engine to resolve `CommonDef` → `Common` (e.g., `Martyrs` + `Group { count: Some(3) }` → `Martyrs_OutsideEaster_Several`)
 - `canonization_level` affects the display name but not the composition rules
 
 > **Scope note:** The `MartyrologyEntry` struct carries rich biographical metadata that is out of scope for this document. Only the fields that affect composition (type, titles, sex) or consumer display (name, canonization_level) are listed here.
@@ -3081,7 +3081,7 @@ core/src/types/
 Calendar source files (YAML/JSON input)
         │
         ▼
-   DayDefinition (existing input type)
+   CelebrationDef (input type — see Input Data Model)
         │
         ▼
 ┌───────────────────────────────────────────┐
