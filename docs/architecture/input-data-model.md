@@ -454,7 +454,7 @@ struct CelebrationDef {
     patronages: Option<Vec<PatronageDef>>,
     /// Override the locale key used to look up this celebration's name.
     /// When absent, the CelebrationId itself serves as the locale key.
-    custom_locale_id: Option<String>,
+    custom_locale_key: Option<String>,
 
     // ── Mass reading references ──
 
