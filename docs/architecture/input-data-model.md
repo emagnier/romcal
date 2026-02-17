@@ -11,66 +11,66 @@ tableOfContents:
 INPUT ARCHITECTURE
 | Concept                              | Section              | Line   | Key references                    |
 | ------------------------------------ | -------------------- | ------ | --------------------------------- |
-| Three-tier rationale                 | Context              | ~55    |                                   |
-| Tier overview table                  | Part I §1            | ~85    |                                   |
-| Directory layout                     | Part I §2            | ~115   |                                   |
-| Graceful degradation                 | Part I §3            | ~165   |                                   |
-| Calendar hierarchy (4 levels)        | Part I §4            | ~195   | CP 13-16                          |
-| File format and validation           | Part I §5            | ~245   |                                   |
+| Three-tier rationale                 | Context              | ~76    |                                   |
+| Tier overview table                  | Part I §1            | ~120   |                                   |
+| Directory layout                     | Part I §2            | ~135   |                                   |
+| Graceful degradation                 | Part I §3            | ~207   |                                   |
+| Calendar hierarchy (4 levels)        | Part I §4            | ~219   | CP 13-16                          |
+| File format and validation           | Part I §5            | ~248   |                                   |
 
 TIER 1 — CALENDAR DEFINITIONS
 | Concept                              | Section              | Line   | Key references                    |
 | ------------------------------------ | -------------------- | ------ | --------------------------------- |
-| CalendarDef (root)            | Part II §1           | ~275   |                                   |
-| CalendarMetadata                     | Part II §2           | ~310   | CP 13-16                          |
-| ParticularConfig                     | Part II §3           | ~345   | GNLY 7                            |
-| CelebrationDef (core input type)      | Part II §4           | ~380   |                                   |
-| DateDef variants                     | Part II §5           | ~460   |                                   |
-| DateFn (movable feasts)              | Part II §6           | ~530   |                                   |
-| DateDefExceptions                    | Part II §7           | ~575   |                                   |
-| Precedence (GNLY 59)                 | Part II §8           | ~630   | GNLY 59                           |
-| CommonDef (simplified)        | Part II §9           | ~700   |                                   |
-| TitleCategory and TitlesDef          | Part II §10          | ~770   |                                   |
-| PatronageDef                         | Part II §11          | ~850   | CP 31                             |
-| MartyrologyRef                       | Part II §12          | ~905   |                                   |
-| MassReadingsDef                      | Part II §13          | ~960   | GILM 66, 69                       |
-| Definition examples                  | Part II §14          | ~1070  |                                   |
+| CalendarDef (root)                   | Part II §1           | ~277   |                                   |
+| CalendarMetadata                     | Part II §2           | ~311   | CP 13-16                          |
+| ParticularConfig                     | Part II §3           | ~354   | GNLY 7                            |
+| CelebrationDef (core input type)     | Part II §4           | ~383   |                                   |
+| DateDef variants                     | Part II §5           | ~485   |                                   |
+| DateFn (movable feasts)              | Part II §6           | ~542   |                                   |
+| DateDefExceptions                    | Part II §7           | ~574   |                                   |
+| Precedence (GNLY 59)                 | Part II §8           | ~638   | GNLY 59                           |
+| CommonDef (simplified)               | Part II §9           | ~711   |                                   |
+| TitleCategory and TitlesDef          | Part II §10          | ~783   |                                   |
+| PatronageDef                         | Part II §11          | ~859   | CP 31                             |
+| MartyrologyRef                       | Part II §12          | ~921   |                                   |
+| MassReadingsDef                      | Part II §13          | ~980   | GILM 66, 69                       |
+| Definition examples                  | Part II §14          | ~1119  |                                   |
 
 TIER 2 — MARTYROLOGY CATALOG & LOCALIZATION
 | Concept                              | Section              | Line   | Key references                    |
 | ------------------------------------ | -------------------- | ------ | --------------------------------- |
-| File organization (martyrology/locales) | Part III §1       | ~1180  |                                   |
-| ResourcesMetadata                    | Part III §2          | ~1240  |                                   |
-| MartyrologyEntryDef                  | Part III §3          | ~1305  |                                   |
-| MartyrologyEntryType                 | Part III §4          | ~1380  |                                   |
-| SaintDateDef                         | Part III §5          | ~1420  |                                   |
-| Title qualifiers and fullname        | Part III §6          | ~1470  |                                   |
-| Locale inheritance                   | Part III §7          | ~1535  |                                   |
-| Localization of enums                | Part III §8          | ~1590  |                                   |
+| File organization (martyrology/locales) | Part III §1       | ~1214  |                                   |
+| ResourcesMetadata                    | Part III §2          | ~1247  |                                   |
+| MartyrologyEntryDef                  | Part III §3          | ~1346  |                                   |
+| MartyrologyEntryType                 | Part III §4          | ~1464  |                                   |
+| SaintDateDef                         | Part III §5          | ~1485  |                                   |
+| Title qualifiers and fullname        | Part III §6          | ~1534  |                                   |
+| Locale inheritance                   | Part III §7          | ~1654  |                                   |
+| Localization of enums                | Part III §8          | ~1698  |                                   |
 
 TIER 3 — LITURGICAL TEXTS
 | Concept                              | Section              | Line   | Key references                    |
 | ------------------------------------ | -------------------- | ------ | --------------------------------- |
-| Overview and copyright               | Part IV §1           | ~1645  |                                   |
-| ProperTexts (Mass)                   | Part IV §2           | ~1710  | GIRM 363                          |
-| CommonTexts (Mass)                   | Part IV §3           | ~1800  | GILM 71, 89                       |
-| ReadingsTexts (biblical content)     | Part IV §4           | ~1860  | GILM 75, 80                       |
-| ProperTexts (Office)                 | Part IV §5           | ~1920  | GILH 225-236                      |
-| CommonTexts (Office)                 | Part IV §6           | ~2010  | GILH 235                          |
-| Latin baseline and copyright         | Part IV §7           | ~2060  |                                   |
-| Citation → Text jointure             | Part IV §8           | ~2100  |                                   |
+| Overview and copyright               | Part IV §1           | ~1722  |                                   |
+| ProperTexts (Mass)                   | Part IV §2           | ~1745  | GIRM 363                          |
+| CommonTexts (Mass)                   | Part IV §3           | ~1818  | GILM 71, 89                       |
+| ReadingsTexts (biblical content)     | Part IV §4           | ~1861  | GILM 75, 80                       |
+| ProperTexts (Office)                 | Part IV §5           | ~1891  | GILH 225-236                      |
+| CommonTexts (Office)                 | Part IV §6           | ~1990  | GILH 235                          |
+| Latin baseline and copyright         | Part IV §7           | ~2036  |                                   |
+| Citation → Text jointure             | Part IV §8           | ~2056  |                                   |
 
 TRANSFORMATION & ERGONOMICS
 | Concept                              | Section              | Line   | Key references                    |
 | ------------------------------------ | -------------------- | ------ | --------------------------------- |
-| Input → Output mapping               | Part V §1            | ~2140  |                                   |
-| CommonDef → Common            | Part V §2            | ~2195  |                                   |
-| Title resolution                     | Part V §3            | ~2245  |                                   |
-| Patronage resolution                 | Part V §4            | ~2285  |                                   |
-| Canonical prayer                     | Part V §5            | ~2310  | CP 44                             |
-| Contributor ergonomics               | Part VI §1           | ~2350  |                                   |
-| Adding a new saint                   | Part VI §2           | ~2400  |                                   |
-| Adding a new calendar                | Part VI §3           | ~2450  |                                   |
+| Input → Output mapping               | Part V §1            | ~2095  |                                   |
+| CommonDef → Common                   | Part V §2            | ~2128  |                                   |
+| Title resolution                     | Part V §3            | ~2164  |                                   |
+| Patronage resolution                 | Part V §4            | ~2192  |                                   |
+| Canonical prayer                     | Part V §5            | ~2207  | CP 44                             |
+| Contributor ergonomics               | Part VI §1           | ~2222  |                                   |
+| Adding a new saint                   | Part VI §2           | ~2245  |                                   |
+| Adding a new calendar                | Part VI §3           | ~2288  |                                   |
 -->
 
 ## Context and Motivation
@@ -290,14 +290,14 @@ struct CalendarDef {
     particular_config: Option<ParticularConfig>,
     /// Parent calendar(s) in the inheritance chain
     parent_calendar_ids: Vec<CalendarId>,
-    /// Day definitions: the celebrations defined or overridden by this calendar
+    /// Celebrations defined or overridden by this calendar
     celebrations: BTreeMap<CelebrationId, CelebrationDef>,
 }
 
 /// Unique calendar identifier (newtype for type safety)
 struct CalendarId(String);
 
-/// Unique day identifier within a calendar (e.g., "basil_the_great_and_gregory_nazianzen_bishops")
+/// Unique celebration identifier within a calendar (e.g., "basil_the_great_and_gregory_nazianzen_bishops")
 type CelebrationId = String;
 
 /// A BCP-47 locale tag (e.g., "en", "fr", "en-gb", "pt-br")
@@ -306,7 +306,7 @@ type LocaleTag = String;
 
 **Naming convention for `CalendarId`:** Country calendars use the country name in snake_case (`france`, `united_states`). Diocesan calendars use `country__diocese` with double underscore (`france__lyon`). Regional calendars use the region name (`europe`, `americas`). Community calendars use the order or community name (`benedictines`).
 
-**Naming convention for `CelebrationId`:** The day identifier is a snake*case string derived from the celebration's name in English, typically following the pattern `{name}*{title}`(e.g.,`basil*the_great_bishop`, `joan_of_arc_virgin`). For compound celebrations: `{name1}\_and*{name2}_{shared_title}`(e.g.,`peter_and_paul_apostles`). Temporal cycle days use `{season}_{week}\_{weekday}`(e.g.,`advent_1_sunday`, `ordinary_time_5_monday`).
+**Naming convention for `CelebrationId`:** The celebration identifier is a `snake_case` string derived from the celebration's name in English, typically following the pattern `{name}_{title}` (e.g., `basil_the_great_bishop`, `joan_of_arc_virgin`). For compound celebrations: `{name1}_and_{name2}_{shared_title}` (e.g., `peter_and_paul_apostles`). Temporal cycle days use `{season}_{week}_{weekday}` (e.g., `advent_1_sunday`, `ordinary_time_5_monday`).
 
 ### 2. `CalendarMetadata`
 
@@ -782,11 +782,11 @@ enum CommonsDef {
 
 ### 10. `TitleCategory` and `TitlesDef`
 
-**What it is:** `TitleCategory` is a closed enum of ecclesiastical title categories. It replaces the flat `Title` enum, which mixed ecclesiastical categories, qualified variants, and patronage designations into a single 70+ variant enum.
+**What it is:** `TitleCategory` is a closed enum of ecclesiastical title categories. It separates categories from qualifiers (localized free-text in Tier 2) and patronage designations (their own type, `PatronageDef`).
 
-**Why this design:** See the companion document (Part III §8) for the full rationale. In summary:
+**Design benefits** (see also the companion document, Part III §8):
 
-- **Martyr detection becomes trivial:** `category == TitleCategory::Martyr` — no fragile match list.
+- **Martyr detection is trivial:** `category == TitleCategory::Martyr` — no fragile match list.
 - **Zero core modifications** for new qualifiers — qualifiers are localized free-text in Tier 2.
 - **Patronages are separated** into their own type (`PatronageDef`) with only 3 role variants.
 
@@ -1269,7 +1269,7 @@ struct ResourcesMetadata {
     ordinals_letters: Option<BTreeMap<u32, String>>,
     ordinals_numeric: Option<BTreeMap<u32, String>>,
 
-    // ── New fields for the evolved model ──
+    // ── Display and composition ──
 
     /// TitleCategory display names
     title_categories: BTreeMap<TitleCategory, String>,
