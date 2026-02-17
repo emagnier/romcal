@@ -98,20 +98,20 @@ The present document defines romcal's **input** data model — the data that con
 
 Each input type maps to one or more output types:
 
-| Input (this document)       | Output (companion document)             | Transformation                             |
-| --------------------------- | --------------------------------------- | ------------------------------------------ |
-| `CalendarDef`        | Calendar hierarchy, `from_calendar_id`  | Inheritance resolution                     |
-| `CelebrationDef`             | `Celebration` (identity fields)         | Date resolution, precedence rules          |
-| `CommonDef`          | `Common`, `CommonInfo`                  | Expansion based on season + saint metadata |
-| `TitleCategory` + qualifier | `Title`                                 | Assembly of category + localized qualifier |
-| `PatronageDef`              | `Patronage`                             | Localization of role + subject             |
+| Input (this document)       | Output (companion document)             | Transformation                              |
+| --------------------------- | --------------------------------------- | ------------------------------------------- |
+| `CalendarDef`               | Calendar hierarchy, `from_calendar_id`  | Inheritance resolution                      |
+| `CelebrationDef`            | `Celebration` (identity fields)         | Date resolution, precedence rules           |
+| `CommonDef`                 | `Common`, `CommonInfo`                  | Expansion based on season + saint metadata  |
+| `TitleCategory` + qualifier | `Title`                                 | Assembly of category + localized qualifier  |
+| `PatronageDef`              | `Patronage`                             | Localization of role + subject              |
 | `MartyrologyEntryDef`       | `MartyrologyEntry`                      | Locale merge + type normalization (Tier 2a) |
-| `ResourcesMetadata`         | `*Info.name`, `DayContext.*_name`        | Locale merge (Tier 2b)                     |
-| `MassReadingsDef`           | `CelebrationMass.readings` (citations)  | Cycle resolution                           |
-| `ProperMassTexts` (Tier 3)  | `CelebrationMass` (formulary, orations) | Text population by GIRM groups             |
-| `CommonMassTexts` (Tier 3)  | `ReadingsPool`, `FlexibleOrations`      | Pool assembly per Common variant           |
-| `ProperHoursTexts` (Tier 3) | `CelebrationHour` (per-Hour elements)   | Text population by GILH rules              |
-| `ReadingsTexts` (Tier 3)    | `ReadingsSet.reading_1.text`, etc.      | Citation → full text jointure              |
+| `ResourcesMetadata`         | `*Info.name`, `DayContext.*_name`       | Locale merge (Tier 2b)                      |
+| `MassReadingsDef`           | `CelebrationMass.readings` (citations)  | Cycle resolution                            |
+| `ProperMassTexts` (Tier 3)  | `CelebrationMass` (formulary, orations) | Text population by GIRM groups              |
+| `CommonMassTexts` (Tier 3)  | `ReadingsPool`, `FlexibleOrations`      | Pool assembly per Common variant            |
+| `ProperHoursTexts` (Tier 3) | `CelebrationHour` (per-Hour elements)   | Text population by GILH rules               |
+| `ReadingsTexts` (Tier 3)    | `ReadingsSet.reading_1.text`, etc.      | Citation → full text jointure               |
 
 ---
 
@@ -119,12 +119,12 @@ Each input type maps to one or more output types:
 
 ### 1. Three-Tier Input Model
 
-| Tier | Name                       | Directory        | Content                                                  | Copyright status | In romcal repo? |
-| ---- | -------------------------- | ---------------- | -------------------------------------------------------- | ---------------- | --------------- |
-| 1    | Calendar Definitions       | `calendars/`     | Dates, precedence, commons, martyrology refs, patronages | Free (factual)   | Yes             |
-| 2a   | Martyrology Catalog        | `martyrology/`   | Saint metadata, localized names                          | Free (factual)   | Yes             |
-| 2b   | Localization               | `locales/`       | UI strings (seasons, ranks, weekdays, ordinals…)         | Free (factual)   | Yes             |
-| 3    | Liturgical Texts           | `texts/`         | Prayers, readings, antiphons, orations, Office content   | Restricted       | External        |
+| Tier | Name                 | Directory      | Content                                                  | Copyright status | In romcal repo? |
+| ---- | -------------------- | -------------- | -------------------------------------------------------- | ---------------- | --------------- |
+| 1    | Calendar Definitions | `calendars/`   | Dates, precedence, commons, martyrology refs, patronages | Free (factual)   | Yes             |
+| 2a   | Martyrology Catalog  | `martyrology/` | Saint metadata, localized names                          | Free (factual)   | Yes             |
+| 2b   | Localization         | `locales/`     | UI strings (seasons, ranks, weekdays, ordinals…)         | Free (factual)   | Yes             |
+| 3    | Liturgical Texts     | `texts/`       | Prayers, readings, antiphons, orations, Office content   | Restricted       | External        |
 
 **Tier 1** is purely structural: it describes _what_ is celebrated _when_ and at _what rank_, without any natural-language content. A `CelebrationDef` says "St. Scholastica is an Optional Memorial on February 10 with Common of Virgins and Common of Religious" — but not her name, her collect prayer, or the readings for her memorial.
 
@@ -257,14 +257,14 @@ All input files use **JSON** with **JSON Schema** validation. Each file referenc
 }
 ```
 
-Three JSON Schema files define the input model:
+Four JSON Schema files define the input model:
 
 | Schema file                | Validates                           |
 | -------------------------- | ----------------------------------- |
-| `calendar_definition.json` | Tier 1 — `CalendarDef` files             |
-| `martyrology.json`         | Tier 2a — Martyrology catalog files      |
-| `locale.json`              | Tier 2b — Locale UI strings files        |
-| `liturgical_texts.json`    | Tier 3 — All liturgical text files       |
+| `calendar_definition.json` | Tier 1 — `CalendarDef` files        |
+| `martyrology.json`         | Tier 2a — Martyrology catalog files |
+| `locale.json`              | Tier 2b — Locale UI strings files   |
+| `liturgical_texts.json`    | Tier 3 — All liturgical text files  |
 
 Editors with JSON Schema support (VS Code, IntelliJ) provide autocompletion and inline validation, significantly reducing errors in manual data entry.
 
@@ -1297,7 +1297,7 @@ struct SeasonLocalization {
 
 ### 3. `MartyrologyEntryDef`
 
-**What it is:** The biographical metadata for a person, group, or event in the martyrology catalog. Combined with localized name data in the same resource file for contributor ergonomics.
+**What it is:** The biographical metadata for a person, group, or event in the martyrology catalog. Stored in `martyrology/{locale}/` files, with `en` as the base locale and other locales providing sparse overrides.
 
 ```rust
 struct MartyrologyEntryDef {
@@ -2061,7 +2061,7 @@ Tier 3 (Liturgical Texts)
 
 The engine expands each `CommonDef` (23 variants) into the fully resolved `Common` (34 variants) based on runtime context:
 
-| `CommonDef`        | Context needed                       | Resolved `Common` variants                                                      |
+| `CommonDef`               | Context needed                       | Resolved `Common` variants                                                      |
 | ------------------------- | ------------------------------------ | ------------------------------------------------------------------------------- |
 | `BlessedVirginMary`       | Current `Season`                     | `BVM_OrdinaryTime`, `BVM_Advent`, `BVM_Christmas`, `BVM_Easter`                 |
 | `Martyrs`                 | `Season` + `MartyrologyEntry.count`  | `Martyrs_OutsideEaster_One`, `..._Several`, `Martyrs_Easter_One`, `..._Several` |
@@ -2153,16 +2153,16 @@ The Office concluding prayer follows the same resolution: it defaults to `Celebr
 
 The input model is deliberately simpler than the output model:
 
-| Aspect        | Input                            | Output                                 | Why simpler                                           |
-| ------------- | -------------------------------- | -------------------------------------- | ----------------------------------------------------- |
-| Commons       | 23 variants (`CommonDef`) | 34 variants (`Common`)                 | Season/count context resolved by engine               |
-| Titles        | 24 categories (`TitleCategory`)  | 24 categories + qualifiers (`Title`)   | Qualifiers are free-text in Tier 2, not enum variants |
-| Patronages    | 3 roles + locale key             | 3 roles + localized text (`Patronage`) | Gender and display resolved by engine                 |
-| Colors        | Not specified                    | `Vec<ColorInfo>`                       | Deduced from titles and season                        |
-| Rank          | Not specified                    | `Rank`                                 | Derived from `Precedence`                             |
-| Fullname      | Optional override                | Always present (`String`)              | Constructed from components when not overridden       |
-| Mass content  | Citation strings only            | Full text + provenance (`SourcedText`) | Text and provenance added by engine from Tier 3       |
-| Hours content | Not in Tier 1                    | Full per-Hour structure                | Text from Tier 3, structure from rank rules           |
+| Aspect        | Input                           | Output                                 | Why simpler                                           |
+| ------------- | ------------------------------- | -------------------------------------- | ----------------------------------------------------- |
+| Commons       | 23 variants (`CommonDef`)       | 34 variants (`Common`)                 | Season/count context resolved by engine               |
+| Titles        | 24 categories (`TitleCategory`) | 24 categories + qualifiers (`Title`)   | Qualifiers are free-text in Tier 2, not enum variants |
+| Patronages    | 3 roles + locale key            | 3 roles + localized text (`Patronage`) | Gender and display resolved by engine                 |
+| Colors        | Not specified                   | `Vec<ColorInfo>`                       | Deduced from titles and season                        |
+| Rank          | Not specified                   | `Rank`                                 | Derived from `Precedence`                             |
+| Fullname      | Optional override               | Always present (`String`)              | Constructed from components when not overridden       |
+| Mass content  | Citation strings only           | Full text + provenance (`SourcedText`) | Text and provenance added by engine from Tier 3       |
+| Hours content | Not in Tier 1                   | Full per-Hour structure                | Text from Tier 3, structure from rank rules           |
 
 This means a contributor adding a new saint to a national calendar only needs to:
 
@@ -2253,20 +2253,22 @@ This calendar:
 
 | Type                       | Tier | Purpose                                  |
 | -------------------------- | ---- | ---------------------------------------- |
-| `CalendarDef`       | 1    | Root calendar file structure             |
+| `CalendarDef`              | 1    | Root calendar file structure             |
 | `CalendarMetadata`         | 1    | Calendar classification                  |
 | `ParticularConfig`         | 1    | Movable feast configuration              |
-| `CelebrationDef`            | 1    | Core celebration definition              |
+| `CelebrationDef`           | 1    | Core celebration definition              |
 | `DateDef`                  | 1    | Date assignment                          |
 | `DateFn`                   | 1    | Movable feast functions                  |
 | `DateDefExceptions`        | 1    | Conditional date adjustments             |
-| `CommonDef`         | 1    | Simplified Common enum (23 variants)     |
+| `CommonDef`                | 1    | Simplified Common enum (23 variants)     |
 | `PatronageDef`             | 1    | Patronage designation                    |
 | `MartyrologyRef`           | 1    | Reference to martyrology entry           |
 | `MartyrologyEntryOverride` | 1    | Per-celebration martyrology overrides    |
 | `MassesDefinitions`        | 1    | Reading citations by mass time and cycle |
+| `MartyrologyFile`          | 2a   | Root type for a martyrology file         |
 | `MartyrologyEntryDef`      | 2a   | Biographical metadata + localized names  |
 | `SaintDateDef`             | 2a   | Flexible biographical date               |
+| `LocaleFile`               | 2b   | Root type for a locale file              |
 | `ResourcesMetadata`        | 2b   | UI strings and localization data         |
 | `FullnameTemplates`        | 2b   | Fullname construction templates          |
 | `ProperMassTexts`          | 3    | Mass formulary and orations              |
@@ -2279,7 +2281,7 @@ This calendar:
 
 | Type            | Usage in input                                                                    |
 | --------------- | --------------------------------------------------------------------------------- |
-| `Precedence`    | `CelebrationDef.precedence`                                                        |
+| `Precedence`    | `CelebrationDef.precedence`                                                       |
 | `MassTime`      | `MassesDefinitions` keys, `ProperMassTexts` keys                                  |
 | `HourTime`      | `ProperHoursTexts` keys                                                           |
 | `TitleCategory` | `MartyrologyEntryDef.titles`, `TitlesDef`                                         |
@@ -2296,9 +2298,9 @@ This calendar:
 | Type                 | Produced from                                             |
 | -------------------- | --------------------------------------------------------- |
 | `LiturgicalCalendar` | All three tiers                                           |
-| `LiturgicalDay`      | `CelebrationDef` + date resolution                         |
+| `LiturgicalDay`      | `CelebrationDef` + date resolution                        |
 | `DayContext`         | Date computation + `ParticularConfig`                     |
-| `Celebration`        | `CelebrationDef` + `MartyrologyEntryDef` + texts           |
+| `Celebration`        | `CelebrationDef` + `MartyrologyEntryDef` + texts          |
 | `CelebrationMass`    | `MassReadingsDef` + `ProperMassTexts` + `CommonMassTexts` |
 | `CelebrationHour`    | `ProperHoursTexts` + `CommonHoursTexts`                   |
 | `MassCalendar`       | Layer 1 → Layer 2 Mass transformation                     |
