@@ -315,6 +315,12 @@ struct CalendarMetadata {
     jurisdiction: Jurisdiction,
     /// Calendar level in the hierarchy (CP 13-16)
     r#type: CalendarType,
+    /// BCP-47 locale tags for which this calendar expects localized content
+    /// (e.g., ["en", "fr"] for Canada). Used by audit tools to verify that
+    /// all martyrology entries and UI strings are fully translated in every
+    /// required locale. When absent (e.g., General Roman Calendar), no
+    /// locale audit is enforced.
+    locales: Option<Vec<String>>,
 }
 
 enum Jurisdiction {
@@ -1116,7 +1122,8 @@ enum ReadingSlot {
   "id": "france",
   "metadata": {
     "jurisdiction": "civil",
-    "type": "country"
+    "type": "country",
+    "locales": ["fr"]
   },
   "particular_config": {
     "epiphany_on_sunday": true,
