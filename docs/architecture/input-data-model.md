@@ -1535,41 +1535,65 @@ The `_is_approximative` companion fields (e.g., `date_of_death_is_approximative:
 
 #### Title qualifiers
 
-A **qualifier** is a localized free-text modifier attached to a `TitleCategory`. It distinguishes specific variants of a title without adding enum variants to the code.
+A **qualifier** is a localized free-text string that **replaces** the base title display when present. It is attached to a `TitleCategory` key in `MartyrologyEntryDef.title_qualifiers`. Qualifiers distinguish specific variants of a title without adding enum variants to the code.
+
+The qualifier is the **complete rendered text** of the qualified title — not a fragment to be composed with the base title via a template. This avoids word-order issues across languages (e.g., "the First Martyr" in English vs. "premier martyr" in French vs. "proto-martyr d'Océanie").
 
 ```json
-// English
-"stephen_i_deacon": {
+// martyrology/en/s.json
+"stephen_the_first_martyr": {
   "name": "Stephen",
-  "titles": ["deacon", "martyr"],
+  "titles": ["martyr"],
   "title_qualifiers": {
-    "martyr": "the First"
+    "martyr": "the First Martyr"
   }
 }
-// Display: "Saint Stephen, Deacon and the First Martyr"
+// Display: "Saint Stephen, the First Martyr"
 
-// English
+// martyrology/en/c.json
 "cyril_of_thessaloniki_monk": {
   "name": "Cyril",
   "titles": ["monk", "missionary"],
   "title_qualifiers": {
-    "missionary": "Slavic"
+    "missionary": "Slavic Missionary"
   }
 }
 // Display: "Saint Cyril, Monk and Slavic Missionary"
-```
 
-Qualifiers are locale-specific — the French version of "the First" is "premier" and may follow different word-order rules. Since qualifiers are in Tier 2, each locale provides its own:
-
-```json
-// French
-"stephen_i_deacon": {
+// martyrology/en/p.json
+"peter_chanel_priest": {
+  "name": "Peter Chanel",
+  "titles": ["priest", "martyr"],
   "title_qualifiers": {
-    "martyr": "premier"
+    "martyr": "Proto-martyr of Oceania"
   }
 }
-// Display: "Saint Étienne, diacre et premier martyr"
+// Display: "Saint Peter Chanel, Priest and Proto-martyr of Oceania"
 ```
+
+Each locale provides its own qualifiers — the string is the final rendered form in that language:
+
+```json
+// martyrology/fr/s.json
+"stephen_the_first_martyr": {
+  "title_qualifiers": {
+    "martyr": "premier martyr"
+  }
+}
+// Display: "Saint Étienne, premier martyr"
+
+// martyrology/fr/p.json
+"peter_chanel_priest": {
+  "title_qualifiers": {
+    "martyr": "proto-martyr d'Océanie"
+  }
+}
+// Display: "Saint Pierre Chanel, prêtre et proto-martyr d'Océanie"
+```
+
+**Fallback:** When a qualifier is absent for a given locale, the standard BCP-47 locale hierarchy applies (e.g., `fr` → `en`). The engine falls back to the `en` qualifier, not to the base title. This preserves the specificity of the qualified title even if the translation is incomplete. The `locale_tags` field in `CalendarMetadata` enables audit tools to detect missing translations before they reach production (see Part II §2).
+
+**Scope:** Qualifiers are rare — roughly 10–15 entries out of several hundred in the martyrology. Most entries have no qualifier and use the base title from `title_categories` directly.
 
 #### Fullname construction
 
@@ -1587,9 +1611,6 @@ struct FullnameTemplates {
     title_separator: String,
     /// Conjunction before the last title (e.g., " and ")
     title_last_conjunction: String,
-    /// Template for a qualified title
-    /// Placeholders: {qualifier}, {title}
-    qualified_title: String,
 }
 ```
 
@@ -1598,16 +1619,14 @@ struct FullnameTemplates {
 "fullname_templates": {
   "person": "{canonization_level} {name}, {titles}",
   "title_separator": ", ",
-  "title_last_conjunction": " and ",
-  "qualified_title": "{qualifier} {title}"
+  "title_last_conjunction": " and "
 }
 
 // French templates
 "fullname_templates": {
   "person": "{canonization_level} {name}, {titles}",
   "title_separator": ", ",
-  "title_last_conjunction": " et ",
-  "qualified_title": "{title} {qualifier}"
+  "title_last_conjunction": " et "
 }
 ```
 
@@ -1618,14 +1637,15 @@ Input components:
 - `canonization_level`: "saint" → "Saint"
 - `name`: "Adalbert"
 - `titles`: ["bishop", "martyr"]
-- `title_qualifiers`: { "bishop": "of Prague" }
+- `title_qualifiers`: { "bishop": "Bishop of Prague" }
 
 Steps:
 
-1. Look up each title in `title_categories`: "bishop" → "Bishop", "martyr" → "Martyr"
-2. Apply qualifiers: "Bishop" + "of Prague" → "Bishop of Prague" (using `qualified_title` template)
-3. Join titles: "Bishop of Prague" + " and " + "Martyr" → "Bishop of Prague and Martyr"
-4. Apply person template: "Saint Adalbert, Bishop of Prague and Martyr"
+1. For each title, check `title_qualifiers`: if a qualifier exists, use it directly; otherwise look up the base title in `title_categories`.
+   - "bishop" → qualifier found: **"Bishop of Prague"**
+   - "martyr" → no qualifier, base title: **"Martyr"**
+2. Join titles: "Bishop of Prague" + " and " + "Martyr" → "Bishop of Prague and Martyr"
+3. Apply person template: "Saint Adalbert, Bishop of Prague and Martyr"
 
 Result: `"Saint Adalbert, Bishop of Prague and Martyr"`
 
@@ -2146,25 +2166,27 @@ The engine expands each `CommonDef` (23 variants) into the fully resolved `Commo
 The engine assembles the output `Title` from input components:
 
 ```
-Input (Tier 1 + Tier 2)                    Output
-────────────────────────                    ──────
-TitleCategory::Martyr (from Tier 2)    →    Title {
-+ title_qualifiers.martyr: "the First"       category: Martyr,
-  (from Tier 2, locale-specific)              qualifier: Some("the First")
-                                            }
+Input (Tier 1 + Tier 2)                         Output
+────────────────────────                         ──────
+TitleCategory::Martyr (from Tier 2)         →    Title {
++ title_qualifiers.martyr:                         category: Martyr,
+  "the First Martyr" (complete rendered text)      qualifier: Some("the First Martyr")
+                                                 }
 
-TitleCategory::Bishop (from Tier 2)    →    Title {
-+ no qualifier                               category: Bishop,
-                                              qualifier: None
-                                            }
+TitleCategory::Bishop (from Tier 2)         →    Title {
++ no qualifier                                     category: Bishop,
+                                                   qualifier: None
+                                                 }
 ```
+
+The qualifier is the **complete rendered text** of the qualified title (see Part III §6). When present, it replaces the base title from `title_categories` in the display. Fallback follows the BCP-47 locale hierarchy (`fr` → `en`).
 
 The `TitlesDef` operations (append/prepend) from Tier 1 definitions are applied to the base titles from Tier 2 martyrology entries. The engine resolves in order:
 
 1. Load base titles from `MartyrologyEntryDef.titles` (Tier 2).
 2. Apply `CelebrationDef.titles` operations (Tier 1): append, prepend, or replace.
 3. Apply `MartyrologyRef.titles` operations (Tier 1, per-entry override): append, prepend, or replace.
-4. For each `TitleCategory`, look up the locale-specific qualifier from `MartyrologyEntryDef.title_qualifiers` (Tier 2).
+4. For each `TitleCategory`, check `title_qualifiers` (Tier 2, locale-specific): if present, use the qualifier as the rendered title; otherwise use the base title from `title_categories`.
 5. Assemble output `Title { category, qualifier }`.
 
 ### 4. Patronage Resolution

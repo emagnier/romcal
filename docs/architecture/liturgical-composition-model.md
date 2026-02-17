@@ -1005,7 +1005,10 @@ enum TitleCategory {
 // The qualifier comes from the localized data files, not from the code.
 struct Title {
     category: TitleCategory,
-    qualifier: Option<String>,  // localized, e.g. "the First", "of Oceania", "Slavic"
+    /// Complete rendered text of the qualified title, replacing the base
+    /// title from `title_categories` in display. Localized per locale.
+    /// e.g. "the First Martyr", "Proto-martyr of Oceania", "Slavic Missionary"
+    qualifier: Option<String>,
 }
 
 // ── Layer 3: Patronages (fully data-driven) ──
@@ -1025,25 +1028,27 @@ struct Patronage {
 }
 ```
 
-**Migration examples from the current flat enum:**
+**Examples:**
 
-| Current variant                      | New representation                                                        |
-| ------------------------------------ | ------------------------------------------------------------------------- |
-| `Title::Martyr`                      | `Title { category: Martyr, qualifier: None }`                             |
-| `Title::TheFirstMartyr`              | `Title { category: Martyr, qualifier: Some("the First") }`                |
-| `Title::ProtoMartyrOfOceania`        | `Title { category: Martyr, qualifier: Some("Proto-Martyr of Oceania") }`  |
-| `Title::SlavicMissionary`            | `Title { category: Missionary, qualifier: Some("Slavic") }`               |
-| `Title::QueenOfPoland`               | `Title { category: Queen, qualifier: Some("of Poland") }`                 |
-| `Title::MotherAndQueenOfChile`       | `Title { category: Queen, qualifier: Some("Mother and Queen of Chile") }` |
-| `Title::PatronOfFrance`              | `Patronage { role: PrincipalPatron, of: "France" }`                       |
-| `Title::CopatronessOfEurope`         | `Patronage { role: Copatron, of: "Europe" }`                              |
-| `Title::PrincipalPatronOfTheDiocese` | `Patronage { role: PrincipalPatron, of: "the Diocese" }`                  |
+| Title                           | Representation                                                            |
+| ------------------------------- | ------------------------------------------------------------------------- |
+| Martyr (no qualifier)           | `Title { category: Martyr, qualifier: None }`                             |
+| the First Martyr                | `Title { category: Martyr, qualifier: Some("the First Martyr") }`         |
+| Proto-martyr of Oceania         | `Title { category: Martyr, qualifier: Some("Proto-martyr of Oceania") }`  |
+| Slavic Missionary               | `Title { category: Missionary, qualifier: Some("Slavic Missionary") }`    |
+| Queen of Poland                 | `Title { category: Queen, qualifier: Some("Queen of Poland") }`           |
+| Mother and Queen of Chile       | `Title { category: Queen, qualifier: Some("Mother and Queen of Chile") }` |
+| Patron of France                | `Patronage { role: PrincipalPatron, of: "France" }`                       |
+| Co-patroness of Europe          | `Patronage { role: Copatron, of: "Europe" }`                              |
+| Principal Patron of the Diocese | `Patronage { role: PrincipalPatron, of: "the Diocese" }`                  |
+
+When a qualifier is present, it is the **complete rendered text** of the qualified title (see the Input Data Model, Part III §6). It replaces the base title from `title_categories` in display.
 
 **Key benefits:**
 
-- **Martyr detection becomes trivial:** `title.category == TitleCategory::Martyr` — no fragile match list.
+- **Martyr detection is trivial:** `title.category == TitleCategory::Martyr` — regardless of qualifier.
 - **Zero core modifications** for new qualifiers or patronages — everything is in the data files.
-- **`PatronRole`** has only 3 variants (CP §31: principal, secondary, co-patron; gender resolved from `MartyrologyEntry.sex`) vs. the current 37 patron-specific `Title` variants.
+- **`PatronRole`** has only 3 variants (CP §31: principal, secondary, co-patron; gender resolved from `MartyrologyEntry.sex`).
 - **`Celebration` and `HoursCelebrationChoice`** carry both `titles: TitlesDef` and `patronages: Vec<Patronage>`. Patronages are defined at calendar level (country/diocese), not in martyrology resources.
 
 ---
