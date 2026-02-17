@@ -11,7 +11,7 @@ This section contains design documents that describe romcal's internal architect
 Defines the three-tier input architecture — the data that contributors edit and that the engine transforms into the output model (~2 300 lines):
 
 - **Tier 1 — Calendar Definitions**: structural data (dates, precedence, commons, martyrology refs, readings citations). No copyright concerns.
-- **Tier 2 — Martyrology Catalog & Localization**: factual biographical metadata, localized names, UI strings. Locale inheritance with `en` as universal base.
+- **Tier 2 — Martyrology Catalog & Localization**: split into `martyrology/` (biographical metadata, localized names) and `locales/` (UI strings). Locale inheritance with `en` as universal base.
 - **Tier 3 — Liturgical Texts**: Mass formularies, Office propers, readings full text, Common text pools. Potentially copyrighted, Latin as baseline.
 
 Covers: `CelebrationDef`, `DateDef`, `CommonDef` (23 simplified variants), `MartyrologyEntryDef`, BCP-47 locale hierarchy, graceful degradation (engine works with Tier 1 alone), input→output transformation rules, and contributor workflows.

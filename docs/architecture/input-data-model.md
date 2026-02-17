@@ -39,8 +39,8 @@ TIER 1 — CALENDAR DEFINITIONS
 TIER 2 — MARTYROLOGY CATALOG & LOCALIZATION
 | Concept                              | Section              | Line   | Key references                    |
 | ------------------------------------ | -------------------- | ------ | --------------------------------- |
-| Resources (root type)                | Part III §1          | ~1180  |                                   |
-| ResourcesMetadata                    | Part III §2          | ~1215  |                                   |
+| File organization (martyrology/locales) | Part III §1       | ~1180  |                                   |
+| ResourcesMetadata                    | Part III §2          | ~1240  |                                   |
 | MartyrologyEntryDef                  | Part III §3          | ~1305  |                                   |
 | MartyrologyEntryType                 | Part III §4          | ~1380  |                                   |
 | SaintDateDef                         | Part III §5          | ~1420  |                                   |
@@ -105,7 +105,8 @@ Each input type maps to one or more output types:
 | `CommonDef`          | `Common`, `CommonInfo`                  | Expansion based on season + saint metadata |
 | `TitleCategory` + qualifier | `Title`                                 | Assembly of category + localized qualifier |
 | `PatronageDef`              | `Patronage`                             | Localization of role + subject             |
-| `MartyrologyEntryDef`       | `MartyrologyEntry`                      | Locale merge + type normalization          |
+| `MartyrologyEntryDef`       | `MartyrologyEntry`                      | Locale merge + type normalization (Tier 2a) |
+| `ResourcesMetadata`         | `*Info.name`, `DayContext.*_name`        | Locale merge (Tier 2b)                     |
 | `MassReadingsDef`           | `CelebrationMass.readings` (citations)  | Cycle resolution                           |
 | `ProperMassTexts` (Tier 3)  | `CelebrationMass` (formulary, orations) | Text population by GIRM groups             |
 | `CommonMassTexts` (Tier 3)  | `ReadingsPool`, `FlexibleOrations`      | Pool assembly per Common variant           |
@@ -118,15 +119,16 @@ Each input type maps to one or more output types:
 
 ### 1. Three-Tier Input Model
 
-| Tier | Name                       | Content                                                  | Copyright status | In romcal repo? |
-| ---- | -------------------------- | -------------------------------------------------------- | ---------------- | --------------- |
-| 1    | Calendar Definitions       | Dates, precedence, commons, martyrology refs, patronages | Free (factual)   | Yes             |
-| 2    | Martyrology & Localization | Saint metadata, localized names, UI strings              | Free (factual)   | Yes             |
-| 3    | Liturgical Texts           | Prayers, readings, antiphons, orations, Office content   | Restricted       | External        |
+| Tier | Name                       | Directory        | Content                                                  | Copyright status | In romcal repo? |
+| ---- | -------------------------- | ---------------- | -------------------------------------------------------- | ---------------- | --------------- |
+| 1    | Calendar Definitions       | `calendars/`     | Dates, precedence, commons, martyrology refs, patronages | Free (factual)   | Yes             |
+| 2a   | Martyrology Catalog        | `martyrology/`   | Saint metadata, localized names                          | Free (factual)   | Yes             |
+| 2b   | Localization               | `locales/`       | UI strings (seasons, ranks, weekdays, ordinals…)         | Free (factual)   | Yes             |
+| 3    | Liturgical Texts           | `texts/`         | Prayers, readings, antiphons, orations, Office content   | Restricted       | External        |
 
 **Tier 1** is purely structural: it describes _what_ is celebrated _when_ and at _what rank_, without any natural-language content. A `CelebrationDef` says "St. Scholastica is an Optional Memorial on February 10 with Common of Virgins and Common of Religious" — but not her name, her collect prayer, or the readings for her memorial.
 
-**Tier 2** provides the biographical and localized metadata: "Saint Scholastica, Virgin" (English), "Sainte Scholastique, vierge" (French), born ~480, died ~547, female, titles: virgin. It also provides all UI strings (season names, rank names, weekday names, ordinals).
+**Tier 2** is split into two directories. **`martyrology/`** provides the biographical metadata: "Saint Scholastica, Virgin" (English), "Sainte Scholastique, vierge" (French), born ~480, died ~547, female, titles: virgin. **`locales/`** provides the UI strings (season names, rank names, weekday names, ordinals). Both share the same BCP-47 locale inheritance model with `en` as base.
 
 **Tier 3** provides the actual liturgical texts: the collect prayer "O God, to make us seek the way of perfect love…", the entrance antiphon, the readings from the Lectionary, the Office hymns and psalmody antiphons. These texts come from published liturgical books that may be under copyright.
 
@@ -134,7 +136,7 @@ Each input type maps to one or more output types:
 
 ```
 data/
-├── definitions/                          TIER 1 — Calendar Definitions
+├── calendars/                           TIER 1 — Calendar Definitions
 │   ├── general_roman/
 │   │   ├── general_roman.json            Sanctoral cycle (General Calendar)
 │   │   └── temporal_cycle.json           Proper of Time (with reading citations)
@@ -155,20 +157,23 @@ data/
 │       ├── benedictines.json             Religious order calendar
 │       └── ...
 │
-├── resources/                            TIER 2 — Martyrology & Localization
+├── martyrology/                          TIER 2a — Martyrology Catalog
 │   ├── en/                               Base reference locale
-│   │   ├── meta.json                     UI strings (seasons, ranks, ordinals...)
-│   │   ├── martyrology.a.json            Entries A (aaron... augustine)
-│   │   ├── martyrology.b.json            Entries B
+│   │   ├── a.json                        Entries A (aaron... augustine)
+│   │   ├── b.json                        Entries B
 │   │   └── ...                           (one file per initial letter + digits)
 │   ├── fr/                               French locale
-│   │   ├── meta.json                     French UI strings
-│   │   ├── martyrology.a.json            French overrides for A entries
+│   │   ├── a.json                        French overrides for A entries
 │   │   └── ...
 │   ├── en-gb/                            British English (sparse overrides)
-│   │   ├── meta.json                     Empty — inherits from en
-│   │   └── martyrology.l.json            "Labour Day" spelling override
+│   │   └── l.json                        "Labour Day" spelling override
 │   ├── la/                               Latin
+│   └── ...                               (~13 locales)
+│
+├── locales/                              TIER 2b — UI Strings & Localization
+│   ├── en.json                           Base reference locale (seasons, ranks, ordinals...)
+│   ├── fr.json                           French UI strings
+│   ├── en-gb.json                        British English (sparse overrides)
 │   └── ...                               (~13 locales)
 │
 └── texts/                                TIER 3 — Liturgical Texts (external)
@@ -256,9 +261,10 @@ Three JSON Schema files define the input model:
 
 | Schema file                | Validates                           |
 | -------------------------- | ----------------------------------- |
-| `calendar_definition.json` | Tier 1 — `CalendarDef` files |
-| `resources.json`           | Tier 2 — `Resources` files          |
-| `liturgical_texts.json`    | Tier 3 — All liturgical text files  |
+| `calendar_definition.json` | Tier 1 — `CalendarDef` files             |
+| `martyrology.json`         | Tier 2a — Martyrology catalog files      |
+| `locale.json`              | Tier 2b — Locale UI strings files        |
+| `liturgical_texts.json`    | Tier 3 — All liturgical text files       |
 
 Editors with JSON Schema support (VS Code, IntelliJ) provide autocompletion and inline validation, significantly reducing errors in manual data entry.
 
@@ -850,14 +856,14 @@ struct PatronageDef {
 **Localization:** The `of` field is a locale key. The localized subject name is stored in Tier 2 `ResourcesMetadata.patronage_subjects`:
 
 ```json
-// resources/en/meta.json
+// locales/en.json
 "patronage_subjects": {
   "france": "France",
   "the_city_of_lyon": "the City of Lyon",
   "the_diocese": "the Diocese"
 }
 
-// resources/fr/meta.json
+// locales/fr.json
 "patronage_subjects": {
   "france": "la France",
   "the_city_of_lyon": "la Ville de Lyon",
@@ -1148,34 +1154,47 @@ enum ReadingSlot {
 
 ## Part III — Tier 2: Martyrology Catalog & Localization
 
-Tier 2 provides two categories of data:
+Tier 2 provides two categories of data, stored in **separate directories**:
 
-- **Biographical metadata** about saints, blesseds, and non-person celebrations (the martyrology catalog).
-- **Localized UI strings** (season names, rank names, weekday names, ordinals, etc.).
+- **`martyrology/`** — Biographical metadata about saints, blesseds, and non-person celebrations (the martyrology catalog).
+- **`locales/`** — Localized UI strings (season names, rank names, weekday names, ordinals, etc.).
 
 Both categories are organized by locale, with `en` (English) as the base reference locale. Other locales provide **sparse overrides** — only the fields that differ from `en`.
 
-### 1. `Resources`
+At runtime, the engine merges both categories into a single `Resources` object per locale (the API consumer sees a unified type — see Part V §1).
 
-**What it is:** The root type for a Tier 2 resource file. One file per locale per category (metadata or alphabetical martyrology segment).
+### 1. File Organization
+
+**Martyrology files** (`martyrology/{locale}/`): For manageability, martyrology entries are split into multiple files per locale, grouped by the first letter of the entry ID: `a.json`, `b.json`, …, `z.json`, `2.json` (for IDs starting with digits).
 
 ```rust
-struct Resources {
+/// Root type for a martyrology file
+struct MartyrologyFile {
     /// JSON Schema reference
     schema: Option<String>,
-    /// BCP-47 locale tag (e.g., "en", "fr", "en-gb", "la")
+    /// BCP-47 locale tag (e.g., "en", "fr", "en-gb")
     locale: String,
-    /// UI strings and localization metadata
-    metadata: Option<ResourcesMetadata>,
     /// Martyrology entries (biographical metadata + localized names)
-    martyrology: Option<BTreeMap<MartyrologyEntryId, MartyrologyEntryDef>>,
+    martyrology: BTreeMap<MartyrologyEntryId, MartyrologyEntryDef>,
 }
 
 /// Unique martyrology entry identifier (e.g., "adalbert_of_prague_bishop")
 type MartyrologyEntryId = String;
 ```
 
-**File splitting:** For manageability, martyrology entries are split into multiple files per locale, grouped by the first letter of the entry ID: `martyrology.a.json`, `martyrology.b.json`, …, `martyrology.z.json`, `martyrology.2.json` (for IDs starting with digits). The `meta.json` file contains only `ResourcesMetadata`.
+**Locale files** (`locales/{locale}.json`): One flat JSON file per locale, containing all UI strings and display configuration.
+
+```rust
+/// Root type for a locale file
+struct LocaleFile {
+    /// JSON Schema reference
+    schema: Option<String>,
+    /// BCP-47 locale tag (e.g., "en", "fr", "en-gb")
+    locale: String,
+    /// UI strings and localization metadata
+    metadata: ResourcesMetadata,
+}
+```
 
 ### 2. `ResourcesMetadata`
 
@@ -1587,7 +1606,7 @@ Locale resolution follows **BCP-47 tag hierarchy** with `en` as the universal ba
 **Sparse override example (`en-gb`):**
 
 ```json
-// en-gb/meta.json — empty, inherits everything from en
+// locales/en-gb.json — empty, inherits everything from en
 {
   "locale": "en-gb",
   "metadata": {
@@ -1597,7 +1616,7 @@ Locale resolution follows **BCP-47 tag hierarchy** with `en` as the universal ba
   }
 }
 
-// en-gb/martyrology.l.json — only British spelling differences
+// martyrology/en-gb/l.json — only British spelling differences
 {
   "locale": "en-gb",
   "martyrology": {
@@ -2019,11 +2038,15 @@ Tier 1 (CalendarDef)
     ├── CelebrationDef.masses            → CelebrationMass.readings (citations)
     └── CalendarDef.hierarchy    → Celebration.from_calendar_id + LiturgicalDay.parent_overrides
 
-Tier 2 (Resources)
+Tier 2a (martyrology/)
     │
     ├── MartyrologyEntryDef             → MartyrologyEntry (merged across locales)
+    └── Locale merge                    → All localized martyrology fields
+
+Tier 2b (locales/)
+    │
     ├── ResourcesMetadata               → DayContext.*_name, ColorInfo.name, CommonInfo.name, etc.
-    └── Locale merge                    → All localized output fields
+    └── Locale merge                    → All localized UI strings
 
 Tier 3 (Liturgical Texts)
     │
@@ -2104,7 +2127,7 @@ Input (Tier 1 + Tier 2)                    Output
 PatronageDef {                         →    Patronage {
   role: Copatron,                             role: Copatron,
   of: "france"   ─── lookup ──→               of: "France" (en) / "la France" (fr)
-}                     resources               }
+}                     locales                  }
                       .patronage_subjects
                       ["france"]
 ```
@@ -2143,9 +2166,9 @@ The input model is deliberately simpler than the output model:
 
 This means a contributor adding a new saint to a national calendar only needs to:
 
-1. Add a `CelebrationDef` in the calendar's JSON (Tier 1): date, precedence, commons, martyrology ref.
-2. Add a `MartyrologyEntryDef` in the base locale (Tier 2): name, titles, dates.
-3. Add localized overrides in other locales (Tier 2): translated fullname.
+1. Add a `CelebrationDef` in the calendar's JSON (`calendars/`): date, precedence, commons, martyrology ref.
+2. Add a `MartyrologyEntryDef` in the base locale (`martyrology/en/`): name, titles, dates.
+3. Add localized overrides in other locales (`martyrology/fr/`, etc.): translated fullname.
 
 No Tier 3 data is required for the calendar to function — the celebration will appear with correct dates, rank, colors, and commons, using Common texts as fallback.
 
@@ -2153,7 +2176,7 @@ No Tier 3 data is required for the calendar to function — the celebration will
 
 **Scenario:** Add "Saint Example, Bishop and Doctor" as an optional memorial on March 15 to the French national calendar.
 
-**Step 1 — Tier 1:** Add the day definition to `data/definitions/countries/france/france.json`:
+**Step 1 — Tier 1:** Add the celebration definition to `data/calendars/countries/france/france.json`:
 
 ```json
 "example_bishop": {
@@ -2163,7 +2186,7 @@ No Tier 3 data is required for the calendar to function — the celebration will
 }
 ```
 
-**Step 2 — Tier 2 (en):** Add the martyrology entry to `data/resources/en/martyrology.e.json`:
+**Step 2 — Tier 2 (en):** Add the martyrology entry to `data/martyrology/en/e.json`:
 
 ```json
 "example_bishop": {
@@ -2175,7 +2198,7 @@ No Tier 3 data is required for the calendar to function — the celebration will
 }
 ```
 
-**Step 3 — Tier 2 (fr):** Add the French override to `data/resources/fr/martyrology.e.json`:
+**Step 3 — Tier 2 (fr):** Add the French override to `data/martyrology/fr/e.json`:
 
 ```json
 "example_bishop": {
@@ -2196,7 +2219,7 @@ No Tier 3 data is required for the calendar to function — the celebration will
 
 **Scenario:** Create a diocesan calendar for the Diocese of Rouen (France).
 
-**Step 1:** Create `data/definitions/countries/france/france__rouen.json`:
+**Step 1:** Create `data/calendars/countries/france/france__rouen.json`:
 
 ```json
 {
@@ -2242,10 +2265,10 @@ This calendar:
 | `MartyrologyRef`           | 1    | Reference to martyrology entry           |
 | `MartyrologyEntryOverride` | 1    | Per-celebration martyrology overrides    |
 | `MassesDefinitions`        | 1    | Reading citations by mass time and cycle |
-| `MartyrologyEntryDef`      | 2    | Biographical metadata + localized names  |
-| `SaintDateDef`             | 2    | Flexible biographical date               |
-| `ResourcesMetadata`        | 2    | UI strings and localization data         |
-| `FullnameTemplates`        | 2    | Fullname construction templates          |
+| `MartyrologyEntryDef`      | 2a   | Biographical metadata + localized names  |
+| `SaintDateDef`             | 2a   | Flexible biographical date               |
+| `ResourcesMetadata`        | 2b   | UI strings and localization data         |
+| `FullnameTemplates`        | 2b   | Fullname construction templates          |
 | `ProperMassTexts`          | 3    | Mass formulary and orations              |
 | `CommonMassTexts`          | 3    | Common Mass text pools                   |
 | `ReadingsTexts`            | 3    | Biblical passage full text               |
