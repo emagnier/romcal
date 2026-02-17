@@ -74,6 +74,10 @@ export default defineConfig({
           items: [
             { label: 'Overview', slug: 'architecture' },
             {
+              label: 'Input Data Model',
+              slug: 'architecture/input-data-model',
+            },
+            {
               label: 'Liturgical Composition Model',
               slug: 'architecture/liturgical-composition-model',
             },
