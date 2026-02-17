@@ -299,6 +299,9 @@ struct CalendarId(String);
 
 /// Unique day identifier within a calendar (e.g., "basil_the_great_and_gregory_nazianzen_bishops")
 type CelebrationId = String;
+
+/// A BCP-47 locale tag (e.g., "en", "fr", "en-gb", "pt-br")
+type LocaleTag = String;
 ```
 
 **Naming convention for `CalendarId`:** Country calendars use the country name in snake_case (`france`, `united_states`). Diocesan calendars use `country__diocese` with double underscore (`france__lyon`). Regional calendars use the region name (`europe`, `americas`). Community calendars use the order or community name (`benedictines`).
@@ -320,7 +323,7 @@ struct CalendarMetadata {
     /// all martyrology entries and UI strings are fully translated in every
     /// required locale. When absent (e.g., General Roman Calendar), no
     /// locale audit is enforced.
-    locales: Option<Vec<String>>,
+    locale_tags: Option<Vec<LocaleTag>>,
 }
 
 enum Jurisdiction {
@@ -396,10 +399,48 @@ struct CelebrationDef {
     precedence: Option<Precedence>,
     /// Holy day of obligation
     is_holy_day_of_obligation: Option<bool>,
-    /// Whether this celebration is optional (can be omitted in favor of the feria)
+    /// Marks this celebration as optional in this particular calendar,
+    /// regardless of its precedence rank. Default: false.
+    ///
+    /// Two distinct use cases:
+    ///
+    /// 1. **Dedication of the own church (GNLY §59, rank 4b):**
+    ///    When the exact date of a church's dedication is unknown,
+    ///    the conference of bishops assigns a common date (e.g., Oct 25).
+    ///    At the national calendar level, this solemnity is marked
+    ///    `is_optional: true` so that it does not override the weekday
+    ///    for parishes that celebrate their dedication on a different date.
+    ///
+    /// 2. **Obligatory memorials in Lent (GNLY §14):**
+    ///    The engine automatically downgrades obligatory memorials to
+    ///    optional during Lent; contributors never need to set this flag
+    ///    for that case — the engine handles it at runtime.
+    ///
+    /// Effect: optional celebrations appear in the `optional_celebrations`
+    /// list rather than as the primary celebration of the day. When two
+    /// celebrations share the same precedence, the non-optional one takes
+    /// priority (GNLY §14).
     is_optional: Option<bool>,
-    /// Whether other celebrations of similar rank can coexist on this day
-    allow_similar_rank_items: Option<bool>,
+    /// When true, other celebrations of the **same rank** that fall on
+    /// this day are preserved rather than suppressed by the precedence
+    /// engine. Default: false.
+    ///
+    /// Without this flag, the standard precedence resolution keeps only
+    /// the highest-precedence celebration and discards the rest
+    /// (GNLY §59). This flag relaxes that rule for same-rank neighbors.
+    ///
+    /// **Example — Immaculate Heart of Mary:**
+    /// This obligatory memorial (rank `general_memorial_10`) always falls
+    /// on the Saturday after the Sacred Heart. On that Saturday, other
+    /// optional memorials (or a Saturday BVM commemoration per GNLY §15)
+    /// may legitimately be celebrated. Setting
+    /// `allows_same_rank_coexistence: true` tells the engine to keep them
+    /// alongside the Immaculate Heart rather than discarding them.
+    ///
+    /// This flag is rare — most celebrations follow the standard "highest
+    /// precedence wins" rule. Only set it when liturgical norms explicitly
+    /// permit multiple celebrations of equal rank on the same day.
+    allows_same_rank_coexistence: Option<bool>,
 
     // ── Identity ──
 
@@ -1123,7 +1164,7 @@ enum ReadingSlot {
   "metadata": {
     "jurisdiction": "civil",
     "type": "country",
-    "locales": ["fr"]
+    "locale_tags": ["fr"]
   },
   "particular_config": {
     "epiphany_on_sunday": true,
@@ -1180,7 +1221,7 @@ struct MartyrologyFile {
     /// JSON Schema reference
     schema: Option<String>,
     /// BCP-47 locale tag (e.g., "en", "fr", "en-gb")
-    locale: String,
+    locale_tag: LocaleTag,
     /// Martyrology entries (biographical metadata + localized names)
     martyrology: BTreeMap<MartyrologyEntryId, MartyrologyEntryDef>,
 }
@@ -1197,7 +1238,7 @@ struct LocaleFile {
     /// JSON Schema reference
     schema: Option<String>,
     /// BCP-47 locale tag (e.g., "en", "fr", "en-gb")
-    locale: String,
+    locale_tag: LocaleTag,
     /// UI strings and localization metadata
     metadata: ResourcesMetadata,
 }
@@ -1615,7 +1656,7 @@ Locale resolution follows **BCP-47 tag hierarchy** with `en` as the universal ba
 ```json
 // locales/en-gb.json — empty, inherits everything from en
 {
-  "locale": "en-gb",
+  "locale_tag": "en-gb",
   "metadata": {
     "seasons": {},
     "periods": {},
@@ -1625,7 +1666,7 @@ Locale resolution follows **BCP-47 tag hierarchy** with `en` as the universal ba
 
 // martyrology/en-gb/l.json — only British spelling differences
 {
-  "locale": "en-gb",
+  "locale_tag": "en-gb",
   "martyrology": {
     "labor_day": {
       "fullname": "Labour Day"
@@ -1696,7 +1737,7 @@ Group 2 (readings) is handled separately in `ReadingsTexts` (§4), because readi
 /// Root type for a proper Mass texts file
 struct ProperMassTextsFile {
     schema: Option<String>,
-    locale: String,
+    locale_tag: LocaleTag,
     /// Texts keyed by CelebrationId (same ID as in CalendarDef)
     texts: BTreeMap<CelebrationId, CelebrationMassTexts>,
 }
@@ -1737,7 +1778,7 @@ struct MassTimeTexts {
 ```json
 {
   "$schema": "../../schemas/liturgical_texts.json",
-  "locale": "la",
+  "locale_tag": "la",
   "texts": {
     "basil_the_great_and_gregory_nazianzen_bishops": {
       "prayer": "Deus, qui Ecclesiæ tuæ beatos Basilium et Gregorium...",
@@ -1762,7 +1803,7 @@ struct MassTimeTexts {
 /// Root type for a Common Mass texts file
 struct CommonMassTextsFile {
     schema: Option<String>,
-    locale: String,
+    locale_tag: LocaleTag,
     /// Pools keyed by the full Common enum variant
     commons: BTreeMap<Common, CommonMassPool>,
 }
@@ -1805,7 +1846,7 @@ struct CommonOrations {
 /// Root type for a readings text file
 struct ReadingsTextsFile {
     schema: Option<String>,
-    locale: String,
+    locale_tag: LocaleTag,
     /// Full texts keyed by citation string (same strings used in Tier 1)
     readings: BTreeMap<String, ReadingTextDef>,
 }
@@ -1835,7 +1876,7 @@ struct ReadingTextDef {
 /// Root type for a proper Office texts file
 struct ProperHoursTextsFile {
     schema: Option<String>,
-    locale: String,
+    locale_tag: LocaleTag,
     texts: BTreeMap<CelebrationId, CelebrationHoursTexts>,
 }
 
@@ -1934,7 +1975,7 @@ The engine uses the celebration's `Rank` (derived from `Precedence`) to determin
 /// Root type for a Common Office texts file
 struct CommonHoursTextsFile {
     schema: Option<String>,
-    locale: String,
+    locale_tag: LocaleTag,
     commons: BTreeMap<Common, CommonHoursPool>,
 }
 
