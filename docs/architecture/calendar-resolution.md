@@ -103,7 +103,7 @@ While the input model is designed for human editors, the composition model for t
 
 ### Normative Status
 
-This document is a **normative specification**, grounded in the liturgical norms (GNLY, CP, Notitiae responses). It describes the algorithm as it **should** work. Where the current implementation diverges from the norms, this specification takes precedence and the implementation should be updated to match.
+This document is a **normative specification**, grounded in the liturgical norms (GNLY, CP, Notitiae responses). Any implementation must conform to this specification.
 
 ### Religious Calendars
 
