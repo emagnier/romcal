@@ -2,7 +2,7 @@
 title: Calendar Definitions
 ---
 
-Calendar definitions specify liturgical celebrations for a particular region, country, diocese, or community.
+Calendar definitions specify liturgical celebrations for a particular region, country, diocese, or religious institute.
 
 ## File Location
 
@@ -13,7 +13,7 @@ data/definitions/
 ├── general_roman/     # General Roman Calendar (base)
 ├── regions/           # Regional calendars (Europe, Americas, etc.)
 ├── countries/         # National and diocesan calendars
-└── communities/       # Religious communities and orders
+└── religious/         # Religious institutes, provinces, houses
 ```
 
 ## File Format

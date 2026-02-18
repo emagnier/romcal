@@ -12,7 +12,7 @@ data/
 │   ├── general_roman/     # Base calendar (General Roman Calendar)
 │   ├── regions/           # Regional calendars
 │   ├── countries/         # National and diocesan calendars
-│   └── communities/       # Religious communities
+│   └── religious/          # Religious institutes, provinces, houses
 └── resources/             # Martyrology translations
     ├── en/                # English (default)
     ├── fr/                # French
@@ -65,18 +65,20 @@ countries/
     └── ...
 ```
 
-### communities/
+### religious/
 
-Religious communities and orders:
+Religious institutes, provinces, and houses (CP §16):
 
 ```
-communities/
-├── benedictine/
-│   └── benedictine.json
-├── franciscan/
-│   └── franciscan.json
-└── dominican/
-    └── dominican.json
+religious/
+├── benedictines/
+│   ├── benedictines.json                      Institute calendar
+│   ├── benedictines__france.json              Province calendar
+│   └── benedictines__france__solesmes.json    House calendar
+├── franciscans/
+│   └── franciscans.json
+└── dominicans/
+    └── dominicans.json
 ```
 
 ## Resources Directory

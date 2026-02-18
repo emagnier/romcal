@@ -11,78 +11,82 @@ tableOfContents:
 CALENDAR HIERARCHY
 | Concept                              | Section              | Line   | Key references                    |
 | ------------------------------------ | -------------------- | ------ | --------------------------------- |
-| Territorial chain                    | Part I §1            | ~70    | CP 14-15                          |
-| Religious chain                      | Part I §1            | ~85    | CP 16a-c                          |
-| Cross-layering rule                  | Part I §2            | ~105   | CP 16d, GNLY 52c                  |
-| Hierarchy resolution algorithm       | Part I §3            | ~140   |                                   |
-| particular_config resolution         | Part I §4            | ~180   | GNLY 7                            |
+| Territorial chain                    | Part I §1            | ~116   | CP 14-15                          |
+| Religious chain                      | Part I §1            | ~130   | CP 16a-c                          |
+| CalendarType enum table              | Part I §1            | ~143   | CP 13-16                          |
+| Cross-layering rule                  | Part I §2            | ~156   | CP 16d, GNLY 52c                  |
+| territorial_context_id               | Part I §2            | ~176   |                                   |
+| Solesmes example                     | Part I §2            | ~185   |                                   |
+| Hierarchy resolution algorithm       | Part I §3            | ~209   |                                   |
+| CP §16d algorithm (steps 6-8)        | Part I §3            | ~234   | CP 16d                            |
+| particular_config resolution         | Part I §4            | ~258   | GNLY 7                            |
 
 PROPER OF TIME
 | Concept                              | Section              | Line   | Key references                    |
 | ------------------------------------ | -------------------- | ------ | --------------------------------- |
-| Temporal cycle (season boundaries)   | Part II §5           | ~205   | GNLY 18-44                        |
-| Moveable feasts and Sunday assign.   | Part II §6           | ~260   | GNLY 7                            |
-| Liturgical cycles (A/B/C, I/II)      | Part II §7           | ~300   |                                   |
+| Temporal cycle (season boundaries)   | Part II §5           | ~275   | GNLY 18-44                        |
+| Moveable feasts and Sunday assign.   | Part II §6           | ~306   | GNLY 7                            |
+| Liturgical cycles (A/B/C, I/II)      | Part II §7           | ~335   |                                   |
 
 DATE RESOLUTION
 | Concept                              | Section              | Line   | Key references                    |
 | ------------------------------------ | -------------------- | ------ | --------------------------------- |
-| Five DateDef variants                | Part III §8          | ~330   |                                   |
-| Date exception conditions            | Part III §9          | ~370   |                                   |
-| Date exceptions vs. transfer         | Part III §10         | ~410   | GNLY 60                           |
+| Five DateDef variants                | Part III §8          | ~370   |                                   |
+| Date exception conditions            | Part III §9          | ~402   |                                   |
+| Date exceptions vs. transfer         | Part III §10         | ~441   | GNLY 60                           |
 
 HIERARCHY MERGING
 | Concept                              | Section              | Line   | Key references                    |
 | ------------------------------------ | -------------------- | ------ | --------------------------------- |
-| Field-by-field override              | Part IV §11          | ~445   | CP 13                             |
-| drop flag                            | Part IV §12          | ~505   |                                   |
-| Rank elevation and demotion          | Part IV §13          | ~525   | CP 25                             |
+| Field-by-field override              | Part IV §11          | ~462   | CP 13                             |
+| drop flag                            | Part IV §12          | ~506   |                                   |
+| Rank elevation and demotion          | Part IV §13          | ~528   | CP 25                             |
 
 PRECEDENCE RESOLUTION
 | Concept                              | Section              | Line   | Key references                    |
 | ------------------------------------ | -------------------- | ------ | --------------------------------- |
 | Table of Precedence (13 levels)      | Part V §14           | ~555   | GNLY 59                           |
-| Conflict resolution — single date    | Part V §15           | ~640   | GNLY 59                           |
-| Lenten demotion rule                 | Part V §16           | ~690   | GNLY 14, 59                       |
-| Transfer of impeded solemnities      | Part V §17           | ~715   | GNLY 60, GNLY 5, Notitiae R14    |
-| Transfer algorithm                   | Part V §18           | ~755   | GNLY 60                           |
-| Interaction date_exceptions/transfer | Part V §19           | ~800   |                                   |
-| Vespers conflict resolution          | Part V §20           | ~830   | GNLY 61                           |
+| Conflict resolution — single date    | Part V §15           | ~589   | GNLY 59                           |
+| Lenten demotion rule                 | Part V §16           | ~612   | GNLY 14, 59                       |
+| Transfer of impeded solemnities      | Part V §17           | ~626   | GNLY 60, GNLY 5, Notitiae R14    |
+| Transfer algorithm                   | Part V §18           | ~642   | GNLY 60                           |
+| Interaction date_exceptions/transfer | Part V §19           | ~665   |                                   |
+| Vespers conflict resolution          | Part V §20           | ~676   | GNLY 61                           |
 
 PROPERTY INHERITANCE
 | Concept                              | Section              | Line   | Key references                    |
 | ------------------------------------ | -------------------- | ------ | --------------------------------- |
-| Temporal context propagation         | Part VI §21          | ~860   |                                   |
-| Color resolution                     | Part VI §22          | ~905   | GIRM 346                          |
-| parent_overrides traceability        | Part VI §23          | ~950   |                                   |
+| Temporal context propagation         | Part VI §21          | ~691   |                                   |
+| Color resolution                     | Part VI §22          | ~710   | GIRM 346                          |
+| parent_overrides traceability        | Part VI §23          | ~739   |                                   |
 
 COMPOSITION GUARDS
 | Concept                              | Section              | Line   | Key references                    |
 | ------------------------------------ | -------------------- | ------ | --------------------------------- |
-| Protected zones                      | Part VII §24         | ~975   | CP 2, GNLY 56f                    |
-| One celebration per saint per year   | Part VII §25         | ~1010  | CP 3                              |
-| Overburdening guard                  | Part VII §26         | ~1025  | CP 17                             |
-| Harmonization rules                  | Part VII §27         | ~1040  | CP 23                             |
+| Protected zones                      | Part VII §24         | ~754   | CP 2, GNLY 56f                    |
+| One celebration per saint per year   | Part VII §25         | ~777   | CP 3                              |
+| Overburdening guard                  | Part VII §26         | ~783   | CP 17                             |
+| Harmonization rules                  | Part VII §27         | ~792   | CP 23                             |
 
 LAYER 2 TRANSFORMATIONS
 | Concept                              | Section              | Line   | Key references                    |
 | ------------------------------------ | -------------------- | ------ | --------------------------------- |
-| Mass calendar (Layer 2 Mass)         | Part VIII §28        | ~1075  | GILM 83                           |
-| Hours calendar (Layer 2 Hours)       | Part VIII §29        | ~1095  | GILH 225-240                      |
+| Mass calendar (Layer 2 Mass)         | Part VIII §28        | ~810   | GILM 83                           |
+| Hours calendar (Layer 2 Hours)       | Part VIII §29        | ~820   | GILH 225-240                      |
 
 EDGE CASES
 | Concept                              | Section              | Line   | Key references                    |
 | ------------------------------------ | -------------------- | ------ | --------------------------------- |
-| Holy Thursday coexistence            | Part IX §30          | ~1125  | PS 35-36, 44-48                   |
-| Saturday BVM memorial                | Part IX §31          | ~1145  | GNLY 15                           |
-| Readings cycle layered resolution    | Part IX §32          | ~1160  |                                   |
-| Sunday assignment (Epiphany, etc.)   | Part IX §33          | ~1185  | GNLY 7, Notitiae R1               |
+| Holy Thursday coexistence            | Part IX §30          | ~840   | PS 35-36, 44-48                   |
+| Saturday BVM memorial                | Part IX §31          | ~853   | GNLY 15                           |
+| Readings cycle layered resolution    | Part IX §32          | ~863   |                                   |
+| Sunday assignment (Epiphany, etc.)   | Part IX §33          | ~874   | GNLY 7, Notitiae R1               |
 
 APPENDICES
 | Concept                              | Section              | Line   |
 | ------------------------------------ | -------------------- | ------ |
-| Complete pipeline summary            | Appendix A           | ~1210  |
-| Normative references table           | Appendix B           | ~1260  |
+| Complete pipeline summary            | Appendix A           | ~887   |
+| Normative references table           | Appendix B           | ~937   |
 
 -->
 
@@ -101,9 +105,9 @@ While the input model is designed for human editors, the composition model for t
 
 This document is a **normative specification**, grounded in the liturgical norms (GNLY, CP, Notitiae responses). It describes the algorithm as it **should** work. Where the current implementation diverges from the norms, this specification takes precedence and the implementation should be updated to match.
 
-### Community Calendars
+### Religious Calendars
 
-Community calendars (religious order calendars) are specified here as first-class features per the liturgical norms (CP §16), even though no community calendar data has been contributed yet. The `communities/` directory exists and is ready for data.
+Religious calendars (orders, congregations, institutes) are specified here as first-class features per the liturgical norms (CP §16), even though no religious calendar data has been contributed yet. The `data/definitions/religious/` directory exists and is ready for data.
 
 ---
 
@@ -136,55 +140,118 @@ Both chains share the General Roman Calendar as root. Each level adds proper cel
 
 The `CalendarType` enum (defined in the Input Data Model) classifies each calendar's position in the hierarchy:
 
-| `CalendarType` | Chain       | Level                                        | CP ref |
-| -------------- | ----------- | -------------------------------------------- | ------ |
-| `GeneralRoman` | Both (root) | Universal calendar                           | —      |
-| `Region`       | Territorial | Multi-country (e.g., Europe, Americas)       | §14    |
-| `Country`      | Territorial | National                                     | §14    |
-| `Diocese`      | Territorial | Diocesan or archdiocesan                     | §15    |
-| `Church`       | Territorial | Parish, shrine, basilica                     | §15c   |
-| `Community`    | Religious   | Order or congregation, province, local house | §16    |
+| `CalendarType`       | Chain       | Level                                                                  | CP ref |
+| -------------------- | ----------- | ---------------------------------------------------------------------- | ------ |
+| `GeneralRoman`       | Both (root) | Universal calendar                                                     | —      |
+| `Region`             | Territorial | Multi-country (e.g., Europe, Americas)                                 | §14    |
+| `Country`            | Territorial | National                                                               | §14    |
+| `Diocese`            | Territorial | Diocesan or archdiocesan                                               | §15    |
+| `Church`             | Territorial | Parish, shrine, basilica                                               | §15c   |
+| `ReligiousInstitute` | Religious   | Order, congregation, or institute (e.g., benedictines)                 | §16a–b |
+| `ReligiousProvince`  | Religious   | Province (e.g., benedictines\_\_france)                                | §16c   |
+| `ReligiousHouse`     | Religious   | Local house, monastery, convent (e.g., benedictines**france**solesmes) | §16c   |
 
-The `parent_calendar_ids` field in each `CalendarDef` declares the inheritance chain. A calendar may have multiple parents — this is the mechanism for cross-layering (§2 below) and for communities that observe both a religious and a territorial calendar.
+The `parent_calendar_ids` field in each `CalendarDef` declares the **full inheritance** chain. Each calendar only needs to declare its immediate parent(s) — the engine recursively resolves the complete ancestor chain via post-order DFS (§3).
 
 ### 2. Cross-Layering Rule (CP §16d, GNLY §52c)
 
 Religious communities additionally observe celebrations from the territorial calendar of their location. CP §16d states: "Members of religious institutes join with the local Church in celebrating the anniversary of the dedication of the cathedral and the feast of the principal patrons of both the place and the wider area in which they reside."
 
-Specifically, the following celebrations from the territorial chain are inserted into the religious calendar:
+> **Important:** Cross-layering is **not full inheritance**. The religious calendar does not adopt the entire territorial calendar (national proper saints, diocesan memorials, etc.). Only the specific celebrations mandated by CP §16d are extracted from the territorial chain. Full inheritance is handled exclusively by `parent_calendar_ids`.
 
-1. **Anniversary of the dedication of the cathedral** of the local diocese (Feast — Precedence `ProperFeast_DedicationOfTheCathedralChurch_8b`)
-2. **Feast of the principal patron of the place** — the town, city, or diocese where the community resides (Feast — Precedence `ProperFeast_PrincipalPatronOfADiocese_8a`)
-3. **Feast of the principal patron of the wider area** — the region or country (Feast — Precedence `ProperFeast_PrincipalPatronOfARegion_8c`)
+**What is extracted — three specific precedence variants:**
+
+The engine identifies CP §16d celebrations by filtering on three `Precedence` variants:
+
+| CP §16d celebration                   | `Precedence` variant                            | Description                               |
+| ------------------------------------- | ----------------------------------------------- | ----------------------------------------- |
+| Principal patron of the diocese/place | `ProperFeast_PrincipalPatronOfADiocese_8a`      | The patron saint of the local diocese     |
+| Dedication of the cathedral           | `ProperFeast_DedicationOfTheCathedralChurch_8b` | Anniversary of the cathedral church       |
+| Principal patron of the region/nation | `ProperFeast_PrincipalPatronOfARegion_8c`       | The patron saint of the country or region |
+
+Only `8a`, `8b`, and `8c` are extracted. Other proper feasts (`8d` title/founder of a religious org, `8e` individual church, `8f` other proper feasts) are **not** part of the cross-layering — they belong to their respective calendar chains.
 
 These celebrations are inserted at their territorial rank — not elevated, not demoted.
 
-**Configuration:** The engine needs two pieces of information:
+**Configuration — `territorial_context_id`:**
 
-- `calendar_id` — the primary calendar (the religious community calendar)
-- The territorial context — which diocese/region the community is located in
+The territorial context is declared via the `territorial_context_id` field in `CalendarMetadata` (see Input Data Model, Part II §2). This field is separate from `parent_calendar_ids` to avoid ambiguity:
 
-The territorial context is resolved from the community's `parent_calendar_ids`. When a community calendar declares a territorial calendar as a parent (e.g., `parent_calendar_ids: ["benedictines", "france__lyon"]`), the engine extracts the CP §16d celebrations from the territorial chain and inserts them into the religious calendar at the correct position.
+| Field                    | Type                 | Semantics                                                    |
+| ------------------------ | -------------------- | ------------------------------------------------------------ |
+| `parent_calendar_ids`    | `Vec<CalendarId>`    | Full inheritance — all celebrations, field-by-field override |
+| `territorial_context_id` | `Option<CalendarId>` | CP §16d extraction only — `8a`, `8b`, `8c` celebrations      |
+
+**Example — Abbey of Solesmes:**
+
+```json
+{
+  "id": "benedictines__france__solesmes",
+  "metadata": {
+    "jurisdiction": "ecclesiastical",
+    "type": "religious_house",
+    "territorial_context_id": "france__le_mans"
+  },
+  "parent_calendar_ids": ["benedictines__france"],
+  "celebrations": {}
+}
+```
+
+The engine resolves the territorial chain `france__le_mans` → `france` → `europe` → `general_roman` and extracts:
+
+| Source            | Extracted celebration                      | Precedence |
+| ----------------- | ------------------------------------------ | ---------- |
+| `france__le_mans` | Dedication of the Cathedral of Le Mans     | `8b`       |
+| `france__le_mans` | Principal patron of the Diocese of Le Mans | `8a`       |
+| `france`          | Principal patron of France                 | `8c`       |
+| `europe`          | Principal patrons of Europe                | `8c`       |
 
 ### 3. Hierarchy Resolution Algorithm
 
 **Input:** `Config.calendar_id` + all loaded `CalendarDef` files.
 
-**Output:** An ordered list of calendar definitions from most general to most specific.
+**Output:** An ordered list of calendar definitions from most general to most specific, plus the CP §16d celebrations (if applicable).
 
-**Algorithm:**
+**Algorithm — full inheritance chain:**
 
 1. Look up the target calendar in the loaded definitions. If not found → `CalendarNotFound` error.
 2. Recursively collect all ancestors via `parent_calendar_ids` using **post-order depth-first search** (DFS): ancestors are visited before descendants.
 3. **Circular reference detection:** If a calendar is encountered that is already in the current DFS path → `ValidationError` (circular inheritance).
 4. **Diamond inheritance:** The same ancestor reachable via multiple paths is processed once; subsequent encounters are skipped (deduplication).
-5. The result is an ordered list: `[temporal_cycle, general_roman, region, country, diocese, ...]` from most general to most specific.
+5. The result is an ordered list: `[temporal_cycle, general_roman, ...]` from most general to most specific.
 
-**For religious calendars with cross-layering:**
+Each calendar only declares its **immediate** parent(s). The engine reconstructs the full chain transitively:
 
-6. Identify the territorial context from `parent_calendar_ids` — any parent that belongs to the territorial chain (type = `Region`, `Country`, `Diocese`, or `Church`).
-7. Extract the specific celebrations mandated by CP §16d (cathedral dedication, principal patron of the place, principal patron of the wider area) from the territorial chain.
-8. Insert these celebrations into the religious calendar at the correct position — after the General Roman Calendar level, before the order's own definitions. They participate in precedence resolution like any other celebration.
+```
+benedictines__france__solesmes  →  parent_calendar_ids: ["benedictines__france"]
+benedictines__france            →  parent_calendar_ids: ["benedictines"]
+benedictines                    →  parent_calendar_ids: ["general_roman"]
+general_roman                   →  parent_calendar_ids: []
+
+DFS post-order result:
+  temporal_cycle → general_roman → benedictines → benedictines__france → benedictines__france__solesmes
+```
+
+**Algorithm — CP §16d cross-layering:**
+
+6. If any calendar in the resolved chain has `territorial_context_id` set, resolve the territorial chain (recursively collect its ancestors the same way).
+7. Walk the territorial chain and **extract** all celebrations with precedence `8a`, `8b`, or `8c`.
+8. Insert these celebrations into the resolved calendar at the correct position — after `general_roman`, before the first religious calendar level. They participate in precedence resolution (§14–15) like any other celebration.
+
+**Resolved hierarchy for Solesmes (complete):**
+
+```
+1. temporal_cycle                            Proper of Time skeleton
+2. general_roman                             Universal calendar
+3. ── CP §16d (from territorial chain) ──    Extracted celebrations:
+   │  Dedication of Cathedral of Le Mans     (8b, from france__le_mans)
+   │  Principal patron of Le Mans diocese     (8a, from france__le_mans)
+   │  Principal patron of France              (8c, from france)
+   │  Principal patrons of Europe             (8c, from europe)
+4. benedictines                              Order proper
+5. benedictines__france                      Province proper
+6. benedictines__france__solesmes            Local community proper
+```
 
 The `temporal_cycle` is always the implicit base — it provides the Proper of Time skeleton that all calendars build upon. It is not declared in `parent_calendar_ids` but is always the first element in the resolved hierarchy.
 

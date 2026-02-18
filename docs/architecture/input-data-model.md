@@ -170,8 +170,8 @@ data/
 │   │   ├── italy/
 │   │   │   └── italy.json
 │   │   └── ...                           (~54 countries)
-│   └── communities/
-│       ├── benedictines.json             Religious order calendar
+│   └── religious/
+│       ├── benedictines.json             Religious institute calendar
 │       └── ...
 │
 ├── martyrology/                          TIER 2a — Martyrology Catalog
@@ -249,9 +249,9 @@ Level 3: National/Diocesan Calendar
     │     (e.g., france.json, france__lyon.json)
     │     Inherits from: Region → General Roman
     │
-Level 4: Community Calendar
-          (e.g., benedictines.json)
-          Inherits from: any combination of the above
+Level 4: Religious Calendar
+          (e.g., benedictines.json, benedictines__france.json)
+          Inherits from: parent religious level → General Roman
 ```
 
 Each calendar declares its parent(s) via `parent_calendar_ids`. The engine resolves the full inheritance chain and applies overrides in order from most general to most specific. A child calendar can:
@@ -260,7 +260,7 @@ Each calendar declares its parent(s) via `parent_calendar_ids`. The engine resol
 - **Override** properties of inherited celebrations (date, precedence, titles, patronages).
 - **Drop** inherited celebrations (via `drop: true`).
 
-The `parent_calendar_ids` array supports **multiple inheritance** for communities that follow both a national and a religious order calendar.
+The `parent_calendar_ids` array declares the full inheritance chain. Each calendar only needs to declare its immediate parent(s) — the engine reconstructs the complete ancestor chain recursively (see the Calendar Resolution Algorithm, §3).
 
 ### 5. File Format and Validation
 
@@ -321,7 +321,7 @@ type CelebrationId = String;
 type LocaleTag = String;
 ```
 
-**Naming convention for `CalendarId`:** Country calendars use the country name in snake_case (`france`, `united_states`). Diocesan calendars use `country__diocese` with double underscore (`france__lyon`). Regional calendars use the region name (`europe`, `americas`). Community calendars use the order or community name (`benedictines`).
+**Naming convention for `CalendarId`:** Country calendars use the country name in snake_case (`france`, `united_states`). Diocesan calendars use `country__diocese` with double underscore (`france__lyon`). Regional calendars use the region name (`europe`, `americas`). Religious calendars use the institute name, optionally followed by province and house (`benedictines`, `benedictines__france`, `benedictines__france__solesmes`).
 
 **Naming convention for `CelebrationId`:** The celebration identifier is a `snake_case` string derived from the celebration's name in English, typically following the pattern `{name}_{title}` (e.g., `basil_the_great_bishop`, `joan_of_arc_virgin`). For compound celebrations: `{name1}_and_{name2}_{shared_title}` (e.g., `peter_and_paul_apostles`). Temporal cycle days use `{season}_{week}_{weekday}` (e.g., `advent_1_sunday`, `ordinary_time_5_monday`).
 
@@ -341,6 +341,15 @@ struct CalendarMetadata {
     /// required locale. When absent (e.g., General Roman Calendar), no
     /// locale audit is enforced.
     locale_tags: Option<Vec<LocaleTag>>,
+    /// Territorial calendar for CP §16d cross-layering. Only meaningful for
+    /// religious calendars (`type: ReligiousInstitute/Province/House`). The engine resolves this
+    /// calendar's territorial chain and extracts specific celebrations
+    /// (cathedral dedication, principal patron of the diocese, principal
+    /// patron of the region/country) to insert into the religious calendar.
+    /// This is NOT full inheritance — only the celebrations mandated by
+    /// CP §16d are extracted (precedence variants 8a, 8b, 8c).
+    /// See the Calendar Resolution Algorithm, §2 for the complete rule.
+    territorial_context_id: Option<CalendarId>,
 }
 
 enum Jurisdiction {
@@ -353,20 +362,33 @@ enum Jurisdiction {
 enum CalendarType {
     /// Universal calendar (General Roman Calendar)
     GeneralRoman,
+    // ── Territorial chain (CP §14–15) ──
     /// Multi-country regional calendar (e.g., Europe, Americas)
     Region,
     /// National calendar
     Country,
     /// Diocesan or archdiocesan calendar
     Diocese,
-    /// Religious order or community calendar
-    Community,
     /// Individual church (parish, shrine, basilica)
     Church,
+    // ── Religious chain (CP §16) ──
+    /// Order, congregation, or institute (e.g., benedictines) — CP §16a-b
+    ReligiousInstitute,
+    /// Province of a religious institute (e.g., benedictines__france) — CP §16c
+    ReligiousProvince,
+    /// Local house, monastery, convent (e.g., benedictines__france__solesmes) — CP §16c
+    ReligiousHouse,
 }
 ```
 
-**Liturgical basis:** CP 13-16 defines four levels of particular calendars: diocesan, national, regional (for a larger territory), and those of religious families. `CalendarType` extends this to include `GeneralRoman` (the universal base) and `Church` (individual churches per CP 16).
+**Liturgical basis:** CP 13-16 defines four levels of particular calendars: diocesan, national, regional (for a larger territory), and those of religious families. `CalendarType` maps these to two parallel chains:
+
+- **Territorial chain** (CP §14–15): `Region` → `Country` → `Diocese` → `Church`
+- **Religious chain** (CP §16): `ReligiousInstitute` → `ReligiousProvince` → `ReligiousHouse`
+
+Both chains share `GeneralRoman` as root.
+
+**`territorial_context_id`:** CP §16d requires religious communities to celebrate the cathedral dedication and principal patrons of their local diocese and wider area. The `territorial_context_id` field declares which territorial calendar provides this context. The engine resolves the territorial chain (e.g., `france__le_mans` → `france` → `europe` → `general_roman`) and extracts only the celebrations at precedence `8a` (principal patron of the diocese), `8b` (cathedral dedication), and `8c` (principal patron of the region/nation). This is a targeted extraction — not full inheritance. Full inheritance is handled exclusively by `parent_calendar_ids`. Only meaningful for religious calendars (`type: ReligiousInstitute`, `ReligiousProvince`, or `ReligiousHouse`).
 
 ### 3. `ParticularConfig`
 
