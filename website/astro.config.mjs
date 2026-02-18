@@ -78,6 +78,10 @@ export default defineConfig({
               slug: 'architecture/input-data-model',
             },
             {
+              label: 'Public API',
+              slug: 'architecture/public-api',
+            },
+            {
               label: 'Liturgical Composition Model',
               slug: 'architecture/liturgical-composition-model',
             },

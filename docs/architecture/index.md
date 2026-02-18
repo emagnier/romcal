@@ -16,6 +16,16 @@ Defines the three-tier input architecture — the data that contributors edit an
 
 Covers: `CelebrationDef`, `DateDef`, `CommonDef` (23 simplified variants), `MartyrologyEntryDef`, BCP-47 locale hierarchy, graceful degradation (engine works with Tier 1 alone), input→output transformation rules, and contributor workflows.
 
+### [Public API](/architecture/public-api)
+
+Defines romcal's public interface across three surfaces — Rust library, CLI, and bindings (TypeScript/WASM, community). Complements the input data model (what goes in) and the composition model (what comes out) by describing **how** to drive the engine:
+
+- **Configuration**: `Config` fields, `Romcal::new()` validation, `Romcal::empty()` progressive loading.
+- **Generation**: `generate_liturgical_calendar()` (Layer 1), `generate_mass_calendar()` (Layer 2 Mass), `generate_hours_calendar()` (Layer 2 Hours), `YearFrame` semantics.
+- **Lookups**: `date_of()`, `liturgical_day_of()`, `masses_of()`, `hours_of()`, `get_martyrology_entry()`, `search_martyrology()`.
+- **CLI**: 15 commands mapped to the Rust API, global options mapped to `Config` fields.
+- **Bindings**: single C ABI / WASM surface, JSON serialization protocol, JSON Schemas as type source of truth.
+
 ### [Liturgical Composition Model](/architecture/liturgical-composition-model)
 
 The output architecture reference (~3 000 lines). Synthesizes the liturgical norms from all reference documents into a unified data model for romcal, organized around three output layers:
