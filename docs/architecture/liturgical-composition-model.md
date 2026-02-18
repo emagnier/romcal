@@ -1170,11 +1170,14 @@ struct FormularySet {
     /// When Some(...), this Mass has a specific collect that differs from
     /// the canonical prayer (e.g., Christmas NightMass vs DayMass).
     collect: Option<String>,
-    entrance_antiphon: Option<AntiphonText>,
-    communion_antiphon: Option<AntiphonText>,
+    entrance_antiphon: Option<AntiphonText>,   // GIRM §48
+    communion_antiphon: Option<AntiphonText>,  // GIRM §87
 }
 
-/// An antiphon with optional biblical source reference(s)
+/// An antiphon with optional biblical source reference(s).
+/// GIRM §48 (entrance): accompanies the procession, "fosters the unity of
+/// those who have been gathered"; GIRM §87 (communion): "expresses the
+/// spiritual union of the communicants."
 struct AntiphonText {
     /// Text of the antiphon
     text: String,
@@ -1192,27 +1195,29 @@ struct AntiphonText {
 
 **Why this name:** It is a "reading" "text" with potential variant forms.
 
-**Liturgical basis:** GIRM 360, GILM 75, 80 — some readings are provided in both long and short forms; "a pastoral criterion must be kept in mind" when choosing.
+**Liturgical basis:** GIRM §360; GILM §75, §80 — some readings are provided in both long and short forms; "a pastoral criterion must be kept in mind" when choosing.
 
 ```rust
 struct ReadingText {
     /// Full citation reference (e.g., "Isa 2:1-5") — the Tier 1 citation
     /// string, carried through the jointure for consumer display.
     reference: String,
-    /// Pericope headline (from Tier 3 input)
+    /// Pericope headline — GILM §123: the _titulus_ printed above
+    /// each reading in the Lectionary, summarizing its theme.
     headline: Option<String>,
     /// The full text of the reading
     text: String,
     /// Abbreviated reference for display
     ref_abbr: Option<String>,
-    /// Optional short form variant (GIRM 360, GILM 75, 80)
+    /// Optional short form variant (GIRM §360; GILM §75, §80)
     short_form: Option<ShortForm>,
     /// No final acclamation flag (default false).
-    /// True for Passion narratives and certain Easter Vigil readings.
+    /// GILM §125: omitted for Passion narratives; PS §33 (Palm Sunday),
+    /// PS §70 (Easter Vigil OT readings).
     no_final_acclamation: bool,
 }
 
-/// Short form of a reading or psalm
+/// Short form of a reading or psalm (GIRM §360; GILM §75, §77, §80)
 struct ShortForm {
     /// Citation reference for the short form (e.g., "Gen 1:1.26-31a")
     reference: Option<String>,
@@ -1248,9 +1253,13 @@ struct ReadingsSet {
 }
 
 /// Gospel acclamation (Alleluia or Lenten acclamation).
-/// AcclamationType is computed by the engine from the liturgical season.
+/// GILM §23: "The Alleluia or the verse before the Gospel must be sung,
+/// and during it all stand"; GIRM §62: it constitutes "a rite or act by
+/// which the faithful acclaim the Lord who is about to speak to them
+/// in the Gospel." AcclamationType is computed by the engine from the
+/// liturgical season (GILM §90-91; PS §18 for the Lenten substitution).
 struct AlleluiaText {
-    /// Type of acclamation (computed by engine from season)
+    /// Type of acclamation (computed by engine — GILM §90-91, GIRM §62-63)
     acclamation_type: AcclamationType,
     /// The acclamation word/phrase itself (e.g., "Alleluia" or "Praise to you...")
     acclamation: Option<String>,
@@ -1260,11 +1269,15 @@ struct AlleluiaText {
     sources: Option<Vec<SourceRef>>,
 }
 
-/// Type of Gospel acclamation — computed by the engine from the season
+/// Type of Gospel acclamation — computed by the engine from the season.
+/// GILM §90: "During Lent, in place of the Alleluia, the verse before the
+/// Gospel is used"; GIRM §62: "During Lent, [...] another chant is used
+/// in place of the Alleluia."
 enum AcclamationType {
-    /// "Alleluia" — used throughout the year except Lent
+    /// "Alleluia" — used throughout the year except Lent (GILM §23, GIRM §62)
     Alleluia,
-    /// Lenten acclamation (e.g., "Praise to you, Lord Jesus Christ...")
+    /// Lenten acclamation (e.g., "Praise to you, Lord Jesus Christ...") —
+    /// GILM §90, PS §18
     Lent,
     /// No acclamation (rare — certain rites like the Passion)
     None,
@@ -1343,7 +1356,7 @@ struct VigilReadingsSequence {
     min_ot_readings: u8,
     /// Epistle — always proclaimed after the OT sequence and Gloria
     epistle: ReadingText,
-    /// Alleluia — solemnly restored after the Lenten suppression
+    /// Alleluia — solemnly restored after the Lenten suppression (PS §85)
     alleluia: AlleluiaText,
     /// Gospel — always proclaimed
     gospel: ReadingText,
@@ -1352,7 +1365,7 @@ struct VigilReadingsSequence {
 struct VigilReading {
     /// The OT reading text
     reading: ReadingText,
-    /// Responsorial psalm or canticle following this reading
+    /// Responsorial psalm or canticle following this reading (PS §70)
     response: PsalmodyEntry,
     /// Whether this reading must always be included even when reducing
     /// (PS 85: true for Exodus 14 — "must never be omitted")
@@ -1387,6 +1400,9 @@ struct FlexibleOrations {
 }
 
 /// Resolved preface text with optional provenance metadata.
+/// GIRM §364: "The proper preface is said when one is given"; §365:
+/// otherwise a preface related to the season, Common, or a general
+/// preface from the Roman Missal is used.
 /// In the output, the preface is always resolved to full text —
 /// the engine resolves PrefaceRef::CatalogId from the input.
 struct PrefaceText {
@@ -1924,6 +1940,8 @@ struct HoursPsalmody {
 }
 
 /// One psalmody entry (psalm/canticle + resolved antiphon).
+/// GILM §19-20: the responsorial psalm is "an integral part of the Liturgy
+/// of the Word"; GIRM §61: it is "a response to the first reading."
 /// Used for both Mass responsorial psalms (in ReadingsSet/ReadingsPool) and
 /// Office psalmody (in HoursPsalmody).
 struct PsalmodyEntry {
@@ -1936,12 +1954,16 @@ struct PsalmodyEntry {
     text: Option<String>,
     /// Resolved responsorial antiphon — single refrain selected by the engine
     /// from the input's `antiphons` Vec based on Tier 1 cycle context.
+    /// GILM §21: "as a rule, the response is drawn from the text of the
+    /// psalm itself."
     antiphon: Option<PsalmAntiphon>,
-    /// Optional short form (abbreviated psalm for pastoral use)
+    /// Optional short form — abbreviated psalm for pastoral use (GILM §77)
     short_form: Option<ShortForm>,
 }
 
-/// Resolved responsorial antiphon with optional biblical source(s)
+/// Resolved responsorial antiphon with optional biblical source(s).
+/// GILM §22: "The psalm after the reading is sung or recited by the
+/// psalmist or cantor."
 struct PsalmAntiphon {
     /// Text of the antiphon/refrain
     text: String,

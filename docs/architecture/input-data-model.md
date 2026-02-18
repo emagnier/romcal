@@ -1786,7 +1786,10 @@ struct CelebrationMassTexts {
     masses: BTreeMap<MassTime, MassTimeTexts>,
 }
 
-/// An antiphon with optional biblical source reference(s)
+/// An antiphon with optional biblical source reference(s).
+/// GIRM §48 (entrance antiphon): "its purpose is to [...] accompany the
+/// procession of the Priest and ministers"; GIRM §87 (communion antiphon):
+/// "its purpose is to express the spiritual union of the communicants."
 struct AntiphonTextDef {
     /// Text of the antiphon
     text: String,
@@ -1801,18 +1804,22 @@ struct MassTimeTexts {
     /// Collect override for this specific Mass time.
     /// When absent, the engine uses CelebrationMassTexts.prayer (CP 44).
     collect: Option<String>,
-    entrance_antiphon: Option<AntiphonTextDef>,
-    communion_antiphon: Option<AntiphonTextDef>,
+    entrance_antiphon: Option<AntiphonTextDef>,   // GIRM §48
+    communion_antiphon: Option<AntiphonTextDef>,  // GIRM §87
 
     // ── Group 3: Flexible orations ──
     prayer_over_the_offerings: Option<String>,
     prayer_after_communion: Option<String>,
-    preface: Option<PrefaceRef>,
+    preface: Option<PrefaceRef>,                  // GIRM §364-365
     solemn_blessing: Option<String>,
     prayer_over_the_people: Option<String>,
 
-    /// Rubrical or pastoral note (e.g., "Nine readings are proposed...",
-    /// "One may also read...", "If there is baptism...").
+    /// Rubrical or pastoral note printed in the liturgical book for this
+    /// Mass time (e.g., "Nine readings are proposed...", "One may also
+    /// read...", "If there is baptism..."). GILM §15 establishes that
+    /// the Lectionary includes pastoral and rubrical notes to guide the
+    /// celebrant; GILM §117 provides further guidance on annotations
+    /// within the readings for weekdays.
     note: Option<String>,
 }
 
@@ -1904,7 +1911,7 @@ struct CommonOrations {
 **What it is:** A catalog of preface texts, keyed by ID. Most prefaces are reused across many celebrations (~62 prefaces in the Roman Missal, reused across hundreds of celebrations). A catalog with IDs avoids duplication. Celebrations with unique proper prefaces (e.g., Easter Day Mass) use the inline `PrefaceRef::Inline` variant instead.
 
 ```rust
-/// A preface entry in the catalog
+/// A preface entry in the catalog (GIRM §364-365)
 struct PrefaceDef {
     /// Unique identifier (e.g., "advent_1", "common_preface_1")
     id: String,
@@ -1953,23 +1960,27 @@ struct ReadingTextDef {
     reference: Option<String>,
     /// Pericope headline — the summary title printed above the reading
     /// in the Lectionary (e.g., "The Lord gathers the nations in eternal peace").
-    /// Standard editorial element; present for every reading in printed books.
+    /// GILM §123: "In the text of each reading, a heading (titulus) is given
+    /// [...] to indicate the main theme of the reading." Standard editorial
+    /// element; present for every reading in printed books.
     headline: Option<String>,
     /// The full text of the reading
     text: String,
     /// Abbreviated reference for compact display (e.g., "2, 1-5").
     /// Distinct from the full citation reference.
     ref_abbr: Option<String>,
-    /// Optional short form variant (GIRM 360, GILM 75, 80)
+    /// Optional short form variant (GIRM §360; GILM §75, §80)
     short_form: Option<ShortFormDef>,
     /// When true, the reading concludes without the standard final acclamation
-    /// ("Word of the Lord" / "The Gospel of the Lord"). Applies to Passion
-    /// narratives and certain Easter Vigil readings.
+    /// ("Word of the Lord" / "The Gospel of the Lord").
+    /// GILM §125: the final acclamation is omitted for Passion narratives;
+    /// PS §33 (Palm Sunday) and PS §70 (Easter Vigil OT readings) specify
+    /// the same omission in their respective rites.
     /// Option in input (omit = false); the engine resolves to `bool` in output.
     no_final_acclamation: Option<bool>,
 }
 
-/// Short form of a reading or psalm (GIRM 360, GILM 75, 80)
+/// Short form of a reading or psalm (GIRM §360; GILM §75, §77, §80)
 struct ShortFormDef {
     /// Citation reference for the short form (e.g., "Gen 1:1.26-31a")
     reference: Option<String>,
@@ -1980,8 +1991,7 @@ struct ShortFormDef {
 }
 ```
 
-> **Design note — `headline`:** The pericope headline is a standard Lectionary editorial element (not to be confused with the reading's biblical reference). It summarizes the theme of the passage, e.g., "Paul's rapture to the third heaven" for 2 Cor 12:1-10.
->
+> **Design note — `headline`:** The pericope headline (_titulus_) is a standard Lectionary editorial element defined by GILM §123. It is not to be confused with the reading's biblical reference — rather, it summarizes the theme of the passage, e.g., "Paul's rapture to the third heaven" for 2 Cor 12:1-10.
 > **Design note — `short_form` as struct:** `short_form` is a struct rather than a plain string because the Lectionary prints both the short form's own citation reference and its text (e.g., "Short reading: Gen 1:1.26-31a"). The struct carries both.
 
 **Citation string format:** The citation strings used as keys match exactly the strings stored in Tier 1 `MassReadingsDef` (e.g., `"Isa 2:1-5"`, `"Ps 122:1-2,3-4ab,4cd-5,6-7,8-9"`, `"Matt 24:37-44"`). The engine performs a direct key lookup to join citations with texts.
@@ -2052,6 +2062,10 @@ struct HourTexts {
 }
 
 /// One psalmody entry (psalm/canticle + antiphon variants).
+/// GILM §19-20: "The responsorial psalm [...] is an integral part of the
+/// Liturgy of the Word"; GILM §22: "The psalm after the reading is sung
+/// or recited by the psalmist or cantor [...]." GIRM §61 further specifies
+/// it is "a response to the first reading."
 /// Used for both Mass responsorial psalms (in ReadingsTexts) and
 /// Office psalmody (in ProperHoursTexts/CommonHoursTexts).
 struct PsalmodyEntryDef {
@@ -2065,11 +2079,14 @@ struct PsalmodyEntryDef {
     text: Option<String>,
     /// Responsorial antiphon variants. Multiple entries when different
     /// liturgical cycles use different refrains for the same psalm text
-    /// (e.g., Year A vs Year B antiphon for Ps 122). The engine selects
-    /// the applicable variant based on Tier 1 cycle context, producing
-    /// a single resolved antiphon in the output.
+    /// (e.g., Year A vs Year B antiphon for Ps 122); GILM §21: "as a
+    /// rule, the response is drawn from the text of the psalm itself."
+    /// GILM §89 allows choosing the psalm from either the proper
+    /// lectionary or the Common. The engine selects the applicable
+    /// variant based on Tier 1 cycle context, producing a single
+    /// resolved antiphon in the output.
     antiphons: Vec<PsalmAntiphonDef>,
-    /// Optional short form (abbreviated psalm for pastoral use)
+    /// Optional short form — abbreviated psalm for pastoral use (GILM §77)
     short_form: Option<ShortFormDef>,
 }
 
