@@ -82,6 +82,10 @@ export default defineConfig({
               slug: 'architecture/public-api',
             },
             {
+              label: 'Calendar Resolution Algorithm',
+              slug: 'architecture/calendar-resolution',
+            },
+            {
               label: 'Liturgical Composition Model',
               slug: 'architecture/liturgical-composition-model',
             },

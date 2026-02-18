@@ -121,10 +121,11 @@ ARCHITECTURE
 
 The Roman Rite's liturgical norms (GIRM, GNLY, GILM, GILH, CP) define precise rules for how liturgical texts — readings, orations, antiphons, psalmody — are selected, combined, and composed for every rank of celebration (solemnity, feast, memorial, weekday), across both the Mass and the Liturgy of the Hours, and at every level of the calendar hierarchy (general, national, diocesan, religious, local).
 
-This document is one of three companion architecture documents:
+This document is one of four companion architecture documents:
 
 - [**Input Data Model**](./input-data-model.md) defines the three-tier input architecture — the data that contributors edit and that the engine transforms into the output types defined here.
 - [**Public API**](./public-api.md) defines **how** to drive the engine — configuration, method signatures, CLI commands, and bindings surface.
+- [**Calendar Resolution Algorithm**](./calendar-resolution.md) defines the **transformation pipeline** — how the engine turns input definitions into a resolved liturgical calendar.
 
 This document is a comprehensive architecture and data-modeling reference for romcal. It synthesizes these liturgical rules and proposes a data model that reflects them, organized around three complementary output layers:
 

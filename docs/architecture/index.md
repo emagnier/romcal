@@ -26,6 +26,18 @@ Defines romcal's public interface across three surfaces — Rust library, CLI, a
 - **CLI**: 15 commands mapped to the Rust API, global options mapped to `Config` fields.
 - **Bindings**: single C ABI / WASM surface, JSON serialization protocol, JSON Schemas as type source of truth.
 
+### [Calendar Resolution Algorithm](/architecture/calendar-resolution)
+
+Normative specification for the transformation pipeline that turns input definitions into a resolved liturgical calendar (~1 100 lines):
+
+- **Calendar hierarchy**: two parallel chains (territorial and religious) rooted in the General Roman Calendar, with cross-layering for religious communities (CP §16d).
+- **Date resolution**: Proper of Time generation, five `DateDef` variants, conditional date exceptions, moveable feasts.
+- **Precedence resolution**: the 13-level Table of Precedence (GNLY §59), conflict resolution, Lenten demotion, transfer of impeded solemnities (GNLY §60, Notitiae R14).
+- **Hierarchy merging**: field-by-field override, `drop` flag, rank elevation, property inheritance, composition guards.
+- **Layer 2 transformations**: Mass calendar and Hours calendar derivation from Layer 1.
+
+Covers: hierarchy resolution algorithm, `particular_config` resolution, date exceptions vs. algorithmic transfer, harmonization rules (CP §23), protected zones (CP §2), and the complete pipeline from input to output.
+
 ### [Liturgical Composition Model](/architecture/liturgical-composition-model)
 
 The output architecture reference (~3 000 lines). Synthesizes the liturgical norms from all reference documents into a unified data model for romcal, organized around three output layers:

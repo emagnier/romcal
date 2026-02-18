@@ -61,19 +61,20 @@ BINDINGS
 
 ## Context and Motivation
 
-This document is the third of three companion architecture documents. Together, they describe romcal's data pipeline end-to-end:
+This document is one of four companion architecture documents. Together, they describe romcal's data pipeline end-to-end:
 
 - [**Input Data Model**](./input-data-model.md) defines what goes **in** — the three-tier structure of calendar definitions, martyrology catalog, and liturgical texts that contributors edit.
-- [**Liturgical Composition Model**](./liturgical-composition-model.md) defines what comes **out** — the output types and composition rules for the liturgical calendar, Mass calendar, and Hours calendar.
 - **This document** (Public API) defines **how** to drive the engine — the interface through which consumers configure romcal, generate calendars, and retrieve results.
+- [**Calendar Resolution Algorithm**](./calendar-resolution.md) defines the **transformation pipeline** — how the engine turns input definitions into a resolved liturgical calendar.
+- [**Liturgical Composition Model**](./liturgical-composition-model.md) defines what comes **out** — the output types and composition rules for the liturgical calendar, Mass calendar, and Hours calendar.
 
 While the input model is designed for human editors and the composition model for type consumers, this document is designed for **application developers**: it specifies every configuration option, method signature, return type, CLI command, and bindings surface needed to integrate romcal.
 
 ### Scope
 
-This document covers the public interface only — it does not describe how the engine resolves calendars internally (see the Composition Model's Part V for the transformation pipeline), nor the input format specifications (see the Input Data Model).
+This document covers the public interface only — it does not describe how the engine resolves calendars internally (see the Calendar Resolution Algorithm for the full pipeline, and the Composition Model's Part V for the transformation architecture), nor the input format specifications (see the Input Data Model).
 
-The three documents are complementary and share cross-references. Output types mentioned here (`LiturgicalCalendar`, `MassCalendar`, `HoursCalendar`, `MassComposition`, `HoursComposition`, etc.) are defined in the Composition Model. Input types mentioned here (`CalendarDefinition`, `Resources`, `MartyrologyEntryDef`, etc.) are defined in the Input Data Model.
+The four documents are complementary and share cross-references. Output types mentioned here (`LiturgicalCalendar`, `MassCalendar`, `HoursCalendar`, `MassComposition`, `HoursComposition`, etc.) are defined in the Composition Model. Input types mentioned here (`CalendarDefinition`, `Resources`, `MartyrologyEntryDef`, etc.) are defined in the Input Data Model.
 
 ### Workspace Structure
 

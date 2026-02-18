@@ -87,10 +87,11 @@ TRANSFORMATION & ERGONOMICS
 
 ## Context and Motivation
 
-This document is one of three companion architecture documents:
+This document is one of four companion architecture documents:
 
-- [**Liturgical Composition Model**](./liturgical-composition-model.md) defines romcal's **output** data model — the three-layer structure (`LiturgicalCalendar`, `MassCalendar`, `HoursCalendar`) that the engine produces.
 - [**Public API**](./public-api.md) defines **how** to drive the engine — configuration, method signatures, CLI commands, and bindings surface.
+- [**Calendar Resolution Algorithm**](./calendar-resolution.md) defines the **transformation pipeline** — how the engine turns input definitions into a resolved liturgical calendar.
+- [**Liturgical Composition Model**](./liturgical-composition-model.md) defines romcal's **output** data model — the three-layer structure (`LiturgicalCalendar`, `MassCalendar`, `HoursCalendar`) that the engine produces.
 
 The present document defines romcal's **input** data model — the data that contributors author and maintain, and that the engine transforms into the output model. While the output model is designed for consumers (applications, liturgical software, APIs), the input model is designed for **human editors**: liturgists, developers, and community contributors who add or modify calendar data in JSON files.
 
