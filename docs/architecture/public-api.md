@@ -118,7 +118,7 @@ The pattern is self-documenting: when a developer sees `_of`, they know the meth
 | `easter_calculation`       | `Option<EasterCalculation>`       | `Gregorian`       | Easter algorithm (`Gregorian` or `Julian`)                                                                                |
 | `epiphany_on_sunday`       | `Option<bool>`                    | `false`           | Move Epiphany to the Sunday between January 2–8                                                                           |
 | `ascension_on_sunday`      | `Option<bool>`                    | `false`           | Move Ascension to the 7th Sunday of Easter                                                                                |
-| `corpus_christi_on_sunday` | `Option<bool>`                    | `true`            | Move Corpus Christi to Sunday                                                                                             |
+| `corpus_christi_on_sunday` | `Option<bool>`                    | `false`           | Move Corpus Christi to Sunday                                                                                             |
 | `ordinal_format`           | `Option<OrdinalFormat>`           | locale-dependent  | Ordinal number formatting (`Numeric` or `Letters`). When not set, resolved from locale metadata; falls back to `Numeric`. |
 | `calendar_definitions`     | `Option<Vec<CalendarDefinition>>` | bundled           | Calendar definition data. `None` = use bundled data; `Some(vec)` = use exactly the provided definitions.                  |
 | `resources`                | `Option<Vec<Resources>>`          | bundled           | Resource data (martyrology, locale strings). `None` = use bundled data; `Some(vec)` = use exactly the provided resources. |
