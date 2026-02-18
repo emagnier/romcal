@@ -33,56 +33,56 @@ TIER 1 — CALENDAR DEFINITIONS
 | TitleCategory and TitlesDef          | Part II §10          | ~783   |                                   |
 | PatronageDef                         | Part II §11          | ~859   | CP 31                             |
 | MartyrologyRef                       | Part II §12          | ~921   |                                   |
-| MassReadingsDef                      | Part II §13          | ~980   | GILM 66, 69                       |
-| Definition examples                  | Part II §14          | ~1119  |                                   |
+| MassReadingsDef                      | Part II §13          | ~980   | GILM 66, 69, 109                  |
+| Definition examples                  | Part II §14          | ~1173  |                                   |
 
 TIER 2 — MARTYROLOGY CATALOG & LOCALIZATION
 | Concept                              | Section              | Line   | Key references                    |
 | ------------------------------------ | -------------------- | ------ | --------------------------------- |
-| File organization (martyrology/locales) | Part III §1       | ~1214  |                                   |
-| ResourcesMetadata                    | Part III §2          | ~1247  |                                   |
-| MartyrologyEntryDef                  | Part III §3          | ~1346  |                                   |
-| MartyrologyEntryType                 | Part III §4          | ~1464  |                                   |
-| SaintDateDef                         | Part III §5          | ~1485  |                                   |
-| Title qualifiers and fullname        | Part III §6          | ~1534  |                                   |
-| Locale inheritance                   | Part III §7          | ~1654  |                                   |
-| Localization of enums                | Part III §8          | ~1698  |                                   |
+| File organization (martyrology/locales) | Part III §1       | ~1268  |                                   |
+| ResourcesMetadata                    | Part III §2          | ~1301  |                                   |
+| MartyrologyEntryDef                  | Part III §3          | ~1400  |                                   |
+| MartyrologyEntryType                 | Part III §4          | ~1518  |                                   |
+| SaintDateDef                         | Part III §5          | ~1539  |                                   |
+| Title qualifiers and fullname        | Part III §6          | ~1588  |                                   |
+| Locale inheritance                   | Part III §7          | ~1708  |                                   |
+| Localization of enums                | Part III §8          | ~1752  |                                   |
 
 TIER 3 — LITURGICAL TEXTS
 | Concept                              | Section              | Line   | Key references                    |
 | ------------------------------------ | -------------------- | ------ | --------------------------------- |
-| Overview and copyright               | Part IV §1           | ~1723  |                                   |
-| ProperTexts (Mass)                   | Part IV §2           | ~1746  | GIRM 363                          |
-| AntiphonTextDef                      | Part IV §2           | ~1778  |                                   |
-| MassTimeTexts (enriched)             | Part IV §2           | ~1787  |                                   |
-| PrefaceRef (inline/catalog enum)     | Part IV §2           | ~1808  |                                   |
-| CommonTexts (Mass)                   | Part IV §3           | ~1851  | GILM 71, 89                       |
-| PrefaceCatalog (§3b)                 | Part IV §3b          | ~1894  |                                   |
-| PrefaceDef                           | Part IV §3b          | ~1900  |                                   |
-| PrefaceCatalogFile                   | Part IV §3b          | ~1914  |                                   |
-| ReadingsTexts (biblical content)     | Part IV §4           | ~1923  | GILM 75, 80                       |
-| ReadingsTextsFile (readings + psalms)| Part IV §4           | ~1928  |                                   |
-| ReadingTextDef (enriched)            | Part IV §4           | ~1941  |                                   |
-| ShortFormDef                         | Part IV §4           | ~1960  |                                   |
-| SourceRef (shared helper)            | Part IV §4           | ~1982  |                                   |
-| ProperTexts (Office)                 | Part IV §5           | ~1999  | GILH 225-236                      |
-| PsalmodyEntryDef (enriched)          | Part IV §5           | ~2044  |                                   |
-| PsalmAntiphonDef                     | Part IV §5           | ~2058  |                                   |
-| CommonTexts (Office)                 | Part IV §6           | ~2112  | GILH 235                          |
-| Latin baseline + copyright + examples| Part IV §7           | ~2158  |                                   |
-| Citation → Text jointure (enriched)  | Part IV §8           | ~2211  |                                   |
+| Overview and copyright               | Part IV §1           | ~1776  |                                   |
+| ProperTexts (Mass)                   | Part IV §2           | ~1799  | GIRM 363                          |
+| AntiphonTextDef                      | Part IV §2           | ~1835  | GIRM 48, 87                       |
+| MassTimeTexts (enriched)             | Part IV §2           | ~1847  |                                   |
+| PrefaceRef (inline/catalog enum)     | Part IV §2           | ~1865  |                                   |
+| CommonTexts (Mass)                   | Part IV §3           | ~1907  | GILM 71, 89                       |
+| PrefaceCatalog (§3b)                 | Part IV §3b          | ~1950  |                                   |
+| PrefaceDef                           | Part IV §3b          | ~1956  | GIRM 364-365                      |
+| PrefaceCatalogFile                   | Part IV §3b          | ~1970  |                                   |
+| ReadingsTexts (biblical content)     | Part IV §4           | ~1979  | GILM 75, 80                       |
+| ReadingsTextsFile (readings + psalms)| Part IV §4           | ~1988  |                                   |
+| ReadingTextDef (enriched)            | Part IV §4           | ~2001  | GILM 123, 125                     |
+| ShortFormDef                         | Part IV §4           | ~2029  | GIRM 360; GILM 75, 77, 80        |
+| SourceRef (shared helper)            | Part IV §4           | ~2047  |                                   |
+| ProperTexts (Office)                 | Part IV §5           | ~2063  | GILH 225-236                      |
+| PsalmodyEntryDef (enriched)          | Part IV §5           | ~2110  | GILM 19-22; GIRM 61              |
+| PsalmAntiphonDef                     | Part IV §5           | ~2138  |                                   |
+| CommonTexts (Office)                 | Part IV §6           | ~2189  | GILH 235                          |
+| Latin baseline + copyright + examples| Part IV §7           | ~2235  |                                   |
+| Citation → Text jointure (enriched)  | Part IV §8           | ~2288  |                                   |
 
 TRANSFORMATION & ERGONOMICS
 | Concept                              | Section              | Line   | Key references                    |
 | ------------------------------------ | -------------------- | ------ | --------------------------------- |
-| Input → Output mapping               | Part V §1            | ~2259  |                                   |
-| CommonDef → Common                   | Part V §2            | ~2294  |                                   |
-| Title resolution                     | Part V §3            | ~2330  |                                   |
-| Patronage resolution                 | Part V §4            | ~2358  |                                   |
-| Canonical prayer                     | Part V §5            | ~2373  | CP 44                             |
-| Contributor ergonomics               | Part VI §1           | ~2388  |                                   |
-| Adding a new saint                   | Part VI §2           | ~2411  |                                   |
-| Adding a new calendar                | Part VI §3           | ~2454  |                                   |
+| Input → Output mapping               | Part V §1            | ~2336  |                                   |
+| CommonDef → Common                   | Part V §2            | ~2386  |                                   |
+| Title resolution                     | Part V §3            | ~2422  |                                   |
+| Patronage resolution                 | Part V §4            | ~2450  |                                   |
+| Canonical prayer                     | Part V §5            | ~2465  | CP 44                             |
+| Contributor ergonomics               | Part VI §1           | ~2480  |                                   |
+| Adding a new saint                   | Part VI §2           | ~2503  |                                   |
+| Adding a new calendar                | Part VI §3           | ~2546  |                                   |
 -->
 
 ## Context and Motivation
@@ -1071,6 +1071,16 @@ enum ReadingSlot {
 }
 ```
 
+**Layered resolution rule:** `MassCycleDefinition` maps multiple `LiturgicalCycle` keys to partial `MassReadingsContent` entries. The engine merges them in layers:
+
+1. Start with `Invariant` (base readings shared across all cycles).
+2. Overlay the applicable **Sunday cycle** key (`YearA`, `YearB`, `YearC`, or a combined key like `YearBC`) — overrides matching slots from step 1.
+3. Overlay the applicable **weekday cycle** key (`Year1` or `Year2`) — overrides matching slots from steps 1-2.
+
+Each layer only specifies the reading slots it contributes; the engine accumulates slots from all applicable layers. This avoids duplicating shared readings across cycle keys.
+
+> **Design note — why layered, not compound keys:** A layered merge keeps the cycle dimensions orthogonal. A Sunday may need per-year readings (3 variants of 7 slots each), while a weekday may need per-year first readings _and_ a Sunday-cycle-dependent Gospel override. Layering handles both patterns with the same type, without introducing compound keys like `Year1A` / `Year2B`.
+
 **JSON example — Advent 1st Sunday (3-year Sunday cycle):**
 
 ```json
@@ -1126,6 +1136,37 @@ enum ReadingSlot {
   }
 }
 ```
+
+**JSON example — Weekday with Sunday-cycle-dependent Gospel (OT Week 18 Monday):**
+
+The weekday semi-continuous Gospel sequence (GILM §109: Matthew in weeks 10-21) overlaps with the 18th Sunday of Year A (Mt 14:13-21). The Lectionary resolves this by printing a rubrical note: « L'année A, où l'Évangile ci-dessous a été lu le dimanche, on lit aujourd'hui Matthieu 14, 22-36. » Layered resolution models this without any cross-day runtime dependency:
+
+```json
+"ordinary_time_18_monday": {
+  "masses": {
+    "day_mass": {
+      "invariant": {
+        "alleluia": "Matt 4:4b",
+        "gospel": "Matt 14:13-21"
+      },
+      "year_a": {
+        "alleluia": "John 1:49b",
+        "gospel": "Matt 14:22-36"
+      },
+      "year_1": {
+        "reading_1": "Num 11:4b-15",
+        "psalm": "Ps 81:12-13,14-15,16-17"
+      },
+      "year_2": {
+        "reading_1": "Jer 28:1-17",
+        "psalm": "Ps 119:29,43,79-80,95,102"
+      }
+    }
+  }
+}
+```
+
+Resolution for Year 1 + Year A: `Invariant` provides base readings → `YearA` overrides `alleluia` and `gospel` → `Year1` provides `reading_1` and `psalm`. Result: all 4 slots populated, with the Year-A-specific Gospel (Mt 14:22-36) since Mt 14:13-21 was already read on Sunday.
 
 **Separation of concerns:** Only reading **citations** appear in Tier 1. The corresponding full texts, psalm texts, and short-form variants are in Tier 3. The engine joins them at runtime using the citation string as the key (see Part IV §8).
 
@@ -2219,16 +2260,16 @@ In practice, most fields in Tier 3 are fully overridden by vernacular locales (s
 
 romcal ships Tier 3 data for a small set of representative dates that illustrate every structural pattern in the data model. The target dates cover the full range of Tier 3 structures:
 
-| Date                            | Why included                                                                                                        |
-| ------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| 1st Sunday of Advent (Year A)   | Start of liturgical year, Sunday cycle, short form readings                                                         |
-| Nativity of the Lord (Day Mass) | Multi-Mass celebration, proper preface                                                                              |
-| Easter Sunday                   | Vigil with 7 OT readings (VigilSequence), sequence hymn, canticles                                                  |
-| Pentecost                       | Sequence, proper preface                                                                                            |
-| 15th Sunday of Ordinary Time    | Standard Sunday cycle, responsorial psalm                                                                           |
-| 18th Sunday + Mon + Tue of OT   | Cross-cycle conditional readings (`ifReadYesterday` cascade across 3 days — future Tier 1 design, noted as §4 note) |
-| Ascension                       | Feast of the Lord, proper readings                                                                                  |
-| Immaculate Conception           | Marian solemnity, BVM Commons                                                                                       |
+| Date                            | Why included                                                                                   |
+| ------------------------------- | ---------------------------------------------------------------------------------------------- |
+| 1st Sunday of Advent (Year A)   | Start of liturgical year, Sunday cycle, short form readings                                    |
+| Nativity of the Lord (Day Mass) | Multi-Mass celebration, proper preface                                                         |
+| Easter Sunday                   | Vigil with 7 OT readings (VigilSequence), sequence hymn, canticles                             |
+| Pentecost                       | Sequence, proper preface                                                                       |
+| 15th Sunday of Ordinary Time    | Standard Sunday cycle, responsorial psalm                                                      |
+| 18th Sunday + Mon + Tue of OT   | Layered cycle resolution: weekday Gospel depends on Sunday cycle (§13 example), rubrical notes |
+| Ascension                       | Feast of the Lord, proper readings                                                             |
+| Immaculate Conception           | Marian solemnity, BVM Commons                                                                  |
 
 These examples are sufficient to validate the entire type system and jointure pipeline. They are not intended as a production-ready data set.
 
