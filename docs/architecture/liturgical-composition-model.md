@@ -3044,12 +3044,12 @@ enum DayOfWeek { Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday 
 enum SundayCycle { YearA, YearB, YearC }
 
 /// Two-year weekday readings cycle (GILM 69)
-enum WeekdayCycle { Year_1, Year_2 }
+enum WeekdayCycle { Year1, Year2 }
 
 /// Four-week psalter cycle (GILH §133)
 /// Restarted at Week 1 on: 1st Sunday of Advent, 1st Sunday of OT,
 /// 1st Sunday of Lent, Easter Sunday.
-enum PsalterWeekCycle { Week_1, Week_2, Week_3, Week_4 }
+enum PsalterWeekCycle { Week1, Week2, Week3, Week4 }
 ```
 
 #### `PeriodInfo`

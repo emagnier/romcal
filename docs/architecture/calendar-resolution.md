@@ -50,43 +50,42 @@ PRECEDENCE RESOLUTION
 | Lenten demotion rule                 | Part V §16           | ~612   | GNLY 14, 59                       |
 | Transfer of impeded solemnities      | Part V §17           | ~626   | GNLY 60, GNLY 5, Notitiae R14    |
 | Transfer algorithm                   | Part V §18           | ~642   | GNLY 60                           |
-| Interaction date_exceptions/transfer | Part V §19           | ~665   |                                   |
-| Vespers conflict resolution          | Part V §20           | ~676   | GNLY 61                           |
+| Vespers conflict resolution          | Part V §19           | ~665   | GNLY 61                           |
 
 PROPERTY INHERITANCE
 | Concept                              | Section              | Line   | Key references                    |
 | ------------------------------------ | -------------------- | ------ | --------------------------------- |
-| Temporal context propagation         | Part VI §21          | ~691   |                                   |
-| Color resolution                     | Part VI §22          | ~710   | GIRM 346                          |
-| parent_overrides traceability        | Part VI §23          | ~739   |                                   |
+| Temporal context propagation         | Part VI §20          | ~680   |                                   |
+| Color resolution                     | Part VI §21          | ~699   | GIRM 346                          |
+| parent_overrides traceability        | Part VI §22          | ~728   |                                   |
 
 COMPOSITION GUARDS
 | Concept                              | Section              | Line   | Key references                    |
 | ------------------------------------ | -------------------- | ------ | --------------------------------- |
-| Protected zones                      | Part VII §24         | ~754   | CP 2, GNLY 56f                    |
-| One celebration per saint per year   | Part VII §25         | ~777   | CP 3                              |
-| Overburdening guard                  | Part VII §26         | ~783   | CP 17                             |
-| Harmonization rules                  | Part VII §27         | ~792   | CP 23                             |
+| Protected zones                      | Part VII §23         | ~743   | CP 2, GNLY 56f                    |
+| One celebration per saint per year   | Part VII §24         | ~766   | CP 3                              |
+| Overburdening guard                  | Part VII §25         | ~772   | CP 17                             |
+| Harmonization rules                  | Part VII §26         | ~781   | CP 23                             |
 
 LAYER 2 TRANSFORMATIONS
 | Concept                              | Section              | Line   | Key references                    |
 | ------------------------------------ | -------------------- | ------ | --------------------------------- |
-| Mass calendar (Layer 2 Mass)         | Part VIII §28        | ~810   | GILM 83                           |
-| Hours calendar (Layer 2 Hours)       | Part VIII §29        | ~820   | GILH 225-240                      |
+| Mass calendar (Layer 2 Mass)         | Part VIII §27        | ~799   | GILM 83                           |
+| Hours calendar (Layer 2 Hours)       | Part VIII §28        | ~809   | GILH 225-240                      |
 
 EDGE CASES
 | Concept                              | Section              | Line   | Key references                    |
 | ------------------------------------ | -------------------- | ------ | --------------------------------- |
-| Holy Thursday coexistence            | Part IX §30          | ~840   | PS 35-36, 44-48                   |
-| Saturday BVM memorial                | Part IX §31          | ~853   | GNLY 15                           |
-| Readings cycle layered resolution    | Part IX §32          | ~863   |                                   |
-| Sunday assignment (Epiphany, etc.)   | Part IX §33          | ~874   | GNLY 7, Notitiae R1               |
+| Holy Thursday coexistence            | Part IX §29          | ~829   | PS 35-36, 44-48                   |
+| Saturday BVM memorial                | Part IX §30          | ~842   | GNLY 15                           |
+| Readings cycle layered resolution    | Part IX §31          | ~852   |                                   |
+| Sunday assignment (Epiphany, etc.)   | Part IX §32          | ~862   | GNLY 7, Notitiae R1               |
 
 APPENDICES
 | Concept                              | Section              | Line   |
 | ------------------------------------ | -------------------- | ------ |
-| Complete pipeline summary            | Appendix A           | ~887   |
-| Normative references table           | Appendix B           | ~937   |
+| Complete pipeline summary            | Appendix A           | ~876   |
+| Normative references table           | Appendix B           | ~926   |
 
 -->
 
@@ -292,45 +291,45 @@ The Proper of Time is the foundational liturgical skeleton. It is generated prog
 
 Each day in the temporal cycle receives the following contextual properties:
 
-| Property         | Description                                                                            |
-| ---------------- | -------------------------------------------------------------------------------------- |
-| `season`         | The liturgical season (`Option<Season>` — `None` during Good Friday and Holy Saturday) |
-| `week_of_season` | Week number within the season (1-based)                                                |
-| `day_of_season`  | Day number within the season (1-based)                                                 |
-| `day_of_week`    | Day of the week (Sunday = 0 … Saturday = 6)                                            |
-| `psalter_week`   | Psalter week (1–4 cycle)                                                               |
-| `sunday_cycle`   | Sunday readings cycle (A, B, or C)                                                     |
-| `weekday_cycle`  | Weekday readings cycle (Year I or Year II)                                             |
-| `periods`        | Special periods within seasons (e.g., `ChristmasOctave`, `HolyWeek`, `EasterOctave`)   |
+| Property         | Type               | Description                                                             |
+| ---------------- | ------------------ | ----------------------------------------------------------------------- |
+| `season`         | `Option<Season>`   | The liturgical season — `None` during Good Friday and Holy Saturday     |
+| `week_of_season` | `u8`               | Week number within the season (1-based)                                 |
+| `day_of_season`  | `u16`              | Day number within the season (1-based)                                  |
+| `day_of_week`    | `DayOfWeek`        | `Sunday`, `Monday`, … `Saturday`                                        |
+| `psalter_week`   | `PsalterWeekCycle` | `Week1`, `Week2`, `Week3`, `Week4`                                      |
+| `sunday_cycle`   | `SundayCycle`      | `YearA`, `YearB`, `YearC`                                               |
+| `weekday_cycle`  | `WeekdayCycle`     | `Year1`, `Year2`                                                        |
+| `periods`        | `Vec<Period>`      | Special periods (e.g., `ChristmasOctave`, `HolyWeek`, `PaschalTriduum`) |
 
 ### 6. Moveable Feasts and Sunday Assignments
 
-Moveable feasts are celebrations whose civil date changes each year. They are computed from Easter or other anchors using the `DateFn` enum.
+Moveable feasts are celebrations whose civil date changes each year. Most are simple offsets from Easter and are expressed via `Anchored { anchor: "easter_sunday", day_offset: N }`. Only dates requiring non-trivial computation (computus or `ParticularConfig`-dependent logic) have their own `DateAnchor` variant.
 
-**Easter-dependent feasts:**
+**`DateAnchor` variants:**
 
-| Celebration                | `DateFn`                | Computation                                       |
-| -------------------------- | ----------------------- | ------------------------------------------------- |
-| Easter Sunday              | `EasterSunday`          | Computus algorithm (Gregorian or Julian)          |
-| Ash Wednesday              | —                       | Easter − 46 days                                  |
-| Palm Sunday                | `PalmSunday`            | Easter − 7 days                                   |
-| Divine Mercy Sunday        | `DivineMercySunday`     | Easter + 7 days                                   |
-| Ascension                  | —                       | Easter + 39 days (Thursday), or Sunday per config |
-| Pentecost Sunday           | `PentecostSunday`       | Easter + 49 days                                  |
-| Mary, Mother of the Church | `MaryMotherOfTheChurch` | Easter + 50 days (Monday after Pentecost)         |
-| Immaculate Heart of Mary   | `ImmaculateHeartOfMary` | Easter + 69 days (Saturday)                       |
+| `DateAnchor`       | Computation                                                                                          |
+| ------------------ | ---------------------------------------------------------------------------------------------------- |
+| `EasterSunday`     | Computus algorithm (Gregorian or Julian per config)                                                  |
+| `Epiphany`         | January 6 (fixed) or Sunday between January 2–8 (per `epiphany_on_sunday` config)                    |
+| `Ascension`        | Easter + 39 days (Thursday) or 7th Sunday of Easter (per `ascension_on_sunday` config)               |
+| `CorpusChristi`    | Thursday after Trinity Sunday or Sunday after Trinity Sunday (per `corpus_christi_on_sunday` config) |
+| `BaptismOfTheLord` | Sunday after Epiphany (depends on Epiphany resolution)                                               |
 
-**Sunday assignment rules (GNLY §7):**
+**Common Easter offsets** (expressed as `{ "anchor": "easter_sunday", "day_offset": N }`):
 
-When `particular_config` assigns a feast to Sunday:
+| Celebration                | Offset      |
+| -------------------------- | ----------- |
+| Ash Wednesday              | Easter − 46 |
+| Palm Sunday                | Easter − 7  |
+| Divine Mercy Sunday        | Easter + 7  |
+| Pentecost Sunday           | Easter + 49 |
+| Mary, Mother of the Church | Easter + 50 |
+| Immaculate Heart of Mary   | Easter + 69 |
 
-| Feast          | Fixed date / position              | Sunday assignment              |
-| -------------- | ---------------------------------- | ------------------------------ |
-| Epiphany       | January 6                          | Sunday between January 2 and 8 |
-| Ascension      | Thursday of the 6th week of Easter | 7th Sunday of Easter           |
-| Corpus Christi | Thursday after Trinity Sunday      | Sunday after Trinity Sunday    |
+**Sunday assignment rule (GNLY §7):**
 
-When assigned to Sunday, the feast **completely replaces** the Ordinary Time or Easter Time Sunday (Notitiae R1). No commemoration of the displaced Sunday is retained. All dependent calculations (e.g., dates anchored to Epiphany) use the Sunday date.
+When `particular_config` assigns Epiphany, Ascension, or Corpus Christi to Sunday, the feast **completely replaces** the Ordinary Time or Easter Time Sunday (Notitiae R1). No commemoration of the displaced Sunday is retained. All dependent calculations (e.g., `BaptismOfTheLord` anchored to `Epiphany`) use the Sunday date.
 
 ### 7. Liturgical Cycles
 
@@ -357,11 +356,16 @@ The weekday cycle follows the civil year, not the liturgical year.
 
 **Psalter week (4-week rotation):**
 
-The psalter follows a 4-week cycle that resets at specific season boundaries:
+The psalter follows a 4-week cycle (GILH §133) that resets to Week 1 at these points:
 
-- Week 1 begins at the start of each season (Advent I, Christmas, Lent, Easter)
-- The cycle rotates: 1 → 2 → 3 → 4 → 1 → ...
-- Ordinary Time continues the count from where it left off before Lent
+- 1st Sunday of Advent
+- 1st Sunday of Ordinary Time (after the Baptism of the Lord)
+- 1st Sunday of Lent
+- Easter Sunday
+
+The cycle rotates: Week1 → Week2 → Week3 → Week4 → Week1 → …
+
+Between reset points the cycle continues uninterrupted. In Ordinary Time, the psalter week is derived from the week number: `((week_of_season - 1) % 4) + 1`. Since Ordinary Time week numbering is continuous across OT I and OT II, the psalter week in OT II follows naturally from the OT week number (GILH §133: "it begins with the week indicated in the Proper of Seasons at the beginning of the appropriate week in Ordinary Time").
 
 ---
 
@@ -369,7 +373,9 @@ The psalter follows a 4-week cycle that resets at specific season boundaries:
 
 ### 8. The Five `DateDef` Variants
 
-Each `CelebrationDef` specifies its date via a `DateDef` (defined in the Input Data Model, Part II §5). The engine resolves each variant as follows:
+Each `CelebrationDef` specifies its date via a `DateDef` (defined in the Input Data Model, Part II §5). Most variants resolve to a single date per year; the `RecurringWeekday` variant resolves to multiple dates.
+
+The engine resolves each variant as follows:
 
 **1. `MonthDate { month, date, day_offset }`**
 
@@ -377,27 +383,29 @@ Fixed calendar date. Resolution: construct the date from month and day in the ta
 
 Example: January 2 → `{ month: 1, date: 2 }`
 
-**2. `DateFunction { date_fn, day_offset }`**
+**2. `Anchored { anchor, day_offset }`**
 
-Anchored to a moveable feast. Resolution: compute the feast date from the `DateFn` function (§6), then apply `day_offset`.
+Anchored to a `DateAnchor`. Resolution: compute the anchor date (§6), then apply `day_offset`.
 
-Example: Pentecost Monday → `{ date_fn: "pentecost_sunday", day_offset: 1 }`
+Example: Pentecost Monday → `{ anchor: "easter_sunday", day_offset: 50 }`
 
 **3. `WeekdayOfMonth { month, day_of_week, nth_week_in_month, day_offset }`**
 
 The Nth occurrence of a weekday in a given month. Resolution: find the Nth `day_of_week` in the specified month, then apply `day_offset`.
 
-Example: 4th Thursday of November (Thanksgiving) → `{ month: 11, day_of_week: 4, nth_week_in_month: 4 }`
+Example: 4th Thursday of November (Thanksgiving) → `{ month: 11, day_of_week: Thursday, nth_week_in_month: 4 }`
 
 **4. `LastWeekdayOfMonth { month, last_day_of_week_in_month, day_offset }`**
 
 The last occurrence of a weekday in a given month. Resolution: find the last `last_day_of_week_in_month` in the specified month, then apply `day_offset`.
 
-Example: Last Sunday of November (Christ the King) → `{ month: 11, last_day_of_week_in_month: 0 }`
+Example: Last Sunday of November (Christ the King) → `{ month: 11, last_day_of_week_in_month: Sunday }`
 
-**5. `InheritedFromProperOfTime {}`**
+**5. `RecurringWeekday { day_of_week, season }`**
 
-The date is already established by the temporal cycle. Used by sanctoral celebrations that share a date with a temporal day (e.g., Ash Wednesday, Palm Sunday). The engine does not recompute the date — it uses the date from the Proper of Time skeleton.
+Every occurrence of a weekday within a season. Resolution: the engine generates one celebration instance for each matching day in the target season. Unlike other variants, this resolves to **multiple dates per year**. Conflict resolution (§15) applies independently on each date — the celebration is only retained on dates where no higher-precedence celebration exists.
+
+Example: Saturday BVM memorial on every Saturday of Ordinary Time → `{ day_of_week: Saturday, season: OrdinaryTime }`
 
 ### 9. Date Exception Conditions
 
@@ -409,7 +417,7 @@ After computing the base date from `DateDef`, the engine evaluates `date_excepti
 | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | `IsBetween { from, to, inclusive }` | Base date falls within the range `[from, to]` (inclusive) or `(from, to)` (exclusive). Bounds `from` and `to` are themselves `DateDef` values. |
 | `IsSameAsDate { date }`             | Base date equals the computed reference `date` (a `DateDef`).                                                                                  |
-| `IsDayOfWeek { day_of_week }`       | Base date falls on the specified weekday (0 = Sunday … 6 = Saturday).                                                                          |
+| `IsDayOfWeek { day_of_week }`       | Base date falls on the specified weekday (`DayOfWeek` value).                                                                                  |
 
 **Two resolution outcomes:**
 
@@ -426,34 +434,68 @@ When March 25 falls during Holy Week or the Easter Octave, the Annunciation is t
 
 ```json
 {
-  "date_def": { "date_fn": "annunciation" },
+  "date_def": { "month": 3, "date": 25 },
   "date_exceptions": {
     "when": {
-      "from": { "date_fn": "palm_sunday" },
-      "to": { "date_fn": "divine_mercy_sunday" },
+      "from": { "anchor": "easter_sunday", "day_offset": -7 },
+      "to": { "anchor": "easter_sunday", "day_offset": 7 },
       "inclusive": true
     },
-    "then": { "date_fn": "divine_mercy_sunday", "day_offset": 1 }
+    "then": { "anchor": "easter_sunday", "day_offset": 8 }
   }
 }
 ```
 
 ### 10. Date Exceptions vs. Algorithmic Transfer
 
-A critical design distinction exists between two date-adjustment mechanisms:
+Two distinct mechanisms can move a celebration from its base date. The difference is **visibility**: `date_exceptions` see only the celebration's own date; the transfer algorithm sees the entire resolved calendar.
 
-**`date_exceptions`** in `CelebrationDef` are **calendar-author-defined** conditional date overrides. They handle known, predictable conflicts that are the same every year for a given calendar configuration. The calendar author can anticipate them and encode them statically.
+**`date_exceptions`** (§9) are conditional overrides written by calendar authors. They express rules with a **known condition and a known target**: "if the date falls in range X, move to date Y." They are appropriate when:
 
-**The transfer algorithm** (§17–19 below) is **engine-computed** and handles dynamic conflicts that arise from the interaction of multiple calendar layers. A solemnity from a diocesan calendar impeded by a General Calendar day of higher precedence cannot be anticipated by a static `date_exception` — the engine must detect and resolve it at generation time.
+- The conflict is predictable from the celebration's own date (e.g., Annunciation on March 25 falling during Holy Week).
+- The transfer target is fixed and prescribed by the norms (e.g., GNLY §60: Annunciation always transfers to the Monday after the 2nd Sunday of Easter).
+- A bishops' conference or particular calendar makes a specific decision (e.g., St. Joseph on a Sunday → move to Monday).
 
-**Both mechanisms coexist:**
+**The transfer algorithm** (§17–18) is engine-computed. After all celebrations have been placed on their intended dates, the engine scans for impeded solemnities — solemnities that land on a date where a higher-precedence celebration exists. It then searches for the **closest free day** (GNLY §60). This dynamic search requires full calendar visibility, which `date_exceptions` do not have. The algorithm handles:
 
-1. `date_exceptions` are evaluated first (§9) → produce the "intended date"
-2. The transfer algorithm (§17–19) operates on the full resolved calendar → may move a celebration again if the intended date is still impeded
+- Solemnities impeded by celebrations from a different calendar layer (e.g., a diocesan solemnity impeded by a General Calendar solemnity).
+- Cascading transfers (transferred solemnity A lands on a date that impedes solemnity B).
+- Any impeded solemnity without an applicable `date_exception`.
 
-Calendar authors should encode **predictable, calendar-specific** transfers in `date_exceptions` (e.g., Annunciation during Holy Week → Monday after the 2nd Sunday of Easter). The engine handles **dynamic, cross-calendar** conflicts algorithmically.
+**Example — `date_exceptions` (known target):**
 
-Over time, some `date_exceptions` that duplicate the engine's transfer logic could be removed, letting the engine handle them natively. But they remain valid and are always evaluated first.
+The Annunciation (March 25) during Holy Week is transferred to the Monday after the 2nd Sunday of Easter (GNLY §60 absolute rule). The condition is predictable (March 25 falls between Palm Sunday and Divine Mercy Sunday) and the target is fixed (Easter + 8). A `date_exception` handles this:
+
+```json
+{
+  "date_exceptions": {
+    "when": {
+      "from": { "anchor": "easter_sunday", "day_offset": -7 },
+      "to": { "anchor": "easter_sunday", "day_offset": 7 },
+      "inclusive": true
+    },
+    "then": { "anchor": "easter_sunday", "day_offset": 8 }
+  }
+}
+```
+
+**Example — transfer algorithm (dynamic target):**
+
+A diocese defines a proper solemnity for its patron (precedence `4a`) on March 19 — the same date as St. Joseph (General Calendar, precedence `3`). St. Joseph takes precedence; the diocesan solemnity is impeded. The engine applies GNLY §60: _"If a Solemnity is impeded by a liturgical day that takes precedence over it, it is transferred to the closest day not listed in nos. 1–8 of the Table of Liturgical Days."_ It searches outward from March 19 for the closest day not occupied by a level 1–8 celebration.
+
+The target varies each year depending on what surrounds March 19:
+
+| Year | March 18                     | March 20                   | Transfer target                  |
+| ---- | ---------------------------- | -------------------------- | -------------------------------- |
+| 2026 | Wednesday of Lent (level 13) | Friday of Lent (level 13)  | **March 18** (closest, free)     |
+| 2029 | 4th Sunday of Lent (level 2) | Tuesday of Lent (level 13) | **March 20** (March 18 occupied) |
+
+A `date_exception` cannot express "closest free day" — the target depends on the full calendar. Only the transfer algorithm (§18), which sees all celebrations on all dates, can resolve this dynamically.
+
+**Execution order:**
+
+1. `date_exceptions` are evaluated first (§9) → produce the "intended date."
+2. The transfer algorithm (§17–18) operates on the full resolved calendar → may move a celebration again if the intended date is still impeded.
 
 ---
 
@@ -479,7 +521,7 @@ The inheritance chain: `temporal_cycle → general_roman → region → country 
 | `titles`                    | Merged via `append` / `prepend` / `replace` operations          |
 | `martyrology`               | Child wins if set                                               |
 | `masses`                    | Child wins if set                                               |
-| `colors`                    | Deprecated; computed from titles + season (see §22)             |
+| `colors`                    | Deprecated; computed from titles + season (see §21)             |
 
 **Semantics of "child wins if set":** When a child calendar defines a `CelebrationDef` with the same `CelebrationId` as an ancestor, only the fields that are explicitly present (`Some(...)`) in the child override the corresponding parent field. All other fields remain as inherited.
 
@@ -662,18 +704,7 @@ When a solemnity cannot be celebrated on its assigned date because a higher-prec
 - **A transferred solemnity landing on a date where another solemnity was also transferred:** The higher-precedence one wins; the other re-enters the queue.
 - **Cascade limit:** In practice, cascading transfers are extremely rare (at most 2–3 levels). The algorithm should implement a maximum iteration count as a safety guard.
 
-### 19. Interaction Between `date_exceptions` and Transfer
-
-The two mechanisms operate in sequence:
-
-1. **`date_exceptions`** are evaluated first (§9) → produce the "intended date" for each celebration.
-2. **The transfer algorithm** (§17–18) operates on the full resolved calendar → may move a celebration again if the intended date is still impeded.
-
-This means calendar authors should encode **predictable, calendar-specific** transfers in `date_exceptions` (e.g., Annunciation during Holy Week → Monday after the 2nd Sunday of Easter, St. Joseph on a specific Sunday → Monday). The engine handles **dynamic, cross-calendar** conflicts algorithmically.
-
-Over time, some `date_exceptions` that duplicate the engine's transfer logic could be removed, letting the engine handle them natively. But they remain valid and are always evaluated first.
-
-### 20. Vespers Conflict Resolution (GNLY §61)
+### 19. Vespers Conflict Resolution (GNLY §61)
 
 When a celebration with First Vespers (solemnities and feasts of the Lord on Sundays) follows another celebration:
 
@@ -688,7 +719,7 @@ This rule applies to **Layer 2 Hours output only**. The engine must determine, f
 
 ## Part VI — Property Inheritance from Proper of Time
 
-### 21. Temporal Context Propagation
+### 20. Temporal Context Propagation
 
 Every celebration inherits contextual properties from the Proper of Time day on the same date. These properties locate the celebration within the liturgical year:
 
@@ -707,7 +738,7 @@ Every celebration inherits contextual properties from the Proper of Time day on 
 
 These properties are **always** inherited — even a solemnity that completely replaces the weekday still belongs to the season, week, and cycle determined by the Proper of Time. A solemnity on the 5th Sunday of Ordinary Time is still in Ordinary Time, week 5, with the psalter week and readings cycle of that week.
 
-### 22. Color Resolution
+### 21. Color Resolution
 
 Liturgical colors are **computed**, not authored. The `colors` input field is deprecated (see Input Data Model, Part II §4).
 
@@ -736,7 +767,7 @@ Liturgical colors are **computed**, not authored. The `colors` input field is de
 
 **Multiple colors:** A celebration may have multiple permissible colors (e.g., gold as alternative on solemnities per GIRM §346g; black as alternative to purple for the Dead per GIRM §346d–e). The engine produces a `Vec<ColorInfo>` with the primary color first.
 
-### 23. `parent_overrides` — Traceability
+### 22. `parent_overrides` — Traceability
 
 For each celebration modified by a child calendar, the engine records a `ParentOverride` containing only the fields that changed. The `parent_overrides` array is ordered from most general to most specific, providing a full audit trail of the inheritance chain.
 
@@ -751,7 +782,7 @@ The output `Celebration` carries `parent_overrides: [{ from_calendar_id: "genera
 
 ## Part VII — Calendar Composition Guards
 
-### 24. Protected Zones (CP §2, GNLY §56f)
+### 23. Protected Zones (CP §2, GNLY §56f)
 
 Three zones where particular celebrations are restricted:
 
@@ -774,13 +805,13 @@ Lent, Easter Octave, and December 17–31 are kept free from particular celebrat
 
 Must not duplicate celebrations already in the cycle of the mystery of salvation, and must not be too numerous.
 
-### 25. One Celebration Per Saint Per Year (CP §3)
+### 24. One Celebration Per Saint Per Year (CP §3)
 
 A saint may have **only one celebration** per year in any given calendar.
 
 **Exception:** A second celebration as optional memorial for the translation or discovery of the patron's relics or body, or a similar event (e.g., conversion). CP §3: "Each saint is to be celebrated on one day only in a given calendar year. In accordance with tradition, there may be a second celebration, as an optional memorial, for a saint who is the patron of a church — for the discovery or translation of the saint's body."
 
-### 26. Overburdening Guard (CP §17)
+### 25. Overburdening Guard (CP §17)
 
 Dioceses and religious institutes with many canonized members should limit the number in the calendar:
 
@@ -789,7 +820,7 @@ Dioceses and religious institutes with many canonized members should limit the n
 
 CP §17: "The large number of canonized members of some religious families should not be an excuse for overburdening the calendar."
 
-### 27. Harmonization Rules (CP §23)
+### 26. Harmonization Rules (CP §23)
 
 When proper celebrations conflict with General Calendar celebrations, CP §23 defines the resolution:
 
@@ -807,7 +838,7 @@ These harmonization rules complement the general precedence table (§14). The en
 
 ## Part VIII — Layer 2 Transformations
 
-### 28. Mass Calendar (Layer 2 Mass)
+### 27. Mass Calendar (Layer 2 Mass)
 
 The Mass calendar is derived from the Layer 1 `LiturgicalCalendar` by applying Mass-specific transformations:
 
@@ -817,7 +848,7 @@ The Mass calendar is derived from the Layer 1 `LiturgicalCalendar` by applying M
 4. **Readings resolution:** For each celebration, readings are resolved through the priority chain: proper readings → accommodated readings → common readings (GILM §83). The resolved readings carry a `ReadingsCategory` (Proper, Accommodated, Common) for consumer information.
 5. **Composition rules** are computed from the season, precedence, and rank — they indicate which Mass elements are substitutable (see Composition Model, Part IV §4).
 
-### 29. Hours Calendar (Layer 2 Hours)
+### 28. Hours Calendar (Layer 2 Hours)
 
 The Hours calendar is derived from Layer 1 by applying Office-specific transformations:
 
@@ -827,7 +858,7 @@ The Hours calendar is derived from Layer 1 by applying Office-specific transform
    - **Optional memorials:** Entirely from the feria, with the option to use proper elements for those parts that have proper texts (GILH §236).
    - **Weekdays:** Current week's feria Office from the psalter.
 
-2. **Vespers assignment** per §20 — resolve Vespers I / Vespers II conflicts for each evening.
+2. **Vespers assignment** per §19 — resolve Vespers I / Vespers II conflicts for each evening.
 
 3. **Vigil extension** for solemnities with proper vigil readings (GILH §73) — the Office of Readings may be extended with canticles and a Gospel (see Composition Model, Part V §5).
 
@@ -837,7 +868,7 @@ The Hours calendar is derived from Layer 1 by applying Office-specific transform
 
 ## Part IX — Edge Cases and Special Rules
 
-### 30. Holy Thursday Coexistence
+### 29. Holy Thursday Coexistence
 
 Holy Thursday has two distinct liturgical moments on the same civil date:
 
@@ -850,17 +881,24 @@ Both appear on the same civil date but belong to distinct liturgical contexts. T
 
 In the Mass calendar (Layer 2), both Mass times appear under the same civil date, each with their own `MassComposition`.
 
-### 31. Saturday BVM Memorial (GNLY §15)
+### 30. Saturday BVM Memorial (GNLY §15)
 
-On Saturdays in Ordinary Time when no obligatory memorial occurs, an optional memorial of the Blessed Virgin Mary may be celebrated. GNLY §15: "On Saturdays in Ordinary Time when there is no Obligatory Memorial, an Optional Memorial of the Blessed Virgin Mary is permitted."
+GNLY §15: "On Saturdays in Ordinary Time when there is no Obligatory Memorial, an Optional Memorial of the Blessed Virgin Mary is permitted."
 
-This is a **structural option** generated by the engine, not a calendar definition. The engine automatically inserts this optional memorial on qualifying Saturdays:
+This is defined in the General Roman Calendar data using a `RecurringWeekday` date definition (§8 variant 5):
 
-- Season must be Ordinary Time.
-- No obligatory memorial (levels 10–11) on the date.
-- The BVM memorial appears as an alternative alongside the weekday.
+```json
+{
+  "saturday_bvm_memorial": {
+    "date_def": { "day_of_week": "SATURDAY", "season": "ORDINARY_TIME" },
+    "rank": "OPTIONAL_MEMORIAL"
+  }
+}
+```
 
-### 32. Readings Cycle Layered Resolution
+The engine generates one instance per qualifying Saturday. The precedence system (§15) handles the rest: as an optional memorial, the BVM celebration is retained only on Saturdays where no higher-precedence celebration (obligatory memorial or above) exists. Where retained, it appears as an alternative alongside the weekday.
+
+### 31. Readings Cycle Layered Resolution
 
 For `MassesDefinitions` with multiple cycle keys, the engine merges readings in layers:
 
@@ -871,7 +909,7 @@ For `MassesDefinitions` with multiple cycle keys, the engine merges readings in 
 
 Later layers override earlier ones for the same reading slot. This allows calendar authors to specify invariant readings once and only override the cycle-specific differences.
 
-### 33. Epiphany / Ascension / Corpus Christi Sunday Assignment
+### 32. Epiphany / Ascension / Corpus Christi Sunday Assignment
 
 When `particular_config` assigns these feasts to Sunday (§4, §6):
 
@@ -907,11 +945,11 @@ The full resolution algorithm, from input to output:
    - Compute date from `DateDef` (§8).
    - Evaluate `date_exceptions` → apply first matching exception (§9).
    - Merge fields with parent version of same `CelebrationId` (§11).
-   - Record `parent_overrides` for changed fields (§23).
+   - Record `parent_overrides` for changed fields (§22).
 
-5. **Inherit Proper of Time properties** (§21–22)
+5. **Inherit Proper of Time properties** (§20–21)
    - For each celebration on each date: inherit `season`, `week_of_season`, `day_of_week`, cycles, etc.
-   - Compute liturgical colors from titles + season (§22).
+   - Compute liturgical colors from titles + season (§21).
 
 6. **Apply precedence rules per date** (§14–16)
    - Sort celebrations on each date by precedence.
@@ -919,18 +957,18 @@ The full resolution algorithm, from input to output:
    - Apply Lenten demotion: obligatory memorials → optional during Lent (§16).
    - Collect impeded solemnities into the transfer queue.
 
-7. **Transfer impeded solemnities** (§17–19)
+7. **Transfer impeded solemnities** (§17–18)
    - Process queue in precedence order.
    - Find nearest available date (levels 9–13) for each impeded solemnity.
    - Re-run precedence resolution on affected dates.
 
 8. **Assemble final calendar**
    - Each date has a primary celebration and zero or more alternative celebrations.
-   - Generate structural options (Saturday BVM memorial — §31).
+   - `RecurringWeekday` definitions (e.g., Saturday BVM memorial — §30) generate instances on each qualifying date.
 
 9. **Generate Layer 2 output** (if requested):
-   - **Layer 2 Mass** (§28): shift evening Masses, resolve readings, compute composition rules.
-   - **Layer 2 Hours** (§29): determine Office structure by rank, resolve Vespers conflicts, compute memorial rules.
+   - **Layer 2 Mass** (§27): shift evening Masses, resolve readings, compute composition rules.
+   - **Layer 2 Hours** (§28): determine Office structure by rank, resolve Vespers conflicts, compute memorial rules.
 
 ---
 
@@ -954,21 +992,20 @@ Each section of this document is grounded in specific liturgical norms:
 | §16        | GNLY §14       | GNLY §59 level 12, GILH §238 | Lenten demotion of obligatory memorials                 |
 | §17        | GNLY §60       | GNLY §5, Notitiae R14        | Transfer of impeded solemnities (rules)                 |
 | §18        | GNLY §60       | —                            | Transfer algorithm (step-by-step)                       |
-| §19        | —              | —                            | Interaction between date_exceptions and transfer        |
-| §20        | GNLY §61       | —                            | Vespers conflict resolution                             |
-| §21        | —              | —                            | Temporal context propagation                            |
-| §22        | GIRM §346      | —                            | Color resolution                                        |
-| §23        | —              | —                            | Parent overrides traceability                           |
-| §24        | CP §2          | GNLY §56f                    | Protected zones                                         |
-| §25        | CP §3          | —                            | One celebration per saint per year                      |
-| §26        | CP §17         | —                            | Overburdening guard                                     |
-| §27        | CP §23         | —                            | Harmonization rules (general vs. particular)            |
-| §28        | GILM §83       | GIRM §355                    | Mass calendar (Layer 2 Mass)                            |
-| §29        | GILH §225–240  | GILH §73                     | Hours calendar (Layer 2 Hours)                          |
-| §30        | PS §35–36, §44 | GNLY §28                     | Holy Thursday coexistence                               |
-| §31        | GNLY §15       | GILH §240                    | Saturday BVM memorial                                   |
-| §32        | GILM §66, §69  | —                            | Readings cycle layered resolution                       |
-| §33        | GNLY §7        | Notitiae R1                  | Sunday assignment (Epiphany, Ascension, Corpus Christi) |
+| §19        | GNLY §61       | —                            | Vespers conflict resolution                             |
+| §20        | —              | —                            | Temporal context propagation                            |
+| §21        | GIRM §346      | —                            | Color resolution                                        |
+| §22        | —              | —                            | Parent overrides traceability                           |
+| §23        | CP §2          | GNLY §56f                    | Protected zones                                         |
+| §24        | CP §3          | —                            | One celebration per saint per year                      |
+| §25        | CP §17         | —                            | Overburdening guard                                     |
+| §26        | CP §23         | —                            | Harmonization rules (general vs. particular)            |
+| §27        | GILM §83       | GIRM §355                    | Mass calendar (Layer 2 Mass)                            |
+| §28        | GILH §225–240  | GILH §73                     | Hours calendar (Layer 2 Hours)                          |
+| §29        | PS §35–36, §44 | GNLY §28                     | Holy Thursday coexistence                               |
+| §30        | GNLY §15       | GILH §240                    | Saturday BVM memorial                                   |
+| §31        | GILM §66, §69  | —                            | Readings cycle layered resolution                       |
+| §32        | GNLY §7        | Notitiae R1                  | Sunday assignment (Epiphany, Ascension, Corpus Christi) |
 
 ---
 

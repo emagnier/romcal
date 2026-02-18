@@ -26,7 +26,7 @@ TIER 1 — CALENDAR DEFINITIONS
 | ParticularConfig                     | Part II §3           | ~354   | GNLY 7                            |
 | CelebrationDef (core input type)     | Part II §4           | ~383   |                                   |
 | DateDef variants                     | Part II §5           | ~485   |                                   |
-| DateFn (movable feasts)              | Part II §6           | ~542   |                                   |
+| DateAnchor (movable feasts)          | Part II §6           | ~542   |                                   |
 | DateDefExceptions                    | Part II §7           | ~574   |                                   |
 | Precedence (GNLY 59)                 | Part II §8           | ~638   | GNLY 59                           |
 | CommonDef (simplified)               | Part II §9           | ~711   |                                   |
@@ -533,27 +533,29 @@ enum DateDef {
         date: u8,          // 1-31
         day_offset: Option<i32>,  // shift by N days after resolution
     },
-    /// Calculated from a movable feast function (e.g., Easter + 49 = Pentecost)
-    DateFunction {
-        date_fn: DateFn,
+    /// Anchored to a computed date (e.g., Easter + 49 = Pentecost)
+    Anchored {
+        anchor: DateAnchor,
         day_offset: Option<i32>,
     },
     /// Nth weekday of a specific month (e.g., 2nd Sunday of November)
     WeekdayOfMonth {
         month: u8,
-        day_of_week: u8,          // 0 = Sunday, 6 = Saturday
+        day_of_week: DayOfWeek,
         nth_week_in_month: u8,    // 1-based
         day_offset: Option<i32>,
     },
     /// Last weekday of a specific month (e.g., last Sunday of November)
     LastWeekdayOfMonth {
         month: u8,
-        last_day_of_week_in_month: u8,  // 0 = Sunday, 6 = Saturday
+        last_day_of_week_in_month: DayOfWeek,
         day_offset: Option<i32>,
     },
-    /// Inherited from the Proper of Time (temporal cycle).
-    /// Used by sanctoral celebrations that share a date with a temporal day.
-    InheritedFromProperOfTime {},
+    /// Every occurrence of a weekday within a season (resolves to multiple dates)
+    RecurringWeekday {
+        day_of_week: DayOfWeek,
+        season: Season,
+    },
 }
 ```
 
@@ -563,52 +565,39 @@ enum DateDef {
 // MonthDate — January 2
 { "month": 1, "date": 2 }
 
-// DateFunction — Easter Sunday + 49 days (Pentecost)
-{ "date_fn": "easter_sunday", "day_offset": 49 }
+// Anchored — Pentecost Sunday (Easter + 49)
+{ "anchor": "easter_sunday", "day_offset": 49 }
 
 // WeekdayOfMonth — 4th Thursday of November (Thanksgiving in the US)
-{ "month": 11, "day_of_week": 4, "nth_week_in_month": 4 }
+{ "month": 11, "day_of_week": "THURSDAY", "nth_week_in_month": 4 }
 
 // LastWeekdayOfMonth — last Sunday of November (Christ the King)
-{ "month": 11, "last_day_of_week_in_month": 0 }
+{ "month": 11, "last_day_of_week_in_month": "SUNDAY" }
 
-// InheritedFromProperOfTime
-{}
+// RecurringWeekday — every Saturday in Ordinary Time (BVM memorial)
+{ "day_of_week": "SATURDAY", "season": "ORDINARY_TIME" }
 ```
 
-**The `day_offset` field:** An optional signed integer that shifts the resolved date by N days. This handles celebrations defined relative to another date: e.g., the Monday after Pentecost (Mary, Mother of the Church) is `{ "date_fn": "pentecost_sunday", "day_offset": 1 }`.
+**The `day_offset` field:** An optional signed integer that shifts the resolved date by N days. This handles celebrations defined relative to another date: e.g., the Monday after Pentecost (Mary, Mother of the Church) is `{ "anchor": "easter_sunday", "day_offset": 50 }`.
 
-### 6. `DateFn`
+### 6. `DateAnchor`
 
-**What it is:** An enum of movable feast functions — celebrations whose civil date changes each year, computed from Easter or from calendar rules.
+**What it is:** An enum of date anchors whose resolution requires non-trivial computation — either the computus algorithm or `ParticularConfig`-dependent logic. Simple Easter offsets (e.g., Pentecost = Easter + 49) and fixed-date feasts (e.g., Assumption = August 15) do not need a `DateAnchor` variant; they are expressed directly via `Anchored { anchor: "easter_sunday", day_offset: N }` or `MonthDate`.
 
 ```rust
-enum DateFn {
+enum DateAnchor {
+    /// Easter date via computus (Gregorian or Julian per config)
     EasterSunday,
-    PalmSunday,
-    PentecostSunday,
-    DivineMercySunday,
-    EpiphanySunday,
-    CorpusChristiSunday,
-    MaryMotherOfTheChurch,
-    ImmaculateHeartOfMary,
-    PresentationOfTheLord,
-    Annunciation,
-    NativityOfJohnTheBaptist,
-    PeterAndPaulApostles,
-    Transfiguration,
-    Assumption,
-    ExaltationOfTheHolyCross,
-    AllSaints,
-    ImmaculateConceptionOfMary,
+    /// January 6 or Sunday between Jan 2–8 (per `epiphany_on_sunday` config)
+    Epiphany,
+    /// Easter + 39 (Thursday) or 7th Sunday of Easter (per `ascension_on_sunday` config)
+    Ascension,
+    /// Thursday or Sunday after Trinity Sunday (per `corpus_christi_on_sunday` config)
+    CorpusChristi,
+    /// Sunday after Epiphany (depends on Epiphany resolution)
+    BaptismOfTheLord,
 }
 ```
-
-Most of these are **fixed-date feasts** (e.g., Assumption = August 15) that appear in `DateFn` because they may be subject to **transfer rules** (GNLY 5, 60) when they fall on privileged Sundays. The `DateFn` mechanism allows the engine to apply these transfer rules centrally.
-
-The Easter-dependent feasts (`EasterSunday`, `PalmSunday`, `PentecostSunday`, `DivineMercySunday`) are computed from the Easter date using established astronomical algorithms.
-
-`EpiphanySunday` and `CorpusChristiSunday` resolve to their fixed dates or to the assigned Sunday depending on `ParticularConfig`.
 
 ### 7. `DateDefExceptions`
 
@@ -637,7 +626,7 @@ enum ExceptionCondition {
     },
     /// The resolved date falls on a specific day of the week
     IsDayOfWeek {
-        day_of_week: u8,  // 0 = Sunday, 6 = Saturday
+        day_of_week: DayOfWeek,
     },
 }
 
@@ -662,14 +651,14 @@ When March 25 falls during Holy Week or the Easter Octave, the Annunciation is t
 
 ```json
 {
-  "date_def": { "date_fn": "annunciation" },
+  "date_def": { "month": 3, "date": 25 },
   "date_exceptions": {
     "when": {
-      "from": { "date_fn": "palm_sunday" },
-      "to": { "date_fn": "divine_mercy_sunday" },
+      "from": { "anchor": "easter_sunday", "day_offset": -7 },
+      "to": { "anchor": "easter_sunday", "day_offset": 7 },
       "inclusive": true
     },
-    "then": { "date_fn": "divine_mercy_sunday", "day_offset": 1 }
+    "then": { "anchor": "easter_sunday", "day_offset": 8 }
   }
 }
 ```
@@ -2612,7 +2601,7 @@ This calendar:
 | `ParticularConfig`         | 1    | Movable feast configuration                |
 | `CelebrationDef`           | 1    | Core celebration definition                |
 | `DateDef`                  | 1    | Date assignment                            |
-| `DateFn`                   | 1    | Movable feast functions                    |
+| `DateAnchor`               | 1    | Movable feast anchors                      |
 | `DateDefExceptions`        | 1    | Conditional date adjustments               |
 | `CommonDef`                | 1    | Simplified Common enum (23 variants)       |
 | `PatronageDef`             | 1    | Patronage designation                      |
