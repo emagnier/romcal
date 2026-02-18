@@ -51,26 +51,38 @@ TIER 2 — MARTYROLOGY CATALOG & LOCALIZATION
 TIER 3 — LITURGICAL TEXTS
 | Concept                              | Section              | Line   | Key references                    |
 | ------------------------------------ | -------------------- | ------ | --------------------------------- |
-| Overview and copyright               | Part IV §1           | ~1722  |                                   |
-| ProperTexts (Mass)                   | Part IV §2           | ~1745  | GIRM 363                          |
-| CommonTexts (Mass)                   | Part IV §3           | ~1818  | GILM 71, 89                       |
-| ReadingsTexts (biblical content)     | Part IV §4           | ~1861  | GILM 75, 80                       |
-| ProperTexts (Office)                 | Part IV §5           | ~1891  | GILH 225-236                      |
-| CommonTexts (Office)                 | Part IV §6           | ~1990  | GILH 235                          |
-| Latin baseline and copyright         | Part IV §7           | ~2036  |                                   |
-| Citation → Text jointure             | Part IV §8           | ~2056  |                                   |
+| Overview and copyright               | Part IV §1           | ~1723  |                                   |
+| ProperTexts (Mass)                   | Part IV §2           | ~1746  | GIRM 363                          |
+| AntiphonTextDef                      | Part IV §2           | ~1778  |                                   |
+| MassTimeTexts (enriched)             | Part IV §2           | ~1787  |                                   |
+| PrefaceRef (inline/catalog enum)     | Part IV §2           | ~1808  |                                   |
+| CommonTexts (Mass)                   | Part IV §3           | ~1851  | GILM 71, 89                       |
+| PrefaceCatalog (§3b)                 | Part IV §3b          | ~1894  |                                   |
+| PrefaceDef                           | Part IV §3b          | ~1900  |                                   |
+| PrefaceCatalogFile                   | Part IV §3b          | ~1914  |                                   |
+| ReadingsTexts (biblical content)     | Part IV §4           | ~1923  | GILM 75, 80                       |
+| ReadingsTextsFile (readings + psalms)| Part IV §4           | ~1928  |                                   |
+| ReadingTextDef (enriched)            | Part IV §4           | ~1941  |                                   |
+| ShortFormDef                         | Part IV §4           | ~1960  |                                   |
+| SourceRef (shared helper)            | Part IV §4           | ~1982  |                                   |
+| ProperTexts (Office)                 | Part IV §5           | ~1999  | GILH 225-236                      |
+| PsalmodyEntryDef (enriched)          | Part IV §5           | ~2044  |                                   |
+| PsalmAntiphonDef                     | Part IV §5           | ~2058  |                                   |
+| CommonTexts (Office)                 | Part IV §6           | ~2112  | GILH 235                          |
+| Latin baseline + copyright + examples| Part IV §7           | ~2158  |                                   |
+| Citation → Text jointure (enriched)  | Part IV §8           | ~2211  |                                   |
 
 TRANSFORMATION & ERGONOMICS
 | Concept                              | Section              | Line   | Key references                    |
 | ------------------------------------ | -------------------- | ------ | --------------------------------- |
-| Input → Output mapping               | Part V §1            | ~2095  |                                   |
-| CommonDef → Common                   | Part V §2            | ~2128  |                                   |
-| Title resolution                     | Part V §3            | ~2164  |                                   |
-| Patronage resolution                 | Part V §4            | ~2192  |                                   |
-| Canonical prayer                     | Part V §5            | ~2207  | CP 44                             |
-| Contributor ergonomics               | Part VI §1           | ~2222  |                                   |
-| Adding a new saint                   | Part VI §2           | ~2245  |                                   |
-| Adding a new calendar                | Part VI §3           | ~2288  |                                   |
+| Input → Output mapping               | Part V §1            | ~2259  |                                   |
+| CommonDef → Common                   | Part V §2            | ~2294  |                                   |
+| Title resolution                     | Part V §3            | ~2330  |                                   |
+| Patronage resolution                 | Part V §4            | ~2358  |                                   |
+| Canonical prayer                     | Part V §5            | ~2373  | CP 44                             |
+| Contributor ergonomics               | Part VI §1           | ~2388  |                                   |
+| Adding a new saint                   | Part VI §2           | ~2411  |                                   |
+| Adding a new calendar                | Part VI §3           | ~2454  |                                   |
 -->
 
 ## Context and Motivation
@@ -98,20 +110,21 @@ The present document defines romcal's **input** data model — the data that con
 
 Each input type maps to one or more output types:
 
-| Input (this document)       | Output (companion document)             | Transformation                              |
-| --------------------------- | --------------------------------------- | ------------------------------------------- |
-| `CalendarDef`               | Calendar hierarchy, `from_calendar_id`  | Inheritance resolution                      |
-| `CelebrationDef`            | `Celebration` (identity fields)         | Date resolution, precedence rules           |
-| `CommonDef`                 | `Common`, `CommonInfo`                  | Expansion based on season + saint metadata  |
-| `TitleCategory` + qualifier | `Title`                                 | Assembly of category + localized qualifier  |
-| `PatronageDef`              | `Patronage`                             | Localization of role + subject              |
-| `MartyrologyEntryDef`       | `MartyrologyEntry`                      | Locale merge + type normalization (Tier 2a) |
-| `ResourcesMetadata`         | `*Info.name`, `DayContext.*_name`       | Locale merge (Tier 2b)                      |
-| `MassReadingsDef`           | `CelebrationMass.readings` (citations)  | Cycle resolution                            |
-| `ProperMassTexts` (Tier 3)  | `CelebrationMass` (formulary, orations) | Text population by GIRM groups              |
-| `CommonMassTexts` (Tier 3)  | `ReadingsPool`, `FlexibleOrations`      | Pool assembly per Common variant            |
-| `ProperHoursTexts` (Tier 3) | `CelebrationHour` (per-Hour elements)   | Text population by GILH rules               |
-| `ReadingsTexts` (Tier 3)    | `ReadingsSet.reading_1.text`, etc.      | Citation → full text jointure               |
+| Input (this document)       | Output (companion document)                                    | Transformation                              |
+| --------------------------- | -------------------------------------------------------------- | ------------------------------------------- |
+| `CalendarDef`               | Calendar hierarchy, `from_calendar_id`                         | Inheritance resolution                      |
+| `CelebrationDef`            | `Celebration` (identity fields)                                | Date resolution, precedence rules           |
+| `CommonDef`                 | `Common`, `CommonInfo`                                         | Expansion based on season + saint metadata  |
+| `TitleCategory` + qualifier | `Title`                                                        | Assembly of category + localized qualifier  |
+| `PatronageDef`              | `Patronage`                                                    | Localization of role + subject              |
+| `MartyrologyEntryDef`       | `MartyrologyEntry`                                             | Locale merge + type normalization (Tier 2a) |
+| `ResourcesMetadata`         | `*Info.name`, `DayContext.*_name`                              | Locale merge (Tier 2b)                      |
+| `MassReadingsDef`           | `CelebrationMass.readings` (citations)                         | Cycle resolution                            |
+| `ProperMassTexts` (Tier 3)  | `CelebrationMass` (formulary, orations)                        | Text population by GIRM groups              |
+| `CommonMassTexts` (Tier 3)  | `ReadingsPool`, `FlexibleOrations`                             | Pool assembly per Common variant            |
+| `ProperHoursTexts` (Tier 3) | `CelebrationHour` (per-Hour elements)                          | Text population by GILH rules               |
+| `ReadingsTexts` (Tier 3)    | `ReadingText`, `PsalmodyEntry`, `AlleluiaText`, `SequenceText` | Citation → full text jointure               |
+| `PrefaceCatalog` (Tier 3)   | `PrefaceText`                                                  | Catalog ID → resolved preface text          |
 
 ---
 
@@ -1773,21 +1786,42 @@ struct CelebrationMassTexts {
     masses: BTreeMap<MassTime, MassTimeTexts>,
 }
 
+/// An antiphon with optional biblical source reference(s)
+struct AntiphonTextDef {
+    /// Text of the antiphon
+    text: String,
+    /// Biblical source reference(s). Entrance and communion antiphons in the
+    /// Roman Missal often derive from Scripture (e.g., "cf. Ps 24:1-3").
+    sources: Option<Vec<SourceRef>>,
+}
+
 /// Texts for one Mass time of one celebration
 struct MassTimeTexts {
     // ── Group 1: Formulary block ──
     /// Collect override for this specific Mass time.
     /// When absent, the engine uses CelebrationMassTexts.prayer (CP 44).
     collect: Option<String>,
-    entrance_antiphon: Option<String>,
-    communion_antiphon: Option<String>,
+    entrance_antiphon: Option<AntiphonTextDef>,
+    communion_antiphon: Option<AntiphonTextDef>,
 
     // ── Group 3: Flexible orations ──
     prayer_over_the_offerings: Option<String>,
     prayer_after_communion: Option<String>,
-    preface: Option<String>,
+    preface: Option<PrefaceRef>,
     solemn_blessing: Option<String>,
     prayer_over_the_people: Option<String>,
+
+    /// Rubrical or pastoral note (e.g., "Nine readings are proposed...",
+    /// "One may also read...", "If there is baptism...").
+    note: Option<String>,
+}
+
+/// Preface — either inline text or a reference to the catalog
+enum PrefaceRef {
+    /// Inline preface text (for unique proper prefaces)
+    Inline(String),
+    /// Reference to a preface catalog entry by ID
+    CatalogId(String),
 }
 ```
 
@@ -1804,10 +1838,17 @@ struct MassTimeTexts {
       "prayer": "Deus, qui Ecclesiæ tuæ beatos Basilium et Gregorium...",
       "masses": {
         "day_mass": {
-          "entrance_antiphon": "Os iusti meditabitur sapientiam...",
-          "communion_antiphon": "Fidelis servus et prudens...",
+          "entrance_antiphon": {
+            "text": "Os iusti meditabitur sapientiam...",
+            "sources": [{ "reference": "Ps 36:30-31", "confer": true }]
+          },
+          "communion_antiphon": {
+            "text": "Fidelis servus et prudens...",
+            "sources": [{ "reference": "Mt 24:46-47", "confer": true }]
+          },
           "prayer_over_the_offerings": "Sanctorum tuorum nobis, Domine...",
-          "prayer_after_communion": "Deus, qui nos cælésti alimónia..."
+          "prayer_after_communion": "Deus, qui nos cælésti alimónia...",
+          "preface": { "catalog_id": "common_preface_1" }
         }
       }
     }
@@ -1835,7 +1876,7 @@ struct CommonMassPool {
     /// Flexible orations pool (prayer over offerings, prayer after communion)
     orations: Vec<CommonOrations>,
     /// Preface pool
-    prefaces: Vec<String>,
+    prefaces: Vec<PrefaceRef>,
 }
 
 /// One formulary option within a Common
@@ -1843,8 +1884,8 @@ struct CommonFormularySet {
     /// Identifier for this formulary within the Common (e.g., "A", "B", "1")
     id: Option<String>,
     collect: String,
-    entrance_antiphon: String,
-    communion_antiphon: String,
+    entrance_antiphon: AntiphonTextDef,
+    communion_antiphon: AntiphonTextDef,
     prayer_over_the_offerings: Option<String>,
     prayer_after_communion: Option<String>,
 }
@@ -1858,27 +1899,90 @@ struct CommonOrations {
 
 **Liturgical basis:** The Roman Missal provides multiple formularies per Common (e.g., the Common of Martyrs has formulary sets A, B, C). GIRM 363: "The prayer over the offerings, however, and the prayer after Communion, unless they are proper, may be taken either from the Common or from the weekdays of the current Season."
 
+### 3b. `PrefaceCatalog`
+
+**What it is:** A catalog of preface texts, keyed by ID. Most prefaces are reused across many celebrations (~62 prefaces in the Roman Missal, reused across hundreds of celebrations). A catalog with IDs avoids duplication. Celebrations with unique proper prefaces (e.g., Easter Day Mass) use the inline `PrefaceRef::Inline` variant instead.
+
+```rust
+/// A preface entry in the catalog
+struct PrefaceDef {
+    /// Unique identifier (e.g., "advent_1", "common_preface_1")
+    id: String,
+    /// Theme/title of the preface (e.g., "The two comings of Christ")
+    headline: String,
+    /// Usage note (e.g., "Used during Advent, from the 1st Sunday to December 16")
+    note: Option<String>,
+    /// Applicable Commons (when this preface belongs to a Common pool)
+    commons: Option<Vec<Common>>,
+    /// The full text of the preface
+    text: String,
+}
+
+/// Root type for a preface catalog file
+struct PrefaceCatalogFile {
+    schema: Option<String>,
+    locale_tag: LocaleTag,
+    prefaces: Vec<PrefaceDef>,
+}
+```
+
+**`PrefaceRef` — inline or catalog reference:** The `preface` field in `MassTimeTexts` and `CommonMassPool` uses the `PrefaceRef` enum (defined above in §2) to support both inline text (for unique proper prefaces) and catalog references (for reused prefaces). The engine resolves `PrefaceRef::CatalogId` by looking up the ID in the preface catalog.
+
 ### 4. `ReadingsTexts`
 
-**What it is:** Full biblical text content, keyed by citation string. Provides the text that corresponds to the reading citations stored in Tier 1 `MassReadingsDef`.
+**What it is:** Full biblical text content, keyed by citation string. Provides the text that corresponds to the reading citations stored in Tier 1 `MassReadingsDef`. Readings and psalms are stored in separate maps because they have different structures.
 
 ```rust
 /// Root type for a readings text file
 struct ReadingsTextsFile {
     schema: Option<String>,
     locale_tag: LocaleTag,
-    /// Full texts keyed by citation string (same strings used in Tier 1)
+    /// Biblical readings keyed by citation string (readings, epistles, gospels).
+    /// Alleluia verses and sequences also use this map — see jointure (§8).
     readings: BTreeMap<String, ReadingTextDef>,
+    /// Responsorial psalms and canticles keyed by citation string.
+    /// Separate from readings because psalms carry an antiphon, not a headline.
+    psalms: BTreeMap<String, PsalmodyEntryDef>,
 }
 
-/// Full text of a reading
+/// Full text of a biblical reading
 struct ReadingTextDef {
+    /// Full citation reference (e.g., "Isa 2:1-5"). Redundant with the map key
+    /// in ReadingsTextsFile, but carried explicitly for serialization convenience
+    /// and to ensure the reference survives when the entry is extracted from the map.
+    reference: Option<String>,
+    /// Pericope headline — the summary title printed above the reading
+    /// in the Lectionary (e.g., "The Lord gathers the nations in eternal peace").
+    /// Standard editorial element; present for every reading in printed books.
+    headline: Option<String>,
     /// The full text of the reading
     text: String,
+    /// Abbreviated reference for compact display (e.g., "2, 1-5").
+    /// Distinct from the full citation reference.
+    ref_abbr: Option<String>,
     /// Optional short form variant (GIRM 360, GILM 75, 80)
-    short_form: Option<String>,
+    short_form: Option<ShortFormDef>,
+    /// When true, the reading concludes without the standard final acclamation
+    /// ("Word of the Lord" / "The Gospel of the Lord"). Applies to Passion
+    /// narratives and certain Easter Vigil readings.
+    /// Option in input (omit = false); the engine resolves to `bool` in output.
+    no_final_acclamation: Option<bool>,
+}
+
+/// Short form of a reading or psalm (GIRM 360, GILM 75, 80)
+struct ShortFormDef {
+    /// Citation reference for the short form (e.g., "Gen 1:1.26-31a")
+    reference: Option<String>,
+    /// Abbreviated reference for display
+    ref_abbr: Option<String>,
+    /// The text of the short form
+    text: String,
 }
 ```
+
+> **Design note — `headline`:** The pericope headline is a standard Lectionary editorial element (not to be confused with the reading's biblical reference). It summarizes the theme of the passage, e.g., "Paul's rapture to the third heaven" for 2 Cor 12:1-10.
+>
+> **Design note — `short_form` as struct:** `short_form` is a struct rather than a plain string because the Lectionary prints both the short form's own citation reference and its text (e.g., "Short reading: Gen 1:1.26-31a"). The struct carries both.
 
 **Citation string format:** The citation strings used as keys match exactly the strings stored in Tier 1 `MassReadingsDef` (e.g., `"Isa 2:1-5"`, `"Ps 122:1-2,3-4ab,4cd-5,6-7,8-9"`, `"Matt 24:37-44"`). The engine performs a direct key lookup to join citations with texts.
 
@@ -1887,6 +1991,23 @@ struct ReadingTextDef {
 - `readings/old_testament.json` — Genesis through Malachi
 - `readings/new_testament.json` — Matthew through Revelation
 - `readings/psalms.json` — All psalms and canticles
+
+#### `SourceRef` — Biblical source reference
+
+A shared helper type used across content types (Mass antiphons, psalm antiphons, alleluia verses) to track the biblical origin of a liturgical text.
+
+```rust
+/// A biblical source reference with optional "cf." qualifier
+struct SourceRef {
+    /// Biblical reference string (e.g., "Ps 24:1-3", "1 Cor 5:7b-8a")
+    reference: String,
+    /// When true, the source is a comparative reference (printed as "cf." in
+    /// liturgical books). Distinguishes direct citation from allusion.
+    confer: Option<bool>,
+}
+```
+
+> **Design note — no `*Def` suffix:** `SourceRef` is a shared helper type used identically in both input and output, like `LocaleTag` or `MassTime`. It carries no transformation semantics, so it does not follow the `*Def` → output naming convention.
 
 ### 5. `ProperHoursTexts`
 
@@ -1930,14 +2051,34 @@ struct HourTexts {
     office_of_readings: Option<OfficeReadingsTextsDef>,
 }
 
-/// One psalmody entry (psalm + antiphon)
+/// One psalmody entry (psalm/canticle + antiphon variants).
+/// Used for both Mass responsorial psalms (in ReadingsTexts) and
+/// Office psalmody (in ProperHoursTexts/CommonHoursTexts).
 struct PsalmodyEntryDef {
     /// Psalm or canticle reference (e.g., "Ps 63", "Dan 3:57-88")
     reference: String,
-    /// The psalm/canticle text
+    /// Abbreviated reference for display (e.g., "103, 1-2a…")
+    ref_abbr: Option<String>,
+    /// The psalm/canticle text. None when the entry is citation-only
+    /// (the citation is still useful for display or external lookup,
+    /// even when the full text is not distributed — see §7 copyright model).
     text: Option<String>,
-    /// Antiphon text
-    antiphon: Option<String>,
+    /// Responsorial antiphon variants. Multiple entries when different
+    /// liturgical cycles use different refrains for the same psalm text
+    /// (e.g., Year A vs Year B antiphon for Ps 122). The engine selects
+    /// the applicable variant based on Tier 1 cycle context, producing
+    /// a single resolved antiphon in the output.
+    antiphons: Vec<PsalmAntiphonDef>,
+    /// Optional short form (abbreviated psalm for pastoral use)
+    short_form: Option<ShortFormDef>,
+}
+
+/// Responsorial antiphon with optional biblical source(s)
+struct PsalmAntiphonDef {
+    /// Text of the antiphon/refrain
+    text: String,
+    /// Biblical source reference(s) for the antiphon text
+    sources: Option<Vec<SourceRef>>,
 }
 
 /// Office of Readings texts
@@ -2033,48 +2174,90 @@ struct CommonOfficeReadingsPool {
 
 **Liturgical basis:** GILH 235b: "at Morning Prayer and Evening Prayer [...] from the Proper or from the Common." The Common provides pools of alternative texts for each Office element, from which the celebrant may choose.
 
-### 7. Latin as Baseline
+### 7. Latin Baseline, Representative Examples, and Copyright
 
-The `la` (Latin) locale serves as the **reference baseline** for Tier 3, paralleling `en` for Tier 2:
+#### Latin as structural reference
+
+The `la` (Latin) locale serves as the **structural reference baseline** for Tier 3, paralleling `en` for Tier 2:
 
 | Tier | Base locale | Rationale                                                                     |
 | ---- | ----------- | ----------------------------------------------------------------------------- |
 | 2    | `en`        | Most accessible for contributors; complete biographical dataset               |
 | 3    | `la`        | _Editio typica_ is the official reference; all translations derive from Latin |
 
+The `la` locale identifies all text slots that exist in the _editio typica_. It serves as a structural skeleton — ensuring that the types, file organization, and keying conventions are complete and correct — rather than as a redistribution of copyrighted texts.
+
 The merge hierarchy for Tier 3 follows the same BCP-47 pattern:
 
 - `en` → merge hierarchy: `["la", "en"]`
 - `fr` → merge hierarchy: `["la", "fr"]`
 
-In practice, most fields in Tier 3 will be fully overridden by vernacular locales (since the actual text is language-specific). The Latin baseline serves as:
+In practice, most fields in Tier 3 are fully overridden by vernacular locales (since the actual text is language-specific). The Latin baseline serves as:
 
 1. A structural reference — ensuring all text slots are identified.
 2. A fallback — displaying the Latin original when no vernacular translation exists.
 3. A scholarly reference — for liturgists comparing translations with the _editio typica_.
 
+#### Representative examples
+
+romcal ships Tier 3 data for a small set of representative dates that illustrate every structural pattern in the data model. The target dates cover the full range of Tier 3 structures:
+
+| Date                            | Why included                                                                                                        |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| 1st Sunday of Advent (Year A)   | Start of liturgical year, Sunday cycle, short form readings                                                         |
+| Nativity of the Lord (Day Mass) | Multi-Mass celebration, proper preface                                                                              |
+| Easter Sunday                   | Vigil with 7 OT readings (VigilSequence), sequence hymn, canticles                                                  |
+| Pentecost                       | Sequence, proper preface                                                                                            |
+| 15th Sunday of Ordinary Time    | Standard Sunday cycle, responsorial psalm                                                                           |
+| 18th Sunday + Mon + Tue of OT   | Cross-cycle conditional readings (`ifReadYesterday` cascade across 3 days — future Tier 1 design, noted as §4 note) |
+| Ascension                       | Feast of the Lord, proper readings                                                                                  |
+| Immaculate Conception           | Marian solemnity, BVM Commons                                                                                       |
+
+These examples are sufficient to validate the entire type system and jointure pipeline. They are not intended as a production-ready data set.
+
+#### Private completion model
+
+Tier 3 is architecturally designed to hold a complete Lectionary and Roman Missal, but romcal itself distributes only the illustrative examples listed above. Users who have access to the full texts (personal copy, publisher agreement) can populate their own private Tier 3 data. The types, file organization, and keying conventions are ready for full coverage.
+
+#### Copyright status by content category
+
+| Category                                                       | Examples                                       | Copyright status                                                                  |
+| -------------------------------------------------------------- | ---------------------------------------------- | --------------------------------------------------------------------------------- |
+| Structural metadata (references, slot names)                   | `"Isa 2:1-5"`, `reading_1`, `psalm`            | No concern — factual data                                                         |
+| Editorial metadata (headlines, abbreviated references)         | `"The Lord gathers the nations..."`, `"2,1-5"` | Low concern — factual, editorial, or _de minimis_                                 |
+| Full liturgical texts (readings, prayers, prefaces, antiphons) | Prayer texts, Lectionary passages              | Subject to publisher copyright (Holy See, ICEL, AELF, etc.) in most jurisdictions |
+
 ### 8. Citation → Text Jointure
 
-The engine joins reading citations (Tier 1) with reading texts (Tier 3) at runtime:
+The engine joins reading citations (Tier 1) with reading texts (Tier 3) at runtime, using the appropriate map based on the reading slot:
 
 ```
-Tier 1 (MassReadingsDef)         Tier 3 (ReadingsTexts)
-─────────────────────────        ─────────────────────────
-"reading_1": "Isa 2:1-5"   ──→  "Isa 2:1-5": {
-                                   "text": "In days to come, the mountain
-                                            of the Lord's house shall be..."
-                                 }
+Tier 1 (MassReadingsDef)              Tier 3 (ReadingsTextsFile)
+─────────────────────────              ──────────────────────────
 
-"psalm": "Ps 122:1-2,..."  ──→  "Ps 122:1-2,...": {
-                                   "text": "I rejoiced because they
-                                            said to me..."
-                                 }
+"reading_1": "Isa 2:1-5"        ──→   readings["Isa 2:1-5"]         → output ReadingText
+"psalm": "Ps 122:1-2,..."       ──→   psalms["Ps 122:1-2,..."]      → output PsalmodyEntry
+"alleluia": "Ps 84:8"           ──→   readings["Ps 84:8"]           → output AlleluiaText (+ computed AcclamationType)
+"sequence": "Victimae paschali"  ──→   readings["Victimae paschali"] → output SequenceText
+"gospel": "Matt 24:37-44"       ──→   readings["Matt 24:37-44"]     → output ReadingText
 ```
+
+**Which map for which slot:**
+
+| Tier 1 slot | Tier 3 map | Output type     | Notes                                               |
+| ----------- | ---------- | --------------- | --------------------------------------------------- |
+| `reading_1` | `readings` | `ReadingText`   | Direct mapping                                      |
+| `reading_2` | `readings` | `ReadingText`   | Direct mapping                                      |
+| `psalm`     | `psalms`   | `PsalmodyEntry` | Different structure: antiphon instead of headline   |
+| `canticle`  | `psalms`   | `PsalmodyEntry` | Same structure as psalms                            |
+| `alleluia`  | `readings` | `AlleluiaText`  | Engine computes `AcclamationType` from season       |
+| `sequence`  | `readings` | `SequenceText`  | Only 4 in the entire year (Easter, Pentecost, etc.) |
+| `gospel`    | `readings` | `ReadingText`   | Direct mapping                                      |
 
 **Resolution rules:**
 
-1. The engine looks up the citation string in `ReadingsTexts`.
-2. If found, the `ReadingTextDef.text` (and optional `short_form`) populates the output `ReadingText` type.
+1. The engine identifies the target map from the reading slot type: `psalm`/`canticle` slots look up in `psalms`, all other slots look up in `readings`.
+2. If found, the `ReadingTextDef` or `PsalmodyEntryDef` populates the corresponding output type. For alleluia verses, the engine additionally computes the `AcclamationType` from the liturgical season. For sequences, the engine wraps the text into `SequenceText`.
 3. If not found (Tier 3 absent or citation not yet populated), the output carries the citation string without full text. The citation itself is still useful to consumers (e.g., for display or for looking up the text in a Bible application).
 
 **Citation format conventions:** Citation strings follow a standardized format based on the OSIS (Open Scripture Information Standard) abbreviations:
@@ -2120,10 +2303,27 @@ Tier 3 (Liturgical Texts)
     │
     ├── ProperMassTexts                 → CelebrationMass.formulary + flexible_orations
     ├── CommonMassTexts                 → ReadingsPool, FlexibleOrations (alternatives)
-    ├── ReadingsTexts                   → ReadingsSet.reading_1.text, etc.
+    ├── PrefaceCatalog                  → PrefaceText (resolved by PrefaceRef)
+    ├── ReadingsTexts.readings          → ReadingText, AlleluiaText, SequenceText
+    ├── ReadingsTexts.psalms            → PsalmodyEntry (Mass responsorial psalms)
     ├── ProperHoursTexts                → CelebrationHour (per-Hour elements)
     └── CommonHoursTexts                → CelebrationHour (fallback elements)
 ```
+
+**Tier 3 type-level transformation detail:**
+
+| Input type (Tier 3)         | Output type     | Transformation                                                                                                                                 |
+| --------------------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ReadingTextDef`            | `ReadingText`   | Engine populates `reference` from map key (`Option` → required `String`); `no_final_acclamation` defaults to `false` (`Option<bool>` → `bool`) |
+| `ShortFormDef`              | `ShortForm`     | Direct mapping                                                                                                                                 |
+| `PsalmodyEntryDef`          | `PsalmodyEntry` | Engine selects one antiphon from `antiphons` Vec based on cycle context                                                                        |
+| `PsalmAntiphonDef`          | `PsalmAntiphon` | Direct mapping (one variant selected from input Vec)                                                                                           |
+| `AntiphonTextDef`           | `AntiphonText`  | Direct mapping                                                                                                                                 |
+| `PrefaceRef::Inline`        | `PrefaceText`   | Text carried as-is; `id` and `headline` are `None`                                                                                             |
+| `PrefaceRef::CatalogId`     | `PrefaceText`   | Engine resolves ID via `PrefaceCatalog`; carries `id` + `headline`                                                                             |
+| `ReadingTextDef` (alleluia) | `AlleluiaText`  | Engine computes `AcclamationType` from season                                                                                                  |
+| `ReadingTextDef` (sequence) | `SequenceText`  | Engine wraps text into sequence structure                                                                                                      |
+| `SourceRef`                 | `SourceRef`     | Shared — no transformation                                                                                                                     |
 
 ### 2. `CommonDef` → `Common` Expansion
 
@@ -2321,36 +2521,45 @@ This calendar:
 
 ### Input-only types (defined in this document)
 
-| Type                       | Tier | Purpose                                  |
-| -------------------------- | ---- | ---------------------------------------- |
-| `CalendarDef`              | 1    | Root calendar file structure             |
-| `CalendarMetadata`         | 1    | Calendar classification                  |
-| `ParticularConfig`         | 1    | Movable feast configuration              |
-| `CelebrationDef`           | 1    | Core celebration definition              |
-| `DateDef`                  | 1    | Date assignment                          |
-| `DateFn`                   | 1    | Movable feast functions                  |
-| `DateDefExceptions`        | 1    | Conditional date adjustments             |
-| `CommonDef`                | 1    | Simplified Common enum (23 variants)     |
-| `PatronageDef`             | 1    | Patronage designation                    |
-| `MartyrologyRef`           | 1    | Reference to martyrology entry           |
-| `MartyrologyEntryOverride` | 1    | Per-celebration martyrology overrides    |
-| `MassesDefinitions`        | 1    | Reading citations by mass time and cycle |
-| `MartyrologyFile`          | 2a   | Root type for a martyrology file         |
-| `MartyrologyEntryDef`      | 2a   | Biographical metadata + localized names  |
-| `SaintDateDef`             | 2a   | Flexible biographical date               |
-| `LocaleFile`               | 2b   | Root type for a locale file              |
-| `ResourcesMetadata`        | 2b   | UI strings and localization data         |
-| `FullnameTemplates`        | 2b   | Fullname construction templates          |
-| `ProperMassTexts`          | 3    | Mass formulary and orations              |
-| `CommonMassTexts`          | 3    | Common Mass text pools                   |
-| `ReadingsTexts`            | 3    | Biblical passage full text               |
-| `ProperHoursTexts`         | 3    | Office proper elements per Hour          |
-| `CommonHoursTexts`         | 3    | Common Office text pools                 |
+| Type                       | Tier | Purpose                                    |
+| -------------------------- | ---- | ------------------------------------------ |
+| `CalendarDef`              | 1    | Root calendar file structure               |
+| `CalendarMetadata`         | 1    | Calendar classification                    |
+| `ParticularConfig`         | 1    | Movable feast configuration                |
+| `CelebrationDef`           | 1    | Core celebration definition                |
+| `DateDef`                  | 1    | Date assignment                            |
+| `DateFn`                   | 1    | Movable feast functions                    |
+| `DateDefExceptions`        | 1    | Conditional date adjustments               |
+| `CommonDef`                | 1    | Simplified Common enum (23 variants)       |
+| `PatronageDef`             | 1    | Patronage designation                      |
+| `MartyrologyRef`           | 1    | Reference to martyrology entry             |
+| `MartyrologyEntryOverride` | 1    | Per-celebration martyrology overrides      |
+| `MassesDefinitions`        | 1    | Reading citations by mass time and cycle   |
+| `MartyrologyFile`          | 2a   | Root type for a martyrology file           |
+| `MartyrologyEntryDef`      | 2a   | Biographical metadata + localized names    |
+| `SaintDateDef`             | 2a   | Flexible biographical date                 |
+| `LocaleFile`               | 2b   | Root type for a locale file                |
+| `ResourcesMetadata`        | 2b   | UI strings and localization data           |
+| `FullnameTemplates`        | 2b   | Fullname construction templates            |
+| `ProperMassTexts`          | 3    | Mass formulary and orations                |
+| `AntiphonTextDef`          | 3    | Mass antiphon with biblical sources        |
+| `CommonMassTexts`          | 3    | Common Mass text pools                     |
+| `PrefaceDef`               | 3    | Preface catalog entry                      |
+| `PrefaceCatalogFile`       | 3    | Root file type for preface catalog         |
+| `PrefaceRef`               | 3    | Inline text or catalog ID reference        |
+| `ReadingsTextsFile`        | 3    | Root file type for readings + psalms       |
+| `ReadingTextDef`           | 3    | Biblical reading with headline, short form |
+| `ShortFormDef`             | 3    | Short form reference + text                |
+| `PsalmodyEntryDef`         | 3    | Psalm/canticle with antiphon               |
+| `PsalmAntiphonDef`         | 3    | Responsorial antiphon with source          |
+| `ProperHoursTexts`         | 3    | Office proper elements per Hour            |
+| `CommonHoursTexts`         | 3    | Common Office text pools                   |
 
 ### Shared types (defined in companion document, used in both input and output)
 
 | Type            | Usage in input                                                                    |
 | --------------- | --------------------------------------------------------------------------------- |
+| `SourceRef`     | `PsalmAntiphonDef.sources`, `AntiphonTextDef.sources`, `AlleluiaText.sources`     |
 | `Precedence`    | `CelebrationDef.precedence`                                                       |
 | `MassTime`      | `MassesDefinitions` keys, `ProperMassTexts` keys                                  |
 | `HourTime`      | `ProperHoursTexts` keys                                                           |
@@ -2373,6 +2582,10 @@ This calendar:
 | `Celebration`        | `CelebrationDef` + `MartyrologyEntryDef` + texts          |
 | `CelebrationMass`    | `MassReadingsDef` + `ProperMassTexts` + `CommonMassTexts` |
 | `CelebrationHour`    | `ProperHoursTexts` + `CommonHoursTexts`                   |
+| `AlleluiaText`       | `ReadingTextDef` + computed `AcclamationType`             |
+| `AcclamationType`    | Computed from liturgical season                           |
+| `SequenceText`       | `ReadingTextDef` for sequence references                  |
+| `PrefaceText`        | `PrefaceRef` resolution (inline or catalog lookup)        |
 | `MassCalendar`       | Layer 1 → Layer 2 Mass transformation                     |
 | `MassComposition`    | Layer 1 celebrations + composition rules                  |
 | `HoursCalendar`      | Layer 1 → Layer 2 Hours transformation                    |

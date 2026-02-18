@@ -53,58 +53,68 @@ CROSS-CUTTING CONCERNS
 DATA MODEL (types)
 | Type / Section                       | Section              | Line   | Notes                             |
 | ------------------------------------ | -------------------- | ------ | --------------------------------- |
-| Type shareability overview           | Part IV §1           | ~1051  | Mass → Office reuse table         |
-| JSON serialization convention        | Part IV §2           | ~1071  | Adjacently tagged enums           |
-| DayContext                           | Part IV §2           | ~1073  | Shared — temporal context         |
-| FormularySet                         | Part IV §2           | ~1137  | Mass — collect + antiphons        |
-| ReadingText                          | Part IV §2           | ~1159  | Shared — long/short form          |
-| ReadingsSet                          | Part IV §2           | ~1176  | Mass — indivisible readings       |
-| ReadingsPool                         | Part IV §2           | ~1201  | Mass — divisible per component    |
-| ReadingsContent                      | Part IV §2           | ~1227  | Mass — Set or Pool enum           |
-| VigilReadingsSequence                | Part IV §2           | ~1246  | Easter/Pentecost vigil            |
-| FlexibleOrations                     | Part IV §2           | ~1284  | Mass — prayer over offerings etc. |
-| TextSource                           | Part IV §2           | ~1311  | Shared — provenance               |
-| SourcedText                          | Part IV §2           | ~1330  | Shared — text + provenance        |
-| CelebrationId                        | Part IV §2           | ~1343  | Shared — identity (newtype)       |
-| LiturgicalCalendar (Layer 1)         | Part IV §3           | ~1361  | Calendar structure (newtype)      |
-| LiturgicalDay                        | Part IV §3           | ~1375  | Day wrapper                       |
-| Celebration                          | Part IV §3           | ~1404  | Core celebration type             |
-| CelebrationMass                      | Part IV §3           | ~1477  | Mass texts per celebration        |
-| MassTime                             | Part IV §3           | ~1510  | Existing type reference           |
-| Layer 1 example                      | Part IV §3           | ~1563  |                                   |
-| CelebrationHour                      | Part IV §3           | ~1688  | Office content per celebration    |
-| HourTime                             | Part IV §3           | ~1772  | Hour slots                        |
-| HoursPsalmody                        | Part IV §3           | ~1793  | Psalmody structure                |
-| MassCalendar (Layer 2 Mass)          | Part IV §4           | ~1815  | Output structure (newtype)        |
-| MassComposition                      | Part IV §4           | ~1835  | Resolved Mass for a date          |
-| IdentityChoice                       | Part IV §4           | ~1913  | Celebration choice                |
-| ReadingsChoice                       | Part IV §4           | ~1941  | Readings resolution               |
-| ReadingsCategory                     | Part IV §4           | ~1963  | Proper/accommodated/common        |
-| CompositionRules                     | Part IV §4           | ~1986  | Substitution rules                |
-| BlockRule / ReadingsRule / FlexRule   | Part IV §4           | ~2003  | Rule enums                        |
-| Layer 2 Mass example                 | Part IV §4           | ~2058  |                                   |
-| HoursCalendar (Layer 2 Hours)        | Part IV §5           | ~2147  | Output structure (newtype)        |
-| HoursComposition                     | Part IV §5           | ~2176  | Resolved Office for a date        |
-| HoursCelebrationChoice               | Part IV §5           | ~2227  | Per-celebration choice            |
-| ResolvedHourContent                  | Part IV §5           | ~2256  | Content of one Hour               |
-| OfficeReadingsContent                | Part IV §5           | ~2292  | Office of Readings                |
-| VigilExtension                       | Part IV §5           | ~2332  | Extended vigil structure           |
-| HoursCompositionRules                | Part IV §5           | ~2356  | Office substitution rules         |
-| MemorialRule / HourSuppression       | Part IV §5           | ~2369  | Memorial + suppression enums      |
-| Layer 2 Hours example                | Part IV §5           | ~2433  |                                   |
-| Type sharing summary                 | Part IV §6           | ~2561  |                                   |
-| Existing types reference             | Part IV §7           | ~2622  | Common, Precedence, Rank, etc.    |
+| Type shareability overview           | Part IV §1           | ~1058  | Mass → Office reuse table         |
+| JSON serialization convention        | Part IV §2           | ~1078  | Adjacently tagged enums           |
+| DayContext                           | Part IV §2           | ~1080  | Shared — temporal context         |
+| FormularySet                         | Part IV §2           | ~1148  | Mass — collect + antiphons        |
+| AntiphonText                         | Part IV §2           | ~1168  | Shared — antiphon + sources       |
+| ReadingText (enriched)               | Part IV §2           | ~1179  | Shared — headline, short form     |
+| ShortForm                            | Part IV §2           | ~1203  | Shared — short form ref + text    |
+| ReadingsSet (enriched)               | Part IV §2           | ~1209  | Mass — structured reading types   |
+| AlleluiaText                         | Part IV §2           | ~1239  | Mass — acclamation + verse        |
+| AcclamationType                      | Part IV §2           | ~1251  | Mass — computed by engine         |
+| SequenceText                         | Part IV §2           | ~1261  | Mass — sequence hymn              |
+| ReadingsPool (enriched)              | Part IV §2           | ~1265  | Mass — divisible per component    |
+| ReadingsContent                      | Part IV §2           | ~1297  | Mass — Set or Pool enum           |
+| VigilReadingsSequence                | Part IV §2           | ~1310  | Easter/Pentecost vigil            |
+| FlexibleOrations (enriched)          | Part IV §2           | ~1352  | Mass — PrefaceText for preface    |
+| PrefaceText                          | Part IV §2           | ~1379  | Mass — resolved preface metadata  |
+| TextSource                           | Part IV §2           | ~1391  | Shared — provenance               |
+| SourcedText                          | Part IV §2           | ~1410  | Shared — text + provenance        |
+| SourcedPreface                       | Part IV §2           | ~1423  | L2M — preface + provenance        |
+| SourceRef                            | Part IV §2           | ~1434  | Shared — biblical ref + confer    |
+| CelebrationId                        | Part IV §2           | ~1451  | Shared — identity (newtype)       |
+| LiturgicalCalendar (Layer 1)         | Part IV §3           | ~1463  | Calendar structure (newtype)      |
+| LiturgicalDay                        | Part IV §3           | ~1483  | Day wrapper                       |
+| Celebration                          | Part IV §3           | ~1512  | Core celebration type             |
+| CelebrationMass                      | Part IV §3           | ~1585  | Mass texts per celebration        |
+| MassTime                             | Part IV §3           | ~1618  | Existing type reference           |
+| Layer 1 example                      | Part IV §3           | ~1671  |                                   |
+| CelebrationHour                      | Part IV §3           | ~1796  | Office content per celebration    |
+| HourTime                             | Part IV §3           | ~1880  | Hour slots                        |
+| HoursPsalmody                        | Part IV §3           | ~1901  | Psalmody structure                |
+| PsalmodyEntry (enriched)             | Part IV §3           | ~1916  | Shared — Mass + Office psalmody   |
+| PsalmAntiphon                        | Part IV §3           | ~1930  | Shared — antiphon + source        |
+| MassCalendar (Layer 2 Mass)          | Part IV §4           | ~1938  | Output structure (newtype)        |
+| MassComposition                      | Part IV §4           | ~1958  | Resolved Mass for a date          |
+| IdentityChoice                       | Part IV §4           | ~2036  | Celebration choice                |
+| ReadingsChoice                       | Part IV §4           | ~2064  | Readings resolution               |
+| ReadingsCategory                     | Part IV §4           | ~2086  | Proper/accommodated/common        |
+| CompositionRules                     | Part IV §4           | ~2109  | Substitution rules                |
+| BlockRule / ReadingsRule / FlexRule   | Part IV §4           | ~2126  | Rule enums                        |
+| Layer 2 Mass example                 | Part IV §4           | ~2181  |                                   |
+| HoursCalendar (Layer 2 Hours)        | Part IV §5           | ~2270  | Output structure (newtype)        |
+| HoursComposition                     | Part IV §5           | ~2299  | Resolved Office for a date        |
+| HoursCelebrationChoice               | Part IV §5           | ~2350  | Per-celebration choice            |
+| ResolvedHourContent                  | Part IV §5           | ~2379  | Content of one Hour               |
+| OfficeReadingsContent                | Part IV §5           | ~2415  | Office of Readings                |
+| VigilExtension                       | Part IV §5           | ~2455  | Extended vigil structure           |
+| HoursCompositionRules                | Part IV §5           | ~2479  | Office substitution rules         |
+| MemorialRule / HourSuppression       | Part IV §5           | ~2492  | Memorial + suppression enums      |
+| Layer 2 Hours example                | Part IV §5           | ~2556  |                                   |
+| Type sharing summary                 | Part IV §6           | ~2684  |                                   |
+| Existing types reference             | Part IV §7           | ~2754  | Common, Precedence, Rank, etc.    |
 
 ARCHITECTURE
 | Concept                              | Section              | Line   | Notes                             |
 | ------------------------------------ | -------------------- | ------ | --------------------------------- |
-| Module organization                  | Part V §1            | ~3031  | File tree                         |
-| Transformation pipeline              | Part V §2            | ~3078  | Layer 1 → Layer 2 steps           |
-| Calendar API                         | Part V §3            | ~3156  | Public interface                  |
-| Combining Hours with Mass            | Part V §4            | ~3170  | GILH 93-98                        |
-| Vigil extension & hour suppression   | Part V §5            | ~3180  | GILH 73, 206, 209-215; PS 59, 75 |
-| Source references appendix           | Appendix             | ~3306  | GIRM, GNLY, GILM, GILH, CP, PS   |
-| Conclusion                           | Conclusion           | ~3322  |                                   |
+| Module organization                  | Part V §1            | ~3163  | File tree                         |
+| Transformation pipeline              | Part V §2            | ~3210  | Layer 1 → Layer 2 steps           |
+| Calendar API                         | Part V §3            | ~3288  | Public interface                  |
+| Combining Hours with Mass            | Part V §4            | ~3302  | GILH 93-98                        |
+| Vigil extension & hour suppression   | Part V §5            | ~3312  | GILH 73, 206, 209-215; PS 59, 75 |
+| Source references appendix           | Appendix             | ~3438  | GIRM, GNLY, GILM, GILH, CP, PS   |
+| Conclusion                           | Conclusion           | ~3582  |                                   |
 -->
 
 ## Context and Motivation
@@ -1063,7 +1073,11 @@ When a qualifier is present, it is the **complete rendered text** of the qualifi
 | `CelebrationId`    | **YES**       | Same celebration identity                                                                                                                          |
 | `TextSource`       | **YES**       | Same provenance concept (Proper of Time, Proper of Saints, Common)                                                                                 |
 | `SourcedText`      | **YES**       | Text + provenance — applies to any liturgical text                                                                                                 |
-| `ReadingText`      | **YES**       | Long/short form concept applies to Office readings too                                                                                             |
+| `SourceRef`        | **YES**       | Biblical reference with confer flag — applies to antiphons, psalms, acclamations                                                                   |
+| `ReadingText`      | **YES**       | Reading with headline, short form, `no_final_acclamation` — applies to Office readings too                                                         |
+| `ShortForm`        | **YES**       | Short form reference + text — applies to both readings and psalms                                                                                  |
+| `PsalmodyEntry`    | **YES**       | Psalm/canticle with antiphon — used for both Mass responsorial psalms and Office psalmody                                                          |
+| `PsalmAntiphon`    | **YES**       | Responsorial antiphon with biblical source(s) — used in both Mass and Office psalmody                                                              |
 | `FormularySet`     | **NO**        | Mass-specific: collect + Mass antiphons. Office has no equivalent inseparable block                                                                |
 | `ReadingsSet`      | **NO**        | Mass Liturgy of the Word ≠ Office of Readings (different structure, different sources)                                                             |
 | `ReadingsPool`     | **NO**        | Pool-per-component logic is Mass/GILM-specific                                                                                                     |
@@ -1073,7 +1087,7 @@ When a qualifier is present, it is the **complete rendered text** of the qualifi
 
 ### 2. Shared Types
 
-This section defines core types used in the data model. Some types (`FormularySet`, `ReadingsSet`, `ReadingsPool`, `ReadingsContent`, `FlexibleOrations`) are Mass-specific but are placed here alongside shared types for logical grouping — they are building blocks referenced by both Layer 1 and Layer 2 Mass types.
+This section defines core types used in the data model. Some types (`FormularySet`, `ReadingsSet`, `ReadingsPool`, `ReadingsContent`, `FlexibleOrations`) are Mass-specific but are placed here alongside shared types for logical grouping — they are building blocks referenced by both Layer 1 and Layer 2 Mass types. Shared helper types (`SourceRef`, `ShortForm`, `PsalmodyEntry`, `PsalmAntiphon`, `AntiphonText`, `PrefaceText`) are used identically in both Mass and Office contexts (or in both input and output models).
 
 > **JSON serialization convention:** All enums with data variants (e.g., `ReadingsContent`, `BlockRule`, `ReadingsRule`, `FlexibleRule`, `MemorialRule`, `HourSuppression`, `TextSource`) are serialized using **adjacently tagged** representation: `{"type": "Fixed", "data": {...}}`. This format is explicit, avoids field-name conflicts, and is straightforward to consume in any language (TypeScript, Python, etc.). Simple enums without data (e.g., `Season`, `Rank`, `Color`) serialize as plain strings. Newtypes (`CelebrationId`, `CalendarId`) serialize as plain strings.
 
@@ -1156,8 +1170,17 @@ struct FormularySet {
     /// When Some(...), this Mass has a specific collect that differs from
     /// the canonical prayer (e.g., Christmas NightMass vs DayMass).
     collect: Option<String>,
-    entrance_antiphon: Option<String>,
-    communion_antiphon: Option<String>,
+    entrance_antiphon: Option<AntiphonText>,
+    communion_antiphon: Option<AntiphonText>,
+}
+
+/// An antiphon with optional biblical source reference(s)
+struct AntiphonText {
+    /// Text of the antiphon
+    text: String,
+    /// Biblical source reference(s). Entrance and communion antiphons in the
+    /// Roman Missal often derive from Scripture (e.g., "cf. Ps 24:1-3").
+    sources: Option<Vec<SourceRef>>,
 }
 ```
 
@@ -1173,10 +1196,30 @@ struct FormularySet {
 
 ```rust
 struct ReadingText {
+    /// Full citation reference (e.g., "Isa 2:1-5") — the Tier 1 citation
+    /// string, carried through the jointure for consumer display.
+    reference: String,
+    /// Pericope headline (from Tier 3 input)
+    headline: Option<String>,
     /// The full text of the reading
     text: String,
-    /// Optional short form, when the Lectionary provides one (GIRM 360, GILM 75, 80)
-    short_form: Option<String>,
+    /// Abbreviated reference for display
+    ref_abbr: Option<String>,
+    /// Optional short form variant (GIRM 360, GILM 75, 80)
+    short_form: Option<ShortForm>,
+    /// No final acclamation flag (default false).
+    /// True for Passion narratives and certain Easter Vigil readings.
+    no_final_acclamation: bool,
+}
+
+/// Short form of a reading or psalm
+struct ShortForm {
+    /// Citation reference for the short form (e.g., "Gen 1:1.26-31a")
+    reference: Option<String>,
+    /// Abbreviated reference for display
+    ref_abbr: Option<String>,
+    /// The text of the short form
+    text: String,
 }
 ```
 
@@ -1193,15 +1236,46 @@ struct ReadingText {
 ```rust
 struct ReadingsSet {
     reading_1: Option<ReadingText>,
-    psalm: Option<String>,
-    canticle: Option<String>,
+    psalm: Option<PsalmodyEntry>,
+    canticle: Option<PsalmodyEntry>,
     reading_2: Option<ReadingText>,
     /// Sequence hymn (GIRM §64): sung before the Alleluia on specific
     /// celebrations only (Easter, Easter Octave, Pentecost, Corpus Christi,
     /// Our Lady of Sorrows). None on all other days.
-    sequence: Option<String>,
-    alleluia: Option<String>,
+    sequence: Option<SequenceText>,
+    alleluia: Option<AlleluiaText>,
     gospel: Option<ReadingText>,
+}
+
+/// Gospel acclamation (Alleluia or Lenten acclamation).
+/// AcclamationType is computed by the engine from the liturgical season.
+struct AlleluiaText {
+    /// Type of acclamation (computed by engine from season)
+    acclamation_type: AcclamationType,
+    /// The acclamation word/phrase itself (e.g., "Alleluia" or "Praise to you...")
+    acclamation: Option<String>,
+    /// The verse text
+    verse: String,
+    /// Biblical source reference(s) for the verse
+    sources: Option<Vec<SourceRef>>,
+}
+
+/// Type of Gospel acclamation — computed by the engine from the season
+enum AcclamationType {
+    /// "Alleluia" — used throughout the year except Lent
+    Alleluia,
+    /// Lenten acclamation (e.g., "Praise to you, Lord Jesus Christ...")
+    Lent,
+    /// No acclamation (rare — certain rites like the Passion)
+    None,
+}
+
+/// Sequence hymn (GIRM §64)
+struct SequenceText {
+    /// Reference (e.g., "Victimae paschali laudes")
+    reference: Option<String>,
+    /// The sequence text
+    text: String,
 }
 ```
 
@@ -1221,11 +1295,11 @@ struct ReadingsPool {
     /// Available first readings (OT or Apostle) — pick one
     first_readings: Vec<ReadingText>,
     /// Available psalms — pick one independently (GILM 89)
-    psalms: Vec<String>,
+    psalms: Vec<PsalmodyEntry>,
     /// Available second readings (when 3 readings are required) — pick one
     second_readings: Vec<ReadingText>,
     /// Available alleluia/acclamation verses — pick one (GILM 90)
-    alleluia_verses: Vec<String>,
+    alleluia_verses: Vec<AlleluiaText>,
     /// Available gospels — pick one
     gospels: Vec<ReadingText>,
 }
@@ -1270,7 +1344,7 @@ struct VigilReadingsSequence {
     /// Epistle — always proclaimed after the OT sequence and Gloria
     epistle: ReadingText,
     /// Alleluia — solemnly restored after the Lenten suppression
-    alleluia: String,
+    alleluia: AlleluiaText,
     /// Gospel — always proclaimed
     gospel: ReadingText,
 }
@@ -1279,7 +1353,7 @@ struct VigilReading {
     /// The OT reading text
     reading: ReadingText,
     /// Responsorial psalm or canticle following this reading
-    response: String,
+    response: PsalmodyEntry,
     /// Whether this reading must always be included even when reducing
     /// (PS 85: true for Exodus 14 — "must never be omitted")
     mandatory: bool,
@@ -1303,13 +1377,25 @@ struct VigilReading {
 struct FlexibleOrations {
     prayer_over_the_offerings: Option<String>,
     prayer_after_communion: Option<String>,
-    preface: Option<String>,              // Governed by GIRM 364-365, not 363
+    preface: Option<PrefaceText>,         // Governed by GIRM 364-365, not 363
     /// Optional solemn blessing (GIRM 167). Present on solemnities, certain feasts,
     /// and special occasions. Alternative to the simple blessing.
     solemn_blessing: Option<String>,
     /// Optional prayer over the people (GIRM 167). May be used in place of
     /// the solemn blessing, especially during Lent.
     prayer_over_the_people: Option<String>,
+}
+
+/// Resolved preface text with optional provenance metadata.
+/// In the output, the preface is always resolved to full text —
+/// the engine resolves PrefaceRef::CatalogId from the input.
+struct PrefaceText {
+    /// Preface catalog ID (provenance — from which catalog entry this was resolved)
+    id: Option<String>,
+    /// Theme/title
+    headline: Option<String>,
+    /// The preface text
+    text: String,
 }
 ```
 
@@ -1344,6 +1430,34 @@ enum TextSource {
 struct SourcedText {
     source: TextSource,
     text: String,
+}
+```
+
+#### `SourcedPreface`
+
+**What it is:** A preface text paired with its provenance. Like `SourcedText`, but carries the enriched `PrefaceText` metadata (catalog ID, headline) instead of a plain string.
+
+```rust
+struct SourcedPreface {
+    source: TextSource,
+    preface: PrefaceText,
+}
+```
+
+#### `SourceRef`
+
+**What it is:** A biblical source reference with optional "cf." qualifier. Shared between input and output models.
+
+**Why this name:** It is a "reference" to a "source" (biblical passage). No `*Def` suffix — identical in both input and output, like `LocaleTag` or `MassTime`.
+
+```rust
+/// A biblical source reference with optional "cf." qualifier
+struct SourceRef {
+    /// Biblical reference string (e.g., "Ps 24:1-3", "1 Cor 5:7b-8a")
+    reference: String,
+    /// When true, the source is a comparative reference (printed as "cf." in
+    /// liturgical books). Distinguishes direct citation from allusion.
+    confer: Option<bool>,
 }
 ```
 
@@ -1809,13 +1923,30 @@ struct HoursPsalmody {
     entries: Vec<PsalmodyEntry>,
 }
 
+/// One psalmody entry (psalm/canticle + resolved antiphon).
+/// Used for both Mass responsorial psalms (in ReadingsSet/ReadingsPool) and
+/// Office psalmody (in HoursPsalmody).
 struct PsalmodyEntry {
     /// Psalm or canticle reference (e.g., "Ps 63", "Dan 3:57-88")
     reference: String,
-    /// The text of the psalm/canticle
+    /// Abbreviated reference for display (e.g., "103, 1-2a…")
+    ref_abbr: Option<String>,
+    /// The text of the psalm/canticle. None when Tier 3 text data is absent
+    /// (the citation is still carried for display or external lookup).
     text: Option<String>,
-    /// Antiphon text
-    antiphon: Option<String>,
+    /// Resolved responsorial antiphon — single refrain selected by the engine
+    /// from the input's `antiphons` Vec based on Tier 1 cycle context.
+    antiphon: Option<PsalmAntiphon>,
+    /// Optional short form (abbreviated psalm for pastoral use)
+    short_form: Option<ShortForm>,
+}
+
+/// Resolved responsorial antiphon with optional biblical source(s)
+struct PsalmAntiphon {
+    /// Text of the antiphon/refrain
+    text: String,
+    /// Biblical source reference(s) for the antiphon text
+    sources: Option<Vec<SourceRef>>,
 }
 ```
 
@@ -1907,7 +2038,7 @@ struct MassComposition {
     /// Each oration has its own list of alternatives, chosen independently
     prayer_over_offerings_options: Vec<SourcedText>,
     prayer_after_communion_options: Vec<SourcedText>,
-    preface_options: Vec<SourcedText>,   // Governed by GIRM 364-365
+    preface_options: Vec<SourcedPreface>, // Governed by GIRM 364-365
     solemn_blessing_options: Vec<SourcedText>,
     prayer_over_people_options: Vec<SourcedText>,
 
@@ -2572,12 +2703,20 @@ Type                         L1    L2M   L2H   Scope
 ──────────────────────────  ────  ────  ────  ──────────
 DayContext                     ✓       ✓       ✓    SHARED
 ReadingText                    ✓       ✓       ✓    SHARED
+ShortForm                      ✓       ✓       ✓    SHARED
+SourceRef                      ✓       ✓       ✓    SHARED
+AntiphonText                   ✓       ✓       ✗    SHARED (L1+L2M)
+PrefaceText                    ✓       ✓       ✗    SHARED (L1+L2M)
 TextSource                     ✗       ✓       ✓    SHARED (L2M+2H)
 SourcedText                    ✗       ✓       ✓    SHARED (L2M+2H)
+SourcedPreface                 ✗       ✓       ✗    L2M
 CelebrationId                  ✓       ✓       ✓    SHARED
 
 FormularySet                   ✓       ✓ ¹     ✗    MASS
 ReadingsSet                    ✓       ✓ ¹     ✗    MASS
+AlleluiaText                   ✓       ✓ ¹     ✗    MASS
+AcclamationType                ✓       ✓ ¹     ✗    MASS
+SequenceText                   ✓       ✓ ¹     ✗    MASS
 ReadingsPool                   ✓       ✓ ¹     ✗    MASS
 ReadingsContent                ✓       ✓ ¹     ✗    MASS
 VigilReadingsSequence          ✓       ✓ ¹     ✗    MASS (Easter Vigil)
@@ -2613,7 +2752,8 @@ HourSuppression                ✗       ✗       ✓    L2H
 
 HourTime                       ✓       ✗       ✓    SHARED (L1+2H)
 HoursPsalmody                  ✓       ✗       ✓    SHARED (L1+2H)
-PsalmodyEntry                  ✓       ✗       ✓    SHARED (L1+2H)
+PsalmodyEntry                  ✓       ✓       ✓    SHARED (Mass + Office)
+PsalmAntiphon                  ✓       ✓       ✓    SHARED (Mass + Office)
 
 Existing types (documented)    ✓       ✓       ✓    SHARED
   Season, Rank, Precedence, MassTime ³, Common, CommonInfo,
@@ -2622,7 +2762,7 @@ Existing types (documented)    ✓       ✓       ✓    SHARED
   PatronRole, Patronage, MartyrologyEntry, CalendarId
 
 ¹ Reused inside IdentityChoice / ReadingsChoice / ReadingsContent
-² Exploded into Vec<SourcedText> per oration in Layer 2 Mass
+² Exploded into Vec<SourcedText> per oration (or Vec<SourcedPreface> for preface) in Layer 2 Mass
 ³ MassTime: existing enum, documented in Part IV §4 with all 10 variants
 ```
 
@@ -3156,7 +3296,7 @@ calendar() calendar()   calendar()
 
 ¹ **Transfer of impeded solemnities (step 2b):** When a solemnity is impeded by a higher-ranking celebration on the same date, GNLY 60 requires it to be transferred to the nearest free day. GNLY 5 provides the base rule for privileged Sundays: transfer to the following Monday. Notitiae R14 refines the method: the preceding Saturday should be tried first, before falling back to the Monday or general nearest-free-day rule. Implementation: the engine recalculates the target date within Layer 1 — the transferred `Celebration` retains its original `CelebrationId` and texts but is moved to the new `LiturgicalDay`. The `from_calendar_id` is unchanged. The consumer sees the solemnity on its transferred date in all three output layers (Layer 1, Layer 2 Mass, Layer 2 Hours).
 
-³ **FlexibleOrations explosion:** In Layer 1, `CelebrationMass.flexible_orations` is a single `FlexibleOrations` struct per celebration. In Layer 2 Mass, each oration field (prayer over the offerings, prayer after Communion, preface, etc.) is expanded into a `Vec<SourcedText>` — one entry per available source (feria, Common, other Sundays per GIRM 363 §3). Each `SourcedText` pairs the text with its `TextSource` provenance, allowing the consumer to present alternatives with their origin.
+³ **FlexibleOrations explosion:** In Layer 1, `CelebrationMass.flexible_orations` is a single `FlexibleOrations` struct per celebration. In Layer 2 Mass, each oration field (prayer over the offerings, prayer after Communion, preface, etc.) is expanded into a list of alternatives — one entry per available source (feria, Common, other Sundays per GIRM 363 §3). Most orations use `Vec<SourcedText>` (text + provenance); prefaces use `Vec<SourcedPreface>` (enriched `PrefaceText` + provenance, carrying the catalog ID and headline metadata).
 
 ² **Lenten demotion (step 2c):** GNLY 14 states: "Obligatory Memorials which fall on weekdays of Lent may only be celebrated as Optional Memorials." This is a rank change (Memorial → OptionalMemorial) that affects both Mass (GIRM 355.1 regime) and Office (GILH §238-239 AdditionsOnly mechanism). Similarly, GILH §238 specifies that obligatory memorials are not celebrated during Advent Dec 17-24 and Christmas Octave.
 
