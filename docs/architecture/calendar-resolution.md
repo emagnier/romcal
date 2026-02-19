@@ -156,7 +156,9 @@ The `parent_calendar_ids` field in each `CalendarDef` declares the **full inheri
 
 Religious communities additionally observe celebrations from the territorial calendar of their location. CP §16d states: "Members of religious institutes join with the local Church in celebrating the anniversary of the dedication of the cathedral and the feast of the principal patrons of both the place and the wider area in which they reside."
 
-> **Important:** Cross-layering is **not full inheritance**. The religious calendar does not adopt the entire territorial calendar (national proper saints, diocesan memorials, etc.). Only the specific celebrations mandated by CP §16d are extracted from the territorial chain. Full inheritance is handled exclusively by `parent_calendar_ids`.
+:::caution
+Cross-layering is **not full inheritance**. The religious calendar does not adopt the entire territorial calendar (national proper saints, diocesan memorials, etc.). Only the specific celebrations mandated by CP §16d are extracted from the territorial chain. Full inheritance is handled exclusively by `parent_calendar_ids`.
+:::
 
 **What is extracted — three specific precedence variants:**
 
@@ -287,7 +289,9 @@ The Proper of Time is the foundational liturgical skeleton. It is generated prog
 | Easter Time      | Easter Sunday                                            | Pentecost Sunday inclusive                             | §22      |
 | Ordinary Time II | Monday after Pentecost                                   | Before First Vespers of Advent I                       | §44      |
 
-> The Paschal Triduum is **not a season** — see the Composition Model, Part III §7 for normative analysis. It is tracked via `Period::PaschalTriduum` in `DayContext.periods`.
+:::note
+The Paschal Triduum is **not a season** — see the Composition Model, Part III §7 for normative analysis. It is tracked via `Period::PaschalTriduum` in `DayContext.periods`.
+:::
 
 Each day in the temporal cycle receives the following contextual properties:
 
@@ -641,7 +645,9 @@ When multiple celebrations are assigned to the same date after date resolution, 
 
    a. **Same-precedence collision within the same calendar:** When two celebrations from the same calendar level have the same precedence on the same date — which can only happen when a moveable date collides with a fixed date — the engine keeps both as alternatives in `celebration_choices` and sets `default_celebration_id` to `None`. Example: the Immaculate Heart of Mary (moveable, level 10, Easter + 69) falls on a Saturday that may already have a fixed obligatory memorial (level 10). Both are retained; neither is the default.
 
-   > **Note:** No norm explicitly prescribes which celebration takes priority when two memorials of the same rank collide within the same calendar. Setting `default_celebration_id` to `None` reflects this: both alternatives are liturgically equal — the celebrant chooses freely. Consumers must present the choices explicitly rather than auto-selecting one.
+   :::note
+   No norm explicitly prescribes which celebration takes priority when two memorials of the same rank collide within the same calendar. Setting `default_celebration_id` to `None` reflects this: both alternatives are liturgically equal — the celebrant chooses freely. Consumers must present the choices explicitly rather than auto-selecting one.
+   :::
 
    b. **Optional memorials with weekdays:** Optional memorials (level 12) may coexist with ordinary weekdays (level 13) — the weekday is the primary celebration and the optional memorials are available as alternatives (GNLY §59 level 12).
 

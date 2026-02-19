@@ -519,7 +519,9 @@ struct CelebrationDef {
 
 This eliminates a class of data entry errors where colors are inconsistent with titles.
 
-> **Design note:** The current implementation includes a deprecated `colors` field for backward compatibility. The architecture does not include it — colors are always computed. Calendar definitions that need to force a non-standard color (rare edge cases) can achieve this through the titles mechanism or a dedicated override (to be designed if needed).
+:::tip[Design note]
+The current implementation includes a deprecated `colors` field for backward compatibility. The architecture does not include it — colors are always computed. Calendar definitions that need to force a non-standard color (rare edge cases) can achieve this through the titles mechanism or a dedicated override (to be designed if needed).
+:::
 
 ### 5. `DateDef`
 
@@ -1094,7 +1096,9 @@ enum ReadingSlot {
 
 Each layer only specifies the reading slots it contributes; the engine accumulates slots from all applicable layers. This avoids duplicating shared readings across cycle keys.
 
-> **Design note — why layered, not compound keys:** A layered merge keeps the cycle dimensions orthogonal. A Sunday may need per-year readings (3 variants of 7 slots each), while a weekday may need per-year first readings _and_ a Sunday-cycle-dependent Gospel override. Layering handles both patterns with the same type, without introducing compound keys like `Year1A` / `Year2B`.
+:::tip[Design note — why layered, not compound keys]
+A layered merge keeps the cycle dimensions orthogonal. A Sunday may need per-year readings (3 variants of 7 slots each), while a weekday may need per-year first readings _and_ a Sunday-cycle-dependent Gospel override. Layering handles both patterns with the same type, without introducing compound keys like `Year1A` / `Year2B`.
+:::
 
 **JSON example — Advent 1st Sunday (3-year Sunday cycle):**
 
@@ -1888,7 +1892,9 @@ enum PrefaceRef {
 }
 ```
 
-> **Design note — `prayer` as canonical prayer (CP 44):** CP 44 states that the Office concluding prayer is "the same as the collect of the Mass." This identity is modeled by storing the shared prayer once in `CelebrationMassTexts.prayer`. Most celebrations have a single collect; the `MassTimeTexts.collect` field exists only as an override for multi-Mass celebrations (e.g., Christmas has 4 distinct collects for Vigil, Night, Dawn, and Day). The engine resolves the effective collect as: `mass_time_texts.collect` if present, otherwise `celebration_mass_texts.prayer`. See the companion document (Part III §5) for the full analysis.
+:::tip[Design note — prayer as canonical prayer (CP 44)]
+CP 44 states that the Office concluding prayer is "the same as the collect of the Mass." This identity is modeled by storing the shared prayer once in `CelebrationMassTexts.prayer`. Most celebrations have a single collect; the `MassTimeTexts.collect` field exists only as an override for multi-Mass celebrations (e.g., Christmas has 4 distinct collects for Vigil, Night, Dawn, and Day). The engine resolves the effective collect as: `mass_time_texts.collect` if present, otherwise `celebration_mass_texts.prayer`. See the companion document (Part III §5) for the full analysis.
+:::
 
 **JSON example — Proper of Saints (January):**
 
@@ -2047,8 +2053,13 @@ struct ShortFormDef {
 }
 ```
 
-> **Design note — `headline`:** The pericope headline (_titulus_) is a standard Lectionary editorial element defined by GILM §123. It is not to be confused with the reading's biblical reference — rather, it summarizes the theme of the passage, e.g., "Paul's rapture to the third heaven" for 2 Cor 12:1-10.
-> **Design note — `short_form` as struct:** `short_form` is a struct rather than a plain string because the Lectionary prints both the short form's own citation reference and its text (e.g., "Short reading: Gen 1:1.26-31a"). The struct carries both.
+:::tip[Design note — headline]
+The pericope headline (_titulus_) is a standard Lectionary editorial element defined by GILM §123. It is not to be confused with the reading's biblical reference — rather, it summarizes the theme of the passage, e.g., "Paul's rapture to the third heaven" for 2 Cor 12:1-10.
+:::
+
+:::tip[Design note — short_form as struct]
+`short_form` is a struct rather than a plain string because the Lectionary prints both the short form's own citation reference and its text (e.g., "Short reading: Gen 1:1.26-31a"). The struct carries both.
+:::
 
 **Citation string format:** The citation strings used as keys match exactly the strings stored in Tier 1 `MassReadingsDef` (e.g., `"Isa 2:1-5"`, `"Ps 122:1-2,3-4ab,4cd-5,6-7,8-9"`, `"Matt 24:37-44"`). The engine performs a direct key lookup to join citations with texts.
 
@@ -2073,7 +2084,9 @@ struct SourceRef {
 }
 ```
 
-> **Design note — no `*Def` suffix:** `SourceRef` is a shared helper type used identically in both input and output, like `LocaleTag` or `MassTime`. It carries no transformation semantics, so it does not follow the `*Def` → output naming convention.
+:::tip[Design note — no *Def suffix]
+`SourceRef` is a shared helper type used identically in both input and output, like `LocaleTag` or `MassTime`. It carries no transformation semantics, so it does not follow the `*Def` → output naming convention.
+:::
 
 ### 5. `ProperHoursTexts`
 

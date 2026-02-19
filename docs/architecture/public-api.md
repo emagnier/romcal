@@ -109,7 +109,9 @@ The pattern is self-documenting: when a developer sees `_of`, they know the meth
 
 `Config` is the all-optional configuration struct passed to `Romcal::new()`. Every field has a default value; omitting all fields produces a valid configuration for the General Roman Calendar in English.
 
-> **Why `Config`.** The name follows the standard Rust convention for configuration objects (`ClientConfig`, `ServerConfig`, etc.). The same `Config` struct serves both interactive use (the developer fills a few fields, defaults handle the rest) and bundle loading (a bundle deserializes into a `Config` with all fields populated). A bundle is a serialized, optimized `Config` — same type, different packaging. See §10 for the `create_bundle()` method.
+:::note[Why Config]
+The name follows the standard Rust convention for configuration objects (`ClientConfig`, `ServerConfig`, etc.). The same `Config` struct serves both interactive use (the developer fills a few fields, defaults handle the rest) and bundle loading (a bundle deserializes into a `Config` with all fields populated). A bundle is a serialized, optimized `Config` — same type, different packaging. See §10 for the `create_bundle()` method.
+:::
 
 | Field                      | Type                              | Default           | Purpose                                                                                                                   |
 | -------------------------- | --------------------------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------- |
@@ -130,7 +132,9 @@ The pattern is self-documenting: when a developer sees `_of`, they know the meth
 - `calendar_id` uses the `_id` suffix to distinguish it from output types (`LiturgicalCalendar`, `MassCalendar`) and from `CalendarDefinition`. The type `CalendarId` (a newtype wrapping `String`) provides additional type safety — see [Input Data Model — Part II §1](./input-data-model.md) for its definition.
 - `locale` keeps its standard name — a locale IS an identifier by nature, and this name is the universal convention across libraries (ICU, BCP 47, Java `Locale`, JavaScript `navigator.language`). The type `LocaleTag` (a newtype wrapping `String`) provides the type safety.
 
-> **`YearFrame` is not in `Config`.** The `YearFrame` parameter (Gregorian vs. Liturgical year framing) defines the output date range, not the engine configuration. It belongs at the method level — see §3–5.
+:::note[YearFrame is not in Config]
+The `YearFrame` parameter (Gregorian vs. Liturgical year framing) defines the output date range, not the engine configuration. It belongs at the method level — see §3–5.
+:::
 
 ### 2. `Romcal` — Engine Instance
 
