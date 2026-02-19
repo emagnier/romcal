@@ -58,7 +58,7 @@ DATA MODEL (types)
 | DayContext                           | Part IV §2           | ~1080  | Shared — temporal context         |
 | FormularySet                         | Part IV §2           | ~1148  | Mass — collect + antiphons        |
 | AntiphonText                         | Part IV §2           | ~1168  | Shared — antiphon + sources       |
-| ReadingText (enriched)               | Part IV §2           | ~1179  | Shared — headline, short form     |
+| ReadingText (enriched)               | Part IV §2           | ~1179  | Shared — heading, short form      |
 | ShortForm                            | Part IV §2           | ~1203  | Shared — short form ref + text    |
 | ReadingsSet (enriched)               | Part IV §2           | ~1209  | Mass — structured reading types   |
 | AlleluiaText                         | Part IV §2           | ~1239  | Mass — acclamation + verse        |
@@ -1098,7 +1098,7 @@ When a qualifier is present, it is the **complete rendered text** of the qualifi
 | `TextSource`       | **YES**       | Same provenance concept (Proper of Time, Proper of Saints, Common)                                                                                 |
 | `SourcedText`      | **YES**       | Text + provenance — applies to any liturgical text                                                                                                 |
 | `SourceRef`        | **YES**       | Biblical reference with confer flag — applies to antiphons, psalms, acclamations                                                                   |
-| `ReadingText`      | **YES**       | Reading with headline, short form, `no_final_acclamation` — applies to Office readings too                                                         |
+| `ReadingText`      | **YES**       | Reading with heading, short form, `no_final_acclamation` — applies to Office readings too                                                          |
 | `ShortForm`        | **YES**       | Short form reference + text — applies to both readings and psalms                                                                                  |
 | `PsalmodyEntry`    | **YES**       | Psalm/canticle with antiphon — used for both Mass responsorial psalms and Office psalmody                                                          |
 | `PsalmAntiphon`    | **YES**       | Responsorial antiphon with biblical source(s) — used in both Mass and Office psalmody                                                              |
@@ -1230,9 +1230,9 @@ struct ReadingText {
     /// Full citation reference (e.g., "Isa 2:1-5") — the Tier 1 citation
     /// string, carried through the jointure for consumer display.
     reference: String,
-    /// Pericope headline — GILM §123: the _titulus_ printed above
+    /// Pericope heading — GILM §123: the _titulus_ printed above
     /// each reading in the Lectionary, summarizing its theme.
-    headline: Option<String>,
+    heading: Option<String>,
     /// The full text of the reading
     text: String,
     /// Abbreviated reference for display
@@ -1439,7 +1439,7 @@ struct PrefaceText {
     /// Preface catalog ID (provenance — from which catalog entry this was resolved)
     id: Option<String>,
     /// Theme/title
-    headline: Option<String>,
+    title: Option<String>,
     /// The preface text
     text: String,
 }
@@ -1483,7 +1483,7 @@ struct SourcedText {
 
 #### `SourcedPreface`
 
-**What it is:** A preface text paired with its provenance. Like `SourcedText`, but carries the enriched `PrefaceText` metadata (catalog ID, headline) instead of a plain string.
+**What it is:** A preface text paired with its provenance. Like `SourcedText`, but carries the enriched `PrefaceText` metadata (catalog ID, title) instead of a plain string.
 
 ```rust
 struct SourcedPreface {
@@ -3387,7 +3387,7 @@ calendar() calendar()   calendar()
 
 ¹ **Transfer of impeded solemnities (step 2b):** When a solemnity is impeded by a higher-ranking celebration on the same date, GNLY 60 requires it to be transferred to the nearest free day. GNLY 5 provides the base rule for privileged Sundays: transfer to the following Monday. Notitiae R14 refines the method: the preceding Saturday should be tried first, before falling back to the Monday or general nearest-free-day rule. Implementation: the engine recalculates the target date within Layer 1 — the transferred `Celebration` retains its original `CelebrationId` and texts but is moved to the new `LiturgicalDay`. The `from_calendar_id` is unchanged. The consumer sees the solemnity on its transferred date in all three output layers (Layer 1, Layer 2 Mass, Layer 2 Hours).
 
-³ **FlexibleOrations explosion:** In Layer 1, `CelebrationMass.flexible_orations` is a single `FlexibleOrations` struct per celebration. In Layer 2 Mass, each oration field (prayer over the offerings, prayer after Communion, preface, etc.) is expanded into a list of alternatives — one entry per available source (feria, Common, other Sundays per GIRM 363 §3). Most orations use `Vec<SourcedText>` (text + provenance); prefaces use `Vec<SourcedPreface>` (enriched `PrefaceText` + provenance, carrying the catalog ID and headline metadata).
+³ **FlexibleOrations explosion:** In Layer 1, `CelebrationMass.flexible_orations` is a single `FlexibleOrations` struct per celebration. In Layer 2 Mass, each oration field (prayer over the offerings, prayer after Communion, preface, etc.) is expanded into a list of alternatives — one entry per available source (feria, Common, other Sundays per GIRM 363 §3). Most orations use `Vec<SourcedText>` (text + provenance); prefaces use `Vec<SourcedPreface>` (enriched `PrefaceText` + provenance, carrying the catalog ID and title metadata).
 
 ² **Lenten demotion (step 2c):** GNLY 14 states: "Obligatory Memorials which fall on weekdays of Lent may only be celebrated as Optional Memorials." This is a rank change (Memorial → OptionalMemorial) that affects both Mass (GIRM 355.1 regime) and Office (GILH §238-239 AdditionsOnly mechanism). Similarly, GILH §238 specifies that obligatory memorials are not celebrated during Advent Dec 17-24 and Christmas Octave.
 
