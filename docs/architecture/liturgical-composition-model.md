@@ -2033,8 +2033,11 @@ struct MassComposition {
     creed: bool,
 
     // === DEFAULT CELEBRATION ===
-    /// The celebration to use by default (typically the feria or highest-ranking)
-    default_celebration_id: CelebrationId,
+    /// The celebration to use by default (typically the feria or highest-ranking).
+    /// `None` when multiple celebrations of equal precedence coexist with no
+    /// normative priority — the consumer must present the choices explicitly.
+    /// See Calendar Resolution §15.3a.
+    default_celebration_id: Option<CelebrationId>,
 
     // Note: GIRM 355 regime (which substitution rules apply) is not a separate
     // field — it is fully deducible from `context.season` + `context.periods` +
@@ -2360,7 +2363,9 @@ struct HoursComposition {
     context: DayContext,
 
     // === Default celebration ===
-    default_celebration_id: CelebrationId,
+    /// `None` when multiple celebrations of equal precedence coexist.
+    /// See Calendar Resolution §15.3a.
+    default_celebration_id: Option<CelebrationId>,
 
     // === CELEBRATION OPTIONS ===
     /// Each option = one possible celebration with its pre-resolved Hour content.

@@ -516,7 +516,6 @@ The inheritance chain: `temporal_cycle → general_roman → region → country 
 | `precedence`                | Child wins if set; else inherits parent (default: `Weekday_13`) |
 | `commons_def`               | Child wins if set                                               |
 | `is_holy_day_of_obligation` | Child wins if set (default: `false`)                            |
-| `allow_similar_rank_items`  | Child wins if set (default: `false`)                            |
 | `is_optional`               | Child wins if set (default: `false`)                            |
 | `titles`                    | Merged via `append` / `prepend` / `replace` operations          |
 | `martyrology`               | Child wins if set                                               |
@@ -640,7 +639,9 @@ When multiple celebrations are assigned to the same date after date resolution, 
 
 3. **Coexistence rules:**
 
-   a. **`allow_similar_rank_items`:** If set on the primary celebration, other celebrations of the same rank are kept as alternatives on the same date. This handles compound celebrations like the combined memorial of Saints Timothy and Titus.
+   a. **Same-precedence collision within the same calendar:** When two celebrations from the same calendar level have the same precedence on the same date — which can only happen when a moveable date collides with a fixed date — the engine keeps both as alternatives in `celebration_choices` and sets `default_celebration_id` to `None`. Example: the Immaculate Heart of Mary (moveable, level 10, Easter + 69) falls on a Saturday that may already have a fixed obligatory memorial (level 10). Both are retained; neither is the default.
+
+   > **Note:** No norm explicitly prescribes which celebration takes priority when two memorials of the same rank collide within the same calendar. Setting `default_celebration_id` to `None` reflects this: both alternatives are liturgically equal — the celebrant chooses freely. Consumers must present the choices explicitly rather than auto-selecting one.
 
    b. **Optional memorials with weekdays:** Optional memorials (level 12) may coexist with ordinary weekdays (level 13) — the weekday is the primary celebration and the optional memorials are available as alternatives (GNLY §59 level 12).
 
