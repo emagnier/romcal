@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Cella</title>
+<style>
+/* ========== RESET & BASE ========== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --parchment:#FAF7F2;--parchment-warm:#F0EBE3;
+  --ink-dark:#1C1A17;--ink-dark-sec:#2A2722;
+  --text-primary:#2C2520;--text-secondary:#7A7067;--text-tertiary:#A89F95;
+  --accent-letrine:#8B1A1A;--accent-gold:#C4956A;--separator:#E8E2DA;
+  --lit-white:#C4956A;--lit-red:#8B1A1A;--lit-green:#4A6741;
+  --lit-violet:#5B3A6B;--lit-rose:#B07A8A;--lit-black:#2C2520;
+  --lit-current:#5B3A6B;
+  --radius-card:14px;--radius-sm:8px;
+  --pad-h:24px;--pad-card:20px;
+  --font-serif:'Georgia','Times New Roman',serif;
+  --font-sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+}
+html{font-size:16px}
+body{
+  font-family:var(--font-sans);background:var(--parchment-warm);
+  color:var(--text-primary);-webkit-font-smoothing:antialiased;
+  max-width:430px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;
+  position:relative;overflow:hidden;
+}
+
+/* ========== TYPOGRAPHY ========== */
+.t-serif{font-family:var(--font-serif)}
+.t-label{font-family:var(--font-sans);font-weight:500}
+.t-section{font-family:var(--font-sans);font-weight:500;font-size:11px;color:var(--text-tertiary);letter-spacing:1.5px;text-transform:uppercase}
+.t-caption{font-size:12px;color:var(--text-tertiary)}
+.t-secondary{color:var(--text-secondary)}
+.t-tertiary{color:var(--text-tertiary)}
+.t-accent{color:var(--lit-current)}
+
+/* ========== LAYOUT ========== */
+.app-container{flex:1;display:flex;flex-direction:column;height:100vh}
+.tab-content{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
+.lit-bar{height:3px;background:var(--lit-current);flex-shrink:0}
+.content-pad{padding:16px var(--pad-h) 100px}
+.section{margin-bottom:32px}
+.section-header{margin-bottom:12px}
+
+/* ========== CARD ========== */
+.card{
+  padding:var(--pad-card);background:var(--parchment);
+  border-radius:var(--radius-card);border:0.5px solid var(--separator);
+  position:relative;
+}
+.card--lit{padding-left:calc(var(--pad-card) + 8px)}
+.card--lit::before{
+  content:'';position:absolute;left:8px;top:8px;bottom:8px;width:3px;
+  background:var(--lit-current);border-radius:2px;
+}
+
+/* ========== TAB BAR ========== */
+.tab-bar{
+  display:flex;background:var(--parchment);border-top:0.5px solid var(--separator);
+  padding:6px 0 calc(6px + env(safe-area-inset-bottom));flex-shrink:0;
+  position:sticky;bottom:0;z-index:100;
+}
+.tab-item{
+  flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;
+  padding:6px 0;cursor:pointer;border:none;background:none;
+  color:var(--text-tertiary);transition:color .2s;font-size:10px;
+}
+.tab-item.active{color:var(--lit-current)}
+.tab-item svg{width:22px;height:22px;fill:currentColor}
+
+/* ========== BUTTONS ========== */
+.btn-pill{
+  display:inline-block;padding:8px 14px;border-radius:100px;font-size:12px;
+  border:0.5px solid var(--separator);background:var(--parchment-warm);
+  color:var(--text-secondary);cursor:pointer;font-family:var(--font-sans);
+}
+.btn-accent{
+  display:inline-flex;align-items:center;gap:6px;padding:8px 16px;
+  border-radius:100px;background:color-mix(in srgb,var(--lit-current) 8%,transparent);
+  color:var(--lit-current);border:none;cursor:pointer;font-size:13px;font-family:var(--font-sans);
+}
+
+/* ========== RADIO ========== */
+.radio{
+  width:20px;height:20px;border-radius:50%;border:1.5px solid var(--text-tertiary);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer;
+}
+.radio.selected{border-color:var(--lit-current)}
+.radio.selected::after{content:'';width:12px;height:12px;border-radius:50%;background:var(--lit-current)}
+
+/* ========== TOGGLE ========== */
+.toggle{
+  width:44px;height:26px;border-radius:13px;background:var(--separator);
+  position:relative;cursor:pointer;transition:background .2s;flex-shrink:0;
+}
+.toggle.on{background:var(--accent-gold)}
+.toggle::after{
+  content:'';position:absolute;top:3px;left:3px;width:20px;height:20px;
+  border-radius:50%;background:white;transition:transform .2s;
+  box-shadow:0 1px 3px rgba(0,0,0,.15);
+}
+.toggle.on::after{transform:translateX(18px)}
+
+/* ========== LISTS ========== */
+.list-group{background:var(--parchment);border-radius:var(--radius-card);border:0.5px solid var(--separator);overflow:hidden}
+.list-row{display:flex;align-items:center;gap:14px;padding:14px var(--pad-card);cursor:pointer}
+.list-row:not(:last-child){border-bottom:0.5px solid var(--separator)}
+.list-row .icon{width:28px;text-align:center;color:var(--text-secondary);font-size:18px}
+.list-row .chevron{color:var(--text-tertiary);font-size:12px;margin-left:auto}
+.list-row .badge{font-size:11px;color:var(--text-tertiary);padding:4px 10px;background:var(--parchment-warm);border-radius:100px}
+
+/* ========== OFFICE GRID ========== */
+.office-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.office-cell{
+  text-align:center;padding:12px 4px;background:var(--parchment);
+  border-radius:var(--radius-sm);border:0.5px solid var(--separator);cursor:pointer;
+}
+.office-cell.suggested{background:color-mix(in srgb,var(--lit-current) 8%,transparent);border-color:color-mix(in srgb,var(--lit-current) 30%,transparent)}
+.office-cell .name{font-size:12px;font-weight:500}
+.office-cell.suggested .name{color:var(--lit-current)}
+.office-cell .marker{height:10px;display:flex;align-items:center;justify-content:center;margin-top:4px}
+
+/* ========== READING ========== */
+.lettrine{float:left;font-size:52px;font-weight:700;font-family:var(--font-serif);color:var(--lit-current);line-height:.85;margin:0 6px 0 0}
+.reading-text{font-family:var(--font-serif);font-size:15.5px;line-height:1.65;color:var(--text-primary)}
+.reading-sep{display:flex;align-items:center;gap:0;margin:24px 0}
+.reading-sep .line{flex:1;height:0.5px;background:var(--separator)}
+.reading-sep .label{padding:0 12px;font-size:11px;color:var(--text-tertiary);letter-spacing:1px;text-transform:uppercase;white-space:nowrap;font-weight:500}
+.psalm-response{display:flex;align-items:baseline;gap:6px;padding:6px 0}
+.psalm-response .r{font-size:18px;font-weight:700;font-family:var(--font-serif);color:var(--lit-current)}
+.psalm-response .text{font-family:var(--font-serif);font-size:15px;font-weight:500;font-style:italic}
+
+/* ========== ANTIPHON ========== */
+.antiphon{
+  display:flex;gap:10px;padding:14px;
+  background:color-mix(in srgb,var(--lit-current) 5%,transparent);
+  border-radius:var(--radius-sm);
+}
+.antiphon .ant-label{font-family:var(--font-serif);font-size:13px;font-weight:500;color:var(--lit-current);width:32px;flex-shrink:0}
+.antiphon .ant-text{font-family:var(--font-serif);font-size:15px;font-weight:500;font-style:italic}
+
+/* ========== OFFICE DETAIL ========== */
+.office-section{margin-bottom:28px}
+.office-section .section-title{display:flex;align-items:baseline;gap:8px;margin-bottom:12px}
+.office-section .section-title .main{font-size:11px;font-weight:500;color:var(--text-tertiary);letter-spacing:1.5px;text-transform:uppercase}
+.office-section .section-title .sub{font-family:var(--font-serif);font-size:13px;font-style:italic;color:var(--text-tertiary)}
+.prayer-text{font-family:var(--font-serif);font-size:15.5px;line-height:1.65;color:var(--text-primary);white-space:pre-line}
+.response-line{color:var(--text-secondary)}
+.bold-response{font-weight:500;color:var(--text-primary)}
+
+/* ========== SEPARATOR ========== */
+.divider-symbol{display:flex;align-items:center;gap:12px;margin:20px 0}
+.divider-symbol .line{flex:1;height:0.5px;background:var(--separator)}
+.divider-symbol .sym{color:var(--separator);font-size:8px}
+
+/* ========== SLIDER ========== */
+.slider-row{display:flex;align-items:center;gap:12px}
+.slider-row input[type=range]{flex:1;accent-color:var(--lit-current)}
+.slider-row .small-a{font-family:var(--font-serif);font-size:13px;color:var(--text-tertiary)}
+.slider-row .big-a{font-family:var(--font-serif);font-size:22px;color:var(--text-tertiary)}
+
+/* ========== THEME CARDS ========== */
+.theme-cards{display:flex;gap:12px}
+.theme-card{
+  flex:1;text-align:center;cursor:pointer;
+}
+.theme-card .preview{
+  height:48px;border-radius:8px;display:flex;align-items:center;justify-content:center;
+  border:0.5px solid var(--separator);margin-bottom:8px;font-size:18px;
+}
+.theme-card.selected .preview{border:2px solid var(--lit-current)}
+.theme-card .label{font-size:12px;color:var(--text-secondary)}
+.theme-card.selected .label{color:var(--text-primary)}
+
+/* ========== COLOR DOTS ========== */
+.color-dots{display:flex;gap:12px;justify-content:center;margin-top:8px}
+.color-dot{text-align:center}
+.color-dot .dot{width:24px;height:24px;border-radius:50%;margin:0 auto 4px}
+.color-dot .name{font-size:10px;color:var(--text-tertiary)}
+
+/* ========== MODAL (bottom sheet) ========== */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:200;
+  display:none;align-items:flex-end;justify-content:center;
+}
+.modal-overlay.active{display:flex}
+.modal-sheet{
+  background:var(--parchment);border-radius:16px 16px 0 0;
+  width:100%;max-width:430px;max-height:70vh;overflow-y:auto;
+  padding:12px var(--pad-h) 32px;
+  animation:slideUp .3s ease;
+}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.modal-handle{width:36px;height:4px;border-radius:2px;background:var(--separator);margin:0 auto 16px}
+
+/* ========== SUB-PAGE ========== */
+.sub-page{
+  position:absolute;inset:0;background:var(--parchment-warm);z-index:50;
+  transform:translateX(100%);transition:transform .3s ease;
+  display:flex;flex-direction:column;
+}
+.sub-page.active{transform:translateX(0)}
+.sub-page-header{
+  display:flex;align-items:center;padding:12px var(--pad-h);
+  border-bottom:0.5px solid var(--separator);background:var(--parchment);
+  flex-shrink:0;
+}
+.sub-page-header .back{cursor:pointer;color:var(--lit-current);font-size:14px;display:flex;align-items:center;gap:4px}
+.sub-page-header .title{flex:1;text-align:center;font-size:15px;font-weight:500;margin-right:60px}
+.sub-page-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
+
+/* ========== ANIMATIONS ========== */
+.fade-in{animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ========== SCROLLBAR ========== */
+.tab-content::-webkit-scrollbar,.sub-page-body::-webkit-scrollbar{width:0}
+</style>
+</head>
+<body>
+<div class="app-container" id="app">
+
+  <!-- ==================== TAB CONTENT ==================== -->
+  <div class="tab-content" id="tabContent"></div>
+
+  <!-- ==================== TAB BAR ==================== -->
+  <div class="tab-bar">
+    <button class="tab-item active" data-tab="today" onclick="switchTab('today')">
+      <svg viewBox="0 0 24 24"><path d="M12 2a1 1 0 01.894.553l2.382 4.823 5.323.774a1 1 0 01.554 1.706l-3.852 3.756.909 5.3a1 1 0 01-1.451 1.054L12 17.35l-4.759 2.502a1 1 0 01-1.451-1.054l.909-5.3-3.852-3.756a1 1 0 01.554-1.706l5.323-.774 2.382-4.823A1 1 0 0112 2z"/></svg>
+      <span>Aujourd'hui</span>
+    </button>
+    <button class="tab-item" data-tab="readings" onclick="switchTab('readings')">
+      <svg viewBox="0 0 24 24"><path d="M4 4a2 2 0 012-2h8a2 2 0 012 2v1h2a2 2 0 012 2v13a2 2 0 01-2 2H8a2 2 0 01-2-2v-1H4a2 2 0 01-2-2V6a2 2 0 012-2zm4 16h10V7h-2v10a2 2 0 01-2 2H8v1zm6-4H6V4h8v12z"/></svg>
+      <span>Lectures</span>
+    </button>
+    <button class="tab-item" data-tab="hours" onclick="switchTab('hours')">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+      <span>Heures</span>
+    </button>
+    <button class="tab-item" data-tab="more" onclick="switchTab('more')">
+      <svg viewBox="0 0 24 24"><path d="M6 10a2 2 0 110 4 2 2 0 010-4zm6 0a2 2 0 110 4 2 2 0 010-4zm6 0a2 2 0 110 4 2 2 0 010-4z"/></svg>
+      <span>Plus</span>
+    </button>
+  </div>
+
+  <!-- ==================== SUB-PAGES ==================== -->
+  <div class="sub-page" id="subPage">
+    <div class="sub-page-header">
+      <div class="back" onclick="closeSubPage()">&#8592; Retour</div>
+      <div class="title" id="subPageTitle"></div>
+    </div>
+    <div class="lit-bar"></div>
+    <div class="sub-page-body" id="subPageBody"></div>
+  </div>
+
+  <!-- ==================== MODAL ==================== -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal-sheet" id="modalSheet">
+      <div class="modal-handle"></div>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===================================================================
+// DATA
+// ===================================================================
+const DATA = {
+  date: 'Jeudi 5 mars 2026',
+  title: 'Jeudi de la 1re semaine de Carême',
+  subtitle: 'Férie — Temps du Carême',
+  season: 'Carême',
+  color: 'violet',
+  psalterWeek: 'I',
+  cycle: 'A',
+  weekdayCycle: 'I',
+  celebrations: [
+    { id:'ferial', name:'Férie du Jeudi — 1re semaine de Carême', rank:'Férie', color:'violet', selected:true },
+    { id:'perpetua', name:'Saintes Perpétue et Félicité, martyres', rank:'Mémoire facultative', color:'red', selected:false }
+  ],
+  collect: "Accorde-nous, Seigneur, de trouver notre joie dans ta louange, car c'est en t'aimant sans cesse que nous aurons le bonheur durable\u00a0; puisque le bonheur véritable et total est de servir l'auteur de tout bien. Par Jésus Christ, ton Fils, notre Seigneur.",
+  prayerOfferings: "Que cette offrande, Seigneur, nous purifie et nous renouvelle\u00a0; qu'elle soit pour ceux qui font ta volonté la source d'une récompense éternelle. Par Jésus Christ.",
+  prayerCommunion: "Dieu de miséricorde, que la communion à ton sacrement nous garde du péché et nous donne la force pour accomplir tes commandements. Par Jésus Christ.",
+  martyrology: {
+    name: 'Saintes Perpétue et Félicité',
+    titles: 'Martyres',
+    death: '7 mars 203',
+    bio: "Perpétue était une jeune femme noble de Carthage, catéchumène de vingt-deux ans et mère d'un enfant. Félicité, sa servante, était enceinte. Arrêtées avec d'autres catéchumènes en 203, elles furent baptisées en prison puis livrées aux bêtes dans l'amphithéâtre de Carthage, sous Septime Sévère."
+  },
+  offices: [
+    { id:'vigiles', name:'Vigiles', icon:'&#9789;', hour:'—', suggested:false, prayed:true },
+    { id:'laudes', name:'Laudes', icon:'&#9788;', hour:'7h', suggested:false, prayed:true },
+    { id:'tierce', name:'Tierce', icon:'&#9737;', hour:'9h', suggested:false, prayed:false },
+    { id:'sexte', name:'Sexte', icon:'&#9728;', hour:'12h', suggested:false, prayed:false },
+    { id:'none', name:'None', icon:'&#9729;', hour:'15h', suggested:true, prayed:false },
+    { id:'vepres', name:'Vêpres', icon:'&#127749;', hour:'18h', suggested:false, prayed:false },
+    { id:'complies', name:'Complies', icon:'&#9790;', hour:'21h', suggested:false, prayed:false }
+  ],
+  readings: [
+    {
+      type:'Première lecture', ref:'Est 14, 1.3-5.12-14',
+      text: "En ces jours-là, la reine Esther, saisie d'une angoisse mortelle, se réfugia auprès du Seigneur.\n\nElle se prosterna contre terre avec ses servantes, du matin jusqu'au soir, et elle dit\u00a0:\n\n«\u00a0Dieu d'Abraham, Dieu d'Isaac, Dieu de Jacob, tu es béni. Viens à mon secours, car je suis seule et je n'ai pas d'autre défenseur que toi, Seigneur.\n\nTu connais toutes choses. Tu sais que je hais la gloire des impies et que j'ai horreur de la couche des incirconcis et de tout étranger.\n\nSouviens-toi, Seigneur\u00a0; manifeste-toi au jour de notre détresse. Et moi, donne-moi du courage, Roi des dieux et Maître de toute autorité.\n\nMets sur mes lèvres une parole harmonieuse quand je serai en présence du lion\u00a0; change son cœur et inspire-lui la haine de celui qui nous combat.\n\nEt nous, délivre-nous par ta main\u00a0; viens me secourir, car je suis seule et je n'ai que toi, Seigneur.\u00a0»",
+      closing: '— Parole du Seigneur.'
+    },
+    {
+      type:'Psaume responsorial', ref:'Ps 137 (138), 1-2a, 2bc-3, 7c-8',
+      response: "Quand je t'appelle, tu m'exauces, Seigneur.",
+      text: "De tout mon cœur, Seigneur, je te rends grâce\u00a0:\ntu as entendu les paroles de ma bouche.\nJe te chante en présence des anges,\nvers ton temple sacré, je me prosterne.\n\nJe rends grâce à ton nom pour ton amour et ta vérité,\ncar tu élèves, au-dessus de tout, ton nom et ta parole.\nLe jour où tu répondis à mon appel,\ntu fis grandir en mon âme la force.\n\nTa droite me rend vainqueur.\nLe Seigneur fait tout pour moi\u00a0!\nSeigneur, éternel est ton amour\u00a0:\nn'arrête pas l'œuvre de tes mains."
+    },
+    {
+      type:'Acclamation', ref:'Ps 50, 12a.14a',
+      text: "Gloire et louange à toi, Seigneur Jésus.\nCrée en moi un cœur pur, ô mon Dieu\u00a0;\nrends-moi la joie d'être sauvé.\nGloire et louange à toi, Seigneur Jésus."
+    },
+    {
+      type:'Évangile', ref:'Mt 7, 7-12', gospel: true,
+      text: "En ce temps-là, Jésus disait à ses disciples\u00a0:\n\n«\u00a0Demandez, on vous donnera\u00a0; cherchez, vous trouverez\u00a0; frappez, on vous ouvrira. En effet, quiconque demande reçoit\u00a0; qui cherche trouve\u00a0; à qui frappe, on ouvrira.\n\nLequel d'entre vous donnerait une pierre à son fils qui lui demande du pain\u00a0? ou un serpent, quand il lui demande un poisson\u00a0?\n\nSi donc vous, qui êtes mauvais, vous savez donner de bonnes choses à vos enfants, combien plus votre Père qui est aux cieux donnera-t-il de bonnes choses à ceux qui les lui demandent\u00a0!\n\nDonc, tout ce que vous voudriez que les autres fassent pour vous, faites-le pour eux, vous aussi\u00a0: voilà ce que disent la Loi et les Prophètes.\u00a0»",
+      closing: '— Acclamons la Parole de Dieu.'
+    }
+  ],
+  commentary: {
+    author: 'Saint Jean Chrysostome',
+    source: "Homélie 23 sur l'Évangile de Matthieu",
+    sourceType: 'Patristique',
+    text: "Le Seigneur ne dit pas simplement «\u00a0Demandez\u00a0», mais il insiste avec force\u00a0: «\u00a0Cherchez.\u00a0» Car il faut que celui qui cherche Dieu le fasse avec toute la ferveur et l'ardeur dont il est capable, en rejetant loin de lui tout ce qui l'empêche de trouver.\n\nC'est ce que veulent dire les mots\u00a0: «\u00a0Frappez, et l'on vous ouvrira.\u00a0» Car il faut s'approcher de Dieu avec empressement et une prière ardente. Ne vous découragez pas dans votre demande."
+  },
+  laudsSections: [
+    { title:'Introduction', text:'℣ Seigneur, ouvre mes lèvres.\n℟ Et ma bouche publiera ta louange.' },
+    { title:'Hymne', text:"Splendeur jaillie du sein de Dieu,\nLumière née de la lumière,\nJour, tu dissipes dans les cieux\nLa ténébreuse nuit de la terre.\n\nVrai soleil, sur nous resplendis\nD'un éclat qui jamais ne décline\u00a0;\nEt du Saint-Esprit répandis\nLes rayons dans nos poitrines." },
+    { title:'Psaume 56 (57)', subtitle:'Prière du matin dans l\'épreuve', text:"Pitié, mon Dieu, pitié pour moi,\nen toi je me réfugie\u00a0;\nje me réfugie à l'ombre de tes ailes\nen attendant que passe le malheur.\n\nJe crie vers Dieu, le Très-Haut,\nvers Dieu qui fera tout pour moi.\nDu ciel, qu'il m'envoie le salut,\nqu'il confonde celui qui me poursuit\u00a0;\n\nque Dieu m'envoie son amour et sa vérité\u00a0!\nJe suis couché au milieu de lions,\ndes hommes qui ont pour dents des lances et des flèches,\npour langue, une épée acérée." },
+    { title:'Antienne', text:"Pitié, mon Dieu, pitié pour moi\u00a0: en toi je me réfugie.", antiphon:true },
+    { title:'Cantique (1 S 2)', subtitle:"Action de grâce de la mère de Samuel", text:"Mon cœur exulte dans le Seigneur,\nle Seigneur m'a donné la force,\nma bouche a de quoi confondre mes ennemis\u00a0:\noui, je me réjouis de ton salut\u00a0!\n\nNul n'est saint comme le Seigneur,\nil n'y a pas d'autre Dieu que toi\u00a0;\npas de Rocher comme notre Dieu\u00a0!" },
+    { title:'Lecture brève', subtitle:'Is 66, 1-2', text:"Ainsi parle le Seigneur\u00a0: Le ciel est mon trône et la terre, l'escabeau de mes pieds. Quelle maison pourriez-vous me bâtir\u00a0? En quel lieu me faire reposer\u00a0? Tout cela, c'est ma main qui l'a fait, et tout cela est à moi — oracle du Seigneur. Celui que je regarde, c'est le pauvre, l'humilié, celui qui tremble à ma parole." },
+    { title:'Répons bref', text:'℣ Dans la détresse, je crie vers le Seigneur\u00a0;\n℟ Et lui me répond.', response:true },
+    { title:'Cantique de Zacharie', subtitle:'Lc 1, 68-79', text:"Béni soit le Seigneur, le Dieu d'Israël,\nqui visite et rachète son peuple.\n\nIl a fait surgir la force qui nous sauve\ndans la maison de David, son serviteur,\ncomme il l'avait dit par la bouche des saints,\npar ses prophètes, depuis les temps anciens\u00a0:\n\nsalut qui nous arrache à l'ennemi,\nà la main de tous ceux qui nous haïssent." },
+    { title:'Oraison', text:"Accorde-nous, Seigneur, de trouver notre joie dans ta louange, car c'est en t'aimant sans cesse que nous aurons le bonheur durable\u00a0; puisque le bonheur véritable et total est de servir l'auteur de tout bien. Par Jésus Christ, ton Fils, notre Seigneur." },
+    { title:'Conclusion', text:'℣ Que le Seigneur nous bénisse, qu\'il nous garde de tout mal et nous conduise à la vie éternelle.\n℟ Amen.' }
+  ]
+};
+
+// Determine suggested office based on time
+const hour = new Date().getHours();
+DATA.offices.forEach(o => o.suggested = false);
+if (hour < 6) DATA.offices[0].suggested = true;
+else if (hour < 9) DATA.offices[1].suggested = true;
+else if (hour < 12) DATA.offices[2].suggested = true;
+else if (hour < 14) DATA.offices[3].suggested = true;
+else if (hour < 17) DATA.offices[4].suggested = true;
+else if (hour < 21) DATA.offices[5].suggested = true;
+else DATA.offices[6].suggested = true;
+
+const suggestedOffice = DATA.offices.find(o => o.suggested);
+
+// ===================================================================
+// TAB SWITCHING
+// ===================================================================
+let currentTab = 'today';
+
+function switchTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.tab-item').forEach(el => {
+    el.classList.toggle('active', el.dataset.tab === tab);
+  });
+  renderTab(tab);
+  document.getElementById('tabContent').scrollTop = 0;
+}
+
+function renderTab(tab) {
+  const el = document.getElementById('tabContent');
+  const renderers = { today: renderToday, readings: renderReadings, hours: renderHours, more: renderMore };
+  el.innerHTML = renderers[tab]();
+}
+
+// ===================================================================
+// TAB 1 — AUJOURD'HUI
+// ===================================================================
+function renderToday() {
+  const selCeleb = DATA.celebrations.find(c => c.selected) || DATA.celebrations[0];
+  return `
+    <div class="lit-bar"></div>
+    <div class="content-pad fade-in">
+      <!-- Date nav -->
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+        <span class="t-caption" style="cursor:pointer">&#8592; 4 mars</span>
+        <span class="t-caption" style="cursor:pointer">6 mars &#8594;</span>
+      </div>
+
+      <!-- Title -->
+      <div style="text-align:center;margin-bottom:24px">
+        <h1 class="t-serif" style="font-size:24px;font-weight:600;margin-bottom:6px">${DATA.title}</h1>
+        <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:4px">
+          <span style="width:3px;height:16px;background:var(--lit-current);border-radius:2px;display:inline-block"></span>
+          <span style="font-size:14px;color:var(--text-secondary)">${DATA.subtitle}</span>
+        </div>
+        <span class="t-caption">Semaine du Psautier : ${DATA.psalterWeek}</span>
+      </div>
+
+      <!-- Suggested Office -->
+      <div class="section">
+        <div style="display:flex;justify-content:space-between;margin-bottom:12px">
+          <span class="t-section">OFFICE SUGGÉRÉ</span>
+          <span class="t-caption">${new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})}</span>
+        </div>
+        <div class="card card--lit" style="cursor:pointer" onclick="openOfficeDetail()">
+          <div style="display:flex;align-items:center;gap:14px">
+            <span style="font-size:22px;color:var(--lit-current);width:32px;text-align:center">${suggestedOffice.icon}</span>
+            <div style="flex:1">
+              <div class="t-label" style="font-size:15px">${suggestedOffice.name} — Prière${hour<9?' du matin':hour<17?' du milieu du jour':hour<21?' du soir':' de la nuit'}</div>
+              <div class="t-serif" style="font-size:14px;font-style:italic;color:var(--text-secondary);margin-top:3px">« Seigneur, apprends-nous à compter nos jours… »</div>
+            </div>
+            <span class="t-accent" style="font-size:13px;font-weight:500">Prier →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Celebrations -->
+      <div class="section">
+        <div class="section-header"><span class="t-section">CÉLÉBRATIONS DU JOUR</span></div>
+        ${DATA.celebrations.map(c => `
+          <div class="card ${c.selected?'card--lit':''}" style="margin-bottom:10px;cursor:pointer;display:flex;align-items:center;gap:14px" onclick="selectCelebration('${c.id}')">
+            <div class="radio ${c.selected?'selected':''}"></div>
+            <div style="flex:1">
+              <div class="t-serif" style="font-size:15px;${c.selected?'font-weight:500':'color:var(--text-secondary)'}">${c.name}</div>
+              <div class="t-caption" style="margin-top:3px">${c.rank}</div>
+            </div>
+            ${!c.selected?'<span style="color:var(--text-tertiary);font-size:14px">&#9432;</span>':''}
+          </div>
+        `).join('')}
+      </div>
+
+      <!-- Collect -->
+      <div class="section">
+        <div class="section-header"><span class="t-section">ORAISON DU JOUR</span></div>
+        <div class="card">
+          <div class="t-label t-secondary" style="font-size:13px;margin-bottom:12px">Collecte</div>
+          <div class="t-serif" style="font-size:16px;line-height:1.65">${DATA.collect}</div>
+          <div style="margin-top:14px;display:flex;gap:10px">
+            <button class="btn-pill" onclick="showModal('Sur les offrandes',DATA.prayerOfferings)">Sur les offrandes</button>
+            <button class="btn-pill" onclick="showModal('Après la communion',DATA.prayerCommunion)">Après la communion</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Martyrology -->
+      <div class="section">
+        <div class="section-header"><span class="t-section">MÉMOIRE DU JOUR</span></div>
+        <div class="card card--lit">
+          <div class="t-serif" style="font-size:18px;font-weight:600;margin-bottom:4px">${DATA.martyrology.name}</div>
+          <div style="display:flex;gap:8px;margin-bottom:12px">
+            <span class="t-caption">${DATA.martyrology.titles}</span>
+            <span class="t-caption">(&#10013; ${DATA.martyrology.death})</span>
+          </div>
+          <div class="t-serif" style="font-size:15px;line-height:1.6;color:var(--text-secondary)">${DATA.martyrology.bio}</div>
+          <div style="text-align:right;margin-top:10px">
+            <span class="t-accent" style="font-size:13px;font-weight:500;cursor:pointer">Lire plus →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- All Offices Grid -->
+      <div class="section">
+        <div class="section-header"><span class="t-section">TOUS LES OFFICES</span></div>
+        <div class="office-grid" style="grid-template-columns:repeat(4,1fr)">
+          ${DATA.offices.map(o => `
+            <div class="office-cell ${o.suggested?'suggested':''}" onclick="openOfficeDetail()">
+              <div class="name">${o.name}</div>
+              <div class="marker">
+                ${o.prayed?'<span style="font-size:9px;color:var(--text-tertiary)">&#10003;</span>':
+                  o.suggested?'<span style="width:6px;height:6px;border-radius:50%;background:var(--lit-current);display:inline-block"></span>':''}
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        <div style="display:flex;gap:16px;margin-top:8px">
+          <span class="t-caption" style="display:flex;align-items:center;gap:4px"><span style="font-size:9px">&#10003;</span> prié</span>
+          <span class="t-caption" style="display:flex;align-items:center;gap:4px"><span style="width:6px;height:6px;border-radius:50%;background:var(--lit-current);display:inline-block"></span> suggéré</span>
+        </div>
+      </div>
+    </div>`;
+}
+
+function selectCelebration(id) {
+  DATA.celebrations.forEach(c => c.selected = c.id === id);
+  renderTab('today');
+}
+
+// ===================================================================
+// TAB 2 — LECTURES
+// ===================================================================
+function renderReadings() {
+  return `
+    <div class="lit-bar"></div>
+    <div class="content-pad fade-in">
+      <!-- Header -->
+      <div style="text-align:center;margin-bottom:28px">
+        <div class="t-section" style="margin-bottom:6px">${DATA.title.toUpperCase()}</div>
+        <div class="t-caption">Année ${DATA.cycle} — Cycle ${DATA.weekdayCycle}</div>
+      </div>
+
+      <!-- Readings -->
+      ${DATA.readings.map((r, i) => `
+        ${i > 0 ? '<div class="reading-sep"><div class="line"></div></div>' : ''}
+        <div style="margin-bottom:8px">
+          <!-- Type header -->
+          <div class="reading-sep" style="margin-top:0;margin-bottom:12px">
+            <div class="line" style="max-width:20px"></div>
+            <div class="label">${r.type}</div>
+            <div class="line"></div>
+          </div>
+
+          ${r.gospel ? '<div style="display:flex;align-items:center;gap:6px;margin-bottom:8px"><span style="font-size:12px;color:var(--lit-current)">&#10013;</span><span class="t-serif" style="font-size:14px;font-style:italic;color:var(--text-secondary)">Évangile de Jésus Christ selon saint Matthieu</span></div>' : ''}
+
+          <div class="t-label t-secondary" style="font-size:13px;margin-bottom:10px">${r.ref}</div>
+
+          ${r.response ? `<div class="psalm-response"><span class="r">℟</span><span class="text">${r.response}</span></div>` : ''}
+
+          ${(r.type === 'Première lecture' || r.gospel) ?
+            `<div class="reading-text"><span class="lettrine">${r.text[0]}</span>${r.text.slice(1).replace(/\n\n/g,'</p><p style="margin-top:10px">').replace(/\n/g,'<br>')}</div>` :
+            `<div class="reading-text">${r.text.replace(/\n\n/g,'</p><p style="margin-top:10px">').replace(/\n/g,'<br>')}</div>`
+          }
+
+          ${r.closing ? `<div class="t-serif" style="font-size:14px;font-weight:500;color:var(--text-secondary);margin-top:12px">${r.closing}</div>` : ''}
+        </div>
+      `).join('')}
+
+      <!-- Commentary -->
+      <div class="reading-sep"><div class="line"></div></div>
+      <div class="section">
+        <div class="section-header"><span class="t-section">COMMENTAIRE</span></div>
+        <div class="card card--lit">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+            <span style="font-size:16px;color:var(--lit-current)">&#10013;</span>
+            <div>
+              <div class="t-serif" style="font-size:16px;font-weight:600">${DATA.commentary.author}</div>
+              <div class="t-serif" style="font-size:14px;font-style:italic;color:var(--text-secondary)">${DATA.commentary.source}</div>
+            </div>
+          </div>
+          <div class="reading-text">${DATA.commentary.text.replace(/\n\n/g,'</p><p style="margin-top:10px">')}</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:14px">
+            <span class="t-caption">Source : ${DATA.commentary.sourceType}</span>
+            <span class="t-tertiary" style="font-size:13px">&#9432;</span>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+// ===================================================================
+// TAB 3 — HEURES
+// ===================================================================
+let selectedSource = 'roman';
+const sources = [
+  {id:'roman', name:'Liturgie des Heures (Église)'},
+  {id:'benedictine', name:'Office bénédictin'},
+  {id:'dominican', name:'Office dominicain'},
+  {id:'jerusalem', name:'Fraternités de Jérusalem'}
+];
+
+function renderHours() {
+  const srcName = sources.find(s=>s.id===selectedSource).name;
+  const offices = [
+    {id:'vigiles',name:"OFFICE DES LECTURES",sub:'Vigiles',icon:'&#9789;',comp:'Hymne · Psaumes · Lectures',major:true},
+    {id:'laudes',name:"LAUDES",sub:'Prière du matin',icon:'&#9788;',comp:'Hymne · Psaumes · Cantique · Intercessions',major:true},
+    {id:'tierce',name:"TIERCE",icon:'&#9737;',hour:'9h',mid:true},
+    {id:'sexte',name:"SEXTE",icon:'&#9728;',hour:'12h',mid:true},
+    {id:'none',name:"NONE",icon:'&#9729;',hour:'15h',mid:true},
+    {id:'vepres',name:"VÊPRES",sub:'Prière du soir',icon:'&#127749;',comp:'Hymne · Psaumes · Cantique · Intercessions',major:true},
+    {id:'complies',name:"COMPLIES",sub:'Prière de la nuit',icon:'&#9790;',comp:'Hymne · Psaume · Cantique de Siméon',major:true}
+  ];
+
+  const isSuggested = (id) => suggestedOffice.id === id;
+
+  return `
+    <div class="lit-bar"></div>
+    <div class="content-pad fade-in">
+      <div style="text-align:center;margin-bottom:24px">
+        <div class="t-section" style="margin-bottom:6px">LITURGIE DES HEURES</div>
+        <div class="t-serif" style="font-size:16px">Jeudi — ${DATA.title}</div>
+        <div class="t-caption" style="margin-top:4px">Psautier : Semaine ${DATA.psalterWeek}</div>
+      </div>
+
+      <!-- Source selector -->
+      <div class="section">
+        <div class="section-header"><span class="t-section">SOURCE</span></div>
+        <div class="card" style="padding:12px 16px;cursor:pointer" onclick="showSourcePicker()">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <span class="t-label" style="font-size:14px">${srcName}</span>
+            <span class="t-tertiary" style="font-size:12px">&#9662;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Major offices -->
+      ${offices.filter(o=>o.major && o.id!=='vepres' && o.id!=='complies').map(o => renderOfficeCard(o, isSuggested(o.id))).join('')}
+
+      <!-- Mid-day row -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:4px">
+        ${offices.filter(o=>o.mid).map(o => `
+          <div class="office-cell ${isSuggested(o.id)?'suggested':''}" style="padding:14px 4px;cursor:pointer" onclick="openOfficeDetail()">
+            <span style="font-size:20px;color:${isSuggested(o.id)?'var(--lit-current)':'var(--text-secondary)'}">${o.icon}</span>
+            <div class="name" style="margin-top:6px;font-size:11px;letter-spacing:.5px;${isSuggested(o.id)?'color:var(--lit-current)':''}">${o.name}</div>
+            <div class="t-caption" style="margin-top:3px">${o.hour}</div>
+            ${isSuggested(o.id)?'<div style="margin-top:4px"><span style="width:5px;height:5px;border-radius:50%;background:var(--lit-current);display:inline-block"></span></div>':'<div style="height:9px"></div>'}
+          </div>
+        `).join('')}
+      </div>
+      <div class="t-caption" style="text-align:center;margin-bottom:16px">Prière du milieu du jour</div>
+
+      ${offices.filter(o=>o.id==='vepres'||o.id==='complies').map(o => renderOfficeCard(o, isSuggested(o.id))).join('')}
+    </div>`;
+}
+
+function renderOfficeCard(o, suggested) {
+  return `
+    <div class="card ${suggested?'card--lit':''}" style="margin-bottom:12px;cursor:pointer;display:flex;align-items:center;gap:14px" onclick="openOfficeDetail()">
+      <span style="font-size:24px;color:${suggested?'var(--lit-current)':'var(--text-secondary)'};width:36px;text-align:center">${o.icon}</span>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span class="t-label" style="font-size:13px;letter-spacing:.5px;${suggested?'color:var(--lit-current)':''}">${o.name}</span>
+          ${suggested?'<span style="width:6px;height:6px;border-radius:50%;background:var(--lit-current);display:inline-block"></span>':''}
+        </div>
+        <div class="t-caption" style="margin-top:3px">${o.sub||''}</div>
+        <div class="t-caption" style="opacity:.7;margin-top:2px;font-size:12px">${o.comp||''}</div>
+      </div>
+      <span class="t-tertiary" style="font-size:12px">&#8250;</span>
+    </div>`;
+}
+
+function showSourcePicker() {
+  let html = `<h3 class="t-serif" style="font-size:18px;font-weight:600;margin-bottom:20px">Source de l'office</h3>`;
+  sources.forEach(s => {
+    html += `<div style="display:flex;align-items:center;gap:14px;padding:8px 0;cursor:pointer" onclick="selectedSource='${s.id}';closeModal();renderTab('hours')">
+      <div class="radio ${selectedSource===s.id?'selected':''}"></div>
+      <span style="font-size:15px;${selectedSource===s.id?'color:var(--text-primary)':'color:var(--text-secondary)'}">${s.name}</span>
+    </div>`;
+  });
+  document.getElementById('modalContent').innerHTML = html;
+  document.getElementById('modalOverlay').classList.add('active');
+}
+
+// ===================================================================
+// TAB 4 — PLUS
+// ===================================================================
+function renderMore() {
+  return `
+    <div class="lit-bar"></div>
+    <div class="content-pad fade-in">
+      <!-- Brand -->
+      <div style="text-align:center;margin-bottom:32px;padding:8px 0">
+        <div class="t-serif" style="font-size:28px;font-weight:300;letter-spacing:6px">CELLA</div>
+        <div class="t-serif" style="font-size:14px;font-style:italic;color:var(--text-secondary);margin-top:8px">« Il m'a introduite dans son cellier… »</div>
+        <div class="t-caption" style="margin-top:4px">Ct 2,4</div>
+      </div>
+
+      <!-- Explorer -->
+      <div class="section">
+        <div class="section-header"><span class="t-section">EXPLORER</span></div>
+        <div class="list-group">
+          ${[
+            {icon:'&#128214;',title:'Bible',sub:'Textes de l\'Écriture Sainte'},
+            {icon:'&#128591;',title:'Recueil de prières',sub:'Prières traditionnelles et dévotions'},
+            {icon:'&#9962;',title:'Messe.info',sub:'Horaires des messes près de chez vous'},
+            {icon:'&#127911;',title:'Podcasts',sub:"Audio d'une communauté ou paroisse"},
+            {icon:'&#128197;',title:'Agenda paroissial',sub:"Événements de votre communauté"}
+          ].map(r => `
+            <div class="list-row">
+              <span class="icon">${r.icon}</span>
+              <div style="flex:1"><div class="t-label" style="font-size:15px">${r.title}</div><div class="t-caption" style="margin-top:2px">${r.sub}</div></div>
+              <span class="badge">Bientôt</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <!-- Settings -->
+      <div class="section">
+        <div class="section-header"><span class="t-section">RÉGLAGES</span></div>
+        <div class="list-group">
+          <div class="list-row" onclick="openSubPage('calendar','Calendrier & Lieu',renderCalendarSettings)"><span class="icon">&#127760;</span><span class="t-label" style="font-size:15px;flex:1">Calendrier & Lieu</span><span class="chevron">&#8250;</span></div>
+          <div class="list-row" onclick="openSubPage('community','Communauté religieuse',renderCommunitySettings)"><span class="icon">&#128101;</span><span class="t-label" style="font-size:15px;flex:1">Communauté religieuse</span><span class="chevron">&#8250;</span></div>
+          <div class="list-row" onclick="openSubPage('appearance','Apparence',renderAppearanceSettings)"><span class="icon">&#9680;</span><span class="t-label" style="font-size:15px;flex:1">Apparence</span><span class="chevron">&#8250;</span></div>
+          <div class="list-row"><span class="icon">&#65;a</span><span class="t-label" style="font-size:15px;flex:1">Langue</span><span class="chevron">&#8250;</span></div>
+        </div>
+      </div>
+
+      <!-- About -->
+      <div class="section">
+        <div class="section-header"><span class="t-section">À PROPOS</span></div>
+        <div class="list-group">
+          <div class="list-row" onclick="openSubPage('about','Qu\\'est-ce que Cella ?',renderAbout)"><span class="icon">&#10013;</span><span class="t-label" style="font-size:15px;flex:1">Qu'est-ce que Cella ?</span><span class="chevron">&#8250;</span></div>
+          <div class="list-row"><span class="icon">&#9881;</span><span class="t-label" style="font-size:15px;flex:1">Propulsé par Romcal</span><span class="chevron">&#8250;</span></div>
+        </div>
+      </div>
+    </div>`;
+}
+
+// ===================================================================
+// SUB-PAGES
+// ===================================================================
+function openSubPage(id, title, renderFn) {
+  document.getElementById('subPageTitle').textContent = title;
+  document.getElementById('subPageBody').innerHTML = `<div class="content-pad">${renderFn()}</div>`;
+  document.getElementById('subPage').classList.add('active');
+  document.getElementById('subPageBody').scrollTop = 0;
+}
+function closeSubPage() {
+  document.getElementById('subPage').classList.remove('active');
+}
+
+// -- About --
+function renderAbout() {
+  return `
+    <div style="text-align:center;margin-bottom:32px">
+      <div style="font-size:28px;color:var(--lit-current)">&#10013;</div>
+      <div class="t-serif" style="font-size:32px;font-weight:300;letter-spacing:8px;margin-top:12px">CELLA</div>
+    </div>
+
+    <div class="divider-symbol"><div class="line"></div><span class="sym">&#10022;</span><div class="line"></div></div>
+
+    <div style="margin-bottom:32px">
+      <div class="t-section" style="margin-bottom:14px">LA CELLULE MONASTIQUE</div>
+      <div class="t-serif" style="font-size:16px;line-height:1.65">Dans la tradition des Pères du désert, la cellule est le lieu du combat spirituel et de la rencontre intime avec Dieu. Abba Moïse disait :</div>
+      <div class="t-serif" style="font-size:17px;font-style:italic;color:var(--lit-current);line-height:1.65;margin:12px 0">« Va, assieds-toi dans ta cellule, et ta cellule t'enseignera tout. »</div>
+      <div class="t-serif" style="font-size:16px;line-height:1.65">La cellule n'est pas une prison ; c'est un espace choisi, librement habité, où le silence permet d'entendre la voix qui parle au cœur.</div>
+    </div>
+
+    <div class="divider-symbol"><div class="line"></div><span class="sym">&#183;</span><div class="line"></div></div>
+
+    <div style="margin-bottom:32px">
+      <div class="t-section" style="margin-bottom:14px">LE CELLIER DU CANTIQUE</div>
+      <div class="t-serif" style="font-size:17px;font-style:italic;color:var(--lit-current);line-height:1.65">
+        « Il m'a introduite dans son cellier,<br>
+        et la bannière qu'il dresse sur moi,<br>
+        c'est l'amour. »
+      </div>
+      <div class="t-caption" style="margin:6px 0 14px">— Ct 2,4</div>
+      <div class="t-serif" style="font-size:16px;line-height:1.65">Dans le Cantique des Cantiques, le cellier (<em>cella vinaria</em>) est le lieu de l'ivresse d'amour, où l'Époux — le Christ — fait entrer l'âme dans l'intimité de sa présence.</div>
+      <div class="t-serif" style="font-size:16px;line-height:1.65;margin-top:12px">Saint Bernard y voit le sommet de la vie contemplative : être conduit là où le vin de la grâce est en abondance.</div>
+    </div>
+
+    <div class="divider-symbol"><div class="line"></div><span class="sym">&#183;</span><div class="line"></div></div>
+
+    <div class="t-serif" style="font-size:16px;line-height:1.65;margin-bottom:32px">Cella veut être cet espace sur votre téléphone : un seuil que vous franchissez pour entrer dans la prière. Pas de bruit, pas de distraction. Juste la Parole, les psaumes, et le rythme de la liturgie qui vous porte vers Dieu.</div>
+
+    <div class="t-caption" style="text-align:center">Propulsé par Romcal, moteur liturgique libre.</div>`;
+}
+
+// -- Calendar Settings --
+let calSettings = { region:'europe', country:'france', diocese:'paris', epiphany:true, ascension:false, corpus:true, easter:0, year:0 };
+
+function renderCalendarSettings() {
+  return `
+    <div class="section">
+      <div class="section-header"><span class="t-section">CALENDRIER LITURGIQUE</span></div>
+      <div class="card">
+        <div style="margin-bottom:14px">
+          <div class="t-caption" style="margin-bottom:6px">Région</div>
+          <select style="width:100%;padding:10px 14px;border:0.5px solid var(--separator);border-radius:var(--radius-sm);background:var(--parchment-warm);font-size:15px;font-family:var(--font-sans);color:var(--text-primary)">
+            <option selected>Europe</option><option>Amériques</option><option>Afrique</option><option>Asie</option><option>Océanie</option>
+          </select>
+        </div>
+        <div style="margin-bottom:14px">
+          <div class="t-caption" style="margin-bottom:6px">Pays</div>
+          <select style="width:100%;padding:10px 14px;border:0.5px solid var(--separator);border-radius:var(--radius-sm);background:var(--parchment-warm);font-size:15px;font-family:var(--font-sans);color:var(--text-primary)">
+            <option selected>France</option><option>Italie</option><option>Espagne</option><option>Allemagne</option><option>Belgique</option>
+          </select>
+        </div>
+        <div>
+          <div class="t-caption" style="margin-bottom:6px">Diocèse (optionnel)</div>
+          <select style="width:100%;padding:10px 14px;border:0.5px solid var(--separator);border-radius:var(--radius-sm);background:var(--parchment-warm);font-size:15px;font-family:var(--font-sans);color:var(--text-primary)">
+            <option selected>Paris</option><option>Lyon</option><option>Strasbourg</option><option>Marseille</option><option>Toulouse</option>
+          </select>
+        </div>
+      </div>
+      <div class="t-caption" style="display:flex;align-items:center;gap:6px;margin-top:8px"><span style="font-size:12px">&#9432;</span> general_roman → europe → france → paris</div>
+    </div>
+
+    <div class="section">
+      <div class="section-header"><span class="t-section">OPTIONS RÉGIONALES</span></div>
+      <div class="list-group">
+        ${renderToggleRow('Épiphanie le dimanche','Entre le 2 et le 8 janvier','epi',true)}
+        ${renderToggleRow("Ascension le dimanche","7e dimanche de Pâques",'asc',false)}
+        ${renderToggleRow("Fête-Dieu le dimanche","Dimanche après la Trinité",'corpus',true)}
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header"><span class="t-section">CALCUL DE PÂQUES</span></div>
+      <div class="list-group">
+        ${renderRadioRow('Grégorien (1583+)',true,'easter','0')}
+        ${renderRadioRow('Julien (326+)',false,'easter','1')}
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header"><span class="t-section">CADRAGE DE L'ANNÉE</span></div>
+      <div class="list-group">
+        ${renderRadioRow('Civil (janvier → décembre)',true,'yearframe','0')}
+        ${renderRadioRow('Liturgique (Avent → Christ Roi)',false,'yearframe','1')}
+      </div>
+    </div>`;
+}
+
+// -- Community Settings --
+let comSettings = { community:'', province:'' };
+
+function renderCommunitySettings() {
+  const communities = [
+    {id:'',name:'Aucune'},
+    {id:'osb',name:'Bénédictins (OSB)'},
+    {id:'op',name:'Dominicains (OP)'},
+    {id:'ofm',name:'Franciscains (OFM)'},
+    {id:'fmj',name:'Fraternités de Jérusalem (FMJ)'},
+    {id:'ocd',name:'Carmélites (OCD)'},
+    {id:'sj',name:'Jésuites (SJ)'}
+  ];
+  return `
+    <div class="t-serif" style="font-size:15px;color:var(--text-secondary);line-height:1.5;margin-bottom:24px">Activer un calendrier de communauté religieuse en plus du calendrier diocésain.</div>
+
+    <div class="section">
+      <div class="section-header"><span class="t-section">COMMUNAUTÉ</span></div>
+      <div class="list-group">
+        ${communities.map(c => renderRadioRow(c.name, comSettings.community===c.id, 'community', c.id)).join('')}
+      </div>
+    </div>
+
+    ${comSettings.community==='osb' ? `
+    <div class="section">
+      <div class="section-header"><span class="t-section">PROVINCE / MAISON</span></div>
+      <div class="list-group">
+        ${renderRadioRow('Bénédictins (général)',true,'province','gen')}
+        ${renderRadioRow('France',false,'province','fr')}
+        ${renderRadioRow('Solesmes',false,'province','sol')}
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header"><span class="t-section">OFFICE DES HEURES</span></div>
+      <div class="t-caption" style="margin-bottom:12px;line-height:1.4">La communauté sélectionnée sera proposée comme source dans l'onglet Heures.</div>
+      <div class="list-group">
+        ${renderRadioRow('Liturgie des Heures (romain)',true,'officedef','0')}
+        ${renderRadioRow('Office propre de la communauté',false,'officedef','1')}
+      </div>
+    </div>` : ''}`;
+}
+
+// -- Appearance Settings --
+let appSettings = { theme:0, textSize:16, immersive:false };
+
+function renderAppearanceSettings() {
+  return `
+    <div class="section">
+      <div class="section-header"><span class="t-section">THÈME</span></div>
+      <div class="theme-cards">
+        <div class="theme-card ${appSettings.theme===0?'selected':''}" onclick="appSettings.theme=0;refreshSubPage('appearance','Apparence',renderAppearanceSettings)">
+          <div class="preview" style="background:var(--parchment-warm)">&#9680;</div>
+          <div class="label">Auto</div>
+        </div>
+        <div class="theme-card ${appSettings.theme===1?'selected':''}" onclick="appSettings.theme=1;refreshSubPage('appearance','Apparence',renderAppearanceSettings)">
+          <div class="preview" style="background:var(--parchment)">&#9728;</div>
+          <div class="label">Clair</div>
+        </div>
+        <div class="theme-card ${appSettings.theme===2?'selected':''}" onclick="appSettings.theme=2;refreshSubPage('appearance','Apparence',renderAppearanceSettings)">
+          <div class="preview" style="background:var(--ink-dark);color:var(--parchment)">&#9790;</div>
+          <div class="label">Sombre</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header"><span class="t-section">TAILLE DU TEXTE</span></div>
+      <div class="card">
+        <div class="t-serif" style="font-size:${appSettings.textSize}px;line-height:1.65;margin-bottom:14px" id="textPreview">« Demandez, on vous donnera ; cherchez, vous trouverez ; frappez, on vous ouvrira. »</div>
+        <div class="slider-row">
+          <span class="small-a">A</span>
+          <input type="range" min="13" max="22" value="${appSettings.textSize}" oninput="appSettings.textSize=+this.value;document.getElementById('textPreview').style.fontSize=this.value+'px'">
+          <span class="big-a">A</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header"><span class="t-section">COULEUR LITURGIQUE</span></div>
+      <div class="list-group">
+        ${renderToggleRow('Fond immersif','Teinte légère de la couleur liturgique du jour','immersive',appSettings.immersive)}
+      </div>
+      <div class="color-dots">
+        ${[{c:'var(--lit-violet)',n:'Violet'},{c:'var(--lit-white)',n:'Blanc'},{c:'var(--lit-red)',n:'Rouge'},{c:'var(--lit-green)',n:'Vert'},{c:'var(--lit-rose)',n:'Rose'}].map(x=>`
+          <div class="color-dot"><div class="dot" style="background:${x.c}"></div><div class="name">${x.n}</div></div>
+        `).join('')}
+      </div>
+    </div>`;
+}
+
+function refreshSubPage(id, title, renderFn) {
+  document.getElementById('subPageBody').innerHTML = `<div class="content-pad">${renderFn()}</div>`;
+}
+
+// ===================================================================
+// OFFICE DETAIL (sub-page)
+// ===================================================================
+function openOfficeDetail() {
+  openSubPage('office', 'Laudes', renderOfficeDetail);
+}
+
+let guidedMode = false;
+let guidedStep = 0;
+
+function renderOfficeDetail() {
+  const sections = DATA.laudsSections;
+  const visibleSections = guidedMode ? sections.slice(0, guidedStep + 1) : sections;
+
+  let html = `
+    <div style="text-align:center;margin-bottom:20px">
+      <div class="t-section" style="margin-bottom:6px">LAUDES — Prière du matin</div>
+      <div class="t-serif" style="font-size:16px">${DATA.title}</div>
+      <div class="t-caption" style="margin-top:4px">Liturgie des Heures (Église)</div>
+    </div>
+
+    <div style="text-align:center;margin-bottom:24px">
+      <button class="btn-accent" onclick="guidedMode=!guidedMode;guidedStep=0;refreshSubPage('office','Laudes',renderOfficeDetail)">
+        ${guidedMode?'&#128213; Mode continu':'&#128214; Prier pas à pas'}
+      </button>
+    </div>`;
+
+  visibleSections.forEach((s, i) => {
+    if (i > 0) {
+      html += `<div class="divider-symbol"><div class="line"></div><span class="sym">&#10022;</span><div class="line"></div></div>`;
+    }
+
+    html += `<div class="office-section">`;
+    html += `<div class="section-title"><span class="main">${s.title}</span>${s.subtitle?`<span class="sub">${s.subtitle}</span>`:''}</div>`;
+
+    if (s.antiphon) {
+      html += `<div class="antiphon"><span class="ant-label">Ant.</span><span class="ant-text">${s.text}</span></div>`;
+    } else if (s.response) {
+      html += `<div class="prayer-text">${s.text.split('\n').map(line =>
+        line.startsWith('℟') ? `<span class="bold-response">${line}</span>` : `<span class="response-line">${line}</span>`
+      ).join('<br>')}</div>`;
+    } else {
+      html += `<div class="prayer-text">${s.text}</div>`;
+    }
+    html += `</div>`;
+  });
+
+  if (guidedMode && guidedStep < sections.length - 1) {
+    html += `<div style="text-align:center;margin:20px 0">
+      <button style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:100px;background:var(--lit-current);color:white;border:none;cursor:pointer;font-size:14px;font-weight:500;font-family:var(--font-sans)" onclick="guidedStep++;refreshSubPage('office','Laudes',renderOfficeDetail)">
+        Suite <span style="font-size:12px">&#9662;</span>
+      </button>
+    </div>`;
+  }
+
+  return html;
+}
+
+// ===================================================================
+// HELPERS
+// ===================================================================
+function renderToggleRow(title, subtitle, id, on) {
+  return `<div class="list-row" style="cursor:pointer" onclick="toggleSwitch('${id}',this)">
+    <div style="flex:1"><div class="t-label" style="font-size:15px">${title}</div><div class="t-caption" style="margin-top:3px">${subtitle}</div></div>
+    <div class="toggle ${on?'on':''}" data-toggle="${id}"></div>
+  </div>`;
+}
+
+function toggleSwitch(id, el) {
+  const toggle = el.querySelector('.toggle');
+  toggle.classList.toggle('on');
+}
+
+function renderRadioRow(title, selected, group, value) {
+  return `<div class="list-row" style="cursor:pointer" onclick="selectRadio('${group}','${value}',this)">
+    <div class="radio ${selected?'selected':''}" data-group="${group}"></div>
+    <span style="font-size:15px;${selected?'color:var(--text-primary)':'color:var(--text-secondary)'}">${title}</span>
+  </div>`;
+}
+
+function selectRadio(group, value, el) {
+  const parent = el.parentElement;
+  parent.querySelectorAll(`[data-group="${group}"]`).forEach(r => r.classList.remove('selected'));
+  el.querySelector('.radio').classList.add('selected');
+  parent.querySelectorAll('.list-row').forEach(r => {
+    const span = r.querySelector('span:last-child');
+    if(span) span.style.color = 'var(--text-secondary)';
+  });
+  const span = el.querySelector('span:last-child');
+  if(span) span.style.color = 'var(--text-primary)';
+
+  if(group==='community') {
+    comSettings.community = value;
+    refreshSubPage('community','Communauté religieuse',renderCommunitySettings);
+  }
+}
+
+function showModal(title, text) {
+  document.getElementById('modalContent').innerHTML = `
+    <h3 class="t-label" style="font-size:15px;margin-bottom:16px">${title}</h3>
+    <div class="t-serif" style="font-size:16px;line-height:1.65">${text}</div>`;
+  document.getElementById('modalOverlay').classList.add('active');
+}
+
+function closeModal(e) {
+  if (e && e.target !== document.getElementById('modalOverlay')) return;
+  document.getElementById('modalOverlay').classList.remove('active');
+}
+
+// ===================================================================
+// INIT
+// ===================================================================
+switchTab('today');
+</script>
+</body>
+</html>
