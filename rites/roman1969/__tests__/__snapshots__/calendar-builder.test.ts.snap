@@ -22709,7 +22709,7 @@ exports[`Testing calendar snapshots General Roman Calendar in gregorian year 1`]
       "periods": [
         "LATE_ORDINARY_TIME",
       ],
-      "precedence": "PROPER_OF_TIME_SOLEMNITY_2",
+      "precedence": "GENERAL_SOLEMNITY_3",
       "rank": "SOLEMNITY",
       "seasons": [
         "ORDINARY_TIME",
@@ -24777,6 +24777,7 @@ exports[`Testing calendar snapshots General Roman Calendar in gregorian year 1`]
       ],
       "commonsDef": [
         "Virgins",
+        "MercyWorkers",
       ],
       "cycles": CyclesMetadata {
         "properCycle": "PROPER_OF_SAINTS",
@@ -31486,12 +31487,71 @@ exports[`Testing calendar snapshots General Roman Calendar in gregorian year 1`]
       "periods": [
         "LATE_ORDINARY_TIME",
       ],
-      "precedence": "GENERAL_SOLEMNITY_3",
-      "rank": "SOLEMNITY",
+      "precedence": "COMMEMORATION_OF_ALL_THE_FAITHFUL_DEPARTED_3",
+      "rank": "FEAST",
       "seasons": [
         "ORDINARY_TIME",
       ],
       "titles": [],
+      "weekday": LiturgicalDay {
+        "allowSimilarRankItems": false,
+        "alternativeTransferDateDefs": [],
+        "calendar": {
+          "dayOfSeason": 199,
+          "dayOfWeek": 1,
+          "endOfLiturgicalYear": "2020-11-28",
+          "endOfSeason": "2020-11-28",
+          "nthDayOfWeekInMonth": 1,
+          "seasons": [
+            "ORDINARY_TIME",
+          ],
+          "startOfLiturgicalYear": "2019-12-01",
+          "startOfSeason": "2020-01-13",
+          "weekOfSeason": 31,
+        },
+        "colors": [
+          "GREEN",
+        ],
+        "commonsDef": [],
+        "cycles": CyclesMetadata {
+          "properCycle": "PROPER_OF_TIME",
+          "psalterWeek": "WEEK_3",
+          "sundayCycle": "YEAR_A",
+          "weekdayCycle": "YEAR_2",
+        },
+        "date": "2020-11-02",
+        "dateDef": {
+          "dateArgs": [
+            1,
+            31,
+          ],
+          "dateFn": "dateOfOrdinaryTime",
+          "yearOffset": 0,
+        },
+        "dateExceptions": [],
+        "fromCalendarId": "ProperOfTime",
+        "fromExtendedCalendars": [],
+        "i18nDef": [
+          "seasons:ordinary_time.weekday",
+          {
+            "dow": 1,
+            "week": 31,
+          },
+        ],
+        "id": "ordinary_time_31_monday",
+        "isHolyDayOfObligation": false,
+        "isOptional": false,
+        "martyrology": [],
+        "periods": [
+          "LATE_ORDINARY_TIME",
+        ],
+        "precedence": "WEEKDAY_13",
+        "rank": "WEEKDAY",
+        "seasons": [
+          "ORDINARY_TIME",
+        ],
+        "titles": [],
+      },
     },
   ],
   "2020-11-03": [
@@ -59893,7 +59953,7 @@ exports[`Testing calendar snapshots General Roman Calendar in gregorian year 2`]
       "periods": [
         "LATE_ORDINARY_TIME",
       ],
-      "precedence": "PROPER_OF_TIME_SOLEMNITY_2",
+      "precedence": "GENERAL_SOLEMNITY_3",
       "rank": "SOLEMNITY",
       "seasons": [
         "ORDINARY_TIME",
@@ -68550,12 +68610,71 @@ exports[`Testing calendar snapshots General Roman Calendar in gregorian year 2`]
       "periods": [
         "LATE_ORDINARY_TIME",
       ],
-      "precedence": "GENERAL_SOLEMNITY_3",
-      "rank": "SOLEMNITY",
+      "precedence": "COMMEMORATION_OF_ALL_THE_FAITHFUL_DEPARTED_3",
+      "rank": "FEAST",
       "seasons": [
         "ORDINARY_TIME",
       ],
       "titles": [],
+      "weekday": LiturgicalDay {
+        "allowSimilarRankItems": false,
+        "alternativeTransferDateDefs": [],
+        "calendar": {
+          "dayOfSeason": 200,
+          "dayOfWeek": 2,
+          "endOfLiturgicalYear": "2021-11-27",
+          "endOfSeason": "2021-11-27",
+          "nthDayOfWeekInMonth": 1,
+          "seasons": [
+            "ORDINARY_TIME",
+          ],
+          "startOfLiturgicalYear": "2020-11-29",
+          "startOfSeason": "2021-01-11",
+          "weekOfSeason": 31,
+        },
+        "colors": [
+          "GREEN",
+        ],
+        "commonsDef": [],
+        "cycles": CyclesMetadata {
+          "properCycle": "PROPER_OF_TIME",
+          "psalterWeek": "WEEK_3",
+          "sundayCycle": "YEAR_B",
+          "weekdayCycle": "YEAR_1",
+        },
+        "date": "2021-11-02",
+        "dateDef": {
+          "dateArgs": [
+            2,
+            31,
+          ],
+          "dateFn": "dateOfOrdinaryTime",
+          "yearOffset": 0,
+        },
+        "dateExceptions": [],
+        "fromCalendarId": "ProperOfTime",
+        "fromExtendedCalendars": [],
+        "i18nDef": [
+          "seasons:ordinary_time.weekday",
+          {
+            "dow": 2,
+            "week": 31,
+          },
+        ],
+        "id": "ordinary_time_31_tuesday",
+        "isHolyDayOfObligation": false,
+        "isOptional": false,
+        "martyrology": [],
+        "periods": [
+          "LATE_ORDINARY_TIME",
+        ],
+        "precedence": "WEEKDAY_13",
+        "rank": "WEEKDAY",
+        "seasons": [
+          "ORDINARY_TIME",
+        ],
+        "titles": [],
+      },
     },
   ],
   "2021-11-03": [
@@ -97141,7 +97260,7 @@ exports[`Testing calendar snapshots General Roman Calendar in gregorian year 3`]
       "periods": [
         "LATE_ORDINARY_TIME",
       ],
-      "precedence": "PROPER_OF_TIME_SOLEMNITY_2",
+      "precedence": "GENERAL_SOLEMNITY_3",
       "rank": "SOLEMNITY",
       "seasons": [
         "ORDINARY_TIME",
@@ -99327,6 +99446,7 @@ exports[`Testing calendar snapshots General Roman Calendar in gregorian year 3`]
       ],
       "commonsDef": [
         "Virgins",
+        "MercyWorkers",
       ],
       "cycles": CyclesMetadata {
         "properCycle": "PROPER_OF_SAINTS",
@@ -105684,12 +105804,71 @@ exports[`Testing calendar snapshots General Roman Calendar in gregorian year 3`]
       "periods": [
         "LATE_ORDINARY_TIME",
       ],
-      "precedence": "GENERAL_SOLEMNITY_3",
-      "rank": "SOLEMNITY",
+      "precedence": "COMMEMORATION_OF_ALL_THE_FAITHFUL_DEPARTED_3",
+      "rank": "FEAST",
       "seasons": [
         "ORDINARY_TIME",
       ],
       "titles": [],
+      "weekday": LiturgicalDay {
+        "allowSimilarRankItems": false,
+        "alternativeTransferDateDefs": [],
+        "calendar": {
+          "dayOfSeason": 201,
+          "dayOfWeek": 3,
+          "endOfLiturgicalYear": "2022-11-26",
+          "endOfSeason": "2022-11-26",
+          "nthDayOfWeekInMonth": 1,
+          "seasons": [
+            "ORDINARY_TIME",
+          ],
+          "startOfLiturgicalYear": "2021-11-28",
+          "startOfSeason": "2022-01-10",
+          "weekOfSeason": 31,
+        },
+        "colors": [
+          "GREEN",
+        ],
+        "commonsDef": [],
+        "cycles": CyclesMetadata {
+          "properCycle": "PROPER_OF_TIME",
+          "psalterWeek": "WEEK_3",
+          "sundayCycle": "YEAR_C",
+          "weekdayCycle": "YEAR_2",
+        },
+        "date": "2022-11-02",
+        "dateDef": {
+          "dateArgs": [
+            3,
+            31,
+          ],
+          "dateFn": "dateOfOrdinaryTime",
+          "yearOffset": 0,
+        },
+        "dateExceptions": [],
+        "fromCalendarId": "ProperOfTime",
+        "fromExtendedCalendars": [],
+        "i18nDef": [
+          "seasons:ordinary_time.weekday",
+          {
+            "dow": 3,
+            "week": 31,
+          },
+        ],
+        "id": "ordinary_time_31_wednesday",
+        "isHolyDayOfObligation": false,
+        "isOptional": false,
+        "martyrology": [],
+        "periods": [
+          "LATE_ORDINARY_TIME",
+        ],
+        "precedence": "WEEKDAY_13",
+        "rank": "WEEKDAY",
+        "seasons": [
+          "ORDINARY_TIME",
+        ],
+        "titles": [],
+      },
     },
   ],
   "2022-11-03": [
@@ -137578,7 +137757,7 @@ exports[`Testing calendar snapshots General Roman Calendar in liturgical year 1`
       "periods": [
         "LATE_ORDINARY_TIME",
       ],
-      "precedence": "PROPER_OF_TIME_SOLEMNITY_2",
+      "precedence": "GENERAL_SOLEMNITY_3",
       "rank": "SOLEMNITY",
       "seasons": [
         "ORDINARY_TIME",
@@ -139646,6 +139825,7 @@ exports[`Testing calendar snapshots General Roman Calendar in liturgical year 1`
       ],
       "commonsDef": [
         "Virgins",
+        "MercyWorkers",
       ],
       "cycles": CyclesMetadata {
         "properCycle": "PROPER_OF_SAINTS",
@@ -146355,12 +146535,71 @@ exports[`Testing calendar snapshots General Roman Calendar in liturgical year 1`
       "periods": [
         "LATE_ORDINARY_TIME",
       ],
-      "precedence": "GENERAL_SOLEMNITY_3",
-      "rank": "SOLEMNITY",
+      "precedence": "COMMEMORATION_OF_ALL_THE_FAITHFUL_DEPARTED_3",
+      "rank": "FEAST",
       "seasons": [
         "ORDINARY_TIME",
       ],
       "titles": [],
+      "weekday": LiturgicalDay {
+        "allowSimilarRankItems": false,
+        "alternativeTransferDateDefs": [],
+        "calendar": {
+          "dayOfSeason": 199,
+          "dayOfWeek": 1,
+          "endOfLiturgicalYear": "2020-11-28",
+          "endOfSeason": "2020-11-28",
+          "nthDayOfWeekInMonth": 1,
+          "seasons": [
+            "ORDINARY_TIME",
+          ],
+          "startOfLiturgicalYear": "2019-12-01",
+          "startOfSeason": "2020-01-13",
+          "weekOfSeason": 31,
+        },
+        "colors": [
+          "GREEN",
+        ],
+        "commonsDef": [],
+        "cycles": CyclesMetadata {
+          "properCycle": "PROPER_OF_TIME",
+          "psalterWeek": "WEEK_3",
+          "sundayCycle": "YEAR_A",
+          "weekdayCycle": "YEAR_2",
+        },
+        "date": "2020-11-02",
+        "dateDef": {
+          "dateArgs": [
+            1,
+            31,
+          ],
+          "dateFn": "dateOfOrdinaryTime",
+          "yearOffset": 0,
+        },
+        "dateExceptions": [],
+        "fromCalendarId": "ProperOfTime",
+        "fromExtendedCalendars": [],
+        "i18nDef": [
+          "seasons:ordinary_time.weekday",
+          {
+            "dow": 1,
+            "week": 31,
+          },
+        ],
+        "id": "ordinary_time_31_monday",
+        "isHolyDayOfObligation": false,
+        "isOptional": false,
+        "martyrology": [],
+        "periods": [
+          "LATE_ORDINARY_TIME",
+        ],
+        "precedence": "WEEKDAY_13",
+        "rank": "WEEKDAY",
+        "seasons": [
+          "ORDINARY_TIME",
+        ],
+        "titles": [],
+      },
     },
   ],
   "2020-11-03": [
@@ -174762,7 +175001,7 @@ exports[`Testing calendar snapshots General Roman Calendar in liturgical year 2`
       "periods": [
         "LATE_ORDINARY_TIME",
       ],
-      "precedence": "PROPER_OF_TIME_SOLEMNITY_2",
+      "precedence": "GENERAL_SOLEMNITY_3",
       "rank": "SOLEMNITY",
       "seasons": [
         "ORDINARY_TIME",
@@ -183419,12 +183658,71 @@ exports[`Testing calendar snapshots General Roman Calendar in liturgical year 2`
       "periods": [
         "LATE_ORDINARY_TIME",
       ],
-      "precedence": "GENERAL_SOLEMNITY_3",
-      "rank": "SOLEMNITY",
+      "precedence": "COMMEMORATION_OF_ALL_THE_FAITHFUL_DEPARTED_3",
+      "rank": "FEAST",
       "seasons": [
         "ORDINARY_TIME",
       ],
       "titles": [],
+      "weekday": LiturgicalDay {
+        "allowSimilarRankItems": false,
+        "alternativeTransferDateDefs": [],
+        "calendar": {
+          "dayOfSeason": 200,
+          "dayOfWeek": 2,
+          "endOfLiturgicalYear": "2021-11-27",
+          "endOfSeason": "2021-11-27",
+          "nthDayOfWeekInMonth": 1,
+          "seasons": [
+            "ORDINARY_TIME",
+          ],
+          "startOfLiturgicalYear": "2020-11-29",
+          "startOfSeason": "2021-01-11",
+          "weekOfSeason": 31,
+        },
+        "colors": [
+          "GREEN",
+        ],
+        "commonsDef": [],
+        "cycles": CyclesMetadata {
+          "properCycle": "PROPER_OF_TIME",
+          "psalterWeek": "WEEK_3",
+          "sundayCycle": "YEAR_B",
+          "weekdayCycle": "YEAR_1",
+        },
+        "date": "2021-11-02",
+        "dateDef": {
+          "dateArgs": [
+            2,
+            31,
+          ],
+          "dateFn": "dateOfOrdinaryTime",
+          "yearOffset": 0,
+        },
+        "dateExceptions": [],
+        "fromCalendarId": "ProperOfTime",
+        "fromExtendedCalendars": [],
+        "i18nDef": [
+          "seasons:ordinary_time.weekday",
+          {
+            "dow": 2,
+            "week": 31,
+          },
+        ],
+        "id": "ordinary_time_31_tuesday",
+        "isHolyDayOfObligation": false,
+        "isOptional": false,
+        "martyrology": [],
+        "periods": [
+          "LATE_ORDINARY_TIME",
+        ],
+        "precedence": "WEEKDAY_13",
+        "rank": "WEEKDAY",
+        "seasons": [
+          "ORDINARY_TIME",
+        ],
+        "titles": [],
+      },
     },
   ],
   "2021-11-03": [
@@ -212010,7 +212308,7 @@ exports[`Testing calendar snapshots General Roman Calendar in liturgical year 3`
       "periods": [
         "LATE_ORDINARY_TIME",
       ],
-      "precedence": "PROPER_OF_TIME_SOLEMNITY_2",
+      "precedence": "GENERAL_SOLEMNITY_3",
       "rank": "SOLEMNITY",
       "seasons": [
         "ORDINARY_TIME",
@@ -214196,6 +214494,7 @@ exports[`Testing calendar snapshots General Roman Calendar in liturgical year 3`
       ],
       "commonsDef": [
         "Virgins",
+        "MercyWorkers",
       ],
       "cycles": CyclesMetadata {
         "properCycle": "PROPER_OF_SAINTS",
@@ -220553,12 +220852,71 @@ exports[`Testing calendar snapshots General Roman Calendar in liturgical year 3`
       "periods": [
         "LATE_ORDINARY_TIME",
       ],
-      "precedence": "GENERAL_SOLEMNITY_3",
-      "rank": "SOLEMNITY",
+      "precedence": "COMMEMORATION_OF_ALL_THE_FAITHFUL_DEPARTED_3",
+      "rank": "FEAST",
       "seasons": [
         "ORDINARY_TIME",
       ],
       "titles": [],
+      "weekday": LiturgicalDay {
+        "allowSimilarRankItems": false,
+        "alternativeTransferDateDefs": [],
+        "calendar": {
+          "dayOfSeason": 201,
+          "dayOfWeek": 3,
+          "endOfLiturgicalYear": "2022-11-26",
+          "endOfSeason": "2022-11-26",
+          "nthDayOfWeekInMonth": 1,
+          "seasons": [
+            "ORDINARY_TIME",
+          ],
+          "startOfLiturgicalYear": "2021-11-28",
+          "startOfSeason": "2022-01-10",
+          "weekOfSeason": 31,
+        },
+        "colors": [
+          "GREEN",
+        ],
+        "commonsDef": [],
+        "cycles": CyclesMetadata {
+          "properCycle": "PROPER_OF_TIME",
+          "psalterWeek": "WEEK_3",
+          "sundayCycle": "YEAR_C",
+          "weekdayCycle": "YEAR_2",
+        },
+        "date": "2022-11-02",
+        "dateDef": {
+          "dateArgs": [
+            3,
+            31,
+          ],
+          "dateFn": "dateOfOrdinaryTime",
+          "yearOffset": 0,
+        },
+        "dateExceptions": [],
+        "fromCalendarId": "ProperOfTime",
+        "fromExtendedCalendars": [],
+        "i18nDef": [
+          "seasons:ordinary_time.weekday",
+          {
+            "dow": 3,
+            "week": 31,
+          },
+        ],
+        "id": "ordinary_time_31_wednesday",
+        "isHolyDayOfObligation": false,
+        "isOptional": false,
+        "martyrology": [],
+        "periods": [
+          "LATE_ORDINARY_TIME",
+        ],
+        "precedence": "WEEKDAY_13",
+        "rank": "WEEKDAY",
+        "seasons": [
+          "ORDINARY_TIME",
+        ],
+        "titles": [],
+      },
     },
   ],
   "2022-11-03": [

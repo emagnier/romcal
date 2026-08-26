@@ -237,7 +237,7 @@ export class GeneralRoman extends CalendarDef {
       colors: Colors.Red,
     },
 
-    // Added on 2021-01-25: https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20210125_decreto-dottori_en.html
+    // Added on 2021-01-25: https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20210125_decreto-dottori_la.html
     // src: mr_fr_2021_ed3
     gregory_of_narek_abbot: {
       precedence: Precedences.OptionalMemorial_12,
@@ -460,7 +460,7 @@ export class GeneralRoman extends CalendarDef {
       colors: Colors.Red,
     },
 
-    // Added on 2021-01-25: https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20210125_decreto-dottori_en.html
+    // Added on 2021-01-25: https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20210125_decreto-dottori_la.html
     // src: mr_fr_2021_ed3
     john_of_avila_priest: {
       precedence: Precedences.OptionalMemorial_12,
@@ -566,7 +566,7 @@ export class GeneralRoman extends CalendarDef {
       commonsDef: [Common.Missionaries, Common.Bishops],
     },
 
-    // Added on 2019-01-25: https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20190125_decreto-celebrazione-paolovi_en.html
+    // Added on 2019-01-25: https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20190125_decreto-celebrazione-paolovi_la.html
     // src: mr_fr_2021_ed3, mr_it_2020_ed3
     paul_vi_pope: {
       precedence: Precedences.OptionalMemorial_12,
@@ -581,6 +581,7 @@ export class GeneralRoman extends CalendarDef {
       commonsDef: Common.None,
     },
 
+    // Added on 2018-02-11: https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20180211_decreto-mater-ecclesiae_la.html
     // src: mr_fr_2021_ed3, mr_it_2020_ed3
     mary_mother_of_the_church: {
       precedence: Precedences.GeneralMemorial_10,
@@ -715,6 +716,7 @@ export class GeneralRoman extends CalendarDef {
     },
 
     // src: mr_la_2008_ed3
+    // Declared Doctor of the Church on 2022-01-21: https://www.vatican.va/content/francesco/la/apost_letters/documents/20220121-santireneo-dottoredellachiesa.html
     irenaeus_of_lyon_bishop: {
       precedence: Precedences.GeneralMemorial_10,
       dateDef: { month: 6, date: 28 },
@@ -831,6 +833,7 @@ export class GeneralRoman extends CalendarDef {
     },
 
     // src: mr_la_2008_ed3
+    // Elevated to a feast on 2016-06-03: https://www.vatican.va/roman_curia/congregations/ccdds/documents/sanctae-m-magdalenae-decretum_la.pdf
     mary_magdalene: {
       precedence: Precedences.GeneralFeast_7,
       dateDef: { month: 7, date: 22 },
@@ -867,7 +870,7 @@ export class GeneralRoman extends CalendarDef {
       martyrology: ['joachim_father_of_mary', 'anne_mother_of_mary'],
     },
 
-    // Modified on 2021-01-26: https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20210126_decreto-santi_en.html
+    // Modified on 2021-01-26: https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20210126_decreto-santi_la.html
     // src: mr_fr_2021_ed3
     martha_of_bethany_mary_of_bethany_and_lazarus_of_bethany: {
       precedence: Precedences.GeneralMemorial_10,
@@ -1006,7 +1009,7 @@ export class GeneralRoman extends CalendarDef {
 
     // src: mr_la_2008_ed3
     assumption_of_the_blessed_virgin_mary: {
-      precedence: Precedences.ProperOfTimeSolemnity_2,
+      precedence: Precedences.GeneralSolemnity_3,
       // 08-15
       dateDef: { dateFn: 'assumption' },
       commonsDef: Common.None,
@@ -1109,12 +1112,11 @@ export class GeneralRoman extends CalendarDef {
       commonsDef: Common.None,
     },
 
-    // Decree on the inscription of Saint Teresa of Calcutta, virgin, in the General Roman Calendar
-    // src: https://press.vatican.va/content/salastampa/en/bollettino/pubblico/2025/02/11/250211b.html
+    // Added on 2024-12-24: https://press.vatican.va/content/salastampa/it/bollettino/pubblico/2025/02/11/0125/00250.html
     teresa_of_calcutta_virgin: {
       precedence: Precedences.OptionalMemorial_12,
       dateDef: { month: 9, date: 5 },
-      commonsDef: Common.Virgins,
+      commonsDef: [Common.Virgins, Common.MercyWorkers],
     },
 
     // src: mr_la_2008_ed3
@@ -1170,7 +1172,7 @@ export class GeneralRoman extends CalendarDef {
       colors: Colors.Red,
     },
 
-    // Added on 2021-01-25: https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20210125_decreto-dottori_en.html
+    // Added on 2021-01-25: https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20210125_decreto-dottori_la.html
     // src: mr_fr_2021_ed3
     hildegard_of_bingen_abbess: {
       precedence: Precedences.OptionalMemorial_12,
@@ -1286,7 +1288,7 @@ export class GeneralRoman extends CalendarDef {
       commonsDef: Common.None,
     },
 
-    // Added on 2020-05-18: https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20200518_decreto-celebrazione-santafaustina_en.html
+    // Added on 2020-05-18: https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20200518_decreto-celebrazione-santafaustina_la.html
     // src: mr_fr_2021_ed3
     faustina_kowalska_virgin: {
       precedence: Precedences.OptionalMemorial_12,
@@ -1324,15 +1326,15 @@ export class GeneralRoman extends CalendarDef {
       commonsDef: [Common.Missionaries, Common.MercyWorkers],
     },
 
-    // Added on 2025-11-09: https://www.vatican.va/content/romancuria/en/dicasteri/dicastero-culto-divino-e-disciplina-sacramenti/documenti/20251109-decreto-iscrizione-newman.html
-    // src: https://press.vatican.va/content/salastampa/it/bollettino/pubblico/2026/02/03/0095/00182.html
+    // Added on 2025-11-09: https://www.vatican.va/content/romancuria/it/dicasteri/dicastero-culto-divino-e-disciplina-sacramenti/documenti/20251109-decreto-iscrizione-newman-la.html
+    // src: https://www.vatican.va/content/romancuria/it/dicasteri/dicastero-culto-divino-e-disciplina-sacramenti/documenti/20251109-annesso-decreto-iscrizione-newman-la.html
     john_henry_newman_priest: {
       precedence: Precedences.OptionalMemorial_12,
       dateDef: { month: 10, date: 9 },
       commonsDef: [Common.Pastors, Common.DoctorsOfTheChurch],
     },
 
-    // Added on 2014-05-29: https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20140529_decreto-calendario-generale-gxxiii-gpii_en.html
+    // Added on 2014-05-29: https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20140529_decreto-calendario-generale-gxxiii-gpii_lt.html
     // src: mr_fr_2021_ed3, mr_it_2020_ed3
     john_xxiii_pope: {
       precedence: Precedences.OptionalMemorial_12,
@@ -1401,7 +1403,7 @@ export class GeneralRoman extends CalendarDef {
       commonsDef: Common.None,
     },
 
-    // Added on 2014-05-29: https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20140529_decreto-calendario-generale-gxxiii-gpii_en.html
+    // Added on 2014-05-29: https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20140529_decreto-calendario-generale-gxxiii-gpii_lt.html
     // src: mr_fr_2021_ed3, mr_it_2020_ed3
     john_paul_ii_pope: {
       precedence: Precedences.OptionalMemorial_12,
@@ -1444,7 +1446,7 @@ export class GeneralRoman extends CalendarDef {
 
     // src: mr_la_2008_ed3
     commemoration_of_all_the_faithful_departed: {
-      precedence: Precedences.GeneralSolemnity_3,
+      precedence: Precedences.CommemorationOfAllTheFaithfulDeparted_3,
       dateDef: { month: 11, date: 2 },
       commonsDef: Common.None,
       colors: [Colors.Purple, Colors.Black],
@@ -1628,7 +1630,7 @@ export class GeneralRoman extends CalendarDef {
       commonsDef: Common.Saints,
     },
 
-    // Added on 2019-10-07: https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20191007_decreto-celebrazione-verginediloreto_en.html
+    // Added on 2019-10-07: https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20191007_decreto-celebrazione-verginediloreto_la.html
     // src: mr_fr_2021_ed3, mr_it_2020_ed3
     our_lady_of_loreto: {
       precedence: Precedences.OptionalMemorial_12,
